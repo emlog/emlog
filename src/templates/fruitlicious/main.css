@@ -1,0 +1,427 @@
+﻿/*  
+Theme Name: Fruitlicious
+Theme URI: http://www.wpdesigner.com
+Description: Fruitlicious Wordpress theme created by Small Potato (WPDesigner.com)
+Version: 1.0.1
+Author: Small Potato
+Author URI: http://www.wpdesigner.com/
+
+	This theme is released under Creative Commons Attribution 2.5 License.
+
+*/
+
+body, h1, h2, h3, h4, h5, h6, address, blockquote, dd, dl, hr, p, form{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: Arial, Helvetica, Georgia, sans-serif;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: top;
+	background: #edfcfc url(images/bg_body.gif) repeat-x;
+	color: #5f241c;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: Georgia, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	text-transform: lowercase;
+	font-style: italic;
+}
+
+a{
+	text-decoration: underline;
+	color: #ca0000;
+}
+
+a:hover{ text-decoration: none; }
+
+a img{ border: 0; }
+
+abbr, acronym{ border: 0; }
+
+address, dl, p{ padding: 15px 0 0; }
+
+blockquote{
+	margin: 15px 0 0;
+	background: #daefef;
+}
+
+blockquote p{ padding: 15px; }
+
+blockquote blockquote{
+	margin: 15px;
+	background: #fff;
+}
+
+code{
+	background: #fff;
+}
+
+dt{ font-weight: bold; }
+
+dd{ padding: 0 0 0 15px; }
+
+hr{
+	clear: both;
+	margin: 15px 15px 5px 15px;
+	border: 0;
+	height: 1px;
+	text-align: left;
+	background: #daefef;
+	color: #daefef;
+}
+
+small{
+	font-size: 11px;
+}
+
+pre{
+	width: 90%;
+}
+
+input, textarea{
+	font-family: Arial, Helvetica, Georgia, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+
+input#s, input#author, input#email, input#url, textarea#comment{
+	border: 1px solid #daefef;
+	background-color: #fff;
+	padding: 3px;
+}
+
+input#author, input#email, input#url{
+	margin: 0 5px 0 0;
+}
+
+#container{
+	margin: 0 auto;
+	width: 768px;
+	padding: 20px 0 0;
+	text-align: left;
+	vertical-align: top;	
+}
+
+.maincolumn{
+	float: left;
+	width: 508px;
+}
+
+.maincolumn h1{
+	clear: both;
+	padding: 0 0 0 20px;
+	font-size: 30px;
+	color: #6fa79e;
+}
+
+.maincolumn h1 a{
+	color: #6fa79e;
+}
+
+#banner{
+	float: left;
+	margin: 20px 0 0;
+	width: 508px;
+	height: 262px;
+	overflow: hidden;
+	background: url(images/banner.jpg) no-repeat;
+	clear: both;
+}
+
+.post{
+	float: left;
+	width: 508px;
+	padding: 20px 0;
+}
+
+.post h2{
+	padding: 20px;
+	text-transform: lowercase;
+	background: #ffe2ef url(images/bg_post_h2.gif) repeat-x bottom left;
+	color: #800001;
+}
+
+.post h2 a{
+	text-decoration: none;
+	color: #800001;
+}
+
+.post h2 a:hover{
+	text-decoration: underline;
+}
+
+.entry{
+	padding: 0 20px;
+	line-height: 24px;
+}
+
+.entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6{
+	border: 0;
+	padding: 15px 0 0;
+}
+
+.entry h1{
+	font-size: 24px;
+	font-weight: normal;
+	line-height: 30px;
+}
+
+.entry h2{
+	font-size: 18px;
+	background: none;
+	color: #000;
+}
+
+.entry h3{}
+
+.entry  h4{ font-size: 16px; }
+
+.entry h5{ font-size: 14px; }
+
+.entry h6{ font-size: 11px; font-weight: normal; }
+
+.entry img{
+	border: 1px solid #daefef;
+	padding: 4px;
+	background-color: #fff;
+}
+
+.entry img.wp-smiley{
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+}
+
+.entry img.alignleft{
+	float: left;
+	margin: 5px 10px 0 0;
+}
+
+.entry img.alignright{
+	float: right;
+	margin: 5px 0 0 10px;
+}
+
+.entry p.postinfo{
+	margin: 20px 0 0;
+	background: url(images/bg_dotted.gif) repeat-x;
+}
+
+.browse{
+	clear: both;
+	display: inline;
+	float: left;
+	width: 468px;
+	margin: 0 20px;
+	padding: 20px 0;
+}
+
+.sidebar{
+	float: right;
+	width: 240px;
+	padding: 55px 0 0;
+}
+
+.sidebar #description, .sidebar #sidebar_title{
+	padding: 20px;
+	line-height: 24px;
+	background: #fafa82 url(images/bg_description.gif) repeat-x bottom left;
+}
+#msg{
+	margin:200px 0px;
+	padding: 20px;
+	line-height: 24px;
+	width:200px;
+	background: #fafa82 url(images/bg_description.gif) repeat-x bottom left;
+}
+
+.sidebar #sidebar_title{
+	margin: 20px 0 0;
+	font-family: Georgia, sans-serif;
+	font-size: 18px;
+	font-style: italic;
+	text-transform: lowercase;
+	background: #ffde27 url(images/bg_sidebar_title.gif) repeat-x bottom left;
+	color: #41632e;
+}
+
+.sidebar ul{
+	margin: 0;
+	padding: 0 20px 20px;
+	list-style: none;
+}
+
+.sidebar ul li{
+	padding: 10px 0 0;
+}
+
+.sidebar li#search input{
+	margin: 0 0 5px;
+}
+
+.sidebar ul li h2{
+	padding: 0 0 5px;
+	font-size: 14px;
+	font-weight: bold;
+	background: url(images/bg_dotted.gif) repeat-x bottom left;
+	color: #65c5c5;
+}
+
+.sidebar ul ul{
+	padding: 7px 0 0;
+}
+
+.sidebar ul ul li{
+	padding: 8px 0 0;
+	line-height: 24px;
+}
+
+.sidebar ul ul ul{
+	padding: 0;
+}
+
+.sidebar ul ul ul li{
+	padding: 8px 0 0 15px;
+}
+
+
+#footer{
+	float: left;
+	width: 768px;
+	text-transform: lowercase;
+	background: url(images/bg_dotted.gif) repeat-x;
+	color: #99c4ba;
+}
+
+#footer a{
+	color: #99c4ba;
+}
+
+#footer p{
+	padding: 20px;
+	line-height: 24px;
+}
+
+/* comments template */
+
+.comments-template{
+	margin: 20px 0 0;
+	padding: 20px;
+	background: url(images/bg_dotted.gif) repeat-x;
+}
+
+.comments-template ol{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.comments-template ol li{
+	margin: 15px 0 0;
+	line-height: 24px;
+	padding: 0 0 20px;
+	background: url(images/bg_dotted.gif) repeat-x bottom left;
+}
+
+.comments-template h2{
+	padding: 15px 0 0;
+	background: none;
+}
+
+.comments-template h3, .comments-template h2{
+	color: #666;
+}
+
+.comments-template h3#respond{
+	padding: 20px 0 0;
+}
+
+.commentmetadata{
+	font-size: 12px;
+}
+
+.comments-template p.nocomments{
+	padding: 0;
+}
+
+/* end comments template */
+
+
+/* wp-calendar */
+
+table.calendar{
+	width: 100%;
+	font-family: Arial, Helvetica, Georgia, sans-serif;
+	text-transform: none;
+}
+
+table.calendar caption{
+	padding: 10px 15px;
+}
+
+table.calendar th{
+	font-weight: normal;
+	text-align: center;
+	vertical-align: top;
+	background: #daefef;
+}
+
+table.calendar td{
+	padding: 1px;
+	text-align: right;
+}
+
+table.calendar td{
+	text-align: center;
+}
+table.calendartop td{
+	text-align: center;
+}
+
+/*日历样式*/
+.calendar{
+	/*background-image:url(images/bg.jpg);*/
+	margin-left:opx;
+}
+.calendar td{
+	font-size:12px;
+	text-align:center;
+	padding:1px 6px;
+}
+.calendar a:visited{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:link{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:hover{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.day{
+	border:#63617b solid 1px;
+}
+.day2 {
+	font-weight:bold;
+
+}
+.sun{
+	color: #333333;
+	font-weight:bold;
+}
+.week{
+	color: #333333;
+	}
+.calendartop{
+	text-align:center;
+	font-size:14px;
+	margin-left:41px;
+	}
+/* end calendar */

@@ -1,0 +1,3 @@
+<?php
+$user_cache = array('photo' => "<img src=\"images/blogger.gif\" width=\"100\" height=\"100\" alt=\"blogger\" />",'name' =>"",'mail'	=>"",'des'=>"welcome to emlog!");
+?>

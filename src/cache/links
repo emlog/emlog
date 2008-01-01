@@ -1,0 +1,3 @@
+<?php
+$link_cache[0] = array('link'=>"emlog",'url'=>"http://www.emlog.net",'des'=>"emlog官方主页");
+?>

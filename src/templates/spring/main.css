@@ -1,0 +1,368 @@
+﻿/*
+Theme Name: Almost Spring SEO + AdSense
+Theme URI: http://www.morearnings.com/
+Description: Connections theme with SEO optimization and AdSense added. You must read the readme.txt file that came with this theme (important installation information).
+Version: 02
+Author: SEO Dave
+Author URI: http://www.morearnings.com/
+*/
+
+/* Basics and Typography */
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #E8E8CE url(images/bg.gif) repeat-x fixed;
+	font-size: 78%;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+	color: #333;
+	text-align: center;
+}
+p {
+	font-size: 1em;
+	line-height: 1.5em;
+	margin: 1.2em 0;
+}
+ol, ul {
+	font-size: 1em;
+	line-height: 1.5em;
+	margin: 1.2em 0 1.2em 2em;
+	padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 1.2em 0;
+	font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+	color: #9BBB38; 
+}
+h1, h2 {
+	font-size: 1.4em;
+}
+h3 {
+	font-size: 1.3em;
+}
+h4 {
+	font-size: 1.2em;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: #E58712;
+}
+a:visited {
+	color: #B96F17;
+}
+a:hover, a:active {
+	color: #9BBB38;
+}
+input, textarea, select {
+	border: 1px solid #C1C0B5;
+	background-color: #FAFAF0;
+	color: #333;
+	font-size: 1em;
+	font-family: "Lucida Sans Unicode", Tahoma, Arial, sans-serif;
+}
+blockquote {
+	margin: 0 20px;
+	padding: 0 20px;
+	border-left: 4px solid #E8E7D0;
+	font-size: 0.9em;
+}
+code {
+	font-family: monospace;
+	color: #666;
+}
+form, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.small {
+	font-size: 0.9em;
+	color: #999;
+}
+
+/* Layout */
+
+#wrapper {
+	margin: 0 auto;
+	width: 750px;
+	background-color: #FFF;
+	text-align: left;
+}
+#header {
+	padding: 30px 0 0 0;
+	background-color: #F5F5E7;
+	border-bottom: 10px solid #9BBB38;
+}
+	/* Header Styles */
+	#header h1 {
+		margin: 0;
+		font-size: 1.8em;
+	}
+	#header h1 a {
+		text-decoration: none;
+		color: #80904F;
+	}		
+#content {
+	float:left;
+	margin: 0 0 0 20px;
+	width: 500px;
+	display: inline; /* IE double margin bug fix */
+}
+#sidebar {
+	float:right;
+	margin: 0 20px 0 20px;
+	width: 190px;
+	font-size: 1.0em;
+	display: inline; /* IE double margin bug fix */
+}
+* html #content, * html #sidebar {
+	overflow: hidden; /* For IE */
+}
+#footer {
+	clear: both;
+	font-size: 0.9em;
+	text-align: right;
+}
+	/* Footer Styles */
+	#footer p {
+		margin: 0;
+		padding: 10px 0 20px 0;
+		background-color: #E8E8CE;
+		border-top: 10px solid #9BBB38;
+		font-size: 0.9em;
+		text-align: right;
+	}
+	
+/* Sidebar Styles */
+
+#sidebar h4 {
+	display: inline;
+	margin: 1.2em 0 0.6em 0;
+	padding: 0 10px 0 0;
+	background: url(images/arrow.gif) no-repeat center right;
+	font-size: 1.1em;
+}
+
+#sidebar h2 a {
+	color: #9BBB38;
+}
+#sidebar h2 a:hover {
+	color: #E58712;
+}
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#sidebar ul li {
+}
+#sidebar ul ul {
+	width:190px;
+	margin: 1.2em 0;
+	border-top: 1px solid #E8E7D0;
+	background-color: #FAFAF0;
+}
+#sidebar ul ul li {
+	padding: 0 0 0 10px;
+	border-bottom: 1px solid #E8E7D0;
+}
+#sidebar ul ul li a {
+	display: block;
+	margin: 0 0 0 -10px;
+	padding: 0.1em 10px;
+	width: 190px;
+	voice-family: "\"}\""; 
+	voice-family: inherit;
+	width: 170px;
+} 
+html>body #sidebar ul ul li a {
+	width: 170px;
+}
+#sidebar ul ul li a:hover {
+	background-color: #FFF;
+}
+/* Nested lists? */
+#sidebar ul ul ul {
+	margin: 0;
+	border: none;
+}
+#sidebar ul ul ul li {
+	margin: 0 0 0 -10px;
+	padding: 0 0 0 25px;
+	border-bottom: none;
+	border-top: 1px solid #E8E7D0;
+}
+#sidebar ul ul ul li a {
+	margin: 0 0 0 -25px;
+	padding: 0.1em 10px 0.1em 25px;
+	width: 190px;
+	voice-family: "\"}\""; 
+	voice-family: inherit;
+	width: 155px;
+} 
+html>body #sidebar ul ul ul li a {
+	width: 155px;
+}
+/* Calendar */
+#wp-calendar {
+	margin: 0 0 1.2em 0;
+	width: 190px;
+	border: 1px solid #E8E7D0;
+	background: #FAFAF0;
+	line-height: 1.2em;
+	text-align: center;
+	voice-family: "\"}\""; 
+	voice-family: inherit;
+	width: 188px;
+} 
+html>body #wp-calendar {
+	width: 188px;
+}
+#wp-calendar caption {
+	margin: 1.2em 0 0 0;
+	padding: 0.4em 0;
+	background: #9BBB38;  
+	color: #FFF;
+	font-weight: bold;
+}
+#wp-calendar td {
+	border: 0;
+	border-collapse: collapse;
+	background: #FFF;
+}
+#wp-calendar td a {
+	display: block;
+	width: 100%;
+}
+#wp-calendar td.pad {
+	background: transparent;
+}
+#wp-calendar td#next, #wp-calendar td#prev {
+	padding: 0.1em 2px;
+	background: transparent;
+}
+#wp-calendar td#next a, #wp-calendar td#prev a {
+	display: inline;
+}
+#wp-calendar td#next {
+	text-align: right;
+}
+#wp-calendar td#prev {
+	text-align: left;
+}
+
+/* Blog */
+
+.post {
+}
+.posttitle {
+	margin-bottom: 0;
+	width: 100%;
+	color: #FFF;
+	overflow: auto;
+	/* Width and overflow to clear '.posttitle a' */
+}
+.posttitle a {
+	float: left;
+	padding: 0 10px;
+	background: #9BBB38 url(images/posttitle.gif) no-repeat top right;
+}
+.posttitle a:link, .posttitle a:visited {
+	color: #FFF;	
+}
+.posttitle a:hover, .posttitle a:active {
+	background: #E8E7D0 url(images/posttitle.gif) no-repeat 100% -91px;
+	color: #80904F;
+}
+.postmeta {
+	margin-top: 0;
+	padding-top: 1px;
+	background: url(images/postmeta.gif) no-repeat top left;
+	font-size: 0.9em;
+	color: #999;
+}
+.postentry {
+}
+.permalink {
+	margin: 0 1.8em 0 0;
+	padding: 0 0 0 14px;
+	background: url(images/permalink.gif) no-repeat center left;
+}
+.commentslink {
+	padding: 0 0 0 17px;
+	background: url(images/commentslink.gif) no-repeat center left;
+}
+
+/* Comments */
+
+#commentlist {
+	margin: 1.2em 0;
+	padding: 0;
+	border-bottom: 1px solid #E8E7D0;
+	list-style-type: none;
+}
+#commentlist li {
+	border-top: 1px solid #E8E7D0;
+	padding: 1px 20px;
+	background-color: #FFF;
+}
+.alt {
+	background-color: #FAFAF0 !important;
+}
+.commenttitle {
+	margin-bottom: 0;
+	font-size: 1.1em;
+}
+.commentmeta {
+	margin-top: 0;
+	font-size: 0.9em;
+	color: #999;
+}
+#comment {
+	width: 98%;
+}
+
+/* Widgets and Etc */
+
+.widget_search div {
+	margin: 1.2em 0;
+}
+#sidebar #s {
+	margin-bottom: 2px;
+	width: 180px;
+}
+/*日历样式*/
+.calendar{
+	/*background-image:url(images/bg.jpg);*/
+	margin-left:20px;
+}
+.calendar td{
+	font-size:12px;
+	text-align:center;
+}
+.day{
+	border:#63617b solid 1px;
+}
+.day2 {
+	font-weight:bold;
+
+}
+.sun{
+	color:#9BBB38;
+	font-weight:bold;
+}
+.week{
+	color: #9BBB38;
+	}
+.calendartop{
+	font-size:14px;
+	margin-left:20px;
+	}
+#msg{
+	margin:200px 0px;
+	padding: 20px;
+	line-height: 24px;
+	width:400px;
+}

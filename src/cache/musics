@@ -1,0 +1,6 @@
+<?php
+
+$auto=0;
+$randplay=0;
+$ismusic=0;
+?>

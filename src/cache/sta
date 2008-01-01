@@ -1,0 +1,9 @@
+<?php
+$sta_cache = array(
+			'day_view_count' => "0",
+			'view_count' =>"0",
+			'lognum'=>"1",
+			'comnum'=>"0",
+			'tbnum'=>"0"
+			);
+?>

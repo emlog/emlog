@@ -1,0 +1,3 @@
+<?php
+$log_cache_atts[1] = array('attachment'=>"",'att_img'=>"");
+?>

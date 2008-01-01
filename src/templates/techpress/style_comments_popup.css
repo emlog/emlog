@@ -1,0 +1,43 @@
+body, h1, h2, h3, h4, h5, h6, blockquote{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	margin: 10px;
+	font-family: Arial, Helvetica, Georgia, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	vertical-align: top;
+	background: #fff;
+	color: #000;
+}
+
+h1{
+	font-size: 24px;
+}
+
+h2, p{
+	padding: 10px 0 0;
+}
+
+blockquote{
+	margin: 10px;
+	background: #eee;
+}
+
+blockquote p{
+	padding: 10px;
+}
+
+ol#commentlist{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ol#commentlist li{
+	padding: 15px 0 0;
+	line-height: 18px;
+	border-bottom: 1px solid #999;
+}

@@ -1,0 +1,570 @@
+/* reset
+--------------------------------------------------*/
+body,h1,h2,h3,h4,h5,h6,p,form,fieldset {margin:0;padding:0;}
+.low {display:none;}
+
+
+/* body
+--------------------------------------------------*/
+body {
+  margin:0;
+  padding:15px 0;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:75%;
+  line-height:1.6em;
+  text-align:center;
+}
+
+body#commentspopup {padding:0;}
+
+
+/* headings
+--------------------------------------------------*/
+h1 {font-size:30px;}
+
+#content h2, #content h1 {
+  margin:0 0 18px 0;
+  font-family:Georgia, serif;
+  font-size:1.6em;
+  font-weight:normal;
+}
+
+#content h3 {
+  margin:0 0 18px 0;
+  font-size:1em;
+}
+
+#content h4 {
+  margin:0;
+  font-size:1em;
+}
+
+#content.archive h2 {margin:0 0 26px 0;}
+
+#content.archive h3 {
+  margin:0 0 10px 0;
+  font-family:Georgia, serif;
+  font-size:1.3em;
+  font-weight:normal;
+}
+
+#content.archive h4 {
+  margin:0 0 18px 0;
+  font-size:1em;
+}
+
+#content.archive h5 {
+  margin:0;
+  font-size:1em;
+}
+
+
+/* links
+--------------------------------------------------*/
+a {text-decoration:none;}
+
+a img {border:none;}
+
+
+/* paragraphs, lists, etc
+--------------------------------------------------*/
+p {
+  margin:0;
+  padding:0 0 18px 0;
+}
+
+ul {
+  margin:0 0 0 1.4em;
+  padding:0 0 18px 0;
+}
+
+ul ul {padding:0;}
+
+blockquote {
+  margin:0;
+  padding:0 18px;
+  font-style:italic;
+}
+
+pre {
+  overflow:auto;
+  margin:0 0 18px 0;
+  padding:4px;
+}
+
+pre, code, kbr {font-family:Courier, Monaco, monospace;}
+
+code, kbr {padding:0 2px;}
+
+abbr, acronym {
+  font-size:1.0em;
+  letter-spacing:1px;
+}
+
+
+/* images
+--------------------------------------------------*/
+img.left {
+  float:left;
+  margin:0 12px 0 0;
+}
+
+img.right {
+  float:right;
+  margin:0 0 0 12px;
+}
+
+img.center {
+  display: block;
+  margin:0 auto;
+}
+
+
+/* container
+--------------------------------------------------*/
+#container {
+  width:690px;
+  margin:0 auto;
+  padding:30px 30px 0 30px;
+  text-align:left;
+}
+
+#commentspopup #container {
+  width:455px;
+  padding:0 15px;
+}
+
+
+/* header
+--------------------------------------------------*/
+#header {
+  height:115px;
+  padding:0 0 0 18px;
+}
+
+#header h1 {
+  /*display:none; This will hide the text in your header */
+  padding:50px 0px 10px 0px;
+}
+
+
+
+/* navigation
+--------------------------------------------------*/
+#navigation {
+  height:2.7em;
+  line-height:2.7em;
+}
+
+#navigation ul {
+  margin:0;
+  padding:0;
+}
+
+#navigation li {
+  float:left;
+  margin:0;
+  padding:0;
+  list-style-type:none;
+  border-right:1px solid;
+  white-space:nowrap;
+}
+
+#navigation li a {
+  display:block;
+  padding:0 18px;
+  font-size:0.8em;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+* html #navigation a {width:1%;} /* see http://www.positioniseverything.net/explorer/escape-floats.html */
+
+#navigation form {
+  float:right;
+  height:100%;
+  width:189px;
+  padding:0 15px;
+  border-left:1px solid;
+  line-height:0;
+}
+
+#navigation form fieldset {
+  /* centering the search form could've
+  been done way more elegant but IEWin
+  and Opera refused to follow the rules */
+  margin-top:7px;
+  border:0 solid; /* Opera */
+}
+
+* html #navigation form fieldset {margin-top:7px;}
+
+#navigation #s {
+  height:1.5em;
+  width:140px;
+  margin:0 5px 0 0;
+  padding:0;
+  border:1px solid;
+  font-size:0.8em;
+  vertical-align:middle;
+}
+
+#navigation #searchbutton {
+  height:2em;
+  width:auto;
+  padding:0 1px;
+  border:1px solid;
+  font-size:9px;
+  letter-spacing:1px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+
+/* content
+--------------------------------------------------*/
+#content {
+  float:left;
+  width:455px;
+  padding-top:32px;
+}
+
+.singlecol #content {
+  float:none;
+  width:550px;
+  margin:0 70px;
+}
+
+#commentspopup #content {
+  float:none;
+  padding-top:0;
+}
+
+
+/* entry
+--------------------------------------------------*/
+.entry {margin:0 0 40px 0;}
+
+.entry .info {
+  position:relative;
+  margin-top:-3px;
+  padding:3px;
+  border-top:1px solid;
+  border-bottom:1px solid;
+  font-size:1.0em;
+}
+
+.entry.single {clear:both;}
+
+.entry.single .info {margin:0 0 22px 0;}
+
+.entry .info a {
+  margin-right:6px;
+  padding-right:9px;
+  border-right:1px solid;
+}
+
+.entry .info em {
+  padding-right:6px;
+  font-style:normal;
+}
+
+.entry .author,
+.entry .editlink a {
+  margin:0;
+  padding:0 0 0 10px;
+  border-left:1px solid;
+  border-right:none
+}
+
+.entry #filedunder {
+  clear:both;
+  padding:3px 0 0 0;
+  font-size:1.0em;
+  border-top:1px solid;
+}
+
+
+/* mini-entry
+--------------------------------------------------*/
+.minientry {
+  position:relative;
+  margin:0px 0 35px 0;
+  padding:10px 0;
+  border-top:1px dotted;
+  border-bottom:1px dotted;
+}
+
+.minientry p {padding:0;}
+
+.minientry .commentlink {
+  margin-left:3px;
+  padding-right:7px;
+  border-right:1px solid;
+  font-size:1.0em;
+}
+
+.minientry .permalink {
+  margin-left:3px;
+  font-size:1.0em;
+  font-style:normal;
+}
+
+.minientry .author,
+.minientry .editlink a {
+  margin-left:6px;
+  padding:0 8px 0 10px;
+  border-left:1px solid;
+  font-size:1.0em;
+  font-style:normal;
+}
+
+.minientry .editlink a {margin:0;}
+
+
+/* comments
+--------------------------------------------------*/
+#comments h2 {margin-bottom:24px;}
+
+#comments h2 a {
+  margin-left:2px;
+  padding-left:6px;
+  border-left:1px solid;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:0.55em;
+}
+
+#comments ul {margin:0 0 0 20px;}
+
+#comments li {
+  position:relative;
+  margin-bottom:18px;
+}
+
+
+#comments li p {padding:0 0 10px 0;}
+
+#comments .header {
+  position:relative;
+  min-height:19px; /* 19 + 3 +3 = 25px = height of gravatar */
+  margin:0 0 10px 0;
+  padding:3px 6px;
+}
+
+* html #comments .header {height:19px;} /* IEWin */
+
+#comments .header strong {font-family:Georgia,sans-serif;}
+
+#comments .header .gravatar {
+  position:absolute;
+  top:1px;
+  right:1px;
+}
+
+
+/* form
+--------------------------------------------------*/
+form {padding:6px 0;}
+
+#commentform, #contactform {margin-bottom:18px;}
+
+form fieldset {border:0 solid;} /* Opera */
+
+form p {
+  padding:6px 0;
+  border-bottom:1px solid;
+}
+
+form label {
+  display:block;
+  float:left;
+  width:60px;
+}
+
+#commentform label {margin:0 15px 0 15px;}
+#contactform label {margin:0 15px 0 0;}
+
+form em {
+  margin-left:5px;
+  font-size:1.0em;
+  font-style:normal;
+}
+
+form input, form textarea {
+  padding:3px;
+  border:1px solid;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:1.0em;
+}
+
+form textarea {overflow:auto;}
+
+#commentform textarea {width:325px;}
+#contactform textarea, #contactform #bx_subject {width:465px;}
+
+* html #commentform textarea {width:320px;} /* IE WIN; but why? */
+* html #contactform textarea,
+* html #contactform #bx_subject {width:445px;} /* IE WIN; but why? */
+
+form .button {
+  width:90px !important;
+  border-bottom:1px solid;
+}
+
+#commentform .button {margin-left:90px;}
+#contactform .button {margin-left:75px;}
+
+form .hiddenfield {display:none;}
+
+form .info {padding-left:90px;}
+
+
+/* archives
+--------------------------------------------------*/
+.archive .postspermonth {
+  margin:0;
+  list-style:none;
+}
+
+
+/* content misc
+--------------------------------------------------*/
+.next a {float:right;}
+.previous a {float:left;}
+
+
+#entrynavigation {
+  overflow: auto;
+  height:1%;
+  margin-bottom:13px;
+  padding-bottom:13px;
+  border-bottom:1px solid;
+  font-size:1.0em;
+}
+
+
+/* subcontent
+--------------------------------------------------*/
+#subcontent {
+  float:right;
+  width:205px;
+  padding:15px 0 0 15px;
+  font-size:1.0em;
+  line-height:1.5em;
+}
+
+* html #subcontent {padding-top:32px;} /* dirty fix for IEWIN; temporary! */
+
+#subcontent ul, #subcontent p {margin:10px 10px 0px;}
+
+
+/* subcontent headings
+--------------------------------------------------*/
+#subcontent h4 {
+  margin:0px;
+  font-family:Georgia,serif;
+  font-size:1em;
+  line-height:1em;
+}
+
+#subcontent h4 em {
+  display:block;
+  padding:5px 10px;
+  font-style:normal;
+}
+
+
+/* subcontent list
+--------------------------------------------------*/
+#subcontent ul li {
+  margin:2px 0 2px 18px;
+  padding-bottom:2px;
+  border-bottom:1px solid;
+}
+
+#subcontent li a {
+  display:block;
+  padding:1px 0;
+  height:1%; /* IE WIN */
+}
+
+
+/* footer
+--------------------------------------------------*/
+#footer {
+  clear:both;
+  padding:40px 0 15px 0;
+  font-size:1.0em;
+}
+
+.singlecol #footer {
+  padding:25px 0 15px 0;
+}
+
+#footer p {
+  padding:12px 0 18px 0;
+  border-top:1px solid;
+}
+
+#footer strong {font-weight:normal;}
+
+.singlecol #footer p {
+  padding:12px 70px 18px 70px;
+}
+
+.inp{
+  padding:3px;
+  border:1px solid;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:1.0em;
+}
+#msg{
+	margin:200px 0px;
+	padding: 10px;
+	line-height: 24px;
+	width:260px;
+	background-color: #A3C159;
+}
+/*日历样式*/
+#calendar{
+	margin-bottom:0px;
+	padding:0px;
+}
+.calendar{
+	/*background-image:url(images/bg.jpg);*/
+	margin-left:opx;
+}
+.calendar td{
+	font-size:12px;
+	text-align:center;
+	padding:0px 3px;
+}
+.day{
+	border:#63617b solid 1px;
+}
+.day2 {
+	font-weight:bold;
+
+}
+.sun{
+	color: #333333;
+	font-weight:bold;
+}
+.week{
+	color: #333333;
+	}
+.calendartop{
+	font-size:14px;
+	}
+.calendar a:visited{
+	color: #FF9900;
+	text-decoration:underline;
+}
+.calendar td a:link{
+	color:#FF9900;
+	text-decoration:underline;
+}
+.calendar td a:hover{
+	color:#FF9900;
+	text-decoration:underline;
+}

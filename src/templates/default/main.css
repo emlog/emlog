@@ -1,0 +1,294 @@
+/* emlog's templates :default css */ 
+
+* {margin: 0;}
+img {border: 0}
+li{ list-style:none;}
+a:link {
+	text-decoration: none;
+	color:#4A7FF8;
+	}
+a:visited {
+	text-decoration: none;
+	color:#4A7FF8;
+	}
+
+body{
+	font-family: Arial;
+	font-size:12px;
+	line-height:150%;
+}
+#header *{ padding:0px;}
+#holder {
+	width:960px;
+	padding:20px 20px;
+	margin:auto;
+	}
+#siteTitle {
+	font-size:14px;
+	list-style:none;
+	font-family:Arial;
+	padding:5px;
+	background-color:#FFFFFF;
+	margin:0px;
+	}
+#siteTitle li{
+	font-size: 14px;
+	padding: 5px 5px 1px;
+	color: #999999; list-style:none;
+}
+#siteTitle #blogname{
+	font-size:22px;
+	font-family:"黑体";
+	margin:20px 0px 0px;
+	color:#63617b;
+}
+#blogname a:link{color:#4A7FF8;text-decoration:none}
+#blogname a:visited{color:#4A7FF8;text-decoration:none}
+#siteTitle #blogdes{font-size:12px; text-align:right;}
+#navBar {
+	font-size:14px;
+	margin:0px;
+	background-color:#FFFFFF;
+	border-bottom: 2px solid #BBBBBB;
+	padding: 2px;
+	text-align: left;
+	}
+#navBar li{
+	list-style: none;
+	display: inline;
+	padding:0px 12px;
+	}
+#navBar a:link {
+	text-decoration: none;
+	color:#000000;
+	background-color:#ffffff;
+	}
+#navBar a:visited {
+	text-decoration: none;
+	color:#000000;
+	background-color:#ffffff;
+	}
+#navBar a:hover {
+	text-decoration:none;
+	color:#000000;
+	background-color:#ffffff;
+	}
+/*右侧栏*/
+div.contentA{
+	float: right;
+	margin: 0px;
+	padding: 0px;
+	width:230px;
+	table-layout:fixed;word-wrap:break-word;
+	}
+.lister {
+	color:#63617b;
+	display:block;
+	padding:1px 0px 1px 10px;
+	margin:10px 1px 2px;
+	clear:left;
+	}
+.lister span{cursor:hand; font-weight:bold;} 
+.contentA li {
+	padding:3px 0px 3px 15px;
+	list-style: none;
+	}
+.contentA ul{
+	padding:0px;
+}
+#contentA #comment {
+	font-size: 11px;
+	text-align:left;
+	table-layout:fixed;word-wrap:break-word;
+	border-bottom:#BBBBBB dashed 2px;
+	}
+.expanded {
+	display: none;
+}
+/*左侧日志*/	
+#contentB {
+	margin-left:10px;
+	float:left;
+	background-color:#FFFFFF;
+	width:700px;
+	border-right:1px dashed #A6A6A6
+	}
+#contentB li{
+	list-style:none;
+	padding: 4px;
+	}
+#contentB #search{
+	border:1px solid #999999;
+	table-layout:fixed;word-wrap:break-word;
+	}
+#contentB p{
+	padding:8px;
+	}
+#contentB strong{
+	font-size:10pt;
+	}
+.logcontent{
+	background-color:#FFFFFF;
+	padding: 8px 8px 0px;
+	margin:0px 10px;
+	table-layout:fixed;word-wrap:break-word;
+	border-bottom:#BBBBBB dashed 1px;
+}
+.logcontent li{ list-style:none;}
+.log_con{
+	padding:5px 10px 5px;
+	font-size:14px;line-height:1.7;
+	border-bottom:#BBBBBB dashed 1px;
+}
+.log_desc{font-size:14px;line-height:1.7;}
+.line{color: #FF6633;}
+.content{
+	background-color:#FFFFFF;
+	padding: 10px;
+	margin: 0px;
+	table-layout:fixed;word-wrap:break-word;
+	}
+.trackback{
+	border:#63617b solid 1px;
+	padding:2px 10px;
+	margin-top:10px;
+}
+#com_list li{margin:10px 10px; border-bottom:1px dotted #63617b; width:700px;}
+#tags{ margin:10px 50px;}
+#tb_list{ margin:20px 0px 20px;}
+/*底部版权信息*/
+#siteCopyright {
+	font-family:Arial;
+	color: #999999;
+	text-align: center;
+	margin:20px 0px;
+	clear:both;
+	font-size:12px;
+	}
+/*日志标题，栏目名样式*/
+#t {
+	background-repeat:no-repeat;
+	font-size:14px;
+	padding:8px 0px 0px 0px;
+	font-weight:bold;
+	color:#63617b;
+	}
+#tit {
+	background-repeat:no-repeat;
+	font-size:16px;
+	padding:8px 0px 0px 0px;
+	font-weight:bold;
+	}
+#t a:link{color:#2759CD;text-decoration: underline}
+#t a:visited{color:#2759CD;text-decoration:underline}
+#t2 {
+	font-size:22px;
+	padding:4px 16px 0px;
+	color:#63617b;
+	border:1px solid  #63617b;
+	}
+#date{
+	font-size:12px;
+	color: #CC6600;
+	}
+#t3 {
+	font-size:12px;
+	padding:1px 20px;
+	color:#63617b;
+	}
+#t_search {
+	margin-top:10px;
+	color:#63617b;
+}
+#t_search li{padding:5px 0px 5px;}
+#t_com {
+	padding:1px 20px;
+	color:#63617b;
+	}
+.ultype{padding:5px 20px 5px;}
+/*返回信息及跳转页面样式*/
+.remsg {
+	font-family: Arial;
+	background-color:#FFFFFF;
+	color:#63617b;
+	text-align:center;
+	margin:200px;
+	}
+/*日历样式*/
+.calendar{
+	/*background-image:url(images/bg.jpg);*/
+	margin-left:14px;
+}
+.calendar td{
+	font-size:12px;
+	text-align:center;
+	padding:1px 6px;
+	background-color:#F5F5F5;
+}
+.calendar a:visited{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:link{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:hover{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.day{
+	border:#63617b solid 1px;
+}
+.day2 {
+	font-weight:bold;
+
+}
+.sun{
+	background-color:#63617b;
+	color: #333333;
+	font-weight:bold;
+}
+.week{
+	background-color:#63617b;
+	color: #333333;
+	}
+.calendartop{
+	text-align:center;
+	font-size:14px;
+	margin-left:41px;
+	}
+/*页码样式*/
+#pageurl{
+	margin:20px 0px 30px;;
+	text-align: center;
+	margin-left:20px;
+	font-size:14px;
+}
+/*输入框样式*/
+.input {
+	border: 1px solid #CCCCCC;
+	font-family: Arial;
+	font-size: 14px;
+	height:20px;
+	background-color: #F3F3F3;
+	color: #666666;
+}
+.textarea {
+	border: 1px solid #CCCCCC;
+	font-family: Arial;
+	font-size: 14px;
+	background-color: #F3F3F3;
+	color: #666666;
+}
+/*按钮样式*/	
+.button {
+	font-family: Arial;
+	border-right: #4f4f4f 1px solid;
+	border-top: #f6f6f6 1px solid;
+	font-size: 14px;
+	height:22px;
+	background: #dddddd;
+	border-left: #f6f6f6 1px solid;
+	border-bottom: #4f4f4f 1px solid;
+}

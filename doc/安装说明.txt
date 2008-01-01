@@ -1,0 +1,36 @@
+Emlog 安装说明 
+
+安装步骤 :
+
+1.将下载解压后的"src"文件夹下的所有文件上传到web服务器预安装emlog的根目录。 
+
+2.权限设置:
+ (Windows OS 无需设置权限) 
+ (Linux OS)执行安装程序之前设置如下文件或目录权限为777 
+
+    ./config.php(单个文件) 
+    ./cache/(目录下所有文件，依次设置为777) 
+    ./uploadfile (目录) 
+    ./adm/bakup (目录) 
+
+3.在你的mysql服务器上建立一个用于emlog的空数据库。 
+
+    如果你不能建立多个数据库，可以使用原有数据库 
+    如果你使用的是mysql4.1或者是更高的版本，务必将要安装emlog的数据库字符集设置为utf8 (utf8_general_ci)
+    其他低于4.1版本的用户不必设置数据库字符集 
+
+    *如何设置数据库字符集？ 
+        (1)如果你是为emlog新建一个单独的数据库 
+            使用phpmyadmin创建数据库时右边‘整理’中选择 ‘utf8_general_ci’创建即可。 
+            或者直接运行sql语句：CREATE DATABASE emlog DEFAULT CHARACTER SET utf8 
+            其中的 'emlog' 可以替换为其他你想建立的数据库名 
+        (2)如果你已经有一个数据库 
+            使用phpmyadmin在左边选择该数据库，此时右边底部的‘整理’选择‘utf8_general_ci’执行即可 
+            或者直接运行sql语句：ALTER DATABASE dbname DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci 
+            其中的‘dbname’修改为该数据库的名字 
+
+            注意：该设置可能导致该数据库中原有数据表中数据出现问题，推荐为emlog重新创建一个单独使用的数据库 
+
+4.在浏览器上访问根目录下的安装文件 install.php 按照提示安装。 
+5.安装成功，删除安装文件 install.php  ! 将 ./config.php 权限还原为644
+如果你对上诉安装过程有任何疑问，请发邮件到 emloog@gmail.com
