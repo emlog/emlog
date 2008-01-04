@@ -22,7 +22,7 @@ MySQL 4.0或更高版本
 
 版权
 
-Emlog 基于 GPL 许可协议发布 (参见 license.txt)。
+Emlog 基于 GPL 许可协议发布 (参见 license.txt)
 
 
 
