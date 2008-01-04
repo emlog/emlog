@@ -2,7 +2,7 @@
 doc/功能介绍.txt -text
 doc/安装说明.txt -text
 doc/模板说明.txt -text
-/licence.txt -text svneol=unset#application/octet-stream
+/license.txt -text
 /readme.txt -text
 src/adm/add_log.php -text
 src/adm/admin_log.php -text
