@@ -32,10 +32,8 @@ EOT;
 </li>
 $delflg_a
 <li><h2>音乐</h2>
-		<ul>
-			<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
-</li>
-		</ul>
+			<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="145" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+</p>
 </li>
 $delflg_b
 <li><h2>评论</h2>
