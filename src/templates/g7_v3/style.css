@@ -1,0 +1,611 @@
+/*  
+Theme Name: underone's G7 (v3)
+Theme URI: http://www.underone.com/
+Description: powered by <a href="http://www.underone.com/">underone</a>, v3@2008.1.3
+Version: 0.9
+Author: underone
+Author URI: http://www.underone.com/
+*/
+
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #E7E7E7;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+#shell {
+	width: 910px;
+	margin: 0 auto;
+	padding: 0;
+	background-color: #E3E3E3;
+	border-right-width: 2px;
+	border-left-width: 2px;
+	border-right-style: dashed;
+	border-left-style: dashed;
+	border-right-color: #E5E5E5;
+	border-left-color: #E5E5E5;
+}
+
+#header {
+	height: 45px;
+	width: 865px;
+	background-color: #5e5951;
+	padding-left: 20px;
+	font-family: Verdana, Arial, 新宋体, 宋体, Helvetica, sans-serif;
+	font-size: 12px!important;
+	font-size: 11px;
+	color: #E9E9E9;
+	line-height: 45px;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	padding-right: 15px;
+	border-top-width: 5px;
+	border-top-style: solid;
+	border-top-color: #D67900;
+	overflow: hidden;
+}
+
+#header h1 {
+	font-size: 80px;
+	float: left;
+	padding-right: 25px;
+	color: #FEFEFE;
+	letter-spacing: -10px;
+	font-family: "黑体", Verdana, Arial;
+	margin: 0px;
+	padding-top: 0px;
+}
+
+#header h1 a:link,#header a:link {
+	color:#fff;
+	text-decoration: none;
+} 
+#header h1 a:visited,#header a:visited {
+	color:#fff;
+	text-decoration: none;
+} 
+#header h1 a:hover {
+	color:#D67900;
+	font-size: 80px;
+	letter-spacing: -10px;
+} 
+#header a:hover {
+	color:#D67900;
+	font-size: 24px;
+	letter-spacing: -5px;
+	font-weight: bolder;
+} 
+#header h1 a:active,#header a:active {
+	color:#D67900
+} 
+#header ul {
+	color: #FFFFFF;
+	font-size: 12px;
+	padding: 0px;
+	margin: 0px;
+	float: right;
+}
+
+#header ul li {
+	float: left;
+	margin-top: -10px;
+	text-indent: 10px;
+}
+#clear-div {
+	height: 0px;
+	overflow: hidden;
+}
+#page {
+	width: 900px;
+	background-color: #fff;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: auto;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 15px;
+	padding-left: 0px;
+}
+#content {
+	width: 590px;
+	margin: 0px;
+	color: #757575;
+	float: left;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 0px;
+	padding-left: 20px;
+	font-size: 12px;
+}
+
+#content h2 {
+	font-size: 15px;
+	color: #43afd2;
+	margin-bottom: 3px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: #D67900;
+	padding-left: 8px;
+}
+#content h3 {
+	font-size: 14px;
+	color: #43afd2;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+#content h2 a:link {
+	color:#43afd2;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #9EB3D6;
+} 
+#content h2 a:visited {
+	color:#43afd2;
+	text-decoration: none;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #43afd2;
+} 
+#content h2 a:hover {
+	color:#8dab3b;
+	border-bottom-width: 0px;
+	border-bottom-style: dashed;
+	border-bottom-color: #8dab3b;
+} 
+#content h2 a:active {
+	color:#8dab3b
+}
+#content li {
+	margin-left: 15px;
+}
+#content ul {
+	margin-bottom: 15px;
+}
+img {
+	border: 0;
+}
+
+#content p {
+	font-size: 14px;
+	padding-left: 12px;
+	padding-bottom: 12px;
+	line-height:150%;
+	display: inline-block;
+}
+.postinfo{
+	font-size: 12px!important;
+	text-align:right;
+	border-bottom:1px dotted #CCCCCC;
+	margin-bottom:20px;
+}
+
+#content p a:link {
+	color:#43afd2;
+	text-decoration: none;
+} 
+#content p a:visited {
+	color:#43afd2;
+	text-decoration: none;
+} 
+#content p a:hover {
+	color:#D67900;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #D67900;
+} 
+#content p a:active {
+	color:#D67900;
+} 
+
+#content li a:link {
+	color:#949494;
+	text-decoration: none;
+} 
+
+#content li a:visited {
+	color:#949494;
+	text-decoration: none;
+} 
+#content li a:hover {
+	color:#D67900;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #D67900;
+} 
+#content li a:active {
+	color:#9eb3d6;
+} 
+
+ol a:link {
+	color:#9eb3d6;
+	text-decoration: none;
+} 
+ol a:visited {
+	color:#9eb3d6;
+	text-decoration: none;
+} 
+ol a:hover {
+	color:#43afd2;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #43afd2;
+} 
+ol a:active {
+	color:#43afd2;
+} 
+
+.post {
+	float: left;
+}
+
+#sidebar {
+	width: 255px;
+	margin: 0;
+	padding: 0;
+	float: left;
+	color: #949494;
+}
+
+#sidebar p {
+	font-size: 11px;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+
+
+
+#sidebar_frame {
+	width: 226px;
+	background-color: #fffdf5;
+	padding-left: 15px;
+	color: #949494;
+	padding-top: 12px;
+	padding-right: 12px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #edeae1;
+	border-left-color: #edeae1;
+	font-size: 12px;
+	margin: 0px;
+	padding-bottom: 12px;
+}
+#sidebar a {
+	text-decoration: none;
+} 
+#sidebar a:link {
+	color:#949494;
+	text-decoration: none;
+} 
+
+#sidebar a:visited {
+	color:#949494;
+	text-decoration: none;
+} 
+#sidebar a:hover {
+	color:#9eb3d6;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #9eb3d6;
+	background-color: #F8F8F8;
+} 
+#sidebar a:active {
+	color:#9eb3d6;
+} 
+
+#sidebar p a:link {
+	color:#669900;
+	text-decoration: none;
+} 
+#sidebar p a:visited {
+	color:#669900;
+	text-decoration: none;
+} 
+#sidebar p a:hover {
+	color:#43afd2;
+	text-decoration: none;
+} 
+#sidebar p a:active {
+	color:#9eb3d6;
+} 
+.children {
+	padding: 0px;
+	margin-bottom: -12px;
+	margin-left: 12px;
+}
+
+#top {
+	width: 251px;
+	background-color: #fffdf5;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #edeae1;
+	height: 1px;
+	margin-left: 1px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #edeae1;
+	overflow: hidden;
+}
+#line_top {
+	width: 251px;
+	background-color: #edeae1;
+	height: 1px;
+	overflow:hidden;
+	margin-left: 2px;
+	margin-top: 15px;
+}
+#tail {
+	width: 251px;
+	background-color: #fffdf5;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #edeae1;
+	height: 1px;
+	margin-left: 1px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #edeae1;
+	overflow: hidden;
+}
+#line_tail {
+	width: 251px;
+	background-color: #edeae1;
+	height: 1px;
+	overflow:hidden;
+	margin-left: 2px;
+	margin-bottom: 8px;
+}
+#feedsky {
+	float: right;
+}
+#sidebar h2{
+	font-size: 14px;
+	color: #669900;
+	padding-bottom: 2px;
+	font-weight: normal;
+}
+
+#sidebar li ul {
+	padding-bottom: 12px;
+}
+
+
+#sidebar ul li ul li{
+	margin-top: 3px;
+}
+
+ol,ul,li,h1,h2,h3,p,form,#searchsubmit,#s,blockquote {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#searchform br {
+	display: none;
+}
+#searchsubmit {
+	border: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #669900;
+	line-height: 16px;
+	list-style-type: none;
+	overflow: hidden;
+	background: url(images/xxx.gif) no-repeat;
+}
+
+#s,#author,#email,#url {
+	list-style-type: none;
+	border: 1px solid #edeae1;
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #949494;
+	height: 16px;
+	width: 145px;
+	padding-top: 2px;
+	margin-right: 4px;
+	padding-left: 2px;
+}
+
+
+.postdata {
+	color: #bdbdbd;
+	font-size: 12px!important;
+	font-size: 11px;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+.tags {
+	margin-bottom: 10px;
+	clear: left;
+}
+#pagenavi{
+	font-size:12px;
+	padding-top:6px;
+	margin: 0px;
+	padding-bottom: 4px;
+	display: inline-block;
+	float: left;
+}
+#pagenavi a:link {
+	color:#43afd2;
+	text-decoration: none;
+} 
+#pagenavi a:visited {
+	color:#43afd2;
+	text-decoration: none;
+} 
+#pagenavi a:hover {
+	color:#D67900;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #D67900;
+} 
+#pagenavi a:active {
+	color:#D67900;
+} 
+.naleft {
+	float: left;
+}
+.naright {
+	float: right;
+}
+#asda{
+	background-color: #919191;
+}
+#footer {
+	height: 45px;
+	width: 900px;
+	background-color: #a0a095;
+	font-family: Verdana, Arial, "新宋体", "宋体", Helvetica, sans-serif;
+	font-size: 11px;
+	color: #E9E9E9;
+	line-height: 45px;
+	margin: 0 auto;
+	padding: 0px;
+	text-align: center;
+}
+
+#footer a:link {
+	color:#E9E9E9;
+	text-decoration: none;
+} 
+#footer a:visited {
+	color:#E9E9E9;
+	text-decoration: none;
+} 
+#footer a:hover {
+	color:#FFFFFF;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #FFFFFF;
+} 
+#footer h2 a:active {
+	color:#669900
+}
+
+small {
+	font-size: 11px;
+}
+
+.alt {
+	background-color: #fcfdff;
+	display: inline-block;
+	clear: left;
+	border: 1px solid #f0f5fb;
+	padding: 8px;
+	margin-bottom: 10px;
+	margin-left: 8px;
+	font-size: 12px;
+	color: #8e8e8e;
+}
+
+ol li {
+	background-color: #fefdf9;
+	display: inline-block;
+	clear: left;
+	border: 1px solid #faf6f1;
+	padding: 8px;
+	margin-bottom: 10px;
+	margin-left: 8px;
+	font-size: 12px;
+	color: #8e8e8e;
+}
+
+li p {
+	font-size: 12px;
+	padding-left: 12px;
+	padding-top: 10px;
+	margin-bottom: -10px;
+	color: #8e8e8e;
+}
+li a {
+}
+
+#comment {
+	border: 1px solid #edeae1;
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #8e8e8e;
+	height: 150px;
+	width: 485px;
+	font-size: 12px;
+	padding: 8px;
+}
+#content blockquote {
+	padding-left: 12px;
+	color: #949494;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: #9eb3d6;
+	margin-left: 20px;
+}
+#content blockquote p {
+	padding: 0;
+	margin-bottom: 12px;
+}
+#submit {
+	list-style-type: none;
+	border: 0px;
+	background-color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #669900;
+	line-height: 16px;
+	width: 125px;
+}
+
+.gra {
+	border: 1px solid #D3D3D3;
+	background-color: #FFFFFF;
+	padding: 2px;
+	float: right;
+}
+/*日历样式*/
+.calendar{
+	/*background-image:url(images/bg.jpg);*/
+	margin-left:0px;
+}
+.calendar td{
+	font-size:12px;
+	text-align:center;
+	padding:1px 6px;
+	background-color:#FFFFFF;
+}
+.calendar a:visited{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:link{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.calendar td a:hover{
+	color:#FF3300;
+	text-decoration:underline;
+}
+.day{
+	border:#63617b solid 1px;
+}
+.day2 {
+	font-weight:bold;
+
+}
+.sun{
+	background-color:#63617b;
+	color: #333333;
+	font-weight:bold;
+}
+.week{
+	background-color:#63617b;
+	color: #333333;
+	}
+.calendartop{
+	text-align:center;
+	font-size:14px;
+}
