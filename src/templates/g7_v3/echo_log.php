@@ -5,12 +5,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 print <<<EOT
 -->
 <h2>$log_title</h2>
-<p class="postdata">Posted in $post_time</p>	
+<p class="postdata">Posted in $post_time</p>
+<div id="content_post">	
 		<p>$log_content</p>
 		<a name="att"></a>
 		<p>$att_img</p>
 		<p>$attachment</p>	
-		<p>$tag</p>
+		<p class="tags">$tag</p>
+		</div>
 	<div class="comments-template">
 	<h2 id="comments">引用:<a name="tb"></a></h2>
 	<p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
@@ -83,7 +85,8 @@ EOT;
 	</p>
 </form>
 
-</div></div>
+</div>
+</div>
 </div>
 EOT;
 include getViews('side');

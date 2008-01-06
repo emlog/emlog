@@ -168,11 +168,14 @@ body {
 #content ul {
 	margin-bottom: 15px;
 }
+#content p {
+	margin:10px 10px;
+}
 img {
 	border: 0;
 }
 
-#content p {
+#content_post{
 	font-size: 14px;
 	padding-left: 12px;
 	padding-bottom: 12px;
@@ -423,6 +426,7 @@ ol,ul,li,h1,h2,h3,p,form,#searchsubmit,#s,blockquote {
 }
 .tags {
 	margin-bottom: 10px;
+	margin-top:10px;
 	clear: left;
 }
 #pagenavi{
