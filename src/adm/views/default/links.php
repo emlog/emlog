@@ -9,9 +9,10 @@ print <<<EOT
   <table width="95%" align="center">
     <tbody>
       <tr class="rowstop">
-        <td width="137"><b>友情站点</b></td>
-        <td width="589"><b>站点排序</b></td>
-        <td width="184" colspan="2"></td>
+        <td width="119"><b>友情站点</b></td>
+        <td width="177"><b>站点排序</b></td>
+		<td width="485"></td>
+        <td width="103" colspan="2"></td>
       </tr>
 <!--
 EOT;
@@ -19,8 +20,9 @@ foreach($links as $key=>$value){
 print <<<EOT
 -->	  
       <tr class="$value[rowbg]">
-        <td>$value[sitename]</td>
+        <td><a href="$value[siteurl]" target="_blank">$value[sitename]</a></td>
         <td><input size="18" name="link[$value[id]]" value="$value[taxis]" maxlength="4" /></td>
+		<td width="485">$value[description]</td>
         <td><a href="link.php?action=mod_link&amp;linkid=$value[id]">编辑</a>
         <a href="javascript: isdel($value[id], 2);">删除</a></td>
       </tr>
