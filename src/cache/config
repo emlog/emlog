@@ -1,3 +1,3 @@
 <?php
-$config_cache = array('sitekey' =>"Emlog",'blogname' =>"Emlog",'bloginfo'=>"welcome",'index_lognum' =>"10",'index_tagnum' =>"30",'index_comment_num' =>"10",'iscomment'=>"n",'comment_code'=>"n",'login_code'=>"n",'comment_subnum'=>"20",'nonce_templet'=>"default",'blogurl'=>"http://",'icp'=>"",'timezone'=>"8",'exarea'=>"");
+$config_cache = array('sitekey' =>"Emlog",'blogname' =>"那多记忆 . home",'bloginfo'=>"对，我们都是程序猿",'index_lognum' =>"8",'index_tagnum' =>"30",'index_comment_num' =>"15",'iscomment'=>"n",'comment_code'=>"n",'login_code'=>"n",'comment_subnum'=>"100",'nonce_templet'=>"default",'blogurl'=>"http://www.emlog.net/blog/",'icp'=>"",'timezone'=>"8",'exarea'=>"");
 ?>

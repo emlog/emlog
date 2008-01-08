@@ -1,3 +1,20 @@
 <?php
-$link_cache[0] = array('link'=>"emlog",'url'=>"http://www.emlog.net",'des'=>"emlog官方主页");
+$link_cache[0] = array('link'=>"骆磊",'url'=>"http://blog.sina.com.cn/m/loklei",'des'=>"骆哥!改变我生活的几个人之一骆哥!改变我生活的几个人之一骆哥!改变我生活的几个人之一骆哥!改变我生活的几个人之一骆哥!改变我生活的几个人之一");
+$link_cache[1] = array('link'=>"emlog",'url'=>"http://www.emlog.net",'des'=>"emlog官方主页");
+$link_cache[2] = array('link'=>"CrazyDaVinci",'url'=>"http://www.emlog.net/designer/",'des'=>"天才美工");
+$link_cache[3] = array('link'=>"罗飞",'url'=>"http://www.emlog.net/fei",'des'=>"罗飞");
+$link_cache[4] = array('link'=>"老大",'url'=>"http://www.emlog.net/king/",'des'=>"大学的哥们");
+$link_cache[5] = array('link'=>"nemo",'url'=>"http://www.emlog.net/nemo",'des'=>"游戏达人！");
+$link_cache[6] = array('link'=>" weifeng ",'url'=>" http://www.emlog.net/weifeng ",'des'=>"  ");
+$link_cache[7] = array('link'=>" 思想之地 ",'url'=>" http://blog.ourcomic.cn/ ",'des'=>"  ");
+$link_cache[8] = array('link'=>" 郭老师 ",'url'=>" http://www.qiubowy.com/blog/ ",'des'=>"  ");
+$link_cache[9] = array('link'=>"奇遇",'url'=>"http://www.emlog.net/qiyu",'des'=>"很细心,给emlog捉了不少虫!");
+$link_cache[10] = array('link'=>" 烤鱼",'url'=>" http://www.emlog.net/unset/",'des'=>"");
+$link_cache[11] = array('link'=>"发宾",'url'=>"http://www.emlog.net/jonye/",'des'=>"emlog的朋友");
+$link_cache[12] = array('link'=>"土平",'url'=>"http://blog.tuping.net/",'des'=>"灰鸽子的作者");
+$link_cache[13] = array('link'=>" Bob的部落格",'url'=>" http://www.bo-blog.com/weblog",'des'=>" Bob的部落格");
+$link_cache[14] = array('link'=>"4ngel's blog",'url'=>"http://www.sablog.net/blog/",'des'=>"sablog作者的博客");
+$link_cache[15] = array('link'=>" 横戈.home",'url'=>" http://hengge.blogbus.com/",'des'=>" 偶像.....");
+$link_cache[16] = array('link'=>" keso",'url'=>" http://blog.donews.com/keso/",'des'=>" 知名互联网评论家");
+$link_cache[17] = array('link'=>" solidot ",'url'=>" http://solidot.org/ ",'des'=>" 奇客的资讯 ");
 ?>

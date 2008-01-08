@@ -5,9 +5,8 @@ print <<<EOT
 -->
 <div class="content">
 	<ul id="t">
-		<li><b>$tag</b></li>
+		<li>标签： <b>$tag</b></li>
 	</ul>
-	<p>包含该标签的所有日志：</p>
 	<ul class="taglog">
 <!--
 EOT;
