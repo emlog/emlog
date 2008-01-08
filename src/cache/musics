@@ -1,7 +1,6 @@
 <?php
-$mlinks[0] = "http%3A%2F%2Fwww.emlog.net%2Fmusic%2Fjay.mp3";
 
 $auto=0;
 $randplay=0;
-$ismusic=1;
+$ismusic=0;
 ?>
