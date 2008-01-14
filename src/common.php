@@ -1,5 +1,5 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/* emlog 2.6.0 Emlog.Net */
 
 error_reporting(E_ALL);
 header('Content-Type: text/html; charset=UTF-8');
@@ -29,23 +29,24 @@ $DB = new MySql($host, $user, $pass,$db);
 
 //config
 	$sitekey	= $config_cache['sitekey'];
-	$blogtitle = $config_cache['blogname'];
+	$blogtitle  = $config_cache['blogname'];
 	$blogname	= $config_cache['blogname'];
-	$blog_info = $config_cache['bloginfo'];
-	$icp = $config_cache['icp'];
-	$index_lognum	= $config_cache['index_lognum'];
+	$blog_info  = $config_cache['bloginfo'];
+	$icp        = $config_cache['icp'];
+	$index_lognum	    = $config_cache['index_lognum'];
 	$index_comment_num	= $config_cache['index_comment_num'];
-	$index_tagnum=$config_cache['index_tagnum'];
+	$index_tagnum   = $config_cache['index_tagnum'];
 	$comment_code	= $config_cache['comment_code'];
-	$login_code	 = $config_cache['login_code'];
-	$iscomment = $config_cache['iscomment'];
+	$login_code	    = $config_cache['login_code'];
+	$iscomment      = $config_cache['iscomment'];
+	$isurlrewrite   = $config_cache['isurlrewrite'];
 	$comment_subnum = $config_cache['comment_subnum'];
 	$nonce_tpl = $config_cache['nonce_templet'];
-	$blogurl = $config_cache['blogurl'];
-	$exarea = $config_cache['exarea'];
-	$timezone = intval($config_cache['timezone']);
-	$tpl_dir = './templates/';//所有模板存放目录
-	$timezone!=8?$localdate = time()-($timezone-8)*3600:$localdate = time();
+	$blogurl   = $config_cache['blogurl'];
+	$exarea    = $config_cache['exarea'];
+	$timezone  = intval($config_cache['timezone']);
+	$tpl_dir   = './templates/';//所有模板存放目录
+	$timezone != 8 ? $localdate = time() - ($timezone-8) * 3600 : $localdate = time();
 	isset($tag_cache)?sort($tag_cache):$tag_cache = array();
 	define('EMLOG_ROOT', dirname(__FILE__));
 

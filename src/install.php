@@ -1,5 +1,5 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/* emlog 2.6.0 Emlog.Net */
 require_once('./lib/F_base.php');
 require_once("./lib/C_mysql.php");
 require_once('./lib/C_cache.php');
@@ -272,6 +272,7 @@ CREATE TABLE ".$db_prefix."config (
   login_code enum('n','y') NOT NULL default 'n',
   comment_code enum('n','y') NOT NULL default 'n',
   iscomment enum('n','y') NOT NULL default 'n',
+  isurlrewrite enum('n','y') NOT NULL default 'n',
   nonce_templet varchar(255) NOT NULL default '',
   timezone float NOT NULL default '8',
   exarea text NOT NULL

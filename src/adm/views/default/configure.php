@@ -54,6 +54,15 @@ print <<<EOT
         </select>
 		如开启,评论需通过审核才能显示 </td>
       </tr>
+	  <tr>
+        <td align="right">启用URL为静态：<br /></td>
+        <td>
+		<select name="isurlrewrite">
+          <option value="y" $ex7>是</option>
+          <option value="n" $ex8>否</option>
+        </select>
+		如开启,需要服务器空间支持，详情请参看帮助文件</td>
+      </tr>
       <tr>
         <td align="right">启用登录验证码：<br /></td>
         <td class="care">
