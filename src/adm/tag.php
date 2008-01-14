@@ -39,12 +39,14 @@ if($action=='update_tag'){
 }
 
 ###################批量删除标签###############
-if($action== 'dell_all_tag') {
-
+if($action== 'dell_all_tag')
+{
 	if(!isset($_POST['tag']))
+	{
 		formMsg('请选择要删除的标签','javascript:history.go(-1);',0);
-	else{
-		foreach($_POST['tag'] as $key=>$value) {
+	}else{
+		foreach($_POST['tag'] as $key=>$value)
+		{
 			$DB->query("DELETE FROM ".$db_prefix."tag where tid='$key' ");
 		}
 		$MC->mc_logtags('../cache/log_tags');

@@ -1,9 +1,10 @@
 <?php
 /* emlog 2.5.0 Emlog.Net */
+
 require_once('./globals.php');
 
-if ($action == ''){
-
+if ($action == '')
+{
 	include getViews('header');
 	
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
@@ -17,8 +18,8 @@ if ($action == ''){
 	$safe_mode = getPhpcfg('safe_mode');
 
 	require_once(getViews('index'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 
 ?>
-
