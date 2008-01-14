@@ -25,7 +25,7 @@ $tagmsg
 </div>
 </div>
 </div>
-<div id="footer">&copy; 2007 <a href="http://www.emlog.net" target="_blank">emlog</a></div>
+<div id="footer">&copy; 2007 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 EOT;
 include getViews('side');
