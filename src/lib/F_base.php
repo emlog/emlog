@@ -1,5 +1,5 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/* emlog 2.6.0 Emlog.Net */
 
 /*
 	加载模板文件
@@ -206,29 +206,60 @@ function changeFileSize($filesize)
 */
 function pagination ($count,$page,$url)
 {
-	if($page>1)
+	global $isurlrewrite;
+	if($isurlrewrite=='n')
 	{
-		$re="\n<a href=\"$url=1\">首页</a> <a href=\"$url=".($page-1)."\">上一页</a>";
-	}else{
-		$re="\n首页 上一页";
-	}
-	for($i=$page-5;$i<$page+5&&$i<=$count;$i++)
-	{
-		if($i>1)
+		if($page>1)
 		{
-			if($i==$page)
+			$re="\n<a href=\"$url=1\">首页</a> <a href=\"$url=".($page-1)."\">上一页</a>";
+		}else{
+			$re="\n首页 上一页";
+		}
+		for($i=$page-5;$i<$page+5&&$i<=$count;$i++)
+		{
+			if($i>1)
 			{
-				$re.="\n[$i]";
-			}else{
-				$re.="\n<a href=\"$url=$i\">$i</a>";
+				if($i==$page)
+				{
+					$re.="\n[$i]";
+				}else{
+					$re.="\n<a href=\"$url=$i\">$i</a>";
+				}
 			}
 		}
+		if($page<$count)
+		{
+			$re.="\n<a href=\"$url=".($page+1)."\">下一页</a> <a href=\"$url=$count\">尾页</a> ";
+		}else{
+			$re.="\n下一页 尾页";
+		}
 	}
-	if($page<$count)
+	else
 	{
-		$re.="\n<a href=\"$url=".($page+1)."\">下一页</a> <a href=\"$url=$count\">尾页</a> ";
-	}else{
-		$re.="\n下一页 尾页";
+		if($page>1)
+		{			
+			$re = "\n<a href=\"{$url}1.html\">首页</a> <a href=\"$url".($page-1).".html\">上一页</a>";
+		}else{
+			$re = "\n首页 上一页";
+		}
+		for($i=$page-5;$i<$page+5 && $i<=$count;$i++)
+		{
+			if($i>1)
+			{
+				if($i==$page)
+				{
+					$re .= "\n[$i]";
+				}else{
+					$re .= "\n<a href=\"{$url}{$i}.html\">$i</a>";
+				}
+			}
+		}
+		if($page<$count)
+		{
+			$re .= "\n<a href=\"{$url}".($page+1).".html\">下一页</a> <a href=\"{$url}{$count}.html\">尾页</a> ";
+		}else{
+			$re .= "\n下一页 尾页";
+		}
 	}
 	return $re;
 }
