@@ -32,5 +32,7 @@ Emlog 安装说明
             注意：该设置可能导致该数据库中原有数据表中数据出现问题，推荐为emlog重新创建一个单独使用的数据库 
 
 4.在浏览器上访问根目录下的安装文件 install.php 按照提示安装。 
-5.安装成功，删除安装文件 install.php  ! 将 ./config.php 权限还原为644
-如果你对上诉安装过程有任何疑问，请发邮件到 emloog@gmail.com
+
+5.安装成功，删除安装文件 install.php  将 ./config.php 权限还原为644
+
+如果你对上诉安装过程有任何疑问，请登录 http://www.emlog.net/bbs 获取帮助
