@@ -107,7 +107,7 @@ for($i=1;$i<=6;$i++)
 				{
 					$calendar .= "<td class=\"day2\"><a href=\"index.php?date=$year_month&record=$n_time\">".$r."</a></td>\n";
 				}else{
-					$calendar .= "<td class=\"day2\"><a href=\"date-{$year_month}-record{$n_time}.html\">".$r."</a></td>\n";
+					$calendar .= "<td class=\"day2\"><a href=\"date-{$year_month}-record-{$n_time}.html\">".$r."</a></td>\n";
 				}
 			}elseif($n_time==$time){
 				$calendar .= "<td class=\"day\">".$r."</td>\n";
@@ -120,24 +120,35 @@ for($i=1;$i<=6;$i++)
 			{
 				$calendar.="<td>&nbsp;</td>\n";
 			}else{
-				//如果该日有日至就显示url样式
+				//如果该日有日志就显示url样式
 				$n_time = $t < 10 ? $n_year.$n_month."0".$t : $n_year.$n_month.$t;
-				if(@in_array($n_time,$logdate)&&$n_time==$time)
+				if( @in_array($n_time,$logdate) && $n_time == $time )
 				{
 					if($isurlrewrite == 'n')
 					{
 						$calendar .= "<td class=\"day\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
-					}else{
-						$calendar .= "<td class=\"day\"><a href=\"record-{$n_time}.html\">".$r."</a></td>\n";
+					}
+					else
+					{
+						$calendar .= "<td class=\"day\"><a href=\"record-{$n_time}.html\">".$t."</a></td>\n";
 					}
 				}elseif(@in_array($n_time,$logdate)){
-					$calendar.="<td class=\"day2\"><a href=\"index.php?date=$year_month&record=$n_time\">".$t."</a></td>\n";
+					if($isurlrewrite == 'n')
+					{
+						$calendar.="<td class=\"day2\"><a href=\"index.php?date={$year_month}&record={$n_time}\">".$t."</a></td>\n";
+					}
+					else
+					{
+						$calendar.="<td class=\"day2\"><a href=\"date-{$year_month}-record-{$n_time}.html\">".$t."</a></td>\n";
+					}
 				}elseif($n_time==$time){
 					if($isurlrewrite == 'n')
 					{
-						$calendar .= "<td class=\"day2\"><a href=\"index.php?date=$year_month&record=$n_time\">".$r."</a></td>\n";
-					}else{
-						$calendar .= "<td class=\"day2\"><a href=\"date-{$year_month}-record{$n_time}.html\">".$r."</a></td>\n";
+						$calendar .= "<td class=\"day2\"><a href=\"index.php?date={$year_month}&record={$n_time}\">".$t."</a></td>\n";
+					}
+					else
+					{
+						$calendar .= "<td class=\"day2\"><a href=\"date-{$year_month}-record-{$n_time}.html\">".$t."</a></td>\n";
 					}
 				}else{
 					$calendar.="<td>".$t."</td>\n";

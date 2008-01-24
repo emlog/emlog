@@ -4,6 +4,7 @@ doc/安装说明.txt -text
 doc/模板说明.txt -text
 /license.txt -text
 /readme.txt -text
+src/.htaccess -text
 src/adm/add_log.php -text
 src/adm/admin_log.php -text
 src/adm/attachment.php -text

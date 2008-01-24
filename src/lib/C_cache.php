@@ -109,6 +109,7 @@ class mkcache extends MySql{
 	//日志归档缓存
 	function mc_record($cf)
 	{
+		global $isurlrewrite;
 		$query=$this->query("select date from ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC");
 		$record='xxxx_x';
 		$p = 0;
@@ -121,7 +122,14 @@ class mkcache extends MySql{
 				{
 					$this->Archives.= "\n\$dang_cache[".$h."]['lognum']=\"".$lognum."\";";
 				}
-				$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
+				if($isurlrewrite=='n')
+				{
+					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
+				}
+				else
+				{
+					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"record-".date("Ym",$show_record['date']).".html\",'lognum'=>\"\");";
+				}
 				$p++;
 				$lognum = 1;
 			}else{

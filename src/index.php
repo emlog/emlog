@@ -58,8 +58,6 @@ if (!isset($action) || empty($action))
 		$row['tbcount'] = $row['tbcount'];
 		$row['views']   = $row['views'];
 		$row['comnum']  = $row['comnum'];
-		$row['com_url'] = $row['gid'].'#comment';
-		$row['tb_url']  = $row['gid'].'#tb';
 		//attachment
 		$row['attachment'] = !empty($log_cache_atts[$row['gid']]['attachment']) ? '<b>文件附件</b>:'.$log_cache_atts[$row['gid']]['attachment'] : '';
 		$row['att_img'] = !empty($log_cache_atts[$row['gid']]['att_img']) ? $log_cache_atts[$row['gid']]['att_img'] : '';

@@ -29,7 +29,7 @@ print <<<EOT
 	<div id="navBar">
     	<ul>
 	      <li><a href="./">首页</a></li>
-		  <li><a href="./?action=tag">标签</a></li>
+		  <li><a href="./index.php?action=tag">标签</a></li>
           <li><a href="./adm/">登录</a></li>
     	</ul>
   	</div>

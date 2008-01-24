@@ -8,11 +8,20 @@ print <<<EOT
 <!--
 EOT;
 foreach($records as $key=>$value){
+if($isurlrewrite=='n'){
 print <<<EOT
 -->
-<li><a href="index.php?record=$value[record2_url]">$value[record2]</a></li>
+<li><a href="index.php?record={$value['record2_url']}">{$value['record2']}</a></li>
 <!--
 EOT;
+}else
+{
+	print <<<EOT
+-->
+<li><a href="record-{$value['record2_url']}.html">{$value['record2']}</a></li>
+<!--
+EOT;
+}
 }print <<<EOT
 -->
 </div>

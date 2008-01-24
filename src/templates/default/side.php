@@ -19,7 +19,7 @@ EOT;
 foreach($tag_cache as $value){
 print <<<EOT
 -->
-<span style="font-size:$value[fontsize]px; height:30px;"><a href="?action=taglog&tag=$value[tagurl]">$value[tagname]</a></span>&nbsp;
+<span style="font-size:{$value['fontsize']}px; height:30px;"><a href="index.php?action=taglog&tag={$value['tagurl']}">{$value['tagname']}</a></span>&nbsp;
 <!--
 EOT;
 }print <<<EOT
@@ -39,7 +39,7 @@ EOT;
 foreach($com_cache as $value){
 print <<<EOT
 -->
-		<li id="comment">$value[name]<br /><a href="$value[url]">$value[content]</a></li>
+		<li id="comment">{$value['name']}<br /><a href="{$value['url']}">{$value['content']}</a></li>
 <!--
 EOT;
 }print <<<EOT
@@ -63,7 +63,7 @@ EOT;
 foreach($dang_cache as $value){
 print <<<EOT
 -->
-		<li><a href="$value[url]">$value[record]($value[lognum])</a></li>
+		<li><a href="{$value['url']}">{$value['record']}({$value['lognum']})</a></li>
 <!--
 EOT;
 }print <<<EOT
@@ -76,7 +76,7 @@ EOT;
 foreach($link_cache as $value){
 print <<<EOT
 -->     	
-		<li><a href="$value[url]" title="$value[des]" target="_blank">$value[link]</a></li>
+		<li><a href="{$value['url']}" title="{$value['des']}" target="_blank">{$value['link']}</a></li>
 <!--
 EOT;
 }print <<<EOT
@@ -84,11 +84,11 @@ EOT;
 </ul>
 	<div class="lister"><span onclick="DoMenu('bloginfo')">博客信息</span></div>
 		<ul id="bloginfo" class="collapsed">
-		<li>日志数量：$sta_cache[lognum]</li>
-		<li>评论数量：$sta_cache[comnum]</li>
-		<li>引用数量：$sta_cache[tbnum]</li>
-		<li>今日访问：$sta_cache[day_view_count]</li>
-		<li>总访问量：$sta_cache[view_count]</li>
+		<li>日志数量：{$sta_cache['lognum']}</li>
+		<li>评论数量：{$sta_cache['comnum']}</li>
+		<li>引用数量：{$sta_cache['tbnum']}</li>
+		<li>今日访问：{$sta_cache['day_view_count']}</li>
+		<li>总访问量：{$sta_cache['view_count']}</li>
 		</ul>
 	<div class="lister">
 	<a href="./rss.php"><img src="{$tpl_dir}default/rss.gif" alt="订阅Rss"/></a>

@@ -11,11 +11,19 @@ print <<<EOT
 <!--
 EOT;
 foreach($taglogs as $key=>$value){
+if($isurlrewrite=='n'){
 print <<<EOT
 -->
-	<li><a href="index.php?action=showlog&gid=$value[gid]">$value[title]</a> $value[date]</li>
+	<li><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</li>
 <!--
 EOT;
+}else{
+	print <<<EOT
+-->
+	<li><a href="showlog-{$value['gid']}.html">{$value['title']}</a> {$value['date']}</li>
+<!--
+EOT;
+}
 }print <<<EOT
 -->
 	</ul>

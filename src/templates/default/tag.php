@@ -12,7 +12,7 @@ EOT;
 foreach($tags as $key=>$value){
 print <<<EOT
 -->
-<span style="font-size:$value[fontsize]px; height:30px;"><a href="?action=taglog&tag=$value[tagurl]">$value[tag]</a></span>&nbsp;
+<span style="font-size:{$value['fontsize']}px; height:30px;"><a href="?action=taglog&tag={$value['tagurl']}">{$value['tag']}</a></span>&nbsp;
 <!--
 EOT;
 }print <<<EOT
