@@ -254,6 +254,7 @@ CREATE TABLE ".$db_prefix."comment (
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
   mail varchar(60) NOT NULL default '',
+  url varchar(75) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
   KEY gid (gid)
