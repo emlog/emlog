@@ -10,12 +10,20 @@ print <<<EOT
 	<li><h2>日历</h2>
 		<p id="calendar"></p>
 	</li>
-	$delflg_a
+	<!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
 	<li><h2>音乐</h2>
 		<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 	</li>
-	$delflg_b
+	<!--
+EOT;
+}
+print <<<EOT
+-->
 
 	<li><h2>存档</h2>
 		<ul>

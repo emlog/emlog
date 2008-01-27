@@ -25,13 +25,21 @@ EOT;
 }print <<<EOT
 -->	<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</li></ul>
-$delflg_a
+<!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
 <div class="lister"><span onclick="DoMenu('blogmusic')">音乐</span></div>	
 <ul id="blogmusic" class="collapsed">
 <li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </li>
 </ul>	
-$delflg_b
+<!--
+EOT;
+}
+print <<<EOT
+-->
 <div class="lister"><span onclick="DoMenu('newcomment')">最新评论</span></div>
 		<ul id="newcomment" class="collapsed">
 <!--

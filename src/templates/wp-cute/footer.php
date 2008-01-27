@@ -22,13 +22,21 @@ print <<<EOT
     	<div id="calendar">
 		<!--calendar-->
 		</div>
-$delflg_a
+<!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
   <H2 onClick="DoMenu('music')">Music</H2>
 		<ul id="music">
 		<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="145" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </li>
 		</ul>
-$delflg_b
+<!--
+EOT;
+}
+print <<<EOT
+-->
   <LI>
   
   <H2 onClick="DoMenu('sort')">tags</H2>

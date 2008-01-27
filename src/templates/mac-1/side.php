@@ -49,7 +49,11 @@ EOT;
       <!--sidebox end -->
 
       <!--sidebox start -->
-	  $delflg_a
+	  <!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
       <div id="meta" class="dbx-box">
         <h3 class="dbx-handle">音乐</h3>
         <div class="dbx-content">
@@ -59,7 +63,11 @@ EOT;
           </ul>
         </div>
       </div>
-	  $delflg_b
+	  <!--
+EOT;
+}
+print <<<EOT
+-->
       <!--sidebox end -->
       <!--sidebox start -->
       <div id="recent-comments" class="dbx-box">

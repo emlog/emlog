@@ -222,7 +222,7 @@ div.contentA{
 .calendar td{
 	font-size:12px;
 	text-align:center;
-	padding:1px 6px;
+	padding:0px 6px;
 	background-color:#F5F5F5;
 }
 .calendar a:visited{

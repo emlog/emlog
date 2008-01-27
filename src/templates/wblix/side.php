@@ -35,14 +35,22 @@ EOT;
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 </ul>
 
-$delflg_a
+<!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
 <h4><em>音乐</em></h4>
 
 <ul>
 <p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 </ul>
-$delflg_b
+<!--
+EOT;
+}
+print <<<EOT
+-->
 
 <h4><em>评论</em></h4>
 

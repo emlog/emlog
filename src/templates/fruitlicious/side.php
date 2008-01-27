@@ -39,14 +39,22 @@ EOT;
 		</li>
 		</ul>
 </li>
-$delflg_a
+<!--
+EOT;
+if($ismusic){
+print <<<EOT
+-->
 <li><h2>音乐</h2>
 		<ul>
 			<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </li>
 		</ul>
 </li>
-$delflg_b
+<!--
+EOT;
+}
+print <<<EOT
+-->
 <li><h2>评论</h2>
 		<ul>
 			<!--

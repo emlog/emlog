@@ -6,7 +6,7 @@ print <<<EOT
 -->
 <div class="logcontent">
 <p id="tit">$log_title</p>
-<p class="line">$post_time $log_author</p>
+<p id="date">$post_time</p>
 <div class="log_con">
 $log_content
 <a name="att"></a>
@@ -34,7 +34,7 @@ print <<<EOT
 EOT;
 }print <<<EOT
 -->	
-<p><b>网友评论:</b><a name="comment"></a></p>
+<p><b>评论:</b><a name="comment"></a></p>
 <div id="com_list">
 <ol>
 <!--
@@ -57,11 +57,15 @@ EOT;
 <td class="f14">姓　 名：</td>
 <td>
 <input type="hidden" name="gid" value="$logid" />
-<input type="text" name="comname" style="width:220px" maxlength="49" value="$ckname"></td>
+<input type="text" name="comname" style="width:200px" maxlength="49" value="$ckname"></td>
 </tr>
 <tr>
 <td class="f14">电子邮件:</td>
-<td><input type="text" name="commail" style="width:360px" maxlength="128"  value="$ckmail"> (选填)</td>
+<td><input type="text" name="commail" style="width:300px" maxlength="128"  value="$ckmail"> (选填)</td>
+</tr>
+<tr>
+<td class="f14">个人主页:</td>
+<td><input type="text" name="comurl" style="width:300px" maxlength="128"  value="$ckurl"> (选填)</td>
 </tr>
 <tr>
 <td valign="top" class="f14">内　 容：</td>
