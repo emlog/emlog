@@ -28,7 +28,7 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 
 + Ö§³ÖÒýÓÃÍ¨¸æ(trackback) 
 
-+ Ö§³ÖÁé»îµÄtag±êÇ©·ÖÀà¹¦ÄÜ 
++ Ö§³ÖÁé»îµÄtag±êÇ©·ÖÀà¹¦ÄÜ
 
 + Ö§³ÖRSSÈÕÖ¾Êä³ö¹¦ÄÜ 
 
@@ -37,6 +37,6 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 + ·ÃÎÊÁ¿Í³¼Æ
 
 
-¸ü¶à¹¦ÄÜÓÉÄúÀ´Ï¸Ï¸ÌåÎ¶...ÎÒÃÇÅ¬Á¦ÈÃemlog¸ü¼Ó´ÏÃ÷ÌåÌùµÄÎªÄú·þÎñ
+¸ü¶à¹¦ÄÜÓÉÄúÀ´Ï¸Ï¸ÌåÎ¶...ÎÒÃÇÅ¬Á¦ÈÃemlog¸ü¼Ó´ÏÃ÷µÄÎªÄú·þÎñ
 
 
