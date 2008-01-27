@@ -21,7 +21,7 @@ print <<<EOT
   <tr>
     <td width="9" id=headerleft></td>
     <td width=98 align=middle nowrap class="logo">Emlog</td>
-    <td class="vesion">$edition</td>
+    <td class="vesion">$edition</td><td class="vesion">$blogname</td>
     <td align=right nowrap>
 	<a href="./index.php">管理中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="../index.php" target="_blank">在新窗口浏览blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;

@@ -2,7 +2,6 @@
 /* emlog 2.6.0 Emlog.Net */
 
 error_reporting(E_ALL);
-header('Content-Type: text/html; charset=UTF-8');
 ob_start();
 
 $start_time=array_sum(explode(' ',microtime()));
@@ -90,11 +89,6 @@ if($comment_code == 'y')
 		$randindex = mt_rand(0,count($mlinks)-1);
 		$music = $randplay?$mlinks[$randindex]:$mlinks[0];
 		$autoplay = $auto?"&autoplay=1":'';
-		$delflg_a = '';$delflg_b = '';
-	}else
-	{
-		$delflg_a = '<!--';
-		$delflg_b = '-->';
 	}
 //view count
 $em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';

@@ -44,7 +44,8 @@ if($action == '')
 	}
 	include getViews('header');
 	require_once(getViews('comment'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 
 ###################批量操作评论###############

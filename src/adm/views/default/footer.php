@@ -8,7 +8,7 @@ print <<<EOT
   </tbody>
 </table>
 <div>
-  <p>&copy;2007 <a href="http://www.emlog.net" target="_blank">emlog</a> </p>
+  <p>&copy;2008 <a href="http://www.emlog.net" target="_blank">emlog</a> </p>
 </div>
 </center>
 </body>

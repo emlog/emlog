@@ -56,19 +56,9 @@ function formMsg($msg,$url,$type)
 {
 	global $nonce_tpl;
 	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
-print <<<EOT
-<html><head><meta http-equiv="refresh" content="2;url=$url">
-<meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
-<title>msg</title><link rel="stylesheet" href="./views/$nonce_tpl/main.css"></head><body>
-<center><br><br><br><br><br>
-<table width="75%"  border="0" cellpadding="0" cellspacing="0"><tr>
-<td width="130" align="center">
-<img src="./views/$nonce_tpl/images/$typeimg" alt="" width="67" height="61">
-</td><td align="left"><b>$msg</b><br /><a href="$url">如果页面没有跳转,请点击返回!</a></td>
-</tr></table></center>
-</body></html>
-EOT;
-exit;
+	require_once(getViews('msg'));
+	cleanPage();
+	exit;
 }
 
 /*
@@ -82,55 +72,9 @@ function loginPage()
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
 				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
-print <<<EOT
-<html><head>
-<meta http-equiv="Content-Type" content="text/html  charset=utf-8">
-<meta name="robots" content="noindex, nofollow">
-<title>emlog</title>
-<link rel="stylesheet" href="./views/$nonce_tpl/main.css">
-</head>
-<body bgcolor="#F9FCFE">
-<form method="post" action="index.php?action=login">
-<br /><br /><br /><br />
-<table align="center" class="toptd">
-<h3 align="center">Emlog</h3>
-<tr><td width="48" >用户名:<br />
-<input name="user" type="text" class="input">密码:<br />
-<input name="pw" type="password" class="input"></td></tr>$ckcode<tr>
-<td align="right"><input type="submit" value=" 登录>>" class="submit">
-</td></tr>
-</table></form></body></html>
-EOT;
-exit;
-}
-
-/*
-	php系统函数功能验证
-	@param string $funName 系统函数名 eg:phpinfo
-*/
-function getPhpFun($funName)
-{
-	return (function_exists($funName)) ? "支持" : "不支持";
-}
-
-/*
-	获取php系统配置信息
-	@param string $varname 配置项目 eg:register_globals
-*/
-function getPhpcfg($varname) 
-{
-	switch($result = get_cfg_var($varname)) 
-	{
-		case 0:
-			return "关闭";
-			break;
-		case 1:
-			return "打开";
-			break;
-		default:
-			return $result;
-			break;
-	}
+	require_once(getViews('login'));
+	cleanPage();
+	exit;
 }
 
 /*

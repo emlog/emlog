@@ -1,7 +1,7 @@
 <?php
 /* emlog 2.5.0 Emlog.Net */
 error_reporting(E_ALL);
-header('Content-Type: text/html; charset=UTF-8');
+//header('Content-Type: text/html; charset=UTF-8');
 ob_start();
 
 require_once('../config.php');
@@ -47,7 +47,7 @@ define('ICON_MAX_H',		220);//个性头像缩略图最大高
 
 //检测后台模板
 define('ADM_ROOT', dirname(__FILE__));
-$em_tpldir = ADM_ROOT.'/views/'.$nonce_tpl.'/';//当前后台模板目录
+$em_tpldir = ADM_ROOT.'/views/'.$nonce_tpl.'/';
 if (!is_dir($em_tpldir))
 {
 	exit('the adm tmplate net found!');

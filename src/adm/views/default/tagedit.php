@@ -12,11 +12,11 @@ print <<<EOT
       <td><input size="40" value="$tagname" name="tagname" /></td>
     </tr>
     <tr>
-      <td align="center" colspan="2">
+      <td colspan="2" align="center">
 		<input type="hidden" value="$tagid" name="tid" />
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />
-		  </td>
+		<input type="submit" value="确 定" class="submit2" />
+		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();""/>
+	</td>
     </tr>
   </tbody>
 </table>

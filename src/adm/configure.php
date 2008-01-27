@@ -68,7 +68,7 @@ if ($action== "mod_config"){
 	
 	if(!function_exists("ImageCreate") && $login_code=='y' || $comment_code=='y' && !function_exists("ImageCreate"))
 	{
-		formMsg("开启验证码失败!","javascript:history.go(-1);",0);
+		formMsg("开启验证码失败!服务器不支持GD库","javascript:history.go(-1);",0);
 	}	
 	if(substr($blogurl,-1) !='/')
 	{
@@ -78,7 +78,7 @@ if ($action== "mod_config"){
 	{
 		$blogurl = 'http://'.$blogurl;
 	}
-		
+
 	$DB->query("UPDATE ".$db_prefix."config SET site_key	='$sitekey',blogname ='$blogname',
 				blogurl = '$blogurl',bloginfo='$bloginfo',icp='$icp',
 				index_lognum = $index_lognum,index_comnum = $index_comnum,

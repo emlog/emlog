@@ -105,20 +105,20 @@ if ($action == 'showlog')
 	$att_img = !empty($log_cache_atts[$logid]['att_img']) ? $log_cache_atts[$logid]['att_img'] : '';
 	//comment	
 	$cheackimg = $comment_code=='y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
-
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])): '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
+	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	//评论
 	$com = array();
 	$query = $DB->query("SELECT * FROM ".$db_prefix."comment WHERE gid=$logid AND hide='n' ORDER BY cid ");
-	while($s_com = $DB->fetch_array($query)){
+	while($s_com = $DB->fetch_array($query))
+	{
 		$content = htmlClean($s_com['comment']);
 		$addtime = date('Y-m-d H:i',$s_com['date']);
-		$cid	 = $s_com['cid'];
-		$cmail   = $s_com['mail'];
-		$poster  =  htmlspecialchars($s_com['poster']);		
-		$poster  = $cmail != '' ? "<a href=\"mailto:".$s_com['mail']."\">".$poster."</a>" : $poster;
-		$com[]   = array('content'=>$content,'addtime'=>$addtime,'cid'=>$cid,'poster'=>$poster);
+		$cname   =  htmlspecialchars($s_com['poster']);	
+		$poster  = $s_com['mail'] ? "<a href=\"mailto:{$s_com['mail']}\" title=\"发邮件给{$cname}\">$cname</a>" : $cname;
+		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\">&raquo;</a>" : $cname;
+		$com[]   = array('content'=>$content,'addtime'=>$addtime,'cid'=>$s_com['cid'],'poster'=>$poster);
 	}
 	unset($s_com);
 	//trackback	
@@ -239,16 +239,23 @@ if($action == 'addcom')
 {
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode']:''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$remember = isset($_POST['remember'])?intval($_POST['remember']):'';
+	
+	if(strncasecmp($comurl,'http://',7))//0 if they are equal
+	{
+		$comurl = 'http://'.$comurl;
+	}
 	//COOKIE
 	if($remember == 1)
 	{
 		$cookietime = $localdate + 31536000;
 		setcookie('commentposter',$comname,$cookietime);
 		setcookie('postermail',$commail,$cookietime);
+		setcookie('posterurl',$comurl,$cookietime);
 	}
 	//can comment?
 	$query = $DB->query("SELECT allow_remark FROM ".$db_prefix."blog WHERE gid=$gid");
@@ -289,8 +296,8 @@ if($action == 'addcom')
 	}
 	else 
 	{
-		$sql="INSERT INTO ".$db_prefix."comment (date,gid,comment,mail,poster,hide) VALUES ('$localdate','$gid','$comment','$commail','$comname','$iscomment')";
-		$DB->query($sql);
+		$sql = "INSERT INTO ".$db_prefix."comment (date,poster,gid,comment,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','$commail','$comurl','$iscomment')";
+		$ret = $DB->query($sql);
 		if($iscomment == 'n')
 		{
 			$DB->query("UPDATE ".$db_prefix."blog SET comnum = comnum + 1 WHERE gid='$gid'");
@@ -300,6 +307,7 @@ if($action == 'addcom')
 		}
 		else
 		{
+			$MC->mc_sta('./cache/sta');
 			msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 		}
 	}

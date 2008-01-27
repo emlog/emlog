@@ -89,6 +89,7 @@ function msg($msg,$url)
 {
 	global $tpl_dir;
 	require_once getViews('message');
+	cleanPage();
 	exit;
 }
 
@@ -123,13 +124,12 @@ function getIp()
 */
 function checkMail($address) 
 {
-	if(ereg("^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$",$address))
+	if(preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
 	{
-		$result=true;
-	} else {
-		$result=false;
+		return true;
+	}else{
+		return false;
 	}
-	return $result;
 }
 
 /*
@@ -354,12 +354,13 @@ function cleanPage()
 {
 	$output = str_replace(array('<!--<!---->','<!---->',"<!--\r\n-->"),array('','',''),ob_get_contents());
 	ob_end_clean();
+	header('Content-Type: text/html; charset=UTF-8');
 	echo $output;
 	exit;
 }
 
 /*
-	回显系统错误信息
+	返回显系统错误信息
 */
 function sysMsg($info) 
 {

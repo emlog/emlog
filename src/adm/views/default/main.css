@@ -113,6 +113,12 @@ a:hover {
 	margin-bottom: 10px; 
 	width: 98%
 }
+.line2 {
+	border-top: #999999 1px dotted; 
+	margin-top: 5px; 
+	margin-bottom: 5px; 
+	width: 98%
+}
 .firstalt{
 	background-color:#FFFFFF;
 }
@@ -172,6 +178,9 @@ a:hover {
 }
 .care{
 	color:#FF3300;
+}
+.care2{
+	color: #009933;
 }
 .tips{
 	font-size:12px;

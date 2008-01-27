@@ -6,16 +6,28 @@ require_once('./globals.php');
 if ($action == '')
 {
 	include getViews('header');
+	require_once('../cache/sta');
+	
+	extract($sta_cache);
 	
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
-	$dbversion = $DB->version();
-	function_exists('ini_get')?$upload = ini_get('file_uploads'):$upload = get_cfg_var('file_uploads');
-	$upload==true?$upload='可以':$upload='不可以';
+	$mysql_ver = $DB->version();
+	$php_ver = PHP_VERSION;
 	$serverdate = date('Y-n-d G:i:s',time());
-	$gdlib = getPhpFun("ImageCreate");
-	$reg_glabls = getPhpcfg('register_globals');
-	$gpc = getPhpcfg('magic_quotes_gpc');
-	$safe_mode = getPhpcfg('safe_mode');
+
+	if (function_exists("imagecreate"))
+	{
+		if(function_exists('gd_info'))
+		{
+			$ver_info = gd_info();
+			$gd_ver = $ver_info['GD Version'];
+		}else{
+			$gd_ver = '支持';
+		}
+	}else
+	{
+		$gd_ver = '不支持GD图形库';
+	}
 
 	require_once(getViews('index'));
 	include getViews('footer');

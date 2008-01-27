@@ -142,14 +142,7 @@ for($i=1;$i<=6;$i++)
 						$calendar.="<td class=\"day2\"><a href=\"date-{$year_month}-record-{$n_time}.html\">".$t."</a></td>\n";
 					}
 				}elseif($n_time==$time){
-					if($isurlrewrite == 'n')
-					{
-						$calendar .= "<td class=\"day2\"><a href=\"index.php?date={$year_month}&record={$n_time}\">".$t."</a></td>\n";
-					}
-					else
-					{
-						$calendar .= "<td class=\"day2\"><a href=\"date-{$year_month}-record-{$n_time}.html\">".$t."</a></td>\n";
-					}
+						$calendar.="<td class=\"day\">".$t."</td>\n";
 				}else{
 					$calendar.="<td>".$t."</td>\n";
 				}

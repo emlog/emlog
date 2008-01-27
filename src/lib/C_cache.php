@@ -45,16 +45,18 @@ class mkcache extends MySql{
 	//访问统计
 	function mc_sta($cf)
 	{
-		$dh= $this->fetch_one_array("select * from ".$this->db_prefix."statistics");
-		$lognum=$this->num_rows($this->query("SELECT gid FROM ".$this->db_prefix."blog WHERE hide='n' "));
-		$comnum=$this->num_rows($this->query("SELECT cid FROM ".$this->db_prefix."comment WHERE hide='n' "));
-		$tbnum=$this->num_rows($this->query("SELECT gid FROM ".$this->db_prefix."trackback "));
+		$dh = $this->fetch_one_array("select * from ".$this->db_prefix."statistics");
+		$lognum = $this->num_rows($this->query("SELECT gid FROM ".$this->db_prefix."blog WHERE hide='n' "));
+		$comnum = $this->num_rows($this->query("SELECT cid FROM ".$this->db_prefix."comment WHERE hide='n' "));
+		$tbnum = $this->num_rows($this->query("SELECT gid FROM ".$this->db_prefix."trackback "));
+		$hidecom = $this->num_rows($this->query("SELECT gid FROM ".$this->db_prefix."comment where hide='y' "));
 	
 		$sta="\n\$sta_cache = array(
 				'day_view_count' => \"".$dh['day_view_count']."\",
 				'view_count' =>\"".$dh['view_count']."\",
 				'lognum'=>\"".$lognum."\",
 				'comnum'=>\"".$comnum."\",
+				'hidecom'=>\"".$hidecom."\",
 				'tbnum'=>\"".$tbnum."\"
 				);";
 		$cache = "<?php".$sta."\n?>";

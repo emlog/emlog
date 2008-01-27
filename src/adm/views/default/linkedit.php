@@ -21,11 +21,11 @@ print <<<EOT
         <textarea name="description" rows="3" cols="50">$description</textarea></td>
       </tr>
       <tr>
-        <td align="center" colspan="2">
+        <td colspan="2">
 		<input type="hidden" value="$linkid" name="linkid" />
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />			
-		  </td>
+		<input type="submit" value="确 定" class="submit2" />
+		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();""/>
+		</td>
       </tr>
     </tbody>
   </table>

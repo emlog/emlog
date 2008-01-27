@@ -55,7 +55,7 @@ print <<<EOT
 		如开启,评论需通过审核才能显示 </td>
       </tr>
 	  <tr>
-        <td align="right">启用URL为静态：<br /></td>
+        <td align="right">启用URL伪静态：<br /></td>
         <td>
 		<select name="isurlrewrite">
           <option value="y" $ex7>是</option>

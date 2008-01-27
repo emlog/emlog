@@ -108,8 +108,10 @@ src/adm/views/default/images/tar.gif -text
 src/adm/views/default/index.php -text
 src/adm/views/default/linkedit.php -text
 src/adm/views/default/links.php -text
+src/adm/views/default/login.php -text
 src/adm/views/default/main.css -text
 src/adm/views/default/main.js -text
+src/adm/views/default/msg.php -text
 src/adm/views/default/music.php -text
 src/adm/views/default/tag.php -text
 src/adm/views/default/tagedit.php -text
