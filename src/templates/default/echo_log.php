@@ -14,11 +14,20 @@ $log_content
 <p>$attachment</p>	
 <p>$tag</p>
 </div>
+<!--
+EOT;
+if($allow_tb == 'y'){
+print <<<EOT
+-->	
 <div id="tb_list">
-<p><b>引用:</b><a name="tb"></a></p>
-<li class="tburl">GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</li>  
-<li class="tburl">UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</li>
+<p><b>引用地址:</b><a name="tb"></a></p>
+<li>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</li>  
+<li>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</li>
 </div>
+<!--
+EOT;
+}print <<<EOT
+-->	
 <!--
 EOT;
 foreach($tb as $key=>$value){
@@ -32,11 +41,15 @@ print <<<EOT
 </div>
 <!--
 EOT;
+}if($com){
+print <<<EOT
+-->
+<p><b>访客评论:</b><a name="comment"></a></p>
+<!--
+EOT;
 }print <<<EOT
 -->	
-<p><b>评论:</b><a name="comment"></a></p>
 <div id="com_list">
-<ol>
 <!--
 EOT;
 foreach($com as $key=>$value){
@@ -47,10 +60,13 @@ print <<<EOT
 EOT;
 }print <<<EOT
 -->	
-</ol>
 </div>
-
-<br />
+<!--
+EOT;
+if($allow_remark == 'y'){
+print <<<EOT
+-->
+<p><b>发表评论:</b><a name="comment"></a></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom">
 <table width="620" border="0" cellspacing="5" cellpadding="0">
 <tr>
@@ -80,6 +96,11 @@ EOT;
 </tr>
 </table>
 </form>
+<!--
+EOT;
+}print <<<EOT
+-->	
+
 </div>
 EOT;
 include getViews('footer');

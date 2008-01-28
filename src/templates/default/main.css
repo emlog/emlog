@@ -137,6 +137,7 @@ div.contentA{
 .logcontent li{ list-style:none;}
 .log_con{
 	padding:5px 10px 5px;
+	margin-bottom:15px;
 	font-size:14px;line-height:1.7;
 	border-bottom:#BBBBBB dashed 1px;
 }
@@ -154,8 +155,8 @@ div.contentA{
 	margin-top:10px;
 }
 #com_list li{margin:10px 10px; border-bottom:1px dotted #63617b; width:700px;}
+#tb_list li{margin:10px 10px; width:700px;}
 #tags{ margin:10px 50px;}
-#tb_list{ margin:20px 0px 20px;}
 /*底部版权信息*/
 #siteCopyright {
 	font-family:Arial;

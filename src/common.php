@@ -4,7 +4,7 @@
 error_reporting(E_ALL);
 ob_start();
 
-$start_time=array_sum(explode(' ',microtime()));
+//$start_time=array_sum(explode(' ',microtime()));
 
 require_once('./config.php');
 require_once('./lib/F_base.php');

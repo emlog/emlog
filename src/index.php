@@ -98,6 +98,8 @@ if ($action == 'showlog')
 	$logid	    = intval($show_log['gid']);
 	$blogurl    = $blogurl;
 	$log_content = rmBreak($show_log['content']);
+	$allow_remark = $show_log['allow_remark'];
+	$allow_tb = $show_log['allow_tb'];
 	//tag
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	//attachment
@@ -313,9 +315,9 @@ if($action == 'addcom')
 	}
 }
 //test code
-$end_time=array_sum(explode(' ',microtime()));
-$runtime=number_format($end_time-$start_time,5);
-$query_num = $DB->query_num;
-print "runtime:$runtime(s) query:$query_num";
+//$end_time=array_sum(explode(' ',microtime()));
+//$runtime=number_format($end_time-$start_time,5);
+//$query_num = $DB->query_num;
+//print "runtime:$runtime(s) query:$query_num";
 cleanPage()
 ?>
