@@ -119,7 +119,7 @@ if ($action == 'showlog')
 		$addtime = date('Y-m-d H:i',$s_com['date']);
 		$cname   =  htmlspecialchars($s_com['poster']);	
 		$poster  = $s_com['mail'] ? "<a href=\"mailto:{$s_com['mail']}\" title=\"发邮件给{$cname}\">$cname</a>" : $cname;
-		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\">&raquo;</a>" : $cname;
+		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\">&raquo;</a>" : $poster;
 		$com[]   = array('content'=>$content,'addtime'=>$addtime,'cid'=>$s_com['cid'],'poster'=>$poster);
 	}
 	unset($s_com);
@@ -247,7 +247,7 @@ if($action == 'addcom')
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$remember = isset($_POST['remember'])?intval($_POST['remember']):'';
 	
-	if(strncasecmp($comurl,'http://',7))//0 if they are equal
+	if($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
 	{
 		$comurl = 'http://'.$comurl;
 	}
