@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value){
 //$value[att_img] = getAttachment($value[att_img],200,120);
-print <<<EOT
+echo <<<EOT
 -->
 <div class="content">
             <div class="post" id="post-$value[logid]">
@@ -28,7 +28,7 @@ print <<<EOT
 </div>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <div id="pagenavi"><div class="wp-pagenavi">
 <span class="mypost">$page_url</span>
@@ -36,7 +36,7 @@ EOT;
 </div>
 <!--
 EOT;
-print <<<EOT
+echo <<<EOT
 -->
 </div>
 EOT;

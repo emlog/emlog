@@ -1,7 +1,7 @@
 ﻿<!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //$photo = getAttachment($photo ,600,500);
-print <<<EOT
+echo <<<EOT
 -->		
 		<div class="obar">
 <ul>
@@ -16,7 +16,7 @@ print <<<EOT
 <!--
 EOT;
 if($ismusic){
-print <<<EOT
+echo <<<EOT
 -->
 <li><h2>音乐</h2>
 	<ul>
@@ -27,19 +27,19 @@ print <<<EOT
 <!--
 EOT;
 }
-print <<<EOT
+echo <<<EOT
 -->
 <li><h2>评论</h2>
 		<ul>
 			<!--
 EOT;
 foreach($com_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li><b>$value[name]</b><br /><a href="$value[url]">$value[content]</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 		</ul>
 </li>
@@ -59,12 +59,12 @@ EOT;
 <!--
 EOT;
 foreach($dang_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li><a href="$value[url]">$value[record]($value[lognum])</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 		</ul>
 </li>

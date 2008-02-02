@@ -1,6 +1,6 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 <div class="contentA">
 	<div class="lister"><span onclick="DoMenu('bloggerinfo')">个人资料</span></div>
@@ -17,18 +17,18 @@ print <<<EOT
 <!--
 EOT;
 foreach($tag_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 <span style="font-size:{$value['fontsize']}px; height:30px;"><a href="index.php?action=taglog&tag={$value['tagurl']}">{$value['tagname']}</a></span>&nbsp;
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</li></ul>
 <!--
 EOT;
 if($ismusic){
-print <<<EOT
+echo <<<EOT
 -->
 <div class="lister"><span onclick="DoMenu('blogmusic')">音乐</span></div>	
 <ul id="blogmusic" class="collapsed">
@@ -38,19 +38,19 @@ print <<<EOT
 <!--
 EOT;
 }
-print <<<EOT
+echo <<<EOT
 -->
 <div class="lister"><span onclick="DoMenu('newcomment')">最新评论</span></div>
 		<ul id="newcomment" class="collapsed">
 <!--
 EOT;
 foreach($com_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li id="comment">{$value['name']}<br /><a href="{$value['url']}">{$value['content']}</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 		</ul>
 	<div class="lister"><span onclick="DoMenu('logserch')">日志搜索</span></div>
@@ -69,12 +69,12 @@ EOT;
 <!--
 EOT;
 foreach($dang_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li><a href="{$value['url']}">{$value['record']}({$value['lognum']})</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->		
 		</ul>
 	<div class="lister"><span onclick="DoMenu('frlink')">友情链接</span></div>
@@ -82,12 +82,12 @@ EOT;
 <!--
 EOT;
 foreach($link_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->     	
 		<li><a href="{$value['url']}" title="{$value['des']}" target="_blank">{$value['link']}</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->		
 </ul>
 	<div class="lister"><span onclick="DoMenu('bloginfo')">博客信息</span></div>

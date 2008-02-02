@@ -1,7 +1,7 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //include getViews('side');
-print <<<EOT
+echo <<<EOT
 -->
 <div class="content">
 	<ul id="t">
@@ -12,19 +12,19 @@ print <<<EOT
 EOT;
 foreach($taglogs as $key=>$value){
 if($isurlrewrite=='n'){
-print <<<EOT
+echo <<<EOT
 -->
 	<li><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</li>
 <!--
 EOT;
 }else{
-	print <<<EOT
+	echo <<<EOT
 -->
 	<li><a href="showlog-{$value['gid']}.html">{$value['title']}</a> {$value['date']}</li>
 <!--
 EOT;
 }
-}print <<<EOT
+}echo <<<EOT
 -->
 	</ul>
 </div>

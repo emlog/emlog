@@ -1,7 +1,7 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //$att_img = getAttachment($att_img,500,300);
-print <<<EOT
+echo <<<EOT
 -->
 <div class="maincolumn">
 
@@ -38,7 +38,7 @@ print <<<EOT
 <!--
 EOT;
 foreach($com as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	<li id="comment-$value[cid]">
 			<div class="commentmeta">
@@ -56,7 +56,7 @@ print <<<EOT
 		</li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 	
 	</ol>
@@ -64,7 +64,7 @@ EOT;
 <!--
 EOT;
 foreach($tb as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	<li id="comment-$value[cid]">
 			<div class="commentmeta">
@@ -83,7 +83,7 @@ print <<<EOT
 		</li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 	
 	</ol>

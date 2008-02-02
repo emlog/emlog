@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //include getViews('side');
 //$att_img = getAttachment($att_img,600,500);
-print <<<EOT
+echo <<<EOT
 -->
 <div class="logcontent">
 <p id="tit">$log_title</p>
@@ -17,7 +17,7 @@ $log_content
 <!--
 EOT;
 if($allow_tb == 'y'){
-print <<<EOT
+echo <<<EOT
 -->	
 <div id="tb_list">
 <p><b>引用地址:</b><a name="tb"></a></p>
@@ -26,12 +26,12 @@ print <<<EOT
 </div>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 <!--
 EOT;
 foreach($tb as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <div class="trackback">
 	<li>来自: <a href="$value[url]" target="_blank">$value[blog_name]</a></li>
@@ -42,29 +42,29 @@ print <<<EOT
 <!--
 EOT;
 }if($com){
-print <<<EOT
+echo <<<EOT
 -->
 <p><b>访客评论:</b><a name="comment"></a></p>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 <div id="com_list">
 <!--
 EOT;
 foreach($com as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <li><a name="$value[cid]"></a>$value[poster] $value[addtime]<br />$value[content]</li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 </div>
 <!--
 EOT;
 if($allow_remark == 'y'){
-print <<<EOT
+echo <<<EOT
 -->
 <p><b>发表评论:</b><a name="comment"></a></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom">
@@ -98,7 +98,7 @@ print <<<EOT
 </form>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 
 </div>

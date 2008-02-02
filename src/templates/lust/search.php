@@ -1,6 +1,6 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 	<div class="maincolumn">
 
@@ -13,18 +13,18 @@ print <<<EOT
 <!--
 EOT;
 foreach($slog as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <p><a href="?action=showlog&gid=$value[gid]">$value[title]</a> <small>($value[date])</small></p>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 </div>
 </div>
 <!--
 EOT;
-print <<<EOT
+echo <<<EOT
 -->
 </div>
 EOT;

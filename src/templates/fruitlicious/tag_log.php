@@ -1,6 +1,6 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 <div class="post">
 	<p><b>$tag</b></p>
@@ -9,18 +9,18 @@ print <<<EOT
 <!--
 EOT;
 foreach($taglogs as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	<p><a href="index.php?action=showlog&gid=$value[gid]">$value[title]</a> <small>$value[date]</small></p>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 	</ul>
 </div>
 <!--
 EOT;
-print <<<EOT
+echo <<<EOT
 -->
 </div>
 EOT;

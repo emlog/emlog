@@ -1,6 +1,6 @@
 ﻿<!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->	
 	<div id="sidebar">
 <ul>
@@ -23,12 +23,12 @@ print <<<EOT
 <!--
 EOT;
 foreach($tag_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 <span style="font-size:$value[fontsize]px; height:30px;"><a href="?action=taglog&tag=$value[tagurl]">$value[tagname]</a></span>&nbsp;
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</p>
@@ -37,7 +37,7 @@ EOT;
 <!--
 EOT;
 if($ismusic){
-print <<<EOT
+echo <<<EOT
 -->
 <li><h2>音乐</h2>
 		<ul>
@@ -48,19 +48,19 @@ print <<<EOT
 <!--
 EOT;
 }
-print <<<EOT
+echo <<<EOT
 -->
 <li><h2>评论</h2>
 		<ul>
 			<!--
 EOT;
 foreach($com_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li>$value[name]<br /><a href="$value[url]">$value[content]</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 		</ul>
 </li>
@@ -82,12 +82,12 @@ EOT;
 <!--
 EOT;
 foreach($dang_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->
 		<li><a href="$value[url]">$value[record]($value[lognum])</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 		</ul>
 </li>
@@ -97,12 +97,12 @@ EOT;
 <!--
 EOT;
 foreach($link_cache as $value){
-print <<<EOT
+echo <<<EOT
 -->     	
 		<li><a href="$value[url]" title="$value[des]" target="_blank">$value[link]</a></li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 		</ul>
 </li>

@@ -2,7 +2,7 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //$att_img = getAttachment($att_img,500,300);
-print <<<EOT
+echo <<<EOT
 -->
 <h2>$log_title</h2>
 <p class="postdata">Posted in $post_time</p>
@@ -30,7 +30,7 @@ print <<<EOT
 <!--
 EOT;
 foreach($com as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	<li class="alt" id="comment-$value[cid]"><a name="$value[cid]"></a>
 			$value[poster] Says:<br />
@@ -40,7 +40,7 @@ print <<<EOT
 	
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 </ol>
 
@@ -48,7 +48,7 @@ EOT;
 <!--
 EOT;
 foreach($tb as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	<li id="comment-$value[cid]">
 	<cite>trackback by <strong><a href="$value[url]" target="_blank">$value[blog_name]</a></strong> &#8212; $value[date]</cite><br/>
@@ -57,7 +57,7 @@ print <<<EOT
 	</li>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 </ol>
 

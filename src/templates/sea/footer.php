@@ -1,6 +1,6 @@
 ﻿<!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 
 		</div></div><!-- end widecolumn wrap -->

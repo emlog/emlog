@@ -1,6 +1,6 @@
 ﻿<!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 
 <div class="narrowcolumn">
@@ -16,7 +16,7 @@ print <<<EOT
 EOT;
 foreach($logs as $value){
 //$value[att_img] = getAttachment($value[att_img],300,280);
-print <<<EOT
+echo <<<EOT
 -->
 	<div class="post" id="post-$value[logid]">
 
@@ -40,12 +40,12 @@ Posted on $value[post_time]<br />
 	</div>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <div class="browse">$page_url</div>
 <!--
 EOT;
-print <<<EOT
+echo <<<EOT
 -->
 </div>
 EOT;

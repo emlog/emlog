@@ -4,7 +4,7 @@ $att_img = getAttachment($att_img,350,300);
 $datetime = explode(".",$post_time);
 $year = $datetime[0];
 $day = $datetime[1];
-print <<<EOT
+echo <<<EOT
 -->
       <div id="nav">
         <ul>
@@ -36,7 +36,7 @@ print <<<EOT
 <!--
 EOT;
 foreach($com as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	
 		<li class="alt" id="comment-2"><a name="$value[cid]"></a>
@@ -50,7 +50,7 @@ print <<<EOT
 		</li>	
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 	</ol>
 	
@@ -58,7 +58,7 @@ EOT;
 <!--
 EOT;
 foreach($tb as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 	
 		<li class="alt" id="comment-2"><a name="$value[cid]"></a>
@@ -73,7 +73,7 @@ print <<<EOT
 		</li>	
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->	
 	</ol>
 

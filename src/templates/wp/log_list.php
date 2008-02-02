@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 foreach($logs as $value){
-print <<<EOT
+echo <<<EOT
 -->
 <DIV class=post id=post-1>
 <H2>$value[toplog]<a href="?action=showlog&gid=$value[logid]">$value[log_title]</a>  </H2>
@@ -20,7 +20,7 @@ print <<<EOT
 </DIV>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <div id="pageurl"> $page_url</div>
 EOT;

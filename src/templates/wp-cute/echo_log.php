@@ -1,6 +1,6 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 <DIV class=post id=post-1>
 <H2><b>$log_title</b></A></H2>
@@ -18,7 +18,7 @@ print <<<EOT
 <!--
 EOT;
 foreach($tb as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <ul class="trackback">
 	<li>来自: <a href="$value[url]" target="_blank">$value[blog_name]</a></li>
@@ -28,13 +28,13 @@ print <<<EOT
 </ul>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <h5>评论<a name="comment" id="comment"></a></h5>
 <!--
 EOT;
 foreach($com as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <p><a name="$value[cid]"></a></p>
 <div class="commentlist">
@@ -44,7 +44,7 @@ print <<<EOT
 </div>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <H3 id=respond>参与评论</H3>
 <form  method="post"  name="commentform" action="index.php?action=addcom" onsubmit="return checkcomment(this)">

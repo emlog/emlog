@@ -1,6 +1,6 @@
 ﻿<!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
       <div id="nav">
         <ul>
@@ -15,7 +15,7 @@ foreach($logs as $value){
 $datetime = explode("-",$value['post_time']);
 $year = $datetime[0]."/".$datetime[1];
 $day = substr($datetime[2],0,2);
-print <<<EOT
+echo <<<EOT
 -->
         <div class="post" id="post-$value[logid]">
 		  <div class="date"><span>$year</span>$day</div>
@@ -42,7 +42,7 @@ $value[log_description]
 	</div><!--/post -->
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 <p>$page_url</p>
 

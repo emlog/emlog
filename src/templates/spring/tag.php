@@ -1,7 +1,7 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //include getViews('side');
-print <<<EOT
+echo <<<EOT
 -->
 <div class="post">
 <p><b>标签</b></p>
@@ -10,19 +10,19 @@ print <<<EOT
 <!--
 EOT;
 foreach($tags as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <span style="font-size:$value[fontsize]px; height:30px;"><a href="./index.php?action=taglog&amp;tag=$value[tagurl]">$value[tag]</a></span>&nbsp;
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 $tagmsg
 </p>
 </div>
 <!--
 EOT;
-print <<<EOT
+echo <<<EOT
 -->
 </div>
 EOT;

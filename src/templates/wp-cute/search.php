@@ -1,13 +1,13 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-print <<<EOT
+echo <<<EOT
 -->
 <DIV class=post id=post-1>
 <h3>$search_info</h3>
 <!--
 EOT;
 foreach($slog as $key=>$value){
-print <<<EOT
+echo <<<EOT
 -->
 <div>
 <ul>
@@ -16,7 +16,7 @@ print <<<EOT
 </div>
 <!--
 EOT;
-}print <<<EOT
+}echo <<<EOT
 -->
 </div>
 EOT;
