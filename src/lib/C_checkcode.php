@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 图片验证码生成
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 session_start();
 header("Content-Type:image/png");
 
@@ -26,7 +31,6 @@ for($j=0;$j<80;$j++){
 	$y = mt_rand(0,22);
 	ImageSetPixel($img,$x,$y,$white);
 }
-
 
 //输出
 Imagepng($img);

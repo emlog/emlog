@@ -1,7 +1,12 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+<?php
+/**
+ * 后台管理函数库
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
-/*
+/**
 	验证用户是否处于登陆状态
 */
 function isLogin()
@@ -23,7 +28,7 @@ function isLogin()
 	}
 }
 
-/*
+/**
 	验证密码/用户
 	@return boolean
 */
@@ -49,7 +54,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 	}
 }
 
-/*
+/**
 	系统返回信息
 */
 function formMsg($msg,$url,$type)
@@ -61,7 +66,7 @@ function formMsg($msg,$url,$type)
 	exit;
 }
 
-/*
+/**
 	登录页面
 */
 function loginPage() 
@@ -77,7 +82,7 @@ function loginPage()
 	exit;
 }
 
-/*
+/**
 	附件上传
 	@param string $filename 文件名
 	@param string $tmpfile 上传后的临时文件
@@ -128,7 +133,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	return 	$attach;
 }
 
-/*
+/**
 	图片生成缩略图
 	@param string $img 预缩略的图片
 	@param string $filetype 上传文件的类型 eg:image/jpeg
@@ -178,7 +183,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	ImageDestroy ($newim);
 }
 
-/*
+/**
 	备份数据库结构和所有数据
 	@param string $table 数据库表名
 	@return string sql
@@ -210,7 +215,7 @@ function dataBak($table)
 	return $sql;
 }
 
-/*
+/**
 	发送 trackback 数据包
 	@param string $url 发送地址
 	@param string $date 数据信息
@@ -242,7 +247,7 @@ function sendPacket($url, $data)
 	return $http_response;
 }
 
-/*
+/**
 	寻找两数组所有不同元素
 	@param array $array1
 	@param array $array2
@@ -289,7 +294,7 @@ function findArray($array1,$array2)
 	}
 }
 
-/*
+/**
 	删除数组中相同元素，只保留一个
 	@param array $array
 	@return array 
@@ -312,7 +317,7 @@ function formatArray($array)
 	 return $temarray;
 }
 
-/*
+/**
 	随机读取一个数组元素
 	@param array $array
 	@return unknow
@@ -323,7 +328,7 @@ function getTips($array)
 	return $array[$num];
 }
 
-/*
+/**
 	背景色替换
 */
 function getRowbg()
@@ -336,7 +341,7 @@ function getRowbg()
 	}
 }
 
-/*
+/**
 	验证密码(修改密码用)
 	@param string $password 当前密码
 */
@@ -354,7 +359,7 @@ function checkPass($password)
 	}
 }
 
-/*
+/**
 	删除日志
 	@param $gid 日志id
 */

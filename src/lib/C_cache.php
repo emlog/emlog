@@ -1,5 +1,9 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 生成文本缓存类
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
 class mkcache extends MySql{
 

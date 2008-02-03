@@ -1,5 +1,10 @@
-<?
-/* emlog 2.5.0 Emlog.Net */
+<?php
+/**
+ * Rss输出函数库
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 error_reporting(7);
 //获取url地址
 function GetURL()

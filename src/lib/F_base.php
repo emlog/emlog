@@ -1,7 +1,11 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 基础函数库
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
-/*
+/**
 	加载模板文件
 	@param string $template 模板名
 	@param string $EXT 模板后缀名
@@ -18,7 +22,7 @@ function getViews($template,$EXT=".php")
 	return $path;
 }
 
-/*
+/**
 	执行去除转义字符
 */
 function doStripslashes()
@@ -32,7 +36,7 @@ function doStripslashes()
 	}
 }
 
-/*
+/**
 	去除转义字符
 	@param array $myarray
 */
@@ -55,7 +59,7 @@ function stripslashesArray($myarray)
 	return $myarray;
 }
 
-/*
+/**
 	转换HTML代码函数
 	@param string $content
 */
@@ -68,7 +72,7 @@ function htmlClean($content)
 	return $content;
 }
 
-/*
+/**
 	转换HTML代码函数(mk_cache.php 65 line)
 	@param string $content
 */
@@ -80,7 +84,7 @@ function htmlClean2($content)
 	return $content;
 }
 
-/*
+/**
 	错误处理函数
 	@param string $msg
 	@param string $url 
@@ -93,7 +97,7 @@ function msg($msg,$url)
 	exit;
 }
 
-/*
+/**
 	获取用户ip
 */
 function getIp()
@@ -119,7 +123,7 @@ function getIp()
 	return $realip;
 }
 
-/*
+/**
 	验证email地址格式
 */
 function checkMail($address) 
@@ -132,7 +136,7 @@ function checkMail($address)
 	}
 }
 
-/*
+/**
 	截取编码为utf8的字符串
 	@param string $strings 预处理字符串
 	@param int $start 开始处 eg:0
@@ -175,7 +179,7 @@ function subString($strings,$start,$length)
 	}
 }
 
-/*
+/**
 	转换附件大小单位
 	@param string $filesize 文件大小 kb
 */
@@ -197,7 +201,7 @@ function changeFileSize($filesize)
 	return $filesize;
 }
 
-/*
+/**
 	分页函数
 	@param int $count 条目总数
 	@param int $page 当前页码
@@ -264,7 +268,7 @@ function pagination ($count,$page,$url)
 	return $re;
 }
 
-/*
+/**
 	按照比例改变图片大小(非生成缩略图)
 	@param string $img 图片路径
 	@param int $max_w 最大缩放宽
@@ -299,7 +303,7 @@ function chImage ($img,$max_w,$max_h)
 	return $tn ;
 }
 
-/*
+/**
 	日志分割
 	@param string $content 日志内容
 	@param int $lid 日志id
@@ -312,7 +316,7 @@ function breakLog($content,$lid)
 	return $a[0];
 }
 
-/*
+/**
 	删除[break]标签
 	@param string $content 日志内容
 */
@@ -322,7 +326,7 @@ function rmBreak($content)
 	return $content;
 }
 
-/*
+/**
 	改变图片附件的比例，用于模板中
 	@param string $attstr 缓存中的附件串
 	@param int $width 新的宽
@@ -347,7 +351,7 @@ function getAttachment($attstr,$width,$height)
 	}
 }
 
-/*
+/**
 	清除模板中的注释
 */
 function cleanPage()
@@ -359,7 +363,7 @@ function cleanPage()
 	exit;
 }
 
-/*
+/**
 	返回显系统错误信息
 */
 function sysMsg($info) 
