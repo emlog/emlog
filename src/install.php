@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 安装程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./lib/F_base.php');
 require_once("./lib/C_mysql.php");
 require_once('./lib/C_cache.php');

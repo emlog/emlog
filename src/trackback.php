@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 引用通告主程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 // 加载前台常用函数
 require_once("./common.php");
 

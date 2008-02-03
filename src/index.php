@@ -1,5 +1,9 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 前端页面加载主程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
 require_once('./common.php');
 //calendar url

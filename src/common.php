@@ -1,5 +1,9 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 前端全局项加载主程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
 error_reporting(E_ALL);
 ob_start();

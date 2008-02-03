@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 日历生成
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./common.php');
 //建立日志时间写入数组
 $query = $DB->query("SELECT date FROM ".$db_prefix."blog WHERE hide='n' ");

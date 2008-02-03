@@ -1,5 +1,10 @@
-<?
-/* emlog 2.5.0 Emlog.Net */
+<?php
+/**
+ * RSS输出主程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 error_reporting(7);
 require_once("./config.php");
 require_once("./lib/C_mysql.php");

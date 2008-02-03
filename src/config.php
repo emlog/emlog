@@ -8,7 +8,7 @@ $host	= 'localhost';
 $user	= 'root';
 
 //database password
-$pass	= '123456';
+$pass	= '';
 
 //database name
 $db	= 'emlog';
