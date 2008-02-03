@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 博客设置
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./globals.php');
 
 if($action == ''){

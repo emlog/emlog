@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 后台全局项加载主程序
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 error_reporting(E_ALL);
 //header('Content-Type: text/html; charset=UTF-8');
 ob_start();

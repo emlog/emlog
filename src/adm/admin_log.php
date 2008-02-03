@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 管理日志
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./globals.php');
 $pid = isset($_GET['pid'])?$_GET['pid']:'';
 

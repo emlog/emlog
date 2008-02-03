@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 附件处理
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./globals.php');
 
 //删除附件

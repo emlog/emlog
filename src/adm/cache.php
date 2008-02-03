@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 重建缓存
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
+
 require_once('./globals.php');
 
 if ($action == '')

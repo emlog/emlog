@@ -1,5 +1,9 @@
 <?php
-/* emlog 2.5.0 Emlog.Net */
+/**
+ * 模板管理
+ * @copyright (c) 2008, Emlog All rights reserved.
+ * @version emlog-2.5.0
+ */
 
 require_once('./globals.php');
 
