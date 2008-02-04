@@ -1,5 +1,4 @@
 <?php
-<?php
 /**
  * 后台管理函数库
  * @copyright (c) 2008, Emlog All rights reserved.
