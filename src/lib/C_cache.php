@@ -226,10 +226,8 @@ class mkcache extends MySql{
 	//写入缓存
 	function mc_print ($content,$cachefile)
 	{
-		@ $fp = fopen($cachefile, 'wb') OR
-		$this->msg('打开文件失败');
-		@	$fw =	fwrite($fp,$content) OR
-		$this->msg('写入缓存失败！可能是缓存文件(cache.php)权限不够');
+		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
+		@ $fw =	fwrite($fp,$content) OR sysMsg('写入缓存失败，请查看文件权限');
 		fclose($fp);
 	}
 }
