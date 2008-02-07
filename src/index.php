@@ -34,34 +34,27 @@ if (!isset($action) || empty($action))
 	}
 	//是否为查询归档或日历对应日志
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
-	if(!empty($_GET['record']))
+	if($record)
 	{
 		$add_query = "AND from_unixtime(date, '%Y%m%d') LIKE '%".$record."%'";
 		$sql    = "SELECT * FROM ".$db_prefix."blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
-		$query1 = $DB->query("SELECT gid FROM ".$db_prefix."blog WHERE hide='n'  $add_query ");
-		$lognum = $DB->num_rows($query1);
-		$cont   = $lognum / $index_lognum;	
-		$cont2  = $lognum % $index_lognum;
-		$pageurl = $isurlrewrite == 'n' ? "index.php?record=$record&page" : "record-{$record}-page-";	
+		$query = $DB->query("SELECT gid FROM ".$db_prefix."blog WHERE hide='n'  $add_query ");
+		$lognum = $DB->num_rows($query);
+		$pageurl= "./index.php?record=$record&page";
 	}
 	else
 	{
 		$sql =" SELECT * FROM ".$db_prefix."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 		$lognum = $sta_cache['lognum'];
-		$cont   = $lognum / $index_lognum;
-		$cont2  = $lognum % $index_lognum;
-		$pageurl = $isurlrewrite == 'n' ? "index.php?page" : "page-";
+		$pageurl= './index.php?page';
 	}
-	$query1 = $DB->query($sql);
-	while($row = $DB->fetch_array($query1))
+	$query = $DB->query($sql);
+	while($row = $DB->fetch_array($query))
 	{
 		$row['post_time'] = date('Y-n-j G:i l',$row['date']); 
 		$row['log_title'] = htmlspecialchars(trim($row['title']));
 		$row['logid']	  = $row['gid'];
 		$row['log_description'] = breakLog($row['content'],$row['gid']);
-		$row['tbcount'] = $row['tbcount'];
-		$row['views']   = $row['views'];
-		$row['comnum']  = $row['comnum'];
 		//attachment
 		$row['attachment'] = !empty($log_cache_atts[$row['gid']]['attachment']) ? '<b>文件附件</b>:'.$log_cache_atts[$row['gid']]['attachment'] : '';
 		$row['att_img'] = !empty($log_cache_atts[$row['gid']]['att_img']) ? $log_cache_atts[$row['gid']]['att_img'] : '';
@@ -74,15 +67,7 @@ if (!isset($action) || empty($action))
 		$logs[] = $row;
 	}
 	//page
-	$page_url = '';
-	if($cont>1 && $cont2==0)
-	{
-		$page_url = pagination(floor($cont),$page,$pageurl);
-	}
-	elseif($cont>1)
-	{
-		$page_url = pagination(floor($cont)+1,$page,$pageurl);
-	}
+	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 	
 	include getViews('log_list');
 }

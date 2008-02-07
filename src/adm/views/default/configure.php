@@ -26,7 +26,7 @@ print <<<EOT
         关键字之间用半角逗号","隔开</td>
       </tr>
       <tr nowrap="nowrap">
-        <td align="right">icp备案号：</td>
+        <td align="right">ICP备案号：</td>
         <td><input maxlength="200" size="35" value="$icp" name="icp" /></td>
       </tr>
       <tr nowrap="nowrap">
@@ -56,12 +56,12 @@ print <<<EOT
       </tr>
 	  <tr>
         <td align="right">启用URL伪静态：<br /></td>
-        <td>
+        <td class="care">
 		<select name="isurlrewrite">
           <option value="y" $ex7>是</option>
           <option value="n" $ex8>否</option>
         </select>
-		如开启,需要服务器空间支持，详情请参看帮助文件</td>
+		开启需要服务器支持，详情参看帮助文档</td>
       </tr>
       <tr>
         <td align="right">启用登录验证码：<br /></td>

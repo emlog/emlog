@@ -86,8 +86,8 @@ function htmlClean2($content)
 
 /**
 	错误处理函数
-	@param string $msg
-	@param string $url 
+	@param string $msg 错误信息
+	@param string $url 返回url
 */
 function msg($msg,$url)
 {
@@ -204,66 +204,33 @@ function changeFileSize($filesize)
 /**
 	分页函数
 	@param int $count 条目总数
+	@param int $perlogs 每页显示条数目
 	@param int $page 当前页码
 	@param string $url 页码的地址  
-	@param string
 */
-function pagination ($count,$page,$url)
+function pagination($count,$perlogs,$page,$url)
 {
-	global $isurlrewrite;
-	if($isurlrewrite=='n')
+	$pnums = ceil($count/$perlogs);
+	$re = '';
+	for($i=$page-5;$i<=$page+5&&$i<=$pnums;$i++)
 	{
-		if($page>1)
+		if($i>0)
 		{
-			$re="\n<a href=\"$url=1\">首页</a> <a href=\"$url=".($page-1)."\">上一页</a>";
-		}else{
-			$re="\n首页 上一页";
-		}
-		for($i=$page-5;$i<$page+5&&$i<=$count;$i++)
-		{
-			if($i>1)
+			if($i==$page)
 			{
-				if($i==$page)
-				{
-					$re.="\n[$i]";
-				}else{
-					$re.="\n<a href=\"$url=$i\">$i</a>";
-				}
+				$re.=" [$i] ";
+			}else{
+				$re.=" <a href=\"$url=$i\">$i</a> ";
 			}
-		}
-		if($page<$count)
-		{
-			$re.="\n<a href=\"$url=".($page+1)."\">下一页</a> <a href=\"$url=$count\">尾页</a> ";
-		}else{
-			$re.="\n下一页 尾页";
 		}
 	}
-	else
+	if($page>6)
 	{
-		if($page>1)
-		{			
-			$re = "\n<a href=\"{$url}1.html\">首页</a> <a href=\"$url".($page-1).".html\">上一页</a>";
-		}else{
-			$re = "\n首页 上一页";
-		}
-		for($i=$page-5;$i<$page+5 && $i<=$count;$i++)
-		{
-			if($i>1)
-			{
-				if($i==$page)
-				{
-					$re .= "\n[$i]";
-				}else{
-					$re .= "\n<a href=\"{$url}{$i}.html\">$i</a>";
-				}
-			}
-		}
-		if($page<$count)
-		{
-			$re .= "\n<a href=\"{$url}".($page+1).".html\">下一页</a> <a href=\"{$url}{$count}.html\">尾页</a> ";
-		}else{
-			$re .= "\n下一页 尾页";
-		}
+		$re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
+	}
+	if($page+5<$pnums)
+	{
+		$re .= "…<a href=\"$url=1\" title=\"尾页\">&raquo;</a>";
 	}
 	return $re;
 }

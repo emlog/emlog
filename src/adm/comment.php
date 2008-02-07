@@ -29,7 +29,6 @@ if($action == '')
 	}
 	$query1=$DB->query("SELECT cid FROM ".$db_prefix."comment $andQuery");
 	$num=$DB->num_rows($query1);
-	$cont=$num/15;
 
 	$sql="SELECT * FROM ".$db_prefix."comment $andQuery ORDER BY cid DESC LIMIT $start_limit, 15";
 	$ret=$DB->query($sql);
@@ -40,12 +39,9 @@ if($action == '')
 		$dh['date'] = date("Y-m-d H:i",$dh['date']);
 		$comment[] = $dh;
 	}
-
-	if($cont>1 && $num%15==0){
-		$pageurl =  pagination(floor($cont),$page,"comment.php?{$addUrl}page");
-	}elseif($cont>1){
-		$pageurl = pagination (floor($cont)+1,$page,"comment.php?{$addUrl}page");
-	}
+	
+	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
+	
 	include getViews('header');
 	require_once(getViews('comment'));
 	include getViews('footer');

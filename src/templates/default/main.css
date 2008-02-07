@@ -262,7 +262,7 @@ div.contentA{
 /*页码样式*/
 #pageurl{
 	margin:20px 0px 30px;;
-	text-align: center;
+	text-align: left;
 	margin-left:20px;
 	font-size:14px;
 }

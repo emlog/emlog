@@ -128,7 +128,7 @@ class mkcache extends MySql{
 				{
 					$this->Archives.= "\n\$dang_cache[".$h."]['lognum']=\"".$lognum."\";";
 				}
-				if($isurlrewrite=='n')
+				if($isurlrewrite == 'n')
 				{
 					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
 				}

@@ -94,6 +94,7 @@ if ($action== "mod_config"){
 	$MC->mc_tags('../cache/tags');		
 	$MC->mc_comment('../cache/comments');
 	$MC->mc_config('../cache/config');
+	$MC->mc_record('../cache/records');
 	formMsg("博客设置成功","./configure.php",1);
 }
 //phpinfo()

@@ -1,12 +1,9 @@
 # RewriteEngine 打开URL重写模块
 RewriteEngine on
 # 重写根目录，博客在网站根目录则改为
-RewriteBase /
-# 首页日志列表分页规则
-RewriteRule ^page-([0-9]+)\.html$ index.php?page=$1
+#RewriteBase /
 # 显示日志规则
 RewriteRule ^showlog-([0-9]+)\.html$ index.php?action=showlog&gid=$1
 # 日志归档
 RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
-RewriteRule ^record-([0-9]+)-page-([0-9]+)\.html$ index.php?page=$2&record=$1
 RewriteRule ^date-([0-9]+)-record-([0-9]+)\.html$ index.php?date=$1&record=$2

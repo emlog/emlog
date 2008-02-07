@@ -30,6 +30,7 @@ $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".$db_prefix."blog WHERE hid
 $login_code = $show_config['login_code'];
 $comment_code = $show_config['comment_code'];
 $iscomment = $show_config['iscomment'];
+$isurlrewrite   = $show_config['isurlrewrite'];
 $nonce_templet = $show_config['nonce_templet'];
 $index_comment_num = $show_config['index_comnum'];
 $index_tagnum = $show_config['index_tagnum'];

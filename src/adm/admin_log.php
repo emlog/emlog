@@ -33,7 +33,6 @@ if($action == ''){
 	$sql="select * from ".$db_prefix."blog where hide='$hide_state'";
 	$query=$DB->query($sql);
 	$num=$DB->num_rows($query);
-	$cont=$num/15;
 	$logsql="SELECT gid,title,date,top,comnum FROM ".$db_prefix."blog WHERE hide='$hide_state' ORDER BY top DESC ,date DESC LIMIT $start_limit, 15";
 	$logquery=$DB->query($logsql);
 	while($dh=$DB->fetch_array($logquery)){
@@ -56,10 +55,7 @@ if($action == ''){
 			'rowbg'=>$rowbg
 			);
 	}
-	if($cont>1 && $num%15==0)
-			$pageurl =  pagination(floor($cont),$page,'admin_log.php?page');
-		elseif($cont>1)
-			$pageurl =  pagination (floor($cont)+1,$page,'admin_log.php?page');
+	$pageurl =  pagination($num,15,$page,'admin_log.php?page');
 			
 	require_once(getViews('admin_log'));
 	include getViews('footer');cleanPage();

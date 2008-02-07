@@ -9,10 +9,20 @@ print <<<EOT
 <div class=line></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
-		<td width="50%">待审核评论: <span class="$hctyle"><b>$hidecom</b></span> | 
-						日志: <span class=care2><b>$lognum</b></span> | 
-						评论: <span class=care2><b>$allcom</b></span> | 
-						引用(TrackBack): <span class=care2><b>$tbnum</b></span>
+		<td width="50%">
+<!--
+EOT;
+if($iscomment == 'y' || $hidecom != 0){
+print <<<EOT
+-->
+		待审核评论: <span class="$hctyle"><b>$hidecom</b></span> | 
+<!--
+EOT;
+}print <<<EOT
+-->
+		日志: <span class=care2><b>$lognum</b></span> | 
+		评论: <span class=care2><b>$allcom</b></span> | 
+		引用(TrackBack): <span class=care2><b>$tbnum</b></span>
 		</td>
 	</tr>
 </table>
@@ -20,7 +30,7 @@ print <<<EOT
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
 		<td width="50%">PHP版本: $php_ver</td>
-		<td width="50%">服务器引擎: $serverapp</td>
+		<td width="50%">服务器环境: $serverapp</td>
 	</tr>
 	 <tr>
 		<td width="50%">MySQL数据库: $mysql_ver</td>
