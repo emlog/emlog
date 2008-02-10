@@ -1,8 +1,8 @@
 <?php
 /**
  * 后台全局项加载主程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 error_reporting(E_ALL);
@@ -29,7 +29,7 @@ $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".$db_prefix."blog WHERE hid
 //配置参数
 $login_code = $show_config['login_code'];
 $comment_code = $show_config['comment_code'];
-$iscomment = $show_config['iscomment'];
+$ischkcomment = $show_config['ischkcomment'];
 $isurlrewrite   = $show_config['isurlrewrite'];
 $nonce_templet = $show_config['nonce_templet'];
 $index_comment_num = $show_config['index_comnum'];
@@ -41,7 +41,7 @@ $timezone = intval($show_config['timezone']);
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
-$edition = '2.5.0';				//版本号
+$edition = '2.6.0';				//版本号
 $uploadroot = "../uploadfile/";	//附件保存目录
 $tpl_dir = '../templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default

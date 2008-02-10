@@ -1,8 +1,8 @@
 <?php
 /**
  * 撰写日志
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 require_once('./globals.php');
@@ -126,10 +126,10 @@ if($action== 'addlog')
 			$host[$i] = trim($host[$i]);
 			$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
 			$result = sendPacket($host[$i], $data);
-			if (strpos($result, "error>1</error")) {
-				$tbmsg = "(发送 Trackback 失败)";
-			} else {
+			if (strpos($result, "error>0</error")) {
 				$tbmsg = "(发送 Trackback 成功)";
+			} else {
+				$tbmsg = "(发送 Trackback 失败)";
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 <?php
 /**
  * 博客设置
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 require_once('./globals.php');
@@ -33,19 +33,26 @@ if($action == ''){
 			$ex3="";
 			$ex4="selected=\"selected\"";
 	}
-	if($iscomment=='y'){
+	if($ischkcomment=='y'){
 			$ex5="selected=\"selected\"";
 			$ex6="";
 	}else{
 			$ex5="";
 			$ex6="selected=\"selected\"";
 	}
-	if($isurlrewrite=='y'){
+	if($istrackback=='y'){
 			$ex7="selected=\"selected\"";
 			$ex8="";
 	}else{
 			$ex7="";
 			$ex8="selected=\"selected\"";
+	}
+	if($isurlrewrite=='y'){
+			$ex9="selected=\"selected\"";
+			$ex10="";
+	}else{
+			$ex9="";
+			$ex10="selected=\"selected\"";
 	}
 	require_once(getViews('configure'));
 	include getViews('footer');
@@ -66,8 +73,9 @@ if ($action== "mod_config"){
 	$timezone     = isset($_POST['timezone']) ? floatval($_POST['timezone']):'';
 	$login_code   = $_POST['login_code']   == 'y' ? 'y' : 'n';
 	$comment_code = $_POST['comment_code'] == 'y' ? 'y' : 'n';
-	$iscomment    = $_POST['iscomment']    == 'y' ? 'y' : 'n';
+	$ischkcomment    = $_POST['ischkcomment']    == 'y' ? 'y' : 'n';
 	$isurlrewrite = $_POST['isurlrewrite'] == 'y' ? 'y' : 'n';
+	$istrackback = $_POST['istrackback'] == 'y' ? 'y' : 'n';
 	$exarea       = $_POST['exarea'] ? addslashes($_POST['exarea']) : '';
 	$comment_subnum = $_POST['comment_subnum'] ? intval($_POST['comment_subnum']) : '';
 	
@@ -85,11 +93,19 @@ if ($action== "mod_config"){
 	}
 
 	$DB->query("UPDATE ".$db_prefix."config SET site_key	='$sitekey',blogname ='$blogname',
-				blogurl = '$blogurl',bloginfo='$bloginfo',icp='$icp',
-				index_lognum = $index_lognum,index_comnum = $index_comnum,
-				index_tagnum = $index_tagnum,timezone = $timezone,
-				login_code ='$login_code',comment_code ='$comment_code',isurlrewrite ='$isurlrewrite',
-				iscomment ='$iscomment',comment_subnum =$comment_subnum,exarea='$exarea' "
+				blogurl = '$blogurl',
+				bloginfo='$bloginfo',icp='$icp',
+				index_lognum = $index_lognum,
+				index_comnum = $index_comnum,
+				index_tagnum = $index_tagnum,
+				timezone = $timezone,
+				login_code ='$login_code',
+				comment_code ='$comment_code',
+				isurlrewrite ='$isurlrewrite',
+				ischkcomment ='$ischkcomment',
+				istrackback ='$istrackback',
+				comment_subnum =$comment_subnum,
+				exarea='$exarea' "
 		);
 	$MC->mc_tags('../cache/tags');		
 	$MC->mc_comment('../cache/comments');

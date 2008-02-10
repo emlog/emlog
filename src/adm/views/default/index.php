@@ -12,7 +12,7 @@ print <<<EOT
 		<td width="50%">
 <!--
 EOT;
-if($iscomment == 'y' || $hidecom != 0){
+if($ischkcomment == 'y' || $hidecom != 0){
 print <<<EOT
 -->
 		待审核评论: <span class="$hctyle"><b>$hidecom</b></span> | 

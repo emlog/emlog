@@ -1,8 +1,8 @@
 <?php
 /**
  * 安装程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 require_once('./lib/F_base.php');
@@ -76,7 +76,7 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 2.5.0</span><span> 安装程序</span></p>
+<p><span class="title">emlog 2.6.0</span><span> 安装程序</span></p>
 </div>
 <div class="a">
 <p class="title2">1.权限设置</p>
@@ -277,13 +277,14 @@ CREATE TABLE ".$db_prefix."config (
   comment_subnum tinyint(3) unsigned NOT NULL default '0',
   login_code enum('n','y') NOT NULL default 'n',
   comment_code enum('n','y') NOT NULL default 'n',
-  iscomment enum('n','y') NOT NULL default 'n',
+  ischkcomment enum('n','y') NOT NULL default 'n',
   isurlrewrite enum('n','y') NOT NULL default 'n',
+  istrackback enum('n','y') NOT NULL default 'y',
   nonce_templet varchar(255) NOT NULL default '',
   timezone float NOT NULL default '8',
   exarea text NOT NULL
 )".$add."
-INSERT INTO ".$db_prefix."config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_tagnum, comment_subnum, login_code, comment_code,iscomment, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,30, 20, 'n', 'n','n','default', 8 ,'');
+INSERT INTO ".$db_prefix."config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_tagnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,30, 20,'default', 8 ,'');
 DROP TABLE IF EXISTS ".$db_prefix."link;
 CREATE TABLE ".$db_prefix."link (
   id smallint(4) unsigned NOT NULL auto_increment,

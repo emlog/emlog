@@ -20,7 +20,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 <div id="tb_list">
-<p><b>引用地址:</b><a name="tb"></a></p>
+<p><b>引用:</b><a name="tb"></a></p>
 <li>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</li>  
 <li>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</li>
 </div>
@@ -44,7 +44,7 @@ EOT;
 }if($com){
 echo <<<EOT
 -->
-<p><b>访客评论:</b><a name="comment"></a></p>
+<p><b>评论:</b><a name="comment"></a></p>
 <!--
 EOT;
 }echo <<<EOT

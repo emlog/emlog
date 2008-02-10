@@ -1,8 +1,8 @@
 <?php
 /**
  * 生成文本缓存类
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 class mkcache extends MySql{
@@ -30,7 +30,7 @@ class mkcache extends MySql{
 	{
 		$show_config=$this->fetch_array($this->query("SELECT * FROM ".$this->db_prefix."config"));
 			$exarea = addslashes($show_config['exarea']);
-			$config ="\n\$config_cache = array('sitekey' =>\"".htmlspecialchars($show_config['site_key'])."\",'blogname' =>\"".htmlspecialchars(stripslashes($show_config['blogname']))."\",'bloginfo'=>\"".htmlspecialchars(stripslashes($show_config['bloginfo']))."\",'index_lognum' =>\"".$show_config['index_lognum']."\",'index_tagnum' =>\"".$show_config['index_tagnum']."\",'index_comment_num' =>\"".$show_config['index_comnum']."\",'iscomment'=>\"".$show_config['iscomment']."\",'isurlrewrite'=>\"".$show_config['isurlrewrite']."\",'comment_code'=>\"".$show_config['comment_code']."\",'login_code'=>\"".$show_config['login_code']."\",'comment_subnum'=>\"".$show_config['comment_subnum']."\",'nonce_templet'=>\"".$show_config['nonce_templet']."\",'blogurl'=>\"".htmlspecialchars($show_config['blogurl'])."\",'icp'=>\"".htmlspecialchars($show_config['icp'])."\",'timezone'=>\"".$show_config['timezone']."\",'exarea'=>\"".$exarea."\");";
+			$config ="\n\$config_cache = array('sitekey' =>\"".htmlspecialchars($show_config['site_key'])."\",'blogname' =>\"".htmlspecialchars(stripslashes($show_config['blogname']))."\",'bloginfo'=>\"".htmlspecialchars(stripslashes($show_config['bloginfo']))."\",'index_lognum' =>\"".$show_config['index_lognum']."\",'index_tagnum' =>\"".$show_config['index_tagnum']."\",'index_comment_num' =>\"".$show_config['index_comnum']."\",'ischkcomment'=>\"".$show_config['ischkcomment']."\",'isurlrewrite'=>\"".$show_config['isurlrewrite']."\",'istrackback'=>\"".$show_config['istrackback']."\",'comment_code'=>\"".$show_config['comment_code']."\",'login_code'=>\"".$show_config['login_code']."\",'comment_subnum'=>\"".$show_config['comment_subnum']."\",'nonce_templet'=>\"".$show_config['nonce_templet']."\",'blogurl'=>\"".htmlspecialchars($show_config['blogurl'])."\",'icp'=>\"".htmlspecialchars($show_config['icp'])."\",'timezone'=>\"".$show_config['timezone']."\",'exarea'=>\"".$exarea."\");";
 	
 		$cache = "<?php".$config."\n?>";
 		$this->mc_print($cache,$cf); 

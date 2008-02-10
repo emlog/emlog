@@ -1,8 +1,8 @@
 <?php
 /**
  * RSS输出主程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 error_reporting(7);

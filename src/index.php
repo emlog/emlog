@@ -1,8 +1,8 @@
 <?php
 /**
  * 前端页面加载主程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 require_once('./common.php');
@@ -21,7 +21,7 @@ if (!isset($action) || empty($action))
 	include getViews('header');
 	//page link
 	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
-	if (!empty($page))
+	if ($page)
 	{
 		$start_limit = ($page - 1) * $index_lognum;
 		$id = ($page-1) * $index_lognum;
@@ -66,7 +66,7 @@ if (!isset($action) || empty($action))
 		$row['toplog'] = $row['top'] == 'y' ? "<img src=\"./images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 		$logs[] = $row;
 	}
-	//page
+	//分页
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 	
 	include getViews('log_list');
@@ -287,9 +287,9 @@ if($action == 'addcom')
 	}
 	else 
 	{
-		$sql = "INSERT INTO ".$db_prefix."comment (date,poster,gid,comment,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','$commail','$comurl','$iscomment')";
+		$sql = "INSERT INTO ".$db_prefix."comment (date,poster,gid,comment,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','$commail','$comurl','$ischkcomment')";
 		$ret = $DB->query($sql);
-		if($iscomment == 'n')
+		if($ischkcomment == 'n')
 		{
 			$DB->query("UPDATE ".$db_prefix."blog SET comnum = comnum + 1 WHERE gid='$gid'");
 			$MC->mc_sta('./cache/sta');

@@ -1,8 +1,8 @@
 <?php
 /**
  * 基础函数库
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 /**
@@ -224,14 +224,9 @@ function pagination($count,$perlogs,$page,$url)
 			}
 		}
 	}
-	if($page>6)
-	{
-		$re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
-	}
-	if($page+5<$pnums)
-	{
-		$re .= "…<a href=\"$url=1\" title=\"尾页\">&raquo;</a>";
-	}
+	if($page>6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
+	if($page+5<$pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>"; 
+	if($pnums <= 1) $re = '';
 	return $re;
 }
 

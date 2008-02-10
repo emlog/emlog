@@ -30,15 +30,15 @@ print <<<EOT
         <td><input maxlength="200" size="35" value="$icp" name="icp" /></td>
       </tr>
       <tr nowrap="nowrap">
-        <td align="right">每页显示日志数：</td>
+        <td align="right">每页日志数：</td>
         <td><input maxlength="5" size="10" value="$show_config[index_lognum]" name="index_lognum" /></td>
       </tr>
 	  <tr nowrap="nowrap">
-        <td align="right">首页显示标签数：</td>
+        <td align="right">首页标签数：</td>
         <td><input maxlength="5" size="10" value="$show_config[index_tagnum]" name="index_tagnum" /></td>
       </tr>
       <tr nowrap="nowrap">
-        <td align="right">显示新近评论数：</td>
+        <td align="right">首页最新评论数：</td>
         <td><input maxlength="5" size="10" value="$show_config[index_comnum]" name="index_comment_num" /></td>
       </tr>
       <tr nowrap="nowrap">
@@ -48,18 +48,27 @@ print <<<EOT
       <tr>
         <td align="right">启用评论审核：<br /></td>
         <td>
-		<select name="iscomment">
+		<select name="ischkcomment">
           <option value="y" $ex5>是</option>
           <option value="n" $ex6>否</option>
         </select>
 		如开启,评论需通过审核才能显示 </td>
       </tr>
 	  <tr>
+        <td align="right">开启引用通告：<br /></td>
+        <td>
+		<select name="istrackback">
+          <option value="y" $ex7>是</option>
+          <option value="n" $ex8>否</option>
+        </select>
+		</td>
+      </tr>
+	  <tr>
         <td align="right">启用URL伪静态：<br /></td>
         <td class="care">
 		<select name="isurlrewrite">
-          <option value="y" $ex7>是</option>
-          <option value="n" $ex8>否</option>
+          <option value="y" $ex9>是</option>
+          <option value="n" $ex10>否</option>
         </select>
 		开启需要服务器支持，详情参看帮助文档</td>
       </tr>

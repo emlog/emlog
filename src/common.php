@@ -1,8 +1,8 @@
 <?php
 /**
  * 前端全局项加载主程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 error_reporting(E_ALL);
@@ -41,8 +41,9 @@ $DB = new MySql($host, $user, $pass,$db);
 	$index_tagnum   = $config_cache['index_tagnum'];
 	$comment_code	= $config_cache['comment_code'];
 	$login_code	    = $config_cache['login_code'];
-	$iscomment      = $config_cache['iscomment'];
+	$ischkcomment      = $config_cache['ischkcomment'];
 	$isurlrewrite   = $config_cache['isurlrewrite'];
+	$istrackback   = $config_cache['istrackback'];
 	$comment_subnum = $config_cache['comment_subnum'];
 	$nonce_tpl = $config_cache['nonce_templet'];
 	$blogurl   = $config_cache['blogurl'];
@@ -57,7 +58,7 @@ $DB = new MySql($host, $user, $pass,$db);
 $em_tpldir = $tpl_dir.$nonce_tpl.'/';//当前模板目录
 if (!is_dir($em_tpldir))
 {
-	exit('Template Error: no tpl directory!');
+	exit('Template Error: no template directory!');
 }
 //decode comment
 if(isset($com_cache))
@@ -80,20 +81,19 @@ if($comment_code == 'y')
 	session_start();
 }
 //site info
-	$edition = 'emlog2.5.0';
-	$icp = $icp;
-	$photo = $user_cache['photo'];
-	$blogger_des = $user_cache['des'];
-	$user_cache['mail']!=''?
-	$name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>":
-	$name = $user_cache['name'];
-	//music
-	if($ismusic)
-	{
-		$randindex = mt_rand(0,count($mlinks)-1);
-		$music = $randplay?$mlinks[$randindex]:$mlinks[0];
-		$autoplay = $auto?"&autoplay=1":'';
-	}
+$icp = $icp;
+$photo = $user_cache['photo'];
+$blogger_des = $user_cache['des'];
+$user_cache['mail']!=''?
+$name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>":
+$name = $user_cache['name'];
+//music
+if($ismusic)
+{
+	$randindex = mt_rand(0,count($mlinks)-1);
+	$music = $randplay?$mlinks[$randindex]:$mlinks[0];
+	$autoplay = $auto?"&autoplay=1":'';
+}
 //view count
 $em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
 if ($em_viewip !== getIp())

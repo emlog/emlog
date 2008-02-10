@@ -1,8 +1,8 @@
 <?php
 /**
  * 图片验证码生成
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 session_start();

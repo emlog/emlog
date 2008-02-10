@@ -137,14 +137,10 @@ src/index.php -text
 src/install.php -text
 src/lib/C_cache.php -text
 src/lib/C_checkcode.php -text
-src/lib/C_encode.php -text
 src/lib/C_mysql.php -text
 src/lib/F_adm.php -text
 src/lib/F_base.php -text
 src/lib/F_rss.php -text
-src/lib/tables/big5-unicode.table -text
-src/lib/tables/gb-unicode.table -text
-src/lib/tables/index.htm -text
 src/rss.php -text
 src/templates/OrangeSky/echo_log.php -text
 src/templates/OrangeSky/footer.php -text

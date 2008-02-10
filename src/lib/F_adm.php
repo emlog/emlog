@@ -1,8 +1,8 @@
 <?php
 /**
  * 后台管理函数库
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 /**
@@ -230,19 +230,21 @@ function sendPacket($url, $data)
 	{
 		return false;
 	}
-	fputs ($fp, "POST ".$uinfo['path']." HTTP/1.1\r\n");
-	fputs ($fp, "Host: ".$uinfo['host']."\r\n");
-	fputs ($fp, "Content-type: application/x-www-form-urlencoded\r\n");
-	fputs ($fp, "Content-length: ".strlen($data)."\r\n");
-	fputs ($fp, "Connection: close\r\n\r\n");
-	fputs ($fp, $data);
+	
+	$out = "POST ".$uinfo['path']." HTTP/1.1\r\n";
+	$out.= "Host: ".$uinfo['host']."\r\n";
+	$out.= "Content-type: application/x-www-form-urlencoded\r\n";
+	$out.= "Content-length: ".strlen($data)."\r\n";
+	$out.= "Connection: close\r\n\r\n";
+	$out.= $data;
+	fwrite($fp, $out);
+	
 	$http_response = '';
 	while(!feof($fp))
 	{
 		$http_response .= fgets($fp, 128);
 	}
 	@fclose($fp);
-	list($http_headers, $http_content) = explode("\r\n\r\n", $http_response);
 	return $http_response;
 }
 

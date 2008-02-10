@@ -1,37 +1,29 @@
 <?php
 /**
  * 引用通告主程序
- * @copyright (c) 2008, Emlog All rights reserved.
- * @version emlog-2.5.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
  */
 
 // 加载前台常用函数
 require_once("./common.php");
 
-// 加载编码转换函数
-require_once ("./lib/C_encode.php");
+$blogid = intval($_GET['id']);
+$charset = strtolower($_GET['charset']);
+$encode = in_array($charset, array('gbk', 'utf-8')) ? $charset : 'utf-8';
 
-$charset = strtolower($_REQUEST['charset']);
-if (trim($charset)) {
-	$charset = in_array($charset, array('gbk', 'big5', 'utf-8')) ? $charset : 'utf-8';
-} else {
-	$charset = 'utf-8';
-}
+$title     = iconv2utf(html2text($_POST['title']));
+$excerpt   = trimmed_title(iconv2utf(html2text($_POST['excerpt'])), 255);
+$url       = addslashes($_POST['url']);
+$blog_name = iconv2utf(html2text($_POST['blog_name']));
 
-$blogid = intval($_REQUEST['id']);
-$title     = iconv2utf(html2text($_REQUEST['title']));
-$excerpt   = trimmed_title(iconv2utf(html2text($_REQUEST['excerpt'])), 255);
-$url       = addslashes($_REQUEST['url']);
-$blog_name = iconv2utf(html2text($_REQUEST['blog_name']));
-
-if (!empty($blogid) AND !empty($title) AND !empty($excerpt) AND !empty($url) AND !empty($blog_name)) {
-	$blog= $DB->fetch_one_array("SELECT allow_tb FROM ".$db_prefix."blog WHERE gid='".$blogid."'");
+if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
+{
+	$blog = $DB->fetch_one_array("SELECT allow_tb FROM ".$db_prefix."blog WHERE gid='".$blogid."'");
 	if (empty($blog)) {
-		$error   = 1;
-		$message = '记录不存在';
+		showXML('记录不存在');
 	}elseif ($blog['allow_tb']=='n') {
-		$error   = 1;
-		$message = '本文因为某种原因此时不允许引用';
+		showXML('该文章不允许引用');
 	}else {
 		//插入数据
 		$query = "INSERT INTO ".$db_prefix."trackback (gid, title, date, excerpt, url, blog_name) VALUES('".$blogid."', '".$title."', '".$localdate."', '".$excerpt."', '".$url."', '".$blog_name."')";
@@ -40,20 +32,22 @@ if (!empty($blogid) AND !empty($title) AND !empty($excerpt) AND !empty($url) AND
 		$sql = "SELECT tbid FROM ".$db_prefix."trackback WHERE gid='".intval($blogid)."'";
 		$tatol = $DB->num_rows($DB->query($sql));
 		$DB->query("UPDATE ".$db_prefix."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
-		$error = 0;
-		$message = 'Trackback 成功接收';
+		showXML('Trackback 成功接收',0);
 	}
 } else {
-	$error = 1;
-	$message = '缺少必要参数';
+	showXML('Trackback 引用被拒绝');
 }
 
-header('Content-type: text/xml');	
-echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-echo "<response>\n";
-echo "\t<error>".$error."</error>\n";
-echo "\t<message>".$message."</message>\n";
-echo "</response>\n";
+//发送消息页面
+function showXML($message, $error = 1) {
+	header('Content-type: text/xml');
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+	echo "<response>\n";
+	echo "\t<error>".$error."</error>\n";
+	echo "\t<message>".$message."</message>\n";
+	echo "</response>\n";
+	exit;
+}
 
 // HTML转换为纯文本
 function html2text($content) {
@@ -69,6 +63,7 @@ function html2text($content) {
 	$content = preg_replace("/\&\#.*?\;/i", "", $content);
 	return $content;
 }
+//格式化标题，截取过长的标题并转化编码为utf8
 function trimmed_title($text, $limit=12) {
 	$val = csubstr($text, 0, $limit);
 	return $val[1] ? $val[0]."..." : $val[0];
@@ -98,16 +93,14 @@ function csubstr($text, $start=0, $limit=12) {
 		return array($text, $more);
 	} 
 }
+//转换到UTF-8编码
 function iconv2utf($chs) {
-	global $charset;
-	if ($charset !== 'utf-8') {
+	global $encode;
+	if ($encode != 'utf-8') {
 		if (function_exists('mb_convert_encoding')) {
-			$chs = mb_convert_encoding($chs, "UTF-8", $charset);
-		} elseif (function_exists("iconv")) {
-			$chs = iconv($charset, "UTF-8", $chs);
-		} else {
-			$cov = new Chinese($charset, 'UTF-8');
-			$chs = $cov->Convert($chs);
+			$chs = mb_convert_encoding($chs, 'UTF-8', $encode);
+		} elseif (function_exists('iconv')) {
+			$chs = iconv($encode, 'UTF-8', $chs);
 		}
 	}
 	return $chs;

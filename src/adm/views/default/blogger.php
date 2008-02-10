@@ -18,7 +18,7 @@ print <<<EOT
            <input name="mail" value="$email" size="35" maxlength="200" /></td>
         </tr>
 		<tr nowrap="nowrap">
-          <td>头像 (推荐上传大小为185*230，格式为jpg或png的图片)<br />
+          <td>头像 (推荐上传大小为185 X 230，格式为jpg或png的图片)<br />
             <input type="hidden" name="photo" value="$photo"/><img src="$photo" alt="" border="1" align="absbottom" />
 			<input name="photo" type="file" size="20" />
             <br />
