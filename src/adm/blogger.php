@@ -10,7 +10,7 @@ require_once('./globals.php');
 if($action == ''){
 	include getViews('header');
 
-	$result = $DB->query("select * from ".$db_prefix."user");
+	$result = $DB->query("select * from {$db_prefix}user");
 	$row=$DB->fetch_array($result);
 	extract($row);
 	$name = htmlspecialchars($nickname);
@@ -36,7 +36,7 @@ if($action== 'modintro'){
 	}else
 		$usericon = $photo;
 
-	$sql="UPDATE ".$db_prefix."user SET 
+	$sql="UPDATE {$db_prefix}user SET 
 			nickname='$nickname',
 			email='$mail',
 			photo='$usericon',
@@ -58,13 +58,13 @@ if($action=='update_admin'){
 	
 	//只修改密码
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0){
-		$sql=" UPDATE ".$db_prefix."user SET password='".md5($newpass)."' ";
+		$sql=" UPDATE {$db_prefix}user SET password='".md5($newpass)."' ";
 		$DB->query($sql);
 			formMsg('密码已修改!请重新登录','javascript:history.go(-1);',1);
 	}
 	//修改密码及用户
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0){
-		$sql=" UPDATE ".$db_prefix."user SET 
+		$sql=" UPDATE {$db_prefix}user SET 
 			username='".$user."',
 			password='".md5($newpass)."' ";
 		$DB->query($sql);
@@ -72,7 +72,7 @@ if($action=='update_admin'){
 	}
 	//只修改用户
 	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass){
-			$sql=" UPDATE ".$db_prefix."user SET username='".$user."' ";
+			$sql=" UPDATE {$db_prefix}user SET username='".$user."' ";
 			$DB->query($sql);
 			formMsg('用户名已修改!请重新登录','javascript:history.go(-1);',1);
 	}

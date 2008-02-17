@@ -178,7 +178,7 @@ img.center {
   letter-spacing:1px;
 }
 
-* html #navigation a {width:1%;} /* see http://www.positioniseverything.net/explorer/escape-floats.html */
+* html #navigation a {width:1%;}
 
 #navigation form {
   float:right;

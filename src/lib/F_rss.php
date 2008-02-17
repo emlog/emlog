@@ -18,7 +18,7 @@ function GetURL()
 function GetBlog()
 {
 	global $db_prefix,$DB;
-	$sql = "SELECT * FROM ".$db_prefix."blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
+	$sql = "SELECT * FROM {$db_prefix}blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
 	$result = $DB->query($sql);
 	while($re = $DB->fetch_array($result))
 	{

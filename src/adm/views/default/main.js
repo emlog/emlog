@@ -112,3 +112,47 @@ function addhtml(content){
 function addattach(imgurl,imgsrc,des,aid){
 	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\"><img src=\"'+imgsrc+'\" alt=\"附件[ematt:'+aid+'] '+des+'\" border=\"0\"></a>');
 }
+
+//ajax
+	var xmlhttp = false;
+	function createxmlhttp() {
+		xmlhttp = false;
+		if(window.XMLHttpRequest) { 
+			xmlhttp = new XMLHttpRequest();
+			if (xmlhttp.overrideMimeType) {
+				xmlhttp.overrideMimeType('text/xml');
+			}
+		}
+		else if (window.ActiveXObject) {
+			try {
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {}
+			}
+		}
+		if (!xmlhttp) {
+			window.alert("不能创建XMLHttpRequest对象实例.");
+			return false;}}
+//
+function dorequest(url){
+		createxmlhttp();
+		var url = url + "?timetmp=" + new Date().getTime();
+		xmlhttp.open("POST", url, true);
+		xmlhttp.onreadystatechange = processRequest;
+		xmlhttp.setRequestHeader("Content-Type","multipart/form-data;");
+		var att = document.getElementById("attachment").file;
+		var querystring = "att=" + att;
+		xmlhttp.send(querystring);
+}
+function processRequest() {
+        if (xmlhttp.readyState == 4) { 
+            if (xmlhttp.status == 200) {
+				document.getElementById("attlist").innerHTML = xmlhttp.responseText;}}
+}
+function sendinfo(url) {
+		document.getElementById("attlist").innerHTML = 
+		"<span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span>";
+		dorequest(url);
+}

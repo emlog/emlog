@@ -7,7 +7,7 @@
 
 require_once('./common.php');
 //建立日志时间写入数组
-$query = $DB->query("SELECT date FROM ".$db_prefix."blog WHERE hide='n' ");
+$query = $DB->query("SELECT date FROM {$db_prefix}blog WHERE hide='n' ");
 while($date = $DB->fetch_array($query))
 {
 	$logdate[] = date("Ymd",$date['date']);

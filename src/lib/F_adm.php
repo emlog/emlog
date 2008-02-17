@@ -14,7 +14,7 @@ function isLogin()
 	global $DB,$db_prefix;
 	if (isset($_SESSION['adminname']) && isset($_SESSION['password']) && $_SESSION['adminname'] !='' && $_SESSION['password'] !='')
 	{
-		$SQL="SELECT password FROM ".$db_prefix."user  WHERE username='".$_SESSION['adminname']."' AND password = '".$_SESSION['password']."' ";
+		$SQL="SELECT password FROM {$db_prefix}user  WHERE username='".$_SESSION['adminname']."' AND password = '".$_SESSION['password']."' ";
 		$result = $DB->query($SQL);
 		$getpass = $DB->fetch_array($result);
 		if ($getpass['password'] != $_SESSION['password']) 
@@ -39,7 +39,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 		return FALSE;
 	}else
 	{	
-		$userinfo=$DB->fetch_one_array("SELECT * FROM ".$db_prefix."user WHERE username='$username' AND password='$password' ");
+		$userinfo=$DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username='$username' AND password='$password' ");
 		if (empty($userinfo))
 		{
 			return FALSE;
@@ -349,7 +349,7 @@ function getRowbg()
 function checkPass($password)
 {
 	global $DB,$db_prefix;
-	$query=$DB->query("select * from ".$db_prefix."user where password='$password'");
+	$query=$DB->query("select * from {$db_prefix}user where password='$password'");
 	$ispass = $DB->fetch_array($query);
 	if (empty($ispass))
 	{
@@ -368,16 +368,16 @@ function delLog($gid)
 {
 	global $DB,$db_prefix;
 	
-	$DB->query("DELETE FROM ".$db_prefix."blog where gid=$gid");
+	$DB->query("DELETE FROM {$db_prefix}blog where gid=$gid");
 	//评论
-	$DB->query("DELETE FROM ".$db_prefix."comment where gid=$gid");
+	$DB->query("DELETE FROM {$db_prefix}comment where gid=$gid");
 	//引用
-	$DB->query("DELETE FROM ".$db_prefix."trackback where gid=$gid");
+	$DB->query("DELETE FROM {$db_prefix}trackback where gid=$gid");
 	//标签
-	$DB->query("UPDATE ".$db_prefix."tag SET usenum=usenum-1,gid= REPLACE(gid,',$gid,',',') WHERE gid LIKE '%".$gid."%' ");
-	$DB->query("DELETE FROM ".$db_prefix."tag WHERE usenum=0 ");
+	$DB->query("UPDATE {$db_prefix}tag SET usenum=usenum-1,gid= REPLACE(gid,',$gid,',',') WHERE gid LIKE '%".$gid."%' ");
+	$DB->query("DELETE FROM {$db_prefix}tag WHERE usenum=0 ");
 	//附件
-	$query=$DB->query("select filepath from ".$db_prefix."attachment where blogid=$gid ");
+	$query=$DB->query("select filepath from {$db_prefix}attachment where blogid=$gid ");
 	while($attach=$DB->fetch_array($query))
 	{
 		if(file_exists($attach['filepath']))
@@ -390,6 +390,6 @@ function delLog($gid)
 			@unlink($attach['filepath']);
 		}
 	}
-	$DB->query("DELETE FROM ".$db_prefix."attachment where blogid=$gid");
+	$DB->query("DELETE FROM {$db_prefix}attachment where blogid=$gid");
 }
 ?>

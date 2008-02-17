@@ -10,7 +10,7 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
-	$rs=$DB->query("SELECT * FROM ".$db_prefix."link ORDER BY taxis ASC");
+	$rs=$DB->query("SELECT * FROM {$db_prefix}link ORDER BY taxis ASC");
 	while($rows=$DB->fetch_array($rs))
 	{
 		$rows['sitename'] = htmlspecialchars($rows['sitename']);
@@ -32,7 +32,7 @@ if ($action== 'link_taxis')
 		foreach($link as $key=>$value)
 		{
 			$value = intval($value);
-			$DB->query("UPDATE ".$db_prefix."link SET taxis='$value'  WHERE id='$key' ");
+			$DB->query("UPDATE {$db_prefix}link SET taxis='$value'  WHERE id='$key' ");
 		}
 		$MC->mc_link('../cache/links');
 		formMsg('站点排序更新成功','./link.php',1);
@@ -49,7 +49,7 @@ if($action== 'addlink')
 	$stitename=addslashes(trim($_POST['sitename']));
 	$siteurl=addslashes(trim($_POST['siteurl']));
 	$description=addslashes(trim($_POST['description']));
-	$sql=" insert into ".$db_prefix."link (sitename,siteurl,description) values(' ".$stitename." ',' ".$siteurl." ',' ".$description." ')";
+	$sql=" insert into {$db_prefix}link (sitename,siteurl,description) values(' ".$stitename." ',' ".$siteurl." ',' ".$description." ')";
 	$DB->query($sql);
 	$MC->mc_link('../cache/links');
 	formMsg( '友情站点添加成功','./link.php',1);
@@ -60,7 +60,7 @@ if ($action== 'mod_link')
 {
 	include getViews('header');
 	
-	$sql = "select * from ".$db_prefix."link where id='".$_GET['linkid']."' "; 
+	$sql = "select * from {$db_prefix}link where id='".$_GET['linkid']."' "; 
 	$result =$DB->query($sql);
 	$show_link=$DB->fetch_array($result);
 	$sitename=htmlspecialchars(trim($show_link['sitename']));
@@ -74,7 +74,7 @@ if ($action== 'mod_link')
 
 if($action=='update_link')
 {
-	$sql=" UPDATE ".$db_prefix."link SET 
+	$sql=" UPDATE {$db_prefix}link SET 
 	sitename='".addslashes($_POST['sitename'])."',
 	siteurl='".addslashes($_POST['siteurl'])."',
 	description='".addslashes($_POST['description'])."' where id='".intval($_POST['linkid'])."' ";
@@ -86,7 +86,7 @@ if($action=='update_link')
 if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid'])?intval($_GET['linkid']):'';
-	$DB->query("DELETE FROM ".$db_prefix."link where id=$linkid");
+	$DB->query("DELETE FROM {$db_prefix}link where id=$linkid");
 	$MC->mc_link('../cache/links');
 	formMsg('删除成功','./link.php',1);
 }

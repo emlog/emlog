@@ -15,12 +15,22 @@ echo <<<EOT
 <p>$attachment</p>	
 <p>$tag</p>
 <p>Posted on $post_time<br /></p>
+<p>$neighborLog</P>
 </div>
+<!--
+EOT;
+if($allow_tb == 'y'){
+echo <<<EOT
+-->
 <div class="commentdata">
 <h3 id="respond">引用:<a name="tb"></a></h3>
 <li>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</li>  
 <li>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</li>
 </div>
+<!--
+EOT;
+}echo <<<EOT
+-->
 </div>
 <div class="comments-template">
 <h3 id="respond"><a name="comment"></a>评论</h3>
@@ -60,7 +70,11 @@ EOT;
 }echo <<<EOT
 -->
 </ol>
-
+<!--
+EOT;
+if($allow_remark == 'y'){
+echo <<<EOT
+-->
 <h3 id="respond">发表评论</h3>
 <p></p>
 
@@ -73,9 +87,12 @@ EOT;
 
 	<p>
 	  <input type="text" name="commail" id="email" value="$ckmail" size="40" tabindex="2" />
-	   <label for="email"><small>邮件地址</small></label>
+	   <label for="email"><small>邮件地址(选填)</small></label>
 	</p>
-
+	<p>
+	  <input type="text" name="comurl" id="email" value="$ckurl" size="40" tabindex="2" />
+	   <label for="email"><small>个人主页(选填)</small></label>
+	</p>
 	<p>
 	  <label for="comment"><small>评论内容</small></label>
 	  <br />
@@ -86,7 +103,10 @@ EOT;
 	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /> $cheackimg <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small>
 	</p>
 </form>
-
+<!--
+EOT;
+}echo <<<EOT
+-->
 </div>
 <!--
 EOT;

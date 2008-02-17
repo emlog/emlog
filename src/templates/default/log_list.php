@@ -5,22 +5,24 @@ foreach($logs as $value){
 echo <<<EOT
 -->
 <div class="logcontent">
+<div id="t">
 <!--
 EOT;
 if($isurlrewrite=='n'){
 echo <<<EOT
 -->
-<div id="t">{$value['toplog']}<a href="?action=showlog&gid={$value['logid']}">{$value['log_title']}</a> </div>
+{$value['toplog']}<a href="?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
 <!--
 EOT;
 }else{
 echo <<<EOT
 -->
-<div id="t">{$value['toplog']}<a href="showlog-{$value['logid']}.html">{$value['log_title']}</a> </div>
+{$value['toplog']}<a href="showlog-{$value['logid']}.html">{$value['log_title']}</a>
 <!--
 EOT;
 }echo <<<EOT
 -->
+</div>
 <p id="date">{$value['post_time']}</p>
 <div class="log_desc">{$value['log_description']}</div>
 <p>{$value['att_img']}</p>

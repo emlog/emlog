@@ -16,15 +16,23 @@ echo <<<EOT
 <p>$att_img</p>
 <p>$attachment</p>	
 <p>$tag</p>
-
+<p>$neighborLog</P>
 </div>
 
+<!--
+EOT;
+if($allow_tb == 'y'){
+echo <<<EOT
+-->	
 <div class="comments-template">
 <h2 id="comments">引用:<a name="tb"></a></h2>
 <p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
 <p>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</p>
 </div>
-
+<!--
+EOT;
+}echo <<<EOT
+-->
 
 <div class="comments-template">
 <h2 id="comments"><a name="comment"></a>评论</h2>
@@ -63,7 +71,11 @@ EOT;
 }echo <<<EOT
 -->
 </ol>
-
+<!--
+EOT;
+if($allow_remark == 'y'){
+echo <<<EOT
+-->
 <h2>发表评论</h2>
 <p></p>
 
@@ -74,8 +86,14 @@ EOT;
 <p>
   <label for="author">姓名</label> <input type="text" name="comname" id="author" value="$ckname" tabindex="1" />
 </p>
-<p><label for="email">Email</label> <input type="text" name="commail" id="email" value="$ckmail" tabindex="2" />
-  <em>(选填)</em></p>
+
+<p><label for="email">电子邮件</label> <input type="text" name="commail" id="email" value="$ckmail" tabindex="2" />
+  <em>(选填)</em>
+</p>
+
+<p><label for="email">个人主页</label> <input type="text" name="comurl" id="email" value="$ckurl" tabindex="2" />
+  <em>(选填)</em>
+</p>
 
 <p>
   <label for="comment">内容</label> <textarea name="comment" id="comment" cols="45" rows="10" tabindex="4"></textarea></p>
@@ -86,7 +104,10 @@ $cheackimg
 
 </fieldset>
 </form>
-
+<!--
+EOT;
+}echo <<<EOT
+-->
 </div>
 <!--
 EOT;

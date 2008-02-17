@@ -29,10 +29,10 @@ print <<<EOT
 -->
       <tr class="$value[rowbg]">
         <td><input type="checkbox" name="blog[$value[gid]]" value="1" /></td>
-        <td width="517"><a href="admin_log.php?action=mod&amp;gid=$value[gid]">$value[title]</a> $value[attach] $value[ishide] $value[istop]</td>
+        <td width="517"><a href="../index.php?action=showlog&gid=$value[gid]" target="_blank">$value[title]</a> $value[attach] $value[istop]</td>
         <td>$value[date]</td>
 		<td><a href="comment.php?gid=$value[gid]">$value[comnum]</a></td>
-        <td><a href="javascript: isdel($value[gid], 3);">删除</a></td>
+        <td><a href="admin_log.php?action=mod&amp;gid=$value[gid]">编辑</a> <a href="javascript: isdel($value[gid], 3);">删除</a></td>
       </tr>
 <!--
 EOT;

@@ -13,19 +13,25 @@ echo <<<EOT
 <p>$att_img</p>
 <p>$attachment</p>	
 <p>$tag</p>
+<p>$neighborLog</P>
+<p class="postinfo"></p>
+</div>
+</div>
 
-				<p class="postinfo">
-				</p>
-
-				</div>
-			</div>
-
+<!--
+EOT;
+if($allow_tb == 'y'){
+echo <<<EOT
+-->	
 <div class="comments-template">
 <h2 id="comments">引用:<a name="tb"></a></h2>
 <p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
 <p>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</p>
 </div>
-
+<!--
+EOT;
+}echo <<<EOT
+-->	
 
 <div class="comments-template">
 <h2 id="comments"><a name="comment"></a>评论</h2>
@@ -64,7 +70,11 @@ EOT;
 }echo <<<EOT
 -->
 </ol>
-
+<!--
+EOT;
+if($allow_remark == 'y'){
+echo <<<EOT
+-->
 <h2>发表评论</h2>
 <p></p>
 
@@ -74,17 +84,21 @@ EOT;
 <label for="author"><small>姓名</small></label></p>
 
 <p><input type="text" name="commail" id="email" value="$ckmail" size="40" tabindex="2" />
-<label for="email"><small>Mail (选填)</small></label></p>
+<label for="email"><small>电子邮件 (选填)</small></label></p>
+
+<p><input type="text" name="comurl" id="email" value="$ckurl" size="40" tabindex="2" />
+<label for="email"><small>个人主页 (选填)</small></label></p>
 
 <p><textarea name="comment" id="comment" cols="60" rows="10" tabindex="4"></textarea></p>
 
 <p><input name="submit" type="submit" id="submit" tabindex="5" value="发表我的评论" />
 $cheackimg 
 <input type="checkbox" name="remember" value="1" checked="checked" class="inp" /><small>记住我</small></p>
-
-
 </form>
-
+<!--
+EOT;
+}echo <<<EOT
+-->
 </div>
 <!--
 EOT;

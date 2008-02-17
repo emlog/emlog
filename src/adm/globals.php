@@ -24,8 +24,8 @@ $action = isset($_GET['action'])?$_GET['action']:'';
 $DB = new MySql($host, $user, $pass,$db);
 		
 //读取配置参数
-$show_config = $DB->fetch_array($DB->query("SELECT * FROM ".$db_prefix."config"));
-$dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".$db_prefix."blog WHERE hide='y'"));
+$show_config = $DB->fetch_array($DB->query("SELECT * FROM {$db_prefix}config"));
+$dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
 //配置参数
 $login_code = $show_config['login_code'];
 $comment_code = $show_config['comment_code'];

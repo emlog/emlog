@@ -27,12 +27,12 @@ if($action == '')
 		$start_limit = 0;
 		$page = 1;
 	}
-	$query1=$DB->query("SELECT cid FROM ".$db_prefix."comment $andQuery");
+	$query1=$DB->query("SELECT cid FROM {$db_prefix}comment $andQuery");
 	$num=$DB->num_rows($query1);
 
-	$sql="SELECT * FROM ".$db_prefix."comment $andQuery ORDER BY cid DESC LIMIT $start_limit, 15";
+	$sql="SELECT * FROM {$db_prefix}comment $andQuery ORDER BY cid DESC LIMIT $start_limit, 15";
 	$ret=$DB->query($sql);
-
+	$comment = array();
 	while($dh=$DB->fetch_array($ret))
 	{
 		$dh['comment'] = subString(htmlClean2($dh['comment']),0,30);
@@ -63,9 +63,9 @@ if($action== 'admin_all_coms') {
 	//删除
 	if($dowhat == 'delcom'){
 		foreach($coms as $key=>$value) {
-			$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid='$key' ");
-			$DB->query("DELETE FROM ".$db_prefix."comment where cid='$key' ");
-			$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
+			$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
+			$DB->query("DELETE FROM {$db_prefix}comment where cid='$key' ");
+			$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
 		}
 		$MC->mc_sta('../cache/sta');
 		$MC->mc_comment('../cache/comments');
@@ -75,10 +75,10 @@ if($action== 'admin_all_coms') {
 	if($dowhat == 'killcom'){
 		foreach($coms as $key=>$value) {
 			if($value=='n'){
-				$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid='$key' ");
-				$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."' ");
+				$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
+				$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."' ");
 			}
-			$DB->query("UPDATE ".$db_prefix."comment SET hide='y' WHERE cid='$key' ");
+			$DB->query("UPDATE {$db_prefix}comment SET hide='y' WHERE cid='$key' ");
 		}
 		$MC->mc_sta('../cache/sta');
 		$MC->mc_comment('../cache/comments');
@@ -88,10 +88,10 @@ if($action== 'admin_all_coms') {
 	if($dowhat == 'showcom') {
 		foreach($coms as $key=>$value) {
 			if($value=='y'){
-				$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid='$key' ");
-				$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
+				$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
+				$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
 			}
-			$DB->query("UPDATE ".$db_prefix."comment SET hide='n' WHERE cid='$key' ");
+			$DB->query("UPDATE {$db_prefix}comment SET hide='n' WHERE cid='$key' ");
 		}
 		$MC->mc_sta('../cache/sta');
 		$MC->mc_comment('../cache/comments');
@@ -101,9 +101,9 @@ if($action== 'admin_all_coms') {
 //删除评论
 if ($action== 'del_comment'){
 	$commentid = isset($_GET['commentid'])?intval($_GET['commentid']):'';
-	$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid=$commentid");
-	$DB->query("DELETE FROM ".$db_prefix."comment where cid=$commentid");
-	$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum-1 WHERE gid=".$dh['gid']);
+	$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid=$commentid");
+	$DB->query("DELETE FROM {$db_prefix}comment where cid=$commentid");
+	$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid=".$dh['gid']);
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_comment('../cache/comments');
 	formMsg('评论删除成功','./comment.php',1);
@@ -112,10 +112,10 @@ if ($action== 'del_comment'){
 if($action=='kill_comment'){
 	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
 	if($hide == 'n'){
-		$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid='".$_GET['cid']."' ");
-		$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
+		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
+		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
 	}
-	$DB->query(" UPDATE ".$db_prefix."comment SET hide='y' where cid='".$_GET['cid']."' ");
+	$DB->query(" UPDATE {$db_prefix}comment SET hide='y' where cid='".$_GET['cid']."' ");
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_comment('../cache/comments');
 	formMsg('评论屏蔽成功','./comment.php',1);
@@ -124,10 +124,10 @@ if($action=='kill_comment'){
 if($action=='show_comment'){
 	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
 	if($hide == 'y'){
-		$dh = $DB->fetch_one_array("SELECT gid FROM ".$db_prefix."comment WHERE cid='".$_GET['cid']."' ");
-		$DB->query("UPDATE ".$db_prefix."blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
+		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
+		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
 	}
-	$DB->query(" UPDATE ".$db_prefix."comment SET hide='n' where cid='".$_GET['cid']."' ");
+	$DB->query(" UPDATE {$db_prefix}comment SET hide='n' where cid='".$_GET['cid']."' ");
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_comment('../cache/comments');
 	formMsg('评论审核成功','./comment.php',1);

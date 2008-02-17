@@ -14,6 +14,7 @@ $log_content
 <p>$attachment</p>	
 <p>$tag</p>
 </div>
+<div class="nextlog">$neighborLog</div>
 <!--
 EOT;
 if($allow_tb == 'y'){
@@ -99,8 +100,7 @@ echo <<<EOT
 <!--
 EOT;
 }echo <<<EOT
--->	
-
+-->
 </div>
 EOT;
 include getViews('footer');

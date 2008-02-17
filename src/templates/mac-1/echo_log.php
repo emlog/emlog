@@ -23,16 +23,23 @@ echo <<<EOT
 <p>$att_img</p>
 <p>$attachment</p>	
 <p>$tag</p>
-
-          </div><!--/entry -->
-		  <p class="info">
+<p>$neighborLog</P>
+</div><!--/entry -->
+<!--
+EOT;
+if($allow_tb == 'y'){
+echo <<<EOT
+-->	
+<p class="info">
 <h2 id="comments">引用:<a name="tb"></a></h2>
 <p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
 <p>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</p>
 </p>
-
-
-	<ol class="commentlist">
+<!--
+EOT;
+}echo <<<EOT
+-->	
+<ol class="commentlist">
 <!--
 EOT;
 foreach($com as $key=>$value){
@@ -76,16 +83,24 @@ EOT;
 }echo <<<EOT
 -->	
 	</ol>
-
+<!--
+EOT;
+if($allow_remark == 'y'){
+echo <<<EOT
+-->
 <h3 id="respond">发布评论</h3>
-
 <form method="post" name="commentform" action="index.php?action=addcom" id="commentform">
-<p><input type="text" name="comname" id="comname" value="" size="22" tabindex="1" class="input2"/>
-<label for="author"><strong>姓名</strong></label>
+<p><input type="text" name="comname" id="comname" value="$ckname" size="22" tabindex="1" class="input2"/>
+<label for="author">姓名</label>
 </p>
 
-<p><input type="text" name="commail" id="commail" value="" size="22" tabindex="2" class="input2"/>
-<label for="email"><strong>电子邮件地址</strong> (选填)</label></p>
+<p><input type="text" name="commail" id="commail" value="$ckmail" size="22" tabindex="2" class="input2"/>
+<label for="email">电子邮件地址 (选填)</label>
+</p>
+
+<p><input type="text" name="comurl" id="commail" value="$ckurl" size="22" tabindex="2" class="input2"/>
+<label for="email">个人主页 (选填)</label>
+</p>
 
 <p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
 
@@ -93,9 +108,11 @@ EOT;
 <input type="hidden" name="gid" value="$logid" />
 <input type="checkbox" name="remember" value="1" checked="checked" />记住我
 </p>
-
 </form>
-
+<!--
+EOT;
+}echo <<<EOT
+-->
 	</div><!--/post -->
 
 </div><!--/content -->

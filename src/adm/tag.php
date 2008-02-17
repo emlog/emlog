@@ -11,7 +11,7 @@ if($action == ''){
 
 	include getViews('header');
 
-	$result =$DB->query("SELECT tagname,tid FROM ".$db_prefix."tag ");
+	$result =$DB->query("SELECT tagname,tid FROM {$db_prefix}tag ");
 	while($rows=$DB->fetch_array($result)){
 		$rows['tagname'] = htmlspecialchars($rows['tagname']);
 		$tags[] = $rows;
@@ -25,7 +25,7 @@ if ($action== "mod_tag"){
 
 	include getViews('header');
 	$tid = isset($_GET['tid'])?intval($_GET['tid']):'';
-	$tags=$DB->fetch_one_array("SELECT tagname,tid FROM ".$db_prefix."tag WHERE tid='$tid' ");
+	$tags=$DB->fetch_one_array("SELECT tagname,tid FROM {$db_prefix}tag WHERE tid='$tid' ");
 	$tagname = htmlspecialchars(trim($tags['tagname']));
 	$tagid = $tags['tid'];
 
@@ -36,7 +36,7 @@ if ($action== "mod_tag"){
 if($action=='update_tag'){
 	$tagname = isset($_POST['tagname'])?addslashes($_POST['tagname']):'';
 	$tid = isset($_POST['tid'])?intval($_POST['tid']):'';
-	$sql="UPDATE ".$db_prefix."tag SET tagname='$tagname' WHERE tid='$tid' ";
+	$sql="UPDATE {$db_prefix}tag SET tagname='$tagname' WHERE tid='$tid' ";
 	$DB->query($sql);
 	$MC->mc_logtags('../cache/log_tags');
 	$MC->mc_tags('../cache/tags');
@@ -52,7 +52,7 @@ if($action== 'dell_all_tag')
 	}else{
 		foreach($_POST['tag'] as $key=>$value)
 		{
-			$DB->query("DELETE FROM ".$db_prefix."tag where tid='$key' ");
+			$DB->query("DELETE FROM {$db_prefix}tag where tid='$key' ");
 		}
 		$MC->mc_logtags('../cache/log_tags');
 		$MC->mc_tags('../cache/tags');

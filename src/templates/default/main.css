@@ -153,6 +153,9 @@ div.contentA{
 	padding:2px 10px;
 	margin:10px 0px;
 }
+.nextlog{
+	margin-bottom:10px;
+}
 #com_list li{margin:10px 10px; border-bottom:1px dotted #63617b; width:700px;}
 #tb_list li{margin:10px 10px; width:700px;}
 #tags{ margin:10px 50px;}

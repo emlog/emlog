@@ -28,10 +28,10 @@ EOT;
 foreach($bakfiles  as $value){
 	$modtime = date('Y-m-d H:i:s',filemtime($value));
 	$size =  changeFileSize(filesize($value));
-	$bakname =  substr($value,13);
+	$bakname = substr(strrchr($value,'/'),1);
 	$rowbg = getRowbg();
 print <<<EOT
--->	
+-->
     <tr class="$rowbg">
       <td><input type="checkbox" value="$value" name="bak[$value]" /></td>
       <td>$bakname</a></td>

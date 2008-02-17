@@ -11,7 +11,7 @@ if($action == '')
 {
 	include getViews('header');
 	
-	$row=$DB->fetch_array($DB->query("SELECT nonce_templet FROM ".$db_prefix."config"));
+	$row=$DB->fetch_array($DB->query("SELECT nonce_templet FROM {$db_prefix}config"));
 	$tplname = $row['nonce_templet'];
 
 	//读取目录
@@ -32,7 +32,7 @@ if($action == '')
 if($action=='usetpl')
 {
 	$tplname = isset($_GET['tplname'])?addslashes($_GET['tplname']):'';
-	$DB->query("UPDATE ".$db_prefix."config SET nonce_templet='$tplname' ");
+	$DB->query("UPDATE {$db_prefix}config SET nonce_templet='$tplname' ");
 	$MC->mc_config('../cache/config');
 	formMsg("模板设置成功","./template.php",1);
 }
