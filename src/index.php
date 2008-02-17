@@ -103,9 +103,12 @@ if ($action == 'showlog')
 	}elseif ($nextLogArr)
 	{
 		$neighborLog = "{$nextLog} &raquo";
-	}else 
+	}elseif ($upLogArr)
 	{
 		$neighborLog = "&laquo; {$upLog}";
+	}else 
+	{
+		$neighborLog = '';
 	}
 	//标签
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
