@@ -24,6 +24,3 @@ MySQL 4.0或更高版本
 
 Emlog 基于 GPL 许可协议发布 (参见 license.txt)
 
-
-add the test line
-
