@@ -1,5 +1,10 @@
 <?php
-/* emlog 2.6.0 Emlog.Net */
+/**
+ * 数据库升级程序2.5.0 to 2.6.0
+ * @copyright (c) 2008, Emlog All Rights Reserved
+ * @version emlog-2.6.0
+ */
+
 class MySql {         
 	var $user,$pass,$host,$db;
 	var $id,$data,$fields,$row,$row_num,$insertid,$version,$query_num=0;
@@ -103,7 +108,7 @@ li{
 <?php
 if(!isset($_GET['action'])){
 ?>
-<form name="form1" method="post" action="up2.4.0to2.5.0.php?action=install">
+<form name="form1" method="post" action="up2.5.0to2.6.0.php?action=install">
 <div class="main">
 <div>
 <p><span class="title">emlog 2.5.0 to 2.6.0</span><span> 数据库升级程序</span></p>
@@ -148,34 +153,37 @@ if(!isset($_GET['action'])){
 
 if(isset($_GET['action'])&&$_GET['action'] == "install"){
 
-// 获取表单信息，修改配置文件
+	// 获取表单信息，修改配置文件
 	$db_host = trim($_POST['hostname']);//服务器地址
 	$db_user = trim($_POST['dbuser']);	 //mysql 数据库用户名
 	$db_pw   = trim($_POST['password']);//mysql 数据库密码
 	$db_name = trim($_POST['dbname']);//数据库名
 	$db_prefix = trim($_POST['dbprefix']);//数据库前缀
 
-//初始化数据库类
-$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-//sql language
+	//初始化数据库类
+	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
+	//sql language
 $sql = "
-		ALTER TABLE {$db_prefix}config ADD isurlrewrite enum('n','y') NOT NULL default 'n' AFTER iscomment;
-		
-	   ";
+ALTER TABLE {$db_prefix}config ADD isurlrewrite enum('n','y') NOT NULL default 'n' AFTER iscomment;
+ALTER TABLE {$db_prefix}config ADD istrackback enum( 'n', 'y' ) default 'y' NOT NULL AFTER iscomment;
+ALTER TABLE {$db_prefix}config CHANGE iscomment ischkcomment ENUM( 'n', 'y' ) NULL DEFAULT 'n';
+ALTER TABLE {$db_prefix}trackback ADD ip VARCHAR(16) NOT NULL;
+ALTER TABLE {$db_prefix}comment ADD reply TEXT NOT NULL AFTER comment;
+ALTER TABLE {$db_prefix}comment ADD url VARCHAR(75) NOT NULL AFTER mail;";
 
-    $mysql_query = explode(";",$sql);
-    while (list(,$query) = each($mysql_query)) 
-    {
+	$mysql_query = explode(";",$sql);
+	while (list(,$query) = each($mysql_query))
+	{
 		$query = trim($query);
-		if ($query) 
+		if ($query)
 		{
 			$ret = $DB->query($query);
 			if(!$ret)
 			{
-	           	exit('升级失败，可能是你填写的参数错误（特别是数据库前缀），请确认后重新提交！');
+				exit('升级失败，可能是你填写的参数错误（特别是数据库前缀），请确认后重新提交！');
 			}
 		}
-    }
+	}
 	echo "恭喜你Emlog数据库升级成功！请删除该升级文件 <a href=\"./index.php\">进入Emlog </a>";
 }
 echo "</body>";
