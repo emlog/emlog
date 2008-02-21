@@ -258,6 +258,7 @@ CREATE TABLE {$db_prefix}comment (
   date varchar(10) NOT NULL default '',
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
+  reply text NOT NULL,
   mail varchar(60) NOT NULL default '',
   url varchar(75) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
