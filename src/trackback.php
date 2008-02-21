@@ -49,10 +49,10 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 					$point += 1;
 				}
 			}
-			$interval = 300;
+			$interval = 3600;
 			$timestamp = time();
-			//设置防范时间间隔
-			$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE ip='$ipaddr' AND date+".$interval.">='$timestamp'");
+			//设置防范时间间隔 同一ip每小时只能引用一次
+			$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 			if ($DB->num_rows($query)) {
 				$point -= 1;
 			}
