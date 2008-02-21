@@ -6,15 +6,13 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 ÖÂÁ¦ÓÚÎªÄúÌá¹©¸ßÐ§¡¢ÎÈ¶¨£¬µ«ÔÚÊ¹ÓÃÉÏÓÖ¼°Æä¼òµ¥µÄ²©¿Í·þÎñ
 
 
-+ ²ÉÓÃÁËÄ£°æ¼¼Êõ£¬ÄÜ¹»ÇÐ»»ÄãÏ²»¶µÄÄ£°å 
-
-+ Emlog¹Ù·½ÍøÕ¾Ìá¹©¸ü¶àÆ¯ÁÁµÄÄ£°æÏÂÔØ
++ ²ÉÓÃÁËÄ£°æ¼¼Êõ£¬ÄÜ¹»ÇÐ»»ÄãÏ²»¶µÄÄ£°å
 
 + ²ÉÓÃÎÄ±¾»º³å¼¼Êõ£¬¼õÉÙ²éÑ¯£¬ÔËÐÐËÙ¶È¸ü¿ì 
 
 + ÕûÌåÊ¹ÓÃutf-8±àÂë·½Ê½£¬ÈÃÄãµÄ²©¿ÍºÍÊÀ½ç½Ó¹ì¡£ 
 
-+ Ê×Ò³ÈÕÀú·½Ê½²éÔÄÈÕÖ¾£¬·½±ã¿ì½Ý;   
++ Ê×Ò³ajaxÈÕÀú·½Ê½²éÔÄÈÕÖ¾£¬·½±ã¿ì½Ý;   
 
 + ºóÌ¨Ê¹ÓÃ¿çä¯ÀÀÆ÷(Ö§³Öie¼°firefoxµÈä¯ÀÀÆ÷)¿ÉÊÓ»¯±à¼­ÈÕÖ¾   
 
@@ -26,7 +24,7 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 
 + Í¼Æ¬¸½¼þ×Ô¶¯Éú³ÉËõÂÔÍ¼
 
-+ Ö§³ÖÒýÓÃÍ¨¸æ(trackback) 
++ Ö§³ÖÒýÓÃÍ¨¸æ(trackback) ,ÅäÓÐÀ¬»øÒýÓÃ·ÀÓù¹¦ÄÜ
 
 + Ö§³ÖÁé»îµÄtag±êÇ©·ÖÀà¹¦ÄÜ
 
