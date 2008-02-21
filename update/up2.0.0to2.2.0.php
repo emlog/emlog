@@ -150,17 +150,17 @@ $DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
 
 //sql language
 $sql = " 
-ALTER TABLE ".$db_prefix."attachment ADD attdes VARCHAR( 255 ) AFTER filename;
-ALTER TABLE ".$db_prefix."sort DROP sortimg;
-ALTER TABLE ".$db_prefix."blog DROP weather;
-ALTER TABLE ".$db_prefix."blog ADD comnum MEDIUMINT( 8 ) UNSIGNED DEFAULT '0' NOT NULL AFTER views ;
-ALTER TABLE ".$db_prefix."config CHANGE blogname blogname VARCHAR( 255 ) DEFAULT ''; 
-ALTER TABLE ".$db_prefix."config ADD timezone FLOAT DEFAULT '8' NOT NULL AFTER nonce_templet ;
-ALTER TABLE ".$db_prefix."config DROP hot_num;
-ALTER TABLE ".$db_prefix."config CHANGE nonce_templet nonce_templet VARCHAR( 255 ) DEFAULT '';
-ALTER TABLE ".$db_prefix."config ADD iscomment ENUM( 'n', 'y' ) DEFAULT 'n' NOT NULL AFTER comment_code;
-DROP TABLE IF EXISTS ".$db_prefix."tag;
-CREATE TABLE ".$db_prefix."tag (
+ALTER TABLE {$db_prefix}attachment ADD attdes VARCHAR( 255 ) AFTER filename;
+ALTER TABLE {$db_prefix}sort DROP sortimg;
+ALTER TABLE {$db_prefix}blog DROP weather;
+ALTER TABLE {$db_prefix}blog ADD comnum MEDIUMINT( 8 ) UNSIGNED DEFAULT '0' NOT NULL AFTER views ;
+ALTER TABLE {$db_prefix}config CHANGE blogname blogname VARCHAR( 255 ) DEFAULT ''; 
+ALTER TABLE {$db_prefix}config ADD timezone FLOAT DEFAULT '8' NOT NULL AFTER nonce_templet ;
+ALTER TABLE {$db_prefix}config DROP hot_num;
+ALTER TABLE {$db_prefix}config CHANGE nonce_templet nonce_templet VARCHAR( 255 ) DEFAULT '';
+ALTER TABLE {$db_prefix}config ADD iscomment ENUM( 'n', 'y' ) DEFAULT 'n' NOT NULL AFTER comment_code;
+DROP TABLE IF EXISTS {$db_prefix}tag;
+CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
   tagname varchar(60) NOT NULL default '',
   usenum mediumint(8) unsigned NOT NULL default '1',
@@ -168,16 +168,16 @@ CREATE TABLE ".$db_prefix."tag (
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$add."
-DROP TABLE ".$db_prefix."loginlog;
-DROP TABLE ".$db_prefix."templet;
-DROP TABLE IF EXISTS ".$db_prefix."statistics;
-CREATE TABLE ".$db_prefix."statistics (
+DROP TABLE {$db_prefix}loginlog;
+DROP TABLE {$db_prefix}templet;
+DROP TABLE IF EXISTS {$db_prefix}statistics;
+CREATE TABLE {$db_prefix}statistics (
   day_view_count int(11) unsigned NOT NULL DEFAULT '0',
   view_count int(11) unsigned NOT NULL DEFAULT '0',
   curdate varchar(20) NOT NULL DEFAULT ''
 )".$add."
-INSERT INTO ".$db_prefix."statistics (day_view_count, view_count, curdate) VALUES (0, 0, '2006-10-13');
-ALTER TABLE ".$db_prefix."user ADD province VARCHAR( 20 ) NOT NULL AFTER sex;";
+INSERT INTO {$db_prefix}statistics (day_view_count, view_count, curdate) VALUES (0, 0, '2006-10-13');
+ALTER TABLE {$db_prefix}user ADD province VARCHAR( 20 ) NOT NULL AFTER sex;";
 	
     $mysql_query = explode(";",$sql);
     while (list(,$query) = each($mysql_query)) {
@@ -197,14 +197,14 @@ ALTER TABLE ".$db_prefix."user ADD province VARCHAR( 20 ) NOT NULL AFTER sex;";
                }
        }
     }
-$DB->query("UPDATE ".$db_prefix."config SET nonce_templet ='default' ");
+$DB->query("UPDATE {$db_prefix}config SET nonce_templet ='default' ");
 //comnum
-$query=$DB->query("SELECT gid FROM ".$db_prefix."blog");
+$query=$DB->query("SELECT gid FROM {$db_prefix}blog");
 	while($blog=$DB->fetch_array($query)){
 		$blogid = $blog['gid'];
-		$cquery=$DB->query("SELECT cid FROM ".$db_prefix."comment WHERE gid='$blogid' ");
+		$cquery=$DB->query("SELECT cid FROM {$db_prefix}comment WHERE gid='$blogid' ");
 		$comnum = $DB->num_rows($cquery);
-		$DB->query("UPDATE ".$db_prefix."blog SET comnum='$comnum' WHERE gid='$blogid' ");
+		$DB->query("UPDATE {$db_prefix}blog SET comnum='$comnum' WHERE gid='$blogid' ");
 	}
 echo "<table width=\"600\"  align=\"center\" bgcolor=\"#f6f6f6\">".$result;
 echo "<tr><td>Emlog 数据库升级成功！</td></tr>";

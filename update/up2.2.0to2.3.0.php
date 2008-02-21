@@ -160,11 +160,11 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 $DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 //sql language
 $sql = " 
-DROP TABLE ".$db_prefix."sort;
-ALTER TABLE ".$db_prefix."blog DROP sortid; 
-ALTER TABLE ".$db_prefix."config ADD index_tagnum TINYINT( 3 ) DEFAULT '30' NOT NULL AFTER index_comnum;
-ALTER TABLE ".$db_prefix."attachment ADD ih TINYINT DEFAULT '1' NOT NULL AFTER addtime;
-UPDATE ".$db_prefix."config SET nonce_templet ='default';";
+DROP TABLE {$db_prefix}sort;
+ALTER TABLE {$db_prefix}blog DROP sortid; 
+ALTER TABLE {$db_prefix}config ADD index_tagnum TINYINT( 3 ) DEFAULT '30' NOT NULL AFTER index_comnum;
+ALTER TABLE {$db_prefix}attachment ADD ih TINYINT DEFAULT '1' NOT NULL AFTER addtime;
+UPDATE {$db_prefix}config SET nonce_templet ='default';";
 
     $mysql_query = explode(";",$sql);
     while (list(,$query) = each($mysql_query)) 

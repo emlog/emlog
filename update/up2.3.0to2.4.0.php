@@ -159,12 +159,12 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 $DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 //sql language
 $sql = " 
-ALTER TABLE ".$db_prefix."config DROP attach_maxsize;
-ALTER TABLE ".$db_prefix."config DROP attach_dir;
-ALTER TABLE ".$db_prefix."user DROP sex;
-ALTER TABLE ".$db_prefix."user DROP province;
-ALTER TABLE ".$db_prefix."user CHANGE photo photo VARCHAR(255) NULL;
-UPDATE ".$db_prefix."config SET nonce_templet ='default';";
+ALTER TABLE {$db_prefix}config DROP attach_maxsize;
+ALTER TABLE {$db_prefix}config DROP attach_dir;
+ALTER TABLE {$db_prefix}user DROP sex;
+ALTER TABLE {$db_prefix}user DROP province;
+ALTER TABLE {$db_prefix}user CHANGE photo photo VARCHAR(255) NULL;
+UPDATE {$db_prefix}config SET nonce_templet ='default';";
 
     $mysql_query = explode(";",$sql);
     while (list(,$query) = each($mysql_query)) 
