@@ -54,9 +54,10 @@ EOT;
 <!--
 EOT;
 foreach($com as $key=>$value){
+$value[reply] = $value[reply]?"<span><b>博主回复</b>：{$value[reply]}</span>":'';
 echo <<<EOT
 -->
-<li><a name="$value[cid]"></a>$value[poster] $value[addtime]<br />$value[content]</li>
+<li><a name="$value[cid]"></a>$value[poster] $value[addtime]<br />$value[content]<br />$value[reply]</li>
 <!--
 EOT;
 }echo <<<EOT

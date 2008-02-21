@@ -350,7 +350,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 				   $ret = $DB->query($query);
 					if (!$ret){
 						$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
-						exit($result);
+						sysMsg($result);
 					} else {
 						$result .= "成功...<br />\n";
 					}
@@ -358,7 +358,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
                    $ret = $DB->query($query);
                    if (!$ret){
 						$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
-						exit($result);
+						sysMsg($result);
 					}
                }
 			}

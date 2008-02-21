@@ -315,7 +315,7 @@ if($action == 'addcom')
 	}
 	else 
 	{
-		$sql = "INSERT INTO {$db_prefix}comment (date,poster,gid,comment,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','$commail','$comurl','$ischkcomment')";
+		$sql = "INSERT INTO {$db_prefix}comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','','$commail','$comurl','$ischkcomment')";
 		$ret = $DB->query($sql);
 		if($ischkcomment == 'n')
 		{

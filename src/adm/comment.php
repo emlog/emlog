@@ -50,7 +50,8 @@ if($action == '')
 }
 
 ###################批量操作评论###############
-if($action== 'admin_all_coms') {
+if($action== 'admin_all_coms') 
+{
 	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
 	if($dowhat == '')
 	{
@@ -100,7 +101,8 @@ if($action== 'admin_all_coms') {
 	}
 }
 //删除评论
-if ($action== 'del_comment'){
+if ($action== 'del_comment')
+{
 	$commentid = isset($_GET['commentid'])?intval($_GET['commentid']):'';
 	$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid=$commentid");
 	$DB->query("DELETE FROM {$db_prefix}comment where cid=$commentid");
@@ -110,9 +112,11 @@ if ($action== 'del_comment'){
 	formMsg('评论删除成功','./comment.php',1);
 }
 //屏蔽评论
-if($action=='kill_comment'){
+if($action=='kill_comment')
+{
 	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
-	if($hide == 'n'){
+	if($hide == 'n')
+	{
 		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
 		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
 	}
@@ -122,9 +126,11 @@ if($action=='kill_comment'){
 	formMsg('评论屏蔽成功','./comment.php',1);
 }
 //审核评论
-if($action=='show_comment'){
+if($action=='show_comment')
+{
 	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
-	if($hide == 'y'){
+	if($hide == 'y')
+	{
 		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
 		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
 	}
@@ -134,8 +140,8 @@ if($action=='show_comment'){
 	formMsg('评论审核成功','./comment.php',1);
 }
 //回复评论
-if ($action== 'reply_comment'){
-	
+if ($action== 'reply_comment')
+{
 	include getViews('header');
 	
 	$cid = isset($_GET['cid'])?intval($_GET['cid']):'';

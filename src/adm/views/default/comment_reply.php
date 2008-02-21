@@ -16,7 +16,7 @@ print <<<EOT
       </tr>
       <tr>
         <td align="right" valign="top">回复：</td><td>
-        <textarea name="reply" rows="3" cols="50">$reply</textarea></td>
+        <textarea name="reply" rows="5" cols="50">$reply</textarea></td>
       </tr>
       <tr>
         <td></td><td>
