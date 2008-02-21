@@ -19,24 +19,28 @@ function CheckAll(form) {
       <tr class="rowstop">
         <td width="28"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
         <td width="402"><b>评论内容</b></td>
-        <td width="112"><b>评论者</b></td>
-        <td width="146"><b>时间</b></td>
-        <td width="214" colspan="3"></td>
+        <td width="122"><b>评论者</b></td>
+        <td width="116"><b>时间</b></td>
+        <td width="234" colspan="3"></td>
       </tr>
 <!--
 EOT;
 foreach($comment as $key=>$value){
-$ishide = $value['hide']=='y'?'<font color=red>[未审核]</font>':'';
+$ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
+$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 $rowbg = getRowbg();
 print <<<EOT
 -->      <tr class="$rowbg">
         <td><input type="checkbox" value="$value[hide]" name="com[$value[cid]]" /></td>
-        <td>$value[comment] $ishide</td>
+        <td>$value[comment] $ishide $isrp</td>
         <td>$value[poster]</td>
         <td>$value[date]</td>
-        <td><a href="comment.php?action=show_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">审核</a>
+        <td>
+        <a href="comment.php?action=reply_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">回复</a>
+        <a href="comment.php?action=show_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">审核</a>
         <a href="comment.php?action=kill_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">屏蔽</a>
-        <a href="javascript: isdel($value[cid], 1);">删除</a></td>
+        <a href="javascript: isdel($value[cid], 1);">删除</a>
+		</td>
       	</tr>
 <!--
 EOT;

@@ -60,13 +60,14 @@ if ($action== 'mod_link')
 {
 	include getViews('header');
 	
-	$sql = "select * from {$db_prefix}link where id='".$_GET['linkid']."' "; 
+	$linkid = isset($_GET['linkid'])?intval($_GET['linkid']):'';
+	
+	$sql = "select * from {$db_prefix}link where id=$linkid "; 
 	$result =$DB->query($sql);
 	$show_link=$DB->fetch_array($result);
 	$sitename=htmlspecialchars(trim($show_link['sitename']));
 	$siteurl=htmlspecialchars(trim($show_link['siteurl']));
 	$description=htmlspecialchars(trim($show_link['description']));
-	$linkid = $show_link['id'];
 
 	require_once(getViews('linkedit'));
 	include getViews('footer');cleanPage();

@@ -37,6 +37,7 @@ if($action == '')
 	{
 		$dh['comment'] = subString(htmlClean2($dh['comment']),0,30);
 		$dh['date'] = date("Y-m-d H:i",$dh['date']);
+		$dh['reply'] = trim($dh['reply']);
 		$comment[] = $dh;
 	}
 	
@@ -131,5 +132,32 @@ if($action=='show_comment'){
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_comment('../cache/comments');
 	formMsg('评论审核成功','./comment.php',1);
+}
+//回复评论
+if ($action== 'reply_comment'){
+	
+	include getViews('header');
+	
+	$cid = isset($_GET['cid'])?intval($_GET['cid']):'';
+	
+	$sql = "select * from {$db_prefix}comment where cid=$cid ";
+	$result = $DB->query($sql);
+	$comarr = $DB->fetch_array($result);
+	$comment = htmlspecialchars(trim($comarr['comment']));
+	$reply = htmlspecialchars(trim($comarr['reply']));
+	$name = trim($comarr['poster']);
+	$date = date("Y-m-d H:i",$comarr['date']);
+
+	require_once(getViews('comment_reply'));
+	include getViews('footer');cleanPage();
+}
+if($action=='doreply')
+{
+	$reply = isset($_POST['reply'])?addslashes($_POST['reply']):'';
+	$cid = isset($_POST['cid'])?intval($_POST['cid']):'';
+	
+	$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
+	$DB->query($sql);
+	formMsg("评论回复成功","./comment.php",1);
 }
 ?>

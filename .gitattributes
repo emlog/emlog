@@ -87,6 +87,7 @@ src/adm/views/default/bakfile.php -text
 src/adm/views/default/blogger.php -text
 src/adm/views/default/cache.php -text
 src/adm/views/default/comment.php -text
+src/adm/views/default/comment_reply.php -text
 src/adm/views/default/configure.php -text
 src/adm/views/default/edit_log.php -text
 src/adm/views/default/footer.php -text
