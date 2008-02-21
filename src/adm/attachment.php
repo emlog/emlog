@@ -5,25 +5,7 @@
  * @version emlog-2.6.0
  */
 
-//require_once('./globals.php');
-
-if($action == '')
-{
-	//$attach = isset($_FILES['attachment'])?$_FILES['attachment']:'';
-	
-	var_dump($_REQUEST);exit;
-	
-	print 'ddddddddddd:'.$_FILES['attachment']['name'];exit;
-	
-	if($attach){
-		if($attach['error']!=4)
-		{
-			$ades = addslashes(trim($des[$i]));
-			//$att_type 允许上传的后缀名
-			$upfname = uploadFile($attach['name'],$attach['tmp_name'],$attach['size'],$att_type,$attach['type']);
-		}
-	}
-}
+require_once('./globals.php');
 
 //删除附件
 if ($action== 'del_attach')

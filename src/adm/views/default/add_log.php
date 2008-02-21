@@ -59,13 +59,15 @@ function savedraft() {
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>
-          <td>
-          <div id="attlist"></div>
-          <b>上传附件</b>(最大允许2M，支持类型:gif jpg bmp png rar zip)<br />
-          <input type="file" name="attachment" id="attachment" value=""/>
-          <input type="button" name="bt" value="上传" onclick="sendinfo('./attachment.php')"; />
-		  </td>
-        </tr>
+          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许2M，支持类型:gif jpg bmp png rar zip)<br />
+            <div id="tab_attach">
+              <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          <span id="idfilespan"></span></td></tr>
+        <tr>
         <tr>
           <td>接受评论？是
             <input type="radio" checked="checked" value="y" name="allow_remark" />否
