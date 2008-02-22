@@ -32,8 +32,7 @@ print <<<EOT
         <td width="517"><a href="admin_log.php?action=mod&amp;gid=$value[gid]">$value[title]</a> $value[attach] $value[istop]</td>
         <td>$value[date]</td>
 		<td><a href="comment.php?gid=$value[gid]">$value[comnum]</a></td>
-        <td><a href="../index.php?action=showlog&gid=$value[gid]" target="_blank">预览</a>  
-        <a href="javascript: isdel($value[gid], 3);">删除</a></td>
+        <td><a href="javascript: isdel($value[gid], 3);">删除</a></td>
       </tr>
 <!--
 EOT;

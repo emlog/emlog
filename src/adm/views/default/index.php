@@ -29,8 +29,8 @@ EOT;
 <div class=line2></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
-		<td width="50%">PHP版本: $php_ver</td>
 		<td width="50%">服务器环境: $serverapp</td>
+		<td width="50%">PHP版本: $php_ver</td>
 	</tr>
 	 <tr>
 		<td width="50%">MySQL数据库: $mysql_ver</td>

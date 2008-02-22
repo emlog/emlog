@@ -11,8 +11,8 @@ print <<<EOT
       <tr class="rowstop">
         <td width="155"><b>友情站点</b></td>
         <td width="230"><b>站点排序</b></td>
-		<td width="542"></td>
-        <td width="222" colspan="2"></td>
+		<td width="600"><b>描述</b></td>
+        <td width="222"></td>
       </tr>
 <!--
 EOT;
@@ -22,7 +22,7 @@ print <<<EOT
       <tr class="$value[rowbg]">
         <td><a href="$value[siteurl]" target="_blank">$value[sitename]</a></td>
         <td><input size="18" name="link[$value[id]]" value="$value[taxis]" maxlength="4" /></td>
-		<td width="542">$value[description]</td>
+		<td>$value[description]</td>
         <td><a href="link.php?action=mod_link&amp;linkid=$value[id]">编辑</a>
         <a href="javascript: isdel($value[id], 2);">删除</a></td>
       </tr>
