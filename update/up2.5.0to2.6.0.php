@@ -164,8 +164,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 	//sql language
 $sql = "
-ALTER TABLE {$db_prefix}config ADD isurlrewrite enum('n','y') NOT NULL default 'n' AFTER iscomment;
-ALTER TABLE {$db_prefix}config ADD istrackback enum( 'n', 'y' ) default 'y' NOT NULL AFTER iscomment;
+ALTER TABLE {$db_prefix}config ADD isurlrewrite enum('n','y') NOT NULL default 'n' AFTER comment_code;
+ALTER TABLE {$db_prefix}config ADD istrackback enum( 'n', 'y' ) default 'y' NOT NULL AFTER comment_code;
 ALTER TABLE {$db_prefix}config CHANGE iscomment ischkcomment ENUM( 'n', 'y' ) NULL DEFAULT 'n';
 ALTER TABLE {$db_prefix}trackback ADD ip VARCHAR(16) NOT NULL;
 ALTER TABLE {$db_prefix}comment ADD reply TEXT NOT NULL AFTER comment;
