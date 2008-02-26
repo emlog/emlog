@@ -96,7 +96,8 @@ if($ismusic)
 }
 //view count
 $em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
-if ($em_viewip !== getIp())
+$userip = getIp();
+if (strstr(strrev($em_viewip), ".") != strstr(strrev($userip), "."))
 {
 	setcookie ('em_viewip', getIp(), $localdate+(6*3600));
 	$curtime = date("Y-m-d");
