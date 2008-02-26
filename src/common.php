@@ -100,7 +100,7 @@ $userip = getIp();
 if (strstr(strrev($em_viewip), ".") != strstr(strrev($userip), "."))
 {
 	$ret = setcookie('em_viewip', getIp(), $localdate+(6*3600));
-	if($ret)
+	if($ret === true)
 	{
 		$curtime = date("Y-m-d");
 		$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
