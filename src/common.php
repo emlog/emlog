@@ -99,19 +99,22 @@ $em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
 $userip = getIp();
 if (strstr(strrev($em_viewip), ".") != strstr(strrev($userip), "."))
 {
-	setcookie ('em_viewip', getIp(), $localdate+(6*3600));
-	$curtime = date("Y-m-d");
-	$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
-	if(!$rs)
+	$ret = setcookie('em_viewip', getIp(), $localdate+(6*3600));
+	if($ret)
 	{
-		$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
-		$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
-	} else
-	{
-		$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
+		$curtime = date("Y-m-d");
+		$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
+		if(!$rs)
+		{
+			$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
+			$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
+		} else
+		{
+			$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
+		}
+		$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
+		$MC->mc_sta('./cache/sta');
 	}
-	$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
-	$MC->mc_sta('./cache/sta');
 }
 	
 ?>
