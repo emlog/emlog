@@ -300,20 +300,22 @@ if($action=="edit"){
 	// 发送Trackback部分
 	if(!empty($pingurl))
 	{
-		if (substr($blogurl, -1) !== '/') {
-			$blogurl = $blogurl."/";
-		}
 		$url = $blogurl."index.php?action=showlog&gid=".$logid;
-		$host = explode(',', $pingurl);
-		$host_num = count($host);
-		for($i=0; $i<$host_num; $i++) {
-			$host[$i] = trim($host[$i]);
-			$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
-			$result = sendPacket($host[$i], $data);
-			if (strpos($result, "error>1</error")) {
-				$tbmsg = "(发送 Trackback 失败)";
-			} else {
-				$tbmsg = "(发送 Trackback 成功)";
+		$hosts = explode("\n", $pingurl);
+		$tbmsg = '';
+		foreach ($hosts as $key => $value)
+		{
+			$host = trim($value);
+			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
+			{
+				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
+				$result = sendPacket($host, $data);
+				$result = sendPacket($host, $data);
+				if (strpos($result, "error>0</error")) {
+					$tbmsg .= "(引用{$key}:发送成功)";
+				} else {
+					$tbmsg .= "(引用{$key}:发送失败)";
+				}
 			}
 		}
 	}
@@ -322,7 +324,7 @@ if($action=="edit"){
 	$MC->mc_logatts('../cache/log_atts',$cont_attid,$logid);//嵌入内容中的附件id数组：$cont_attid
 	$MC->mc_record('../cache/records');
 	$MC->mc_tags('../cache/tags');
-	formMsg( "修改成功".$tbmsg,"javascript:history.go(-1);",1);
+	formMsg( "修改成功\t$tbmsg","javascript:history.go(-1);",1);
 }
 
 //删除日志

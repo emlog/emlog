@@ -30,15 +30,15 @@ $anyatt = '<b>附件:</b><br />';
                   </tr>
         </table>        </tr>
         <tr nowrap="nowrap">
-          <td><b>标签:</b>(Tag)<br />
-            <input id="tags" maxlength="200" size="78" name="tag" value="$tag" />
+          <td><b>标签:</b>(Tag，日志的关键字)<br />
+            <input id="tags" maxlength="200" size="88" name="tag" value="$tag" />
             <br />
             用半角逗号&quot;,&quot;分隔多个标签<br />
           选择已有标签：$oldtags</td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback)<br />
-          <input maxlength="200" size="78" name="pingurl" />
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<br />
+          <textarea name="pingurl" cols="68" rows="3" onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
             <br />
           发送多个引用可以用半角逗号&quot;,&quot;分隔开引用地址</td>
         </tr>

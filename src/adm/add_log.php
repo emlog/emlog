@@ -118,20 +118,21 @@ if($action== 'addlog')
 	// 发送Trackback部分
 	if(!empty($pingurl))
 	{
-		if (substr($blogurl, -1) !== '/') {
-			$blogurl = $blogurl."/";
-		}
 		$url = $blogurl."index.php?action=showlog&gid=".$logid;
-		$host = explode(',', $pingurl);
-		$host_num = count($host);
-		for($i=0; $i<$host_num; $i++) {
-			$host[$i] = trim($host[$i]);
-			$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
-			$result = sendPacket($host[$i], $data);
-			if (strpos($result, "error>0</error")) {
-				$tbmsg = "(发送 Trackback 成功)";
-			} else {
-				$tbmsg = "(发送 Trackback 失败)";
+		$hosts = explode("\n", $pingurl);
+		$tbmsg = '';
+		foreach ($hosts as $key => $value)
+		{
+			$host = trim($value);
+			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
+			{
+				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
+				$result = sendPacket($host, $data);
+				if (strpos($result, "error>0</error")) {
+					$tbmsg .= "(引用{$key}:发送成功)";
+				} else {
+					$tbmsg .= "(引用{$key}:发送失败)";
+				}
 			}
 		}
 	}
@@ -139,7 +140,7 @@ if($action== 'addlog')
 	$MC->mc_record('../cache/records');
 	$MC->mc_logtags('../cache/log_tags');
 	$MC->mc_logatts('../cache/log_atts');
-	formMsg($ok_msg.$tbmsg,$ok_url,1);
+	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 
 }//end add log
 ?>
