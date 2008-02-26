@@ -7,14 +7,13 @@
 
 require_once("./common.php");
 
-$blogid = intval($_GET['id']);
-$charset = strtolower($_GET['charset']);
+$blogid = intval($_REQUEST['id']);
+$charset = strtolower($_REQUEST['charset']);
 $encode = in_array($charset, array('gbk', 'utf-8')) ? $charset : 'utf-8';
-
-$title     = iconv2utf(html2text($_POST['title']));
-$excerpt   = trimmed_title(iconv2utf(html2text($_POST['excerpt'])), 255);
-$url       = addslashes($_POST['url']);
-$blog_name = iconv2utf(html2text($_POST['blog_name']));
+$title     = iconv2utf(html2text($_REQUEST['title']));
+$excerpt   = trimmed_title(iconv2utf(html2text($_REQUEST['excerpt'])), 255);
+$url       = addslashes(trim($_REQUEST['url']));
+$blog_name = iconv2utf(html2text($_REQUEST['blog_name']));
 $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
@@ -49,9 +48,9 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 					$point += 1;
 				}
 			}
-			$interval = 3600;
+			$interval = 3600*5;
 			$timestamp = time();
-			//设置防范时间间隔 同一ip每小时只能引用一次
+			//设置防范时间间隔 同一ip每5小时能引用一次
 			$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 			if ($DB->num_rows($query)) {
 				$point -= 1;
@@ -62,11 +61,12 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 			if ($DB->num_rows($query)) {
 				//如果发现有相同，扣一分。
 				$point -= 1;
-			}	
-			$visible = ($point < 1) ? '0' : '1';
+			}
+			$visible = ($point < 2) ? '0' : '1';
 			
 			if($visible)
 			{
+				$title .="[$a]";
 				//插入数据
 				$query = "INSERT INTO {$db_prefix}trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 				$DB->query($query);
@@ -76,7 +76,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 			}
 	}
 } else {
-	showXML('Trackback 引用被拒绝');
+	showXML("Trackback 引用被拒绝");
 }
 
 //发送消息页面
