@@ -66,7 +66,6 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 			
 			if($visible)
 			{
-				$title .="[$a]";
 				//插入数据
 				$query = "INSERT INTO {$db_prefix}trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 				$DB->query($query);
