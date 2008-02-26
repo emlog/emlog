@@ -34,14 +34,14 @@ function savedraft() {
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字)<br />
               </b>
-            <input id="tags" maxlength="200" size="88" name="tag" />
+            <input id="tags" maxlength="200" style="width:600px;"  name="tag" />
             <br />
             用半角逗号&quot;,&quot;分隔多个标签<br />
           选择已有标签：$oldtags</td></tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
           </b>
-			<textarea name="pingurl" cols="68" rows="3" onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
+			<textarea name="pingurl" rows="3" cols="" style="width:600px;"  onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
           </td></tr>
         <tr>
           <td><b>更改发布时间</b>

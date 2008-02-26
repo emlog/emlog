@@ -191,3 +191,6 @@ a:hover {
 	border: 1px solid #ccc;
 	padding: 3px;
 }
+textarea{
+	font-size:12px;
+}

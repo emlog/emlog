@@ -27,7 +27,7 @@ print <<<EOT
         <tr nowrap="nowrap">
           <td>寄语<b><br />
           </b>
-            <textarea name="description" rows="5" cols="40" type="text" maxlength="500">$bloggerdes</textarea></td>
+            <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500">$bloggerdes</textarea></td>
         </tr>
         <tr>
           <td align="center" colspan="2">
@@ -44,21 +44,21 @@ print <<<EOT
     <tbody>
       <tr nowrap="nowrap">
         <td width="62%">当前密码 <br />
-          <input type="password" maxlength="200" size="35" value="" name="oldpass" /></td>
+          <input type="password" maxlength="200" style="width:200px;" value="" name="oldpass" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td>新密码(不得小于6位)<b><br />
         </b>
-          <input type="password" maxlength="200" size="35" value="" name="newpass" /></td>
+          <input type="password" maxlength="200" style="width:200px;" value="" name="newpass" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td>确认新密码(确保与上面新密码一致)<b><br />
         </b>
-          <input type="password" maxlength="200" size="35" value="" name="repeatpass" /></td>
+          <input type="password" maxlength="200" style="width:200px;" value="" name="repeatpass" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td>后台登录名<br />
-          <input maxlength="200" size="33" name="username" /></td>
+          <input maxlength="200" style="width:200px;" name="username" /></td>
       </tr>
       <tr>
         <td align="center" colspan="2">

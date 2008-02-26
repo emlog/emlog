@@ -14,7 +14,7 @@ print <<<EOT
       </tr>
       <tr nowrap="nowrap">
         <td align="right" valign="top">博客描述：</td>
-        <td><textarea name="description" cols="40" rows="4">$bloginfo</textarea></td>
+        <td><textarea name="description" cols="" rows="4" style="width:300px;">$bloginfo</textarea></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客地址：</td>
@@ -142,7 +142,7 @@ EOT;
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right" valign="top">自定义HTML：</td>
-        <td><textarea name="exarea" cols="60" rows="9" wrap="off">$exarea</textarea></td>
+        <td><textarea name="exarea" cols="" rows="9" style="width:500px;" wrap="off">$exarea</textarea></td>
       </tr>
       <tr>
         <td align="center" colspan="2">
