@@ -127,11 +127,11 @@ if($action== 'addlog')
 			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
 			{
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
-				$result = sendPacket($host, $data);
-				if (strpos($result, "error>0</error")) {
-					$tbmsg .= "(引用{$key}:发送成功)";
-				} else {
+				$result = strtolower(sendPacket($host, $data));
+				if (strstr($result, "<error>0</error>") === false) {
 					$tbmsg .= "(引用{$key}:发送失败)";
+				} else {
+					$tbmsg .= "(引用{$key}:发送成功)";
 				}
 			}
 		}
