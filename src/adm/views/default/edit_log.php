@@ -24,7 +24,7 @@ $anyatt = '<b>附件:</b><br />';
                     <td><p>
 					<b>内容:</b><br />
                     <input type="hidden" id="content" name="content" value="{$content}" style="display:none" />
-                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="70%" height="450" frameborder="no" scrolling="no"></iframe>              
+                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:600px;" height="450" frameborder="no" scrolling="no"></iframe>              
                       </p>
                     </td>
                   </tr>

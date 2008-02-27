@@ -26,7 +26,7 @@ function savedraft() {
                     <td>
                     <input type="hidden" id="content" name="content" value="" style="display:none" />
                     <b>内容:</b><br />
-                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="70%" height="450" frameborder="no" scrolling="no"></iframe>              
+                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:600px;" height="450" frameborder="no" scrolling="no"></iframe>              
                     </td>
                   </tr>
               </table>			  </td>
