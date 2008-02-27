@@ -222,7 +222,7 @@ function dataBak($table)
 function sendPacket($url, $data)
 {
 	$uinfo = parse_url($url);
-	if ($uinfo['query'])
+	if (isset($uinfo['query']))
 	{
 		$data .= "&".$uinfo['query'];
 	}

@@ -72,9 +72,13 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 				//更新文章Trackback数量
 				$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 				showXML('Trackback 成功接收',0);
+			}else 
+			{
+				showXML("引用被主动拒绝");
 			}
 	}
-} else {
+} else 
+{
 	showXML("Trackback 引用被拒绝");
 }
 
@@ -84,8 +88,8 @@ function showXML($message, $error = 1)
 	header('Content-type: text/xml');
 	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 	echo "<response>\n";
-	echo "\t<error>".$error."</error>\n";
-	echo "\t<message>".$message."</message>\n";
+	echo "<error>$error</error>\n";
+	echo "<message>$message</message>\n";
 	echo "</response>\n";
 	exit;
 }
