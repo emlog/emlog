@@ -71,6 +71,7 @@ if(isset($com_cache))
 }else{
 	$com_cache = array();
 }
+
 //cache 
 $MC = new mkcache($host, $user, $pass,$db,$db_prefix);
 unset($host, $user, $pass,$db);
@@ -80,6 +81,7 @@ if($comment_code == 'y')
 	session_cache_limiter('private, must-revalidate');
 	session_start();
 }
+
 //site info
 $icp = $icp;
 $photo = $user_cache['photo'];
@@ -87,34 +89,13 @@ $blogger_des = $user_cache['des'];
 $user_cache['mail']!=''?
 $name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>":
 $name = $user_cache['name'];
+
 //music
 if($ismusic)
 {
 	$randindex = mt_rand(0,count($mlinks)-1);
 	$music = $randplay?$mlinks[$randindex]:$mlinks[0];
 	$autoplay = $auto?"&autoplay=1":'';
-}
-//view count
-$em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
-$userip = getIp();
-if (strstr(strrev($em_viewip), ".") != strstr(strrev($userip), "."))
-{
-	$ret = setcookie('em_viewip', getIp(), $localdate+(6*3600));
-	if($ret === true)
-	{
-		$curtime = date("Y-m-d");
-		$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
-		if(!$rs)
-		{
-			$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
-			$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
-		} else
-		{
-			$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
-		}
-		$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
-		$MC->mc_sta('./cache/sta');
-	}
 }
 	
 ?>

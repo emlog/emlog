@@ -6,6 +6,9 @@
  */
 
 require_once('./common.php');
+
+viewCount();
+
 //calendar url
 $calendar_url = isset($_GET['date'])?"calendar.php?smp=$localdate&date=".$_GET['date']:"calendar.php?smp=$localdate";
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
