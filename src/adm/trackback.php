@@ -10,17 +10,30 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
+
+	$page = intval(isset($_GET['page'])?$_GET['page']:1);
+	if (!empty($page)){
+		$start_limit = ($page - 1) *15;
+	} else {
+		$start_limit = 0;
+		$page = 1;
+	}
+	$query=$DB->query("SELECT tbid FROM {$db_prefix}trackback");
+	$num=$DB->num_rows($query);
 	
 	$trackback = array();
-	$result =$DB->query("SELECT * FROM {$db_prefix}trackback ORDER BY tbid ASC");
+	$result =$DB->query("SELECT * FROM {$db_prefix}trackback ORDER BY tbid DESC LIMIT $start_limit, 15");
 	while($rows=$DB->fetch_array($result)){
 		$rows['title']=htmlspecialchars($rows['title']);
 		$rows['blog_name']=htmlspecialchars($rows['blog_name']);
-		$rows['date'] = date("Y/n/j/h",$rows['date']);
+		$rows['date'] = date("Y-m-d H:i",$rows['date']);
 		$rows['rowbg'] = getRowbg();
 		
 		$trackback[] = $rows;
 	}
+	
+	$pageurl =  pagination($num,15,$page,"trackback.php?page");
+	
 	require_once(getViews('trackback'));
 	include getViews('footer');cleanPage();
 }

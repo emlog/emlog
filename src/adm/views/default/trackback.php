@@ -17,14 +17,15 @@ function CheckAll(form) {
   <table width="95%">
     <tbody>
       <tr class="rowstop">
-        <td width="42"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="589"><b>标题</b></td>
-        <td width="296"><b>来源</b></td>
-        <td width="136"><b>时间</b></td>
-        <td width="82"></td>
+        <td width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
+        <td width="400"><b>标题</b></td>
+        <td width="200"><b>来源</b></td>
+		<td width="100"><b>IP</b></td>
+        <td width="150"><b>时间</b></td>
+        <td width="80"></td>
       </tr>
     </tbody>
-	    <tbody>
+	<tbody>
 <!--
 EOT;
 foreach($trackback as $key=>$value){
@@ -34,13 +35,17 @@ print <<<EOT
         <td><input type="checkbox" name="tb[$value[tbid]]" value="1" ></td>
         <td><a href="$value[url]" target="_blank">$value[title]</a></td>
         <td>$value[blog_name]</td>
+        <td>$value[ip]</td>
         <td>$value[date]</td>
         <td> <a href="javascript: isdel($value[tbid], 4);">删除</a> </td>
       </tr>
 <!--
 EOT;
 }print <<<EOT
---> 	  
+--> 	
+	  <tr>
+      <td align="right" colspan="7">(共{$num}条引用/每页最多显示15条) $pageurl</td>
+    </tr>  
     </tbody>
   </table>
   <table width="95%">
