@@ -52,6 +52,7 @@ EOT;
 <!--
 EOT;
 foreach($com as $key=>$value){
+$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 echo <<<EOT
 -->
 	<li id="comment-$value[cid]">
@@ -61,10 +62,9 @@ echo <<<EOT
 				<li><a href="#comment-2" title="">$value[addtime]</a></li>
 			</ul>
 			</div>
-
 			<div class="commenentry">
-				
-				<p>$value[content]</p>
+			<p>$value[content]</p>
+			<p>$value[reply]</p>
 			</div>
 
 		</li>

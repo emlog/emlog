@@ -38,12 +38,12 @@ EOT;
 <!--
 EOT;
 foreach($com as $key=>$value){
+$value['reply'] = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 echo <<<EOT
 -->
 	<li id="comment-$value[cid]"><a name="$value[cid]"></a>
-	<cite>Comment by <strong>$value[poster]</strong> &#8212; $value[addtime]</cite>
-	<br />
-	$value[content]	</li>
+	<cite><strong>$value[poster]</strong> &#8212; $value[addtime]</cite>
+	<br />$value[content]<br />$value[reply]</li>
 <!--
 EOT;
 }echo <<<EOT

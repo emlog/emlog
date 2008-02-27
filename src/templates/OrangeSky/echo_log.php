@@ -41,11 +41,12 @@ EOT;
 <!--
 EOT;
 foreach($com as $key=>$value){
+$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 echo <<<EOT
 -->
 <li class="alt" id="comment-8"><a name="$value[cid]"></a>
 			<cite>$value[poster]</cite> Says:<br />
-			<span>$value[content]</span><br />
+			<span>$value[content]<br /><br />$value[reply]</span><br />
 			<p class="commentmetadata">$value[addtime]</p>
 		</li>
 <!--

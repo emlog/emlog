@@ -34,12 +34,14 @@ EOT;
 <h5>评论<a name="comment" id="comment"></a></h5>
 EOT;
 foreach($com as $key=>$value){
+$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 echo <<<EOT
 <p><a name="$value[cid]"></a></p>
 <div class="commentlist">
 <cite>$value[poster]</cite> Says:<br />
 <small class="commentmetadata">$value[addtime]</small>
 <p>$value[content]</p>
+<p>$value[reply]</p>
 </div>
 EOT;
 }if($allow_remark == 'y'){
