@@ -309,7 +309,6 @@ if($action=="edit"){
 			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
 			{
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
-				$result = sendPacket($host, $data);
 				$result = strtolower(sendPacket($host, $data));
 				if (strstr($result, "<error>0</error>") === false) {
 					$tbmsg .= "(引用{$key}:发送失败)";
