@@ -26,26 +26,32 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	{
 		showXML('该日志不允许引用');
 	}
+
 	$visible = false;
 	$point = 0;
 	$source_content = '';
 	$source_content = fopen_url($url);
 	$this_server = str_replace(array('www.', 'http://'), '', $_SERVER['HTTP_HOST']);
+	
 	//获取接受来的url原代码和本服务器的hostname
-
-	if (empty($source_content)) {
+	if (empty($source_content))
+	{
 		//没有获得原代码就-1分
 		$point -= 1;
-	} else {
-		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE) {
+	}else 
+	{
+		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE)
+		{
 			//对比链接，如果原代码中包含本站的hostname就+1分，这个未必成立
 			$point += 1;
 		}
-		if (strpos(strtolower($source_content), strtolower($title)) !== FALSE) {
+		if (strpos(strtolower($source_content), strtolower($title)) !== FALSE)
+		{
 			//对比标题，如果原代码中包含发送来的title就+1分，这个基本可以成立
 			$point += 1;
 		}
-		if (strpos(strtolower($source_content), strtolower($excerpt)) !== FALSE) {
+		if (strpos(strtolower($source_content), strtolower($excerpt)) !== FALSE)
+		{
 			//对比内容，如果原代码中包含发送来的excerpt就+1分，这个由于标签或者其他原因，未必成立
 			$point += 1;
 		}
@@ -63,7 +69,6 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	//对比数据库中的url和接收来的
 	if ($DB->num_rows($query))
 	{
-		//如果发现有相同，扣一分。
 		$point -= 1;
 	}
 	
@@ -81,7 +86,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	{
 		showXML('主动拒绝引用');
 	}
-} else
+}else
 {
 	showXML('参数错误');
 }
