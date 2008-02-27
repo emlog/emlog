@@ -124,6 +124,36 @@ function getIp()
 }
 
 /**
+	访问统计
+*/
+function viewCount()
+{
+	global $MC,$DB,$db_prefix,$localdate;
+	
+	$userip = getIp();
+	$em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
+	if ($em_viewip != $userip)
+	{
+		$ret = setcookie('em_viewip', getIp(), $localdate+(6*3600));
+		if($ret)
+		{
+			$curtime = date("Y-m-d");
+			$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
+			if(!$rs)
+			{
+				$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
+				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
+			} else
+			{
+				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
+			}
+			$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
+			$MC->mc_sta('./cache/sta');
+		}
+	}
+}
+
+/**
 	验证email地址格式
 */
 function checkMail($address) 
