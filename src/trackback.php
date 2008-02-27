@@ -62,7 +62,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
-		$point -= 1;
+		$point -= 2;
 	}
 
 	$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
