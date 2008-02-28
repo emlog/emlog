@@ -12,7 +12,7 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 
 + ÕûÌåÊ¹ÓÃutf-8±àÂë·½Ê½£¬ÈÃÄãµÄ²©¿ÍºÍÊÀ½ç½Ó¹ì¡£ 
 
-+ Ê×Ò³ajaxÈÕÀú·½Ê½²éÔÄÈÕÖ¾£¬·½±ã¿ì½Ý;   
++ Ê×Ò³ajaxÈÕÀú·½Ê½²éÔÄÈÕÖ¾£¬·½±ã¿ì½Ý
 
 + ºóÌ¨Ê¹ÓÃ¿çä¯ÀÀÆ÷(Ö§³Öie¼°firefoxµÈä¯ÀÀÆ÷)¿ÉÊÓ»¯±à¼­ÈÕÖ¾   
 
