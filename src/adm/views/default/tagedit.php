@@ -12,7 +12,7 @@ print <<<EOT
       <td><input size="40" value="$tagname" name="tagname" /></td>
     </tr>
     <tr>
-      <td colspan="2" align="center">
+      <td colspan="2">
 		<input type="hidden" value="$tagid" name="tid" />
 		<input type="submit" value="确 定" class="submit2" />
 		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();""/>
