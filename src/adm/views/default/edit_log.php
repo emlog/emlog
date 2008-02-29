@@ -10,7 +10,7 @@ print <<<EOT
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题:</b><br />
-          <input maxlength="200" size="60" name="title" value="$title"/></td>
+          <input maxlength="200" style="width:460px;" name="title" value="$title"/></td>
         </tr>
 <!--
 if($attach)
@@ -24,18 +24,18 @@ $anyatt = '<b>附件:</b><br />';
                     <td><p>
 					<b>内容:</b><br />
                     <input type="hidden" id="content" name="content" value="{$content}" style="display:none" />
-                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:600px;" height="450" frameborder="no" scrolling="no"></iframe>              
+                    <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:680px;" height="450" frameborder="no" scrolling="no"></iframe>              
                       </p>
                     </td>
                   </tr>
         </table>        </tr>
         <tr nowrap="nowrap">
           <td><b>标签:</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-            <input id="tags" maxlength="200" style="width:600px;" name="tag" value="$tag" /><br /><div style="width:600px;">选择已有标签：$oldtags</div></td>
+            <input id="tags" maxlength="200" style="width:675px;" name="tag" value="$tag" /><br /><div style="width:675px;">选择已有标签：$oldtags</div></td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<br />
-          <textarea name="pingurl" cols="" rows="3" style="width:600px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
+          <textarea name="pingurl" cols="" rows="3" style="width:675px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
           </td>
         </tr>
         <tr>
