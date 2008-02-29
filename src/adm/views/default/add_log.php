@@ -32,12 +32,10 @@ function savedraft() {
               </table>			  </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>标签：</b>(Tag，日志的关键字)<br />
-              </b>
+          <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
             <input id="tags" maxlength="200" style="width:600px;"  name="tag" />
             <br />
-            用半角逗号&quot;,&quot;分隔多个标签<br />
-          选择已有标签：$oldtags</td></tr>
+          <div style="width:600px;">选择已有标签：$oldtags</div></td></tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
           </b>
