@@ -112,8 +112,7 @@ EOT;
         <tr>
           <td align="center" colspan="2">
 		  <input type="hidden" name="gid" value=$logid>
-		  	 <input type="submit" value="保 存" onclick="return chekform();" class="submit2" />
-      		<input type="reset" value="重 置" class="submit2" />
+		  	 <input type="submit" value="保存日志" onclick="return chekform();" class="submit2" />
 		  </td>
         </tr>
       </tbody>
