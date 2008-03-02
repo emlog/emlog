@@ -42,6 +42,7 @@ EOT;
 	</tr>
 </table>
 <div class=line2></div>
+$empigeon
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
 		<td width="50%">官方主页: <a href="http://www.emlog.net" target="_blank">www.emlog.net</a></font></td>

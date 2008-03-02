@@ -117,9 +117,11 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath."thum-".$fname;
 	if(in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	{
 		$attach = $thum;
-			else
-				$attach = 	$attachpath;
+	}else{
+		$attach = 	$attachpath;
+	}
 	
 	if(@is_uploaded_file($tmpfile))
 	{
@@ -128,7 +130,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 				@unlink($tmpfile);
 				formMsg( "上传附件失败","javascript:history.go(-1);",0);
 			}
-	}	
+	}
 	return 	$attach;
 }
 

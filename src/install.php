@@ -337,7 +337,7 @@ CREATE TABLE {$db_prefix}user (
   description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".md5($adminpw)."', '../images/blogger.gif','welcome to emlog!'); ";
+INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".md5($adminpw)."', '','welcome to emlog!'); ";
 	
     $mysql_query = explode(";",$sql);
     while (list(,$query) = each($mysql_query)) {
@@ -373,6 +373,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$MC->mc_sta('./cache/sta');
 	$MC->mc_link('./cache/links');
 	$MC->mc_tags('./cache/tags');
+	$MC->mc_blogger('./cache/blogger');
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！Emlog安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入Emlog </a>";
 	sysMsg($result);

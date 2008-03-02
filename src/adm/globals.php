@@ -6,7 +6,6 @@
  */
 
 error_reporting(E_ALL);
-//header('Content-Type: text/html; charset=UTF-8');
 ob_start();
 
 require_once('../config.php');
@@ -46,6 +45,7 @@ $uploadroot = "../uploadfile/";	//附件保存目录
 $tpl_dir = '../templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 
+define("EMAPI", 			"http://www.emlog.net/api/emapi.php");
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
 define('ICON_MAX_W',		140);//个性头像缩略图最大宽

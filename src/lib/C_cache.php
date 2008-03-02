@@ -39,10 +39,14 @@ class mkcache extends MySql{
 	function mc_blogger($cf)
 	{
 		$blogger = $this->fetch_one_array("select * from ".$this->db_prefix."user ");
-		$photosrc = substr($blogger['photo'],3);
-		$imgsize = chImage($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
-		$user="\n\$user_cache = array('photo' => \"<img src=\\\"".htmlspecialchars($photosrc)."\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" alt=\\\"blogger\\\" />\",'name' =>\"".htmlspecialchars($blogger['nickname'])."\",'mail'	=>\"".htmlspecialchars($blogger['email'])."\",'des'=>\"".htmlspecialchars($blogger['description'])."\");";
-	
+		$icon = '';
+		if($blogger['photo'])
+		{
+			$photosrc = substr($blogger['photo'],3);
+			$imgsize = chImage($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
+			$icon = "<img src=\\\"".htmlspecialchars($photosrc)."\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" alt=\\\"blogger\\\" />";
+		}
+		$user="\n\$user_cache = array('photo' => \"$icon\",'name' =>\"".htmlspecialchars($blogger['nickname'])."\",'mail'	=>\"".htmlspecialchars($blogger['email'])."\",'des'=>\"".htmlspecialchars($blogger['description'])."\");";
 		$cache = "<?php".$user."\n?>";
 		$this->mc_print($cache,$cf);
 	}
@@ -100,7 +104,7 @@ class mkcache extends MySql{
 		$cache = "<?php".$this->tags."\n?>";
 		$this->mc_print($cache,$cf);
 	}
-	//blogroll缓存
+	//友站缓存
 	function mc_link($cf)
 	{
 		$query=$this->query("SELECT siteurl,sitename,description FROM ".$this->db_prefix."link ORDER BY taxis ASC");

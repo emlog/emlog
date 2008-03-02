@@ -91,6 +91,9 @@ function isdel (id, property) {
 	}else if (property==6)  {
 		var urlreturn="attachment.php?action=del_attach&aid="+id;
 		var msg = "你确定要删除该附件吗？";
+	}else if (property==7)  {
+		var urlreturn="blogger.php?action=delicon";
+		var msg = "你确定要删除头像吗？";
 	}else {
 		var urlreturn="admin.php?go=entry_deletedraft_"+blogid+'';
 	}

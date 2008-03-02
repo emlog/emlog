@@ -32,10 +32,12 @@ if ($action == '')
 	{
 		$gd_ver = '不支持GD图形库';
 	}
+	
+	$ret = fopen_url(EMAPI);
+	$empigeon = $ret ? $ret : "";
 
 	require_once(getViews('index'));
 	include getViews('footer');
 	cleanPage();
 }
-
 ?>
