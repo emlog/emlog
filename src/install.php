@@ -238,7 +238,7 @@ CREATE TABLE {$db_prefix}blog (
   attcache text NOT NULL,
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,tbcount,top,hide, allow_remark,allow_tb,attcache) VALUES (1, 'Hello Blogger', '1185702222', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 'n', 'n', 'y', 'y','');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,tbcount,top,hide, allow_remark,allow_tb,attcache) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 'n', 'n', 'y', 'y','');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -364,7 +364,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 			}
     }
 	//重建缓存	
-	//$MC->mc_blogger('./cache/blogger');//开启后头像会不显示
+	$MC->mc_blogger('./cache/blogger');
 	$MC->mc_config('./cache/config');
 	$MC->mc_record('./cache/records');
 	$MC->mc_comment('./cache/comments');
@@ -373,7 +373,6 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$MC->mc_sta('./cache/sta');
 	$MC->mc_link('./cache/links');
 	$MC->mc_tags('./cache/tags');
-	$MC->mc_blogger('./cache/blogger');
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！Emlog安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入Emlog </a>";
 	sysMsg($result);
