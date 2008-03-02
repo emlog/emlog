@@ -132,13 +132,13 @@ class mkcache extends MySql{
 				{
 					$this->Archives.= "\n\$dang_cache[".$h."]['lognum']=\"".$lognum."\";";
 				}
-				if($isurlrewrite == 'n')
+				if($isurlrewrite == 'y')
 				{
-					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
+					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"record-".date("Ym",$show_record['date']).".html\",'lognum'=>\"\");";
 				}
 				else
 				{
-					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"record-".date("Ym",$show_record['date']).".html\",'lognum'=>\"\");";
+					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
 				}
 				$p++;
 				$lognum = 1;
