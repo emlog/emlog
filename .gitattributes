@@ -247,7 +247,6 @@ src/templates/g7/tag_log.php -text
 src/templates/g7_v2/echo_log.php -text
 src/templates/g7_v2/footer.php -text
 src/templates/g7_v2/header.php -text
-src/templates/g7_v2/images/Thumbs.db -text
 src/templates/g7_v2/images/body_bg.png -text
 src/templates/g7_v2/images/children_li.gif -text
 src/templates/g7_v2/images/comment.gif -text
