@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
 -->
 <div class="contentA">
-	<div class="lister"><span onclick="DoMenu('bloggerinfo')">个人资料</span></div>
+	<div class="lister"><span onclick="DoMenu('bloggerinfo')"></span></div>
     	<ul style="text-align:center" id="bloggerinfo" class="collapsed">
 		<li>$photo</li>
 		<li><b>$name</b> $blogger_des</li>
