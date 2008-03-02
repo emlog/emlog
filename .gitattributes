@@ -131,7 +131,6 @@ src/cache/tags -text
 src/calendar.php -text
 src/common.php -text
 src/config.php -text
-src/images/blogger.gif -text
 src/images/import.gif -text
 src/images/player.swf -text
 src/index.php -text
