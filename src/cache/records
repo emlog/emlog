@@ -1,4 +1,4 @@
 <?php
-$dang_cache[0] = array('record'=>"2007年7月",'url'=>"index.php?record=200707",'lognum'=>"");
+$dang_cache[0] = array('record'=>"2008年3月",'url'=>"index.php?record=200803",'lognum'=>"");
 $dang_cache[0]['lognum']="1";
 ?>
