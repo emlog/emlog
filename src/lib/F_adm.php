@@ -92,26 +92,28 @@ function loginPage()
 */ 
 function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 {
-	global $uploadroot;
+	global $uploadroot, $uploadmax;
+
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-			formMsg("错误的附件类型","javascript:history.go(-1);",0);
+		formMsg("错误的附件类型","javascript:history.go(-1);",0);
 	}
-	if($filesize>2297152)
+	if($filesize>$uploadmax)
 	{
-			formMsg("附件大小超出2m!","javascript:history.go(-1);",0);	
+		$uploadmax = changeFileSize($uploadmax);
+		formMsg("附件大小超出{$uploadmax}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = $uploadroot.date("Ym")."/";
 	$fname = md5($filename).date("YmdHis").'.'.$extension;
 	$attachpath = $uppath.$fname;
 	if(!is_dir($uploadroot))
 	{
-		@mkdir($uploadroot,0777) OR die("权限不足无法创建附件目录");
+		@mkdir($uploadroot,0777) OR formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
 	}
 	if(!is_dir($uppath))
 	{
-		@mkdir($uppath,0777) OR die("创建日期目录失败");
+		@mkdir($uppath,0777) OR formMsg("创建日期目录失败","javascript:history.go(-1);",0);
 	}
 	//thum
 	$imtype = array('jpg','png','jpeg');
@@ -122,14 +124,14 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	}else{
 		$attach = 	$attachpath;
 	}
-	
+
 	if(@is_uploaded_file($tmpfile))
 	{
-			if(!move_uploaded_file($tmpfile ,$attachpath))
-			{
-				@unlink($tmpfile);
-				formMsg( "上传附件失败","javascript:history.go(-1);",0);
-			}
+		if(!move_uploaded_file($tmpfile ,$attachpath))
+		{
+			@unlink($tmpfile);
+			formMsg( "上传附件失败","javascript:history.go(-1);",0);
+		}
 	}
 	return 	$attach;
 }
@@ -152,7 +154,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		$max_w = IMG_ATT_MAX_W;
 		$max_h = IMG_ATT_MAX_H;
 	}
-	$size = chImage($img,$max_w,$max_h);	
+	$size = chImage($img,$max_w,$max_h);
 	$newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w =$size['rc_w'];
@@ -167,7 +169,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	}elseif($imgtype == "image/x-png" OR $imgtype == "image/png")
 	{
 		$img = imagecreatefrompng($img);
-	}	
+	}
 	if(function_exists("imagecopyresampled"))
 	{
 		$newim = imagecreatetruecolor($newwidth, $newheight);
