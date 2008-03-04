@@ -46,7 +46,7 @@ print <<<EOT
 EOT;
 }print <<<EOT
 -->	
-      <td align="center" colspan="2" class="care">目前共有 $tplnums 个可选模板，更多模板请登录emlog官方站点下载。</td>
+      <td align="center" colspan="2" class="care">目前共有 $tplnums 个可选模板，更多模板请登录<a href="http://www.emlog.net" target="_blank">emlog官方站点</a>下载。</td>
     </tr>
 		<tr>
           <td colSpan=2>
