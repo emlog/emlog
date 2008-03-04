@@ -32,11 +32,10 @@ $rowbg = getRowbg();
 print <<<EOT
 -->      <tr class="$rowbg">
         <td><input type="checkbox" value="$value[hide]" name="com[$value[cid]]" /></td>
-        <td>$value[comment] $ishide $isrp</td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">$value[comment]</a> $ishide $isrp</td>
         <td>$value[poster]</td>
         <td>$value[date]</td>
         <td>
-        <a href="comment.php?action=reply_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">回复</a>
         <a href="comment.php?action=show_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">审核</a>
         <a href="comment.php?action=kill_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">屏蔽</a>
         <a href="javascript: isdel($value[cid], 1);">删除</a>

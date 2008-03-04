@@ -6,17 +6,17 @@ print <<<EOT
 <div class=containertitle><b>回复评论</b></div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">
-  <table width="95%" align="center">
+  <table width="600">
     <tbody>
       <tr>
         <td align="right">姓名：</td><td> $name</td>
 	  </tr>
       <tr>
-        <td align="right">内容：</td><td> $comment</td>
+        <td align="right" valign="top" width="50">内容：</td><td> $comment</td>
       </tr>
       <tr>
         <td align="right" valign="top">回复：</td><td>
-        <textarea name="reply" rows="5" cols="50">$reply</textarea></td>
+        <textarea name="reply" rows="5" cols="60">$reply</textarea></td>
       </tr>
       <tr>
         <td></td><td>
