@@ -133,7 +133,7 @@ if ($action == 'showlog')
 		$addtime = date('Y-m-d H:i',$s_com['date']);
 		$cname   =  htmlspecialchars($s_com['poster']);	
 		$poster  = $s_com['mail'] ? "<a href=\"mailto:{$s_com['mail']}\" title=\"发邮件给{$cname}\">$cname</a>" : $cname;
-		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\">&raquo;</a>" : $poster;
+		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\" target=\"_blank\">&raquo;</a>" : $poster;
 		$com[]   = array(
 						'content'=>$content,
 						'reply'=>$reply,
