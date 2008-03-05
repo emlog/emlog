@@ -101,8 +101,8 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	}
 	if($filesize>$uploadmax)
 	{
-		$uploadmax = changeFileSize($uploadmax);
-		formMsg("附件大小超出{$uploadmax}的限制","javascript:history.go(-1);",0);
+		$ret = changeFileSize($uploadmax);
+		formMsg("附件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = $uploadroot.date("Ym")."/";
 	$fname = md5($filename).date("YmdHis").'.'.$extension;

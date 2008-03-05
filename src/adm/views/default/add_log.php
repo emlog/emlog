@@ -1,5 +1,6 @@
 <!--<?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
+$maxsize = changeFileSize($uploadmax);
 //允许附件类型
 $att_type_str = '';
 foreach ($att_type as $val){
@@ -60,7 +61,7 @@ function savedraft(){
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>
-          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许2M，支持类型:{$att_type_str})<br />
+          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
             <div id="tab_attach">
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                 <tbody>
