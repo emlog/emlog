@@ -10,10 +10,10 @@ require_once("./common.php");
 $blogid = intval($_REQUEST['id']);
 $charset = strtolower($_REQUEST['charset']);
 $encode = in_array($charset, array('gbk', 'utf-8')) ? $charset : 'utf-8';
-$title     = iconv2utf(html2text($_REQUEST['title']));
-$excerpt   = trimmed_title(iconv2utf(html2text($_REQUEST['excerpt'])), 255);
+$title     = iconv2utf(html2text(addslashes(trim($_REQUEST['title']))));
+$excerpt   = trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255);
 $url       = addslashes(trim($_REQUEST['url']));
-$blog_name = iconv2utf(html2text($_REQUEST['blog_name']));
+$blog_name = iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name']))));
 $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
@@ -81,6 +81,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		$DB->query($query);
 		//更新文章Trackback数量
 		$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
+		$MC->mc_sta('./cache/sta');
 		showXML('成功接收', 0);
 	}else 
 	{
