@@ -18,9 +18,9 @@ function CheckAll(form) {
   <tbody>
     <tr class="rowstop">
       <td width="34"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-      <td width="532"><b>备份文件</b></td>
-      <td width="125"><b>备份时间</b></td>
-      <td width="102"><b>文件大小</b></td>
+      <td width="480"><b>备份文件</b></td>
+      <td width="170"><b>备份时间</b></td>
+      <td width="112"><b>文件大小</b></td>
       <td width="63"></td>
     </tr>
 <!--

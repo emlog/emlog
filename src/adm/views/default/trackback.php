@@ -19,8 +19,8 @@ function CheckAll(form) {
       <tr class="rowstop">
         <td width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
         <td width="400"><b>标题</b></td>
-        <td width="200"><b>来源</b></td>
-		<td width="100"><b>IP</b></td>
+        <td width="180"><b>来源</b></td>
+		<td width="120"><b>IP</b></td>
         <td width="150"><b>时间</b></td>
         <td width="80"></td>
       </tr>

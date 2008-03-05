@@ -17,11 +17,11 @@ function CheckAll(form) {
   <table width="95%" >
     <tbody>
       <tr class="rowstop">
-        <td width="28"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="402"><b>评论内容</b></td>
-        <td width="122"><b>评论者</b></td>
-        <td width="116"><b>时间</b></td>
-        <td width="234" colspan="3"></td>
+        <td width="25"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
+        <td width="320"><b>评论内容</b></td>
+        <td width="160"><b>评论者</b></td>
+        <td width="150"><b>时间</b></td>
+        <td width="150" colspan="3"></td>
       </tr>
 <!--
 EOT;
