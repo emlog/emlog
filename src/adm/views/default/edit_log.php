@@ -68,10 +68,13 @@ $atturl = $blogurl.substr(str_replace('thum-','',$value[filepath]),3);
 if($extension == 'zip' || $extension == 'rar'){
 	$imgpath = "./views/$nonce_tpl/images/tar.gif";
 	$embedlink = '压缩包';
-}else {
+}elseif ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif') {
 	$imgpath = $value['filepath'];
 	$ed_imgpath = $blogurl.substr($imgpath,3);
 	$embedlink = "<a href=\"javascript: addattach('$atturl','$ed_imgpath','$value[attdes]',$value[aid]);\">嵌入到日志 </a>";
+}else {
+	$imgpath = "./views/$nonce_tpl/images/fnone.gif";
+	$embedlink = '';
 }
 print <<<EOT
 -->
@@ -81,10 +84,9 @@ print <<<EOT
 	</td>
 </tr>
 <tr>
-	<td width="92%" >描述： 
+	<td width="92%" >$value[filename] ($value[attsize])<br />描述： 
 		<input type="text" name="attachdes[{$value[aid]}]" value="$value[attdes]" />
 		<br />操作：<a href="javascript: isdel($value[aid], 6);">删除</a> $embedlink 
-		<br />大小：$value[attsize]
 	</td>
 </tr>
 <!--
