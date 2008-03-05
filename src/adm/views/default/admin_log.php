@@ -41,8 +41,8 @@ EOT;
     <tbody>
       <tr class="rowstop">
         <td colspan="6">执行操作：
-            <input type="radio" value="del_log" name="modall" />删除
-		  	$log_act
+          <input type="radio" value="del_log" name="modall" />删除
+		  $log_act
       </tr>
     <tr>
       <td align="right" colspan="6">(共{$num}条日志/每页最多显示15条) $pageurl</td>

@@ -1,6 +1,10 @@
 <!--
 <?php
-if(!defined('ADM_ROOT')) {exit('error!');} 
+if(!defined('ADM_ROOT')) {exit('error!');}
+$att_type_str = '';
+foreach ($att_type as $val){
+	$att_type_str .= " $val";
+}
 print <<<EOT
 -->
 <div class=containertitle><b>编辑日志</b></div>
@@ -89,7 +93,7 @@ EOT;
 	  </table>
 	  <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
         <tr>
-          <td><b>上传附件</b><a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> ( (最大允许2M，支持类型:gif jpg bmp png rar zip)<br />
+          <td><b>上传附件</b><a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> ( (最大允许2M，支持类型:{$att_type_str})<br />
             <div id="tab_attach">
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                 <tbody>

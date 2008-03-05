@@ -1,10 +1,14 @@
 <!--<?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
+//允许附件类型
+$att_type_str = '';
+foreach ($att_type as $val){
+	$att_type_str .= " $val";
+}
 print <<<EOT
 -->
 <script type="text/javascript">
-function savedraft() {
-
+function savedraft(){
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
@@ -16,7 +20,7 @@ function savedraft() {
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题:</b><br />
-            <input maxlength="200" style="width:460px;" name="title" />
+          <input maxlength="200" style="width:460px;" name="title" />
           <br /></td>
         </tr>
         <tr>
@@ -56,7 +60,7 @@ function savedraft() {
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>
-          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许2M，支持类型:gif jpg bmp png rar zip)<br />
+          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许2M，支持类型:{$att_type_str})<br />
             <div id="tab_attach">
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                 <tbody>

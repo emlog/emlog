@@ -15,7 +15,7 @@ print <<<EOT
       <td colspan="2">
 		<input type="hidden" value="$tagid" name="tid" />
 		<input type="submit" value="确 定" class="submit2" />
-		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();""/>
+		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();"/>
 	</td>
     </tr>
   </tbody>

@@ -6,6 +6,7 @@
  */
 
 require_once('./globals.php');
+
 $pid = isset($_GET['pid'])?$_GET['pid']:'';
 
 if($action == '')
