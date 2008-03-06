@@ -43,7 +43,7 @@ $edition = '2.6.0';	//当前版本号
 
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录
-$uploadmax = 20971523;			//附件大小上限 单位：字节
+$uploadmax = 2097152;			//附件大小上限 单位：字节
 $tpl_dir = '../templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 

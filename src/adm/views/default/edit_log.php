@@ -96,7 +96,7 @@ EOT;
 	  </table>
 	  <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
         <tr>
-          <td><b>上传附件</b><a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> ( (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
+          <td><b>上传附件</b><a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
             <div id="tab_attach">
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                 <tbody>
