@@ -171,7 +171,7 @@ class mkcache extends MySql{
 			$tagnum = $this->num_rows($result);
 			if($tagnum>0){
 				while($show_tag=$this->fetch_array($result)){
-					$tag .= "	<a href=\\\"?action=taglog&tag=".urlencode($show_tag['tagname'])."\\\">".htmlspecialchars($show_tag['tagname']).'</a>'; 
+					$tag .= "	<a href=\\\"./?action=taglog&tag=".urlencode($show_tag['tagname'])."\\\">".htmlspecialchars($show_tag['tagname']).'</a>'; 
 					}
 				}else	{
 					$tag = '';

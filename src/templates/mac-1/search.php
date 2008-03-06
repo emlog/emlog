@@ -17,7 +17,7 @@ foreach($slog as $key=>$value){
 if($isurlrewrite=='n'){
 echo <<<EOT
 -->
-<p><a href="?action=showlog&gid={$value['gid']}">{$value['title']}</a> ({$value['date']})</p>
+<p><a href="./?action=showlog&gid={$value['gid']}">{$value['title']}</a> ({$value['date']})</p>
 <!--
 EOT;
 }else{

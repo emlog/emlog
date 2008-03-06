@@ -19,7 +19,7 @@ EOT;
 if($isurlrewrite=='n'){
 echo <<<EOT
 -->
-{$value['toplog']}<a href="?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
+{$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
 <!--
 EOT;
 }else{
@@ -38,8 +38,8 @@ EOT;
 if($isurlrewrite=='n'){
 	echo <<<EOT
 	-->
- 	<a href="?action=showlog&gid={$value['logid']}#tb">引用通告({$value['tbcount']})</a> 
- 	<a href="?action=showlog&gid={$value['logid']}">浏览人次({$value['views']})</a>
+ 	<a href="./?action=showlog&gid={$value['logid']}#tb">引用通告({$value['tbcount']})</a> 
+ 	<a href="./?action=showlog&gid={$value['logid']}">浏览人次({$value['views']})</a>
 	<!--
 EOT;
 }else{
@@ -54,7 +54,7 @@ EOT;
 echo <<<EOT
 -->
 	  
-	  <span class="comment"><a href="?action=showlog&gid={$value['logid']}#comment">评论:{$value['comnum']}</a></span></p>
+	  <span class="comment"><a href="./?action=showlog&gid={$value['logid']}#comment">评论:{$value['comnum']}</a></span></p>
     </div>
 
 	<div class="content">

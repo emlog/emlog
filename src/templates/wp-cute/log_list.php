@@ -10,7 +10,7 @@ EOT;
 if($isurlrewrite=='n'){
 echo <<<EOT
 -->
-{$value['toplog']}<a href="?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
+{$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
 <!--
 EOT;
 }else{
@@ -34,9 +34,9 @@ EOT;
 if($isurlrewrite=='n'){
 echo <<<EOT
 -->
- 	<a href="?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
- 	<a href="?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
- 	<a href="?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
+ 	<a href="./?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
+ 	<a href="./?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
+ 	<a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
 <!--
 EOT;
 }else{
