@@ -93,6 +93,7 @@ src/adm/views/default/edit_log.php -text
 src/adm/views/default/footer.php -text
 src/adm/views/default/header.php -text
 src/adm/views/default/images/addblog.gif -text
+src/adm/views/default/images/fnone.gif -text
 src/adm/views/default/images/header_bg_l.gif -text
 src/adm/views/default/images/header_bg_r.gif -text
 src/adm/views/default/images/mc_bg1.gif -text
