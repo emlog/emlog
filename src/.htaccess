@@ -1,4 +1,4 @@
-<IfModule rewrite_module>
+<IfModule mod_rewrite.c>
 	# RewriteEngine 打开URL重写模块
 	RewriteEngine on
 	# 重写根目录，博客在网站根目录则改为/
