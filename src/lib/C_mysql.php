@@ -24,16 +24,16 @@ class MySql {
 	function dbconnect($host,$user,$pass)
 	{
 			$this->id = @ mysql_connect($host,$user,$pass) OR
-			sysMsg("连接数据库失败,可能是mysql数据库用户名或密码不正确！<br> {$this->geterror()}");
+			sysMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
 	}
 	function selectdb($db)
 	{
-		@ mysql_select_db($db,$this->id) or sysMsg("未找到指定数据库！<br> {$this->geterror()}");
+		@ mysql_select_db($db,$this->id) or sysMsg("未找到指定数据库");
 	}
 
 	function query($sql)
 	{
-		$query = @ mysql_query($sql,$this->id);//OR $this->msg("语法错误")
+		$query = @ mysql_query($sql,$this->id);
 			$this->query_num();
 			return $query;
 	}
