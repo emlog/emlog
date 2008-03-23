@@ -10,10 +10,12 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
+	$bakfiles = glob("../adm/bakup/*.sql");
 	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag', 'user','trackback');
-	$defname = md5(date('YmdHis'));
+	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,10);
 	require_once(getViews('bakdata'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 if($action=='bakstart')
 {
@@ -65,14 +67,6 @@ if($action=='bakstart')
 
 }
 
-//备份文件管理
-if($action=='bakfile')
-{
-	include getViews('header');
-	$bakfiles = glob("../adm/bakup/*.sql");
- 	require_once(getViews('bakfile'));
-	include getViews('footer');cleanPage();
-}
 //恢复数据
 if ($action == 'renewdata')
 {
@@ -110,7 +104,7 @@ if ($action == 'renewdata')
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_link('../cache/links');
 	$MC->mc_tags('../cache/tags');
-	formMsg('数据恢复成功', './backupdata.php?action=bakfile',1);
+	formMsg('数据恢复成功', './backupdata.php',1);
 }
 
 function bakindata($filename)
@@ -144,14 +138,14 @@ if($action== 'dell_all_bak')
 {
 	if(!isset($_POST['bak']))
 	{
-		formMsg('请选择要删除的备份文件','./backupdata.php?action=bakfile',0);
+		formMsg('请选择要删除的备份文件','./backupdata.php',0);
 	}else
 	{
 		foreach($_POST['bak'] as $value)
 		{
 			unlink($value);
 		}
-		formMsg('备份文件删除成功!','./backupdata.php?action=bakfile',1);
+		formMsg('备份文件删除成功!','./backupdata.php',1);
 	}
 }
 ?>

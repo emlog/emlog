@@ -76,7 +76,6 @@ print <<<EOT
             <div id=sidebartop></div>
             <div class=sidebarmenu>数据管理</div>
             <div class=sidebarsubmenu><A href="backupdata.php">数据备份</A></div>
-            <div class=sidebarsubmenu><A href="backupdata.php?action=bakfile">备份管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="cache.php">重建缓存</A><a href="admin_log.php"></a></div>
 			<div id=sidebarBottom></div></div>
        	    </td>

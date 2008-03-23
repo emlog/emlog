@@ -83,7 +83,6 @@ src/adm/trackback.php -text
 src/adm/views/default/add_log.php -text
 src/adm/views/default/admin_log.php -text
 src/adm/views/default/bakdata.php -text
-src/adm/views/default/bakfile.php -text
 src/adm/views/default/blogger.php -text
 src/adm/views/default/cache.php -text
 src/adm/views/default/comment.php -text
