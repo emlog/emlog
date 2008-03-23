@@ -10,7 +10,7 @@ print <<<EOT
 <link rel="stylesheet" href="./views/$nonce_tpl/main.css">
 </head>
 <body bgcolor="#F9FCFE">
-<form method="post" action="index.php?action=login">
+<form name="f" method="post" action="index.php?action=login">
 <br /><br /><br /><br />
 <table align="center" class="toptd">
 <h3 align="center">Emlog</h3>
@@ -19,7 +19,9 @@ print <<<EOT
 <input name="pw" type="password" class="input"></td></tr>$ckcode<tr>
 <td align="right"><input type="submit" value=" 登录>>" class="submit">
 </td></tr>
-</table></form></body></html>
+</table></form>
+<script>var w=document.f.user;w.focus();</script>
+</body></html>
 <!--
 EOT;
 ?>-->
