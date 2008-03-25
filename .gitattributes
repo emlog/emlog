@@ -142,6 +142,7 @@ src/lib/F_adm.php -text
 src/lib/F_base.php -text
 src/lib/F_rss.php -text
 src/rss.php -text
+src/tb.php -text
 src/templates/OrangeSky/echo_log.php -text
 src/templates/OrangeSky/footer.php -text
 src/templates/OrangeSky/header.php -text
@@ -535,7 +536,6 @@ src/templates/wp/preview.jpg -text
 src/templates/wp/search.php -text
 src/templates/wp/tag.php -text
 src/templates/wp/tag_log.php -text
-src/trackback.php -text
 update/up2.0.0to2.2.0.php -text
 update/up2.1.6sp1to2.2.0.php -text
 update/up2.1.6to2.2.0.php -text
