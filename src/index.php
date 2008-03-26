@@ -88,6 +88,7 @@ if ($action == 'showlog')
 	$post_time  = date('Y-n-j G:i l',$show_log['date']); 
 	$logid	    = intval($show_log['gid']);
 	$blogurl    = $blogurl;
+	$tbscode	= substr(md5(date('Ynd')),0,5);
 	$log_content = rmBreak($show_log['content']);
 	$allow_remark = $show_log['allow_remark'];
 	$allow_tb = $show_log['allow_tb'];

@@ -8,8 +8,9 @@
 require_once("./common.php");
 
 $blogid = intval($_REQUEST['id']);
-$charset = strtolower($_REQUEST['charset']);
-$encode = in_array($charset, array('gbk', 'utf-8')) ? $charset : 'utf-8';
+$ec = strtolower($_REQUEST['ec']);
+$sc = $_REQUEST['sc'];
+$encode = in_array($ec, array('gbk', 'utf-8')) ? $ec : 'utf-8';
 $title     = iconv2utf(html2text(addslashes(trim($_REQUEST['title']))));
 $excerpt   = trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255);
 $url       = addslashes(trim($_REQUEST['url']));
@@ -18,6 +19,11 @@ $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 {
+	if($sc != substr(md5(date('Ynd')),0,5))
+	{
+		showXML('引用地址已失效');
+	}
+	
 	$blog = $DB->fetch_one_array("SELECT allow_tb FROM {$db_prefix}blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{

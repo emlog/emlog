@@ -37,8 +37,8 @@ echo <<<EOT
 -->	
 <div class="entry">
 <h2 id="comments">引用:<a name="tb"></a></h2>
-<p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
-<p>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</p>
+<p>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
+<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
 </div>
 <!--
 EOT;

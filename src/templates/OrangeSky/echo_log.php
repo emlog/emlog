@@ -24,8 +24,8 @@ echo <<<EOT
 -->
 <div class="commentdata">
 <h3 id="respond">引用:<a name="tb"></a></h3>
-<li>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</li>  
-<li>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</li>
+<li>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</li>  
+<li>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</li>
 </div>
 <!--
 EOT;

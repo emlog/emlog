@@ -17,8 +17,8 @@ EOT;
 if($allow_tb == 'y'){
 echo <<<EOT
 <h5>引用地址:<a name="tb"></a></h5>
-<p>GBk: {$blogurl}trackback.php?id=$logid&amp;charset=gbk</p>  
-<p>UTF-8: {$blogurl}trackback.php?id=$logid&amp;charset=utf-8</p>
+<p>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
+<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
 EOT;
 }
 foreach($tb as $key=>$value){
