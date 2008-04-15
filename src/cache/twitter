@@ -1,0 +1,8 @@
+<?php
+$tw_cache[0] = array('content'=>"感谢使用emlog,这是系统的默认日志,你可以删除它!",'date'=>"1208176126",'id'=>"93");
+$tw_cache[1] = array('content'=>"wwwwwwwww",'date'=>"1208175190",'id'=>"87");
+$tw_cache[2] = array('content'=>"wwwwwwwww",'date'=>"1208175190",'id'=>"86");
+$tw_cache[3] = array('content'=>"wwwwwwwww",'date'=>"1208175190",'id'=>"85");
+$tw_cache[4] = array('content'=>"wwwwwwwww",'date'=>"1208175189",'id'=>"84");
+$tw_cache[5] = array('content'=>"wwwwwwwww",'date'=>"1208175189",'id'=>"83");
+?>

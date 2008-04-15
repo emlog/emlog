@@ -128,6 +128,7 @@ src/cache/musics -text
 src/cache/records -text
 src/cache/sta -text
 src/cache/tags -text
+src/cache/twitter -text
 src/calendar.php -text
 src/common.php -text
 src/config.php -text
