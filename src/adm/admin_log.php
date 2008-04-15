@@ -324,7 +324,7 @@ if($action=="edit"){
 	$MC->mc_logatts('../cache/log_atts',$cont_attid,$logid);//嵌入内容中的附件id数组：$cont_attid
 	$MC->mc_record('../cache/records');
 	$MC->mc_tags('../cache/tags');
-	formMsg( "修改成功\t$tbmsg","javascript:history.go(-1);",1);
+	formMsg( "保存成功\t$tbmsg","javascript:history.go(-1);",1);
 }
 
 //删除日志

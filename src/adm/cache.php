@@ -24,6 +24,7 @@ if ($action == 'mkcache')
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_link('../cache/links');
 	$MC->mc_tags('../cache/tags');
+	$MC->mc_twitter('../cache/twitter');
 	formMsg('缓存更新成功', './cache.php',1);
 }
 

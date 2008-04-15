@@ -28,7 +28,8 @@ if($action == '')
 	$second	 = date('s');
 
 	require_once(getViews('add_log'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 ##################添加日志##################
 if($action== 'addlog')
@@ -36,7 +37,7 @@ if($action== 'addlog')
 	if($pid == 'draft')
 	{
 		$ishide='y';
-		$ok_msg = '草稿保存成功！';
+		$ok_msg = '日志成功保存为草稿！';
 		$ok_url = 'admin_log.php?pid=draft';
 	}else
 	{

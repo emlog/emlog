@@ -9,9 +9,10 @@ error_reporting(E_ALL);
 ob_start();
 
 require_once('../config.php');
-require_once('../lib/F_base.php');
-require_once('../lib/F_adm.php');
 require_once('../lib/C_mysql.php');
+require_once('../lib/F_base.php');
+require_once('../lib/F_login.php');
+require_once('../lib/F_adm.php');
 require_once('./tips.php');		
 require_once('../lib/C_cache.php');
 
@@ -47,7 +48,6 @@ $uploadmax = 2097152;			//附件大小上限 单位：字节
 $tpl_dir = '../templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 
-define("EMAPI", 			"http://www.emlog.net/api/emapi.php");
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
 define('ICON_MAX_W',		140);//个性头像缩略图最大宽
@@ -98,6 +98,9 @@ if ($action == 'logout')
 	formMsg('退出成功！','../index.php',1);
 }
 
-isLogin();//验证用户是否处于登陆状态
+if(isLogin() === false)
+{
+	loginpage();
+}
 
 ?>

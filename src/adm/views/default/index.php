@@ -52,7 +52,6 @@ EOT;
 		<td width="50%">电子邮件: <a href="mailto:emloog@gmail.com">emloog@gmail.com</a></td>
 	</tr>
 </table>
-$empigeon
 </td>
 </tr>
 </table>
