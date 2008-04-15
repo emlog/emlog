@@ -5,7 +5,7 @@ echo <<<EOT
 <html>
 <head>
 <meta HTTP-EQUIV="REFRESH" CONTENT="322;URL=$url">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="zh-CN" />
 <title>系统消息</title>
 <style type="text/css">

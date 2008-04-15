@@ -47,9 +47,9 @@ EOT;
 		<ul>
 			<li>
 				<form name="keyform" method="get" action="index.php">
-    <input name="keyword"  type="text" id="s" value="" size="12" maxlength="30" />
-	<input name="action" type="hidden" value="search" size="12" />
-    <input type="submit" value="Go" id="searchsubmit" onclick="return keyw()" />
+    <input name="keyword"  type="text" id="s" value="" size="14" maxlength="30" class="input" />
+	<input name="action" type="hidden" value="search"/>
+    <input type="submit" value="go" id="searchsubmit" onclick="return keyw()" class="button" />
    </form>
 			</li>
 		</ul>

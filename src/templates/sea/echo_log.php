@@ -21,8 +21,8 @@ echo <<<EOT
 -->	
 <div class="comments-template">
 <h2 id="comments">引用:<a name="tb"></a></h2>
-<p>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
-<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
+<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
+<p>utf-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
 </div>
 <!--
 EOT;
@@ -89,9 +89,7 @@ echo <<<EOT
 	   <label for="email"><small>个人主页(选填)</small></label>
 	</p>
 	<p>
-	  <label for="comment"><small>评论内容</small></label>
-	  <br />
-	  <textarea name="comment" id="comment" cols="60" rows="10" tabindex="4"></textarea>
+	  <textarea name="comment" id="comment" cols="70" rows="10" tabindex="4"></textarea>
 	</p>
 
 	<p>

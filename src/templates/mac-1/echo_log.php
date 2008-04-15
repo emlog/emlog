@@ -32,7 +32,7 @@ echo <<<EOT
 -->	
 <p class="info">
 <h2 id="comments">引用:<a name="tb"></a></h2>
-<p>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
+<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
 <p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
 </p>
 <!--
@@ -115,7 +115,7 @@ EOT;
 	</div><!--/post -->
 
 </div><!--/content -->
-<div id="footer">&copy; 2007 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
+<div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 EOT;
 include getViews('side');

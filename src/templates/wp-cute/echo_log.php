@@ -17,7 +17,7 @@ EOT;
 if($allow_tb == 'y'){
 echo <<<EOT
 <h5>引用地址:<a name="tb"></a></h5>
-<p>GBk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
+<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
 <p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
 EOT;
 }

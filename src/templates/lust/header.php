@@ -18,7 +18,7 @@ echo <<<EOT
 <head profile="http://gmpg.org/xfn/11">
 
 	<title>$blogtitle</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Content-Language" content="zh-CN" />
 	<meta name="description" content="$sitekey" />
 	<meta name="keywords" content="emlog,blog,$sitekey" />

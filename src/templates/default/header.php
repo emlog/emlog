@@ -1,12 +1,12 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-$load=$action?'':"onload=\"sendinfo('$calendar_url');\"";
+$load=$action?'':"onload=\"sendinfo('$calendar_url','calendar');\"";
 echo <<<EOT
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="description" content="$sitekey" />
 <meta name="keywords" content="emlog,blog,$sitekey" />
@@ -30,7 +30,6 @@ echo <<<EOT
     	<ul>
 	      <li><a href="./">首页</a></li>
 		  <li><a href="./index.php?action=tag">标签</a></li>
-          <li><a href="./adm/">登录</a></li>
     	</ul>
   	</div>
 	</div>

@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 a{
-	text-decoration: underline;
+	text-decoration: none;
 	color: #3182a9;
 }
 
@@ -247,6 +247,7 @@ input#author, input#email, input#url{
 }
 .entry p.postinfo{
 	padding:10px;
+	font-size:12px;
 	text-align:right;
 	border-bottom: 1px solid #ccc;
 }
@@ -408,15 +409,15 @@ table#wp-calendar tfoot td{
 	}
 .calendar a:visited{
 	color: #FF9900;
-	text-decoration:underline;
+	text-decoration:none;
 }
 .calendar td a:link{
 	color:#FF9900;
-	text-decoration:underline;
+	text-decoration:none;
 }
 .calendar td a:hover{
 	color:#FF9900;
-	text-decoration:underline;
+	text-decoration:none;
 }
 
 #msg{

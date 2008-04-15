@@ -5,7 +5,7 @@ echo <<<EOT
 <html>
 <head>
 <meta HTTP-EQUIV="REFRESH" CONTENT="3;URL=$url">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="zh-CN" />
 <link href="{$tpl_dir}wp/main.css" rel="stylesheet" type="text/css">
 <title>系统消息</title>

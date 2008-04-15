@@ -506,3 +506,23 @@ table.calendartop td{
 	font-size:14px;
 	margin-left:10px;
 	}
+/*按钮样式*/	
+.button {
+	font-family: Arial;
+	border-right: #4f4f4f 1px solid;
+	border-top: #f6f6f6 1px solid;
+	font-size: 12px;
+	height:22px;
+	background: #dddddd;
+	border-left: #f6f6f6 1px solid;
+	border-bottom: #4f4f4f 1px solid;
+}
+/*输入框样式*/
+.input {
+	border: 1px solid #CCCCCC;
+	font-family: Arial;
+	font-size: 12px;
+	height:14px;
+	background-color: #F3F3F3;
+	color: #666666;
+}

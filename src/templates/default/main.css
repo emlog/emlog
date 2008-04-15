@@ -88,7 +88,7 @@ div.contentA{
 	margin:10px 1px 2px;
 	clear:left;
 	}
-.lister span{cursor:hand; font-weight:bold;} 
+.lister span{cursor:pointer; font-weight:bold;display: block;} 
 .contentA li {
 	padding:3px 0px 3px 15px;
 	list-style: none;
@@ -133,6 +133,15 @@ div.contentA{
 	margin:0px 10px;
 	table-layout:fixed;word-wrap:break-word;
 	border-bottom:#BBBBBB dashed 1px;
+}
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:120px;
 }
 .logcontent li{ list-style:none;}
 .log_con{
