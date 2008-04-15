@@ -55,10 +55,10 @@ $calendar =
 "<table class=\"calendartop\">
 <tr>
 <td>
-<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url');\">&nbsp;&laquo;&nbsp;</a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2');\">&nbsp;&raquo;&nbsp;</a>
+<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\">&nbsp;&laquo;&nbsp;</a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\">&nbsp;&raquo;&nbsp;</a>
 </td>
 <td>
-<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3');\">&nbsp;&laquo;&nbsp;</a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4');\">&nbsp;&raquo;&nbsp;</a>
+<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\">&nbsp;&laquo;&nbsp;</a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\">&nbsp;&raquo;&nbsp;</a>
 </td>
 </tr>
 </table>

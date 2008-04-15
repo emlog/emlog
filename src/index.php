@@ -11,7 +11,6 @@ viewCount();
 
 //calendar url
 $calendar_url = isset($_GET['date'])?"calendar.php?smp=$localdate&date=".$_GET['date']:"calendar.php?smp=$localdate";
-$action = isset($_GET['action'])?addslashes($_GET['action']):'';
 $job = array('showlog','tag','search','addcom','taglog','');
 if(!in_array($action,$job))
 {

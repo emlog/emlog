@@ -326,6 +326,13 @@ CREATE TABLE {$db_prefix}trackback (
   PRIMARY KEY  (tbid),
   KEY gid (gid)
 )".$add."
+DROP TABLE IF EXISTS {$db_prefix}twitter;
+CREATE TABLE {$db_prefix}twitter (
+id INT NOT NULL AUTO_INCREMENT ,
+content VARCHAR(255) NOT NULL ,
+date VARCHAR(10) NOT NULL ,
+PRIMARY KEY (id)
+)".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
