@@ -23,40 +23,42 @@ function getViews($template,$EXT=".php")
 }
 
 /**
+ * 初始化一个数据库链接对象
+ *
+ * @return $DB
+ */
+function initdb()
+{
+	global $host, $user, $pass,$db;
+	$DB = new MySql($host, $user, $pass,$db);
+	return $DB;	
+}
+
+/**
 	执行去除转义字符
 */
 function doStripslashes()
 {
-	if (get_magic_quotes_gpc()) 
+	if (get_magic_quotes_gpc())
 	{
-	    $_GET = stripslashesArray($_GET);
-	    $_POST = stripslashesArray($_POST);
-	    $_COOKIE = stripslashesArray($_COOKIE);
-	    $_REQUEST = stripslashesArray($_REQUEST);
+	    $_GET = stripslashesDeep($_GET);
+	    $_POST = stripslashesDeep($_POST);
+	    $_COOKIE = stripslashesDeep($_COOKIE);
+	    $_REQUEST = stripslashesDeep($_REQUEST);
 	}
 }
 
 /**
-	去除转义字符
+	递归去除转义字符
 	@param array $myarray
 */
-function stripslashesArray($myarray)
+function stripslashesDeep($value)
 {
-	while(list($key,$var) = each($myarray))
-	{
-		if ($key != 'argc' && $key != 'argv' && (strtoupper($key) != $key || ''.intval($key) == "$key"))
-		{
-			if (is_string($var))
-			{
-				$myarray[$key] = stripslashes($var);
-			}
-			if (is_array($var))
-			{
-				$myarray[$key] = stripslashesArray($var);
-			}
-		}
-	}
-	return $myarray;
+	$value = is_array($value) ?
+	array_map('stripslashesDeep', $value) :
+	stripslashes($value);
+
+	return $value;
 }
 
 /**
@@ -406,7 +408,8 @@ body {
 </style>
 </head>
 <body>
-$info
+<p>$info</p>
+<p><a href="javascript:history.back(-1);">返回</a></p>
 </body>
 </html>
 EOT;

@@ -6,54 +6,6 @@
  */
 
 /**
-	验证用户是否处于登陆状态
-*/
-function isLogin()
-{
-	session_start();
-	global $DB,$db_prefix;
-	if (isset($_SESSION['adminname']) && isset($_SESSION['password']) && $_SESSION['adminname'] !='' && $_SESSION['password'] !='')
-	{
-		$SQL="SELECT password FROM {$db_prefix}user  WHERE username='".$_SESSION['adminname']."' AND password = '".$_SESSION['password']."' ";
-		$result = $DB->query($SQL);
-		$getpass = $DB->fetch_array($result);
-		if ($getpass['password'] != $_SESSION['password']) 
-		{
-			loginPage();
-		}
-	}else 
-	{
-		loginPage();
-	}
-}
-
-/**
-	验证密码/用户
-	@return boolean
-*/
-function checkUser($username,$password,$imgcode,$logincode)
-{
-	global $DB,$userinfo,$db_prefix;
-	if (trim($username) == '' || trim($username) == '')
-	{
-		return FALSE;
-	}else
-	{	
-		$userinfo=$DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username='$username' AND password='$password' ");
-		if (empty($userinfo))
-		{
-			return FALSE;
-		}elseif ($logincode=='y' && $imgcode!=$_SESSION['code'])
-		{
-			return FALSE;
-		}else
-		{
-			return TRUE;
-		}
-	}
-}
-
-/**
 	系统返回信息
 */
 function formMsg($msg,$url,$type)
@@ -61,22 +13,6 @@ function formMsg($msg,$url,$type)
 	global $nonce_tpl;
 	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
 	require_once(getViews('msg'));
-	cleanPage();
-	exit;
-}
-
-/**
-	登录页面
-*/
-function loginPage() 
-{
-	global $login_code,$nonce_tpl;
-	$login_code=='y'?
-	$ckcode = "<tr><td >验证码:<br /><input type=\"hidden\" name=\"action\" value=\"login\" >
-				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
-				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
-	$ckcode = '';
-	require_once(getViews('login'));
 	cleanPage();
 	exit;
 }
@@ -343,24 +279,6 @@ function getRowbg()
 		return "firstalt";
 	} else {
 		return "secondalt";
-	}
-}
-
-/**
-	验证密码(修改密码用)
-	@param string $password 当前密码
-*/
-function checkPass($password)
-{
-	global $DB,$db_prefix;
-	$query=$DB->query("select * from {$db_prefix}user where password='$password'");
-	$ispass = $DB->fetch_array($query);
-	if (empty($ispass))
-	{
-		return false;
-	}else
-	{
-		return true;
 	}
 }
 
