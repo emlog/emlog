@@ -538,6 +538,8 @@ src/templates/wp/preview.jpg -text
 src/templates/wp/search.php -text
 src/templates/wp/tag.php -text
 src/templates/wp/tag_log.php -text
+src/twitter.php -text
+src/wap/index.php -text
 update/up2.0.0to2.2.0.php -text
 update/up2.1.6sp1to2.2.0.php -text
 update/up2.1.6to2.2.0.php -text
