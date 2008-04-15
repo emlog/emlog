@@ -140,6 +140,7 @@ src/lib/C_checkcode.php -text
 src/lib/C_mysql.php -text
 src/lib/F_adm.php -text
 src/lib/F_base.php -text
+src/lib/F_login.php -text
 src/lib/F_rss.php -text
 src/rss.php -text
 src/tb.php -text
