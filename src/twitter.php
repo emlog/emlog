@@ -54,7 +54,7 @@ function getindextw($start_limit = 0)
 	while ($rows = $DB->fetch_array($query))
 	{
 		extract($rows);
-		$date = date("Y-m-d H:i",time());
+		$date = date("Y-m-d H:i",$date);
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>":'';
 		$twitter .="<li>$content $delbt<br /><span>$date</span></li>";
 	}
@@ -62,7 +62,7 @@ function getindextw($start_limit = 0)
 	{
 		$NextPage = $page < ceil($twnum/$index_twnum)?$page+1:$page;
 		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">更早的</a></li>";
-	}elseif ($page == ceil($twnum/$index_twnum))
+	}elseif ($page == ceil($twnum/$index_twnum) && $page != 1)
 	{
 		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=1','twitter')\">最近的</a></li>";
 	}
