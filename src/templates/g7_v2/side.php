@@ -22,8 +22,8 @@ echo <<<EOT
 			<div id="calendar"></div>
 		</ul>
 </li>
-<li><h2>标签</h2>
-		<ul>
+<li><h2 onclick="showhidediv('tag')">标签</h2>
+		<ul id="tag">
 		<p>
 <!--
 EOT;
@@ -44,7 +44,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li><h2>twitter</h2>
+<li><h2 onclick="showhidediv('twitter')">twitter</h2>
 <ul id="twitter">
 <!--
 EOT;
@@ -86,9 +86,9 @@ EOT;
 if($ismusic){
 echo <<<EOT
 -->
-<li><h2>音乐</h2>
-<ul>
-<p>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+<li><h2 onclick="showhidediv('music')">音乐</h2>
+<ul id="music">
+<p>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 </ul>
 </li>
@@ -98,8 +98,8 @@ EOT;
 echo <<<EOT
 -->
 
-<li><h2>评论</h2>
-		<ul>
+<li><h2 onclick="showhidediv('comm')">评论</h2>
+		<ul id="comm">
 			<!--
 EOT;
 foreach($com_cache as $value){
@@ -112,8 +112,8 @@ EOT;
 -->
 		</ul>
 </li>
-<li><h2>存档</h2>
-		<ul>
+<li><h2 onclick="showhidediv('dang')">存档</h2>
+		<ul id="dang">
 <!--
 EOT;
 foreach($dang_cache as $value){
@@ -126,8 +126,8 @@ EOT;
 -->	
 		</ul>
 </li>
-<li><h2>友情链接</h2>
-<ul>
+<li><h2 onclick="showhidediv('links')">友情链接</h2>
+<ul id="links">
 <!--
 EOT;
 foreach($link_cache as $value){
@@ -141,8 +141,8 @@ EOT;
 </ul>
 </li>
 
-<li><h2>其他</h2>
-		<ul>
+<li><h2 onclick="showhidediv('qita')">其他</h2>
+		<ul id="qita">
 		<li>日志数量：$sta_cache[lognum]</li>
 		<li>评论数量：$sta_cache[comnum]</li>
 		<li>引用数量：$sta_cache[tbnum]</li>

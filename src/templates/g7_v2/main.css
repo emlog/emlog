@@ -436,6 +436,7 @@ body {
 	padding-top: 0px;
 	line-height: 18px;
 	margin: 0px;
+	cursor:pointer;
 }
 
 #sidebar ul li ul {
