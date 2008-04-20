@@ -19,7 +19,7 @@ echo <<<EOT
 
 <li>
 		<ul>
-			<p id="calendar"></p>
+			<div id="calendar"></div>
 		</ul>
 </li>
 <li><h2>标签</h2>
@@ -41,12 +41,54 @@ EOT;
 </li>
 <!--
 EOT;
+if($index_twnum>0){
+echo <<<EOT
+-->
+<li><h2>twitter</h2>
+<ul id="twitter">
+<!--
+EOT;
+if(count($tw_cache)>$index_twnum)
+{
+	$morebt = "<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的&raquo;</a>";
+}
+foreach (array_slice($tw_cache,0,$index_twnum) as $value)
+{
+	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
+	$value['date'] = date("Y-m-d H:i",$value['date']);
+echo <<<EOT
+-->
+<li> {$value['content']} $delbt<br><span>{$value['date']}</span></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+<li id="twdate">$morebt</li>
+</ul>
+<!--
+EOT;
+if(ISLOGIN === true)
+{
+echo <<<EOT
+-->
+<ul>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li id='addtw' style="display: none;">
+<textarea name="tw" id="tw" style="width:200px;" style="height:50px;"></textarea><br />
+<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
+</li>
+</ul>
+<!--
+EOT;
+}
+}
 if($ismusic){
 echo <<<EOT
 -->
 <li><h2>音乐</h2>
 <ul>
-<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+<p>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 </ul>
 </li>
@@ -108,6 +150,33 @@ EOT;
 		<li>总访问量：$sta_cache[view_count]</li>
 		</ul>
 </li>
+<!--
+EOT;
+if(ISLOGIN === false){
+	$login_code=='y'?
+	$ckcode = "验证码:<br />
+				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
+				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
+	$ckcode = '';
+echo <<<EOT
+--> 
+<li><h2 onclick="showhidediv('loginfm')">登录</h2>
+<ul id="loginfm" style="display: none;">
+<form name="f" method="post" action="index.php?action=login" id="commentform">
+<li>
+用户名:<br>
+<input name="user" type="text"><br />
+密  码:<br>
+<input name="pw" type="password"><br>
+$ckcode <br>
+<input type="submit" value=" 登录">
+</li>
+</form>
+<!--
+EOT;
+}echo <<<EOT
+-->
+</ul>
 
 <a href="./rss.php"><img src="{$tpl_dir}g7_v2/images/rss.gif" alt="订阅Rss"/></a>
 $exarea

@@ -472,6 +472,16 @@ body {
 	padding-left: 0px;
 	margin-top: 4px;
 }
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:80px;
+}
 #search {
 	background-image: url(images/search_bg.gif);
 	background-position: left 12px;

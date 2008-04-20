@@ -26,7 +26,11 @@ EOT;
 }echo <<<EOT
 -->	<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</li></ul>
-
+<!--
+EOT;
+if($index_twnum>0){
+echo <<<EOT
+-->
 <div class="lister"><span onclick="showhidediv('twitter')">twitter</span></div>
 <ul id="twitter">
 <!--
@@ -64,6 +68,7 @@ echo <<<EOT
 </ul>
 <!--
 EOT;
+}
 }
 if($ismusic){
 echo <<<EOT
