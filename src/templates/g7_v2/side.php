@@ -46,7 +46,7 @@ echo <<<EOT
 -->
 <li><h2>音乐</h2>
 <ul>
-<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="200" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 </ul>
 </li>
@@ -109,7 +109,7 @@ EOT;
 		</ul>
 </li>
 
-<a href="./rss.php"><img src="{$tpl_dir}g7_v3/rss.gif" alt="订阅Rss"/></a>
+<a href="./rss.php"><img src="{$tpl_dir}g7_v2/images/rss.gif" alt="订阅Rss"/></a>
 $exarea
 </ul>
 </div>

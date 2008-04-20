@@ -58,7 +58,7 @@ echo <<<EOT
     </div>
 
 	<div class="content">
-				$value[log_description]
+				<p>$value[log_description]</p>
 				<p>$value[att_img]</p>
 				<p>$value[attachment]</p>
 				<p>$value[tag]</p>

@@ -2,6 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
 -->
+<div id="page">
 <div class="contentA">
 	<div class="lister"><span onclick="showhidediv('bloggerinfo')"></span></div>
     	<ul style="text-align:center" id="bloggerinfo">
@@ -32,9 +33,9 @@ EOT;
 EOT;
 if(count($tw_cache)>$index_twnum)
 {
-	$morebt = "<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的</a>";
+	$morebt = "<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的&raquo;</a>";
 }
-foreach (array_slice($tw_cache,0,5) as $value)
+foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 {
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 	$value['date'] = date("Y-m-d H:i",$value['date']);
@@ -55,9 +56,9 @@ if(ISLOGIN === true)
 echo <<<EOT
 -->
 <ul>
-<li> <a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:200px;"></textarea><br />
+<textarea name="tw" id="tw" style="width:200px;" style="height:50px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
@@ -69,7 +70,7 @@ echo <<<EOT
 -->
 <div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	
 <ul id="blogmusic">
-<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+<li>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </li>
 </ul>
 <!--
@@ -91,11 +92,11 @@ EOT;
 -->
 		</ul>
 	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
-		<ul id="logserch">
-  			<li>
+	<ul id="logserch">
+  	<li>
 	<form name="keyform" method="get" action="index.php"><p>
-    <input name="keyword"  type="text" value="" size="15" maxlength="30" />
-	<input name="action" type="hidden" value="search" size="12" />
+    <input name="keyword"  type="text" value="" style="width:130px;"/>
+	<input name="action" type="hidden" value="search" />
     <input type="submit" value="搜索" onclick="return keyw()" />
 	</p>
    </form>
@@ -157,17 +158,6 @@ $ckcode <br>
 <input type="submit" value=" 登录">
 </li>
 </form>
-<!--
-EOT;
-}else{
-echo <<<EOT
--->
-<div class="lister"><span>管理捷径</span></div>
-<ul id="loginfm">
-<li><a href="./index.php?action=logout">注销</li>
-<li><a href="./adm/add_log.php">写日志</li>
-<li><a href="./adm/configure.php">博客设置</li>
-</ul>
 <!--
 EOT;
 }echo <<<EOT

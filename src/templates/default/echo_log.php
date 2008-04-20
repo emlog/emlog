@@ -1,6 +1,6 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-//include getViews('side');
+include getViews('side');
 //$att_img = getAttachment($att_img,600,500);
 echo <<<EOT
 -->
@@ -21,9 +21,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 <div id="tb_list">
-<p><b>引用:</b><a name="tb"></a></p>
-<li>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</li>  
-<li>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</li>
+<p><b>引用地址：</b>{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}<a name="tb"></a></p>
 </div>
 <!--
 EOT;

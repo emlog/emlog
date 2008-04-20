@@ -44,14 +44,14 @@ body{
 }
 #blogname a:link{color:#4A7FF8;text-decoration:none}
 #blogname a:visited{color:#4A7FF8;text-decoration:none}
-#siteTitle #blogdes{font-size:12px; text-align:right;}
+#siteTitle #blogdes{font-size:12px; text-align:left;}
 #navBar {
 	font-size:14px;
 	margin:0px;
 	background-color:#FFFFFF;
 	border-bottom: 2px solid #BBBBBB;
 	padding: 2px;
-	text-align: left;
+	text-align: right;
 	}
 #navBar li{
 	list-style: none;
@@ -74,6 +74,11 @@ body{
 	background-color:#ffffff;
 	}
 /*右侧栏*/
+#page{
+	width:960px;
+	float:left;
+	background:#fff url(./sidebar_border.gif) repeat-y;
+	}
 div.contentA{
 	float: right;
 	margin: 0px;
@@ -111,7 +116,6 @@ div.contentA{
 	float:left;
 	background-color:#FFFFFF;
 	width:700px;
-	border-right:1px dashed #A6A6A6
 	}
 #contentB li{
 	list-style:none;
@@ -165,7 +169,7 @@ div.contentA{
 .nextlog{
 	margin-bottom:10px;
 }
-#com_list li{margin:5px 10px 10px 10px; border-bottom:1px dotted #63617b; width:700px;}
+#com_list li{margin:5px 10px 10px 10px; border-bottom:1px dotted #63617b;}
 #com_list span{color:#4A7FF8;}
 #tb_list li{margin:10px 10px; width:700px;}
 #tags{ margin:10px 50px;}
@@ -284,7 +288,7 @@ div.contentA{
 	font-family: Arial;
 	font-size: 14px;
 	height:20px;
-	background-color: #F3F3F3;
+	background-color: #FFFFFF;
 	color: #666666;
 }
 .textarea {

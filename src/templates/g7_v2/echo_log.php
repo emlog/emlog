@@ -30,9 +30,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 	<div id="comments">
-	<h3 id="respond">引用:<a name="tb"></a></h3>
-	<li>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</li>  
-	<li>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</li>
+	<h3 id="respond">引用地址：{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}<a name="tb"></a></h3>
 	</div>
 <!--
 EOT;

@@ -11,7 +11,6 @@ body,h1,h2,h3,p,ol,ul,li,a,span,blockquote,form,div,img,iframe,input,textarea {
 	padding: 0;
 	border: 0;
 	font-weight:normal;
-	font-size: 12px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	list-style-type: none;
 } 
@@ -22,6 +21,7 @@ body {
 	background-image: url(images/body_bg.png);
 	background-repeat: repeat-x;
 	background-position: top;
+	font-size: 12px;
 }
 
 #top {
@@ -273,6 +273,10 @@ body {
 .content {
 	margin-right: 12px;
 	margin-left: 10px;
+	font-size:14px;
+}
+#des
+{
 }
 .content h3 {
 	font-size: 14px;
@@ -295,7 +299,7 @@ body {
 }
 .content p {
 	margin-bottom: 15px;
-	line-height: 16px;
+	line-height: 23px;
 }
 .content blockquote {
 	padding-left: 12px;

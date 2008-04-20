@@ -1,6 +1,5 @@
 <!--<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-$load=$action?'':"onload=\"sendinfo('$calendar_url','calendar');\"";
 echo <<<EOT
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -17,7 +16,7 @@ echo <<<EOT
 <link href="{$tpl_dir}default/main.css" rel="stylesheet" type="text/css" />
 <script src="{$tpl_dir}default/main.js" type="text/javascript"></script>
 </head>
-<body $load>
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="holder">
 <div id="header">
 	<div id="siteTitle">
@@ -26,13 +25,24 @@ echo <<<EOT
   		<li id="blogdes">$blog_info</li>
 	</ul>
   	</div>
-	<div id="navBar">
-    	<ul>
-	      <li><a href="./">首页</a></li>
-		  <li><a href="./index.php?action=tag">标签</a></li>
-    	</ul>
-  	</div>
-	</div>
+<div id="navBar">
+<ul>
+<!--
+EOT;
+if(ISLOGIN){
+echo <<<EOT
+-->
+	<li><a href="./adm/add_log.php">写日志</a></li>
+	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./index.php?action=logout">退出</a></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</ul>
+</div>
+</div>
 <!--
 EOT;
 ?>-->
