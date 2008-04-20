@@ -11,8 +11,8 @@ if($action == '')
 {
 	include getViews('header');
 	$bakfiles = glob("../adm/bakup/*.sql");
-	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag', 'user','trackback');
-	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,10);
+	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag','trackback','twitter','user');
+	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	require_once(getViews('bakdata'));
 	include getViews('footer');
 	cleanPage();
@@ -21,7 +21,7 @@ if($action=='bakstart')
 {
 	$bakfname = isset($_POST['bakfname'])?$_POST['bakfname']:'';
 	$table_box = isset($_POST['table_box'])?$_POST['table_box']:'';
-	
+
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
 	{
 		formMsg('错误的备份文件名','javascript:history.go(-1);',0);
@@ -32,29 +32,25 @@ if($action=='bakstart')
 	$sqldump = '';
 	foreach($table_box as $table)
 	{
-		$sqldump .= dataBak($table); 
+		$sqldump .= dataBak($table);
 	}
 
 	// 如果数据内容不是空就开始保存
-	if(trim($sqldump)) 
+	if(trim($sqldump))
 	{
-		$sqldump = 
-		"#----------------------------------------\n".
-		"#emlog_$edition 数据库备份文件\n#备份日期:".
-		date('Y/m/d')."\n".
-		"#----------------------------------------\n\n\n".$sqldump;
+		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n"."\n\n\n".$sqldump;
 		//备份到服务器
 		@$fp = fopen($filename, "w+");
 		if ($fp)
 		{
 			@flock($fp, 3);
-			if(@!fwrite($fp, $sqldump)) 
+			if(@!fwrite($fp, $sqldump))
 			{
 				@fclose($fp);
-				 formMsg( '备份失败,请检查目录的权限是否可写','javascript:history.go(-1);',0);
+				formMsg( '备份失败,请检查目录的权限是否可写','javascript:history.go(-1);',0);
 			}else
 			{
-				formMsg('数据成功备份至服务器','javascript:history.go(-1);',1);
+				formMsg('数据成功备份至服务器','./backupdata.php',1);
 			}
 		}else
 		{
@@ -80,12 +76,12 @@ if ($action == 'renewdata')
 		if ($extension !== 'sql')
 		{
 			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件.', 'javascript:history.go(-1);',0);
-		}		
+		}
 		$fp=fopen($sqlfile,'rb');
 		$bakinfo=fread($fp,200);
 		fclose($fp);
 		$detail=explode("\n",$bakinfo);
-		$dbfile['system']=substr($detail[1],1,11);
+		$dbfile['system'] = substr($detail[0],1,11);
 		if ($dbfile['system'] !== "emlog_$edition")
 		{
 			formMsg("导入失败!该备份文件不是emlog_$edition的备份文件!", 'javascript:history.go(-2);',0);
@@ -104,6 +100,7 @@ if ($action == 'renewdata')
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_link('../cache/links');
 	$MC->mc_tags('../cache/tags');
+	$MC->mc_twitter('../cache/twitter');
 	formMsg('数据恢复成功', './backupdata.php',1);
 }
 
@@ -118,12 +115,12 @@ function bakindata($filename)
 		$value = trim($value);
 		if(!$value || $value[0]=='#') continue;
 		if(eregi("\;$",$value))
-		{			
+		{
 			$query .= $value;
 			if(eregi("^CREATE",$query))
 			{
 				$query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is",'',$query);
-			}			
+			}
 			$DB->query($query);
 			$query = '';
 		} else

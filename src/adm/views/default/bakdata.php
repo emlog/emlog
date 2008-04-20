@@ -3,7 +3,7 @@
 if(!defined('ADM_ROOT')) {exit('error!');}
 print <<<EOT
 -->
-<div class=containertitle><b>备份管理</b></div>
+<div class=containertitle><b>数据库备份</b></div>
 <div class=line></div>
 <SCRIPT type="text/javascript" language=JavaScript>
 function CheckAll(form) {
@@ -54,22 +54,20 @@ EOT;
     <tr>
       <td colspan="5">
 <span class="notice"><b>数据导入注意事项</b></span><br>
-1. 导入的数据必须是用emlog的备份的文件.<br>
-2. 导入的数据文件内容必须全部是当前emlog所使用的数据表.如果文件内的表前缀和当前系统不同.将不允许导入.<br>
-3. 如果你的mysql版本为4.1或者更高版本,请先确认安装emlog的数据库字符集为utf8,否则可能导致数据丢失！
+1. 导入的备份文件必须是用emlog备份的文件<br>
+2. 如果你的mysql版本为4.1或者更高版本,请先确认安装emlog的数据库字符集为utf8_general_ci,否则可能导致数据丢失！
 </td>
     </tr>
 </tbody>
 </table>
 </form>
-<div class=containertitle><b>数据库备份</b></div>
 <div class=line></div>
 <form action="backupdata.php?action=bakstart" method="post">
 <table width="95%" align="center" border="0">
     <tbody>
       <tr>
         <td valign="top" width="65">选择要备份的数据库表:<br /></td>
-        <td width="608"><select multiple="multiple" size="10" name="table_box[]">
+        <td width="608"><select multiple="multiple" size="11" name="table_box[]">
 <!--
 EOT;
 foreach($tables  as $value){
@@ -86,7 +84,6 @@ EOT;
         <td align="left" width="65">备份文件名:</td>
         <td valign="top">	  
 		<input maxlength="200" size="35" value="$defname" name="bakfname" /><b>.sql</b>
-		<br>
 		<span class="care">文件名只能由英文字母、数字、下划线组成</span>
 		</td>
       </tr>      
