@@ -33,7 +33,7 @@ class MySql {
 
 	function query($sql)
 	{
-		$query = @ mysql_query($sql,$this->id) OR sysMsg("SQL语句执行错误：$sql");;
+		$query = @ mysql_query($sql,$this->id) OR sysMsg("SQL语句执行错误：$sql <br />".$this->geterror());
 		$this->query_num();
 		return $query;
 	}

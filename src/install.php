@@ -274,7 +274,8 @@ CREATE TABLE {$db_prefix}config (
   icp varchar(255) NOT NULL default '',
   index_lognum tinyint(3) unsigned NOT NULL default '0',
   index_comnum tinyint(3) unsigned NOT NULL default '0',
-  index_tagnum tinyint(3) unsigned NOT NULL default '1',
+  index_tagnum tinyint(3) unsigned NOT NULL default '0',
+  index_twnum tinyint(3) unsigned NOT NULL default '0',
   comment_subnum tinyint(3) unsigned NOT NULL default '0',
   login_code enum('n','y') NOT NULL default 'n',
   comment_code enum('n','y') NOT NULL default 'n',
@@ -285,7 +286,7 @@ CREATE TABLE {$db_prefix}config (
   timezone float NOT NULL default '8',
   exarea text NOT NULL
 )".$add."
-INSERT INTO {$db_prefix}config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_tagnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,30, 20,'default', 8 ,'');
+INSERT INTO {$db_prefix}config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_tagnum, index_twnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,30,8,20,'default', 8 ,'');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id smallint(4) unsigned NOT NULL auto_increment,
@@ -380,6 +381,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$MC->mc_sta('./cache/sta');
 	$MC->mc_link('./cache/links');
 	$MC->mc_tags('./cache/tags');
+	$MC->mc_twitter('./cache/twitter');
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！Emlog安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入Emlog </a>";
 	sysMsg($result);
