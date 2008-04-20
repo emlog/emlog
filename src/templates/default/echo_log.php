@@ -21,7 +21,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 <div id="tb_list">
-<p><b>引用地址：</b>{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}<a name="tb"></a></p>
+<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}"><a name="tb"></a></p>
 </div>
 <!--
 EOT;
