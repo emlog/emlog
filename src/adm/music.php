@@ -34,7 +34,7 @@ if($action == '')
 	{
 		foreach($mlinks as $key=>$val)
 		{
-			$content .= urldecode($val)."\n";
+			$content .= urldecode($val)."\t".$mdes[$key]."\n";
 		}
 	}
 	
@@ -49,15 +49,25 @@ if($action== 'mod')
 	$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
 	$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
 	$link = '';
+	$des = '';
 	$i = 0;
 	if($mlinks)
 	{
 		$mlinks = explode("\n",$mlinks);
-		foreach($mlinks as $key=>$val)
+		foreach($mlinks as $val)
 		{
+			$val = str_replace("\r",'',$val);
 			if(preg_match("/^(http:\/\/).+/i",$val)>0)
 			{
-				$link .= "\$mlinks[$i] = \"".urlencode($val)."\";\n";
+				$mstr = preg_split ("/[\s,]+/", $val,2);
+				$link .= "\$mlinks[$i] = \"".urlencode($mstr[0])."\";\n";
+				if(count($mstr) == 2)
+				{
+					$des .= "\$mdes[$i] = \"".$mstr[1]."\";\n";
+				}else 
+				{
+					$des .= "\$mdes[$i] = \"\";\n";
+				}
 				$i++;
 			}
 		}
@@ -66,7 +76,7 @@ if($action== 'mod')
 	{
 		formMsg( "音乐链接中没有可用的音乐地址","./music.php",0);
 	}
-	$mcache = "<?php\n$link\n\$auto=$auto;\n\$randplay=$randplay;\n\$ismusic=$ismusic;\n?>";
+	$mcache = "<?php\n$link\n$des\n\$auto=$auto;\n\$randplay=$randplay;\n\$ismusic=$ismusic;\n?>";
 	$MC->mc_print($mcache,'../cache/musics');
 	formMsg( "背景音乐设置成功","./music.php",1);
 }
