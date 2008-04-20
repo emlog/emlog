@@ -10,7 +10,13 @@ require_once("./common.php");
 $blogid = intval($_REQUEST['id']);
 $ec = strtolower($_REQUEST['ec']);
 $sc = $_REQUEST['sc'];
-$encode = in_array($ec, array('gbk', 'utf-8')) ? $ec : 'utf-8';
+$encode = 'utf-8';
+$charset = strtolower($_SERVER['HTTP_ACCEPT_CHARSET']);
+if ($charset && !strstr($charset, 'utf-8')) 
+{
+	$encode = $charset;
+}
+
 $title     = iconv2utf(html2text(addslashes(trim($_REQUEST['title']))));
 $excerpt   = trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255);
 $url       = addslashes(trim($_REQUEST['url']));

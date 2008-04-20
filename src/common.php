@@ -94,8 +94,9 @@ $name = $user_cache['name'];
 //music
 if($ismusic)
 {
-	$randindex = mt_rand(0,count($mlinks)-1);
-	$music = $randplay?$mlinks[$randindex]:$mlinks[0];
+	$key = $randplay?mt_rand(0,count($mlinks)-1):0;
+	$music = $mlinks[$key];
+	$musicdes = "$mdes[$key]";
 	$autoplay = $auto?"&autoplay=1":'';
 }
 //twitter

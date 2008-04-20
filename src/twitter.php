@@ -38,7 +38,7 @@ if(ISLOGIN === true && $action == 'del')
 	echo $twitter;
 }
 //读取twitter
-function getindextw($start_limit = 0)
+function getindextw()
 {
 	global $DB,$db_prefix,$index_twnum;
 	
@@ -61,10 +61,10 @@ function getindextw($start_limit = 0)
 	if($twnum > $index_twnum && $page != ceil($twnum/$index_twnum))
 	{
 		$NextPage = $page < ceil($twnum/$index_twnum)?$page+1:$page;
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">更早的</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">更早的&raquo;</a></li>";
 	}elseif ($page == ceil($twnum/$index_twnum) && $page != 1)
 	{
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=1','twitter')\">最近的</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=1','twitter')\">&laquo;最近的</a></li>";
 	}
 	return $twitter;
 }
