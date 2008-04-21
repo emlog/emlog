@@ -18,12 +18,23 @@ echo <<<EOT
 	<link href="{$tpl_dir}g7_v3/style.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}g7_v3/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url');">
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="shell">
 <div id="header">
 <ul>
-<li><a href="./">首页</a></li>
-<li><a href="./adm/">登录</a></li>
+<!--
+EOT;
+if(ISLOGIN){
+echo <<<EOT
+-->
+	<li><a href="./adm/add_log.php">写日志</a></li>
+	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./index.php?action=logout">退出</a></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
 </ul>
 <h1><a href="./">$blogname</a></h1>
 $blog_info

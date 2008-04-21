@@ -20,9 +20,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 	<div class="comments-template">
-	<h2 id="comments">引用:<a name="tb"></a></h2>
-	<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
-	<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
+	<h2 id="comments">引用：<input type="text" style="width:350px" id="email" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}"><a name="tb"></a></h2>
 	</div>
 <!--
 EOT;

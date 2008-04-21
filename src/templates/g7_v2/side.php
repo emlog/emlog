@@ -172,12 +172,11 @@ $ckcode <br>
 <input type="submit" value=" 登录">
 </li>
 </form>
+</ul>
 <!--
 EOT;
 }echo <<<EOT
 -->
-</ul>
-
 <a href="./rss.php"><img src="{$tpl_dir}g7_v2/images/rss.gif" alt="订阅Rss"/></a>
 $exarea
 </ul>

@@ -49,7 +49,7 @@ body {
 }
 
 #header h1 {
-	font-size: 80px;
+	font-size: 60px;
 	float: left;
 	padding-right: 25px;
 	color: #FEFEFE;
@@ -69,13 +69,9 @@ body {
 } 
 #header h1 a:hover {
 	color:#D67900;
-	font-size: 80px;
-	letter-spacing: -10px;
 } 
 #header a:hover {
 	color:#D67900;
-	font-size: 24px;
-	letter-spacing: -5px;
 	font-weight: bolder;
 } 
 #header h1 a:active,#header a:active {
@@ -285,12 +281,12 @@ ol a:active {
 	text-decoration: none;
 } 
 #sidebar a:link {
-	color:#949494;
+	color:#43AFD2;
 	text-decoration: none;
 } 
 
 #sidebar a:visited {
-	color:#949494;
+	color:#43AFD2;
 	text-decoration: none;
 } 
 #sidebar a:hover {
@@ -319,6 +315,17 @@ ol a:active {
 #sidebar p a:active {
 	color:#9eb3d6;
 } 
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:130px;
+}
+
 .children {
 	padding: 0px;
 	margin-bottom: -12px;
@@ -375,6 +382,7 @@ ol a:active {
 	color: #669900;
 	padding-bottom: 2px;
 	font-weight: normal;
+	cursor:pointer;
 }
 
 #sidebar li ul {
@@ -416,7 +424,19 @@ ol,ul,li,h1,h2,h3,p,form,#searchsubmit,#s,blockquote {
 	margin-right: 4px;
 	padding-left: 2px;
 }
-
+#s2
+{
+	list-style-type: none;
+	border: 1px solid #edeae1;
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #949494;
+	height: 16px;
+	width: 45px;
+	padding-top: 2px;
+	margin-right: 4px;
+	padding-left: 2px;
+}
 
 .postdata {
 	color: #bdbdbd;
