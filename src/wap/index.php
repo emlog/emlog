@@ -7,8 +7,6 @@
 
 error_reporting(E_ALL);
 
-//$start_time=array_sum(explode(' ',microtime()));
-
 require_once('../config.php');
 require_once('../lib/F_base.php');
 require_once('../lib/C_mysql.php');
