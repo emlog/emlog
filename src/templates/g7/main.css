@@ -73,7 +73,7 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 #sidebar .statistics h2{background-image:url(images/statistics.gif);}
 #meta h2{background-image:url(images/meta.gif);}
 #calendar h2{background-image:url(images/calendar.gif);}
-#sidebar h2{background-repeat:no-repeat;background-position:left;font-size:14px;color:#43afd2;font-weight:400;margin-top:0;line-height:16px;margin-bottom:12px;padding-left:22px;}
+#sidebar h2{ cursor:pointer;background-repeat:no-repeat;background-position:left;font-size:14px;color:#43afd2;font-weight:400;margin-top:0;line-height:16px;margin-bottom:12px;padding-left:22px;}
 #sidebar_1{float:left;overflow:hidden;display:inline-block;width:186px;margin-right:10px;border:1px solid #e0e0e0;background-color:#fff;background-image:url(images/bg_sidebar_1.gif);background-repeat:no-repeat;background-position:1px 1px;padding-left:10px;padding-top:10px;padding-right:10px;}
 #sidebar_tag{font-family:Tahoma, Arial, Helvetica, sans-serif;border:1px solid #e0e0e0;background-color:#fff;overflow:hidden;display:inline-block;width:348px;float:left;margin-top:10px;background-image:url(images/bg_tag.gif);background-repeat:no-repeat;background-position:center 1px;padding:10px;}
 #sidebar_2{display:inline-block;width:130px;border:1px solid #e0e0e0;color:#999;float:right;background-color:#fff;background-image:url(images/bg_sidebar_2.gif);background-repeat:no-repeat;background-position:1px 1px;padding:10px;}
@@ -141,3 +141,13 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 	font-size:14px;
 	margin-left:41px;
 	}
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:80px;
+}

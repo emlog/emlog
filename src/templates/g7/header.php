@@ -19,7 +19,7 @@ echo <<<EOT
 	<script src="{$tpl_dir}g7/main.js" type="text/javascript"></script>
 </head>
 
-<body onload="sendinfo('$calendar_url');">
+<body onload="sendinfo('$calendar_url','calendar');">
 
 <div id="header"><div id="ing">
 <div id="ing_info"><div id="home"><img src="{$tpl_dir}g7/images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./">$blogname</a></div>
