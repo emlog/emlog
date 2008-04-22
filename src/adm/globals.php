@@ -62,8 +62,6 @@ if (!is_dir($em_tpldir))
 }
 //实例化一个缓存生成对象
 $MC = new mkcache($host, $user, $pass,$db,$db_prefix);
-unset($host, $user, $pass,$db);
-
 //登陆验证
 if ($action == 'login') 
 {

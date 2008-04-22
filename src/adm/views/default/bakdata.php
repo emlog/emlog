@@ -51,13 +51,6 @@ EOT;
 	  	  <input type="submit" value="删除所选备份" class="submit2" />
 </td>
 </tr>
-    <tr>
-      <td colspan="5">
-<span class="notice"><b>数据导入注意事项</b></span><br>
-1. 导入的备份文件必须是用emlog备份的文件<br>
-2. 如果你的mysql版本为4.1或者更高版本,请先确认安装emlog的数据库字符集为utf8_general_ci,否则可能导致数据丢失！
-</td>
-    </tr>
 </tbody>
 </table>
 </form>

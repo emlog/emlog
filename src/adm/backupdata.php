@@ -38,7 +38,8 @@ if($action=='bakstart')
 	// 如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
-		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n"."\n\n\n".$sqldump;
+		$setchar = $DB->version() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n$setchar\n$sqldump";
 		//备份到服务器
 		@$fp = fopen($filename, "w+");
 		if ($fp)
@@ -60,7 +61,6 @@ if($action=='bakstart')
 	{
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
 	}
-
 }
 
 //恢复数据
