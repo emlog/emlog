@@ -115,3 +115,88 @@ function addhtml(content){
 function addattach(imgurl,imgsrc,des,aid){
 	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\"><img src=\"'+imgsrc+'\" alt=\"附件[ematt:'+aid+'] '+des+'\" border=\"0\"></a>');
 }
+
+var xmlhttp = false;
+var node = '';
+function createxmlhttp() {//初始化、指定处理函数、发送请求的函数
+	xmlhttp = false;
+	//开始初始化XMLHttpRequest对象
+	if(window.XMLHttpRequest) { //Mozilla 浏览器
+		xmlhttp = new XMLHttpRequest();
+		if (xmlhttp.overrideMimeType) {//设置MiME类别
+			xmlhttp.overrideMimeType('text/xml');
+		}
+	}
+	else if (window.ActiveXObject) { // IE浏览器
+		try {
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+	if (!xmlhttp) { // 异常，创建对象实例失败
+		window.alert("不能创建XMLHttpRequest对象实例.");
+		return false;
+	}
+}
+function sendinfo(url,nodeid){
+	node = nodeid;
+	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	createxmlhttp();
+	var querystring = url+ "&timetmp=" + new Date().getTime();;
+	xmlhttp.open("GET", querystring, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = processRequest;
+}
+function postinfo(url,nodeid){
+	node = nodeid;
+	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	createxmlhttp();
+	var url2 = url + "&timetmp=" + new Date().getTime();
+	xmlhttp.open("POST", url2, true);
+	xmlhttp.onreadystatechange = processRequest;
+	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+	var tw = document.getElementById("tw").value;
+	var querystring = "tw=" + tw;
+	xmlhttp.send(querystring);
+}
+function autosave(url,nodeid)
+{
+	node = nodeid;
+	createxmlhttp();
+	var url2 = url + "&timetmp=" + new Date().getTime();
+	xmlhttp.open("POST", url2, true);
+	xmlhttp.onreadystatechange = processRequest;
+	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+	var title = document.getElementById("title").value;
+	var logid = document.getElementById("logid").value;
+	var oEditor = FCKeditorAPI.GetInstance('content');
+	var content = oEditor.GetXHTML();
+	var querystring = "content="+content+"&title="+title+"&logid="+logid;
+	if(title!="" && content!="")
+	{
+		document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
+		xmlhttp.send(querystring);
+	}
+	setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
+}
+function processRequest() {
+	if (xmlhttp.readyState == 4) {
+		if (xmlhttp.status == 200) {
+			var ret = xmlhttp.responseText;
+			if(ret.substring(0,9) == "autosave_")
+			{
+				var logid = ret.substring(9);
+				var iddiv = "<input type=hidden  name=logid id=logid value="+logid+">";
+			}
+			document.getElementById(node).innerHTML = iddiv;
+			var digital = new Date();
+			var hours = digital.getHours();
+			var mins = digital.getMinutes();
+			var secs = digital.getSeconds();
+			document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存于 "+hours+":"+mins+":"+secs+" </span>";
+		}
+	}
+}

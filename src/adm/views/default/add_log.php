@@ -13,6 +13,7 @@ function savedraft(){
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
+setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
 </script>
 <div class=containertitle><b>写日志</b></div>
 <div class=line></div>
@@ -20,8 +21,8 @@ function savedraft(){
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题:</b><br />
-          <input maxlength="200" style="width:460px;" name="title" />
+          <td><b>标题：</b><br />
+          <input maxlength="200" style="width:460px;" name="title" id="title"/>
           <br /></td>
         </tr>
         <tr>
@@ -30,7 +31,7 @@ function savedraft(){
                   <tr>
                     <td>
                     <input type="hidden" id="content" name="content" value="" style="display:none" />
-                    <b>内容:</b><br />
+                    <b>内容：</b><span id="asmsg"><input type="hidden" name="logid" id="logid" value="-1"></span><span id="auto_msg"></span><br />
                     <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:680px;" height="450" frameborder="no" scrolling="no"></iframe>              
                     </td>
                   </tr>

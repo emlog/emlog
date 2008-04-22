@@ -8,14 +8,17 @@ foreach ($att_type as $val){
 }
 print <<<EOT
 -->
+<script>
+setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
+</script>
 <div class=containertitle><b>编辑日志</b></div>
 <div class=line></div>
   <form action="admin_log.php?action=edit" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题:</b><br />
-          <input maxlength="200" style="width:460px;" name="title" value="$title"/></td>
+          <td><b>标题：</b><br />
+          <input maxlength="200" style="width:460px;" name="title" id="title" value="$title"/></td>
         </tr>
 <!--
 if($attach)
@@ -27,7 +30,7 @@ $anyatt = '<b>附件:</b><br />';
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td><p>
-					<b>内容:</b><br />
+					<b>内容：</b> <span id="asmsg"><input type="hidden" name="logid" id="logid" value="$logid"></span><span id="auto_msg"></span><br />
                     <input type="hidden" id="content" name="content" value="{$content}" style="display:none" />
                     <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:680px;" height="450" frameborder="no" scrolling="no"></iframe>              
                       </p>
