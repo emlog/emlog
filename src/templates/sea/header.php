@@ -18,11 +18,8 @@ echo <<<EOT
 	<link href="{$tpl_dir}sea/style.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}sea/main.js" type="text/javascript"></script>
 </head>
-
-<body onload="sendinfo('$calendar_url');">
-
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="container">
-
 	<div id="page">
 
 		<div id="menu">

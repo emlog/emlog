@@ -30,7 +30,7 @@ if($allow_tb == 'y'){
 echo <<<EOT
 -->	
 	<div id="comments">
-	<h3 id="respond">引用地址：<input type="text" style="width:350px" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}" size="40"/><a name="tb"></a></h3>
+	<h3 id="respond">引用地址：<input type="text" style="width:350px" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}" /><a name="tb"></a></h3>
 	</div>
 <!--
 EOT;

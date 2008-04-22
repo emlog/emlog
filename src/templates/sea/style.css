@@ -298,6 +298,7 @@ input#author, input#email, input#url{
 	text-transform: uppercase;
 	background: #11252c url(images/bg_ul_li_h2.gif) no-repeat;
 	color: #fff;
+	cursor:pointer;
 }
 
 .sidebar ul ul{
@@ -319,7 +320,16 @@ input#author, input#email, input#url{
 .sidebar ul ul ul li{
 	padding: 0 0 0 10px;
 }
-
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:50px;
+}
 /* comments template */
 
 .comments-template{
