@@ -49,7 +49,7 @@ if($action== 'addlog')
 	$tagstring = isset($_POST['tag'])?addslashes(trim($_POST['tag'])):'';
 	$edittime = isset($_POST['edittime'])?intval(isset($_POST['edittime'])):'';
 	$content = isset($_POST['content'])?addslashes(trim($_POST['content'])):'';
-	$blogid = isset($_POST['logid'])?intval(trim($_POST['logid'])):-1;//如被自动保存为草稿则有blog id号
+	$blogid = isset($_POST['as_logid'])?intval(trim($_POST['as_logid'])):-1;//如被自动保存为草稿则有blog id号
 	$pingurl  = isset($_POST['pingurl'])?addslashes($_POST['pingurl']):'';
 	$allow_remark = isset($_POST['allow_remark'])?addslashes($_POST['allow_remark']):'';
 	$allow_tb = isset($_POST['allow_tb'])?addslashes($_POST['allow_tb']):'';
@@ -80,7 +80,7 @@ if($action== 'addlog')
 	//$cont_attid = serialize($matches[1]);
 
 	//日志写入数据库
-	if($blogid != -1)
+	if($blogid > 0)
 	{
 		$sql=" UPDATE {$db_prefix}blog SET
 				title='$title',
@@ -168,14 +168,14 @@ if($action == 'autosave')
 {
 	$title = isset($_POST['title'])?addslashes(trim($_POST['title'])):'';
 	$content = isset($_POST['content'])?addslashes(trim($_POST['content'])):'';
-	$logid = isset($_POST['logid'])?intval((trim($_POST['logid']))):'';
+	$logid = isset($_POST['as_logid'])?intval((trim($_POST['as_logid']))):'';
 
-	if($logid != -1)
+	if($logid >=0)//编辑草稿
 	{
 		$sql=" UPDATE {$db_prefix}blog SET title='$title',content='$content' WHERE gid='$logid' ";
 		$DB->query($sql);
 		echo "autosave_$logid";
-	}else 
+	}elseif ($logid!=-2)
 	{
 		//日志写入数据库
 		$time = time();

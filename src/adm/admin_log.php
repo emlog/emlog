@@ -140,6 +140,8 @@ if ($action=='mod'){
 	extract($rows);
 	$title = htmlspecialchars($title);
 	$adddate = $date;
+	//auto save
+	$as_logid = $hide == 'n'?-2:$logid;
 	//log_content
 	$content = htmlspecialchars($content);
 	//tag

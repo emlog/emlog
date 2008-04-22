@@ -31,7 +31,7 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
                   <tr>
                     <td>
                     <input type="hidden" id="content" name="content" value="" style="display:none" />
-                    <b>内容：</b><span id="asmsg"><input type="hidden" name="logid" id="logid" value="-1"></span><span id="auto_msg"></span><br />
+                    <b>内容：</b><span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="-1"></span><span id="auto_msg"></span><br />
                     <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:680px;" height="450" frameborder="no" scrolling="no"></iframe>              
                     </td>
                   </tr>

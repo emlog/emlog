@@ -30,7 +30,7 @@ $anyatt = '<b>附件:</b><br />';
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td><p>
-					<b>内容：</b> <span id="asmsg"><input type="hidden" name="logid" id="logid" value="$logid"></span><span id="auto_msg"></span><br />
+					<b>内容：</b> <span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="$as_logid"></span><span id="auto_msg"></span><br />
                     <input type="hidden" id="content" name="content" value="{$content}" style="display:none" />
                     <iframe id="content___Frame" src="./editor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" style="width:680px;" height="450" frameborder="no" scrolling="no"></iframe>              
                       </p>

@@ -171,11 +171,11 @@ function autosave(url,nodeid)
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
 	var title = document.getElementById("title").value;
-	var logid = document.getElementById("logid").value;
+	var logid = document.getElementById("as_logid").value;
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
-	var querystring = "content="+content+"&title="+title+"&logid="+logid;
-	if(title!="" && content!="")
+	var querystring = "content="+content+"&title="+title+"&as_logid="+logid;
+	if(logid!=-2 && title!="" && content!="")
 	{
 		document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
 		xmlhttp.send(querystring);
@@ -189,7 +189,7 @@ function processRequest() {
 			if(ret.substring(0,9) == "autosave_")
 			{
 				var logid = ret.substring(9);
-				var iddiv = "<input type=hidden  name=logid id=logid value="+logid+">";
+				var iddiv = "<input type=hidden  name=as_logid id=as_logid value="+logid+">";
 			}
 			document.getElementById(node).innerHTML = iddiv;
 			var digital = new Date();
