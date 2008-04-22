@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 a{
-	text-decoration: underline;
+	text-decoration: none;
 	color: #ca0000;
 }
 
@@ -140,7 +140,8 @@ input#author, input#email, input#url{
 }
 
 .post h2{
-	padding: 20px;
+	padding: 5px;
+	margin:10px;
 	text-transform: lowercase;
 	background: #ffe2ef url(images/bg_post_h2.gif) repeat-x bottom left;
 	color: #800001;
@@ -229,7 +230,7 @@ input#author, input#email, input#url{
 
 .sidebar #description, .sidebar #sidebar_title{
 	padding: 20px;
-	line-height: 24px;
+	line-height: 20px;
 	background: #fafa82 url(images/bg_description.gif) repeat-x bottom left;
 }
 #msg{
@@ -278,7 +279,7 @@ input#author, input#email, input#url{
 
 .sidebar ul ul li{
 	padding: 8px 0 0;
-	line-height: 24px;
+	line-height: 18px;
 }
 
 .sidebar ul ul ul{

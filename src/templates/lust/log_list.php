@@ -2,11 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
 -->
-
 	<div class="maincolumn">
-
-		<div class="banner">&#160;</div>
-
 		<div class="clear"></div>
 <!--
 EOT;

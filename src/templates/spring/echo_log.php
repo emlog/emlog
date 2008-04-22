@@ -43,7 +43,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 echo <<<EOT
 -->
 	
-<li class="alt" id="comment-$value[cid]">
+<li class="alt" id="comment-$value[cid]"><a name="$value[cid]">
 <h3 class="commenttitle">$value[poster]</h3>
 <p class="commentmeta"> @ $value[addtime]</p>
 $value[content]	<br /><br />$value[reply]</li>	

@@ -71,11 +71,11 @@ EOT;
 		<ul>
 			<p>
 <form name="keyform" method="get" action="index.php">
-    <input name="keyword" type="text" id="s" value="" size="10" maxlength="30" />
+    <input name="keyword" type="text" id="s" value="" style=" width:120px;" maxlength="30" />
     <input name="action" type="hidden" value="search"/>
-    <input type="submit" value="Search" id="searchsubmit" onclick="return keyw()" />
+    <input type="submit" value="搜索" id="searchsubmit" onclick="return keyw()" />
    </form>
-			</p>
+	</p>
 		</ul>
 </li>
 

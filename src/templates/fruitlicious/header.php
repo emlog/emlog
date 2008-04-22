@@ -27,7 +27,7 @@ echo <<<EOT
 
 		<h1><a href="./">$blogname</a></h1>
 
-		<div id="banner">&#160;</div>
+		
 <!--
 EOT;
 ?>-->

@@ -83,7 +83,7 @@ EOT;
       <tr>
         <td align="left" width="65"></td>
         <td valign="top">	  
-		<input type="submit" value="确定备份" class="submit2" />
+		<input type="submit" value="开始备份" class="submit2" />
         </td>
       </tr>
     </tbody>
