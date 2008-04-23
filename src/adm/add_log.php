@@ -174,7 +174,7 @@ if($action == 'autosave')
 	{
 		$sql=" UPDATE {$db_prefix}blog SET title='$title',content='$content' WHERE gid='$logid' ";
 		$DB->query($sql);
-		echo "autosave_$logid";
+		echo "autosave_gid:{$logid}_df:{$dftnum}_";
 	}elseif ($logid!=-2)
 	{
 		//日志写入数据库
@@ -183,7 +183,8 @@ if($action == 'autosave')
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid=$DB->insert_id();
-		echo "autosave_$logid";
+		$dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
+		echo "autosave_gid:{$logid}_df:{$dftnum}_";
 	}
 }
 ?>

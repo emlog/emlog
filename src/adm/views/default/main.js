@@ -180,7 +180,7 @@ function autosave(url,nodeid)
 		document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
 		xmlhttp.send(querystring);
 	}
-	setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
+	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 }
 function processRequest() {
 	if (xmlhttp.readyState == 4) {
@@ -188,7 +188,10 @@ function processRequest() {
 			var ret = xmlhttp.responseText;
 			if(ret.substring(0,9) == "autosave_")
 			{
-				var logid = ret.substring(9);
+				var getvar = ret.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
+				var logid = getvar[1];
+				var dfnum = getvar[2];
+				document.getElementById("dfnum").innerHTML = "("+dfnum+")";
 				var iddiv = "<input type=hidden  name=as_logid id=as_logid value="+logid+">";
 			}
 			document.getElementById(node).innerHTML = iddiv;

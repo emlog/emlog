@@ -58,7 +58,7 @@ print <<<EOT
             <div id=sidebartop></div>
             <div class=sidebarmenu>日志管理</div>
             <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/$nonce_tpl/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
-			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿$draftnum</a></div>
+			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum">$draftnum</span></a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php">日志管理</a></div>
             <div class=sidebarsubmenu><A href="comment.php">评论管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="trackback.php">引用管理</A></div>

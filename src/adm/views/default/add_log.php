@@ -13,7 +13,7 @@ function savedraft(){
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
-setTimeout("autosave('add_log.php?action=autosave','asmsg')",5000);
+setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 </script>
 <div class=containertitle><b>写日志</b></div>
 <div class=line></div>
