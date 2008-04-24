@@ -111,7 +111,7 @@ if ($action == 'login')
 	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
 	if (strlen($username) >16) 
 	{
-		formMsg('ERROR!!','javascript:history.go(-1);',0);
+		header("Location: index.php");
 	}
 	if (checkUser($username, $password,$img_code,$login_code)) 
 	{
