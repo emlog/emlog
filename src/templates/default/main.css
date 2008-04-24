@@ -46,7 +46,7 @@ body{
 #blogname a:visited{color:#4A7FF8;text-decoration:none}
 #siteTitle #blogdes{font-size:12px; text-align:left;}
 #navBar {
-	font-size:14px;
+	font-size:12px;
 	margin:0px;
 	background-color:#FFFFFF;
 	border-bottom: 2px solid #BBBBBB;
@@ -286,8 +286,8 @@ div.contentA{
 .input {
 	border: 1px solid #CCCCCC;
 	font-family: Arial;
-	font-size: 14px;
-	height:20px;
+	font-size: 12px;
+	height:16px;
 	background-color: #FFFFFF;
 	color: #666666;
 }

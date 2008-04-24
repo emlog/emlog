@@ -25,6 +25,7 @@ echo <<<EOT
   		<li id="blogdes">$blog_info</li>
 	</ul>
   	</div>
+<form name="f" method="post" action="index.php?action=login">
 <div id="navBar">
 <ul>
 <!--
@@ -37,11 +38,26 @@ echo <<<EOT
 	<li><a href="./index.php?action=logout">退出</a></li>
 <!--
 EOT;
-}
+}else{
+	$login_code=='y'?
+	$ckcode = "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
+	$ckcode = '';
 echo <<<EOT
+-->
+<li onclick="showlogin('loginfm')" style="cursor:pointer;">登录</li>
+<li id="loginfm" style="display:none">
+用户:<input name="user" type="text" class="input" style="width:80px;"/>
+密码:<input name="pw" type="password"  class="input" style="width:80px;"/>
+$ckcode 
+<input type="submit" value="登录">
+</li>
+<!--
+EOT;
+}echo <<<EOT
 -->
 </ul>
 </div>
+</form>
 </div>
 <!--
 EOT;

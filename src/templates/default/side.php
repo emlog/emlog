@@ -141,33 +141,6 @@ EOT;
 		<li>今日访问：{$sta_cache['day_view_count']}</li>
 		<li>总访问量：{$sta_cache['view_count']}</li>
 		</ul>
-<!--
-EOT;
-if(ISLOGIN === false){
-	$login_code=='y'?
-	$ckcode = "验证码:<br />
-				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
-				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
-	$ckcode = '';
-echo <<<EOT
---> 
-<div class="lister"><span onclick="showhidediv('loginfm')">登录</span></div>
-<ul id="loginfm" style="display: none;">
-<form name="f" method="post" action="index.php?action=login">
-<li>
-用户名:<br>
-<input name="user" type="text"><br />
-密  码:<br>
-<input name="pw" type="password"><br>
-$ckcode <br>
-<input type="submit" value=" 登录">
-</li>
-</form>
-<!--
-EOT;
-}echo <<<EOT
--->
-</ul>
 	<div class="lister">
 	<a href="./rss.php"><img src="{$tpl_dir}default/rss.gif" alt="订阅Rss"/></a>
 	</div>
