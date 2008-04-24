@@ -16,6 +16,7 @@ function showlogin(id){
 		if(panel){
 			if(panel.style.display=='none'){
 				panel.style.display='block';
+				var w=document.f.user;w.focus();
 			}else{
 				panel.style.display='none';
 			}
