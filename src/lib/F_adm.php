@@ -54,7 +54,11 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	//thum
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath."thum-".$fname;
-	if(in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	if(in_array($extension, $imtype) 
+		&& function_exists("ImageCreate") 
+		&& function_exists("ImageJpeg") 
+		&& resizeImage($tmpfile,$filetype,$thum,$isIcon)
+		)
 	{
 		$attach = $thum;
 	}else{
@@ -97,14 +101,26 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	$h = $size['rc_h'];
 	if($w <= $max_w && $h <= $max_h)
 	{
-		return FALSE;
+		return false;
 	}
 	if($imgtype == "image/pjpeg" OR $imgtype == "image/jpeg")
 	{
-		$img = imagecreatefromjpeg($img);
+		if(function_exists("imagecreatefromjpeg"))
+		{
+			$img = imagecreatefromjpeg($img);
+		}else 
+		{
+			return false;
+		}
 	}elseif($imgtype == "image/x-png" OR $imgtype == "image/png")
 	{
-		$img = imagecreatefrompng($img);
+		if(function_exists("imagecreatefrompng"))
+		{
+			$img = imagecreatefrompng($img);
+		}else 
+		{
+			return false;
+		}
 	}
 	if(function_exists("imagecopyresampled"))
 	{
