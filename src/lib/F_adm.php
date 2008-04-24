@@ -51,14 +51,10 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	{
 		@mkdir($uppath,0777) OR formMsg("创建日期目录失败","javascript:history.go(-1);",0);
 	}
-	//thum
+	//缩略
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath."thum-".$fname;
-	if(in_array($extension, $imtype) 
-		&& function_exists("ImageCreate") 
-		&& function_exists("ImageJpeg") 
-		&& resizeImage($tmpfile,$filetype,$thum,$isIcon)
-		)
+	if(in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
 	{
 		$attach = $thum;
 	}else{
@@ -108,7 +104,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		if(function_exists("imagecreatefromjpeg"))
 		{
 			$img = imagecreatefromjpeg($img);
-		}else 
+		}else
 		{
 			return false;
 		}
@@ -117,7 +113,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		if(function_exists("imagecreatefrompng"))
 		{
 			$img = imagecreatefrompng($img);
-		}else 
+		}else
 		{
 			return false;
 		}
@@ -131,11 +127,21 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
-	if(ImageJpeg($newim,$name))
+	if($imgtype == "image/pjpeg" OR $imgtype == "image/jpeg")
 	{
-		return TRUE;
+		if(!imagejpeg($newim,$name))
+		{
+			return false;
+		}
+	}elseif ($imgtype == "image/x-png" OR $imgtype == "image/png")
+	{
+		if(!imagepng($newim,$name))
+		{
+			return false;
+		}
 	}
 	ImageDestroy ($newim);
+	return true;
 }
 
 /**
