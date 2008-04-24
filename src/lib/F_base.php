@@ -268,7 +268,7 @@ function pagination($count,$perlogs,$page,$url)
 	@param int $max_w 最大缩放宽
 	@param int $max_h 最大缩放高
 */
-function chImage ($img,$max_w,$max_h)
+function chImageSize ($img,$max_w,$max_h)
 {
 	$size = @getimagesize($img);
 		$w = $size[0];
@@ -334,7 +334,7 @@ function getAttachment($attstr,$width,$height)
 		foreach($att_array as $value){
 			preg_match("/.+src=\\\"(.+)\\\" width=.+/i",$value,$imgpath);
 			$image = "./".$imgpath[1];
-			$size = chImage($image,$width,$height);
+			$size = chImageSize($image,$width,$height);
 			$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
 			$t = preg_replace("/width=\\\"[0-9]{3}\\\" height=\\\"[0-9]{3}\\\"/",$attsize,$value);
 			$re .=$t.'</a>';

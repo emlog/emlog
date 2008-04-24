@@ -90,7 +90,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		$max_w = IMG_ATT_MAX_W;
 		$max_h = IMG_ATT_MAX_H;
 	}
-	$size = chImage($img,$max_w,$max_h);
+	$size = chImageSize($img,$max_w,$max_h);
 	$newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w =$size['rc_w'];

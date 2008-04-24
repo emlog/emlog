@@ -35,7 +35,7 @@ class mkcache {
 		if($blogger['photo'])
 		{
 			$photosrc = substr($blogger['photo'],3);
-			$imgsize = chImage($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
+			$imgsize = chImageSize($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
 			$icon = "<img src=\\\"".htmlspecialchars($photosrc)."\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" alt=\\\"blogger\\\" />";
 		}
 		$user="\n\$user_cache = array('photo' => \"$icon\",'name' =>\"".htmlspecialchars($blogger['nickname'])."\",'mail'	=>\"".htmlspecialchars($blogger['email'])."\",'des'=>\"".htmlspecialchars($blogger['description'])."\");";
@@ -225,7 +225,7 @@ class mkcache {
 					}else{
 						$imgsrc2 = $imgsrc;
 					}
-					$imgsize = chImage($att_path,IMG_ATT_MAX_W,IMG_ATT_MAX_H);
+					$imgsize = chImageSize($att_path,IMG_ATT_MAX_W,IMG_ATT_MAX_H);
 					$att_img .= "<br />图片附件 : ".$show_attach['attdes']."<br /><a href=\\\"$imgsrc2\\\" target=\\\"_blank\\\"><img src=\\\"$imgsrc\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" border=\\\"0\\\" alt=\\\"点击查看原图\\\" /></a>";
 				}else
 				{
