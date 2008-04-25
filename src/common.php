@@ -99,8 +99,6 @@ if($ismusic)
 	$musicdes = "$mdes[$key]";
 	$autoplay = $auto?"&autoplay=1":'';
 }
-//twitter
-$twitter = file_get_contents('./twitter.php');
 
 //登陆验证
 if ($action == 'login') 
