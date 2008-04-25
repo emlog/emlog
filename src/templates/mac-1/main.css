@@ -458,6 +458,7 @@ h3#respond {
 #sidebar h3 {
 	font: bold 12px/100% Arial, Helvetica, sans-serif;
 	color: #666666;
+	cursor:pointer;
 }
 #sidebar h3 a, #sidebar h3 a:visited {
 	color: #666666;
@@ -485,7 +486,15 @@ h3#respond {
 	background: url(images/bullet-grey.gif) no-repeat;
 	padding-left: 12px ;
 }
-
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:80px;
+}
 /* ------------------------------------- widget styles  */
 /* archives widget */
 #archives ul li {

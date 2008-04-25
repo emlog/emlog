@@ -18,7 +18,7 @@ echo <<<EOT
 	<link rel="stylesheet" href="{$tpl_dir}mac-1/print.css" type="text/css" media="print" />
 	<script src="{$tpl_dir}mac-1/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url');">
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="page">
   <div id="wrapper">
     <div id="header">

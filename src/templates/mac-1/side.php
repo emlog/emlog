@@ -6,8 +6,8 @@ echo <<<EOT
 
       <!--sidebox start -->
       <div id="categories" class="dbx-box">
-        <h3 class="dbx-handle">个人档</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('blogger')">个人档</h3>
+        <div class="dbx-content" id="blogger">
           <ul>
             		<p align="center">$photo</p>
 					<li><b>$name</b> $blogger_des</li>
@@ -18,10 +18,10 @@ echo <<<EOT
 
       <!--sidebox start -->
       <div id="archives" class="dbx-box">
-        <h3 class="dbx-handle">日历</h3>
+        <h3 class="dbx-handle" onclick="showhidediv('calendar')">日历</h3>
         <div class="dbx-content">
           <ul>
-            <p id="calendar"></p>
+            <div id="calendar"></div>
           </ul>
         </div>
       </div>
@@ -29,8 +29,8 @@ echo <<<EOT
 
       <!--sidebox start -->
       <div id="links" class="dbx-box">
-        <h3 class="dbx-handle">标签</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('tags')">标签</h3>
+        <div class="dbx-content" id="tags">
           <ul>
 <!--
 EOT;
@@ -46,19 +46,66 @@ EOT;
           </ul>
         </div>
       </div>
-      <!--sidebox end -->
-
-      <!--sidebox start -->
-	  <!--
+<!--
 EOT;
+if($index_twnum>0){
+echo <<<EOT
+-->
+<div id="meta" class="dbx-box">
+<h3 onclick="showhidediv('twitter')" class="dbx-handle">twitter</h3>
+<div class="dbx-content">
+<ul id="twitter">
+<!--
+EOT;
+if(count($tw_cache)>$index_twnum)
+{
+	$morebt = "<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的&raquo;</a>";
+}
+foreach (array_slice($tw_cache,0,$index_twnum) as $value)
+{
+	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
+	$value['date'] = date("Y-m-d H:i",$value['date']);
+echo <<<EOT
+-->
+<li> {$value['content']} $delbt<br><span>{$value['date']}</span></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+<li id="twdate">$morebt</li>
+</ul>
+<!--
+EOT;
+if(ISLOGIN === true)
+{
+echo <<<EOT
+-->
+<ul>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li id='addtw' style="display: none;">
+<textarea name="tw" id="tw" style="width:150px;" style="height:50px;"></textarea><br />
+<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
+</li>
+</ul>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
+</div>
+</div>
+<!--
+EOT;
+}
 if($ismusic){
 echo <<<EOT
 -->
       <div id="meta" class="dbx-box">
-        <h3 class="dbx-handle">音乐</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('music')">音乐</h3>
+        <div class="dbx-content" id="music">
           <ul>
- <p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+ <p>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
           </ul>
         </div>
@@ -71,8 +118,8 @@ echo <<<EOT
       <!--sidebox end -->
       <!--sidebox start -->
       <div id="recent-comments" class="dbx-box">
-        <h3 class="dbx-handle">评论</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('comm')">评论</h3>
+        <div class="dbx-content" id="comm">
           <ul>
 <!--
 EOT;
@@ -90,8 +137,8 @@ EOT;
       <!--sidebox end -->
 	        <!--sidebox start -->
       <div id="archives" class="dbx-box">
-        <h3 class="dbx-handle">存档</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('dang')">存档</h3>
+        <div class="dbx-content" id="dang">
           <ul>
 <!--
 EOT;
@@ -109,8 +156,8 @@ EOT;
       <!--sidebox end -->
 	        <!--sidebox start -->
       <div id="links" class="dbx-box">
-        <h3 class="dbx-handle">Blogroll</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('blogroll')">Blogroll</h3>
+        <div class="dbx-content" id="blogroll">
           <ul>
 <!--
 EOT;
@@ -128,15 +175,49 @@ EOT;
       <!--sidebox end -->
 	        <!--sidebox start -->
       <div id="meta" class="dbx-box">
-        <h3 class="dbx-handle">统计</h3>
-        <div class="dbx-content">
+        <h3 class="dbx-handle" onclick="showhidediv('qita')">其他</h3>
+        <div class="dbx-content" id="qita">
           <ul>
 		<li>日志数量：$sta_cache[lognum]</li>
 		<li>评论数量：$sta_cache[comnum]</li>
 		<li>引用数量：$sta_cache[tbnum]</li>
 		<li>今日访问：$sta_cache[day_view_count]</li>
 		<li>总访问量：$sta_cache[view_count]</li>
-		<li><a href="./adm/">登录</a></li>
+<!--
+EOT;
+if(ISLOGIN === false){
+	$login_code=='y'?
+	$ckcode = "验证码:<br />
+				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
+				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
+	$ckcode = '';
+echo <<<EOT
+--> 
+<li><span onclick="showhidediv('loginfm')" style="cursor:pointer;">登录</span></li>
+<div id="loginfm" style="display: none;">
+<form name="f" method="post" action="index.php?action=login" id="commentform">
+用户名:<br>
+<input name="user" type="text"><br />
+密  码:<br>
+<input name="pw" type="password"><br>
+$ckcode <br>
+<input type="submit" value=" 登录">
+</form>
+</div>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+	<li>---------------------</li>
+	<li><a href="./adm/add_log.php">写日志</a></li>
+	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./index.php?action=logout">退出</a></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
 		<li class="rss"><a href="./rss.php">Rss Feed</a></li>
           </ul>
         </div>
