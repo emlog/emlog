@@ -8,7 +8,7 @@ print <<<EOT
   <form action="music.php?action=mod" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
     <p style="margin:10px 30px;">启用背景音乐 <input id="switch" type="checkbox" value="1" name="ismusic" $ismusic/></p>
 	<div style="margin:10px 30px;">
-	<p>音乐链接：(每行只能输入一条音乐链接，暂时只支持mp3格式 如：http://www.emlog.net/jay.mp3)<br />
+	<p>音乐链接：(每行只能输入一条音乐链接，暂时只支持mp3格式。也可以在链接后空一格写一些简短的介绍文字)<br />
 	  <textarea name="mlinks" cols="90" rows="10" wrap="off">$content</textarea>
 	</p>
 	<p>启用随机播放：

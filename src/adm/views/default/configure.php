@@ -39,7 +39,7 @@ print <<<EOT
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right">首页twitter数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[index_twnum]" name="index_twnum" /></td>
+        <td><input maxlength="5" size="10" value="$show_config[index_twnum]" name="index_twnum" /> 为0则关闭该功能</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">首页最新评论数：</td>

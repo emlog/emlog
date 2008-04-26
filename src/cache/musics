@@ -1,4 +1,7 @@
 <?php
+$mlinks[0] = "http%3A%2F%2Fwww.emlog.net%2Fmusic%2Fjay.mp3";
+
+$mdes[0] = "周杰伦：简单爱";
 
 $auto=0;
 $randplay=0;
