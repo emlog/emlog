@@ -57,10 +57,7 @@ echo <<<EOT
 <ul id="twitter">
 <!--
 EOT;
-if(count($tw_cache)>$index_twnum)
-{
-	$morebt = "<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的&raquo;</a>";
-}
+$morebt = count($tw_cache)>$index_twnum?"<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">更早的&raquo;</a>":'';
 foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 {
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
