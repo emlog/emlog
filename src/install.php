@@ -334,6 +334,7 @@ content VARCHAR(255) NOT NULL ,
 date VARCHAR(10) NOT NULL ,
 PRIMARY KEY (id)
 )".$add."
+INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'这里可以记录你的心情','1204460230');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
