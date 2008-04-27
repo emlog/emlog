@@ -35,9 +35,8 @@ doStripslashes();
 $DB = new MySql($host, $user, $pass,$db);
 //是否登录状态
 define('ISLOGIN',	isLogin());
-
+//获取操作
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
-
 //config
 	$sitekey	= $config_cache['sitekey'];
 	$blogtitle  = $config_cache['blogname'];
@@ -96,7 +95,7 @@ if($ismusic)
 {
 	$key = $randplay?mt_rand(0,count($mlinks)-1):0;
 	$music = $mlinks[$key];
-	$musicdes = "$mdes[$key]";
+	$musicdes = !empty($mdes[$key])?"{$mdes[$key]}<br>":'';
 	$autoplay = $auto?"&autoplay=1":'';
 }
 
