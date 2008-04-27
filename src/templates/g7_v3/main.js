@@ -142,7 +142,7 @@ function postinfo(url,nodeid){
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
 	var tw = document.getElementById("tw").value;
-	var querystring = "tw=" + tw;
+	var querystring = "tw="+encodeURIComponent(tw);
 	xmlhttp.send(querystring);
 }
 // 处理返回信息的函数
