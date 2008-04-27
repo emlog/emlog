@@ -50,6 +50,7 @@ class mkcache {
 		$lognum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n' "));
 		$comnum = $DB->num_rows($DB->query("SELECT cid FROM {$db_prefix}comment WHERE hide='n' "));
 		$tbnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}trackback "));
+		$twnum = $DB->num_rows($DB->query("SELECT id FROM {$db_prefix}twitter "));
 		$hidecom = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}comment where hide='y' "));
 
 		$sta="\n\$sta_cache = array(
@@ -57,6 +58,7 @@ class mkcache {
 				'view_count' =>\"".$dh['view_count']."\",
 				'lognum'=>\"".$lognum."\",
 				'comnum'=>\"".$comnum."\",
+				'twnum'=>\"".$twnum."\",
 				'hidecom'=>\"".$hidecom."\",
 				'tbnum'=>\"".$tbnum."\"
 				);";
