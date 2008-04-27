@@ -46,11 +46,17 @@ function addbr(spanId,brId){
      }
 	 return;
 }
+String.prototype.Trim = function()
+{
+return this.replace(/(^\s*)|(\s*$)/g, "");
+}
 function chekform(){
-	if (document.addlog.title.value==""){
-	alert("日志标题不能为空");
-	document.addlog.title.focus();
-	return false;
+	var title = document.addlog.title.value.Trim();
+	if (title=="")
+	{
+		alert("日志标题不能为空");
+		document.addlog.title.focus();
+		return false;
 	}else 
 	return true;	
 }
@@ -170,11 +176,11 @@ function autosave(url,nodeid)
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var title = document.getElementById("title").value;
+	var title = document.getElementById("title").value.Trim();
 	var logid = document.getElementById("as_logid").value;
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
-	var querystring = "content="+content+"&title="+title+"&as_logid="+logid;
+	var querystring = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
 	if(logid!=-2 && title!="" && content!="")
 	{
 		document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";

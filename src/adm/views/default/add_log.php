@@ -10,6 +10,10 @@ print <<<EOT
 -->
 <script type="text/javascript">
 function savedraft(){
+	if(!chekform())
+	{
+		return false;
+	}
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
@@ -85,7 +89,7 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 		<tr>
           <td align="center">
 		  	  <input type="submit" value="发布日志" onclick="return chekform();" class="submit2" />
-			  <input type="submit" value="保存日志" onclick="savedraft();" class="submit2" />
+			  <input type="submit" value="保存日志" onclick="return savedraft();" class="submit2" />
 		  </td>
         </tr>
       </tbody>
