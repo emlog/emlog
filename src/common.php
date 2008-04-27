@@ -61,12 +61,6 @@ $action = isset($_GET['action'])?addslashes($_GET['action']):'';
 	$timezone != 8 ? $localdate = time() - ($timezone-8) * 3600 : $localdate = time();
 	isset($tag_cache)?sort($tag_cache):$tag_cache = array();
 
-//check template
-$em_tpldir = $tpl_dir.$nonce_tpl.'/';//当前模板目录
-if (!is_dir($em_tpldir))
-{
-	exit('Template Error: no template directory!');
-}
 //decode comment
 if(isset($com_cache))
 {

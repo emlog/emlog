@@ -9,6 +9,12 @@ require_once('./common.php');
 
 viewCount();
 
+//check template
+$em_tpldir = $tpl_dir.$nonce_tpl.'/';//当前模板目录
+if (!is_dir($em_tpldir))
+{
+	exit('Template Error: no template directory!');
+}
 //calendar url
 $calendar_url = isset($_GET['date'])?"calendar.php?smp=$localdate&date=".$_GET['date']:"calendar.php?smp=$localdate";
 $job = array('showlog','tag','search','addcom','taglog','');
