@@ -2,38 +2,28 @@
 /**
  * 手机wap页面
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.0
+ * @version emlog-2.6.5
  */
 
-error_reporting(E_ALL);
-
-require_once('../config.php');
-require_once('../lib/F_base.php');
-require_once('../lib/C_mysql.php');
-require_once('../lib/C_cache.php');
-require_once('../cache/config');
-require_once('../cache/comments');
-require_once('../cache/sta');
-require_once('../cache/blogger');
-
-//去除多余的转义字符
-doStripslashes();
-//数据库操作对象
-$DB = new MySql($host, $user, $pass,$db);
-
-$act = isset($_GET['act'])?addslashes($_GET['act']):'';
-$index_lognum	    = $config_cache['index_lognum'];
+require_once('../common.php');
 
 
-
-if(!isset($act) || empty($act))
+if(!isset($action) || empty($action))
 {
 	wap_header($config_cache['blogname']);
 	echo '<p>'.$config_cache['bloginfo'].'</p>';
 	echo "<p>\n";
-	echo "<a href=\"index.php?act=logs\">日志列表</a><br />\n";
-	echo "<a href=\"index.php?act=tiw\">博主唠叨</a><br />\n";
-	echo "<a href=\"index.php?act=coms\">最新评论</a><br />\n";
+	echo "<a href=\"index.php?action=logs\">浏览日志</a><br />\n";
+	echo "<a href=\"index.php?action=twitter\">博主唠叨</a><br />\n";
+	echo "<a href=\"index.php?action=coms\">最新评论</a><br />\n";
+	echo "<br />\n";
+	if(ISLOGIN === true)
+	{
+		echo "<a href=\"index.php?action=waplogin\">欢迎你,你已登录</a><br />\n";
+		echo "<a href=\"index.php?action=addtw\">唠叨两句</a><br />\n";
+	}else {
+		echo "<a href=\"index.php?action=waplogin\">登录</a><br />\n";
+	}
 	echo "<br />\n";
 	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$sta_cache['day_view_count']})总访问量({$sta_cache['view_count']})<br />\n";
 	echo "</p>\n";
@@ -42,7 +32,7 @@ if(!isset($act) || empty($act))
 
 
 #################日志列表(display log list)##############
-if ($act == 'logs')
+if ($action == 'logs')
 {
 	//page link
 	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
@@ -60,7 +50,7 @@ if ($act == 'logs')
 
 	$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 	$lognum = $sta_cache['lognum'];
-	$pageurl= './index.php?act=logs&amp;page';
+	$pageurl= './index.php?action=logs&amp;page';
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
@@ -76,14 +66,14 @@ if ($act == 'logs')
 	echo '<p>';
 	foreach ($log as $val)
 	{
-		echo '<a href="./index.php?act=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
+		echo '<a href="./index.php?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
 	}
 	echo "</p><p>$page_url <br /><a href=\"./\">首页</a></p>";
 	wap_footer();
 }
 
 #################显示日志(Display Logs)#################
-if ($act == 'dis')
+if ($action == 'dis')
 {
 	//参数过滤
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : msg('提交参数错误','./index.php');
@@ -100,11 +90,11 @@ if ($act == 'dis')
 	wap_header($log_title);
 	echo "<p>发布时间：$post_time <br /></p>";
 	echo "<p>$log_content</p>";
-	echo "<p><a href=\"./\">首页</a> <a href=\"./?act=logs\">返回日志列表</a></p>";
+	echo "<p><a href=\"./\">首页</a> <a href=\"./?action=logs\">返回日志列表</a></p>";
 
 	wap_footer();
 }
-if($act == 'coms')
+if($action == 'coms')
 {
 	//decode comment
 	if(isset($com_cache))
@@ -125,6 +115,86 @@ if($act == 'coms')
 	}
 	echo "<p><a href=\"./\">首页</a></p>";
 	wap_footer();
+}
+#################twitter list ##############
+if ($action == 'twitter')
+{
+	//page link
+	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	if ($page)
+	{
+		$start_limit = ($page - 1) * $index_twnum;
+		$id = ($page-1) * $index_twnum;
+	}
+	else
+	{
+		$start_limit = 0;
+		$page = 1;
+		$id = 0;
+	}
+
+	$sql =" SELECT * FROM {$db_prefix}twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
+	$twnum = $sta_cache['twnum'];
+	$pageurl= './index.php?action=twitter&amp;page';
+	$query = $DB->query($sql);
+	while($row = $DB->fetch_array($query))
+	{
+		$row['date'] = date('Y-n-j G:i l',$row['date']);
+		$row['content'] = htmlspecialchars(trim($row['content']));
+		$tws[] = $row;
+	}
+	//分页
+	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
+
+	wap_header($config_cache['blogname']);
+	echo '<p>';
+	foreach ($tws as $val)
+	{
+		echo $val['content'].'('.$val['date'].')<br />';
+	}
+	echo "</p><p>$page_url <br /><a href=\"./\">首页</a></p>";
+	wap_footer();
+}
+if ($action == 'waplogin')
+{
+	wap_header('用户登录');
+	echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
+	echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
+	echo "<p><anchor title=\"submit\">确定\n";
+	echo "<go href=\"index.php?action=login\" method=\"post\">\n";
+	echo "<postfield name=\"user\" value=\"$(user)\" />\n";
+	echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
+	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
+	echo "</go></anchor>\n";
+	echo "</p>\n";
+	echo "<p><a href=\"index.php\">返回主页</a></p>\n";
+	wap_footer();
+}
+//登陆验证
+if ($action == 'dowaplogin') 
+{
+	session_start();
+	$username = addslashes(trim($_POST['user']));
+	$password = md5(addslashes(trim($_POST['pw'])));
+	$login_code = 'n';
+	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
+	if (strlen($username) >16) 
+	{
+		header("Location: index.php");
+	}
+	if (checkUser($username, $password,$img_code,$login_code)) 
+	{
+		if (function_exists('session_regenerate_id'))//PHP_VERSION >= '4.3.2'
+		{
+			session_regenerate_id();
+		}
+		$_SESSION['adminname'] = $username;
+		$_SESSION['password'] = $password;
+		header("Location: index.php"); 
+	}else
+	{
+		header("Location: index.php"); 
+	}
 }
 
 // WML文档头

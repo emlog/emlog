@@ -2,7 +2,7 @@
 /**
  * 后台全局项加载主程序
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.0
+ * @version emlog-2.6.5
  */
 
 error_reporting(E_ALL);
@@ -40,7 +40,7 @@ $blogname = $show_config['blogname'];
 $timezone = intval($show_config['timezone']);
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
-$edition = '2.6.0';	//当前版本号
+$edition = '2.6.5';	//当前版本号
 
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录

@@ -2,7 +2,7 @@
 /**
  * RSS输出主程序
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.0
+ * @version emlog-2.6.5
  */
 
 error_reporting(7);

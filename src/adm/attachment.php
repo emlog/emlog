@@ -2,7 +2,7 @@
 /**
  * 附件处理
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.0
+ * @version emlog-2.6.5
  */
 
 require_once('./globals.php');
