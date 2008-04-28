@@ -87,7 +87,7 @@ print <<<EOT
 <table cellspacing=0 cellpadding=10 width="100%" border=0>
         <tbody>
         <tr>
-          <td width="909" align="left" class="tips"><b>小提示：</b>$tips</td>
+          <td width="909" align="left" class="tips"><b>小贴士：</b>$tips</td>
 </tr></tbody></table>
 <!--
 EOT;
