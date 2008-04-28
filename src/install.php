@@ -137,7 +137,7 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 </div>
 <div>
 <p class="foot">
-&copy;2007 emlog
+&copy;2008 emlog
 </p>
 </div>
 </div>
