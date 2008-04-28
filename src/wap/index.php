@@ -7,7 +7,6 @@
 
 require_once('../common.php');
 
-
 if(!isset($action) || empty($action))
 {
 	wap_header($config_cache['blogname']);
@@ -19,8 +18,9 @@ if(!isset($action) || empty($action))
 	echo "<br />\n";
 	if(ISLOGIN === true)
 	{
-		echo "<a href=\"index.php?action=waplogin\">欢迎你,你已登录</a><br />\n";
+		echo "欢迎你,你已登录<br />\n";
 		echo "<a href=\"index.php?action=addtw\">唠叨两句</a><br />\n";
+		echo "<a href=\"index.php?action=logout\">退出</a><br />\n";
 	}else {
 		echo "<a href=\"index.php?action=waplogin\">登录</a><br />\n";
 	}
@@ -29,7 +29,6 @@ if(!isset($action) || empty($action))
 	echo "</p>\n";
 	wap_footer();
 }
-
 
 #################日志列表(display log list)##############
 if ($action == 'logs')
@@ -96,18 +95,6 @@ if ($action == 'dis')
 }
 if($action == 'coms')
 {
-	//decode comment
-	if(isset($com_cache))
-	{
-		foreach($com_cache as $key=>$value)
-		{
-			$com_cache[$key]['name'] = base64_decode($com_cache[$key]['name']);
-			$com_cache[$key]['content'] = base64_decode($com_cache[$key]['content']);
-		}
-	}else{
-		$com_cache = array();
-	}
-	
 	wap_header($config_cache['blogname']);
 	foreach($com_cache as $value)
 	{
@@ -139,7 +126,7 @@ if ($action == 'twitter')
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
-		$row['date'] = date('Y-n-j G:i l',$row['date']);
+		$row['date'] = date('Y-n-j G:i',$row['date']);
 		$row['content'] = htmlspecialchars(trim($row['content']));
 		$tws[] = $row;
 	}
@@ -150,7 +137,8 @@ if ($action == 'twitter')
 	echo '<p>';
 	foreach ($tws as $val)
 	{
-		echo $val['content'].'('.$val['date'].')<br />';
+		$doact = ISLOGIN===true?"<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
+		echo $val['content'].$doact.'('.$val['date'].')<br />';
 	}
 	echo "</p><p>$page_url <br /><a href=\"./\">首页</a></p>";
 	wap_footer();
@@ -170,19 +158,52 @@ if ($action == 'waplogin')
 	echo "<p><a href=\"index.php\">返回主页</a></p>\n";
 	wap_footer();
 }
+if ($action == 'addtw')
+{
+	wap_header('用户登录');
+	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
+	echo "<p><anchor title=\"submit\">确定\n";
+	echo "<go href=\"index.php?action=add_tw\" method=\"post\">\n";
+	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
+	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
+	echo "</go></anchor>\n";
+	echo "</p>\n";
+	echo "<p><a href=\"index.php\">返回主页</a></p>\n";
+	wap_footer();
+}
+//新增加twitter
+if(ISLOGIN === true && $action == 'add_tw')
+{
+	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
+	if(!empty($content))
+	{
+		$time = time();
+		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$time')");
+		$MC->mc_twitter('../cache/twitter');
+		header("Location: index.php?action=twitter");
+	}
+}
+//删除twitter
+if(ISLOGIN === true && $action == 'del_tw')
+{
+	$twid = isset($_GET['id'])?intval($_GET['id']):'';
+	$query = $DB->query("DELETE FROM {$db_prefix}twitter WHERE id=$twid");
+	$MC->mc_twitter('../cache/twitter');
+	header("Location: index.php?action=twitter");
+}
 //登陆验证
-if ($action == 'dowaplogin') 
+if ($action == 'dowaplogin')
 {
 	session_start();
 	$username = addslashes(trim($_POST['user']));
 	$password = md5(addslashes(trim($_POST['pw'])));
 	$login_code = 'n';
 	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
-	if (strlen($username) >16) 
+	if (strlen($username) >16)
 	{
 		header("Location: index.php");
 	}
-	if (checkUser($username, $password,$img_code,$login_code)) 
+	if (checkUser($username, $password,$img_code,$login_code))
 	{
 		if (function_exists('session_regenerate_id'))//PHP_VERSION >= '4.3.2'
 		{
@@ -190,10 +211,10 @@ if ($action == 'dowaplogin')
 		}
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
-		header("Location: index.php"); 
+		header("Location: index.php");
 	}else
 	{
-		header("Location: index.php"); 
+		header("Location: index.php");
 	}
 }
 
@@ -215,4 +236,5 @@ function wap_footer() {
 	echo "</wml>\n";
 	exit;
 }
+
 ?>
