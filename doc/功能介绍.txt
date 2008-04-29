@@ -12,9 +12,15 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 
 + ÕûÌåÊ¹ÓÃutf-8±àÂë·½Ê½£¬ÈÃÄãµÄ²©¿ÍºÍÊÀ½ç½Ó¹ì¡£ 
 
++ ¶ÀÓÐµÄtwitter¹¦ÄÜ£¬ÈÃÄãÓÃ¼òµ¥µÄÎÄ×Ö¼ÇÂ¼Éú»î
+
 + Ê×Ò³ajaxÈÕÀú·½Ê½²éÔÄÈÕÖ¾£¬·½±ã¿ì½Ý
 
-+ ºóÌ¨Ê¹ÓÃ¿çä¯ÀÀÆ÷(Ö§³Öie¼°firefoxµÈä¯ÀÀÆ÷)¿ÉÊÓ»¯±à¼­ÈÕÖ¾   
++ ¶ÀÓÐµÄÈÕÖ¾×Ô¶¯±£´æ¹¦ÄÜ£¬Äã¿ÉÒÔÎÞÓÇÎÞÂÇ×«Ð´²©ÎÄ
+
++ Ö§³ÖÊÖ»úwap¹¦ÄÜ£¬ËæÊ±ËæµØ¼ÇÂ¼ÄãµÄÉú»î
+
++ ºóÌ¨Ê¹ÓÃ¿çä¯ÀÀÆ÷¿ÉÊÓ»¯±à¼­ÈÕÖ¾£¬Ö§³Öie¼°firefoxµÈä¯ÀÀÆ÷   
 
 + ÈÕÖ¾²Ý¸åÏä¹¦ÄÜ£¬·½±ã±£´æÄãÎ´Íê³ÉµÄÈÕÖ¾
 
@@ -22,13 +28,13 @@ Emlog ÊÇÒ»¸ö¹¦ÄÜÇ¿´óµÄË½ÈËÍøÂç·¢²¼Æ½Ì¨(personal publishing platform) £¬»òÕßÖ±½Ó½
 
 + ÉÏ´«µÄÍ¼Æ¬¿ÉÒÔËæÒâÖ±¹ÛµÄÇ¶Èëµ½ÈÕÖ¾ÄÚÈÝ£¬ÈÃÄãµÄÈÕÖ¾Í¼ÎÄ²¢Ã¯
 
-+ Í¼Æ¬¸½¼þ×Ô¶¯Éú³ÉËõÂÔÍ¼
++ Í¼Æ¬¸½¼þ×Ô¶¯Éú³ÉËõÂÔÍ¼£¬ÈÃÍ¼Æ¬ÏÔÊ¾¸ü¼ÓÍêÃÀ
 
-+ Ö§³ÖÒýÓÃÍ¨¸æ(trackback) ,ÅäÓÐÀ¬»øÒýÓÃ·ÀÓù¹¦ÄÜ
++ Ö§³ÖÒýÓÃÍ¨¸æ(trackback) ,ÅäÓÐÇ¿´óµÄÀ¬»ø·ÀÓù¹¦ÄÜ
 
 + Ö§³ÖÁé»îµÄtag±êÇ©·ÖÀà¹¦ÄÜ
 
-+ Ö§³ÖRSSÈÕÖ¾Êä³ö¹¦ÄÜ 
++ Ö§³ÖRSSÈÕÖ¾Êä³ö¹¦ÄÜ £¬·½±ãÅóÓÑ¶©ÔÄ¹Ø×¢ÄãµÄ²©¿Í
 
 + Êý¾Ý¿â±¸·Ý/»Ö¸´¹¦ÄÜ 
 
