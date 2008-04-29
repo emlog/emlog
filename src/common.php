@@ -94,17 +94,17 @@ if($ismusic)
 }
 
 //登陆验证
-if ($action == 'login') 
+if ($action == 'login')
 {
 	session_start();
 	$username = addslashes(trim($_POST['user']));
 	$password = md5(addslashes(trim($_POST['pw'])));
 	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
-	if (strlen($username) >16) 
+	if (strlen($username) >16)
 	{
 		header("Location: index.php");
 	}
-	if (checkUser($username, $password,$img_code,$login_code)) 
+	if (checkUser($username, $password,$img_code,$login_code))
 	{
 		if (function_exists('session_regenerate_id'))//PHP_VERSION >= '4.3.2'
 		{
@@ -115,7 +115,7 @@ if ($action == 'login')
 		header("Location: index.php"); 
 	}else
 	{
-		header("Location: index.php"); 
+		header("Location: index.php");
 	}
 }
 //登出
@@ -124,6 +124,6 @@ if ($action == 'logout')
 	session_start();
 	session_unset();
 	session_destroy();
-	header("Location: index.php"); 
+	header("Location: index.php");
 }
 ?>
