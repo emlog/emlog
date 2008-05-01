@@ -483,6 +483,11 @@ body {
 	font-size:10px;
 	padding-left:80px;
 }
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
 #search {
 	background-image: url(images/search_bg.gif);
 	background-position: left 12px;

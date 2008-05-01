@@ -41,15 +41,15 @@ if(ISLOGIN === true && $action == 'del')
 function getindextw()
 {
 	global $DB,$db_prefix,$index_twnum;
-	
+
 	$page = isset($_GET['p']) ? intval($_GET['p']) : 1;
 	$start_limit = $page?($page - 1) * $index_twnum:0;
-	
+
 	$twitter = '';
 
 	$query = $DB->query("SELECT id FROM {$db_prefix}twitter");
 	$twnum = $DB->num_rows($query);
-	
+
 	$query = $DB->query("SELECT * FROM {$db_prefix}twitter ORDER BY id DESC LIMIT $start_limit,$index_twnum");
 	while ($rows = $DB->fetch_array($query))
 	{
@@ -58,13 +58,18 @@ function getindextw()
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>":'';
 		$twitter .="<li>$content $delbt<br /><span>$date</span></li>";
 	}
-	if($twnum > $index_twnum && $page != ceil($twnum/$index_twnum))
+	$pagenums = ceil($twnum/$index_twnum);
+	$NextPage = $page<$pagenums?$page+1:$page;
+	$UpPage = $page>1?$page-1:$page;
+	if($page!=1 && $page!=$pagenums)
 	{
-		$NextPage = $page < ceil($twnum/$index_twnum)?$page+1:$page;
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">更早的&raquo;</a></li>";
-	}elseif ($page == ceil($twnum/$index_twnum) && $page != 1)
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a><small>$page/$pagenums</small><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">较早的&raquo;</a></li>";
+	}elseif ($page == 1 && $pagenums>1)
 	{
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=1','twitter')\">&laquo;最近的</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>";
+	}elseif ($page == $pagenums && $pagenums>1)
+	{
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a></li>";
 	}
 	return $twitter;
 }

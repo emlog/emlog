@@ -147,6 +147,11 @@ div.contentA{
 	font-size:10px;
 	padding-left:120px;
 }
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
 .logcontent li{ list-style:none;}
 .log_con{
 	padding:5px 10px 5px;

@@ -65,7 +65,7 @@ echo <<<EOT
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:200px;" style="height:50px;"></textarea><br />
+<textarea name="tw" id="tw" style="width:180px;" style="height:50px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>

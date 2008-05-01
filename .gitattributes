@@ -3,7 +3,6 @@ doc/功能介绍.txt -text
 doc/安装说明.txt -text
 doc/模板说明.txt -text
 /license.txt -text
-src/.htaccess -text
 src/adm/add_log.php -text
 src/adm/admin_log.php -text
 src/adm/attachment.php -text
@@ -131,6 +130,7 @@ src/cache/twitter -text
 src/calendar.php -text
 src/common.php -text
 src/config.php -text
+src/htaccess.txt -text
 src/images/import.gif -text
 src/images/player.swf -text
 src/index.php -text

@@ -495,6 +495,11 @@ h3#respond {
 	font-size:10px;
 	padding-left:80px;
 }
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
 /* ------------------------------------- widget styles  */
 /* archives widget */
 #archives ul li {

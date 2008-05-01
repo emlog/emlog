@@ -330,6 +330,11 @@ input#author, input#email, input#url{
 	font-size:10px;
 	padding-left:50px;
 }
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
 /* comments template */
 
 .comments-template{

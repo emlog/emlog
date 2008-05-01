@@ -149,5 +149,10 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 #twitter li span
 {
 	font-size:10px;
-	padding-left:80px;
+	padding-left:100px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
 }

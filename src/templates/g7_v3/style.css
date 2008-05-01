@@ -325,7 +325,11 @@ ol a:active {
 	font-size:10px;
 	padding-left:130px;
 }
-
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
 .children {
 	padding: 0px;
 	margin-bottom: -12px;
