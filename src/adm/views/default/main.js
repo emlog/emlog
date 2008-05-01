@@ -1,51 +1,28 @@
-// JavaScript Document
-var attaIdx = 0;
-var IsIE;
-function add() {
-	addfile("idfilespan",attaIdx);
-	attaIdx++;
-	return false;
+//add or rm attachment
+function $(id) {
+	return document.getElementById(id);
 }
-function addfile(spanId,index)
-{
-       var strIndex = "" + index;
-	   var fileId = "attachfile"+ strIndex;
-	   var brId = "idAttachBr" + strIndex;
-	   addInputFile(spanId,fileId);
-	   addbr(spanId,brId);
-	   return;
+function addattachfrom() {
+	var newnode = $('attachbodyhidden').firstChild.cloneNode(true);
+	$('attachbody').appendChild(newnode);
 }
-function addInputFile(spanId,fileId){
-	  var span = document.getElementById(spanId);
-	  if ( span !=null ) {
+function removeattachfrom() {
+	$('attachbody').childNodes.length > 1 && $('attachbody').lastChild ? $('attachbody').removeChild($('attachbody').lastChild) : 0;
+}
+//show or hide div
+function showhidediv(id){
+	try{
+		var panel=document.getElementById(id);
+		if(panel){
+			if(panel.style.display=='none'){
+				panel.style.display='block';
+			}else{
+				panel.style.display='none';
+			}
+		}
+	}catch(e){}
+}
 
-					var fileObj = document.createElement("input");
-						if ( fileObj != null ) {
-							fileObj.type="file";
-							fileObj.name = "attach[]";
-							fileObj.size="20";  
-							fileObj.id="input";  
-							span.appendChild(fileObj);
-					}
-					span.appendChild(document.createTextNode(" 描述："));
-					var fileObj = document.createElement("input");
-						if ( fileObj != null ) {
-							fileObj.type="text";
-							fileObj.name = "attdes[]";
-							fileObj.size="25";
-							fileObj.id="input";  
-							span.appendChild(fileObj);
-					}
-	  }
-}
-function addbr(spanId,brId){
-	  var span = document.getElementById(spanId);
-	  if ( span !=null ) {
-			var brObj = document.createElement("br");
-				span.appendChild(brObj);
-     }
-	 return;
-}
 String.prototype.Trim = function()
 {
 return this.replace(/(^\s*)|(\s*$)/g, "");

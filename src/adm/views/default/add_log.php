@@ -66,11 +66,12 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>
-          <td><b>上传附件</b> <a id="attach" title="增加附件" onclick="add()" href="javascript:;" name="attach">[+]</a> (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
-            <div id="tab_attach">
+          <td><a href="javascript:;" onclick="showhidediv('tab_attach')"><b>上传附件</b></a> 
+            <div id="tab_attach" style="display:none">
+              <a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
-                <tbody>
-                </tbody>
+	            <tbody id="attachbodyhidden" style="display:none"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
+	  			<tbody id="attachbody"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
               </table>
             </div>
           <span id="idfilespan"></span></td></tr>
