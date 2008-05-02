@@ -190,7 +190,7 @@ if(ISLOGIN === false){
 	$ckcode = '';
 echo <<<EOT
 --> 
-<li><span onclick="showhidediv('loginfm')" style="cursor:pointer;">登录</span></li>
+<li><span onclick="showlogin('loginfm')" style="cursor:pointer;">登录</span></li>
 <div id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 用户名:<br>

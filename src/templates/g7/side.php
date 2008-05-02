@@ -122,7 +122,7 @@ if(ISLOGIN === false){
 	$ckcode = '';
 echo <<<EOT
 --> 
-<li class="random"><h2 onclick="showhidediv('loginfm')" >登录</h2>
+<li class="random"><h2 onclick="showlogin('loginfm')" >登录</h2>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>
@@ -140,7 +140,7 @@ EOT;
 }else{
 echo <<<EOT
 -->
-<li class="random"><h2 onclick="showhidediv('loginfm')" >管理</h2>
+<li class="random"><h2 onclick="showlogin('loginfm')" >管理</h2>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>

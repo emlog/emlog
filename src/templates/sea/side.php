@@ -155,8 +155,6 @@ EOT;
 		<li>今日访问：$sta_cache[day_view_count]</li>
 		<li>总访问量：$sta_cache[view_count]</li>
 		<li><a href="./rss.php"><img src="{$tpl_dir}sea/images/rss.gif" alt="订阅Rss"/></a></li>
-		</ul>
-</li>
 <!--
 EOT;
 if(ISLOGIN === false){
@@ -167,7 +165,7 @@ if(ISLOGIN === false){
 	$ckcode = '';
 echo <<<EOT
 --> 
-<li class="random"><h2 onclick="showhidediv('loginfm')" >登录</h2>
+<li><span onclick="showlogin('loginfm')" style="cursor:pointer;">登录</span>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>
@@ -185,7 +183,7 @@ EOT;
 }else{
 echo <<<EOT
 -->
-<li class="random"><h2 onclick="showhidediv('loginfm')" >管理</h2>
+<li><span onclick="showlogin('loginfm')" >管理</span>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
@@ -196,6 +194,8 @@ EOT;
 }
 echo <<<EOT
 -->
+		</ul>
+</li>
 $exarea
 </ul>
 </div>			

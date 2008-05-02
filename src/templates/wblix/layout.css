@@ -390,14 +390,14 @@ form em {
   font-style:normal;
 }
 
-form input, form textarea {
+input, textarea {
   padding:3px;
-  border:1px solid;
+  border:1px solid #CCCCCC;
   font-family:Arial,Helvetica,sans-serif;
   font-size:1.0em;
 }
 
-form textarea {overflow:auto;}
+textarea {overflow:auto;}
 
 #commentform textarea {width:325px;}
 #contactform textarea, #contactform #bx_subject {width:465px;}
@@ -471,6 +471,7 @@ form .info {padding-left:90px;}
   display:block;
   padding:5px 10px;
   font-style:normal;
+  cursor:pointer;
 }
 
 
@@ -483,7 +484,6 @@ form .info {padding-left:90px;}
 }
 
 #subcontent li a {
-  display:block;
   padding:1px 0;
   height:1%; /* IE WIN */
 }
@@ -567,4 +567,19 @@ form .info {padding-left:90px;}
 .calendar td a:hover{
 	color:#FF9900;
 	text-decoration:underline;
+}
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:80px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
 }

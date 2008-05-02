@@ -10,6 +10,19 @@ function showhidediv(id){
 		}
 	}catch(e){}
 }
+function showlogin(id){
+	try{
+		var panel=document.getElementById(id);
+		if(panel){
+			if(panel.style.display=='none'){
+				panel.style.display='block';
+				var w=document.f.user;w.focus();
+			}else{
+				panel.style.display='none';
+			}
+		}
+	}catch(e){}
+}
 function keyw()
 {
 	if (document.keyform.keyword.value=="")

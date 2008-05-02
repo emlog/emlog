@@ -18,8 +18,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}wblix/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}wblix/main.js" type="text/javascript"></script>
 </head>
-
-<body onload="sendinfo('$calendar_url');">
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="container">
 
 <div id="header">
@@ -38,9 +37,20 @@ echo <<<EOT
 </form>
 
 <ul>
-<li class="selected"><a href="./">Home</a></li>
-<li><a href="./?action=tag">Tags</a></li>
-<li><a href="./adm/">Login</a></li>
+<li class="selected"><a href="./">首页</a></li>
+<!--
+EOT;
+if(ISLOGIN){
+echo <<<EOT
+-->
+	<li><a href="./adm/add_log.php">写日志</a></li>
+	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./index.php?action=logout">退出</a></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
 </ul>
 
 </div>
