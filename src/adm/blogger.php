@@ -59,19 +59,19 @@ if($action== 'delicon')
 			$ret = unlink($fpath);
 			if(!$ret)
 			{
-				formMsg('头像删除失败','javascript:history.go(-1);',0);
+				formMsg('头像删除失败','./blogger.php',0);
 			}
 		}
 		$ret = unlink($icon['photo']);
 		if(!$ret)
 		{
-			formMsg('头像删除失败','javascript:history.go(-1);',0);
+			formMsg('头像删除失败','./blogger.php',0);
 		}
 	}
 	//删除数据库记录
 	$DB->query("UPDATE {$db_prefix}user SET photo='' ");
 	$MC->mc_blogger('../cache/blogger');
-	formMsg('头像成功删除','javascript:history.go(-1);',1);
+	formMsg('头像成功删除','./blogger.php',1);
 }
 
 //修改用户名密码

@@ -338,6 +338,6 @@ if ($action== 'delLog'){
 	$MC->mc_comment('../cache/comments');
 	$MC->mc_logtags('../cache/log_tags');
 	$MC->mc_tags('../cache/tags');
-	formMsg('删除日志成功','javascript:history.go(-1);',1);
+	formMsg('删除日志成功','./admin_log.php',1);
 }
 ?>

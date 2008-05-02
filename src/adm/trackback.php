@@ -45,7 +45,7 @@ if ($action== 'del_tb'){
 	$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
 	$DB->query("DELETE FROM {$db_prefix}trackback where tbid='$tbid' ");
 	$MC->mc_sta('../cache/sta');
-	formMsg('删除引用成功','javascript:history.go(-1);',1);
+	formMsg('删除引用成功','./trackback.php',1);
 }
 
 ###################批量删除引用###############
