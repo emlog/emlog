@@ -39,12 +39,14 @@ print <<<EOT
           <td valign=top align=left width=114>
             <div id=sidebar>
             <div id=sidebartop></div>
-            <div class=sidebarmenu>Blog管理</div>
+            <div class="sidebarmenu" onclick="showhidediv('blogctlpl');">Blog管理</div>
+			<div id="blogctlpl">
             <div class=sidebarsubmenu><A href="configure.php">博客设置</A><a href="add_log.php"></a></div>
             <div class=sidebarsubmenu><A href="blogger.php" >个人资料</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="music.php" >背景音乐</A><a href="admin_log.php"></a></div>
 			<div class=sidebarsubmenu><A href="template.php" >模板设置</A><a href="admin_log.php"></a></div>
-			<div class=sidebarsubmenu><A href="link.php">友站管理</A><a href="admin_log.php"></a></div> 
+			<div class=sidebarsubmenu><A href="link.php">友站管理</A><a href="admin_log.php"></a></div>
+			</div>
 			</div>
 			</td>
 		  </tr>
@@ -55,14 +57,15 @@ print <<<EOT
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div id=sidebartop></div>
-            <div class=sidebarmenu>日志管理</div>
+            <div class="sidebarmenu" onclick="showhidediv('logmg');">日志管理</div>
+			<div id="logmg">
             <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/$nonce_tpl/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum">$draftnum</span></a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php">日志管理</a></div>
             <div class=sidebarsubmenu><A href="comment.php">评论管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="trackback.php">引用管理</A></div>
             <div class=sidebarsubmenu><A href="tag.php">标签管理</A><a href="admin_log.php"></a></div>
+			</div>
 			</div>
        	    </td>
 		  </tr>
@@ -73,11 +76,13 @@ print <<<EOT
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div id=sidebartop></div>
-            <div class=sidebarmenu>数据管理</div>
+            <div class="sidebarmenu" onclick="showhidediv('datamg');">数据管理</div>
+			<div id="datamg">
             <div class=sidebarsubmenu><A href="backupdata.php">数据备份</A></div>
             <div class=sidebarsubmenu><A href="cache.php">重建缓存</A><a href="admin_log.php"></a></div>
-			<div id=sidebarBottom></div></div>
+			</div>
+			<div id=sidebarBottom></div>
+			</div>
        	    </td>
 		  </tr>
 		</tbody>

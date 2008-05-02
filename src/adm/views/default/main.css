@@ -69,7 +69,8 @@ a:hover {
 	background-repeat: no-repeat; 
 	height: 4px
 }
-#sidebarbottom {
+#sidebarBottom {
+	background-color:#FF0000;
 	background-position: left bottom; 
 	font-size: 5px; 
 	background-image: url(./images/sidebar_bg_b.gif); 
@@ -85,7 +86,8 @@ a:hover {
 	padding-top: 4px; 
 	background-repeat: no-repeat; 
 	letter-spacing: 0.3em; 
-	height: 24px
+	height: 24px;
+	cursor:pointer;
 }
 .sidebarsubmenu {
 	background-position: center top; 
