@@ -6,14 +6,14 @@ echo <<<EOT
 <ul>
 
 
-<li><h2>日历</h2>
+<li><h2 onclick="showhidediv('calendar')">日历</h2>
 		<ul>
-			<li id="calendar"></li>
+			<div id="calendar"></div>
 		</ul>
 </li>
 
-<li><h2>标签</h2>
-		<ul>
+<li><h2 onclick="showhidediv('tags')">标签</h2>
+		<ul id="tags">
 		<li>
 <!--
 EOT;
@@ -34,7 +34,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li><h2 onclick="showhidediv('twitter')">twitter</h2>
+<li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <!--
 EOT;
@@ -72,8 +72,8 @@ EOT;
 }
 echo <<<EOT
 -->
-<li><h2>Blogroll</h2>
-<ul>
+<li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
+<ul id="blogroll">
 <!--
 EOT;
 foreach($link_cache as $value){

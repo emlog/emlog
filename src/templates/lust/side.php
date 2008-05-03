@@ -41,7 +41,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li><h2 onclick="showhidediv('twitter')">twitter</h2>
+<li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <!--
 EOT;
@@ -132,7 +132,21 @@ EOT;
 -->	
 		</ul>
 </li>
-<li><h2 onclick="showhidediv('sta')">统计</h2>
+<li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
+		<ul id="blogroll">
+<!--
+EOT;
+foreach($link_cache as $value){
+echo <<<EOT
+-->     	
+		<li><a href="$value[url]" title="$value[des]" target="_blank">$value[link]</a></li>
+<!--
+EOT;
+}echo <<<EOT
+-->	
+</ul>
+</li>
+<li><h2 onclick="showhidediv('sta')">其他</h2>
 		<ul id="sta">
 		<li>日志数量：$sta_cache[lognum]</li>
 		<li>评论数量：$sta_cache[comnum]</li>
@@ -167,23 +181,6 @@ EOT;
 }
 echo <<<EOT
 -->
-		</ul>
-</li>
-
-<li><h2>Blogroll</h2>
-		<ul>
-<!--
-EOT;
-foreach($link_cache as $value){
-echo <<<EOT
--->     	
-		<li><a href="$value[url]" title="$value[des]" target="_blank">$value[link]</a></li>
-<!--
-EOT;
-}echo <<<EOT
--->	
-
-<li><a href="./rss.php"><img src="{$tpl_dir}fruitlicious/images/rss.gif" alt="订阅Rss"/></a></li>
 		</ul>
 </li>
 $exarea

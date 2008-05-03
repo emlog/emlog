@@ -6,8 +6,8 @@ echo <<<EOT
 		<div class="obar">
 <ul>
 
-<li><h2>个人档</h2>
-		<ul>
+<li><h2 onclick="showhidediv('blogger')">个人档</h2>
+		<ul id="blogger">
 		<li>$photo</li>
 		<li><b>$name</b> $blogger_des</li>
 		</ul>
@@ -18,8 +18,8 @@ EOT;
 if($ismusic){
 echo <<<EOT
 -->
-<li><h2>音乐</h2>
-	<ul>
+<li><h2 onclick="showhidediv('music')">音乐</h2>
+	<ul id="music">
 	<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="140" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </li>
 		</ul>
@@ -29,8 +29,8 @@ EOT;
 }
 echo <<<EOT
 -->
-<li><h2>评论</h2>
-		<ul>
+<li><h2 onclick="showhidediv('comm')">评论</h2>
+		<ul id="comm">
 			<!--
 EOT;
 foreach($com_cache as $value){
@@ -43,8 +43,8 @@ EOT;
 -->
 		</ul>
 </li>
-<li><h2>搜索</h2>
-		<ul>
+<li><h2 onclick="showhidediv('ss')">搜索</h2>
+		<ul id="ss">
 			<li>
 				<form name="keyform" method="get" action="index.php">
     <input name="keyword"  type="text" id="s" value="" size="14" maxlength="30" class="input" />
@@ -54,8 +54,8 @@ EOT;
 			</li>
 		</ul>
 </li>
-<li><h2>存档</h2>
-		<ul>
+<li><h2 onclick="showhidediv('dang')">存档</h2>
+		<ul id="dang">
 <!--
 EOT;
 foreach($dang_cache as $value){
@@ -68,8 +68,8 @@ EOT;
 -->	
 		</ul>
 </li>
-<li><h2>统计</h2>
-		<ul>
+<li><h2 onclick="showhidediv('sta')">统计</h2>
+		<ul id="sta">
 		<li>日志数量：$sta_cache[lognum]</li>
 		<li>评论数量：$sta_cache[comnum]</li>
 		<li>引用数量：$sta_cache[tbnum]</li>

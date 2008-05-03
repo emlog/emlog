@@ -15,7 +15,7 @@ echo <<<EOT
 
 <li><h2 onclick="showhidediv('calendar')">日历</h2>
 		<ul>
-			<li id="calendar"></li>
+			<div id="calendar"></div>
 		</ul>
 </li>
 
@@ -41,7 +41,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li><h2 onclick="showhidediv('twitter')">twitter</h2>
+<li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <!--
 EOT;
@@ -69,7 +69,7 @@ echo <<<EOT
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:150px;" style="height:80px;"></textarea><br />
+<textarea name="tw" id="tw" style="width:150px;" style="height:50px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>

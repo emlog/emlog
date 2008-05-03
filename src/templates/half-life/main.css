@@ -191,6 +191,7 @@ input#author, input#email, input#url{
 	text-transform: uppercase;
 	background: #a1410e;
 	color: #fff;
+	cursor:pointer;
 }
 
 .sidebar ul li h2 a, .sidebar ul li h2 a:hover{
@@ -230,6 +231,7 @@ input#author, input#email, input#url{
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #a1410e;
+	cursor:pointer;
 }
 
 .obar ul ul{

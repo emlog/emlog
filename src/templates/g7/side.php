@@ -37,7 +37,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li class="r_comments"><h2 onclick="showhidediv('twitter')">twitter</h2>
+<li class="r_comments"><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <!--
 EOT;

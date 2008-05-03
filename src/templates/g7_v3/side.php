@@ -40,7 +40,7 @@ EOT;
 if($index_twnum>0){
 echo <<<EOT
 -->
-<li><h2 onclick="showhidediv('twitter')">twitter</h2>
+<li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <!--
 EOT;
