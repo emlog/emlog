@@ -55,7 +55,7 @@ if($ismusic){
 echo <<<EOT
 -->
 	<li><h2>音乐</h2>
-		<p><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+		<p>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
 </p>
 	</li>
 	<!--
