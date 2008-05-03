@@ -340,6 +340,7 @@ small{
 	font-family: "Trebuchet MS", Arial, Helvetica, Georgia, Sans-Serif;
 	font-size: 12px;
 	color: #333;
+	cursor:pointer;
 }
 
 .sidebar ul ul li{
@@ -474,3 +475,22 @@ table#wp-calendar tfoot td{
 	font-size:14px;
 	margin-left:10px;
 	}
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:60px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
+#input{
+  padding:3px;
+  border:1px solid #CCCCCC;
+}

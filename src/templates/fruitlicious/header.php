@@ -19,15 +19,10 @@ echo <<<EOT
 	<link href="{$tpl_dir}fruitlicious/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}fruitlicious/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url');">
-
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="container">
-
 	<div class="maincolumn">
-
 		<h1><a href="./">$blogname</a></h1>
-
-		
 <!--
 EOT;
 ?>-->

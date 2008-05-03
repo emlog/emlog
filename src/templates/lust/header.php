@@ -29,9 +29,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}lust/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}lust/main.js" type="text/javascript"></script>
 </head>
-
-<body onload="sendinfo('$calendar_url');" class="wpd-lust">
-
+<body onload="sendinfo('$calendar_url','calendar');">
 <div id="header"><div class="wrap_center">
 	<h1><a href="./">$blogname</a></h1>
 </div></div>
@@ -41,8 +39,19 @@ echo <<<EOT
 <div id="menu">
 <ul>
 	<li class="$home_style"><a href="./" title="Home">Home</a></li>
-	<li class="$style"><a href="./?action=tag" title="tags">Tags</a></li>
-	<li class="page_item"><a href="./adm/" title="tags">Login</a></li>
+<!--
+EOT;
+if(ISLOGIN){
+echo <<<EOT
+-->
+	<li class="page_item"><a href="./adm/add_log.php">写日志</a></li>
+	<li class="page_item"><a href="./adm/">管理中心</a></li>
+	<li class="page_item"><a href="./index.php?action=logout">退出</a></li>
+<!--
+EOT;
+}
+echo <<<EOT
+-->
 	<li class="rss"><a href="./rss.php" title="Subscribe to Feed">Subscribe to Feed</a></li>
 </ul>
 </div>

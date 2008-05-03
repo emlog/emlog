@@ -143,6 +143,7 @@ form, img {
 	padding: 0 10px 0 0;
 	background: url(images/arrow.gif) no-repeat center right;
 	font-size: 1.1em;
+	cursor:pointer;
 }
 
 #sidebar h2 a {
@@ -169,7 +170,6 @@ form, img {
 	border-bottom: 1px solid #E8E7D0;
 }
 #sidebar ul ul li a {
-	display: block;
 	margin: 0 0 0 -10px;
 	padding: 0.1em 10px;
 	width: 190px;
@@ -365,4 +365,23 @@ html>body #wp-calendar {
 	padding: 20px;
 	line-height: 24px;
 	width:400px;
+}
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:80px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
+#input{
+  padding:3px;
+  border:1px solid #CCCCCC;
 }

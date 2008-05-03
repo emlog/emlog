@@ -18,9 +18,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}half-life/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}half-life/main.js" type="text/javascript"></script>
 </head>
-
-<body onload="sendinfo('$calendar_url');">
-
+<body onload="sendinfo('$calendar_url','calendar');">
 <div class="container">
 
 	<div class="page">

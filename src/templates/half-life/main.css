@@ -526,3 +526,22 @@ table.calendartop td{
 	background-color: #F3F3F3;
 	color: #666666;
 }
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:50px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
+#input{
+  padding:3px;
+  border:1px solid #CCCCCC;
+}

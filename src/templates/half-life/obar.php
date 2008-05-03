@@ -75,8 +75,46 @@ EOT;
 		<li>引用数量：$sta_cache[tbnum]</li>
 		<li>今日访问：$sta_cache[day_view_count]</li>
 		<li>总访问量：$sta_cache[view_count]</li>
-		<li><a href="./adm/">登录</a></li>
 		<li><a href="./rss.php"><img src="{$tpl_dir}half-life/images/rss.gif" alt="订阅Rss"/></a></li>
+<!--
+EOT;
+if(ISLOGIN === false){
+	$login_code=='y'?
+	$ckcode = "验证码:<br />
+				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\" id=\"input\">&nbsp&nbsp\n
+				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
+	$ckcode = '';
+echo <<<EOT
+--> 
+<li><span onclick="showlogin('loginfm')" style="cursor:pointer;">登录</span>
+<ul id="loginfm" style="display: none;">
+<form name="f" method="post" action="index.php?action=login" id="commentform">
+<li>
+用户名:<br>
+<input name="user" type="text" id="input"><br />
+密  码:<br>
+<input name="pw" type="password" id="input"><br>
+$ckcode <br>
+<input type="submit" value=" 登录" >
+</li>
+</form>
+</ul>
+<!--
+EOT;
+}else{
+echo <<<EOT
+-->
+<li><span onclick="showlogin('loginfm')" >管理</span>
+<ul id="loginfm">
+	<li><a href="./adm/add_log.php">写日志</a></li>
+	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./index.php?action=logout">退出</a></li>
+	</ul>
+<!--
+EOT;
+}
+echo <<<EOT
+-->		
 		</ul>
 </li>
 $exarea

@@ -271,6 +271,7 @@ input#author, input#email, input#url{
 	font-weight: bold;
 	background: url(images/bg_dotted.gif) repeat-x bottom left;
 	color: #65c5c5;
+	cursor:pointer;
 }
 
 .sidebar ul ul{
@@ -425,4 +426,22 @@ table.calendartop td{
 	font-size:14px;
 	margin-left:41px;
 	}
-/* end calendar */
+#twitter li 
+{
+	border-top:dotted #999999 1px;
+	line-height:20px;
+}
+#twitter li span
+{
+	font-size:10px;
+	padding-left:100px;
+}
+#twitter li small
+{
+	font-size:10px;
+	padding:0px 10px;
+}
+#input{
+  padding:3px;
+  border:1px solid #CCCCCC;
+}

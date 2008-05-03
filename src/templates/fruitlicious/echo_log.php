@@ -21,8 +21,7 @@ echo <<<EOT
 -->	
 <div class="comments-template">
 <h2 id="comments">引用:<a name="tb"></a></h2>
-<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
-<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
+<input type="text" id="email" style="width:350px" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}" /><a name="tb"></a>
 </div>
 <!--
 EOT;

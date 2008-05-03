@@ -15,7 +15,7 @@ echo <<<EOT
 <link href="{$tpl_dir}wp-cute/main.css" rel="stylesheet" type="text/css" />
 <script src="{$tpl_dir}wp-cute/main.js" type="text/javascript"></script>
 </head>
-<BODY onLoad="sendinfo('$calendar_url');">
+<body onload="sendinfo('$calendar_url','calendar');">
 <DIV id=page>
 <DIV id=header>
 <DIV id=headerimg>

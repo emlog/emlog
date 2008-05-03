@@ -17,8 +17,7 @@ EOT;
 if($allow_tb == 'y'){
 echo <<<EOT
 <h5>引用地址:<a name="tb"></a></h5>
-<p>gbk: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=gbk</p>  
-<p>UTF-8: {$blogurl}tb.php?id=$logid&amp;sc={$tbscode}&amp;enc=utf-8</p>
+<input type="text" id="input" style="width:350px" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}" /><a name="tb"></a>
 EOT;
 }
 foreach($tb as $key=>$value){
@@ -55,11 +54,10 @@ echo <<<EOT
       <font color="red">姓名</font><br />
       <br />
 	<input name="commail" type="text" size="45" value="$ckmail" maxlength="100" />
-  电子邮件地址<br />
+  电子邮件地址<br /><br />
   <input name="comurl" type="text" size="45" value="$ckurl" maxlength="100" />
-  个人主页<br />
-  <br />
-          <textarea name="comment" cols="45" rows="10" ></textarea>
+  个人主页<br /><br />
+  <textarea name="comment" cols="45" rows="10" ></textarea>
   </p>
     <p><br />
           $cheackimg
