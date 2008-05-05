@@ -1,6 +1,6 @@
 <?php
 /**
- * 手机wap页面
+ * 手机wap页面 第一版
  * @copyright (c) 2008, Emlog All Rights Reserved
  * @version emlog-2.6.5
  */
