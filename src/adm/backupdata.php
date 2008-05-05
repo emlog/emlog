@@ -84,7 +84,7 @@ if ($action == 'renewdata')
 		$dbfile['system'] = substr($detail[0],1,11);
 		if ($dbfile['system'] !== "emlog_$edition")
 		{
-			formMsg("导入失败!该备份文件不是emlog_$edition的备份文件!", 'javascript:history.go(-2);',0);
+			formMsg("导入失败! 该备份文件不是 emlog_{$edition} 的备份文件!", 'javascript:history.go(-1);',0);
 		}
 	}
 	$fp = fopen($sqlfile, 'rb');
