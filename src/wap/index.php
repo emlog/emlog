@@ -63,11 +63,17 @@ if ($action == 'logs')
 
 	wap_header($config_cache['blogname']);
 	echo '<p>';
-	foreach ($log as $val)
+	if(isset($log))
 	{
-		echo '<a href="./index.php?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
+		foreach ($log as $val)
+		{
+			echo '<a href="./index.php?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
+		}
+	}else
+	{
+		echo 'No logs yet!';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./\">首页</a></p>";
+	echo "</p><p>$page_url <br /><a href=\"./index.php\">首页</a></p>";
 	wap_footer();
 }
 
@@ -96,11 +102,17 @@ if ($action == 'dis')
 if($action == 'coms')
 {
 	wap_header($config_cache['blogname']);
-	foreach($com_cache as $value)
+	if(isset($com_cache) && !empty($com_cache))
 	{
-		echo "{$value['name']}<br />{$value['content']}<br />";
+		foreach($com_cache as $value)
+		{
+			echo "{$value['name']}<br />{$value['content']}<br />";
+		}
+	}else
+	{
+		echo 'No comments yet!';
 	}
-	echo "<p><a href=\"./\">首页</a></p>";
+	echo "<p><a href=\"./index.php\">首页</a></p>";
 	wap_footer();
 }
 #################twitter list ##############
@@ -135,12 +147,19 @@ if ($action == 'twitter')
 
 	wap_header($config_cache['blogname']);
 	echo '<p>';
-	foreach ($tws as $val)
+	if(isset($tws))
 	{
-		$doact = ISLOGIN===true?"<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
-		echo $val['content'].$doact.'('.$val['date'].')<br />';
+		foreach ($tws as $val)
+		{
+			$doact = ISLOGIN===true?"<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
+			echo $val['content'].$doact.'('.$val['date'].')<br />';
+		}
+	}else
+	{
+		echo 'No twitter yet!';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./\">首页</a></p>";
+	$stamp = time();
+	echo "</p><p>$page_url <br /><a href=\"./index.php?stamp=$stamp\">首页</a></p>";
 	wap_footer();
 }
 if ($action == 'waplogin')
@@ -180,7 +199,8 @@ if(ISLOGIN === true && $action == 'add_tw')
 		$time = time();
 		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$time')");
 		$MC->mc_twitter('../cache/twitter');
-		header("Location: index.php?action=twitter");
+		$MC->mc_sta('../cache/sta');
+		header("Location: index.php?action=twitter&amp;stamp=$time");
 	}
 }
 //删除twitter
@@ -189,6 +209,7 @@ if(ISLOGIN === true && $action == 'del_tw')
 	$twid = isset($_GET['id'])?intval($_GET['id']):'';
 	$query = $DB->query("DELETE FROM {$db_prefix}twitter WHERE id=$twid");
 	$MC->mc_twitter('../cache/twitter');
+	$MC->mc_sta('../cache/sta');
 	header("Location: index.php?action=twitter");
 }
 //登陆验证
@@ -211,7 +232,8 @@ if ($action == 'dowaplogin')
 		}
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
-		header("Location: index.php");
+		$stamp = time();
+		header("Location: index.php?stamp=$stamp");
 	}else
 	{
 		header("Location: index.php");
