@@ -23,6 +23,7 @@ if(ISLOGIN === true && $action == 'add')
 		$time = time();
 		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$time')");
 		$MC->mc_twitter('./cache/twitter');
+		$MC->mc_sta('./cache/sta');
 		$twitter.=getindextw();
 		echo $twitter;
 	}
@@ -34,6 +35,7 @@ if(ISLOGIN === true && $action == 'del')
 	$twitter = '';
 	$query = $DB->query("DELETE FROM {$db_prefix}twitter WHERE id=$twid");
 	$MC->mc_twitter('./cache/twitter');
+	$MC->mc_sta('./cache/sta');
 	$twitter.=getindextw();
 	echo $twitter;
 }
