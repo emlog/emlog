@@ -185,8 +185,8 @@ echo <<<EOT
 		</ul>
 </li>
 
-<li><h2>Blogroll</h2>
-		<ul>
+<li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
+		<ul id="blogroll">
 <!--
 EOT;
 foreach($link_cache as $value){
