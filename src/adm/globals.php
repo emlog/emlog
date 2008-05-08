@@ -61,7 +61,7 @@ if (!is_dir($em_tpldir))
 	exit('the adm tmplate net found!');
 }
 //实例化一个缓存生成对象
-$MC = new mkcache($host, $user, $pass,$db,$db_prefix);
+$MC = new mkcache($DB,$db_prefix);
 //登陆验证
 if ($action == 'login') 
 {

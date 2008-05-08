@@ -74,7 +74,7 @@ if(isset($com_cache))
 }
 
 //cache 
-$MC = new mkcache();
+$MC = new mkcache($DB,$db_prefix);
 
 //site info
 $icp = $icp;

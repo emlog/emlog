@@ -10,16 +10,23 @@ class mkcache {
 	var $link;
 	var $Archives;
 	var $log_tags;
-	var $log_atts;//附件
+	var $log_atts;
 	var $tags;
 	var $comment;
 	var $twitter;
-
+	
+	var $dbhd;
+	var $dbprefix;
+	
+	function mkcache($dbhandle,$dbprefix)
+	{
+		$this->dbhd = $dbhandle;
+		$this->dbprefix = $dbprefix;
+	}
 	//站点配置缓存
 	function mc_config($cf)
 	{
-		global $DB,$db_prefix;
-		$show_config=$DB->fetch_array($DB->query("SELECT * FROM {$db_prefix}config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
 		$exarea = addslashes($show_config['exarea']);
 		$config ="\n\$config_cache = array('sitekey' =>\"".htmlspecialchars($show_config['site_key'])."\",'blogname' =>\"".htmlspecialchars(stripslashes($show_config['blogname']))."\",'bloginfo'=>\"".htmlspecialchars(stripslashes($show_config['bloginfo']))."\",'index_lognum' =>\"".$show_config['index_lognum']."\",'index_twnum' =>\"".$show_config['index_twnum']."\",'index_tagnum' =>\"".$show_config['index_tagnum']."\",'index_comment_num' =>\"".$show_config['index_comnum']."\",'ischkcomment'=>\"".$show_config['ischkcomment']."\",'isurlrewrite'=>\"".$show_config['isurlrewrite']."\",'istrackback'=>\"".$show_config['istrackback']."\",'comment_code'=>\"".$show_config['comment_code']."\",'login_code'=>\"".$show_config['login_code']."\",'comment_subnum'=>\"".$show_config['comment_subnum']."\",'nonce_templet'=>\"".$show_config['nonce_templet']."\",'blogurl'=>\"".htmlspecialchars($show_config['blogurl'])."\",'icp'=>\"".htmlspecialchars($show_config['icp'])."\",'timezone'=>\"".$show_config['timezone']."\",'exarea'=>\"".$exarea."\");";
 
@@ -29,8 +36,7 @@ class mkcache {
 	//个人资料
 	function mc_blogger($cf)
 	{
-		global $DB,$db_prefix;
-		$blogger = $DB->fetch_one_array("select * from {$db_prefix}user ");
+		$blogger = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."user ");
 		$icon = '';
 		if($blogger['photo'])
 		{
@@ -45,13 +51,12 @@ class mkcache {
 	//访问统计
 	function mc_sta($cf)
 	{
-		global $DB,$db_prefix;
-		$dh = $DB->fetch_one_array("select * from {$db_prefix}statistics");
-		$lognum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n' "));
-		$comnum = $DB->num_rows($DB->query("SELECT cid FROM {$db_prefix}comment WHERE hide='n' "));
-		$tbnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}trackback "));
-		$twnum = $DB->num_rows($DB->query("SELECT id FROM {$db_prefix}twitter "));
-		$hidecom = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}comment where hide='y' "));
+		$dh = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."statistics");
+		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."blog WHERE hide='n' "));
+		$comnum = $this->dbhd->num_rows($this->dbhd->query("SELECT cid FROM ".$this->dbprefix."comment WHERE hide='n' "));
+		$tbnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."trackback "));
+		$twnum = $this->dbhd->num_rows($this->dbhd->query("SELECT id FROM ".$this->dbprefix."twitter "));
+		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."comment where hide='y' "));
 
 		$sta="\n\$sta_cache = array(
 				'day_view_count' => \"".$dh['day_view_count']."\",
@@ -68,13 +73,12 @@ class mkcache {
 	//评论缓存
 	function mc_comment($cf)
 	{
-		global $DB,$db_prefix;
-		$show_config=$DB->fetch_array($DB->query("SELECT * FROM {$db_prefix}config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
 		$index_comment_num = $show_config['index_comnum'];
 		$comment_subnum = $show_config['comment_subnum'];
-		$query=$DB->query("SELECT cid,gid,comment,date,poster FROM {$db_prefix}comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
+		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster FROM ".$this->dbprefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
 		$j = 0;
-		while($show_com=$DB->fetch_array($query)){
+		while($show_com=$this->dbhd->fetch_array($query)){
 			$this->comment.= "\n\$com_cache[".$j."] = array('url'=>\"index.php?action=showlog&gid=".$show_com['gid']."#".$show_com['cid']."\",'name'=>\"".base64_encode(htmlspecialchars($show_com['poster']))."\",'content'=>\"".base64_encode(htmlClean2(subString($show_com['comment'],0,$comment_subnum)))."\");";
 			$j++;
 		}
@@ -84,12 +88,11 @@ class mkcache {
 	//侧边栏标签缓存
 	function mc_tags($cf)
 	{
-		global $DB,$db_prefix;
-		$show_config=$DB->fetch_array($DB->query("SELECT index_tagnum FROM {$db_prefix}config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_tagnum FROM ".$this->dbprefix."config"));
 		$index_tagnum = $show_config['index_tagnum'];
-		$query=$DB->query("SELECT tagname,usenum FROM {$db_prefix}tag ORDER BY usenum DESC LIMIT 0, $index_tagnum ");
+		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag ORDER BY usenum DESC LIMIT 0, $index_tagnum ");
 		$m = 0;
-		while($show_tag = $DB->fetch_array($query)){
+		while($show_tag = $this->dbhd->fetch_array($query)){
 			$size = 14+round($show_tag['usenum']/3);
 			$fontsize = $size >40?40:$size;
 			$tag = $show_tag['tagname'];
@@ -104,10 +107,9 @@ class mkcache {
 	//友站缓存
 	function mc_link($cf)
 	{
-		global $DB,$db_prefix;
-		$query=$DB->query("SELECT siteurl,sitename,description FROM {$db_prefix}link ORDER BY taxis ASC");
+		$query=$this->dbhd->query("SELECT siteurl,sitename,description FROM ".$this->dbprefix."link ORDER BY taxis ASC");
 		$k = 0;
-		while($show_link=$DB->fetch_array($query)){
+		while($show_link=$this->dbhd->fetch_array($query)){
 			$this->link.= "\n\$link_cache[".$k."] = array('link'=>\"".htmlspecialchars($show_link['sitename'])."\",'url'=>\"".htmlspecialchars($show_link['siteurl'])."\",'des'=>\"".htmlspecialchars($show_link['description'])."\");";
 			$k++;
 		}
@@ -117,12 +119,11 @@ class mkcache {
 	//twitter
 	function mc_twitter($cf)
 	{
-		global $DB,$db_prefix;
-		$show_config=$DB->fetch_array($DB->query("SELECT index_twnum FROM {$db_prefix}config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".$this->dbprefix."config"));
 		$index_twnum = $show_config['index_twnum']+1;
-		$query=$DB->query("SELECT * FROM {$db_prefix}twitter ORDER BY id DESC LIMIT $index_twnum");
+		$query=$this->dbhd->query("SELECT * FROM ".$this->dbprefix."twitter ORDER BY id DESC LIMIT $index_twnum");
 		$k = 0;
-		while($show_tw=$DB->fetch_array($query)){
+		while($show_tw=$this->dbhd->fetch_array($query)){
 			$this->twitter.= "\n\$tw_cache[".$k."] = array('content'=>\"".htmlspecialchars($show_tw['content'])."\",'date'=>\"".$show_tw['date']."\",'id'=>\"".$show_tw['id']."\");";
 			$k++;
 		}
@@ -132,13 +133,12 @@ class mkcache {
 	//日志归档缓存
 	function mc_record($cf)
 	{
-		global $DB,$db_prefix;
 		global $isurlrewrite;
-		$query=$DB->query("select date from {$db_prefix}blog WHERE hide='n' ORDER BY date DESC");
+		$query=$this->dbhd->query("select date from ".$this->dbprefix."blog WHERE hide='n' ORDER BY date DESC");
 		$record='xxxx_x';
 		$p = 0;
 		$lognum = 1;
-		while($show_record=$DB->fetch_array($query)){
+		while($show_record=$this->dbhd->fetch_array($query)){
 			$f_record=date('Y_n',$show_record['date']);
 			if ($record!=$f_record){
 				$h = $p-1;
@@ -174,18 +174,17 @@ class mkcache {
 	//日志标签缓存
 	function mc_logtags($cf)
 	{
-		global $DB,$db_prefix;
-		$sql="SELECT gid FROM {$db_prefix}blog ORDER BY top DESC ,date DESC";
-		$query1=$DB->query($sql);
-		while($show_log=$DB->fetch_array($query1)) {
+		$sql="SELECT gid FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
+		$query1=$this->dbhd->query($sql);
+		while($show_log=$this->dbhd->fetch_array($query1)) {
 			$tag = '';
 			$gid = $show_log['gid'];
 			//tag
-			$tquery = "SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%,$gid,%' " ;
-			$result = $DB->query($tquery);
-			$tagnum = $DB->num_rows($result);
+			$tquery = "SELECT tagname FROM ".$this->dbprefix."tag WHERE gid LIKE '%,$gid,%' " ;
+			$result = $this->dbhd->query($tquery);
+			$tagnum = $this->dbhd->num_rows($result);
 			if($tagnum>0){
-				while($show_tag=$DB->fetch_array($result)){
+				while($show_tag=$this->dbhd->fetch_array($result)){
 					$tag .= "	<a href=\\\"./?action=taglog&tag=".urlencode($show_tag['tagname'])."\\\">".htmlspecialchars($show_tag['tagname']).'</a>';
 				}
 			}else	{
@@ -200,16 +199,15 @@ class mkcache {
 	//日志附件缓存
 	function mc_logatts($cf,$cont_attid='')
 	{
-		global $DB,$db_prefix;
-		$sql="SELECT gid,attcache FROM {$db_prefix}blog ORDER BY top DESC ,date DESC";
-		$query1=$DB->query($sql);
-		while($rows=$DB->fetch_array($query1)){
+		$sql="SELECT gid,attcache FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
+		$query1=$this->dbhd->query($sql);
+		while($rows=$this->dbhd->fetch_array($query1)){
 			$gid = $rows['gid'];
 			$att_img = '';
 			$attachment = '';
 			//attachment
-			$attquery = $DB->query("SELECT * FROM {$db_prefix}attachment WHERE blogid=$gid ");
-			while($show_attach=$DB->fetch_array($attquery)){
+			$attquery = $this->dbhd->query("SELECT * FROM ".$this->dbprefix."attachment WHERE blogid=$gid ");
+			while($show_attach=$this->dbhd->fetch_array($attquery)){
 				$cont_attid = unserialize($rows['attcache']);
 				if($cont_attid && in_array($show_attach['aid'],$cont_attid))
 				{
