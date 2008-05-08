@@ -58,7 +58,7 @@ $action = isset($_GET['action'])?addslashes($_GET['action']):'';
 	$exarea    = $config_cache['exarea'];
 	$timezone  = intval($config_cache['timezone']);
 	$tpl_dir   = './templates/';//所有模板存放目录
-	$timezone != 8 ? $localdate = time() - ($timezone-8) * 3600 : $localdate = time();
+	$localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 	isset($tag_cache)?sort($tag_cache):$tag_cache = array();
 
 //decode comment

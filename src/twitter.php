@@ -20,8 +20,7 @@ if(ISLOGIN === true && $action == 'add')
 	if(!empty($content))
 	{
 		$twitter = '';
-		$time = time();
-		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$time')");
+		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$localdate')");
 		$MC->mc_twitter('./cache/twitter');
 		$MC->mc_sta('./cache/sta');
 		$twitter.=getindextw();

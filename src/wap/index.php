@@ -95,7 +95,8 @@ if ($action == 'dis')
 	wap_header($log_title);
 	echo "<p>发布时间：$post_time <br /></p>";
 	echo "<p>$log_content</p>";
-	echo "<p><a href=\"./\">首页</a> <a href=\"./?action=logs\">返回日志列表</a></p>";
+	$stamp = time();
+	echo "<p><a href=\"./index.php?stamp=$stamp\">首页</a> <a href=\"./?action=logs\">返回日志列表</a></p>";
 
 	wap_footer();
 }
@@ -196,8 +197,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
 	if(!empty($content))
 	{
-		$time = time();
-		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$time')");
+		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$localdate')");
 		$MC->mc_twitter('../cache/twitter');
 		$MC->mc_sta('../cache/sta');
 		header("Location: index.php?action=twitter&amp;stamp=$time");
