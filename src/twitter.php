@@ -41,7 +41,7 @@ if(ISLOGIN === true && $action == 'del')
 //读取twitter
 function getindextw()
 {
-	global $DB,$db_prefix,$index_twnum;
+	global $DB,$db_prefix,$index_twnum,$localdate;
 
 	$page = isset($_GET['p']) ? intval($_GET['p']) : 1;
 	$start_limit = $page?($page - 1) * $index_twnum:0;
@@ -55,7 +55,7 @@ function getindextw()
 	while ($rows = $DB->fetch_array($query))
 	{
 		extract($rows);
-		$date = date("Y-m-d H:i",$date);
+		$date = SmartyDate($localdate,$date);
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>":'';
 		$twitter .="<li>$content $delbt<br /><span>$date</span></li>";
 	}

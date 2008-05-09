@@ -385,6 +385,31 @@ function fopen_url($url)
 	}
 	return $file_content;
 }
+/**
+ * 时间转化函数
+ *
+ * @param unix timestamp $datetemp
+ * @return string
+ */
+function SmartyDate($now,$datetemp,$dstr='Y-m-d H:i')
+{
+	$op = '';
+	$sec = $now-$datetemp;
+	$hover = floor($sec/3600);
+	if($hover == 0){
+		$min = floor($sec/60);
+		if($min==0){
+			$op = $sec.' 秒前';
+		}else{
+			$op = "$min 分钟前";
+		}
+	}elseif($hover < 24){
+		$op = "约 {$hover} 小时前";
+	}else {
+		$op = date($dstr,$datetemp);
+	}
+	return $op;
+}
 
 /**
 	返回显系统错误信息

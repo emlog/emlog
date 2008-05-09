@@ -35,7 +35,7 @@ $morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:
 foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 {
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-	$value['date'] = date("Y-m-d H:i",$value['date']);
+	$value['date'] = SmartyDate($localdate,$value['date']);
 echo <<<EOT
 -->
 <li> {$value['content']} $delbt<br><span>{$value['date']}</span></li>
