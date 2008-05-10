@@ -210,8 +210,7 @@ fclose($fp);
 
 //初始化数据库类
 $DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-
-$MC = new mkcache($db_host, $db_user, $db_pw,$db_name,$db_prefix);
+$MC = new mkcache($DB,$db_prefix);
 unset($db_host, $db_user, $db_pw,$db_name);
 
 $dbcharset = 'utf8';
