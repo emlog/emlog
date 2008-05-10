@@ -1,6 +1,6 @@
 <?php
 /**
- * 手机wap页面 第一版
+ * 手机 wap 第一版
  * @copyright (c) 2008, Emlog All Rights Reserved
  * @version emlog-2.6.5
  */
@@ -30,7 +30,7 @@ if(!isset($action) || empty($action))
 	wap_footer();
 }
 
-#################日志列表(display log list)##############
+//显示日志列表 blog list
 if ($action == 'logs')
 {
 	//page link
@@ -77,7 +77,7 @@ if ($action == 'logs')
 	wap_footer();
 }
 
-#################显示日志(Display Logs)#################
+//显示日志 Display Log
 if ($action == 'dis')
 {
 	//参数过滤
@@ -116,7 +116,7 @@ if($action == 'coms')
 	echo "<p><a href=\"./index.php\">首页</a></p>";
 	wap_footer();
 }
-#################twitter list ##############
+//twitter list
 if ($action == 'twitter')
 {
 	//page link
@@ -168,7 +168,7 @@ if ($action == 'waplogin')
 	wap_header('用户登录');
 	echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
 	echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
-	echo "<p><anchor title=\"submit\">确定\n";
+	echo "<p><anchor title=\"submit\">登录\n";
 	echo "<go href=\"index.php?action=login\" method=\"post\">\n";
 	echo "<postfield name=\"user\" value=\"$(user)\" />\n";
 	echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
@@ -180,9 +180,9 @@ if ($action == 'waplogin')
 }
 if ($action == 'addtw')
 {
-	wap_header('用户登录');
+	wap_header('Twitter');
 	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
-	echo "<p><anchor title=\"submit\">确定\n";
+	echo "<p><anchor title=\"submit\">提交\n";
 	echo "<go href=\"index.php?action=add_tw\" method=\"post\">\n";
 	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
@@ -191,7 +191,7 @@ if ($action == 'addtw')
 	echo "<p><a href=\"index.php\">返回主页</a></p>\n";
 	wap_footer();
 }
-//新增加twitter
+//新增 twitter
 if(ISLOGIN === true && $action == 'add_tw')
 {
 	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
@@ -203,7 +203,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 		header("Location: index.php?action=twitter&amp;stamp=$time");
 	}
 }
-//删除twitter
+//删除 twitter
 if(ISLOGIN === true && $action == 'del_tw')
 {
 	$twid = isset($_GET['id'])?intval($_GET['id']):'';
@@ -240,7 +240,7 @@ if ($action == 'dowaplogin')
 	}
 }
 
-// WML文档头
+// WML 头
 function wap_header($title) {
 	header("Content-type: text/vnd.wap.wml; charset=utf-8");
 	echo "<?xml version=\"1.0\"?>\n";
@@ -252,7 +252,7 @@ function wap_header($title) {
 	echo "<card title=\"".$title."\">\n";
 }
 
-// WML文档尾
+// WML 尾
 function wap_footer() {
 	echo "</card>\n";
 	echo "</wml>\n";

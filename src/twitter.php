@@ -1,6 +1,6 @@
 <?php
 /**
- * twitter生成
+ * twitter 生成
  * @copyright (c) 2008, Emlog All Rights Reserved
  * @version emlog-2.6.5
 */
@@ -13,7 +13,7 @@ if($action == '')
 	$twitter.=getindextw();
 	echo $twitter;
 }
-//新增加
+//add twitter
 if(ISLOGIN === true && $action == 'add')
 {
 	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
@@ -27,7 +27,7 @@ if(ISLOGIN === true && $action == 'add')
 		echo $twitter;
 	}
 }
-//删除
+//del twitter
 if(ISLOGIN === true && $action == 'del')
 {
 	$twid = isset($_GET['twid'])?intval($_GET['twid']):'';
@@ -38,7 +38,7 @@ if(ISLOGIN === true && $action == 'del')
 	$twitter.=getindextw();
 	echo $twitter;
 }
-//读取twitter
+//get twitter
 function getindextw()
 {
 	global $DB,$db_prefix,$index_twnum,$localdate;
