@@ -109,9 +109,8 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 </li>
 <li>
     数据库前缀:<br>
-    <span class="care"> (由英文字母、数字、下划线组成，且必须以下划线结束。
-    例如："abc123_" )</span><br />
-  <input name="dbprefix" type="text" class="input" value="">
+    <span class="care"> (由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+  <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
 <div class="c">

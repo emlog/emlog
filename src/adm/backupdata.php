@@ -38,8 +38,7 @@ if($action=='bakstart')
 	// 如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
-		$setchar = $DB->version() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
-		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n$setchar\n$sqldump";
+		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n$sqldump";
 		//备份到服务器
 		@$fp = fopen($filename, "w+");
 		if ($fp)
@@ -48,7 +47,7 @@ if($action=='bakstart')
 			if(@!fwrite($fp, $sqldump))
 			{
 				@fclose($fp);
-				formMsg( '备份失败,请检查目录的权限是否可写','javascript:history.go(-1);',0);
+				formMsg( '备份失败,请检查备份目录的权限是否可写','javascript:history.go(-1);',0);
 			}else
 			{
 				formMsg('数据成功备份至服务器','./backupdata.php',1);
@@ -72,19 +71,20 @@ if ($action == 'renewdata')
 		formMsg('文件不存在', 'javascript:history.go(-1);',0);
 	}else
 	{
-		$extension=strtolower(substr(strrchr($sqlfile,'.'),1));
+		$extension = strtolower(substr(strrchr($sqlfile,'.'),1));
 		if ($extension !== 'sql')
 		{
-			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件.', 'javascript:history.go(-1);',0);
+			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件', 'javascript:history.go(-1);',0);
 		}
-		$fp=fopen($sqlfile,'rb');
-		$bakinfo=fread($fp,200);
+		$fp = fopen($sqlfile,'rb');
+		$bakinfo = fread($fp,200);
 		fclose($fp);
-		$detail=explode("\n",$bakinfo);
-		$dbfile['system'] = substr($detail[0],1,11);
-		if ($dbfile['system'] != "emlog_$edition")
+		if (!strstr($bakinfo,"emlog_$edition"))
 		{
-			formMsg("导入失败! 该备份文件不是 emlog_{$edition} 的备份文件!", 'javascript:history.go(-1);',0);
+			formMsg("导入失败! 该备份文件不是 emlog {$edition} 的备份文件!", 'javascript:history.go(-1);',0);
+		}elseif (!strstr($bakinfo,$db_prefix))
+		{
+			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
 		}
 	}
 	$fp = fopen($sqlfile, 'rb');
@@ -106,8 +106,11 @@ if ($action == 'renewdata')
 
 function bakindata($filename)
 {
-	global $DB;
+	global $db,$DB;
+	
+	$setchar = $DB->version() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 	$sql = file($filename);
+	array_unshift($sql,$setchar);
 	$query = '';
 	$num = 0;
 	foreach($sql as $key => $value)
@@ -145,4 +148,5 @@ if($action== 'dell_all_bak')
 		formMsg('备份文件删除成功!','./backupdata.php',1);
 	}
 }
+
 ?>
