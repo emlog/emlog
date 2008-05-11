@@ -45,7 +45,7 @@ if($action == '')
 if($action== 'mod')
 {
 	$ismusic= isset($_POST['ismusic']) ? intval($_POST['ismusic']) : 0;
-	$mlinks = isset($_POST['mlinks']) ? addslashes(trim($_POST['mlinks'])) : '';
+	$mlinks = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
 	$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
 	$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
 	$link = '';
