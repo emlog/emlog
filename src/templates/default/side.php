@@ -140,7 +140,7 @@ EOT;
 		<li>总访问量：{$sta_cache['view_count']}</li>
 		</ul>
 	<div class="lister">
-	<a href="./rss.php"><img src="{$tpl_dir}default/rss.gif" alt="订阅Rss"/></a>
+	<a href="./rss.php"><img src="{$tpl_dir}default/images/rss.gif" alt="订阅Rss"/></a>
 	</div>
 	$exarea
 </div>
