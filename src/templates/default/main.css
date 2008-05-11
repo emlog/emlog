@@ -77,7 +77,7 @@ body{
 #page{
 	width:960px;
 	float:left;
-	background:#fff url(./sidebar_border.gif) repeat-y;
+	background:#fff url(./images/sidebar_border.gif) repeat-y;
 	}
 div.contentA{
 	float: right;
@@ -245,34 +245,33 @@ div.contentA{
 	font-size:12px;
 	text-align:center;
 	padding:0px 6px;
-	background-color:#F5F5F5;
 }
 .calendar a:visited{
 	color:#FF3300;
-	text-decoration:underline;
+	text-decoration:none;
 }
 .calendar td a:link{
 	color:#FF3300;
-	text-decoration:underline;
+	text-decoration:none;
 }
 .calendar td a:hover{
 	color:#FF3300;
-	text-decoration:underline;
+	text-decoration:none;
 }
 .day{
-	border:#63617b solid 1px;
+	background:#fff url(./images/bg_cal_today.gif) repeat-y;
 }
 .day2 {
 	font-weight:bold;
 
 }
 .sun{
-	background-color:#63617b;
+	background-color:#F5F5F5;
 	color: #333333;
 	font-weight:bold;
 }
 .week{
-	background-color:#63617b;
+	background-color:#F5F5F5;
 	color: #333333;
 	}
 .calendartop{

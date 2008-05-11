@@ -75,18 +75,25 @@ $calendar =
 
 //获取给定年月的第一天是星期几
 $week=@date("w",mktime(0,0,0,$n_month,1,$n_year));
-//获取给定年月的最后一天是星期几
+//获取给定年月的天数
 $lastday=@date("t",mktime(0,0,0,$n_month,1,$n_year));
-
-if($week==0)
-$week=7;
+//获取给定年月的最后一天是星期几
+$lastweek=@date("w",mktime(0,0,0,$n_month,$lastday,$n_year));
+if($week==0)$week=7;
 $j=1;
 $w=7;
+$isend = false;
 //外循环生成行
-for($i=1;$i<=6;$i++){
+for($i=1;$i<=6;$i++)
+{
+	if($isend || ($i == 6 && $lastweek==0))
+	{
+		break;
+	}
 	$calendar.="<tr>\n";
 	//内循环生成列
-	for($j;$j<=$w;$j++){
+	for($j;$j<=$w;$j++)
+	{
 		if($j<$week)
 		{
 			$calendar.="<td>&nbsp;</td>\n";
@@ -94,7 +101,7 @@ for($i=1;$i<=6;$i++){
 		elseif($j<=7)
 		{
 			$r=$j-$week+1;
-			//如果该日有日至就显示url样式
+			//如果该日有日志就显示url样式
 			$n_time=$n_year.$n_month."0".$r;
 			if(@in_array($n_time,$logdate)&&$n_time==$time)
 				$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$r."</a></td>\n";
@@ -105,12 +112,17 @@ for($i=1;$i<=6;$i++){
 			else
 				$calendar.="<td>".$r."</td>\n";
 		}
-		else{
+		else
+		{
 			$t=$j-($week-1);
 			if($t>$lastday)
-			$calendar.="<td>&nbsp;</td>\n";
-			else{
-				//如果该日有日至就显示url样式
+			{
+				$isend = true;
+				$calendar.="<td>&nbsp;</td>\n";
+			}
+			else
+			{
+				//如果该日有日志就显示url样式
 				$t<10?
 				$n_time=$n_year.$n_month."0".$t:
 				$n_time=$n_year.$n_month.$t;
@@ -129,5 +141,7 @@ for($i=1;$i<=6;$i++){
 	$w+=7;
 }//外循环结束
 $calendar.="</table>";
+
 echo $calendar;
+
 ?>
