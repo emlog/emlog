@@ -247,15 +247,15 @@ div.contentA{
 	padding:0px 6px;
 }
 .calendar a:visited{
-	color:#4A7FF8;
+	color:#FF3300;
 	text-decoration:none;
 }
 .calendar td a:link{
-	color:#4A7FF8;
+	color:#FF3300;
 	text-decoration:none;
 }
 .calendar td a:hover{
-	color:#4A7FF8;
+	color:#FF3300;
 	text-decoration:none;
 }
 .day{
