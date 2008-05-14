@@ -1,27 +1,3 @@
 <?php
-$tag_cache[0] = array('tagurl'=>"%E5%8E%9F%E5%88%9B",'tagname'=>"原创",'fontsize'=>"18");
-$tag_cache[1] = array('tagurl'=>"%E6%B8%B8%E6%88%8F",'tagname'=>"游戏",'fontsize'=>"16");
-$tag_cache[2] = array('tagurl'=>"%E5%BF%83%E6%83%85",'tagname'=>"心情",'fontsize'=>"15");
-$tag_cache[3] = array('tagurl'=>"%E6%90%9E%E7%AC%91",'tagname'=>"搞笑",'fontsize'=>"15");
-$tag_cache[4] = array('tagurl'=>"JavaScript",'tagname'=>"JavaScript",'fontsize'=>"15");
-$tag_cache[5] = array('tagurl'=>"php",'tagname'=>"php",'fontsize'=>"15");
-$tag_cache[6] = array('tagurl'=>"%E9%9F%B3%E4%B9%90",'tagname'=>"音乐",'fontsize'=>"15");
-$tag_cache[7] = array('tagurl'=>"MySQL",'tagname'=>"MySQL",'fontsize'=>"15");
-$tag_cache[8] = array('tagurl'=>"%E5%88%9B%E6%84%8F",'tagname'=>"创意",'fontsize'=>"15");
-$tag_cache[9] = array('tagurl'=>"%E7%AC%91%E8%AF%9D",'tagname'=>"笑话",'fontsize'=>"15");
-$tag_cache[10] = array('tagurl'=>"%E8%A7%86%E9%A2%91",'tagname'=>"视频",'fontsize'=>"15");
-$tag_cache[11] = array('tagurl'=>"%E9%94%99%E8%AF%AF",'tagname'=>"错误",'fontsize'=>"15");
-$tag_cache[12] = array('tagurl'=>"emlog",'tagname'=>"emlog",'fontsize'=>"15");
-$tag_cache[13] = array('tagurl'=>"%E5%8A%A8%E6%BC%AB",'tagname'=>"动漫",'fontsize'=>"15");
-$tag_cache[14] = array('tagurl'=>"url%E9%87%8D%E5%86%99",'tagname'=>"url重写",'fontsize'=>"14");
-$tag_cache[15] = array('tagurl'=>"%E6%91%84%E5%BD%B1",'tagname'=>"摄影",'fontsize'=>"14");
-$tag_cache[16] = array('tagurl'=>"iframe",'tagname'=>"iframe",'fontsize'=>"14");
-$tag_cache[17] = array('tagurl'=>"qq",'tagname'=>"qq",'fontsize'=>"14");
-$tag_cache[18] = array('tagurl'=>"%E8%9C%82%E8%9C%9C%E4%B8%8E%E5%9B%9B%E5%8F%B6%E8%8D%89",'tagname'=>"蜂蜜与四叶草",'fontsize'=>"14");
-$tag_cache[19] = array('tagurl'=>"%E6%92%AD%E6%94%BE%E5%99%A8",'tagname'=>"播放器",'fontsize'=>"14");
-$tag_cache[20] = array('tagurl'=>"%E5%AE%89%E5%85%A8",'tagname'=>"安全",'fontsize'=>"14");
-$tag_cache[21] = array('tagurl'=>"%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91",'tagname'=>"网页开发",'fontsize'=>"14");
-$tag_cache[22] = array('tagurl'=>"%E5%AE%AB%E5%B4%8E%E9%AA%8F",'tagname'=>"宫崎骏",'fontsize'=>"14");
-$tag_cache[23] = array('tagurl'=>"apache",'tagname'=>"apache",'fontsize'=>"14");
-$tag_cache[24] = array('tagurl'=>"%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F",'tagname'=>"正则表达式",'fontsize'=>"14");
+$tag_cache[0] = array('tagurl'=>"emlog",'tagname'=>"emlog",'fontsize'=>"14");
 ?>
