@@ -346,16 +346,62 @@ function getAttachment($attstr,$width,$height)
 }
 
 /**
-	清除模板中的注释
+	清除模板中的注释,并完成URL重写功能
 */
 function cleanPage()
 {
+	global $isurlrewrite;
 	$output = str_replace(array('<!--<!---->','<!---->',"<!--\r\n-->"),array('','',''),ob_get_contents());
+	if($isurlrewrite == 'y' ) {
+		$searchlink = array(
+							"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+							"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
+							"/\<a href\=\"(index\.php|\.\/)\??action=taglog&tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+							);
+		$replacelink = array(
+							"logRewrite(\\2,'\\3','\\4')",
+							"recordRewrite('\\2','\\3')",
+							"tagRewrite('\\2','\\3')"
+							);
+		$output = preg_replace($searchlink, $replacelink,$output);
+	}
 	ob_end_clean();
 	header('Content-Type: text/html; charset=UTF-8');
 	echo $output;
 	exit;
 }
+
+/**
+	日志链接重写
+	@param int $gid 匹配出来的日志编号
+	@param string $ext 匹配出来的锚点信息
+	@param string $values 匹配出来的<a>标签中的其他属性
+*/
+function logRewrite($gid,$ext,$values) 
+{
+	return '<a href="showlog-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
+}
+
+/**
+	日志归档链接重写
+	@param int $date 匹配出来的日志归档时间
+	@param string $values 匹配出来的<a>标签中的其他属性
+*/
+function recordRewrite($date,$values) 
+{
+	return '<a href="record-'.$date.'.html"'.stripslashes($values).'>';
+}
+
+/**
+	标签链接重写
+	@param int $date 匹配出来的标签编码
+	@param string $values 匹配出来的<a>标签中的其他属性
+*/
+function tagRewrite($tag,$values) 
+{
+	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
+}
+
 
 /**
 	获取远程文件内容
