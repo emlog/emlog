@@ -18,6 +18,8 @@ echo <<<EOT
 			<div id="calendar"></div>
 		</ul>
 </li>
+<script>sendinfo('$calendar_url','calendar');</script>
+
 
 <li><h4 onclick="showhidediv('tag')">标签</h4>
 		<ul id="tag">

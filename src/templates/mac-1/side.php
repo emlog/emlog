@@ -25,6 +25,7 @@ echo <<<EOT
           </ul>
         </div>
       </div>
+	  <script>sendinfo('$calendar_url','calendar');</script>
       <!--sidebox end -->
 
       <!--sidebox start -->

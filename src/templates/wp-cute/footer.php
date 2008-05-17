@@ -22,6 +22,8 @@ echo <<<EOT
     	<div id="calendar">
 		<!--calendar-->
 		</div>
+	<script>sendinfo('$calendar_url','calendar');</script>
+
 <!--
 EOT;
 if($index_twnum>0){

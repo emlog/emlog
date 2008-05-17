@@ -18,7 +18,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}wblix/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}wblix/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url','calendar');">
+<body>
 <div id="container">
 
 <div id="header">

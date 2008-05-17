@@ -32,6 +32,8 @@ EOT;
 			<div id="calendar"></div>
 		</ul>
 </li>
+<script>sendinfo('$calendar_url','calendar');</script>
+
 <!--
 EOT;
 if($index_twnum>0){

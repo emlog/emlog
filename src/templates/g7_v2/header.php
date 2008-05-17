@@ -19,7 +19,7 @@ echo <<<EOT
 	<script src="{$tpl_dir}g7_v2/main.js" type="text/javascript">
 	</script>
 </head>
-<body onload="sendinfo('$calendar_url','calendar');">
+<body>
 <div id="header">
 	<div id="info"><h1><a href="./">$blogname</a></h1></div>
 	<div id="des">$blog_info</div>

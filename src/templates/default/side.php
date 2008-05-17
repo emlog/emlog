@@ -14,6 +14,7 @@ echo <<<EOT
 			<!--日历-->
 		</div>
 	<script>sendinfo('$calendar_url','calendar');</script>
+
 	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
 		<ul id="blogtags"><li>
 <!--

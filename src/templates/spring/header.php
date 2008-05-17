@@ -19,7 +19,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}spring/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}spring/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url','calendar');">
+<body>
 <div id="wrapper">
 
 <div id="header">

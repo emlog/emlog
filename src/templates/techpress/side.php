@@ -10,6 +10,8 @@ echo <<<EOT
 	<li><h2 onclick="showhidediv('calendar')">日历</h2>
 		<div id="calendar"></div>
 	</li>
+	<script>sendinfo('$calendar_url','calendar');</script>
+	
 <!--
 EOT;
 if($index_twnum>0){

@@ -29,7 +29,7 @@ echo <<<EOT
 	<link href="{$tpl_dir}lust/main.css" rel="stylesheet" type="text/css" />
 	<script src="{$tpl_dir}lust/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url','calendar');">
+<body>
 <div id="header"><div class="wrap_center">
 	<h1><a href="./">$blogname</a></h1>
 </div></div>
