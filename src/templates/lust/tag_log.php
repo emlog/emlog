@@ -2,10 +2,8 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
 -->
-	<div class="maincolumn">
-
-		<div class="clear"></div>
-		
+<div class="maincolumn">
+<div class="clear"></div>
 <div class="post">
 	<p><b>$tag</b></p>
 	<p><small>包含该标签的所有日志：</small></p>
@@ -13,19 +11,11 @@ echo <<<EOT
 <!--
 EOT;
 foreach($taglogs as $key=>$value){
-if($isurlrewrite=='n'){
 echo <<<EOT
 -->
 	<li><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</li>
 <!--
 EOT;
-}else{
-	echo <<<EOT
--->
-	<li><a href="showlog-{$value['gid']}.html">{$value['title']}</a> {$value['date']}</li>
-<!--
-EOT;
-}
 }echo <<<EOT
 -->
 	</ul>

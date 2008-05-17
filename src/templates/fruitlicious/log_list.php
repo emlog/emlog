@@ -6,22 +6,7 @@ echo <<<EOT
 -->
 		<div class="post" id="post-$value[logid]">
 <h2>
-<!--
-EOT;
-if($isurlrewrite=='n'){
-echo <<<EOT
--->
 {$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
-<!--
-EOT;
-}else{
-echo <<<EOT
--->
-{$value['toplog']}<a href="showlog-{$value['logid']}.html">{$value['log_title']}</a>
-<!--
-EOT;
-}echo <<<EOT
--->
 </h2>
 <div class="entry">
 $value[log_description]
@@ -29,31 +14,13 @@ $value[log_description]
 <p>$value[attachment]</p>
 <p>$value[tag]</p>
 <p class="postinfo">
-Posted on $value[post_time]<br />
-<!--
-EOT;
-if($isurlrewrite=='n'){
-echo <<<EOT
--->
+	Posted on $value[post_time]<br />
  	<a href="./?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
  	<a href="./?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
  	<a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
-<!--
-EOT;
-}else{
-echo <<<EOT
--->
-	<a href="showlog-{$value['logid']}.html#comment">评论({$value['comnum']})</a>
-	<a href="showlog-{$value['logid']}.html#tb">引用({$value['tbcount']})</a> 
-	<a href="showlog-{$value['logid']}.html">浏览({$value['views']})</a>
-<!--
-EOT;
-}
-echo <<<EOT
--->	
-				</p>
-			</div>
-		</div>
+</p>
+</div>
+</div>
 <!--
 EOT;
 }echo <<<EOT

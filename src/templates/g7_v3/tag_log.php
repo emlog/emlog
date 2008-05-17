@@ -10,22 +10,14 @@ echo <<<EOT
 <!--
 EOT;
 foreach($taglogs as $key=>$value){
-if($isurlrewrite=='n'){
 echo <<<EOT
 -->
 	<li><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</li>
 <!--
 EOT;
-}else{
-	echo <<<EOT
--->
-	<li><a href="showlog-{$value['gid']}.html">{$value['title']}</a> {$value['date']}</li>
-<!--
-EOT;
-}
 }echo <<<EOT
 -->
-	</ul>
+</ul>
 </div>
 <!--
 EOT;

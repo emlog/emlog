@@ -1,4 +1,4 @@
-﻿function showhidediv(id){
+function showhidediv(id){
 	try{
 		var panel=document.getElementById(id);
 		if(panel){
@@ -139,7 +139,7 @@ function createxmlhttp() {//初始化、指定处理函数、发送请求的函�
 //get提交链接请求
 function sendinfo(url,nodeid){
 	node = nodeid;
-	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>";
 	createxmlhttp();
 	var querystring = url+ "&timetmp=" + new Date().getTime();;
 	xmlhttp.open("GET", querystring, true);

@@ -21,22 +21,7 @@ echo <<<EOT
 		  <div class="date"><span>$year</span>$day</div>
 		  <div class="title">
 <h2>
-		  <!--
-EOT;
-if($isurlrewrite=='n'){
-echo <<<EOT
--->
 {$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
-<!--
-EOT;
-}else{
-echo <<<EOT
--->
-{$value['toplog']}<a href="showlog-{$value['logid']}.html">{$value['log_title']}</a>
-<!--
-EOT;
-}echo <<<EOT
--->
 </h2>
           <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=$value[com_url]" title="$value[log_title] 的评论">$value[comnum] Comments &#187;</a></span></div>
 
@@ -49,28 +34,10 @@ $value[log_description]
 
 <p class="info">
 <em class="caty">
-  
-<!--
-EOT;
-if($isurlrewrite=='n'){
-echo <<<EOT
--->
  	<a href="./?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
  	<a href="./?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
  	<a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
-<!--
-EOT;
-}else{
-echo <<<EOT
--->
-	<a href="showlog-{$value['logid']}.html#comment">评论({$value['comnum']})</a>
-	<a href="showlog-{$value['logid']}.html#tb">引用({$value['tbcount']})</a> 
-	<a href="showlog-{$value['logid']}.html">浏览({$value['views']})</a>
-<!--
-EOT;
-}
-echo <<<EOT
--->	</em>
+</em>
 </p>
           </div><!--/entry -->
 
