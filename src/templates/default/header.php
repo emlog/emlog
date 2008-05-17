@@ -16,7 +16,7 @@ echo <<<EOT
 <link href="{$tpl_dir}default/main.css" rel="stylesheet" type="text/css" />
 <script src="{$tpl_dir}default/main.js" type="text/javascript"></script>
 </head>
-<body onload="sendinfo('$calendar_url','calendar');">
+<body>
 <div id="holder">
 <div id="header">
 	<div id="siteTitle">
