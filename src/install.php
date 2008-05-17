@@ -148,7 +148,7 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 
 if(isset($_GET['action'])&&$_GET['action'] == "install"){
 
-// 获取表单信息，修改配置文件
+	// 获取表单信息，修改配置文件
 	$db_host = addslashes(trim($_POST['hostname']));//服务器地址
 	$db_user = addslashes(trim($_POST['dbuser']));	 //mysql 数据库用户名
 	$db_pw = addslashes(trim($_POST['password']));//mysql 数据库密码
@@ -159,7 +159,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 	$adminpw2 = addslashes(trim($_POST['adminpw2']));//管理员密码确认
 	$result = '';
 
-//错误返回函数
+	//错误返回函数
 	if(empty($db_prefix)){
 		sysMsg('数据库前缀不能为空!');
 	}
@@ -175,51 +175,50 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 	elseif($adminpw!=$adminpw2)	 {
 		sysMsg('两次输入的密码不一致');
 	}
-@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
+	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
 
 	$config = "<?php\n"
-				."//Emlog mysql config file"
-				."\n\n//mysql database address\n"
-				."\$host\t= "
-				."'".$db_host."';"
-				."\n\n//mysql database user\n"
-				."\$user\t= "
-				."'".$db_user."';"
-				."\n\n//database password\n"
-				."\$pass\t= "
-				."'".$db_pw."';"
-				."\n\n//database name\n"
-				."\$db\t= "
-				."'".$db_name."';"
-				."\n\n//database prefix\n"
-				."\$db_prefix\t= "
-				."'{$db_prefix}';"
-				."\n\n?>";
+	."//Emlog mysql config file"
+	."\n\n//mysql database address\n"
+	."\$host\t= "
+	."'".$db_host."';"
+	."\n\n//mysql database user\n"
+	."\$user\t= "
+	."'".$db_user."';"
+	."\n\n//database password\n"
+	."\$pass\t= "
+	."'".$db_pw."';"
+	."\n\n//database name\n"
+	."\$db\t= "
+	."'".$db_name."';"
+	."\n\n//database prefix\n"
+	."\$db_prefix\t= "
+	."'{$db_prefix}';"
+	."\n\n?>";
 
-@$fw = fwrite($fp, $config) ;
+	@$fw = fwrite($fp, $config) ;
 	if (!$fw)
 	{
- 		sysMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
+		sysMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
 	}
 	else
 	{
 		$result.="配置文件修改成功<br />";
 	}
-fclose($fp);
+	fclose($fp);
 
-//初始化数据库类
-$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-$MC = new mkcache($DB,$db_prefix);
-unset($db_host, $db_user, $db_pw,$db_name);
+	//初始化数据库类
+	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
+	$MC = new mkcache($DB,$db_prefix);
+	unset($db_host, $db_user, $db_pw,$db_name);
 
-$dbcharset = 'utf8';
-$type = 'MYISAM';
-$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
-$extra2 = "TYPE=".$type;
-$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
+	$dbcharset = 'utf8';
+	$type = 'MYISAM';
+	$add = $DB->version() > '4.1' ? "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";":"TYPE=".$type.";";
+	//$setchar = $DB->version() > '4.1'?"ALTER DATABASE {$db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 
-//sql language
-$sql = " 
+	//sql language
+	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid mediumint(8) unsigned NOT NULL auto_increment,
@@ -345,32 +344,33 @@ CREATE TABLE {$db_prefix}user (
 PRIMARY KEY  (uid)
 )".$add."
 INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".md5($adminpw)."', '','welcome to emlog!'); ";
-	
-    $mysql_query = explode(";",$sql);
-    while (list(,$query) = each($mysql_query)) {
-           $query = trim($query);
-           if ($query) {
-               if (strstr($query,'CREATE TABLE')) 
-               {
-                   ereg('CREATE TABLE ([^ ]*)',$query,$regs);
-				   $result .= "数据库表: ".$regs[1]." 创建";
-				   $ret = $DB->query($query);
-					if (!$ret){
-						$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
-						sysMsg($result);
-					} else {
-						$result .= "成功...<br />\n";
-					}
-               } else {
-                   $ret = $DB->query($query);
-                   if (!$ret){
-						$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
-						sysMsg($result);
-					}
-               }
+
+	$mysql_query = explode(";",$sql);
+	while (list(,$query) = each($mysql_query)) 
+	{
+		$query = trim($query);
+		if ($query) {
+			if (strstr($query,'CREATE TABLE'))
+			{
+				ereg('CREATE TABLE ([^ ]*)',$query,$regs);
+				$result .= "数据库表: ".$regs[1]." 创建";
+				$ret = $DB->query($query);
+				if (!$ret){
+					$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
+					sysMsg($result);
+				} else {
+					$result .= "成功...<br />\n";
+				}
+			} else {
+				$ret = $DB->query($query);
+				if (!$ret){
+					$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
+					sysMsg($result);
+				}
 			}
-    }
-	//重建缓存	
+		}
+	}
+	//重建缓存
 	$MC->mc_blogger('./cache/blogger');
 	$MC->mc_config('./cache/config');
 	$MC->mc_record('./cache/records');
