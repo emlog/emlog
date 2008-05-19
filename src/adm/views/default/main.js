@@ -12,12 +12,12 @@ function removeattachfrom() {
 //show or hide div
 function showhidediv(id){
 	try{
-		var panel=document.getElementById(id);
+		var panel = $(id);
 		if(panel){
-			if(panel.style.display=='none'){
-				panel.style.display='block';
+			if(panel.style.display == 'none'){
+				panel.style.display = 'block';
 			}else{
-				panel.style.display='none';
+				panel.style.display = 'none';
 			}
 		}
 	}catch(e){}
@@ -25,34 +25,32 @@ function showhidediv(id){
 
 String.prototype.Trim = function()
 {
-return this.replace(/(^\s*)|(\s*$)/g, "");
+	return this.replace(/(^\s*)|(\s*$)/g, "");
 }
+
 function chekform(){
-	var title = document.addlog.title.value.Trim();
+	var title = $('title').value.Trim();
 	if (title=="")
 	{
 		alert("日志标题不能为空");
-		document.addlog.title.focus();
+		$('title').focus();
 		return false;
 	}else 
-	return true;	
+		return true;	
 }
 function inserttag (tag, taginputname) {
-	var currenttag=tag;
-	var targetinput=document.getElementById(taginputname);
-	 if(targetinput.value=='')  {
-		 var newvalue= currenttag;
-			targetinput.value+=newvalue;
+	var currenttag = tag;
+	var targetinput = $(taginputname);
+	 if(targetinput.value == '')  {
+		 var newvalue = currenttag;
+		targetinput.value += newvalue;
 	 }else{
-		var newvalue=','+currenttag;
-		targetinput.value+=newvalue;
-	}
+		var newvalue = ',' + currenttag;
+		targetinput.value += newvalue;
+	 }
 }
 function doshow(elementid) {
-	if (document.getElementById('switch').checked) 
-		document.getElementById(elementid).style.display='block';
-	else 
-		document.getElementById(elementid).style.display='none';
+	$(elementid).style.display = $('switch').checked ? 'block' : 'none';
 }
 //删除确定
 function isdel (id, property) {
@@ -124,27 +122,30 @@ function createxmlhttp() {//初始化、指定处理函数、发送请求的函�
 		return false;
 	}
 }
+
 function sendinfo(url,nodeid){
 	node = nodeid;
-	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	$(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
 	createxmlhttp();
 	var querystring = url+ "&timetmp=" + new Date().getTime();;
 	xmlhttp.open("GET", querystring, true);
 	xmlhttp.send(null);
 	xmlhttp.onreadystatechange = processRequest;
 }
+
 function postinfo(url,nodeid){
 	node = nodeid;
-	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	$(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
 	createxmlhttp();
 	var url2 = url + "&timetmp=" + new Date().getTime();
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var tw = document.getElementById("tw").value;
+	var tw = $("tw").value;
 	var querystring = "tw=" + tw;
 	xmlhttp.send(querystring);
 }
+
 function autosave(url,nodeid)
 {
 	node = nodeid;
@@ -153,18 +154,19 @@ function autosave(url,nodeid)
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var title = document.getElementById("title").value.Trim();
-	var logid = document.getElementById("as_logid").value;
+	var title = $("title").value.Trim();
+	var logid = $("as_logid").value;
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
 	var querystring = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
 	if(logid!=-2 && title!="" && content!="")
 	{
-		document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
+		$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
 		xmlhttp.send(querystring);
 	}
 	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 }
+
 function processRequest() {
 	if (xmlhttp.readyState == 4) {
 		if (xmlhttp.status == 200) {
@@ -174,15 +176,15 @@ function processRequest() {
 				var getvar = ret.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
 				var logid = getvar[1];
 				var dfnum = getvar[2];
-				document.getElementById("dfnum").innerHTML = "("+dfnum+")";
+				$("dfnum").innerHTML = "("+dfnum+")";
 				var iddiv = "<input type=hidden  name=as_logid id=as_logid value="+logid+">";
 			}
-			document.getElementById(node).innerHTML = iddiv;
+			$(node).innerHTML = iddiv;
 			var digital = new Date();
 			var hours = digital.getHours();
 			var mins = digital.getMinutes();
 			var secs = digital.getSeconds();
-			document.getElementById("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存于 "+hours+":"+mins+":"+secs+" </span>";
+			$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存于 "+hours+":"+mins+":"+secs+" </span>";
 		}
 	}
 }

@@ -356,7 +356,7 @@ function cleanPage()
 		$searchlink = array(
 							"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
 							"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
-							"/\<a href\=\"(index\.php|\.\/)\??action=taglog&tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+							"/\<a href\=\"(index\.php|\.\/)\?action=taglog&tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
 							);
 		$replacelink = array(
 							"logRewrite(\\2,'\\3','\\4')",
