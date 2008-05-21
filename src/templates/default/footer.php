@@ -1,7 +1,7 @@
-<!--<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
--->
+?>
 </div>
 </div>
 </div>
@@ -9,6 +9,6 @@ echo <<<EOT
 <br />
 </body>
 </html>
-<!--
+<?php
 EOT;
-?>-->
+?>

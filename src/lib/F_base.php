@@ -351,7 +351,7 @@ function getAttachment($attstr,$width,$height)
 function cleanPage()
 {
 	global $isurlrewrite;
-	$output = str_replace(array('<!--<!---->','<!---->',"<!--\r\n-->"),array('','',''),ob_get_contents());
+	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
 	if($isurlrewrite == 'y' ) {
 		$searchlink = array(
 							"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",

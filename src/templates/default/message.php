@@ -1,7 +1,7 @@
-<!--<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
--->
+?>
 <html>
 <head>
 <meta HTTP-EQUIV="REFRESH" CONTENT="3;URL=$url">
@@ -18,6 +18,6 @@ echo <<<EOT
 </div>
 </body>
 </html>
-<!--
+<?php
 EOT;
-?>-->
+?>

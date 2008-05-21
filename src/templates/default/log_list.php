@@ -1,9 +1,9 @@
-<!--<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 foreach($logs as $value){
 echo <<<EOT
--->
+?>
 <div class="logcontent">
 <div id="t">
 {$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
@@ -19,11 +19,12 @@ echo <<<EOT
 <a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
 </div>
 </div>
-<!--
+<?php
 EOT;
 }echo <<<EOT
--->
+?>
 <div id="pageurl"> $page_url</div>
+<?php
 EOT;
 include getViews('footer');
 ?>

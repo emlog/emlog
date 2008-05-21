@@ -1,9 +1,9 @@
-<!--<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 //$att_img = getAttachment($att_img,600,500);
 echo <<<EOT
--->
+?>
 <div class="logcontent">
 <p id="tit">$log_title</p>
 <p id="date">$post_time</p>
@@ -15,57 +15,54 @@ $log_content
 <p>$tag</p>
 </div>
 <div class="nextlog">$neighborLog</div>
-<!--
+<?php
 EOT;
 if($allow_tb == 'y'){
 echo <<<EOT
--->	
+?>	
 <div id="tb_list">
 <p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="{$blogurl}tb.php?sc={$tbscode}&amp;id={$logid}"><a name="tb"></a></p>
 </div>
-<!--
+<?php
 EOT;
-}echo <<<EOT
--->	
-<!--
-EOT;
+}
 foreach($tb as $key=>$value){
 echo <<<EOT
--->
+?>
 <div class="trackback">
 	<li>来自: <a href="$value[url]" target="_blank">$value[blog_name]</a></li>
     <li>标题: <a href="$value[url]" target="_blank">$value[title]</a> </li>
     <li>摘要: $value[excerpt]</li>
 	<li>引用时间: $value[date]</li>
 </div>
-<!--
+<?php
 EOT;
 }if($com){
 echo <<<EOT
--->
+?>
 <p><b>评论:</b><a name="comment"></a></p>
-<!--
+<?php
 EOT;
 }echo <<<EOT
--->	
+?>	
 <div id="com_list">
-<!--
+<?php
 EOT;
 foreach($com as $key=>$value){
 $value['reply'] = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 echo <<<EOT
--->
+?>
 <li><a name="$value[cid]"></a>$value[poster] $value[addtime]<br />$value[content]<br />$value[reply]</li>
-<!--
+<?php
 EOT;
 }echo <<<EOT
--->	
+?>	
 </div>
-<!--
+<?php
 EOT;
 if($allow_remark == 'y'){
 echo <<<EOT
--->
+?>
 <p><b>发表评论:</b><a name="comment"></a></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom">
 <table width="620" border="0" cellspacing="5" cellpadding="0">
@@ -96,11 +93,12 @@ echo <<<EOT
 </tr>
 </table>
 </form>
-<!--
+<?php
 EOT;
 }echo <<<EOT
--->
+?>
 </div>
+<?php
 EOT;
 include getViews('footer');
 ?>

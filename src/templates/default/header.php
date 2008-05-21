@@ -1,7 +1,7 @@
-<!--<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 echo <<<EOT
--->
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,22 +28,22 @@ echo <<<EOT
 <form name="f" method="post" action="index.php?action=login">
 <div id="navBar">
 <ul>
-<!--
+<?php
 EOT;
 if(ISLOGIN){
 echo <<<EOT
--->
+?>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
-<!--
+<?php
 EOT;
 }else{
 	$login_code=='y'?
 	$ckcode = "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
 	$ckcode = '';
 echo <<<EOT
--->
+?>
 <li onclick="showlogin('loginfm')" style="cursor:pointer;">登录</li>
 <li id="loginfm" style="display:none">
 用户:<input name="user" type="text" class="input" style="width:80px;"/>
@@ -51,14 +51,14 @@ echo <<<EOT
 $ckcode 
 <input type="submit" value="登录">
 </li>
-<!--
+<?php
 EOT;
 }echo <<<EOT
--->
+?>
 </ul>
 </div>
 </form>
 </div>
-<!--
+<?php
 EOT;
-?>-->
+?>
