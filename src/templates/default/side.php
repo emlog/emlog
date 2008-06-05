@@ -38,7 +38,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:200px;" style="height:50px;"></textarea><br />
+<textarea name="tw" id="tw" style="width:200px;height:50px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
@@ -68,8 +68,7 @@ foreach($com_cache as $value){
     <input name="keyword"  type="text" value="" style="width:130px;"/>
 	<input name="action" type="hidden" value="search" />
     <input type="submit" value="搜索" onclick="return keyw()" />
-	</p>
-   </form>
+	</form>
 		</li>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('record')">日志归档</span></div>
