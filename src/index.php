@@ -7,6 +7,8 @@
 
 require_once('./common.php');
 
+define('CURPAGE','index');
+
 viewCount();
 
 //check template

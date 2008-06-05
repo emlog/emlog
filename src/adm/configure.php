@@ -54,6 +54,13 @@ if($action == ''){
 		$ex9="";
 		$ex10="selected=\"selected\"";
 	}
+	if($isgzipenable=='y') {
+		$ex11="selected=\"selected\"";
+		$ex12="";
+	}else{
+		$ex11="";
+		$ex12="selected=\"selected\"";
+	}
 	require_once(getViews('configure'));
 	include getViews('footer');
 	cleanPage();
@@ -76,6 +83,7 @@ if ($action== "mod_config"){
 	$comment_code = $_POST['comment_code'] == 'y' ? 'y' : 'n';
 	$ischkcomment    = $_POST['ischkcomment']    == 'y' ? 'y' : 'n';
 	$isurlrewrite = $_POST['isurlrewrite'] == 'y' ? 'y' : 'n';
+	$isgzipenable = $_POST['isgzipenable'] == 'y' ? 'y' : 'n';
 	$istrackback = $_POST['istrackback'] == 'y' ? 'y' : 'n';
 	$exarea       = $_POST['exarea'] ? addslashes($_POST['exarea']) : '';
 	$comment_subnum = $_POST['comment_subnum'] ? intval($_POST['comment_subnum']) : '';
@@ -104,6 +112,7 @@ if ($action== "mod_config"){
 				login_code ='$login_code',
 				comment_code ='$comment_code',
 				isurlrewrite ='$isurlrewrite',
+				isgzipenable ='$isgzipenable',
 				ischkcomment ='$ischkcomment',
 				istrackback ='$istrackback',
 				comment_subnum =$comment_subnum,

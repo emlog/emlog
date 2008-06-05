@@ -77,6 +77,15 @@ print <<<EOT
 		开启需要服务器支持，详情参看帮助文档</td>
       </tr>
       <tr>
+        <td align="right">启用页面Gzip压缩：<br /></td>
+        <td class="care">
+		<select name="isgzipenable">
+          <option value="y" $ex11>是</option>
+          <option value="n" $ex12>否</option>
+        </select>
+		</td>
+      </tr>
+      <tr>
         <td align="right">启用登录验证码：<br /></td>
         <td class="care">
 				<select name="login_code">

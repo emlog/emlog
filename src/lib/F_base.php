@@ -350,7 +350,7 @@ function getAttachment($attstr,$width,$height)
 */
 function cleanPage()
 {
-	global $isurlrewrite;
+	global $isurlrewrite,$isgzipenable;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
 	if($isurlrewrite == 'y' ) {
 		$searchlink = array(
@@ -366,6 +366,11 @@ function cleanPage()
 		$output = preg_replace($searchlink, $replacelink,$output);
 	}
 	ob_end_clean();
+	if($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter'))) {
+		ob_start('ob_gzhandler');
+	} else {
+		ob_start();
+	}
 	header('Content-Type: text/html; charset=UTF-8');
 	echo $output;
 	exit;

@@ -7,6 +7,8 @@
 
 require_once('../common.php');
 
+define('CURPAGE','wap');
+
 if(!isset($action) || empty($action))
 {
 	wap_header($config_cache['blogname']);
