@@ -12,7 +12,7 @@ define('CURPAGE','index');
 viewCount();
 
 //check template
-$em_tpldir = $tpl_dir.$nonce_tpl.'/';//当前模板目录
+$em_tpldir = $tpl_dir.$nonce_templet.'/';//当前模板目录
 if (!is_dir($em_tpldir))
 {
 	exit('Template Error: no template directory!');
@@ -25,6 +25,7 @@ if(!in_array($action,$job))
 	msg('error!','./index.php');
 }
 
+$blogtitle = $blogname;
 #################日志列表(display log list)##############
 if (!isset($action) || empty($action))
 {

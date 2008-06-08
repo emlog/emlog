@@ -8,12 +8,12 @@ $host	= 'localhost';
 $user	= 'root';
 
 //database password
-$pass	= '';
+$pass	= '123456';
 
 //database name
 $db	= 'emlog';
 
 //database prefix
-$db_prefix	= 'em_';
+$db_prefix	= 'blog_';
 
 ?>

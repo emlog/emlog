@@ -1,31 +1,23 @@
-<!--<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //include getViews('side');
-echo <<<EOT
--->
+?>
 <div class="post">
 <p><b>标签</b></p>
 <p><small>所有标签：（标签字体越大其包含的日志越多）</small></p>
 <p>
-<!--
-EOT;
+<?php
 foreach($tags as $key=>$value){
-echo <<<EOT
--->
-<span style="font-size:$value[fontsize]px; height:30px;"><a href="./index.php?action=taglog&amp;tag=$value[tagurl]">$value[tag]</a></span>&nbsp;
-<!--
-EOT;
-}echo <<<EOT
--->
-$tagmsg
-</p>
+?>
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./index.php?action=taglog&amp;tag=<?php echo $value['tagurl'];?>"><?php echo $value['tag'];?></a></span>&nbsp;
+<?php
+}?>
+<?php echo $tagmsg;?>
 </div>
-<!--
-EOT;
-echo <<<EOT
--->
+<?php
+?>
 </div>
-EOT;
+<?php
 include getViews('side');
 include getViews('footer');
 ?>

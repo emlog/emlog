@@ -1,7 +1,6 @@
-﻿<!--<?php 
+﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->	
+?>	
 		<div class="sidebar">
 <ul>
 
@@ -16,50 +15,37 @@ echo <<<EOT
 <li><h2 onclick="showhidediv('tags')">标签</h2>
 		<ul id="tags">
 		<li>
-<!--
-EOT;
+<?php
 foreach($tag_cache as $value){
-echo <<<EOT
--->
-<span style="font-size:$value[fontsize]px; height:30px;"><a href="./?action=taglog&tag=$value[tagurl]">$value[tagname]</a></span>&nbsp;
-<!--
-EOT;
-}echo <<<EOT
--->
+?>
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<?php
+}?>
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</li>
 		</ul>
 </li>
-<!--
-EOT;
+<?php
 if($index_twnum>0){
-echo <<<EOT
--->
+?>
 <li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
-<!--
-EOT;
+<?php
 $morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 {
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 	$value['date'] = SmartyDate($localdate,$value['date']);
-echo <<<EOT
--->
-<li> {$value['content']} $delbt<br><span>{$value['date']}</span></li>
-<!--
-EOT;
+?>
+<li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
+<?php
 }
-echo <<<EOT
--->
-$morebt
-</ul>
-<!--
-EOT;
+?>
+<?php echo $morebt;?></ul>
+<?php
 if(ISLOGIN === true)
 {
-echo <<<EOT
--->
+?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
@@ -67,29 +53,22 @@ echo <<<EOT
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
-<!--
-EOT;
+<?php
 }
 }
-echo <<<EOT
--->
+?>
 <li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
 <ul id="blogroll">
-<!--
-EOT;
+<?php
 foreach($link_cache as $value){
-echo <<<EOT
--->     	
-		<li><a href="$value[url]" title="$value[des]" target="_blank">$value[link]</a></li>
-<!--
-EOT;
-}echo <<<EOT
--->	
+?>     	
+		<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
+<?php
+}?>	
 		</ul>
 </li>
 	
 </ul>
 		</div>
-<!--
-EOT;
-?>-->
+<?php
+?>

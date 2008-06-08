@@ -6,22 +6,22 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Language" content="zh-CN" />
-<meta name="description" content="<?= $sitekey ?>" />
-<meta name="keywords" content="emlog,blog,<?= $sitekey ?>" />
+<meta name="description" content="<?php echo $sitekey; ?>" />
+<meta name="keywords" content="emlog,blog,<?php echo $sitekey; ?>" />
 <meta name="copyright" content="emlog" />
 <meta name="author" content="emlog" />
-<title><?= $blogtitle ?></title>
+<title><?php echo $blogtitle; ?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?= $tpl_dir ?>default/main.css" rel="stylesheet" type="text/css" />
-<script src="<?= $tpl_dir ?>default/main.js" type="text/javascript"></script>
+<link href="<?php echo $tpl_dir; ?>default/main.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo $tpl_dir; ?>default/main.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="holder">
 <div id="header">
 	<div id="siteTitle">
 	<ul>
-  		<li id="blogname"><a href="./"><?= $blogname ?></a></li>
-  		<li id="blogdes"><?= $blog_info ?></li>
+  		<li id="blogname"><a href="./"><?php echo $blogname; ?></a></li>
+  		<li id="blogdes"><?php echo $bloginfo; ?></li>
 	</ul>
   	</div>
 <form name="f" method="post" action="index.php?action=login">
@@ -42,7 +42,7 @@ $ckcode = '';
 <li id="loginfm" style="display:none">
 用户:<input name="user" type="text" class="input" style="width:80px;"/>
 密码:<input name="pw" type="password"  class="input" style="width:80px;"/>
-<?= $ckcode ?> 
+<?php echo $ckcode; ?> 
 <input type="submit" value="登录">
 </li>
 <?php } ?>

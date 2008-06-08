@@ -1,35 +1,30 @@
-<!--<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value){
-//$value[att_img] = getAttachment($value[att_img],200,120);
-echo <<<EOT
--->
+$value['att_img'] = getAttachment($value['att_img'],200,120);
+?>
 <h2>
-{$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
+<?php echo $value['toplog'];?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h2>
-<p class="postdata">Posted in $value[post_time]</p>
+<p class="postdata">Posted in <?php echo $value['post_time'];?></p>
 <div id="content_post">
-				<p>$value[log_description]</p>
-				<p>$value[att_img]</p>
-				<p>$value[attachment]</p>
-				<p class="tags">$value[tag]</p>
+				<p><?php echo $value['log_description'];?></p>
+				<p><?php echo $value['att_img'];?></p>
+				<p><?php echo $value['attachment'];?></p>
+				<p class="tags"><?php echo $value['tag'];?></p>
 				<p class="postinfo" >				  
- 	<a href="./?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
- 	<a href="./?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
- 	<a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#tb">引用(<?php echo $value['tbcount'];?>)</a> 
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
 				</p>
 </div>
-<!--
-EOT;
-}echo <<<EOT
--->
-<p>$page_url</p>
+<?php
+}?>
+<p><?php echo $page_url;?></p>
 </div>
-<!--
-EOT;
-echo <<<EOT
--->
-EOT;
+<?php
+?>
+<?php
 include getViews('side');
 include getViews('footer');
 ?>

@@ -1,27 +1,22 @@
-<!--<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
 	<div class="narrowcolumn">
 	<div class="post">
 	<ul id="t">
-		<p><b>$tag</b></p><small>(包含该标签的所有日志)</small>
+		<p><b><?php echo $tag;?></b></p><small>(包含该标签的所有日志)</small>
 	</ul>
 <ul class="taglog">
-<!--
-EOT;
+<?php
 foreach($taglogs as $key=>$value){
-echo <<<EOT
--->
-	<p><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</p>
-<!--
-EOT;
-}echo <<<EOT
--->
+?>
+	<p><a href="index.php?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> <?php echo $value['date'];?></p>
+<?php
+}?>
 	</ul>
 </div>
 </div>
-EOT;
+<?php
 include getViews('obar');
 include getViews('footer');
 ?>

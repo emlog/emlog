@@ -38,25 +38,13 @@ define('ISLOGIN',	isLogin());
 //获取操作
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
 //config
-	$sitekey	= $config_cache['sitekey'];
-	$blogtitle  = $config_cache['blogname'];
-	$blogname	= $config_cache['blogname'];
-	$blog_info  = $config_cache['bloginfo'];
-	$icp        = $config_cache['icp'];
-	$index_lognum	    = $config_cache['index_lognum'];
-	$index_comment_num	= $config_cache['index_comment_num'];
-	$index_tagnum   = $config_cache['index_tagnum'];
-	$index_twnum   = $config_cache['index_twnum'];
-	$comment_code	= $config_cache['comment_code'];
-	$login_code	    = $config_cache['login_code'];
-	$ischkcomment      = $config_cache['ischkcomment'];
-	$isurlrewrite   = $config_cache['isurlrewrite'];
-	$istrackback   = $config_cache['istrackback'];
-	$comment_subnum = $config_cache['comment_subnum'];
-	$nonce_tpl = $config_cache['nonce_templet'];
-	$blogurl   = $config_cache['blogurl'];
-	$exarea    = stripslashes($config_cache['exarea']);
-	$timezone  = intval($config_cache['timezone']);
+	foreach($config_cache as $key => $value)
+	{
+		$$key = $value;
+	}
+
+	$exarea    = stripslashes($exarea);
+	$timezone  = intval($timezone);
 	$tpl_dir   = './templates/';//所有模板存放目录
 	$localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 	isset($tag_cache)?sort($tag_cache):$tag_cache = array();

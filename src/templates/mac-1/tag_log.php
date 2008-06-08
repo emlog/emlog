@@ -1,7 +1,6 @@
-﻿<!--<?php 
+﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
       <div id="nav">
         <ul>
           <li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
@@ -9,24 +8,19 @@ echo <<<EOT
       </div>
   <div id="content">
 	<div class="post">
-	<div><b>$tag</b></p><small>(包含该标签的所有日志)</small></div>
+	<div><b><?php echo $tag;?></b></p><small>(包含该标签的所有日志)</small></div>
 <div class="entry">
-<!--
-EOT;
+<?php
 foreach($taglogs as $key=>$value){
-echo <<<EOT
--->
-	<p><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</p>
-<!--
-EOT;
-}echo <<<EOT
--->
-$tagmsg
-</div>
+?>
+	<p><a href="index.php?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> <?php echo $value['date'];?></p>
+<?php
+}?>
+<?php echo $tagmsg;?>
 </div>
 </div>
 <div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
-EOT;
+<?php
 include getViews('side');
 ?>

@@ -8,7 +8,7 @@ include getViews('side');
 	<?php
 	foreach($slog as $key=>$value){
 	?>
-	<li><a href="./?action=showlog&gid=<?=$value['gid']?>"><?=$value['title']?></a><?={$value['date']}?></li>
+	<li><a href="./?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a><?=<?php echo $value['date'];?>?></li>
 	<?php }?>	
 	</div>
 </div>

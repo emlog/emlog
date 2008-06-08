@@ -1,7 +1,6 @@
-<!--<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
 <html>
 <head>
 <meta HTTP-EQUIV="REFRESH" CONTENT="322;URL=$url">
@@ -9,7 +8,7 @@ echo <<<EOT
 <meta http-equiv="Content-Language" content="zh-CN" />
 <title>系统消息</title>
 <style type="text/css">
-<!--
+
 body{
 	font-family: Verdana, Arial, Helvetica, Georgia, sans-serif;
 	font-size: 12px;
@@ -33,17 +32,15 @@ a:hover{
 	width:260px;
 	background-color:#860000;
 }
--->
 </style>
 </head>
 <body>
 <div id="msg">
-<h5>$msg</h5>
+<h5><?php echo $msg;?></h5>
 <p>3<span>秒后将自动跳转</span>
-<p><a href="$url">如果没有自动跳转请点击这里!</a></p>
+<p><a href="<?php echo $url;?>">如果没有自动跳转请点击这里!</a></p>
 </div>
 </body>
 </html>
-<!--
-EOT;
-?>-->
+<?php
+?>

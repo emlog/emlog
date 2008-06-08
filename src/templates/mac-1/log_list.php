@@ -1,56 +1,51 @@
-﻿<!--<?php 
+﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
       <div id="nav">
         <ul>
           <li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
         </ul>
       </div>
   <div id="content">
-<!--
-EOT;
+<?php
 foreach($logs as $value){
-//$value[att_img] = getAttachment($value[att_img],200,120);
+$value['att_img'] = getAttachment($value['att_img'],200,120);
 $datetime = explode("-",$value['post_time']);
-$year = $datetime[0]."/".$datetime[1];
-$day = substr($datetime[2],0,2);
-echo <<<EOT
--->
-        <div class="post" id="post-$value[logid]">
-		  <div class="date"><span>$year</span>$day</div>
+$year = $datetime['0']."/".$datetime['1'];
+$day = substr($datetime['2'],0,2);
+?>
+        <div class="post" id="post-<?php echo $value['logid'];?>">
+		  <div class="date"><span><?php echo $year;?></span><?php echo $day?></div>
 		  <div class="title">
 <h2>
-{$value['toplog']}<a href="./?action=showlog&gid={$value['logid']}">{$value['log_title']}</a>
+<?php echo $value['toplog'];?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h2>
-          <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=$value[com_url]" title="$value[log_title] 的评论">$value[comnum] Comments &#187;</a></span></div>
+          <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=<?php echo $value['com_url'];?>" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
 
 		  </div>
           <div class="entry">
-$value[log_description]
-<p>$value[att_img]</p>
-<p>$value[attachment]</p>
-<p>$value[tag]</p>
+<?php echo $value['log_description'];?>
+<p><?php echo $value['att_img'];?></p>
+<p><?php echo $value['attachment'];?></p>
+<p><?php echo $value['tag'];?></p>
 
 <p class="info">
 <em class="caty">
- 	<a href="./?action=showlog&gid={$value['logid']}#comment">评论({$value['comnum']})</a>
- 	<a href="./?action=showlog&gid={$value['logid']}#tb">引用({$value['tbcount']})</a> 
- 	<a href="./?action=showlog&gid={$value['logid']}">浏览({$value['views']})</a>
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#tb">引用(<?php echo $value['tbcount'];?>)</a> 
+ 	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
 </em>
 </p>
-          </div><!--/entry -->
+          </div>
 
-	</div><!--/post -->
-<!--
-EOT;
-}echo <<<EOT
--->
-<p>$page_url</p>
+	</div>
+<?php
+}?>
+<p><?php echo $page_url;?></p>
 
-</div><!--/content -->
+</div>
 <div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
-EOT;
+<?php
 include getViews('side');
 ?>

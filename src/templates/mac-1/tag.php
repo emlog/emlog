@@ -1,7 +1,6 @@
-﻿<!--<?php 
+﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
 <div id="nav">
 <ul>
 <li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
@@ -12,22 +11,17 @@ echo <<<EOT
 <div class="post">
 <div><b>所有标签：</b>（标签字体越大其包含的日志越多）</div>
 <div class="entry">
-<!--
-EOT;
+<?php
 foreach($tags as $key=>$value){
-echo <<<EOT
--->
-<span style="font-size:$value[fontsize]px; height:30px;"><a href="./?action=taglog&tag=$value[tagurl]">$value[tag]</a></span>&nbsp;
-<!--
-EOT;
-}echo <<<EOT
--->
-$tagmsg
+?>
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tag'];?></a></span>&nbsp;
+<?php
+}?>
+<?php echo $tagmsg;?>
 </div>
 </div>
-</div><!--/content -->
 <div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
-EOT;
+<?php
 include getViews('side');
 ?>

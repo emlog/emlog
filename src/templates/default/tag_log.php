@@ -4,11 +4,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="content">
 	<ul id="t">
-		<li>标签： <b><?= $tag ?></b></li>
+		<li>标签： <b><?php echo $tag; ?></b></li>
 	</ul>
 	<ul class="taglog">
 <?php foreach($taglogs as $key=>$value){ ?>
-	<li><a href="index.php?action=showlog&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a> <?= $value['date'] ?></li>
+	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['date']; ?></li>
 <?php } ?>
 	</ul>
 </div>

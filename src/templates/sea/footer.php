@@ -1,19 +1,17 @@
-﻿<!--<?php 
+﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
 
-		</div></div><!-- end widecolumn wrap -->
+		</div></div> 
 
-	</div><!-- end page -->
+	</div> 
 
 	<div id="footer">
-	<p>&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> <a href="http://www.miibeian.gov.cn" target="_blank">$icp</a></p>
+	<p>&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp;?></a></p>
 	</div>
 
 </div>
 </body>
 </html>
-<!--
-EOT;
-?>-->
+<?php
+?>

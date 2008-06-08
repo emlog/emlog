@@ -1,24 +1,19 @@
-<!--<?php
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
+?>
 <DIV class=post id=post-1>
 <h3>$search_info</h3>
 <div>
 <ul>
-<!--
-EOT;
+<?php
 foreach($slog as $key=>$value){
-echo <<<EOT
--->
-<li><a href="./?action=showlog&gid={$value['gid']}">{$value['title']}</a> ({$value['date']})</li>
-<!--
-EOT;
-}echo <<<EOT
--->	
+?>
+<li><a href="./?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> (<?php echo $value['date'];?>)</li>
+<?php
+}?>	
 </ul>
 </div>
 </div>
-EOT;
+<?php
 include getViews('footer');
 ?>
