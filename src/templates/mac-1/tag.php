@@ -20,7 +20,7 @@ foreach($tags as $key=>$value){
 <?php echo $tagmsg;?>
 </div>
 </div>
-<div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
+<div id="footer">&copy; 2008 Powered by <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 <?php
 include getViews('side');

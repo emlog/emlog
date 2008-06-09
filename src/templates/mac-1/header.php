@@ -31,5 +31,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </form>
     </div>
     <div id="left-col">	
-<?php
-?>

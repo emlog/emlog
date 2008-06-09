@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <DIV class=post id=post-1>
-	<h2>$tag</h2>
+	<h2><?php echo $tag;?></h2>
 	<p>包含该标签的所有日志</p>
 <ul class="taglog">
 <?php

@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <DIV class=post id=post-1>
-<h3>$search_info</h3>
+<h3><?php echo $search_info;?></h3>
 <div>
 <ul>
 <?php

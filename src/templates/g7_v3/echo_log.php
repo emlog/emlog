@@ -10,7 +10,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<a name="att"></a>
 		<p><?php echo $att_img;?></p>
 		<p><?php echo $att_img;?></p>	
-		<p class="tags"><?php echo $tag-?></p>
+		<p class="tags"><?php echo $tag;?></p>
 		<p><?php echo $neighborLog;?></P>
 		</div>
 <?php

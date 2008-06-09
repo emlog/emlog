@@ -1,6 +1,6 @@
 <?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-include getViews('side');
+
 foreach($logs as $value){
 ?>
 <DIV class=post id=post-1>

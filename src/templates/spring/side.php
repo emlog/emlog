@@ -17,7 +17,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div id="calendar"></div>
 		</ul>
 </li>
-<script>sendinfo('$calendar_url','calendar');</script>
+<script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
 
 <li><h4 onclick="showhidediv('tag')">标签</h4>
@@ -38,7 +38,7 @@ if($index_twnum>0){
 ?>
 <li><h4 onclick="showhidediv('twitter')">twitter</h4>
 <ul id="twitter">
-<?php
+<?php  if(isset($tw_cache) && is_array($tw_cache)) {
 $morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 {
@@ -47,9 +47,9 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 ?>
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
 <?php
-}
+}echo $morebt;}
 ?>
-<?php echo $morebt;?></ul>
+</ul>
 <?php
 if(ISLOGIN === true)
 {

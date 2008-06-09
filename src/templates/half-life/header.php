@@ -26,7 +26,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 		<div id="menu">
 <ul>
-	<li><h1><a href="./"><?php echo $blogname;?></a> </h1><smaill> ($bloginfo)</small></li>
+	<li><h1><a href="./"><?php echo $blogname;?></a> </h1><smaill> (<?php echo $bloginfo;?>)</small></li>
 </ul>
 		</div>
 <?php

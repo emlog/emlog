@@ -3,13 +3,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value){
 	$value['att_img'] = getAttachment($value['att_img'],200,120);
 	$datetime = explode("-",$value['post_time']);
-	$year = <?php echo $datetime['0'];?>."/".<?php echo $datetime['1'];?>;
-	$day = substr(<?php echo $datetime['2'];?>,0,2);
+	$year = $datetime['0'] . "/" .$datetime['1'];
+	$day = substr($datetime['2'],0,2);
 	?>
 <div class="post">
 	<div class="postdate">
 	  <p class="date"><?php echo $day;?>th</p>
-	  <p class="year">$year</p>
+	  <p class="year"><?php echo $year;?></p>
 	</div>
 	<div class="posttitle">
     <h2>

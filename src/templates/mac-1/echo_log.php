@@ -2,8 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $att_img = getAttachment($att_img,350,300);
 $datetime = explode(".",$post_time);
-$year = $datetime['0'];
-$day = $datetime['1'];
+
 ?>
       <div id="nav">
         <ul>
@@ -98,7 +97,7 @@ if($allow_remark == 'y'){
 	</div>
 
 </div>
-<div id="footer">&copy; 2008 <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
+<div id="footer">&copy; 2008 Powered by <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 <?php
 include getViews('side');

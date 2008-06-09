@@ -24,15 +24,19 @@ foreach($tag_cache as $value){
 <div class="lister"><span onclick="showhidediv('twitter')">Twitter</span></div>
 <ul id="twitter">
 <?php
-$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-{
-	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-	$value['date'] = SmartyDate($localdate,$value['date']);
+if(isset($tw_cache) && is_array($tw_cache)) {
+	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
+	foreach (array_slice($tw_cache,0,$index_twnum) as $value)
+	{
+		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
+		$value['date'] = SmartyDate($localdate,$value['date']);
 ?>
-<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
-<?php } ?>
-<?php echo $morebt; ?>
+	<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
+<?php 
+	} 
+	echo $morebt;
+}
+?>
 </ul>
 <?php if(ISLOGIN === true){ ?>
 <ul>

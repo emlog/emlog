@@ -33,7 +33,7 @@ END;
 foreach($blog as $value)
 {
 $link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
-$abstract = $value['content'];
+$abstract = str_replace('[break]','',$value['content']);
 $pubdate =  date('r',$value['date']);
 print <<< END
 
