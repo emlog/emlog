@@ -278,6 +278,7 @@ CREATE TABLE {$db_prefix}config (
   comment_code enum('n','y') NOT NULL default 'n',
   ischkcomment enum('n','y') NOT NULL default 'n',
   isurlrewrite enum('n','y') NOT NULL default 'n',
+  isgzipenable enum('n','y') NOT NULL default 'n',
   istrackback enum('n','y') NOT NULL default 'y',
   nonce_templet varchar(255) NOT NULL default '',
   timezone float NOT NULL default '8',
@@ -331,7 +332,7 @@ content VARCHAR(255) NOT NULL ,
 date VARCHAR(10) NOT NULL ,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'这里可以用简单的文字记录你的生活','1204460230');
+INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1204460230');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
