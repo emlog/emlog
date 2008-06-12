@@ -331,7 +331,7 @@ content VARCHAR(255) NOT NULL ,
 date VARCHAR(10) NOT NULL ,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'这里可以记录你的心情','1204460230');
+INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'这里可以用简单的文字记录你的生活','1204460230');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
@@ -382,7 +382,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$MC->mc_tags('./cache/tags');
 	$MC->mc_twitter('./cache/twitter');
 
-	$result .= "管理员:".$admin." 添加成功<br />恭喜你！Emlog安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入Emlog </a>";
+	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
 	sysMsg($result);
 }
 ?>
