@@ -28,8 +28,7 @@ body{
 	background:transparent;
 	background:url(./graf.jpg)
 	repeat-x #FFFFFF;
-	background-position : 100% 100%;
-	background-attachment : fixed;
+	background-position : 60% 0%;
 	background-repeat : no-repeat;
 }
 
