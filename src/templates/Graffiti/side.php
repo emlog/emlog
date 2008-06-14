@@ -96,7 +96,7 @@ foreach($com_cache as $value){
 		<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
 		</ul>
 	<div class="lister">
-	<a href="./rss.php"><img src="<?php echo $tpl_dir; ?>Graffiti/images/rss.gif" alt="订阅Rss"/></a>
+	<a href="./rss.php"><img src="<?php echo $tpl_dir; ?>Graffiti/rss.gif" alt="订阅Rss"/></a>
 	</div>
 	<?php echo $exarea; ?>
 </div>

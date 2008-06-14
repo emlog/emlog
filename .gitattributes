@@ -149,6 +149,13 @@ src/templates/Graffiti/echo_log.php -text
 src/templates/Graffiti/footer.php -text
 src/templates/Graffiti/graf.css -text
 src/templates/Graffiti/graf.jpg -text
+src/templates/Graffiti/grafs/graf_01.css -text
+src/templates/Graffiti/grafs/graf_01.jpg -text
+src/templates/Graffiti/grafs/graf_01_1.jpg -text
+src/templates/Graffiti/grafs/graf_02.css -text
+src/templates/Graffiti/grafs/graf_02.jpg -text
+src/templates/Graffiti/grafs/graf_02_1.jpg -text
+src/templates/Graffiti/grafs/graf_02_2.jpg -text
 src/templates/Graffiti/header.php -text
 src/templates/Graffiti/log_list.php -text
 src/templates/Graffiti/main.js -text
