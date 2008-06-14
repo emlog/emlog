@@ -60,6 +60,7 @@ if (!isset($action) || empty($action))
 		$pageurl= './index.php?page';
 	}
 	$query = $DB->query($sql);
+	$logs = array();
 	while($row = $DB->fetch_array($query))
 	{
 		$row['post_time'] = date('Y-n-j G:i l',$row['date']); 
