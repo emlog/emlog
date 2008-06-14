@@ -353,11 +353,11 @@ src/templates/heart/images/body.jpg -text
 src/templates/heart/images/foot.jpg -text
 src/templates/heart/images/head.jpg -text
 src/templates/heart/images/lister.jpg -text
-src/templates/heart/images/preview.jpg -text
 src/templates/heart/log_list.php -text
 src/templates/heart/main.css -text
 src/templates/heart/main.js -text
 src/templates/heart/message.php -text
+src/templates/heart/preview.jpg -text
 src/templates/heart/search.php -text
 src/templates/heart/side.php -text
 src/templates/heart/tag.php -text
