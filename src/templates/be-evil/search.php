@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 ?>
 <div class="content">
-	<p id="t">$search_info</p>
+	<p id="t"><?php echo $search_info; ?></p>
 	<div id="t_search">
 	<?php
 	foreach($slog as $key=>$value){

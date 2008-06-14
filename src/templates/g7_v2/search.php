@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="post">
 <div class="content">
 <h2><b>日志搜索</b></h2>
-<p><?php echo $search_info;?></p>
+<p><?php echo <?php echo $search_info; ?>;?></p>
 <ul>
 <?php
 foreach($slog as $key=>$value){

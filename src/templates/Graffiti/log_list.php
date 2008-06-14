@@ -24,4 +24,5 @@ foreach($logs as $value){
 <?php } ?>
 
 <div id="pageurl"><?php echo $page_url;?></div>
+
 <?php include getViews('footer'); ?>

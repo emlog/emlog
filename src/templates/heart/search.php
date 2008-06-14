@@ -4,7 +4,7 @@ include getViews('side');
 echo <<<EOT
 -->
 <div class="content">
-<p id="t">$search_info</p>
+<p id="t"><?php echo $search_info; ?></p>
 <div id="t_search">
 <!--
 EOT;

@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="post">
-<p><?php echo $search_info;?></p>
+<p><?php echo <?php echo $search_info; ?>;?></p>
 <div>
 <?php
 foreach($slog as $key=>$value){

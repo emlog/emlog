@@ -197,7 +197,7 @@ div.contentA {
 }
 
 #twitter li {
-	border-top: dotted #999999 1px;
+	border-top: dotted #DDD 1px;
 }
 
 #twitter li span {
@@ -219,7 +219,7 @@ div.contentA {
 	margin-bottom: 15px;
 	font-size: 14px;
 	line-height: 1.7;
-	border-bottom: #BBBBBB dashed 1px;
+	border-bottom: #DDD dashed 1px;
 }
 
 .log_desc {
@@ -236,6 +236,7 @@ div.contentA {
 	margin: 0px;
 	table-layout: fixed;
 	word-wrap: break-word;
+	border:1px dotted #DDD;
 }
 
 .trackback {
@@ -372,7 +373,7 @@ div.contentA {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+	border:1px dotted #FF6600;
 }
 
 .day2 {

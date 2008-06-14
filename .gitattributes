@@ -149,7 +149,6 @@ src/templates/Graffiti/echo_log.php -text
 src/templates/Graffiti/footer.php -text
 src/templates/Graffiti/header.php -text
 src/templates/Graffiti/images/7ab0011e29bd86e01ad5764a.jpg -text
-src/templates/Graffiti/images/bg_cal_today.gif -text
 src/templates/Graffiti/images/rss.gif -text
 src/templates/Graffiti/log_list.php -text
 src/templates/Graffiti/main.css -text

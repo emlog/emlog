@@ -4,7 +4,7 @@ echo <<<EOT
 -->
 <html>
 <head>
-<meta HTTP-EQUIV="REFRESH" CONTENT="3;URL=$url">
+<meta HTTP-EQUIV="REFRESH" CONTENT="3;url=<?php echo $url; ?>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="zh-CN" />
 <link href="{$tpl_dir}default/main.css" rel="stylesheet" type="text/css">

@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <html>
 <head>
-<meta HTTP-EQUIV="REFRESH" CONTENT="3;URL=$url">
+<meta HTTP-EQUIV="REFRESH" CONTENT="3;url=<?php echo $url; ?>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="zh-CN" />
 <link href="<?php echo $tpl_dir; ?>Graffiti/main.css" rel="stylesheet" type="text/css">
