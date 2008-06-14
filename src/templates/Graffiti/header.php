@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="author" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?php echo $tpl_dir; ?>Graffiti/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $tpl_dir; ?>Graffiti/graf.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo $tpl_dir; ?>Graffiti/main.js" type="text/javascript"></script>
 </head>
 <body>
