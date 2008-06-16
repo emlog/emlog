@@ -1,33 +1,15 @@
-<!--<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
-echo <<<EOT
--->
+?>
 <div class="content">
 	<ul id="t">
-		<li>标签： <b>$tag</b></li>
+		<li>标签： <b><?php echo $tag; ?></b></li>
 	</ul>
 	<ul class="taglog">
-<!--
-EOT;
-foreach($taglogs as $key=>$value){
-if($isurlrewrite=='n'){
-echo <<<EOT
--->
-	<li><a href="index.php?action=showlog&gid={$value['gid']}">{$value['title']}</a> {$value['date']}</li>
-<!--
-EOT;
-}else{
-	echo <<<EOT
--->
-	<li><a href="showlog-{$value['gid']}.html">{$value['title']}</a> {$value['date']}</li>
-<!--
-EOT;
-}
-}echo <<<EOT
--->
+<?php foreach($taglogs as $key=>$value){ ?>
+	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>" style="color:#00ccff"><?php echo $value['title']; ?></a> <?php echo $value['date']; ?></li>
+<?php } ?>
 	</ul>
 </div>
-EOT;
-include getViews('footer');
-?>
+<?php include getViews('footer'); ?>

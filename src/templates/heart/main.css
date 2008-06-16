@@ -17,6 +17,7 @@ body{
 	font-size:12px;
 	line-height:150%;
 	BACKGROUND: #c2f5f9;
+	color:#00ccff;
 }
 #header {
 	height: 339px;
@@ -52,21 +53,20 @@ color:#fbab9c;
 font-size:20px;
 }
 /*右侧栏*/
-.page{
+#page{
 	height:100%;
 	background-color:#c2f5f9;
 	background-image:url(./images/body.jpg);
 	background-repeat:repeat-y;
 	background-position:center top;
-	overflow:visible;
 	}
 div.contentA{
 	float: right;
 	margin-right: 30px;
-	padding: 0px;
 	width:200px;
 	border-left:#fbab9c dashed 1px;
-	table-layout:fixed;word-wrap:break-word;
+	table-layout:fixed;
+	word-wrap:break-word;
 	}
 .lister {
 	height:28px;
@@ -74,7 +74,6 @@ div.contentA{
 	color:#fbab9c;
 	display:block;
 	padding:1px 0px 1px 10px;
-	margin:10px 1px 2px;
 	clear:left;
 	}
 .lister span{margin-left:8px; cursor:pointer; font-weight:bold;display: block;} 
@@ -101,9 +100,9 @@ color:#00ccff;
 }
 /*左侧日志*/	
 #contentB {
-	margin-left:0px;
+	margin-left:30px;
 	float:left;
-	width:570px;
+	width:530px;
 	}
 #contentB li{
 	list-style:none;
@@ -111,7 +110,8 @@ color:#00ccff;
 	}
 #contentB #search{
 	border:1px solid #fbab9c;
-	table-layout:fixed;word-wrap:break-word;
+	table-layout:fixed;
+	word-wrap:break-word;
 	}
 #contentB p{
 	padding:8px;
@@ -120,9 +120,9 @@ color:#00ccff;
 	font-size:10pt;
 	}
 .logcontent{
-	width:530px;
+	width:500px;
 	background-color:#c2f5f9;
-	margin-left:80px;
+	margin-left:30px;
 	table-layout:fixed;
 	word-wrap:break-word;
 	border-bottom:#fbab9c dashed 1px;
@@ -155,7 +155,7 @@ color:#00ccff;
 .content{
 	width:530px;
 	background-color:#c2f5f9;
-	margin-left:80px;
+	margin-left:30px;
 	table-layout:fixed;
 	word-wrap:break-word
 	}
@@ -173,7 +173,7 @@ color:#00ccff;
 #tags{ margin:10px 50px;}
 /*底部版权信息*/
 #siteCopyright {
-	background-image: url(./foot.jpg);
+	background-image: url(./images/foot.jpg);
 	background-repeat: no-repeat;
 	background-position: center top;
 	overflow:visible;
@@ -299,7 +299,7 @@ color:#00ccff;
 	font-family: Arial;
 	font-size: 14px;
 	background-color: #c2f5f9;
-	color: #00ccff;
+	color: #fbab9c;
 }
 /*按钮样式*/	
 .button {

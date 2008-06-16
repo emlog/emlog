@@ -1,98 +1,69 @@
-<!--<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo <<<EOT
--->
-<div class="page">
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
+<div id="page">
 <div class="contentA">
 	<div class="lister"><span onclick="showhidediv('bloggerinfo')">博主信息</span></div>
     	<ul style="text-align:center" id="bloggerinfo">
-		<li>$photo</li>
-		<li class="other"><b>$name</b> $blogger_des</li>
+		<li><?php echo $photo; ?></li>
+		<li><b><?php echo $name; ?></b><?php echo $blogger_des; ?></li>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
     	<div id="calendar">
-			<!--日历-->
 		</div>
+	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
+
 	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
 		<ul id="blogtags"><li>
-<!--
-EOT;
+<?php 
 foreach($tag_cache as $value){
-echo <<<EOT
--->
-<span style="font-size:{$value['fontsize']}px; height:30px;"><a href="index.php?action=taglog&tag={$value['tagurl']}">{$value['tagname']}</a></span>&nbsp;
-<!--
-EOT;
-}echo <<<EOT
--->	
-<a href="./index.php?action=tag" title="所有标签" >&gt;&gt;</a>
+?>
+<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>" style="color:#00ccff"><?php echo $value['tagname']; ?></a></span>&nbsp;
+<?php } ?>
+<a href="./index.php?action=tag" title="更多标签"  style="color:#00ccff">&gt;&gt;</a>
 </li></ul>
-<!--
-EOT;
-if($index_twnum>0){
-echo <<<EOT
--->
+<?php if($index_twnum>0){ ?>
 <div class="lister"><span onclick="showhidediv('twitter')">Twitter</span></div>
 <ul id="twitter">
-<!--
-EOT;
-$morebt = count($tw_cache)>$index_twnum?"<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-{
-	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-	$value['date'] = date("Y-m-d H:i",$value['date']);
-echo <<<EOT
--->
-<li> {$value['content']} $delbt<br><span>{$value['date']}</span></li>
-<!--
-EOT;
+<?php
+if(isset($tw_cache) && is_array($tw_cache)) {
+	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
+	foreach (array_slice($tw_cache,0,$index_twnum) as $value)
+	{
+		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
+		$value['date'] = SmartyDate($localdate,$value['date']);
+?>
+	<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
+<?php 
+	} 
+	echo $morebt;
 }
-echo <<<EOT
--->
-$morebt
+?>
 </ul>
-<!--
-EOT;
-if(ISLOGIN === true)
-{
-echo <<<EOT
--->
+<?php if(ISLOGIN === true){ ?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:200px;background:#c2f5f9;color:#fbab9c" style="height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" style="background:#c2f5f9;color:#fbab9c" value="提交">
+<textarea name="tw" id="tw" style="width:200px;height:50px;background:#c2f5f9;color:#fbab9c"></textarea><br />
+<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');"style="background:#c2f5f9;color:#fbab9c" value="提交">
 </li>
 </ul>
-<!--
-EOT;
+<?php
 }
 }
 if($ismusic){
-echo <<<EOT
--->
+?>
 <div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	
 <ul id="blogmusic">
-<li class="other">$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music{$autoplay}&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music{$autoplay}&autoreplay=1" /></object>
+<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 </li>
 </ul>
-<!--
-EOT;
-}
-echo <<<EOT
--->
+<?php } ?>
 <div class="lister"><span onclick="showhidediv('newcomment')">最新评论</span></div>
 		<ul id="newcomment">
-<!--
-EOT;
+<?php
 foreach($com_cache as $value){
-echo <<<EOT
--->
-		<li id="comment">{$value['name']}<br /><a href="{$value['url']}">{$value['content']}</a></li>
-<!--
-EOT;
-}echo <<<EOT
--->
+?>
+		<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+<?php } ?>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
 	<ul id="logserch">
@@ -100,56 +71,41 @@ EOT;
 	<form name="keyform" method="get" action="index.php"><p>
     <input name="keyword"  type="text" value="" style="width:130px;background:#c2f5f9;color:#fbab9c"/>
 	<input name="action" type="hidden" value="search" />
-    <input type="submit" value="搜索" style="background:#c2f5f9;color:#fbab9c"onclick="return keyw()" />
-	</p>
-   </form>
+    <input type="submit" value="搜索" style="background:#c2f5f9;color:#fbab9c" onclick="return keyw()" />
+	</form>
 		</li>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('record')">日志归档</span></div>
 		<ul id="record">
-<!--
-EOT;
-foreach($dang_cache as $value){
-echo <<<EOT
--->
-		<li><a href="{$value['url']}" style="color:#00ccff">{$value['record']}({$value['lognum']})</a></li>
-<!--
-EOT;
-}echo <<<EOT
--->		
+<?php foreach($dang_cache as $value){ ?>
+		<li><a href="<?php echo $value['url']; ?>" style="color:#00ccff"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+<?php } ?>		
 		</ul>
 	<div class="lister"><span onclick="showhidediv('frlink')">友情链接</span></div>
     	<ul id="frlink">
-<!--
-EOT;
-foreach($link_cache as $value){
-echo <<<EOT
--->     	
-		<li><a href="{$value['url']}" title="{$value['des']}" target="_blank" style="color:#00ccff">{$value['link']}</a></li>
-<!--
-EOT;
-}echo <<<EOT
--->		
-</ul>
+<?php foreach($link_cache as $value){ ?>     	
+		<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank" style="color:#00ccff"><?php echo $value['link']; ?></a></li>
+<?php } ?>		
+		</ul>
 	<div class="lister"><span onclick="showhidediv('bloginfo')">博客信息</span></div>
 		<ul id="bloginfo">
-		<li>日志数量：{$sta_cache['lognum']}</li>
-		<li>评论数量：{$sta_cache['comnum']}</li>
-		<li>引用数量：{$sta_cache['tbnum']}</li>
-		<li>今日访问：{$sta_cache['day_view_count']}</li>
-		<li>总访问量：{$sta_cache['view_count']}</li>
+		<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
+		<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
+		<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
+		<li>今日访问：<?php echo $sta_cache['day_view_count']; ?></li>
+		<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
 		</ul>
+	<?php echo $exarea; ?>
+
 	<div class="lister">
-<!--
-EOT;
+<?php
 if(ISLOGIN === false){
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
 				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
-echo <<<EOT
---> 
+?>
 <span onclick="showlogin('loginfm')">登录</span>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
@@ -158,31 +114,23 @@ echo <<<EOT
 <input name="user" type="text" style="width:150px;background:#c2f5f9;color:#fbab9c"><br />
 密  码:<br>
 <input name="pw" type="password" style="width:150px;background:#c2f5f9;color:#fbab9c"><br>
-$ckcode <br>
+<?php echo $ckcode;?><br>
 <input type="submit" value="登录" style="background:#c2f5f9;color:#fbab9c">
 </form>
 </ul>
-<!--
-EOT;
+<?php
 }else{
-echo <<<EOT
--->
+?>
 <span onclick="showlogin('loginfm')" >管理</span>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php" style="color:#00ccff">写日志</a></li>
 	<li><a href="./adm/" style="color:#00ccff">管理中心</a></li>
 	<li><a href="./index.php?action=logout" style="color:#00ccff">退出</a></li>
 	</ul>
-<!--
-EOT;
+<?php
 }
-echo <<<EOT
--->		
+?>	
 		</ul>
 	</div>
-	$exarea
 </div>
 <div id="contentB">
-<!--
-EOT;
-?>
