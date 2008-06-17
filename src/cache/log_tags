@@ -1,3 +1,1 @@
-<?php
-$log_cache_tags[1] = "	<a href=\"?action=taglog&tag=emlog\">emlog</a>";
-?>
+a:1:{i:1;s:47:"	<a href="./?action=taglog&tag=emlog">emlog</a>";}

@@ -1,3 +1,1 @@
-<?php
-$tag_cache[0] = array('tagurl'=>"emlog",'tagname'=>"emlog",'fontsize'=>"14");
-?>
+a:1:{i:0;a:3:{s:6:"tagurl";s:5:"emlog";s:7:"tagname";s:5:"emlog";s:8:"fontsize";d:14;}}

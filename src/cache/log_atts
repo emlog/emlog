@@ -1,3 +1,1 @@
-<?php
-$log_cache_atts[1] = array('attachment'=>"",'att_img'=>"");
-?>
+a:1:{i:1;a:2:{s:10:"attachment";s:0:"";s:7:"att_img";s:0:"";}}

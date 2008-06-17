@@ -1,10 +1,1 @@
-<?php
-$sta_cache = array(
-				'day_view_count' => "0",
-				'view_count' =>"0",
-				'lognum'=>"1",
-				'comnum'=>"0",
-				'hidecom'=>"0",
-				'tbnum'=>"0"
-				);
-?>
+a:7:{s:14:"day_view_count";s:1:"0";s:10:"view_count";s:1:"0";s:6:"lognum";i:1;s:6:"comnum";i:0;s:5:"twnum";i:1;s:7:"hidecom";i:0;s:5:"tbnum";i:0;}

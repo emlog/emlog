@@ -1,3 +1,1 @@
-<?php
-$link_cache[0] = array('link'=>"emlog",'url'=>"http://www.emlog.net",'des'=>"emlog官方主页");
-?>
+a:1:{i:0;a:3:{s:4:"link";s:5:"emlog";s:3:"url";s:20:"http://www.emlog.net";s:3:"des";s:17:"emlog官方主页";}}
