@@ -442,7 +442,7 @@ function fopen_url($url)
  * @param unix timestamp $datetemp
  * @return string
  */
-function SmartyDate($now,$datetemp,$dstr='Y-m-d H:i')
+function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 {
 	$op = '';
 	$sec = $now-$datetemp;
@@ -460,6 +460,22 @@ function SmartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 		$op = date($dstr,$datetemp);
 	}
 	return $op;
+}
+
+/**
+ * 读取缓存文件
+ *
+ * @param  $filename 缓存文件
+ * @return unknown
+ */
+function readCache($cachefile) 
+{
+	if(@$fp = fopen($cachefile, 'r')) 
+	{
+		@$data = fread($fp,filesize($cachefile));
+		fclose($fp);
+	}
+	return unserialize($data);
 }
 
 /**

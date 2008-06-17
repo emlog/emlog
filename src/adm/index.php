@@ -10,8 +10,7 @@ require_once('./globals.php');
 if ($action == '')
 {
 	include getViews('header');
-	require_once('../cache/sta');
-	
+	$sta_cache = readCache('../cache/sta');
 	extract($sta_cache);
 	
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];

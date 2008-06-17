@@ -6,15 +6,7 @@
  */
 
 class mkcache {
-	
-	var $link;
-	var $Archives;
-	var $log_tags;
-	var $log_atts;
-	var $tags;
-	var $comment;
-	var $twitter;
-	
+
 	var $dbhd;
 	var $dbprefix;
 	
@@ -28,10 +20,29 @@ class mkcache {
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
 		$exarea = addslashes($show_config['exarea']);
-		$config ="\n\$config_cache = array('sitekey' =>\"".htmlspecialchars($show_config['site_key'])."\",'blogname' =>\"".htmlspecialchars(stripslashes($show_config['blogname']))."\",'bloginfo'=>\"".htmlspecialchars(stripslashes($show_config['bloginfo']))."\",'index_lognum' =>\"".$show_config['index_lognum']."\",'index_twnum' =>\"".$show_config['index_twnum']."\",'index_tagnum' =>\"".$show_config['index_tagnum']."\",'index_comment_num' =>\"".$show_config['index_comnum']."\",'ischkcomment'=>\"".$show_config['ischkcomment']."\",'isurlrewrite'=>\"".$show_config['isurlrewrite']."\",'isgzipenable'=>\"".$show_config['isgzipenable']."\",'istrackback'=>\"".$show_config['istrackback']."\",'comment_code'=>\"".$show_config['comment_code']."\",'login_code'=>\"".$show_config['login_code']."\",'comment_subnum'=>\"".$show_config['comment_subnum']."\",'nonce_templet'=>\"".$show_config['nonce_templet']."\",'blogurl'=>\"".htmlspecialchars($show_config['blogurl'])."\",'icp'=>\"".htmlspecialchars($show_config['icp'])."\",'timezone'=>\"".$show_config['timezone']."\",'exarea'=>\"".$exarea."\");";
-
-		$cache = "<?php".$config."\n?>";
-		$this->mc_print($cache,$cf);
+		$config_cache = array(
+			'sitekey' => htmlspecialchars($show_config['site_key']),
+			'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
+			'bloginfo'=>htmlspecialchars(stripslashes($show_config['bloginfo'])),
+			'index_lognum' =>$show_config['index_lognum'],
+			'index_twnum' =>$show_config['index_twnum'],
+			'index_tagnum' =>$show_config['index_tagnum'],
+			'index_comment_num' =>$show_config['index_comnum'],
+			'ischkcomment'=>$show_config['ischkcomment'],
+			'isurlrewrite'=>$show_config['isurlrewrite'],
+			'isgzipenable'=>$show_config['isgzipenable'],
+			'istrackback'=>$show_config['istrackback'],
+			'comment_code'=>$show_config['comment_code'],
+			'login_code'=>$show_config['login_code'],
+			'comment_subnum'=>$show_config['comment_subnum'],
+			'nonce_templet'=>$show_config['nonce_templet'],
+			'blogurl'=>htmlspecialchars($show_config['blogurl']),
+			'icp'=>htmlspecialchars($show_config['icp']),
+			'timezone'=>$show_config['timezone'],
+			'exarea'=>$exarea
+		);
+		$cacheData = serialize($config_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//个人资料
 	function mc_blogger($cf)
@@ -42,11 +53,16 @@ class mkcache {
 		{
 			$photosrc = substr($blogger['photo'],3);
 			$imgsize = chImageSize($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
-			$icon = "<img src=\\\"".htmlspecialchars($photosrc)."\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" alt=\\\"blogger\\\" />";
+			$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
 		}
-		$user="\n\$user_cache = array('photo' => \"$icon\",'name' =>\"".htmlspecialchars($blogger['nickname'])."\",'mail'	=>\"".htmlspecialchars($blogger['email'])."\",'des'=>\"".htmlspecialchars($blogger['description'])."\");";
-		$cache = "<?php".$user."\n?>";
-		$this->mc_print($cache,$cf);
+		$user_cache = array(
+			'photo' => $icon,
+			'name' =>htmlspecialchars($blogger['nickname']),
+			'mail'	=>htmlspecialchars($blogger['email']),
+			'des'=>htmlspecialchars($blogger['description'])
+		);
+		$cacheData = serialize($user_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//访问统计
 	function mc_sta($cf)
@@ -58,17 +74,17 @@ class mkcache {
 		$twnum = $this->dbhd->num_rows($this->dbhd->query("SELECT id FROM ".$this->dbprefix."twitter "));
 		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."comment where hide='y' "));
 
-		$sta="\n\$sta_cache = array(
-				'day_view_count' => \"".$dh['day_view_count']."\",
-				'view_count' =>\"".$dh['view_count']."\",
-				'lognum'=>\"".$lognum."\",
-				'comnum'=>\"".$comnum."\",
-				'twnum'=>\"".$twnum."\",
-				'hidecom'=>\"".$hidecom."\",
-				'tbnum'=>\"".$tbnum."\"
-				);";
-		$cache = "<?php".$sta."\n?>";
-		$this->mc_print($cache,$cf);
+		$sta_cache = array(
+			'day_view_count' => $dh['day_view_count'],
+			'view_count' =>$dh['view_count'],
+			'lognum'=>$lognum,
+			'comnum'=>$comnum,
+			'twnum'=>$twnum,
+			'hidecom'=>$hidecom,
+			'tbnum'=>$tbnum
+		);
+		$cacheData = serialize($sta_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//评论缓存
 	function mc_comment($cf)
@@ -77,13 +93,16 @@ class mkcache {
 		$index_comment_num = $show_config['index_comnum'];
 		$comment_subnum = $show_config['comment_subnum'];
 		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster FROM ".$this->dbprefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
-		$j = 0;
-		while($show_com=$this->dbhd->fetch_array($query)){
-			$this->comment.= "\n\$com_cache[".$j."] = array('url'=>\"index.php?action=showlog&gid=".$show_com['gid']."#".$show_com['cid']."\",'name'=>\"".base64_encode(htmlspecialchars($show_com['poster']))."\",'content'=>\"".base64_encode(htmlClean2(subString($show_com['comment'],0,$comment_subnum)))."\");";
-			$j++;
+		while($show_com=$this->dbhd->fetch_array($query))
+		{
+			$com_cache[] = array(
+				'url' => "index.php?action=showlog&gid={$show_com['gid']}#{$show_com['cid']}",
+				'name' => htmlspecialchars($show_com['poster']),
+				'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum))
+			);
 		}
-		$cache = "<?php".$this->comment."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($com_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//侧边栏标签缓存
 	function mc_tags($cf)
@@ -91,30 +110,36 @@ class mkcache {
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_tagnum FROM ".$this->dbprefix."config"));
 		$index_tagnum = $show_config['index_tagnum'];
 		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag ORDER BY usenum DESC LIMIT 0, $index_tagnum ");
-		$m = 0;
-		while($show_tag = $this->dbhd->fetch_array($query)){
+		while($show_tag = $this->dbhd->fetch_array($query))
+		{
 			$size = 14+round($show_tag['usenum']/3);
 			$fontsize = $size >40?40:$size;
 			$tag = $show_tag['tagname'];
 			$tagurl = urlencode($show_tag['tagname']);
-			$this->tags.= "\n\$tag_cache[".$m."] = array('tagurl'=>\"$tagurl\",'tagname'=>\"".htmlspecialchars($show_tag['tagname'])."\",'fontsize'=>\"$fontsize\");";
-			$m++;
+			$tag_cache[] = array(
+				'tagurl' => $tagurl,
+				'tagname' => htmlspecialchars($show_tag['tagname']),
+				'fontsize'=> $fontsize
+			);
 		}
 
-		$cache = "<?php".$this->tags."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($tag_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//友站缓存
 	function mc_link($cf)
 	{
 		$query=$this->dbhd->query("SELECT siteurl,sitename,description FROM ".$this->dbprefix."link ORDER BY taxis ASC");
-		$k = 0;
-		while($show_link=$this->dbhd->fetch_array($query)){
-			$this->link.= "\n\$link_cache[".$k."] = array('link'=>\"".htmlspecialchars($show_link['sitename'])."\",'url'=>\"".htmlspecialchars($show_link['siteurl'])."\",'des'=>\"".htmlspecialchars($show_link['description'])."\");";
-			$k++;
+		while($show_link=$this->dbhd->fetch_array($query))
+		{
+			$link_cache[] = array(
+				'link'=>htmlspecialchars($show_link['sitename']),
+				'url'=>htmlspecialchars($show_link['siteurl']),
+				'des'=>htmlspecialchars($show_link['description'])
+			);
 		}
-		$cache = "<?php".$this->link."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($link_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//twitter
 	function mc_twitter($cf)
@@ -122,13 +147,16 @@ class mkcache {
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".$this->dbprefix."config"));
 		$index_twnum = $show_config['index_twnum']+1;
 		$query=$this->dbhd->query("SELECT * FROM ".$this->dbprefix."twitter ORDER BY id DESC LIMIT $index_twnum");
-		$k = 0;
-		while($show_tw=$this->dbhd->fetch_array($query)){
-			$this->twitter.= "\n\$tw_cache[".$k."] = array('content'=>\"".htmlspecialchars($show_tw['content'])."\",'date'=>\"".$show_tw['date']."\",'id'=>\"".$show_tw['id']."\");";
-			$k++;
+		while($show_tw=$this->dbhd->fetch_array($query))
+		{
+			$tw_cache[] = array(
+				'content' => htmlspecialchars($show_tw['content']),
+				'date' => $show_tw['date'],
+				'id' => $show_tw['id']
+			);
 		}
-		$cache = "<?php".$this->twitter."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($tw_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//日志归档缓存
 	function mc_record($cf)
@@ -138,21 +166,30 @@ class mkcache {
 		$record='xxxx_x';
 		$p = 0;
 		$lognum = 1;
-		while($show_record=$this->dbhd->fetch_array($query)){
+		while($show_record=$this->dbhd->fetch_array($query))
+		{
 			$f_record=date('Y_n',$show_record['date']);
 			if ($record!=$f_record){
 				$h = $p-1;
 				if($h!=-1)
 				{
-					$this->Archives.= "\n\$dang_cache[".$h."]['lognum']=\"".$lognum."\";";
+					$dang_cache[$h]['lognum'] = $lognum;
 				}
 				if($isurlrewrite == 'y')
 				{
-					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"record-".date("Ym",$show_record['date']).".html\",'lognum'=>\"\");";
+					$dang_cache[$p] = array(
+						'record'=>date("Y年n月",$show_record['date']),
+						'url'=>"record-".date("Ym",$show_record['date']).".html",
+						'lognum'=>''
+					);
 				}
 				else
 				{
-					$this->Archives.= "\n\$dang_cache[".$p."] = array('record'=>\"".date("Y年n月",$show_record['date'])."\",'url'=>\"index.php?record=".date("Ym",$show_record['date'])."\",'lognum'=>\"\");";
+					$dang_cache[$p] = array(
+						'record'=>date("Y年n月",$show_record['date']),
+						'url'=>"index.php?record=".date("Ym",$show_record['date']),
+						'lognum'=>''
+					);
 				}
 				$p++;
 				$lognum = 1;
@@ -165,11 +202,11 @@ class mkcache {
 		$j = $p-1;
 		if($j>=0)
 		{
-			$this->Archives.= "\n\$dang_cache[".$j."]['lognum']=\"".$lognum."\";";
+			$dang_cache[$j]['lognum'] = $lognum;
 		}
 
-		$cache = "<?php".$this->Archives."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($dang_cache);
+		$this->mc_print($cacheData,$cf);
 	}
 	//日志标签缓存
 	function mc_logtags($cf)
@@ -183,18 +220,21 @@ class mkcache {
 			$tquery = "SELECT tagname FROM ".$this->dbprefix."tag WHERE gid LIKE '%,$gid,%' " ;
 			$result = $this->dbhd->query($tquery);
 			$tagnum = $this->dbhd->num_rows($result);
-			if($tagnum>0){
-				while($show_tag=$this->dbhd->fetch_array($result)){
-					$tag .= "	<a href=\\\"./?action=taglog&tag=".urlencode($show_tag['tagname'])."\\\">".htmlspecialchars($show_tag['tagname']).'</a>';
+			if($tagnum>0)
+			{
+				while($show_tag=$this->dbhd->fetch_array($result))
+				{
+					$tag .= "	<a href=\"./?action=taglog&tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
 				}
-			}else	{
+			}else
+			{
 				$tag = '';
 			}
-			$this->log_tags .= "\n\$log_cache_tags[".$show_log['gid']."] = \"".$tag."\";";
+			$log_cache_tags[$show_log['gid']] = $tag;
 			unset($tag);
 		}
-		$cache = "<?php".$this->log_tags."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($log_cache_tags);
+		$this->mc_print($cacheData,$cf);
 	}
 	//日志附件缓存
 	function mc_logatts($cf,$cont_attid='')
@@ -226,19 +266,22 @@ class mkcache {
 						$imgsrc2 = $imgsrc;
 					}
 					$imgsize = chImageSize($att_path,IMG_ATT_MAX_W,IMG_ATT_MAX_H);
-					$att_img .= "<br />图片附件 : ".$show_attach['attdes']."<br /><a href=\\\"$imgsrc2\\\" target=\\\"_blank\\\"><img src=\\\"$imgsrc\\\" width=\\\"".$imgsize['w']."\\\" height=\\\"".$imgsize['h']."\\\" border=\\\"0\\\" alt=\\\"点击查看原图\\\" /></a>";
+					$att_img .= "<br />图片附件 : {$show_attach['attdes']}<br /><a href=\"$imgsrc2\" target=\"_blank\"><img src=\"$imgsrc\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"0\" alt=\"点击查看原图\" /></a>";
 				}else
 				{
 					$file_atturl = $atturl;
-					$attachment .= "<br /><a href=\\\"".$file_atturl."\\\" target=\\\"_blank\\\">".$show_attach['filename']."</a>\t".changeFileSize($show_attach['filesize']).' '.$show_attach['attdes'];
+					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']).' '.$show_attach['attdes'];
 				}
 			}
-			$this->log_atts .= "\n\$log_cache_atts[".$gid."] = array('attachment'=>\"".$attachment."\",'att_img'=>\"".$att_img."\");";
+			$log_cache_atts[$gid] = array(
+				'attachment'=>$attachment,
+				'att_img'=>$att_img
+			);
 			unset($attachment);
 			unset($att_img);
 		}
-		$cache = "<?php".$this->log_atts."\n?>";
-		$this->mc_print($cache,$cf);
+		$cacheData = serialize($log_cache_atts);
+		$this->mc_print($cacheData,$cf);
 	}
 
 	//写入缓存

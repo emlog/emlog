@@ -57,7 +57,7 @@ function getindextw()
 	while ($rows = $DB->fetch_array($query))
 	{
 		extract($rows);
-		$date = SmartyDate($localdate,$date);
+		$date = smartyDate($localdate,$date);
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>":'';
 		$twitter .="<li>$content $delbt<br /><span>$date</span></li>";
 	}

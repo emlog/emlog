@@ -17,17 +17,19 @@ require_once(EMLOG_ROOT.'/lib/C_mysql.php');
 require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
-require_once(EMLOG_ROOT.'/cache/config');
-require_once(EMLOG_ROOT.'/cache/log_tags');
-require_once(EMLOG_ROOT.'/cache/log_atts');
-require_once(EMLOG_ROOT.'/cache/tags');
-require_once(EMLOG_ROOT.'/cache/comments');
-require_once(EMLOG_ROOT.'/cache/links');
-require_once(EMLOG_ROOT.'/cache/blogger');
-require_once(EMLOG_ROOT.'/cache/records');
-require_once(EMLOG_ROOT.'/cache/sta');
+
+$config_cache = readCache(EMLOG_ROOT.'/cache/config');
+$log_cache_tags = readCache(EMLOG_ROOT.'/cache/log_tags');
+$log_cache_atts = readCache(EMLOG_ROOT.'/cache/log_atts');
+$tag_cache = readCache(EMLOG_ROOT.'/cache/tags');
+$com_cache = readCache(EMLOG_ROOT.'/cache/comments');
+$link_cache = readCache(EMLOG_ROOT.'/cache/links');
+$user_cache = readCache(EMLOG_ROOT.'/cache/blogger');
+$dang_cache = readCache(EMLOG_ROOT.'/cache/records');
+$sta_cache = readCache(EMLOG_ROOT.'/cache/sta');
+$tw_cache = readCache(EMLOG_ROOT.'/cache/twitter');
+
 require_once(EMLOG_ROOT.'/cache/musics');
-require_once(EMLOG_ROOT.'/cache/twitter');
 
 //去除多余的转义字符
 doStripslashes();
@@ -37,31 +39,19 @@ $DB = new MySql($host, $user, $pass,$db);
 define('ISLOGIN',	isLogin());
 //获取操作
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
-//config
-	foreach($config_cache as $key => $value)
-	{
-		$$key = $value;
-	}
-
-	$exarea    = stripslashes($exarea);
-	$timezone  = intval($timezone);
-	$tpl_dir   = './templates/';//所有模板存放目录
-	$localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
-	isset($tag_cache)?sort($tag_cache):$tag_cache = array();
-
-//decode comment
-if(isset($com_cache))
+//解析配置项目
+foreach($config_cache as $key => $value)
 {
-	foreach($com_cache as $key=>$value)
-	{
-		$com_cache[$key]['name'] = base64_decode($com_cache[$key]['name']);
-		$com_cache[$key]['content'] = base64_decode($com_cache[$key]['content']);
-	}
-}else{
-	$com_cache = array();
+	$$key = $value;
 }
 
-//cache 
+$exarea    = stripslashes($exarea);
+$timezone  = intval($timezone);
+$tpl_dir   = './templates/';//所有模板存放目录
+$localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
+isset($tag_cache)?sort($tag_cache):$tag_cache = array();
+
+//cache
 $MC = new mkcache($DB,$db_prefix);
 
 //site info
@@ -100,7 +90,7 @@ if ($action == 'login')
 		}
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
-		header("Location: index.php"); 
+		header("Location: index.php");
 	}else
 	{
 		header("Location: index.php");
