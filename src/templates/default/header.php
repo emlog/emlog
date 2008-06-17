@@ -18,34 +18,33 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <body>
 <div id="holder">
 <div id="header">
-	<div id="siteTitle">
-	<ul>
-  		<li id="blogname"><a href="./"><?php echo $blogname; ?></a></li>
-  		<li id="blogdes"><?php echo $bloginfo; ?></li>
-	</ul>
-  	</div>
+<div id="siteTitle">
+<ul>
+  	<li id="blogname"><a href="./"><?php echo $blogname; ?></a></li>
+  	<li id="blogdes"><?php echo $bloginfo; ?></li>
+</ul>
+</div>
 <form name="f" method="post" action="index.php?action=login">
 <div id="navBar">
 <ul>
-<?php if(ISLOGIN){ ?>
+<?php if(ISLOGIN): ?>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
 <?php
-}else
-{
-$login_code=='y'?
-$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
-$ckcode = '';
+else:
+	$login_code=='y'?
+	$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
+	$ckcode = '';
 ?>
-<li onclick="showlogin('loginfm')" style="cursor:pointer;">登录</li>
-<li id="loginfm" style="display:none">
-用户:<input name="user" type="text" class="input" style="width:80px;"/>
-密码:<input name="pw" type="password"  class="input" style="width:80px;"/>
-<?php echo $ckcode; ?> 
-<input type="submit" value="登录">
-</li>
-<?php } ?>
+	<li onclick="showlogin('loginfm')" style="cursor:pointer;">登录</li>
+	<li id="loginfm" style="display:none">
+	用户:<input name="user" type="text" class="input" style="width:80px;"/>
+	密码:<input name="pw" type="password"  class="input" style="width:80px;"/>
+	<?php echo $ckcode; ?> 
+	<input type="submit" value="登录">
+	</li>
+<?php endif; ?>
 </ul>
 </div>
 </form>
