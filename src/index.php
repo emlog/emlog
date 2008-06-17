@@ -254,6 +254,7 @@ if($action == 'taglog')
 	$gids  = substr(trim($tagstring['gid']),1,-1);
 	$tag   = $tagstring['tagname'];
 	$query = @$DB->query("SELECT title,gid,date FROM {$db_prefix}blog WHERE gid IN ($gids) AND hide='n' ORDER BY date DESC");
+	$taglogs = array();
 	while($s_tlog = $DB->fetch_array($query))
 	{
 		$s_tlog['title'] = htmlspecialchars($s_tlog['title']);
