@@ -40,7 +40,7 @@ if(isset($tw_cache) && is_array($tw_cache)) {
 	foreach (array_slice($tw_cache,0,$index_twnum) as $value)
 	{
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-		$value['date'] = SmartyDate($localdate,$value['date']);
+		$value['date'] = smartyDate($localdate,$value['date']);
 ?>
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
 <?php
