@@ -21,4 +21,5 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 <body>
 <div id="container">
 	<div class="maincolumn">
+		<div id="banner"></div>
 		<h1><a href="./"><?php echo $blogname;?></a></h1>
