@@ -2,7 +2,7 @@
 //日志列表
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
-	foreach($logs as $value){
+	foreach($logs as $value):
 ?>
 	<div class="logcontent" onmouseover="this.style.backgroundColor='#F3FAFF'" onmouseout="this.style.backgroundColor='#FFF'">
 		<div id="t">
@@ -19,10 +19,6 @@ include getViews('side');
 			<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>">浏览[<?php echo $value['views']; ?>]</a>
 		</div>
 	</div>
-<?php 
-}
-?>
-<div id="pageurl"><?php echo $page_url;?></div>
-<?php
-include getViews('footer');
-?>
+<?php  endforeach; ?>
+<div id="pageurl"><?php echo $page_url; ?></div>
+<?php include getViews('footer'); ?>
