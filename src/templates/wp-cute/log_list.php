@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-foreach($logs as $value){
+foreach($logs as $value):
 ?>
 <DIV class=post id=post-1>
 <H2>
@@ -19,8 +19,7 @@ foreach($logs as $value){
  	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
 </P>
 </DIV>
-<?php
-}?>
+<?php endforeach; ?>
 <div id="pageurl"> <?php echo $page_url;?></div>
 <?php
 include getViews('footer');

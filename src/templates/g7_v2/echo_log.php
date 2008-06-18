@@ -23,21 +23,18 @@ $day = substr($datetime['2'],0,2);
 		<p class="tags"><?php echo $tag;?></p>
 		<p><?php echo $neighborLog;?></P>			
 	</div>				
-<?php
-if($allow_tb == 'y'){
-?>	
+<?php if($allow_tb == 'y'): ?>	
 	<div id="comments">
 	<h3 id="respond">引用地址：<input type="text" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a></h3>
 	</div>
-<?php
-}?>	
+<?php endif; ?>	
 <div id="comments">
 <h3 id="respond"><a name="comment"></a>评论</h3>
 <p></p>
 
 <ol class="commentlist">
 <?php
-foreach($com as $key=>$value){
+foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li class="alt" id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
@@ -47,25 +44,19 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 			<p><?php echo $value['reply'];?></p>
 	</li>	
 	
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
 
 <ol class="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 	<cite>引用来自：<strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></cite>		<br/>
 	<cite>标题：<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></cite><br />
 	<cite>摘要：<?php echo $value['excerpt'];?></cite>
 	</li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h3 id="respond">发表评论</h3>
 <p></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
@@ -92,8 +83,7 @@ if($allow_remark == 'y'){
 	</p>
 </form>
 </div>
-<?php
-}?>
+<?php endif; ?>
 </div>
 </div>
 </div>

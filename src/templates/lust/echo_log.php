@@ -26,22 +26,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			</div>
 
 		</div></div>
-<?php
-if($allow_tb == 'y'){
-?>	
+<?php if($allow_tb == 'y'): ?>	
 <div class="entry">
 <h2 id="comments">引用:<a name="tb"></a></h2>
 <input type="text" id="input" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>
 </div>
-<?php
-}?>	
+<?php endif; ?>	
 		
 		<div class="clear"></div>
 <div class="comments_template"><div class="wrapper">
 
 <ol class="commentlist">
 <?php
-foreach($com as $key=>$value){
+foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>">
@@ -57,14 +54,11 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 			</div>
 
 		</li>
-<?php
-}?>
+<?php endforeach; ?>
 	
 	</ol>
 <ol class="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 			<div class="commentmeta">
 			<ul>
@@ -80,15 +74,12 @@ foreach($tb as $key=>$value){
 			</div>
 
 		</li>
-<?php
-}?>
+<?php endforeach; ?>
 	
 	</ol>
 <a name="comment"></a>
 <div class="comments_form">
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h3 id="respond">发表你的评论</h3>
 <form  method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
 	<p>
@@ -115,7 +106,7 @@ if($allow_remark == 'y'){
 	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /><?php echo $cheackimg;?> <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small></td>
 	</p>
 </form>
-<?php }?>
+<?php endif; ?>
 </div>
 </div></div>
 <div class="clear"></div>	

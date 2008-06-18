@@ -7,9 +7,9 @@ include getViews('side');
 		<li>标签： <b><?php echo $tag; ?></b></li>
 	</ul>
 	<ul class="taglog">
-<?php foreach($taglogs as $key=>$value){ ?>
+<?php foreach($taglogs as $key=>$value): ?>
 	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>" style="color:#00ccff"><?php echo $value['title']; ?></a> <?php echo $value['date']; ?></li>
-<?php } ?>
+<?php endforeach; ?>
 	</ul>
 </div>
 <?php include getViews('footer'); ?>

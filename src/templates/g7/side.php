@@ -2,12 +2,9 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="sidebar_tag">
-<?php
-foreach($tag_cache as $value){
-?>
+<?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
-<?php
-}?>
+<?php endforeach; ?>
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 </div>
 
@@ -29,30 +26,22 @@ foreach($tag_cache as $value){
 </li>
 <script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
-<?php
-if($index_twnum>0){
-?>
+<?php if($index_twnum>0): ?>
 <li class="r_comments"><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
 <?php  
-if(isset($tw_cache) && is_array($tw_cache)) {
+if(isset($tw_cache) && is_array($tw_cache)) :
 	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-	foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-	{
+	foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($localdate,$value['date']);
 ?>
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
-<?php
-	}
-	echo $morebt;
-}
-?>
+<?php endforeach; ?>
+<?php echo $morebt;?>
+<?php endif; ?>
 </ul>
-<?php
-if(ISLOGIN === true)
-{
-?>
+<?php if(ISLOGIN === true): ?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
@@ -60,29 +49,22 @@ if(ISLOGIN === true)
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
-<?php
-}
-}
-if($ismusic){
-?>
+<?php endif; ?>
+<?php endif; ?>
+<?php if($ismusic): ?>
 <li class="some"><h2 onclick="showhidediv('music')">音乐</h2>
 <ul id="music">
 <?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
 </p>
 </ul>
 </li>
-<?php
-}
-?>
+<?php endif; ?>
 
 <li class="r_comments"><h2 onclick="showhidediv('comm')">评论</h2>
 		<ul id="comm">
-			<?php
-foreach($com_cache as $value){
-?>
+			<?php foreach($com_cache as $value): ?>
 		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
 		</ul>
 </li>
 
@@ -96,7 +78,7 @@ foreach($com_cache as $value){
 		</ul>
 </li>
 <?php
-if(ISLOGIN === false){
+if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
@@ -117,7 +99,7 @@ if(ISLOGIN === false){
 </form>
 </ul>
 <?php
-}else{
+else:
 ?>
 <li class="random"><h2 onclick="showlogin('loginfm')" >管理</h2>
 <ul id="loginfm">
@@ -125,9 +107,7 @@ if(ISLOGIN === false){
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
 	</ul>
-<?php
-}
-?>
+<?php endif; ?>
 <?php echo $exarea;?>
 		</div>
 
@@ -136,23 +116,17 @@ if(ISLOGIN === false){
 
 <li class="archives"><h2 onclick="showhidediv('dang')">存档</h2>
 		<ul id="dang">
-<?php
-foreach($dang_cache as $value){
-?>
+<?php foreach($dang_cache as $value): ?>
 		<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
-<?php
-}?>	
+<?php endforeach; ?>	
 		</ul>
 </li>
 
 <li class="random"><h2 onclick="showhidediv('links')">友情链接</h2>
 		<ul id="links">
-<?php
-foreach($link_cache as $value){
-?>     	
+<?php foreach($link_cache as $value): ?>     	
 		<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
-<?php
-}?>	
+<?php endforeach; ?>	
 		</ul>
 </li>
 

@@ -24,15 +24,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div id="des"><?php echo $bloginfo;?></div>
 	<div id="menu">
 		<ul>
-<?php
-if(ISLOGIN){
-?>
+<?php if(ISLOGIN): ?>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
-<?php
-}
-?>
+<?php endif; ?>
 		</ul>
 	</div>
 </div>

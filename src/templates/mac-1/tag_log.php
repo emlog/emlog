@@ -10,12 +10,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="post">
 	<div><b><?php echo $tag;?></b></p><small>(包含该标签的所有日志)</small></div>
 <div class="entry">
-<?php
-foreach($taglogs as $key=>$value){
-?>
+<?php foreach($taglogs as $key=>$value): ?>
 	<p><a href="index.php?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> <?php echo $value['date'];?></p>
-<?php
-}?>
+<?php endforeach; ?>
 <?php echo $tagmsg;?>
 </div>
 </div>

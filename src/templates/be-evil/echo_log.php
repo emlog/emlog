@@ -17,9 +17,7 @@ include getviews('side');
 if($allow_tb == 'y'){
 ?>	
 	<div id="tb_list">
-	<p><b>引用:</b><a name="tb"></a></p>
-	<li>GBk: <?php echo $blogurl; ?>trackback.php?id=<?php echo $logid; ?>&amp;charset=gbk</li>  
-	<li>UTF-8: <?php echo $blogurl; ?>trackback.php?id=<?php echo $logid; ?>&amp;charset=utf-8</li>
+	<p><b>引用:</b><input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 	</div>
 <?php
 }

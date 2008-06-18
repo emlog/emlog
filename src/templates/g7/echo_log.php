@@ -14,14 +14,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<p>Posted on <?php echo $post_time;?><br /></p>
 		<p><?php echo  $neighborLog;?></P>
 		</div>
-<?php
-if($allow_tb == 'y'){
-?>	
+<?php if($allow_tb == 'y'): ?>	
 	<div class="comments-template">
 	<h2 id="comments">引用：<input type="text" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" size="40" id="email"/><a name="tb"></a></h2>
 	</div>
-<?php
-}?>	
+<?php endif; ?>	
 </div>
 
 
@@ -32,8 +29,7 @@ if($allow_tb == 'y'){
 <p></p>
 
 <ol class="commentlist">
-<?php
-foreach($com as $key=>$value){
+<?php foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:#8DAB3B;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li class="alt" id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
@@ -43,25 +39,19 @@ $value['reply'] = $value['reply']?"<span style=\"color:#8DAB3B;\"><b>博主回�
 			<p><?php echo $value['reply'];?></p>
 	</li>	
 	
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
 
 <ol class="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 	<cite>trackback by <strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></cite><br/>
 	<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br/>
 	<?php echo $value['excerpt'];?>
 	</li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h2>发表评论</h2>
 <p></p>
 
@@ -88,8 +78,7 @@ if($allow_remark == 'y'){
 	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /> <?php echo $cheackimg;?> <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small></td>
 	</p>
 </form>
-<?php
-}?>
+<?php endif; ?>
 </div></div>
 </div>
 <?php

@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="content">
 <?php
-foreach($logs as $value){
+foreach($logs as $value):
 $value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 <div class="entry single">
@@ -25,8 +25,7 @@ $value['att_img'] = getAttachment($value['att_img'],200,120);
 </em>
 </p>
 </div>
-<?php
-}?>
+<?php endforeach; ?>
 <p><?php echo $page_url;?></p>
 </div>
 <?php

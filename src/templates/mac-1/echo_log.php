@@ -23,19 +23,16 @@ $datetime = explode(".",$post_time);
 <p><?php echo $tag;?></p>
 <p><?php echo $neighborLog;?></P>
 </div>
-<?php
-if($allow_tb == 'y'){
-?>	
+<?php if($allow_tb == 'y'): ?>	
 <p class="info">
 <h2 id="comments">引用：</h2>
 <?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>
 <a name="tb"></a></h2>
 </p>
-<?php
-}?>	
+<?php endif; ?>	
 <ol class="commentlist">
 <?php
-foreach($com as $key=>$value){
+foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	
@@ -46,14 +43,11 @@ $value['reply'] = $value['reply']?"<span style=\"color:#669900;\"><b>博主回�
 			<p><?php echo $value['content'];?></p>
 			<p><?php echo $value['reply'];?></p>
 		</li>	
-<?php
-}?>	
+<?php  endforeach; ?>	
 	</ol>
 	
 	<ol class="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	
 		<li class="alt" id="comment-2"><a name="<?php echo $value['cid'];?>"></a>
 			<strong>Trackback by:</strong><cite><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></cite>
@@ -65,12 +59,9 @@ foreach($tb as $key=>$value){
 	<?php echo $value['excerpt'];?></p>
 
 		</li>	
-<?php
-}?>	
+<?php endforeach; ?>	
 	</ol>
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h3 id="respond">发布评论</h3>
 <form method="post" name="commentform" action="index.php?action=addcom" id="commentform">
 <p><input type="text" name="comname" id="comname" value="<?php echo $ckname;?>" size="22" tabindex="1" class="input2"/>
@@ -92,8 +83,7 @@ if($allow_remark == 'y'){
 <input type="checkbox" name="remember" value="1" checked="checked" />记住我
 </p>
 </form>
-<?php
-}?>
+<?php endif; ?>
 	</div>
 
 </div>

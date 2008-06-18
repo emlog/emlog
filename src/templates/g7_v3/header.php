@@ -21,15 +21,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="shell">
 <div id="header">
 <ul>
-<?php
-if(ISLOGIN){
-?>
+<?php if(ISLOGIN): ?>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
-<?php
-}
-?>
+<?php endif; ?>
 </ul>
 <h1><a href="./"><?php echo $blogname;?></a></h1>
 <?php echo $bloginfo;?>

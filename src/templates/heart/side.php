@@ -14,31 +14,28 @@
 	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
 		<ul id="blogtags"><li>
 <?php 
-foreach($tag_cache as $value){
+foreach($tag_cache as $value):
 ?>
 <span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>" style="color:#00ccff"><?php echo $value['tagname']; ?></a></span>&nbsp;
-<?php } ?>
+<?php endforeach; ?>
 <a href="./index.php?action=tag" title="更多标签"  style="color:#00ccff">&gt;&gt;</a>
 </li></ul>
-<?php if($index_twnum>0){ ?>
+<?php if($index_twnum>0): ?>
 <div class="lister"><span onclick="showhidediv('twitter')">Twitter</span></div>
 <ul id="twitter">
 <?php
-if(isset($tw_cache) && is_array($tw_cache)) {
+if(isset($tw_cache) && is_array($tw_cache)):
 	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-	foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-	{
+		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($localdate,$value['date']);
 ?>
 	<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
-<?php 
-	} 
-	echo $morebt;
-}
-?>
+		<?php endforeach; ?>
+		<?php echo $morebt;?>
+	<?php endif;?>
 </ul>
-<?php if(ISLOGIN === true){ ?>
+<?php if(ISLOGIN === true): ?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
@@ -46,24 +43,21 @@ if(isset($tw_cache) && is_array($tw_cache)) {
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');"style="background:#c2f5f9;color:#fbab9c" value="提交">
 </li>
 </ul>
-<?php
-}
-}
-if($ismusic){
-?>
+<?php endif;?>
+<?php endif;?>
+	
+<?php if($ismusic): ?>
 <div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	
 <ul id="blogmusic">
 <li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 </li>
 </ul>
-<?php } ?>
+<?php endif; ?>
 <div class="lister"><span onclick="showhidediv('newcomment')">最新评论</span></div>
 		<ul id="newcomment">
-<?php
-foreach($com_cache as $value){
-?>
+<?php foreach($com_cache as $value): ?>
 		<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
-<?php } ?>
+<?php endforeach; ?>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
 	<ul id="logserch">
@@ -77,15 +71,15 @@ foreach($com_cache as $value){
 		</ul>
 	<div class="lister"><span onclick="showhidediv('record')">日志归档</span></div>
 		<ul id="record">
-<?php foreach($dang_cache as $value){ ?>
+<?php foreach($dang_cache as $value): ?>
 		<li><a href="<?php echo $value['url']; ?>" style="color:#00ccff"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
-<?php } ?>		
+<?php endforeach; ?>		
 		</ul>
 	<div class="lister"><span onclick="showhidediv('frlink')">友情链接</span></div>
     	<ul id="frlink">
-<?php foreach($link_cache as $value){ ?>     	
+<?php foreach($link_cache as $value): ?>     	
 		<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank" style="color:#00ccff"><?php echo $value['link']; ?></a></li>
-<?php } ?>		
+<?php endforeach; ?>		
 		</ul>
 	<div class="lister"><span onclick="showhidediv('bloginfo')">博客信息</span></div>
 		<ul id="bloginfo">
@@ -98,8 +92,7 @@ foreach($com_cache as $value){
 	<?php echo $exarea; ?>
 
 	<div class="lister">
-<?php
-if(ISLOGIN === false){
+<?php if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
@@ -118,8 +111,8 @@ if(ISLOGIN === false){
 <input type="submit" value="登录" style="background:#c2f5f9;color:#fbab9c">
 </form>
 </ul>
-<?php
-}else{
+<?php 
+else:
 ?>
 <span onclick="showlogin('loginfm')" >管理</span>
 <ul id="loginfm">
@@ -127,9 +120,7 @@ if(ISLOGIN === false){
 	<li><a href="./adm/" style="color:#00ccff">管理中心</a></li>
 	<li><a href="./index.php?action=logout" style="color:#00ccff">退出</a></li>
 	</ul>
-<?php
-}
-?>	
+<?php endif; ?>
 		</ul>
 	</div>
 </div>

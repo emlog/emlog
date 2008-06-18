@@ -10,12 +10,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="post">
 <div class="entry">
 <p id="t"><?php echo $search_info; ?></p>
-<?php
-foreach($slog as $key=>$value){
-?>
+<?php foreach($slog as $key=>$value): ?>
 <p><a href="./?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> (<?php echo $value['date'];?>)</p>
-<?php
-}?>
+<?php endforeach; ?>
 </div>
 </div>
 </div>

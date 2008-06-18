@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-foreach($logs as $value){
+foreach($logs as $value):
 $value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 <div class="content">
@@ -26,8 +26,7 @@ $value['att_img'] = getAttachment($value['att_img'],200,120);
 </p>				
 </div>
 </div>
-<?php
-}?>
+<?php endforeach; ?>
 <div id="pagenavi"><div class="wp-pagenavi">
 <span class="mypost"><?php echo $page_url;?></span>
 </div>

@@ -18,15 +18,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p><?php echo $neighborLog;?></P>
 </div>
 
-<?php
-if($allow_tb == 'y'){
-?>	
+<?php if($allow_tb == 'y'): ?>	
 <div class="comments-template">
 <h2 id="comments">引用:<a name="tb"></a></h2>
 <input type="text" style="width:350px" class="input" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>"><a name="tb"></a></p>
 </div>
-<?php
-}?>
+<?php endif; ?>
 
 <div class="comments-template">
 <h2 id="comments"><a name="comment"></a>评论</h2>
@@ -35,31 +32,25 @@ if($allow_tb == 'y'){
 
 <ol id="commentlist">
 <?php
-foreach($com as $key=>$value){
+foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:#6C8C37;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
 	<cite>Comment by <strong><?php echo $value['poster'];?></strong> &#8212; <?php echo $value['addtime'];?></cite>
 	<br /><?php echo $value['content'];?><br /><?php echo $value['reply'];?></li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
 
 <ol id="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 	<cite>Trackback by <strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></cite><br/>
 	<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br/>
 	<?php echo $value['excerpt'];?>
 	</li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h2>发表评论</h2>
 <p></p>
 
@@ -88,8 +79,7 @@ if($allow_remark == 'y'){
 
 </fieldset>
 </form>
-<?php
-}?>
+<?php endif; ?>
 </div>
 <?php
 ?>

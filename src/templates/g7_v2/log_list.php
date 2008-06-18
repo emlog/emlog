@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-foreach($logs as $value){
+foreach($logs as $value):
 	$value['att_img'] = getAttachment($value['att_img'],200,120);
 	$datetime = explode("-",$value['post_time']);
 	$year = $datetime['0'] . "/" .$datetime['1'];
@@ -34,8 +34,7 @@ foreach($logs as $value){
 </p>				
 
 </div>
-<?php
-}?>
+<?php endforeach; ?>
 <div class="nav">
 <p><?php echo $page_url;?></p>
 </div>

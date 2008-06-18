@@ -33,31 +33,25 @@ if($allow_tb == 'y'){
 
 <ol id="commentlist">
 <?php
-foreach($com as $key=>$value){
+foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span style=\"color:#A1410E;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
 	<cite>Comment by <strong><?php echo $value['poster'];?></strong> &#8212; <?php echo $value['addtime'];?></cite>
 	<br /><?php echo $value['content'];?><br /><?php echo $value['reply'];?></li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
 
 <ol id="commentlist">
-<?php
-foreach($tb as $key=>$value){
-?>
+<?php foreach($tb as $key=>$value): ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 	<cite>Trackback by <strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></cite><br/>
 	<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br/>
 	<?php echo $value['excerpt'];?>
 	</li>
-<?php
-}?>
+<?php endforeach; ?>
 </ol>
-<?php
-if($allow_remark == 'y'){
-?>
+<?php if($allow_remark == 'y'): ?>
 <h2>发表评论</h2>
 <p></p>
 <form method="post" name="commentform" action="index.php?action=addcom" id="commentform">
@@ -77,8 +71,7 @@ if($allow_remark == 'y'){
 <input type="checkbox" name="remember" value="1" checked="checked" />记住我</td>
 </p>
 </form>
-<?php
-}?>
+<?php endif; ?>
 </div>
 </div>
 </div>

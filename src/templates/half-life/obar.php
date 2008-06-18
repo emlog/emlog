@@ -12,26 +12,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</ul>
 </li>
 
-<?php
-if($ismusic){
-?>
+<?php if($ismusic): ?>
 <li><h2 onclick="showhidediv('music')">音乐</h2>
 	<ul id="music">
 	<li>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="140" height="20"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 		</ul>
 </li>
-<?php
-}
-?>
+<?php endif; ?>
 <li><h2 onclick="showhidediv('comm')">评论</h2>
 		<ul id="comm">
-			<?php
-foreach($com_cache as $value){
-?>
+			<?php foreach($com_cache as $value): ?>
 		<li><b><?php echo $value['name'];?></b><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
 		</ul>
 </li>
 <li><h2 onclick="showhidediv('ss')">搜索</h2>
@@ -47,12 +40,9 @@ foreach($com_cache as $value){
 </li>
 <li><h2 onclick="showhidediv('dang')">存档</h2>
 		<ul id="dang">
-<?php
-foreach($dang_cache as $value){
-?>
+<?php foreach($dang_cache as $value): ?>
 		<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
-<?php
-}?>	
+<?php endforeach; ?>	
 		</ul>
 </li>
 <li><h2 onclick="showhidediv('sta')">统计</h2>
@@ -64,7 +54,7 @@ foreach($dang_cache as $value){
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
 		<li><a href="./rss.php"><img src="<?php echo $tpl_dir;?>half-life/images/rss.gif" alt="订阅Rss"/></a></li>
 <?php
-if(ISLOGIN === false){
+if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\" id=\"input\">&nbsp&nbsp\n
@@ -85,7 +75,7 @@ if(ISLOGIN === false){
 </form>
 </ul>
 <?php
-}else{
+else:
 ?>
 <li><span onclick="showlogin('loginfm')" >管理</span>
 <ul id="loginfm">
@@ -93,9 +83,7 @@ if(ISLOGIN === false){
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
 	</ul>
-<?php
-}
-?>		
+<?php endif; ?>		
 		</ul>
 </li>
 <?php echo $exarea;?>

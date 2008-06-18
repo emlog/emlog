@@ -1,16 +1,15 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-if($action ==''){
+if($action ==''):
 		$home_style = 'current_page_item';
 		$style = 'page_item';
-	}elseif($action =='tag'){
+	elseif($action =='tag'):
 		$home_style = 'page_item';
 		$style = 'current_page_item';
-	}else{
+	else:
 		$home_style = 'page_item';
 		$style = 'page_item';
-	}
-	
+	endif;	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,15 +37,11 @@ if($action ==''){
 <div id="menu">
 <ul>
 	<li class="$home_style"><a href="./" title="Home">Home</a></li>
-<?php
-if(ISLOGIN){
-?>
+<?php if(ISLOGIN): ?>
 	<li class="page_item"><a href="./adm/add_log.php">写日志</a></li>
 	<li class="page_item"><a href="./adm/">管理中心</a></li>
 	<li class="page_item"><a href="./index.php?action=logout">退出</a></li>
-<?php
-}
-?>
+<?php endif; ?>
 	<li class="rss"><a href="./rss.php" title="Subscribe to Feed">Subscribe to Feed</a></li>
 </ul>
 </div>

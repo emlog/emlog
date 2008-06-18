@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-foreach($logs as $value){
+foreach($logs as $value):
 $value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 <h2>
@@ -18,8 +18,7 @@ $value['att_img'] = getAttachment($value['att_img'],200,120);
  	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
 				</p>
 </div>
-<?php
-}?>
+<?php endforeach; ?>
 <p><?php echo $page_url;?></p>
 </div>
 <?php

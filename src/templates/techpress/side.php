@@ -11,27 +11,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	</li>
 	<script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 	
-<?php
-if($index_twnum>0){
-?>
+<?php if($index_twnum>0): ?>
 <li><h2 onclick="showhidediv('twitter')">Twitter</h2>
 <ul id="twitter">
-<?php  if(isset($tw_cache) && is_array($tw_cache)) {
+<?php  if(isset($tw_cache) && is_array($tw_cache)):
 $morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-{
+foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 	$value['date'] = smartyDate($localdate,$value['date']);
 ?>
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
-<?php
-}echo $morebt;}
-?>
+<?php endforeach; ?>
+<?php echo $morebt; ?>
+<?ph endif; ?>
 </ul>
-<?php
-if(ISLOGIN === true)
-{
-?>
+<?php if(ISLOGIN === true): ?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
@@ -39,38 +33,28 @@ if(ISLOGIN === true)
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
-<?php
-}
-}
-if($ismusic){
-?>
+<?php endif; ?>
+<?php endif; ?>
+<?php if($ismusic): ?>
 	<li><h2>音乐</h2>
 		<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
 </p>
 	</li>
-	<?php
-}
-?>
+	<?php endif; ?>
 
 	<li><h2 onclick="showhidediv('dang')">存档</h2>
 		<ul id="dang">
-<?php
-foreach($dang_cache as $value){
-?>
+<?php foreach($dang_cache as $value): ?>
 		<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
-<?php
-}?>	
+<?php  endforeach; ?>	
 		</ul>
 	</li>
 
 	<li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
 		<ul id="blogroll">
-<?php
-foreach($link_cache as $value){
-?>     	
+<?php foreach($link_cache as $value): ?>     	
 		<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
 		</ul>
 	</li>
 
@@ -92,12 +76,9 @@ foreach($link_cache as $value){
 
 	<li><h2 onclick="showhidediv('tag')">标签</h2>
 		<ul id="tag">
-<?php
-foreach($tag_cache as $value){
-?>
+<?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
-<?php
-}?>
+<?php  endforeach; ?>
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
 		</ul>
 	</li>
@@ -114,12 +95,9 @@ foreach($tag_cache as $value){
 	</li>
 	<li><h2 onclick="showhidediv('comm')">评论</h2>
 		<ul id="comm">
-<?php
-foreach($com_cache as $value){
-?>
+<?php foreach($com_cache as $value): ?>
 		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
 		</ul>
 	</li>
 
@@ -132,7 +110,7 @@ foreach($com_cache as $value){
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
 		<li><a href="./rss.php"><img src="<?php echo $tpl_dir;?>techpress/images/rss.gif" alt="订阅Rss"/></a></li>
 <?php
-if(ISLOGIN === false){
+if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
@@ -152,9 +130,7 @@ if(ISLOGIN === false){
 </li>
 </form>
 </ul>
-<?php
-}
-?>
+<?php endif; ?>
 		
 		</ul>
 	</li>

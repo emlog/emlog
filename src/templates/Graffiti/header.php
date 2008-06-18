@@ -27,13 +27,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <form name="f" method="post" action="index.php?action=login">
 <div id="navBar">
 <ul>
-<?php if(ISLOGIN){ ?>
+<?php if(ISLOGIN): ?>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
 <?php
-}else
-{
+else:
 $login_code=='y'?
 $ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
 $ckcode = '';
@@ -45,7 +44,7 @@ $ckcode = '';
 <?php echo $ckcode; ?> 
 <input type="submit" value="登录">
 </li>
-<?php } ?>
+<?php endif; ?>
 </ul>
 </div>
 </form>

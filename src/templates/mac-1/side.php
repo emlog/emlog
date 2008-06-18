@@ -28,39 +28,30 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <h3 class="dbx-handle" onclick="showhidediv('tags')">标签</h3>
         <div class="dbx-content" id="tags">
           <ul>
-<?php
-foreach($tag_cache as $value){
-?>
+<?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
-<?php
-}?>
+<?php endforeach; ?>
 		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
           </ul>
         </div>
       </div>
-<?php
-if($index_twnum>0){
-?>
+<?php if($index_twnum>0): ?>
 <div id="meta" class="dbx-box">
 <h3 onclick="showhidediv('twitter')" class="dbx-handle">twitter</h3>
 <div class="dbx-content">
 <ul id="twitter">
-<?php  if(isset($tw_cache) && is_array($tw_cache)) {
+<?php  if(isset($tw_cache) && is_array($tw_cache)):
 $morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-foreach (array_slice($tw_cache,0,$index_twnum) as $value)
-{
+foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 	$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 	$value['date'] = smartyDate($localdate,$value['date']);
 ?>
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
-<?php
-}echo $morebt;}
-?>
+<?php  endforeach; ?>
+<?php echo $morebt; ?>
+<?php endif; ?>
 </ul>
-<?php
-if(ISLOGIN === true)
-{
-?>
+<?php if(ISLOGIN === true): ?>
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
@@ -68,15 +59,11 @@ if(ISLOGIN === true)
 <input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
 </li>
 </ul>
-<?php
-}
-?>
+<?php endif; ?>
 </div>
 </div>
-<?php
-}
-if($ismusic){
-?>
+<?php endif; ?>
+<?php if($ismusic): ?>
       <div id="meta" class="dbx-box">
         <h3 class="dbx-handle" onclick="showhidediv('music')">音乐</h3>
         <div class="dbx-content" id="music">
@@ -86,20 +73,15 @@ if($ismusic){
           </ul>
         </div>
       </div>
-	  <?php
-}
-?>
+<?php endif; ?>
       
       <div id="recent-comments" class="dbx-box">
         <h3 class="dbx-handle" onclick="showhidediv('comm')">评论</h3>
         <div class="dbx-content" id="comm">
           <ul>
-<?php
-foreach($com_cache as $value){
-?>
+<?php foreach($com_cache as $value): ?>
 		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
           </ul>
         </div>
       </div>
@@ -108,12 +90,9 @@ foreach($com_cache as $value){
         <h3 class="dbx-handle" onclick="showhidediv('dang')">存档</h3>
         <div class="dbx-content" id="dang">
           <ul>
-<?php
-foreach($dang_cache as $value){
-?>
+<?php foreach($dang_cache as $value): ?>
 		<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
-<?php
-}?>	
+<?php endforeach; ?>	
           </ul>
         </div>
       </div>
@@ -121,12 +100,9 @@ foreach($dang_cache as $value){
         <h3 class="dbx-handle" onclick="showhidediv('blogroll')">Blogroll</h3>
         <div class="dbx-content" id="blogroll">
           <ul>
-<?php
-foreach($link_cache as $value){
-?>     	
+<?php foreach($link_cache as $value): ?>     	
 		<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
-<?php
-}?>
+<?php endforeach; ?>
           </ul>
         </div>
       </div>
@@ -140,8 +116,8 @@ foreach($link_cache as $value){
 		<li>引用数量：<?php echo $sta_cache['tbnum'];?></li>
 		<li>今日访问：<?php echo $sta_cache['day_view_count'];?></li>
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
-<?php
-if(ISLOGIN === false){
+<?php 
+if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
@@ -160,15 +136,13 @@ if(ISLOGIN === false){
 </form>
 </div>
 <?php
-}else{
+else:
 ?>
 	<li>---------------------</li>
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
-<?php
-}
-?>
+<?php endif; ?>
 		<li class="rss"><a href="./rss.php">Rss Feed</a></li>
           </ul>
         </div>

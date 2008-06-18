@@ -5,14 +5,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<div class="banner">&#160;</div>
 		<div class="clear"></div>
 <div class="post">
-<p><?php echo <?php echo $search_info; ?>;?></p>
+<p><?php echo $search_info; ?></p>
 <div>
-<?php
-foreach($slog as $key=>$value){
-?>
+<?php foreach($slog as $key=>$value): ?>
 <p><a href="./?action=showlog&gid=<?php echo $value['gid'];?>"><?php echo $value['title'];?></a> (<?php echo $value['date'];?>)</p>
-<?php
-}?>
+<?php endforeach; ?>
 </div>
 </div>
 <?php
