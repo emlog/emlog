@@ -23,7 +23,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
 <?php endforeach; ?>
 <?php echo $morebt; ?>
-<?ph endif; ?>
+<?php endif; ?>
 </ul>
 <?php if(ISLOGIN === true): ?>
 <ul>
