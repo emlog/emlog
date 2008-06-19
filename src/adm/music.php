@@ -45,39 +45,42 @@ if($action == '')
 if($action== 'mod')
 {
 	$ismusic= isset($_POST['ismusic']) ? intval($_POST['ismusic']) : 0;
-	$mlinks = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
+	$links = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
 	$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
 	$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
-	$link = '';
-	$des = '';
-	$i = 0;
-	if($mlinks)
+	$music = array(
+			'mlinks'=>array(),
+			'mdes'=>array(),
+			'auto'=>$auto,
+			'randplay'=>$randplay,
+			'ismusic'=>$ismusic
+			);
+	if($links)
 	{
-		$mlinks = explode("\n",$mlinks);
-		foreach($mlinks as $val)
+		$links = explode("\n",$links);
+		foreach($links as $val)
 		{
 			$val = str_replace("\r",'',$val);
 			if(preg_match("/^(http:\/\/).+/i",$val)>0)
 			{
 				$mstr = preg_split ("/[\s,]+/", $val,2);
-				$link .= "\$mlinks[$i] = \"".urlencode($mstr[0])."\";\n";
+				$music['mlinks'][] = urlencode($mstr[0]);
 				if(count($mstr) == 2)
 				{
-					$des .= "\$mdes[$i] = \"".$mstr[1]."\";\n";
+					$music['mdes'][] = $mstr[1];
 				}else 
 				{
-					$des .= "\$mdes[$i] = \"\";\n";
+					$music['mdes'][] = '';
 				}
-				$i++;
+			}elseif ($ismusic)
+			{
+				formMsg( "音乐链接中没有可用的音乐地址","./music.php",0);
 			}
 		}
 	}
-	if($ismusic && !$i)
-	{
-		formMsg( "音乐链接中没有可用的音乐地址","./music.php",0);
-	}
-	$mcache = "<?php\n$link\n$des\n\$auto=$auto;\n\$randplay=$randplay;\n\$ismusic=$ismusic;\n?>";
-	$MC->cacheWrite($mcache,'../cache/musics');
+	$cacheData = serialize($music);
+	$MC->cacheWrite($cacheData,'../cache/musics');
 	formMsg( "背景音乐设置成功","./music.php",1);
 }
+
 ?>

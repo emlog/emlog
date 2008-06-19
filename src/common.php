@@ -28,8 +28,7 @@ $user_cache = readCache(EMLOG_ROOT.'/cache/blogger');
 $dang_cache = readCache(EMLOG_ROOT.'/cache/records');
 $sta_cache = readCache(EMLOG_ROOT.'/cache/sta');
 $tw_cache = readCache(EMLOG_ROOT.'/cache/twitter');
-
-require_once(EMLOG_ROOT.'/cache/musics');
+$music = readCache(EMLOG_ROOT.'/cache/musics');
 
 //去除多余的转义字符
 doStripslashes();
@@ -65,10 +64,10 @@ $name = $user_cache['name'];
 //music
 if($ismusic)
 {
-	$key = $randplay?mt_rand(0,count($mlinks)-1):0;
-	$music = $mlinks[$key];
-	$musicdes = !empty($mdes[$key])?"{$mdes[$key]}<br>":'';
-	$autoplay = $auto?"&autoplay=1":'';
+	$key = $music['randplay']?mt_rand(0,count($music['mlinks'])-1):0;
+	$music = $music['mlinks'][$key];
+	$musicdes = !empty($music['mdes'][$key])?"{$music['mdes'][$key]}<br>":'';
+	$autoplay = $$music['auto']?"&autoplay=1":'';
 }
 
 //登陆验证
