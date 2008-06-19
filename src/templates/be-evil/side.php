@@ -20,7 +20,7 @@
 		</ul>
 	<div class="lister" style="background:url(<?php echo $tpl_dir;?>be-evil/images/calendar.png) no-repeat 3px 3px;">日历</div>
     	<div id="calendar" class="collapsed">
-			
+			<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 		</div>
 	<div class="lister" style="background:url(<?php echo $tpl_dir;?>be-evil/images/tag.png) no-repeat 3px 3px;">标签</div>
 		<ul id="blogtags" class="collapsed">
