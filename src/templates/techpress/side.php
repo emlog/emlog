@@ -37,7 +37,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php endif; ?>
 <?php if($ismusic): ?>
 	<li><h2>音乐</h2>
-		<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
+		<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="160" height="30"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </p>
 	</li>
 	<?php endif; ?>

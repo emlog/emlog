@@ -59,7 +59,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php if($ismusic): ?>
 <li><h2>音乐</h2>
 		<ul>
-			<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
+			<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 		</ul>
 </li>

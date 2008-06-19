@@ -55,7 +55,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php if($ismusic): ?>
 <h4><em onclick="showhidediv('music')">音乐</em></h4>
 <ul id="music">
-<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
+<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </p>
 </ul>
 <?php endif; ?>

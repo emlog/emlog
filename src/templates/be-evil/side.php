@@ -34,7 +34,7 @@
 <?php if($ismusic): ?>
 <div class="lister" style="background:url(<?php echo $tpl_dir;?>be-evil/images/music.png) no-repeat 3px 3px;">音乐</div>	
 <ul id="blogmusic" class="collapsed">
-<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $music;?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $music;?><?php echo $autoplay;?>&autoreplay=1" /></object>
+<li><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 </ul>	
 <?php endif; ?>

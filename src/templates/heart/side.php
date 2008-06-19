@@ -49,7 +49,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <?php if($ismusic): ?>
 <div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	
 <ul id="blogmusic">
-<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $music; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
+<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 </li>
 </ul>
 <?php endif; ?>

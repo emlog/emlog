@@ -68,7 +68,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
         <h3 class="dbx-handle" onclick="showhidediv('music')">音乐</h3>
         <div class="dbx-content" id="music">
           <ul>
- <?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=$music<?php echo $autoplay;?>&autoreplay=1" /></object>
+ <?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </p>
           </ul>
         </div>
