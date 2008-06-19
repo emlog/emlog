@@ -15,7 +15,11 @@ class mkcache {
 		$this->dbhd = $dbhandle;
 		$this->dbprefix = $dbprefix;
 	}
-	//站点配置缓存
+	/**
+	 * 站点配置缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_config($cf)
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
@@ -42,9 +46,13 @@ class mkcache {
 			'exarea'=>$exarea
 		);
 		$cacheData = serialize($config_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//个人资料
+	/**
+	 * 个人资料缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_blogger($cf)
 	{
 		$blogger = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."user ");
@@ -62,9 +70,13 @@ class mkcache {
 			'des'=>htmlspecialchars($blogger['description'])
 		);
 		$cacheData = serialize($user_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//访问统计
+	/**
+	 * 博客统计缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_sta($cf)
 	{
 		$dh = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."statistics");
@@ -84,9 +96,13 @@ class mkcache {
 			'tbnum'=>$tbnum
 		);
 		$cacheData = serialize($sta_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//评论缓存
+	/**
+	 * 最新评论缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_comment($cf)
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
@@ -103,9 +119,13 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($com_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//侧边栏标签缓存
+	/**
+	 * 侧边栏标签缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_tags($cf)
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_tagnum FROM ".$this->dbprefix."config"));
@@ -126,9 +146,13 @@ class mkcache {
 		}
 
 		$cacheData = serialize($tag_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//友站缓存
+	/**
+	 * 友站缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_link($cf)
 	{
 		$link_cache = array();
@@ -142,9 +166,13 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($link_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//twitter
+	/**
+	 * twitter缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_twitter($cf)
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".$this->dbprefix."config"));
@@ -160,9 +188,13 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($tw_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//日志归档缓存
+	/**
+	 * 日志归档缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_record($cf)
 	{
 		global $isurlrewrite;
@@ -184,16 +216,14 @@ class mkcache {
 				{
 					$dang_cache[$p] = array(
 						'record'=>date("Y年n月",$show_record['date']),
-						'url'=>"record-".date("Ym",$show_record['date']).".html",
-						'lognum'=>''
+						'url'=>"record-".date("Ym",$show_record['date']).".html"
 					);
 				}
 				else
 				{
 					$dang_cache[$p] = array(
 						'record'=>date("Y年n月",$show_record['date']),
-						'url'=>"index.php?record=".date("Ym",$show_record['date']),
-						'lognum'=>''
+						'url'=>"index.php?record=".date("Ym",$show_record['date'])
 					);
 				}
 				$p++;
@@ -211,9 +241,13 @@ class mkcache {
 		}
 
 		$cacheData = serialize($dang_cache);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//日志标签缓存
+	/**
+	 * 日志标签缓存
+	 *
+	 * @param unknown_type $cf
+	 */
 	function mc_logtags($cf)
 	{
 		$sql="SELECT gid FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
@@ -241,9 +275,14 @@ class mkcache {
 			unset($tag);
 		}
 		$cacheData = serialize($log_cache_tags);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
-	//日志附件缓存
+	/**
+	 * 日志附件缓存
+	 *
+	 * @param unknown_type $cf
+	 * @param unknown_type $cont_attid
+	 */
 	function mc_logatts($cf,$cont_attid='')
 	{
 		$sql="SELECT gid,attcache FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
@@ -290,11 +329,11 @@ class mkcache {
 			unset($att_img);
 		}
 		$cacheData = serialize($log_cache_atts);
-		$this->mc_print($cacheData,$cf);
+		$this->cacheWrite($cacheData,$cf);
 	}
 
 	//写入缓存
-	function mc_print ($content,$cachefile)
+	function cacheWrite ($content,$cachefile)
 	{
 		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
 		@ $fw =	fwrite($fp,$content) OR sysMsg('写入缓存失败，请查看文件权限');

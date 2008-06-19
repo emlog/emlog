@@ -77,7 +77,7 @@ if($action== 'mod')
 		formMsg( "音乐链接中没有可用的音乐地址","./music.php",0);
 	}
 	$mcache = "<?php\n$link\n$des\n\$auto=$auto;\n\$randplay=$randplay;\n\$ismusic=$ismusic;\n?>";
-	$MC->mc_print($mcache,'../cache/musics');
+	$MC->cacheWrite($mcache,'../cache/musics');
 	formMsg( "背景音乐设置成功","./music.php",1);
 }
 ?>
