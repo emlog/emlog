@@ -53,7 +53,7 @@ isset($tag_cache)?sort($tag_cache):$tag_cache = array();
 //cache
 $MC = new mkcache($DB,$db_prefix);
 
-//site info
+//站点信息
 $icp = $icp;
 $photo = $user_cache['photo'];
 $blogger_des = $user_cache['des'];
@@ -61,13 +61,13 @@ $user_cache['mail']!=''?
 $name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>":
 $name = $user_cache['name'];
 
-//music
-if($ismusic)
+//背景音乐
+if($ismusic = $music['ismusic'])
 {
 	$key = $music['randplay']?mt_rand(0,count($music['mlinks'])-1):0;
-	$music = $music['mlinks'][$key];
-	$musicdes = !empty($music['mdes'][$key])?"{$music['mdes'][$key]}<br>":'';
-	$autoplay = $$music['auto']?"&autoplay=1":'';
+	$musicurl = $music['mlinks'][$key];
+	$musicdes = !empty($music['mdes'][$key])?$music['mdes'][$key].'<br>':'';
+	$autoplay = $music['auto']?"&autoplay=1":'';
 }
 
 //登陆验证

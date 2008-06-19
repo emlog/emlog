@@ -6,14 +6,15 @@
  */
 
 require_once('./globals.php');
-require_once('../cache/musics');
+
+$music = readCache('../cache/musics');
 
 if($action == '')
 {
 	include getViews('header');
 	
-	$ismusic = isset($ismusic) && $ismusic === 1?"checked=\"checked\"":'';
-	if(isset($auto) && $auto)
+	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1?"checked=\"checked\"":'';
+	if(isset($music['auto']) && $music['auto'])
 	{
 		$auto1 = "checked=\"checked\"";
 		$auto2 = '';
@@ -21,7 +22,7 @@ if($action == '')
 		$auto2 = "checked=\"checked\"";
 		$auto1 = '';		
 	}
-	if(isset($randplay) && $randplay)
+	if(isset($music['randplay']) && $music['randplay'])
 	{
 		$randplay1 = "checked=\"checked\"";
 		$randplay2 = '';
@@ -30,11 +31,11 @@ if($action == '')
 		$randplay1 = '';		
 	}
 	$content = '';
-	if(isset($mlinks) && $mlinks)
+	if(isset($music['mlinks']) && $music['mlinks'])
 	{
-		foreach($mlinks as $key=>$val)
+		foreach($music['mlinks'] as $key=>$val)
 		{
-			$content .= urldecode($val)."\t".$mdes[$key]."\n";
+			$content .= urldecode($val)."\t".$music['mdes'][$key]."\n";
 		}
 	}
 	
@@ -60,7 +61,7 @@ if($action== 'mod')
 		$links = explode("\n",$links);
 		foreach($links as $val)
 		{
-			$val = str_replace("\r",'',$val);
+			$val = str_replace(array("\r","\n"),array('',''),$val);
 			if(preg_match("/^(http:\/\/).+/i",$val)>0)
 			{
 				$mstr = preg_split ("/[\s,]+/", $val,2);
@@ -72,15 +73,15 @@ if($action== 'mod')
 				{
 					$music['mdes'][] = '';
 				}
-			}elseif ($ismusic)
+			}else
 			{
-				formMsg( "音乐链接中没有可用的音乐地址","./music.php",0);
+				formMsg('链接中有错误的音乐地址','javascript: window.history.back()',0);
 			}
 		}
 	}
 	$cacheData = serialize($music);
 	$MC->cacheWrite($cacheData,'../cache/musics');
-	formMsg( "背景音乐设置成功","./music.php",1);
+	formMsg('背景音乐设置成功','./music.php',1);
 }
 
 ?>
