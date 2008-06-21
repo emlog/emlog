@@ -12,12 +12,14 @@ include getviews('side');
 	<p><?php echo $attachment; ?></p>	
 	<p><?php echo $tag; ?></p>
 </div>
+
 <div class="nextlog"><?php echo $neighborLog; ?></div>
 <?php if($allow_tb == 'y'): ?>	
 	<div id="tb_list">
 	<p><b>引用:</b><input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 	</div>
 <?php endif; ?>	
+
 <?php foreach($tb as $key=>$value): ?>
 <div class="trackback">
 	<li>来自: <a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['blog_name']; ?></a></li>
@@ -26,17 +28,20 @@ include getviews('side');
 	<li>引用时间:<?php echo $value['date']; ?></li>
 </div>
 <?php endforeach; ?>
+
 <?php if($com): ?>
 <p><b>评论:</b><a name="comment"></a></p>
 <?php endif; ?>	
+
 <div id="com_list">
 <?php
 foreach($com as $key=>$value):
 $value['reply'] = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
-<li><a name="<?=<?php echo $value['cid'];?>?>"></a><?php echo $value['poster'];?>?><?php echo $value['addtime'];?>?><br /><?=<?php echo $value['content'];?>?><br /><?=<?php echo $value['reply'];?>?></li>
-<?php endforech; ?>	
+<li><a name="<?php echo $value['cid'];?>"></a><?php echo $value['poster'];?><?php echo $value['addtime'];?><br /><?php echo $value['content']; ?><br /><?php echo $value['reply'];?></li>
+<?php endforeach; ?>	
 </div>
+
 <?php if($allow_remark == 'y'): ?>
 <p><b>发表评论:</b><a name="comment"></a></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom">
@@ -70,6 +75,4 @@ $value['reply'] = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}
 </form>
 <?php endif; ?>
 </div>
-<?php
-include getViews('footer');
-?>
+<?php include getViews('footer'); ?>
