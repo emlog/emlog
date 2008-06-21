@@ -463,22 +463,6 @@ function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 }
 
 /**
- * 读取缓存文件
- *
- * @param  $filename 缓存文件
- * @return unknown
- */
-function readCache($cachefile) 
-{
-	if(@$fp = fopen($cachefile, 'r')) 
-	{
-		@$data = fread($fp,filesize($cachefile));
-		fclose($fp);
-	}
-	return unserialize($data);
-}
-
-/**
 	返回显系统错误信息
 */
 function sysMsg($info) 

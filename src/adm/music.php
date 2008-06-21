@@ -7,7 +7,7 @@
 
 require_once('./globals.php');
 
-$music = readCache('../cache/musics');
+$music = $MC->readCache('../cache/musics');
 
 if($action == '')
 {

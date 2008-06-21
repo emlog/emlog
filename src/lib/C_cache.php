@@ -9,7 +9,7 @@ class mkcache {
 
 	var $dbhd;
 	var $dbprefix;
-	
+
 	function mkcache($dbhandle,$dbprefix)
 	{
 		$this->dbhd = $dbhandle;
@@ -25,25 +25,25 @@ class mkcache {
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
 		$exarea = addslashes($show_config['exarea']);
 		$config_cache = array(
-			'sitekey' => htmlspecialchars($show_config['site_key']),
-			'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
-			'bloginfo'=>htmlspecialchars(stripslashes($show_config['bloginfo'])),
-			'index_lognum' =>$show_config['index_lognum'],
-			'index_twnum' =>$show_config['index_twnum'],
-			'index_tagnum' =>$show_config['index_tagnum'],
-			'index_comment_num' =>$show_config['index_comnum'],
-			'ischkcomment'=>$show_config['ischkcomment'],
-			'isurlrewrite'=>$show_config['isurlrewrite'],
-			'isgzipenable'=>$show_config['isgzipenable'],
-			'istrackback'=>$show_config['istrackback'],
-			'comment_code'=>$show_config['comment_code'],
-			'login_code'=>$show_config['login_code'],
-			'comment_subnum'=>$show_config['comment_subnum'],
-			'nonce_templet'=>$show_config['nonce_templet'],
-			'blogurl'=>htmlspecialchars($show_config['blogurl']),
-			'icp'=>htmlspecialchars($show_config['icp']),
-			'timezone'=>$show_config['timezone'],
-			'exarea'=>$exarea
+		'sitekey' => htmlspecialchars($show_config['site_key']),
+		'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
+		'bloginfo'=>htmlspecialchars(stripslashes($show_config['bloginfo'])),
+		'index_lognum' =>$show_config['index_lognum'],
+		'index_twnum' =>$show_config['index_twnum'],
+		'index_tagnum' =>$show_config['index_tagnum'],
+		'index_comment_num' =>$show_config['index_comnum'],
+		'ischkcomment'=>$show_config['ischkcomment'],
+		'isurlrewrite'=>$show_config['isurlrewrite'],
+		'isgzipenable'=>$show_config['isgzipenable'],
+		'istrackback'=>$show_config['istrackback'],
+		'comment_code'=>$show_config['comment_code'],
+		'login_code'=>$show_config['login_code'],
+		'comment_subnum'=>$show_config['comment_subnum'],
+		'nonce_templet'=>$show_config['nonce_templet'],
+		'blogurl'=>htmlspecialchars($show_config['blogurl']),
+		'icp'=>htmlspecialchars($show_config['icp']),
+		'timezone'=>$show_config['timezone'],
+		'exarea'=>$exarea
 		);
 		$cacheData = serialize($config_cache);
 		$this->cacheWrite($cacheData,$cf);
@@ -64,10 +64,10 @@ class mkcache {
 			$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
 		}
 		$user_cache = array(
-			'photo' => $icon,
-			'name' =>htmlspecialchars($blogger['nickname']),
-			'mail'	=>htmlspecialchars($blogger['email']),
-			'des'=>htmlspecialchars($blogger['description'])
+		'photo' => $icon,
+		'name' =>htmlspecialchars($blogger['nickname']),
+		'mail'	=>htmlspecialchars($blogger['email']),
+		'des'=>htmlspecialchars($blogger['description'])
 		);
 		$cacheData = serialize($user_cache);
 		$this->cacheWrite($cacheData,$cf);
@@ -87,13 +87,13 @@ class mkcache {
 		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."comment where hide='y' "));
 
 		$sta_cache = array(
-			'day_view_count' => $dh['day_view_count'],
-			'view_count' =>$dh['view_count'],
-			'lognum'=>$lognum,
-			'comnum'=>$comnum,
-			'twnum'=>$twnum,
-			'hidecom'=>$hidecom,
-			'tbnum'=>$tbnum
+		'day_view_count' => $dh['day_view_count'],
+		'view_count' =>$dh['view_count'],
+		'lognum'=>$lognum,
+		'comnum'=>$comnum,
+		'twnum'=>$twnum,
+		'hidecom'=>$hidecom,
+		'tbnum'=>$tbnum
 		);
 		$cacheData = serialize($sta_cache);
 		$this->cacheWrite($cacheData,$cf);
@@ -113,9 +113,9 @@ class mkcache {
 		while($show_com=$this->dbhd->fetch_array($query))
 		{
 			$com_cache[] = array(
-				'url' => "index.php?action=showlog&gid={$show_com['gid']}#{$show_com['cid']}",
-				'name' => htmlspecialchars($show_com['poster']),
-				'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum))
+			'url' => "index.php?action=showlog&gid={$show_com['gid']}#{$show_com['cid']}",
+			'name' => htmlspecialchars($show_com['poster']),
+			'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum))
 			);
 		}
 		$cacheData = serialize($com_cache);
@@ -139,9 +139,9 @@ class mkcache {
 			$tag = $show_tag['tagname'];
 			$tagurl = urlencode($show_tag['tagname']);
 			$tag_cache[] = array(
-				'tagurl' => $tagurl,
-				'tagname' => htmlspecialchars($show_tag['tagname']),
-				'fontsize'=> $fontsize
+			'tagurl' => $tagurl,
+			'tagname' => htmlspecialchars($show_tag['tagname']),
+			'fontsize'=> $fontsize
 			);
 		}
 
@@ -160,9 +160,9 @@ class mkcache {
 		while($show_link=$this->dbhd->fetch_array($query))
 		{
 			$link_cache[] = array(
-				'link'=>htmlspecialchars($show_link['sitename']),
-				'url'=>htmlspecialchars($show_link['siteurl']),
-				'des'=>htmlspecialchars($show_link['description'])
+			'link'=>htmlspecialchars($show_link['sitename']),
+			'url'=>htmlspecialchars($show_link['siteurl']),
+			'des'=>htmlspecialchars($show_link['description'])
 			);
 		}
 		$cacheData = serialize($link_cache);
@@ -182,9 +182,9 @@ class mkcache {
 		while($show_tw=$this->dbhd->fetch_array($query))
 		{
 			$tw_cache[] = array(
-				'content' => htmlspecialchars($show_tw['content']),
-				'date' => $show_tw['date'],
-				'id' => $show_tw['id']
+			'content' => htmlspecialchars($show_tw['content']),
+			'date' => $show_tw['date'],
+			'id' => $show_tw['id']
 			);
 		}
 		$cacheData = serialize($tw_cache);
@@ -215,15 +215,15 @@ class mkcache {
 				if($isurlrewrite == 'y')
 				{
 					$dang_cache[$p] = array(
-						'record'=>date("Y年n月",$show_record['date']),
-						'url'=>"record-".date("Ym",$show_record['date']).".html"
+					'record'=>date("Y年n月",$show_record['date']),
+					'url'=>"record-".date("Ym",$show_record['date']).".html"
 					);
 				}
 				else
 				{
 					$dang_cache[$p] = array(
-						'record'=>date("Y年n月",$show_record['date']),
-						'url'=>"index.php?record=".date("Ym",$show_record['date'])
+					'record'=>date("Y年n月",$show_record['date']),
+					'url'=>"index.php?record=".date("Ym",$show_record['date'])
 					);
 				}
 				$p++;
@@ -322,8 +322,8 @@ class mkcache {
 				}
 			}
 			$log_cache_atts[$gid] = array(
-				'attachment'=>$attachment,
-				'att_img'=>$att_img
+			'attachment'=>$attachment,
+			'att_img'=>$att_img
 			);
 			unset($attachment);
 			unset($att_img);
@@ -332,12 +332,33 @@ class mkcache {
 		$this->cacheWrite($cacheData,$cf);
 	}
 
-	//写入缓存
-	function cacheWrite ($content,$cachefile)
+	/**
+	 * 写入缓存
+	 *
+	 * @param unknown_type $cacheDate
+	 * @param unknown_type $cachefile
+	 */
+	function cacheWrite ($cacheDate,$cachefile)
 	{
 		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
-		@ $fw =	fwrite($fp,$content) OR sysMsg('写入缓存失败，请查看文件权限');
+		@ $fw =	fwrite($fp,$cacheDate) OR sysMsg('写入缓存失败，请查看文件权限');
 		fclose($fp);
+	}
+
+	/**
+	 * 读取缓存文件
+	 *
+	 * @param  $filename 缓存文件
+	 * @return unknown
+	 */
+	function readCache($cachefile)
+	{
+		if(@$fp = fopen($cachefile, 'r'))
+		{
+			@$data = fread($fp,filesize($cachefile));
+			fclose($fp);
+		}
+		return unserialize($data);
 	}
 }
 ?>

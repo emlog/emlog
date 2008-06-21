@@ -22,6 +22,8 @@ doStripslashes();
 $action = isset($_GET['action'])?$_GET['action']:'';
 //数据库操作对象
 $DB = new MySql($host, $user, $pass,$db);
+//实例化一个缓存生成对象
+$MC = new mkcache($DB,$db_prefix);
 		
 //读取配置参数
 $show_config = $DB->fetch_array($DB->query("SELECT * FROM {$db_prefix}config"));
@@ -60,8 +62,6 @@ if (!is_dir($em_tpldir))
 {
 	exit('the adm tmplate net found!');
 }
-//实例化一个缓存生成对象
-$MC = new mkcache($DB,$db_prefix);
 //登陆验证
 if ($action == 'login') 
 {

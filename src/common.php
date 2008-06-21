@@ -18,40 +18,37 @@ require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
 
-$config_cache = readCache(EMLOG_ROOT.'/cache/config');
-$log_cache_tags = readCache(EMLOG_ROOT.'/cache/log_tags');
-$log_cache_atts = readCache(EMLOG_ROOT.'/cache/log_atts');
-$tag_cache = readCache(EMLOG_ROOT.'/cache/tags');
-$com_cache = readCache(EMLOG_ROOT.'/cache/comments');
-$link_cache = readCache(EMLOG_ROOT.'/cache/links');
-$user_cache = readCache(EMLOG_ROOT.'/cache/blogger');
-$dang_cache = readCache(EMLOG_ROOT.'/cache/records');
-$sta_cache = readCache(EMLOG_ROOT.'/cache/sta');
-$tw_cache = readCache(EMLOG_ROOT.'/cache/twitter');
-$music = readCache(EMLOG_ROOT.'/cache/musics');
-
-//去除多余的转义字符
-doStripslashes();
 //数据库操作对象
 $DB = new MySql($host, $user, $pass,$db);
-//是否登录状态
+//cache
+$MC = new mkcache($DB,$db_prefix);
+//去除多余的转义字符
+doStripslashes();
+//登录验证
 define('ISLOGIN',	isLogin());
 //获取操作
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
-//解析配置项目
-foreach($config_cache as $key => $value)
-{
-	$$key = $value;
-}
 
+//读取缓存
+$config_cache = $MC->readCache(EMLOG_ROOT.'/cache/config');
+$log_cache_tags = $MC->readCache(EMLOG_ROOT.'/cache/log_tags');
+$log_cache_atts = $MC->readCache(EMLOG_ROOT.'/cache/log_atts');
+$tag_cache = $MC->readCache(EMLOG_ROOT.'/cache/tags');
+$com_cache = $MC->readCache(EMLOG_ROOT.'/cache/comments');
+$link_cache = $MC->readCache(EMLOG_ROOT.'/cache/links');
+$user_cache = $MC->readCache(EMLOG_ROOT.'/cache/blogger');
+$dang_cache = $MC->readCache(EMLOG_ROOT.'/cache/records');
+$sta_cache = $MC->readCache(EMLOG_ROOT.'/cache/sta');
+$tw_cache = $MC->readCache(EMLOG_ROOT.'/cache/twitter');
+$music = $MC->readCache(EMLOG_ROOT.'/cache/musics');
+
+//配置项目
+extract($config_cache);
 $exarea    = stripslashes($exarea);
 $timezone  = intval($timezone);
 $tpl_dir   = './templates/';//所有模板存放目录
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 isset($tag_cache)?sort($tag_cache):$tag_cache = array();
-
-//cache
-$MC = new mkcache($DB,$db_prefix);
 
 //站点信息
 $icp = $icp;

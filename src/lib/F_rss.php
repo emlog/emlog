@@ -36,10 +36,4 @@ function GetBlogNum()
 	$blog_t =  GetBlog();
 	return count($blog_t);
 }
-
-$URL		= GetURL();
-$site		=  $config_cache;
-$blog		= GetBlog();
-$blognum	 = GetBlogNum();
-$author = $user_cache['name'];
 ?>
