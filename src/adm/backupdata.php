@@ -10,7 +10,8 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
-	$bakfiles = glob("../adm/bakup/*.sql");
+	$retval = glob("../adm/bakup/*.sql");
+	$bakfiles = $retval?$retval:array();
 	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag','trackback','twitter','user');
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	require_once(getViews('bakdata'));
