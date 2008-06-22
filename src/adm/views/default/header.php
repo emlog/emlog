@@ -1,8 +1,4 @@
-﻿<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html>
 <head>
@@ -10,8 +6,8 @@ print <<<EOT
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
-<link href="./views/$nonce_tpl/main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/$nonce_tpl/main.js"></script>
+<link href="./views/<?php echo $nonce_tpl; ?>/main.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
 <title>Manager Center</title>
 </head>
 <body>
@@ -21,7 +17,7 @@ print <<<EOT
   <tr>
     <td width="9" id=headerleft></td>
     <td width=98 align=middle nowrap class="logo">Emlog</td>
-    <td class="vesion">$edition</td><td class="vesion">$blogname</td>
+    <td class="vesion"><?php echo $edition; ?></td><td class="vesion"><?php echo $blogname; ?></td>
     <td align=right nowrap>
 	<a href="./index.php">管理中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="../index.php" target="_blank">在新窗口浏览blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -59,8 +55,8 @@ print <<<EOT
             <div id=sidebar>
             <div class="sidebarmenu" onclick="showhidediv('logmg');">日志管理</div>
 			<div id="logmg">
-            <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/$nonce_tpl/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
-			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum">$draftnum</span></a></div>
+            <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo $nonce_tpl; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php">日志管理</a></div>
             <div class=sidebarsubmenu><A href="comment.php">评论管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="trackback.php">引用管理</A></div>
@@ -92,8 +88,7 @@ print <<<EOT
 <table cellspacing=0 cellpadding=10 width="100%" border=0>
         <tbody>
         <tr>
-          <td width="909" align="left" class="tips"><b>小贴士：</b>$tips</td>
-</tr></tbody></table>
-<!--
-EOT;
-?>-->
+          <td width="909" align="left" class="tips"><b>小贴士：</b><?php echo $tips; ?></td>
+</tr>
+</tbody>
+</table>

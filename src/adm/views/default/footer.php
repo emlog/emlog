@@ -1,8 +1,6 @@
-<!--
 <?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+?>
 	</td>
   </tr>
   </tbody>
@@ -13,6 +11,3 @@ print <<<EOT
 </center>
 </body>
 </html>
-<!--
-EOT;
-?>-->

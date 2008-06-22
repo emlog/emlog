@@ -1,4 +1,4 @@
-<!--<?php 
+<?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
 $maxsize = changeFileSize($uploadmax);
 //允许附件类型
@@ -6,8 +6,7 @@ $att_type_str = '';
 foreach ($att_type as $val){
 	$att_type_str .= " $val";
 }
-print <<<EOT
--->
+?>
 <script type="text/javascript">
 function savedraft(){
 	if(!chekform())
@@ -45,7 +44,7 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
             <input id="tags" maxlength="200" style="width:675px;"  name="tag" />
             <br />
-          <div style="width:675px;">选择已有标签：$oldtags</div></td></tr>
+          <div style="width:675px;">选择已有标签：<?php echo $oldtags; ?></div></td></tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
           </b>
@@ -56,19 +55,19 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
             <input id="switch" onclick="doshow('changedate');" type="checkbox" value="1" name="edittime" />
               <br />
             <div style="clear:both; display: none;" id="changedate">
-			  <input name="newyear" type="text" value="$year" maxlength="" size="2"> 年 
-			  <input name="newmonth" type="text" value="$month" maxlength="2" size="1"> 月 
-			  <input name="newday" type="text" value="$day" maxlength="2" size="1"> 日 
-			  <input name="newhour" type="text" value="$hour" maxlength="2" 	size="1"> 时
-			  <input name="newmin" type="text" value="$minute" maxlength="2" size="1"> 分 
-			  <input name="newsec" type="text" value="$second" maxlength="2" size="1"> 秒
+			  <input name="newyear" type="text" value="<?php echo $year; ?>" maxlength="" size="2"> 年 
+			  <input name="newmonth" type="text" value="<?php echo $month; ?>" maxlength="2" size="1"> 月 
+			  <input name="newday" type="text" value="<?php echo $day; ?>" maxlength="2" size="1"> 日 
+			  <input name="newhour" type="text" value="<?php echo $hour; ?>" maxlength="2" 	size="1"> 时
+			  <input name="newmin" type="text" value="<?php echo $minute; ?>" maxlength="2" size="1"> 分 
+			  <input name="newsec" type="text" value="<?php echo $second; ?>" maxlength="2" size="1"> 秒
 				<br />
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>
           <td><a href="javascript:;" onclick="showhidediv('tab_attach')"><b>上传附件</b></a> 
             <div id="tab_attach" style="display:none">
-              <a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> (最大允许{$maxsize}，支持类型:{$att_type_str})<br />
+              <a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> (最大允许<?php echo $att_type_str; ?>)<br />
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
 	            <tbody id="attachbodyhidden" style="display:none"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
 	  			<tbody id="attachbody"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
@@ -97,6 +96,3 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
     </table>
   </form>
   <div class=line></div>
-<!--
-EOT;
-?>-->

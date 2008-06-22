@@ -1,7 +1,4 @@
-<!--<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
 <SCRIPT type="text/javascript" language=JavaScript>
 function CheckAll(form) {
 	for (var i=0;i<form.elements.length;i++) {
@@ -10,7 +7,7 @@ function CheckAll(form) {
 	e.checked = form.chkall.checked;}
 	}
 </SCRIPT>
-<div class=containertitle><b>$pwd</b></div>
+<div class=containertitle><b><?php echo $pwd; ?></b></div>
 <div class=line></div>
 <form action="admin_log.php?action=admin_all_log" method="post" name="form" id="form">
   <table width="95%" >
@@ -22,30 +19,23 @@ function CheckAll(form) {
 		    <td width="113"><b>评论</b></td>
         <td width="105"></td>
       </tr>
-<!--
-EOT;
-foreach($logs as $key=>$value){
-print <<<EOT
--->
-      <tr class="$value[rowbg]">
-        <td><input type="checkbox" name="blog[$value[gid]]" value="1" /></td>
-        <td width="517"><a href="admin_log.php?action=mod&amp;gid=$value[gid]">$value[title]</a> $value[attach] $value[istop]</td>
-        <td>$value[date]</td>
-		<td><a href="comment.php?gid=$value[gid]">$value[comnum]</a></td>
-        <td><a href="javascript: isdel($value[gid], 3);">删除</a></td>
+<?php foreach($logs as $key=>$value): ?>
+      <tr class="<?php echo $value['rowbg']; ?>">
+        <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
+        <td width="517"><a href="admin_log.php?action=mod&amp;gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
+        <td><?php echo $value['date']; ?></td>
+		<td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+        <td><a href="javascript: isdel(<?php echo $value['gid']; ?>, 3);">删除</a></td>
       </tr>
-<!--
-EOT;
-}print <<<EOT
--->
+<?php endforeach; ?>
     <tbody>
       <tr class="rowstop">
         <td colspan="6">执行操作：
           <input type="radio" value="del_log" name="modall" />删除
-		  $log_act
+		  <?php echo $log_act; ?>
       </tr>
     <tr>
-      <td align="right" colspan="6">(共{$num}条日志/每页最多显示15条) $pageurl</td>
+      <td align="right" colspan="6">(共<?php echo $num; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>	  
 	<tr><td align="center" colspan="6">
 	  <input type="submit" value="确 定" class="submit2" />
@@ -55,6 +45,3 @@ EOT;
 </tbody>
 </table>
 </form>
-<!--
-EOT;
-?>-->

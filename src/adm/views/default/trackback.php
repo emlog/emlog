@@ -1,8 +1,4 @@
-<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <SCRIPT type="text/javascript" language=JavaScript>
 function CheckAll(form) {
 	for (var i=0;i<form.elements.length;i++) {
@@ -26,25 +22,20 @@ function CheckAll(form) {
       </tr>
     </tbody>
 	<tbody>
-<!--
-EOT;
-foreach($trackback as $key=>$value){
-print <<<EOT
--->	
-      <tr class="$value[rowbg]">
-        <td><input type="checkbox" name="tb[$value[tbid]]" value="1" ></td>
-        <td><a href="$value[url]" target="_blank">$value[title]</a></td>
-        <td>$value[blog_name]</td>
-        <td>$value[ip]</td>
-        <td>$value[date]</td>
-        <td> <a href="javascript: isdel($value[tbid], 4);">删除</a> </td>
+<?php
+foreach($trackback as $key=>$value):
+?>	
+      <tr class="<?php echo $value['rowbg']; ?>">
+        <td><input type="checkbox" name="tb[<?php echo $value['tbid']; ?>]" value="1" ></td>
+        <td><a href="<?php echo $value['url']; ?>"><?php echo $value['title']; ?></a></td>
+        <td><?php echo $value['blog_name']; ?></td>
+        <td><?php echo $value['ip']; ?></td>
+        <td><?php echo $value['date']; ?></td>
+        <td> <a href="javascript: isdel(<?php echo $value['tbid']; ?>, 4);">删除</a> </td>
       </tr>
-<!--
-EOT;
-}print <<<EOT
---> 	
+<?php endforeach; ?>	
 	  <tr>
-      <td align="right" colspan="7">(共{$num}条引用/每页最多显示15条) $pageurl</td>
+      <td align="right" colspan="7">(共<?php echo $num; ?>条引用/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>  
     </tbody>
   </table>
@@ -58,6 +49,3 @@ EOT;
     </tbody>
   </table>
 </form>
-<!--
-EOT;
-?>-->

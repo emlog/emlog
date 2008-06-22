@@ -1,43 +1,34 @@
-<!--
 <?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
 $hctyle = $hidecom ? 'tips' : 'care2';
 $allcom = $hidecom + $comnum;
-print <<<EOT
--->
+?>
 <div class=containertitle><b>博客信息</b></div>
 <div class=line></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
 		<td width="50%">
-<!--
-EOT;
-if($ischkcomment == 'y' || $hidecom != 0){
-print <<<EOT
--->
-		待审核评论: <span class="$hctyle"><b>$hidecom</b></span> | 
-<!--
-EOT;
-}print <<<EOT
--->
-		日志: <span class=care2><b>$lognum</b></span> | 
-		评论: <span class=care2><b>$allcom</b></span> | 
-		引用(TrackBack): <span class=care2><b>$tbnum</b></span>
+<?php if($ischkcomment == 'y' || $hidecom != 0): ?>
+		待审核评论: <span class="<?php echo $hctyle; ?>"><b><?php echo $hidecom; ?></b></span> | 
+<?php endif; ?>
+		日志: <span class=care2><b><?php echo $lognum; ?></b></span> | 
+		评论: <span class=care2><b><?php echo $allcom; ?></b></span> | 
+		引用(TrackBack): <span class=care2><b><?php echo $tbnum; ?></b></span>
 		</td>
 	</tr>
 </table>
 <div class=line2></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
-		<td width="50%">服务器环境: $serverapp</td>
-		<td width="50%">PHP版本: $php_ver</td>
+		<td width="50%">服务器环境: <?php echo $serverapp; ?></td>
+		<td width="50%">PHP版本: <?php echo $php_ver; ?></td>
 	</tr>
 	 <tr>
-		<td width="50%">MySQL数据库: $mysql_ver</td>
-		<td width="50%">服务器时间: $serverdate</td>
+		<td width="50%">MySQL数据库: <?php echo $mysql_ver; ?></td>
+		<td width="50%">服务器时间: <?php echo $serverdate; ?></td>
 	</tr>
 	<tr>
-		<td width="50%">GD图形处理库: $gd_ver</td>
+		<td width="50%">GD图形处理库: <?php echo $gd_ver; ?></td>
 		<td><a href="configure.php?action=phpinfo">[phpinfo]</a></td>
 	</tr>
 </table>
@@ -58,6 +49,3 @@ EOT;
 </td>
 </tr>
 </table>
-<!--
-EOT;
-?>-->

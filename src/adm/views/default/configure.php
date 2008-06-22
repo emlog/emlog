@@ -1,8 +1,4 @@
-<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>博客设置</b></div>
 <div class=line></div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
@@ -10,51 +6,51 @@ print <<<EOT
     <tbody>
       <tr nowrap="nowrap">
         <td width="18%" align="right">博客名称：</td>
-        <td width="82%"><input maxlength="200" size="35" value="$blogname" name="sitename" /></td>
+        <td width="82%"><input maxlength="200" size="35" value="<?php echo $blogname; ?>" name="sitename" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right" valign="top">博客描述：</td>
-        <td><textarea name="description" cols="" rows="4" style="width:300px;">$bloginfo</textarea></td>
+        <td><textarea name="description" cols="" rows="4" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客地址：</td>
-        <td class="care"><input maxlength="200" size="35" value="$blogurl" name="blogurl" />(必填) 如：http://www.emlog.net/blog/</td>
+        <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" />(必填) 如：http://www.emlog.net/blog/</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客关键字：</td>
-        <td><input maxlength="200" size="35" value="$site_key" name="site_key" />
+        <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
         关键字之间用半角逗号","隔开</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">ICP备案号：</td>
-        <td><input maxlength="200" size="35" value="$icp" name="icp" /></td>
+        <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">每页日志数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[index_lognum]" name="index_lognum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_lognum']; ?>" name="index_lognum" /></td>
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right">首页标签数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[index_tagnum]" name="index_tagnum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_tagnum']; ?>" name="index_tagnum" /></td>
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right">首页twitter数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[index_twnum]" name="index_twnum" /> 为0则关闭该功能</td>
+        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_twnum']; ?>" name="index_twnum" /> 为0则关闭该功能</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">首页最新评论数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[index_comnum]" name="index_comment_num" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_comnum']; ?>" name="index_comment_num" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">新近评论截取字节数：</td>
-        <td><input maxlength="5" size="10" value="$show_config[comment_subnum]" name="comment_subnum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $show_config['comment_subnum']; ?>" name="comment_subnum" /></td>
       </tr>
       <tr>
         <td align="right">启用评论审核：<br /></td>
         <td>
 		<select name="ischkcomment">
-          <option value="y" $ex5>是</option>
-          <option value="n" $ex6>否</option>
+          <option value="y" <?php echo $ex5; ?>>是</option>
+          <option value="n" <?php echo $ex6; ?>>否</option>
         </select>
 		如开启,评论需通过审核才能显示 </td>
       </tr>
@@ -62,8 +58,8 @@ print <<<EOT
         <td align="right">开启引用通告：<br /></td>
         <td>
 		<select name="istrackback">
-          <option value="y" $ex7>是</option>
-          <option value="n" $ex8>否</option>
+          <option value="y" <?php echo $ex7; ?>>是</option>
+          <option value="n" <?php echo $ex8; ?>>否</option>
         </select>
 		</td>
       </tr>
@@ -71,8 +67,8 @@ print <<<EOT
         <td align="right">启用URL伪静态：<br /></td>
         <td class="care">
 		<select name="isurlrewrite">
-          <option value="y" $ex9>是</option>
-          <option value="n" $ex10>否</option>
+          <option value="y" <?php echo $ex9; ?>>是</option>
+          <option value="n" <?php echo $ex10; ?>>否</option>
         </select>
 		开启需要服务器支持，详情参看帮助文档</td>
       </tr>
@@ -80,8 +76,8 @@ print <<<EOT
         <td align="right">启用页面Gzip压缩：<br /></td>
         <td class="care">
 		<select name="isgzipenable">
-          <option value="y" $ex11>是</option>
-          <option value="n" $ex12>否</option>
+          <option value="y" <?php echo $ex11; ?>>是</option>
+          <option value="n" <?php echo $ex12; ?>>否</option>
         </select>
 		</td>
       </tr>
@@ -89,16 +85,16 @@ print <<<EOT
         <td align="right">启用登录验证码：<br /></td>
         <td class="care">
 				<select name="login_code">
-          <option value="y" $ex1>是</option>
-          <option value="n" $ex2>否</option>
+          <option value="y" <?php echo $ex1; ?>>是</option>
+          <option value="n" <?php echo $ex2; ?>>否</option>
         	</select>
         </td>
       </tr>
       <tr>
         <td align="right">启用评论验证码：<br /></td>
         <td><select name="comment_code">
-          <option value="y" $ex3>是</option>
-          <option value="n" $ex4>否</option>
+          <option value="y" <?php echo $ex3; ?>>是</option>
+          <option value="n" <?php echo $ex4; ?>>否</option>
         </select>
         </td>
       </tr>
@@ -106,8 +102,7 @@ print <<<EOT
         <td valign="top" align="right">服务器所在时区：<br /></td>
         <td>
 		<select name="timezone">
-<!--
-EOT;
+<?php
 		$tzlist = array('-12'=>'(标准时-12:00) 日界线西',
 							'-11'=>'(标准时-11:00) 中途岛、萨摩亚群岛',
 							'-10'=>'(标准时-10:00) 夏威夷',
@@ -139,23 +134,17 @@ EOT;
 							'11'=>'(标准时+11:00) 马加丹、索罗门群岛',
 							'12'=>'(标准时+12:00) 奥克兰、惠灵顿、堪察加半岛',
 		);
-foreach($tzlist as $key=>$value){
-	if($key==$show_config['timezone'])
-		$ex = "selected=\"selected\"";
-		else
-			$ex = '';
-print <<<EOT
--->
-          <option value="$key" $ex>$value</option>
-<!--
-EOT;
-}print <<<EOT
--->	
-        </select>        </td>
+foreach($tzlist as $key=>$value):
+$ex = $key==$show_config['timezone']?"selected=\"selected\"":'';
+?>
+		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
+<?php endforeach;?>	
+        </select>        
+        </td>
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right" valign="top">自定义HTML：</td>
-        <td><textarea name="exarea" cols="" rows="9" style="width:500px;" wrap="off">$exarea</textarea></td>
+        <td><textarea name="exarea" cols="" rows="9" style="width:500px;" wrap="off"><?php echo $exarea; ?></textarea></td>
       </tr>
       <tr>
         <td align="center" colspan="2">
@@ -165,6 +154,3 @@ EOT;
     </tbody>
   </table>
 </form>
-<!--
-EOT;
-?>-->

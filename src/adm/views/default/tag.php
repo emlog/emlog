@@ -1,8 +1,4 @@
-<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>标签管理</b></div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post">
@@ -10,17 +6,10 @@ print <<<EOT
     <tbody>
       <tr>
         <td width="800">
-<!--
-EOT;
-foreach($tags as $key=>$value){
-print <<<EOT
--->		
-		<input type="checkbox" name="tag[$value[tid]]" value="1" >
-		<a href=tag.php?action=mod_tag&tid=$value[tid]>$value[tagname]</a> &nbsp;&nbsp;&nbsp;
-<!--
-EOT;
-}print <<<EOT
--->
+<?php foreach($tags as $key=>$value): ?>	
+		<input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" value="1" >
+		<a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
+<?php endforeach; ?>
 		</td>
       </tr>
     </tbody>
@@ -35,6 +24,3 @@ EOT;
     </tbody>
   </table>
 </form>
-<!--
-EOT;
-?>-->

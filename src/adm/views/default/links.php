@@ -1,8 +1,4 @@
-<!--
-<?php
-if(!defined('ADM_ROOT')) {exit('error!');} 
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
 <div class=containertitle><b>友站管理</b></div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
@@ -14,22 +10,15 @@ print <<<EOT
 		<td width="600"><b>描述</b></td>
         <td width="222"></td>
       </tr>
-<!--
-EOT;
-foreach($links as $key=>$value){
-print <<<EOT
--->	  
-      <tr class="$value[rowbg]">
-        <td><a href="$value[siteurl]" target="_blank">$value[sitename]</a></td>
-        <td><input size="18" name="link[$value[id]]" value="$value[taxis]" maxlength="4" /></td>
-		<td>$value[description]</td>
-        <td><a href="link.php?action=mod_link&amp;linkid=$value[id]">编辑</a>
-        <a href="javascript: isdel($value[id], 2);">删除</a></td>
+<?php foreach($links as $key=>$value):?>  
+      <tr class="<?php echo $value['rowbg']; ?>">
+        <td><a href="<?php echo $value['siteurl']; ?>" target="_blank"><?php echo $value['sitename']; ?></a></td>
+		<td><input size="18" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+        <td><?php echo $value['description']; ?></td>
+        <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
+        <a href="javascript: isdel(<?php echo $value['id']; ?>, 2);">删除</a></td>
       </tr>
-<!--
-EOT;
-}print <<<EOT
--->	  
+<?php endforeach; ?>  
 	  
     </tbody>
   </table>
@@ -73,6 +62,3 @@ EOT;
       </tbody>
     </table>
 </form>
-  <!--
-EOT;
-?>-->

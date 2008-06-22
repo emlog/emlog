@@ -1,8 +1,4 @@
-<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>重建缓存</b></div>
 <div class=line></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
@@ -19,6 +15,3 @@ print <<<EOT
 </td>
 </tr>
 </table>
-<!--
-EOT;
-?>-->

@@ -1,8 +1,4 @@
-<!--
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-print <<<EOT
--->
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <SCRIPT type="text/javascript" language=JavaScript>
 function CheckAll(form) {
 	for (var i=0;i<form.elements.length;i++) {
@@ -23,28 +19,24 @@ function CheckAll(form) {
         <td width="150"><b>时间</b></td>
         <td width="150" colspan="3"></td>
       </tr>
-<!--
-EOT;
-foreach($comment as $key=>$value){
+<?php
+foreach($comment as $key=>$value):
 $ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
 $isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 $rowbg = getRowbg();
-print <<<EOT
--->      <tr class="$rowbg">
-        <td><input type="checkbox" value="$value[hide]" name="com[$value[cid]]" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">$value[comment]</a> $ishide $isrp</td>
-        <td>$value[poster]</td>
-        <td>$value[date]</td>
+?>
+     <tr class="<?php echo $rowbg; ?>">
+        <td><input type="checkbox" value="<?php echo $value['hide']; ?>" name="com[<?php echo $value['cid']; ?>]" /></td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['comment']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
+        <td><?php echo $value['poster']; ?></td>
+        <td><?php echo $value['date']; ?></td>
         <td>
-        <a href="comment.php?action=show_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">审核</a>
-        <a href="comment.php?action=kill_comment&amp;cid=$value[cid]&amp;hide=$value[hide]">屏蔽</a>
-        <a href="javascript: isdel($value[cid], 1);">删除</a>
+        <a href="comment.php?action=show_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>">审核</a>
+        <a href="comment.php?action=kill_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>">屏蔽</a>
+        <a href="javascript: isdel(<?php echo $value['cid']; ?>, 1);">删除</a>
 		</td>
       	</tr>
-<!--
-EOT;
-}print <<<EOT
--->
+<?php endforeach; ?>
     </tbody>
     <tbody>
       <tr class="rowstop">
@@ -57,7 +49,7 @@ EOT;
           审核
       </tr>
 	  <tr>
-      <td align="right" colspan="7">(共{$num}条评论/每页最多显示15条) $pageurl</td>
+      <td align="right" colspan="7">(共<?php echo $num; ?>条评论/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>
 	  <tr><td align="center" colspan="7">
 	  <input type="submit" value="确 定" class="submit2" />
@@ -66,6 +58,3 @@ EOT;
 	 </tbody>
   </table>
 </form>
-<!--
-EOT;
-?>-->

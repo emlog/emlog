@@ -1,12 +1,7 @@
-<!--
 <?php 
 if(!defined('ADM_ROOT')) {exit('error!');}
-if($photo)
-{
-	$Icon = " <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: isdel(0, 7);\">[删除头像]</a>";
-}
-print <<<EOT
--->
+$Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: isdel(0, 7);\">[删除头像]</a>":'';
+?>
 	<div class=containertitle><b>个人资料</b></div>
 	<div class=line></div>
   <form action="blogger.php?action=modintro" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
@@ -15,23 +10,23 @@ print <<<EOT
         <tr nowrap="nowrap">
           <td>昵称<b><br />
           </b>
-          <input maxlength="50" style="width:245px;" value="$name" name="name" /></td>
+          <input maxlength="50" style="width:245px;" value="<?php echo $name; ?>" name="name" /></td>
         </tr>
 		 <tr nowrap="nowrap">
           <td>电子邮件地址<br />
-           <input name="mail" value="$email" style="width:245px;" maxlength="200" /></td>
+           <input name="mail" value="<?php echo $email; ?>" style="width:245px;" maxlength="200" /></td>
         </tr>
 		<tr nowrap="nowrap">
           <td>头像 (推荐上传大小为185 X 230，格式为jpg或png的图片)<br />
-            <input type="hidden" name="photo" value="$photo"/>
-            $Icon
+            <input type="hidden" name="photo" value="<?php echo $photo; ?>"/>
+            <?php echo $Icon; ?>
            	<br><input name="photo" type="file" style="width:245px;" />
           </td>
         </tr>
         <tr nowrap="nowrap">
           <td>寄语<b><br />
           </b>
-            <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500">$bloggerdes</textarea></td>
+            <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $bloggerdes; ?></textarea></td>
         </tr>
         <tr>
           <td align="center" colspan="2">
@@ -73,6 +68,3 @@ print <<<EOT
     </tbody>
   </table>
 </form>
-<!--
-EOT;
-?>-->
