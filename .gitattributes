@@ -160,12 +160,13 @@ src/templates/Graffiti/graffiti_02/graf_1.jpg -text
 src/templates/Graffiti/graffiti_02/graf_2.jpg -text
 src/templates/Graffiti/graffiti_02/graf_3.jpg -text
 src/templates/Graffiti/header.php -text
+src/templates/Graffiti/images/modify.gif -text
+src/templates/Graffiti/images/rss.gif -text
 src/templates/Graffiti/log_list.php -text
 src/templates/Graffiti/main.js -text
 src/templates/Graffiti/message.php -text
 src/templates/Graffiti/preview.jpg -text
 src/templates/Graffiti/readme.txt -text
-src/templates/Graffiti/rss.gif -text
 src/templates/Graffiti/search.php -text
 src/templates/Graffiti/side.php -text
 src/templates/Graffiti/tag.php -text

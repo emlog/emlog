@@ -1,15 +1,28 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div id="page">
 <div class="contentA">
-	<div class="lister"><span onclick="showhidediv('bloggerinfo')"></span></div>
-    	<ul style="text-align:center" id="bloggerinfo">
-		<li><?php echo $photo; ?></li>
-		<li><b><?php echo $name; ?></b><?php echo $blogger_des; ?></li>
-		</ul>
-	<div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
-    	<div id="calendar">
-		</div>
-	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
+<div class="lister"><span onclick="showhidediv('bloggerinfo')"></span></div>
+<ul style="text-align:center" id="bloggerinfo">
+<li><?php echo $photo; ?></li>
+<li><b><?php echo $name; ?></b></li>
+<?php if(ISLOGIN === true): ?>
+	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">
+	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<li id='modbdes' style="display:none;">
+	<textarea name="bdes" class="input" id="bdes" style="width:180px;height:50px;"></textarea>
+	<input type="button" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');" value="提交">
+	</li>
+<?php else: ?>
+<li><span id="bloggerdes"><?php echo $blogger_des; ?></span></li>
+<?php endif; ?>
+</ul>
+
+<div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
+<div id="calendar">
+</div>
+
+<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 
 	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
 		<ul id="blogtags"><li>
@@ -87,7 +100,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 		<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
 		</ul>
 	<div class="lister">
-	<a href="./rss.php"><img src="<?php echo $tpl_dir; ?>Graffiti/rss.gif" alt="订阅Rss"/></a>
+	<a href="./rss.php"><img src="<?php echo $tpl_dir; ?>Graffiti/images/rss.gif" alt="订阅Rss"/></a>
 	</div>
 	<?php echo $exarea; ?>
 </div>

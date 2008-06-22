@@ -146,16 +146,16 @@ function sendinfo(url,nodeid){
 	xmlhttp.send(null);
 	xmlhttp.onreadystatechange = processRequest;
 }
-function postinfo(url,nodeid){
-	node = nodeid;
+function postinfo(url,post_id,show_id){
+	node = show_id;
 	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
 	createxmlhttp();
 	var url2 = url + "&timetmp=" + new Date().getTime();
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var tw = document.getElementById("tw").value;
-	var querystring = "tw="+encodeURIComponent(tw);
+	var pdata = document.getElementById(post_id).value;
+	var querystring = post_id+"="+encodeURIComponent(pdata);
 	xmlhttp.send(querystring);
 }
 // 处理返回信息的函数
