@@ -20,7 +20,7 @@ if($action == ''){
 	$icp = htmlspecialchars($icp);
 
 	if($login_code=='y'){
-		$ex="selected=\"selected\"";
+		$ex1="selected=\"selected\"";
 		$ex2="";
 	}else{
 		$ex1="";

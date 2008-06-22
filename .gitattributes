@@ -204,8 +204,8 @@ src/templates/be-evil/tag_log.php -text
 src/templates/default/echo_log.php -text
 src/templates/default/footer.php -text
 src/templates/default/header.php -text
-src/templates/default/images/Thumbs.db -text
 src/templates/default/images/bg_cal_today.gif -text
+src/templates/default/images/modify.gif -text
 src/templates/default/images/rss.gif -text
 src/templates/default/images/sidebar_border.gif -text
 src/templates/default/log_list.php -text

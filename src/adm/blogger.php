@@ -26,23 +26,34 @@ if($action == '')
 //修改个人资料
 if($action== 'modintro')
 {
-	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
-	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
-	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-
-	$photo_type = array('gif', 'jpg', 'jpeg','png');
-	if($_FILES['photo']['size']>0)
+	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
+	if(!$flg)
 	{
-		$usericon = uploadFile($_FILES['photo']['name'],$_FILES['photo']['tmp_name'],$_FILES['photo']['size'],$photo_type,$_FILES['photo']['type'],1);
-	}else
+		$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
+		$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
+		$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
+		$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+	
+		$photo_type = array('gif', 'jpg', 'jpeg','png');
+		if($_FILES['photo']['size']>0)
+		{
+			$usericon = uploadFile($_FILES['photo']['name'],$_FILES['photo']['tmp_name'],$_FILES['photo']['size'],$photo_type,$_FILES['photo']['type'],1);
+		}else
+		{
+			$usericon = $photo;
+		}
+		$sql="UPDATE {$db_prefix}user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description'";
+		$DB->query($sql);
+		$MC->mc_blogger('../cache/blogger');
+		formMsg( "个人资料修改成功","./blogger.php",1);
+	}else 
 	{
-		$usericon = $photo;
+		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
+		$sql="UPDATE {$db_prefix}user SET description='$description' ";
+		$DB->query($sql);
+		$MC->mc_blogger('../cache/blogger');
+		echo $description;
 	}
-	$sql="UPDATE {$db_prefix}user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description' ";
-	$DB->query($sql);
-	$MC->mc_blogger('../cache/blogger');
-	formMsg( "个人资料修改成功","./blogger.php",1);
 }
 
 //删除头像

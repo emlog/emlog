@@ -40,7 +40,7 @@ if($action=='update_tag'){
 	$DB->query($sql);
 	$MC->mc_logtags('../cache/log_tags');
 	$MC->mc_tags('../cache/tags');
-	formMsg('标签修改成功','javascript:history.go(-2);',1);
+	formMsg('标签修改成功','./tag.php',1);
 }
 
 ###################批量删除标签###############

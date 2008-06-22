@@ -4,7 +4,18 @@
 <div class="lister"><span onclick="showhidediv('bloggerinfo')"></span></div>
 <ul style="text-align:center" id="bloggerinfo">
 <li><?php echo $photo; ?></li>
-<li><b><?php echo $name; ?></b><?php echo $blogger_des; ?></li>
+<li><b><?php echo $name; ?></b></li>
+<?php if(ISLOGIN === true): ?>
+	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">
+	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<li id='modbdes' style="display:none;">
+	<textarea name="bdes" class="input" id="bdes" style="width:180px;height:50px;"></textarea>
+	<input type="button" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');" value="提交">
+	</li>
+<?php else: ?>
+<li><span id="bloggerdes"><?php echo $blogger_des; ?></span></li>
+<?php endif; ?>
 </ul>
 
 <div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
@@ -42,7 +53,7 @@
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="width:200px;height:50px;"></textarea><br />
-		<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
+		<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
 		</li>
 		</ul>
 	<?php endif;?>
