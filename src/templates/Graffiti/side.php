@@ -47,13 +47,13 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <?php endif; ?>
 </ul>
 <?php if(ISLOGIN === true): ?>
-<ul>
-<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
-<li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:200px;height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
-</li>
-</ul>
+		<ul>
+		<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+		<li id='addtw' style="display: none;">
+		<textarea name="tw" id="tw" style="width:200px;height:50px;"></textarea><br />
+		<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+		</li>
+		</ul>
 <?php endif; ?>
 <?php endif; ?>
 <?php if($ismusic): ?>

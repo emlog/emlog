@@ -111,12 +111,12 @@ if(ISLOGIN === false):
 				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
 ?> 
-<li><span onclick="showlogin('loginfm')" style="cursor:pointer;">登录</span>
+<li><span onclick="showhidediv('loginfm','user')" style="cursor:pointer;">登录</span>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>
 用户名:<br>
-<input name="user" type="text"><br />
+<input name="user" id="user" type="text"><br />
 密  码:<br>
 <input name="pw" type="password"><br>
 <?php echo $ckcode;?> <br>

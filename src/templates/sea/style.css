@@ -115,6 +115,7 @@ input#author, input#email, input#url{
 
 #footer{
 	margin: 0 0 10px;
+	text-align:center;
 	background: #17353f url(images/bg_footer.gif) no-repeat bottom left;
 }
 

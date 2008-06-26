@@ -25,7 +25,7 @@ if($action ==''):
 
 	<link rel="alternate" type="application/rss+xml" title="订阅RSS"  href="./rss.php">
 	<link href="<?php echo $tpl_dir;?>lust/main.css" rel="stylesheet" type="text/css" />
-	<script src="<?php echo $tpl_dir;?>lust/main.js" type="text/javascript"></script>
+	<script src="./lib/js/index_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header"><div class="wrap_center">

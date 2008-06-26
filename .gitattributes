@@ -163,7 +163,6 @@ src/templates/Graffiti/header.php -text
 src/templates/Graffiti/images/modify.gif -text
 src/templates/Graffiti/images/rss.gif -text
 src/templates/Graffiti/log_list.php -text
-src/templates/Graffiti/main.js -text
 src/templates/Graffiti/message.php -text
 src/templates/Graffiti/preview.jpg -text
 src/templates/Graffiti/readme.txt -text
@@ -195,7 +194,6 @@ src/templates/be-evil/images/tags.png -text
 src/templates/be-evil/images/taotao.png -text
 src/templates/be-evil/log_list.php -text
 src/templates/be-evil/main.css -text
-src/templates/be-evil/main.js -text
 src/templates/be-evil/message.php -text
 src/templates/be-evil/preview.jpg -text
 src/templates/be-evil/search.php -text
@@ -211,13 +209,13 @@ src/templates/default/images/rss.gif -text
 src/templates/default/images/sidebar_border.gif -text
 src/templates/default/log_list.php -text
 src/templates/default/main.css -text
-src/templates/default/main.js -text
 src/templates/default/message.php -text
 src/templates/default/preview.jpg -text
 src/templates/default/search.php -text
 src/templates/default/side.php -text
 src/templates/default/tag.php -text
 src/templates/default/tag_log.php -text
+src/templates/default/unique_tpl.js -text
 src/templates/fruitlicious/echo_log.php -text
 src/templates/fruitlicious/footer.php -text
 src/templates/fruitlicious/header.php -text
@@ -231,7 +229,6 @@ src/templates/fruitlicious/images/bg_sidebar_title.gif -text
 src/templates/fruitlicious/images/rss.gif -text
 src/templates/fruitlicious/log_list.php -text
 src/templates/fruitlicious/main.css -text
-src/templates/fruitlicious/main.js -text
 src/templates/fruitlicious/message.php -text
 src/templates/fruitlicious/preview.jpg -text
 src/templates/fruitlicious/search.php -text
@@ -278,7 +275,6 @@ src/templates/g7/images/underone_logo_4.gif -text
 src/templates/g7/images/wp_logo.gif -text
 src/templates/g7/log_list.php -text
 src/templates/g7/main.css -text
-src/templates/g7/main.js -text
 src/templates/g7/message.php -text
 src/templates/g7/preview.jpg -text
 src/templates/g7/search.php -text
@@ -316,7 +312,6 @@ src/templates/g7_v2/images/tb_bg.gif -text
 src/templates/g7_v2/images/yes.gif -text
 src/templates/g7_v2/log_list.php -text
 src/templates/g7_v2/main.css -text
-src/templates/g7_v2/main.js -text
 src/templates/g7_v2/message.php -text
 src/templates/g7_v2/preview.jpg -text
 src/templates/g7_v2/search.php -text
@@ -327,7 +322,6 @@ src/templates/g7_v3/echo_log.php -text
 src/templates/g7_v3/footer.php -text
 src/templates/g7_v3/header.php -text
 src/templates/g7_v3/log_list.php -text
-src/templates/g7_v3/main.js -text
 src/templates/g7_v3/message.php -text
 src/templates/g7_v3/preview.jpg -text
 src/templates/g7_v3/rss.gif -text
@@ -343,7 +337,6 @@ src/templates/half-life/images/half-life.jpg -text
 src/templates/half-life/images/rss.gif -text
 src/templates/half-life/log_list.php -text
 src/templates/half-life/main.css -text
-src/templates/half-life/main.js -text
 src/templates/half-life/message.php -text
 src/templates/half-life/obar.php -text
 src/templates/half-life/preview.jpg -text
@@ -360,7 +353,6 @@ src/templates/heart/images/head.jpg -text
 src/templates/heart/images/lister.jpg -text
 src/templates/heart/log_list.php -text
 src/templates/heart/main.css -text
-src/templates/heart/main.js -text
 src/templates/heart/message.php -text
 src/templates/heart/preview.jpg -text
 src/templates/heart/search.php -text
@@ -388,7 +380,6 @@ src/templates/lust/images/dotted_h.gif -text
 src/templates/lust/images/dotted_v.gif -text
 src/templates/lust/log_list.php -text
 src/templates/lust/main.css -text
-src/templates/lust/main.js -text
 src/templates/lust/message.php -text
 src/templates/lust/preview.jpg -text
 src/templates/lust/search.php -text
@@ -454,7 +445,6 @@ src/templates/mac-1/images/sidep-toggle.png -text
 src/templates/mac-1/images/submit-btn.gif -text
 src/templates/mac-1/log_list.php -text
 src/templates/mac-1/main.css -text
-src/templates/mac-1/main.js -text
 src/templates/mac-1/message.php -text
 src/templates/mac-1/preview.jpg -text
 src/templates/mac-1/print.css -text
@@ -478,7 +468,6 @@ src/templates/sea/images/bg_widecolumn_bottom.gif -text
 src/templates/sea/images/bg_widecolumn_top.gif -text
 src/templates/sea/images/rss.gif -text
 src/templates/sea/log_list.php -text
-src/templates/sea/main.js -text
 src/templates/sea/message.php -text
 src/templates/sea/preview.jpg -text
 src/templates/sea/search.php -text
@@ -498,7 +487,6 @@ src/templates/spring/images/posttitle.gif -text
 src/templates/spring/images/rss.gif -text
 src/templates/spring/log_list.php -text
 src/templates/spring/main.css -text
-src/templates/spring/main.js -text
 src/templates/spring/message.php -text
 src/templates/spring/preview.jpg -text
 src/templates/spring/search.php -text
@@ -518,7 +506,6 @@ src/templates/techpress/images/rss.gif -text
 src/templates/techpress/images/topmenu_bullet.gif -text
 src/templates/techpress/log_list.php -text
 src/templates/techpress/main.css -text
-src/templates/techpress/main.js -text
 src/templates/techpress/message.php -text
 src/templates/techpress/preview.jpg -text
 src/templates/techpress/search.php -text
@@ -552,7 +539,6 @@ src/templates/wblix/images/spring_flavour/subcontent_bg.gif -text
 src/templates/wblix/layout.css -text
 src/templates/wblix/log_list.php -text
 src/templates/wblix/main.css -text
-src/templates/wblix/main.js -text
 src/templates/wblix/message.php -text
 src/templates/wblix/preview.jpg -text
 src/templates/wblix/search.php -text
@@ -570,7 +556,6 @@ src/templates/wp-cute/images/kubrickfooter.jpg -text
 src/templates/wp-cute/images/kubrickheader.jpg -text
 src/templates/wp-cute/log_list.php -text
 src/templates/wp-cute/main.css -text
-src/templates/wp-cute/main.js -text
 src/templates/wp-cute/message.php -text
 src/templates/wp-cute/preview.jpg -text
 src/templates/wp-cute/search.php -text
@@ -586,7 +571,6 @@ src/templates/wp/images/kubrickfooter.jpg -text
 src/templates/wp/images/kubrickheader.jpg -text
 src/templates/wp/log_list.php -text
 src/templates/wp/main.css -text
-src/templates/wp/main.js -text
 src/templates/wp/message.php -text
 src/templates/wp/preview.jpg -text
 src/templates/wp/search.php -text

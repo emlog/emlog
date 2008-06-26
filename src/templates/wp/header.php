@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="author" content="emlog" />
 <title><?php echo $blogtitle;?></title>
 <link href="<?php echo $tpl_dir;?>wp/main.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo $tpl_dir;?>wp/main.js" type="text/javascript"></script>
+<script src="./lib/js/index_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <DIV id=page>

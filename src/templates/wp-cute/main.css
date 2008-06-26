@@ -52,7 +52,8 @@ li{
 	BORDER-TOP-STYLE: none; 
 	BORDER-RIGHT-STYLE: none; 
 	BORDER-LEFT-STYLE: none; 
-	BORDER-BOTTOM-STYLE: none
+	BORDER-BOTTOM-STYLE: none;
+	text-align:center;
 }
 H1 {
 	FONT-WEIGHT: bold;

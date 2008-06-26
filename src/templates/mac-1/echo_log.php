@@ -87,7 +87,8 @@ $value['reply'] = $value['reply']?"<span style=\"color:#669900;\"><b>博主回�
 	</div>
 
 </div>
-<div id="footer">&copy; 2008 Powered by <a href="http://www.emlog.net" target="_blank">emlog</a> Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
+<div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo $edition;?>">emlog</a>
+ Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 <?php
 include getViews('side');

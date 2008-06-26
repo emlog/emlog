@@ -16,7 +16,7 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 
 	<link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
 	<link href="<?php echo $tpl_dir;?>spring/main.css" rel="stylesheet" type="text/css" />
-	<script src="<?php echo $tpl_dir;?>spring/main.js" type="text/javascript"></script>
+	<script src="./lib/js/index_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="wrapper">

@@ -294,6 +294,7 @@ input#author, input#email, input#url{
 
 #footer{
 	float: left;
+	text-align:center;
 	width: 768px;
 	text-transform: lowercase;
 	background: url(images/bg_dotted.gif) repeat-x;

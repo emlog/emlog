@@ -115,7 +115,7 @@ if(ISLOGIN === false):
 				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
 ?> 
-<li><h2 onclick="showlogin('loginfm')">登录</h2>
+<li><h2 onclick="showhidediv('loginfm','user')">登录</h2>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>

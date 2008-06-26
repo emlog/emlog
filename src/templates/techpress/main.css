@@ -426,6 +426,7 @@ table#wp-calendar tfoot td{
 
 #footer{
 	float: left;
+	text-align:center;
 	width: 839px;
 	font-family: Verdana, Arial, Helvetica, Georgia, Sans-Serif;
 	font-size: 11px;

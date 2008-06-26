@@ -98,12 +98,12 @@ if(ISLOGIN === false):
 				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
 ?> 
-<li><span onclick="showlogin('loginfm')" style="cursor:pointer;">登录</span>
+<li><span onclick="showhidediv('loginfm','user')" style="cursor:pointer;">登录</span>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>
 用户名:<br>
-<input name="user" type="text"><br />
+<input name="user" id="user" type="text"><br />
 密  码:<br>
 <input name="pw" type="password"><br>
 <?php echo $ckcode;?> <br>
@@ -114,7 +114,7 @@ if(ISLOGIN === false):
 <?php
 else:
 ?>
-<li><span onclick="showlogin('loginfm')" >管理</span>
+<li><span onclick="showhidediv('loginfm','user')" >管理</span>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php">写日志</a></li>
 	<li><a href="./adm/">管理中心</a></li>
@@ -126,12 +126,10 @@ else:
 </LI></UL></DIV>
 <HR>
 
-<DIV id=footer>
-<P>&copy; 2008 Powered by <a href="http://www.emlog.net" target="_blank">emlog</a><br />
+<DIV id=footer>Powered by 
+<a href="http://www.emlog.net" title="emlog <?php echo $edition;?>">emlog</a><br />
 &nbsp;<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp;?></a></P>
 </DIV>
 </DIV>
 </BODY>
 </HTML>
-<?php
-?>
