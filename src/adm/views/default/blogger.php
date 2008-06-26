@@ -26,7 +26,7 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
         <tr nowrap="nowrap">
           <td>我的状态<b><br />
           </b>
-            <textarea name="description" rows="3" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $bloggerdes; ?></textarea></td>
+            <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $bloggerdes; ?></textarea></td>
         </tr>
         <tr>
           <td align="center" colspan="2">

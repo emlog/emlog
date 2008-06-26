@@ -143,6 +143,7 @@ src/lib/F_adm.php -text
 src/lib/F_base.php -text
 src/lib/F_login.php -text
 src/lib/F_rss.php -text
+src/lib/js/common_tpl.js -text
 src/rss.php -text
 src/tb.php -text
 src/templates/Graffiti/echo_log.php -text

@@ -15,7 +15,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 	<link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
 	<link href="<?php echo $tpl_dir;?>sea/style.css" rel="stylesheet" type="text/css" />
-	<script src="./lib/js/index_tpl.js" type="text/javascript"></script>
+	<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="container">

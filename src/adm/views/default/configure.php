@@ -27,23 +27,23 @@
       </tr>
       <tr nowrap="nowrap">
         <td align="right">每页日志数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_lognum']; ?>" name="index_lognum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right">首页标签数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_tagnum']; ?>" name="index_tagnum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $index_tagnum; ?>" name="index_tagnum" /></td>
       </tr>
 	  <tr nowrap="nowrap">
         <td align="right">首页twitter数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_twnum']; ?>" name="index_twnum" /> 为0则关闭该功能</td>
+        <td><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> 为0则关闭该功能</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">首页最新评论数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $show_config['index_comnum']; ?>" name="index_comment_num" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comment_num" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">新近评论截取字节数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $show_config['comment_subnum']; ?>" name="comment_subnum" /></td>
+        <td><input maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /></td>
       </tr>
       <tr>
         <td align="right">启用评论审核：<br /></td>
@@ -135,7 +135,7 @@
 							'12'=>'(标准时+12:00) 奥克兰、惠灵顿、堪察加半岛',
 		);
 foreach($tzlist as $key=>$value):
-$ex = $key==$show_config['timezone']?"selected=\"selected\"":'';
+$ex = $key==$timezone?"selected=\"selected\"":'';
 ?>
 		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
 <?php endforeach;?>	

@@ -23,7 +23,6 @@ class mkcache {
 	function mc_config($cf)
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
-		$exarea = addslashes($show_config['exarea']);
 		$config_cache = array(
 		'sitekey' => htmlspecialchars($show_config['site_key']),
 		'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
@@ -43,7 +42,8 @@ class mkcache {
 		'blogurl'=>htmlspecialchars($show_config['blogurl']),
 		'icp'=>htmlspecialchars($show_config['icp']),
 		'timezone'=>$show_config['timezone'],
-		'exarea'=>$exarea
+		'exarea'=>addslashes($show_config['exarea']),
+		'edition'=>__VERSION
 		);
 		$cacheData = serialize($config_cache);
 		$this->cacheWrite($cacheData,$cf);

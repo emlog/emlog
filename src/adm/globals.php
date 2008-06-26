@@ -26,30 +26,19 @@ $DB = new MySql($host, $user, $pass,$db);
 $MC = new mkcache($DB,$db_prefix);
 		
 //读取配置参数
-$show_config = $DB->fetch_array($DB->query("SELECT * FROM {$db_prefix}config"));
+$config_cache = $MC->readCache('../cache/config');
+extract($config_cache);
+$timezone  = intval($timezone);
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
-//配置参数
-$login_code = $show_config['login_code'];
-$comment_code = $show_config['comment_code'];
-$ischkcomment = $show_config['ischkcomment'];
-$isurlrewrite   = $show_config['isurlrewrite'];
-$nonce_templet = $show_config['nonce_templet'];
-$index_comment_num = $show_config['index_comnum'];
-$index_tagnum = $show_config['index_tagnum'];
-$comment_subnum = $show_config['comment_subnum'];
-$blogurl = $show_config['blogurl'];
-$blogname = $show_config['blogname'];
-$timezone = intval($show_config['timezone']);
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
-$edition = '2.6.5';	//当前版本号
-
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录
 $uploadmax = 2097152;			//附件大小上限 单位：字节
 $tpl_dir = '../templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 
+define('__VERSION',			'2.7.0');//版本号
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
 define('ICON_MAX_W',		140);//个性头像缩略图最大宽

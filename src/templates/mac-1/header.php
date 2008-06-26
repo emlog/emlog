@@ -15,7 +15,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<link href="<?php echo $tpl_dir;?>mac-1/main.css" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="<?php echo $tpl_dir;?>mac-1/dbx.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<?php echo $tpl_dir;?>mac-1/print.css" type="text/css" media="print" />
-	<script src="./lib/js/index_tpl.js" type="text/javascript"></script>
+	<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="page">
