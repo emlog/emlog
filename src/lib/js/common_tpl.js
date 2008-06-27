@@ -1,3 +1,8 @@
+/*
+	emlog前台模板共享js
+*/
+
+//元素隐藏
 function showhidediv(id){
 	try{
 		var panel=document.getElementById(id);
@@ -15,6 +20,7 @@ function showhidediv(id){
 		}
 	}catch(e){}
 }
+//搜索验证
 function keyw()
 {
 	if (document.keyform.keyword.value=="")
@@ -36,11 +42,14 @@ function keyw()
 		return false;
 	}
 }
+//验证email格式
 function checkEmail (str){
 	isEmail1=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
 	isEmail2=/^.*@[^_]*$/;
 	return (isEmail1.test(str)&&isEmail2.test(str));
 }
+
+//评论验证
 function checkform(){
 	if (document.commentform.comname.value=="")
 	{
@@ -54,11 +63,20 @@ function checkform(){
 		document.commentform.comname.focus();
 		return false;
 	}
-	if(document.commentform.commail.value=="")
+	if(document.commentform.comment.value.length=="")
 	{
-		return texttest();
+		alert("评论内容不能为空");
+		document.commentform.comment.focus();
+		return false;
 	}
-	else{
+	if(document.commentform.comment.value.length>2000)
+	{
+		alert("评论内容太长");
+		document.commentform.comment.focus();
+		return false;
+	}
+	if(document.commentform.commail.value!="")
+	{
 		if(document.commentform.commail.value.length>60)
 		{
 			alert("邮件地址长度超出系统接受范围");
@@ -72,20 +90,8 @@ function checkform(){
 			return false;
 		}
 	}
-	if(document.commentform.comment.value.length=="")
-	{
-		alert("评论内容不能为空");
-		document.commentform.comment.focus();
-		return false;
-	}
-	if(document.commentform.comment.value.length>2000)
-	{
-		alert("评论内容太长");
-		document.commentform.comment.focus();
-		return false;
-	}
 }
-//删除确定
+//删除确认
 function isdel (id,type){
 	if(type == 'twitter')
 	{
@@ -99,19 +105,17 @@ function isdel (id,type){
 	}
 }
 /*ajax*/
-//初始化xmlhttp对象
 var xmlhttp = false;
 var node = '';
-function createxmlhttp() {//初始化、指定处理函数、发送请求的函数
+function createxmlhttp() {
 	xmlhttp = false;
-	//开始初始化XMLHttpRequest对象
-	if(window.XMLHttpRequest) { //Mozilla 浏览器
+	if(window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
-		if (xmlhttp.overrideMimeType) {//设置MiME类别
+		if (xmlhttp.overrideMimeType) {
 			xmlhttp.overrideMimeType('text/xml');
 		}
 	}
-	else if (window.ActiveXObject) { // IE浏览器
+	else if (window.ActiveXObject) {
 		try {
 			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
@@ -120,12 +124,12 @@ function createxmlhttp() {//初始化、指定处理函数、发送请求的函�
 			} catch (e) {}
 		}
 	}
-	if (!xmlhttp) { // 异常，创建对象实例失败
+	if (!xmlhttp) {
 		window.alert("不能创建XMLHttpRequest对象实例.");
 		return false;
 	}
 }
-//get提交链接请求
+//get
 function sendinfo(url,nodeid){
 	node = nodeid;
 	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>";
@@ -135,6 +139,7 @@ function sendinfo(url,nodeid){
 	xmlhttp.send(null);
 	xmlhttp.onreadystatechange = processRequest;
 }
+//post
 function postinfo(url,post_id,show_id){
 	node = show_id;
 	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
@@ -147,11 +152,11 @@ function postinfo(url,post_id,show_id){
 	var querystring = post_id+"="+encodeURIComponent(pdata);
 	xmlhttp.send(querystring);
 }
-// 处理返回信息的函数
+//
 function processRequest() {
 	//alert(node+xmlhttp.readyState);
-	if (xmlhttp.readyState == 4) { // 判断对象状态
-		if (xmlhttp.status == 200) { // 信息已经成功返回，开始处理信息
+	if (xmlhttp.readyState == 4) {
+		if (xmlhttp.status == 200) {
 			document.getElementById(node).innerHTML = xmlhttp.responseText;
 		}
 	}

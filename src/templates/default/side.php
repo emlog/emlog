@@ -10,7 +10,7 @@
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
-	<textarea name="bdes" class="input" id="bdes" style="width:190px;height:50px;"></textarea>
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
 	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
@@ -54,8 +54,7 @@
 		<ul>
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="width:200px;height:60px;" class="input"></textarea>
-		<br />
+		<textarea name="tw" id="tw" style="overflow-y: hidden;width:210px;height:70px;" class="input"></textarea>
 		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
