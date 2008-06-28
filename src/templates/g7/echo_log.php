@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<p><?php echo $attachment;?></p>	
 		<p><?php echo $tag;?></p>
 		<p>Posted on <?php echo $post_time;?><br /></p>
-		<p><?php echo  $neighborLog;?></P>
+		<p><?php echo  $neighborLog;?></p>
 		</div>
 <?php if($allow_tb == 'y'): ?>	
 	<div class="comments-template">
@@ -33,7 +33,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $value['reply'] = $value['reply']?"<span style=\"color:#8DAB3B;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li class="alt" id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
-			<?php echo $value['poster'];?> Says:<br />
+			<?php echo $value['poster'];?> 
+			<?php if($value['mail']):?>
+				<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+			<?php endif;?>
+			<?php if($value['url']):?>
+				<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+			<?php endif;?>
+			Says:<br />
 			<small class="commentmetadata"><?php echo $value['addtime'];?> </small>
 			<p><?php echo $value['content'];?></p>
 			<p><?php echo $value['reply'];?></p>

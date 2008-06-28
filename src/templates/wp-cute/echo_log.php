@@ -2,17 +2,25 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 //$att_img = getAttachment($att_img,600,500);
 ?>
-<DIV class=post id=post-1>
-<H2><b><?php echo $log_title;?></b></A></H2>
-<DIV class=entry>
+<div class=post id=post-1>
+<h2><b><?php echo $log_title;?></b></A></h2>
+<div class=entry>
 <p><?php echo $log_content;?></p>
 <a name="att"></a>
 <p><?php echo $att_img;?></p>
 <p><?php echo $att_img;?></p>
 <p><?php echo $att_img;?></p>
-<p><?php echo $neighborLog;?></P>
-</DIV></DIV>
-<p>$post_time $log_author</p>
+<p><?php if($nextLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<?php endif;?>
+<?php if($nextLog && $previousLog):?>
+	|
+<?php endif;?>
+<?php if($previousLog):?>
+	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
+<?php endif;?></p>
+</div></div>
+<p><?php echo $post_time;?> <?php echo $log_author;></p>
 <?php if($allow_tb == 'y'): ?>
 <h5>引用地址:<a name="tb"></a></h5>
 <input type="text" id="input" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>
@@ -32,14 +40,21 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 ?>
 <p><a name="<?php echo $value['cid'];?>"></a></p>
 <div class="commentlist">
-<cite><?php echo $value['poster'];?></cite> Says:<br />
+<cite><?php echo $value['poster'];?></cite> 
+<?php if($value['mail']):?>
+	<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+<?php endif;?>
+<?php if($value['url']):?>
+	<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+<?php endif;?>
+Says:<br />
 <small class="commentmetadata"><?php echo $value['addtime'];?></small>
 <p><?php echo $value['content'];?></p>
 <p><?php echo $value['reply'];?></p>
 </div>
 <?php endforeach; ?>
 <?php if($allow_remark == 'y'): ?>
-<H3 id=respond>参与评论</H3>
+<h3 id=respond>参与评论</h3>
 <form  method="post"  name="commentform" action="index.php?action=addcom" onsubmit="return checkcomment(this)">
     <p>
         <input type="hidden" name="gid" value="<?php echo $logid;?>" />

@@ -22,7 +22,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				<p><?php echo $att_img;?></p>
 				<p><?php echo $attachment;?></p>	
 				<p><?php echo $tag;?></p>
-				<p><?php echo $neighborLog;?></P>
+				<p><?php if($nextLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<?php endif;?>
+<?php if($nextLog && $previousLog):?>
+	|
+<?php endif;?>
+<?php if($previousLog):?>
+	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
+<?php endif;?></p>
 			</div>
 
 		</div></div>
@@ -44,7 +52,15 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 	<li id="comment-<?php echo $value['cid'];?>">
 			<div class="commentmeta">
 			<ul>
-				<li><a name="<?php echo $value['cid'];?>"></a>评论：<strong><?php echo $value['poster'];?></strong></li>
+				<li>
+					<a name="<?php echo $value['cid'];?>"></a>评论：<strong><?php echo $value['poster'];?></strong>
+					<?php if($value['mail']):?>
+						<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+					<?php endif;?>
+					<?php if($value['url']):?>
+						<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+					<?php endif;?>
+				</li>
 				<li><a href="#comment-2" title=""><?php echo $value['addtime'];?></a></li>
 			</ul>
 			</div>

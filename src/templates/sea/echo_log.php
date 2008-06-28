@@ -11,7 +11,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p><?php echo $att_img;?></p>	
 <p><?php echo $att_img;?></p>
 <p>Posted on <?php echo $post_time;?><br /></p>
-<p><?php echo $neighborLog;?></P>
+<p><?php if($nextLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<?php endif;?>
+<?php if($nextLog && $previousLog):?>
+	|
+<?php endif;?>
+<?php if($previousLog):?>
+	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
+<?php endif;?></p>
 </div>
 <?php if($allow_tb == 'y'): ?>	
 <div class="comments-template">
@@ -28,7 +36,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
-	<cite>Comment by <strong><?php echo $value['poster'];?></strong> &#8212; <?php echo $value['addtime'];?></cite>
+	<cite>Comment by <strong><?php echo $value['poster'];?></strong> 
+	<?php if($value['mail']):?>
+		<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+	<?php endif;?>
+	<?php if($value['url']):?>
+		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+	<?php endif;?>
+	&#8212; <?php echo $value['addtime'];?></cite>
 	<br /><?php echo $value['content'];?><br /><?php echo $value['reply'];?></li>
 <?php endforeach; ?>
 </ol>

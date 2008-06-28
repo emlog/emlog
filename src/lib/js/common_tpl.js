@@ -2,23 +2,97 @@
 	emlog前台模板共享js
 */
 
+//document.getElementById 的简化函数
+function $(id)
+{
+	if(typeof id == 'object')
+		return id;
+	if(typeof id == 'string')
+		return document.getElementById(id);
+}
+
+//聚焦一个元素
+function focusEle(ele)
+{
+	try 
+	{
+		$(ele).focus();
+	} 
+	catch(e){}
+}
+
+//切换元素显示状态
+function displayToggle(ele) 
+{
+	var ele = $(ele);
+	ele.style.display = ele.style.display == 'none' ? '' : 'none' ;
+}
+
+//隐藏元素
+function hideEle(ele) 
+{
+	$(ele).style.display == 'none';
+}
+
+//显示元素
+function showEle(ele)
+{
+	$(ele).style.display == '';
+}
+
+//更新一个元素的内容
+function updateEle(ele,content)
+{
+	$(ele).innerHTML = content;
+}
+
+//时间戳
+function timestamp()
+{
+	return new Date().getTime();
+}
+
+
+function SetCookie(name,value,expires,path,domain,secure)
+{
+	var today = new Date();
+	today.setMonth(today.getMonth()+6);
+    var expString = ";expires="+ today.toGMTString();
+    var pathString = ((path==null) ? "" : (";path="+path));
+    var domainString = ((domain==null) ? "" : (";domain="+domain));
+    var secureString = ((secure==true) ? ";secure" : "" );
+    document.cookie = name + "=" + escape(value) + expString + pathString + domainString + secureString;
+} 
+// 获取指定名称的cookie值：
+function GetCookie(name)
+{
+    var result = null;
+    var myCookie = document.cookie + ";";
+    var searchName = name + "=";
+    var startOfCookie = myCookie.indexOf(searchName);
+    var endOfCookie;
+    if (startOfCookie != -1)
+    {
+    startOfCookie += searchName.length;
+    endOfCookie = myCookie.indexOf(";",startOfCookie);
+    result = unescape(myCookie.substring(startOfCookie, endOfCookie));
+    }
+    return result;
+} 
+// 删除指定名称的cookie：
+function ClearCookie(name)
+{
+    var weekdays=7*24*60*60*1000;
+    var expDate = new Date();
+    expDate.setTime(expDate.getTime()-weekdays);
+    document.cookie=name+"=;expires="+expDate.toGMTString();
+}
+
 //元素隐藏
-function showhidediv(id){
-	try{
-		var panel=document.getElementById(id);
-		if(panel){
-			if(panel.style.display=='none'){
-				panel.style.display='block';
-				var input_id= arguments[1]
-				if(input_id)
-				{
-					document.getElementById(input_id).focus();
-				}
-			}else{
-				panel.style.display='none';
-			}
-		}
-	}catch(e){}
+function showhidediv(id)
+{
+	displayToggle(id);
+	focusEle('user');
 }
 //搜索验证
 function keyw()
@@ -132,9 +206,9 @@ function createxmlhttp() {
 //get
 function sendinfo(url,nodeid){
 	node = nodeid;
-	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>";
+	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>");
 	createxmlhttp();
-	var querystring = url+ "&timetmp=" + new Date().getTime();;
+	var querystring = url+ "&timetmp=" + timestamp();
 	xmlhttp.open("GET", querystring, true);
 	xmlhttp.send(null);
 	xmlhttp.onreadystatechange = processRequest;
@@ -142,13 +216,13 @@ function sendinfo(url,nodeid){
 //post
 function postinfo(url,post_id,show_id){
 	node = show_id;
-	document.getElementById(node).innerHTML = "<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>";
+	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>");
 	createxmlhttp();
-	var url2 = url + "&timetmp=" + new Date().getTime();
+	var url2 = url + "&timetmp=" + timestamp();
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var pdata = document.getElementById(post_id).value;
+	var pdata = $(post_id).value;
 	var querystring = post_id+"="+encodeURIComponent(pdata);
 	xmlhttp.send(querystring);
 }
@@ -157,7 +231,7 @@ function processRequest() {
 	//alert(node+xmlhttp.readyState);
 	if (xmlhttp.readyState == 4) {
 		if (xmlhttp.status == 200) {
-			document.getElementById(node).innerHTML = xmlhttp.responseText;
+			updateEle(node,xmlhttp.responseText);
 		}
 	}
 }

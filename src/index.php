@@ -102,27 +102,9 @@ if ($action == 'showlog')
 	$allow_remark = $show_log['allow_remark'];
 	$allow_tb = $show_log['allow_tb'];
 	//邻近日志
-	$nextLogArr = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid < $logid AND hide='n' ORDER BY gid DESC  LIMIT 1");
-	$nextLog = $isurlrewrite == 'n'?
-				"<a href=\"./?action=showlog&gid={$nextLogArr['gid']}\">{$nextLogArr['title']}</a>":
-				"<a href=\"./showlog-{$nextLogArr['gid']}.html\">{$nextLogArr['title']}</a>";
-	$upLogArr = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid > $logid AND hide='n' LIMIT 1");
-	$upLog = $isurlrewrite == 'n'?
-				"<a href=\"./index.php?action=showlog&gid={$upLogArr['gid']}\">{$upLogArr['title']}</a>":
-				"<a href=\"./showlog-{$upLogArr['gid']}.html\">{$upLogArr['title']}</a>";	
-	if($nextLogArr && $upLogArr)
-	{
-		$neighborLog = "&laquo; {$upLog} | {$nextLog} &raquo";
-	}elseif ($nextLogArr)
-	{
-		$neighborLog = "{$nextLog} &raquo";
-	}elseif ($upLogArr)
-	{
-		$neighborLog = "&laquo; {$upLog}";
-	}else 
-	{
-		$neighborLog = '';
-	}
+	$nextLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid < $logid AND hide='n' ORDER BY gid DESC  LIMIT 1");
+	$previousLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid > $logid AND hide='n' LIMIT 1");
+	
 	//标签
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	//附件
@@ -142,14 +124,16 @@ if ($action == 'showlog')
 		$reply = htmlClean($s_com['reply']);
 		$addtime = date('Y-m-d H:i',$s_com['date']);
 		$cname   =  htmlspecialchars($s_com['poster']);	
-		$poster  = $s_com['mail'] ? "<a href=\"mailto:{$s_com['mail']}\" title=\"发邮件给{$cname}\">$cname</a>" : $cname;
-		$poster  = $s_com['url'] ? $poster." <a href=\"{$s_com['url']}\" title=\"访问{$cname}的主页\" target=\"_blank\">&raquo;</a>" : $poster;
+		$s_com['mail'] = htmlspecialchars($s_com['mail']);
+		$s_com['url'] = htmlspecialchars($s_com['url']);
 		$com[]   = array(
 						'content'=>$content,
 						'reply'=>$reply,
 						'addtime'=>$addtime,
 						'cid'=>$s_com['cid'],
-						'poster'=>$poster
+						'poster'=>$cname,
+						'mail'=>$s_com['mail'],
+						'url'=>$s_com['url']
 						);
 	}
 	unset($s_com);
