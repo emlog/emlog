@@ -2,10 +2,9 @@
 doc/功能介绍.txt -text
 doc/安装说明.txt -text
 doc/模板说明.txt -text
-ext/htaccess.txt -text
+ext/.htaccess -text
 ext/robots.txt -text
 /license.txt -text
-src/.htaccess -text
 src/adm/add_log.php -text
 src/adm/admin_log.php -text
 src/adm/attachment.php -text

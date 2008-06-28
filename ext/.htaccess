@@ -1,14 +1,14 @@
 <IfModule mod_rewrite.c>
-	# RewriteEngine æ‰“å¼€URLé‡å†™æ¨¡å—
+	# RewriteEngine ´ò¿ªURLÖØĞ´Ä£¿é
 	RewriteEngine on
-	# é‡å†™æ ¹ç›®å½•ï¼Œåšå®¢åœ¨ç½‘ç«™æ ¹ç›®å½•åˆ™æ”¹ä¸º/
+	# ÖØĞ´¸ùÄ¿Â¼£¬²©¿ÍÔÚÍøÕ¾¸ùÄ¿Â¼Ôò¸ÄÎª/
 	#RewriteBase /
-	# æ˜¾ç¤ºæ—¥å¿—è§„åˆ™
+	# ÏÔÊ¾ÈÕÖ¾¹æÔò
 	RewriteRule ^showlog-([0-9]+)\.html$ index.php?action=showlog&gid=$1
-	# æ—¥å¿—å½’æ¡£
+	# ÈÕÖ¾¹éµµ
 	RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
 	RewriteRule ^date-([0-9]+)-record-([0-9]+)\.html$ index.php?date=$1&record=$2
-	# tagè§„åˆ™
+	# tag¹æÔò
 	RewriteRule ^tag\.html$ index.php?action=tag
 	RewriteRule ^tag-(.+)\.html$ index.php?action=taglog&tag=$1
 </IfModule>
