@@ -7,11 +7,13 @@
 <li><b><?php echo $name; ?></b></li>
 <?php if(ISLOGIN === true): ?>
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
-	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
-	<textarea name="bdes" class="input" id="bdes" style="width:180px;height:50px;"></textarea>
-	<input type="button" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');" value="提交">
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
+	<br />
+	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	</li>
 <?php else: ?>
 <li><span id="bloggerdes"><?php echo $blogger_des; ?></span></li>
@@ -46,15 +48,16 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <?php echo $morebt; ?>
 <?php endif; ?>
 </ul>
-<?php if(ISLOGIN === true): ?>
+	<?php if(ISLOGIN === true): ?>
 		<ul>
-		<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="width:200px;height:50px;"></textarea><br />
-		<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+		<textarea name="tw" id="tw" style="overflow-y: hidden;width:200px;height:60px;" class="input"></textarea>
+		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
 		</ul>
-<?php endif; ?>
+	<?php endif;?>
 <?php endif; ?>
 <?php if($ismusic): ?>
 <div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	

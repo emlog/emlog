@@ -21,15 +21,17 @@ $day = substr($datetime['2'],0,2);
 		<p><?php echo $att_img;?></p>
 		<p><?php echo $att_img;?></p>	
 		<p class="tags"><?php echo $tag;?></p>
-		<p><?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
-<?php endif;?>
-<?php if($nextLog && $previousLog):?>
-	|
-<?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
-<?php endif;?></p>			
+		<p>
+		<?php if($previousLog):?>
+			&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+		<?php endif;?>
+		<?php if($nextLog && $previousLog):?>
+			|
+		<?php endif;?>
+		<?php if($nextLog):?>
+			 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		<?php endif;?>
+		</p>			
 	</div>				
 <?php if($allow_tb == 'y'): ?>	
 	<div id="comments">

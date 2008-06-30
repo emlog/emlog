@@ -10,17 +10,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p><?php echo $att_img;?></p>
 <p><?php echo $att_img;?></p>
 <p><?php echo $att_img;?></p>
-<p><?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<p>
+<?php if($previousLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $previousLog):?>
 	|
 <?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
-<?php endif;?></p>
+<?php if($nextLog):?>
+	<a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+<?php endif;?>
+</p>
 </div></div>
-<p><?php echo $post_time;?> <?php echo $log_author;></p>
+<p><?php echo $post_time;?> <?php echo $log_author;?></p>
 <?php if($allow_tb == 'y'): ?>
 <h5>引用地址:<a name="tb"></a></h5>
 <input type="text" id="input" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>

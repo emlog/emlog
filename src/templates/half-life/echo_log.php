@@ -15,15 +15,17 @@ $att_img = getAttachment($att_img,350,300);
 <p><?php echo $att_img;?></p>
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
-<p><?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<p>
+<?php if($previousLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $previousLog):?>
 	|
 <?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
-<?php endif;?></p>
+<?php if($nextLog):?>
+	<a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+<?php endif;?>
+</p>
 </div>
 <?php
 if($allow_tb == 'y'){

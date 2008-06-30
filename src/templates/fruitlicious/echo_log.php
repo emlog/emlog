@@ -11,15 +11,18 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
 <p>Posted on <?php echo $post_time;?><br /></p>
-<p><?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<p>
+<?php if($previousLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $previousLog):?>
 	|
 <?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
-<?php endif;?></p>
+<?php if($nextLog):?>
+	 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+<?php endif;?>
+</p>
+
 </div>
 <?php if($allow_tb == 'y'): ?>	
 <div class="comments-template">

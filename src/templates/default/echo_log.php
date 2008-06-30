@@ -15,14 +15,14 @@ include getViews('side');
 </div>
 
 <div class="nextlog">
-<?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<?php if($previousLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $previousLog):?>
 	|
 <?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
+<?php if($nextLog):?>
+	 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 <?php endif;?>
 </div>
 

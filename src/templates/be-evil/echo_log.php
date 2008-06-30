@@ -13,15 +13,18 @@ include getviews('side');
 	<p><?php echo $tag; ?></p>
 </div>
 
-<div class="nextlog"><?php if($nextLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>
+<div class="nextlog">
+<?php if($previousLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $previousLog):?>
 	|
 <?php endif;?>
-<?php if($previousLog):?>
-	<a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a> &raquo;
-<?php endif;?></div>
+<?php if($nextLog):?>
+	 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+<?php endif;?>
+</div>
+
 <?php if($allow_tb == 'y'): ?>	
 	<div id="tb_list">
 	<p><b>引用:</b><input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
