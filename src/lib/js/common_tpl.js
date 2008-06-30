@@ -52,7 +52,6 @@ function timestamp()
 	return new Date().getTime();
 }
 
-
 function SetCookie(name,value,expires,path,domain,secure)
 {
 	var today = new Date();
@@ -92,7 +91,11 @@ function ClearCookie(name)
 function showhidediv(id)
 {
 	displayToggle(id);
-	focusEle('user');
+	var input_id=arguments[1];
+	if(input_id)
+	{
+		focusEle(input_id);
+	}
 }
 //搜索验证
 function keyw()
