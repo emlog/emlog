@@ -91,7 +91,6 @@ if(isset($tw_cache) && is_array($tw_cache)):
 		</ul>
 	<?php echo $exarea; ?>
 
-	<div class="lister">
 <?php if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
@@ -99,7 +98,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 				<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
 	$ckcode = '';
 ?>
-<span onclick="showhidediv('loginfm','user')">登录</span>
+<div class="lister"><span onclick="showhidediv('loginfm','user')">登录</span></div>
 <ul id="loginfm" style="display: none;">
 <form name="f" method="post" action="index.php?action=login" id="commentform">
 <li>
@@ -114,7 +113,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <?php 
 else:
 ?>
-<span onclick="showhidediv('loginfm','user')" >管理</span>
+<div class="lister"><span onclick="showhidediv('loginfm','user')" >管理</span></div>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php" style="color:#00ccff">写日志</a></li>
 	<li><a href="./adm/" style="color:#00ccff">管理中心</a></li>
@@ -122,6 +121,5 @@ else:
 	</ul>
 <?php endif; ?>
 		</ul>
-	</div>
 </div>
 <div id="contentB">

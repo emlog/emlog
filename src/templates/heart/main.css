@@ -47,6 +47,7 @@ margin-left:200px;
 }
 #navbar {
 word-spacing:50px;
+margin-top:160px!important;
 margin-top:120px;
 margin-left:100px;
 color:#fbab9c;
@@ -55,6 +56,8 @@ font-size:20px;
 /*右侧栏*/
 #page{
 	height:100%;
+	overflow:auto;
+	zoom:1;
 	background-color:#c2f5f9;
 	background-image:url(./images/body.jpg);
 	background-repeat:repeat-y;
@@ -62,6 +65,7 @@ font-size:20px;
 	}
 div.contentA{
 	float: right;
+	margin-right: 75px!important;
 	margin-right: 30px;
 	width:200px;
 	border-left:#fbab9c dashed 1px;
@@ -100,6 +104,7 @@ color:#00ccff;
 }
 /*左侧日志*/	
 #contentB {
+	margin-left:50px!important;
 	margin-left:30px;
 	float:left;
 	width:530px;
