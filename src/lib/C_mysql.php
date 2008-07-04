@@ -7,82 +7,128 @@
 
 class MySql {
 
-	var $user,$pass,$host,$db;
-	var $id,$data,$fields,$row,$row_num,$insertid,$version,$query_num=0;
+	var $queryCount = 0;
+	var $conn;
+	var $result;
 
-	function MySql($host,$user,$pass,$db)
+	function MySql($dbHost = '', $dbUser = '', $dbPass = '', $dbName = '')
 	{
-		$this->host = $host;
-		$this->pass = $pass;
-		$this->user = $user;
-		$this->db = $db;
-		$this->dbconnect($this->host, $this->user, $this->pass);
-		$this->selectdb($this->db);
-		if($this->version() >'4.1')
-		mysql_query("SET NAMES 'utf8'");
-	}
-	function dbconnect($host,$user,$pass)
-	{
-		$this->id = @ mysql_connect($host,$user,$pass) OR
-		sysMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
-	}
-	function selectdb($db)
-	{
-		@ mysql_select_db($db,$this->id) OR sysMsg("未找到指定数据库");
+		if(!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
+		{
+			sysMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
+		}
+		if($this->getMysqlVersion() >'4.1')
+		{
+			mysql_query("SET NAMES 'utf8'");
+		}
+
+		@mysql_select_db($dbName, $this->conn) OR sysMsg("未找到指定数据库");
 	}
 
+	/**
+	 * 关闭数据库连接
+	 *
+	 * @return blooean
+	 */
+	function close()
+	{
+		return mysql_close($this->conn);
+	}
+
+	/**
+	 * 发送查询语句
+	 *
+	 * @param string $sql
+	 * @return blooean
+	 */
 	function query($sql)
 	{
-		$query = @ mysql_query($sql,$this->id) OR sysMsg("SQL语句执行错误：$sql <br />".$this->geterror());
-		$this->query_num();
-		return $query;
+		$this->result = @ mysql_query($sql,$this->conn);
+		$this->queryCount++;
+		if(!$this->result)
+		{
+			sysMsg("SQL语句执行错误：$sql <br />".$this->geterror());
+		} else {
+			return $this->result;
+		}
 	}
 
+	/**
+	 * 从结果集中取得一行作为关联数组，或数字数组
+	 *
+	 * @param resource $query
+	 * @return array
+	 */
 	function fetch_array($query)
 	{
-		$this->data = @mysql_fetch_array($query);
-		return $this->data;
+		return mysql_fetch_array($query);
 	}
-	function query_num()
-	{
-		$this->query_num++;
-	}
-	function num_fields($query)
-	{
-		$this->fields = @mysql_num_fields($query);
-		return $this->fields;
-	}
+	
+	/**
+	 * 取得结果集中一条记录
+	 *
+	 * @param resource $query
+	 * @return integer
+	 */
 	function fetch_row($query)
 	{
-		$this->row = @mysql_fetch_row($query);
-		return $this->row;
+		return mysql_fetch_row($query);
 	}
 
+	/**
+	 * 取得行的数目
+	 *
+	 * @param resource $query
+	 * @return integer
+	 */
 	function num_rows($query)
 	{
-		$this->row_num = @mysql_num_rows($query);
-		return $this->row_num;
+		return mysql_num_rows($query);
 	}
 
+	/**
+	 * 取得结果集中字段的数目
+	 *
+	 * @param resource $query
+	 * @return integer
+	 */
+	function num_fields($query)
+	{
+		return mysql_num_fields($query);
+	}
+	/**
+	 * 取得上一步 INSERT 操作产生的 ID 
+	 *
+	 * @return integer
+	 */
 	function insert_id()
 	{
-		$this->insertid = mysql_insert_id();
-		return $this->insertid;
-	}
-	function version()
-	{
-		$this->version = mysql_get_server_info();
-		return $this->version;
+		return mysql_insert_id($this->conn);
 	}
 	function fetch_one_array($sql)
 	{
-		$query = $this->query($sql);
-		$this->data = $this->fetch_array($query);
-		return $this->data;
+		$this->result = $this->query($sql);
+		return $this->fetch_array($query);
 	}
+
+	/**
+	 * 获取mysql错误
+	 *
+	 * @return unknown
+	 */
 	function geterror()
 	{
 		return mysql_error();
+	}
+
+	/**
+	 * 取得数据库版本信息
+	 *
+	 * @return string
+	 */
+	function getMysqlVersion()
+	{
+		return mysql_get_server_info();
 	}
 }
 
