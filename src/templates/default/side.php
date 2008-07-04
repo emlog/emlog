@@ -5,8 +5,8 @@
 <ul style="text-align:center" id="bloggerinfo">
 <li><?php echo $photo; ?></li>
 <li><b><?php echo $name; ?></b></li>
-<?php if(ISLOGIN === true): ?>
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
@@ -14,13 +14,11 @@
 	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
+	<?php endif; ?>
 	</li>
-<?php else: ?>
-<li><span id="bloggerdes"><?php echo $blogger_des; ?></span></li>
-<?php endif; ?>
 </ul>
 
-<div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
+<div class="lister"><span onclick="showhidediv('calendar')">日历</span></div>
 <div id="calendar">
 </div>
 <script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>

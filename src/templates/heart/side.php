@@ -4,9 +4,20 @@
 	<div class="lister"><span onclick="showhidediv('bloggerinfo')">博主信息</span></div>
     	<ul style="text-align:center" id="bloggerinfo">
 		<li><?php echo $photo; ?></li>
-		<li><b><?php echo $name; ?></b><?php echo $blogger_des; ?></li>
+		<li><b><?php echo $name; ?></b></li>
+		<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<?php if(ISLOGIN === true): ?>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
+	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<li id='modbdes' style="display:none;">
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
+	<br />
+	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
+	<?php endif; ?>
+	</li>
 		</ul>
-	<div class="lister"><span onclick="showhidediv('calendar')">日历</span></a></div>
+	<div class="lister"><span onclick="showhidediv('calendar')">日历</span></div>
     	<div id="calendar">
 		</div>
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
@@ -40,7 +51,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:200px;height:50px;background:#c2f5f9;color:#fbab9c"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');"style="background:#c2f5f9;color:#fbab9c" value="提交">
+<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');"style="background:#c2f5f9;color:#fbab9c" value="提交">
 </li>
 </ul>
 <?php endif;?>

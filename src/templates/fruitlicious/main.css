@@ -442,7 +442,8 @@ table.calendartop td{
 	font-size:10px;
 	padding:0px 10px;
 }
-#input{
-  padding:3px;
-  border:1px solid #CCCCCC;
+.input{
+	border: 1px solid #daefef;
+	background-color: #fff;
+	padding: 3px;
 }

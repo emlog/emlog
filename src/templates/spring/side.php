@@ -8,7 +8,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <li id="archives"><h4 onclick="showhidediv('blogger')">个人档</h4>
 		<ul id="blogger">
-		<p><?php echo $photo;?><br /><b><?php echo $name;?></b> <?php echo $blogger_des;?>
+		<p><?php echo $photo;?><br /><b><?php echo $name;?></b>
+		<span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<?php if(ISLOGIN === true): ?>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
+	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<li id='modbdes' style="display:none;">
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"></textarea>
+	<br />
+	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
+	<?php endif; ?>
 		</ul>
 </li>
 

@@ -20,7 +20,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
-	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"></textarea>
 	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
@@ -54,7 +54,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:180p;height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
+<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
 </li>
 </ul>
 <?php endif; ?>
