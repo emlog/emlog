@@ -105,10 +105,12 @@ class MySql {
 	{
 		return mysql_insert_id($this->conn);
 	}
+	
+	
 	function fetch_one_array($sql)
 	{
 		$this->result = $this->query($sql);
-		return $this->fetch_array($query);
+		return $this->fetch_array($this->result);
 	}
 
 	/**

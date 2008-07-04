@@ -52,6 +52,44 @@ function inserttag (tag, taginputname) {
 function doshow(elementid) {
 	$(elementid).style.display = $('switch').checked ? 'block' : 'none';
 }
+
+function autoLogin()
+{
+	var url = document.location.href;
+	if(url.indexOf('?') == -1)
+	{
+		var user = GetCookie('user');
+		var pw   = GetCookie("pw");
+		var isR  = GetCookie("isRemember");
+		if(user != null ) 
+		{
+			$("user").value = user;
+		}
+		if(pw != null )
+		{
+			$("pw").value = pw.substring(0,16);
+		}
+		if(isR == 'true') 
+		{
+			$("isRemember").checked = true;
+		}
+	}
+	
+}
+
+function saveUser()
+{
+	var user = $('user').value;
+	var pw   = $('pw').value;
+	var isR  = $('isRemember').checked ? true : false;
+	if(isR)
+	{
+		SetCookie('user',user);
+		SetCookie('pw',pw);
+		SetCookie('isRemember','true');
+	}
+}
+
 //删除确定
 function isdel (id, property) {
 	if (property==1) 	{

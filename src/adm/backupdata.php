@@ -109,7 +109,7 @@ function bakindata($filename)
 {
 	global $db,$DB;
 	
-	$setchar = $DB->version() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 	$sql = file($filename);
 	array_unshift($sql,$setchar);
 	$query = '';
