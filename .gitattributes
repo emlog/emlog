@@ -13,65 +13,58 @@ src/adm/blogger.php -text svn_keywords=Id
 src/adm/cache.php -text svn_keywords=Id
 src/adm/comment.php -text svn_keywords=Id
 src/adm/configure.php -text svn_keywords=Id
-src/adm/editor/editor/css/behaviors/disablehandles.htc -text svn_keywords=Id
-src/adm/editor/editor/css/behaviors/hiddenfield.gif -text svn_keywords=Id
-src/adm/editor/editor/css/behaviors/hiddenfield.htc -text svn_keywords=Id
-src/adm/editor/editor/css/behaviors/showtableborders.htc -text svn_keywords=Id
-src/adm/editor/editor/css/fck_editorarea.css -text svn_keywords=Id
-src/adm/editor/editor/css/fck_internal.css -text svn_keywords=Id
-src/adm/editor/editor/css/fck_showtableborders_gecko.css -text svn_keywords=Id
-src/adm/editor/editor/css/images/fck_flashlogo.gif -text svn_keywords=Id
-src/adm/editor/editor/dialog/common/fck_dialog_common.js -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_about.html -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_about/logo_fckeditor.gif -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_image.html -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_image/fck_image.js -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_link.html -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_link/fck_link.js -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_media.html -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_media/fck_media.js -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_source.html -text svn_keywords=Id
-src/adm/editor/editor/dialog/fck_table.html -text svn_keywords=Id
-src/adm/editor/editor/fckblank.html -text svn_keywords=Id
-src/adm/editor/editor/fckdialog.html -text svn_keywords=Id
-src/adm/editor/editor/fckeditor.html -text svn_keywords=Id
-src/adm/editor/editor/images/spacer.gif -text svn_keywords=Id
-src/adm/editor/editor/js/fck_startup.js -text svn_keywords=Id
-src/adm/editor/editor/js/fckeditorcode_gecko_1.js -text svn_keywords=Id
-src/adm/editor/editor/js/fckeditorcode_gecko_2.js -text svn_keywords=Id
-src/adm/editor/editor/js/fckeditorcode_ie_1.js -text svn_keywords=Id
-src/adm/editor/editor/js/fckeditorcode_ie_2.js -text svn_keywords=Id
-src/adm/editor/editor/lang/en.js -text svn_keywords=Id
-src/adm/editor/editor/lang/fcklanguagemanager.js -text svn_keywords=Id
-src/adm/editor/editor/lang/zh-cn.js -text svn_keywords=Id
-src/adm/editor/editor/lang/zh.js -text svn_keywords=Id
-src/adm/editor/editor/skins/default/fck_contextmenu.css -text svn_keywords=Id
-src/adm/editor/editor/skins/default/fck_dialog.css -text svn_keywords=Id
-src/adm/editor/editor/skins/default/fck_editor.css -text svn_keywords=Id
-src/adm/editor/editor/skins/default/images/toolbar.start.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/about.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/bold.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/image.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/indent.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/inserthorizontalrule.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/insertorderedlist.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/insertunorderedlist.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/italic.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/justifycenter.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/justifyleft.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/justifyright.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/link.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/media.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/outdent.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/php.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/preview.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/source.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/table.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/textcolor.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/underline.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/unlink.gif -text svn_keywords=Id
-src/adm/editor/editor/skins/default/toolbar/unorderedlist.gif -text svn_keywords=Id
-src/adm/editor/fckconfig.js -text svn_keywords=Id
+src/adm/fckeditor/editor/css/fck_editorarea.css -text
+src/adm/fckeditor/editor/css/fck_internal.css -text
+src/adm/fckeditor/editor/css/images/fck_anchor.gif -text
+src/adm/fckeditor/editor/css/images/fck_flashlogo.gif -text
+src/adm/fckeditor/editor/css/images/fck_plugin.gif -text
+src/adm/fckeditor/editor/dialog/common/fck_dialog_common.css -text
+src/adm/fckeditor/editor/dialog/common/fck_dialog_common.js -text
+src/adm/fckeditor/editor/dialog/fck_about.html -text
+src/adm/fckeditor/editor/dialog/fck_about/logo_fckeditor.gif -text
+src/adm/fckeditor/editor/dialog/fck_about/logo_fredck.gif -text
+src/adm/fckeditor/editor/dialog/fck_anchor.html -text
+src/adm/fckeditor/editor/dialog/fck_codes.html -text
+src/adm/fckeditor/editor/dialog/fck_codes/fck_codes.js -text
+src/adm/fckeditor/editor/dialog/fck_flash.html -text
+src/adm/fckeditor/editor/dialog/fck_flash/fck_flash.js -text
+src/adm/fckeditor/editor/dialog/fck_flash/fck_flash_preview.html -text
+src/adm/fckeditor/editor/dialog/fck_image.html -text
+src/adm/fckeditor/editor/dialog/fck_image/fck_image.js -text
+src/adm/fckeditor/editor/dialog/fck_image/fck_image_preview.html -text
+src/adm/fckeditor/editor/dialog/fck_link.html -text
+src/adm/fckeditor/editor/dialog/fck_link/fck_link.js -text
+src/adm/fckeditor/editor/dialog/fck_paste.html -text
+src/adm/fckeditor/editor/dialog/fck_smiley.html -text
+src/adm/fckeditor/editor/dialog/fck_table.html -text
+src/adm/fckeditor/editor/dtd/fck_xhtml10transitional.js -text
+src/adm/fckeditor/editor/fckdialog.html -text
+src/adm/fckeditor/editor/fckeditor.html -text
+src/adm/fckeditor/editor/images/anchor.gif -text
+src/adm/fckeditor/editor/images/arrow_ltr.gif -text
+src/adm/fckeditor/editor/images/arrow_rtl.gif -text
+src/adm/fckeditor/editor/images/spacer.gif -text
+src/adm/fckeditor/editor/js/fckadobeair.js -text
+src/adm/fckeditor/editor/js/fckeditorcode_gecko.js -text
+src/adm/fckeditor/editor/js/fckeditorcode_ie.js -text
+src/adm/fckeditor/editor/lang/zh-cn.js -text
+src/adm/fckeditor/editor/skins/fck_dialog.css -text
+src/adm/fckeditor/editor/skins/fck_dialog_ie6.js -text
+src/adm/fckeditor/editor/skins/fck_editor.css -text
+src/adm/fckeditor/editor/skins/fck_strip.gif -text
+src/adm/fckeditor/editor/skins/images/dialog.sides.gif -text
+src/adm/fckeditor/editor/skins/images/dialog.sides.png -text
+src/adm/fckeditor/editor/skins/images/dialog.sides.rtl.png -text
+src/adm/fckeditor/editor/skins/images/sprites.gif -text
+src/adm/fckeditor/editor/skins/images/sprites.png -text
+src/adm/fckeditor/editor/skins/images/toolbar.arrowright.gif -text
+src/adm/fckeditor/editor/skins/images/toolbar.buttonarrow.gif -text
+src/adm/fckeditor/editor/skins/images/toolbar.end.gif -text
+src/adm/fckeditor/editor/skins/images/toolbar.separator.gif -text
+src/adm/fckeditor/editor/skins/images/toolbar.start.gif -text
+src/adm/fckeditor/fckconfig.js -text
+src/adm/fckeditor/fckeditor.js -text
+src/adm/fckeditor/fckstyles.xml -text
 src/adm/globals.php -text svn_keywords=Id
 src/adm/index.php -text svn_keywords=Id
 src/adm/link.php -text svn_keywords=Id
