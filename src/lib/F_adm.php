@@ -2,7 +2,8 @@
 /**
  * 后台管理函数库
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.5
+ * @version emlog-2.7.0
+ * $Id$
  */
 
 /**

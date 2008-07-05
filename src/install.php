@@ -2,7 +2,8 @@
 /**
  * 安装程序
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.6.5
+ * @version emlog-2.7.0
+ * $Id$
  */
 
 require_once('./lib/F_base.php');
@@ -76,7 +77,7 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 2.6.5</span><span> 安装程序</span></p>
+<p><span class="title">emlog 2.7.0</span><span> 安装程序</span></p>
 </div>
 <div class="a">
 <p class="title2">1.权限设置</p>
