@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="sidebar">
 <div id="search">
 <form name="keyform" method="get" action="index.php">
-<div><input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onfocus="this.value='输入搜索';this.style.color='gray';" /><input name="action" type="hidden" value="search" size="12" />
+<div><input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onblur="this.value='输入搜索';this.style.color='#CCCCCC';" /><input name="action" type="hidden" value="search" size="12" />
 <input type="submit" id="go" value="" onclick="return keyw()"/>
 </div>
 </form></div>
@@ -16,7 +16,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<img src="<?php echo $tpl_dir; ?>g7_v2/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
 	<br />

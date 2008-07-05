@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <li id="archives"><h4 onclick="showhidediv('blogger')">个人档</h4>
 		<ul id="blogger">
 		<p><?php echo $photo;?><br /><b><?php echo $name;?></b>
-		<span id="bloggerdes"><?php echo $blogger_des; ?></span>
+		<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
@@ -19,6 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	<?php endif; ?>
+	</li>
 		</ul>
 </li>
 
@@ -59,7 +60,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:180p;height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','twitter');" value="提交">
+<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
 </li>
 </ul>
 <?php endif; ?>

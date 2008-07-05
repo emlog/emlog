@@ -15,19 +15,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <H2 onClick="showhidediv('bloggerinfo')">About</H2>
    <ul style="text-align:left" id="bloggerinfo" >
 	<li><?php echo $photo;?></li>
-	<?php if(ISLOGIN === true): ?>
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<img src="<?php echo $tpl_dir; ?>wp/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"></textarea>
 	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
+	<?php endif; ?>
 	</li>
-<?php else: ?>
-<li><span id="bloggerdes"><?php echo $blogger_des; ?></span></li>
-<?php endif; ?>
 		</ul>
   <H2 onClick="showhidediv('calendar')">Calendar</H2>
     	<div id="calendar">

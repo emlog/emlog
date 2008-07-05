@@ -13,7 +13,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-	<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<img src="<?php echo $tpl_dir; ?>g7_v3/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:220px;height:50px;"></textarea>
 	<br />
@@ -139,7 +139,7 @@ if(ISLOGIN === false):
 </form>
 </ul>
 <?php endif; ?>
-<a href="./rss.php"><img src="<?php echo $tpl_dir;?>g7_v3/rss.gif" alt="订阅Rss"/></a>
+<a href="./rss.php"><img src="<?php echo $tpl_dir;?>g7_v3/images/rss.gif" alt="订阅Rss"/></a>
 <?php echo $exarea;?>
 
 </div>

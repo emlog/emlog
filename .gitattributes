@@ -185,6 +185,7 @@ src/templates/be-evil/images/home.png -text svn_keywords=Id
 src/templates/be-evil/images/links.png -text svn_keywords=Id
 src/templates/be-evil/images/log.png -text svn_keywords=Id
 src/templates/be-evil/images/logs.png -text svn_keywords=Id
+src/templates/be-evil/images/modify.gif -text
 src/templates/be-evil/images/music.png -text svn_keywords=Id
 src/templates/be-evil/images/pofile.png -text svn_keywords=Id
 src/templates/be-evil/images/rss.png -text svn_keywords=Id
@@ -227,6 +228,7 @@ src/templates/fruitlicious/images/bg_description.gif -text svn_keywords=Id
 src/templates/fruitlicious/images/bg_dotted.gif -text svn_keywords=Id
 src/templates/fruitlicious/images/bg_post_h2.gif -text svn_keywords=Id
 src/templates/fruitlicious/images/bg_sidebar_title.gif -text svn_keywords=Id
+src/templates/fruitlicious/images/modify.gif -text
 src/templates/fruitlicious/images/rss.gif -text svn_keywords=Id
 src/templates/fruitlicious/log_list.php -text svn_keywords=Id
 src/templates/fruitlicious/main.css -text svn_keywords=Id
@@ -258,6 +260,7 @@ src/templates/g7/images/favicon.ico -text svn_keywords=Id
 src/templates/g7/images/li.png -text svn_keywords=Id
 src/templates/g7/images/li_ul.png -text svn_keywords=Id
 src/templates/g7/images/meta.gif -text svn_keywords=Id
+src/templates/g7/images/modify.gif -text
 src/templates/g7/images/newpost.gif -text svn_keywords=Id
 src/templates/g7/images/page.gif -text svn_keywords=Id
 src/templates/g7/images/page2.gif -text svn_keywords=Id
@@ -299,6 +302,7 @@ src/templates/g7_v2/images/filed.gif -text svn_keywords=Id
 src/templates/g7_v2/images/footer_bg.png -text svn_keywords=Id
 src/templates/g7_v2/images/header_bg.png -text svn_keywords=Id
 src/templates/g7_v2/images/menu_a.gif -text svn_keywords=Id
+src/templates/g7_v2/images/modify.gif -text
 src/templates/g7_v2/images/nav_l.gif -text svn_keywords=Id
 src/templates/g7_v2/images/nav_r.gif -text svn_keywords=Id
 src/templates/g7_v2/images/post_date.png -text svn_keywords=Id
@@ -322,10 +326,11 @@ src/templates/g7_v2/tag_log.php -text svn_keywords=Id
 src/templates/g7_v3/echo_log.php -text svn_keywords=Id
 src/templates/g7_v3/footer.php -text svn_keywords=Id
 src/templates/g7_v3/header.php -text svn_keywords=Id
+src/templates/g7_v3/images/modify.gif -text
+src/templates/g7_v3/images/rss.gif -text
 src/templates/g7_v3/log_list.php -text svn_keywords=Id
 src/templates/g7_v3/message.php -text svn_keywords=Id
 src/templates/g7_v3/preview.jpg -text svn_keywords=Id
-src/templates/g7_v3/rss.gif -text svn_keywords=Id
 src/templates/g7_v3/search.php -text svn_keywords=Id
 src/templates/g7_v3/side.php -text svn_keywords=Id
 src/templates/g7_v3/style.css -text svn_keywords=Id
@@ -335,6 +340,7 @@ src/templates/half-life/echo_log.php -text svn_keywords=Id
 src/templates/half-life/footer.php -text svn_keywords=Id
 src/templates/half-life/header.php -text svn_keywords=Id
 src/templates/half-life/images/half-life.jpg -text svn_keywords=Id
+src/templates/half-life/images/modify.gif -text
 src/templates/half-life/images/rss.gif -text svn_keywords=Id
 src/templates/half-life/log_list.php -text svn_keywords=Id
 src/templates/half-life/main.css -text svn_keywords=Id
@@ -352,6 +358,7 @@ src/templates/heart/images/body.jpg -text svn_keywords=Id
 src/templates/heart/images/foot.jpg -text svn_keywords=Id
 src/templates/heart/images/head.jpg -text svn_keywords=Id
 src/templates/heart/images/lister.jpg -text svn_keywords=Id
+src/templates/heart/images/modify.gif -text
 src/templates/heart/log_list.php -text svn_keywords=Id
 src/templates/heart/main.css -text svn_keywords=Id
 src/templates/heart/message.php -text svn_keywords=Id
@@ -379,6 +386,7 @@ src/templates/lust/images/bg_rc_bottom.gif -text svn_keywords=Id
 src/templates/lust/images/bg_rc_top.gif -text svn_keywords=Id
 src/templates/lust/images/dotted_h.gif -text svn_keywords=Id
 src/templates/lust/images/dotted_v.gif -text svn_keywords=Id
+src/templates/lust/images/modify.gif -text
 src/templates/lust/log_list.php -text svn_keywords=Id
 src/templates/lust/main.css -text svn_keywords=Id
 src/templates/lust/message.php -text svn_keywords=Id
@@ -430,6 +438,7 @@ src/templates/mac-1/images/mini-user.gif -text svn_keywords=Id
 src/templates/mac-1/images/mini-user.png -text svn_keywords=Id
 src/templates/mac-1/images/mini-wp.gif -text svn_keywords=Id
 src/templates/mac-1/images/mini-wp.png -text svn_keywords=Id
+src/templates/mac-1/images/modify.gif -text
 src/templates/mac-1/images/nav-item-hover.gif -text svn_keywords=Id
 src/templates/mac-1/images/navigation-bg.gif -text svn_keywords=Id
 src/templates/mac-1/images/navigation-left.gif -text svn_keywords=Id
@@ -467,6 +476,7 @@ src/templates/sea/images/bg_ul_li_h2.gif -text svn_keywords=Id
 src/templates/sea/images/bg_ul_ul.gif -text svn_keywords=Id
 src/templates/sea/images/bg_widecolumn_bottom.gif -text svn_keywords=Id
 src/templates/sea/images/bg_widecolumn_top.gif -text svn_keywords=Id
+src/templates/sea/images/modify.gif -text
 src/templates/sea/images/rss.gif -text svn_keywords=Id
 src/templates/sea/log_list.php -text svn_keywords=Id
 src/templates/sea/message.php -text svn_keywords=Id
@@ -482,6 +492,7 @@ src/templates/spring/header.php -text svn_keywords=Id
 src/templates/spring/images/arrow.gif -text svn_keywords=Id
 src/templates/spring/images/bg.gif -text svn_keywords=Id
 src/templates/spring/images/commentslink.gif -text svn_keywords=Id
+src/templates/spring/images/modify.gif -text
 src/templates/spring/images/permalink.gif -text svn_keywords=Id
 src/templates/spring/images/postmeta.gif -text svn_keywords=Id
 src/templates/spring/images/posttitle.gif -text svn_keywords=Id
@@ -503,6 +514,7 @@ src/templates/techpress/images/background_header.jpg -text svn_keywords=Id
 src/templates/techpress/images/background_topmenu.jpg -text svn_keywords=Id
 src/templates/techpress/images/dotted_horizontal.gif -text svn_keywords=Id
 src/templates/techpress/images/dotted_vertical.gif -text svn_keywords=Id
+src/templates/techpress/images/modify.gif -text
 src/templates/techpress/images/rss.gif -text svn_keywords=Id
 src/templates/techpress/images/topmenu_bullet.gif -text svn_keywords=Id
 src/templates/techpress/log_list.php -text svn_keywords=Id
@@ -517,6 +529,7 @@ src/templates/techpress/tag_log.php -text svn_keywords=Id
 src/templates/wblix/echo_log.php -text svn_keywords=Id
 src/templates/wblix/footer.php -text svn_keywords=Id
 src/templates/wblix/header.php -text svn_keywords=Id
+src/templates/wblix/images/modify.gif -text
 src/templates/wblix/images/rss.gif -text svn_keywords=Id
 src/templates/wblix/images/spring_flavour/author.gif -text svn_keywords=Id
 src/templates/wblix/images/spring_flavour/categories_yellow.gif -text svn_keywords=Id
@@ -555,6 +568,7 @@ src/templates/wp-cute/images/kubrickbg.jpg -text svn_keywords=Id
 src/templates/wp-cute/images/kubrickbgcolor.jpg -text svn_keywords=Id
 src/templates/wp-cute/images/kubrickfooter.jpg -text svn_keywords=Id
 src/templates/wp-cute/images/kubrickheader.jpg -text svn_keywords=Id
+src/templates/wp-cute/images/modify.gif -text
 src/templates/wp-cute/log_list.php -text svn_keywords=Id
 src/templates/wp-cute/main.css -text svn_keywords=Id
 src/templates/wp-cute/message.php -text svn_keywords=Id
@@ -570,6 +584,7 @@ src/templates/wp/images/kubrickbg.jpg -text svn_keywords=Id
 src/templates/wp/images/kubrickbgcolor.jpg -text svn_keywords=Id
 src/templates/wp/images/kubrickfooter.jpg -text svn_keywords=Id
 src/templates/wp/images/kubrickheader.jpg -text svn_keywords=Id
+src/templates/wp/images/modify.gif -text
 src/templates/wp/log_list.php -text svn_keywords=Id
 src/templates/wp/main.css -text svn_keywords=Id
 src/templates/wp/message.php -text svn_keywords=Id

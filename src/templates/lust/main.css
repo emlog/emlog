@@ -312,9 +312,8 @@ input, textarea{
 }
 
 .sidebar{
-	float: left;
+	float: right;
 	width: 200px;
-	margin: 0 0 0 20px;
 	display: inline;
 }
 
@@ -472,12 +471,12 @@ input, textarea{
 /*日历样式*/
 .calendar{
 	/*background-image:url(images/bg.jpg);*/
-	margin-left:opx;
+	margin-left:0px;
 }
 .calendar td{
-	font-size:12px;
+	font-size:10px;
 	text-align:center;
-	padding:1px 6px;
+	padding:1px 3px;
 }
 .calendar a:visited{
 	color:#FF3300;
@@ -508,7 +507,7 @@ input, textarea{
 .calendartop{
 	text-align:center;
 	font-size:14px;
-	margin-left:41px;
+	margin-left:15px;
 	}
 #twitter li 
 {
