@@ -100,7 +100,7 @@ if($action=='update_admin')
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0){
 		$sql=" UPDATE {$db_prefix}user SET password='".md5($newpass)."' ";
 		$DB->query($sql);
-		formMsg('密码已修改!请重新登录','javascript:history.go(-1);',1);
+		formMsg('密码已修改!请重新登录','./index.php',1);
 	}
 	//修改密码及用户
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0){
@@ -108,13 +108,13 @@ if($action=='update_admin')
 			username='".$user."',
 			password='".md5($newpass)."' ";
 		$DB->query($sql);
-		formMsg('密码和用户名已修改!请重新登录','javascript:history.go(-1);',1);
+		formMsg('密码和用户名已修改!请重新登录','./index.php',1);
 	}
 	//只修改用户
 	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass){
 		$sql=" UPDATE {$db_prefix}user SET username='".$user."' ";
 		$DB->query($sql);
-		formMsg('用户名已修改!请重新登录','javascript:history.go(-1);',1);
+		formMsg('用户名已修改!请重新登录','./index.php',1);
 	}
 	//错误处理
 	if(!$ispass)
