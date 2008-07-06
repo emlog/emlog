@@ -12,6 +12,8 @@ require_once('./lib/C_cache.php');
 
 doStripslashes();
 
+define('__VERSION',			'2.7.0');//版本号
+
 if(!isset($_GET['action'])){
 ?>
 <html>
@@ -77,7 +79,7 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 2.7.0</span><span> 安装程序</span></p>
+<p><span class="title">emlog <?php echo __VERSION ?></span><span> 安装程序</span></p>
 </div>
 <div class="a">
 <p class="title2">1.权限设置</p>
