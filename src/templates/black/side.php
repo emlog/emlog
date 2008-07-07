@@ -22,7 +22,7 @@
 	<form method="get" id="searchform" action="index.php">
 	<input value="" type="text" name="keyword" class="s" />
 	<input name="action" type="hidden" value="search" />
-	<input type="submit" class="searchsubmit" value="search" onclick="return keyw()"/>
+	<input type="submit" class="sub" value="search" onclick="return keyw()"/>
 	</form>
 	</div>
 		<div class="sbarright">
@@ -65,6 +65,24 @@
 			<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
 			<?php endforeach; ?>
 		</ul>
+		<?php if(ISLOGIN==false): 
+				$login_code=='y'?
+				$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\"><br //>":
+				$ckcode = '';
+		?>
+		<ul>
+			<h2 onclick="showhidediv('loginfm','user')" style="cursor:pointer;">登录</h2>
+			<li id="loginfm" style="display:none">
+			<form name="f" method="post" action="index.php?action=login">
+			用户:<input name="user" id="user" type="text" class="input" style="width:80px;"/><br/>
+			密码:<input name="pw" type="password"  class="input" style="width:80px;"/><br />
+			<?php echo $ckcode; ?> 
+			<input type="submit" style="margin-left:30px;" class="sub" value="登录">
+			<input type="button" class="sub" onclick="showhidediv('loginfm','user')" value="取消">
+			</form>
+			</li>
+		</ul>
+		<?php endif; ?>
 		</div>
 		<div class="sbarleft">
 		<ul>

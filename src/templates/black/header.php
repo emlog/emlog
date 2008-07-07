@@ -8,8 +8,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<title><?php echo $blogtitle;?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Content-Language" content="zh-CN" />
-	<meta name="description" content="$sitekey" />
-	<meta name="keywords" content="emlog,blog,$sitekey" />
+	<meta name="description" content="<?php echo $sitekey; ?>" />
+	<meta name="keywords" content="emlog,blog,<?php echo $sitekey; ?>" />
 	<meta name="copyright" content="emlog" />
 	<meta name="author" content="emlog" />
 
