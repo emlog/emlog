@@ -38,6 +38,8 @@ border: 0px;
 float:left;
 width:404px;
 padding-bottom:30px;
+	table-layout: fixed;
+word-wrap : break-all ;
 }
 #sbarheader {
 background:url('images/headerbkg.png') no-repeat;
@@ -90,23 +92,7 @@ padding-left:5px;
 list-style-type: none;
 padding: 0;
 }
-#sidebar .sbarright ul li ul {
-    list-style-type: square;
-    margin: 0;
-    padding: 0;
-    }
-#sidebar .sbarright ul li ul li {
-list-style-type:none;
-padding-left:10px;
-margin:0;
-       }
-#sidebar .sbarright ul li ul li a {
-       color:#ffffff;
-}
-#sidebar .sbarright ul li ul li a:hover {
-       color:#ffffff;
-       text-decoration:underline;
-}
+
 #sidebar .sbarright h2 {
 font-size:13px;
 color:#ffffff;
@@ -115,7 +101,7 @@ background:url('images/h2bkg.gif') no-repeat;
 height:31px;
 width:124px;
 text-align:center;
-padding-top:6px;
+padding-top:7px;
 margin-top:10px
 }
 #sidebar .sbarleft ul {
@@ -127,11 +113,12 @@ padding:0;
 #sidebar .sbarleft ul li {
 list-style-type: none;
 padding-left: 10px;
+word-wrap: break-word;
 }
 #sidebar .sbarleft ul ul li {
 text-align:left;
 list-style-type: none;
-padding-left: 90px;
+padding:0 40px;
 }
 #sidebar .sbarleft h2 {
 font-size:13px;
@@ -354,11 +341,10 @@ color:#ffffff;
 }
 /*底部版权*/
 #siteCopyright{
-text-align:right;
+text-align:center;
 background:#232323;
 height:30px;
 padding-top:15px;
-padding-right:80px;
 }
 /*输入框样式*/
 .input{
