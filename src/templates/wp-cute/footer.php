@@ -70,7 +70,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php foreach($tag_cache as $key=>$value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
-<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
+
 		</ul>
   <LI id=linkcat-1>
   <H2 onClick="showhidediv('record')">Archives</H2>

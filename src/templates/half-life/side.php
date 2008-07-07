@@ -21,7 +21,7 @@ foreach($tag_cache as $value){
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php
 }?>
-		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
+		
 		</li>
 		</ul>
 </li>

@@ -36,7 +36,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
-		<a href="./index.php?action=tag" title="更多标签" >&gt;&gt;</a>
+		
 		</li>
 		</ul>
 <?php if($index_twnum>0): ?>

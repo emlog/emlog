@@ -30,7 +30,6 @@ class mkcache {
 		'bloginfo'=>htmlspecialchars(stripslashes($show_config['bloginfo'])),
 		'index_lognum' =>$show_config['index_lognum'],
 		'index_twnum' =>$show_config['index_twnum'],
-		'index_tagnum' =>$show_config['index_tagnum'],
 		'index_comment_num' =>$show_config['index_comnum'],
 		'ischkcomment'=>$show_config['ischkcomment'],
 		'isurlrewrite'=>$show_config['isurlrewrite'],
@@ -129,9 +128,7 @@ class mkcache {
 	 */
 	function mc_tags($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_tagnum FROM ".$this->dbprefix."config"));
-		$index_tagnum = $show_config['index_tagnum'];
-		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag ORDER BY usenum DESC LIMIT 0, $index_tagnum ");
+		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag ORDER BY usenum DESC");
 		$tag_cache = array();
 		while($show_tag = $this->dbhd->fetch_array($query))
 		{

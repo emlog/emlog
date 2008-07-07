@@ -29,7 +29,6 @@ foreach($tag_cache as $value):
 ?>
 <span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>" style="color:#00ccff"><?php echo $value['tagname']; ?></a></span>&nbsp;
 <?php endforeach; ?>
-<a href="./index.php?action=tag" title="更多标签"  style="color:#00ccff">&gt;&gt;</a>
 </li></ul>
 <?php if($index_twnum>0): ?>
 <div class="lister"><span onclick="showhidediv('twitter')">Twitter</span></div>

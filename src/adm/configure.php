@@ -77,7 +77,6 @@ if ($action== "mod_config"){
 	$icp      = isset($_POST['icp']) ? addslashes($_POST['icp']):'';
 	$index_lognum = isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '';
 	$index_comnum = isset($_POST['index_comment_num']) ? intval($_POST['index_comment_num']) : '';
-	$index_tagnum = isset($_POST['index_tagnum']) ? intval($_POST['index_tagnum']) : '';
 	$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : '';
 	$timezone     = isset($_POST['timezone']) ? floatval($_POST['timezone']):'';
 	$login_code   = $_POST['login_code']   == 'y' ? 'y' : 'n';
@@ -107,7 +106,6 @@ if ($action== "mod_config"){
 				bloginfo='$bloginfo',icp='$icp',
 				index_lognum = $index_lognum,
 				index_comnum = $index_comnum,
-				index_tagnum = $index_tagnum,
 				index_twnum = $index_twnum,
 				timezone = $timezone,
 				login_code ='$login_code',
