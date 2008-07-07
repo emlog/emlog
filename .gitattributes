@@ -259,6 +259,7 @@ src/templates/black/images/rss.gif -text
 src/templates/black/log_list.php -text
 src/templates/black/main.css -text
 src/templates/black/message.php -text
+src/templates/black/preview.jpg -text
 src/templates/black/search.php -text
 src/templates/black/side.php -text
 src/templates/black/tag.php -text
