@@ -244,6 +244,25 @@ src/templates/be-evil/search.php -text svn_keywords=Id
 src/templates/be-evil/side.php -text svn_keywords=Id
 src/templates/be-evil/tag.php -text svn_keywords=Id
 src/templates/be-evil/tag_log.php -text svn_keywords=Id
+src/templates/black/echo_log.php -text
+src/templates/black/footer.php -text
+src/templates/black/header.php -text
+src/templates/black/images/bkg.png -text
+src/templates/black/images/dtmbkg.gif -text
+src/templates/black/images/h2bkg.gif -text
+src/templates/black/images/h2bkg2.gif -text
+src/templates/black/images/headerbkg.png -text
+src/templates/black/images/modify.gif -text
+src/templates/black/images/nav.gif -text
+src/templates/black/images/preview.jpg -text
+src/templates/black/images/rss.gif -text
+src/templates/black/log_list.php -text
+src/templates/black/main.css -text
+src/templates/black/message.php -text
+src/templates/black/search.php -text
+src/templates/black/side.php -text
+src/templates/black/tag.php -text
+src/templates/black/tag_log.php -text
 src/templates/default/echo_log.php -text svn_keywords=Id
 src/templates/default/footer.php -text svn_keywords=Id
 src/templates/default/header.php -text svn_keywords=Id

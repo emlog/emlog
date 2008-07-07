@@ -1,0 +1,378 @@
+*{
+	scrollbar-face-color:#3F3F3F;
+	scrollbar-track-color: #3F3F3F
+}
+body {
+	margin:0;
+	padding-top:0px;
+	background: #202020 url('images/bkg.png') repeat-y;
+	color:#b2a794; 
+	font-size:13px;
+	background-repeat:repeat-y
+	}
+a {
+	color:#eeeeee;
+	text-decoration:none
+	}
+a:hover {
+	color:#ffffff;
+	text-decoration:none
+}
+/* The main container */
+#container {
+}
+#searchform {
+padding-top:30px;
+}
+#mainwrapper {
+width: 1000px;
+}
+img a, a img {
+border: 0px;
+}
+/* Sidebar */
+#sidebar {
+float:left;
+width:404px;
+padding-bottom:30px;
+}
+#sbarheader {
+background:url('images/headerbkg.png') no-repeat;
+width:404px;
+height:350px;
+margin-left:5px
+}
+#sbarheader .ti {
+text-align:center;
+padding-top:30px;
+}
+#sbarheader .des {
+text-align:center;
+font-size:10px;
+font-weight:normal;
+color:#ffffff;
+}
+#sbarheader .rsssubscribe {
+text-align:center;
+margin-top:50px;
+}
+#sbarheader .rsssubscribe a {
+font-size:15px;
+font-weight:bold;
+font-style:italic;
+color: #ffffff;
+}
+#sbarsearch {
+background:#8D9399;
+width:404px;
+height:75px;
+margin-left:5px;
+text-align:center;
+}
+#sbarsearch .s {
+border:1px solid #444444;
+margin-right:2px;
+}
+#sbarsearch .searchsubmit {
+border:1px solid #444444;
+background: #3F3F3F;
+color:#ffffff;
+}
+#sidebar .sbarright {
+float:right;
+width:152px;
+}
+#sidebar .sbarleft {
+width:250px;
+float:left;
+}
+#sidebar .sbarright ul {
+list-style-type: none;
+margin: 0 ;
+padding-left:5px;
+}
+#sidebar .sbarright ul li {
+list-style-type: none;
+padding: 0;
+}
+#sidebar .sbarright ul li ul {
+    list-style-type: square;
+    margin: 0;
+    padding: 0;
+    }
+#sidebar .sbarright ul li ul li {
+list-style-type:none;
+padding-left:10px;
+margin:0;
+       }
+#sidebar .sbarright ul li ul li a {
+       color:#ffffff;
+}
+#sidebar .sbarright ul li ul li a:hover {
+       color:#ffffff;
+       text-decoration:underline;
+}
+#sidebar .sbarright h2 {
+font-size:13px;
+color:#ffffff;
+font-weight:bold;
+background:url('images/h2bkg.gif') no-repeat;
+height:31px;
+width:124px;
+text-align:center;
+padding-top:6px;
+margin-top:10px
+}
+#sidebar .sbarleft ul {
+text-align:center;
+list-style-type: none;
+margin: 0 ;
+padding:0;
+}
+#sidebar .sbarleft ul li {
+list-style-type: none;
+padding-left: 10px;
+}
+#sidebar .sbarleft ul ul li {
+text-align:left;
+list-style-type: none;
+padding-left: 90px;
+}
+#sidebar .sbarleft h2 {
+font-size:13px;
+color:#ffffff;
+font-weight:bold;
+background: url('images/h2bkg2.gif') no-repeat;
+width:245px;
+height:35px;
+text-align:center;
+padding-top:10px;
+margin-left:5px;
+
+}
+/*Main Navbar */
+#nav{
+font-weight: bold;
+font-size: 12px;
+margin-left:5px;
+width:404px;
+}
+#nav:after{ 
+content: "."; 
+display: block; 
+height: 0; 
+clear: both; 
+visibility: hidden;
+}
+#nav ul{
+text-indent: 10px;
+padding: 3px 0;
+margin: 0;
+background-color: #e0e0e0;
+border: 1px solid #bebebe;
+text-align: left; /*set value to "center" for example to center items*/
+}
+#nav ul li{
+display: inline;
+}
+#nav ul li a{
+color: #494949;
+padding-right: 25px;
+margin: 0;
+text-decoration: none;
+background: url('images/nav.gif') no-repeat top right; padding-left:0; padding-top:3px; padding-bottom:3px
+}
+#nav ul li a:visited{
+color: #494949;
+} 
+#nav ul li a:hover{
+color: black;
+}
+/*content*/
+#content {
+width:557px;
+margin-left:10px;
+margin-right:10px;
+margin-top:10px;
+margin-bottom:10px;
+height:100%;
+float:left;
+}
+.post {padding-left:10px;padding-top:10px;color:#ffffff;}
+.post .dtm {height:50px;width:550px;background:transparent url('images/dtmbkg.gif')  no-repeat;}
+.post .posttags {width:500px;padding-top:5px;margin-bottom:15px;margin-left:15px;margin-right:15px;}
+.post .posttags a {color:#ffffff; font-size:11px;}
+.post .dtmdate {
+float:left;
+width:60px;
+}
+.post .dtmtmc {
+width: 480px;
+float:right;
+padding:3px 3px 3px 3px;
+}
+.post .dtm .dtmdate .date {
+float:left;
+width:60px;
+height:40px;
+text-align:center;
+color:#ffffff;
+font-weight:bold;
+font-size:11px;
+padding-top:10px;
+}
+.post .dtm .dtmtmc .titlemeta {
+font-size:15px;
+padding-top:2px;
+height:40px;
+}
+
+.post .dtm .dtmtmc .titlemeta a {
+font-size:18px;
+font-weight:bold;
+color:#ffffff;
+line-height:1.1em;
+line-spacing:2px;
+}
+.post .dtm .dtmtmc .titlemeta .byline {
+font-size:12px;
+font-weight:normal;
+color:#eeeeee;
+}
+.post .dtm .dtmtmc .titlemeta .byline a {
+font-size:12px;
+font-weight:normal;
+color:#ffffff;
+}
+.post .dtm .dtmtmc .comments {
+width:100px;
+float:right;
+color:#ffffff;
+font-size:11px;
+margin-right:10px;
+}
+.post .posttags .comments {
+float:right;
+color:#333333;
+font-size:11px;
+background: #E5E5E5;
+text-align:center;
+}
+.post .posttags .comments a {
+color:#333333;
+font-size:11px;
+}
+.post .postcontent {
+width:510px;
+margin-left:10px;
+margin-bottom:10px;
+padding:10px 10px 10px 10px;
+color: #ffffff;
+}
+.post .postcontent a {
+color: #e0e0e0;
+}
+.post .pagecontent {
+width:510px;
+margin-left:10px;
+margin-bottom:10px;
+padding:10px 10px 10px 10px;
+color: #eeeeee;
+}
+.post .neighbor{
+float:right;
+color:#eeeeee;
+font-size:11px;
+padding-right:25px;
+}
+#tag {
+padding-top:30px;
+padding-left:30px;
+color:#b2a705;
+}
+#tag .t{
+font-size:16px;
+}
+#tag .s{
+font-size:14px;
+}
+#tb_list{
+color:#b2a794;
+padding-left:20px;
+}
+#comm{
+color:#b2a794;
+padding-left:20px
+}
+#comm .sub{
+padding-top:3px;
+border:1px solid #444444;
+background: #3F3F3F;
+color:#ffffff;
+}
+#comm .commin{
+border:1px solid #444444;
+background: #3F3F3F;
+color:#ffffff;
+}
+/*日历样式*/
+.calendar { 
+	margin-left:5px!important;
+	margin-left:0;
+	font-size:14px;
+	}
+
+.calendar td {
+	font-size: 12px;
+	text-align: center;
+	padding: 1px 7px!important;
+	padding:2px 5px;
+}
+
+.day {
+    border:#eeeeee 1px solid;
+}
+
+.day2 {
+	font-weight: bold;
+}
+
+.sun {
+	color: #b2a705;
+	font-weight: bold;
+}
+
+.week {
+	color: #b2a705;
+}
+
+.calendartop {
+	padding-left:5px!important;
+	padding-left:20px;
+	font-size: 14px;
+}
+/*页码样式*/
+#pageurl {
+	text-align: center;
+	font-size: 14px;
+}
+/*底部版权*/
+#siteCopyright{
+margin-bottom:0;
+text-align:right;
+background:#232323;
+height:30px;
+padding-top:15px;
+padding-right:20px;
+}
+/*输入框样式*/
+.input{
+border:1px solid #444444;
+}
+/*返回信息及跳转页面样式*/
+.remsg {
+	font-family: Arial;
+	text-align: center;
+	margin: 200px;
+
+}
