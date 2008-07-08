@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" />
+	<script src="common/fck_dialog_common.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var FCKLang	= oEditor.FCKLang ;
+
+// Function called when a dialog tag is selected.
+function OnDialogTabChange( tabCode )
+{
+	//ShowE('divAbout', ( tabCode == 'About' ) ) ;
+}
+
+function SendEMail()
+{
+	var eMail = 'mailto:' ;
+	eMail += 'fredck' ;
+	eMail += '@' ;
+	eMail += 'fckeditor' ;
+	eMail += '.' ;
+	eMail += 'net' ;
+
+	window.location = eMail ;
+}
+
+function SendEMail2()
+{
+	var eMail = 'mailto:' ;
+	eMail += '4ngel08' ;
+	eMail += '@' ;
+	eMail += 'gmail' ;
+	eMail += '.' ;
+	eMail += 'com' ;
+
+	window.location = eMail ;
+}
+
+window.onload = function()
+{
+	// Translate the dialog box texts.
+	oEditor.FCKLanguageManager.TranslatePage(document) ;
+
+	window.parent.SetAutoSize( true ) ;
+}
+
+	</script>
+</head>
+<body style="overflow: hidden">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" style="height: 100%">
+		<tr>
+			<td colspan="2">
+				<img alt="" src="fck_about/logo_fckeditor.gif" width="236" height="41" align="left" />
+				<table width="80" border="0" cellspacing="0" cellpadding="5" bgcolor="#ffffff" align="right">
+					<tr>
+						<td align="center" nowrap="nowrap" style="border-right: #000000 1px solid; border-top: #000000 1px solid;
+							border-left: #000000 1px solid; border-bottom: #000000 1px solid">
+							<span fcklang="DlgAboutVersion">version</span>
+							<br />
+							<b>2.6</b><br />
+							Build 18638</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr style="height: 100%">
+			<td align="center" valign="middle" colspan="2">
+				<span style="font-size: 14px" dir="ltr">
+					<b><a href="http://www.fckeditor.net/?about" target="_blank" title="Visit the FCKeditor web site">
+						Support <b>Open Source</b> Software</a></b> </span>
+				<div style="padding-top:15px">
+					<img alt="" src="fck_about/logo_fredck.gif" width="87" height="36" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" nowrap="nowrap">
+				<span fcklang="DlgAboutInfo">For further information go to</span> <a href="http://www.fckeditor.net/?About"
+					target="_blank">http://www.fckeditor.net/</a><br />
+				Copyright &copy; 2003-2008 <a href="#" onClick="SendEMail();">Frederico Caldeira Knabben</a>
+		  </td>
+		</tr>
+	</table>
+</body>
+</html>
