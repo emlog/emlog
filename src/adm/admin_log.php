@@ -80,7 +80,11 @@ if($action == ''){
 		);
 	}
 	
-	$pageurl =  pagination($num,15,$page,'admin_log.php?page');
+	$subPage = '';
+	foreach ($_GET as $key=>$val){
+		$subPage .= $key != 'page'?"&$key=$val":'';
+	}
+	$pageurl =  pagination($num,15,$page,"admin_log.php?{$subPage}&page");
 
 	require_once(getViews('admin_log'));
 	include getViews('footer');cleanPage();
