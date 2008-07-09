@@ -10,6 +10,24 @@ require_once('./globals.php');
 
 $pid = isset($_GET['pid'])?$_GET['pid']:'';
 
+$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC':'ASC';
+$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC':'ASC';
+$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC':'DESC';
+$sortTitle = (isset($_GET['sortTitle']) && $_GET['sortTitle'] == 'DESC') ?  'ASC':'DESC';
+
+$subSql = 'ORDER BY ';
+
+if(isset($_GET['sortView']))
+	$subSql .= "views $sortView";
+elseif(isset($_GET['sortComm']))
+	$subSql .= "comnum $sortComm";
+elseif(isset($_GET['sortDate']))
+	$subSql .= "date $sortDate";
+elseif(isset($_GET['sortTitle']))
+	$subSql .= "title $sortTitle";
+else 
+	$subSql .= 'top DESC,date DESC';
+
 if($action == ''){
 	include getViews('header');
 	$page = intval(isset($_GET['page'])?$_GET['page']:1);
@@ -23,18 +41,20 @@ if($action == ''){
 	if($pid == 'draft'){
 		$log_act = "<input type=\"radio\" value=\"show\" name=\"modall\" />发布";
 		$hide_stae = 'y';
+		$sorturl = '&pid=draft';
 		$pwd = '草稿箱';
 	}else{
 		$log_act = "<input type=\"radio\" value=\"top\" name=\"modall\" />推荐
         	 	 	<input type=\"radio\" value=\"notop\" name=\"modall\" /> 取消推荐
 				 	<input type=\"radio\" value=\"hide\" name=\"modall\" />转入草稿箱";
 		$hide_stae = 'n';
+		$sorturl = '';
 		$pwd = '日志管理';
 	}
 	$sql="select * from {$db_prefix}blog where hide='$hide_state'";
 	$query=$DB->query($sql);
 	$num=$DB->num_rows($query);
-	$logsql="SELECT gid,title,date,top,comnum FROM {$db_prefix}blog WHERE hide='$hide_state' ORDER BY top DESC ,date DESC LIMIT $start_limit, 15";
+	$logsql="SELECT gid,title,date,top,comnum,views FROM {$db_prefix}blog WHERE hide='$hide_state' $subSql LIMIT $start_limit, 15";
 	$logquery=$DB->query($logsql);
 	$logs = array();
 	while($dh=$DB->fetch_array($logquery))
@@ -53,6 +73,7 @@ if($action == ''){
 			'gid'=>$gid,
 			'date'=>$adddate,
 			'comnum'=>$dh['comnum'],
+			'views'=>$dh['views'],
 			'istop'=>$istop,
 			'attach'=>$attach,
 			'rowbg'=>$rowbg

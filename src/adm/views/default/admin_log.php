@@ -14,18 +14,20 @@ function CheckAll(form) {
     <tbody>
       <tr class="rowstop">
         <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="517"><b>标题</b></td>
-        <td width="146"><b>时间</b></td>
-		    <td width="113"><b>评论</b></td>
+        <td width="517"><b><a href="./admin_log.php?sortTitle=<?php echo $sortTitle.$sorturl; ?>">标题</a></b></td>
+        <td width="146"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
+		<td width="51"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
+		<td width="51"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
         <td width="105"></td>
       </tr>
 <?php foreach($logs as $key=>$value): ?>
       <tr class="<?php echo $value['rowbg']; ?>">
-        <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
-        <td width="517"><a href="admin_log.php?action=mod&amp;gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
-        <td><?php echo $value['date']; ?></td>
-		<td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td><a href="javascript: isdel(<?php echo $value['gid']; ?>, 3);">删除</a></td>
+      <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
+      <td width="517"><a href="admin_log.php?action=mod&amp;gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
+      <td><?php echo $value['date']; ?></td>
+	  <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+	  <td><?php echo $value['views']; ?></a></td>
+      <td><a href="javascript: isdel(<?php echo $value['gid']; ?>, 3);">删除</a></td>
       </tr>
 <?php endforeach; ?>
     <tbody>
