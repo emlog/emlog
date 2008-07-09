@@ -20,14 +20,14 @@ if (!is_dir($em_tpldir))
 }
 //calendar url
 $calendar_url = isset($_GET['date'])?"calendar.php?smp=$localdate&date=".$_GET['date']:"calendar.php?smp=$localdate";
-$job = array('showlog','tag','search','addcom','taglog','');
+$job = array('showlog','search','addcom','taglog','');
 if(!in_array($action,$job))
 {
 	msg('error!','./index.php');
 }
-
 $blogtitle = $blogname;
-#################日志列表(display log list)##############
+
+//日志列表
 if (!isset($action) || empty($action))
 {
 	include getViews('header');
@@ -81,10 +81,10 @@ if (!isset($action) || empty($action))
 	}
 	//分页
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
-	
 	include getViews('log_list');
 }
-#################显示日志(Display Logs)#################
+
+//显示日志
 if ($action == 'showlog')
 {
 	//参数过滤
@@ -105,7 +105,6 @@ if ($action == 'showlog')
 	//邻近日志
 	$nextLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid < $logid AND hide='n' ORDER BY gid DESC  LIMIT 1");
 	$previousLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid > $logid AND hide='n' LIMIT 1");
-	
 	//标签
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	//附件
@@ -155,7 +154,8 @@ if ($action == 'showlog')
 	include getViews('header');
 	require_once getViews('echo_log');
 }
-#################搜索(search logs)#################
+
+//搜索日志
 if($action == 'search')
 {
 	//参数过滤
@@ -205,32 +205,8 @@ if($action == 'search')
 	include getViews('header');
 	require_once getViews('search');
 }
-#################全部标签(all tags list)#################
-if($action == 'tag')
-{
-	$tags = array();
-	$tagmsg = '';
-	$query = $DB->query("SELECT tagname,usenum FROM {$db_prefix}tag;");
-	if($DB->num_rows($query) != 0)
-	{
-		while($s_tag = $DB->fetch_array($query))
-		{
-			$size = 14 + round($s_tag['usenum'] / 3);
-			$size > 40 ? $fontsize = 40 : $fontsize = $size;
-			$tag = $s_tag['tagname'];
-			$tagurl = urlencode($s_tag['tagname']);
-			$tags[] = array('fontsize'=>$fontsize,'tag'=>$tag,'tagurl'=>$tagurl);
-		}
-		unset($s_tag);
-	}
-	else
-	{
-		$tagmsg = '暂时没有任何标签(tag)';
-	}
-	include getViews('header');
-	require_once getViews('tag');
-}
-#################查询标签对应日志#################
+
+//查询标签对应日志
 if($action == 'taglog')
 {
 	//参数过滤
@@ -252,7 +228,8 @@ if($action == 'taglog')
 	include getViews('header');
 	require_once getViews('tag_log');
 }
-#################添加评论(add comments)#################
+
+//添加评论
 if($action == 'addcom')
 {
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';

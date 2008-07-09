@@ -305,7 +305,7 @@ function chImageSize ($img,$max_w,$max_h)
 */
 function breakLog($content,$lid)
 {
-	$a = explode("<div style=\"page-break-after: always;\"><span style=\"display: none;\">&nbsp;</span></div>",$content,2);
+	$a = explode("[break]",$content,2);
 	if(!empty($a[1]))
 		$a[0].='<p><a href="./?action=showlog&gid='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
