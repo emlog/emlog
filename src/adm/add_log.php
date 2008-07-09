@@ -57,7 +57,7 @@ if($action== 'addlog')
 	$tbmsg = '';	 //define trackback msg
 	if(!$title)
 	{
-		formMsg('标题不能为空！','./add_log.php',0);
+		formMsg('标题不能为空！','javascript:history.go(-1);',0);
 	}
 	//时间处理
 	if($timezone!=8)
