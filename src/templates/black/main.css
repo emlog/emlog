@@ -38,7 +38,7 @@ border: 0px;
 float:left;
 width:404px;
 padding-bottom:30px;
-	table-layout: fixed;
+table-layout: fixed;
 word-wrap : break-all ;
 }
 #sbarheader {
@@ -113,7 +113,6 @@ padding:0;
 #sidebar .sbarleft ul li {
 list-style-type: none;
 padding-left: 10px;
-word-wrap: break-word;
 }
 #sidebar .sbarleft ul ul li {
 text-align:left;
@@ -130,7 +129,6 @@ height:35px;
 text-align:center;
 padding-top:10px;
 margin-left:5px;
-
 }
 
 /*Main Navbar */

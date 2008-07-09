@@ -11,6 +11,7 @@
 	<div id="nav">
 		<ul>
 			<li><a href="./">首页</a></li>
+			<li><a href="http://www.emlog.net" target="_blank">emlog</a></li>
 			<?php if(ISLOGIN): ?>
 			<li><a href="./adm/add_log.php">写日志</a></li>
 			<li><a href="./adm/">管理中心</a></li>
@@ -87,6 +88,7 @@
 			</li>
 		</ul>
 		<?php endif; ?>
+		<?php echo $exarea; ?>
 		</div>
 		<div class="sbarleft">
 		<ul>
