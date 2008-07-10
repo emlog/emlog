@@ -12,6 +12,7 @@ if($action == '')
 {
 	include getViews('header');
 	$rs=$DB->query("SELECT * FROM {$db_prefix}link ORDER BY taxis ASC");
+	$links = array();
 	while($rows=$DB->fetch_array($rs))
 	{
 		$rows['sitename'] = htmlspecialchars($rows['sitename']);

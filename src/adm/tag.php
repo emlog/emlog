@@ -8,10 +8,11 @@
 
 require_once('./globals.php');
 
-if($action == ''){
-
+if($action == '')
+{
 	include getViews('header');
-
+	
+	$tags = array();
 	$result =$DB->query("SELECT tagname,tid FROM {$db_prefix}tag ");
 	while($rows=$DB->fetch_array($result)){
 		$rows['tagname'] = htmlspecialchars($rows['tagname']);
