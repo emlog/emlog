@@ -19,7 +19,7 @@ if (!is_dir($em_tpldir))
 	exit('Template Error: no template directory!');
 }
 //calendar url
-$calendar_url = isset($_GET['date'])?"calendar.php?smp=$localdate&date=".$_GET['date']:"calendar.php?smp=$localdate";
+$calendar_url = isset($_GET['date'])?"calendar.php?date=".$_GET['date']:"calendar.php?";
 $job = array('showlog','search','addcom','taglog','');
 if(!in_array($action,$job))
 {
@@ -121,7 +121,7 @@ if ($action == 'showlog')
 	while($s_com = $DB->fetch_array($query))
 	{
 		$content = htmlClean($s_com['comment']);
-		$reply = htmlClean($s_com['reply']);
+		$reply = $s_com['reply'];
 		$addtime = date('Y-m-d H:i',$s_com['date']);
 		$cname   =  htmlspecialchars($s_com['poster']);	
 		$s_com['mail'] = htmlspecialchars($s_com['mail']);

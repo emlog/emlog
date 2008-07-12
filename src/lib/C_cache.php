@@ -42,7 +42,7 @@ class mkcache {
 		'blogurl'=>htmlspecialchars($show_config['blogurl']),
 		'icp'=>htmlspecialchars($show_config['icp']),
 		'timezone'=>$show_config['timezone'],
-		'exarea'=>addslashes($show_config['exarea']),
+		'exarea'=>$show_config['exarea'],
 		'edition'=>__VERSION
 		);
 		$cacheData = serialize($config_cache);
@@ -67,7 +67,7 @@ class mkcache {
 		'photo' => $icon,
 		'name' =>htmlspecialchars($blogger['nickname']),
 		'mail'	=>htmlspecialchars($blogger['email']),
-		'des'=>htmlspecialchars($blogger['description'])
+		'des'=>$blogger['description']
 		);
 		$cacheData = serialize($user_cache);
 		$this->cacheWrite($cacheData,$cf);
@@ -108,14 +108,15 @@ class mkcache {
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
 		$index_comment_num = $show_config['index_comnum'];
 		$comment_subnum = $show_config['comment_subnum'];
-		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster FROM ".$this->dbprefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
+		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster,reply FROM ".$this->dbprefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
 		$com_cache = array();
 		while($show_com=$this->dbhd->fetch_array($query))
 		{
 			$com_cache[] = array(
 			'url' => "index.php?action=showlog&gid={$show_com['gid']}#{$show_com['cid']}",
 			'name' => htmlspecialchars($show_com['poster']),
-			'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum))
+			'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum)),
+			'reply' => $show_com['reply']
 			);
 		}
 		$cacheData = serialize($com_cache);

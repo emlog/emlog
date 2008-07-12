@@ -47,19 +47,19 @@ if($m<1)
 	$m='12';
 	$year_down = $n_year-1;
 }
-$url = "./calendar.php?smp=$localdate&date=".($n_year-1).$n_month;//上一年份
-$url2 = "./calendar.php?smp=$localdate&date=".($n_year+1).$n_month;//下一年份
-$url3 = 	"./calendar.php?smp=$localdate&date=".$year_down.$m;//上一月份
-$url4 = "./calendar.php?smp=$localdate&date=".$year_up.$mj;//下一月份
+$url = "./calendar.php?date=".($n_year-1).$n_month;//上一年份
+$url2 = "./calendar.php?date=".($n_year+1).$n_month;//下一年份
+$url3 = "./calendar.php?date=".$year_down.$m;//上一月份
+$url4 = "./calendar.php?date=".$year_up.$mj;//下一月份
 
 $calendar =
 "<table class=\"calendartop\">
 <tr>
 <td>
-<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\">&nbsp;&laquo;&nbsp;</a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\">&nbsp;&raquo;&nbsp;</a>
+<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a>
 </td>
 <td>
-<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\">&nbsp;&laquo;&nbsp;</a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\">&nbsp;&raquo;&nbsp;</a>
+<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a>
 </td>
 </tr>
 </table>

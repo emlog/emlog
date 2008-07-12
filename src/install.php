@@ -343,7 +343,7 @@ CREATE TABLE {$db_prefix}user (
   nickname varchar(20) NOT NULL default '',
   photo varchar(255) NOT NULL default '',
   email varchar(60) NOT NULL default '',
-  description varchar(255) NOT NULL default '',
+  description text NOT NULL,
 PRIMARY KEY  (uid)
 )".$add."
 INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".md5($adminpw)."', '','welcome to emlog!'); ";
