@@ -48,21 +48,30 @@ include getViews('side');
 <div id="com_list">
 <?php
 foreach($com as $key=>$value):
-$value['reply'] = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
+$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
-<li>
+<div id="com_line">
 	<a name="<?php echo $value['cid']; ?>"></a>
-	<strong><?php echo $value['poster']; ?> </strong>
+	<b><?php echo $value['poster']; ?> </b>
 	<?php if($value['mail']):?>
 		<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
 	<?php endif;?>
 	<?php if($value['url']):?>
 		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 	<?php endif;?>
-	<?php echo $value['addtime']; ?>
-	<br /><?php echo $value['content']; ?>
-	<br /><?php echo $value['reply']; ?>
-</li>
+		<?php echo $value['addtime']; ?>
+		<br /><?php echo $value['content']; ?>
+		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+	<?php if(ISLOGIN === true): ?>	
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
+		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
+		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
+		<br />
+		<a href="javascript:void(0);" onclick="postinfo('./adm/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
+		</div>
+	<?php endif; ?>
+</div>
 <?php endforeach; ?>
 </div>
 

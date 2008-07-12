@@ -146,13 +146,12 @@ div.contentA {
 .contentA ul {
 	padding: 0px;
 }
-
-#contentA #comment {
-	font-size: 11px;
+#comment {
+	font-size: 12px;
 	text-align: left;
 	table-layout: fixed;
 	word-wrap: break-word;
-	border-bottom: #BBBBBB dashed 2px;
+	border-bottom: dotted #999999 1px;
 }
 
 .expanded {
@@ -247,13 +246,13 @@ div.contentA {
 	margin-bottom: 10px;
 }
 
-#com_list li {
+#com_line  {
 	margin: 5px 10px 10px 10px;
 	border-bottom: 1px dotted #63617b;
 }
 
 #com_list span {
-	color: #4A7FF8;
+	color:#D56674;
 }
 
 #tb_list li {

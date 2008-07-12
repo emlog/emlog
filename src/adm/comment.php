@@ -12,7 +12,7 @@ require_once('./globals.php');
 if($action == '')
 {
 	$blogid = isset($_GET['gid'])?$_GET['gid']:null;
-	
+
 	if($blogid){
 		$andQuery = "where gid=$blogid";//查询指定日志评论
 		$addUrl = "gid={$blogid}&";
@@ -20,7 +20,7 @@ if($action == '')
 		$andQuery = '';
 		$addUrl = '';
 	}
-	
+
 	$page = intval(isset($_GET['page'])?$_GET['page']:1);
 	if (!empty($page)){
 		$start_limit = ($page - 1) *15;
@@ -41,9 +41,9 @@ if($action == '')
 		$dh['reply'] = trim($dh['reply']);
 		$comment[] = $dh;
 	}
-	
+
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
-	
+
 	include getViews('header');
 	require_once(getViews('comment'));
 	include getViews('footer');
@@ -51,7 +51,7 @@ if($action == '')
 }
 
 ###################批量操作评论###############
-if($action== 'admin_all_coms') 
+if($action== 'admin_all_coms')
 {
 	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
 	if($dowhat == '')
@@ -144,9 +144,9 @@ if($action=='show_comment')
 if ($action== 'reply_comment')
 {
 	include getViews('header');
-	
+
 	$cid = isset($_GET['cid'])?intval($_GET['cid']):'';
-	
+
 	$sql = "select * from {$db_prefix}comment where cid=$cid ";
 	$result = $DB->query($sql);
 	$comarr = $DB->fetch_array($result);
@@ -160,11 +160,24 @@ if ($action== 'reply_comment')
 }
 if($action=='doreply')
 {
+	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
 	$reply = isset($_POST['reply'])?addslashes($_POST['reply']):'';
-	$cid = isset($_POST['cid'])?intval($_POST['cid']):'';
-	
-	$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
-	$DB->query($sql);
-	formMsg("评论回复成功","./comment.php",1);
+	$cid = isset($_REQUEST['cid'])?intval($_REQUEST['cid']):'';
+
+	if(!$flg)
+	{
+		$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
+		$DB->query($sql);
+		$MC->mc_comment('../cache/comments');
+		formMsg("评论回复成功","./comment.php",1);
+	}else
+	{
+		$reply = isset($_POST["reply$cid"])?addslashes($_POST["reply$cid"]):'';
+		$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
+		$DB->query($sql);
+		$MC->mc_comment('../cache/comments');
+		echo "<span><b>博主回复</b>：$reply</span>";
+	}
 }
+
 ?>
