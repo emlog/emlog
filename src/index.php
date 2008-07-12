@@ -19,7 +19,7 @@ if (!is_dir($em_tpldir))
 	exit('Template Error: no template directory!');
 }
 //calendar url
-$calendar_url = isset($_GET['date'])?"calendar.php?date=".$_GET['date']:"calendar.php?";
+$calendar_url = isset($_GET['record'])? "calendar.php?record=".$_GET['record']:"calendar.php?";
 $job = array('showlog','search','addcom','taglog','');
 if(!in_array($action,$job))
 {
@@ -32,39 +32,72 @@ if (!isset($action) || empty($action))
 {
 	include getViews('header');
 	//page link
-	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
-	if ($page)
-	{
-		$start_limit = ($page - 1) * $index_lognum;
-		$id = ($page-1) * $index_lognum;
-	}
-	else
-	{
-		$start_limit = 0;
-		$page = 1;
-		$id = 0;
-	}
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$start_limit = ($page - 1) * $index_lognum;
+	$pageurl= './index.php';
 	//是否为查询归档或日历对应日志
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
+	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
+	$sql = '';
 	if($record)
 	{
 		$add_query = "AND from_unixtime(date, '%Y%m%d') LIKE '%".$record."%'";
-		$sql    = "SELECT * FROM {$db_prefix}blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
+		$sql = "SELECT * FROM {$db_prefix}blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
 		$query = $DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n'  $add_query ");
 		$lognum = $DB->num_rows($query);
-		$pageurl= "./index.php?record=$record&page";
+		$pageurl .= "?record=$record&";
+	}
+	elseif ($tag)
+	{
+		$tagstring = @$DB->fetch_one_array("SELECT tagname,gid FROM {$db_prefix}tag WHERE tagname='$tag' ") OR msg('不存在该标签','javascript:history.back(-1);');
+		$gids  = substr(trim($tagstring['gid']),1,-1);
+		$tag   = $tagstring['tagname'];
+		$sql = "SELECT * FROM {$db_prefix}blog WHERE gid IN ($gids) AND hide='n'";
+		$query = $DB->query($sql);
+		$lognum = $DB->num_rows($query);
+		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
+		$pageurl .= "?tag=$tag&";
+	}
+	elseif ($keyword)
+	{
+		//参数过滤
+		$keyword = str_replace('%','\%',$keyword);
+		$keyword = str_replace('_','\_',$keyword);
+		if(strlen($keyword)>30 || strlen($keyword)<3)
+		{
+			msg('关键字长度不能小于3个字节!','./index.php');
+		}
+		//分割关键字
+		$keywords = explode(' ',$keyword);
+		for($i=0; $i<count($keywords); $i++)
+		{
+			$keyword=$keywords[$i];
+			if($i)
+			{
+				$keywords_string .= "OR title like '%".$keyword."%' ";
+			}
+			else
+			{
+				$keywords_string = "LIKE '%".$keyword."%' ";
+			}
+		}
+		$sql = "SELECT * FROM {$db_prefix}blog WHERE title $keywords_string AND hide='n'";
+		$query = $DB->query($sql);
+		$lognum = $DB->num_rows($query);
+		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
+		$pageurl .= "?keyword=$keyword&";
 	}
 	else
 	{
 		$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 		$lognum = $sta_cache['lognum'];
-		$pageurl= './index.php?page';
 	}
 	$query = $DB->query($sql);
 	$logs = array();
 	while($row = $DB->fetch_array($query))
 	{
-		$row['post_time'] = date('Y-n-j G:i l',$row['date']); 
+		$row['post_time'] = date('Y-n-j G:i l',$row['date']);
 		$row['log_title'] = htmlspecialchars(trim($row['title']));
 		$row['logid']	  = $row['gid'];
 		$row['log_description'] = breakLog($row['content'],$row['gid']);
@@ -80,6 +113,7 @@ if (!isset($action) || empty($action))
 		$logs[] = $row;
 	}
 	//分页
+	$pageurl .= "page";
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 	include getViews('log_list');
 }
@@ -89,13 +123,13 @@ if ($action == 'showlog')
 {
 	//参数过滤
 	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : msg('提交参数错误','./index.php');
-	$show_log = @$DB->fetch_one_array("SELECT * FROM {$db_prefix}blog WHERE gid='$logid' AND hide='n' ") 
-		OR msg('不存在该日志','./index.php');
+	$show_log = @$DB->fetch_one_array("SELECT * FROM {$db_prefix}blog WHERE gid='$logid' AND hide='n' ")
+	OR msg('不存在该日志','./index.php');
 	$DB->query("UPDATE {$db_prefix}blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 	$blogtitle  = htmlspecialchars($show_log['title']);
 	$log_title  = htmlspecialchars($show_log['title']);
 	$log_author = $user_cache['name'];
-	$post_time  = date('Y-n-j G:i l',$show_log['date']); 
+	$post_time  = date('Y-n-j G:i l',$show_log['date']);
 	$logid	    = intval($show_log['gid']);
 	$blogurl    = $blogurl;
 	$tbscode	= substr(md5(date('Ynd')),0,5);
@@ -115,7 +149,7 @@ if ($action == 'showlog')
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])): '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-	
+
 	$com = array();
 	$query = $DB->query("SELECT * FROM {$db_prefix}comment WHERE gid=$logid AND hide='n' ORDER BY cid ");
 	while($s_com = $DB->fetch_array($query))
@@ -123,21 +157,21 @@ if ($action == 'showlog')
 		$content = htmlClean($s_com['comment']);
 		$reply = $s_com['reply'];
 		$addtime = date('Y-m-d H:i',$s_com['date']);
-		$cname   =  htmlspecialchars($s_com['poster']);	
+		$cname   =  htmlspecialchars($s_com['poster']);
 		$s_com['mail'] = htmlspecialchars($s_com['mail']);
 		$s_com['url'] = htmlspecialchars($s_com['url']);
 		$com[]   = array(
-						'content'=>$content,
-						'reply'=>$reply,
-						'addtime'=>$addtime,
-						'cid'=>$s_com['cid'],
-						'poster'=>$cname,
-						'mail'=>$s_com['mail'],
-						'url'=>$s_com['url']
-						);
+		'content'=>$content,
+		'reply'=>$reply,
+		'addtime'=>$addtime,
+		'cid'=>$s_com['cid'],
+		'poster'=>$cname,
+		'mail'=>$s_com['mail'],
+		'url'=>$s_com['url']
+		);
 	}
 	unset($s_com);
-	//trackback	
+	//trackback
 	$tb = array();
 	$query =$DB->query("SELECT *FROM {$db_prefix}trackback WHERE gid=$logid ORDER BY tbid ");
 	while($s_tb = $DB->fetch_array($query))
@@ -155,80 +189,6 @@ if ($action == 'showlog')
 	require_once getViews('echo_log');
 }
 
-//搜索日志
-if($action == 'search')
-{
-	//参数过滤
-	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
-	$keyword = str_replace('%','\%',$keyword);
-	$keyword = str_replace('_','\_',$keyword);
-	
-	if(strlen($keyword)>30 || strlen($keyword)<3)
-	{
-		msg('关键字长度不能小于3个字节!','./index.php');
-	}
-	//分割关键字
-	$keywords = explode(' ',$keyword);
-	for($i=0; $i<count($keywords); $i++)
-	{
-			$keyword=$keywords[$i];
-			if($i)
-			{
-				$keywords_string .= "OR title like '%".$keyword."%' ";
-			}
-			else
-			{
-				$keywords_string = "LIKE '%".$keyword."%' ";
-			}
-	}
-	$query  = "SELECT * FROM {$db_prefix}blog WHERE title $keywords_string AND hide='n' ORDER BY date DESC";
-	$result = $DB->query($query);
-	$search_num = $DB->num_rows($result);
-	if($search_num > 0)
-	{
-		$search_info = '共检索到'.$search_num.'条记录';
-		while($s_search = $DB->fetch_array($result))
-		{
-			$s_search['title'] = $s_search['title'];
-			$s_search['gid']   = $s_search['gid'];
-			$s_search['date']  = date('Y-m-d',$s_search['date']);
-				
-			$slog[] = $s_search;
-		}
-	}
-	else
-	{
-		$search_info = '抱歉!你搜索的内容暂时不存在';
-		$slog = array();
-	}
-	unset($s_search);
-	include getViews('header');
-	require_once getViews('search');
-}
-
-//查询标签对应日志
-if($action == 'taglog')
-{
-	//参数过滤
-	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
-	$tagstring = @$DB->fetch_one_array("SELECT tagname,gid FROM {$db_prefix}tag WHERE tagname='$tag' ") OR msg('不存在该标签','javascript:history.back(-1);');
-	$gids  = substr(trim($tagstring['gid']),1,-1);
-	$tag   = $tagstring['tagname'];
-	$query = @$DB->query("SELECT title,gid,date FROM {$db_prefix}blog WHERE gid IN ($gids) AND hide='n' ORDER BY date DESC");
-	$taglogs = array();
-	while($s_tlog = $DB->fetch_array($query))
-	{
-		$s_tlog['title'] = htmlspecialchars($s_tlog['title']);
-		$s_tlog['gid']   = intval($s_tlog['gid']);
-		$s_tlog['date']  = date('Y-m-d',$s_tlog['date']);
-
-		$taglogs[] = $s_tlog;
-	}
-	unset($s_tlog);
-	include getViews('header');
-	require_once getViews('tag_log');
-}
-
 //添加评论
 if($action == 'addcom')
 {
@@ -239,7 +199,7 @@ if($action == 'addcom')
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode']:''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$remember = isset($_POST['remember'])?intval($_POST['remember']):'';
-	
+
 	if($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
 	{
 		$comurl = 'http://'.$comurl;
@@ -260,7 +220,7 @@ if($action == 'addcom')
 		msg('该日志不接受评论','javascript:history.back(-1);');
 	}
 	//is same comment?
-	$query = $DB->query("SELECT cid FROM {$db_prefix}comment 
+	$query = $DB->query("SELECT cid FROM {$db_prefix}comment
 									WHERE gid='".$gid."' 
 									AND poster='".$comname."' 
 									AND comment='".$comment."' ");
@@ -289,7 +249,7 @@ if($action == 'addcom')
 	{
 		msg('验证码错误!','javascript:history.back(-1);');
 	}
-	else 
+	else
 	{
 		$sql = "INSERT INTO {$db_prefix}comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','','$commail','$comurl','$ischkcomment')";
 		$ret = $DB->query($sql);

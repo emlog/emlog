@@ -264,7 +264,7 @@ class mkcache {
 			{
 				while($show_tag=$this->dbhd->fetch_array($result))
 				{
-					$tag .= "	<a href=\"./?action=taglog&tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
+					$tag .= "	<a href=\"./?tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
 				}
 			}else
 			{

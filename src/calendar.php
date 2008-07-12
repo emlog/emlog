@@ -21,13 +21,13 @@ $n_day=date("d",$localdate);
 $time=date("Ymd",$localdate);
 $year_month=date("Ym",$localdate);
 
-if(isset($_GET['date']))
+if(isset($_GET['record']))
 {
-	$n_year=substr(intval($_GET['date']),0,4);
-	$n_year2=substr(intval($_GET['date']),0,4);
-	$n_month=substr(intval($_GET['date']),-2);
-	$year_month=intval($_GET['date']);
-}
+	$n_year=substr(intval($_GET['record']),0,4);
+	$n_year2=substr(intval($_GET['record']),0,4);
+	$n_month=substr(intval($_GET['record']),4,2);
+	$year_month=substr(intval($_GET['record']),0,6);
+}	
 //年月跳转连接
 $m=$n_month-1;
 $mj=$n_month+1;
@@ -47,10 +47,10 @@ if($m<1)
 	$m='12';
 	$year_down = $n_year-1;
 }
-$url = "./calendar.php?date=".($n_year-1).$n_month;//上一年份
-$url2 = "./calendar.php?date=".($n_year+1).$n_month;//下一年份
-$url3 = "./calendar.php?date=".$year_down.$m;//上一月份
-$url4 = "./calendar.php?date=".$year_up.$mj;//下一月份
+$url = "./calendar.php?record=".($n_year-1).$n_month;//上一年份
+$url2 = "./calendar.php?record=".($n_year+1).$n_month;//下一年份
+$url3 = "./calendar.php?record=".$year_down.$m;//上一月份
+$url4 = "./calendar.php?record=".$year_up.$mj;//下一月份
 
 $calendar =
 "<table class=\"calendartop\">
@@ -104,10 +104,11 @@ for($i=1;$i<=6;$i++)
 			$r=$j-$week+1;
 			//如果该日有日志就显示url样式
 			$n_time=$n_year.$n_month."0".$r;
+			//有日志且为当天
 			if(@in_array($n_time,$logdate)&&$n_time==$time)
 				$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$r."</a></td>\n";
 			elseif(@in_array($n_time,$logdate))
-				$calendar.="<td class=\"day2\"><a href=\"index.php?date=$year_month&record=$n_time\">".$r."</a></td>\n";
+				$calendar.="<td class=\"day2\"><a href=\"index.php?record=$n_time\">".$r."</a></td>\n";
 			elseif($n_time==$time)
 				$calendar.="<td class=\"day\">".$r."</td>\n";
 			else
@@ -130,7 +131,7 @@ for($i=1;$i<=6;$i++)
 				if(@in_array($n_time,$logdate)&&$n_time==$time)
 					$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
 				elseif(@in_array($n_time,$logdate))
-					$calendar.="<td class=\"day2\"><a href=\"index.php?date=$year_month&record=$n_time\">".$t."</a></td>\n";
+					$calendar.="<td class=\"day2\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
 				elseif($n_time==$time)
 					$calendar.="<td class=\"day\">".$t."</td>\n";
 				else

@@ -27,7 +27,7 @@
 <ul id="blogtags">
 <li>
 <?php foreach($tag_cache as $value): ?>
-	<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
+	<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
 <?php endforeach; ?>
 </li>
 </ul>
@@ -82,10 +82,9 @@
 
 <div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
 <ul id="logserch">
- <li>
+<li>
 <form name="keyform" method="get" action="index.php"><p>
 <input name="keyword"  type="text" value="" style="width:130px;"/>
-<input name="action" type="hidden" value="search" />
 <input type="submit" value="搜索" onclick="return keyw()" />
 </form>
 </li>
