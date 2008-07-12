@@ -49,5 +49,3 @@ if($action ==''):
 <div class="clear"></div>
 
 <div id="page"><div class="wrap_center"><div class="wrap_float">
-<?php
-?>

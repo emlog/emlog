@@ -42,5 +42,4 @@ a:hover{
 </div>
 </body>
 </html>
-<?php
-?>
+

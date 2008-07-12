@@ -87,18 +87,17 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 	<li><h2 onclick="showhidediv('tag')">标签</h2>
 		<ul id="tag">
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php  endforeach; ?>
 		
 		</ul>
 	</li>
 
 	<li id="search">
-	<form method="get" id="searchform" action="index.php">
+<form method="get" id="searchform" action="index.php">
 <div>
-<input name="action" type="hidden" value="search" size="12" />
-	<input type="text" value="" name="keyword" id="s" size="15" />
-	<input type="submit" id="searchsubmit" value="Go" />
+<input type="text" value="" name="keyword" id="s" size="15" />
+<input type="submit" id="searchsubmit" value="Go" />
 </div>
 </form>
 	
@@ -142,10 +141,8 @@ if(ISLOGIN === false):
 </ul>
 <?php endif; ?>
 		
-		</ul>
-	</li>
-	<?php echo $exarea;?>
+</ul>
+</li>
+<?php echo $exarea;?>
 
 </div>
-<?php
-?>

@@ -22,7 +22,6 @@
 	<div id="sbarsearch">
 	<form method="get" id="searchform" action="index.php">
 	<input value="" type="text" name="keyword" class="s" />
-	<input name="action" type="hidden" value="search" />
 	<input type="submit" class="sub" value="search" onclick="return keyw()"/>
 	</form>
 	</div>
@@ -31,7 +30,7 @@
 			<h2>标签</h2>
 			<li>
 			<?php foreach($tag_cache as $value): ?>
-			<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
+			<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
 			<?php endforeach; ?>
 			</li>
 		</ul>

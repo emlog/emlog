@@ -1,7 +1,7 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-	$value['att_img'] = getAttachment($value['att_img'],200,120);
+	$value['att_img'] = getAttachment($value['att_img'],300,220);
 	$datetime = explode("-",$value['post_time']);
 	$year = $datetime['0'] . "/" .$datetime['1'];
 	$day = substr($datetime['2'],0,2);

@@ -26,5 +26,3 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 </div>
 
 <div id="content">
-<?php
-?>

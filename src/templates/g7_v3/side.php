@@ -34,7 +34,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<ul id="tag">
 		<li>
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 		
 		</li>
@@ -99,9 +99,8 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <li><h2 onclick="showhidediv('goo')">搜索</h2>
 		<ul id="goo">
 			<li>
-				<form name="keyform" method="get" action="index.php">
+	<form name="keyform" method="get" action="index.php">
     <input name="keyword"  type="text" id="s" value="" size="15" maxlength="30" />
-	<input name="action" type="hidden" value="search" size="12" />
     <input type="submit" value="Go" id="searchsubmit" onclick="return keyw()" />
    </form>
 			</li>
@@ -145,5 +144,3 @@ if(ISLOGIN === false):
 </div>
 <div id="tail"></div><div id="line_tail"></div>
 </div>
-<?php
-?>

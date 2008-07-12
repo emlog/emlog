@@ -22,5 +22,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <DIV class=description><?php echo $bloginfo;?></DIV></DIV></DIV>
 <HR>
 <DIV class=narrowcolumn id=content>
-<?php
-?>

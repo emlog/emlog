@@ -4,10 +4,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="sidebar">
 <div id="search">
 <form name="keyform" method="get" action="index.php">
-<div><input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onblur="this.value='输入搜索';this.style.color='#CCCCCC';" /><input name="action" type="hidden" value="search" size="12" />
+<div>
+<input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onblur="this.value='输入搜索';this.style.color='#CCCCCC';" />
 <input type="submit" id="go" value="" onclick="return keyw()"/>
 </div>
-</form></div>
+</form>
+</div>
 <ul>
 <li>
 		<ul style="text-align:center">
@@ -38,7 +40,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<ul id="tag">
 		<p>
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 		
 		</p>
@@ -134,5 +136,3 @@ if(ISLOGIN === false):
 <a href="./rss.php"><img src="<?php echo $tpl_dir;?>g7_v2/images/rss.gif" alt="订阅Rss"/></a>
 <?php echo $exarea;?>
 </div>
-<?php
-?>

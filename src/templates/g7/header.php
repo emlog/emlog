@@ -25,15 +25,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php echo $bloginfo;?>
 
 </div>
-    <div><form id="searchform" name="keyform" method="get" action="index.php">
-<div>    <input name="keyword"  type="text" id="s" value="" />
-	<input name="action" type="hidden" value="search" />
+<div>
+<form id="searchform" name="keyform" method="get" action="index.php">
+<div>
+<input name="keyword"  type="text" id="s" value="" />
 <input type="submit" id="searchsubmit" value="GO" />
 </div>
-</form></div>
-	</div>
+</form>
+</div>
+</div>
 </div>
 <div id="page">
 <div id="content">
-<?php
-?>

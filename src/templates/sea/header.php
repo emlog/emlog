@@ -32,5 +32,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 		<div class="widecolumn_bottom"><div class="widecolumn_top">
 		<div class="narrowcolumn">
-<?php
-?>

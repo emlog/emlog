@@ -31,8 +31,7 @@ $value['att_img'] = getAttachment($value['att_img'],200,120);
 <span class="mypost"><?php echo $page_url;?></span>
 </div>
 </div>
-<?php
-?>
+
 </div>
 <?php
 include getViews('side');

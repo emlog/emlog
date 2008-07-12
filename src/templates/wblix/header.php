@@ -30,7 +30,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <form name="keyform" method="get" action="index.php">
 <fieldset>
 <input name="keyword" value="" maxlength="30" id="s" />
-<input name="action" type="hidden" value="search" size="12" />
 <input type="submit" value="Go!" id="searchbutton" name="searchbutton" />
 </fieldset>
 </form>
@@ -47,5 +46,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </div>
 
 <hr class="low" />
-<?php
-?>

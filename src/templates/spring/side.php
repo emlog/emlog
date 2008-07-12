@@ -35,7 +35,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<ul id="tag">
 		<p>
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 		
 		</p>
@@ -84,9 +84,8 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <li><h4 onclick="showhidediv('ss')">搜索</h4>
 		<ul id="ss">
 			<p>
-<form name="keyform" method="get" action="index.php">
+	<form name="keyform" method="get" action="index.php">
     <input name="keyword" type="text" id="s" value="" style=" width:120px;" maxlength="30" />
-    <input name="action" type="hidden" value="search"/>
     <input type="submit" value="搜索" id="searchsubmit" onclick="return keyw()" />
    </form>
 	</p>
@@ -153,5 +152,3 @@ else:
 <?php echo $exarea;?>
 
 </div>
-<?php
-?>

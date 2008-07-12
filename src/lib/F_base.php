@@ -333,12 +333,14 @@ function getAttachment($attstr,$width,$height)
 	if(!empty($attstr)){
 		$att_array = explode("</a>",$attstr);
 		foreach($att_array as $value){
-			preg_match("/.+src=\\\"(.+)\\\" width=.+/i",$value,$imgpath);
-			$image = "./".$imgpath[1];
-			$size = chImageSize($image,$width,$height);
-			$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
-			$t = preg_replace("/width=\\\"[0-9]{3}\\\" height=\\\"[0-9]{3}\\\"/",$attsize,$value);
-			$re .=$t.'</a>';
+			if(preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath))
+			{
+				$image = "./".$imgpath[1];
+				$size = chImageSize($image,$width,$height);
+				$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
+				$t = preg_replace("/width=\"[0-9]{3}\" height=\"[0-9]{3}\"/",$attsize,$value);
+				$re .=$t.'</a>';
+			}
 		}
 		return $re;
 	}else{

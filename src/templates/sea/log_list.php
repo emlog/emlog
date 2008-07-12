@@ -23,8 +23,7 @@ $value['att_img'] = getAttachment($value['att_img'],200,120);
 
 <?php endforeach; ?>
 <div class="browse"><?php echo $page_url;?></div>
-<?php
-?>
+
 </div>
 <?php
 include getViews('side');

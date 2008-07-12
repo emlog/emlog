@@ -27,7 +27,7 @@
 <?php 
 foreach($tag_cache as $value):
 ?>
-<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?action=taglog&tag=<?php echo $value['tagurl']; ?>" style="color:#00ccff"><?php echo $value['tagname']; ?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?tag=<?php echo $value['tagurl']; ?>" style="color:#00ccff"><?php echo $value['tagname']; ?></a></span>&nbsp;
 <?php endforeach; ?>
 </li></ul>
 <?php if($index_twnum>0): ?>
@@ -74,7 +74,6 @@ if(isset($tw_cache) && is_array($tw_cache)):
   	<li>
 	<form name="keyform" method="get" action="index.php"><p>
     <input name="keyword"  type="text" value="" style="width:130px;background:#c2f5f9;color:#fbab9c"/>
-	<input name="action" type="hidden" value="search" />
     <input type="submit" value="搜索" style="background:#c2f5f9;color:#fbab9c" onclick="return keyw()" />
 	</form>
 		</li>

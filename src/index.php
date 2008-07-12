@@ -31,14 +31,19 @@ $blogtitle = $blogname;
 if (!isset($action) || empty($action))
 {
 	include getViews('header');
+
 	//page link
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$start_limit = ($page - 1) * $index_lognum;
 	$pageurl= './index.php';
-	//是否为查询归档或日历对应日志
+
+	//查询归档或日历对应日志
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
+	//查询标签对应日志
 	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
+	//搜索日志
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
+
 	$sql = '';
 	if($record)
 	{
@@ -46,7 +51,7 @@ if (!isset($action) || empty($action))
 		$sql = "SELECT * FROM {$db_prefix}blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
 		$query = $DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n'  $add_query ");
 		$lognum = $DB->num_rows($query);
-		$pageurl .= "?record=$record&";
+		$pageurl .= "?record=$record&page";
 	}
 	elseif ($tag)
 	{
@@ -57,7 +62,7 @@ if (!isset($action) || empty($action))
 		$query = $DB->query($sql);
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
-		$pageurl .= "?tag=$tag&";
+		$pageurl .= "?tag=$tag&page";
 	}
 	elseif ($keyword)
 	{
@@ -86,15 +91,16 @@ if (!isset($action) || empty($action))
 		$query = $DB->query($sql);
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
-		$pageurl .= "?keyword=$keyword&";
+		$pageurl .= "?keyword=$keyword&page";
 	}
 	else
 	{
 		$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 		$lognum = $sta_cache['lognum'];
+		$pageurl .= "?page";
 	}
-	$query = $DB->query($sql);
 	$logs = array();
+	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
 		$row['post_time'] = date('Y-n-j G:i l',$row['date']);
@@ -113,8 +119,8 @@ if (!isset($action) || empty($action))
 		$logs[] = $row;
 	}
 	//分页
-	$pageurl .= "page";
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
+
 	include getViews('log_list');
 }
 

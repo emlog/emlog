@@ -24,8 +24,7 @@ Posted on <?php echo $value['post_time'];?><br />
 </div>
 <?php endforeach; ?>
 <div class="browse"><?php echo $page_url;?></div>
-<?php
-?>
+
 </div>
 <?php
 include getViews('side');

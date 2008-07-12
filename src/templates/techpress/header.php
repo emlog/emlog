@@ -41,5 +41,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</div>
 	</div>
 	<div class="columns_wrapper">
-<?php
-?>

@@ -23,11 +23,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div id="header">
       <h1><a href="./"><?php echo $blogname;?></a></h1>
       <div class="description"><?php echo $bloginfo;?></div>
-      <form method="get" id="searchform" action="index.php">
-<div><input type="text" value="Search" name="keyword" id="s" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
-<input name="action" type="hidden" value="search" size="12" />
+<form method="get" id="searchform" action="index.php">
+<div>
+<input type="text" value="Search" name="keyword" id="s" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
 <input type="submit" id="searchsubmit" value="Go" />
 </div>
 </form>
-    </div>
-    <div id="left-col">	
+</div>
+<div id="left-col">	

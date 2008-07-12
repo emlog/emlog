@@ -33,5 +33,3 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </div>
 <div id="page">
 <div id="content">
-<?php
-?>

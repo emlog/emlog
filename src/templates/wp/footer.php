@@ -7,7 +7,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <LI>
   	<form name="keyform" method="get" action="index.php"><p>
     <input name="keyword"  type="text" class="input" value="" size="12" maxlength="30" />
-	<input name="action" type="hidden" value="search" size="12" />
     <input type="submit" value="Search" class="button" onClick="return keyw()" /></p>
    </form>
   <LI>
@@ -68,7 +67,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
   <H2 onClick="showhidediv('sort')">Tags</H2>
 		<ul id="sort">
 <?php foreach($tag_cache as $key=>$value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?action=taglog&tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 
 		</ul>

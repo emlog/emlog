@@ -88,8 +88,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 </form>
 <?php endif; ?>
 </div>
-<?php
-?>
+
 </div>
 <?php
 include getViews('side');
