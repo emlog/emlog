@@ -7,8 +7,6 @@
 	RewriteRule ^showlog-([0-9]+)\.html$ index.php?action=showlog&gid=$1
 	# 日志归档
 	RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
-	RewriteRule ^date-([0-9]+)-record-([0-9]+)\.html$ index.php?date=$1&record=$2
 	# tag规则
-	RewriteRule ^tag\.html$ index.php?action=tag
-	RewriteRule ^tag-(.+)\.html$ index.php?action=taglog&tag=$1
+	RewriteRule ^tag-(.+)\.html$ index.php?tag=$1
 </IfModule>
