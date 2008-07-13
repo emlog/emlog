@@ -129,21 +129,22 @@ class mkcache {
 	 */
 	function mc_tags($cf)
 	{
-		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag ORDER BY usenum DESC");
+		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."blog WHERE hide='n' "));
+		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag");
 		$tag_cache = array();
 		while($show_tag = $this->dbhd->fetch_array($query))
 		{
-			$size = 14+round($show_tag['usenum']/3);
-			$fontsize = $size >40?40:$size;
-			$tag = $show_tag['tagname'];
-			$tagurl = urlencode($show_tag['tagname']);
+			//maxfont:22pt,minfont:10t
+			$rank = 22-10;
+			$size = 10+round($rank*($show_tag['usenum']/($lognum/3)));
+			$fontsize = $size>22?22:$size;
 			$tag_cache[] = array(
-			'tagurl' => $tagurl,
+			'tagurl' => urlencode($show_tag['tagname']),
 			'tagname' => htmlspecialchars($show_tag['tagname']),
-			'fontsize'=> $fontsize
+			'fontsize' => $fontsize,
+			'usenum' => $show_tag['usenum']
 			);
 		}
-
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData,$cf);
 	}

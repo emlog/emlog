@@ -27,7 +27,7 @@
 	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
 		<ul id="blogtags"><li>
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize']; ?>px; height:30px;"><a href="index.php?tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="index.php?tag=<?php echo $value['tagurl']; ?>"><?php echo $value['tagname']; ?></a></span>&nbsp;
 <?php endforeach; ?>
 </li></ul>
 <?php if($index_twnum>0): ?>

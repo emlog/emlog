@@ -35,7 +35,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<ul id="tag">
 		<p>
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 		
 		</p>

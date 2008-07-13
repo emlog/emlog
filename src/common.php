@@ -49,7 +49,6 @@ $exarea    = stripslashes($exarea);
 $timezone  = intval($timezone);
 $tpl_dir   = './templates/';//所有模板存放目录
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
-isset($tag_cache)?sort($tag_cache):$tag_cache = array();
 
 //站点信息
 $icp = $icp;

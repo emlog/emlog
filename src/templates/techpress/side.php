@@ -87,7 +87,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 	<li><h2 onclick="showhidediv('tag')">标签</h2>
 		<ul id="tag">
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>px; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php  endforeach; ?>
 		
 		</ul>
