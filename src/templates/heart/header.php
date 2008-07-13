@@ -21,7 +21,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   		<p id="blogname"><a href="./"><?php echo $blogname; ?></a></p>
   		<p id="blogdes"><?php echo $bloginfo; ?></p>
 		<p id="navbar"><a href="./">Home</a>
-					   <a href="./index.php?action=tag">Tag</a>
 					   <a href="./rss.php">RSS</a>
 					   <a href="http://www.emlog.net" target="_blank">emlog</a>
 		</p>

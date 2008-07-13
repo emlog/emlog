@@ -87,7 +87,6 @@
 			</li>
 		</ul>
 		<?php endif; ?>
-		<?php echo $exarea; ?>
 		</div>
 		<div class="sbarleft">
 		<ul>
