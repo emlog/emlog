@@ -49,7 +49,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <ol class="commentlist">
 <?php
 foreach($com as $key=>$value):
-$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
+$reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>">
 			<div class="commentmeta">
@@ -68,7 +68,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 			</div>
 			<div class="commenentry">
 			<p><?php echo $value['content'];?></p>
-			<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $value['reply'];?></div></p>
+			<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

@@ -38,7 +38,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <h5>评论<a name="comment" id="comment"></a></h5>
 <?php
 foreach($com as $key=>$value):
-$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
+$reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 <p><a name="<?php echo $value['cid'];?>"></a></p>
 <div class="commentlist">
@@ -52,7 +52,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 Says:<br />
 <small class="commentmetadata"><?php echo $value['addtime'];?></small>
 <p><?php echo $value['content'];?></p>
-<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $value['reply'];?></div></p>
+<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

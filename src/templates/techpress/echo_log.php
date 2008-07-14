@@ -41,7 +41,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <ol id="commentlist">
 <?php
 foreach($com as $key=>$value):
-$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
+$reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
 	<cite>Comment by <strong><?php echo $value['poster'];?></strong> 
@@ -52,7 +52,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 	<?php endif;?>
 	&#8212; <?php echo $value['addtime'];?></cite>
-	<br /><?php echo $value['content'];?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $value['reply'];?></div>
+	<br /><?php echo $value['content'];?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

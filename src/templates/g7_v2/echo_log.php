@@ -45,7 +45,7 @@ $day = substr($datetime['2'],0,2);
 <ol class="commentlist">
 <?php
 foreach($com as $key=>$value):
-$value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
+$reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li class="alt" id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
 			<?php echo $value['poster'];?> 
@@ -58,7 +58,7 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 			Says:<br />
 			<small class="commentmetadata"><?php echo $value['addtime'];?> </small>
 			<p><?php echo $value['content'];?></p>
-			<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $value['reply'];?></div></p>
+			<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
