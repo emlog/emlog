@@ -52,7 +52,17 @@ $value['reply'] = $value['reply']?"<span style=\"color:green;\"><b>博主回复<
 		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 	<?php endif;?>
 	&#8212; <?php echo $value['addtime'];?></cite>
-	<br /><?php echo $value['content'];?><br /><?php echo $value['reply'];?></li>
+	<br /><?php echo $value['content'];?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $value['reply'];?></div>
+	<?php if(ISLOGIN === true): ?>	
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
+		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
+		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
+		<br />
+		<a href="javascript:void(0);" onclick="postinfo('./adm/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
+		</div>
+	<?php endif; ?>
+</li>
 <?php  endforeach; ?>
 </ol>
 
