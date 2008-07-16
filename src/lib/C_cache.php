@@ -135,7 +135,8 @@ class mkcache {
 		while($show_tag = $this->dbhd->fetch_array($query))
 		{
 			//maxfont:22pt,minfont:10t
-			$rank = 22-10;
+			$rank = round($lognum/3);
+  			$rank = $rank>12?12:$rank;
 			$size = 10+round($rank*($show_tag['usenum']/($lognum/3)));
 			$fontsize = $size>22?22:$size;
 			$tag_cache[] = array(
