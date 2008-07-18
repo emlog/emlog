@@ -474,7 +474,7 @@ print <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog error</title>
+<title>emlog system message</title>
 <style type="text/css">
 <!--
 body {
