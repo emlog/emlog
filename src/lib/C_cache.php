@@ -128,27 +128,37 @@ class mkcache {
 	 * @param unknown_type $cf
 	 */
 	function mc_tags($cf)
-	{
-		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."blog WHERE hide='n' "));
-		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag");
-		$tag_cache = array();
-		while($show_tag = $this->dbhd->fetch_array($query))
-		{
-			//maxfont:22pt,minfont:10t
-			$rank = round($lognum/3);
-  			$rank = $rank>12?12:$rank;
-			$size = 10+round($rank*($show_tag['usenum']/($lognum/3)));
-			$fontsize = $size>22?22:$size;
-			$tag_cache[] = array(
-			'tagurl' => urlencode($show_tag['tagname']),
-			'tagname' => htmlspecialchars($show_tag['tagname']),
-			'fontsize' => $fontsize,
-			'usenum' => $show_tag['usenum']
-			);
-		}
-		$cacheData = serialize($tag_cache);
-		$this->cacheWrite($cacheData,$cf);
-	}
+ 	{
+  		$tag_cache = array();
+  		$query=$this->dbhd->query("SELECT max(usenum),min(usenum),count(*) FROM ".$this->dbprefix."tag");
+  		$row = $this->dbhd->fetch_row($query);
+  		$maxuse = $row[0];
+  		$minuse = $row[1];
+  		$tagnum = $row[2];
+		
+	  	$spread = ($tagnum>12?12:$tagnum);
+		
+	  	$rank = $maxuse-$minuse;
+	  	$rank = ($rank==0?1:$rank);
+	  	$rank = $spread/$rank;
+	  	$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag");
+	  	while($show_tag = $this->dbhd->fetch_array($query))
+	  	{
+		
+	   	//maxfont:22pt,minfont:10pt
+		
+   		$fontsize=10+round(($show_tag['usenum']-$minuse)*$rank);
+   		$tag_cache[] = array(
+   		'tagurl' => urlencode($show_tag['tagname']),
+   		'tagname' => htmlspecialchars($show_tag['tagname']),
+   		'fontsize' => $fontsize,
+   		'usenum' => $show_tag['usenum']
+   		);
+  		}
+
+  		$cacheData = serialize($tag_cache);
+  		$this->cacheWrite($cacheData,$cf);
+ 	}
 	/**
 	 * 友站缓存
 	 *
