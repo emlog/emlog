@@ -1,12 +1,4 @@
-<?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
-$maxsize = changeFileSize($uploadmax);
-//允许附件类型
-$att_type_str = '';
-foreach ($att_type as $val){
-	$att_type_str .= " $val";
-}
-?>
+<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <script type="text/javascript">
 function savedraft(){
 	if(!chekform())
@@ -16,7 +8,7 @@ function savedraft(){
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
-setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
+setTimeout("autosave('add_log.php?action=autosave','asmsg')",10000);
 </script>
 <div class=containertitle><b>写日志</b></div>
 <div class=line></div>
@@ -24,7 +16,7 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题：</b><br />
+          <td><b>标题：</b> <span id="auto_msg"></span><br />
           <input maxlength="200" style="width:560px;" name="title" id="title"/>
           <br /></td>
         </tr>
@@ -33,7 +25,11 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td>
-                    <b>内容：</b><span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="-1"></span><span id="auto_msg"></span><br />
+                    <b>内容：</b><a href="javascript: showhidediv('FrameUpload');" class="thickbox">附件管理</a><span id="asmsg">
+                    <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
+                    
+                    <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
+                    
 					<input type="hidden" id="content" name="content" value="" style="display:none" />
 					<input type="hidden" id="content___Config" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
 					<iframe id="content___Frame" src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
@@ -65,17 +61,6 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 				<br />
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
-        <tr>
-          <td><a href="javascript:;" onclick="showhidediv('tab_attach')"><b>上传附件</b></a> 
-            <div id="tab_attach" style="display:none">
-              <a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> (最大允许<?php echo $maxsize ;?> 允许类型<?php echo $att_type_str; ?>)<br />
-              <table cellspacing="0" cellpadding="0" width="100%" border="0">
-	            <tbody id="attachbodyhidden" style="display:none"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
-	  			<tbody id="attachbody"><tr><td width="100%">附件：<input type="file" name="attach[]"> 描述：<input type="text" name="attdes[]"></td></tr></tbody>
-              </table>
-            </div>
-          <span id="idfilespan"></span></td></tr>
-        <tr>
         <tr>
           <td>接受评论？是
             <input type="radio" checked="checked" value="y" name="allow_remark" />否

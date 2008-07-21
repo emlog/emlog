@@ -222,7 +222,7 @@ function processRequest() {
 			var hours = digital.getHours();
 			var mins = digital.getMinutes();
 			var secs = digital.getSeconds();
-			$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存于 "+hours+":"+mins+":"+secs+" </span>";
+			$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存,于"+hours+":"+mins+":"+secs+" </span>";
 		}
 	}
 }

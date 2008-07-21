@@ -166,8 +166,6 @@ if ($action=='mod'){
 	extract($rows);
 	$title = htmlspecialchars($title);
 	$adddate = $date;
-	//auto save
-	$as_logid = $hide == 'n'?-2:$logid;
 	//log_content
 	$content = htmlspecialchars($content);
 	//tag
@@ -277,21 +275,6 @@ if($action=="edit"){
 		$des1 = $_POST['attachdes'];
 		foreach($des1 as $key=>$value){
 			$DB->query("UPDATE {$db_prefix}attachment SET attdes = '$value' WHERE aid='$key' ");
-		}
-	}
-	//上传附件
-	$attach = isset($_FILES['attach'])?$_FILES['attach']:'';
-	if($attach)
-	{
-		$des = $_POST['attdes'];
-		for ($i = 0; $i < count($attach['name']); $i++) {
-			if($attach['error'][$i]!=4){
-				$ades = addslashes(trim($des[$i]));
-				$upfname = uploadFile($attach['name'][$i],$attach['tmp_name'][$i],$attach['size'][$i],$att_type,$attach['type'][$i]);
-				//写入附件信息
-				$query="INSERT INTO {$db_prefix}attachment (blogid,filename,attdes,filesize,filepath,addtime) values ('".$logid."','".$attach['name'][$i]."','".$ades."','".$attach['size'][$i]."','".$upfname."','".time()."')";
-				$DB->query($query);
-			}
 		}
 	}
 	//更新（tag）

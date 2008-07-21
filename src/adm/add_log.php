@@ -119,22 +119,6 @@ if($action== 'addlog')
 		}
 		$MC->mc_tags('../cache/tags');
 	}
-	//上传附件
-	$attach = isset($_FILES['attach'])?$_FILES['attach']:'';
-	if($attach){
-		$des = $_POST['attdes'];
-		for ($i = 0; $i < count($attach['name']); $i++)
-		{
-			if($attach['error'][$i]!=4){
-				$ades = addslashes(trim($des[$i]));
-				//$att_type 允许上传的后缀名
-				$upfname = uploadFile($attach['name'][$i],$attach['tmp_name'][$i],$attach['size'][$i],$att_type,$attach['type'][$i]);
-				//写入附件信息
-				$query="INSERT INTO {$db_prefix}attachment (`blogid`,`filename`,`attdes`,`filesize`,`filepath`,`addtime`) values ('".$logid."','".$attach['name'][$i]."','".$ades."','".$attach['size'][$i]."','".$upfname."','".time()."')";
-				$DB->query($query);
-			}
-		}
-	}
 	// 发送Trackback部分
 	if(!empty($pingurl))
 	{
@@ -171,12 +155,12 @@ if($action == 'autosave')
 	$content = isset($_POST['content'])?addslashes(trim($_POST['content'])):'';
 	$logid = isset($_POST['as_logid'])?intval((trim($_POST['as_logid']))):'';
 
-	if($logid >=0)//编辑草稿
+	if($logid >= 0)//编辑草稿
 	{
 		$sql=" UPDATE {$db_prefix}blog SET title='$title',content='$content' WHERE gid='$logid' ";
 		$DB->query($sql);
 		echo "autosave_gid:{$logid}_df:{$dftnum}_";
-	}elseif ($logid!=-2)
+	}else
 	{
 		//日志写入数据库
 		$time = time();

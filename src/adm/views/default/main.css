@@ -195,3 +195,30 @@ a:hover {
 textarea{
 	font-size:12px;
 }
+/*upload*/
+#media-upload-header{
+	background-color:#E4F2FD;
+	border-top:solid #C6D9E9 1px;
+}
+#media-upload-header span {
+	margin:5px 5px;
+	padding:5;
+	list-style-type:none;
+}
+#curtab{
+	background-color:#FFFFFF;
+	border-left:1px solid #C6D9E9;
+	border-right:1px solid #C6D9E9;
+	border-top:1px solid #C6D9E9;
+}
+#attlist{
+	float:left;
+	border:1px solid #CCCCCC;
+	list-style:none;
+	text-align:center;
+	margin:5px;
+	padding:3px;
+}
+#media-upload-body{
+	margin:0px 200px 0px 0px;
+}

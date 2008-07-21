@@ -70,6 +70,7 @@ src/adm/tips.php -text svn_keywords=Id
 src/adm/trackback.php -text svn_keywords=Id
 src/adm/views/default/add_log.php -text svn_keywords=Id
 src/adm/views/default/admin_log.php -text svn_keywords=Id
+src/adm/views/default/attlib.php -text
 src/adm/views/default/bakdata.php -text svn_keywords=Id
 src/adm/views/default/blogger.php -text svn_keywords=Id
 src/adm/views/default/cache.php -text svn_keywords=Id
@@ -106,6 +107,7 @@ src/adm/views/default/tag.php -text svn_keywords=Id
 src/adm/views/default/tagedit.php -text svn_keywords=Id
 src/adm/views/default/template.php -text svn_keywords=Id
 src/adm/views/default/trackback.php -text svn_keywords=Id
+src/adm/views/default/upload.php -text
 src/cache/blogger -text svn_keywords=Id
 src/cache/comments -text svn_keywords=Id
 src/cache/config -text svn_keywords=Id

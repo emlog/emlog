@@ -1,0 +1,51 @@
+<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>upload</title>
+<link href="./views/<?php echo $nonce_tpl; ?>/main.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
+</head>
+<script>
+function showupload()
+{
+	var as_logid = parent.document.getElementById('as_logid').value
+	window.location.href="attachment.php?action=selectFile&logid="+as_logid;	
+}
+function showattlib()
+{
+	var as_logid = parent.document.getElementById('as_logid').value
+	window.location.href="attachment.php?action=attlib&logid="+as_logid;	
+}
+</script>
+<body>
+<div id="media-upload-header">
+	<span><a href="javascript:void(0);" onclick="showupload();">上传附件</a></span>
+	<span id="curtab"><a href="javascript:void(0);" onclick="showattlib();">附件库 （<?php echo $attachnum; ?>）</a></span>
+</div>
+<div id="media-upload-body">
+<?php if(!$attach): ?>
+<p>没有附件</p>
+<?php else:
+foreach($attach as $key=>$value):
+	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));
+	$atturl = $blogurl.substr(str_replace('thum-','',$value['filepath']),3);
+	if($extension == 'zip' || $extension == 'rar'){
+		$imgpath = "./views/$nonce_tpl/images/tar.gif";
+		$embedlink = '压缩包';
+	}elseif ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif') {
+		$imgpath = $value['filepath'];
+		$ed_imgpath = $blogurl.substr($imgpath,3);
+		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath','{$value['attdes']}',{$value['aid']});\">嵌入 </a>";
+	}else {
+		$imgpath = "./views/$nonce_tpl/images/fnone.gif";
+		$embedlink = '';
+	}
+?>
+	<li id="attlist"><a href="<?php echo $atturl; ?>" target="_blank"><img src="<?php echo $imgpath; ?>" width="60" height="60" border="0" align="absmiddle"/></a>
+	<br><a href="javascript: isdel(<?php echo $value['aid']; ?>, 6);">删除</a> <?php echo $embedlink; ?></li>
+<?php endforeach; endif; ?>
+</div>
+</body>
+</html>
