@@ -69,7 +69,7 @@ if($action == ''){
 		$rowbg = getRowbg();
 
 		$logs[] = array(
-			'title'=>$dh['title'],
+			'title'=>!empty($dh['title'])?$dh['title']:'NO TITLE!!!',
 			'gid'=>$gid,
 			'date'=>$adddate,
 			'comnum'=>$dh['comnum'],

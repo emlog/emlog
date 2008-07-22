@@ -197,11 +197,8 @@ function autosave(url,nodeid)
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
 	var querystring = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
-	if(logid!=-2 && title!="" && content!="")
-	{
-		$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
-		xmlhttp.send(querystring);
-	}
+	$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
+	xmlhttp.send(querystring);
 	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 }
 

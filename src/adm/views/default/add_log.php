@@ -1,14 +1,19 @@
 <?php if(!defined('ADM_ROOT')) {exit('error!');}?>
 <script type="text/javascript">
 function savedraft(){
-	if(!chekform())
-	{
+	if(!chekform()){
 		return false;
 	}
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
-setTimeout("autosave('add_log.php?action=autosave','asmsg')",10000);
+function doautosave(){
+	var title = $("title").value.Trim();
+	if(title!=""){
+		autosave('add_log.php?action=autosave','asmsg');
+	}	
+}
+setTimeout("doautosave()",30000);
 </script>
 <div class=containertitle><b>写日志</b></div>
 <div class=line></div>
@@ -25,7 +30,7 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",10000);
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td>
-                    <b>内容：</b><a href="javascript: showhidediv('FrameUpload');" class="thickbox">附件管理</a><span id="asmsg">
+                    <b>内容：</b><a href="javascript: showhidediv('FrameUpload');autosave('add_log.php?action=autosave','asmsg');" class="thickbox">附件管理</a><span id="asmsg">
                     <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
                     
                     <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
@@ -35,7 +40,8 @@ setTimeout("autosave('add_log.php?action=autosave','asmsg')",10000);
 					<iframe id="content___Frame" src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
                     </td>
                   </tr>
-              </table>			  </td>
+              </table>			  
+              </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />

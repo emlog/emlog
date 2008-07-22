@@ -21,8 +21,8 @@ function showattlib()
 </script>
 <body>
 <div id="media-upload-header">
-	<span><a href="javascript:void(0);" onclick="showupload();">上传附件</a></span>
-	<span id="curtab"><a href="javascript:void(0);" onclick="showattlib();">附件库 （<?php echo $attachnum; ?>）</a></span>
+	<span><a href="javascript:showupload();">上传附件</a></span>
+	<span id="curtab"><a href="javascript:showattlib();">附件库 （<?php echo $attachnum; ?>）</a></span>
 </div>
 <div id="media-upload-body">
 <?php if(!$attach): ?>
