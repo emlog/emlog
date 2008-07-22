@@ -269,14 +269,6 @@ if($action=="edit"){
 				attcache='$cont_attid' 
 				WHERE gid='$logid' ";
 	$logid = intval($_POST['gid']);
-	//更新附件说明
-	if (isset($_POST['attachdes']))
-	{
-		$des1 = $_POST['attachdes'];
-		foreach($des1 as $key=>$value){
-			$DB->query("UPDATE {$db_prefix}attachment SET attdes = '$value' WHERE aid='$key' ");
-		}
-	}
 	//更新（tag）
 	$tag = explode(',',$tagstring);
 	$query = $DB->query("SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%".$logid."%' ");

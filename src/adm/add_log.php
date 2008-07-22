@@ -77,8 +77,8 @@ if($action== 'addlog')
 	$newtime = $localtime;
 
 	//查询嵌入到日志中的附件id 存入数组
-	//preg_match_all("/ematt:([0-9]+)/i",$content, $matches );
-	//$cont_attid = serialize($matches[1]);
+	preg_match_all("/ematt:([0-9]+)/i",$content, $matches );
+	$cont_attid = serialize($matches[1]);
 
 	//日志写入数据库
 	if($blogid > 0)
