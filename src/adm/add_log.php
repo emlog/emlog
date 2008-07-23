@@ -55,11 +55,12 @@ if($action== 'addlog')
 	$pingurl  = isset($_POST['pingurl'])?addslashes($_POST['pingurl']):'';
 	$allow_remark = isset($_POST['allow_remark'])?addslashes($_POST['allow_remark']):'';
 	$allow_tb = isset($_POST['allow_tb'])?addslashes($_POST['allow_tb']):'';
-	$tbmsg = '';	 //define trackback msg
-	if(!$title)
-	{
-		formMsg('标题不能为空！','javascript:history.go(-1);',0);
-	}
+	$tbmsg = '';
+
+	//查询嵌入到日志中的附件id 存入数组
+	preg_match_all("/ematt:([0-9]+)/i",$content, $matches );
+	$cont_attid = serialize($matches[1]);
+
 	//时间处理
 	if($timezone!=8)
 	{
@@ -77,10 +78,6 @@ if($action== 'addlog')
 	} else
 	$newtime = $localtime;
 
-	//查询嵌入到日志中的附件id 存入数组
-	preg_match_all("/ematt:([0-9]+)/i",$content, $matches );
-	$cont_attid = serialize($matches[1]);
-
 	//日志写入数据库
 	if($blogid > 0)
 	{
@@ -90,14 +87,15 @@ if($action== 'addlog')
 				allow_remark='$allow_remark',
 				allow_tb='$allow_tb',
 				content='$content',
-				hide='$ishide'
+				hide='$ishide',
+				attcache='$cont_attid'
 				WHERE gid='$blogid' ";
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid = $blogid;
 	}else
 	{
-		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$newtime','$content','$ishide','$allow_remark','$allow_tb','')";
+		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$newtime','$content','$ishide','$allow_remark','$allow_tb','$cont_attid')";
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid=$DB->insert_id();
@@ -144,10 +142,9 @@ if($action== 'addlog')
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_record('../cache/records');
 	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_logatts('../cache/log_atts');
+	$MC->mc_logatts('../cache/log_atts',$cont_attid);
 	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
-
-}//end add log
+}
 
 //自动保存
 if($action == 'autosave')

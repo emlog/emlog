@@ -287,7 +287,7 @@ class mkcache {
 	 * 日志附件缓存
 	 *
 	 * @param unknown_type $cf
-	 * @param unknown_type $cont_attid
+	 * @param unknown_type $cont_attid 嵌入内容中的附件id数组
 	 */
 	function mc_logatts($cf,$cont_attid='')
 	{
@@ -320,11 +320,11 @@ class mkcache {
 						$imgsrc2 = $imgsrc;
 					}
 					$imgsize = chImageSize($att_path,IMG_ATT_MAX_W,IMG_ATT_MAX_H);
-					$att_img .= "<br />图片附件 : {$show_attach['attdes']}<br /><a href=\"$imgsrc2\" target=\"_blank\"><img src=\"$imgsrc\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"0\" alt=\"点击查看原图\" /></a>";
+					$att_img .= "<br /><br /><a href=\"$imgsrc2\" target=\"_blank\"><img src=\"$imgsrc\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"0\" alt=\"点击查看原图\" /></a>";
 				}else
 				{
 					$file_atturl = $atturl;
-					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']).' '.$show_attach['attdes'];
+					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']);
 				}
 			}
 			$log_cache_atts[$gid] = array(

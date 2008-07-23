@@ -131,8 +131,8 @@ function addhtml(content){
 		alert('请先转换到所见即所得模式') ;
 	}
 }
-function addattach(imgurl,imgsrc,des,aid){
-	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\"><img src=\"'+imgsrc+'\" alt=\"附件[ematt:'+aid+'] '+des+'\" border=\"0\"></a>');
+function addattach(imgurl,imgsrc,aid){
+	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 }
 
 var xmlhttp = false;

@@ -243,7 +243,6 @@ DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
   blogid mediumint(8) unsigned NOT NULL default '0',
-  attdes varchar(255) NOT NULL default '',
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',

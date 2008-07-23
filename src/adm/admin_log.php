@@ -29,7 +29,8 @@ else
 	$subSql .= 'top DESC,date DESC';
 
 //显示日志(草稿)管理页面
-if($action == ''){
+if($action == '')
+{
 	include getViews('header');
 	$page = intval(isset($_GET['page'])?$_GET['page']:1);
 	if (!empty($page)) {
@@ -92,7 +93,8 @@ if($action == ''){
 }
 
 //批量操作日志
-if($action== 'admin_all_log') {
+if($action== 'admin_all_log')
+{
 	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
 	if($dowhat == '') {
 		formMsg('请选择一个要执行的操作','javascript:history.back(-1);',0);
@@ -156,10 +158,9 @@ if($action== 'admin_all_log') {
 }
 
 //显示编辑页面
-if ($action=='mod'){
-
+if ($action=='mod')
+{
 	include getViews('header');
-
 	$logid = isset($_GET['gid'])?intval($_GET['gid']):'';
 	$sql = "select * from {$db_prefix}blog where gid=$logid ";
 	$result = $DB->query($sql);
@@ -191,27 +192,6 @@ if ($action=='mod'){
 	$hour = date('H',$date);
 	$minute = date('i',$date);
 	$second	 = date('s',$date);
-	//attachment
-	$sql="SELECT * FROM {$db_prefix}attachment where blogid=$logid ";
-	$query=$DB->query($sql);
-	$attachnum = $DB->num_rows($query);
-	if($attachnum!=0){
-		while($dh=$DB->fetch_array($query)){
-			$attsize = changeFileSize($dh['filesize']);
-			$attdes = htmlspecialchars($dh['attdes']);
-			$filename = htmlspecialchars($dh['filename']);
-
-			$attach[] = array(
-			'attsize'=>$attsize,
-			'aid'=>$dh['aid'],
-			'attdes'=>$attdes,
-			'filepath'=>$dh['filepath'],
-			'filename'=>$filename
-			);
-		}
-	}else{
-		unset($attach);
-	}
 
 	if($allow_remark=='y'){
 		$ex="checked=\"checked\"";
@@ -233,7 +213,8 @@ if ($action=='mod'){
 }
 
 //修改日志
-if($action=="edit"){
+if($action=="edit")
+{
 	$title = addslashes(trim($_POST['title']));
 	$tagstring = addslashes(trim($_POST['tag']))	;
 	$edittime = intval(isset($_POST['edittime'])?$_POST['edittime']:'');
@@ -267,10 +248,10 @@ if($action=="edit"){
 				allow_remark='$allow_remark',
 				allow_tb='$allow_tb',
 				content='$content',
-				attcache='$cont_attid' 
+				attcache='$cont_attid'
 				WHERE gid='$logid' ";
 	$logid = intval($_POST['gid']);
-	//更新（tag）
+	//更新tag
 	$tag = explode(',',$tagstring);
 	$query = $DB->query("SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%".$logid."%' ");
 	$i = 0;
@@ -325,14 +306,15 @@ if($action=="edit"){
 	}
 	$DB->query($sql);
 	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_logatts('../cache/log_atts',$cont_attid,$logid);//嵌入内容中的附件id数组：$cont_attid
+	$MC->mc_logatts('../cache/log_atts',$cont_attid);
 	$MC->mc_record('../cache/records');
 	$MC->mc_tags('../cache/tags');
 	formMsg( "保存成功\t$tbmsg","javascript:history.go(-1);",1);
 }
 
 //删除日志
-if ($action== 'delLog'){
+if ($action== 'delLog')
+{
 	$gid = isset($_GET['gid'])?intval($_GET['gid']):'';
 	delLog($gid);
 	$MC->mc_sta('../cache/sta');

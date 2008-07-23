@@ -37,7 +37,7 @@ foreach($attach as $key=>$value):
 	}elseif ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif') {
 		$imgpath = $value['filepath'];
 		$ed_imgpath = $blogurl.substr($imgpath,3);
-		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath','{$value['attdes']}',{$value['aid']});\">嵌入 </a>";
+		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">嵌入 </a>";
 	}else {
 		$imgpath = "./views/$nonce_tpl/images/fnone.gif";
 		$embedlink = '';

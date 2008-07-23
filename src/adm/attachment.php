@@ -62,13 +62,11 @@ if($action == 'attlib')
 	while($dh=$DB->fetch_array($query))
 	{
 		$attsize = changeFileSize($dh['filesize']);
-		$attdes = htmlspecialchars($dh['attdes']);
 		$filename = htmlspecialchars($dh['filename']);
 
 		$attach[] = array(
 		'attsize'=>$attsize,
 		'aid'=>$dh['aid'],
-		'attdes'=>$attdes,
 		'filepath'=>$dh['filepath'],
 		'filename'=>$filename
 		);
