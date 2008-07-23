@@ -28,6 +28,7 @@ elseif(isset($_GET['sortTitle']))
 else 
 	$subSql .= 'top DESC,date DESC';
 
+//显示日志(草稿)管理页面
 if($action == ''){
 	include getViews('header');
 	$page = intval(isset($_GET['page'])?$_GET['page']:1);
@@ -69,7 +70,7 @@ if($action == ''){
 		$rowbg = getRowbg();
 
 		$logs[] = array(
-			'title'=>!empty($dh['title'])?$dh['title']:'NO TITLE!!!',
+			'title'=>!empty($dh['title'])?$dh['title']:'No Title',
 			'gid'=>$gid,
 			'date'=>$adddate,
 			'comnum'=>$dh['comnum'],
@@ -90,7 +91,7 @@ if($action == ''){
 	include getViews('footer');cleanPage();
 }
 
-###################批量操作日志###############
+//批量操作日志
 if($action== 'admin_all_log') {
 	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
 	if($dowhat == '') {
@@ -154,7 +155,7 @@ if($action== 'admin_all_log') {
 	}
 }
 
-######################日志修改######################
+//显示编辑页面
 if ($action=='mod'){
 
 	include getViews('header');
@@ -231,7 +232,7 @@ if ($action=='mod'){
 	include getViews('footer');cleanPage();
 }
 
-//修改
+//修改日志
 if($action=="edit"){
 	$title = addslashes(trim($_POST['title']));
 	$tagstring = addslashes(trim($_POST['tag']))	;

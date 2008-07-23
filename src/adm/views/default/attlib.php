@@ -22,11 +22,11 @@ function showattlib()
 <body>
 <div id="media-upload-header">
 	<span><a href="javascript:showupload();">上传附件</a></span>
-	<span id="curtab"><a href="javascript:showattlib();">附件库 （<?php echo $attachnum; ?>）</a></span>
+	<span id="curtab"><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
 </div>
 <div id="media-upload-body">
 <?php if(!$attach): ?>
-<p>没有附件</p>
+<p id="attmsg">该日志没有附件</p>
 <?php else:
 foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));

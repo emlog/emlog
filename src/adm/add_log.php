@@ -32,7 +32,8 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-##################添加日志##################
+
+//添加日志
 if($action== 'addlog')
 {
 	if($pid == 'draft')

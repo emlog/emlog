@@ -8,6 +8,7 @@
 
 require_once('./globals.php');
 
+//上传表单显示
 if($action == 'selectFile')
 {
 	$attachnum = 0;
@@ -28,9 +29,9 @@ if($action == 'selectFile')
 	cleanPage();
 }
 
+//上传附件
 if($action == 'upload')
 {
-	//上传附件
 	$logid = isset($_GET['logid'])?intval($_GET['logid']):'';
 	$attach = isset($_FILES['attach'])?$_FILES['attach']:'';
 	if($attach)
@@ -50,6 +51,7 @@ if($action == 'upload')
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
 
+//附件库
 if($action == 'attlib')
 {
 	$logid = isset($_GET['logid'])?intval($_GET['logid']):'';
@@ -78,7 +80,6 @@ if($action == 'attlib')
 //删除附件
 if ($action == 'del_attach')
 {
-	//删除附件文件
 	$aid = isset($_GET['aid'])?intval($_GET['aid']):'';
 	$query=$DB->query("select filepath,blogid from {$db_prefix}attachment where aid=$aid ");
 	$attach=$DB->fetch_array($query);
@@ -92,7 +93,6 @@ if ($action == 'del_attach')
 		}
 		@unlink($attach['filepath']) or die('删除附件失败');
 	}
-	//删除数据库记录
 	$DB->query("DELETE FROM {$db_prefix}attachment where aid=$aid ");
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }

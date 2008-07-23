@@ -219,6 +219,9 @@ textarea{
 	margin:5px;
 	padding:3px;
 }
+#attmsg{
+	margin:40px 0px 0px 250px;
+}
 #media-upload-body{
 	margin:0px 200px 0px 0px;
 }
