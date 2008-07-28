@@ -139,7 +139,7 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 </div>
 <div>
 <p class="foot">
-&copy;2008 emlog
+Powered by <a href="http://www.emlog.net">emlog</a>
 </p>
 </div>
 </div>
@@ -149,8 +149,8 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 <?php
 }
 
-if(isset($_GET['action'])&&$_GET['action'] == "install"){
-
+if(isset($_GET['action'])&&$_GET['action'] == "install")
+{
 	// 获取表单信息，修改配置文件
 	$db_host = addslashes(trim($_POST['hostname']));//服务器地址
 	$db_user = addslashes(trim($_POST['dbuser']));	 //mysql 数据库用户名
@@ -218,10 +218,10 @@ if(isset($_GET['action'])&&$_GET['action'] == "install"){
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
 	$add = $DB->getMysqlVersion() > '4.1' ? "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";":"TYPE=".$type.";";
-	//$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE {$db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE {$db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 
 	//sql language
-	$sql = "
+	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid mediumint(8) unsigned NOT NULL auto_increment,
@@ -310,7 +310,7 @@ CREATE TABLE {$db_prefix}tag (
   usenum mediumint(8) unsigned NOT NULL default '1',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
-  KEY tagbame (tagname)
+  KEY tagname (tagname)
 )".$add."
 INSERT INTO {$db_prefix}tag (tid, tagname, usenum,gid) VALUES (1, 'emlog', 1, ',1,');
 DROP TABLE IF EXISTS {$db_prefix}trackback;
