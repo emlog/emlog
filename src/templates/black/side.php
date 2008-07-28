@@ -98,7 +98,7 @@
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 			<img src="<?php echo $tpl_dir; ?>black/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 			<li id='modbdes' style="display:none;">
-			<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"></textarea>
+			<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"><?php echo $blogger_des; ?></textarea>
 			<br />
 			<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
