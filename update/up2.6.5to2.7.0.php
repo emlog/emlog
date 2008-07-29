@@ -175,8 +175,7 @@ $sql = "
 ALTER TABLE {$db_prefix}config ADD isgzipenable ENUM( 'n', 'y' ) NOT NULL DEFAULT 'n' AFTER isurlrewrite;
 ALTER TABLE {$db_prefix}user CHANGE description description TEXT NOT NULL;
 ALTER TABLE {$db_prefix}config DROP index_tagnum;
-ALTER TABLE {$db_prefix}attachment DROP attdes;
-ALTER TABLE {$db_prefix}config ADD index_twnum TINYINT( 3 ) UNSIGNED DEFAULT '0' NOT NULL AFTER index_tagnum;";
+ALTER TABLE {$db_prefix}attachment DROP attdes;";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query))
