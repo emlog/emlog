@@ -41,6 +41,10 @@ class MySql {
 		$this->version = mysql_get_server_info();
 		return $this->version;
 	}
+	function geterror()
+	{
+		return mysql_error();
+	}
 }
 ?>
 <html>
@@ -186,7 +190,7 @@ ALTER TABLE {$db_prefix}attachment DROP attdes;";
 			$ret = $DB->query($query);
 			if(!$ret)
 			{
-				exit('升级失败，可能是你填写的参数错误（特别是数据库前缀），请确认后重新提交！');
+				exit("升级失败，可能是你填写的参数错误，请确认后重新提交！<br /> MYSQL ERROR:".$DB->geterror());
 			}
 		}
 	}
