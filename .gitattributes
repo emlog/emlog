@@ -558,4 +558,5 @@ update/up2.3.0to2.4.0.php -text svn_keywords=Id
 update/up2.4.0to2.5.0.php -text svn_keywords=Id
 update/up2.5.0to2.6.0.php -text svn_keywords=Id
 update/up2.6.0to2.6.5.php -text svn_keywords=Id
+update/up2.6.5to2.7.0.php -text
 update/升级说明.txt -text svn_keywords=Id
