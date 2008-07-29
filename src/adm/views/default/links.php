@@ -44,7 +44,7 @@
             <input maxlength="200" size="35" name="sitename" />
             <br /></td></tr>
         <tr nowrap="nowrap">
-          <td>地址<b>(</b>站点地址必须以http://开头)<br />
+          <td>地址（站点地址必须以http://开头）<br />
   <input maxlength="200" size="35" name="siteurl" />
               <br /></td>
         </tr>
