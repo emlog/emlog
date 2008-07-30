@@ -56,8 +56,8 @@ if (!is_dir($em_tpldir))
 if ($action == 'login') 
 {
 	session_start();
-	$username = addslashes(trim($_POST['user']));
-	$password = md5(addslashes(trim($_POST['pw'])));
+	$username = isset($_POST['user'])?addslashes(trim($_POST['user'])):'';
+	$password = isset($_POST['pw'])?md5(addslashes(trim($_POST['pw']))):'';
 	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
 	if (strlen($username) >16) 
 	{
