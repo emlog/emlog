@@ -4,6 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>emlog</title>
 <link rel="stylesheet" href="./views/<?php echo $nonce_tpl; ?>/main.css">
+<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
 </head>
 <body bgcolor="#F9FCFE">
 <form name="f" method="post" action="index.php?action=login" onSubmit="saveUser();">
@@ -20,7 +21,6 @@
 </form>
 <script>
 focusEle('user');
-autoLogin();
 </script>
 </body>
 </html>

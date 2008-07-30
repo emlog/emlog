@@ -9,6 +9,15 @@ function addattachfrom() {
 function removeattachfrom() {
 	$('attachbody').childNodes.length > 1 && $('attachbody').lastChild ? $('attachbody').removeChild($('attachbody').lastChild) : 0;
 }
+//聚焦一个元素
+function focusEle(ele)
+{
+	try 
+{
+		$(ele).focus();
+	} 
+	catch(e){}
+}
 //show or hide div
 function showhidediv(id){
 	try{
@@ -145,24 +154,6 @@ function postinfo(url,nodeid){
 	var tw = $("tw").value;
 	var querystring = "tw=" + tw;
 	xmlhttp.send(querystring);
-}
-
-function autosave(url,nodeid)
-{
-	node = nodeid;
-	createxmlhttp();
-	var url2 = url + "&timetmp=" + new Date().getTime();
-	xmlhttp.open("POST", url2, true);
-	xmlhttp.onreadystatechange = processRequest;
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var title = $("title").value.Trim();
-	var logid = $("as_logid").value;
-	var oEditor = FCKeditorAPI.GetInstance('content');
-	var content = oEditor.GetXHTML();
-	var querystring = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
-	$("auto_msg").innerHTML = "<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>";
-	xmlhttp.send(querystring);
-	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 }
 
 function processRequest() {
