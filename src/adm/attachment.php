@@ -42,6 +42,21 @@ if($action == 'upload')
 			{
 				//$att_type 允许上传的后缀名
 				$upfname = uploadFile($attach['name'][$i],$attach['tmp_name'][$i],$attach['size'][$i],$att_type,$attach['type'][$i]);
+				switch ($upfname)
+				{
+					case -1:
+						formMsg("错误的附件类型","javascript:history.go(-1);",0);
+						break;
+					case -2:
+						$ret = changeFileSize($uploadmax);
+						formMsg("附件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+						break;
+					case -3:
+						formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
+					case -4:
+						formMsg("上传附件失败","javascript:history.go(-1);",0);
+						break;
+				}
 				//写入附件信息
 				$query="INSERT INTO {$db_prefix}attachment (`blogid`,`filename`,`filesize`,`filepath`,`addtime`) values ('".$logid."','".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);

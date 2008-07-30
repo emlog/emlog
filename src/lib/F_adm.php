@@ -34,23 +34,28 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-		formMsg("错误的附件类型","javascript:history.go(-1);",0);
+		return -1;//错误的附件类型
 	}
 	if($filesize>$uploadmax)
 	{
-		$ret = changeFileSize($uploadmax);
-		formMsg("附件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+		return -2;//附件大小超出的限制
 	}
 	$uppath = $uploadroot.date("Ym")."/";
 	$fname = md5($filename).date("YmdHis").'.'.$extension;
 	$attachpath = $uppath.$fname;
 	if(!is_dir($uploadroot))
 	{
-		@mkdir($uploadroot,0777) OR formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
+		if(@mkdir($uploadroot,0777) === false)
+		{
+			return -3;//权限不足无法创建附件目录
+		}
 	}
 	if(!is_dir($uppath))
 	{
-		@mkdir($uppath,0777) OR formMsg("创建日期目录失败","javascript:history.go(-1);",0);
+		if(@mkdir($uppath,0777) === false)
+		{
+			return -3;//权限不足无法创建附件目录
+		}
 	}
 	//缩略
 	$imtype = array('jpg','png','jpeg');
@@ -67,7 +72,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 		if(!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
-			formMsg( "上传附件失败","javascript:history.go(-1);",0);
+			return -4;//上传附件失败
 		}
 	}
 	return 	$attach;
