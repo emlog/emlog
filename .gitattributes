@@ -197,6 +197,7 @@ src/templates/black/images/h2bkg2.gif -text
 src/templates/black/images/headerbkg.png -text
 src/templates/black/images/modify.gif -text
 src/templates/black/images/nav.gif -text
+src/templates/black/images/reply.gif -text
 src/templates/black/images/rss.gif -text
 src/templates/black/log_list.php -text
 src/templates/black/main.css -text
@@ -344,6 +345,7 @@ src/templates/heart/images/foot.jpg -text svn_keywords=Id
 src/templates/heart/images/head.jpg -text svn_keywords=Id
 src/templates/heart/images/lister.jpg -text svn_keywords=Id
 src/templates/heart/images/modify.gif -text
+src/templates/heart/images/reply.gif -text
 src/templates/heart/log_list.php -text svn_keywords=Id
 src/templates/heart/main.css -text svn_keywords=Id
 src/templates/heart/message.php -text svn_keywords=Id
