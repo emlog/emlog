@@ -47,7 +47,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 </ul>
 <?php if(ISLOGIN === true): ?>
 <ul>
-<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:200px;height:50px;background:#c2f5f9;color:#fbab9c"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');"style="background:#c2f5f9;color:#fbab9c" value="提交">

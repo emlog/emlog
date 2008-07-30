@@ -51,7 +51,7 @@ if(isset($tw_cache) && is_array($tw_cache)):
 		<li id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:200px;height:60px;" class="input"></textarea>
 		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
-		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
+		<a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">取消</a>
 		</li>
 		</ul>
 	<?php endif;?>
@@ -64,12 +64,19 @@ if(isset($tw_cache) && is_array($tw_cache)):
 </ul>
 <?php endif; ?>
 <div class="lister"><span onclick="showhidediv('newcomment')">最新评论</span></div>
-		<ul id="newcomment">
+<ul id="newcomment">
 <?php foreach($com_cache as $value): ?>
-		<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+<li id="comment"><?php echo $value['name']; ?>
+<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>Graffiti/images/reply.gif" align="absmiddle"/>
+	</a>
+<?php endif;?>
+<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
 <?php endforeach; ?>
-		</ul>
-	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
+</ul>
+
+<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
 	<ul id="logserch">
   	<li>
 	<form name="keyform" method="get" action="index.php"><p>

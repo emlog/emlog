@@ -166,7 +166,10 @@ body {
 } 
 #menu a:active {
 	color:#FFFFFF;
-} 
+}
+#comm li {
+	border-bottom:dotted #999999 1px;
+}
 .post {
 	width: 590px;
 	padding-left: 15px;
@@ -450,7 +453,6 @@ body {
 	margin-right: 15px;
 }
 #sidebar ul li ul li {
-	background-image: url(images/sidebar_li.gif);
 	background-repeat: no-repeat;
 	padding-left: 15px;
 	margin-bottom: 4px;

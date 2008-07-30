@@ -152,6 +152,7 @@ src/templates/Graffiti/graffiti_02/graf_2.jpg -text svn_keywords=Id
 src/templates/Graffiti/graffiti_02/graf_3.jpg -text svn_keywords=Id
 src/templates/Graffiti/header.php -text svn_keywords=Id
 src/templates/Graffiti/images/modify.gif -text svn_keywords=Id
+src/templates/Graffiti/images/reply.gif -text
 src/templates/Graffiti/images/rss.gif -text svn_keywords=Id
 src/templates/Graffiti/log_list.php -text svn_keywords=Id
 src/templates/Graffiti/message.php -text svn_keywords=Id
@@ -315,6 +316,7 @@ src/templates/g7_v2/side.php -text svn_keywords=Id
 src/templates/g7_v3/echo_log.php -text svn_keywords=Id
 src/templates/g7_v3/footer.php -text svn_keywords=Id
 src/templates/g7_v3/header.php -text svn_keywords=Id
+src/templates/g7_v3/images/comment.gif -text
 src/templates/g7_v3/images/modify.gif -text
 src/templates/g7_v3/images/rss.gif -text
 src/templates/g7_v3/log_list.php -text svn_keywords=Id

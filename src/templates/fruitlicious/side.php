@@ -60,7 +60,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </ul>
 <?php if(ISLOGIN === true): ?>
 <ul>
-<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:190px;height:50px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">

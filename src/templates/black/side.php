@@ -133,7 +133,7 @@
 			<li id='addtw' style="display: none;">
 			<textarea name="tw" id="tw" style="overflow-y: hidden;width:140px;height:70px;" class="input"></textarea>
 			<p><a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
-			<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a></p>
+			<a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">取消</a></p>
 			</li>
 			<?php endif;?>
 		</ul>

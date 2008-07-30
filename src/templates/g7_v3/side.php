@@ -7,20 +7,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <ul>
 <li class="pagenav"><h2 onclick="showhidediv('blogger')">个人档</h2>
-		<ul id="blogger">
-		<p><?php echo $photo;?></p>
-		<p><b><?php echo $name;?></b>
-			<span id="bloggerdes"><?php echo $blogger_des; ?></span>
+<ul id="blogger">
+	<div><?php echo $photo;?></div>
+	<div><b><?php echo $name;?></b></div>
+	<div id="bloggerdes"><?php echo $blogger_des; ?></div>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>g7_v3/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:220px;height:50px;"><?php echo $blogger_des; ?></textarea>
-	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	<?php endif; ?>
-		</ul>
+</ul>
 </li>
 
 <li class="categories"><h2 onclick="showhidediv('calendar')">日历</h2>
@@ -55,10 +54,11 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 </ul>
 <?php if(ISLOGIN === true): ?>
 <ul>
-<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:220px;" style="height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+<textarea name="tw" id="tw" style="overflow-y: hidden;width:220px;" style="height:50px;"></textarea><br />
+<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 </li>
 </ul>
 <?php endif; ?>
@@ -73,11 +73,17 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php endif; ?>
 
 <li class="r_comments"><h2 onclick="showhidediv('comm')">评论</h2>
-		<ul id="comm">
-			<?php foreach($com_cache as $value): ?>
-		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
+<ul id="comm">
+<?php foreach($com_cache as $value): ?>
+<li><?php echo $value['name'];?>
+<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>g7_v3/images/comment.gif" align="absmiddle"/>
+	</a>
+<?php endif;?>
+<br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
 <?php endforeach; ?>
-		</ul>
+</ul>
 </li>
 
 <li class="archives"><h2 onclick="showhidediv('dang')">存档</h2>

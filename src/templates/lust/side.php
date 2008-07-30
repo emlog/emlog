@@ -55,7 +55,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 </ul>
 <?php if(ISLOGIN === true): ?>
 <ul>
-<li><a href="javascript:void(0);" onclick="showhidediv('addtw')">我要唠叨</a></li>
+<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
 <textarea name="tw" id="tw" style="width:155px;" style="height:80px;"></textarea><br />
 <input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
