@@ -142,7 +142,14 @@
 			<h2>最新评论</h2>
 			<ul>
 			<?php foreach($com_cache as $value): ?>
-			<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+			<li id="comment"><?php echo $value['name']; ?>
+			<?php if($value['reply']): ?>
+			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+			<img src="<?php echo $tpl_dir; ?>default/images/reply.gif" align="absmiddle"/>
+			</a>
+			<?php endif;?>
+			<br />
+			<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
 			<?php endforeach; ?>
 			</ul>
 		</ul>

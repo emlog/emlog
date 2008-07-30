@@ -66,7 +66,13 @@ if(isset($tw_cache) && is_array($tw_cache)):
 <div class="lister"><span onclick="showhidediv('newcomment')">最新评论</span></div>
 		<ul id="newcomment">
 <?php foreach($com_cache as $value): ?>
-		<li id="comment"><?php echo $value['name']; ?><br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+		<li id="comment"><?php echo $value['name']; ?>
+	<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>default/images/reply.gif" align="absmiddle"/>
+	</a>
+	<?php endif;?>
+	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
 <?php endforeach; ?>
 		</ul>
 	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
