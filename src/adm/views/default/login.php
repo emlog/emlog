@@ -7,7 +7,7 @@
 <script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
 </head>
 <body bgcolor="#F9FCFE">
-<form name="f" method="post" action="index.php?action=login" onSubmit="saveUser();">
+<form name="f" method="post" action="index.php?action=login">
 <br /><br /><br /><br />
 <table align="center" class="toptd">
 <h3 align="center">Emlog</h3>

@@ -58,7 +58,7 @@ if ($action == 'login')
 	session_start();
 	$username = isset($_POST['user'])?addslashes(trim($_POST['user'])):'';
 	$password = isset($_POST['pw'])?md5(addslashes(trim($_POST['pw']))):'';
-	$login_code == 'y'?$img_code = addslashes(trim(strtoupper($_POST['imgcode']))):$img_code = '';
+	$img_code = ($login_code == 'y' && isset($_POST['imgcode']))?addslashes(trim(strtoupper($_POST['imgcode']))):'';
 	if (strlen($username) >16) 
 	{
 		formMsg('ERROR!!','javascript:history.go(-1);',0);
