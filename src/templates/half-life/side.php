@@ -1,29 +1,24 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>	
-		<div class="sidebar">
+<div class="sidebar">
 <ul>
-
-
 <li><h2 onclick="showhidediv('calendar')">日历</h2>
-		<ul>
-			<div id="calendar"></div>
-		</ul>
+<ul>
+<div id="calendar"></div>
+</ul>
 </li>
 <script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
 <li><h2 onclick="showhidediv('tags')">标签</h2>
-		<ul id="tags">
-		<li>
+<ul id="tags">
 <?php
 foreach($tag_cache as $value){
 ?>
 <span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php
 }?>
-		
-		</li>
-		</ul>
+</ul>
 </li>
 <?php
 if($index_twnum>0){
@@ -49,8 +44,9 @@ if(ISLOGIN === true)
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:140px;" style="height:80px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+<textarea name="tw" id="tw" style="overflow-y: hidden;width:140px;height:70px;" class="input"></textarea>
+<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 </li>
 </ul>
 <?php

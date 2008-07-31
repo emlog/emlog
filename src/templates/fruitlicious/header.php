@@ -4,7 +4,7 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head profile="http://gmpg.org/xfn/11">
+<head>
 
 	<title><?php echo $blogtitle;?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -21,5 +21,5 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 <body>
 <div id="container">
 	<div class="maincolumn">
-		<div id="banner"></div>
 		<h1><a href="./"><?php echo $blogname;?></a></h1>
+		<div id="banner"></div>

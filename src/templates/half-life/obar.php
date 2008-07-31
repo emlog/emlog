@@ -26,15 +26,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php if($ismusic): ?>
 <li><h2 onclick="showhidediv('music')">音乐</h2>
 	<ul id="music">
-	<li>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="140" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="140" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 		</ul>
 </li>
 <?php endif; ?>
 <li><h2 onclick="showhidediv('comm')">评论</h2>
-		<ul id="comm">
-			<?php foreach($com_cache as $value): ?>
-		<li><b><?php echo $value['name'];?></b><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
+<ul id="comm">
+<?php foreach($com_cache as $value): ?>
+<li><b><?php echo $value['name'];?></b>
+<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>half-life/images/reply.gif" align="absmiddle"/>
+	</a>
+<?php endif;?>
+<br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
 <?php endforeach; ?>
 		</ul>
 </li>

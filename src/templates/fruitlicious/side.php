@@ -2,47 +2,37 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="sidebar">
-
-		<div id="description"><?php echo $bloginfo;?></div>
-
-
+<div id="description"><?php echo $bloginfo;?></div>
 <ul>
-
 <li><h2 onclick="showhidediv('blogger')">个人档</h2>
-		<ul id="blogger">
-		<li><?php echo $photo?></li>
-		<li><b><?php echo $name;?></b><br>
+	<ul id="blogger">
+	<li><?php echo $photo?></li>
+	<li><b><?php echo $name;?></b><br>
 	<span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo $tpl_dir; ?>fruitlicious/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"><?php echo $blogger_des; ?></textarea>
-	<br />
 	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	<?php endif; ?>
-	
-		</li>
-		</ul>
 </li>
-
+</ul>
+</li>
 <li><h2 onclick="showhidediv('calendar')">日历</h2>
-		<ul>
-			<div id="calendar"></div>
-		</ul>
+<ul>
+	<div id="calendar"></div>
+</ul>
 </li>
 <script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
 <li><h2 onclick="showhidediv('tags')">标签</h2>
-		<ul id="tags">
-		<li>
+<ul id="tags">
 <?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
-		
-		</li>
-		</ul>
+</ul>
 </li>
 <?php if($index_twnum>0): ?>
 <li><h2 onclick="showhidediv('twitter')">Twitter</h2>
@@ -62,8 +52,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:190px;height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+<textarea name="tw" id="tw" style="overflow-y: hidden; width:190px;height:50px;"></textarea><br />
+<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 </li>
 </ul>
 <?php endif; ?>
@@ -77,11 +68,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </li>
 <?php endif; ?>
 <li><h2 onclick="showhidediv('comm')">评论</h2>
-		<ul id="comm">
+<ul id="comm">
 <?php foreach($com_cache as $value): ?>
-		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
+<li><?php echo $value['name'];?>
+<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>fruitlicious/images/reply.gif" align="absmiddle"/>
+	</a>
+<?php endif;?>
+<br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
 <?php endforeach; ?>
-		</ul>
+</ul>
 </li>
 
 <li><h2 onclick="showhidediv('ss')">搜索</h2>
@@ -102,6 +99,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php endforeach; ?>	
 		</ul>
 </li>
+<li><h2 onclick="showhidediv('blogroll')">友情链接</h2>
+<ul id="blogroll">
+<?php foreach($link_cache as $value): ?>     	
+<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
+<?php endforeach; ?>	
+</ul>
+</li>
 <li><h2 onclick="showhidediv('sta')">统计</h2>
 		<ul id="sta">
 		<li>日志数量：<?php echo $sta_cache['lognum'];?></li>
@@ -109,6 +113,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<li>引用数量：<?php echo $sta_cache['tbnum'];?></li>
 		<li>今日访问：<?php echo $sta_cache['day_view_count'];?></li>
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
+		<li><a href="./rss.php"><img src="<?php echo $tpl_dir;?>fruitlicious/images/rss.gif" alt="订阅Rss"/></a></li>
 <?php if(ISLOGIN === false):
 	$login_code=='y'?
 	$ckcode = "验证码:<br />
@@ -141,17 +146,6 @@ else:
 <?php endif; ?>
 		</ul>
 </li>
-
-<li><h2 onclick="showhidediv('blogroll')">Blogroll</h2>
-		<ul id="blogroll">
-<?php foreach($link_cache as $value): ?>     	
-		<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
-<?php endforeach; ?>	
-
-<li><a href="./rss.php"><img src="<?php echo $tpl_dir;?>fruitlicious/images/rss.gif" alt="订阅Rss"/></a></li>
-		</ul>
-</li>
 <?php echo $exarea;?>
 </ul>
-
 </div>

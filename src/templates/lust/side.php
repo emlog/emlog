@@ -30,14 +30,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
 <li><h2 onclick="showhidediv('tags')">标签</h2>
-		<ul id="tags">
-		<li>
 <?php foreach($tag_cache as $value): ?>
 <span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
-		
-		</li>
-		</ul>
 </li>
 <?php if($index_twnum>0): ?>
 <li><h2 onclick="showhidediv('twitter')">Twitter</h2>
@@ -57,8 +52,9 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:155px;" style="height:80px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
+<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 </li>
 </ul>
 
@@ -67,15 +63,21 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php if($ismusic) :?>
 <li><h2 onclick="showhidediv('music')">音乐</h2>
 		<ul id="music">
-			<li>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+			<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 		</ul>
 </li>
 <?php endif;?>
 <li><h2 onclick="showhidediv('comm')">评论</h2>
-		<ul id="comm">
-			<?php foreach($com_cache as $value): ?>
-		<li><?php echo $value['name'];?><br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
+<ul id="comm">
+<?php foreach($com_cache as $value): ?>
+<li><?php echo $value['name'];?>
+<?php if($value['reply']): ?>
+	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<img src="<?php echo $tpl_dir; ?>lust/images/reply.gif" align="absmiddle"/>
+	</a>
+<?php endif;?>
+<br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
 <?php endforeach; ?>
 		</ul>
 </li>

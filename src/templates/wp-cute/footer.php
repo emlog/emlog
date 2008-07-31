@@ -12,12 +12,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <LI>
   <LI class=pagenav>
   <H2 onClick="showhidediv('bloggerinfo')">About</H2>
-    <ul style="text-align:left" id="bloggerinfo" >
+   <ul style="text-align:left" id="bloggerinfo" >
 	<li><?php echo $photo;?></li>
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-	<img src="<?php echo $tpl_dir; ?>wp-cute/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+	<img src="<?php echo $tpl_dir; ?>wp/images/modify.gif" align="absmiddle" alt="修改我的状态" border="0"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"><?php echo $blogger_des; ?></textarea>
 	<br />
@@ -30,7 +30,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     	<div id="calendar">
 		
 		</div>
-	<script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
+<script>sendinfo('<?php echo $calendar_url;?>','calendar');</script>
 
 <?php if($index_twnum>0): ?>
 <h2 onclick="showhidediv('twitter')">Twitter</h2>
@@ -50,8 +50,9 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <ul>
 <li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 <li id='addtw' style="display: none;">
-<textarea name="tw" id="tw" style="width:180p;height:50px;"></textarea><br />
-<input type="button" onclick="postinfo('./twitter.php?action=add','tw','twitter');" value="提交">
+<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
+<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 </li>
 </ul>
 <?php endif; ?>
@@ -59,10 +60,10 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 <?php if($ismusic): ?>
   <H2 onClick="showhidediv('music')">Music</H2>
 		<ul id="music">
-		<li>$musicdes<object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="145" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+		<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="145" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 </li>
 		</ul>
-<?php endif;  ?>
+<?php endif; ?>
   <LI>
   <H2 onClick="showhidediv('sort')">Tags</H2>
 		<ul id="sort">
@@ -81,8 +82,14 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
    <H2 onClick="showhidediv('newcomment')">Comments</H2>
 		<ul id="newcomment">
 <?php foreach($com_cache as $key=>$value): ?>
+		<li id="comment"> &raquo; <?php echo $value['name'];?>
+		<?php if($value['reply']): ?>
+		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+		<img src="<?php echo $tpl_dir; ?>wp-cute/images/reply.gif" align="absmiddle" border="0"/>
+		</a>
+		<?php endif;?>
+		<br /></li>
 		<li id="comment"><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
-		<li id="comment"> &raquo; <?php echo $value['name'];?></li>
 <?php endforeach; ?>
 		</ul>
  <H2 onClick="showhidediv('frlink')">Blogroll</H2>
@@ -120,7 +127,9 @@ if(ISLOGIN === false):
 </li>
 </form>
 </ul>
-<?php else: ?>
+<?php
+else:
+?>
 <li><span onclick="showhidediv('loginfm','user')" >管理</span>
 <ul id="loginfm">
 	<li><a href="./adm/add_log.php">写日志</a></li>

@@ -303,25 +303,9 @@ input#author, input#email, input#url{
 	color: #fff;
 	cursor:pointer;
 }
-
 .sidebar ul ul{
 	padding: 0 20px 10px;
 	background: url(images/bg_ul_ul.gif) no-repeat bottom left;
-}
-
-.sidebar ul ul li{
-	margin: 0;
-	background-image: none;
-}
-
-.sidebar ul ul ul{
-	margin: 0;
-	padding: 0;
-	background-image: none;
-}
-
-.sidebar ul ul ul li{
-	padding: 0 0 0 10px;
 }
 #twitter li 
 {
