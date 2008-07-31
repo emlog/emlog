@@ -29,7 +29,7 @@ class MySql {
 	/**
 	 * 关闭数据库连接
 	 *
-	 * @return blooean
+	 * @return boolean
 	 */
 	function close()
 	{
@@ -40,7 +40,7 @@ class MySql {
 	 * 发送查询语句
 	 *
 	 * @param string $sql
-	 * @return blooean
+	 * @return boolean
 	 */
 	function query($sql)
 	{
