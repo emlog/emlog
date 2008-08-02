@@ -9,7 +9,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <div id="content">
 <?php
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],200,120);
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0']."/".$datetime['1'];
 $day = substr($datetime['2'],0,2);
