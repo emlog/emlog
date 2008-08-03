@@ -39,16 +39,30 @@ if($action== 'modintro')
 		if($_FILES['photo']['size']>0)
 		{
 			$usericon = uploadFile($_FILES['photo']['name'],$_FILES['photo']['tmp_name'],$_FILES['photo']['size'],$photo_type,$_FILES['photo']['type'],1);
-		}else
-		{
+			switch ($usericon)
+			{
+				case -1:
+					formMsg("错误的文件类型","javascript:history.go(-1);",0);
+					break;
+				case -2:
+					$ret = changeFileSize($uploadmax);
+					formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+					break;
+				case -3:
+					formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
+					break;
+				case -4:
+					formMsg("上传头像失败","javascript:history.go(-1);",0);
+					break;
+			}
+		}else{
 			$usericon = $photo;
 		}
 		$sql="UPDATE {$db_prefix}user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description'";
 		$DB->query($sql);
 		$MC->mc_blogger('../cache/blogger');
 		formMsg( "个人资料修改成功","./blogger.php",1);
-	}else 
-	{
+	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
 		$sql="UPDATE {$db_prefix}user SET description='$description' ";
 		$DB->query($sql);
@@ -97,13 +111,15 @@ if($action=='update_admin')
 	$ispass = checkPass($oldpass);
 
 	//只修改密码
-	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0){
+	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0)
+	{
 		$sql=" UPDATE {$db_prefix}user SET password='".md5($newpass)."' ";
 		$DB->query($sql);
 		formMsg('密码已修改!请重新登录','./index.php',1);
 	}
 	//修改密码及用户
-	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0){
+	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0)
+	{
 		$sql=" UPDATE {$db_prefix}user SET
 			username='".$user."',
 			password='".md5($newpass)."' ";
@@ -111,7 +127,8 @@ if($action=='update_admin')
 		formMsg('密码和用户名已修改!请重新登录','./index.php',1);
 	}
 	//只修改用户
-	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass){
+	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass)
+	{
 		$sql=" UPDATE {$db_prefix}user SET username='".$user."' ";
 		$DB->query($sql);
 		formMsg('用户名已修改!请重新登录','./index.php',1);

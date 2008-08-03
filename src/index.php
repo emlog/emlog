@@ -108,7 +108,7 @@ if (!isset($action) || empty($action))
 		$row['logid']	  = $row['gid'];
 		$row['log_description'] = breakLog($row['content'],$row['gid']);
 		//attachment
-		$row['attachment'] = !empty($log_cache_atts[$row['gid']]['attachment']) ? '<b>文件附件</b>:'.$log_cache_atts[$row['gid']]['attachment'] : '';
+		$row['attachment'] = !empty($log_cache_atts[$row['gid']]['attachment']) ? '<b>文件附件：</b>'.$log_cache_atts[$row['gid']]['attachment'] : '';
 		$row['att_img'] = !empty($log_cache_atts[$row['gid']]['att_img']) ? $log_cache_atts[$row['gid']]['att_img'] : '';
 		//tag
 		$row['tag']  = !empty($log_cache_tags[$row['gid']]) ? '标签:'.$log_cache_tags[$row['gid']] : '';

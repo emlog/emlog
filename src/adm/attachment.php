@@ -53,6 +53,7 @@ if($action == 'upload')
 						break;
 					case -3:
 						formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
+						break;
 					case -4:
 						formMsg("上传附件失败","javascript:history.go(-1);",0);
 						break;
