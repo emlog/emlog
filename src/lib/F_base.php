@@ -7,11 +7,12 @@
  */
 
 /**
-	加载模板文件
-	@param string $template 模板名
-	@param string $EXT 模板后缀名
-	@return string 模板路径
-*/
+ * 加载模板文件
+ *
+ * @param string $template 模板名
+ * @param string $EXT 模板后缀名
+ * @return string 模板路径
+ */
 function getViews($template,$EXT=".php")
 {
 	global $em_tpldir;
@@ -24,20 +25,9 @@ function getViews($template,$EXT=".php")
 }
 
 /**
- * 初始化一个数据库链接对象
+ * 执行去除转义字符
  *
- * @return $DB
  */
-function initdb()
-{
-	global $host, $user, $pass,$db;
-	$DB = new MySql($host, $user, $pass,$db);
-	return $DB;	
-}
-
-/**
-	执行去除转义字符
-*/
 function doStripslashes()
 {
 	if (get_magic_quotes_gpc())
@@ -50,9 +40,11 @@ function doStripslashes()
 }
 
 /**
-	递归去除转义字符
-	@param array $myarray
-*/
+ * 递归去除转义字符
+ *
+ * @param unknown_type $value
+ * @return unknown
+ */
 function stripslashesDeep($value)
 {
 	$value = is_array($value) ?
@@ -63,9 +55,11 @@ function stripslashesDeep($value)
 }
 
 /**
-	转换HTML代码函数
-	@param string $content
-*/
+ * 转换HTML代码函数
+ *
+ * @param string $content
+ * @return unknown
+ */
 function htmlClean($content)
 {
 	$content = htmlspecialchars($content);
@@ -76,9 +70,11 @@ function htmlClean($content)
 }
 
 /**
-	转换HTML代码函数(mk_cache.php 65 line)
-	@param string $content
-*/
+ * 转换HTML代码函数(mk_cache.php 65 line)
+ *
+ * @param string $content
+ * @return unknown
+ */
 function htmlClean2($content)
 {
 	$content = htmlspecialchars($content);
@@ -88,10 +84,11 @@ function htmlClean2($content)
 }
 
 /**
-	错误处理函数
-	@param string $msg 错误信息
-	@param string $url 返回url
-*/
+ * 错误处理函数
+ *
+ * @param string $msg 错误信息
+ * @param string $url 返回url
+ */
 function msg($msg,$url)
 {
 	global $tpl_dir;
@@ -101,8 +98,10 @@ function msg($msg,$url)
 }
 
 /**
-	获取用户ip
-*/
+ * 获取用户ip
+ *
+ * @return unknown
+ */
 function getIp()
 {
 	if (isset($_SERVER)) 
@@ -127,8 +126,9 @@ function getIp()
 }
 
 /**
-	访问统计
-*/
+ * 访问统计
+ *
+ */
 function viewCount()
 {
 	global $MC,$DB,$db_prefix,$localdate;
@@ -146,8 +146,7 @@ function viewCount()
 			{
 				$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
 				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
-			} else
-			{
+			} else{
 				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
 			}
 			$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
@@ -157,8 +156,11 @@ function viewCount()
 }
 
 /**
-	验证email地址格式
-*/
+ * 验证email地址格式
+ *
+ * @param unknown_type $address
+ * @return unknown
+ */
 function checkMail($address) 
 {
 	if(preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
@@ -170,11 +172,13 @@ function checkMail($address)
 }
 
 /**
-	截取编码为utf8的字符串
-	@param string $strings 预处理字符串
-	@param int $start 开始处 eg:0
-	@param int $length 截取长度
-*/
+ * 截取编码为utf8的字符串
+ *
+ * @param string $strings 预处理字符串
+ * @param int $start 开始处 eg:0
+ * @param int $length 截取长度
+ * @return unknown
+ */
 function subString($strings,$start,$length)
 {
 	$str = substr($strings, $start, $length);
@@ -213,34 +217,35 @@ function subString($strings,$start,$length)
 }
 
 /**
-	转换附件大小单位
-	@param string $filesize 文件大小 kb
-*/
+ * 转换附件大小单位
+ *
+ * @param string $filesize 文件大小 kb
+ * @return unknown
+ */
 function changeFileSize($filesize)
 {
 	if($filesize >= 1073741824)
 	{
 		$filesize = round($filesize / 1073741824  ,2) . ' Gb';
-	} elseif($filesize >= 1048576)
-	{
+	} elseif($filesize >= 1048576){
 		$filesize = round($filesize / 1048576 ,2) . ' Mb';
-	} elseif($filesize >= 1024)
-	{
+	} elseif($filesize >= 1024){
 		$filesize = round($filesize / 1024, 2) . ' Kb';
-	} else
-	{
+	} else{
 		$filesize = $filesize . ' Bytes';
 	}
 	return $filesize;
 }
 
 /**
-	分页函数
-	@param int $count 条目总数
-	@param int $perlogs 每页显示条数目
-	@param int $page 当前页码
-	@param string $url 页码的地址  
-*/
+ * 分页函数
+ *
+ * @param int $count 条目总数
+ * @param int $perlogs 每页显示条数目
+ * @param int $page 当前页码
+ * @param string $url 页码的地址
+ * @return unknown
+ */
 function pagination($count,$perlogs,$page,$url)
 {
 	$pnums = ceil($count/$perlogs);
@@ -264,11 +269,13 @@ function pagination($count,$perlogs,$page,$url)
 }
 
 /**
-	按照比例改变图片大小(非生成缩略图)
-	@param string $img 图片路径
-	@param int $max_w 最大缩放宽
-	@param int $max_h 最大缩放高
-*/
+ * 按照比例改变图片大小(非生成缩略图)
+ *
+ * @param string $img 图片路径
+ * @param int $max_w 最大缩放宽
+ * @param int $max_h 最大缩放高
+ * @return unknown
+ */
 function chImageSize ($img,$max_w,$max_h)
 {
 	$size = @getimagesize($img);
@@ -282,14 +289,10 @@ function chImageSize ($img,$max_w,$max_h)
 	{
 		$tn['w'] = $w;
 		$tn['h'] = $h;
-	}
-	else if(($w_ratio * $h) < $max_h)
-	{
+	}else if(($w_ratio * $h) < $max_h){
 		$tn['h'] = ceil($w_ratio * $h);
 		$tn['w'] = $max_w;
-	}
-	else 
-	{
+	}else {
 		$tn['w'] = ceil($h_ratio * $w);
 		$tn['h'] = $max_h;
 	}
@@ -299,10 +302,12 @@ function chImageSize ($img,$max_w,$max_h)
 }
 
 /**
-	日志分割
-	@param string $content 日志内容
-	@param int $lid 日志id
-*/
+ * 日志分割
+ *
+ * @param string $content 日志内容
+ * @param int $lid 日志id
+ * @return unknown
+ */
 function breakLog($content,$lid)
 {
 	$a = explode("[break]",$content,2);
@@ -312,9 +317,11 @@ function breakLog($content,$lid)
 }
 
 /**
-	删除[break]标签
-	@param string $content 日志内容
-*/
+ * 删除[break]标签
+ *
+ * @param string $content 日志内容
+ * @return unknown
+ */
 function rmBreak($content)
 {
 	$content = str_replace('[break]','',$content);
@@ -322,11 +329,13 @@ function rmBreak($content)
 }
 
 /**
-	改变图片附件的比例，用于模板中
-	@param string $attstr 缓存中的附件串
-	@param int $width 新的宽
-	@param int $height 新的高
-*/
+ * 改变图片附件的比例，用于模板中
+ *
+ * @param string $attstr 缓存中的附件串
+ * @param int $width 新的宽
+ * @param int $height 新的高
+ * @return unknown
+ */
 function getAttachment($attstr,$width,$height)
 {
 	$re = '';
@@ -349,8 +358,9 @@ function getAttachment($attstr,$width,$height)
 }
 
 /**
-	清除模板中的注释,并完成URL重写功能
-*/
+ * 清除模板中的注释,并完成URL重写功能
+ *
+ */
 function cleanPage()
 {
 	global $isurlrewrite,$isgzipenable;
@@ -380,41 +390,48 @@ function cleanPage()
 }
 
 /**
-	日志链接重写
-	@param int $gid 匹配出来的日志编号
-	@param string $ext 匹配出来的锚点信息
-	@param string $values 匹配出来的<a>标签中的其他属性
-*/
+ * 日志链接重写
+ *
+ * @param int $gid 匹配出来的日志编号
+ * @param string $ext 匹配出来的锚点信息
+ * @param string $values 匹配出来的<a>标签中的其他属性
+ * @return unknown
+ */
 function logRewrite($gid,$ext,$values) 
 {
 	return '<a href="showlog-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
 }
 
 /**
-	日志归档链接重写
-	@param int $date 匹配出来的日志归档时间
-	@param string $values 匹配出来的<a>标签中的其他属性
-*/
+ * 日志归档链接重写
+ *
+ * @param int $date 匹配出来的日志归档时间
+ * @param string $values 匹配出来的<a>标签中的其他属性
+ * @return unknown
+ */
 function recordRewrite($date,$values) 
 {
 	return '<a href="record-'.$date.'.html"'.stripslashes($values).'>';
 }
 
 /**
-	标签链接重写
-	@param int $date 匹配出来的标签编码
-	@param string $values 匹配出来的<a>标签中的其他属性
-*/
+ * 标签链接重写
+ *
+ * @param unknown_type $tag 匹配出来的标签编码
+ * @param string $values 匹配出来的<a>标签中的其他属性
+ * @return unknown
+ */
 function tagRewrite($tag,$values) 
 {
 	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
 }
 
-
 /**
-	获取远程文件内容
-	@param $url 文件http地址
-*/
+ * 获取远程文件内容
+ *
+ * @param 文件http地址 $url
+ * @return unknown
+ */
 function fopen_url($url) 
 {
 	if (function_exists('file_get_contents')) {
@@ -466,8 +483,10 @@ function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 }
 
 /**
-	返回显系统错误信息
-*/
+ * 返回显系统错误信息
+ *
+ * @param unknown_type $info
+ */
 function sysMsg($info) 
 {
 print <<<EOT

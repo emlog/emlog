@@ -6,7 +6,11 @@
  * $Id$
  */
 
-//获取url地址
+/**
+ * 获取url地址
+ *
+ * @return unknown
+ */
 function GetURL()
 {
 	global $db_prefix;
@@ -14,12 +18,18 @@ function GetURL()
 	$path = str_replace("/rss.php","",$path);
 	Return $path;
 }
-//获取日志信息
+
+/**
+ * 获取日志信息
+ *
+ * @return array
+ */
 function GetBlog()
 {
 	global $db_prefix,$DB;
 	$sql = "SELECT * FROM {$db_prefix}blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
 	$result = $DB->query($sql);
+	$blog = array();
 	while($re = $DB->fetch_array($result))
 	{
 		$re['id'] 		= $re['gid'];
@@ -31,7 +41,12 @@ function GetBlog()
 	}
 	return $blog;
 }
-//获取日志数目
+
+/**
+ * 获取日志数目
+ *
+ * @return unknown
+ */
 function GetBlogNum()
 {
 	$blog_t =  GetBlog();

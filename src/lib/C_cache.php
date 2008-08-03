@@ -224,9 +224,7 @@ class mkcache {
 					'record'=>date("Y年n月",$show_record['date']),
 					'url'=>"record-".date("Ym",$show_record['date']).".html"
 					);
-				}
-				else
-				{
+				}else{
 					$dang_cache[$p] = array(
 					'record'=>date("Y年n月",$show_record['date']),
 					'url'=>"index.php?record=".date("Ym",$show_record['date'])
@@ -273,8 +271,7 @@ class mkcache {
 				{
 					$tag .= "	<a href=\"./?tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
 				}
-			}else
-			{
+			}else{
 				$tag = '';
 			}
 			$log_cache_tags[$show_log['gid']] = $tag;
@@ -321,8 +318,7 @@ class mkcache {
 					}
 					$imgsize = chImageSize($att_path,IMG_ATT_MAX_W,IMG_ATT_MAX_H);
 					$att_img .= "<br /><br /><a href=\"$imgsrc2\" target=\"_blank\"><img src=\"$imgsrc\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"0\" alt=\"点击查看原图\" /></a>";
-				}else
-				{
+				}else{
 					$file_atturl = $atturl;
 					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']);
 				}

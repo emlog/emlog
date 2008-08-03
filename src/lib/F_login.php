@@ -7,8 +7,10 @@
  */
 
 /**
-	验证用户是否处于登陆状态
-*/
+ * 验证用户是否处于登陆状态
+ *
+ * @return boolean
+ */
 function isLogin()
 {
 	session_cache_limiter('private, must-revalidate');
@@ -23,43 +25,46 @@ function isLogin()
 		{
 			return FALSE;
 		}
-	}else 
-	{
+	}else{
 		return FALSE;
 	}
 	return TRUE;
 }
 
 /**
-	验证密码/用户
-	@return boolean
-*/
+ * 验证密码/用户
+ *
+ * @param unknown_type $username
+ * @param unknown_type $password
+ * @param unknown_type $imgcode
+ * @param unknown_type $logincode
+ * @return boolean
+ */
 function checkUser($username,$password,$imgcode,$logincode)
 {
 	global $DB,$userinfo,$db_prefix;
 	if (trim($username) == '' || trim($username) == '')
 	{
 		return FALSE;
-	}else
-	{	
+	}else{	
 		$userinfo=$DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username='$username' AND password='$password' ");
 		if (empty($userinfo))
 		{
 			return FALSE;
-		}elseif ($logincode=='y' && $imgcode!=$_SESSION['code'])
-		{
+		}elseif ($logincode=='y' && $imgcode!=$_SESSION['code']){
 			return FALSE;
-		}else
-		{
+		}else{
 			return TRUE;
 		}
 	}
 }
 
 /**
-	验证密码(修改密码用)
-	@param string $password 当前密码
-*/
+ * 验证密码(修改密码用)
+ *
+ * @param string $password 当前密码
+ * @return unknown
+ */
 function checkPass($password)
 {
 	global $DB,$db_prefix;
@@ -68,15 +73,15 @@ function checkPass($password)
 	if (empty($ispass))
 	{
 		return false;
-	}else
-	{
+	}else{
 		return true;
 	}
 }
 
 /**
-	登录页面
-*/
+ * 登录页面
+ *
+ */
 function loginPage() 
 {
 	global $login_code,$nonce_tpl;

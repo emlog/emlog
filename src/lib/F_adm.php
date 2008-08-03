@@ -7,8 +7,12 @@
  */
 
 /**
-	系统返回信息
-*/
+ * 系统返回信息
+ *
+ * @param unknown_type $msg
+ * @param unknown_type $url
+ * @param unknown_type $type
+ */
 function formMsg($msg,$url,$type)
 {
 	global $nonce_tpl;
@@ -19,14 +23,16 @@ function formMsg($msg,$url,$type)
 }
 
 /**
-	附件上传
-	@param string $filename 文件名
-	@param string $tmpfile 上传后的临时文件
-	@param string $filesize 文件大小 KB
-	@param array $type 允许上传的文件类型
-	@param string $filetype 上传文件的类型 eg:image/jpeg
-	@param boolean $isIcon 是否为上传个性头像
-*/ 
+ * 附件上传
+ *
+ * @param string $filename 文件名
+ * @param string $tmpfile 上传后的临时文件
+ * @param string $filesize 文件大小 KB
+ * @param array $type 允许上传的文件类型
+ * @param string $filetype 上传文件的类型 eg:image/jpeg
+ * @param boolean $isIcon 是否为上传头像
+ * @return unknown
+ */
 function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 {
 	global $uploadroot, $uploadmax;
@@ -79,20 +85,21 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 }
 
 /**
-	图片生成缩略图
-	@param string $img 预缩略的图片
-	@param string $filetype 上传文件的类型 eg:image/jpeg
-	@param string $name 缩略图名
-	@param boolean $isIcon 是否为上传个性头像
-*/ 
+ * 图片生成缩略图
+ *
+ * @param string $img 预缩略的图片
+ * @param unknown_type $imgtype 上传文件的类型 eg:image/jpeg
+ * @param string $name 缩略图名
+ * @param boolean $isIcon 是否为上传个性头像
+ * @return unknown
+ */
 function resizeImage($img,$imgtype,$name,$isIcon)
 {
 	if($isIcon)
 	{
 		$max_w = ICON_MAX_W;
 		$max_h = ICON_MAX_H;
-	}else
-	{
+	}else{
 		$max_w = IMG_ATT_MAX_W;
 		$max_h = IMG_ATT_MAX_H;
 	}
@@ -110,8 +117,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		if(function_exists("imagecreatefromjpeg"))
 		{
 			$img = imagecreatefromjpeg($img);
-		}else
-		{
+		}else{
 			return false;
 		}
 	}elseif($imgtype == "image/x-png" OR $imgtype == "image/png")
@@ -119,8 +125,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		if(function_exists("imagecreatefrompng"))
 		{
 			$img = imagecreatefrompng($img);
-		}else
-		{
+		}else{
 			return false;
 		}
 	}
@@ -128,8 +133,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	{
 		$newim = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
-	}else
-	{
+	}else{
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
@@ -139,8 +143,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		{
 			return false;
 		}
-	}elseif ($imgtype == "image/x-png" OR $imgtype == "image/png")
-	{
+	}elseif ($imgtype == "image/x-png" OR $imgtype == "image/png"){
 		if(!imagepng($newim,$name))
 		{
 			return false;
@@ -151,10 +154,11 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 }
 
 /**
-	备份数据库结构和所有数据
-	@param string $table 数据库表名
-	@return string sql
-*/ 
+ * 备份数据库结构和所有数据
+ *
+ * @param string $table 数据库表名
+ * @return string
+ */
 function dataBak($table)
 {
 	global $DB;
@@ -183,10 +187,12 @@ function dataBak($table)
 }
 
 /**
-	发送 trackback 数据包
-	@param string $url 发送地址
-	@param string $date 数据信息
-*/ 
+ * 发送 trackback 数据包
+ *
+ * @param string $url 发送地址
+ * @param unknown_type $data 数据信息
+ * @return unknown
+ */
 function sendPacket($url, $data)
 {
 	$uinfo = parse_url($url);
@@ -217,11 +223,12 @@ function sendPacket($url, $data)
 }
 
 /**
-	寻找两数组所有不同元素
-	@param array $array1
-	@param array $array2
-	@return array 
-*/ 
+ * 寻找两数组所有不同元素
+ *
+ * @param array $array1
+ * @param array $array2
+ * @return array
+ */
 function findArray($array1,$array2)
 {
 	#合并数组
@@ -264,10 +271,11 @@ function findArray($array1,$array2)
 }
 
 /**
-	删除数组中相同元素，只保留一个
-	@param array $array
-	@return array 
-*/
+ * 删除数组中相同元素，只保留一个
+ *
+ * @param array $array
+ * @return array
+ */
 function formatArray($array)
 {
 	 sort($array);
@@ -287,10 +295,11 @@ function formatArray($array)
 }
 
 /**
-	随机读取一个数组元素
-	@param array $array
-	@return unknow
-*/
+ * 随机读取一个数组元素
+ *
+ * @param array $array
+ * @return unknow
+ */
 function getTips($array)
 {
 	$num = mt_rand(0,count($array)-1);
@@ -298,8 +307,10 @@ function getTips($array)
 }
 
 /**
-	背景色替换
-*/
+ * 背景色替换
+ *
+ * @return unknown
+ */
 function getRowbg()
 {
 	global $bgcounter;
@@ -311,9 +322,10 @@ function getRowbg()
 }
 
 /**
-	删除日志
-	@param $gid 日志id
-*/
+ * 删除日志
+ *
+ * @param 日志id $gid
+ */
 function delLog($gid)
 {
 	global $DB,$db_prefix;
