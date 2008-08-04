@@ -1,0 +1,438 @@
+/* emlog's templates :graffiti css */
+* {
+	margin: 0;
+}
+
+img {
+	border: 0
+}
+
+li {
+	list-style: none;
+}
+
+a:link {
+	text-decoration: none;
+	color: #1ABDE6;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #1ABDE6;
+}
+
+body{
+	font-family: Arial;
+	font-size: 12px;
+	line-height: 150%;
+	background:transparent;
+	background:url(./graf.jpg)
+	repeat-x #FFFFFF;
+	background-position : 60% 0%;
+	background-repeat : no-repeat;
+}
+
+#header * {
+	padding: 0px;
+}
+
+#holder {
+	width: 960px;
+	padding: 20px 20px;
+	margin: auto;
+}
+
+#siteTitle {
+	font-size: 14px;
+	list-style: none;
+	font-family: Arial;
+	padding: 5px;
+	margin: 30px 0px 90px 0px;
+}
+
+#siteTitle li {
+	font-size: 14px;
+	padding: 5px 5px 1px;
+	color: #999999;
+	list-style: none;
+}
+
+#siteTitle #blogname {
+	font-size: 22px;
+	font-family: "黑体";
+	margin: 20px 0px 0px;
+	color: #63617b;
+}
+
+#blogname a:link {
+	color: #1ABDE6;
+	text-decoration: none
+}
+
+#blogname a:visited {
+	color: #1ABDE6;
+	text-decoration: none
+}
+
+#siteTitle #blogdes {
+	font-size: 12px;
+	text-align: left;
+}
+
+#navBar {
+	font-size: 12px;
+	margin: 0px;
+	padding: 2px;
+	text-align:right;
+}
+
+#navBar li {
+	list-style: none;
+	display: inline;
+	padding: 0px 12px;
+}
+
+#navBar a:link {
+	text-decoration: none;
+	color: #000000;
+}
+
+#navBar a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+
+#navBar a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+
+/*右侧栏*/
+#page {
+	width: 960px;
+	float: left;
+	background:transparent;
+}
+
+div.contentA {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+	width: 230px;
+	table-layout: fixed;
+	word-wrap: break-word;
+	border:1px dotted #DDD;
+}
+
+.lister {
+	color: #63617b;
+	display: block;
+	padding: 1px 0px 1px 10px;
+	margin: 10px 1px 2px;
+	clear: left;
+}
+
+.lister span {
+	cursor: pointer;
+	font-weight: bold;
+	display: block;
+}
+
+.contentA li {
+	padding: 3px 0px 3px 15px;
+	list-style: none;
+}
+
+.contentA ul {
+	padding: 0px;
+}
+
+#contentA #comment {
+	font-size: 11px;
+	text-align: left;
+	table-layout: fixed;
+	word-wrap: break-word;
+	border-bottom: #BBBBBB dashed 2px;
+}
+
+.expanded {
+	display: none;
+}
+
+/*左侧日志*/
+#contentB {
+	margin-left: 10px;
+	float: left;
+	width: 700px;
+	border:1px dotted #DDD;
+}
+
+#contentB li {
+	list-style: none;
+	padding: 4px;
+}
+
+#contentB #search {
+	border: 1px solid #999999;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+
+#contentB p {
+	padding: 8px;
+}
+
+#contentB strong {
+	font-size: 10pt;
+}
+
+.logcontent {
+	padding: 8px 8px 0px;
+	margin: 0px 10px;
+	table-layout: fixed;
+	word-wrap: break-word;
+	border-bottom:1px dotted #DDD;
+	background:transparent;
+}
+
+#twitter li {
+	border-top: dotted #DDD 1px;
+}
+
+#twitter li span {
+	font-size: 10px;
+	padding-left: 120px;
+}
+
+#twitter li small {
+	font-size: 10px;
+	padding: 0px 10px;
+}
+
+.logcontent li {
+	list-style: none;
+}
+
+.log_con {
+	padding: 5px 10px 5px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	line-height: 1.7;
+	border-bottom: #DDD dashed 1px;
+}
+
+.log_desc {
+	font-size: 14px;
+	line-height: 1.7;
+}
+
+.line {
+	color: #FF6633;
+}
+
+.content {
+	padding: 10px;
+	margin: 0px;
+	table-layout: fixed;
+	word-wrap: break-word;
+	border:1px dotted #DDD;
+}
+
+.trackback {
+	padding: 2px 10px;
+	margin: 10px 0px;
+}
+
+.nextlog {
+	margin-bottom: 10px;
+}
+
+#com_list li {
+	margin: 5px 10px 10px 10px;
+	border-bottom: 1px dotted #63617b;
+}
+
+#com_list span {
+	color: #1ABDE6;
+}
+
+#tb_list li {
+	margin: 10px 10px;
+	width: 700px;
+}
+
+#tags {
+	margin: 10px 50px;
+}
+
+/*底部版权信息*/
+#siteCopyright {
+	font-family: Arial;
+	color: #999999;
+	text-align: center;
+	margin: 20px 0px;
+	clear: both;
+	font-size: 12px;
+}
+
+/*日志标题，栏目名样式*/
+#t {
+	background-repeat: no-repeat;
+	font-size: 14px;
+	padding: 8px 0px 0px 0px;
+	font-weight: bold;
+	color: #63617b;
+}
+
+#tit {
+	background-repeat: no-repeat;
+	font-size: 16px;
+	padding: 8px 0px 0px 0px;
+	font-weight: bold;
+}
+
+#t a:link {
+	color: #1ABDE6;
+	text-decoration: underline
+}
+
+#t a:visited {
+	color: #1ABDE6;
+	text-decoration: underline
+}
+
+#t2 {
+	font-size: 22px;
+	padding: 4px 16px 0px;
+	color: #63617b;
+	border: 1px solid #63617b;
+}
+
+#date {
+	font-size: 12px;
+	color: #CC6600;
+}
+
+#t3 {
+	font-size: 12px;
+	padding: 1px 20px;
+	color: #63617b;
+}
+
+#t_search {
+	margin-top: 10px;
+	color: #63617b;
+}
+
+#t_search li {
+	padding: 5px 0px 5px;
+}
+
+#t_com {
+	padding: 1px 20px;
+	color: #63617b;
+}
+
+.ultype {
+	padding: 5px 20px 5px;
+}
+
+/*返回信息及跳转页面样式*/
+.remsg {
+	font-family: Arial;
+	color: #63617b;
+	text-align: center;
+	margin: 200px;
+}
+
+/*日历样式*/
+.calendar { /*background-image:url(images/bg.jpg);*/
+	margin-left: 14px;
+}
+
+.calendar td {
+	font-size: 12px;
+	text-align: center;
+	padding: 0px 6px;
+}
+
+.calendar a:visited {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:link {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:hover {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.day {
+	border:1px dotted #FF6600;
+}
+
+.day2 {
+	font-weight: bold;
+}
+
+.sun {
+	
+	color: #333333;
+	font-weight: bold;
+}
+
+.week {
+	
+	color: #333333;
+}
+
+.calendartop {
+	text-align: center;
+	font-size: 14px;
+	margin-left: 41px;
+}
+
+/*页码样式*/
+#pageurl {
+	margin: 20px 0px 30px;;
+	text-align: left;
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+/*输入框样式*/
+.input {
+	border: 1px solid #CCCCCC;
+	font-family: Arial;
+	font-size: 12px;
+	height: 16px;
+	color: #666666;
+}
+
+.textarea {
+	border: 1px solid #CCCCCC;
+	font-family: Arial;
+	font-size: 14px;
+	background-color: #F3F3F3;
+	color: #666666;
+}
+
+/*按钮样式*/
+.button {
+	font-family: Arial;
+	border-right: #4f4f4f 1px solid;
+	border-top: #f6f6f6 1px solid;
+	font-size: 14px;
+	height: 22px;
+	background: #dddddd;
+	border-left: #f6f6f6 1px solid;
+	border-bottom: #4f4f4f 1px solid;
+}
+
+.taglog {
+	margin: 10px 20px;
+}

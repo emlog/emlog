@@ -303,6 +303,31 @@ src/templates/g7_v3/message.php -text svn_keywords=Id
 src/templates/g7_v3/preview.jpg -text svn_keywords=Id
 src/templates/g7_v3/side.php -text svn_keywords=Id
 src/templates/g7_v3/style.css -text svn_keywords=Id
+src/templates/graffiti/echo_log.php -text
+src/templates/graffiti/footer.php -text
+src/templates/graffiti/graf.css -text
+src/templates/graffiti/graf.jpg -text
+src/templates/graffiti/graffiti_01/Thumbs.db -text
+src/templates/graffiti/graffiti_01/graf.css -text
+src/templates/graffiti/graffiti_01/graf_1.jpg -text
+src/templates/graffiti/graffiti_01/graf_2.jpg -text
+src/templates/graffiti/graffiti_01/graf_3.jpg -text
+src/templates/graffiti/graffiti_01/graf_4.jpg -text
+src/templates/graffiti/graffiti_01/graf_5.jpg -text
+src/templates/graffiti/graffiti_02/graf.css -text
+src/templates/graffiti/graffiti_02/graf_1.jpg -text
+src/templates/graffiti/graffiti_02/graf_2.jpg -text
+src/templates/graffiti/graffiti_02/graf_3.jpg -text
+src/templates/graffiti/header.php -text
+src/templates/graffiti/images/Thumbs.db -text
+src/templates/graffiti/images/modify.gif -text
+src/templates/graffiti/images/reply.gif -text
+src/templates/graffiti/images/rss.gif -text
+src/templates/graffiti/log_list.php -text
+src/templates/graffiti/message.php -text
+src/templates/graffiti/preview.jpg -text
+src/templates/graffiti/readme.txt -text
+src/templates/graffiti/side.php -text
 src/templates/half-life/echo_log.php -text svn_keywords=Id
 src/templates/half-life/footer.php -text svn_keywords=Id
 src/templates/half-life/header.php -text svn_keywords=Id
