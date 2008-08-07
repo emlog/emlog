@@ -7,6 +7,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div class="entry"><?php echo $log_content;?>
 <a name="att"></a>
 <p><?php echo $att_img;?></p>
+<p><?php echo $attachment; ?></p>
 <p>Posted on <?php echo $post_time;?><br /></p>
 <p>
 <?php if($previousLog):?>
