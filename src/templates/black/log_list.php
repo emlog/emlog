@@ -24,6 +24,8 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				</div>
 				<div class="postcontent">
 				<?php echo $value['log_description']; ?>
+				<p><?php echo $value['att_img']; ?></p>
+				<p><?php echo $value['attachment']; ?></p>
 				</div>
 				<div class="posttags">	
 				<div class="comments">
