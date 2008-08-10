@@ -1,7 +1,7 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],200,120);
+//$value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 <div class="content">
             <div class="post" id="post-<?php echo $value['logid'];?>">

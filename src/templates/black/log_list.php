@@ -6,7 +6,7 @@ include getViews('side');
 <div class="post">
 <?php
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],200,120);
+//$value['att_img'] = getAttachment($value['att_img'],200,120);
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0'];
 $day = $datetime['1']."/".substr($datetime['2'],0,2);

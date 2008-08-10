@@ -5,7 +5,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<div class="clear"></div>
 <?php
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],200,120);
+//$value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 		<div class="post" id="post-<?php echo $value['logid'];?>">
 		<div class="wrapper">

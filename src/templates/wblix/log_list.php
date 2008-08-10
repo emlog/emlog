@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="content">
 <?php
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],200,120);
+//$value['att_img'] = getAttachment($value['att_img'],200,120);
 ?>
 <div class="entry single">
 <h1>
