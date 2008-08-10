@@ -163,19 +163,16 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$result = '';
 
 	//错误返回函数
-	if(empty($db_prefix)){
+	if(empty($db_prefix))
+	{
 		sysMsg('数据库前缀不能为空!');
-	}
-	elseif(!ereg("^[a-zA-Z0-9_]+_$",$db_prefix)){
+	}elseif(!ereg("^[a-zA-Z0-9_]+_$",$db_prefix)){
 		sysMsg('数据库前缀格式错误!');
-	}
-	elseif($admin=="" || $adminpw==""){
+	}elseif($admin=="" || $adminpw==""){
 		sysMsg('管理员和管理员密码不能为空!');
-	}
-	elseif(strlen($adminpw) < 6){
+	}elseif(strlen($adminpw) < 6){
 		sysMsg('管理员密码不得小于6位');
-	}
-	elseif($adminpw!=$adminpw2)	 {
+	}elseif($adminpw!=$adminpw2)	 {
 		sysMsg('两次输入的密码不一致');
 	}
 	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
@@ -203,9 +200,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	if (!$fw)
 	{
 		sysMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
-	}
-	else
-	{
+	}else{
 		$result.="配置文件修改成功<br />";
 	}
 	fclose($fp);
@@ -351,21 +346,24 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	while (list(,$query) = each($mysql_query)) 
 	{
 		$query = trim($query);
-		if ($query) {
+		if ($query)
+		{
 			if (strstr($query,'CREATE TABLE'))
 			{
 				ereg('CREATE TABLE ([^ ]*)',$query,$regs);
 				$result .= "数据库表: ".$regs[1]." 创建";
 				$ret = $DB->query($query);
-				if (!$ret){
+				if (!$ret)
+				{
 					$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
 					sysMsg($result);
-				} else {
+				}else{
 					$result .= "成功...<br />\n";
 				}
 			} else {
 				$ret = $DB->query($query);
-				if (!$ret){
+				if (!$ret)
+				{
 					$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
 					sysMsg($result);
 				}

@@ -69,11 +69,9 @@ function getindextw()
 	if($page!=1 && $page!=$pagenums)
 	{
 		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a><small>$page/$pagenums</small><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">较早的&raquo;</a></li>";
-	}elseif ($page == 1 && $pagenums>1)
-	{
+	}elseif ($page == 1 && $pagenums>1){
 		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>";
-	}elseif ($page == $pagenums && $pagenums>1)
-	{
+	}elseif ($page == $pagenums && $pagenums>1){
 		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a></li>";
 	}
 	return $twitter;

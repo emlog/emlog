@@ -98,44 +98,41 @@ for($i=1;$i<=6;$i++)
 		if($j<$week)
 		{
 			$calendar.="<td>&nbsp;</td>\n";
-		}
-		elseif($j<=7)
-		{
+		}elseif($j<=7){
 			$r=$j-$week+1;
 			//如果该日有日志就显示url样式
 			$n_time=$n_year.$n_month."0".$r;
 			//有日志且为当天
 			if(@in_array($n_time,$logdate)&&$n_time==$time)
+			{
 				$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$r."</a></td>\n";
-			elseif(@in_array($n_time,$logdate))
+			}elseif(@in_array($n_time,$logdate)){
 				$calendar.="<td class=\"day2\"><a href=\"index.php?record=$n_time\">".$r."</a></td>\n";
-			elseif($n_time==$time)
+			}elseif($n_time==$time){
 				$calendar.="<td class=\"day\">".$r."</td>\n";
-			else
+			}else{
 				$calendar.="<td>".$r."</td>\n";
-		}
-		else
-		{
+			}
+		}else{
 			$t=$j-($week-1);
 			if($t>$lastday)
 			{
 				$isend = true;
 				$calendar.="<td>&nbsp;</td>\n";
-			}
-			else
-			{
+			}else{
 				//如果该日有日志就显示url样式
 				$t<10?
 				$n_time=$n_year.$n_month."0".$t:
 				$n_time=$n_year.$n_month.$t;
-				if(@in_array($n_time,$logdate)&&$n_time==$time)
+				if(@in_array($n_time,$logdate)&&$n_time==$time){
 					$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
-				elseif(@in_array($n_time,$logdate))
+				}elseif(@in_array($n_time,$logdate)){
 					$calendar.="<td class=\"day2\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
-				elseif($n_time==$time)
+				}elseif($n_time==$time){
 					$calendar.="<td class=\"day\">".$t."</td>\n";
-				else
+				}else{
 					$calendar.="<td>".$t."</td>\n";
+				}
 			}
 		}
 	}//内循环结束

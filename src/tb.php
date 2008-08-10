@@ -35,8 +35,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	if (empty($blog))
 	{
 		showXML('日志不存在');
-	}elseif ($blog['allow_tb']=='n')
-	{
+	}elseif ($blog['allow_tb']=='n'){
 		showXML('该日志不允许引用');
 	}
 
@@ -51,8 +50,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	{
 		//没有获得原代码就-1分
 		$point -= 1;
-	}else 
-	{
+	}else {
 		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE)
 		{
 			//对比链接，如果原代码中包含本站的hostname就+1分，这个未必成立
@@ -96,12 +94,10 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$MC->mc_sta('./cache/sta');
 		showXML('成功接收', 0);
-	}else 
-	{
+	}else {
 		showXML('主动拒绝引用');
 	}
-}else
-{
+}else{
 	showXML('参数错误');
 }
 
@@ -150,8 +146,10 @@ function csubstr($text, $start=0, $limit=12)
 		return array($text, $more);
 	} else {
 		preg_match_all("/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/", $text, $ar);
-		if(func_num_args() >= 3) {
-			if (count($ar[0])>$limit) {
+		if(func_num_args() >= 3)
+		{
+			if (count($ar[0])>$limit)
+			{
 				$more = TRUE;
 				$text = join("",array_slice($ar[0],0,$limit))."...";
 			}
@@ -173,8 +171,7 @@ function iconv2utf($chs)
 		if (function_exists('mb_convert_encoding'))
 		{
 			$chs = mb_convert_encoding($chs, 'UTF-8', $encode);
-		} elseif (function_exists('iconv'))
-		{
+		} elseif (function_exists('iconv')){
 			$chs = iconv($encode, 'UTF-8', $chs);
 		}
 	}

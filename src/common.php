@@ -87,8 +87,7 @@ if ($action == 'login')
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
 		header("Location: index.php");
-	}else
-	{
+	}else{
 		header("Location: index.php");
 	}
 }

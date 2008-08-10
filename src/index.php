@@ -52,9 +52,7 @@ if (!isset($action) || empty($action))
 		$query = $DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n'  $add_query ");
 		$lognum = $DB->num_rows($query);
 		$pageurl .= "?record=$record&page";
-	}
-	elseif ($tag)
-	{
+	}elseif($tag){
 		$tagstring = @$DB->fetch_one_array("SELECT tagname,gid FROM {$db_prefix}tag WHERE tagname='$tag' ") OR msg('不存在该标签','javascript:history.back(-1);');
 		$gids  = substr(trim($tagstring['gid']),1,-1);
 		$tag   = $tagstring['tagname'];
@@ -63,9 +61,7 @@ if (!isset($action) || empty($action))
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?tag=$tag&page";
-	}
-	elseif ($keyword)
-	{
+	}elseif($keyword){
 		//参数过滤
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
@@ -81,9 +77,7 @@ if (!isset($action) || empty($action))
 			if($i)
 			{
 				$keywords_string .= "OR title like '%".$keyword."%' ";
-			}
-			else
-			{
+			}else{
 				$keywords_string = "LIKE '%".$keyword."%' ";
 			}
 		}
@@ -92,9 +86,7 @@ if (!isset($action) || empty($action))
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?keyword=$keyword&page";
-	}
-	else
-	{
+	}else{
 		$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= "?page";
@@ -238,25 +230,15 @@ if($action == 'addcom')
 	if(preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$comname) || strlen($comname)>20 || strlen($comname)==0)
 	{
 		msg('姓名非法!','javascript:history.back(-1);');
-	}
-	elseif($commail!='' && !checkMail($commail))
-	{
+	}elseif($commail!='' && !checkMail($commail)){
 		msg('邮件格式错误!', 'javascript:history.back(-1);');
-	}
-	elseif(strlen($comment)=='' || strlen($comment)>2000)
-	{
+	}elseif(strlen($comment)=='' || strlen($comment)>2000){
 		msg('评论内容非法','javascript:history.back(-1);');
-	}
-	elseif($imgcode=='' && $comment_code=='y')
-	{
+	}elseif($imgcode=='' && $comment_code=='y'){
 		msg('验证码不能为空','javascript:history.back(-1);');
-	}
-	elseif($comment_code=='y' && $imgcode != $_SESSION['code'])
-	{
+	}elseif($comment_code=='y' && $imgcode != $_SESSION['code']){
 		msg('验证码错误!','javascript:history.back(-1);');
-	}
-	else
-	{
+	}else{
 		$sql = "INSERT INTO {$db_prefix}comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','','$commail','$comurl','$ischkcomment')";
 		$ret = $DB->query($sql);
 		if($ischkcomment == 'n')
@@ -265,9 +247,7 @@ if($action == 'addcom')
 			$MC->mc_sta('./cache/sta');
 			$MC->mc_comment('./cache/comments');
 			msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
-		}
-		else
-		{
+		}else{
 			$MC->mc_sta('./cache/sta');
 			msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 		}
