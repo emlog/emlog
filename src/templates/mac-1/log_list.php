@@ -19,7 +19,7 @@ $day = substr($datetime['2'],0,2);
 <h2>
 <?php echo $value['toplog'];?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h2>
-          <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=<?php echo $value['com_url'];?>" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
+          <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
 
 		  </div>
           <div class="entry">
