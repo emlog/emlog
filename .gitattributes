@@ -136,34 +136,6 @@ src/lib/F_rss.php -text svn_keywords=Id
 src/lib/js/common_tpl.js -text svn_keywords=Id
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
-src/templates/be-evil/echo_log.php -text svn_keywords=Id
-src/templates/be-evil/footer.php -text svn_keywords=Id
-src/templates/be-evil/header.php -text svn_keywords=Id
-src/templates/be-evil/images/access.png -text svn_keywords=Id
-src/templates/be-evil/images/calendar.png -text svn_keywords=Id
-src/templates/be-evil/images/comment.png -text svn_keywords=Id
-src/templates/be-evil/images/comments.png -text svn_keywords=Id
-src/templates/be-evil/images/date.png -text svn_keywords=Id
-src/templates/be-evil/images/douban.png -text svn_keywords=Id
-src/templates/be-evil/images/google.png -text svn_keywords=Id
-src/templates/be-evil/images/home.png -text svn_keywords=Id
-src/templates/be-evil/images/links.png -text svn_keywords=Id
-src/templates/be-evil/images/log.png -text svn_keywords=Id
-src/templates/be-evil/images/logs.png -text svn_keywords=Id
-src/templates/be-evil/images/modify.gif -text
-src/templates/be-evil/images/music.png -text svn_keywords=Id
-src/templates/be-evil/images/pofile.png -text svn_keywords=Id
-src/templates/be-evil/images/rss.png -text svn_keywords=Id
-src/templates/be-evil/images/search.png -text svn_keywords=Id
-src/templates/be-evil/images/staic.png -text svn_keywords=Id
-src/templates/be-evil/images/tag.png -text svn_keywords=Id
-src/templates/be-evil/images/tags.png -text svn_keywords=Id
-src/templates/be-evil/images/taotao.png -text svn_keywords=Id
-src/templates/be-evil/log_list.php -text svn_keywords=Id
-src/templates/be-evil/main.css -text svn_keywords=Id
-src/templates/be-evil/message.php -text svn_keywords=Id
-src/templates/be-evil/preview.jpg -text svn_keywords=Id
-src/templates/be-evil/side.php -text svn_keywords=Id
 src/templates/black/echo_log.php -text
 src/templates/black/footer.php -text
 src/templates/black/header.php -text
@@ -341,20 +313,6 @@ src/templates/half-life/message.php -text svn_keywords=Id
 src/templates/half-life/obar.php -text svn_keywords=Id
 src/templates/half-life/preview.jpg -text svn_keywords=Id
 src/templates/half-life/side.php -text svn_keywords=Id
-src/templates/heart/echo_log.php -text svn_keywords=Id
-src/templates/heart/footer.php -text svn_keywords=Id
-src/templates/heart/header.php -text svn_keywords=Id
-src/templates/heart/images/body.jpg -text svn_keywords=Id
-src/templates/heart/images/foot.jpg -text svn_keywords=Id
-src/templates/heart/images/head.jpg -text svn_keywords=Id
-src/templates/heart/images/lister.jpg -text svn_keywords=Id
-src/templates/heart/images/modify.gif -text
-src/templates/heart/images/reply.gif -text
-src/templates/heart/log_list.php -text svn_keywords=Id
-src/templates/heart/main.css -text svn_keywords=Id
-src/templates/heart/message.php -text svn_keywords=Id
-src/templates/heart/preview.jpg -text svn_keywords=Id
-src/templates/heart/side.php -text svn_keywords=Id
 src/templates/lust/echo_log.php -text svn_keywords=Id
 src/templates/lust/footer.php -text svn_keywords=Id
 src/templates/lust/header.php -text svn_keywords=Id
