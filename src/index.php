@@ -67,7 +67,7 @@ if (!isset($action) || empty($action))
 		$keyword = str_replace('_','\_',$keyword);
 		if(strlen($keyword)>30 || strlen($keyword)<3)
 		{
-			msg('关键字长度不能小于3个字节!','./index.php');
+			msg('错误的关键字长度','./index.php');
 		}
 		//分割关键字
 		$keywords = explode(' ',$keyword);
