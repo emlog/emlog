@@ -78,11 +78,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<h2 id="postcomment">Leave a comment</h2>
 		<form action="index.php?action=addcom" method="post" id="commentform">
 		<p><input type="hidden" name="gid" value="<?php echo $logid; ?>" /></p>
-		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />
+		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="32" tabindex="1" />
 		<label for="author"><small>Name (required)</small></label></p>
-		<p><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="22" tabindex="2" />
+		<p><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="52" tabindex="2" />
 		<label for="email"><small>Mail (will not be published) (required)</small></label></p>
-		<p><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="22" tabindex="3" />
+		<p><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="52" tabindex="3" />
 		<label for="url"><small>Website</small></label></p>
 		<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
 		<p><?php echo $cheackimg; ?><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
