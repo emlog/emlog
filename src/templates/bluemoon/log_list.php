@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<h1><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>" target="_self"><?php echo $value['log_title']; ?></a></h1>
 			<h4><?php echo $value['tag']; ?> by <?php echo $value['name']; ?> on <?php echo $value['post_time']; ?></h4>
 		</div>
-		<?php echo $value['log_description']; ?>
+		<div class="logdes"><?php echo $value['log_description']; ?></div>
 		<div class="clear"></div>
 		<div class="permalink">
 		<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>|

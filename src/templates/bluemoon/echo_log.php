@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<h1><?php echo $log_title; ?></a></h1>
 			<h4><?php echo $tag; ?> by <?php echo $log_author; ?> on <?php echo $post_time; ?></h4>
 		</div>
-		<?php echo $log_content; ?>
+		<div class="logdes"><?php echo $log_content; ?></div>
 		<p><?php echo $att_img; ?></p>
 		<p><?php echo $attachment; ?></p>
 		<div class="clear"></div>
