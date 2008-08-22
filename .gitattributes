@@ -153,6 +153,23 @@ src/templates/black/main.css -text
 src/templates/black/message.php -text
 src/templates/black/preview.jpg -text
 src/templates/black/side.php -text
+src/templates/bluemoon/echo_log.php -text
+src/templates/bluemoon/footer.php -text
+src/templates/bluemoon/header.php -text
+src/templates/bluemoon/images/bttn_search.gif -text
+src/templates/bluemoon/images/bullet.gif -text
+src/templates/bluemoon/images/cont_bg.gif -text
+src/templates/bluemoon/images/footer_bg.jpg -text
+src/templates/bluemoon/images/header_img.jpg -text
+src/templates/bluemoon/images/menu_l.gif -text
+src/templates/bluemoon/images/menu_r.gif -text
+src/templates/bluemoon/images/modify.gif -text
+src/templates/bluemoon/images/reply.gif -text
+src/templates/bluemoon/log_list.php -text
+src/templates/bluemoon/main.css -text
+src/templates/bluemoon/message.php -text
+src/templates/bluemoon/preview.jpg -text
+src/templates/bluemoon/side.php -text
 src/templates/default/echo_log.php -text svn_keywords=Id
 src/templates/default/footer.php -text svn_keywords=Id
 src/templates/default/header.php -text svn_keywords=Id
