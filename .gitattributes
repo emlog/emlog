@@ -184,6 +184,44 @@ src/templates/default/message.php -text svn_keywords=Id
 src/templates/default/preview.jpg -text svn_keywords=Id
 src/templates/default/side.php -text svn_keywords=Id
 src/templates/default/unique_tpl.js -text svn_keywords=Id
+src/templates/dum-dum/echo_log.php -text
+src/templates/dum-dum/footer.php -text
+src/templates/dum-dum/header.php -text
+src/templates/dum-dum/ie6.css -text
+src/templates/dum-dum/ie7.css -text
+src/templates/dum-dum/images/designed-by.jpg -text
+src/templates/dum-dum/images/footer-left.jpg -text
+src/templates/dum-dum/images/footer-right.jpg -text
+src/templates/dum-dum/images/img_03.jpg -text
+src/templates/dum-dum/images/img_04.jpg -text
+src/templates/dum-dum/images/img_08.jpg -text
+src/templates/dum-dum/images/img_09.jpg -text
+src/templates/dum-dum/images/img_10.jpg -text
+src/templates/dum-dum/images/img_13.jpg -text
+src/templates/dum-dum/images/img_16.jpg -text
+src/templates/dum-dum/images/img_19.jpg -text
+src/templates/dum-dum/images/img_21.jpg -text
+src/templates/dum-dum/images/img_27.jpg -text
+src/templates/dum-dum/images/img_28.jpg -text
+src/templates/dum-dum/images/img_29.jpg -text
+src/templates/dum-dum/images/img_30.jpg -text
+src/templates/dum-dum/images/img_31.jpg -text
+src/templates/dum-dum/images/img_33.jpg -text
+src/templates/dum-dum/images/img_36.jpg -text
+src/templates/dum-dum/images/img_39.jpg -text
+src/templates/dum-dum/images/img_42.jpg -text
+src/templates/dum-dum/images/img_50.jpg -text
+src/templates/dum-dum/images/img_52.jpg -text
+src/templates/dum-dum/images/img_54.jpg -text
+src/templates/dum-dum/images/nav-bg-hover.jpg -text
+src/templates/dum-dum/images/nav-bg.jpg -text
+src/templates/dum-dum/images/search-bg.jpg -text
+src/templates/dum-dum/images/search-button.jpg -text
+src/templates/dum-dum/images/time.png -text
+src/templates/dum-dum/log_list.php -text
+src/templates/dum-dum/preview.jpg -text
+src/templates/dum-dum/side.php -text
+src/templates/dum-dum/style.css -text
 src/templates/fruitlicious/echo_log.php -text svn_keywords=Id
 src/templates/fruitlicious/footer.php -text svn_keywords=Id
 src/templates/fruitlicious/header.php -text svn_keywords=Id
