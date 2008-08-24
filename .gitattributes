@@ -458,6 +458,46 @@ src/templates/mac-1/message.php -text svn_keywords=Id
 src/templates/mac-1/preview.jpg -text svn_keywords=Id
 src/templates/mac-1/print.css -text svn_keywords=Id
 src/templates/mac-1/side.php -text svn_keywords=Id
+src/templates/notepad-chaos/echo_log.php -text
+src/templates/notepad-chaos/footer.php -text
+src/templates/notepad-chaos/header.php -text
+src/templates/notepad-chaos/home.php -text
+src/templates/notepad-chaos/images/blockquote.gif -text
+src/templates/notepad-chaos/images/btn-back.gif -text
+src/templates/notepad-chaos/images/bullet-note.gif -text
+src/templates/notepad-chaos/images/bullet-postit-on.gif -text
+src/templates/notepad-chaos/images/bullet-postit.gif -text
+src/templates/notepad-chaos/images/categories-back.gif -text
+src/templates/notepad-chaos/images/categories-btm.gif -text
+src/templates/notepad-chaos/images/categories-upper.gif -text
+src/templates/notepad-chaos/images/date-tab.gif -text
+src/templates/notepad-chaos/images/footer.jpg -text
+src/templates/notepad-chaos/images/icon-rss.gif -text
+src/templates/notepad-chaos/images/line-inner.gif -text
+src/templates/notepad-chaos/images/line.gif -text
+src/templates/notepad-chaos/images/link-newer.gif -text
+src/templates/notepad-chaos/images/link-older.gif -text
+src/templates/notepad-chaos/images/logo-smashing.gif -text
+src/templates/notepad-chaos/images/menu-off.jpg -text
+src/templates/notepad-chaos/images/menu.jpg -text
+src/templates/notepad-chaos/images/notepad-back.gif -text
+src/templates/notepad-chaos/images/page-back.jpg -text
+src/templates/notepad-chaos/images/postit-bottom.gif -text
+src/templates/notepad-chaos/images/postitBack.gif -text
+src/templates/notepad-chaos/images/search-back.gif -text
+src/templates/notepad-chaos/images/thumbnail.gif -text
+src/templates/notepad-chaos/images/txt-email.gif -text
+src/templates/notepad-chaos/images/txt-friends-links.gif -text
+src/templates/notepad-chaos/images/txt-misc-debris.gif -text
+src/templates/notepad-chaos/images/txt-name.gif -text
+src/templates/notepad-chaos/images/txt-site-example.gif -text
+src/templates/notepad-chaos/images/txt-website.gif -text
+src/templates/notepad-chaos/images/txt-your-comment.gif -text
+src/templates/notepad-chaos/log_list.php -text
+src/templates/notepad-chaos/main.css -text
+src/templates/notepad-chaos/message.php -text
+src/templates/notepad-chaos/preview.jpg -text
+src/templates/notepad-chaos/side.php -text
 src/templates/sea/echo_log.php -text svn_keywords=Id
 src/templates/sea/footer.php -text svn_keywords=Id
 src/templates/sea/header.php -text svn_keywords=Id
