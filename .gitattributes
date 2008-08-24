@@ -461,7 +461,6 @@ src/templates/mac-1/side.php -text svn_keywords=Id
 src/templates/notepad-chaos/echo_log.php -text
 src/templates/notepad-chaos/footer.php -text
 src/templates/notepad-chaos/header.php -text
-src/templates/notepad-chaos/home.php -text
 src/templates/notepad-chaos/images/blockquote.gif -text
 src/templates/notepad-chaos/images/btn-back.gif -text
 src/templates/notepad-chaos/images/bullet-note.gif -text
@@ -478,7 +477,6 @@ src/templates/notepad-chaos/images/line.gif -text
 src/templates/notepad-chaos/images/link-newer.gif -text
 src/templates/notepad-chaos/images/link-older.gif -text
 src/templates/notepad-chaos/images/logo-smashing.gif -text
-src/templates/notepad-chaos/images/menu-off.jpg -text
 src/templates/notepad-chaos/images/menu.jpg -text
 src/templates/notepad-chaos/images/notepad-back.gif -text
 src/templates/notepad-chaos/images/page-back.jpg -text
