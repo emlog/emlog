@@ -10,13 +10,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   </div>
   <div id="menu-holder">
   <ul id="menu">
-  <li id="home"><a href="/">Home</a></li>
+  <li id="home"><a href="./">Home</a></li>
   <li id="about"><a href="http://www.emlog.net" target="_blank">emlog</a></li>
   <li id="archives"><a href="/rss.php">Rss</a></li>
   </ul>
   </div>
   <div id="title">
-    <h2><a href="/"><?php echo $blogname; ?></a></h2>
+    <h2><a href="./"><?php echo $blogname; ?></a></h2>
     <?php echo $bloginfo; ?></div>
 </div>
 <div id="content">

@@ -10,13 +10,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   </div>
   <div id="menu-holder">
   <ul id="menu">
-  <li id="home"><a href="/">Home</a></li>
+  <li id="home"><a href="./">Home</a></li>
   <li id="about"><a href="http://www.emlog.net" target="_blank">emlog</a></li>
   <li id="archives"><a href="/rss.php">Rss</a></li>
   </ul>
   </div>
   <div id="title">
-    <h2><a href="/"><?php echo $blogname; ?></a></h2>
+    <h2><a href="./"><?php echo $blogname; ?></a></h2>
     <?php echo $bloginfo; ?></div>
 </div>
 <div id="content">
@@ -89,7 +89,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<p><label for="url"><span class="website">Website Address:</span></label><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="22" tabindex="4" class="comment-field" />
 	<span class="txt-website-example">Website example</span></p>
 	<p><span class="comments">Your Comment:</span><textarea name="comment" id="comment" rows="10" tabindex="1" class="comment-box"></textarea></p>
-	<p><input name="submit" type="submit" id="submit" class="btnComment" tabindex="5" value="Add Comment &raquo;" /><input type="checkbox" name="remember" value="1" checked="checked" />Remember me
+	<p><input name="submit" type="submit" id="submit" class="btnComment" tabindex="5" value="Add Comment &raquo;" /><?php echo $cheackimg; ?><input type="checkbox" name="remember" value="1" checked="checked" />Remember me
 	</p>
 	</form>
 
