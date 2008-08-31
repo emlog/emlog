@@ -82,7 +82,7 @@
 		</ul>
 		</div> <!-- BOX2 TEXT -->
 	</div> <!-- BOX2 -->
-	
+	<?php if($ismusic): ?>
 	<div class="box1">
 		<div class="box1text">
 		<ul>
@@ -90,7 +90,8 @@
 		<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 		</ul>
 		</div> <!-- BOX1 TEXT -->
-	</div> <!-- BOX1 -->	
+	</div> <!-- BOX1 -->
+	<?php endif; ?>	
 	
 	<div class="box3">
 		<div class="box3text">
@@ -144,4 +145,5 @@
 		</ul>
 		</div> <!-- BOX3 TEXT -->
 	</div> <!-- BOX3 -->
+	<?php echo $exarea; ?>
 </div> <!-- SIDEBAR -->
