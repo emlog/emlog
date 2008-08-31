@@ -219,6 +219,7 @@ src/templates/dum-dum/images/search-bg.jpg -text
 src/templates/dum-dum/images/search-button.jpg -text
 src/templates/dum-dum/images/time.png -text
 src/templates/dum-dum/log_list.php -text
+src/templates/dum-dum/message.php -text
 src/templates/dum-dum/preview.jpg -text
 src/templates/dum-dum/side.php -text
 src/templates/dum-dum/style.css -text

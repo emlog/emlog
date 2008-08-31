@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div class="sidebar">
-	<form name="keyform" method="get" action="index.php">
+	<form name="keyform" method="get" action="index.php" id="searchform">
 	<div>
-    	<input name="keyword"  type="text" value="" id="s" /><input type="image" src="<?php echo $tpl_dir; ?>dum-dum/images/search-button.jpg" id="searchsubmit" value="Search" />
+   	<input name="keyword"  type="text" value="" id="s" /><input type="image" src="<?php echo $tpl_dir; ?>dum-dum/images/search-button.jpg" id="searchsubmit" value="Search" />
 	</div>
 	</form>
 
@@ -10,9 +10,9 @@
 		<div class="box1text">
 		<ul>
 		<li><h2>资料</h2>
-		<li><?php echo $photo; ?></li>
-		<li><b><?php echo $name; ?></b></li>
-			<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+		<li style="text-align:center;"><?php echo $photo; ?></li>
+		<li style="text-align:center;"><b><?php echo $name; ?></b></li>
+			<li style="text-align:center;"><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 			<?php if(ISLOGIN === true): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 			<img src="<?php echo $tpl_dir; ?>default/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
@@ -32,7 +32,6 @@
 		<ul>
 			<li><h2>日历</h2>
 				<div id="calendar">
-				
 				</div>
 			</li>
 		</ul>
@@ -55,7 +54,7 @@
 	<div class="box2">
 		<div class="box2text">
 		<ul>
-			<li><h2>日历</h2>
+			<li><h2>Twitter</h2>
 			<ul id="twitter">
 			<?php
 			if(isset($tw_cache) && is_array($tw_cache)):
@@ -73,7 +72,7 @@
 				<ul>
 				<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 				<li id='addtw' style="display: none;">
-				<textarea name="tw" id="tw" style="overflow-y: hidden;width:210px;height:70px;" class="input"></textarea>
+				<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
 				<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 				<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 				</li>
@@ -113,7 +112,7 @@
 	<div class="box2">
 		<div class="box2text">
 		<ul>
-			<li><h2>归档</h2>
+			<li><h2>存档</h2>
 			<?php foreach($dang_cache as $value): ?>
 			<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
@@ -124,7 +123,7 @@
 	<div class="box1">
 		<div class="box1text">
 		<ul>
-			<li><h2>归档</h2>
+			<li><h2>链接</h2>
 			<?php foreach($link_cache as $value): ?>     	
 			<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 			<?php endforeach; ?>
@@ -136,7 +135,7 @@
 	<div class="box3">
 		<div class="box3text">
 		<ul>
-			<li><h2>归档</h2>
+			<li><h2>统计</h2>
 			<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
 			<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
 			<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
@@ -145,5 +144,4 @@
 		</ul>
 		</div> <!-- BOX3 TEXT -->
 	</div> <!-- BOX3 -->
-	
 </div> <!-- SIDEBAR -->

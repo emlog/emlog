@@ -46,10 +46,10 @@ margin-bottom: 10px;
 float: right;
 text-align: right;
 background: transparent url(images/img_04.jpg) right top no-repeat;
-padding-right: 6px;
+padding-right: 1px;
 }
 .menu2 {
-padding-left: 6px;
+padding-left: 1px;
 height: 24px;
 float: right;
 text-align: right;
@@ -62,10 +62,10 @@ padding-bottom: 0px;
 list-style: none;
 display: inline;
 }
-.menu1 li a{
+.menu1 li {
 display: block;
 float: left;
-padding: 1px 6px;
+padding: 1px 3px;
 font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 font-size: 15px;
 color: #fff;
@@ -78,8 +78,30 @@ height: 22px;
 background-color: #CC8035;
 }
 
-.current_page_item a {
+.current_page_item a{
+display: block;
+float: left;
+padding: 1px 3px;
+font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+font-size: 15px;
+color: #fff;
+text-transform: capitalize;
+text-decoration: none;
+font-weight: bold;
+height: 21px;
 background-color: #CC8035;
+}
+.nocurrent_page_item a{
+display: block;
+float: left;
+padding: 1px 3px;
+font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+font-size: 15px;
+color: #fff;
+text-transform: capitalize;
+text-decoration: none;
+font-weight: bold;
+height: 21px;
 }
 
 /* CONTENT */
@@ -158,7 +180,6 @@ height: 26px;
 float: left;
 padding-left: 15px;
 padding-top: 4px;
-background: transparent url(images/img_21.jpg) left center no-repeat;
 font-family: Verdana, Arial, Helvetica, sans-serif;
 color: #979795;
 font-size: 10px;
@@ -290,6 +311,7 @@ margin-top: 16px;
 float: right;
 width: 223px;
 color: #9A6A3A;
+font-size:13px;
 }
 
 .box1 {
@@ -348,7 +370,7 @@ font-size: 12px;
 text-decoration: none;
 color: #6A330A;
 text-transform: capitalize;
-padding: 3px 6px;
+padding: 3px 1px;
 }
 .sidebar ul li ul{
 padding-left: 10px;
@@ -420,17 +442,17 @@ ol.commentlist {
 	padding: 7px;
 	display:block;
 	font-style:normal;
-	color:#fff;
+	color: #6B3109;
 	}	
 
 .cite2 {
-	background-color: #F2AF6B;
+	background: #FCF2C1 url(images/img_30.jpg) left top no-repeat;
 	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 .commentlist a:link, .commentlist a:visited {
-	color:#FFF;
+	color:#6B3109;
 	text-decoration: underline;
 	}
 
@@ -443,17 +465,14 @@ ol.commentlist {
 .commentlist .author {
 	font-weight: bold;
 	text-decoration: none;
-	color: #FFFFFF;
 	}
 
 .time {
 	background: url(images/time.png) no-repeat 1px;
 	padding-left:20px;
-	color: #FFFFFF;
 	}
 
 .commenttext {
-	border:1px solid #F2AF6B;
 	color:#0f7eb3;
 	}
 
@@ -625,4 +644,67 @@ padding: 4px 10px 0px 10px;
 	line-height: 17px;
 	padding: 0 4px 5px;
 	margin: 0;
+}
+
+/*日历样式*/
+.calendar { /*background-image:url(images/bg.jpg);*/
+	margin-left: 5px;
+}
+
+.calendar td {
+	font-size: 12px;
+	text-align: center;
+	padding: 0px 6px;
+}
+
+.calendar a:visited {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:link {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:hover {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.day {
+	border:1px dotted #FF6600;
+}
+
+.day2 {
+	font-weight: bold;
+}
+
+.sun {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.week {
+	color: #FFFFFF;
+}
+
+.calendartop {
+	text-align: center;
+	font-size: 14px;
+	margin-left: 41px;
+}
+
+#twitter li {
+	border-top: dotted #FFFFFF 1px;
+}
+
+#twitter li span {
+	font-size: 10px;
+	padding-left: 100px;
+}
+
+#twitter li small {
+	font-size: 10px;
+	padding: 0px 10px;
 }
