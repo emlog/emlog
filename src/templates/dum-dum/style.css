@@ -46,7 +46,7 @@ margin-bottom: 10px;
 float: right;
 text-align: right;
 background: transparent url(images/img_04.jpg) right top no-repeat;
-padding-right: 1px;
+padding-right: 3px;
 }
 .menu2 {
 padding-left: 1px;
@@ -478,7 +478,7 @@ ol.commentlist {
 
 .commenttext2 {
 	padding: 0 20px 0px 20px;
-	background: url(img/comm/bottom-left.jpg) bottom left no-repeat;
+	background: #FCF2C1;
 	font-size: 13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
