@@ -9,13 +9,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle;?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?php echo $tpl_dir;?>g7/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $em_tpldir; ?>/main.css" rel="stylesheet" type="text/css" />
 <script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 
 <body>
 <div id="header"><div id="ing">
-<div id="ing_info"><div id="home"><img src="<?php echo $tpl_dir;?>g7/images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./"><?php echo $blogname;?></a></div>
+<div id="ing_info"><div id="home"><img src="<?php echo $em_tpldir; ?>/images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./"><?php echo $blogname;?></a></div>
 <?php echo $bloginfo;?>
 
 </div>

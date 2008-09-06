@@ -4,7 +4,7 @@
 			<div class="des"><?php echo $bloginfo; ?></div>
 	<div class="rsssubscribe">
 	<a href="./rss.php">
-	<img style="vertical-align:middle" border="0" src="<?php echo $tpl_dir; ?>black/images/rss.gif" alt="Subscribe to <?php echo $blogname; ?>" /><br/>
+	<img style="vertical-align:middle" border="0" src="<?php echo $em_tpldir; ?>/images/rss.gif" alt="Subscribe to <?php echo $blogname; ?>" /><br/>
 	Subscribe via RSS</a>
 	</div>
 	</div>
@@ -96,7 +96,7 @@
 			<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 			<?php if(ISLOGIN === true): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-			<img src="<?php echo $tpl_dir; ?>black/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+			<img src="<?php echo $em_tpldir; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 			<li id='modbdes' style="display:none;">
 			<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"><?php echo $blogger_des; ?></textarea>
 			<br />
@@ -145,7 +145,7 @@
 			<li id="comment"><?php echo $value['name']; ?>
 			<?php if($value['reply']): ?>
 			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-			<img src="<?php echo $tpl_dir; ?>black/images/reply.gif" align="absmiddle"/>
+			<img src="<?php echo $em_tpldir; ?>/images/reply.gif" align="absmiddle"/>
 			</a>
 			<?php endif;?>
 			<br />

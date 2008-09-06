@@ -10,7 +10,7 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle;?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?php echo $tpl_dir;?>spring/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $em_tpldir; ?>/main.css" rel="stylesheet" type="text/css" />
 <script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>

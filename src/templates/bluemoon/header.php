@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?php echo $tpl_dir; ?>bluemoon/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $em_tpldir; ?>/main.css" rel="stylesheet" type="text/css" />
 <script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     	<center>
     	<form name="keyform" class="search_form" method="get" action="index.php"><p>
 		<input name="keyword"  type="text" value="" style="width:130px;"/>
-		<input type="image" src="<?php echo $tpl_dir; ?>bluemoon/images/bttn_search.gif" onclick="return keyw()" />
+		<input type="image" src="<?php echo $em_tpldir; ?>/images/bttn_search.gif" onclick="return keyw()" />
 		</center>
 		</form>
     	</div>

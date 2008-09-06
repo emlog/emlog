@@ -6,7 +6,7 @@ $year = $datetime['0'];
 $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 ?>
 <div class="content">
-<img src="<?php echo $tpl_dir; ?>dum-dum/images/img_08.jpg" alt="" />
+<img src="<?php echo $em_tpldir; ?>/images/img_08.jpg" alt="" />
 	<div class="contenttext">
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
 			<div class="postheader">
@@ -120,7 +120,7 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		
 		</div>
 		</div> <!-- CONTENT TEXT -->
-		<img src="<?php echo $tpl_dir; ?>dum-dum/images/img_09.jpg" style="vertical-align: bottom;" alt="" />
+		<img src="<?php echo $em_tpldir; ?>/images/img_09.jpg" style="vertical-align: bottom;" alt="" />
 		</div> <!-- CONTENT -->
 
 <?php 

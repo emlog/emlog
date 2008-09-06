@@ -4,7 +4,7 @@
 <meta HTTP-EQUIV="REFRESH" CONTENT="3;url=<?php echo $url; ?>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="zh-CN" />
-<link href="<?php echo $tpl_dir; ?>dum-dum/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $em_tpldir; ?>/style.css" rel="stylesheet" type="text/css" />
 <title>系统消息</title>
 </head>
 <body>
