@@ -12,7 +12,7 @@ require_once('./globals.php');
 if($action == 'selectFile')
 {
 	$attachnum = 0;
-	$logid = isset($_GET['logid'])?intval($_GET['logid']):'';
+	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	if($logid)
 	{
 		$sql="SELECT * FROM {$db_prefix}attachment where blogid=$logid ";
@@ -22,7 +22,8 @@ if($action == 'selectFile')
 	$maxsize = changeFileSize($uploadmax);
 	//允许附件类型
 	$att_type_str = '';
-	foreach ($att_type as $val){
+	foreach ($att_type as $val)
+	{
 		$att_type_str .= " $val";
 	}
 	require_once(getViews('upload'));
@@ -32,8 +33,8 @@ if($action == 'selectFile')
 //上传附件
 if($action == 'upload')
 {
-	$logid = isset($_GET['logid'])?intval($_GET['logid']):'';
-	$attach = isset($_FILES['attach'])?$_FILES['attach']:'';
+	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if($attach)
 	{
 		for ($i = 0; $i < count($attach['name']); $i++)
@@ -70,7 +71,7 @@ if($action == 'upload')
 //附件库
 if($action == 'attlib')
 {
-	$logid = isset($_GET['logid'])?intval($_GET['logid']):'';
+	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	$sql="SELECT * FROM {$db_prefix}attachment where blogid=$logid ";
 	$query=$DB->query($sql);
 	$attachnum = $DB->num_rows($query);
@@ -94,7 +95,7 @@ if($action == 'attlib')
 //删除附件
 if ($action == 'del_attach')
 {
-	$aid = isset($_GET['aid'])?intval($_GET['aid']):'';
+	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';
 	$query=$DB->query("select filepath,blogid from {$db_prefix}attachment where aid=$aid ");
 	$attach=$DB->fetch_array($query);
 	$logid = $attach['blogid'];

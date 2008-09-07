@@ -8,39 +8,43 @@
 
 require_once('./globals.php');
 
-$pid = isset($_GET['pid'])?$_GET['pid']:'';
+$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 
-$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC':'ASC';
-$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC':'ASC';
-$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC':'DESC';
-$sortTitle = (isset($_GET['sortTitle']) && $_GET['sortTitle'] == 'DESC') ?  'ASC':'DESC';
+$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
+$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC' : 'ASC';
+$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
+$sortTitle = (isset($_GET['sortTitle']) && $_GET['sortTitle'] == 'DESC') ?  'ASC' : 'DESC';
 
 $subSql = 'ORDER BY ';
 
 if(isset($_GET['sortView']))
+{
 	$subSql .= "views $sortView";
-elseif(isset($_GET['sortComm']))
+}elseif(isset($_GET['sortComm'])){
 	$subSql .= "comnum $sortComm";
-elseif(isset($_GET['sortDate']))
+}elseif(isset($_GET['sortDate'])){
 	$subSql .= "date $sortDate";
-elseif(isset($_GET['sortTitle']))
+}elseif(isset($_GET['sortTitle'])){
 	$subSql .= "title $sortTitle";
-else 
+}else {
 	$subSql .= 'top DESC,date DESC';
+}
 
 //显示日志(草稿)管理页面
 if($action == '')
 {
 	include getViews('header');
-	$page = intval(isset($_GET['page'])?$_GET['page']:1);
-	if (!empty($page)) {
+	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	if (!empty($page))
+	{
 		$start_limit = ($page - 1) *15;
 	} else {
 		$start_limit = 0;
 		$page = 1;
 	}
-	$hide_state = $pid?'y':'n';
-	if($pid == 'draft'){
+	$hide_state = $pid ? 'y' : 'n';
+	if($pid == 'draft')
+	{
 		$log_act = "<input type=\"radio\" value=\"show\" name=\"modall\" />发布";
 		$hide_stae = 'y';
 		$sorturl = '&pid=draft';
@@ -64,14 +68,14 @@ if($action == '')
 		$dh['title'] = htmlspecialchars($dh['title']);
 		$gid = $dh['gid'];
 		$adddate = date("Y-m-d H:i",$dh['date']);
-		$istop = $dh['top']=='y'? "<font color=\"red\">[推荐]</font>" :'';
+		$istop = $dh['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
 		$query=$DB->query("SELECT blogid FROM {$db_prefix}attachment WHERE blogid='".$dh['gid']."' ");
 		$attach_num=$DB->num_rows($query);
-		$attach = $attach_num>0?"<font color=\"green\">[附件:".$attach_num."]</font>":'';
+		$attach = $attach_num>0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
 		$rowbg = getRowbg();
 
 		$logs[] = array(
-			'title'=>!empty($dh['title'])?$dh['title']:'No Title',
+			'title'=>!empty($dh['title']) ? $dh['title'] : 'No Title',
 			'gid'=>$gid,
 			'date'=>$adddate,
 			'comnum'=>$dh['comnum'],
@@ -83,10 +87,11 @@ if($action == '')
 	}
 	
 	$subPage = '';
-	foreach ($_GET as $key=>$val){
-		$subPage .= $key != 'page'?"&$key=$val":'';
+	foreach ($_GET as $key=>$val)
+	{
+		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl =  pagination($num,15,$page,"admin_log.php?{$subPage}&page");
+	$pageurl =  pagination($num,15,$page,"admin_log.php ? {$subPage}&page");
 
 	require_once(getViews('admin_log'));
 	include getViews('footer');cleanPage();
@@ -95,16 +100,19 @@ if($action == '')
 //批量操作日志
 if($action== 'admin_all_log')
 {
-	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
-	if($dowhat == '') {
+	$dowhat = isset($_POST['modall']) ? $_POST['modall'] : '';
+	if($dowhat == '')
+	{
 		formMsg('请选择一个要执行的操作','javascript:history.back(-1);',0);
 	}
-	$logs =isset($_POST['blog'])?$_POST['blog']:'';
-	if($logs == '') {
+	$logs =isset($_POST['blog']) ? $_POST['blog'] : '';
+	if($logs == '')
+	{
 		formMsg('请选择要执行操作的日志','javascript:history.back(-1);',0);
 	}
 	//删除日志
-	if($dowhat == 'del_log' && !empty($logs)) {
+	if($dowhat == 'del_log' && !empty($logs))
+	{
 		foreach($logs as $key=>$value)
 		{
 			delLog($key);
@@ -117,22 +125,28 @@ if($action== 'admin_all_log')
 		formMsg('删除日志成功','./admin_log.php',1);
 	}
 	//推荐日志
-	if($dowhat == 'top') {
-		foreach($logs as $key=>$value) {
+	if($dowhat == 'top')
+	{
+		foreach($logs as $key=>$value)
+		{
 			$DB->query("UPDATE {$db_prefix}blog SET top='y' WHERE gid='$key' ");
 		}
 		formMsg('推荐日志成功','./admin_log.php',1);
 	}
 	//取消推荐
-	if($dowhat == 'notop') {
-		foreach($logs as $key=>$value) {
+	if($dowhat == 'notop')
+	{
+		foreach($logs as $key=>$value)
+		{
 			$DB->query("UPDATE {$db_prefix}blog SET top='n' WHERE gid='$key' ");
 		}
 		formMsg('日志已取消推荐','./admin_log.php',1);
 	}
 	//转入草稿箱
-	if($dowhat == 'hide') {
-		foreach($logs as $key=>$value) {
+	if($dowhat == 'hide')
+	{
+		foreach($logs as $key=>$value)
+		{
 			$DB->query("UPDATE {$db_prefix}blog SET hide='y' WHERE gid='$key' ");
 			$DB->query("UPDATE {$db_prefix}comment SET hide='y' WHERE gid='$key' ");
 		}
@@ -143,7 +157,8 @@ if($action== 'admin_all_log')
 		formMsg('日志成功转入草稿箱','./admin_log.php',1);
 	}
 	//从草稿箱发布
-	if($dowhat == 'show') {
+	if($dowhat == 'show')
+	{
 		foreach($logs as $key=>$value)
 		{
 			$DB->query("UPDATE {$db_prefix}blog SET hide='n' WHERE gid='$key' ");
@@ -161,7 +176,7 @@ if($action== 'admin_all_log')
 if ($action=='mod')
 {
 	include getViews('header');
-	$logid = isset($_GET['gid'])?intval($_GET['gid']):'';
+	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$sql = "select * from {$db_prefix}blog where gid=$logid ";
 	$result = $DB->query($sql);
 	$rows = $DB->fetch_array($result);
@@ -181,7 +196,8 @@ if ($action=='mod')
 	//old tag
 	$query = $DB->query("select tagname from {$db_prefix}tag");
 	$oldtags = '';
-	while($tags = $DB->fetch_array($query)){
+	while($tags = $DB->fetch_array($query))
+	{
 		$tagname = htmlspecialchars($tags['tagname']);
 		$oldtags .=" <a href=\"javascript: inserttag('".$tagname."','tags');\">".$tagname."</a> "	;
 	}
@@ -193,7 +209,8 @@ if ($action=='mod')
 	$minute = date('i',$date);
 	$second	 = date('s',$date);
 
-	if($allow_remark=='y'){
+	if($allow_remark=='y')
+	{
 		$ex="checked=\"checked\"";
 		$ex2="";
 	}else{
@@ -217,7 +234,7 @@ if($action=="edit")
 {
 	$title = addslashes(trim($_POST['title']));
 	$tagstring = addslashes(trim($_POST['tag']))	;
-	$edittime = intval(isset($_POST['edittime'])?$_POST['edittime']:'');
+	$edittime = intval(isset($_POST['edittime']) ? $_POST['edittime'] : '');
 	$content = addslashes($_POST['content']);
 	$pingurl  = addslashes($_POST['pingurl']);
 	$allow_remark = addslashes($_POST['allow_remark']);
@@ -255,24 +272,30 @@ if($action=="edit")
 	$tag = explode(',',$tagstring);
 	$query = $DB->query("SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%".$logid."%' ");
 	$i = 0;
-	while($result = $DB->fetch_array($query)){
+	while($result = $DB->fetch_array($query))
+	{
 		$old_tag[$i] = $result['tagname'];
 		$i++;
 	}
 	if(empty($old_tag))
 	$old_tag = array('');
 	$dif_tag = findArray(formatArray($tag),$old_tag);
-	for($n=0;$n<count($dif_tag);$n++){
+	for($n=0;$n<count($dif_tag);$n++)
+	{
 		$a = 0;
-		for($j=0;$j<count($old_tag);$j++) {
-			if($dif_tag[$n]==$old_tag[$j]){
+		for($j=0;$j<count($old_tag);$j++)
+		{
+			if($dif_tag[$n]==$old_tag[$j])
+			{
 				$DB->query("UPDATE {$db_prefix}tag SET usenum=usenum-1,gid= REPLACE(gid,',$logid,',',') WHERE tagname='".$dif_tag[$n]."' ");
 				$DB->query("DELETE FROM {$db_prefix}tag WHERE usenum=0 ");
 				break;
 			}
-			elseif($j==count($old_tag)-1){
+			elseif($j==count($old_tag)-1)
+			{
 				$result = $DB->fetch_one_array("SELECT tagname FROM {$db_prefix}tag WHERE tagname='".trim($dif_tag[$n])."' ");
-				if(empty($result)) {
+				if(empty($result))
+				{
 					$query="INSERT INTO {$db_prefix}tag (tagname,gid) VALUES('".$dif_tag[$n]."',',$logid,')";
 					$DB->query($query);
 				}else{
@@ -296,7 +319,8 @@ if($action=="edit")
 			{
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
 				$result = strtolower(sendPacket($host, $data));
-				if (strstr($result, "<error>0</error>") === false) {
+				if (strstr($result, "<error>0</error>") === false)
+				{
 					$tbmsg .= "(引用{$key}:发送失败)";
 				} else {
 					$tbmsg .= "(引用{$key}:发送成功)";
@@ -315,7 +339,7 @@ if($action=="edit")
 //删除日志
 if ($action== 'delLog')
 {
-	$gid = isset($_GET['gid'])?intval($_GET['gid']):'';
+	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	delLog($gid);
 	$MC->mc_sta('../cache/sta');
 	$MC->mc_record('../cache/records');

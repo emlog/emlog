@@ -21,7 +21,9 @@ if($action == '')
 	{
 		$tplfiles = $tpl_dir.$file.'/header.php';
 		if(@filesize($tplfiles)>0)
-		$tpls[] = $file;
+		{
+			$tpls[] = $file;
+		}
 	}
 	closedir($handle);
 	$tplnums = count($tpls);
@@ -32,7 +34,7 @@ if($action == '')
 //使用模板
 if($action=='usetpl')
 {
-	$tplname = isset($_GET['tplname'])?addslashes($_GET['tplname']):'';
+	$tplname = isset($_GET['tplname']) ? addslashes($_GET['tplname']) : '';
 	$DB->query("UPDATE {$db_prefix}config SET nonce_templet='$tplname' ");
 	$MC->mc_config('../cache/config');
 	formMsg("模板设置成功","./template.php",1);

@@ -14,7 +14,7 @@ if($action == '')
 {
 	include getViews('header');
 	
-	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1?"checked=\"checked\"":'';
+	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1 ? "checked=\"checked\"" : '';
 	if(isset($music['auto']) && $music['auto'])
 	{
 		$auto1 = "checked=\"checked\"";
@@ -70,12 +70,10 @@ if($action== 'mod')
 				if(count($mstr) == 2)
 				{
 					$music['mdes'][] = $mstr[1];
-				}else 
-				{
+				}else {
 					$music['mdes'][] = '';
 				}
-			}else
-			{
+			}else{
 				formMsg('链接中有错误的音乐地址','javascript: window.history.back()',0);
 			}
 		}

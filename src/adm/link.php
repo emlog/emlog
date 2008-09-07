@@ -62,7 +62,7 @@ if ($action== 'mod_link')
 {
 	include getViews('header');
 	
-	$linkid = isset($_GET['linkid'])?intval($_GET['linkid']):'';
+	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	
 	$sql = "select * from {$db_prefix}link where id=$linkid "; 
 	$result =$DB->query($sql);
@@ -88,7 +88,7 @@ if($action=='update_link')
 //删除友情连接
 if ($action== 'dellink')
 {
-	$linkid = isset($_GET['linkid'])?intval($_GET['linkid']):'';
+	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$DB->query("DELETE FROM {$db_prefix}link where id=$linkid");
 	$MC->mc_link('../cache/links');
 	formMsg('删除成功','./link.php',1);

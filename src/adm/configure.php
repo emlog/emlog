@@ -8,7 +8,8 @@
 
 require_once('./globals.php');
 
-if($action == ''){
+if($action == '')
+{
 	include getViews('header');
 	$result = $DB->query("SELECT * FROM {$db_prefix}config");
 	$row    = $DB->fetch_array($result);
@@ -20,42 +21,48 @@ if($action == ''){
 	$exarea = $exarea;
 	$icp = htmlspecialchars($icp);
 
-	if($login_code=='y'){
+	if($login_code=='y')
+	{
 		$ex1="selected=\"selected\"";
 		$ex2="";
 	}else{
 		$ex1="";
 		$ex2="selected=\"selected\"";
 	}
-	if($comment_code=='y'){
+	if($comment_code=='y')
+	{
 		$ex3="selected=\"selected\"";
 		$ex4="";
 	}else{
 		$ex3="";
 		$ex4="selected=\"selected\"";
 	}
-	if($ischkcomment=='y'){
+	if($ischkcomment=='y')
+	{
 		$ex5="selected=\"selected\"";
 		$ex6="";
 	}else{
 		$ex5="";
 		$ex6="selected=\"selected\"";
 	}
-	if($istrackback=='y'){
+	if($istrackback=='y')
+	{
 		$ex7="selected=\"selected\"";
 		$ex8="";
 	}else{
 		$ex7="";
 		$ex8="selected=\"selected\"";
 	}
-	if($isurlrewrite=='y'){
+	if($isurlrewrite=='y')
+	{
 		$ex9="selected=\"selected\"";
 		$ex10="";
 	}else{
 		$ex9="";
 		$ex10="selected=\"selected\"";
 	}
-	if($isgzipenable=='y') {
+	if($isgzipenable=='y')
+	{
 		$ex11="selected=\"selected\"";
 		$ex12="";
 	}else{
@@ -68,8 +75,8 @@ if($action == ''){
 }
 
 //update config
-if ($action== "mod_config"){
-
+if ($action== "mod_config")
+{
 	$sitekey  = isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '';
 	$blogname = isset($_POST['sitename']) ? addslashes($_POST['sitename'])  : '';
 	$blogurl  = isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '';
@@ -78,7 +85,7 @@ if ($action== "mod_config"){
 	$index_lognum = isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '';
 	$index_comnum = isset($_POST['index_comment_num']) ? intval($_POST['index_comment_num']) : '';
 	$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : '';
-	$timezone     = isset($_POST['timezone']) ? floatval($_POST['timezone']):'';
+	$timezone     = isset($_POST['timezone']) ? floatval($_POST['timezone']) : '';
 	$login_code   = $_POST['login_code']   == 'y' ? 'y' : 'n';
 	$comment_code = $_POST['comment_code'] == 'y' ? 'y' : 'n';
 	$ischkcomment    = $_POST['ischkcomment']    == 'y' ? 'y' : 'n';
@@ -125,7 +132,8 @@ if ($action== "mod_config"){
 	formMsg("博客设置成功","./configure.php",1);
 }
 //phpinfo()
-if($action=='phpinfo'){
+if($action=='phpinfo')
+{
 	@phpinfo() OR die('phpinfo函数被禁用!');
 }
 ?>

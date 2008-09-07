@@ -8,7 +8,7 @@
 
 require_once('./globals.php');
 
-$pid = isset($_GET['pid'])?$_GET['pid']:'';
+$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 
 if($action == '')
 {
@@ -41,20 +41,19 @@ if($action== 'addlog')
 		$ishide='y';
 		$ok_msg = '日志成功保存为草稿！';
 		$ok_url = 'admin_log.php?pid=draft';
-	}else
-	{
+	}else{
 		$ishide = 'n';
 		$ok_msg = '日志成功发布！';
 		$ok_url = 'admin_log.php';
 	}
-	$title = isset($_POST['title'])?addslashes(trim($_POST['title'])):'';
-	$tagstring = isset($_POST['tag'])?addslashes(trim($_POST['tag'])):'';
-	$edittime = isset($_POST['edittime'])?intval(isset($_POST['edittime'])):'';
-	$content = isset($_POST['content'])?addslashes(trim($_POST['content'])):'';
-	$blogid = isset($_POST['as_logid'])?intval(trim($_POST['as_logid'])):-1;//如被自动保存为草稿则有blog id号
-	$pingurl  = isset($_POST['pingurl'])?addslashes($_POST['pingurl']):'';
-	$allow_remark = isset($_POST['allow_remark'])?addslashes($_POST['allow_remark']):'';
-	$allow_tb = isset($_POST['allow_tb'])?addslashes($_POST['allow_tb']):'';
+	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
+	$edittime = isset($_POST['edittime']) ? intval(isset($_POST['edittime'])) : '';
+	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+	$pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
+	$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
+	$allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : '';
 	$tbmsg = '';
 
 	//查询嵌入到日志中的附件id 存入数组
@@ -66,17 +65,19 @@ if($action== 'addlog')
 	{
 		$oversec = ($timezone-8)*3600;
 		$localtime = time()-$oversec;
-	}else
-	$localtime = time();
+	}else{
+		$localtime = time();
+	}
 	if($edittime)
 	{
 		$newtime = @gmmktime(intval($_POST['newhour']),intval($_POST['newmin']),
 		intval($_POST['newsec']),intval($_POST['newmonth']),
-		intval($_POST['newday']),intval($_POST['newyear']))-$timezone*3600;
+		intval($_POST['newday']),intval($_POST['newyear'])) - $timezone * 3600;
 		if(empty($newtime))
 		$newtime = $localtime;
-	} else
-	$newtime = $localtime;
+	} else{
+		$newtime = $localtime;
+	}
 
 	//日志写入数据库
 	if($blogid > 0)
@@ -93,8 +94,7 @@ if($action== 'addlog')
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid = $blogid;
-	}else
-	{
+	}else{
 		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$newtime','$content','$ishide','$allow_remark','$allow_tb','$cont_attid')";
 		$DB->query($sql);
 		//获取当前添加日志ID
@@ -149,17 +149,16 @@ if($action== 'addlog')
 //自动保存
 if($action == 'autosave')
 {
-	$title = isset($_POST['title'])?addslashes(trim($_POST['title'])):'';
-	$content = isset($_POST['content'])?addslashes(trim($_POST['content'])):'';
-	$logid = isset($_POST['as_logid'])?intval((trim($_POST['as_logid']))):'';
+	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$logid = isset($_POST['as_logid']) ? intval((trim($_POST['as_logid']))) : '';
 
 	if($logid >= 0)//编辑草稿
 	{
 		$sql=" UPDATE {$db_prefix}blog SET title='$title',content='$content' WHERE gid='$logid' ";
 		$DB->query($sql);
 		echo "autosave_gid:{$logid}_df:{$dftnum}_";
-	}else
-	{
+	}else{
 		//日志写入数据库
 		$time = time();
 		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$time','$content','y','y','y','')";

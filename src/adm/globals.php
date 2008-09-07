@@ -20,7 +20,7 @@ require_once('../lib/C_cache.php');
 //去除多余的转义字符
 doStripslashes();
 //获取GET变量
-$action = isset($_GET['action'])?$_GET['action']:'';
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 //数据库操作对象
 $DB = new MySql($host, $user, $pass,$db);
 //实例化一个缓存生成对象
@@ -56,9 +56,9 @@ if (!is_dir($em_tpldir))
 if ($action == 'login') 
 {
 	session_start();
-	$username = isset($_POST['user'])?addslashes(trim($_POST['user'])):'';
-	$password = isset($_POST['pw'])?md5(addslashes(trim($_POST['pw']))):'';
-	$img_code = ($login_code == 'y' && isset($_POST['imgcode']))?addslashes(trim(strtoupper($_POST['imgcode']))):'';
+	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
+	$password = isset($_POST['pw']) ? md5(addslashes(trim($_POST['pw']))) : '';
+	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 	if (strlen($username) >16) 
 	{
 		formMsg('ERROR!!','javascript:history.go(-1);',0);
@@ -72,8 +72,7 @@ if ($action == 'login')
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
 		header("Location: index.php"); 
-	}else
-	{
+	}else{
 		loginPage();
 	}
 }

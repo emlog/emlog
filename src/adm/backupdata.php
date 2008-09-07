@@ -12,7 +12,7 @@ if($action == '')
 {
 	include getViews('header');
 	$retval = glob("../adm/bakup/*.sql");
-	$bakfiles = $retval?$retval:array();
+	$bakfiles = $retval ? $retval : array();
 	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag','trackback','twitter','user');
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	require_once(getViews('bakdata'));
@@ -21,8 +21,8 @@ if($action == '')
 }
 if($action=='bakstart')
 {
-	$bakfname = isset($_POST['bakfname'])?$_POST['bakfname']:'';
-	$table_box = isset($_POST['table_box'])?$_POST['table_box']:'';
+	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
+	$table_box = isset($_POST['table_box']) ? $_POST['table_box'] : '';
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
 	{
@@ -50,16 +50,13 @@ if($action=='bakstart')
 			{
 				@fclose($fp);
 				formMsg( '备份失败,请检查备份目录的权限是否可写','javascript:history.go(-1);',0);
-			}else
-			{
+			}else{
 				formMsg('数据成功备份至服务器','./backupdata.php',1);
 			}
-		}else
-		{
+		}else{
 			formMsg('无法打开指定的目录'. $filename .'，请确定该目录是否存在,或者是否有相应权限','javascript:history.go(-1);',0);
 		}
-	}else
-	{
+	}else{
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
 	}
 }
@@ -67,12 +64,11 @@ if($action=='bakstart')
 //恢复数据
 if ($action == 'renewdata')
 {
-	$sqlfile = isset($_GET['sqlfile'])?$_GET['sqlfile']:'';
+	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile))
 	{
 		formMsg('文件不存在', 'javascript:history.go(-1);',0);
-	}else
-	{
+	}else{
 		$extension = strtolower(substr(strrchr($sqlfile,'.'),1));
 		if ($extension !== 'sql')
 		{
@@ -84,8 +80,7 @@ if ($action == 'renewdata')
 		if (!strstr($bakinfo,"emlog_$edition"))
 		{
 			formMsg("导入失败! 该备份文件不是 emlog {$edition} 的备份文件!", 'javascript:history.go(-1);',0);
-		}elseif (!strstr($bakinfo,$db_prefix))
-		{
+		}elseif (!strstr($bakinfo,$db_prefix)){
 			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
 		}
 	}
@@ -110,7 +105,7 @@ function bakindata($filename)
 {
 	global $db,$DB;
 	
-	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
 	array_unshift($sql,$setchar);
 	$query = '';
@@ -118,7 +113,10 @@ function bakindata($filename)
 	foreach($sql as $key => $value)
 	{
 		$value = trim($value);
-		if(!$value || $value[0]=='#') continue;
+		if(!$value || $value[0]=='#')
+		{
+			continue;
+		}
 		if(eregi("\;$",$value))
 		{
 			$query .= $value;
@@ -128,8 +126,7 @@ function bakindata($filename)
 			}
 			$DB->query($query);
 			$query = '';
-		} else
-		{
+		} else{
 			$query .= $value;
 		}
 	}
@@ -141,8 +138,7 @@ if($action== 'dell_all_bak')
 	if(!isset($_POST['bak']))
 	{
 		formMsg('请选择要删除的备份文件','./backupdata.php',0);
-	}else
-	{
+	}else{
 		foreach($_POST['bak'] as $value)
 		{
 			unlink($value);

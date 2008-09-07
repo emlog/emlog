@@ -103,10 +103,10 @@ if($action== 'delicon')
 //修改用户名密码
 if($action=='update_admin')
 {
-	$user=isset($_POST['username'])?addslashes(trim($_POST['username'])):'';
-	$newpass=isset($_POST['newpass'])?addslashes(trim($_POST['newpass'])) : '';
-	$oldpass=isset($_POST['oldpass'])?md5(addslashes(trim($_POST['oldpass']))):'';
-	$repeatpass=isset($_POST['repeatpass'])?addslashes(trim($_POST['repeatpass'])):'';
+	$user=isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$newpass=isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
+	$oldpass=isset($_POST['oldpass']) ? md5(addslashes(trim($_POST['oldpass']))) : '';
+	$repeatpass=isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
 
 	$ispass = checkPass($oldpass);
 
@@ -135,13 +135,15 @@ if($action=='update_admin')
 	}
 	//错误处理
 	if(!$ispass)
-	formMsg('错误的当前密码','javascript:history.go(-1);',0);
-	elseif($newpass!=$repeatpass)
-	formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
-	elseif(strlen($newpass)>0 && strlen($newpass) < 6)
-	formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
-	else
-	formMsg('请输入修改项目参数','javascript:history.go(-1);',0);
+	{
+		formMsg('错误的当前密码','javascript:history.go(-1);',0);
+	}elseif($newpass!=$repeatpass){
+		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
+	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
+		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
+	}else{
+		formMsg('请输入修改项目参数','javascript:history.go(-1);',0);
+	}
 }
 
 ?>

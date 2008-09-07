@@ -28,8 +28,7 @@ if ($action == '')
 		}else{
 			$gd_ver = '支持';
 		}
-	}else
-	{
+	}else{
 		$gd_ver = '不支持GD图形库';
 	}
 	

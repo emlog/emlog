@@ -12,8 +12,9 @@ if($action == '')
 {
 	include getViews('header');
 
-	$page = intval(isset($_GET['page'])?$_GET['page']:1);
-	if (!empty($page)){
+	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	if (!empty($page))
+	{
 		$start_limit = ($page - 1) *15;
 	} else {
 		$start_limit = 0;
@@ -24,7 +25,8 @@ if($action == '')
 	
 	$trackback = array();
 	$result =$DB->query("SELECT * FROM {$db_prefix}trackback ORDER BY tbid DESC LIMIT $start_limit, 15");
-	while($rows=$DB->fetch_array($result)){
+	while($rows=$DB->fetch_array($result))
+	{
 		$rows['title']=htmlspecialchars($rows['title']);
 		$rows['blog_name']=htmlspecialchars($rows['blog_name']);
 		$rows['date'] = date("Y-m-d H:i",$rows['date']);
@@ -39,8 +41,9 @@ if($action == '')
 	include getViews('footer');cleanPage();
 }
 //删除引用
-if ($action== 'del_tb'){
-	$tbid = isset($_GET['tbid'])?intval($_GET['tbid']):'';
+if ($action== 'del_tb')
+{
+	$tbid = isset($_GET['tbid']) ? intval($_GET['tbid']) : '';
 	$sql = "SELECT gid FROM {$db_prefix}trackback WHERE tbid=$tbid";
 	$blog = $DB->fetch_one_array($sql);
 	$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
@@ -50,11 +53,14 @@ if ($action== 'del_tb'){
 }
 
 ###################批量删除引用###############
-if($action== 'dell_all_tb') {	
+if($action== 'dell_all_tb')
+{	
 	if(!isset($_POST['tb']))
+	{
 		formMsg('请选择要删除的引用','javascript:history.go(-1);',0);
-	else{
-		foreach($_POST['tb'] as $key=>$value) {
+	} else {
+		foreach($_POST['tb'] as $key=>$value)
+		{
 			$sql = "SELECT gid FROM {$db_prefix}trackback WHERE tbid='$key' ";
 			$blog = $DB->fetch_one_array($sql);
 			$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid='".$blog['gid']."'");

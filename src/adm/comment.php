@@ -11,9 +11,10 @@ require_once('./globals.php');
 //加载评论管理页面
 if($action == '')
 {
-	$blogid = isset($_GET['gid'])?$_GET['gid']:null;
+	$blogid = isset($_GET['gid']) ? $_GET['gid'] : null;
 
-	if($blogid){
+	if($blogid)
+	{
 		$andQuery = "where gid=$blogid";//查询指定日志评论
 		$addUrl = "gid={$blogid}&";
 	}else{
@@ -21,8 +22,9 @@ if($action == '')
 		$addUrl = '';
 	}
 
-	$page = intval(isset($_GET['page'])?$_GET['page']:1);
-	if (!empty($page)){
+	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	if (!empty($page))
+	{
 		$start_limit = ($page - 1) *15;
 	} else {
 		$start_limit = 0;
@@ -53,19 +55,21 @@ if($action == '')
 ###################批量操作评论###############
 if($action== 'admin_all_coms')
 {
-	$dowhat = isset($_POST['modall'])?$_POST['modall']:'';
+	$dowhat = isset($_POST['modall']) ? $_POST['modall'] : '';
 	if($dowhat == '')
 	{
 		formMsg('请选择一个要执行的操作','./comment.php',0);
 	}
-	$coms=isset($_POST['com'])?$_POST['com']:'';
+	$coms=isset($_POST['com']) ? $_POST['com'] : '';
 	if($coms == '')
 	{
 		formMsg('请选择要执行操作的评论','./comment.php',0);
 	}
 	//删除
-	if($dowhat == 'delcom'){
-		foreach($coms as $key=>$value) {
+	if($dowhat == 'delcom')
+	{
+		foreach($coms as $key=>$value)
+		{
 			$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
 			$DB->query("DELETE FROM {$db_prefix}comment where cid='$key' ");
 			$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
@@ -75,9 +79,12 @@ if($action== 'admin_all_coms')
 		formMsg('评论删除成功','./comment.php',1);
 	}
 	//屏蔽
-	if($dowhat == 'killcom'){
-		foreach($coms as $key=>$value) {
-			if($value=='n'){
+	if($dowhat == 'killcom')
+	{
+		foreach($coms as $key=>$value)
+		{
+			if($value=='n')
+			{
 				$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
 				$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."' ");
 			}
@@ -88,9 +95,12 @@ if($action== 'admin_all_coms')
 		formMsg('屏蔽评论成功','./comment.php',1);
 	}
 	//审核
-	if($dowhat == 'showcom') {
-		foreach($coms as $key=>$value) {
-			if($value=='y'){
+	if($dowhat == 'showcom')
+	{
+		foreach($coms as $key=>$value)
+		{
+			if($value=='y')
+			{
 				$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='$key' ");
 				$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
 			}
@@ -104,7 +114,7 @@ if($action== 'admin_all_coms')
 //删除评论
 if ($action== 'del_comment')
 {
-	$commentid = isset($_GET['commentid'])?intval($_GET['commentid']):'';
+	$commentid = isset($_GET['commentid']) ? intval($_GET['commentid']) : '';
 	$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid=$commentid");
 	$DB->query("DELETE FROM {$db_prefix}comment where cid=$commentid");
 	$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid=".$dh['gid']);
@@ -115,7 +125,7 @@ if ($action== 'del_comment')
 //屏蔽评论
 if($action=='kill_comment')
 {
-	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
+	$hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
 	if($hide == 'n')
 	{
 		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
@@ -129,7 +139,7 @@ if($action=='kill_comment')
 //审核评论
 if($action=='show_comment')
 {
-	$hide = isset($_GET['hide'])?addslashes($_GET['hide']):'';
+	$hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
 	if($hide == 'y')
 	{
 		$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid='".$_GET['cid']."' ");
@@ -145,7 +155,7 @@ if ($action== 'reply_comment')
 {
 	include getViews('header');
 
-	$cid = isset($_GET['cid'])?intval($_GET['cid']):'';
+	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 
 	$sql = "select * from {$db_prefix}comment where cid=$cid ";
 	$result = $DB->query($sql);
@@ -161,8 +171,8 @@ if ($action== 'reply_comment')
 if($action=='doreply')
 {
 	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
-	$reply = isset($_POST['reply'])?addslashes($_POST['reply']):'';
-	$cid = isset($_REQUEST['cid'])?intval($_REQUEST['cid']):'';
+	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
+	$cid = isset($_REQUEST['cid']) ? intval($_REQUEST['cid']) : '';
 
 	if(!$flg)
 	{
@@ -170,9 +180,8 @@ if($action=='doreply')
 		$DB->query($sql);
 		$MC->mc_comment('../cache/comments');
 		formMsg("评论回复成功","./comment.php",1);
-	}else
-	{
-		$reply = isset($_POST["reply$cid"])?addslashes($_POST["reply$cid"]):'';
+	}else{
+		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
 		$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
 		$DB->query($sql);
 		$MC->mc_comment('../cache/comments');

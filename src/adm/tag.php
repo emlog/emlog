@@ -11,10 +11,11 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
-	
+
 	$tags = array();
 	$result =$DB->query("SELECT tagname,tid FROM {$db_prefix}tag ");
-	while($rows=$DB->fetch_array($result)){
+	while($rows=$DB->fetch_array($result))
+	{
 		$rows['tagname'] = htmlspecialchars($rows['tagname']);
 		$tags[] = $rows;
 	}
@@ -23,10 +24,10 @@ if($action == '')
 }
 
 //标签修改
-if ($action== "mod_tag"){
-
+if ($action== "mod_tag")
+{
 	include getViews('header');
-	$tid = isset($_GET['tid'])?intval($_GET['tid']):'';
+	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : '';
 	$tags=$DB->fetch_one_array("SELECT tagname,tid FROM {$db_prefix}tag WHERE tid='$tid' ");
 	$tagname = htmlspecialchars(trim($tags['tagname']));
 	$tagid = $tags['tid'];
@@ -35,9 +36,10 @@ if ($action== "mod_tag"){
 	include getViews('footer');cleanPage();
 	
 }
-if($action=='update_tag'){
-	$tagname = isset($_POST['tagname'])?addslashes($_POST['tagname']):'';
-	$tid = isset($_POST['tid'])?intval($_POST['tid']):'';
+if($action=='update_tag')
+{
+	$tagname = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
+	$tid = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$sql="UPDATE {$db_prefix}tag SET tagname='$tagname' WHERE tid='$tid' ";
 	$DB->query($sql);
 	$MC->mc_logtags('../cache/log_tags');
