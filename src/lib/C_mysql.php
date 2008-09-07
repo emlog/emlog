@@ -6,6 +6,12 @@
  * $Id$
  */
 
+
+/**
+ * MYSQL数据操方法封装类
+ * 
+ */
+
 class MySql {
 
 	var $queryCount = 0;
