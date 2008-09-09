@@ -184,6 +184,35 @@ src/templates/default/message.php -text svn_keywords=Id
 src/templates/default/preview.jpg -text svn_keywords=Id
 src/templates/default/side.php -text svn_keywords=Id
 src/templates/default/unique_tpl.js -text svn_keywords=Id
+src/templates/devart/comments.php -text
+src/templates/devart/echo_log.php -text
+src/templates/devart/foot.php -text
+src/templates/devart/header.php -text
+src/templates/devart/ie.css -text
+src/templates/devart/images/Thumbs.db -text
+src/templates/devart/images/arrow.gif -text
+src/templates/devart/images/author.gif -text
+src/templates/devart/images/bg.gif -text
+src/templates/devart/images/bg_cal_today.gif -text
+src/templates/devart/images/feed.gif -text
+src/templates/devart/images/footer-bottom.gif -text
+src/templates/devart/images/footer-top.gif -text
+src/templates/devart/images/header-bg.gif -text
+src/templates/devart/images/modify.gif -text
+src/templates/devart/images/nav-bg.gif -text
+src/templates/devart/images/nav-tab-left.gif -text
+src/templates/devart/images/nav-tab-right.gif -text
+src/templates/devart/images/reply.gif -text
+src/templates/devart/images/search-submit.gif -text
+src/templates/devart/images/search-text.gif -text
+src/templates/devart/images/sidebar-bg.gif -text
+src/templates/devart/images/wrapper-bottom.gif -text
+src/templates/devart/log_list.php -text
+src/templates/devart/message.php -text
+src/templates/devart/preview.jpg -text
+src/templates/devart/side.php -text
+src/templates/devart/style.css -text
+src/templates/devart/unique_tpl.js -text
 src/templates/dum-dum/echo_log.php -text
 src/templates/dum-dum/footer.php -text
 src/templates/dum-dum/header.php -text
