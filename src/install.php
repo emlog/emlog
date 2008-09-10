@@ -14,7 +14,8 @@ doStripslashes();
 
 define('__VERSION',			'2.7.0');//版本号
 
-if(!isset($_GET['action'])){
+if(!isset($_GET['action']))
+{
 ?>
 <html>
 <head>

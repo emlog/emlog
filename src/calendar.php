@@ -7,6 +7,7 @@
  */
 
 require_once('./common.php');
+
 //建立日志时间写入数组
 $query = $DB->query("SELECT date FROM {$db_prefix}blog WHERE hide='n' ");
 while($date = $DB->fetch_array($query))
@@ -80,7 +81,10 @@ $week=@date("w",mktime(0,0,0,$n_month,1,$n_year));
 $lastday=@date("t",mktime(0,0,0,$n_month,1,$n_year));
 //获取给定年月的最后一天是星期几
 $lastweek=@date("w",mktime(0,0,0,$n_month,$lastday,$n_year));
-if($week==0)$week=7;
+if($week==0)
+{
+	$week=7;
+}
 $j=1;
 $w=7;
 $isend = false;
@@ -121,10 +125,9 @@ for($i=1;$i<=6;$i++)
 				$calendar.="<td>&nbsp;</td>\n";
 			}else{
 				//如果该日有日志就显示url样式
-				$t<10?
-				$n_time=$n_year.$n_month."0".$t:
-				$n_time=$n_year.$n_month.$t;
-				if(@in_array($n_time,$logdate)&&$n_time==$time){
+				$t<10 ? $n_time=$n_year.$n_month."0".$t : $n_time=$n_year.$n_month.$t;
+				if(@in_array($n_time,$logdate)&&$n_time==$time)
+				{
 					$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";
 				}elseif(@in_array($n_time,$logdate)){
 					$calendar.="<td class=\"day2\"><a href=\"index.php?record=$n_time\">".$t."</a></td>\n";

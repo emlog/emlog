@@ -19,7 +19,7 @@ if (!is_dir($em_tpldir))
 	exit('Template Error: no template directory!');
 }
 //calendar url
-$calendar_url = isset($_GET['record'])? "calendar.php?record=".$_GET['record']:"calendar.php?";
+$calendar_url = isset($_GET['record']) ? "calendar.php?record=".$_GET['record']:"calendar.php?";
 $job = array('showlog','search','addcom','taglog','');
 if(!in_array($action,$job))
 {
@@ -144,7 +144,7 @@ if ($action == 'showlog')
 	$att_img = !empty($log_cache_atts[$logid]['att_img']) ? $log_cache_atts[$logid]['att_img'] : '';
 	//评论
 	$cheackimg = $comment_code=='y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
-	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])): '';
+	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 
@@ -194,9 +194,9 @@ if($action == 'addcom')
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
-	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode']:''));
+	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
-	$remember = isset($_POST['remember'])?intval($_POST['remember']):'';
+	$remember = isset($_POST['remember']) ? intval($_POST['remember']) : '';
 
 	if($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
 	{

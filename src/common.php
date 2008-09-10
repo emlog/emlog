@@ -74,7 +74,7 @@ if ($action == 'login')
 	$username = isset($_POST['user'])?addslashes(trim($_POST['user'])):'';
 	$password = isset($_POST['pw'])?md5(addslashes(trim($_POST['pw']))):'';
 	$img_code = ($login_code == 'y' && isset($_POST['imgcode']))?addslashes(trim(strtoupper($_POST['imgcode']))):'';
-	if (strlen($username) >16)
+	if (strlen($username) > 16)
 	{
 		header("Location: index.php");
 	}
