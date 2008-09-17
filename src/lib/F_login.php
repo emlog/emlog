@@ -18,14 +18,14 @@ function isLogin()
 	global $DB,$db_prefix;
 	if (isset($_SESSION['adminname']) && isset($_SESSION['password']) && $_SESSION['adminname'] !='' && $_SESSION['password'] !='')
 	{
-		$SQL="SELECT password FROM {$db_prefix}user  WHERE username='".$_SESSION['adminname']."' AND password = '".$_SESSION['password']."' ";
+		$SQL = "SELECT password FROM {$db_prefix}user  WHERE username='". $_SESSION['adminname'] ."' AND password = '".$_SESSION['password']."' ";
 		$result = $DB->query($SQL);
 		$getpass = $DB->fetch_array($result);
 		if ($getpass['password'] != $_SESSION['password']) 
 		{
 			return FALSE;
 		}
-	}else{
+	} else {
 		return FALSE;
 	}
 	return TRUE;
@@ -46,14 +46,14 @@ function checkUser($username,$password,$imgcode,$logincode)
 	if (trim($username) == '' || trim($username) == '')
 	{
 		return FALSE;
-	}else{	
-		$userinfo=$DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username='$username' AND password='$password' ");
+	} else {	
+		$userinfo = $DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username = '$username' AND password='$password' ");
 		if (empty($userinfo))
 		{
 			return FALSE;
-		}elseif ($logincode=='y' && $imgcode!=$_SESSION['code']){
+		} elseif ($logincode == 'y' && $imgcode != $_SESSION['code']) {
 			return FALSE;
-		}else{
+		} else {
 			return TRUE;
 		}
 	}
@@ -68,7 +68,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 function checkPass($password)
 {
 	global $DB,$db_prefix;
-	$query=$DB->query("select * from {$db_prefix}user where password='$password'");
+	$query = $DB->query("select * from {$db_prefix}user where password = '$password'");
 	$ispass = $DB->fetch_array($query);
 	if (empty($ispass))
 	{
@@ -85,10 +85,10 @@ function checkPass($password)
 function loginPage() 
 {
 	global $login_code,$nonce_tpl;
-	$login_code=='y'?
+	$login_code == 'y' ?
 	$ckcode = "<tr><td >验证码:<br /><input type=\"hidden\" name=\"action\" value=\"login\" >
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
-				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
+				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n" :
 	$ckcode = '';
 	require_once(getViews('login'));
 	cleanPage();

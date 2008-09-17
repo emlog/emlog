@@ -19,9 +19,9 @@ if (!is_dir($em_tpldir))
 	exit('Template Error: no template directory!');
 }
 //calendar url
-$calendar_url = isset($_GET['record']) ? "calendar.php?record=".$_GET['record']:"calendar.php?";
+$calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
 $job = array('showlog','search','addcom','taglog','');
-if(!in_array($action,$job))
+if (!in_array($action,$job))
 {
 	msg('error!','./index.php');
 }
@@ -45,14 +45,14 @@ if (!isset($action) || empty($action))
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 
 	$sql = '';
-	if($record)
+	if ($record)
 	{
 		$add_query = "AND from_unixtime(date, '%Y%m%d') LIKE '%".$record."%'";
 		$sql = "SELECT * FROM {$db_prefix}blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
 		$query = $DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='n'  $add_query ");
 		$lognum = $DB->num_rows($query);
 		$pageurl .= "?record=$record&page";
-	}elseif($tag){
+	} elseif ($tag) {
 		$tagstring = @$DB->fetch_one_array("SELECT tagname,gid FROM {$db_prefix}tag WHERE tagname='$tag' ") OR msg('不存在该标签','javascript:history.back(-1);');
 		$gids  = substr(trim($tagstring['gid']),1,-1);
 		$tag   = $tagstring['tagname'];
@@ -61,23 +61,23 @@ if (!isset($action) || empty($action))
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?tag=$tag&page";
-	}elseif($keyword){
+	} elseif($keyword) {
 		//参数过滤
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
-		if(strlen($keyword)>30 || strlen($keyword)<3)
+		if (strlen($keyword) > 30 || strlen($keyword) < 3)
 		{
 			msg('错误的关键字长度','./index.php');
 		}
 		//分割关键字
 		$keywords = explode(' ',$keyword);
-		for($i=0; $i<count($keywords); $i++)
+		for ($i = 0; $i < count($keywords) ; $i++)
 		{
-			$keyword=$keywords[$i];
-			if($i)
+			$keyword = $keywords[$i];
+			if ($i)
 			{
 				$keywords_string .= "OR title like '%".$keyword."%' ";
-			}else{
+			} else {
 				$keywords_string = "LIKE '%".$keyword."%' ";
 			}
 		}
@@ -86,14 +86,14 @@ if (!isset($action) || empty($action))
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?keyword=$keyword&page";
-	}else{
+	} else {
 		$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= "?page";
 	}
 	$logs = array();
 	$query = $DB->query($sql);
-	while($row = $DB->fetch_array($query))
+	while ($row = $DB->fetch_array($query))
 	{
 		$row['post_time'] = date('Y-n-j G:i l',$row['date']);
 		$row['log_title'] = htmlspecialchars(trim($row['title']));
@@ -135,21 +135,21 @@ if ($action == 'showlog')
 	$allow_remark = $show_log['allow_remark'];
 	$allow_tb = $show_log['allow_tb'];
 	//邻近日志
-	$nextLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid < $logid AND hide='n' ORDER BY gid DESC  LIMIT 1");
-	$previousLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid > $logid AND hide='n' LIMIT 1");
+	$nextLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid < $logid AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+	$previousLog = @$DB->fetch_one_array("SELECT title,gid FROM {$db_prefix}blog WHERE gid > $logid AND hide = 'n' LIMIT 1");
 	//标签
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	//附件
 	$attachment = !empty($log_cache_atts[$logid]['attachment']) ? '<b>文件附件</b>:'.$log_cache_atts[$logid]['attachment'] : '';
 	$att_img = !empty($log_cache_atts[$logid]['att_img']) ? $log_cache_atts[$logid]['att_img'] : '';
 	//评论
-	$cheackimg = $comment_code=='y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
+	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 
 	$com = array();
-	$query = $DB->query("SELECT * FROM {$db_prefix}comment WHERE gid=$logid AND hide='n' ORDER BY cid ");
+	$query = $DB->query("SELECT * FROM {$db_prefix}comment WHERE gid = $logid AND hide = 'n' ORDER BY cid ");
 	while($s_com = $DB->fetch_array($query))
 	{
 		$content = htmlClean($s_com['comment']);
@@ -158,21 +158,21 @@ if ($action == 'showlog')
 		$cname   =  htmlspecialchars($s_com['poster']);
 		$s_com['mail'] = htmlspecialchars($s_com['mail']);
 		$s_com['url'] = htmlspecialchars($s_com['url']);
-		$com[]   = array(
-		'content'=>$content,
-		'reply'=>$reply,
-		'addtime'=>$addtime,
-		'cid'=>$s_com['cid'],
-		'poster'=>$cname,
-		'mail'=>$s_com['mail'],
-		'url'=>$s_com['url']
-		);
+		$com[]  = array(
+						'content'=>$content,
+						'reply'=>$reply,
+						'addtime'=>$addtime,
+						'cid'=>$s_com['cid'],
+						'poster'=>$cname,
+						'mail'=>$s_com['mail'],
+						'url'=>$s_com['url']
+						);
 	}
 	unset($s_com);
 	//trackback
 	$tb = array();
 	$query =$DB->query("SELECT *FROM {$db_prefix}trackback WHERE gid=$logid ORDER BY tbid ");
-	while($s_tb = $DB->fetch_array($query))
+	while ($s_tb = $DB->fetch_array($query))
 	{
 		$s_tb['url']       = htmlspecialchars($s_tb['url']);
 		$s_tb['title']     = htmlspecialchars($s_tb['title']);
@@ -188,7 +188,7 @@ if ($action == 'showlog')
 }
 
 //添加评论
-if($action == 'addcom')
+if ($action == 'addcom')
 {
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
@@ -198,12 +198,12 @@ if($action == 'addcom')
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$remember = isset($_POST['remember']) ? intval($_POST['remember']) : '';
 
-	if($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
+	if ($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
 	{
 		$comurl = 'http://'.$comurl;
 	}
 	//COOKIE
-	if($remember == 1)
+	if ($remember == 1)
 	{
 		$cookietime = $localdate + 31536000;
 		setcookie('commentposter',$comname,$cookietime);
@@ -213,41 +213,41 @@ if($action == 'addcom')
 	//can comment?
 	$query = $DB->query("SELECT allow_remark FROM {$db_prefix}blog WHERE gid=$gid");
 	$show_remark = $DB->fetch_array($query);
-	if($show_remark['allow_remark']=='n')
+	if ($show_remark['allow_remark'] == 'n')
 	{
 		msg('该日志不接受评论','javascript:history.back(-1);');
 	}
 	//is same comment?
 	$query = $DB->query("SELECT cid FROM {$db_prefix}comment
-									WHERE gid='".$gid."' 
-									AND poster='".$comname."' 
-									AND comment='".$comment."' ");
+									WHERE gid = '".$gid."' 
+									AND poster = '".$comname."' 
+									AND comment = '".$comment."' ");
 	$result = $DB->num_rows($query);
-	if($result > 0)
+	if ($result > 0)
 	{
 		msg('评论已存在','javascript:history.back(-1);');
 	}
-	if(preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$comname) || strlen($comname)>20 || strlen($comname)==0)
+	if (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$comname) || strlen($comname) > 20 || strlen($comname) == 0)
 	{
 		msg('姓名非法!','javascript:history.back(-1);');
-	}elseif($commail!='' && !checkMail($commail)){
+	} elseif ($commail != '' && !checkMail($commail)) {
 		msg('邮件格式错误!', 'javascript:history.back(-1);');
-	}elseif(strlen($comment)=='' || strlen($comment)>2000){
+	} elseif (strlen($comment) == '' || strlen($comment) > 2000) {
 		msg('评论内容非法','javascript:history.back(-1);');
-	}elseif($imgcode=='' && $comment_code=='y'){
+	} elseif ($imgcode == '' && $comment_code == 'y') {
 		msg('验证码不能为空','javascript:history.back(-1);');
-	}elseif($comment_code=='y' && $imgcode != $_SESSION['code']){
+	} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
 		msg('验证码错误!','javascript:history.back(-1);');
-	}else{
+	} else {
 		$sql = "INSERT INTO {$db_prefix}comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','','$commail','$comurl','$ischkcomment')";
 		$ret = $DB->query($sql);
-		if($ischkcomment == 'n')
+		if ($ischkcomment == 'n')
 		{
 			$DB->query("UPDATE {$db_prefix}blog SET comnum = comnum + 1 WHERE gid='$gid'");
 			$MC->mc_sta('./cache/sta');
 			$MC->mc_comment('./cache/comments');
 			msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
-		}else{
+		} else {
 			$MC->mc_sta('./cache/sta');
 			msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 		}

@@ -20,11 +20,11 @@ class MySql {
 
 	function MySql($dbHost = '', $dbUser = '', $dbPass = '', $dbName = '')
 	{
-		if(!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
+		if (!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
 		{
 			sysMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
 		}
-		if($this->getMysqlVersion() >'4.1')
+		if ($this->getMysqlVersion() >'4.1')
 		{
 			mysql_query("SET NAMES 'utf8'");
 		}
@@ -52,7 +52,7 @@ class MySql {
 	{
 		$this->result = @ mysql_query($sql,$this->conn);
 		$this->queryCount++;
-		if(!$this->result)
+		if (!$this->result)
 		{
 			sysMsg("SQL语句执行错误：$sql <br />".$this->geterror());
 		} else {

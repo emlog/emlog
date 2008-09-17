@@ -20,7 +20,7 @@ $user_cache = mkcache::readCache('./cache/blogger');
 require_once("./lib/F_rss.php");
 
 $URL = GetURL();
-$site=  $config_cache;
+$site =  $config_cache;
 $blog = GetBlog();
 $blognum = GetBlogNum();
 $author = $user_cache['name'];
@@ -40,9 +40,9 @@ print <<< END
 END;
 foreach($blog as $value)
 {
-$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
-$abstract = str_replace('[break]','',$value['content']);
-$pubdate =  date('r',$value['date']);
+	$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
+	$abstract = str_replace('[break]','',$value['content']);
+	$pubdate =  date('r',$value['date']);
 print <<< END
 
 <item>

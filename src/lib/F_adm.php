@@ -42,40 +42,40 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	{
 		return -1;//错误的附件类型
 	}
-	if($filesize>$uploadmax)
+	if ($filesize > $uploadmax)
 	{
 		return -2;//附件大小超出的限制
 	}
-	$uppath = $uploadroot.date("Ym")."/";
-	$fname = md5($filename).date("YmdHis").'.'.$extension;
-	$attachpath = $uppath.$fname;
-	if(!is_dir($uploadroot))
+	$uppath = $uploadroot . date("Ym") . "/";
+	$fname = md5($filename) . date("YmdHis") .'.'. $extension;
+	$attachpath = $uppath . $fname;
+	if (!is_dir($uploadroot))
 	{
-		if(@mkdir($uploadroot,0777) === false)
+		if (@mkdir($uploadroot,0777) === false)
 		{
 			return -3;//权限不足无法创建附件目录
 		}
 	}
-	if(!is_dir($uppath))
+	if (!is_dir($uppath))
 	{
-		if(@mkdir($uppath,0777) === false)
+		if (@mkdir($uppath,0777) === false)
 		{
 			return -3;//权限不足无法创建附件目录
 		}
 	}
 	//缩略
 	$imtype = array('jpg','png','jpeg');
-	$thum = $uppath."thum-".$fname;
-	if(in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	$thum = $uppath."thum-". $fname;
+	if (in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
 	{
 		$attach = $thum;
-	}else{
+	} else{
 		$attach = 	$attachpath;
 	}
 
-	if(@is_uploaded_file($tmpfile))
+	if (@is_uploaded_file($tmpfile))
 	{
-		if(!move_uploaded_file($tmpfile ,$attachpath))
+		if (!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
 			return -4;//上传附件失败
@@ -95,11 +95,11 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
  */
 function resizeImage($img,$imgtype,$name,$isIcon)
 {
-	if($isIcon)
+	if ($isIcon)
 	{
 		$max_w = ICON_MAX_W;
 		$max_h = ICON_MAX_H;
-	}else{
+	} else {
 		$max_w = IMG_ATT_MAX_W;
 		$max_h = IMG_ATT_MAX_H;
 	}
@@ -108,11 +108,11 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	$newheight = $size['h'];
 	$w =$size['rc_w'];
 	$h = $size['rc_h'];
-	if($w <= $max_w && $h <= $max_h)
+	if ($w <= $max_w && $h <= $max_h)
 	{
 		return false;
 	}
-	if($imgtype == "image/pjpeg" OR $imgtype == "image/jpeg")
+	if ($imgtype == "image/pjpeg" || $imgtype == "image/jpeg")
 	{
 		if(function_exists("imagecreatefromjpeg"))
 		{
@@ -120,31 +120,30 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		}else{
 			return false;
 		}
-	}elseif($imgtype == "image/x-png" OR $imgtype == "image/png")
-	{
-		if(function_exists("imagecreatefrompng"))
+	} elseif ($imgtype == "image/x-png" || $imgtype == "image/png") {
+		if (function_exists("imagecreatefrompng"))
 		{
 			$img = imagecreatefrompng($img);
 		}else{
 			return false;
 		}
 	}
-	if(function_exists("imagecopyresampled"))
+	if (function_exists("imagecopyresampled"))
 	{
 		$newim = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
-	}else{
+	} else {
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
-	if($imgtype == "image/pjpeg" OR $imgtype == "image/jpeg")
+	if ($imgtype == "image/pjpeg" || $imgtype == "image/jpeg")
 	{
 		if(!imagejpeg($newim,$name))
 		{
 			return false;
 		}
-	}elseif ($imgtype == "image/x-png" OR $imgtype == "image/png"){
-		if(!imagepng($newim,$name))
+	} elseif ($imgtype == "image/x-png" || $imgtype == "image/png") {
+		if (!imagepng($newim,$name))
 		{
 			return false;
 		}
@@ -174,7 +173,7 @@ function dataBak($table)
 	{
 		$comma = "";
 		$sql .= "INSERT INTO $table VALUES(";
-		for($i = 0; $i < $numfields; $i++)
+		for ($i = 0; $i < $numfields; $i++)
 		{
 			$sql .= $comma."'".mysql_escape_string($row[$i])."'";
 			$comma = ",";
@@ -205,16 +204,16 @@ function sendPacket($url, $data)
 		return false;
 	}
 	
-	$out = "POST ".$uinfo['path']." HTTP/1.1\r\n";
-	$out.= "Host: ".$uinfo['host']."\r\n";
-	$out.= "Content-type: application/x-www-form-urlencoded\r\n";
-	$out.= "Content-length: ".strlen($data)."\r\n";
-	$out.= "Connection: close\r\n\r\n";
-	$out.= $data;
+	$out = "POST ". $uinfo['path'] ." HTTP/1.1\r\n";
+	$out .= "Host: ". $uinfo['host'] ."\r\n";
+	$out .= "Content-type: application/x-www-form-urlencoded\r\n";
+	$out .= "Content-length: ". strlen($data) ."\r\n";
+	$out .= "Connection: close\r\n\r\n";
+	$out .= $data;
 	fwrite($fp, $out);
 	
 	$http_response = '';
-	while(!feof($fp))
+	while (!feof($fp))
 	{
 		$http_response .= fgets($fp, 128);
 	}
@@ -235,37 +234,37 @@ function findArray($array1,$array2)
 	$num1 = count($array1) ;
 	$num2 = count($array2);
 	$temp = array();
-	if(!empty($array1[0]))
+	if (!empty($array1[0]))
 	{
-		for($i=0;$i<$num1 + $num2;$i++)
+		for ($i = 0;$i < $num1 + $num2;$i++)
 		{
-			if($i<$num1)
+			if ($i < $num1)
 			{
 				$addarray[$i] = $array1[$i]; 
-			}else{
+			} else {
 				$addarray[$i] = $array2[$i-$num1];
 			}
 		}
 		$k = 0;
 		#寻找不同项
-		for($n=0;$n<count($addarray);$n++)
+		for($n = 0;$n < count($addarray);$n++)
 		{
 			$a = 0;
-			for($j=0;$j<count($addarray);$j++)
+			for ($j = 0;$j < count($addarray);$j++)
 			{
-				if($addarray[$n]==$addarray[$j])
+				if($addarray[$n] == $addarray[$j])
 				{
 					$a++;
 				}
 			}
-			if($a == 1)
+			if ($a == 1)
 			{
 				$temp[$k] = $addarray[$n];
 				$k++;
 			}
 		}
 		return $temp;
-	}else{
+	} else {
 		return $array2;
 	}
 }
@@ -282,9 +281,9 @@ function formatArray($array)
 	 $tem = '';
 	 $temarray = array();
 	 $j = 0;
-	 for($i=0;$i<count($array);$i++)
+	 for ($i = 0;$i < count($array);$i++)
 	 {
-		if($array[$i]!=$tem)
+		if ($array[$i] != $tem)
 		{
 			 $temarray[$j] = $array[$i];
 			 $j++;
@@ -314,7 +313,7 @@ function getTips($array)
 function getRowbg()
 {
 	global $bgcounter;
-	if ($bgcounter++%2 == 0) {
+	if ( $bgcounter++ % 2 == 0) {
 		return "firstalt";
 	} else {
 		return "secondalt";
@@ -339,13 +338,13 @@ function delLog($gid)
 	$DB->query("UPDATE {$db_prefix}tag SET usenum=usenum-1,gid= REPLACE(gid,',$gid,',',') WHERE gid LIKE '%".$gid."%' ");
 	$DB->query("DELETE FROM {$db_prefix}tag WHERE usenum=0 ");
 	//附件
-	$query=$DB->query("select filepath from {$db_prefix}attachment where blogid=$gid ");
-	while($attach=$DB->fetch_array($query))
+	$query = $DB->query("select filepath from {$db_prefix}attachment where blogid=$gid ");
+	while ($attach=$DB->fetch_array($query))
 	{
-		if(file_exists($attach['filepath']))
+		if (file_exists($attach['filepath']))
 		{
 			$fpath = str_replace('thum-', '', $attach['filepath']);
-			if($fpath != $attach['filepath'])
+			if ($fpath != $attach['filepath'])
 			{
 				@unlink($fpath);
 			}

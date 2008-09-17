@@ -13,7 +13,7 @@
  * @param string $EXT 模板后缀名
  * @return string 模板路径
  */
-function getViews($template,$EXT=".php")
+function getViews($template,$EXT = ".php")
 {
 	global $em_tpldir;
 	if (!$template)
@@ -134,19 +134,19 @@ function viewCount()
 	global $MC,$DB,$db_prefix,$localdate;
 	
 	$userip = getIp();
-	$em_viewip = isset($_COOKIE['em_viewip'])?$_COOKIE['em_viewip']:'';
+	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
 	if ($em_viewip != $userip)
 	{
-		$ret = setcookie('em_viewip', getIp(), $localdate+(6*3600));
-		if($ret)
+		$ret = setcookie('em_viewip', getIp(), $localdate + (6*3600));
+		if ($ret)
 		{
 			$curtime = date("Y-m-d");
-			$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='".$curtime."'");
-			if(!$rs)
+			$rs = $DB->fetch_one_array("SELECT curdate FROM {$db_prefix}statistics WHERE curdate='". $curtime ."'");
+			if (!$rs)
 			{
-				$DB->query("UPDATE {$db_prefix}statistics SET curdate ='".$curtime."'");
+				$DB->query("UPDATE {$db_prefix}statistics SET curdate ='". $curtime ."'");
 				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = '1'");
-			} else{
+			} else {
 				$DB->query("UPDATE {$db_prefix}statistics SET day_view_count = day_view_count+1");
 			}
 			$DB->query("UPDATE {$db_prefix}statistics SET view_count = view_count+1");
@@ -163,10 +163,10 @@ function viewCount()
  */
 function checkMail($address) 
 {
-	if(preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
+	if (preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
 	{
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -183,14 +183,14 @@ function subString($strings,$start,$length)
 {
 	$str = substr($strings, $start, $length);
 	$char = 0;
-	for($i = 0; $i < strlen($str); $i++)
+	for ($i = 0; $i < strlen($str); $i++)
 	{
-			if (ord($str[$i]) >= 128)
-                $char++;
+		if (ord($str[$i]) >= 128)
+			$char++;
 	}
 	$str2 = substr($strings, $start, $length+1);
 	$str3 = substr($strings, $start, $length+2);
-	if ($char%3 == 1)
+	if ($char % 3 == 1)
 	{
 		if ($length <= strlen($strings))
 		{
@@ -248,23 +248,23 @@ function changeFileSize($filesize)
  */
 function pagination($count,$perlogs,$page,$url)
 {
-	$pnums = ceil($count/$perlogs);
+	$pnums = ceil($count / $perlogs);
 	$re = '';
-	for($i=$page-5;$i<=$page+5&&$i<=$pnums;$i++)
+	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++)
 	{
-		if($i>0)
+		if ($i > 0)
 		{
-			if($i==$page)
+			if ($i == $page)
 			{
-				$re.=" [$i] ";
-			}else{
-				$re.=" <a href=\"$url=$i\">$i</a> ";
+				$re .= " [$i] ";
+			} else {
+				$re .= " <a href=\"$url=$i\">$i</a> ";
 			}
 		}
 	}
-	if($page>6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
-	if($page+5<$pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>"; 
-	if($pnums <= 1) $re = '';
+	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
+	if ($page + 5 < $pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>"; 
+	if ($pnums <= 1) $re = '';
 	return $re;
 }
 
@@ -280,7 +280,7 @@ function chImageSize ($img,$max_w,$max_h)
 {
 	$size = @getimagesize($img);
 		$w = $size[0];
-		$h	 =	$size[1];
+		$h = $size[1];
 	//计算缩放比例
 	@$w_ratio = $max_w / $w;
 	@$h_ratio =	$max_h / $h;
@@ -289,10 +289,10 @@ function chImageSize ($img,$max_w,$max_h)
 	{
 		$tn['w'] = $w;
 		$tn['h'] = $h;
-	}else if(($w_ratio * $h) < $max_h){
+	} else if(($w_ratio * $h) < $max_h){
 		$tn['h'] = ceil($w_ratio * $h);
 		$tn['w'] = $max_w;
-	}else {
+	} else {
 		$tn['w'] = ceil($h_ratio * $w);
 		$tn['h'] = $max_h;
 	}
@@ -339,20 +339,20 @@ function rmBreak($content)
 function getAttachment($attstr,$width,$height)
 {
 	$re = '';
-	if(!empty($attstr)){
+	if (!empty($attstr)) {
 		$att_array = explode("</a>",$attstr);
-		foreach($att_array as $value){
-			if(preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath))
+		foreach ($att_array as $value) {
+			if (preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath))
 			{
 				$image = "./".$imgpath[1];
 				$size = chImageSize($image,$width,$height);
 				$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
 				$t = preg_replace("/width=\"[0-9]{3}\" height=\"[0-9]{3}\"/",$attsize,$value);
-				$re .=$t.'</a>';
+				$re .= $t .'</a>';
 			}
 		}
 		return $re;
-	}else{
+	} else {
 		return '';
 	}
 }
@@ -365,7 +365,7 @@ function cleanPage()
 {
 	global $isurlrewrite,$isgzipenable;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
-	if($isurlrewrite == 'y' ) {
+	if ($isurlrewrite == 'y' ) {
 		$searchlink = array(
 							"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
 							"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
@@ -379,7 +379,7 @@ function cleanPage()
 		$output = preg_replace($searchlink, $replacelink,$output);
 	}
 	ob_end_clean();
-	if($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter'))) {
+	if ($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter'))) {
 		ob_start('ob_gzhandler');
 	} else {
 		ob_start();
@@ -467,16 +467,16 @@ function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 	$op = '';
 	$sec = $now-$datetemp;
 	$hover = floor($sec/3600);
-	if($hover == 0){
+	if ($hover == 0){
 		$min = floor($sec/60);
-		if($min==0){
+		if ( $min == 0) {
 			$op = $sec.' 秒前';
-		}else{
+		} else {
 			$op = "$min 分钟前";
 		}
-	}elseif($hover < 24){
+	} elseif ($hover < 24){
 		$op = "约 {$hover} 小时前";
-	}else {
+	} else {
 		$op = date($dstr,$datetemp);
 	}
 	return $op;

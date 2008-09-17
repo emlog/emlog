@@ -59,21 +59,21 @@ $name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>"
 $name = $user_cache['name'];
 
 //背景音乐
-if($ismusic = $music['ismusic'])
+if ($ismusic == $music['ismusic'])
 {
-	$key = $music['randplay']?mt_rand(0,count($music['mlinks'])-1):0;
+	$key = $music['randplay'] ? mt_rand(0,count($music['mlinks']) - 1) : 0 ;
 	$musicurl = $music['mlinks'][$key];
-	$musicdes = !empty($music['mdes'][$key])?$music['mdes'][$key].'<br>':'';
-	$autoplay = $music['auto']?"&autoplay=1":'';
+	$musicdes = !empty($music['mdes'][$key]) ? $music['mdes'][$key] .'<br>' : '';
+	$autoplay = $music['auto'] ? "&autoplay=1" : '';
 }
 
 //登陆验证
 if ($action == 'login')
 {
 	session_start();
-	$username = isset($_POST['user'])?addslashes(trim($_POST['user'])):'';
-	$password = isset($_POST['pw'])?md5(addslashes(trim($_POST['pw']))):'';
-	$img_code = ($login_code == 'y' && isset($_POST['imgcode']))?addslashes(trim(strtoupper($_POST['imgcode']))):'';
+	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
+	$password = isset($_POST['pw']) ? md5(addslashes(trim($_POST['pw']))) : '';
+	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 	if (strlen($username) > 16)
 	{
 		header("Location: index.php");
@@ -87,7 +87,7 @@ if ($action == 'login')
 		$_SESSION['adminname'] = $username;
 		$_SESSION['password'] = $password;
 		header("Location: index.php");
-	}else{
+	} else {
 		header("Location: index.php");
 	}
 }

@@ -30,10 +30,10 @@ function GetBlog()
 	$sql = "SELECT * FROM {$db_prefix}blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
 	$result = $DB->query($sql);
 	$blog = array();
-	while($re = $DB->fetch_array($result))
+	while ($re = $DB->fetch_array($result))
 	{
 		$re['id'] 		= $re['gid'];
-		$re['title']		= htmlspecialchars($re['title']);
+		$re['title']    = htmlspecialchars($re['title']);
 		$re['date']		= $re['date'];
 		$re['content']	= $re['content'];
 
