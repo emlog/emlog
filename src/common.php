@@ -59,7 +59,7 @@ $name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>"
 $name = $user_cache['name'];
 
 //背景音乐
-if ($ismusic == $music['ismusic'])
+if ($ismusic = $music['ismusic'])
 {
 	$key = $music['randplay'] ? mt_rand(0,count($music['mlinks']) - 1) : 0 ;
 	$musicurl = $music['mlinks'][$key];
