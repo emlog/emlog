@@ -95,13 +95,13 @@ for ($i = 1;$i <= 6;$i++)
 	{
 		break;
 	}
-	$calendar .= "<tr>\n";
+	$calendar .= '<tr>';
 	//内循环生成列
 	for($j ; $j <= $w; $j++)
 	{
 		if ($j < $week)
 		{
-			$calendar.="<td>&nbsp;</td>\n";
+			$calendar.= '<td>&nbsp;</td>';
 		} elseif ( $j <= 7 ) {
 			$r = $j - $week + 1;
 			//如果该日有日志就显示url样式
@@ -109,37 +109,37 @@ for ($i = 1;$i <= 6;$i++)
 			//有日志且为当天
 			if (@in_array($n_time,$logdate) && $n_time == $time)
 			{
-				$calendar.="<td class=\"day\"><a href=\"index.php?record=$n_time\">". $r ."</a></td>\n";
+				$calendar .= "<td class=\"day\"><a href=\"index.php?record=$n_time\">". $r .'</a></td>';
 			} elseif (@in_array($n_time,$logdate)) {
-				$calendar .= "<td class=\"day2\"><a href=\"index.php?record=$n_time\">". $r ."</a></td>\n";
+				$calendar .= "<td class=\"day2\"><a href=\"index.php?record=$n_time\">". $r .'</a></td>';
 			} elseif ($n_time == $time){
-				$calendar .= "<td class=\"day\">". $r ."</td>\n";
+				$calendar .= '<td class="day">'. $r .'</td>';
 			} else {
-				$calendar.="<td>".$r."</td>\n";
+				$calendar.= '<td>'. $r .'</td>';
 			}
 		}else{
 			$t = $j - ($week - 1);
 			if ($t > $lastday)
 			{
 				$isend = true;
-				$calendar.="<td>&nbsp;</td>\n";
+				$calendar .= '<td>&nbsp;</td>';
 			} else {
 				//如果该日有日志就显示url样式
 				$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 				if (@in_array($n_time,$logdate) && $n_time == $time)
 				{
-					$calendar .= "<td class=\"day\"><a href=\"index.php?record=$n_time\">". $t ."</a></td>\n";
+					$calendar .= "<td class=\"day\"><a href=\"index.php?record=$n_time\">". $t .'</a></td>';
 				} elseif(@in_array($n_time,$logdate)){
-					$calendar .= "<td class=\"day2\"><a href=\"index.php?record=$n_time\">". $t ."</a></td>\n";
+					$calendar .= "<td class=\"day2\"><a href=\"index.php?record=$n_time\">". $t .'</a></td>';
 				} elseif($n_time == $time) {
-					$calendar .= "<td class=\"day\">". $t ."</td>\n";
+					$calendar .= '<td class="day">'. $t .'</td>';
 				} else {
-					$calendar .= "<td>".$t."</td>\n";
+					$calendar .= '<td>'.$t.'</td>';
 				}
 			}
 		}
 	}//内循环结束
-	$calendar .= '</tr>\n';
+	$calendar .= '</tr>';
 	$w += 7;
 }//外循环结束
 $calendar .= '</table>';
