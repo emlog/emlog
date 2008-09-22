@@ -191,7 +191,6 @@ src/templates/devart/header.php -text
 src/templates/devart/ie.css -text
 src/templates/devart/images/Thumbs.db -text
 src/templates/devart/images/arrow.gif -text
-src/templates/devart/images/author.gif -text
 src/templates/devart/images/bg.gif -text
 src/templates/devart/images/bg_cal_today.gif -text
 src/templates/devart/images/feed.gif -text

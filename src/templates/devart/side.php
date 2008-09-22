@@ -4,10 +4,9 @@
 	
 	<div class="block">
 		<h3>作者</h3>
-		<ul>
-        <li><?php echo $name; ?></li>
-		<li><?php echo $photo; ?></li>
-		<li><?php echo $blogger_des; ?></li>
+		<?php echo $photo; ?><br />
+        <?php echo $name; ?><br />
+		<span id="bloggerdes"><?php echo $blogger_des; ?></span>
         <?php if(ISLOGIN === true): ?>
         <a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
             <img src="<?php echo $tpl_dir; ?>devart/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
@@ -17,8 +16,7 @@
                 <a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
                 <a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
             </span>
-        <?php endif; ?>	
-		</ul>		
+        <?php endif; ?>
 	</div>
 	<div class="block">
 		<h3>日历</h3>
@@ -76,9 +74,9 @@
         <div class="block">
 		<h3>音乐</h3>	
         <ul id="blogmusic">
-        	<li>
+        	<p>
 			<?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
-        	</li>
+        	</p>
         </ul>
 		</div>
     <?php endif; ?>
@@ -122,11 +120,15 @@
 	<div class="block">
 		<h3>Meta</h3>
 		<ul>
-			<li><a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional">Valid <abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a></li>
-			<li><a href="http://gmpg.org/xfn/"><abbr title="XHTML Friends Network">XFN</abbr></a></li>
-			<li><a href="http://www.emlog.net/" title="emlog简单实用的轻量级博客首选">emlog</a></li>
+			<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
+			<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
+			<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
+			<li>今日访问：<?php echo $sta_cache['day_view_count']; ?></li>
+			<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
             <?php if(ISLOGIN === true): ?>
-            	<li><a href="./index.php?action=logout" title="退出">退出登陆</a></li>
+				<li><a href="./adm/add_log.php">写日志</a></li>
+				<li><a href="./adm/">管理中心</a></li>
+				<li><a href="./index.php?action=logout" title="退出">退出</a></li>
             <?php else: ?>
             	<li><a href="./adm/" title="登陆">管理</a></li>
             <?php endif;?>

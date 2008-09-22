@@ -31,7 +31,7 @@
 		<ul>
 			<li class="current_page_item"><a href="./">首页</a></li>
 		</ul>
-		<a href="./rss.php" id="feed">RSS</a>
+		<a href="./rss.php" id="feed"></a>
 	</div>
 	
 	<div id="wrapper">

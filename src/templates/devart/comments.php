@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!-- 引用 -->
 <?php if($allow_tb == 'y'):?>	
 <div>
-<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
+<p><b>引用地址：</b> <input type="text" style="width:350px" class="text" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 </div>
 <?php endif; ?>
 
@@ -62,15 +62,28 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php endif; ?>
 
 <?php if($allow_remark == 'y'): ?>
-<h1 class="comments-title">我要评论</h1>
+<h1 class="comments-title"></h1>
+<form method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
+			Your comment
+			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
+			<p><textarea name="comment" id="comment"></textarea></p>
+				<p><input type="text" name="comname" id="comname" class="text" value="" />
+				<label for="author">Name</label></p>
 
-<form  method="post"  name="commentform" action="index.php?action=addcom">
-	<p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="hidden" name="gid" value="<?php echo $logid; ?>" /><input type="text" name="comname" style="width:200px" maxlength="49" value="<?php echo $ckname; ?>"></p>
-	<p>电子邮件：<input type="text" name="commail" style="width:300px" class="text" maxlength="128"  value="<?php echo $ckmail; ?>"> (选填)</p>
-	<p>个人主页：<input type="text" name="comurl" style="width:300px" class="text" maxlength="128"  value="<?php echo $ckurl; ?>"> (选填)</p>
-	<p>内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容：</p>
-    <p><textarea name="comment" style="width:520px;height:155px"></textarea></p>
-	<p><?php echo $cheackimg; ?><input name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
-	<input type="checkbox" name="remember" class="text" value="1" checked="checked" />记住我</p>
-</form>
+				<p><input type="text" name="commail" id="commail" class="text" value="<?php echo $ckmail; ?>" />
+				<label for="email">Mail (选填)</label></p>
+
+				<p><input type="text" name="comurl" id="comurl" class="text" value="<?php echo $ckurl; ?>" />
+				<label for="url">Website (选填)</label></p>
+						
+						
+			<p>
+			<?php echo $cheackimg; ?>
+			<input name="submit" type="submit" id="submit" value="Submit Comment" /><input type="hidden" name="comment_post_ID" value="3" />
+			<input type="checkbox" name="remember" value="1" checked="checked" />记住我
+			</p>
+			
+			
+
+		</form>
 <?php endif; ?>
