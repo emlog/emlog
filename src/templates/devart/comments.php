@@ -31,7 +31,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			
 				<div class="comment-content">
 					<div class="comment-info">
-                    	<span>
+                    	<span><a name="<?php echo $value['cid']; ?>"></a>
                         	<?php echo $value['poster']; ?>
 							<?php if($value['mail']):?>
                                 <a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
