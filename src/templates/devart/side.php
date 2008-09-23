@@ -58,12 +58,12 @@
         </ul>
         <?php if(ISLOGIN === true): ?>
             <ul>
-            <li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
-            <li id='addtw' style="display: none;">
-            <textarea name="tw" id="tw" style="overflow-y: hidden;width:210px;height:70px;" class="input"></textarea>
+            <p><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></p>
+            <p id='addtw' style="display: none;">
+            <textarea name="tw" id="tw" style="overflow-y: hidden;width:200px;height:70px;" class="input"></textarea>
             <a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
             <a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
-            </li>
+            </p>
             </ul>
         <?php endif;?>
 		</div>
@@ -85,12 +85,15 @@
     <div class="block">
 		<h3>最新评论</h3>
 		<ul>
-        	<?php if (is_array($com_cache) && !empty($com_cache) ): ?>
-				<?php foreach($com_cache as $value): ?>
-                <li id="comment"><?php echo $value['name']; ?> 
-               	<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
-                <?php endforeach; ?>
-            <?php endif;?>
+		<?php foreach($com_cache as $value): ?>
+		<li><?php echo $value['name']; ?> 
+		<?php if($value['reply']): ?>
+			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+			<img src="<?php echo $em_tpldir; ?>/images/reply.gif" align="absmiddle"/>
+			</a>
+		<?php endif;?>
+		:<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+		<?php endforeach; ?>
 		</ul>
 	</div>	
     
@@ -124,13 +127,32 @@
 			<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
 			<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
 			<li>今日访问：<?php echo $sta_cache['day_view_count']; ?></li>
-			<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
-            <?php if(ISLOGIN === true): ?>
+			<li>总访问量：<?php echo $sta_cache['view_count']; ?></li> 
+			
+			<?php if(ISLOGIN === false):
+				$login_code=='y'?
+				$ckcode = "验证码:<br />
+							<input name=\"imgcode\" type=\"text\" id=\"s\" size=\"5\">&nbsp&nbsp\n
+							<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n":
+				$ckcode = '';
+			?>
+            	<li><span onclick="showhidediv('loginfm','user')" style="cursor:pointer;">登录</span>
+				<ul id="loginfm" style="display: none;">
+				<form name="f" method="post" action="index.php?action=login" id="commentform">
+				<li>
+				用户名:<br>
+				<input name="user" type="text" id="s"><br />
+				密  码:<br>
+				<input name="pw" type="password" id="s"><br>
+				<?php echo $ckcode;?> <br>
+				<input type="submit" value=" 登录">
+				</li>
+				</form>
+				</ul>
+            <?php else: ?>
 				<li><a href="./adm/add_log.php">写日志</a></li>
 				<li><a href="./adm/">管理中心</a></li>
 				<li><a href="./index.php?action=logout" title="退出">退出</a></li>
-            <?php else: ?>
-            	<li><a href="./adm/" title="登陆">管理</a></li>
             <?php endif;?>
 		</ul>
 	</div>

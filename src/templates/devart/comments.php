@@ -4,17 +4,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!-- 引用 -->
 <?php if($allow_tb == 'y'):?>	
 <div>
-<p><b>引用地址：</b> <input type="text" style="width:350px" class="text" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
+<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 </div>
 <?php endif; ?>
 
 <?php if (is_array($tb) && !empty($tb)): ?>
 	<?php foreach($tb as $key=>$value):?>
-    <div>
-        <li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
-        <li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-        <li>摘要:<?php echo $value['excerpt'];?></li>
-        <li>引用时间:<?php echo $value['date'];?></li>
+   <div class="comment-content">
+        <p>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></p>
+        <p>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </p>
+        <p>摘要:<?php echo $value['excerpt'];?></p>
+        <p>引用时间:<?php echo $value['date'];?></p>
     </div>
     <?php endforeach; ?>
 <?php endif;?>
@@ -25,7 +25,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 		<?php 
 			foreach($com as $key=>$value):
-				$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
+			$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 		?>
 			<div class="comment" id="comment-<?php echo $value['cid']; ?>">
 			
@@ -40,7 +40,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                                 <a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
                             <?php endif;?>
 						</span>
-							 <?php echo $value['addtime']; ?>
+							<?php echo $value['addtime']; ?>
                     </div>
 					
 					<?php echo $value['content']; ?>
@@ -64,22 +64,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php if($allow_remark == 'y'): ?>
 <h1 class="comments-title"></h1>
 <form method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
-			Your comment
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 			<p><textarea name="comment" id="comment"></textarea></p>
 				<p><input type="text" name="comname" id="comname" class="text" value="" />
-				<label for="author">Name</label></p>
+				<label for="author">名字</label></p>
 
 				<p><input type="text" name="commail" id="commail" class="text" value="<?php echo $ckmail; ?>" />
-				<label for="email">Mail (选填)</label></p>
+				<label for="email">电子邮件 (选填)</label></p>
 
 				<p><input type="text" name="comurl" id="comurl" class="text" value="<?php echo $ckurl; ?>" />
-				<label for="url">Website (选填)</label></p>
+				<label for="url">个人主页 (选填)</label></p>
 						
 						
 			<p>
 			<?php echo $cheackimg; ?>
-			<input name="submit" type="submit" id="submit" value="Submit Comment" /><input type="hidden" name="comment_post_ID" value="3" />
+			<input name="submit" type="submit" id="submit" value="发布我的评论" onclick="return checkform()" />
 			<input type="checkbox" name="remember" value="1" checked="checked" />记住我
 			</p>
 			
