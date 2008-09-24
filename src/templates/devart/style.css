@@ -248,6 +248,11 @@ blockquote {
 }
 #sidebar .block a:hover { color: #777; }
 
+#tags span{
+	margin: 15px 0px; 
+	line-height:135%;
+}
+
 
 
 /* Wrapper Bottom
@@ -357,7 +362,7 @@ blockquote {
 #footer a { color: #d6ded4; }
 
 
-/*ÈÕÀúÑùÊ½*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .calendar {
 	
 }
@@ -406,7 +411,7 @@ blockquote {
 	font-size: 14px;
 	margin-left:35px;
 }
-/*ÊäÈë¿òÑùÊ½*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .input {
 	border: 1px solid #CCCCCC;
 	font-family: Arial;
