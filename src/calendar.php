@@ -22,18 +22,19 @@ $n_day   = date("d",$localdate);
 $time    = date("Ymd",$localdate);
 $year_month = date("Ym",$localdate);
 
-if (isset($_GET['record']))
+if (isset($_GET['record']) && preg_match('/^(20\d{2})((1\d)|0(\d))$/',$_GET['record'],$record_array))
 {
-	$n_year  = substr(intval($_GET['record']),0,4);
-	$n_year2 = substr(intval($_GET['record']),0,4);
-	$n_month = substr(intval($_GET['record']),4,2);
-	$year_month = substr(intval($_GET['record']),0,6);
-}	
+	$n_year  = $n_year2 = $record_array[1];
+	$n_month = !empty($record_array[3]) ? $record_array[3] : $record_array[4];
+	$year_month = $record_array[0];
+}
+
 //年月跳转连接
 $m  = $n_month - 1;
 $mj = $n_month + 1;
-$m  = ($m < 10) ? "0" . $m : $m;
-$mj = ($m < 10) ? "0" . $mj : $mj;
+
+$m  = ($m < 10) ? '0' . $m : $m;
+$mj = ($mj < 10) ? '0' . $mj : $mj;
 
 $year_up = $n_year;
 $year_down = $n_year;
