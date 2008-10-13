@@ -648,7 +648,7 @@ src/templates/wp/main.css -text svn_keywords=Id
 src/templates/wp/message.php -text svn_keywords=Id
 src/templates/wp/preview.jpg -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
-src/wap/index.php -text svn_keywords=Id
+src/wap.php -text
 update/up2.0.0to2.2.0.php -text svn_keywords=Id
 update/up2.1.6sp1to2.2.0.php -text svn_keywords=Id
 update/up2.1.6to2.2.0.php -text svn_keywords=Id
