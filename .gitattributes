@@ -124,8 +124,6 @@ src/content/cache/records -text svn_keywords=Id
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
-src/content/images/import.gif -text svn_keywords=Id
-src/content/images/player.swf -text svn_keywords=Id
 src/content/templates/black/echo_log.php -text
 src/content/templates/black/footer.php -text
 src/content/templates/black/header.php -text
