@@ -13,7 +13,7 @@ define('CURPAGE','index');
 viewCount();
 
 //check template
-$em_tpldir = $tpl_dir.$nonce_templet;//当前模板目录
+$em_tpldir = $tpl_dir.$nonce_templet.'/';//当前模板目录
 if (!is_dir($em_tpldir))
 {
 	exit('Template Error: no template directory!');

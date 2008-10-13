@@ -9,12 +9,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
 <link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
-<link href="<?php echo $em_tpldir; ?>/style.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo $em_tpldir; ?>style.css" rel="stylesheet" type="text/css" />
 <!--[if IE 7]>
-<link rel="stylesheet" href="<?php echo $em_tpldir; ?>/ie7.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo $em_tpldir; ?>ie7.css" type="text/css" media="screen" />
 <![endif]-->
 <!--[if IE 6]>
-<link rel="stylesheet" href="<?php echo $em_tpldir; ?>/ie6.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo $em_tpldir; ?>ie6.css" type="text/css" media="screen" />
 <![endif]-->
 
 

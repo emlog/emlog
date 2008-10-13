@@ -20,7 +20,7 @@ function getViews($template,$EXT = ".php")
 	{
 		$template = 'none';
 	}
-	$path=$em_tpldir.'/'.$template.$EXT;
+	$path=$em_tpldir.$template.$EXT;
 	return $path;
 }
 

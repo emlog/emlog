@@ -85,7 +85,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		<li id="comment"> &raquo; <?php echo $value['name'];?>
 		<?php if($value['reply']): ?>
 		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-		<img src="<?php echo $em_tpldir; ?>/images/reply.gif" align="absmiddle" border="0"/>
+		<img src="<?php echo $em_tpldir; ?>images/reply.gif" align="absmiddle" border="0"/>
 		</a>
 		<?php endif;?>
 		<br /></li>

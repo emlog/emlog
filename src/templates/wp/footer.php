@@ -17,7 +17,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-	<img src="<?php echo $em_tpldir; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态" border="0"/></a></li>
+	<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态" border="0"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"><?php echo $blogger_des; ?></textarea>
 	<br />
@@ -85,7 +85,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		<li id="comment"> &raquo; <?php echo $value['name'];?>
 		<?php if($value['reply']): ?>
 		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-		<img src="<?php echo $em_tpldir; ?>/images/reply.gif" align="absmiddle" border="0"/>
+		<img src="<?php echo $em_tpldir; ?>images/reply.gif" align="absmiddle" border="0"/>
 		</a>
 		<?php endif;?>
 		<br /></li>
@@ -105,7 +105,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		<li>引用数量：<?php echo $sta_cache['tbnum'];?></li>
 		<li>今日访问：<?php echo $sta_cache['day_view_count'];?></li>
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
-		<li><a href="./rss.php" target="_blank"><img src="<?php echo $em_tpldir; ?>/images/em_rss.gif" alt="Rss" border="0" /></a></li>
+		<li><a href="./rss.php" target="_blank"><img src="<?php echo $em_tpldir; ?>images/em_rss.gif" alt="Rss" border="0" /></a></li>
  <?php
 if(ISLOGIN === false):
 	$login_code=='y'?

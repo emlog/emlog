@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="content">
-<img src="<?php echo $em_tpldir; ?>/images/img_08.jpg" alt="" />
+<img src="<?php echo $em_tpldir; ?>images/img_08.jpg" alt="" />
 	<div class="contenttext">
 <?php 
 foreach($logs as $value):
@@ -41,7 +41,7 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		<?php endforeach; ?>
 	<div class="postcategory"><?php echo $page_url;?></div>
 	</div> <!-- CONTENT TEXT -->
-<img src="<?php echo $em_tpldir; ?>/images/img_09.jpg" style="vertical-align: bottom;" alt="" />
+<img src="<?php echo $em_tpldir; ?>images/img_09.jpg" style="vertical-align: bottom;" alt="" />
 </div> <!-- CONTENT -->
 
 <?php

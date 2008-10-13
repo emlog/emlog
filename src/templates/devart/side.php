@@ -90,7 +90,7 @@
 		<li><?php echo $value['name']; ?> 
 		<?php if($value['reply']): ?>
 			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-			<img src="<?php echo $em_tpldir; ?>/images/reply.gif" align="absmiddle"/>
+			<img src="<?php echo $em_tpldir; ?>images/reply.gif" align="absmiddle"/>
 			</a>
 		<?php endif;?>
 		:<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
