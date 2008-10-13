@@ -1,47 +1,48 @@
 <?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
 <div class=containertitle><b>数据库备份</b></div>
 <div class=line></div>
-<SCRIPT type="text/javascript" language=JavaScript>
-function CheckAll(form) {
-	for (var i=0;i<form.elements.length;i++) {
-	var e = form.elements[i];
-	if (e.name != 'chkall')
-	e.checked = form.chkall.checked;}
-	}
-</SCRIPT>
+<script type='text/javascript'>
+$(document).ready(function(){
+	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_bakdata_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")})
+});
+</script>
 <form  method="post" action="backupdata.php?action=dell_all_bak">
-<table width="95%">
-  <tbody>
+<table width="95%" id="adm_bakdata_list">
+  <thead>
     <tr class="rowstop">
-      <td width="34"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-      <td width="480"><b>备份文件</b></td>
-      <td width="170"><b>备份时间</b></td>
-      <td width="112"><b>文件大小</b></td>
-      <td width="63"></td>
+      <td width="22"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
+      <td width="661"><b>备份文件</b></td>
+      <td width="226"><b>备份时间</b></td>
+      <td width="149"><b>文件大小</b></td>
+      <td width="87"></td>
     </tr>
-<?php 
-	foreach($bakfiles  as $value):
-	$modtime = date('Y-m-d H:i:s',filemtime($value));
-	$size =  changeFileSize(filesize($value));
-	$bakname = substr(strrchr($value,'/'),1);
-	$rowbg = getRowbg();
-?>
-    <tr class="<?php echo $rowbg; ?>">
+  </head>
+  <tbody>
+	<?php 
+		foreach($bakfiles  as $value):
+		$modtime = date('Y-m-d H:i:s',filemtime($value));
+		$size =  changeFileSize(filesize($value));
+		$bakname = substr(strrchr($value,'/'),1);
+	?>
+    <tr>
       <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[<?php echo $value; ?>]" /></td>
       <td><a href="./bakup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
       <td><a href="javascript: isdel('<?php echo $value; ?>', 5);">导入</a></td>
     </tr>
-<?php endforeach; ?>	
-</tbody>
-<tbody>
-<tr>
-<td align="center" colspan="5">
-<input type="submit" value="删除所选备份" class="submit2" />
-</td>
-</tr>
-</tbody>
+	<?php endforeach; ?>
+	</tbody>
+	<tfoot>
+	<tr>
+	<td align="center" colspan="5">
+	<input type="submit" value="删除所选备份" class="submit2" />
+	</td>
+	</tr>
+	</tfoot>
 </table>
 </form>
 <div class=line></div>
@@ -50,11 +51,13 @@ function CheckAll(form) {
     <tbody>
       <tr>
         <td valign="top" width="65">选择要备份的数据库表:<br /></td>
-        <td width="608"><select multiple="multiple" size="11" name="table_box[]">
-<?php foreach($tables  as $value): ?>
-	<option value="<?php echo $db_prefix; ?><?php echo $value; ?>" selected="selected"><?php echo $db_prefix; ?><?php echo $value; ?></option>
-<?php endforeach; ?>	  
-      </select></td>
+        <td width="608">
+        <select multiple="multiple" size="11" name="table_box[]">
+		<?php foreach($tables  as $value): ?>
+		<option value="<?php echo $db_prefix; ?><?php echo $value; ?>" selected="selected"><?php echo $db_prefix; ?><?php echo $value; ?></option>
+		<?php endforeach; ?>	  
+      	</select>
+      	</td>
       </tr>
       <tr>
         <td align="left" width="65">备份文件名:</td>

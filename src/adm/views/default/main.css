@@ -1,3 +1,4 @@
+/*emlog adm css*/
 body{
 	font-size: 12px; 
 	color: #000000; 
@@ -104,7 +105,6 @@ a:hover {
 	background-position: left 3px; 
 	font-size: 18px;
 	margin: 20px 10px; 
-	background-repeat: no-repeat; 
 	white-space: nowrap; 
 	letter-spacing: 0.2em;
 }
@@ -119,12 +119,6 @@ a:hover {
 	margin-top: 5px; 
 	margin-bottom: 5px; 
 	width: 98%
-}
-.firstalt{
-	background-color:#FFFFFF;
-}
-.secondalt{
-	background-color:#F7F7F7;
 }
 .rowstop {
 	background-image: url(./images/mc_bg3.gif);
@@ -224,4 +218,62 @@ textarea{
 }
 #media-upload-body{
 	margin:0px 200px 0px 0px;
+}
+/*table style*/
+.tralt_a{
+	background-color:#FFFFFF;
+}
+.tralt_b{
+	background-color:#F7F7F7;
+}
+.trover{
+	background-color:#E9F1FA;
+}
+/*widgets*/
+.widget-line{
+	margin:0px;
+}
+.widget-top {
+	padding:0px 0px 0px 0px;
+	width:650px;
+}
+.widget-top li{
+	float:left;
+	margin:0px;
+ 	padding:5px;
+	list-style-type:none;
+	white-space:nowrap;
+	background-color:#E9F1FA;
+}
+.widget-title{
+	font-weight:bold;
+	width:100px;
+}
+.widget-des{
+	width:400px;
+}
+.widget-act{
+	width:120px;
+}
+.widget-control {
+	padding:0px;
+	width:650px;
+	display:none;
+}
+.widget-control li{
+	margin:0px;
+ 	padding:0px;
+	list-style-type:none;
+	background-color:#F0F0F0;
+	border:#CCCCCC 1px solid;
+}
+
+
+/*templates*/
+.adm_tpl_list td{
+	border-bottom: #CCCCCC 1px dotted;
+	padding:10px;
+}
+.adm_tpl_list img{
+	border: #CCCCCC 1px solid;
 }

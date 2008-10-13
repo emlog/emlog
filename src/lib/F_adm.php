@@ -306,21 +306,6 @@ function getTips($array)
 }
 
 /**
- * 背景色替换
- *
- * @return unknown
- */
-function getRowbg()
-{
-	global $bgcounter;
-	if ( $bgcounter++ % 2 == 0) {
-		return "firstalt";
-	} else {
-		return "secondalt";
-	}
-}
-
-/**
  * 删除日志
  *
  * @param 日志id $gid

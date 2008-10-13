@@ -30,7 +30,6 @@ if($action == '')
 		$rows['title']=htmlspecialchars($rows['title']);
 		$rows['blog_name']=htmlspecialchars($rows['blog_name']);
 		$rows['date'] = date("Y-m-d H:i",$rows['date']);
-		$rows['rowbg'] = getRowbg();
 		
 		$trackback[] = $rows;
 	}

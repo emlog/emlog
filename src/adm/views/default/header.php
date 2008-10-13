@@ -7,7 +7,8 @@
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <link href="./views/<?php echo $nonce_tpl; ?>/main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
+<script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/common.js"></script>
 <title>Manager Center</title>
 </head>
 <body>
@@ -19,8 +20,10 @@
     <td width=98 align=middle nowrap class="logo">Emlog</td>
     <td class="vesion"><?php echo $edition; ?></td><td class="vesion"><?php echo $blogname; ?></td>
     <td align=right nowrap>
-	<a href="./index.php">管理中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="../index.php" target="_blank">在新窗口浏览blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	欢迎您：<a href="blogger.php"><?php echo $userData['username'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="configure.php">设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="../index.php" target="_blank">浏览blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="index.php?action=logout">退出管理</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
     <td width="9" id="headerright"></td>
 	</tbody>
@@ -37,11 +40,9 @@
             <div id=sidebartop></div>
             <div class="sidebarmenu" onclick="showhidediv('blogctlpl');">Blog管理</div>
 			<div id="blogctlpl">
-            <div class=sidebarsubmenu><A href="configure.php">博客设置</A><a href="add_log.php"></a></div>
-            <div class=sidebarsubmenu><A href="blogger.php" >个人资料</A><a href="admin_log.php"></a></div>
-            <div class=sidebarsubmenu><A href="music.php" >背景音乐</A><a href="admin_log.php"></a></div>
-			<div class=sidebarsubmenu><A href="template.php" >模板设置</A><a href="admin_log.php"></a></div>
-			<div class=sidebarsubmenu><A href="link.php">友站管理</A><a href="admin_log.php"></a></div>
+            <div class=sidebarsubmenu><a href="widgets.php" >Widgets</a></div>
+			<div class=sidebarsubmenu><a href="template.php" >外观模板</a></div>
+			<div class=sidebarsubmenu><a href="link.php">友情链接</a></div>
 			</div>
 			</div>
 			</td>
@@ -58,9 +59,9 @@
             <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo $nonce_tpl; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php">日志管理</a></div>
+            <div class=sidebarsubmenu><A href="tag.php">标签管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="comment.php">评论管理</A><a href="admin_log.php"></a></div>
             <div class=sidebarsubmenu><A href="trackback.php">引用管理</A></div>
-            <div class=sidebarsubmenu><A href="tag.php">标签管理</A><a href="admin_log.php"></a></div>
 			</div>
 			</div>
        	    </td>

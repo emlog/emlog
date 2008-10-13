@@ -72,7 +72,6 @@ if($action == '')
 		$query=$DB->query("SELECT blogid FROM {$db_prefix}attachment WHERE blogid='".$dh['gid']."' ");
 		$attach_num=$DB->num_rows($query);
 		$attach = $attach_num>0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
-		$rowbg = getRowbg();
 
 		$logs[] = array(
 			'title'=>!empty($dh['title']) ? $dh['title'] : 'No Title',
@@ -81,8 +80,7 @@ if($action == '')
 			'comnum'=>$dh['comnum'],
 			'views'=>$dh['views'],
 			'istop'=>$istop,
-			'attach'=>$attach,
-			'rowbg'=>$rowbg
+			'attach'=>$attach
 		);
 	}
 	

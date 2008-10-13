@@ -14,7 +14,7 @@ require_once('../lib/C_mysql.php');
 require_once('../lib/F_base.php');
 require_once('../lib/F_login.php');
 require_once('../lib/F_adm.php');
-require_once('./tips.php');		
+require_once('./tips.php');
 require_once('../lib/C_cache.php');
 
 //去除多余的转义字符
@@ -57,20 +57,15 @@ if ($action == 'login')
 {
 	session_start();
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
-	$password = isset($_POST['pw']) ? md5(addslashes(trim($_POST['pw']))) : '';
+	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 	if (strlen($username) >16) 
 	{
 		formMsg('ERROR!!','javascript:history.go(-1);',0);
 	}
-	if (checkUser($username, $password,$img_code,$login_code)) 
+	if (checkUser($username, $password,$img_code,$login_code) === true) 
 	{
-		if (function_exists('session_regenerate_id'))//PHP_VERSION >= '4.3.2'
-		{
-			session_regenerate_id();
-		}
-		$_SESSION['adminname'] = $username;
-		$_SESSION['password'] = $password;
+		setAuthCookie($username);
 		header("Location: index.php"); 
 	}else{
 		loginPage();
@@ -82,10 +77,11 @@ if ($action == 'logout')
 	session_start();
 	session_unset();
 	session_destroy();
+	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	formMsg('退出成功！','../index.php',1);
 }
 
-if(isLogin() === false)
+if(($userData = isLogin()) === false)
 {
 	loginpage();
 }

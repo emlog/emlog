@@ -108,6 +108,8 @@ src/adm/views/default/tagedit.php -text svn_keywords=Id
 src/adm/views/default/template.php -text svn_keywords=Id
 src/adm/views/default/trackback.php -text svn_keywords=Id
 src/adm/views/default/upload.php -text
+src/adm/views/default/widgets.php -text
+src/adm/widgets.php -text
 src/cache/blogger -text svn_keywords=Id
 src/cache/comments -text svn_keywords=Id
 src/cache/config -text svn_keywords=Id
@@ -129,6 +131,7 @@ src/install.php -text svn_keywords=Id
 src/lib/C_cache.php -text svn_keywords=Id
 src/lib/C_checkcode.php -text svn_keywords=Id
 src/lib/C_mysql.php -text svn_keywords=Id
+src/lib/C_phpass.php -text
 src/lib/F_adm.php -text svn_keywords=Id
 src/lib/F_base.php -text svn_keywords=Id
 src/lib/F_login.php -text svn_keywords=Id

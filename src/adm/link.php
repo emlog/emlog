@@ -18,7 +18,6 @@ if($action == '')
 		$rows['sitename'] = htmlspecialchars($rows['sitename']);
 		$rows['description'] = subString(htmlClean2($rows['description']),0,80);
 		$rows['siteurl'] = $rows['siteurl'];
-		$rows['rowbg'] = getRowbg();
 		$links[] = $rows;
 	}
 	require_once(getViews('links'));
