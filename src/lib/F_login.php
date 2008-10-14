@@ -103,12 +103,9 @@ function getUserDataByLogin($userLogin)
 function checkPassword($password, $hash)
 {
 	global $em_hasher;
-	// If the stored hash is longer than an MD5, presume the
-	// new style phpass portable hash.
 	if ( empty($wp_hasher) )
 	{
 		require_once("C_phpass.php");
-		// By default, use the portable hash from phpass
 		$em_hasher = new PasswordHash(8, true);
 	}
 	$check = $em_hasher->CheckPassword($password, $hash);

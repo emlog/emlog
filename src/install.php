@@ -9,10 +9,11 @@
 require_once('./lib/F_base.php');
 require_once("./lib/C_mysql.php");
 require_once('./lib/C_cache.php');
+require_once("./lib/C_phpass.php");
 
 doStripslashes();
 
-define('__VERSION',			'2.7.0');//版本号
+define('EM_VERSION',			'2.7.0');//版本号
 
 if(!isset($_GET['action']))
 {
@@ -80,7 +81,7 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog <?php echo __VERSION ?></span><span> 安装程序</span></p>
+<p><span class="title">emlog <?php echo EM_VERSION ?></span><span> 安装程序</span></p>
 </div>
 <div class="a">
 <p class="title2">1.权限设置</p>
@@ -180,22 +181,17 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 
 	$config = "<?php\n"
 	."//Emlog mysql config file"
-	."\n\n//mysql database address\n"
-	."\$host\t= "
-	."'".$db_host."';"
-	."\n\n//mysql database user\n"
-	."\$user\t= "
-	."'".$db_user."';"
-	."\n\n//database password\n"
-	."\$pass\t= "
-	."'".$db_pw."';"
-	."\n\n//database name\n"
-	."\$db\t= "
-	."'".$db_name."';"
-	."\n\n//database prefix\n"
-	."\$db_prefix\t= "
-	."'{$db_prefix}';"
-	."\n\n?>";
+	."\n//mysql database address\n"
+	."\$host = '$db_host';"
+	."\n//mysql database user\n"
+	."\$user = '$db_user';"
+	."\n//database password\n"
+	."\$pass = '$db_pw';"
+	."\n//database name\n"
+	."\$db = '$db_name';"
+	."\n//database prefix\n"
+	."\$db_prefix = '$db_prefix';"
+	."\n?>";
 
 	@$fw = fwrite($fp, $config) ;
 	if (!$fw)
@@ -208,8 +204,10 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 
 	//初始化数据库类
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	$MC = new mkcache($DB,$db_prefix);
-	unset($db_host, $db_user, $db_pw,$db_name);
+	$CACHE = new mkcache('./content/cache/', $DB, $db_prefix);
+	//密码加密存储
+	$PHPASS = new PasswordHash(8, true);
+	$adminpw = $PHPASS->HashPassword($adminpw);
 
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
@@ -334,14 +332,14 @@ DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
   username varchar(32) NOT NULL default '',
-  password varchar(32) NOT NULL default '',
+  password varchar(64) NOT NULL default '',
   nickname varchar(20) NOT NULL default '',
   photo varchar(255) NOT NULL default '',
   email varchar(60) NOT NULL default '',
   description text NOT NULL,
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".md5($adminpw)."', '','welcome to emlog!'); ";
+INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!'); ";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query)) 
@@ -372,16 +370,16 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 		}
 	}
 	//重建缓存
-	$MC->mc_blogger('./cache/blogger');
-	$MC->mc_config('./cache/config');
-	$MC->mc_record('./cache/records');
-	$MC->mc_comment('./cache/comments');
-	$MC->mc_logtags('./cache/log_tags');
-	$MC->mc_logatts('./cache/log_atts');
-	$MC->mc_sta('./cache/sta');
-	$MC->mc_link('./cache/links');
-	$MC->mc_tags('./cache/tags');
-	$MC->mc_twitter('./cache/twitter');
+	$CACHE->mc_blogger('blogger');
+	$CACHE->mc_config('config');
+	$CACHE->mc_record('records');
+	$CACHE->mc_comment('comments');
+	$CACHE->mc_logtags('log_tags');
+	$CACHE->mc_logatts('log_atts');
+	$CACHE->mc_sta('sta');
+	$CACHE->mc_link('links');
+	$CACHE->mc_tags('tags');
+	$CACHE->mc_twitter('twitter');
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
 	sysMsg($result);

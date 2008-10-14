@@ -115,11 +115,11 @@ if($action== 'admin_all_log')
 		{
 			delLog($key);
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_record('../cache/records');
-		$MC->mc_comment('../cache/comments');
-		$MC->mc_logtags('../cache/log_tags');
-		$MC->mc_tags('../cache/tags');
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_record('../cache/records');
+		$CACHE->mc_comment('../cache/comments');
+		$CACHE->mc_logtags('../cache/log_tags');
+		$CACHE->mc_tags('../cache/tags');
 		formMsg('删除日志成功','./admin_log.php',1);
 	}
 	//推荐日志
@@ -148,10 +148,10 @@ if($action== 'admin_all_log')
 			$DB->query("UPDATE {$db_prefix}blog SET hide='y' WHERE gid='$key' ");
 			$DB->query("UPDATE {$db_prefix}comment SET hide='y' WHERE gid='$key' ");
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_record('../cache/records');
-		$MC->mc_comment('../cache/comments');
-		$MC->mc_logtags('../cache/log_tags');
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_record('../cache/records');
+		$CACHE->mc_comment('../cache/comments');
+		$CACHE->mc_logtags('../cache/log_tags');
 		formMsg('日志成功转入草稿箱','./admin_log.php',1);
 	}
 	//从草稿箱发布
@@ -162,10 +162,10 @@ if($action== 'admin_all_log')
 			$DB->query("UPDATE {$db_prefix}blog SET hide='n' WHERE gid='$key' ");
 			$DB->query("UPDATE {$db_prefix}comment SET hide='n' WHERE gid='$key' ");
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_comment('../cache/comments');
-		$MC->mc_logtags('../cache/log_tags');
-		$MC->mc_record('../cache/records');	//重新计算归档日志数目 故更新归档缓存
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_comment('../cache/comments');
+		$CACHE->mc_logtags('../cache/log_tags');
+		$CACHE->mc_record('../cache/records');	//重新计算归档日志数目 故更新归档缓存
 		formMsg('发布成功','./admin_log.php?pid=draft',1);
 	}
 }
@@ -327,10 +327,10 @@ if($action=="edit")
 		}
 	}
 	$DB->query($sql);
-	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_logatts('../cache/log_atts',$cont_attid);
-	$MC->mc_record('../cache/records');
-	$MC->mc_tags('../cache/tags');
+	$CACHE->mc_logtags('../cache/log_tags');
+	$CACHE->mc_logatts('../cache/log_atts',$cont_attid);
+	$CACHE->mc_record('../cache/records');
+	$CACHE->mc_tags('../cache/tags');
 	formMsg( "保存成功\t$tbmsg","javascript:history.go(-1);",1);
 }
 
@@ -339,11 +339,11 @@ if ($action== 'delLog')
 {
 	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	delLog($gid);
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_record('../cache/records');
-	$MC->mc_comment('../cache/comments');
-	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_tags('../cache/tags');
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_record('../cache/records');
+	$CACHE->mc_comment('../cache/comments');
+	$CACHE->mc_logtags('../cache/log_tags');
+	$CACHE->mc_tags('../cache/tags');
 	formMsg('删除日志成功','./admin_log.php',1);
 }
 ?>

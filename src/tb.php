@@ -92,7 +92,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		$DB->query($query);
 		//更新文章Trackback数量
 		$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
-		$MC->mc_sta('./cache/sta');
+		$CACHE->mc_sta('./cache/sta');
 		showXML('成功接收', 0);
 	}else {
 		showXML('主动拒绝引用');

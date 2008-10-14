@@ -1,19 +1,13 @@
 <?php
 //Emlog mysql config file
-
 //mysql database address
-$host	= 'localhost';
-
+$host = 'localhost';
 //mysql database user
-$user	= 'root';
-
+$user = 'root';
 //database password
-$pass	= '123456';
-
+$pass = '';
 //database name
-$db	= 'emlog';
-
+$db = 'emlog';
 //database prefix
-$db_prefix	= 'blog_';
-
+$db_prefix = 'emlog_';
 ?>

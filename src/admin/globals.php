@@ -24,10 +24,10 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 //数据库操作对象
 $DB = new MySql($host, $user, $pass,$db);
 //实例化一个缓存生成对象
-$MC = new mkcache($DB,$db_prefix);
+$CACHE = new mkcache('../content/cache/', $DB, $db_prefix);
 		
 //读取配置参数
-$config_cache = $MC->readCache('../cache/config');
+$config_cache = $CACHE->readCache('config');
 extract($config_cache);
 $timezone  = intval($timezone);
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
@@ -36,10 +36,12 @@ $tips = getTips($tips);//加载小提示
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录
 $uploadmax = 2097152;			//附件大小上限 单位：字节
-$tpl_dir = '../templates/';		//所有模板目录
+$tpl_dir = '../content/templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 
-define('__VERSION',			'2.7.0');//版本号
+define('AUTH_KEY',	'rtyuiopghjkl'.md5($_SERVER['HTTP_USER_AGENT']).'fghjk');
+define('AUTH_COOKIE_NAME',	'EM_AUTHCOOKIE_'.md5($_SERVER['SERVER_SOFTWARE']));
+define('EM_VERSION',		'2.7.0');//版本号
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
 define('ICON_MAX_W',		140);//个性头像缩略图最大宽

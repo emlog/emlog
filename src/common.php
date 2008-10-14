@@ -22,7 +22,7 @@ require_once(EMLOG_ROOT.'/lib/C_cache.php');
 //数据库操作对象
 $DB = new MySql($host, $user, $pass,$db);
 //cache
-$MC = new mkcache($DB,$db_prefix);
+$CACHE = new mkcache('./content/cache/', $DB,$db_prefix);
 //去除多余的转义字符
 doStripslashes();
 //登录验证
@@ -31,23 +31,23 @@ define('ISLOGIN',	isLogin());
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
 
 //读取缓存
-$config_cache = $MC->readCache(EMLOG_ROOT.'/cache/config');
-$log_cache_tags = $MC->readCache(EMLOG_ROOT.'/cache/log_tags');
-$log_cache_atts = $MC->readCache(EMLOG_ROOT.'/cache/log_atts');
-$tag_cache = $MC->readCache(EMLOG_ROOT.'/cache/tags');
-$com_cache = $MC->readCache(EMLOG_ROOT.'/cache/comments');
-$link_cache = $MC->readCache(EMLOG_ROOT.'/cache/links');
-$user_cache = $MC->readCache(EMLOG_ROOT.'/cache/blogger');
-$dang_cache = $MC->readCache(EMLOG_ROOT.'/cache/records');
-$sta_cache = $MC->readCache(EMLOG_ROOT.'/cache/sta');
-$tw_cache = $MC->readCache(EMLOG_ROOT.'/cache/twitter');
-$music = $MC->readCache(EMLOG_ROOT.'/cache/musics');
+$config_cache = $CACHE->readCache('config');
+$log_cache_tags = $CACHE->readCache('log_tags');
+$log_cache_atts = $CACHE->readCache('log_atts');
+$tag_cache = $CACHE->readCache('tags');
+$com_cache = $CACHE->readCache('comments');
+$link_cache = $CACHE->readCache('links');
+$user_cache = $CACHE->readCache('blogger');
+$dang_cache = $CACHE->readCache('records');
+$sta_cache = $CACHE->readCache('sta');
+$tw_cache = $CACHE->readCache('twitter');
+$music = $CACHE->readCache('musics');
 
 //配置项目
 extract($config_cache);
 $exarea    = stripslashes($exarea);
 $timezone  = intval($timezone);
-$tpl_dir   = './templates/';//所有模板存放目录
+$tpl_dir   = './content/templates/';//所有模板存放目录
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 
 //站点信息

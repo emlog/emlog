@@ -42,8 +42,8 @@ if($action=='update_tag')
 	$tid = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$sql="UPDATE {$db_prefix}tag SET tagname='$tagname' WHERE tid='$tid' ";
 	$DB->query($sql);
-	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_tags('../cache/tags');
+	$CACHE->mc_logtags('../cache/log_tags');
+	$CACHE->mc_tags('../cache/tags');
 	formMsg('标签修改成功','./tag.php',1);
 }
 
@@ -58,8 +58,8 @@ if($action== 'dell_all_tag')
 		{
 			$DB->query("DELETE FROM {$db_prefix}tag where tid='$key' ");
 		}
-		$MC->mc_logtags('../cache/log_tags');
-		$MC->mc_tags('../cache/tags');
+		$CACHE->mc_logtags('../cache/log_tags');
+		$CACHE->mc_tags('../cache/tags');
 		formMsg('标签删除成功','./tag.php',1);
 	}
 }

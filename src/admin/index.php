@@ -11,7 +11,7 @@ require_once('./globals.php');
 if ($action == '')
 {
 	include getViews('header');
-	$sta_cache = $MC->readCache('../cache/sta');
+	$sta_cache = $CACHE->readCache('../cache/sta');
 	extract($sta_cache);
 	
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];

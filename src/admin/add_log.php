@@ -116,7 +116,7 @@ if($action== 'addlog')
 				$DB->query($query);
 			}
 		}
-		$MC->mc_tags('../cache/tags');
+		$CACHE->mc_tags('../cache/tags');
 	}
 	// 发送Trackback部分
 	if(!empty($pingurl))
@@ -139,10 +139,10 @@ if($action== 'addlog')
 			}
 		}
 	}
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_record('../cache/records');
-	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_logatts('../cache/log_atts',$cont_attid);
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_record('../cache/records');
+	$CACHE->mc_logtags('../cache/log_tags');
+	$CACHE->mc_logatts('../cache/log_atts',$cont_attid);
 	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 }
 

@@ -6,13 +6,16 @@
  * $Id$
  */
 
+
 class mkcache {
 
+	var $cachePath;
 	var $dbhd;
 	var $dbprefix;
 
-	function mkcache($dbhandle,$dbprefix)
+	function mkcache($cachePath, $dbhandle, $dbprefix)
 	{
+		$this->cachePath = $cachePath;
 		$this->dbhd = $dbhandle;
 		$this->dbprefix = $dbprefix;
 	}
@@ -43,7 +46,7 @@ class mkcache {
 		'icp'=>htmlspecialchars($show_config['icp']),
 		'timezone'=>$show_config['timezone'],
 		'exarea'=>$show_config['exarea'],
-		'edition'=>__VERSION
+		'edition'=>EM_VERSION
 		);
 		$cacheData = serialize($config_cache);
 		$this->cacheWrite($cacheData,$cf);
@@ -342,6 +345,7 @@ class mkcache {
 	 */
 	function cacheWrite ($cacheDate,$cachefile)
 	{
+		$cachefile = $this->cachePath.$cachefile;
 		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
 		@ $fw =	fwrite($fp,$cacheDate) OR sysMsg('写入缓存失败，请查看文件权限');
 		fclose($fp);
@@ -355,6 +359,7 @@ class mkcache {
 	 */
 	function readCache($cachefile)
 	{
+		$cachefile = $this->cachePath.$cachefile;
 		if(@$fp = fopen($cachefile, 'r'))
 		{
 			@$data = fread($fp,filesize($cachefile));

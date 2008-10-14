@@ -74,8 +74,8 @@ if($action== 'admin_all_coms')
 			$DB->query("DELETE FROM {$db_prefix}comment where cid='$key' ");
 			$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_comment('../cache/comments');
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_comment('../cache/comments');
 		formMsg('评论删除成功','./comment.php',1);
 	}
 	//屏蔽
@@ -90,8 +90,8 @@ if($action== 'admin_all_coms')
 			}
 			$DB->query("UPDATE {$db_prefix}comment SET hide='y' WHERE cid='$key' ");
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_comment('../cache/comments');
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_comment('../cache/comments');
 		formMsg('屏蔽评论成功','./comment.php',1);
 	}
 	//审核
@@ -106,8 +106,8 @@ if($action== 'admin_all_coms')
 			}
 			$DB->query("UPDATE {$db_prefix}comment SET hide='n' WHERE cid='$key' ");
 		}
-		$MC->mc_sta('../cache/sta');
-		$MC->mc_comment('../cache/comments');
+		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_comment('../cache/comments');
 		formMsg('审核评论成功','./comment.php',1);
 	}
 }
@@ -118,8 +118,8 @@ if ($action== 'del_comment')
 	$dh = $DB->fetch_one_array("SELECT gid FROM {$db_prefix}comment WHERE cid=$commentid");
 	$DB->query("DELETE FROM {$db_prefix}comment where cid=$commentid");
 	$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid=".$dh['gid']);
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_comment('../cache/comments');
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_comment('../cache/comments');
 	formMsg('评论删除成功','./comment.php',1);
 }
 //屏蔽评论
@@ -132,8 +132,8 @@ if($action=='kill_comment')
 		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum-1 WHERE gid='".$dh['gid']."'");
 	}
 	$DB->query(" UPDATE {$db_prefix}comment SET hide='y' where cid='".$_GET['cid']."' ");
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_comment('../cache/comments');
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_comment('../cache/comments');
 	formMsg('评论屏蔽成功','./comment.php',1);
 }
 //审核评论
@@ -146,8 +146,8 @@ if($action=='show_comment')
 		$DB->query("UPDATE {$db_prefix}blog SET comnum=comnum+1 WHERE gid='".$dh['gid']."'");
 	}
 	$DB->query(" UPDATE {$db_prefix}comment SET hide='n' where cid='".$_GET['cid']."' ");
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_comment('../cache/comments');
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_comment('../cache/comments');
 	formMsg('评论审核成功','./comment.php',1);
 }
 //回复评论
@@ -178,13 +178,13 @@ if($action=='doreply')
 	{
 		$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
 		$DB->query($sql);
-		$MC->mc_comment('../cache/comments');
+		$CACHE->mc_comment('../cache/comments');
 		formMsg("评论回复成功","./comment.php",1);
 	}else{
 		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
 		$sql="UPDATE {$db_prefix}comment SET reply='$reply' where cid=$cid ";
 		$DB->query($sql);
-		$MC->mc_comment('../cache/comments');
+		$CACHE->mc_comment('../cache/comments');
 		echo "<span><b>博主回复</b>：$reply</span>";
 	}
 }

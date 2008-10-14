@@ -124,11 +124,11 @@ if ($action== "mod_config")
 				comment_subnum =$comment_subnum,
 				exarea='$exarea' "
 				);
-	$MC->mc_tags('../cache/tags');
-	$MC->mc_comment('../cache/comments');
-	$MC->mc_config('../cache/config');
-	$MC->mc_record('../cache/records');
-	$MC->mc_twitter('../cache/twitter');
+	$CACHE->mc_tags('../cache/tags');
+	$CACHE->mc_comment('../cache/comments');
+	$CACHE->mc_config('../cache/config');
+	$CACHE->mc_record('../cache/records');
+	$CACHE->mc_twitter('../cache/twitter');
 	formMsg("博客设置成功","./configure.php",1);
 }
 //phpinfo()

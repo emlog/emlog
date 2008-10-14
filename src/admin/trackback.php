@@ -47,7 +47,7 @@ if ($action== 'del_tb')
 	$blog = $DB->fetch_one_array($sql);
 	$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
 	$DB->query("DELETE FROM {$db_prefix}trackback where tbid='$tbid' ");
-	$MC->mc_sta('../cache/sta');
+	$CACHE->mc_sta('../cache/sta');
 	formMsg('删除引用成功','./trackback.php',1);
 }
 
@@ -65,7 +65,7 @@ if($action== 'dell_all_tb')
 			$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid='".$blog['gid']."'");
 			$DB->query("DELETE FROM {$db_prefix}trackback where tbid='$key' ");
 		}
-		$MC->mc_sta('../cache/sta');
+		$CACHE->mc_sta('../cache/sta');
 		formMsg('引用删除成功','./trackback.php',1);
 	}
 }

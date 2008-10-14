@@ -89,15 +89,15 @@ if ($action == 'renewdata')
 	fclose($fp);
 	unset($sql);
 	bakindata($sqlfile);
-	$MC->mc_blogger('../cache/blogger');
-	$MC->mc_config('../cache/config');
-	$MC->mc_record('../cache/records');
-	$MC->mc_comment('../cache/comments');
-	$MC->mc_logtags('../cache/log_tags');
-	$MC->mc_sta('../cache/sta');
-	$MC->mc_link('../cache/links');
-	$MC->mc_tags('../cache/tags');
-	$MC->mc_twitter('../cache/twitter');
+	$CACHE->mc_blogger('../cache/blogger');
+	$CACHE->mc_config('../cache/config');
+	$CACHE->mc_record('../cache/records');
+	$CACHE->mc_comment('../cache/comments');
+	$CACHE->mc_logtags('../cache/log_tags');
+	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_link('../cache/links');
+	$CACHE->mc_tags('../cache/tags');
+	$CACHE->mc_twitter('../cache/twitter');
 	formMsg('数据恢复成功', './backupdata.php',1);
 }
 
