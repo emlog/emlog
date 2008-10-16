@@ -191,6 +191,10 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	."\$db = '$db_name';"
 	."\n//database prefix\n"
 	."\$db_prefix = '$db_prefix';"
+	."\n//auth key\n"
+	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
+	."\n//cookie name\n"
+	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
 	."\n?>";
 
 	@$fw = fwrite($fp, $config) ;

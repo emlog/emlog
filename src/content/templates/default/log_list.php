@@ -2,10 +2,11 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 foreach($logs as $value):
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 	<div class="logcontent">
 	<div id="t">
-	<?php echo $value['toplog']; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+	<?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 	</div>
 	
 	<p id="date"><?php echo $value['post_time']; ?></p>

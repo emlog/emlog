@@ -483,6 +483,28 @@ function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
 }
 
 /**
+ * 生成一个随机的字符串
+ *
+ * @param int $length
+ * @param boolean $special_chars
+ * @return string
+ */
+function getRandStr($length = 12, $special_chars = true)
+{
+	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	if ( $special_chars )
+	{
+		$chars .= '!@#$%^&*()';
+	}
+	$randStr = '';
+	for ( $i = 0; $i < $length; $i++ )
+	{
+		$randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+	}
+	return $randStr;
+}
+
+/**
  * 返回显系统错误信息
  *
  * @param unknown_type $info

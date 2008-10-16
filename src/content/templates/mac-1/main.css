@@ -1,21 +1,3 @@
-﻿/*  
-Theme Name: iTheme
-Theme URI: http://www.ndesign-studio.com
-Description: WordPress theme designed by <a href="http://www.ndesign-studio.com">N.Design Studio</a>.
-Version: 1.1
-Author: Nick La
-Author URI: http://www.ndesign-studio.com
-
-	This theme was designed and built by Nick La.
-	
-	By downloading and using this theme, you agree to the following terms:
-    - You may NOT resell this theme
-    - A link back to N.Design Studio must be retained in the footer (either modified or unmodified)
-    - You may use this theme for personal or commercial projects
-    - You may modify, translate or distribute
-
-*/
-
 body {
 	background: #42afdc url(images/html-bg.gif) repeat-x;
 	font: 75%/170% Arial, Helvetica, sans-serif;

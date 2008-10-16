@@ -39,8 +39,6 @@ $uploadmax = 2097152;			//附件大小上限 单位：字节
 $tpl_dir = '../content/templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
 
-define('AUTH_KEY',	'rtyuiopghjkl'.md5($_SERVER['HTTP_USER_AGENT']).'fghjk');
-define('AUTH_COOKIE_NAME',	'EM_AUTHCOOKIE_'.md5($_SERVER['SERVER_SOFTWARE']));
 define('EM_VERSION',		'2.7.0');//版本号
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
@@ -57,18 +55,14 @@ if (!is_dir($em_tpldir))
 //登陆验证
 if ($action == 'login') 
 {
-	session_start();
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
-	if (strlen($username) >16) 
-	{
-		formMsg('ERROR!!','javascript:history.go(-1);',0);
-	}
+
 	if (checkUser($username, $password,$img_code,$login_code) === true) 
 	{
 		setAuthCookie($username);
-		header("Location: index.php"); 
+		header("Location: ../index.php"); 
 	}else{
 		loginPage();
 	}
@@ -83,7 +77,8 @@ if ($action == 'logout')
 	formMsg('退出成功！','../index.php',1);
 }
 
-if(($userData = isLogin()) === false)
+$userData = array();
+if(isLogin() === false)
 {
 	loginpage();
 }

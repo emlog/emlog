@@ -76,7 +76,7 @@ foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 	<img src="<?php echo $tpl_dir; ?>lust/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:150px;height:50px;"><?php echo $blogger_des; ?></textarea>
-	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+	<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	<?php endif; ?>
 	</li>

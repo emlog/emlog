@@ -107,7 +107,8 @@ if (!isset($action) || empty($action))
 		//e-mail
 		$row['name'] = $user_cache['mail'] != '' ? "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>" : $user_cache['name'];
 		//top
-		$row['toplog'] = $row['top'] == 'y' ? "<img src=\"./images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
+		$row['toplog'] = $row['top'];
+
 		$logs[] = $row;
 	}
 	//分页

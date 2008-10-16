@@ -13,8 +13,8 @@
 			<li><a href="./">首页</a></li>
 			<li><a href="http://www.emlog.net" target="_blank">emlog</a></li>
 			<?php if(ISLOGIN): ?>
-			<li><a href="./adm/add_log.php">写日志</a></li>
-			<li><a href="./adm/">管理中心</a></li>
+			<li><a href="./admin/add_log.php">写日志</a></li>
+			<li><a href="./admin/">管理中心</a></li>
 			<li><a href="./index.php?action=logout">退出</a></li>
 			<?php endif; ?>
 		</ul>
@@ -100,7 +100,7 @@
 			<li id='modbdes' style="display:none;">
 			<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"><?php echo $blogger_des; ?></textarea>
 			<br />
-			<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+			<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 			<?php endif; ?>
 			</li>

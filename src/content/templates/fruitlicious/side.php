@@ -14,7 +14,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 	<li id='modbdes' style="display:none;">
 	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:50px;"><?php echo $blogger_des; ?></textarea>
-	<a href="javascript:void(0);" onclick="postinfo('./adm/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+	<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 	<?php endif; ?>
 </li>
@@ -139,8 +139,8 @@ else:
 ?>
 <li><span onclick="showhidediv('loginfm','user')" >管理</span>
 <ul id="loginfm">
-	<li><a href="./adm/add_log.php">写日志</a></li>
-	<li><a href="./adm/">管理中心</a></li>
+	<li><a href="./admin/add_log.php">写日志</a></li>
+	<li><a href="./admin/">管理中心</a></li>
 	<li><a href="./index.php?action=logout">退出</a></li>
 	</ul>
 <?php endif; ?>

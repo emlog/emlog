@@ -33,8 +33,8 @@ if($action ==''):
 <ul>
 	<li class="$home_style"><a href="./" title="Home">Home</a></li>
 <?php if(ISLOGIN): ?>
-	<li class="page_item"><a href="./adm/add_log.php">写日志</a></li>
-	<li class="page_item"><a href="./adm/">管理中心</a></li>
+	<li class="page_item"><a href="./admin/add_log.php">写日志</a></li>
+	<li class="page_item"><a href="./admin/">管理中心</a></li>
 	<li class="page_item"><a href="./index.php?action=logout">退出</a></li>
 <?php endif; ?>
 	<li class="rss"><a href="./rss.php" title="Subscribe to Feed">Subscribe to Feed</a></li>

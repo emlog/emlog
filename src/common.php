@@ -26,6 +26,7 @@ $CACHE = new mkcache('./content/cache/', $DB,$db_prefix);
 //去除多余的转义字符
 doStripslashes();
 //登录验证
+$userData = array();
 define('ISLOGIN',	isLogin());
 //获取操作
 $action = isset($_GET['action'])?addslashes($_GET['action']):'';
@@ -67,36 +68,4 @@ if ($ismusic = $music['ismusic'])
 	$autoplay = $music['auto'] ? "&autoplay=1" : '';
 }
 
-//登陆验证
-if ($action == 'login')
-{
-	session_start();
-	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
-	$password = isset($_POST['pw']) ? md5(addslashes(trim($_POST['pw']))) : '';
-	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
-	if (strlen($username) > 16)
-	{
-		header("Location: index.php");
-	}
-	if (checkUser($username, $password,$img_code,$login_code))
-	{
-		if (function_exists('session_regenerate_id'))//PHP_VERSION >= '4.3.2'
-		{
-			session_regenerate_id();
-		}
-		$_SESSION['adminname'] = $username;
-		$_SESSION['password'] = $password;
-		header("Location: index.php");
-	} else {
-		header("Location: index.php");
-	}
-}
-//登出
-if ($action == 'logout')
-{
-	session_start();
-	session_unset();
-	session_destroy();
-	header("Location: index.php");
-}
 ?>

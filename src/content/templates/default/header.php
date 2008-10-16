@@ -25,22 +25,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="navBar">
 <ul>
 <?php if(ISLOGIN): ?>
-	<li><a href="./adm/add_log.php">写日志</a></li>
-	<li><a href="./adm/">管理中心</a></li>
-	<li><a href="./index.php?action=logout">退出</a></li>
-<?php
-else:
-	$login_code=='y'?
-	$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
-	$ckcode = '';
-?>
-	<li id="loginfm" style="display:none">
-	用户：<input name="user" id="user" type="text" class="input" style="width:80px;"/>
-	密码：<input name="pw" type="password"  class="input" style="width:80px;"/>
-	<?php echo $ckcode; ?> 
-	<input type="submit" value="登录">
-	</li>
-	<li onclick="showhidediv('loginfm','user')" style="cursor:pointer;">登录</li>
+	<li><a href="./admin/add_log.php">写日志</a></li>
+	<li><a href="./admin/">管理中心</a></li>
+	<li><a href="./admin/index.php?action=logout">退出</a></li>
+<?php else: ?>
+	<li><a href="./admin/index.php">登录</a></li>
 <?php endif; ?>
 </ul>
 </div>
