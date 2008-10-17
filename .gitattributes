@@ -132,8 +132,10 @@ src/content/templates/black/images/dtmbkg.gif -text
 src/content/templates/black/images/h2bkg.gif -text
 src/content/templates/black/images/h2bkg2.gif -text
 src/content/templates/black/images/headerbkg.png -text
+src/content/templates/black/images/import.gif -text
 src/content/templates/black/images/modify.gif -text
 src/content/templates/black/images/nav.gif -text
+src/content/templates/black/images/player.swf -text
 src/content/templates/black/images/reply.gif -text
 src/content/templates/black/images/rss.gif -text
 src/content/templates/black/log_list.php -text
