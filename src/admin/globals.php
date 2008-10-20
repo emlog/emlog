@@ -22,23 +22,23 @@ doStripslashes();
 //获取GET变量
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 //数据库操作对象
-$DB = new MySql($host, $user, $pass,$db);
+$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //实例化一个缓存生成对象
-$CACHE = new mkcache('../content/cache/', $DB, $db_prefix);
+$CACHE = new mkcache('../content/cache/', $DB, DB_PREFIX);
 		
 //读取配置参数
 $config_cache = $CACHE->readCache('config');
 extract($config_cache);
 $timezone  = intval($timezone);
-$dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
+$dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
+
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录
 $uploadmax = 2097152;			//附件大小上限 单位：字节
 $tpl_dir = '../content/templates/';		//所有模板目录
 $nonce_tpl = 'default';			//后台模板 adm/views/default
-
 define('EM_VERSION',		'2.7.0');//版本号
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高

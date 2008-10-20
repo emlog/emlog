@@ -80,7 +80,7 @@ if ($action == 'renewdata')
 		if (!strstr($bakinfo,"emlog_$edition"))
 		{
 			formMsg("导入失败! 该备份文件不是 emlog {$edition} 的备份文件!", 'javascript:history.go(-1);',0);
-		}elseif (!strstr($bakinfo,$db_prefix)){
+		}elseif (!strstr($bakinfo,DB_PREFIX)){
 			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
 		}
 	}

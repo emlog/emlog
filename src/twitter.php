@@ -23,7 +23,7 @@ if (ISLOGIN === true && $action == 'add')
 	if (!empty($content))
 	{
 		$twitter = '';
-		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$localdate')");
+		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
 		$CACHE->mc_twitter('./cache/twitter');
 		$CACHE->mc_sta('./cache/sta');
 		$twitter.=getindextw();
@@ -35,7 +35,7 @@ if (ISLOGIN === true && $action == 'del')
 {
 	$twid = isset($_GET['twid']) ? intval($_GET['twid']) : '';
 	$twitter = '';
-	$query = $DB->query("DELETE FROM {$db_prefix}twitter WHERE id=$twid");
+	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
 	$CACHE->mc_twitter('./cache/twitter');
 	$CACHE->mc_sta('./cache/sta');
 	$twitter.=getindextw();
@@ -44,17 +44,17 @@ if (ISLOGIN === true && $action == 'del')
 //get twitter
 function getindextw()
 {
-	global $DB,$db_prefix,$index_twnum,$localdate;
+	global $DB,$index_twnum,$localdate;
 
 	$page = isset($_GET['p']) ? intval($_GET['p']) : 1;
 	$start_limit = $page ? ($page - 1) * $index_twnum : 0;
 
 	$twitter = '';
 
-	$query = $DB->query("SELECT id FROM {$db_prefix}twitter");
+	$query = $DB->query("SELECT id FROM ".DB_PREFIX."twitter");
 	$twnum = $DB->num_rows($query);
 
-	$query = $DB->query("SELECT * FROM {$db_prefix}twitter ORDER BY id DESC LIMIT $start_limit,$index_twnum");
+	$query = $DB->query("SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC LIMIT $start_limit,$index_twnum");
 	while ($rows = $DB->fetch_array($query))
 	{
 		extract($rows);

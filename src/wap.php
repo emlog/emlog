@@ -50,7 +50,7 @@ if ($action == 'logs')
 		$id = 0;
 	}
 
-	$sql =" SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
+	$sql =" SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 	$lognum = $sta_cache['lognum'];
 	$pageurl= './wap.php?action=logs&amp;page';
 	$query = $DB->query($sql);
@@ -85,9 +85,9 @@ if ($action == 'dis')
 {
 	//参数过滤
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : msg('提交参数错误','./wap.php');
-	$show_log = @$DB->fetch_one_array("SELECT * FROM {$db_prefix}blog WHERE gid='$logid' AND hide='n' ")
+	$show_log = @$DB->fetch_one_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
 	OR msg('不存在该日志','./wap.php');
-	$DB->query("UPDATE {$db_prefix}blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
+	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 
 	$log_title  = htmlspecialchars($show_log['title']);
 	$log_author = $user_cache['name'];
@@ -136,7 +136,7 @@ if ($action == 'twitter')
 		$id = 0;
 	}
 
-	$sql =" SELECT * FROM {$db_prefix}twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
+	$sql =" SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
 	$twnum = $sta_cache['twnum'];
 	$pageurl= './wap.php?action=twitter&amp;page';
 	$query = $DB->query($sql);
@@ -200,7 +200,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
 	if(!empty($content))
 	{
-		$query = $DB->query("INSERT INTO {$db_prefix}twitter (content,date) VALUES('$content','$localdate')");
+		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
 		$CACHE->mc_twitter('../cache/twitter');
 		$CACHE->mc_sta('../cache/sta');
 		header("Location: wap.php?action=twitter&amp;stamp=$time");
@@ -210,7 +210,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 if(ISLOGIN === true && $action == 'del_tw')
 {
 	$twid = isset($_GET['id'])?intval($_GET['id']):'';
-	$query = $DB->query("DELETE FROM {$db_prefix}twitter WHERE id=$twid");
+	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
 	$CACHE->mc_twitter('../cache/twitter');
 	$CACHE->mc_sta('../cache/sta');
 	header("Location: wap.php?action=twitter");

@@ -43,7 +43,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <div class="col02">
     <div class="recent-posts">
     <?php
-    	$topquery = $DB->query("SELECT * FROM {$db_prefix}blog WHERE hide='n' ORDER BY date DESC  LIMIT 5");
+    	$topquery = $DB->query("SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY date DESC  LIMIT 5");
 		while($toplogs = $DB->fetch_array($topquery)):
 			$toplogs['post_time'] = date('Y-n-j G:i l',$toplogs['date']);
 			$toplogs['title'] = htmlspecialchars(trim($toplogs['title']));

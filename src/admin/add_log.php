@@ -14,7 +14,7 @@ if($action == '')
 {
 	include getViews('header');
 	//已有tags
-	$query = $DB->query("select tagname from {$db_prefix}tag");
+	$query = $DB->query("select tagname from ".DB_PREFIX."tag");
 	$oldtags = '';
 	while($tags = $DB->fetch_array($query))
 	{
@@ -82,7 +82,7 @@ if($action== 'addlog')
 	//日志写入数据库
 	if($blogid > 0)
 	{
-		$sql=" UPDATE {$db_prefix}blog SET
+		$sql=" UPDATE ".DB_PREFIX."blog SET
 				title='$title',
 				date='$newtime',
 				allow_remark='$allow_remark',
@@ -95,7 +95,7 @@ if($action== 'addlog')
 		//获取当前添加日志ID
 		$logid = $blogid;
 	}else{
-		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$newtime','$content','$ishide','$allow_remark','$allow_tb','$cont_attid')";
+		$sql="insert into ".DB_PREFIX."blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$newtime','$content','$ishide','$allow_remark','$allow_tb','$cont_attid')";
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid=$DB->insert_id();
@@ -107,12 +107,12 @@ if($action== 'addlog')
 		$tag = formatArray($tag);
 		for ($i = 0; $i < count($tag); $i++)
 		{
-			$result = $DB->fetch_one_array("SELECT tagname FROM {$db_prefix}tag WHERE `tagname`='".trim($tag[$i])."' ");
+			$result = $DB->fetch_one_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE `tagname`='".trim($tag[$i])."' ");
 			if(empty($result)) {
-				$query="INSERT INTO {$db_prefix}tag (`tagname`,`gid`) VALUES('".$tag[$i]."',',$logid,')";
+				$query="INSERT INTO ".DB_PREFIX."tag (`tagname`,`gid`) VALUES('".$tag[$i]."',',$logid,')";
 				$DB->query($query);
 			}else{
-				$query="UPDATE {$db_prefix}tag SET `usenum`=`usenum`+1, `gid`=concat(`gid`,'$logid,') where `tagname` = '".$tag[$i]."' ";
+				$query="UPDATE ".DB_PREFIX."tag SET `usenum`=`usenum`+1, `gid`=concat(`gid`,'$logid,') where `tagname` = '".$tag[$i]."' ";
 				$DB->query($query);
 			}
 		}
@@ -155,17 +155,17 @@ if($action == 'autosave')
 
 	if($logid >= 0)//编辑草稿
 	{
-		$sql=" UPDATE {$db_prefix}blog SET title='$title',content='$content' WHERE gid='$logid' ";
+		$sql=" UPDATE ".DB_PREFIX."blog SET title='$title',content='$content' WHERE gid='$logid' ";
 		$DB->query($sql);
 		echo "autosave_gid:{$logid}_df:{$dftnum}_";
 	}else{
 		//日志写入数据库
 		$time = time();
-		$sql="insert into {$db_prefix}blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$time','$content','y','y','y','')";
+		$sql="insert into ".DB_PREFIX."blog (`title`,`date`,`content`,`hide`,`allow_remark`,`allow_tb`,`attcache`) values('$title','$time','$content','y','y','y','')";
 		$DB->query($sql);
 		//获取当前添加日志ID
 		$logid=$DB->insert_id();
-		$dftnum = $DB->num_rows($DB->query("SELECT gid FROM {$db_prefix}blog WHERE hide='y'"));
+		$dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
 		echo "autosave_gid:{$logid}_df:{$dftnum}_";
 	}
 }

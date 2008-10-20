@@ -20,11 +20,11 @@ if($action == '')
 		$start_limit = 0;
 		$page = 1;
 	}
-	$query=$DB->query("SELECT tbid FROM {$db_prefix}trackback");
+	$query=$DB->query("SELECT tbid FROM ".DB_PREFIX."trackback");
 	$num=$DB->num_rows($query);
 	
 	$trackback = array();
-	$result =$DB->query("SELECT * FROM {$db_prefix}trackback ORDER BY tbid DESC LIMIT $start_limit, 15");
+	$result =$DB->query("SELECT * FROM ".DB_PREFIX."trackback ORDER BY tbid DESC LIMIT $start_limit, 15");
 	while($rows=$DB->fetch_array($result))
 	{
 		$rows['title']=htmlspecialchars($rows['title']);
@@ -43,10 +43,10 @@ if($action == '')
 if ($action== 'del_tb')
 {
 	$tbid = isset($_GET['tbid']) ? intval($_GET['tbid']) : '';
-	$sql = "SELECT gid FROM {$db_prefix}trackback WHERE tbid=$tbid";
+	$sql = "SELECT gid FROM ".DB_PREFIX."trackback WHERE tbid=$tbid";
 	$blog = $DB->fetch_one_array($sql);
-	$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
-	$DB->query("DELETE FROM {$db_prefix}trackback where tbid='$tbid' ");
+	$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
+	$DB->query("DELETE FROM ".DB_PREFIX."trackback where tbid='$tbid' ");
 	$CACHE->mc_sta('../cache/sta');
 	formMsg('删除引用成功','./trackback.php',1);
 }
@@ -60,10 +60,10 @@ if($action== 'dell_all_tb')
 	} else {
 		foreach($_POST['tb'] as $key=>$value)
 		{
-			$sql = "SELECT gid FROM {$db_prefix}trackback WHERE tbid='$key' ";
+			$sql = "SELECT gid FROM ".DB_PREFIX."trackback WHERE tbid='$key' ";
 			$blog = $DB->fetch_one_array($sql);
-			$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount-1 WHERE gid='".$blog['gid']."'");
-			$DB->query("DELETE FROM {$db_prefix}trackback where tbid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid='".$blog['gid']."'");
+			$DB->query("DELETE FROM ".DB_PREFIX."trackback where tbid='$key' ");
 		}
 		$CACHE->mc_sta('../cache/sta');
 		formMsg('引用删除成功','./trackback.php',1);

@@ -180,17 +180,16 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
 
 	$config = "<?php\n"
-	."//Emlog mysql config file"
-	."\n//mysql database address\n"
-	."\$host = '$db_host';"
+	."//mysql database address\n"
+	."define('DB_HOST','$db_host');"
 	."\n//mysql database user\n"
-	."\$user = '$db_user';"
+	."define('DB_USER','$db_user');"
 	."\n//database password\n"
-	."\$pass = '$db_pw';"
+	."define('DB_PASSWD','$db_pw');"
 	."\n//database name\n"
-	."\$db = '$db_name';"
+	."define('DB_NAME','$db_name');"
 	."\n//database prefix\n"
-	."\$db_prefix = '$db_prefix';"
+	."define('DB_PREFIX','$db_prefix');"
 	."\n//auth key\n"
 	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
 	."\n//cookie name\n"
@@ -220,8 +219,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 
 	//sql language
 	$sql = $setchar."
-DROP TABLE IF EXISTS {$db_prefix}blog;
-CREATE TABLE {$db_prefix}blog (
+DROP TABLE IF EXISTS ".DB_PREFIX."blog;
+CREATE TABLE ".DB_PREFIX."blog (
   gid mediumint(8) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date varchar(10) NOT NULL default '',
@@ -236,9 +235,9 @@ CREATE TABLE {$db_prefix}blog (
   attcache text NOT NULL,
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,tbcount,top,hide, allow_remark,allow_tb,attcache) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 'n', 'n', 'y', 'y','');
-DROP TABLE IF EXISTS {$db_prefix}attachment;
-CREATE TABLE {$db_prefix}attachment (
+INSERT INTO ".DB_PREFIX."blog (gid,title,date,content,views,comnum,tbcount,top,hide, allow_remark,allow_tb,attcache) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 'n', 'n', 'y', 'y','');
+DROP TABLE IF EXISTS ".DB_PREFIX."attachment;
+CREATE TABLE ".DB_PREFIX."attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
   blogid mediumint(8) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
@@ -248,8 +247,8 @@ CREATE TABLE {$db_prefix}attachment (
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
-DROP TABLE IF EXISTS {$db_prefix}comment;
-CREATE TABLE {$db_prefix}comment (
+DROP TABLE IF EXISTS ".DB_PREFIX."comment;
+CREATE TABLE ".DB_PREFIX."comment (
   cid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
   date varchar(10) NOT NULL default '',
@@ -262,8 +261,8 @@ CREATE TABLE {$db_prefix}comment (
   PRIMARY KEY  (cid),
   KEY gid (gid)
 )".$add."
-DROP TABLE IF EXISTS {$db_prefix}config;
-CREATE TABLE {$db_prefix}config (
+DROP TABLE IF EXISTS ".DB_PREFIX."config;
+CREATE TABLE ".DB_PREFIX."config (
   site_key varchar(255) NOT NULL default '',
   blogname varchar(255) NOT NULL default '',
   bloginfo varchar(255) NOT NULL default '',
@@ -283,9 +282,9 @@ CREATE TABLE {$db_prefix}config (
   timezone float NOT NULL default '8',
   exarea text NOT NULL
 )".$add."
-INSERT INTO {$db_prefix}config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_twnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,8,20,'default', 8 ,'');
-DROP TABLE IF EXISTS {$db_prefix}link;
-CREATE TABLE {$db_prefix}link (
+INSERT INTO ".DB_PREFIX."config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_twnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,8,20,'default', 8 ,'');
+DROP TABLE IF EXISTS ".DB_PREFIX."link;
+CREATE TABLE ".DB_PREFIX."link (
   id smallint(4) unsigned NOT NULL auto_increment,
   sitename varchar(30) NOT NULL default '',
   siteurl varchar(75) NOT NULL default '',
@@ -293,16 +292,16 @@ CREATE TABLE {$db_prefix}link (
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
-DROP TABLE IF EXISTS {$db_prefix}statistics;
-CREATE TABLE {$db_prefix}statistics (
+INSERT INTO ".DB_PREFIX."link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
+DROP TABLE IF EXISTS ".DB_PREFIX."statistics;
+CREATE TABLE ".DB_PREFIX."statistics (
   day_view_count int(11) unsigned NOT NULL default '0',
   view_count int(11) unsigned default '0',
   curdate varchar(20) default NULL
 )".$add."
-INSERT INTO {$db_prefix}statistics (day_view_count, view_count, curdate) VALUES (0, 0, '2006-10-13');
-DROP TABLE IF EXISTS {$db_prefix}tag;
-CREATE TABLE {$db_prefix}tag (
+INSERT INTO ".DB_PREFIX."statistics (day_view_count, view_count, curdate) VALUES (0, 0, '2006-10-13');
+DROP TABLE IF EXISTS ".DB_PREFIX."tag;
+CREATE TABLE ".DB_PREFIX."tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
   tagname varchar(60) NOT NULL default '',
   usenum mediumint(8) unsigned NOT NULL default '1',
@@ -310,9 +309,9 @@ CREATE TABLE {$db_prefix}tag (
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$add."
-INSERT INTO {$db_prefix}tag (tid, tagname, usenum,gid) VALUES (1, 'emlog', 1, ',1,');
-DROP TABLE IF EXISTS {$db_prefix}trackback;
-CREATE TABLE {$db_prefix}trackback (
+INSERT INTO ".DB_PREFIX."tag (tid, tagname, usenum,gid) VALUES (1, 'emlog', 1, ',1,');
+DROP TABLE IF EXISTS ".DB_PREFIX."trackback;
+CREATE TABLE ".DB_PREFIX."trackback (
   tbid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
   title varchar(255) NOT NULL default '',
@@ -324,16 +323,16 @@ CREATE TABLE {$db_prefix}trackback (
   PRIMARY KEY  (tbid),
   KEY gid (gid)
 )".$add."
-DROP TABLE IF EXISTS {$db_prefix}twitter;
-CREATE TABLE {$db_prefix}twitter (
+DROP TABLE IF EXISTS ".DB_PREFIX."twitter;
+CREATE TABLE ".DB_PREFIX."twitter (
 id INT NOT NULL AUTO_INCREMENT ,
 content VARCHAR(255) NOT NULL ,
 date VARCHAR(10) NOT NULL ,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1204460230');
-DROP TABLE IF EXISTS {$db_prefix}user;
-CREATE TABLE {$db_prefix}user (
+INSERT INTO ".DB_PREFIX."twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1204460230');
+DROP TABLE IF EXISTS ".DB_PREFIX."user;
+CREATE TABLE ".DB_PREFIX."user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
   username varchar(32) NOT NULL default '',
   password varchar(64) NOT NULL default '',
@@ -343,7 +342,7 @@ CREATE TABLE {$db_prefix}user (
   description text NOT NULL,
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!'); ";
+INSERT INTO ".DB_PREFIX."user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!'); ";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query)) 

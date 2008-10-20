@@ -15,7 +15,7 @@ if($action == 'selectFile')
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	if($logid)
 	{
-		$sql="SELECT * FROM {$db_prefix}attachment where blogid=$logid ";
+		$sql="SELECT * FROM ".DB_PREFIX."attachment where blogid=$logid ";
 		$query=$DB->query($sql);
 		$attachnum = $DB->num_rows($query);
 	}
@@ -60,7 +60,7 @@ if($action == 'upload')
 						break;
 				}
 				//写入附件信息
-				$query="INSERT INTO {$db_prefix}attachment (`blogid`,`filename`,`filesize`,`filepath`,`addtime`) values ('".$logid."','".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
+				$query="INSERT INTO ".DB_PREFIX."attachment (`blogid`,`filename`,`filesize`,`filepath`,`addtime`) values ('".$logid."','".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);
 			}
 		}
@@ -72,7 +72,7 @@ if($action == 'upload')
 if($action == 'attlib')
 {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
-	$sql="SELECT * FROM {$db_prefix}attachment where blogid=$logid ";
+	$sql="SELECT * FROM ".DB_PREFIX."attachment where blogid=$logid ";
 	$query=$DB->query($sql);
 	$attachnum = $DB->num_rows($query);
 	$attach = array();
@@ -96,7 +96,7 @@ if($action == 'attlib')
 if ($action == 'del_attach')
 {
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';
-	$query=$DB->query("select filepath,blogid from {$db_prefix}attachment where aid=$aid ");
+	$query=$DB->query("select filepath,blogid from ".DB_PREFIX."attachment where aid=$aid ");
 	$attach=$DB->fetch_array($query);
 	$logid = $attach['blogid'];
 	if(file_exists($attach['filepath']))
@@ -108,7 +108,7 @@ if ($action == 'del_attach')
 		}
 		@unlink($attach['filepath']) or die('删除附件失败');
 	}
-	$DB->query("DELETE FROM {$db_prefix}attachment where aid=$aid ");
+	$DB->query("DELETE FROM ".DB_PREFIX."attachment where aid=$aid ");
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
 ?>

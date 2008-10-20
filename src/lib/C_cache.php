@@ -11,13 +11,11 @@ class mkcache {
 
 	var $cachePath;
 	var $dbhd;
-	var $dbprefix;
 
-	function mkcache($cachePath, $dbhandle, $dbprefix)
+	function mkcache($cachePath, $dbhandle)
 	{
 		$this->cachePath = $cachePath;
 		$this->dbhd = $dbhandle;
-		$this->dbprefix = $dbprefix;
 	}
 	/**
 	 * 站点配置缓存
@@ -26,7 +24,7 @@ class mkcache {
 	 */
 	function mc_config($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".DB_PREFIX."config"));
 		$config_cache = array(
 		'sitekey' => htmlspecialchars($show_config['site_key']),
 		'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
@@ -58,7 +56,7 @@ class mkcache {
 	 */
 	function mc_blogger($cf)
 	{
-		$blogger = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."user ");
+		$blogger = $this->dbhd->fetch_one_array("select * from ".DB_PREFIX."user ");
 		$icon = '';
 		if($blogger['photo'])
 		{
@@ -82,12 +80,12 @@ class mkcache {
 	 */
 	function mc_sta($cf)
 	{
-		$dh = $this->dbhd->fetch_one_array("select * from ".$this->dbprefix."statistics");
-		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."blog WHERE hide='n' "));
-		$comnum = $this->dbhd->num_rows($this->dbhd->query("SELECT cid FROM ".$this->dbprefix."comment WHERE hide='n' "));
-		$tbnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."trackback "));
-		$twnum = $this->dbhd->num_rows($this->dbhd->query("SELECT id FROM ".$this->dbprefix."twitter "));
-		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->dbprefix."comment where hide='y' "));
+		$dh = $this->dbhd->fetch_one_array("select * from ".DB_PREFIX."statistics");
+		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='n' "));
+		$comnum = $this->dbhd->num_rows($this->dbhd->query("SELECT cid FROM ".DB_PREFIX."comment WHERE hide='n' "));
+		$tbnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".DB_PREFIX."trackback "));
+		$twnum = $this->dbhd->num_rows($this->dbhd->query("SELECT id FROM ".DB_PREFIX."twitter "));
+		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".DB_PREFIX."comment where hide='y' "));
 
 		$sta_cache = array(
 		'day_view_count' => $dh['day_view_count'],
@@ -108,10 +106,10 @@ class mkcache {
 	 */
 	function mc_comment($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->dbprefix."config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".DB_PREFIX."config"));
 		$index_comment_num = $show_config['index_comnum'];
 		$comment_subnum = $show_config['comment_subnum'];
-		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster,reply FROM ".$this->dbprefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
+		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster,reply FROM ".DB_PREFIX."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
 		$com_cache = array();
 		while($show_com=$this->dbhd->fetch_array($query))
 		{
@@ -133,7 +131,7 @@ class mkcache {
 	function mc_tags($cf)
 	{
 		$tag_cache = array();
-		$query=$this->dbhd->query("SELECT max(usenum),min(usenum),count(*) FROM ".$this->dbprefix."tag");
+		$query=$this->dbhd->query("SELECT max(usenum),min(usenum),count(*) FROM ".DB_PREFIX."tag");
 		$row = $this->dbhd->fetch_row($query);
 		$maxuse = $row[0];
 		$minuse = $row[1];
@@ -142,7 +140,7 @@ class mkcache {
 		$rank = $maxuse-$minuse;
 		$rank = ($rank==0?1:$rank);
 		$rank = $spread/$rank;
-		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->dbprefix."tag");
+		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".DB_PREFIX."tag");
 		while($show_tag = $this->dbhd->fetch_array($query))
 		{
 			//maxfont:22pt,minfont:10pt
@@ -165,7 +163,7 @@ class mkcache {
 	function mc_link($cf)
 	{
 		$link_cache = array();
-		$query=$this->dbhd->query("SELECT siteurl,sitename,description FROM ".$this->dbprefix."link ORDER BY taxis ASC");
+		$query=$this->dbhd->query("SELECT siteurl,sitename,description FROM ".DB_PREFIX."link ORDER BY taxis ASC");
 		while($show_link=$this->dbhd->fetch_array($query))
 		{
 			$link_cache[] = array(
@@ -184,9 +182,9 @@ class mkcache {
 	 */
 	function mc_twitter($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".$this->dbprefix."config"));
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".DB_PREFIX."config"));
 		$index_twnum = $show_config['index_twnum']+1;
-		$query=$this->dbhd->query("SELECT * FROM ".$this->dbprefix."twitter ORDER BY id DESC LIMIT $index_twnum");
+		$query=$this->dbhd->query("SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC LIMIT $index_twnum");
 		$tw_cache = array();
 		while($show_tw=$this->dbhd->fetch_array($query))
 		{
@@ -207,7 +205,7 @@ class mkcache {
 	function mc_record($cf)
 	{
 		global $isurlrewrite;
-		$query=$this->dbhd->query("select date from ".$this->dbprefix."blog WHERE hide='n' ORDER BY date DESC");
+		$query=$this->dbhd->query("select date from ".DB_PREFIX."blog WHERE hide='n' ORDER BY date DESC");
 		$record='xxxx_x';
 		$p = 0;
 		$lognum = 1;
@@ -257,7 +255,7 @@ class mkcache {
 	 */
 	function mc_logtags($cf)
 	{
-		$sql="SELECT gid FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
+		$sql="SELECT gid FROM ".DB_PREFIX."blog ORDER BY top DESC ,date DESC";
 		$query1=$this->dbhd->query($sql);
 		$log_cache_tags = array();
 		while($show_log=$this->dbhd->fetch_array($query1))
@@ -265,7 +263,7 @@ class mkcache {
 			$tag = '';
 			$gid = $show_log['gid'];
 			//tag
-			$tquery = "SELECT tagname FROM ".$this->dbprefix."tag WHERE gid LIKE '%,$gid,%' " ;
+			$tquery = "SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%,$gid,%' " ;
 			$result = $this->dbhd->query($tquery);
 			$tagnum = $this->dbhd->num_rows($result);
 			if($tagnum>0)
@@ -291,7 +289,7 @@ class mkcache {
 	 */
 	function mc_logatts($cf,$cont_attid='')
 	{
-		$sql="SELECT gid,attcache FROM ".$this->dbprefix."blog ORDER BY top DESC ,date DESC";
+		$sql="SELECT gid,attcache FROM ".DB_PREFIX."blog ORDER BY top DESC ,date DESC";
 		$query1=$this->dbhd->query($sql);
 		$log_cache_atts = array();
 		while($rows=$this->dbhd->fetch_array($query1))
@@ -300,7 +298,7 @@ class mkcache {
 			$att_img = '';
 			$attachment = '';
 			//attachment
-			$attquery = $this->dbhd->query("SELECT * FROM ".$this->dbprefix."attachment WHERE blogid=$gid ");
+			$attquery = $this->dbhd->query("SELECT * FROM ".DB_PREFIX."attachment WHERE blogid=$gid ");
 			while($show_attach=$this->dbhd->fetch_array($attquery)){
 				$cont_attid = unserialize($rows['attcache']);
 				if($cont_attid && in_array($show_attach['aid'],$cont_attid))

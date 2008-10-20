@@ -31,7 +31,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		showXML('引用地址已失效');
 	}
 	
-	$blog = $DB->fetch_one_array("SELECT allow_tb FROM {$db_prefix}blog WHERE gid='".$blogid."'");
+	$blog = $DB->fetch_one_array("SELECT allow_tb FROM ".DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
 		showXML('日志不存在');
@@ -70,13 +70,13 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	$interval = 3600*5;
 	$timestamp = time();
 	//设置防范时间间隔 同一ip每5小时能引用一次
-	$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
+	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
 		$point -= 2;
 	}
 
-	$query = $DB->query("SELECT tbid FROM {$db_prefix}trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
+	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
 	//对比数据库中的url和接收来的
 	if ($DB->num_rows($query))
 	{
@@ -88,10 +88,10 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	if ($visible === true)
 	{
 		//插入数据
-		$query = "INSERT INTO {$db_prefix}trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
+		$query = "INSERT INTO ".DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
 		//更新文章Trackback数量
-		$DB->query("UPDATE {$db_prefix}blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
+		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$CACHE->mc_sta('./cache/sta');
 		showXML('成功接收', 0);
 	}else {

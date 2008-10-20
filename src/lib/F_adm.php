@@ -312,18 +312,18 @@ function getTips($array)
  */
 function delLog($gid)
 {
-	global $DB,$db_prefix;
+	global $DB;
 	
-	$DB->query("DELETE FROM {$db_prefix}blog where gid=$gid");
+	$DB->query("DELETE FROM ".DB_PREFIX."blog where gid=$gid");
 	//评论
-	$DB->query("DELETE FROM {$db_prefix}comment where gid=$gid");
+	$DB->query("DELETE FROM ".DB_PREFIX."comment where gid=$gid");
 	//引用
-	$DB->query("DELETE FROM {$db_prefix}trackback where gid=$gid");
+	$DB->query("DELETE FROM ".DB_PREFIX."trackback where gid=$gid");
 	//标签
-	$DB->query("UPDATE {$db_prefix}tag SET usenum=usenum-1,gid= REPLACE(gid,',$gid,',',') WHERE gid LIKE '%".$gid."%' ");
-	$DB->query("DELETE FROM {$db_prefix}tag WHERE usenum=0 ");
+	$DB->query("UPDATE ".DB_PREFIX."tag SET usenum=usenum-1,gid= REPLACE(gid,',$gid,',',') WHERE gid LIKE '%".$gid."%' ");
+	$DB->query("DELETE FROM ".DB_PREFIX."tag WHERE usenum=0 ");
 	//附件
-	$query = $DB->query("select filepath from {$db_prefix}attachment where blogid=$gid ");
+	$query = $DB->query("select filepath from ".DB_PREFIX."attachment where blogid=$gid ");
 	while ($attach=$DB->fetch_array($query))
 	{
 		if (file_exists($attach['filepath']))
@@ -336,6 +336,6 @@ function delLog($gid)
 			@unlink($attach['filepath']);
 		}
 	}
-	$DB->query("DELETE FROM {$db_prefix}attachment where blogid=$gid");
+	$DB->query("DELETE FROM ".DB_PREFIX."attachment where blogid=$gid");
 }
 ?>

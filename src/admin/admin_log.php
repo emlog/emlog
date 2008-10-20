@@ -57,10 +57,10 @@ if($action == '')
 		$sorturl = '';
 		$pwd = '日志管理';
 	}
-	$sql="select * from {$db_prefix}blog where hide='$hide_state'";
+	$sql="select * from ".DB_PREFIX."blog where hide='$hide_state'";
 	$query=$DB->query($sql);
 	$num=$DB->num_rows($query);
-	$logsql="SELECT gid,title,date,top,comnum,views FROM {$db_prefix}blog WHERE hide='$hide_state' $subSql LIMIT $start_limit, 15";
+	$logsql="SELECT gid,title,date,top,comnum,views FROM ".DB_PREFIX."blog WHERE hide='$hide_state' $subSql LIMIT $start_limit, 15";
 	$logquery=$DB->query($logsql);
 	$logs = array();
 	while($dh=$DB->fetch_array($logquery))
@@ -69,7 +69,7 @@ if($action == '')
 		$gid = $dh['gid'];
 		$adddate = date("Y-m-d H:i",$dh['date']);
 		$istop = $dh['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
-		$query=$DB->query("SELECT blogid FROM {$db_prefix}attachment WHERE blogid='".$dh['gid']."' ");
+		$query=$DB->query("SELECT blogid FROM ".DB_PREFIX."attachment WHERE blogid='".$dh['gid']."' ");
 		$attach_num=$DB->num_rows($query);
 		$attach = $attach_num>0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
 
@@ -127,7 +127,7 @@ if($action== 'admin_all_log')
 	{
 		foreach($logs as $key=>$value)
 		{
-			$DB->query("UPDATE {$db_prefix}blog SET top='y' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."blog SET top='y' WHERE gid='$key' ");
 		}
 		formMsg('推荐日志成功','./admin_log.php',1);
 	}
@@ -136,7 +136,7 @@ if($action== 'admin_all_log')
 	{
 		foreach($logs as $key=>$value)
 		{
-			$DB->query("UPDATE {$db_prefix}blog SET top='n' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."blog SET top='n' WHERE gid='$key' ");
 		}
 		formMsg('日志已取消推荐','./admin_log.php',1);
 	}
@@ -145,8 +145,8 @@ if($action== 'admin_all_log')
 	{
 		foreach($logs as $key=>$value)
 		{
-			$DB->query("UPDATE {$db_prefix}blog SET hide='y' WHERE gid='$key' ");
-			$DB->query("UPDATE {$db_prefix}comment SET hide='y' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."blog SET hide='y' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE gid='$key' ");
 		}
 		$CACHE->mc_sta('../cache/sta');
 		$CACHE->mc_record('../cache/records');
@@ -159,8 +159,8 @@ if($action== 'admin_all_log')
 	{
 		foreach($logs as $key=>$value)
 		{
-			$DB->query("UPDATE {$db_prefix}blog SET hide='n' WHERE gid='$key' ");
-			$DB->query("UPDATE {$db_prefix}comment SET hide='n' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."blog SET hide='n' WHERE gid='$key' ");
+			$DB->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE gid='$key' ");
 		}
 		$CACHE->mc_sta('../cache/sta');
 		$CACHE->mc_comment('../cache/comments');
@@ -175,7 +175,7 @@ if ($action=='mod')
 {
 	include getViews('header');
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$sql = "select * from {$db_prefix}blog where gid=$logid ";
+	$sql = "select * from ".DB_PREFIX."blog where gid=$logid ";
 	$result = $DB->query($sql);
 	$rows = $DB->fetch_array($result);
 	extract($rows);
@@ -184,7 +184,7 @@ if ($action=='mod')
 	//log_content
 	$content = htmlspecialchars($content);
 	//tag
-	$query = $DB->query("SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%,$logid,%' ");
+	$query = $DB->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%,$logid,%' ");
 	$tag = '';
 	while($tagstring = $DB->fetch_array($query))
 	{
@@ -192,7 +192,7 @@ if ($action=='mod')
 	}
 	$tag = substr($tag,1);
 	//old tag
-	$query = $DB->query("select tagname from {$db_prefix}tag");
+	$query = $DB->query("select tagname from ".DB_PREFIX."tag");
 	$oldtags = '';
 	while($tags = $DB->fetch_array($query))
 	{
@@ -257,7 +257,7 @@ if($action=="edit")
 		$unixtime = $date;
 	}
 
-	$sql=" UPDATE {$db_prefix}blog SET
+	$sql=" UPDATE ".DB_PREFIX."blog SET
 				title='$title',
 				date='$unixtime',
 				allow_remark='$allow_remark',
@@ -268,7 +268,7 @@ if($action=="edit")
 	$logid = intval($_POST['gid']);
 	//更新tag
 	$tag = explode(',',$tagstring);
-	$query = $DB->query("SELECT tagname FROM {$db_prefix}tag WHERE gid LIKE '%".$logid."%' ");
+	$query = $DB->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$logid."%' ");
 	$i = 0;
 	while($result = $DB->fetch_array($query))
 	{
@@ -285,19 +285,19 @@ if($action=="edit")
 		{
 			if($dif_tag[$n]==$old_tag[$j])
 			{
-				$DB->query("UPDATE {$db_prefix}tag SET usenum=usenum-1,gid= REPLACE(gid,',$logid,',',') WHERE tagname='".$dif_tag[$n]."' ");
-				$DB->query("DELETE FROM {$db_prefix}tag WHERE usenum=0 ");
+				$DB->query("UPDATE ".DB_PREFIX."tag SET usenum=usenum-1,gid= REPLACE(gid,',$logid,',',') WHERE tagname='".$dif_tag[$n]."' ");
+				$DB->query("DELETE FROM ".DB_PREFIX."tag WHERE usenum=0 ");
 				break;
 			}
 			elseif($j==count($old_tag)-1)
 			{
-				$result = $DB->fetch_one_array("SELECT tagname FROM {$db_prefix}tag WHERE tagname='".trim($dif_tag[$n])."' ");
+				$result = $DB->fetch_one_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='".trim($dif_tag[$n])."' ");
 				if(empty($result))
 				{
-					$query="INSERT INTO {$db_prefix}tag (tagname,gid) VALUES('".$dif_tag[$n]."',',$logid,')";
+					$query="INSERT INTO ".DB_PREFIX."tag (tagname,gid) VALUES('".$dif_tag[$n]."',',$logid,')";
 					$DB->query($query);
 				}else{
-					$query="UPDATE {$db_prefix}tag SET usenum=usenum+1, gid=concat(gid,'$logid,') where tagname = '".$dif_tag[$n]."' ";
+					$query="UPDATE ".DB_PREFIX."tag SET usenum=usenum+1, gid=concat(gid,'$logid,') where tagname = '".$dif_tag[$n]."' ";
 					$DB->query($query);
 				}
 			}//end elseif

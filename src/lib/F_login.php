@@ -37,7 +37,7 @@ function isLogin()
  */
 function checkUser($username,$password,$imgcode,$logincode)
 {
-	global $DB,$db_prefix;
+	global $DB;
 	if (trim($username) == '' || trim($username) == '')
 	{
 		return false;
@@ -81,13 +81,13 @@ function loginPage()
  */
 function getUserDataByLogin($userLogin)
 {
-	global $DB,$db_prefix;
+	global $DB;
 	if ( empty( $userLogin ) )
 	{
 		return false;
 	}
 	$userData = false;
-	if ( !$userData = $DB->fetch_one_array("SELECT * FROM {$db_prefix}user WHERE username = '$userLogin'"))
+	if ( !$userData = $DB->fetch_one_array("SELECT * FROM ".DB_PREFIX."user WHERE username = '$userLogin'"))
 	{
 		return false;
 	}

@@ -54,7 +54,7 @@ $(document).ready(function(){
         <td width="608">
         <select multiple="multiple" size="11" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
-		<option value="<?php echo $db_prefix; ?><?php echo $value; ?>" selected="selected"><?php echo $db_prefix; ?><?php echo $value; ?></option>
+		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>	  
       	</select>
       	</td>

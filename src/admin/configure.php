@@ -11,7 +11,7 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
-	$result = $DB->query("SELECT * FROM {$db_prefix}config");
+	$result = $DB->query("SELECT * FROM ".DB_PREFIX."config");
 	$row    = $DB->fetch_array($result);
 	extract($row);
 	$blogname = htmlspecialchars($blogname);
@@ -108,7 +108,7 @@ if ($action== "mod_config")
 		$blogurl = 'http://'.$blogurl;
 	}
 
-	$ret = $DB->query("UPDATE {$db_prefix}config SET site_key='$sitekey',blogname ='$blogname',
+	$ret = $DB->query("UPDATE ".DB_PREFIX."config SET site_key='$sitekey',blogname ='$blogname',
 				blogurl = '$blogurl',
 				bloginfo='$bloginfo',icp='$icp',
 				index_lognum = $index_lognum,

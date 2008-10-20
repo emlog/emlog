@@ -13,7 +13,6 @@
  */
 function GetURL()
 {
-	global $db_prefix;
 	$path = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
 	$path = str_replace("/rss.php","",$path);
 	Return $path;
@@ -26,8 +25,8 @@ function GetURL()
  */
 function GetBlog()
 {
-	global $db_prefix,$DB;
-	$sql = "SELECT * FROM {$db_prefix}blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
+	global $DB;
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))

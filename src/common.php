@@ -20,9 +20,9 @@ require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
 
 //数据库操作对象
-$DB = new MySql($host, $user, $pass,$db);
+$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //cache
-$CACHE = new mkcache('./content/cache/', $DB,$db_prefix);
+$CACHE = new mkcache('./content/cache/', $DB,DB_PREFIX);
 //去除多余的转义字符
 doStripslashes();
 //登录验证

@@ -12,7 +12,7 @@ require_once('./globals.php');
 if($action == '')
 {
 	include getViews('header');
-	$result = $DB->query("SELECT widget_list FROM {$db_prefix}config");
+	$result = $DB->query("SELECT widget_list FROM ".DB_PREFIX."config");
 	$row    = $DB->fetch_array($result);
 	extract($row);
 	

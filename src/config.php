@@ -1,17 +1,16 @@
 <?php
-//Emlog mysql config file
 //mysql database address
-$host = 'localhost';
+define('DB_HOST','localhost');
 //mysql database user
-$user = 'root';
+define('DB_USER','root');
 //database password
-$pass = '';
+define('DB_PASSWD','');
 //database name
-$db = 'emlog';
+define('DB_NAME','emlog');
 //database prefix
-$db_prefix = 'emlog_';
+define('DB_PREFIX','emlog_');
 //auth key
-define('AUTH_KEY','E*pY1ni1zJkRa5sz^esDx7CRX4fN#E0R1b48af552fac23c3b2412c4e49d94668');
+define('AUTH_KEY','lNcx*OppdP0Ux&DPU(pQ@v7HwOAKZv8^1b48af552fac23c3b2412c4e49d94668');
 //cookie name
-define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_SaXZ26gzonntIXcGW5d4oJlwnbpy4n8k');
+define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_IQu1UuvRc4FIEKQQE4M3gkbJUcvyXOLq');
 ?>
