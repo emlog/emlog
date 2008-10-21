@@ -10,7 +10,7 @@ define('DB_NAME','emlog');
 //database prefix
 define('DB_PREFIX','emlog_');
 //auth key
-define('AUTH_KEY','lNcx*OppdP0Ux&DPU(pQ@v7HwOAKZv8^1b48af552fac23c3b2412c4e49d94668');
+define('AUTH_KEY','1npi3dkQeaM)@FAH1D^Lgy(MB@TR&$3pa2f60ab63f312ecbe5427e87e3700d5c');
 //cookie name
-define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_IQu1UuvRc4FIEKQQE4M3gkbJUcvyXOLq');
+define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_3khoKSoR4OeiIyJ2lIHYdTLhM9OKMKvw');
 ?>

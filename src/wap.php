@@ -201,8 +201,8 @@ if(ISLOGIN === true && $action == 'add_tw')
 	if(!empty($content))
 	{
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
-		$CACHE->mc_twitter('../cache/twitter');
-		$CACHE->mc_sta('../cache/sta');
+		$CACHE->mc_twitter('twitter');
+		$CACHE->mc_sta('sta');
 		header("Location: wap.php?action=twitter&amp;stamp=$time");
 	}
 }
@@ -211,8 +211,8 @@ if(ISLOGIN === true && $action == 'del_tw')
 {
 	$twid = isset($_GET['id'])?intval($_GET['id']):'';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
-	$CACHE->mc_twitter('../cache/twitter');
-	$CACHE->mc_sta('../cache/sta');
+	$CACHE->mc_twitter('twitter');
+	$CACHE->mc_sta('sta');
 	header("Location: wap.php?action=twitter");
 }
 //登陆验证

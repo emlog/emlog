@@ -35,7 +35,7 @@ if ($action== 'link_taxis')
 			$value = intval($value);
 			$DB->query("UPDATE ".DB_PREFIX."link SET taxis='$value'  WHERE id='$key' ");
 		}
-		$CACHE->mc_link('../cache/links');
+		$CACHE->mc_link('links');
 		formMsg('站点排序更新成功','./link.php',1);
 	}
 	formMsg('没有可排序项目','./link.php',0);
@@ -52,7 +52,7 @@ if($action== 'addlink')
 	$description=addslashes(trim($_POST['description']));
 	$sql=" insert into ".DB_PREFIX."link (sitename,siteurl,description) values(' ".$stitename." ',' ".$siteurl." ',' ".$description." ')";
 	$DB->query($sql);
-	$CACHE->mc_link('../cache/links');
+	$CACHE->mc_link('links');
 	formMsg( '友情站点添加成功','./link.php',1);
 }
 ####################友情站点修改编辑####################
@@ -81,7 +81,7 @@ if($action=='update_link')
 	siteurl='".addslashes($_POST['siteurl'])."',
 	description='".addslashes($_POST['description'])."' where id='".intval($_POST['linkid'])."' ";
 	$DB->query($sql);
-	$CACHE->mc_link('../cache/links');
+	$CACHE->mc_link('links');
 	formMsg("修改成功","./link.php",1);
 }
 //删除友情连接
@@ -89,7 +89,7 @@ if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$DB->query("DELETE FROM ".DB_PREFIX."link where id=$linkid");
-	$CACHE->mc_link('../cache/links');
+	$CACHE->mc_link('links');
 	formMsg('删除成功','./link.php',1);
 }
 ?>

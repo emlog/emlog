@@ -8,7 +8,7 @@
 
 require_once('./globals.php');
 
-$music = $CACHE->readCache('../cache/musics');
+$music = $CACHE->readCache('musics');
 
 if($action == '')
 {
@@ -79,7 +79,7 @@ if($action== 'mod')
 		}
 	}
 	$cacheData = serialize($music);
-	$CACHE->cacheWrite($cacheData,'../cache/musics');
+	$CACHE->cacheWrite($cacheData,'musics');
 	formMsg('背景音乐设置成功','./music.php',1);
 }
 

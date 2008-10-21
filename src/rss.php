@@ -14,8 +14,8 @@ require_once("./lib/C_cache.php");
 //初始化数据库类
 $DB = new MySql($host, $user, $pass,$db);
 //cache
-$config_cache = mkcache::readCache('./cache/config');
-$user_cache = mkcache::readCache('./cache/blogger');
+$config_cache = mkcache::readCache('config');
+$user_cache = mkcache::readCache('blogger');
 
 require_once("./lib/F_rss.php");
 

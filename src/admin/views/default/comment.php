@@ -27,13 +27,13 @@ $(document).ready(function(){
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 	?>
      <tr>
-        <td><input type="checkbox" value="<?php echo $value['hide']; ?>" name="com[<?php echo $value['cid']; ?>]" /></td>
+        <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" /></td>
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['comment']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
         <td><?php echo $value['poster']; ?></td>
         <td><?php echo $value['date']; ?></td>
         <td>
-        <a href="comment.php?action=show_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>">审核</a>
-        <a href="comment.php?action=kill_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>">屏蔽</a>
+        <a href="comment.php?action=show_comment&amp;cid=<?php echo $value['cid']; ?>">审核</a>
+        <a href="comment.php?action=hide_comment&amp;cid=<?php echo $value['cid']; ?>">屏蔽</a>
         <a href="javascript: isdel(<?php echo $value['cid']; ?>, 1);">删除</a>
 		</td>
      </tr>
@@ -44,7 +44,7 @@ $(document).ready(function(){
         <td colspan="7">对选中的评论执行操作：
           <input type="radio" value="delcom" name="modall" />
           删除
-          <input type="radio" value="killcom" name="modall" />
+          <input type="radio" value="hidecom" name="modall" />
           屏蔽
           <input type="radio" value="showcom" name="modall" />
           审核

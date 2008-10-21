@@ -60,13 +60,13 @@ if($action== 'modintro')
 		}
 		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description'";
 		$DB->query($sql);
-		$CACHE->mc_blogger('../cache/blogger');
+		$CACHE->mc_blogger('blogger');
 		formMsg( "个人资料修改成功","./blogger.php",1);
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
 		$sql="UPDATE ".DB_PREFIX."user SET description='$description' ";
 		$DB->query($sql);
-		$CACHE->mc_blogger('../cache/blogger');
+		$CACHE->mc_blogger('blogger');
 		echo $description;
 	}
 }
@@ -96,7 +96,7 @@ if($action== 'delicon')
 	}
 	//删除数据库记录
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
-	$CACHE->mc_blogger('../cache/blogger');
+	$CACHE->mc_blogger('blogger');
 	formMsg('头像成功删除','./blogger.php',1);
 }
 

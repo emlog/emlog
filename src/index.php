@@ -245,11 +245,11 @@ if ($action == 'addcom')
 		if ($ischkcomment == 'n')
 		{
 			$DB->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$gid'");
-			$CACHE->mc_sta('./cache/sta');
-			$CACHE->mc_comment('./cache/comments');
+			$CACHE->mc_sta('sta');
+			$CACHE->mc_comment('comments');
 			msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
 		} else {
-			$CACHE->mc_sta('./cache/sta');
+			$CACHE->mc_sta('sta');
 			msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 		}
 	}
