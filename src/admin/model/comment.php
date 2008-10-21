@@ -6,18 +6,25 @@
  * $Id: comment.php 682 2008-10-14 16:08:01Z emloog $
  */
 
+
 class comment {
 
 	var $dbhd;
 
 	function comment($dbhandle)
 	{
-		$this->dbhd=$dbhandle;
+		$this->dbhd = $dbhandle;
 	}
 
+	/**
+	 * 获取评论
+	 *
+	 * @param int $blogId
+	 * @param int $page
+	 * @return array $comment
+	 */
 	function getComment($blogId = null, $page = 1)
 	{
-		$comment = array();
 		if($blogId)
 		{
 			$andQuery = "where gid=$blogId";
@@ -33,6 +40,7 @@ class comment {
 		}
 		$sql = "SELECT * FROM ".DB_PREFIX."comment $andQuery ORDER BY cid DESC LIMIT $start_limit, 15";
 		$ret = $this->dbhd->query($sql);
+		$comment = array();
 		while($row = $this->dbhd->fetch_array($ret))
 		{
 			$row['comment'] = subString(htmlClean2($row['comment']),0,30);
@@ -43,6 +51,12 @@ class comment {
 		return $comment;
 	}
 
+	/**
+	 * 获取查询评论的数目
+	 *
+	 * @param int $blogId
+	 * @return int $comNum
+	 */
 	function getCommentNum($blogId)
 	{
 		$comNum = '';

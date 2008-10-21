@@ -14,12 +14,12 @@ $COMM = new comment($DB);
 //加载评论管理页面
 if($action == '')
 {
-	$blogid = isset($_GET['gid']) ? $_GET['gid'] : null;
-	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$addUrl = $blogid ? "gid={$blogid}&" : '';
-	$comment = $COMM->getComment($blogid,$page);
-	$num = $COMM->getCommentNum($blogid);
+	$addUrl = $blogId ? "gid={$blogId}&" : '';
+	$comment = $COMM->getComment($blogId,$page);
+	$num = $COMM->getCommentNum($blogId);
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
 
 	include getViews('header');
