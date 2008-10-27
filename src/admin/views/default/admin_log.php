@@ -1,5 +1,5 @@
 <?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
-<script type='text/javascript'>
+<!--<script type='text/javascript'>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_log_list tbody tr")
@@ -7,6 +7,7 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 </script>
+-->
 <div class=containertitle><b><?php echo $pwd; ?></b></div>
 <div class=line></div>
 <form action="admin_log.php?action=admin_all_log" method="post" name="form" id="form">
@@ -25,7 +26,7 @@ $(document).ready(function(){
 	<?php foreach($logs as $key=>$value): ?>
       <tr>
       <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
-      <td width="517"><a href="admin_log.php?action=mod&amp;gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
+      <td width="517"><a href="edit_log.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
       <td><?php echo $value['date']; ?></td>
 	  <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td><?php echo $value['views']; ?></a></td>
@@ -40,7 +41,7 @@ $(document).ready(function(){
 		  <?php echo $log_act; ?>
     </tr>
     <tr>
-    <td align="right" colspan="6">(共<?php echo $num; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
+    <td align="right" colspan="6">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>	  
 	<tr>
 	<td align="center" colspan="6">

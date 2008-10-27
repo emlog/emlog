@@ -1,5 +1,5 @@
 <?php if(!defined('ADM_ROOT')) {exit('error!');}?>
-<html><head><meta http-equiv="refresh" content="2;url=<?php echo $url; ?>">
+<html><head><meta http-equiv="refresh" content="20000;url=<?php echo $url; ?>">
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
 <title>msg</title><link rel="stylesheet" href="./views/<?php echo $nonce_tpl; ?>/main.css"></head><body>
 <center><br><br><br>

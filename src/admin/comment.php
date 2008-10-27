@@ -9,7 +9,7 @@
 require_once('./globals.php');
 require_once('./model/comment.php');
 
-$COMM = new comment($DB);
+$emComment = new emComment($DB);
 
 //加载评论管理页面
 if($action == '')
@@ -18,8 +18,8 @@ if($action == '')
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$addUrl = $blogId ? "gid={$blogId}&" : '';
-	$comment = $COMM->getComment($blogId,$page);
-	$num = $COMM->getCommentNum($blogId);
+	$comment = $emComment->getComment($blogId,$page);
+	$num = $emComment->getCommentNum($blogId);
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
 
 	include getViews('header');
@@ -45,7 +45,7 @@ if($action== 'admin_all_coms')
 	//删除
 	if($doWhat == 'delcom')
 	{
-		$COMM->batchComment('delcom', $comments);
+		$emComment->batchComment('delcom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
 		formMsg('评论删除成功','./comment.php',1);
@@ -53,7 +53,7 @@ if($action== 'admin_all_coms')
 	//屏蔽
 	if($doWhat == 'hidecom')
 	{
-		$COMM->batchComment('hidecom', $comments);
+		$emComment->batchComment('hidecom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
 		formMsg('屏蔽评论成功','./comment.php',1);
@@ -61,7 +61,7 @@ if($action== 'admin_all_coms')
 	//审核
 	if($doWhat == 'showcom')
 	{
-		$COMM->batchComment('showcom', $comments);
+		$emComment->batchComment('showcom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
 		formMsg('审核评论成功','./comment.php',1);
@@ -71,7 +71,7 @@ if($action== 'admin_all_coms')
 if ($action== 'del_comment')
 {
 	$commentId = isset($_GET['commentid']) ? intval($_GET['commentid']) : '';
-	$COMM->delComment($commentId);
+	$emComment->delComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
 	formMsg('评论删除成功','./comment.php',1);
@@ -80,7 +80,7 @@ if ($action== 'del_comment')
 if($action=='hide_comment')
 {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$COMM->hideComment($commentId);
+	$emComment->hideComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
 	formMsg('评论屏蔽成功','./comment.php',1);
@@ -89,7 +89,7 @@ if($action=='hide_comment')
 if($action=='show_comment')
 {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$COMM->showComment($commentId);
+	$emComment->showComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
 	formMsg('评论审核成功','./comment.php',1);
@@ -99,7 +99,7 @@ if ($action== 'reply_comment')
 {
 	include getViews('header');
 	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $COMM->getOneComment($cid);
+	$commentArray = $emComment->getOneComment($cid);
 	$comment = htmlspecialchars(trim($commentArray['comment']));
 	$reply = htmlspecialchars(trim($commentArray['reply']));
 	$name = trim($commentArray['poster']);
@@ -116,12 +116,12 @@ if($action=='doreply')
 
 	if(!$flg)
 	{
-		$COMM->replyComment($commentId, $reply);
+		$emComment->replyComment($commentId, $reply);
 		$CACHE->mc_comment('comments');
 		formMsg("评论回复成功","./comment.php",1);
 	}else{
 		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
-		$COMM->replyComment($commentId, $reply);
+		$emComment->replyComment($commentId, $reply);
 		$CACHE->mc_comment('comments');
 		echo "<span><b>博主回复</b>：$reply</span>";
 	}

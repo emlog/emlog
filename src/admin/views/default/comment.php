@@ -1,4 +1,5 @@
 <?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<!--
 <script type='text/javascript'>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
@@ -7,6 +8,7 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 </script>
+-->
 <div class=containertitle><b>评论管理</b></div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">

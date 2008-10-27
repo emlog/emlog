@@ -7,6 +7,8 @@
  */
 
 require_once('./common.php');
+require_once('./admin/model/blog.php');
+require_once('./admin/model/comment.php');
 
 define('CURPAGE','index');
 
@@ -30,8 +32,6 @@ $blogtitle = $blogname;
 //日志列表
 if (!isset($action) || empty($action))
 {
-	include getViews('header');
-
 	//page link
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$start_limit = ($page - 1) * $index_lognum;
@@ -69,19 +69,7 @@ if (!isset($action) || empty($action))
 		{
 			msg('错误的关键字长度','./index.php');
 		}
-		//分割关键字
-		$keywords = explode(' ',$keyword);
-		for ($i = 0; $i < count($keywords) ; $i++)
-		{
-			$keyword = $keywords[$i];
-			if ($i)
-			{
-				$keywords_string .= "OR title like '%".$keyword."%' ";
-			} else {
-				$keywords_string = "LIKE '%".$keyword."%' ";
-			}
-		}
-		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE title $keywords_string AND hide='n'";
+		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE title like '%{$keyword}%' AND hide='n'";
 		$query = $DB->query($sql);
 		$lognum = $DB->num_rows($query);
 		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
@@ -114,6 +102,7 @@ if (!isset($action) || empty($action))
 	//分页
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
+	include getViews('header');
 	include getViews('log_list');
 }
 

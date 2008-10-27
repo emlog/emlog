@@ -505,6 +505,78 @@ function getRandStr($length = 12, $special_chars = true)
 }
 
 /**
+ * 寻找两数组所有不同元素
+ *
+ * @param array $array1
+ * @param array $array2
+ * @return array
+ */
+function findArray($array1,$array2)
+{
+	#合并数组
+	$num1 = count($array1) ;
+	$num2 = count($array2);
+	$temp = array();
+	if (!empty($array1[0]))
+	{
+		for ($i = 0;$i < $num1 + $num2;$i++)
+		{
+			if ($i < $num1)
+			{
+				$addarray[$i] = $array1[$i]; 
+			} else {
+				$addarray[$i] = $array2[$i-$num1];
+			}
+		}
+		$k = 0;
+		#寻找不同项
+		for($n = 0;$n < count($addarray);$n++)
+		{
+			$a = 0;
+			for ($j = 0;$j < count($addarray);$j++)
+			{
+				if($addarray[$n] == $addarray[$j])
+				{
+					$a++;
+				}
+			}
+			if ($a == 1)
+			{
+				$temp[$k] = $addarray[$n];
+				$k++;
+			}
+		}
+		return $temp;
+	} else {
+		return $array2;
+	}
+}
+
+/**
+ * 删除数组中相同元素，只保留一个
+ *
+ * @param array $array
+ * @return array
+ */
+function formatArray($array)
+{
+	 sort($array);
+	 $tem = '';
+	 $temarray = array();
+	 $j = 0;
+	 for ($i = 0;$i < count($array);$i++)
+	 {
+		if ($array[$i] != $tem)
+		{
+			 $temarray[$j] = $array[$i];
+			 $j++;
+		}
+		$tem = $array[$i];
+	 }
+	 return $temarray;
+}
+
+/**
  * 返回显系统错误信息
  *
  * @param unknown_type $info

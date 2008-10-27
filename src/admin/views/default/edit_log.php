@@ -10,7 +10,7 @@ setTimeout("doautosave()",30000);
 </script>
 <div class=containertitle><b>编辑日志</b></div>
 <div class=line></div>
-  <form action="admin_log.php?action=edit" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
+  <form action="edit_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
@@ -37,7 +37,7 @@ setTimeout("doautosave()",30000);
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签:</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-            <input id="tags" maxlength="200" style="width:715px;" name="tag" value="<?php echo $tag; ?>" /><br /><div style="width:715px;">选择已有标签：<?php echo $oldtags; ?></div></td>
+            <input id="tags" maxlength="200" style="width:715px;" name="tag" value="<?php echo $tagStr; ?>" /><br /><div style="width:715px;">选择已有标签：<?php echo $oldTagStr; ?></div></td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<br />

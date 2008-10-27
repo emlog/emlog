@@ -47,7 +47,7 @@ setTimeout("doautosave()",30000);
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
             <input id="tags" maxlength="200" style="width:715px;"  name="tag" />
             <br />
-          <div style="width:715px;">选择已有标签：<?php echo $oldtags; ?></div></td></tr>
+          <div style="width:715px;">选择已有标签：<?php echo $tagStr; ?></div></td></tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
           </b>
@@ -55,15 +55,15 @@ setTimeout("doautosave()",30000);
           </td></tr>
         <tr>
           <td><b>更改发布时间</b>
-            <input id="switch" onclick="doshow('changedate');" type="checkbox" value="1" name="edittime" />
+            <input id="switch" onclick="doshow('changedate');" type="checkbox" value="" name="edittime" />
               <br />
             <div style="clear:both; display: none;" id="changedate">
-			  <input name="newyear" type="text" value="<?php echo $year; ?>" maxlength="" size="2"> 年 
-			  <input name="newmonth" type="text" value="<?php echo $month; ?>" maxlength="2" size="1"> 月 
-			  <input name="newday" type="text" value="<?php echo $day; ?>" maxlength="2" size="1"> 日 
-			  <input name="newhour" type="text" value="<?php echo $hour; ?>" maxlength="2" 	size="1"> 时
-			  <input name="newmin" type="text" value="<?php echo $minute; ?>" maxlength="2" size="1"> 分 
-			  <input name="newsec" type="text" value="<?php echo $second; ?>" maxlength="2" size="1"> 秒
+			  <input name="newyear" type="text" value="" maxlength="" size="2"> 年 
+			  <input name="newmonth" type="text" value="" maxlength="2" size="1"> 月 
+			  <input name="newday" type="text" value="" maxlength="2" size="1"> 日 
+			  <input name="newhour" type="text" value="" maxlength="2" 	size="1"> 时
+			  <input name="newmin" type="text" value="" maxlength="2" size="1"> 分 
+			  <input name="newsec" type="text" value="" maxlength="2" size="1"> 秒
 				<br />
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
