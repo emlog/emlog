@@ -27,13 +27,12 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 			<div style=" clear:both;"></div>
 			<div class="posttext">
 			<?php echo $log_content; ?>
-			<p><?php echo $att_img; ?></p>
 			<p><?php echo $attachment; ?></p>
 			</div> <!-- POST TEXT -->
 		</div> <!-- POST -->
 		<div class="navigation">
-		<?php if($previousLog):?>
-		<div class="alignleft"><a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>" title="<?php echo $previousLog['title'];?>">&laquo; 上一篇</a></div>
+		<?php if($prevLog):?>
+		<div class="alignleft"><a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>" title="<?php echo $prevLog['title'];?>">&laquo; 上一篇</a></div>
 		<?php endif;?>
 		<?php if($nextLog):?>
 			 <div class="alignright"><a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>" title="<?php echo $nextLog['title'];?>">下一篇&raquo;</a></div>
@@ -64,7 +63,7 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		<div style="clear: both; height: 20px;"></div>
 		<ol class="commentlist">
 		<?php
-		foreach($com as $key=>$value):
+		foreach($comments as $key=>$value):
 		$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 		?>
 		<a name="<?php echo $value['cid']; ?>"></a>
@@ -77,7 +76,7 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		<?php if($value['url']):?>
 			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 		<?php endif;?>
-		</span><span class="time"><?php echo $value['addtime']; ?></span>
+		</span><span class="time"><?php echo $value['date']; ?></span>
 		<?php if(ISLOGIN === true): ?>	
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

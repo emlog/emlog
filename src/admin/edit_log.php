@@ -7,9 +7,9 @@
  */
 
 require_once('./globals.php');
-require_once('./model/blog.php');
-require_once('./model/tag.php');
-require_once('./model/trackback.php');
+require_once('../model/C_blog.php');
+require_once('../model/C_tag.php');
+require_once('../model/C_trackback.php');
 
 //显示编辑页面
 if ($action=='')

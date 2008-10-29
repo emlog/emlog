@@ -7,35 +7,18 @@
  */
 
 require_once('./globals.php');
+require_once('../model/C_trackback.php');
 
 if($action == '')
 {
-	include getViews('header');
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
-	if (!empty($page))
-	{
-		$start_limit = ($page - 1) *15;
-	} else {
-		$start_limit = 0;
-		$page = 1;
-	}
-	$query=$DB->query("SELECT tbid FROM ".DB_PREFIX."trackback");
-	$num=$DB->num_rows($query);
-	
-	$trackback = array();
-	$result =$DB->query("SELECT * FROM ".DB_PREFIX."trackback ORDER BY tbid DESC LIMIT $start_limit, 15");
-	while($rows=$DB->fetch_array($result))
-	{
-		$rows['title']=htmlspecialchars($rows['title']);
-		$rows['blog_name']=htmlspecialchars($rows['blog_name']);
-		$rows['date'] = date("Y-m-d H:i",$rows['date']);
-		
-		$trackback[] = $rows;
-	}
-	
+	$emTrackback = new emTrackback($DB);
+	$trackback = $emTrackback->getTrackback($page);
+	$num = $emComment->getCommentNum($blogId);
 	$pageurl =  pagination($num,15,$page,"trackback.php?page");
-	
+
+	include getViews('header');
 	require_once(getViews('trackback'));
 	include getViews('footer');cleanPage();
 }
@@ -51,7 +34,7 @@ if ($action== 'del_tb')
 	formMsg('删除引用成功','./trackback.php',1);
 }
 
-###################批量删除引用###############
+//批量删除引用
 if($action== 'dell_all_tb')
 {	
 	if(!isset($_POST['tb']))

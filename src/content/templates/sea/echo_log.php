@@ -7,14 +7,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div class="entry">
 				<?php echo $log_content;?>
 <a name="att"></a>
-<p><?php echo $att_img;?></p>
 <p><?php echo $attachment; ?></p>
 <p>Posted on <?php echo $post_time;?><br /></p>
 <p>
-<?php if($previousLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+<?php if($prevLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
-<?php if($nextLog && $previousLog):?>
+<?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
@@ -33,7 +32,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p></p>
 
 <ol id="commentlist">
-<?php foreach($com as $key=>$value): 
+<?php foreach($comments as $key=>$value): 
 $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>"><a name="<?php echo $value['cid'];?>"></a>
@@ -44,7 +43,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 	<?php if($value['url']):?>
 		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 	<?php endif;?>
-	&#8212; <?php echo $value['addtime'];?></cite>
+	&#8212; <?php echo $value['date'];?></cite>
 	<br /><?php echo $value['content'];?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>

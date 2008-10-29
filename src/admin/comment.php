@@ -7,7 +7,7 @@
  */
 
 require_once('./globals.php');
-require_once('./model/comment.php');
+require_once('../model/C_comment.php');
 
 $emComment = new emComment($DB);
 
@@ -18,7 +18,7 @@ if($action == '')
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$addUrl = $blogId ? "gid={$blogId}&" : '';
-	$comment = $emComment->getComment($blogId,$page);
+	$comment = $emComment->getComment($blogId, $page);
 	$num = $emComment->getCommentNum($blogId);
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
 

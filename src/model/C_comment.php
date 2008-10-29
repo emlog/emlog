@@ -25,32 +25,30 @@ class emComment {
 	 * @param int $page
 	 * @return array $comment
 	 */
-	function getComment($blogId = null, $page = 1)
+	function getComment($blogId = null, $page = null)
 	{
-		if($blogId)
+		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$condition = '';
+		if($page)
 		{
-			$andQuery = "where gid=$blogId";
-		}else{
-			$andQuery = '';
+			$startId = ($page - 1) *15;
+			$condition = "LIMIT $startId, 15";
 		}
-		if (!empty($page))
-		{
-			$start_limit = ($page - 1) *15;
-		} else {
-			$start_limit = 0;
-			$page = 1;
-		}
-		$sql = "SELECT * FROM $this->commentTable $andQuery ORDER BY cid DESC LIMIT $start_limit, 15";
+		$sql = "SELECT * FROM $this->commentTable $andQuery ORDER BY cid DESC $condition";
 		$ret = $this->dbhd->query($sql);
-		$comment = array();
+		$comments = array();
 		while($row = $this->dbhd->fetch_array($ret))
 		{
+			$row['cname'] = htmlspecialchars($row['poster']);
+			$row['mail'] = htmlspecialchars($row['mail']);
+			$row['url'] = htmlspecialchars($row['url']);
 			$row['comment'] = subString(htmlClean2($row['comment']),0,30);
+			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = date("Y-m-d H:i",$row['date']);
 			$row['reply'] = trim($row['reply']);
-			$comment[] = $row;
+			$comments[] = $row;
 		}
-		return $comment;
+		return $comments;
 	}
 	function getOneComment($commentId)
 	{
@@ -154,6 +152,86 @@ class emComment {
 				}
 				break;
 		}
+	}
+
+	/**
+	 * 添加评论
+	 *
+	 * @param unknown_type $name
+	 * @param unknown_type $content
+	 * @param unknown_type $mail
+	 * @param unknown_type $url
+	 * @param unknown_type $imgcode
+	 * @param unknown_type $comment_code
+	 * @param unknown_type $ischkcomment
+	 * @param unknown_type $localdate
+	 * @param unknown_type $blogId
+	 */
+	function addComment($name, $content, $mail, $url, $imgcode, $comment_code, $ischkcomment, $localdate, $blogId)
+	{
+		if ($url && strncasecmp($url,'http://',7))//0 if they are equal
+		{
+			$url = 'http://'.$url;
+		}
+		$this->setCommentCookie($name,$mail,$url,$localdate);
+		if($this->isLogCanComment($blogId) === false)
+		{
+			msg('该日志不接受评论','javascript:history.back(-1);');
+		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
+			msg('评论已存在','javascript:history.back(-1);');
+		}elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
+			msg('姓名非法!','javascript:history.back(-1);');
+		} elseif ($mail != '' && !checkMail($mail)) {
+			msg('邮件格式错误!', 'javascript:history.back(-1);');
+		} elseif (strlen($content) == '' || strlen($content) > 2000) {
+			msg('评论内容非法','javascript:history.back(-1);');
+		} elseif ($imgcode == '' && $comment_code == 'y') {
+			msg('验证码不能为空','javascript:history.back(-1);');
+		} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
+			msg('验证码错误!','javascript:history.back(-1);');
+		} else {
+			$sql = "INSERT INTO $this->commentTable (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment')";
+			$ret = $this->dbhd->query($sql);
+			if ($ischkcomment == 'n')
+			{
+				$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+				msg('评论发表成功!',"?action=showlog&gid=$blogId#comment");
+			} else {
+				msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$blogId#comment");
+			}
+		}
+	}
+
+	function isCommentExist($blogId, $name, $content)
+	{
+		$query = $this->dbhd->query("SELECT cid FROM $this->commentTable WHERE gid=$blogId AND poster='$name' AND comment='$content'");
+		$result = $this->dbhd->num_rows($query);
+		if ($result > 0)
+		{
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	function isLogCanComment($blogId)
+	{
+		$query = $this->dbhd->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
+		$show_remark = $this->dbhd->fetch_array($query);
+		if ($show_remark['allow_remark'] == 'n')
+		{
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+	function setCommentCookie($name,$mail,$url,$localdate)
+	{
+		$cookietime = $localdate + 31536000;
+		setcookie('commentposter',$name,$cookietime);
+		setcookie('postermail',$mail,$cookietime);
+		setcookie('posterurl',$url,$cookietime);
 	}
 
 }

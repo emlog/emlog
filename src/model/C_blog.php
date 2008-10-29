@@ -77,12 +77,28 @@ class emBlog {
 	 * @param int $blogId
 	 * @return array
 	 */
-	function getOneLog($blogId)
+	function getOneLog($blogId,  $hide='')
 	{
-		$sql = "select * from $this->blogTable where gid=$blogId";
+		$hideState = $hide == 'n' ? "and hide='n'" :'';
+		$sql = "select * from $this->blogTable where gid=$blogId $hideState";
 		$res = $this->dbhd->query($sql);
-		$blogArray = $this->dbhd->fetch_array($res);
-		return $blogArray;
+		$row = $this->dbhd->fetch_array($res);
+		if($row)
+		{
+			$logData = array(
+			'blogtitle' => htmlspecialchars($row['title']),
+			'log_title' => htmlspecialchars($row['title']),
+			'post_time' => date('Y-n-j G:i l',$row['date']),
+			'logid' => intval($row['gid']),
+			'tbscode' => substr(md5(date('Ynd')),0,5),
+			'log_content' => rmBreak($row['content']),
+			'allow_remark' => $row['allow_remark'],
+			'allow_tb' => $row['allow_tb']
+			);
+			return $logData;
+		}else {
+			return false;
+		}
 	}
 
 	/**
@@ -152,7 +168,7 @@ class emBlog {
 		}
 		$this->dbhd->query("DELETE FROM ".DB_PREFIX."attachment where blogid=$blogId");
 	}
-	
+
 	/**
 	 * 隐藏/显示日志
 	 *
@@ -168,14 +184,6 @@ class emBlog {
 	/**
 	 * 获取日志发布时间
 	 *
-	 * @param int $timezone
-	 * @param int $hour
-	 * @param int $min
-	 * @param int $sec
-	 * @param int $month
-	 * @param int $day
-	 * @param int $year
-	 * @return unix time
 	 */
 	function postDate($timezone=8, $hour=null, $min=null,$sec=null, $month=null, $day=null,$year=null)
 	{
@@ -192,6 +200,13 @@ class emBlog {
 		return $postTime;
 	}
 
+	function neighborLog($blogId)
+	{
+		$neighborlog = array();
+		$neighborlog['nextLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+		$neighborlog['prevLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		return $neighborlog;
+	}
 
 
 

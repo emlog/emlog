@@ -18,14 +18,13 @@ $datetime = explode(".",$post_time);
           <div class="entry">
 				<?php echo $log_content;?>
 <a name="att"></a>
-<p><?php echo $att_img;?></p>
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
 <p>
-<?php if($previousLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+<?php if($prevLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
-<?php if($nextLog && $previousLog):?>
+<?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
@@ -42,7 +41,7 @@ $datetime = explode(".",$post_time);
 <?php endif; ?>	
 <ol class="commentlist">
 <?php
-foreach($com as $key=>$value):
+foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	
@@ -56,7 +55,7 @@ $reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{
 					<?php endif;?>
 			 说：
 						<br />
-			<small class="commentmetadata"> <?php echo $value['addtime'];?> </small>
+			<small class="commentmetadata"> <?php echo $value['date'];?> </small>
 			<p><?php echo $value['content'];?></p>
 			<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
 	<?php if(ISLOGIN === true): ?>	

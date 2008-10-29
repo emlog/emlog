@@ -19,12 +19,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <?php endforeach; ?>
 <?php endif;?>
 <!-- 评论 -->
-<?php if($com): ?>
+<?php if($comments): ?>
 	<h1 class="comments-title"><a name="comment"></a>评论</h1>
 	<div id="comments">
 
 		<?php 
-			foreach($com as $key=>$value):
+			foreach($comments as $key=>$value):
 			$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 		?>
 			<div class="comment" id="comment-<?php echo $value['cid']; ?>">
@@ -40,7 +40,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                                 <a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
                             <?php endif;?>
 						</span>
-							<?php echo $value['addtime']; ?>
+							<?php echo $value['date']; ?>
                     </div>
 					
 					<?php echo $value['content']; ?>

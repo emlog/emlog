@@ -7,13 +7,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class=entry>
 <p><?php echo $log_content;?></p>
 <a name="att"></a>
-<p><?php echo $att_img;?></p>
 <p><?php echo $attachment; ?></p>
 <p>
-<?php if($previousLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+<?php if($prevLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
-<?php if($nextLog && $previousLog):?>
+<?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
@@ -36,7 +35,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php endforeach; ?>
 <h5>评论<a name="comment" id="comment"></a></h5>
 <?php
-foreach($com as $key=>$value):
+foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 <p><a name="<?php echo $value['cid'];?>"></a></p>
@@ -49,7 +48,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 	<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 <?php endif;?>
 Says:<br />
-<small class="commentmetadata"><?php echo $value['addtime'];?></small>
+<small class="commentmetadata"><?php echo $value['date'];?></small>
 <p><?php echo $value['content'];?></p>
 <p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
 	<?php if(ISLOGIN === true): ?>	

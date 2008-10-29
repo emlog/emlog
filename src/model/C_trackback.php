@@ -18,6 +18,32 @@ class emTrackback {
 		$this->tbTable = DB_PREFIX.'trackback';
 	}
 
+	function getTrackback($page = null, $blogId = null)
+	{
+		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$condition = '';
+		if($page)
+		{
+			$startId = ($page - 1) *15;
+			$condition = "LIMIT $startId, 15";
+		}
+		$sql = "SELECT * FROM $this->tbTable $andQuery ORDER BY tbid DESC $condition";
+		$ret = $this->dbhd->query($sql);
+		$trackbacks = array();
+		while($row = $this->dbhd->fetch_array($ret))
+		{
+			$row['title'] = htmlspecialchars($row['title']);
+			$row['blog_name'] = htmlspecialchars($row['blog_name']);
+			$row['date'] = date("Y-m-d H:i",$row['date']);
+			$row['url'] = htmlspecialchars($row['url']);
+			$row['excerpt'] = htmlspecialchars($row['excerpt']);
+			$s_tb['date'] = date('Y-m-d H:i',$s_tb['date']);
+
+			$trackbacks[] = $row;
+		}
+		return $trackbacks;
+	}
+
 	function postTrackback($blogurl, $pingUrl, $blogId)
 	{
 		$url = $blogurl."index.php?action=showlog&gid=".$blogId;

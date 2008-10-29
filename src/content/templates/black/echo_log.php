@@ -24,14 +24,13 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				</div>
 				<div class="postcontent">
 				<?php echo $log_content; ?>
-				<p><?php echo $att_img; ?></p>
 				<p><?php echo $attachment; ?></p>	
 				</div>
 				<div class="neighbor">
-				<?php if($previousLog):?>
-				&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+				<?php if($prevLog):?>
+				&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 				<?php endif;?>
-				<?php if($nextLog && $previousLog):?>
+				<?php if($nextLog && $prevLog):?>
 				|			
 				<?php endif;?>
 				<?php if($nextLog):?>
@@ -50,11 +49,11 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				<?php endforeach; ?>
 				</div>
 				<div id="comm">
-				<?php if($com): ?>
+				<?php if($comments): ?>
 				<p><b>评论:</b><a name="comment"></a></p>
 				<?php endif; ?>
 				<?php
-				foreach($com as $key=>$value):
+				foreach($comments as $key=>$value):
 				$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 				?>
 				<li>
@@ -66,7 +65,7 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 					<?php if($value['url']):?>
 					<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">Home</a>
 					<?php endif;?>
-					<?php echo $value['addtime']; ?>
+					<?php echo $value['date']; ?>
 					<br /><?php echo $value['content']; ?>
 					<br />
 					<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>

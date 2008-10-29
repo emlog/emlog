@@ -19,14 +19,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div class="entry">
 				<p><?php echo $log_content;?></p>
 				<a name="att"></a>
-				<p><?php echo $att_img;?></p>
 				<p><?php echo $attachment;?></p>	
 				<p><?php echo $tag;?></p>
 				<p>
-				<?php if($previousLog):?>
-					&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+				<?php if($prevLog):?>
+					&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 				<?php endif;?>
-				<?php if($nextLog && $previousLog):?>
+				<?php if($nextLog && $prevLog):?>
 					|
 				<?php endif;?>
 				<?php if($nextLog):?>
@@ -48,7 +47,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <ol class="commentlist">
 <?php
-foreach($com as $key=>$value):
+foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 	<li id="comment-<?php echo $value['cid'];?>">
@@ -63,7 +62,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 						<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 					<?php endif;?>
 				</li>
-				<li><a href="#comment-2" title=""><?php echo $value['addtime'];?></a></li>
+				<li><a href="#comment-2" title=""><?php echo $value['date'];?></a></li>
 			</ul>
 			</div>
 			<div class="commenentry">

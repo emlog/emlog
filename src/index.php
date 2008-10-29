@@ -7,8 +7,9 @@
  */
 
 require_once('./common.php');
-require_once('./admin/model/blog.php');
-require_once('./admin/model/comment.php');
+require_once('./model/C_blog.php');
+require_once('./model/C_comment.php');
+require_once('./model/C_trackback.php');
 
 define('CURPAGE','index');
 
@@ -109,70 +110,36 @@ if (!isset($action) || empty($action))
 //显示日志
 if ($action == 'showlog')
 {
-	//参数过滤
 	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : msg('提交参数错误','./index.php');
-	$show_log = @$DB->fetch_one_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
-	OR msg('不存在该日志','./index.php');
-	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
-	$blogtitle  = htmlspecialchars($show_log['title']);
-	$log_title  = htmlspecialchars($show_log['title']);
+	
+	$emBlog = new emBlog($DB);
+	$emComment = new emComment($DB);
+	$emTrackback = new emTrackback($DB);
+
+	$logData = $emBlog->getOneLog($logid, 'n');
+	if($logData === false)
+	{
+		msg('不存在该日志','./index.php');
+	}
+	extract($logData);
 	$log_author = $user_cache['name'];
-	$post_time  = date('Y-n-j G:i l',$show_log['date']);
-	$logid	    = intval($show_log['gid']);
 	$blogurl    = $blogurl;
-	$tbscode	= substr(md5(date('Ynd')),0,5);
-	$log_content = rmBreak($show_log['content']);
-	$allow_remark = $show_log['allow_remark'];
-	$allow_tb = $show_log['allow_tb'];
 	//邻近日志
-	$nextLog = @$DB->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid < $logid AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-	$previousLog = @$DB->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid > $logid AND hide = 'n' LIMIT 1");
+	$neighborLog = $emBlog->neighborLog($logid);
+	extract($neighborLog);
 	//标签
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	//附件
-	$attachment = !empty($log_cache_atts[$logid]['attachment']) ? '<b>文件附件</b>:'.$log_cache_atts[$logid]['attachment'] : '';
-	$att_img = !empty($log_cache_atts[$logid]['att_img']) ? $log_cache_atts[$logid]['att_img'] : '';
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
 	//评论
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-
-	$com = array();
-	$query = $DB->query("SELECT * FROM ".DB_PREFIX."comment WHERE gid = $logid AND hide = 'n' ORDER BY cid ");
-	while($s_com = $DB->fetch_array($query))
-	{
-		$content = htmlClean($s_com['comment']);
-		$reply = $s_com['reply'];
-		$addtime = date('Y-m-d H:i',$s_com['date']);
-		$cname   =  htmlspecialchars($s_com['poster']);
-		$s_com['mail'] = htmlspecialchars($s_com['mail']);
-		$s_com['url'] = htmlspecialchars($s_com['url']);
-		$com[]  = array(
-						'content'=>$content,
-						'reply'=>$reply,
-						'addtime'=>$addtime,
-						'cid'=>$s_com['cid'],
-						'poster'=>$cname,
-						'mail'=>$s_com['mail'],
-						'url'=>$s_com['url']
-						);
-	}
-	unset($s_com);
+	$comments = $emComment->getComment($logid);
 	//trackback
-	$tb = array();
-	$query =$DB->query("SELECT *FROM ".DB_PREFIX."trackback WHERE gid=$logid ORDER BY tbid ");
-	while ($s_tb = $DB->fetch_array($query))
-	{
-		$s_tb['url']       = htmlspecialchars($s_tb['url']);
-		$s_tb['title']     = htmlspecialchars($s_tb['title']);
-		$s_tb['blog_name'] = htmlspecialchars($s_tb['blog_name']);
-		$s_tb['excerpt']   = htmlspecialchars($s_tb['excerpt']);
-		$s_tb['date']      = date('Y-m-d H:i',$s_tb['date']);
+	$tb = $emTrackback->getTrackback($logid);
 
-		$tb[] = $s_tb;
-	}
-	unset($s_tb);
 	include getViews('header');
 	require_once getViews('echo_log');
 }
@@ -180,68 +147,19 @@ if ($action == 'showlog')
 //添加评论
 if ($action == 'addcom')
 {
+	$emComment = new emComment($DB);
+
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
-	$remember = isset($_POST['remember']) ? intval($_POST['remember']) : '';
 
-	if ($comurl && strncasecmp($comurl,'http://',7))//0 if they are equal
-	{
-		$comurl = 'http://'.$comurl;
-	}
-	//COOKIE
-	if ($remember == 1)
-	{
-		$cookietime = $localdate + 31536000;
-		setcookie('commentposter',$comname,$cookietime);
-		setcookie('postermail',$commail,$cookietime);
-		setcookie('posterurl',$comurl,$cookietime);
-	}
-	//can comment?
-	$query = $DB->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$gid");
-	$show_remark = $DB->fetch_array($query);
-	if ($show_remark['allow_remark'] == 'n')
-	{
-		msg('该日志不接受评论','javascript:history.back(-1);');
-	}
-	//is same comment?
-	$query = $DB->query("SELECT cid FROM ".DB_PREFIX."comment
-									WHERE gid = '".$gid."' 
-									AND poster = '".$comname."' 
-									AND comment = '".$comment."' ");
-	$result = $DB->num_rows($query);
-	if ($result > 0)
-	{
-		msg('评论已存在','javascript:history.back(-1);');
-	}
-	if (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$comname) || strlen($comname) > 20 || strlen($comname) == 0)
-	{
-		msg('姓名非法!','javascript:history.back(-1);');
-	} elseif ($commail != '' && !checkMail($commail)) {
-		msg('邮件格式错误!', 'javascript:history.back(-1);');
-	} elseif (strlen($comment) == '' || strlen($comment) > 2000) {
-		msg('评论内容非法','javascript:history.back(-1);');
-	} elseif ($imgcode == '' && $comment_code == 'y') {
-		msg('验证码不能为空','javascript:history.back(-1);');
-	} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
-		msg('验证码错误!','javascript:history.back(-1);');
-	} else {
-		$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$comname','$gid','$comment','','$commail','$comurl','$ischkcomment')";
-		$ret = $DB->query($sql);
-		if ($ischkcomment == 'n')
-		{
-			$DB->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$gid'");
-			$CACHE->mc_sta('sta');
-			$CACHE->mc_comment('comments');
-			msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
-		} else {
-			$CACHE->mc_sta('sta');
-			msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
-		}
-	}
+	$emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
+
+	$CACHE->mc_sta('sta');
+	$CACHE->mc_comment('comments');
 }
 //test code
 //$end_time=array_sum(explode(' ',microtime()));
@@ -249,4 +167,5 @@ if ($action == 'addcom')
 //$query_num = $DB->query_num;
 //print "runtime:$runtime(s) query:$query_num";
 cleanPage()
+
 ?>

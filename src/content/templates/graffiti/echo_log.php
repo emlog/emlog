@@ -9,16 +9,15 @@ include getViews('side');
 
 <div class="log_con">
 <?php echo $log_content; ?>
-<p><?php echo $att_img; ?></p>
 <p><?php echo $attachment; ?></p>	
 <p><?php echo $tag; ?></p>
 </div>
 
 <div class="nextlog">
-<?php if($previousLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"><?php echo $previousLog['title'];?></a>
+<?php if($prevLog):?>
+	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
-<?php if($nextLog && $previousLog):?>
+<?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
@@ -40,12 +39,12 @@ include getViews('side');
 	<li>引用时间:<?php echo $value['date'];?></li>
 </div>
 <?php endforeach; ?>
-<?php if($com): ?>
+<?php if($comments): ?>
 <p><b>评论:</b><a name="comment"></a></p>
 <?php endif; ?>
 <div id="com_list">
 <?php
-foreach($com as $key=>$value):
+foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
 <li>
@@ -57,7 +56,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 <?php if($value['url']):?>
 	<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 <?php endif;?>
-<?php echo $value['addtime']; ?><br /><?php echo $value['content']; ?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+<?php echo $value['date']; ?><br /><?php echo $value['content']; ?><br /><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
 	<?php if(ISLOGIN === true): ?>	
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

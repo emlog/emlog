@@ -27,7 +27,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div class="date-tab"><span class="month"><?php echo date('n月',$show_log['date']); ?></span><span class="day"><?php echo date('j',$show_log['date']); ?></span></div>
         <div class="thumbnail"></div>
 		<?php echo $log_content; ?>
-		<p><?php echo $att_img; ?></p>
 		<p><?php echo $attachment; ?></p>
       </div>
 	<div class="meta"><?php echo $tag; ?></div>
@@ -36,8 +35,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php if($nextLog):?>
     <span class="previous"><a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"></a></span>
     <?php endif;?>
-    <?php if($previousLog):?>
-    <span class="next"><a href="./?action=showlog&gid=<?php echo $previousLog['gid']; ?>"></a></span>
+    <?php if($prevLog):?>
+    <span class="next"><a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"></a></span>
     <?php endif;?>
     </div>
     <?php if($allow_tb == 'y'):?>	
@@ -54,12 +53,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<ol class="commentlist">
 	<a name="comment"></a>
 		<?php
-		foreach($com as $key=>$value):
+		foreach($comments as $key=>$value):
 		$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 		?>
 		<li class="alt">
 			<a name="<?php echo $value['cid']; ?>"></a>
-			<span class="commentdate"><a href="#<?php echo $value['cid']; ?>" title=""><?php echo $value['addtime']; ?></a> </span>
+			<span class="commentdate"><a href="#<?php echo $value['cid']; ?>" title=""><?php echo $value['date']; ?></a> </span>
             <cite><?php echo $value['poster']; ?>
             <?php if($value['mail']):?>
 			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
