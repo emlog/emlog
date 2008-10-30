@@ -6,7 +6,6 @@
  * $Id: comment.php 682 2008-10-14 16:08:01Z emloog $
  */
 
-
 class emBlog {
 
 	var $dbhd;
@@ -199,12 +198,17 @@ class emBlog {
 		}
 		return $postTime;
 	}
+	
+	function updateViewCount($blogId)
+	{
+		$this->dbhd->query("UPDATE $this->blogTable SET views=views+1 WHERE gid=$blogId");
+	}
 
 	function neighborLog($blogId)
 	{
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-		$neighborlog['prevLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		$neighborlog['nextLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM $this->blogTable WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+		$neighborlog['prevLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
 		return $neighborlog;
 	}
 

@@ -18,32 +18,14 @@ class emTrackback {
 		$this->tbTable = DB_PREFIX.'trackback';
 	}
 
-	function getTrackback($page = null, $blogId = null)
-	{
-		$andQuery = $blogId ? "where gid=$blogId" : '';
-		$condition = '';
-		if($page)
-		{
-			$startId = ($page - 1) *15;
-			$condition = "LIMIT $startId, 15";
-		}
-		$sql = "SELECT * FROM $this->tbTable $andQuery ORDER BY tbid DESC $condition";
-		$ret = $this->dbhd->query($sql);
-		$trackbacks = array();
-		while($row = $this->dbhd->fetch_array($ret))
-		{
-			$row['title'] = htmlspecialchars($row['title']);
-			$row['blog_name'] = htmlspecialchars($row['blog_name']);
-			$row['date'] = date("Y-m-d H:i",$row['date']);
-			$row['url'] = htmlspecialchars($row['url']);
-			$row['excerpt'] = htmlspecialchars($row['excerpt']);
-			$s_tb['date'] = date('Y-m-d H:i',$s_tb['date']);
-
-			$trackbacks[] = $row;
-		}
-		return $trackbacks;
-	}
-
+	/**
+	 * 发送trackback
+	 *
+	 * @param string $blogurl
+	 * @param string $pingUrl
+	 * @param int $blogId
+	 * @return msg
+	 */
 	function postTrackback($blogurl, $pingUrl, $blogId)
 	{
 		$url = $blogurl."index.php?action=showlog&gid=".$blogId;
@@ -66,13 +48,6 @@ class emTrackback {
 		return $tbmsg;
 	}
 
-	/**
-	 * 发送数据包
-	 *
-	 * @param string $url 发送地址
-	 * @param unknown_type $data 数据信息
-	 * @return unknown
-	 */
 	function sendPacket($url, $data)
 	{
 		$uinfo = parse_url($url);
@@ -100,6 +75,47 @@ class emTrackback {
 		}
 		@fclose($fp);
 		return $http_response;
+	}
+
+	/**
+	 * 获取trackbak
+	 *
+	 * @param unknown_type $page
+	 * @param unknown_type $blogId
+	 * @return unknown
+	 */
+	function getTrackback($page = null, $blogId = null)
+	{
+		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$condition = '';
+		if($page)
+		{
+			$startId = ($page - 1) *15;
+			$condition = "LIMIT $startId, 15";
+		}
+		$sql = "SELECT * FROM $this->tbTable $andQuery ORDER BY tbid DESC $condition";
+		$ret = $this->dbhd->query($sql);
+		$trackbacks = array();
+		while($row = $this->dbhd->fetch_array($ret))
+		{
+			$row['title'] = htmlspecialchars($row['title']);
+			$row['blog_name'] = htmlspecialchars($row['blog_name']);
+			$row['date'] = date("Y-m-d H:i",$row['date']);
+			$row['url'] = htmlspecialchars($row['url']);
+			$row['excerpt'] = htmlspecialchars($row['excerpt']);
+			$s_tb['date'] = date('Y-m-d H:i',$s_tb['date']);
+
+			$trackbacks[] = $row;
+		}
+		return $trackbacks;
+	}
+
+	function deleteTrackback($tbid)
+	{
+		$sql = "SELECT gid FROM $this->tbTable WHERE tbid=$tbid";
+		$blog = $DB->fetch_one_array($sql);
+		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
+		$DB->query("DELETE FROM $this->tbTable where tbid=$tbid");
 	}
 
 }

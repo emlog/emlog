@@ -124,14 +124,16 @@ if ($action == 'showlog')
 	extract($logData);
 	$log_author = $user_cache['name'];
 	$blogurl    = $blogurl;
-	//邻近日志
+	//add viewcount
+	$emBlog->updateViewCount($logid);
+	//neighborlog
 	$neighborLog = $emBlog->neighborLog($logid);
 	extract($neighborLog);
-	//标签
+	//tags
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
-	//附件
+	//attachment
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
-	//评论
+	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';

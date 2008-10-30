@@ -31,9 +31,18 @@ class emTag {
 		$query = $this->dbhd->query("select tagname from $this->tagTable $condition");
 		while($row = $this->dbhd->fetch_array($query))
 		{
-			$tags[] = $row['tagname'];
+			$row['tagname'] = htmlspecialchars($row['tagname']);
+			$tags[] = $row;
 		}
 		return $tags;
+	}
+	function getOneTag($tagId)
+	{
+		$tag = array();
+		$row = $this->dbhd->fetch_one_array("SELECT tagname,tid FROM $this->tagTable WHERE tid=$tagId");
+		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
+		$tag['tagid'] = intval($row['tid']);
+		return $tag;
 	}
 
 	/**
@@ -99,6 +108,17 @@ class emTag {
 				}//end elseif
 			}//end for2
 		}//end for1
+	}
+
+	function updateTagName($tagId, $tagName)
+	{
+		$sql="UPDATE $this->tagTable SET tagname='$tagname' WHERE tid=$tagId";
+		$this->dbhd->query($sql);
+	}
+	
+	function deleteTag($tagId)
+	{
+		$this->dbhd->query("DELETE FROM $this->tagTable where tid=$tagId");
 	}
 
 }
