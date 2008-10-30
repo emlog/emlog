@@ -20,8 +20,8 @@ if ($action=='')
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$blogData = $emBlog->getOneLog($logid); 
 	extract($blogData);
-	$title = htmlspecialchars($title);
-	$adddate = $date;
+	$title = htmlspecialchars($log_title);
+	$adddate = $post_time;
 	//log_content
 	$content = htmlspecialchars($content);
 	//log tag

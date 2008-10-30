@@ -11,7 +11,6 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	
 	<p id="date"><?php echo $value['post_time']; ?></p>
 	<div class="log_desc"><?php echo $value['log_description']; ?></div>
-	<p><?php echo $value['att_img']; ?></p>
 	<p><?php echo $value['attachment']; ?></p>
 	<p><?php echo $value['tag']; ?></p>
 	

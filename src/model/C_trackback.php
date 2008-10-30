@@ -109,6 +109,19 @@ class emTrackback {
 		}
 		return $trackbacks;
 	}
+	
+	/**
+	 * 获取引用的数目
+	 *
+	 * @return int $tbNum
+	 */
+	function getTbNum()
+	{
+		$comNum = '';
+		$res = $this->dbhd->query("SELECT tbid FROM $this->tbTable");
+		$tbNum = $this->dbhd->num_rows($res);
+		return $tbNum;
+	}
 
 	function deleteTrackback($tbid)
 	{

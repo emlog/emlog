@@ -21,18 +21,18 @@ if($action == '')
 	$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
 	$sortTitle = (isset($_GET['sortTitle']) && $_GET['sortTitle'] == 'DESC') ?  'ASC' : 'DESC';
 
-	$subSql = 'ORDER BY ';
+	$sqlSegment = 'ORDER BY ';
 	if(isset($_GET['sortView']))
 	{
-		$subSql .= "views $sortView";
+		$sqlSegment .= "views $sortView";
 	}elseif(isset($_GET['sortComm'])){
-		$subSql .= "comnum $sortComm";
+		$sqlSegment .= "comnum $sortComm";
 	}elseif(isset($_GET['sortDate'])){
-		$subSql .= "date $sortDate";
+		$sqlSegment .= "date $sortDate";
 	}elseif(isset($_GET['sortTitle'])){
-		$subSql .= "title $sortTitle";
+		$sqlSegment .= "title $sortTitle";
 	}else {
-		$subSql .= 'top DESC,date DESC';
+		$sqlSegment .= 'top DESC,date DESC';
 	}
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -53,7 +53,7 @@ if($action == '')
 	}
 
 	$logNum = $emBlog->getLogNum($hide_state);
-	$logs = $emBlog->getLog($subSql, $hide_state, $page);
+	$logs = $emBlog->getLog($sqlSegment, $hide_state, $page);
 
 	$subPage = '';
 	foreach ($_GET as $key=>$val)

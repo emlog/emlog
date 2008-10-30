@@ -9,8 +9,6 @@
 error_reporting(E_ALL);
 ob_start();
 
-//$start_time=array_sum(explode(' ',microtime()));
-
 define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once(EMLOG_ROOT.'/config.php');

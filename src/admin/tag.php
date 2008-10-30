@@ -35,7 +35,7 @@ if($action=='update_tag')
 {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
-	$emTag->updateTagName($tid, $tagName);
+	$emTag->updateTagName($tagId, $tagName);
 	$CACHE->mc_logtags('log_tags');
 	$CACHE->mc_tags('tags');
 	formMsg('标签修改成功','./tag.php',1);

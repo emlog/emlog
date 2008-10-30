@@ -6,10 +6,10 @@
     <tbody>
       <tr>
         <td width="800">
-<?php foreach($tags as $key=>$value): ?>	
+		<?php foreach($tags as $key=>$value): ?>	
 		<input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" value="1" >
 		<a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
-<?php endforeach; ?>
+		<?php endforeach; ?>
 		</td>
       </tr>
     </tbody>

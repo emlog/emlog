@@ -10,6 +10,7 @@ require_once('./common.php');
 require_once('./model/C_blog.php');
 require_once('./model/C_comment.php');
 require_once('./model/C_trackback.php');
+require_once('./model/C_tag.php');
 
 define('CURPAGE','index');
 
@@ -33,34 +34,30 @@ $blogtitle = $blogname;
 //日志列表
 if (!isset($action) || empty($action))
 {
-	//page link
+	$emBlog = new emBlog($DB);
+	$emTag = new emTag($DB);
+
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
+	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
+
 	$start_limit = ($page - 1) * $index_lognum;
 	$pageurl= './index.php';
 
-	//查询归档或日历对应日志
-	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
-	//查询标签对应日志
-	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
-	//搜索日志
-	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
-
-	$sql = '';
 	if ($record)
 	{
-		$add_query = "AND from_unixtime(date, '%Y%m%d') LIKE '%".$record."%'";
-		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE hide='n'  $add_query ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
-		$query = $DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='n'  $add_query ");
+		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
 		$lognum = $DB->num_rows($query);
 		$pageurl .= "?record=$record&page";
 	} elseif ($tag) {
-		$tagstring = @$DB->fetch_one_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tagname='$tag' ") OR msg('不存在该标签','javascript:history.back(-1);');
-		$gids  = substr(trim($tagstring['gid']),1,-1);
-		$tag   = $tagstring['tagname'];
-		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE gid IN ($gids) AND hide='n'";
-		$query = $DB->query($sql);
+		$blogIdStr = $emTag->getTagByName($tag);
+		if($blogIdStr === false)
+		{
+			msg('不存在该标签','./index.php');
+		}
+		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $DB->num_rows($query);
-		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?tag=$tag&page";
 	} elseif($keyword) {
 		//参数过滤
@@ -70,37 +67,21 @@ if (!isset($action) || empty($action))
 		{
 			msg('错误的关键字长度','./index.php');
 		}
-		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE title like '%{$keyword}%' AND hide='n'";
-		$query = $DB->query($sql);
+		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $DB->num_rows($query);
-		$sql .= " ORDER BY date DESC LIMIT $start_limit, $index_lognum";
 		$pageurl .= "?keyword=$keyword&page";
 	} else {
-		$sql =" SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
+		$sqlSegment ="ORDER BY top DESC ,date DESC";
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= "?page";
 	}
-	$logs = array();
-	$query = $DB->query($sql);
-	while ($row = $DB->fetch_array($query))
+	$logs = $emBlog->getLog($sqlSegment, 'n', $page, $index_lognum, 'homepage');
+	foreach ($logs as &$row)
 	{
-		$row['post_time'] = date('Y-n-j G:i l',$row['date']);
-		$row['log_title'] = htmlspecialchars(trim($row['title']));
-		$row['logid']	  = $row['gid'];
-		$row['log_description'] = breakLog($row['content'],$row['gid']);
-		//attachment
-		$row['attachment'] = !empty($log_cache_atts[$row['gid']]['attachment']) ? '<b>文件附件：</b>'.$log_cache_atts[$row['gid']]['attachment'] : '';
-		$row['att_img'] = !empty($log_cache_atts[$row['gid']]['att_img']) ? $log_cache_atts[$row['gid']]['att_img'] : '';
-		//tag
+		$row['attachment'] = !empty($log_cache_atts[$row['gid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$row['gid']] : '';
 		$row['tag']  = !empty($log_cache_tags[$row['gid']]) ? '标签:'.$log_cache_tags[$row['gid']] : '';
-		//e-mail
-		$row['name'] = $user_cache['mail'] != '' ? "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>" : $user_cache['name'];
-		//top
-		$row['toplog'] = $row['top'];
-
-		$logs[] = $row;
 	}
-	//分页
+
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 	include getViews('header');
@@ -163,11 +144,7 @@ if ($action == 'addcom')
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
 }
-//test code
-//$end_time=array_sum(explode(' ',microtime()));
-//$runtime=number_format($end_time-$start_time,5);
-//$query_num = $DB->query_num;
-//print "runtime:$runtime(s) query:$query_num";
+
 cleanPage()
 
 ?>

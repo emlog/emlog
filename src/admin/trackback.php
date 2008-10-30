@@ -16,7 +16,7 @@ if($action == '')
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$trackback = $emTrackback->getTrackback($page);
-	$num = $emComment->getCommentNum($blogId);
+	$num = $emTrackback->getTbNum();
 	$pageurl =  pagination($num,15,$page,"trackback.php?page");
 
 	include getViews('header');

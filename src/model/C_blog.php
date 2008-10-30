@@ -103,35 +103,40 @@ class emBlog {
 	/**
 	 * 获取日志
 	 *
-	 * @param string $subSql
+	 * @param string $condition
 	 * @param int $page
 	 * @return array
 	 */
-	function getLog($subSql, $hide_state, $page = 1)
+	function getLog($condition, $hide_state, $page = 1, $prePageNum = 15, $type='admin')
 	{
-		$start_limit = !empty($page) ? ($page - 1) *15 : 0;
-		$sql = "SELECT gid,title,date,top,comnum,views FROM $this->blogTable WHERE hide='$hide_state' $subSql LIMIT $start_limit, 15";
+		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
+		$sql = "SELECT * FROM $this->blogTable WHERE hide='$hide_state' $condition LIMIT $start_limit, $prePageNum";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
-			$row['title'] = htmlspecialchars($row['title']);
-			$gid = $row['gid'];
-			$postTime = date("Y-m-d H:i",$row['date']);
-			$istop = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
-			$query=$this->dbhd->query("SELECT blogid FROM ".DB_PREFIX."attachment WHERE blogid='".$row['gid']."' ");
-			$attach_num = $this->dbhd->num_rows($query);
-			$attach = $attach_num > 0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
-
-			$logs[] = array(
-			'title'=>!empty($row['title']) ? $row['title'] : 'No Title',
-			'gid'=>$gid,
-			'date'=>$postTime,
-			'comnum'=>$row['comnum'],
-			'views'=>$row['views'],
-			'istop'=>$istop,
-			'attach'=>$attach
-			);
+			switch ($type)
+			{
+				case 'admin':
+					$row['date'] = date("Y-m-d H:i",$row['date']);
+					$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
+					$row['gid'] = $row['gid'];
+					$row['comnum'] = $row['comnum'];
+					$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
+					$attach_num = $this->getAttachmentNum($row['gid']);
+					$row['attach'] = $attach_num > 0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
+					break;
+				case 'homepage':
+					$row['post_time'] = date('Y-n-j G:i l',$row['date']);
+					$row['log_title'] = htmlspecialchars(trim($row['title']));
+					$row['logid'] = $row['gid'];
+					$row['log_description'] = breakLog($row['content'],$row['gid']);
+					$row['toplog'] = $row['top'];
+					$row['attachment'] = '';//attachment
+					$row['tag']  = '';//tag
+					break;
+			}
+			$logs[] = $row;
 		}
 		return $logs;
 	}
@@ -180,6 +185,12 @@ class emBlog {
 		$this->dbhd->query("UPDATE ".DB_PREFIX."comment SET hide='$hideState' WHERE gid=$blogId");
 	}
 
+	function getAttachmentNum($blogId)
+	{
+		$query=$this->dbhd->query("SELECT blogid FROM ".DB_PREFIX."attachment WHERE blogid=$blogId");
+		$attach_num = $this->dbhd->num_rows($query);
+	}
+
 	/**
 	 * 获取日志发布时间
 	 *
@@ -198,7 +209,7 @@ class emBlog {
 		}
 		return $postTime;
 	}
-	
+
 	function updateViewCount($blogId)
 	{
 		$this->dbhd->query("UPDATE $this->blogTable SET views=views+1 WHERE gid=$blogId");

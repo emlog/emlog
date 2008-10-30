@@ -28,7 +28,7 @@ class emTag {
 	{
 		$tags = array();
 		$condition = $blogId ? "WHERE gid LIKE '%,$blogId,%'" : '';
-		$query = $this->dbhd->query("select tagname from $this->tagTable $condition");
+		$query = $this->dbhd->query("select tagname,tid from $this->tagTable $condition");
 		while($row = $this->dbhd->fetch_array($query))
 		{
 			$row['tagname'] = htmlspecialchars($row['tagname']);
@@ -43,6 +43,18 @@ class emTag {
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
 		$tag['tagid'] = intval($row['tid']);
 		return $tag;
+	}
+	
+	function getTagByName($tagName)
+	{
+		$tag = array();
+		$row = $this->dbhd->fetch_one_array("SELECT tagname,gid FROM $this->tagTable WHERE tagname='$tagName'");
+		if(empty($row))
+		{
+			return false;
+		}
+		$blogIdStr  = substr(trim($row['gid']),1,-1);
+		return $blogIdStr;
 	}
 
 	/**
@@ -112,7 +124,7 @@ class emTag {
 
 	function updateTagName($tagId, $tagName)
 	{
-		$sql="UPDATE $this->tagTable SET tagname='$tagname' WHERE tid=$tagId";
+		$sql="UPDATE $this->tagTable SET tagname='$tagName' WHERE tid=$tagId";
 		$this->dbhd->query($sql);
 	}
 	
