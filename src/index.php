@@ -7,17 +7,17 @@
  */
 
 require_once('./common.php');
-require_once('./model/C_blog.php');
-require_once('./model/C_comment.php');
-require_once('./model/C_trackback.php');
-require_once('./model/C_tag.php');
+require_once(EMLOG_ROOT.'/model/C_blog.php');
+require_once(EMLOG_ROOT.'/model/C_comment.php');
+require_once(EMLOG_ROOT.'/model/C_trackback.php');
+require_once(EMLOG_ROOT.'/model/C_tag.php');
 
 define('CURPAGE','index');
 
 viewCount();
 
-//check template
-$em_tpldir = $tpl_dir.$nonce_templet.'/';//当前模板目录
+//当前模板目录
+$em_tpldir = $tpl_dir.$nonce_templet.'/';
 if (!is_dir($em_tpldir))
 {
 	exit('Template Error: no template directory!');

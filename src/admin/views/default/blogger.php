@@ -1,5 +1,5 @@
 <?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
+if(!defined('ADMIN_ROOT')) {exit('error!');}
 $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: isdel(0, 7);\">[删除头像]</a>":'';
 ?>
 	<div class=containertitle><b>个人资料</b></div>

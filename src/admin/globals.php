@@ -14,8 +14,8 @@ require_once('../lib/C_mysql.php');
 require_once('../lib/F_base.php');
 require_once('../lib/F_login.php');
 require_once('../lib/F_adm.php');
-require_once('./tips.php');
 require_once('../lib/C_cache.php');
+require_once('./tips.php');
 
 //去除多余的转义字符
 doStripslashes();
@@ -46,20 +46,21 @@ define('ICON_MAX_W',		140);//个性头像缩略图最大宽
 define('ICON_MAX_H',		220);//个性头像缩略图最大高
 
 //检测后台模板
-define('ADM_ROOT', dirname(__FILE__));
-$em_tpldir = ADM_ROOT.'/views/'.$nonce_tpl.'/';
+define('ADMIN_ROOT', dirname(__FILE__));
+$em_tpldir = ADMIN_ROOT.'/views/'.$nonce_tpl.'/';
 if (!is_dir($em_tpldir))
 {
 	exit('the adm tmplate net found!');
 }
+
 //登陆验证
-if ($action == 'login') 
+if ($action == 'login')
 {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$img_code = ($login_code == 'y' && isset($_POST['imgcode'])) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	if (checkUser($username, $password,$img_code,$login_code) === true) 
+	if (checkUser($username, $password,$img_code,$login_code) === true)
 	{
 		setAuthCookie($username);
 		header("Location: ../index.php"); 

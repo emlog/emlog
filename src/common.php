@@ -27,7 +27,7 @@ doStripslashes();
 $userData = array();
 define('ISLOGIN',	isLogin());
 //获取操作
-$action = isset($_GET['action'])?addslashes($_GET['action']):'';
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 //读取缓存
 $config_cache = $CACHE->readCache('config');

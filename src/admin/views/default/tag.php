@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>标签管理</b></div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post">

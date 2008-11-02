@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>博客设置</b></div>
 <div class=line></div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">

@@ -1,5 +1,5 @@
 <?php 
-if(!defined('ADM_ROOT')) {exit('error!');}
+if(!defined('ADMIN_ROOT')) {exit('error!');}
 ?>
 	</td>
   </tr>

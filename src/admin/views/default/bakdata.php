@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
 <div class=containertitle><b>数据库备份</b></div>
 <div class=line></div>
 <script type='text/javascript'>

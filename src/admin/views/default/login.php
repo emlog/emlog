@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <html><head>
 <meta http-equiv="Content-Type" content="text/html  charset=utf-8">
 <meta name="robots" content="noindex, nofollow">
@@ -15,7 +15,7 @@
 <input name="user" id="user" type="text" class="input">密码:<br />
 <input name="pw" id="pw" type="password" class="input"><br>
 </td></tr><?php echo $ckcode; ?><tr>
-<td align="right"><input type="submit" value=" 登录>>" class="submit"></td>
+<td align="right"><input type="submit" value=" 登 录" class="submit"></td>
 </tr>
 </table>
 </form>

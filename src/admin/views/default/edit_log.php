@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script>
 function doautosave(){
 	var title = $("title").value.Trim();

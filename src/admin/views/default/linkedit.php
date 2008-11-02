@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>友站修改</b></div>
 <div class=line></div>
 <form action="link.php?action=update_link" method="post">

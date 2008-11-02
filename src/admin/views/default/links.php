@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');} ?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
 <script type='text/javascript'>
 $(document).ready(function(){
 	$("#adm_link_list tbody tr:odd").addClass("tralt_b");

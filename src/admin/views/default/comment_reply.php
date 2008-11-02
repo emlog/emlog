@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>回复评论</b></div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">

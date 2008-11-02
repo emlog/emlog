@@ -1,4 +1,4 @@
-<?php if(!defined('ADM_ROOT')) {exit('error!');}?>
+<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 	<div class=containertitle><b>背景音乐</b></div>
 	<div class=line></div>
   <form action="music.php?action=mod" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
