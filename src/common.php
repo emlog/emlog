@@ -9,18 +9,16 @@
 error_reporting(E_ALL);
 ob_start();
 
-define('EMLOG_ROOT', dirname(__FILE__));
-
-require_once(EMLOG_ROOT.'/config.php');
-require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once('./config.php');
 require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
+require_once(EMLOG_ROOT.'/lib/C_mysql.php');
 
 //数据库操作对象
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //cache
-$CACHE = new mkcache('./content/cache/', $DB,DB_PREFIX);
+$CACHE = new mkcache($DB,DB_PREFIX);
 //去除多余的转义字符
 doStripslashes();
 //登录验证

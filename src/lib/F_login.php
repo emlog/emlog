@@ -106,7 +106,7 @@ function checkPassword($password, $hash)
 	global $em_hasher;
 	if ( empty($wp_hasher) )
 	{
-		require_once("C_phpass.php");
+		require_once(EMLOG_ROOT.'/lib/C_phpass.php');
 		$em_hasher = new PasswordHash(8, true);
 	}
 	$check = $em_hasher->CheckPassword($password, $hash);

@@ -9,13 +9,11 @@
 
 class mkcache {
 
-	var $cachePath;
 	var $dbhd;
 	var $db_prefix;
 
-	function mkcache($cachePath, $dbhandle, $db_prefix)
+	function mkcache($dbhandle, $db_prefix)
 	{
-		$this->cachePath = $cachePath;
 		$this->dbhd = $dbhandle;
 		$this->db_prefix = $db_prefix;
 	}
@@ -325,7 +323,7 @@ class mkcache {
 	 */
 	function cacheWrite ($cacheDate,$cachefile)
 	{
-		$cachefile = $this->cachePath.$cachefile;
+		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
 		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
 		@ $fw =	fwrite($fp,$cacheDate) OR sysMsg('写入缓存失败，请查看文件权限');
 		fclose($fp);
@@ -339,7 +337,7 @@ class mkcache {
 	 */
 	function readCache($cachefile)
 	{
-		$cachefile = $this->cachePath.$cachefile;
+		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
 		if(@$fp = fopen($cachefile, 'r'))
 		{
 			@$data = fread($fp,filesize($cachefile));

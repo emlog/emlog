@@ -685,7 +685,6 @@ src/lib/C_phpass.php -text
 src/lib/F_adm.php -text svn_keywords=Id
 src/lib/F_base.php -text svn_keywords=Id
 src/lib/F_login.php -text svn_keywords=Id
-src/lib/F_rss.php -text svn_keywords=Id
 src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
 src/model/C_blog.php -text

@@ -7,7 +7,7 @@
  */
 
 require_once('./globals.php');
-require_once('../model/C_comment.php');
+require_once(EMLOG_ROOT.'/model/C_comment.php');
 
 $emComment = new emComment($DB);
 

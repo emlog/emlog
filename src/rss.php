@@ -7,17 +7,63 @@
  */
 
 error_reporting(E_ALL);
-require_once("./config.php");
-require_once("./lib/C_mysql.php");
-require_once("./lib/C_cache.php");
+
+require_once('./config.php');
+require_once(EMLOG_ROOT.'/lib/F_base.php');
+require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once(EMLOG_ROOT.'/lib/C_cache.php');
 
 //初始化数据库类
-$DB = new MySql($host, $user, $pass,$db);
+$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //cache
 $config_cache = mkcache::readCache('config');
 $user_cache = mkcache::readCache('blogger');
 
-require_once("./lib/F_rss.php");
+/**
+ * 获取url地址
+ *
+ * @return unknown
+ */
+function GetURL()
+{
+	$path = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+	$path = str_replace("/rss.php","",$path);
+	Return $path;
+}
+
+/**
+ * 获取日志信息
+ *
+ * @return array
+ */
+function GetBlog()
+{
+	global $DB;
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
+	$result = $DB->query($sql);
+	$blog = array();
+	while ($re = $DB->fetch_array($result))
+	{
+		$re['id'] 		= $re['gid'];
+		$re['title']    = htmlspecialchars($re['title']);
+		$re['date']		= $re['date'];
+		$re['content']	= $re['content'];
+
+		$blog[] = $re;
+	}
+	return $blog;
+}
+
+/**
+ * 获取日志数目
+ *
+ * @return unknown
+ */
+function GetBlogNum()
+{
+	$blog_t =  GetBlog();
+	return count($blog_t);
+}
 
 $URL = GetURL();
 $site =  $config_cache;

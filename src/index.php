@@ -48,7 +48,7 @@ if (!isset($action) || empty($action))
 	if ($record)
 	{
 		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
-		$lognum = $DB->num_rows($query);
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?record=$record&page";
 	} elseif ($tag) {
 		$blogIdStr = $emTag->getTagByName($tag);
@@ -57,7 +57,7 @@ if (!isset($action) || empty($action))
 			msg('不存在该标签','./index.php');
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
-		$lognum = $DB->num_rows($query);
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?tag=$tag&page";
 	} elseif($keyword) {
 		//参数过滤
@@ -68,11 +68,11 @@ if (!isset($action) || empty($action))
 			msg('错误的关键字长度','./index.php');
 		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
-		$lognum = $DB->num_rows($query);
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?keyword=$keyword&page";
 	} else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
-		$lognum = $sta_cache['lognum'];
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?page";
 	}
 	$logs = $emBlog->getLog($sqlSegment, 'n', $page, $index_lognum, 'homepage');

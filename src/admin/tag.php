@@ -7,7 +7,7 @@
  */
 
 require_once('./globals.php');
-require_once('../model/C_tag.php');
+require_once(EMLOG_ROOT.'/model/C_tag.php');
 
 $emTag = new emTag($DB);
 

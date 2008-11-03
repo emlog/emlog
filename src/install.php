@@ -13,7 +13,8 @@ require_once("./lib/C_phpass.php");
 
 doStripslashes();
 
-define('EM_VERSION',			'2.7.0');//版本号
+define('EM_VERSION', '2.7.0');
+define('EMLOG_ROOT', dirname(__FILE__));
 
 if(!isset($_GET['action']))
 {
@@ -178,7 +179,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 		sysMsg('两次输入的密码不一致');
 	}
 	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
-
+	
 	$config = "<?php\n"
 	."//mysql database address\n"
 	."define('DB_HOST','$db_host');"
@@ -194,6 +195,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
 	."\n//cookie name\n"
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
+	."\n//blog root\n"
+	."define('EMLOG_ROOT','".dirname(__FILE__)."');"
 	."\n?>";
 
 	@$fw = fwrite($fp, $config) ;

@@ -10,12 +10,12 @@ error_reporting(E_ALL);
 ob_start();
 
 require_once('../config.php');
-require_once('../lib/C_mysql.php');
-require_once('../lib/F_base.php');
-require_once('../lib/F_login.php');
-require_once('../lib/F_adm.php');
-require_once('../lib/C_cache.php');
-require_once('./tips.php');
+require_once(EMLOG_ROOT.'/lib/F_base.php');
+require_once(EMLOG_ROOT.'/lib/F_login.php');
+require_once(EMLOG_ROOT.'/lib/F_adm.php');
+require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once(EMLOG_ROOT.'/lib/C_cache.php');
+require_once(EMLOG_ROOT.'/admin/tips.php');
 
 //去除多余的转义字符
 doStripslashes();
@@ -24,7 +24,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 //数据库操作对象
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //实例化一个缓存生成对象
-$CACHE = new mkcache('../content/cache/', $DB, DB_PREFIX);
+$CACHE = new mkcache($DB, DB_PREFIX);
 		
 //读取配置参数
 $config_cache = $CACHE->readCache('config');

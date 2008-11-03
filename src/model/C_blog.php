@@ -62,10 +62,10 @@ class emBlog {
 	 * @param unknown_type $blogId
 	 * @return unknown
 	 */
-	function getLogNum($hide = 'n')
+	function getLogNum($hide = 'n', $condition = '')
 	{
 		$DraftNum = '';
-		$res = $this->dbhd->query("SELECT gid FROM $this->blogTable WHERE hide='$hide'");
+		$res = $this->dbhd->query("SELECT gid FROM $this->blogTable WHERE hide='$hide' $condition");
 		$LogNum = $this->dbhd->num_rows($res);
 		return $LogNum;
 	}
