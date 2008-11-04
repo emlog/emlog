@@ -149,6 +149,6 @@ if ($action == 'addcom')
 	$CACHE->mc_comment('comments');
 }
 
-cleanPage();
+cleanPage(true);
 
 ?>

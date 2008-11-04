@@ -32,10 +32,10 @@ function doStripslashes()
 {
 	if (get_magic_quotes_gpc())
 	{
-	    $_GET = stripslashesDeep($_GET);
-	    $_POST = stripslashesDeep($_POST);
-	    $_COOKIE = stripslashesDeep($_COOKIE);
-	    $_REQUEST = stripslashesDeep($_REQUEST);
+		$_GET = stripslashesDeep($_GET);
+		$_POST = stripslashesDeep($_POST);
+		$_COOKIE = stripslashesDeep($_COOKIE);
+		$_REQUEST = stripslashesDeep($_REQUEST);
 	}
 }
 
@@ -63,7 +63,7 @@ function stripslashesDeep($value)
 function htmlClean($content)
 {
 	$content = htmlspecialchars($content);
-    $content = str_replace("\n", '<br>', $content);
+	$content = str_replace("\n", '<br>', $content);
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
 	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
 	return $content;
@@ -84,27 +84,13 @@ function htmlClean2($content)
 }
 
 /**
- * 错误处理函数
- *
- * @param string $msg 错误信息
- * @param string $url 返回url
- */
-function msg($msg,$url)
-{
-	global $tpl_dir;
-	require_once getViews('message');
-	cleanPage();
-	exit;
-}
-
-/**
  * 获取用户ip
  *
- * @return unknown
+ * @return string
  */
 function getIp()
 {
-	if (isset($_SERVER)) 
+	if (isset($_SERVER))
 	{
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$realip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -132,7 +118,7 @@ function getIp()
 function viewCount()
 {
 	global $CACHE,$DB,$localdate;
-	
+
 	$userip = getIp();
 	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
 	if ($em_viewip != $userip)
@@ -161,7 +147,7 @@ function viewCount()
  * @param unknown_type $address
  * @return unknown
  */
-function checkMail($address) 
+function checkMail($address)
 {
 	if (preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
 	{
@@ -186,7 +172,7 @@ function subString($strings,$start,$length)
 	for ($i = 0; $i < strlen($str); $i++)
 	{
 		if (ord($str[$i]) >= 128)
-			$char++;
+		$char++;
 	}
 	$str2 = substr($strings, $start, $length+1);
 	$str3 = substr($strings, $start, $length+2);
@@ -263,7 +249,7 @@ function pagination($count,$perlogs,$page,$url)
 		}
 	}
 	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
-	if ($page + 5 < $pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>"; 
+	if ($page + 5 < $pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>";
 	if ($pnums <= 1) $re = '';
 	return $re;
 }
@@ -279,8 +265,8 @@ function pagination($count,$perlogs,$page,$url)
 function chImageSize ($img,$max_w,$max_h)
 {
 	$size = @getimagesize($img);
-		$w = $size[0];
-		$h = $size[1];
+	$w = $size[0];
+	$h = $size[1];
 	//计算缩放比例
 	@$w_ratio = $max_w / $w;
 	@$h_ratio =	$max_h / $h;
@@ -299,33 +285,6 @@ function chImageSize ($img,$max_w,$max_h)
 	$tn['rc_w'] = $w;
 	$tn['rc_h'] = $h;
 	return $tn ;
-}
-
-/**
- * 日志分割
- *
- * @param string $content 日志内容
- * @param int $lid 日志id
- * @return unknown
- */
-function breakLog($content,$lid)
-{
-	$a = explode("[break]",$content,2);
-	if(!empty($a[1]))
-		$a[0].='<p><a href="./?action=showlog&gid='.$lid.'">阅读全文&gt;&gt;</a></p>';
-	return $a[0];
-}
-
-/**
- * 删除[break]标签
- *
- * @param string $content 日志内容
- * @return unknown
- */
-function rmBreak($content)
-{
-	$content = str_replace('[break]','',$content);
-	return $content;
 }
 
 /**
@@ -361,25 +320,30 @@ function getAttachment($attstr,$width,$height)
  * 清除模板中的注释,并完成URL重写功能
  *
  */
-function cleanPage()
+function cleanPage($beUrlRewrite = false)
 {
 	global $isurlrewrite,$isgzipenable;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
-	if ($isurlrewrite == 'y' ) {
-		$searchlink = array(
-							"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
-							"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
-							"/\<a href\=\"(index\.php|\.\/)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
-							);
-		$replacelink = array(
-							"logRewrite(\\2,'\\3','\\4')",
-							"recordRewrite('\\2','\\3')",
-							"tagRewrite('\\2','\\3')"
-							);
-		$output = preg_replace($searchlink, $replacelink,$output);
+	if($beUrlRewrite)
+	{
+		if ($isurlrewrite == 'y' )
+		{
+			$searchlink = array(
+			"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+			);
+			$replacelink = array(
+			"logRewrite(\\2,'\\3','\\4')",
+			"recordRewrite('\\2','\\3')",
+			"tagRewrite('\\2','\\3')"
+			);
+			$output = preg_replace($searchlink, $replacelink,$output);
+		}
 	}
 	ob_end_clean();
-	if ($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter'))) {
+	if ($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter')))
+	{
 		ob_start('ob_gzhandler');
 	} else {
 		ob_start();
@@ -388,7 +352,6 @@ function cleanPage()
 	echo $output;
 	exit;
 }
-
 /**
  * 日志链接重写
  *
@@ -397,11 +360,10 @@ function cleanPage()
  * @param string $values 匹配出来的<a>标签中的其他属性
  * @return unknown
  */
-function logRewrite($gid,$ext,$values) 
+function logRewrite($gid,$ext,$values)
 {
 	return '<a href="showlog-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
 }
-
 /**
  * 日志归档链接重写
  *
@@ -409,11 +371,10 @@ function logRewrite($gid,$ext,$values)
  * @param string $values 匹配出来的<a>标签中的其他属性
  * @return unknown
  */
-function recordRewrite($date,$values) 
+function recordRewrite($date,$values)
 {
 	return '<a href="record-'.$date.'.html"'.stripslashes($values).'>';
 }
-
 /**
  * 标签链接重写
  *
@@ -421,9 +382,36 @@ function recordRewrite($date,$values)
  * @param string $values 匹配出来的<a>标签中的其他属性
  * @return unknown
  */
-function tagRewrite($tag,$values) 
+function tagRewrite($tag,$values)
 {
 	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
+}
+
+/**
+ * 日志分割
+ *
+ * @param string $content 日志内容
+ * @param int $lid 日志id
+ * @return unknown
+ */
+function breakLog($content,$lid)
+{
+	$a = explode("[break]",$content,2);
+	if(!empty($a[1]))
+	$a[0].='<p><a href="./?action=showlog&gid='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	return $a[0];
+}
+
+/**
+ * 删除[break]标签
+ *
+ * @param string $content 日志内容
+ * @return unknown
+ */
+function rmBreak($content)
+{
+	$content = str_replace('[break]','',$content);
+	return $content;
 }
 
 /**
@@ -432,7 +420,7 @@ function tagRewrite($tag,$values)
  * @param 文件http地址 $url
  * @return unknown
  */
-function fopen_url($url) 
+function fopen_url($url)
 {
 	if (function_exists('file_get_contents')) {
 		$file_content = @file_get_contents($url);
@@ -523,7 +511,7 @@ function findArray($array1,$array2)
 		{
 			if ($i < $num1)
 			{
-				$addarray[$i] = $array1[$i]; 
+				$addarray[$i] = $array1[$i];
 			} else {
 				$addarray[$i] = $array2[$i-$num1];
 			}
@@ -550,22 +538,6 @@ function findArray($array1,$array2)
 	} else {
 		return $array2;
 	}
-}
-
-/**
- * 系统返回信息
- *
- * @param unknown_type $msg
- * @param unknown_type $url
- * @param unknown_type $type
- */
-function formMsg($msg,$url,$type)
-{
-	global $nonce_tpl;
-	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
-	require_once(getViews('msg'));
-	cleanPage();
-	exit;
 }
 
 /**
@@ -699,39 +671,6 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 }
 
 /**
- * 备份数据库结构和所有数据
- *
- * @param string $table 数据库表名
- * @return string
- */
-function dataBak($table)
-{
-	global $DB;
-	$sql = "DROP TABLE IF EXISTS $table;\n";
-	$createtable = $DB->query("SHOW CREATE TABLE $table");
-	$create = $DB->fetch_row($createtable);
-	$sql .= $create[1].";\n\n";
-
-	$rows = $DB->query("SELECT * FROM $table");
-	$numfields = $DB->num_fields($rows);
-	$numrows = $DB->num_rows($rows);
-	while ($row = $DB->fetch_row($rows))
-	{
-		$comma = "";
-		$sql .= "INSERT INTO $table VALUES(";
-		for ($i = 0; $i < $numfields; $i++)
-		{
-			$sql .= $comma."'".mysql_escape_string($row[$i])."'";
-			$comma = ",";
-		}
-		$sql .= ");\n";
-	}
-	$sql .= "\n";
-
-	return $sql;
-}
-
-/**
  * 随机读取一个数组元素
  *
  * @param array $array
@@ -751,20 +690,20 @@ function getTips($array)
  */
 function formatArray($array)
 {
-	 sort($array);
-	 $tem = '';
-	 $temarray = array();
-	 $j = 0;
-	 for ($i = 0;$i < count($array);$i++)
-	 {
+	sort($array);
+	$tem = '';
+	$temarray = array();
+	$j = 0;
+	for ($i = 0;$i < count($array);$i++)
+	{
 		if ($array[$i] != $tem)
 		{
-			 $temarray[$j] = $array[$i];
-			 $j++;
+			$temarray[$j] = $array[$i];
+			$j++;
 		}
 		$tem = $array[$i];
-	 }
-	 return $temarray;
+	}
+	return $temarray;
 }
 
 /**
@@ -772,9 +711,9 @@ function formatArray($array)
  *
  * @param unknown_type $info
  */
-function sysMsg($info) 
+function sysMsg($info)
 {
-print <<<EOT
+	print <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -796,6 +735,36 @@ body {
 </body>
 </html>
 EOT;
-exit;
+	exit;
+}
+
+/**
+ * 后台返回信息
+ *
+ * @param unknown_type $msg
+ * @param unknown_type $url
+ * @param unknown_type $type
+ */
+function formMsg($msg,$url,$type)
+{
+	global $nonce_tpl;
+	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
+	require_once(getViews('msg'));
+	cleanPage();
+	exit;
+}
+
+/**
+ * 前台错误处理函数
+ *
+ * @param string $msg 错误信息
+ * @param string $url 返回url
+ */
+function msg($msg,$url)
+{
+	global $tpl_dir;
+	require_once getViews('message');
+	cleanPage();
+	exit;
 }
 ?>

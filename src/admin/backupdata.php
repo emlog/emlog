@@ -10,11 +10,12 @@ require_once('./globals.php');
 
 if($action == '')
 {
-	include getViews('header');
-	$retval = glob("../adm/bakup/*.sql");
+	$retval = glob("../content/backup/*.sql");
 	$bakfiles = $retval ? $retval : array();
 	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag','trackback','twitter','user');
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
+	
+	include getViews('header');	
 	require_once(getViews('bakdata'));
 	include getViews('footer');
 	cleanPage();
@@ -28,16 +29,16 @@ if($action=='bakstart')
 	{
 		formMsg('错误的备份文件名','javascript:history.go(-1);',0);
 	}
-	$filename = './bakup/'.$bakfname.'.sql';
+	$filename = '../content/backup/'.$bakfname.'.sql';
 
-	// 获取数据库结构和数据内容
+	//获取数据库结构和数据内容
 	$sqldump = '';
 	foreach($table_box as $table)
 	{
 		$sqldump .= dataBak($table);
 	}
 
-	// 如果数据内容不是空就开始保存
+	//如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
 		$sqldump = "#emlog_".EMLOG_VERSION." database bakup file\n#".date('Y-m-d H:i')."\n$sqldump";
@@ -101,6 +102,21 @@ if ($action == 'renewdata')
 	formMsg('数据恢复成功', './backupdata.php',1);
 }
 
+//批量删除备份文件
+if($action== 'dell_all_bak')
+{
+	if(!isset($_POST['bak']))
+	{
+		formMsg('请选择要删除的备份文件','./backupdata.php',0);
+	}else{
+		foreach($_POST['bak'] as $value)
+		{
+			unlink($value);
+		}
+		formMsg('备份文件删除成功!','./backupdata.php',1);
+	}
+}
+
 function bakindata($filename)
 {
 	global $db,$DB;
@@ -132,19 +148,37 @@ function bakindata($filename)
 	}
 }
 
-//批量删除备份文件
-if($action== 'dell_all_bak')
+/**
+ * 备份数据库结构和所有数据
+ *
+ * @param string $table 数据库表名
+ * @return string
+ */
+function dataBak($table)
 {
-	if(!isset($_POST['bak']))
+	global $DB;
+	$sql = "DROP TABLE IF EXISTS $table;\n";
+	$createtable = $DB->query("SHOW CREATE TABLE $table");
+	$create = $DB->fetch_row($createtable);
+	$sql .= $create[1].";\n\n";
+
+	$rows = $DB->query("SELECT * FROM $table");
+	$numfields = $DB->num_fields($rows);
+	$numrows = $DB->num_rows($rows);
+	while ($row = $DB->fetch_row($rows))
 	{
-		formMsg('请选择要删除的备份文件','./backupdata.php',0);
-	}else{
-		foreach($_POST['bak'] as $value)
+		$comma = "";
+		$sql .= "INSERT INTO $table VALUES(";
+		for ($i = 0; $i < $numfields; $i++)
 		{
-			unlink($value);
+			$sql .= $comma."'".mysql_escape_string($row[$i])."'";
+			$comma = ",";
 		}
-		formMsg('备份文件删除成功!','./backupdata.php',1);
+		$sql .= ");\n";
 	}
+	$sql .= "\n";
+
+	return $sql;
 }
 
 ?>
