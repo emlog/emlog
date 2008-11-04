@@ -43,8 +43,7 @@ class mkcache {
 		'blogurl'=>htmlspecialchars($show_config['blogurl']),
 		'icp'=>htmlspecialchars($show_config['icp']),
 		'timezone'=>$show_config['timezone'],
-		'exarea'=>$show_config['exarea'],
-		'edition'=>EM_VERSION
+		'exarea'=>$show_config['exarea']
 		);
 		$cacheData = serialize($config_cache);
 		$this->cacheWrite($cacheData,$cf);

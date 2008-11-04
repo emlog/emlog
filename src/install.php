@@ -13,7 +13,7 @@ require_once("./lib/C_phpass.php");
 
 doStripslashes();
 
-define('EM_VERSION', '2.7.0');
+define('EMLOG_VERSION', '2.7.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
 if(!isset($_GET['action']))
@@ -82,7 +82,7 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog <?php echo EM_VERSION ?></span><span> 安装程序</span></p>
+<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序</span></p>
 </div>
 <div class="a">
 <p class="title2">1.权限设置</p>
@@ -197,6 +197,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
 	."\n//blog root\n"
 	."define('EMLOG_ROOT','".dirname(__FILE__)."');"
+	."\n//blog version\n"
+	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
 	."\n?>";
 
 	@$fw = fwrite($fp, $config) ;

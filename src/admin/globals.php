@@ -36,10 +36,9 @@ $tips = getTips($tips);//加载小提示
 
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png','bmp');//允许上传的文件类型
 $uploadroot = "../uploadfile/";	//附件保存目录
-$uploadmax = 2097152;			//附件大小上限 单位：字节
-$tpl_dir = '../content/templates/';		//所有模板目录
-$nonce_tpl = 'default';			//后台模板 adm/views/default
-define('EM_VERSION',		'2.7.0');//版本号
+$uploadmax = 2097152;//附件大小上限 单位：字节
+$tpl_dir = '../content/templates/';//所有模板目录
+$nonce_tpl = 'default';//后台模板 adm/views/default
 define('IMG_ATT_MAX_W',		420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',		460);//图片附件缩略图最大高
 define('ICON_MAX_W',		140);//个性头像缩略图最大宽
