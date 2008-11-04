@@ -218,8 +218,8 @@ class emBlog {
 	function neighborLog($blogId)
 	{
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM $this->blogTable WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-		$neighborlog['prevLog'] = $this->dbhd->fetch_one_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		$neighborlog['nextLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
 		return $neighborlog;
 	}
 

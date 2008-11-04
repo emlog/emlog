@@ -126,7 +126,7 @@ class emTrackback {
 	function deleteTrackback($tbid)
 	{
 		$sql = "SELECT gid FROM $this->tbTable WHERE tbid=$tbid";
-		$blog = $DB->fetch_one_array($sql);
+		$blog = $DB->once_fetch_array($sql);
 		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
 		$DB->query("DELETE FROM $this->tbTable where tbid=$tbid");
 	}

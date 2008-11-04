@@ -39,7 +39,7 @@ class emTag {
 	function getOneTag($tagId)
 	{
 		$tag = array();
-		$row = $this->dbhd->fetch_one_array("SELECT tagname,tid FROM $this->tagTable WHERE tid=$tagId");
+		$row = $this->dbhd->once_fetch_array("SELECT tagname,tid FROM $this->tagTable WHERE tid=$tagId");
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
 		$tag['tagid'] = intval($row['tid']);
 		return $tag;
@@ -48,7 +48,7 @@ class emTag {
 	function getTagByName($tagName)
 	{
 		$tag = array();
-		$row = $this->dbhd->fetch_one_array("SELECT tagname,gid FROM $this->tagTable WHERE tagname='$tagName'");
+		$row = $this->dbhd->once_fetch_array("SELECT tagname,gid FROM $this->tagTable WHERE tagname='$tagName'");
 		if(empty($row))
 		{
 			return false;
@@ -68,7 +68,7 @@ class emTag {
 		$tag = formatArray($tag);
 		foreach ($tag as $tagName)
 		{
-			$result = $this->dbhd->fetch_one_array("SELECT tagname FROM $this->tagTable WHERE tagname='$tagName'");
+			$result = $this->dbhd->once_fetch_array("SELECT tagname FROM $this->tagTable WHERE tagname='$tagName'");
 			if(empty($result)) {
 				$query="INSERT INTO $this->tagTable (tagname,gid) VALUES('".$tagName."',',$blogId,')";
 				$this->dbhd->query($query);
@@ -108,7 +108,7 @@ class emTag {
 				}
 				elseif($j == count($old_tag)-1)
 				{
-					$result = $this->dbhd->fetch_one_array("SELECT tagname FROM $this->tagTable WHERE tagname='".trim($dif_tag[$n])."' ");
+					$result = $this->dbhd->once_fetch_array("SELECT tagname FROM $this->tagTable WHERE tagname='".trim($dif_tag[$n])."' ");
 					if(empty($result))
 					{
 						$query="INSERT INTO $this->tagTable (tagname,gid) VALUES('".$dif_tag[$n]."',',$blogId,')";

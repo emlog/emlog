@@ -18,7 +18,7 @@
   <tr>
     <td width="9" id=headerleft></td>
     <td width=98 align=middle nowrap class="logo">Emlog</td>
-    <td class="vesion"><?php echo $edition; ?></td><td class="vesion"><?php echo $blogname; ?></td>
+    <td class="vesion"><?php echo EMLOG_VERSION; ?></td><td class="vesion"><?php echo $blogname; ?></td>
     <td align=right nowrap>
 	欢迎您：<a href="blogger.php"><?php echo $userData['username'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="configure.php">设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;

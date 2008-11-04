@@ -7,10 +7,6 @@
  */
 
 require_once('./common.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
-require_once(EMLOG_ROOT.'/model/C_comment.php');
-require_once(EMLOG_ROOT.'/model/C_trackback.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
 
 define('CURPAGE','index');
 
@@ -34,6 +30,9 @@ $blogtitle = $blogname;
 //日志列表
 if (!isset($action) || empty($action))
 {
+	require_once(EMLOG_ROOT.'/model/C_blog.php');
+	require_once(EMLOG_ROOT.'/model/C_tag.php');
+
 	$emBlog = new emBlog($DB);
 	$emTag = new emTag($DB);
 
@@ -91,8 +90,12 @@ if (!isset($action) || empty($action))
 //显示日志
 if ($action == 'showlog')
 {
+	require_once(EMLOG_ROOT.'/model/C_blog.php');
+	require_once(EMLOG_ROOT.'/model/C_comment.php');
+	require_once(EMLOG_ROOT.'/model/C_trackback.php');
+
 	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : msg('提交参数错误','./index.php');
-	
+
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
 	$emTrackback = new emTrackback($DB);
@@ -130,8 +133,9 @@ if ($action == 'showlog')
 //添加评论
 if ($action == 'addcom')
 {
-	$emComment = new emComment($DB);
+	require_once(EMLOG_ROOT.'/model/C_comment.php');
 
+	$emComment = new emComment($DB);
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';

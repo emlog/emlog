@@ -61,7 +61,7 @@ class MySql {
 	}
 
 	/**
-	 * 从结果集中取得一行作为关联数组，或数字数组
+	 * 从结果集中取得一行作为关联数组/数字索引数组
 	 *
 	 * @param resource $query
 	 * @return array
@@ -70,9 +70,15 @@ class MySql {
 	{
 		return mysql_fetch_array($query);
 	}
+
+	function once_fetch_array($sql)
+	{
+		$this->result = $this->query($sql);
+		return $this->fetch_array($this->result);
+	}
 	
 	/**
-	 * 取得结果集中一条记录
+	 * 从结果集中取得一行作为数字索引数组
 	 *
 	 * @param resource $query
 	 * @return integer
@@ -111,13 +117,6 @@ class MySql {
 	function insert_id()
 	{
 		return mysql_insert_id($this->conn);
-	}
-	
-	
-	function fetch_one_array($sql)
-	{
-		$this->result = $this->query($sql);
-		return $this->fetch_array($this->result);
 	}
 
 	/**

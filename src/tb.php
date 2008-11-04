@@ -31,7 +31,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		showXML('引用地址已失效');
 	}
 	
-	$blog = $DB->fetch_one_array("SELECT allow_tb FROM ".DB_PREFIX."blog WHERE gid='".$blogid."'");
+	$blog = $DB->once_fetch_array("SELECT allow_tb FROM ".DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
 		showXML('日志不存在');

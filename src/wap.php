@@ -85,7 +85,7 @@ if ($action == 'dis')
 {
 	//参数过滤
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : msg('提交参数错误','./wap.php');
-	$show_log = @$DB->fetch_one_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
+	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
 	OR msg('不存在该日志','./wap.php');
 	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 

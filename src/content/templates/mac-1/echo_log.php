@@ -112,7 +112,7 @@ $reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{
 	</div>
 
 </div>
-<div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo $edition;?>">emlog</a>
+<div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>
  Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
 </div>
 <?php

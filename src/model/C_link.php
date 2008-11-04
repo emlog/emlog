@@ -22,7 +22,7 @@ class emLink {
 	{
 		$res = $this->dbhd->query("SELECT * FROM $this->linkTable ORDER BY taxis ASC");
 		$links = array();
-		while($row = $DB->fetch_array($res))
+		while($row = $this->dbhd->fetch_array($res))
 		{
 			$row['sitename'] = htmlspecialchars($row['sitename']);
 			$row['description'] = subString(htmlClean2($row['description']),0,80);
@@ -40,13 +40,13 @@ class emLink {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update $this->linkTable set $upStr where gid=$linkId");
+		$this->dbhd->query("update $this->linkTable set $upStr where id=$linkId");
 	}
 
 	function addLink($name, $url, $des)
 	{
 		$sql="insert into $this->linkTable (sitename,siteurl,description) values('$name','$url.','$des')";
-		$DB->query($sql);
+		$this->dbhd->query($sql);
 	}
 
 	function getOneLink($linkId)
@@ -68,7 +68,7 @@ class emLink {
 	
 	function deleteLink($linkId)
 	{
-		$DB->query("DELETE FROM $this->linkTable where id=$linkId");
+		$this->dbhd->query("DELETE FROM $this->linkTable where id=$linkId");
 	}
 
 }

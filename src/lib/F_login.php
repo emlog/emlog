@@ -87,7 +87,7 @@ function getUserDataByLogin($userLogin)
 		return false;
 	}
 	$userData = false;
-	if ( !$userData = $DB->fetch_one_array("SELECT * FROM ".DB_PREFIX."user WHERE username = '$userLogin'"))
+	if ( !$userData = $DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."user WHERE username = '$userLogin'"))
 	{
 		return false;
 	}

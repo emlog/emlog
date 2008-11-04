@@ -141,7 +141,7 @@ function viewCount()
 		if ($ret)
 		{
 			$curtime = date("Y-m-d");
-			$rs = $DB->fetch_one_array("SELECT curdate FROM ".DB_PREFIX."statistics WHERE curdate='". $curtime ."'");
+			$rs = $DB->once_fetch_array("SELECT curdate FROM ".DB_PREFIX."statistics WHERE curdate='". $curtime ."'");
 			if (!$rs)
 			{
 				$DB->query("UPDATE ".DB_PREFIX."statistics SET curdate ='". $curtime ."'");

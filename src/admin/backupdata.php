@@ -40,7 +40,7 @@ if($action=='bakstart')
 	// 如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
-		$sqldump = "#emlog_$edition database bakup file\n#".date('Y-m-d H:i')."\n$sqldump";
+		$sqldump = "#emlog_".EMLOG_VERSION." database bakup file\n#".date('Y-m-d H:i')."\n$sqldump";
 		//备份到服务器
 		@$fp = fopen($filename, "w+");
 		if ($fp)
@@ -77,9 +77,9 @@ if ($action == 'renewdata')
 		$fp = fopen($sqlfile,'rb');
 		$bakinfo = fread($fp,200);
 		fclose($fp);
-		if (!strstr($bakinfo,"emlog_$edition"))
+		if (!strstr($bakinfo,"emlog_".EMLOG_VERSION))
 		{
-			formMsg("导入失败! 该备份文件不是 emlog {$edition} 的备份文件!", 'javascript:history.go(-1);',0);
+			formMsg("导入失败! 该备份文件不是 emlog ".EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
 		}elseif (!strstr($bakinfo,DB_PREFIX)){
 			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
 		}

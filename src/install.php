@@ -7,7 +7,7 @@
  */
 
 require_once('./lib/F_base.php');
-require_once("./lib/C_mysql.php");
+require_once('./lib/C_mysql.php');
 require_once('./lib/C_cache.php');
 require_once("./lib/C_phpass.php");
 
@@ -152,7 +152,7 @@ Powered by <a href="http://www.emlog.net">emlog</a>
 <?php
 }
 
-if(isset($_GET['action'])&&$_GET['action'] == "install")
+if(isset($_GET['action']) && $_GET['action'] == "install")
 {
 	// 获取表单信息，修改配置文件
 	$db_host = addslashes(trim($_POST['hostname']));//服务器地址
@@ -212,7 +212,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 
 	//初始化数据库类
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	$CACHE = new mkcache('./content/cache/', $DB, $db_prefix);
+	$CACHE = new mkcache($DB, $db_prefix);
 	//密码加密存储
 	$PHPASS = new PasswordHash(8, true);
 	$adminpw = $PHPASS->HashPassword($adminpw);

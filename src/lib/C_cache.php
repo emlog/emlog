@@ -55,7 +55,7 @@ class mkcache {
 	 */
 	function mc_blogger($cf)
 	{
-		$blogger = $this->dbhd->fetch_one_array("select * from ".$this->db_prefix."user ");
+		$blogger = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."user ");
 		$icon = '';
 		if($blogger['photo'])
 		{
@@ -79,7 +79,7 @@ class mkcache {
 	 */
 	function mc_sta($cf)
 	{
-		$dh = $this->dbhd->fetch_one_array("select * from ".$this->db_prefix."statistics");
+		$dh = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."statistics");
 		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE hide='n' "));
 		$comnum = $this->dbhd->num_rows($this->dbhd->query("SELECT cid FROM ".$this->db_prefix."comment WHERE hide='n' "));
 		$tbnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."trackback "));

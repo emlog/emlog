@@ -78,7 +78,7 @@ class emComment {
 	 */
 	function delComment($commentId)
 	{
-		$row = $this->dbhd->fetch_one_array("SELECT gid FROM $this->commentTable WHERE cid=$commentId");
+		$row = $this->dbhd->once_fetch_array("SELECT gid FROM $this->commentTable WHERE cid=$commentId");
 		$this->dbhd->query("DELETE FROM $this->commentTable where cid=$commentId");
 		$blogId = intval($row['gid']);
 		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
@@ -90,7 +90,7 @@ class emComment {
 	 */
 	function hideComment($commentId)
 	{
-		$row = $this->dbhd->fetch_one_array("SELECT gid,hide FROM $this->commentTable WHERE cid=$commentId");
+		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM $this->commentTable WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$isHide = $row['hide'];
 		if($isHide == 'n')
@@ -101,7 +101,7 @@ class emComment {
 	}
 	function showComment($commentId)
 	{
-		$row = $this->dbhd->fetch_one_array("SELECT gid,hide FROM $this->commentTable WHERE cid=$commentId");
+		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM $this->commentTable WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$isHide = $row['hide'];
 		if($isHide == 'y')
