@@ -10,7 +10,6 @@ require_once('./globals.php');
 
 if ($action == '')
 {
-	include getViews('header');
 	$sta_cache = $CACHE->readCache('sta');
 	extract($sta_cache);
 	
@@ -31,7 +30,8 @@ if ($action == '')
 	}else{
 		$gd_ver = '不支持GD图形库';
 	}
-	
+
+	include getViews('header');
 	require_once(getViews('index'));
 	include getViews('footer');
 	cleanPage();

@@ -100,7 +100,7 @@ if ($action == 'showlog')
 	$emComment = new emComment($DB);
 	$emTrackback = new emTrackback($DB);
 
-	$logData = $emBlog->getOneLog($logid, 'n');
+	$logData = $emBlog->getOneLog($logid, 'n', 'homepage');
 	if($logData === false)
 	{
 		msg('不存在该日志','./index.php');

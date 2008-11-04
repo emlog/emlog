@@ -20,19 +20,19 @@ if ($action=='')
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$blogData = $emBlog->getOneLog($logid); 
 	extract($blogData);
-	$title = htmlspecialchars($log_title);
-	$adddate = $post_time;
-	//log_content
-	$content = htmlspecialchars($content);
 	//log tag
-	$tags = $emTag->getTag($logid);
+	$tags = array();
+	foreach ($emTag->getTag($logid) as $val)
+	{
+		$tags[] = $val['tagname'];
+	}
 	$tagStr = implode(',', $tags);
 	//old tag
 	$tags = $emTag->getTag();
 	$oldTagStr = '';
 	foreach ($tags as $val)
 	{
-		$oldTagStr .=" <a href=\"javascript: inserttag('$val','tags');\">$val</a> ";
+		$oldTagStr .=" <a href=\"javascript: inserttag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
 	}
 	//date
 	$year = date('Y',$date);

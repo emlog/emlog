@@ -55,7 +55,7 @@ setTimeout("doautosave()",30000);
 			  <input name="newhour" type="text" value="<?php echo $hour; ?>" maxlength="2" 	size="1"> 时
 			  <input name="newmin" type="text" value="<?php echo $minute; ?>" maxlength="2" size="1"> 分 
 			  <input name="newsec" type="text" value="<?php echo $second; ?>" maxlength="2" size="1"> 秒
-			  <input name="date" type="hidden" value="<?php echo $adddate; ?>" >
+			  <input name="date" type="hidden" value="<?php echo $date; ?>" >
 		  <br />请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒 (24小时制)</div></td>
         </tr>
     </table>

@@ -18,7 +18,7 @@ if($action == '')
 	$tagStr = '';
 	foreach ($tags as $val)
 	{
-		$tagStr .=" <a href=\"javascript: inserttag('$val','tags');\">$val</a> ";
+		$tagStr .=" <a href=\"javascript: inserttag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
 	}
 	include getViews('header');
 	require_once(getViews('add_log'));

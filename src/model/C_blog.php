@@ -76,7 +76,7 @@ class emBlog {
 	 * @param int $blogId
 	 * @return array
 	 */
-	function getOneLog($blogId,  $hide='')
+	function getOneLog($blogId,  $hide='', $type='admin')
 	{
 		$hideState = $hide == 'n' ? "and hide='n'" :'';
 		$sql = "select * from $this->blogTable where gid=$blogId $hideState";
@@ -84,16 +84,26 @@ class emBlog {
 		$row = $this->dbhd->fetch_array($res);
 		if($row)
 		{
-			$logData = array(
-			'blogtitle' => htmlspecialchars($row['title']),
-			'log_title' => htmlspecialchars($row['title']),
-			'post_time' => date('Y-n-j G:i l',$row['date']),
-			'logid' => intval($row['gid']),
-			'tbscode' => substr(md5(date('Ynd')),0,5),
-			'log_content' => rmBreak($row['content']),
-			'allow_remark' => $row['allow_remark'],
-			'allow_tb' => $row['allow_tb']
-			);
+			switch ($type)
+			{
+				case 'admin':
+					$row['title'] = htmlspecialchars($row['title']);
+					$row['content'] = htmlspecialchars($row['content']);
+					$logData = $row;
+					break;
+				case 'homepage':
+					$logData = array(
+					'blogtitle' => htmlspecialchars($row['title']),
+					'log_title' => htmlspecialchars($row['title']),
+					'post_time' => date('Y-n-j G:i l',$row['date']),
+					'logid' => intval($row['gid']),
+					'tbscode' => substr(md5(date('Ynd')),0,5),
+					'log_content' => rmBreak($row['content']),
+					'allow_remark' => $row['allow_remark'],
+					'allow_tb' => $row['allow_tb']
+					);
+					break;
+			}
 			return $logData;
 		}else {
 			return false;
