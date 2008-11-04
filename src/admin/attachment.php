@@ -15,7 +15,7 @@ if($action == 'selectFile')
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	if($logid)
 	{
-		$sql="SELECT * FROM ".DB_PREFIX."attachment where blogid=$logid ";
+		$sql="SELECT * FROM ".DB_PREFIX."attachment where blogid=$logid";
 		$query=$DB->query($sql);
 		$attachnum = $DB->num_rows($query);
 	}

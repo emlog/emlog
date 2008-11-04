@@ -12,7 +12,6 @@ ob_start();
 require_once('../config.php');
 require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
-require_once(EMLOG_ROOT.'/lib/F_adm.php');
 require_once(EMLOG_ROOT.'/lib/C_mysql.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
 require_once(EMLOG_ROOT.'/admin/tips.php');
