@@ -19,7 +19,7 @@ if($action == 'selectFile')
 		$query=$DB->query($sql);
 		$attachnum = $DB->num_rows($query);
 	}
-	$maxsize = changeFileSize($uploadmax);
+	$maxsize = changeFileSize(UPLOADFILE_MAXSIZE);
 	//允许附件类型
 	$att_type_str = '';
 	foreach ($att_type as $val)
@@ -49,7 +49,7 @@ if($action == 'upload')
 						formMsg("错误的附件类型","javascript:history.go(-1);",0);
 						break;
 					case -2:
-						$ret = changeFileSize($uploadmax);
+						$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 						formMsg("附件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 						break;
 					case -3:

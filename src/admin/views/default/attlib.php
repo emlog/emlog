@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/<?php echo $nonce_tpl; ?>/main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
+<link href="./views/<?php echo ADMIN_TPL; ?>/main.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/main.js"></script>
 </head>
 <script>
 function showupload()
@@ -32,14 +32,14 @@ foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));
 	$atturl = $blogurl.substr(str_replace('thum-','',$value['filepath']),3);
 	if($extension == 'zip' || $extension == 'rar'){
-		$imgpath = "./views/$nonce_tpl/images/tar.gif";
+		$imgpath = "./views/".ADMIN_TPL."/images/tar.gif";
 		$embedlink = '压缩包';
 	}elseif ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif') {
 		$imgpath = $value['filepath'];
 		$ed_imgpath = $blogurl.substr($imgpath,3);
 		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">嵌入 </a>";
 	}else {
-		$imgpath = "./views/$nonce_tpl/images/fnone.gif";
+		$imgpath = "./views/".ADMIN_TPL."/images/fnone.gif";
 		$embedlink = '';
 	}
 ?>

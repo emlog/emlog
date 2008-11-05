@@ -43,8 +43,8 @@ $music = $CACHE->readCache('musics');
 //配置项目
 extract($config_cache);
 $exarea    = stripslashes($exarea);
+$tpl_dir = './content/templates/';//所有模板目录
 $timezone  = intval($timezone);
-$tpl_dir   = './content/templates/';//所有模板存放目录
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 
 //站点信息

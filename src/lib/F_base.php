@@ -553,23 +553,21 @@ function findArray($array1,$array2)
  */
 function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 {
-	global $uploadroot, $uploadmax;
-
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
 		return -1;//错误的附件类型
 	}
-	if ($filesize > $uploadmax)
+	if ($filesize > UPLOADFILE_MAXSIZE)
 	{
 		return -2;//附件大小超出的限制
 	}
-	$uppath = $uploadroot . date("Ym") . "/";
+	$uppath = UPLOADFILE_PATH . date("Ym") . "/";
 	$fname = md5($filename) . date("YmdHis") .'.'. $extension;
 	$attachpath = $uppath . $fname;
-	if (!is_dir($uploadroot))
+	if (!is_dir(UPLOADFILE_PATH))
 	{
-		if (@mkdir($uploadroot,0777) === false)
+		if (@mkdir(UPLOADFILE_PATH,0777) === false)
 		{
 			return -3;//权限不足无法创建附件目录
 		}
@@ -747,7 +745,6 @@ EOT;
  */
 function formMsg($msg,$url,$type)
 {
-	global $nonce_tpl;
 	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
 	require_once(getViews('msg'));
 	cleanPage();

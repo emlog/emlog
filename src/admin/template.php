@@ -13,7 +13,7 @@ if($action == '')
 	$row = $DB->once_fetch_array("SELECT nonce_templet FROM ".DB_PREFIX."config");
 	$tplname = $row['nonce_templet'];
 
-	$handle = @opendir($tpl_dir) OR die('模板目录未找到！');
+	$handle = @opendir($tpl_dir) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
 	{

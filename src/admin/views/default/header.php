@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
-<link href="./views/<?php echo $nonce_tpl; ?>/main.css" type=text/css rel=stylesheet>
+<link href="./views/<?php echo ADMIN_TPL; ?>/main.css" type=text/css rel=stylesheet>
 <!--<script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>-->
-<script type="text/javascript" src="./views/<?php echo $nonce_tpl; ?>/main.js"></script>
+<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/main.js"></script>
 <title>Manager Center</title>
 </head>
 <body>
@@ -56,7 +56,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="showhidediv('logmg');">日志管理</div>
 			<div id="logmg">
-            <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo $nonce_tpl; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+            <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php">日志管理</a></div>
             <div class=sidebarsubmenu><A href="tag.php">标签管理</A><a href="admin_log.php"></a></div>

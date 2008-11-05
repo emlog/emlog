@@ -45,7 +45,7 @@ if($action== 'modintro')
 					formMsg("错误的文件类型","javascript:history.go(-1);",0);
 					break;
 				case -2:
-					$ret = changeFileSize($uploadmax);
+					$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 					formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 					break;
 				case -3:

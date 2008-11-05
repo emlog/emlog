@@ -62,7 +62,7 @@ function checkUser($username,$password,$imgcode,$logincode)
  */
 function loginPage()
 {
-	global $login_code,$nonce_tpl;
+	global $login_code;
 	$login_code == 'y' ?
 	$ckcode = "<tr><td >验证码:<br /><input type=\"hidden\" name=\"action\" value=\"login\" >
 				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
