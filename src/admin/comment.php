@@ -48,7 +48,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('delcom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
-		formMsg('评论删除成功','./comment.php',1);
+		header("Location: ./comment.php");
 	}
 	//屏蔽
 	if($doWhat == 'hidecom')
@@ -56,7 +56,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('hidecom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
-		formMsg('屏蔽评论成功','./comment.php',1);
+		header("Location: ./comment.php");
 	}
 	//审核
 	if($doWhat == 'showcom')
@@ -64,7 +64,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('showcom', $comments);
 		$CACHE->mc_sta('sta');
 		$CACHE->mc_comment('comments');
-		formMsg('审核评论成功','./comment.php',1);
+		header("Location: ./comment.php");
 	}
 }
 //删除评论
@@ -74,7 +74,7 @@ if ($action== 'del_comment')
 	$emComment->delComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
-	formMsg('评论删除成功','./comment.php',1);
+	header("Location: ./comment.php");
 }
 //屏蔽评论
 if($action=='hide_comment')
@@ -83,7 +83,7 @@ if($action=='hide_comment')
 	$emComment->hideComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
-	formMsg('评论屏蔽成功','./comment.php',1);
+	header("Location: ./comment.php");
 }
 //审核评论
 if($action=='show_comment')
@@ -92,7 +92,7 @@ if($action=='show_comment')
 	$emComment->showComment($commentId);
 	$CACHE->mc_sta('sta');
 	$CACHE->mc_comment('comments');
-	formMsg('评论审核成功','./comment.php',1);
+	header("Location: ./comment.php");
 }
 //回复评论
 if ($action== 'reply_comment')
@@ -118,7 +118,7 @@ if($action=='doreply')
 	{
 		$emComment->replyComment($commentId, $reply);
 		$CACHE->mc_comment('comments');
-		formMsg("评论回复成功","./comment.php",1);
+		header("Location: ./comment.php");
 	}else{
 		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
 		$emComment->replyComment($commentId, $reply);

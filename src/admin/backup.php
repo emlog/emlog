@@ -16,7 +16,7 @@ if($action == '')
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	
 	include getViews('header');	
-	require_once(getViews('bakdata'));
+	require_once(getViews('backup'));
 	include getViews('footer');
 	cleanPage();
 }
@@ -52,7 +52,7 @@ if($action=='bakstart')
 				@fclose($fp);
 				formMsg( '备份失败,请检查备份目录的权限是否可写','javascript:history.go(-1);',0);
 			}else{
-				formMsg('数据成功备份至服务器','./backupdata.php',1);
+				formMsg('数据成功备份至服务器','./backup.php',1);
 			}
 		}else{
 			formMsg('无法打开指定的目录'. $filename .'，请确定该目录是否存在,或者是否有相应权限','javascript:history.go(-1);',0);
@@ -99,7 +99,7 @@ if ($action == 'renewdata')
 	$CACHE->mc_link('links');
 	$CACHE->mc_tags('tags');
 	$CACHE->mc_twitter('twitter');
-	formMsg('数据恢复成功', './backupdata.php',1);
+	formMsg('数据恢复成功', './backup.php',1);
 }
 
 //批量删除备份文件
@@ -107,13 +107,13 @@ if($action== 'dell_all_bak')
 {
 	if(!isset($_POST['bak']))
 	{
-		formMsg('请选择要删除的备份文件','./backupdata.php',0);
+		formMsg('请选择要删除的备份文件','./backup.php',0);
 	}else{
 		foreach($_POST['bak'] as $value)
 		{
 			unlink($value);
 		}
-		formMsg('备份文件删除成功!','./backupdata.php',1);
+		header("Location: ./backup.php");
 	}
 }
 

@@ -9,7 +9,7 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 </script>
-<form  method="post" action="backupdata.php?action=dell_all_bak">
+<form  method="post" action="backup.php?action=dell_all_bak">
 <table width="95%" id="adm_bakdata_list">
   <thead>
     <tr class="rowstop">
@@ -32,7 +32,7 @@ $(document).ready(function(){
       <td><a href="./bakup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
-      <td><a href="javascript: isdel('<?php echo $value; ?>', 5);">导入</a></td>
+      <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');">导入</a></td>
     </tr>
 	<?php endforeach; ?>
 	</tbody>
@@ -46,7 +46,7 @@ $(document).ready(function(){
 </table>
 </form>
 <div class=line></div>
-<form action="backupdata.php?action=bakstart" method="post">
+<form action="backup.php?action=bakstart" method="post">
 <table width="95%" align="center" border="0">
     <tbody>
       <tr>

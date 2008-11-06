@@ -77,6 +77,7 @@ if ($action == 'logout')
 }
 
 $userData = array();
+
 if(isLogin() === false)
 {
 	loginpage();

@@ -38,7 +38,7 @@ if($action=='usetpl')
 	$tplname = isset($_GET['tplname']) ? addslashes($_GET['tplname']) : '';
 	$DB->query("UPDATE ".DB_PREFIX."config SET nonce_templet='$tplname'");
 	$CACHE->mc_config('config');
-	formMsg("模板设置成功","./template.php",1);
+	header("Location: ./template.php");
 }
 
 ?>

@@ -25,11 +25,11 @@ a:hover {
 	background-repeat: repeat-x
 }
 #header a {
-	color: #000000; 
+	color: #F3F3F3; 
 	text-decoration: none
 }
 #header a:hover {
-	color: #FFFFFF;
+	color: #CCCCCC;
 	text-decoration: none
 }
 #headerleft {
@@ -164,6 +164,10 @@ a:hover {
 .vesion{
 	color:#FFFFFF;
 	font-style : italic;
+	font-size:12px;
+}
+.headtext{
+	color:#FFFFFF;
 	font-size:12px;
 }
 .notice{

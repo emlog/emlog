@@ -38,7 +38,7 @@ if($action=='update_tag')
 	$emTag->updateTagName($tagId, $tagName);
 	$CACHE->mc_logtags('log_tags');
 	$CACHE->mc_tags('tags');
-	formMsg('标签修改成功','./tag.php',1);
+	header("Location: ./tag.php");
 }
 
 //批量删除标签
@@ -55,7 +55,7 @@ if($action== 'dell_all_tag')
 	}
 	$CACHE->mc_logtags('log_tags');
 	$CACHE->mc_tags('tags');
-	formMsg('标签删除成功','./tag.php',1);
+	header("Location: ./tag.php");
 }
 
 ?>

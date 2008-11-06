@@ -29,7 +29,7 @@ $(document).ready(function(){
         <td><?php echo $value['blog_name']; ?></td>
         <td><?php echo $value['ip']; ?></td>
         <td><?php echo $value['date']; ?></td>
-        <td> <a href="javascript: isdel(<?php echo $value['tbid']; ?>, 4);">删除</a> </td>
+        <td> <a href="javascript: em_confirm(<?php echo $value['tbid']; ?>, 'trackback');">删除</a> </td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>

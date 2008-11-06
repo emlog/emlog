@@ -71,6 +71,8 @@ if($action == '')
 if($action == 'admin_all_log')
 {
 	$dowhat = isset($_POST['modall']) ? $_POST['modall'] : '';
+	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
+
 	if($dowhat == '')
 	{
 		formMsg('请选择一个要执行的操作','javascript:history.back(-1);',0);
@@ -93,21 +95,26 @@ if($action == 'admin_all_log')
 			$CACHE->mc_comment('comments');
 			$CACHE->mc_logtags('log_tags');
 			$CACHE->mc_tags('tags');
-			formMsg('删除日志成功','./admin_log.php',1);
+			if($pid == 'draft')
+			{
+				header("Location: ./admin_log.php?pid=draft");
+			}else{
+				header("Location: ./admin_log.php");
+			}
 			break;
 		case 'top':
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->updateLog(array('top'=>'y'),$key);
 			}
-			formMsg('推荐日志成功','./admin_log.php',1);
+			header("Location: ./admin_log.php");
 			break;
 		case 'notop':
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->updateLog(array('top'=>'n'),$key);
 			}
-			formMsg('日志已取消推荐','./admin_log.php',1);
+			header("Location: ./admin_log.php");
 			break;
 		case 'hide':
 			foreach($logs as $key=>$value)
@@ -118,7 +125,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_record('records');
 			$CACHE->mc_comment('comments');
 			$CACHE->mc_logtags('log_tags');
-			formMsg('日志成功转入草稿箱','./admin_log.php',1);
+			formMsg('日志成功转入草稿箱','./admin_log.php?pid=draft',1);
 			break;
 		case 'show':
 			foreach($logs as $key=>$value)
@@ -129,13 +136,13 @@ if($action == 'admin_all_log')
 			$CACHE->mc_comment('comments');
 			$CACHE->mc_logtags('log_tags');
 			$CACHE->mc_record('records');
-			formMsg('发布成功','./admin_log.php?pid=draft',1);
+			formMsg('发布成功','./admin_log.php',1);
 			break;
 	}
 }
 
-//删除日志
-if ($action == 'delLog')
+//删除日志/草稿
+if ($action == 'dellog' || $action == 'deldraft')
 {
 	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$emBlog->deleteLog($gid);
@@ -144,6 +151,11 @@ if ($action == 'delLog')
 	$CACHE->mc_comment('comments');
 	$CACHE->mc_logtags('log_tags');
 	$CACHE->mc_tags('tags');
-	formMsg('删除日志成功','./admin_log.php',1);
+	if($action == 'dellog')
+	{
+		header("Location: ./admin_log.php");
+	}else{
+		header("Location: ./admin_log.php?pid=draft");
+	}
 }
 ?>

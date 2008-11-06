@@ -26,7 +26,7 @@ $(document).ready(function(){
 		<td><input size="18" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
         <td><?php echo $value['description']; ?></td>
         <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
-        <a href="javascript: isdel(<?php echo $value['id']; ?>, 2);">删除</a></td>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
       </tr>
 	<?php endforeach; ?>
     </tbody>

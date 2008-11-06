@@ -48,7 +48,7 @@ if($action== 'addlink')
 	}
 	$emLink->addLink($sitename, $siteurl, $description);
 	$CACHE->mc_link('links');
-	formMsg( '友情站点添加成功','./link.php',1);
+	header("Location: ./link.php");
 }
 //修改
 if ($action== 'mod_link')
@@ -72,7 +72,7 @@ if($action=='update_link')
 	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
 	$CACHE->mc_link('links');
-	formMsg("修改成功","./link.php",1);
+	header("Location: ./link.php");
 }
 //删除
 if ($action== 'dellink')
@@ -80,7 +80,7 @@ if ($action== 'dellink')
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$emLink->deleteLink($linkid);
 	$CACHE->mc_link('links');
-	formMsg('删除成功','./link.php',1);
+	header("Location: ./link.php");
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php 
 if(!defined('ADMIN_ROOT')) {exit('error!');}
-$Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: isdel(0, 7);\">[删除头像]</a>":'';
+$Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>":'';
 ?>
 	<div class=containertitle><b>个人资料</b></div>
 	<div class=line></div>

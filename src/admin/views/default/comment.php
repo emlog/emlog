@@ -1,5 +1,4 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<!--
 <script type='text/javascript'>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
@@ -8,7 +7,6 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 </script>
--->
 <div class=containertitle><b>评论管理</b></div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -36,7 +34,7 @@ $(document).ready(function(){
         <td>
         <a href="comment.php?action=show_comment&amp;cid=<?php echo $value['cid']; ?>">审核</a>
         <a href="comment.php?action=hide_comment&amp;cid=<?php echo $value['cid']; ?>">屏蔽</a>
-        <a href="javascript: isdel(<?php echo $value['cid']; ?>, 1);">删除</a>
+        <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
 		</td>
      </tr>
 	<?php endforeach; ?>

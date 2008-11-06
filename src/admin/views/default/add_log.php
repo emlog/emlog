@@ -81,7 +81,7 @@ setTimeout("doautosave()",30000);
 		<tr>
           <td align="center">
 		  	  <input type="submit" value="发布日志" onclick="return chekform();" class="submit2" />
-			  <input type="submit" value="保存日志" onclick="return savedraft();" class="submit2" />
+			  <input type="submit" value="存为草稿" onclick="return savedraft();" class="submit2" />
 		  </td>
         </tr>
       </tbody>

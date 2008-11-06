@@ -1,5 +1,5 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
-<!--<script type='text/javascript'>
+<script type='text/javascript'>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_log_list tbody tr")
@@ -7,10 +7,10 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 </script>
--->
 <div class=containertitle><b><?php echo $pwd; ?></b></div>
 <div class=line></div>
 <form action="admin_log.php?action=admin_all_log" method="post" name="form" id="form">
+  <input type="hidden" name="pid" value="<?php echo $pid; ?>">
   <table width="95%" id="adm_log_list">
   <thead>
       <tr class="rowstop">
@@ -30,7 +30,13 @@ $(document).ready(function(){
       <td><?php echo $value['date']; ?></td>
 	  <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td><?php echo $value['views']; ?></a></td>
-      <td><a href="javascript: isdel(<?php echo $value['gid']; ?>, 3);">删除</a></td>
+      <td>
+      <?php if ($pid == 'draft'): ?>
+      <a href="javascript: em_confirm(<?php echo $value['gid']; ?>, 'draft');">删除</a>
+      <?php else: ?>
+      <a href="javascript: em_confirm(<?php echo $value['gid']; ?>, 'log');">删除</a>
+      <?php endif; ?>
+      </td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>

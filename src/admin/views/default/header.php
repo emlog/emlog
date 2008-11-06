@@ -18,12 +18,12 @@
   <tr>
     <td width="9" id=headerleft></td>
     <td width=98 align=middle nowrap class="logo">Emlog</td>
-    <td class="vesion"><?php echo EMLOG_VERSION; ?></td><td class="vesion"><?php echo $blogname; ?></td>
-    <td align=right nowrap>
-	欢迎您：<a href="blogger.php"><?php echo $userData['username'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <td class="vesion"><?php echo EMLOG_VERSION; ?></td>
+    <td class="headtext"><a href="../index.php" target="_blank"><?php echo $blogname; ?></a></td>
+    <td align=right nowrap class="headtext">
+	欢迎您：<a href="blogger.php"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="configure.php">设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="../index.php" target="_blank">浏览blog</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="index.php?action=logout">退出管理</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
     <td width="9" id="headerright"></td>
 	</tbody>
@@ -75,7 +75,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="showhidediv('datamg');">数据管理</div>
 			<div id="datamg">
-            <div class=sidebarsubmenu><A href="backupdata.php">数据备份</A></div>
+            <div class=sidebarsubmenu><A href="backup.php">数据备份</A></div>
             <div class=sidebarsubmenu><A href="cache.php">重建缓存</A><a href="admin_log.php"></a></div>
 			</div>
 			<div id=sidebarBottom></div>
