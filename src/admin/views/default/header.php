@@ -7,8 +7,8 @@
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <link href="./views/<?php echo ADMIN_TPL; ?>/main.css" type=text/css rel=stylesheet>
-<!--<script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>-->
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/main.js"></script>
+<script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 <title>Manager Center</title>
 </head>
 <body>

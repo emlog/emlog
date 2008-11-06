@@ -102,7 +102,6 @@ src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/main.css -text svn_keywords=Id
-src/admin/views/default/main.js -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
 src/admin/views/default/music.php -text svn_keywords=Id
 src/admin/views/default/tag.php -text svn_keywords=Id
