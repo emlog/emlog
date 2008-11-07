@@ -11,13 +11,15 @@
 <br /><br /><br /><br />
 <table align="center" class="toptd">
 <h3 align="center">Emlog</h3>
-<tr><td width="48" >用户名:<br />
-<input name="user" id="user" type="text" class="input">密码:<br />
-<input name="pw" id="pw" type="password" class="input"><br><br>
+<tr><td>
+用户名:<br /><input name="user" id="user" type="text" class="input"><br>
+密码:<br /><input name="pw" id="pw" type="password" class="input"><br>
+<?php echo $ckcode; ?><br>
+</td></tr>
+<tr><td>
 <input type="checkbox" id="ispersis" name="ispersis" value="1" /><label for="ispersis">记住我</label>
-</td></tr><?php echo $ckcode; ?><tr>
-<td align="right"><input type="submit" value=" 登 录" class="submit"></td>
-</tr>
+</td></tr>
+<tr><td align="right"><input type="submit" value=" 登 录" class="submit"></td></tr>
 </table>
 </form>
 <script>

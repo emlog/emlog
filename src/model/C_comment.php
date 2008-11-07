@@ -169,6 +169,10 @@ class emComment {
 	 */
 	function addComment($name, $content, $mail, $url, $imgcode, $comment_code, $ischkcomment, $localdate, $blogId)
 	{
+		if( $comment_code == 'y' )
+		{
+			session_start();
+		}
 		if ($url && strncasecmp($url,'http://',7))//0 if they are equal
 		{
 			$url = 'http://'.$url;
