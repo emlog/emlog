@@ -119,13 +119,13 @@ function checkPassword($password, $hash)
  * @param int $user_id User ID
  * @param bool $remember Whether to remember the user or not
  */
-function setAuthCookie($user_login, $remember = false)
+function setAuthCookie($user_login, $ispersis = false)
 {
-	if ( $remember )
+	if ( $ispersis )
 	{
-		$expiration = $expire = time() + 1209600;
+		$expiration  = time() + 60 * 60 * 24 * 30 * 12;
 	} else {
-		$expiration = time() + 172800;
+		$expiration = null;
 	}
 	$auth_cookie_name = AUTH_COOKIE_NAME;
 	$auth_cookie = generateAuthCookie($user_login, $expiration);
@@ -219,7 +219,7 @@ function validateAuthCookie($cookie = '')
 
 	list($username, $expiration, $hmac) = $cookie_elements;
 
-	if ( $expiration < time() )
+	if ( !empty($expiration) && $expiration < time() )
 	{
 		return false;
 	}

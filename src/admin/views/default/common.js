@@ -45,4 +45,6 @@ function em_confirm (id, property) {
 		return;
 	}
 }
-
+function focusEle(id){
+	try{document.getElementById(id).focus();}catch(e){}
+}

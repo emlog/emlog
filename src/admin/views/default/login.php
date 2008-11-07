@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>emlog</title>
 <link rel="stylesheet" href="./views/<?php echo ADMIN_TPL; ?>/main.css">
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/main.js"></script>
+<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 </head>
 <body bgcolor="#F9FCFE">
 <form name="f" method="post" action="index.php?action=login">
@@ -13,7 +13,8 @@
 <h3 align="center">Emlog</h3>
 <tr><td width="48" >用户名:<br />
 <input name="user" id="user" type="text" class="input">密码:<br />
-<input name="pw" id="pw" type="password" class="input"><br>
+<input name="pw" id="pw" type="password" class="input"><br><br>
+<input type="checkbox" id="ispersis" name="ispersis" value="1" /><label for="ispersis">记住我</label>
 </td></tr><?php echo $ckcode; ?><tr>
 <td align="right"><input type="submit" value=" 登 录" class="submit"></td>
 </tr>
