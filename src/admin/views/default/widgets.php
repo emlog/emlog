@@ -1,4 +1,5 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<script type="text/javascript" src="../lib/js/jquery/plugin-interface.js"></script>
 <script type='text/javascript'>
 $(document).ready(function(){
 $("#adm_widget_list .widget-act a").eq(0).toggle(
@@ -40,7 +41,30 @@ function(){$(this).parent().parent().next(".widget-control").css("display","none
 </div>
 <div id="adm_widget_box">
 <ul>
-<div></div>
+	<li class="sortableitem"><a href="#">Item 1</a></li>
+	<li class="sortableitem"><a href="#">Item 2</a></li>
+	<li class="sortableitem"><a href="#">Item 3</a></li>
+	<li class="sortableitem"><a href="#">Item 4</a></li>
+	<li class="sortableitem"><a href="#">Item 5</a></li>
+	<li class="sortableitem"><a href="#">Item 6</a></li>
+	<li class="sortableitem"><a href="#">Item 7</a></li>
 </ul>
+<script type="text/javascript">
+$(document).ready(
+	function () {
+		$('#adm_widget_box ul').Sortable(
+			{
+				accept : 		'sortableitem',
+				helperclass : 	'sortHelper',
+				activeclass : 	'sortableactive',
+				hoverclass : 	'sortablehover',
+				opacity: 		0.8,
+				floats: true,
+				revert:			true
+			}
+		)
+	}
+);
+</script>
 </div>
 

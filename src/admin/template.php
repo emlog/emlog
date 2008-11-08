@@ -10,9 +10,6 @@ require_once('./globals.php');
 
 if($action == '')
 {
-	$row = $DB->once_fetch_array("SELECT nonce_templet FROM ".DB_PREFIX."config");
-	$tplname = $row['nonce_templet'];
-
 	$handle = @opendir($tpl_dir) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
@@ -36,8 +33,8 @@ if($action == '')
 if($action=='usetpl')
 {
 	$tplname = isset($_GET['tplname']) ? addslashes($_GET['tplname']) : '';
-	$DB->query("UPDATE ".DB_PREFIX."config SET nonce_templet='$tplname'");
-	$CACHE->mc_config('config');
+	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplname' where option_name='nonce_templet'");
+	$CACHE->mc_options('options');
 	header("Location: ./template.php");
 }
 

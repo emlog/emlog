@@ -116,11 +116,11 @@ src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
 src/content/cache/blogger -text svn_keywords=Id
 src/content/cache/comments -text svn_keywords=Id
-src/content/cache/config -text svn_keywords=Id
 src/content/cache/links -text svn_keywords=Id
 src/content/cache/log_atts -text svn_keywords=Id
 src/content/cache/log_tags -text svn_keywords=Id
 src/content/cache/musics -text svn_keywords=Id
+src/content/cache/options -text svn_keywords=Id
 src/content/cache/records -text svn_keywords=Id
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
@@ -685,6 +685,8 @@ src/lib/F_base.php -text svn_keywords=Id
 src/lib/F_login.php -text svn_keywords=Id
 src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
+src/lib/js/jquery/plugin-form.js -text
+src/lib/js/jquery/plugin-interface.js -text
 src/model/C_blog.php -text
 src/model/C_comment.php -text
 src/model/C_link.php -text

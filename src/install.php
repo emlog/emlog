@@ -265,28 +265,32 @@ CREATE TABLE {$db_prefix}comment (
   PRIMARY KEY  (cid),
   KEY gid (gid)
 )".$add."
-DROP TABLE IF EXISTS {$db_prefix}config;
-CREATE TABLE {$db_prefix}config (
-  site_key varchar(255) NOT NULL default '',
-  blogname varchar(255) NOT NULL default '',
-  bloginfo varchar(255) NOT NULL default '',
-  blogurl varchar(255) NOT NULL default '',
-  icp varchar(255) NOT NULL default '',
-  index_lognum tinyint(3) unsigned NOT NULL default '0',
-  index_comnum tinyint(3) unsigned NOT NULL default '0',
-  index_twnum tinyint(3) unsigned NOT NULL default '0',
-  comment_subnum tinyint(3) unsigned NOT NULL default '0',
-  login_code enum('n','y') NOT NULL default 'n',
-  comment_code enum('n','y') NOT NULL default 'n',
-  ischkcomment enum('n','y') NOT NULL default 'n',
-  isurlrewrite enum('n','y') NOT NULL default 'n',
-  isgzipenable enum('n','y') NOT NULL default 'n',
-  istrackback enum('n','y') NOT NULL default 'y',
-  nonce_templet varchar(255) NOT NULL default '',
-  timezone float NOT NULL default '8',
-  exarea text NOT NULL
+DROP TABLE IF EXISTS {$db_prefix}options;
+CREATE TABLE {$db_prefix}options (
+option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
+option_name VARCHAR( 255 ) NOT NULL ,
+option_value LONGTEXT NOT NULL ,
+PRIMARY KEY (option_id)
 )".$add."
-INSERT INTO {$db_prefix}config (site_key, blogname, bloginfo, blogurl, icp, index_lognum, index_comnum, index_twnum, comment_subnum, nonce_templet,timezone,exarea) VALUES ('Emlog', 'Emlog', 'welcome', 'http://', '', 10, 10,8,20,'default', 8 ,'');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','emlog');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','welcome');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','http://');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+
+
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id smallint(4) unsigned NOT NULL auto_increment,
@@ -378,7 +382,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	}
 	//重建缓存
 	$CACHE->mc_blogger('blogger');
-	$CACHE->mc_config('config');
+	$CACHE->mc_options('options');
 	$CACHE->mc_record('records');
 	$CACHE->mc_comment('comments');
 	$CACHE->mc_logtags('log_tags');

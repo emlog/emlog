@@ -22,29 +22,18 @@ class mkcache {
 	 *
 	 * @param unknown_type $cf
 	 */
-	function mc_config($cf)
+	function mc_options($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->db_prefix."config"));
-		$config_cache = array(
-		'sitekey' => htmlspecialchars($show_config['site_key']),
-		'blogname' =>htmlspecialchars(stripslashes($show_config['blogname'])),
-		'bloginfo'=>htmlspecialchars(stripslashes($show_config['bloginfo'])),
-		'index_lognum' =>$show_config['index_lognum'],
-		'index_twnum' =>$show_config['index_twnum'],
-		'index_comment_num' =>$show_config['index_comnum'],
-		'ischkcomment'=>$show_config['ischkcomment'],
-		'isurlrewrite'=>$show_config['isurlrewrite'],
-		'isgzipenable'=>$show_config['isgzipenable'],
-		'istrackback'=>$show_config['istrackback'],
-		'comment_code'=>$show_config['comment_code'],
-		'login_code'=>$show_config['login_code'],
-		'comment_subnum'=>$show_config['comment_subnum'],
-		'nonce_templet'=>$show_config['nonce_templet'],
-		'blogurl'=>htmlspecialchars($show_config['blogurl']),
-		'icp'=>htmlspecialchars($show_config['icp']),
-		'timezone'=>$show_config['timezone'],
-		'exarea'=>$show_config['exarea']
-		);
+		$config_cache = array();
+		$res = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."options");
+		while($row = $this->dbhd->fetch_array($res))
+		{
+			if(in_array($row['option_name'],array('site_key', 'blogname', 'bloginfo', 'blogurl', 'icp')))
+			{
+				$row['option_value'] = htmlspecialchars($row['option_value']);
+			}
+			$config_cache[$row['option_name']] = $row['option_value'];
+		}
 		$cacheData = serialize($config_cache);
 		$this->cacheWrite($cacheData,$cf);
 	}
@@ -105,10 +94,11 @@ class mkcache {
 	 */
 	function mc_comment($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT * FROM ".$this->db_prefix."config"));
-		$index_comment_num = $show_config['index_comnum'];
-		$comment_subnum = $show_config['comment_subnum'];
-		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster,reply FROM ".$this->db_prefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comment_num ");
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_comnum'"));
+		$index_comnum = $show_config['option_value'];
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='comment_subnum'"));
+		$comment_subnum = $show_config['option_value'];
+		$query=$this->dbhd->query("SELECT cid,gid,comment,date,poster,reply FROM ".$this->db_prefix."comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comnum ");
 		$com_cache = array();
 		while($show_com=$this->dbhd->fetch_array($query))
 		{
@@ -181,8 +171,8 @@ class mkcache {
 	 */
 	function mc_twitter($cf)
 	{
-		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT index_twnum FROM ".$this->db_prefix."config"));
-		$index_twnum = $show_config['index_twnum']+1;
+		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_twnum'"));
+		$index_twnum = $show_config['option_value']+1;
 		$query=$this->dbhd->query("SELECT * FROM ".$this->db_prefix."twitter ORDER BY id DESC LIMIT $index_twnum");
 		$tw_cache = array();
 		while($show_tw=$this->dbhd->fetch_array($query))

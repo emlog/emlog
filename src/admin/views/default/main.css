@@ -234,12 +234,15 @@ textarea{
 	background-color:#E9F1FA;
 }
 /*widgets*/
+#adm_widget_list{
+	width:500px;
+	float:left;
+}
 .widget-line{
 	margin:0px;
 }
 .widget-top {
 	padding:0px 0px 0px 0px;
-	width:650px;
 }
 .widget-top li{
 	float:left;
@@ -251,17 +254,13 @@ textarea{
 }
 .widget-title{
 	font-weight:bold;
-	width:100px;
 }
 .widget-des{
-	width:400px;
 }
 .widget-act{
-	width:120px;
 }
 .widget-control {
 	padding:0px;
-	width:650px;
 	display:none;
 }
 .widget-control li{
@@ -271,7 +270,20 @@ textarea{
 	background-color:#F0F0F0;
 	border:#CCCCCC 1px solid;
 }
-
+#adm_widget_box {
+	width:300px;
+	float:right;
+	margin:0px 150px 0px 5px;
+}
+.sortableitem{
+	background-color: #FFFFFF;
+	border:1px #999999 solid;
+	list-style:none;
+	margin:5px 0px;
+	padding:10px;
+	cursor:pointer;
+	
+}
 
 /*templates*/
 .adm_tpl_list td{

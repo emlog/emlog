@@ -4,8 +4,8 @@
 <table cellspacing="10" cellpadding="0" width="80%" border="0">
     <tr>
       <td width="27%">
-	  <img src="<?php echo $tpl_dir.$tplname; ?>/preview.jpg" width="200" height="160"  border="1" />	  </td>
-	  <td width="73%"><?php echo $tplname; ?></td>
+	  <img src="<?php echo $tpl_dir.$nonce_templet; ?>/preview.jpg" width="200" height="160"  border="1" />	  </td>
+	  <td width="73%"><?php echo $nonce_templet; ?></td>
     </tr>
 </table>
 <div class=containertitle><b>可用模板</b></div>

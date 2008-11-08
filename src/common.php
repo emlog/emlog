@@ -28,7 +28,7 @@ define('ISLOGIN',	isLogin());
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 //读取缓存
-$config_cache = $CACHE->readCache('config');
+$config_cache = $CACHE->readCache('options');
 $log_cache_tags = $CACHE->readCache('log_tags');
 $log_cache_atts = $CACHE->readCache('log_atts');
 $tag_cache = $CACHE->readCache('tags');
@@ -42,7 +42,6 @@ $music = $CACHE->readCache('musics');
 
 //配置项目
 extract($config_cache);
-$exarea    = stripslashes($exarea);
 $tpl_dir = './content/templates/';//所有模板目录
 $timezone  = intval($timezone);
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();

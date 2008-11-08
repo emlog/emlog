@@ -10,17 +10,17 @@ require_once('./globals.php');
 
 if($action == '')
 {
-	include getViews('header');
-	$result = $DB->query("SELECT * FROM ".DB_PREFIX."config");
-	$row    = $DB->fetch_array($result);
-	extract($row);
-	$blogname = htmlspecialchars($blogname);
-	$bloginfo = htmlspecialchars($bloginfo);
-	$blogurl  = htmlspecialchars($blogurl);
-	$site_key = htmlspecialchars($site_key);
-	$exarea = $exarea;
-	$icp = htmlspecialchars($icp);
-
+	$options = array();
+	$res = $DB->query("SELECT * FROM ".DB_PREFIX."options");
+	while($row = $DB->fetch_array($res))
+	{
+		if(in_array($row['option_name'],array('site_key', 'blogname', 'bloginfo', 'blogurl', 'icp')))
+		{
+			$row['option_value'] = htmlspecialchars($row['option_value']);
+		}
+		$options[$row['option_name']] = $row['option_value'];
+	}
+	extract($options);
 	if($login_code=='y')
 	{
 		$ex1="selected=\"selected\"";
@@ -69,6 +69,8 @@ if($action == '')
 		$ex11="";
 		$ex12="selected=\"selected\"";
 	}
+
+	include getViews('header');
 	require_once(getViews('configure'));
 	include getViews('footer');
 	cleanPage();
@@ -77,24 +79,25 @@ if($action == '')
 //update config
 if ($action== "mod_config")
 {
-	$sitekey  = isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '';
-	$blogname = isset($_POST['sitename']) ? addslashes($_POST['sitename'])  : '';
-	$blogurl = isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '';
-	$bloginfo = isset($_POST['description']) ? addslashes($_POST['description']) : '';
-	$icp = isset($_POST['icp']) ? addslashes($_POST['icp']):'';
-	$index_lognum = isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '';
-	$index_comnum = isset($_POST['index_comment_num']) ? intval($_POST['index_comment_num']) : '';
-	$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : '';
-	$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : '';
-	$timezone = isset($_POST['timezone']) ? floatval($_POST['timezone']) : '';
-	$exarea = isset($_POST['exarea']) ? addslashes($_POST['exarea']) : '';
-	$login_code   = isset($_POST['login_code']) ? $_POST['login_code'] : 'n';
-	$comment_code = isset($_POST['comment_code']) ? $_POST['comment_code'] : 'n';
-	$ischkcomment = isset($_POST['ischkcomment']) ? $_POST['ischkcomment'] : 'n';
-	$isurlrewrite = isset($_POST['isurlrewrite']) ? $_POST['isurlrewrite'] : 'n';
-	$isgzipenable = isset($_POST['isgzipenable']) ? $_POST['isgzipenable'] : 'n';
-	$istrackback  = isset($_POST['istrackback']) ? $_POST['istrackback'] : 'n';
-	
+	$getData = array(
+	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
+	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
+	'$blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
+	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
+	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
+	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
+	'index_comnum' => isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : '',
+	'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : '',
+	'comment_subnum' => isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : '',
+	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
+	'login_code'   => isset($_POST['login_code']) ? $_POST['login_code'] : 'n',
+	'comment_code' => isset($_POST['comment_code']) ? $_POST['comment_code'] : 'n',
+	'ischkcomment' => isset($_POST['ischkcomment']) ? $_POST['ischkcomment'] : 'n',
+	'isurlrewrite' => isset($_POST['isurlrewrite']) ? $_POST['isurlrewrite'] : 'n',
+	'isgzipenable' => isset($_POST['isgzipenable']) ? $_POST['isgzipenable'] : 'n',
+	'istrackback' => isset($_POST['istrackback']) ? $_POST['istrackback'] : 'n',
+	);
+
 	if(!function_exists("ImageCreate") && $login_code=='y' || $comment_code=='y' && !function_exists("ImageCreate"))
 	{
 		formMsg("开启验证码失败!服务器不支持GD库","javascript:history.go(-1);",0);
@@ -108,25 +111,13 @@ if ($action== "mod_config")
 		$blogurl = 'http://'.$blogurl;
 	}
 
-	$ret = $DB->query("UPDATE ".DB_PREFIX."config SET site_key='$sitekey',blogname ='$blogname',
-				blogurl = '$blogurl',
-				bloginfo='$bloginfo',icp='$icp',
-				index_lognum = $index_lognum,
-				index_comnum = $index_comnum,
-				index_twnum = $index_twnum,
-				timezone = $timezone,
-				login_code ='$login_code',
-				comment_code ='$comment_code',
-				isurlrewrite ='$isurlrewrite',
-				isgzipenable ='$isgzipenable',
-				ischkcomment ='$ischkcomment',
-				istrackback ='$istrackback',
-				comment_subnum =$comment_subnum,
-				exarea='$exarea' "
-				);
+	foreach ($getData as $key => $val)
+	{
+		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$val' where option_name='$key'");
+	}
 	$CACHE->mc_tags('tags');
 	$CACHE->mc_comment('comments');
-	$CACHE->mc_config('config');
+	$CACHE->mc_options('options');
 	$CACHE->mc_record('records');
 	$CACHE->mc_twitter('twitter');
 	formMsg("博客设置成功","./configure.php",1);

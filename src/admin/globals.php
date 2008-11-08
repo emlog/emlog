@@ -26,7 +26,7 @@ $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 $CACHE = new mkcache($DB, DB_PREFIX);
 		
 //读取配置参数
-$config_cache = $CACHE->readCache('config');
+$config_cache = $CACHE->readCache('options');
 extract($config_cache);
 $timezone  = intval($timezone);
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));

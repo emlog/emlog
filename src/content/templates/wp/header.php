@@ -5,7 +5,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="keywords" content="<?php echo $sitekey; ?>" />
+<meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle;?></title>
 <link href="<?php echo $em_tpldir; ?>main.css" rel="stylesheet" type="text/css" />

@@ -17,7 +17,7 @@ if ($action == '')
 if ($action == 'mkcache')
 {
 	$CACHE->mc_blogger('blogger');
-	$CACHE->mc_config('config');
+	$CACHE->mc_options('options');
 	$CACHE->mc_record('records');
 	$CACHE->mc_comment('comments');
 	$CACHE->mc_logtags('log_tags');

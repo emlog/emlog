@@ -115,6 +115,5 @@
 <div class="lister">
 <a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
 </div>
-<?php echo $exarea; ?>
 </div>
 <div id="contentB">

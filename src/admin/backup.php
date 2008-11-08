@@ -12,7 +12,7 @@ if($action == '')
 {
 	$retval = glob("../content/backup/*.sql");
 	$bakfiles = $retval ? $retval : array();
-	$tables = array('attachment', 'blog', 'comment', 'config', 'link','statistics','tag','trackback','twitter','user');
+	$tables = array('attachment', 'blog', 'comment', 'options', 'link','statistics','tag','trackback','twitter','user');
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	
 	include getViews('header');	
@@ -91,7 +91,7 @@ if ($action == 'renewdata')
 	unset($sql);
 	bakindata($sqlfile);
 	$CACHE->mc_blogger('blogger');
-	$CACHE->mc_config('config');
+	$CACHE->mc_options('options');
 	$CACHE->mc_record('records');
 	$CACHE->mc_comment('comments');
 	$CACHE->mc_logtags('log_tags');
