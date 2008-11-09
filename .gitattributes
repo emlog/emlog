@@ -86,6 +86,8 @@ src/admin/views/default/images/addblog.gif -text svn_keywords=Id
 src/admin/views/default/images/fnone.gif -text svn_keywords=Id
 src/admin/views/default/images/header_bg_l.gif -text svn_keywords=Id
 src/admin/views/default/images/header_bg_r.gif -text svn_keywords=Id
+src/admin/views/default/images/icon_add.png -text
+src/admin/views/default/images/icon_del.png -text
 src/admin/views/default/images/mc_bg1.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_bg2.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_bg3.gif -text svn_keywords=Id

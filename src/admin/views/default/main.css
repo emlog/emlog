@@ -234,19 +234,22 @@ textarea{
 	background-color:#E9F1FA;
 }
 /*widgets*/
+.widgetpage{
+	width:800px;
+}
 #adm_widget_list{
+	width:500px;
 	float:left;
 }
 .widget-line{
-	width:620px;
 	margin:0px;
 }
 .widget-top {
+	float:left;
 	padding:0px 0px 0px 0px;
 	margin:5px 0px 0px 0px;
-	white-space:nowrap;
-	background-color:#E9F1FA;
-	width:600px;
+	background-color:#ECEFF5;
+	width:455px;
 }
 .widget-top li{
 	float:left;
@@ -255,37 +258,39 @@ textarea{
 	list-style-type:none;
 }
 .widget-title{
-	font-weight:bold;
-	width:300px;
-}
-.widget-des{
-}
-.widget-act-edit{
-	text-align:right;
-	width:200px;
 	cursor:pointer;
+	font-weight:bold;
+	width:410px;
 }
 .widget-control {
-	width:558px;
-	padding:20px 20px;
+	float:left;
+	width:413px;
+	padding:10px 20px;
 	display:none;
 	margin:0px 0px 5px 0px;
 	border:1px solid #E9F1FA;
 }
 .widget-control li{
-	margin:0px;
- 	padding:0px;
 	list-style-type:none;
 }
 #adm_widget_box {
 	width:300px;
 	float:right;
-	margin:0px 150px 0px 5px;
 }
 .widget-act-del{
-	text-align:right;
-	color: #006699;
-	padding:0px 0px 0px 120px;
+	background:url(images/icon_del.png) no-repeat center;
+	margin:5px;
+	display:none;
+	width:10px;
+	height:15px;
+	cursor:pointer;
+}
+.widget-act-add{
+	background:url(images/icon_add.png) no-repeat center;
+	margin:5px;
+	width:10px;
+	cursor:pointer;
+	height:15px;
 }
 .sortableitem{
 	background-color: #FFFFFF;

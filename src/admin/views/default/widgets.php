@@ -2,14 +2,13 @@
 <script type="text/javascript" src="../lib/js/jquery/plugin-interface.js"></script>
 <div class=containertitle><b>Widget 管理</b></div>
 <div class=line></div>
-
+<div class="widgetpage">
 <div id="adm_widget_list">
 	<div class="widget-line" id="blogger">
 		<div class="widget-top">
 			<li class="widget-title">Blogger</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"> </li>
+			<li class="widget-act-del"> </li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -19,9 +18,8 @@
 	<div class="widget-line" id="calendar">
 		<div class="widget-top">
 			<li class="widget-title">日历</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -31,9 +29,8 @@
 	<div class="widget-line" id="tag">
 		<div class="widget-top">
 			<li class="widget-title">标签</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -43,9 +40,8 @@
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
 			<li class="widget-title">Twitter</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -57,9 +53,8 @@
 	<div class="widget-line" id="music">
 		<div class="widget-top">
 			<li class="widget-title">背景音乐</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"> </li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -70,9 +65,8 @@
 	<div class="widget-line" id="newcomm">
 		<div class="widget-top">
 			<li class="widget-title">最新评论</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -86,9 +80,8 @@
 	<div class="widget-line" id="archive">
 		<div class="widget-top">
 			<li class="widget-title">日志存档</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -98,9 +91,8 @@
 	<div class="widget-line" id="link">
 		<div class="widget-top">
 			<li class="widget-title">友情链接</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -110,9 +102,8 @@
 	<div class="widget-line" id="bloginfo">
 		<div class="widget-top">
 			<li class="widget-title">博客信息</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -122,9 +113,7 @@
 	<div class="widget-line" id="custom_text">
 		<div class="widget-top">
 			<li class="widget-title">自定义栏目</li>
-			<li class="widget-act-edit"><a href="javascript:void(0);">编辑</a></li>
-			<li class="widget-act-add"><a href="javascript:void(0);">添加</a></li>
-			<li class="widget-act-del"><a href="javascript:void(0);">移除</a></li>
+			<li class="widget-act-add"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -136,31 +125,32 @@
 <div id="adm_widget_box">
 	<ul>
 	</ul>
-	<div>
+	<div style="margin:10px 40px;">
 	<input type="submit" value="确 定" class="submit2" />
 	</div>
 </div>
 </form>
 <div id="widgets_str" style="display:none;"><?php echo $widgetsStr; ?></div>
-<script type="text/javascript">
+</div>
+<script>
 $(document).ready(function(){
-
-	//json
 	var widget_str = $("#widgets_str").text();
 	var widgets = widget_str.split(",");
 	$.each(widgets,function(i,n)
 	{
 		$("#"+n+" .widget-act-add").hide();
+		$("#"+n+" .widget-act-del").show();
 		var title = $("#"+n+" .widget-title").text();
 		var widget_element = "<li class=\"sortableitem\" id=\""+n+"\"><span>"+title+"</span><input type=\"hidden\" name=\"widgets[]\" value=\""+n+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 	}
 	);
 
-	$("#adm_widget_list .widget-act-edit").toggle(
+	$("#adm_widget_list .widget-title").toggle(
 	function(){$(this).parent().next(".widget-control").show("fast")},
 	function(){$(this).parent().next(".widget-control").hide("fast")}
 	);
+
 	$("#adm_widget_list .widget-act-add").click(function()
 	{
 		var title = $(this).prevAll(".widget-title").text();
@@ -171,6 +161,7 @@ $(document).ready(function(){
 		$(this).next(".widget-act-del").show();
 	}
 	);
+
 	$("#adm_widget_list .widget-act-del").click(function()
 	{
 		var widget_id = $(this).parent().parent().attr("id");
@@ -179,6 +170,7 @@ $(document).ready(function(){
 		$(this).prev(".widget-act-add").show();
 	}
 	);
+
 	$("#adm_widget_box").mouseover(function(){
 		$("#adm_widget_box ul").Sortable(
 		{
