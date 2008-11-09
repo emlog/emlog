@@ -11,18 +11,24 @@ require_once('./globals.php');
 
 if($action == '')
 {
+	$widgets = unserialize($options_cache['sidebar']);
+	$widgetsStr = implode(",", $widgets);
+	
 	include getViews('header');
-	//$result = $DB->query("SELECT widget_list FROM ".DB_PREFIX."config");
-	//$row    = $DB->fetch_array($result);
-	//extract($row);
-	
-	
-	
-	
-	
 	require_once(getViews('widgets'));
 	include getViews('footer');
 	cleanPage();
+}
+
+if($action == 'compages')
+{
+	$widgets = isset($_POST['widgets']) ? $_POST['widgets'] : array();
+	
+	$sidebar = serialize($widgets);
+	$sql = "update ".DB_PREFIX."options set option_value='$sidebar' where option_name='sidebar'";
+	$DB->query($sql);
+	$CACHE->mc_options('options');
+	formMsg("博客设置成功","./widgets.php",1);
 }
 
 ?>

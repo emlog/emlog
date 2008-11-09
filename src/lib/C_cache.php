@@ -24,7 +24,7 @@ class mkcache {
 	 */
 	function mc_options($cf)
 	{
-		$config_cache = array();
+		$options_cache = array();
 		$res = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."options");
 		while($row = $this->dbhd->fetch_array($res))
 		{
@@ -32,9 +32,9 @@ class mkcache {
 			{
 				$row['option_value'] = htmlspecialchars($row['option_value']);
 			}
-			$config_cache[$row['option_name']] = $row['option_value'];
+			$options_cache[$row['option_name']] = $row['option_value'];
 		}
-		$cacheData = serialize($config_cache);
+		$cacheData = serialize($options_cache);
 		$this->cacheWrite($cacheData,$cf);
 	}
 	/**

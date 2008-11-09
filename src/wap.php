@@ -12,8 +12,8 @@ define('CURPAGE','wap');
 
 if(!isset($action) || empty($action))
 {
-	wap_header($config_cache['blogname']);
-	echo '<p>'.$config_cache['bloginfo'].'</p>';
+	wap_header($options_cache['blogname']);
+	echo '<p>'.$options_cache['bloginfo'].'</p>';
 	echo "<p>\n";
 	echo "<a href=\"wap.php?action=logs\">浏览日志</a><br />\n";
 	echo "<a href=\"wap.php?action=twitter\">博主唠叨</a><br />\n";
@@ -64,7 +64,7 @@ if ($action == 'logs')
 	//分页
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
-	wap_header($config_cache['blogname']);
+	wap_header($options_cache['blogname']);
 	echo '<p>';
 	if(isset($log))
 	{
@@ -105,7 +105,7 @@ if ($action == 'dis')
 }
 if($action == 'coms')
 {
-	wap_header($config_cache['blogname']);
+	wap_header($options_cache['blogname']);
 	if(isset($com_cache) && !empty($com_cache))
 	{
 		foreach($com_cache as $value)
@@ -149,7 +149,7 @@ if ($action == 'twitter')
 	//分页
 	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
 
-	wap_header($config_cache['blogname']);
+	wap_header($options_cache['blogname']);
 	echo '<p>';
 	if(isset($tws))
 	{

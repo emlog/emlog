@@ -26,8 +26,8 @@ $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 $CACHE = new mkcache($DB, DB_PREFIX);
 		
 //读取配置参数
-$config_cache = $CACHE->readCache('options');
-extract($config_cache);
+$options_cache = $CACHE->readCache('options');
+extract($options_cache);
 $timezone  = intval($timezone);
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目

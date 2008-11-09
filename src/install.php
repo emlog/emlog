@@ -289,6 +289,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('sidebar','');
 
 
 DROP TABLE IF EXISTS {$db_prefix}link;

@@ -16,7 +16,7 @@ require_once(EMLOG_ROOT.'/lib/C_cache.php');
 //初始化数据库类
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 //cache
-$config_cache = mkcache::readCache('options');
+$options_cache = mkcache::readCache('options');
 $user_cache = mkcache::readCache('blogger');
 
 /**
@@ -66,7 +66,7 @@ function GetBlogNum()
 }
 
 $URL = GetURL();
-$site =  $config_cache;
+$site =  $options_cache;
 $blog = GetBlog();
 $blognum = GetBlogNum();
 $author = $user_cache['name'];
