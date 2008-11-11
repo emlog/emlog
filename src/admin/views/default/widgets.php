@@ -145,8 +145,10 @@ $(document).ready(function(){
 		$("#adm_widget_box ul").append(widget_element);
 	}
 	);
+	
 	//show edit form
-	$("#adm_widget_list .widget-title").toggle(
+	$("#adm_widget_list .widget-title").toggle
+	(
 	function(){$(this).parent().next(".widget-control").show("fast")},
 	function(){$(this).parent().next(".widget-control").hide("fast")}
 	);
@@ -163,6 +165,7 @@ $(document).ready(function(){
 			$(this).hide();
 		}
 		$(this).next(".widget-act-del").show();
+		//$(".wgbox_edit").bind("click", abc);
 	}
 	);
 	//remove widget
@@ -181,14 +184,22 @@ $(document).ready(function(){
 			accept: 'sortableitem',
 			handle: 'span.wgbox_title'
 		}
-		)
+		);
 	});
-
-	$(".wgbox_edit").click(function()
-	{
-		$(this).parent().find(".wgbox_text textarea").toggle("fast");
-		$(this).parent().find(".wgbox_text textarea").focus();
-	});
+	
+	var abc = function(){
+		$(".wgbox_edit").click(function(event)
+		{
+			$(this).parent().find(".wgbox_text textarea").toggle("fast");
+			event.stopPropagation();
+		});
+		$(".wgbox_del").click(function()
+		{
+			$(this).parent().remove();
+		});
+	}
+	abc();
+	//$(".wgbox_edit").bind("click", abc);
 });
 </script>
 
