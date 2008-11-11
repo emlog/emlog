@@ -115,10 +115,6 @@
 			<li class="widget-title">自定义栏目</li>
 			<li class="widget-act-add"></li>
 		</div>
-		<div class="widget-control">
-			<li>标题</li>
-			<li><input type="text" name="text_title" value=""  /> <input type="button" name="" value="更改"  /></li>
-		</div>
 	</div>
 </div>
 <form action="widgets.php?action=compages" method="post" name="input" id="input">
@@ -136,53 +132,62 @@
 $(document).ready(function(){
 	var widget_str = $("#widgets_str").text();
 	var widgets = widget_str.split(",");
-	$.each(widgets,function(i,n)
+	$.each(widgets,function(i,widget_id)
 	{
-		$("#"+n+" .widget-act-add").hide();
-		$("#"+n+" .widget-act-del").show();
-		var title = $("#"+n+" .widget-title").text();
-		var widget_element = "<li class=\"sortableitem\" id=\""+n+"\"><span>"+title+"</span><input type=\"hidden\" name=\"widgets[]\" value=\""+n+"\" /></li>";
+		if(widget_id != 'custom_text'){
+			$("#"+widget_id+" .widget-act-add").hide();
+		}
+		$("#"+widget_id+" .widget-act-del").show();
+		var title = $("#"+widget_id+" .widget-title").text();
+		var wg_edit = widget_id=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
+		var wg_text = widget_id=='custom_text' ? "<span class=\"wgbox_text\"><textarea name=\"sssss\"></textarea></span>" : '';
+		var widget_element = "<li class=\"sortableitem\" id=\"wg_"+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 	}
 	);
-
+	//show edit form
 	$("#adm_widget_list .widget-title").toggle(
 	function(){$(this).parent().next(".widget-control").show("fast")},
 	function(){$(this).parent().next(".widget-control").hide("fast")}
 	);
-
+	//add widget
 	$("#adm_widget_list .widget-act-add").click(function()
 	{
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span>"+title+"</span><input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
+		var wg_edit = widget_id=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
+		var wg_text = widget_id=='custom_text' ? "<span class=\"wgbox_text\"><textarea name=\"sssss\"></textarea></span>" : '';
+		var widget_element = "<li class=\"sortableitem\" id=\"wg_"+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
-		$(this).hide();
+		if(widget_id != 'custom_text'){
+			$(this).hide();
+		}
 		$(this).next(".widget-act-del").show();
 	}
 	);
-
+	//remove widget
 	$("#adm_widget_list .widget-act-del").click(function()
 	{
 		var widget_id = $(this).parent().parent().attr("id");
-		$("#adm_widget_box ul #" + widget_id).remove();
+		$("#adm_widget_box ul #wg_" + widget_id).remove();
 		$(this).hide();
 		$(this).prev(".widget-act-add").show();
 	}
 	);
-
+	//move
 	$("#adm_widget_box").mouseover(function(){
 		$("#adm_widget_box ul").Sortable(
 		{
-			accept : 		'sortableitem',
-			helperclass : 	'sortHelper',
-			activeclass : 	'sortableactive',
-			hoverclass : 	'sortablehover',
-			opacity: 		0.8,
-			floats: true,
-			revert:	true
+			accept: 'sortableitem',
+			handle: 'span.wgbox_title'
 		}
 		)
+	});
+
+	$(".wgbox_edit").click(function()
+	{
+		$(this).parent().find(".wgbox_text textarea").toggle("fast");
+		$(this).parent().find(".wgbox_text textarea").focus();
 	});
 });
 </script>

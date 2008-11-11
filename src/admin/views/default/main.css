@@ -235,7 +235,7 @@ textarea{
 }
 /*widgets*/
 .widgetpage{
-	width:800px;
+	width:850px;
 }
 #adm_widget_list{
 	width:500px;
@@ -274,7 +274,7 @@ textarea{
 	list-style-type:none;
 }
 #adm_widget_box {
-	width:300px;
+	width:350px;
 	float:right;
 }
 .widget-act-del{
@@ -293,12 +293,35 @@ textarea{
 	height:15px;
 }
 .sortableitem{
-	background-color: #FFFFFF;
-	border:1px #999999 solid;
+	background-color:#217AA9;
+	color:#FFFFFF;
 	list-style:none;
 	margin:5px 0px;
-	padding:10px;
+	padding:5px;
+}
+.sortableitem textarea{
+	width:297px;
+	overflow:auto;
+	border: 1px solid #FFFFFF;
+	font-family: Arial;
+	font-size: 12px;
+	height: 150px;
+	display:none;
+}
+.wgbox_title{
+	cursor:move;
+	padding-right:155px;
+}
+.wgbox_edit{
 	cursor:pointer;
+}
+.wgbox_del{
+	cursor:pointer;
+}
+.wg_hd{
+	cursor:move;
+	font-size:12px;
+	
 }
 
 /*templates*/
