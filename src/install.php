@@ -179,7 +179,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 		sysMsg('两次输入的密码不一致');
 	}
 	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
-	
+
 	$config = "<?php\n"
 	."//mysql database address\n"
 	."define('DB_HOST','$db_host');"
@@ -221,6 +221,29 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	$type = 'MYISAM';
 	$add = $DB->getMysqlVersion() > '4.1' ? "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";":"TYPE=".$type.";";
 	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE {$db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+
+	$widgets = array(
+	'blogger'=>'EMER',
+	'calendar'=>'日历',
+	'tag'=>'标签',
+	'archive'=>'存档',
+	'newcomm'=>'最新评论',
+	'twitter'=>'Twitter',
+	'newlog'=>'最新日志',
+	'random_log'=>'随机日志',
+	'music'=>'音乐',
+	'link'=>'链接',
+	'search'=>'搜索',
+	'bloginfo'=>'博客信息',
+	'custom_text'=>'自定义栏目'
+	);
+	$wg = array();
+	foreach ($widgets as $key=>$val)
+	{
+		$wg[] = $key;
+	}
+	$widget_title = serialize($widgets);
+	$widgets = serialize($wg);
 
 	//sql language
 	$sql = $setchar."
@@ -289,9 +312,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('sidebar','');
-
-
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets','$widgets');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id smallint(4) unsigned NOT NULL auto_increment,
@@ -351,10 +375,10 @@ CREATE TABLE {$db_prefix}user (
   description text NOT NULL,
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!'); ";
+INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!');";
 
-	$mysql_query = explode(";",$sql);
-	while (list(,$query) = each($mysql_query)) 
+	$mysql_query = explode(";\n",$sql);
+	while (list(,$query) = each($mysql_query))
 	{
 		$query = trim($query);
 		if ($query)

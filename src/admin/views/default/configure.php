@@ -29,18 +29,6 @@
         <td align="right">每页日志数：</td>
         <td><input maxlength="5" size="10" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
-	  <tr nowrap="nowrap">
-        <td align="right">首页twitter数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> 为0则关闭该功能</td>
-      </tr>
-      <tr nowrap="nowrap">
-        <td align="right">首页最新评论数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></td>
-      </tr>
-      <tr nowrap="nowrap">
-        <td align="right">新近评论截取字节数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /></td>
-      </tr>
 	  <tr>
         <td valign="top" align="right">服务器所在时区：<br /></td>
         <td>

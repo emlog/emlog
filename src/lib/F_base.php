@@ -737,7 +737,7 @@ EOT;
 }
 
 /**
- * 后台返回信息
+ * 后台操作返回信息
  *
  * @param unknown_type $msg
  * @param unknown_type $url

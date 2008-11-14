@@ -3,13 +3,26 @@
 <div class="contentA">
 <?php 
 require_once (getViews('function'));
-$widgets = unserialize($options_cache['sidebar']);
+$widgets = unserialize($options_cache['widgets']);
+$i = 0;
 foreach ($widgets as $val)
 {
+	$widget_title = @unserialize($options_cache['widget_title']);
+	$custom_title = @unserialize($options_cache['custom_title']);
+	$custom_content = @unserialize($options_cache['custom_content']);
 	$callback = 'widget_'.$val;
-	if(function_exists($callback))
+	if($val == 'custom_text')
 	{
-		call_user_func($callback);
+		if(function_exists($callback))
+		{
+			call_user_func($callback, $custom_title[$i], $custom_content[$i]);
+		}
+		$i++;
+	}else{
+		if(function_exists($callback))
+		{
+			call_user_func($callback, $widget_title[$val]);
+		}
 	}
 }
 ?>

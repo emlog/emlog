@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 
-<?php function widget_blogger(){ ?>
+<?php function widget_blogger($title){ ?>
 	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
-	<div class="lister"><span onclick="showhidediv('bloggerinfo')"></span></div>
+	<div class="lister"><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></div>
 	<ul style="text-align:center" id="bloggerinfo">
 	<li><?php echo $photo; ?></li>
 	<li><b><?php echo $name; ?></b></li>
@@ -20,17 +20,17 @@
 	</ul>
 <?php }?>
 
-<?php function widget_calendar(){ ?>
+<?php function widget_calendar($title){ ?>
 	<?php global $calendar_url; ?>
-	<div class="lister"><span onclick="showhidediv('calendar')">日历</span></div>
+	<div class="lister"><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></div>
 	<div id="calendar">
 	</div>
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 <?php }?>
 
-<?php function widget_tag(){ ?>
+<?php function widget_tag($title){ ?>
 	<?php global $tag_cache; ?>
-	<div class="lister"><span onclick="showhidediv('blogtags')">标签</span></div>
+	<div class="lister"><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></div>
 	<ul id="blogtags">
 	<li>
 	<?php foreach($tag_cache as $value): ?>
@@ -41,10 +41,10 @@
 	</ul>
 <?php }?>
 
-<?php function widget_twitter(){ ?>
+<?php function widget_twitter($title){ ?>
 	<?php global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
-		<div class="lister"><span onclick="showhidediv('twitter')">Twitter</span></div>
+		<div class="lister"><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></div>
 		<ul id="twitter">
 		<?php
 		if(isset($tw_cache) && is_array($tw_cache)):
@@ -71,10 +71,10 @@
 	<?php endif;?>
 <?php } ?>
 
-<?php function widget_music(){ ?>
+<?php function widget_music($title){ ?>
 	<?php global $ismusic,$musicdes,$em_tpldir,$musicurl,$autoplay; ?>
 	<?php if($ismusic): ?>
-	<div class="lister"><span onclick="showhidediv('blogmusic')">音乐</span></div>	
+	<div class="lister"><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></div>	
 	<ul id="blogmusic">
 	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
@@ -82,9 +82,9 @@
 	<?php endif; ?>
 <?php }?>
 
-<?php function widget_newcomm(){ ?>
+<?php function widget_newcomm($title){ ?>
 	<?php global $com_cache,$em_tpldir; ?>
-	<div class="lister"><span onclick="showhidediv('newcomment')">最新评论</span></div>
+	<div class="lister"><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></div>
 	<ul id="newcomment">
 	<?php foreach($com_cache as $value): ?>
 	<li id="comment"><?php echo $value['name']; ?> 
@@ -98,8 +98,8 @@
 	</ul>
 <?php }?>
 
-<?php function widget_search(){ ?>
-	<div class="lister"><span onclick="showhidediv('logserch')">日志搜索</span></div>
+<?php function widget_search($title){ ?>
+	<div class="lister"><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></div>
 	<ul id="logserch">
 	<li>
 	<form name="keyform" method="get" action="index.php"><p>
@@ -110,9 +110,9 @@
 	</ul>
 <?php } ?>
 
-<?php function widget_archive(){ ?>
+<?php function widget_archive($title){ ?>
 	<?php global $dang_cache; ?>
-	<div class="lister"><span onclick="showhidediv('record')">日志归档</span></div>
+	<div class="lister"><span onclick="showhidediv('record')"><?php echo $title; ?></span></div>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
 	<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
@@ -120,9 +120,16 @@
 	</ul>
 <?php } ?>
 
-<?php function widget_link(){ ?>
+<?php function widget_custom_text($title, $content){ ?>
+	<div class="lister"><span onclick="showhidediv('record')"><?php echo $title; ?></span></div>
+	<ul id="record">
+	<li><?php echo $content; ?></li>	
+	</ul>
+<?php } ?>
+
+<?php function widget_link($title){ ?>
 	<?php global $link_cache; ?>
-	<div class="lister"><span onclick="showhidediv('frlink')">友情链接</span></div>
+	<div class="lister"><span onclick="showhidediv('frlink')"><?php echo $title; ?></span></div>
 	<ul id="frlink">
 	<?php foreach($link_cache as $value): ?>     	
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
@@ -130,9 +137,9 @@
 	</ul>
 <?php }?>
 
-<?php function widget_bloginfo(){ ?>
+<?php function widget_bloginfo($title){ ?>
 	<?php global $sta_cache; ?>
-	<div class="lister"><span onclick="showhidediv('bloginfo')">博客信息</span></div>
+	<div class="lister"><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></div>
 	<ul id="bloginfo">
 	<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
 	<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>

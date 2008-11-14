@@ -236,6 +236,7 @@ textarea{
 /*widgets*/
 .widgetpage{
 	width:850px;
+	cursor:default;
 }
 #adm_widget_list{
 	width:500px;
@@ -303,14 +304,15 @@ textarea{
 	width:297px;
 	overflow:auto;
 	border: 1px solid #FFFFFF;
-	font-family: Arial;
 	font-size: 12px;
 	height: 150px;
-	display:none;
 }
 .wgbox_title{
 	cursor:move;
 	padding-right:155px;
+}
+.wgbox_text{
+	display:none;
 }
 .wgbox_edit{
 	cursor:pointer;
@@ -331,4 +333,11 @@ textarea{
 }
 .adm_tpl_list img{
 	border: #CCCCCC 1px solid;
+}
+.actived{
+	margin:0px 300px;
+	background:url(images/icon_succ.gif) no-repeat 10px #FDFFCE ;
+	font-size:14px;
+	padding:5px 30px;
+	border:1px #FFBA43 solid;
 }

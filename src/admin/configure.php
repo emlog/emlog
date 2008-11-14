@@ -10,17 +10,6 @@ require_once('./globals.php');
 
 if($action == '')
 {
-	$options = array();
-	$res = $DB->query("SELECT * FROM ".DB_PREFIX."options");
-	while($row = $DB->fetch_array($res))
-	{
-		if(in_array($row['option_name'],array('site_key', 'blogname', 'bloginfo', 'blogurl', 'icp')))
-		{
-			$row['option_value'] = htmlspecialchars($row['option_value']);
-		}
-		$options[$row['option_name']] = $row['option_value'];
-	}
-	extract($options);
 	if($login_code=='y')
 	{
 		$ex1="selected=\"selected\"";
@@ -86,9 +75,6 @@ if ($action== "mod_config")
 	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
 	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
 	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
-	'index_comnum' => isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : '',
-	'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : '',
-	'comment_subnum' => isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : '',
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
 	'login_code'   => isset($_POST['login_code']) ? $_POST['login_code'] : 'n',
 	'comment_code' => isset($_POST['comment_code']) ? $_POST['comment_code'] : 'n',

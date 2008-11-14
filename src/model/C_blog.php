@@ -93,7 +93,6 @@ class emBlog {
 					break;
 				case 'homepage':
 					$logData = array(
-					'blogtitle' => htmlspecialchars($row['title']),
 					'log_title' => htmlspecialchars($row['title']),
 					'post_time' => date('Y-n-j G:i l',$row['date']),
 					'logid' => intval($row['gid']),

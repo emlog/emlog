@@ -35,7 +35,7 @@ if($action=='usetpl')
 	$tplname = isset($_GET['tplname']) ? addslashes($_GET['tplname']) : '';
 	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplname' where option_name='nonce_templet'");
 	$CACHE->mc_options('options');
-	header("Location: ./template.php");
+	header("Location: ./template.php?activated=true");
 }
 
 ?>

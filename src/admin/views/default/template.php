@@ -1,5 +1,5 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>当前模板</b></div>
+<div class=containertitle><b>当前模板</b><?php if(isset($_GET['activated'])):?><span class="actived">模板已经更换</span><?php endif;?></div>
 <div class=line></div>
 <table cellspacing="10" cellpadding="0" width="80%" border="0">
     <tr>

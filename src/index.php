@@ -8,9 +8,9 @@
 
 require_once('./common.php');
 
-define('CURPAGE','index');
-
 viewCount();
+
+define('CURPAGE','index');
 
 //当前模板目录
 $em_tpldir = $tpl_dir.$nonce_templet.'/';
@@ -18,15 +18,13 @@ if (!is_dir($em_tpldir))
 {
 	exit('Template Error: no template directory!');
 }
-//calendar url
+$blogtitle = $blogname;
 $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
 $job = array('showlog','search','addcom','taglog','');
 if (!in_array($action,$job))
 {
 	msg('error!','./index.php');
 }
-$blogtitle = $blogname;
-
 //日志列表
 if (!isset($action) || empty($action))
 {
@@ -46,10 +44,12 @@ if (!isset($action) || empty($action))
 
 	if ($record)
 	{
+		$blogtitle = $blogname.' - '.$record;
 		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?record=$record&page";
 	} elseif ($tag) {
+		$blogtitle = $blogname.' - '.$tag;
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
@@ -59,7 +59,6 @@ if (!isset($action) || empty($action))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?tag=$tag&page";
 	} elseif($keyword) {
-		//参数过滤
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
 		if (strlen($keyword) > 30 || strlen($keyword) < 3)
@@ -86,7 +85,6 @@ if (!isset($action) || empty($action))
 	include getViews('header');
 	include getViews('log_list');
 }
-
 //显示日志
 if ($action == 'showlog')
 {
@@ -106,6 +104,7 @@ if ($action == 'showlog')
 		msg('不存在该日志','./index.php');
 	}
 	extract($logData);
+	$blogtitle = $blogname.' - '.$log_title;
 	$log_author = $user_cache['name'];
 	$blogurl    = $blogurl;
 	//add viewcount
@@ -129,7 +128,6 @@ if ($action == 'showlog')
 	include getViews('header');
 	require_once getViews('echo_log');
 }
-
 //添加评论
 if ($action == 'addcom')
 {
