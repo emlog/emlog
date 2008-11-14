@@ -1,5 +1,8 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>博客设置</b></div>
+<script>
+setTimeout(hideActived,2600);
+</script>
+<div class=containertitle><b>博客设置</b><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">

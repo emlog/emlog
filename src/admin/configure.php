@@ -106,7 +106,7 @@ if ($action== "mod_config")
 	$CACHE->mc_options('options');
 	$CACHE->mc_record('records');
 	$CACHE->mc_twitter('twitter');
-	formMsg("博客设置成功","./configure.php",1);
+	header("Location: ./configure.php?activated=true");
 }
 //phpinfo()
 if($action=='phpinfo')

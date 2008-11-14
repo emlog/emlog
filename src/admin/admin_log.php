@@ -125,7 +125,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_record('records');
 			$CACHE->mc_comment('comments');
 			$CACHE->mc_logtags('log_tags');
-			formMsg('日志成功转入草稿箱','./admin_log.php?pid=draft',1);
+			formMsg('日志成功转入草稿箱','./admin_log.php',1);
 			break;
 		case 'show':
 			foreach($logs as $key=>$value)
@@ -136,7 +136,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_comment('comments');
 			$CACHE->mc_logtags('log_tags');
 			$CACHE->mc_record('records');
-			formMsg('发布成功','./admin_log.php',1);
+			formMsg('发布成功','./admin_log.php?pid=draft',1);
 			break;
 	}
 }

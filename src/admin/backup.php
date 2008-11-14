@@ -52,7 +52,7 @@ if($action=='bakstart')
 				@fclose($fp);
 				formMsg( '备份失败,请检查备份目录的权限是否可写','javascript:history.go(-1);',0);
 			}else{
-				formMsg('数据成功备份至服务器','./backup.php',1);
+				header("Location: ./backup.php?active_backup=true");
 			}
 		}else{
 			formMsg('无法打开指定的目录'. $filename .'，请确定该目录是否存在,或者是否有相应权限','javascript:history.go(-1);',0);
@@ -99,7 +99,7 @@ if ($action == 'renewdata')
 	$CACHE->mc_link('links');
 	$CACHE->mc_tags('tags');
 	$CACHE->mc_twitter('twitter');
-	formMsg('数据恢复成功', './backup.php',1);
+	header("Location: ./backup.php?active_import=true");
 }
 
 //批量删除备份文件
@@ -113,7 +113,7 @@ if($action== 'dell_all_bak')
 		{
 			unlink($value);
 		}
-		header("Location: ./backup.php");
+		header("Location: ./backup.php?active_del=true");
 	}
 }
 

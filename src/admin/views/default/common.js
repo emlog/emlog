@@ -2,7 +2,8 @@ function CheckAll(form) {
 	for (var i=0;i<form.elements.length;i++) {
 		var e = form.elements[i];
 		if (e.name != 'chkall')
-		e.checked = form.chkall.checked;}
+		e.checked = form.chkall.checked;
+		}
 }
 function em_confirm (id, property) {
 	switch (property){
@@ -39,12 +40,10 @@ function em_confirm (id, property) {
 		var msg = "你确定要删除头像吗？";
 		break;
 	}
-	if(confirm(msg)){
-		window.location = urlreturn;
-	}else {
-		return;
-	}
+	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
-function focusEle(id){
-	try{document.getElementById(id).focus();}catch(e){}
+function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
+
+function hideActived(){
+	$(".actived").hide();
 }
