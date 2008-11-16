@@ -32,7 +32,7 @@ if($action == 'compages')
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title'");
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content'");
 	$CACHE->mc_options('options');
-	formMsg("博客设置成功","./widgets.php",1);
+	header("Location: ./widgets.php?activated=true");
 }
 
 ?>
