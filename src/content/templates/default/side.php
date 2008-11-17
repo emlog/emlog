@@ -21,7 +21,9 @@ foreach ($widgets as $val)
 	}else{
 		if(function_exists($callback))
 		{
-			call_user_func($callback, $widget_title[$val]);
+			preg_match("/^.*\s\((.*)\)/", $widget_title[$val], $matchs);
+			$wgTitle = isset($matchs[1]) ? $matchs[1] : $widget_title[$val];
+			call_user_func($callback, $wgTitle);
 		}
 	}
 }

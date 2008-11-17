@@ -291,7 +291,7 @@ function FCKeditor_IsCompatibleBrowser()
 
 	// Adobe AIR
 	// Checked before Safari because AIR have the WebKit rich text editor
-	// features from Safari 3.0.4, but the version reported is 420.
+	// features from Safari 3.0.0.4, but the version reported is 420.
 	if ( sAgent.indexOf( ' adobeair/' ) != -1 )
 		return ( sAgent.match( / adobeair\/(\d+)/ )[1] >= 1 ) ;	// Build must be at least v1
 

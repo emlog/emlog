@@ -1,10 +1,12 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-interface.js"></script>
+<script type="text/javascript" src="../lib/js/jquery/plugin-form.js"></script>
 <script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>Widget 管理</b><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">
 <div id="adm_widget_list">
+	<form action="widgets.php?action=setwg&wg=blogger" method="post">
 	<div class="widget-line" id="blogger">
 		<div class="widget-top">
 			<li class="widget-title">EMER</li>
@@ -13,9 +15,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="blogger_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=calendar" method="post">
 	<div class="widget-line" id="calendar">
 		<div class="widget-top">
 			<li class="widget-title">日历</li>
@@ -24,9 +28,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="calander_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=tag" method="post">
 	<div class="widget-line" id="tag">
 		<div class="widget-top">
 			<li class="widget-title">标签</li>
@@ -35,9 +41,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="tag_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=archive" method="post">
 	<div class="widget-line" id="archive">
 		<div class="widget-top">
 			<li class="widget-title">存档</li>
@@ -46,9 +54,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="archive_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=newcomm" method="post">
 	<div class="widget-line" id="newcomm">
 		<div class="widget-top">
 			<li class="widget-title">最新评论</li>
@@ -57,13 +67,15 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="newcomm_title" value=""  /></li>
+			<li><input type="text" name="title" value=""  /></li>
 			<li>首页最新评论数</li>
 			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
 			<li>新近评论截取字节数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="button" name="" value="更改"  /></li>
+			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
 			<li class="widget-title">Twitter</li>
@@ -72,11 +84,13 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="twitter_title" value=""  /></li>
+			<li><input type="text" name="title" value=""  /></li>
 			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="button" name="" value="更改"  /></li>
+			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=newlog" method="post">
 	<div class="widget-line" id="newlog">
 		<div class="widget-top">
 			<li class="widget-title">最新日志</li>
@@ -85,11 +99,13 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="twitter_title" value=""  /></li>
+			<li><input type="text" name="title" value=""  /></li>
 			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="button" name="" value="更改"  /></li>
+			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=random_log" method="post">
 	<div class="widget-line" id="random_log">
 		<div class="widget-top">
 			<li class="widget-title">随机日志</li>
@@ -98,11 +114,13 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="twitter_title" value=""  /></li>
+			<li><input type="text" name="title" value=""  /></li>
 			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="button" name="" value="更改"  /></li>
+			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=music" method="post">
 	<div class="widget-line" id="music">
 		<div class="widget-top">
 			<li class="widget-title">音乐</li>
@@ -111,10 +129,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="music_title" value=""  /></li>
-			<li><input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=link" method="post">
 	<div class="widget-line" id="link">
 		<div class="widget-top">
 			<li class="widget-title">链接</li>
@@ -123,9 +142,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="link_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=search" method="post">
 	<div class="widget-line" id="search">
 		<div class="widget-top">
 			<li class="widget-title">搜索</li>
@@ -134,9 +155,11 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="bloginfo_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=bloginfo" method="post">
 	<div class="widget-line" id="bloginfo">
 		<div class="widget-top">
 			<li class="widget-title">信息</li>
@@ -145,9 +168,10 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="bloginfo_title" value=""  /> <input type="button" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	</form>
 	<div class="widget-line" id="custom_text">
 		<div class="widget-top">
 			<li class="widget-title">自定义栏目</li>
@@ -155,7 +179,7 @@
 		</div>
 	</div>
 </div>
-<form action="widgets.php?action=compages" method="post" name="input" id="input">
+<form action="widgets.php?action=compages" method="post">
 <div id="adm_widget_box">
 <ul>
 <?php

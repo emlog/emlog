@@ -2,7 +2,7 @@
 /**
  * Widgets 侧边栏目管理
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.7.0
+ * @version emlog-3.0.0
  * $Id: comment.php 654 2008-09-07 10:36:15Z emloog $
  */
 
@@ -20,6 +20,23 @@ if($action == '')
 	require_once(getViews('widgets'));
 	include getViews('footer');
 	cleanPage();
+}
+
+if($action == 'setwg')
+{
+	$widgetTitle = @unserialize($options_cache['widget_title']);
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';
+	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';
+	
+	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
+	$realWgTitle = $matchs[1] ? $matchs[1] : $widgetTitle[$widget];
+	
+	$widgetTitle[$widget] = $realWgTitle.' ('.$wgTitle.')';
+	$widgetTitle = serialize($widgetTitle);
+
+	$DB->query("update ".DB_PREFIX."options set option_value='$widgetTitle' where option_name='widget_title'");
+	$CACHE->mc_options('options');
+	header("Location: ./widgets.php?activated=true");
 }
 
 if($action == 'compages')

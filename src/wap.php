@@ -2,7 +2,7 @@
 /**
  * 手机 wap 第一版
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.7.0
+ * @version emlog-3.0.0
  * $Id: wap.php 526 2008-07-05 15:21:03Z emloog $
  */
 

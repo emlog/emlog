@@ -2,7 +2,7 @@
 /**
  * 引用通告管理
  * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-2.7.0
+ * @version emlog-3.0.0
  * $Id$
  */
 
