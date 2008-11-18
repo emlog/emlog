@@ -46,24 +46,24 @@ if($action== 'admin_all_coms')
 	if($doWhat == 'delcom')
 	{
 		$emComment->batchComment('delcom', $comments);
-		$CACHE->mc_sta('sta');
-		$CACHE->mc_comment('comments');
+		$CACHE->mc_sta();
+		$CACHE->mc_comment();
 		header("Location: ./comment.php");
 	}
 	//屏蔽
 	if($doWhat == 'hidecom')
 	{
 		$emComment->batchComment('hidecom', $comments);
-		$CACHE->mc_sta('sta');
-		$CACHE->mc_comment('comments');
+		$CACHE->mc_sta();
+		$CACHE->mc_comment();
 		header("Location: ./comment.php");
 	}
 	//审核
 	if($doWhat == 'showcom')
 	{
 		$emComment->batchComment('showcom', $comments);
-		$CACHE->mc_sta('sta');
-		$CACHE->mc_comment('comments');
+		$CACHE->mc_sta();
+		$CACHE->mc_comment();
 		header("Location: ./comment.php");
 	}
 }
@@ -72,8 +72,8 @@ if ($action== 'del_comment')
 {
 	$commentId = isset($_GET['commentid']) ? intval($_GET['commentid']) : '';
 	$emComment->delComment($commentId);
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_comment('comments');
+	$CACHE->mc_sta();
+	$CACHE->mc_comment();
 	header("Location: ./comment.php");
 }
 //屏蔽评论
@@ -81,8 +81,8 @@ if($action=='hide_comment')
 {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$emComment->hideComment($commentId);
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_comment('comments');
+	$CACHE->mc_sta();
+	$CACHE->mc_comment();
 	header("Location: ./comment.php");
 }
 //审核评论
@@ -90,8 +90,8 @@ if($action=='show_comment')
 {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$emComment->showComment($commentId);
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_comment('comments');
+	$CACHE->mc_sta();
+	$CACHE->mc_comment();
 	header("Location: ./comment.php");
 }
 //回复评论
@@ -117,12 +117,12 @@ if($action=='doreply')
 	if(!$flg)
 	{
 		$emComment->replyComment($commentId, $reply);
-		$CACHE->mc_comment('comments');
+		$CACHE->mc_comment();
 		header("Location: ./comment.php");
 	}else{
 		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
 		$emComment->replyComment($commentId, $reply);
-		$CACHE->mc_comment('comments');
+		$CACHE->mc_comment();
 		echo "<span><b>博主回复</b>：$reply</span>";
 	}
 }

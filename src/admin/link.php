@@ -30,7 +30,7 @@ if ($action== 'link_taxis')
 			$value = intval($value);
 			$emLink->updateLink(array('taxis'=>$value), $key);
 		}
-		$CACHE->mc_link('links');
+		$CACHE->mc_link();
 		formMsg('站点排序更新成功','./link.php',1);
 	}
 	formMsg('没有可排序项目','./link.php',0);
@@ -47,7 +47,7 @@ if($action== 'addlink')
 		formMsg('站点名称和地址不能为空','javascript:history.go(-1);',0);
 	}
 	$emLink->addLink($sitename, $siteurl, $description);
-	$CACHE->mc_link('links');
+	$CACHE->mc_link();
 	header("Location: ./link.php");
 }
 //修改
@@ -71,7 +71,7 @@ if($action=='update_link')
 
 	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
-	$CACHE->mc_link('links');
+	$CACHE->mc_link();
 	header("Location: ./link.php");
 }
 //删除
@@ -79,7 +79,7 @@ if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$emLink->deleteLink($linkid);
-	$CACHE->mc_link('links');
+	$CACHE->mc_link();
 	header("Location: ./link.php");
 }
 

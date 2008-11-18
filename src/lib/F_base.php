@@ -136,7 +136,7 @@ function viewCount()
 				$DB->query("UPDATE ".DB_PREFIX."statistics SET day_view_count = day_view_count+1");
 			}
 			$DB->query("UPDATE ".DB_PREFIX."statistics SET view_count = view_count+1");
-			$CACHE->mc_sta('sta');
+			$CACHE->mc_sta();
 		}
 	}
 }

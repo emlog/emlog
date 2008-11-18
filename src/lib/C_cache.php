@@ -19,10 +19,8 @@ class mkcache {
 	}
 	/**
 	 * 站点配置缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_options($cf)
+	function mc_options()
 	{
 		$options_cache = array();
 		$res = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."options");
@@ -35,14 +33,12 @@ class mkcache {
 			$options_cache[$row['option_name']] = $row['option_value'];
 		}
 		$cacheData = serialize($options_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'options');
 	}
 	/**
 	 * 个人资料缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_blogger($cf)
+	function mc_blogger()
 	{
 		$blogger = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."user ");
 		$icon = '';
@@ -59,14 +55,12 @@ class mkcache {
 		'des'=>$blogger['description']
 		);
 		$cacheData = serialize($user_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'blogger');
 	}
 	/**
 	 * 博客统计缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_sta($cf)
+	function mc_sta()
 	{
 		$dh = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."statistics");
 		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE hide='n' "));
@@ -85,14 +79,12 @@ class mkcache {
 		'tbnum'=>$tbnum
 		);
 		$cacheData = serialize($sta_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'sta');
 	}
 	/**
 	 * 最新评论缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_comment($cf)
+	function mc_comment()
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_comnum'"));
 		$index_comnum = $show_config['option_value'];
@@ -110,14 +102,12 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($com_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'comments');
 	}
 	/**
 	 * 侧边栏标签缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_tags($cf)
+	function mc_tags()
 	{
 		$tag_cache = array();
 		$query=$this->dbhd->query("SELECT max(usenum),min(usenum),count(*) FROM ".$this->db_prefix."tag");
@@ -142,14 +132,12 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($tag_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'tags');
 	}
 	/**
 	 * 友站缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_link($cf)
+	function mc_link()
 	{
 		$link_cache = array();
 		$query=$this->dbhd->query("SELECT siteurl,sitename,description FROM ".$this->db_prefix."link ORDER BY taxis ASC");
@@ -162,14 +150,12 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($link_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'links');
 	}
 	/**
 	 * twitter缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_twitter($cf)
+	function mc_twitter()
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_twnum'"));
 		$index_twnum = $show_config['option_value']+1;
@@ -184,14 +170,33 @@ class mkcache {
 			);
 		}
 		$cacheData = serialize($tw_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'twitter');
 	}
+	
+	/**
+	 * 最新日志
+	 */
+	function mc_newlog()
+	{
+		$row = $this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_newlognum'"));
+		$index_newlognum = $row['option_value'];
+		$sql = "SELECT gid,title FROM ".$this->db_prefix."blog WHERE hide='n' ORDER BY gid DESC LIMIT 0, $index_newlognum";
+		$res = $this->dbhd->query($sql);
+		$logs = array();
+		while($row = $this->dbhd->fetch_array($res))
+		{
+			$row['gid'] = intval($row['gid']);
+			$row['title'] = htmlspecialchars($row['title']);
+			$logs[] = $row;
+		}
+		$cacheData = serialize($logs);
+		$this->cacheWrite($cacheData,'newlogs');
+	}
+	
 	/**
 	 * 日志归档缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_record($cf)
+	function mc_record()
 	{
 		global $isurlrewrite;
 		$query=$this->dbhd->query("select date from ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC");
@@ -235,14 +240,12 @@ class mkcache {
 		}
 
 		$cacheData = serialize($dang_cache);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'records');
 	}
 	/**
 	 * 日志标签缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_logtags($cf)
+	function mc_logtags()
 	{
 		$sql="SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
 		$query1=$this->dbhd->query($sql);
@@ -268,14 +271,12 @@ class mkcache {
 			unset($tag);
 		}
 		$cacheData = serialize($log_cache_tags);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'log_tags');
 	}
 	/**
 	 * 日志附件缓存
-	 *
-	 * @param unknown_type $cf
 	 */
-	function mc_logatts($cf)
+	function mc_logatts()
 	{
 		$sql="SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
 		$query = $this->dbhd->query($sql);
@@ -301,14 +302,11 @@ class mkcache {
 			unset($attachment);
 		}
 		$cacheData = serialize($log_cache_atts);
-		$this->cacheWrite($cacheData,$cf);
+		$this->cacheWrite($cacheData,'log_atts');
 	}
 
 	/**
 	 * 写入缓存
-	 *
-	 * @param unknown_type $cacheDate
-	 * @param unknown_type $cachefile
 	 */
 	function cacheWrite ($cacheDate,$cachefile)
 	{
@@ -320,9 +318,6 @@ class mkcache {
 
 	/**
 	 * 读取缓存文件
-	 *
-	 * @param  $filename 缓存文件
-	 * @return unknown
 	 */
 	function readCache($cachefile)
 	{

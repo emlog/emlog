@@ -245,7 +245,7 @@ class emBlog {
 	/**
 	 * 获取指定数量最新日志
 	 *
-	 * @param int $newLogNum
+	 * @param int $num
 	 * @return array
 	 */
 	function getNewLog($num)
@@ -265,10 +265,10 @@ class emBlog {
 	/**
 	 * 随机获取指定数量日志
 	 *
-	 * @param int $newLogNum
+	 * @param int $num
 	 * @return array
 	 */
-	function getNewLog($num)
+	function getRandLog($num)
 	{
 		$sql = "SELECT gid,title FROM $this->blogTable WHERE hide='n' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->dbhd->query($sql);

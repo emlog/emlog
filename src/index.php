@@ -143,8 +143,8 @@ if ($action == 'addcom')
 
 	$emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
 
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_comment('comments');
+	$CACHE->mc_sta();
+	$CACHE->mc_comment();
 }
 
 cleanPage(true);

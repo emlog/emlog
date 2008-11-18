@@ -35,7 +35,7 @@ if($action == 'setwg')
 	$widgetTitle = serialize($widgetTitle);
 
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgetTitle' where option_name='widget_title'");
-	$CACHE->mc_options('options');
+	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true");
 }
 
@@ -48,7 +48,7 @@ if($action == 'compages')
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets'");
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title'");
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content'");
-	$CACHE->mc_options('options');
+	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true");
 }
 

@@ -90,15 +90,15 @@ if ($action == 'renewdata')
 	fclose($fp);
 	unset($sql);
 	bakindata($sqlfile);
-	$CACHE->mc_blogger('blogger');
-	$CACHE->mc_options('options');
-	$CACHE->mc_record('records');
-	$CACHE->mc_comment('comments');
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_link('links');
-	$CACHE->mc_tags('tags');
-	$CACHE->mc_twitter('twitter');
+	$CACHE->mc_blogger();
+	$CACHE->mc_options();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_sta();
+	$CACHE->mc_link();
+	$CACHE->mc_tags();
+	$CACHE->mc_twitter();
 	header("Location: ./backup.php?active_import=true");
 }
 

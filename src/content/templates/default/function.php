@@ -98,6 +98,29 @@
 	</ul>
 <?php }?>
 
+<?php function widget_newlog($title){ ?>
+	<?php global $newLogs_cache; ?>
+	<div class="lister"><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></div>
+	<ul id="newlog">
+	<?php foreach($newLogs_cache as $value): ?>
+	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+<?php }?>
+
+<?php function widget_random_log($title){ ?>
+	<?php 
+	global $index_randlognum, $emBlog;
+	$randLogs = $emBlog->getRandLog($index_randlognum);
+	?>
+	<div class="lister"><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></div>
+	<ul id="newlog">
+	<?php foreach($randLogs as $value): ?>
+	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+<?php }?>
+
 <?php function widget_search($title){ ?>
 	<div class="lister"><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></div>
 	<ul id="logserch">

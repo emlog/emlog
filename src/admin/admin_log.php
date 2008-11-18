@@ -90,11 +90,12 @@ if($action == 'admin_all_log')
 			{
 				$emBlog->deleteLog($key);
 			}
-			$CACHE->mc_sta('sta');
-			$CACHE->mc_record('records');
-			$CACHE->mc_comment('comments');
-			$CACHE->mc_logtags('log_tags');
-			$CACHE->mc_tags('tags');
+			$CACHE->mc_sta();
+			$CACHE->mc_record();
+			$CACHE->mc_comment();
+			$CACHE->mc_logtags();
+			$CACHE->mc_tags();
+			$CACHE->mc_newlog();
 			if($pid == 'draft')
 			{
 				header("Location: ./admin_log.php?pid=draft");
@@ -121,10 +122,11 @@ if($action == 'admin_all_log')
 			{
 				$emBlog->hideSwitch($key, 'y');
 			}
-			$CACHE->mc_sta('sta');
-			$CACHE->mc_record('records');
-			$CACHE->mc_comment('comments');
-			$CACHE->mc_logtags('log_tags');
+			$CACHE->mc_sta();
+			$CACHE->mc_record();
+			$CACHE->mc_comment();
+			$CACHE->mc_logtags();
+			$CACHE->mc_newlog();
 			formMsg('日志成功转入草稿箱','./admin_log.php',1);
 			break;
 		case 'show':
@@ -132,10 +134,11 @@ if($action == 'admin_all_log')
 			{
 				$emBlog->hideSwitch($key, 'n');
 			}
-			$CACHE->mc_sta('sta');
-			$CACHE->mc_comment('comments');
-			$CACHE->mc_logtags('log_tags');
-			$CACHE->mc_record('records');
+			$CACHE->mc_sta();
+			$CACHE->mc_comment();
+			$CACHE->mc_logtags();
+			$CACHE->mc_record();
+			$CACHE->mc_newlog();
 			formMsg('发布成功','./admin_log.php?pid=draft',1);
 			break;
 	}
@@ -146,11 +149,12 @@ if ($action == 'dellog' || $action == 'deldraft')
 {
 	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$emBlog->deleteLog($gid);
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_record('records');
-	$CACHE->mc_comment('comments');
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_tags('tags');
+	$CACHE->mc_sta();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_tags();
+	$CACHE->mc_newlog();
 	if($action == 'dellog')
 	{
 		header("Location: ./admin_log.php");

@@ -303,6 +303,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
@@ -406,16 +408,16 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 		}
 	}
 	//重建缓存
-	$CACHE->mc_blogger('blogger');
-	$CACHE->mc_options('options');
-	$CACHE->mc_record('records');
-	$CACHE->mc_comment('comments');
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_logatts('log_atts');
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_link('links');
-	$CACHE->mc_tags('tags');
-	$CACHE->mc_twitter('twitter');
+	$CACHE->mc_blogger();
+	$CACHE->mc_options();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_sta();
+	$CACHE->mc_link();
+	$CACHE->mc_tags();
+	$CACHE->mc_twitter();
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
 	sysMsg($result);

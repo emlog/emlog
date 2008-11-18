@@ -103,9 +103,9 @@ if($action=="edit")
 		$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $logid);
 	}
 
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_logatts('log_atts');
-	$CACHE->mc_record('records');
-	$CACHE->mc_tags('tags');
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_record();
+	$CACHE->mc_tags();
 	formMsg( "保存成功\t$tbmsg","javascript:history.go(-1);",1);
 }

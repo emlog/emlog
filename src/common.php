@@ -31,6 +31,7 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $options_cache = $CACHE->readCache('options');
 $log_cache_tags = $CACHE->readCache('log_tags');
 $log_cache_atts = $CACHE->readCache('log_atts');
+$newLogs_cache = $CACHE->readCache('newlogs');
 $tag_cache = $CACHE->readCache('tags');
 $com_cache = $CACHE->readCache('comments');
 $link_cache = $CACHE->readCache('links');

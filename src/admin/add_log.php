@@ -73,7 +73,7 @@ if($action == 'addlog')
 	if (!empty($tagstring))
 	{
 		$emTag->addTag($tagstring, $logid);
-		$CACHE->mc_tags('tags');
+		$CACHE->mc_tags();
 	}
 	//发送Trackback
 	$tbmsg = '';
@@ -81,10 +81,11 @@ if($action == 'addlog')
 	{
 		$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $logid);
 	}
-	$CACHE->mc_sta('sta');
-	$CACHE->mc_record('records');
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_logatts('log_atts');
+	$CACHE->mc_sta();
+	$CACHE->mc_record();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_newlog();
 	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 }
 //自动保存

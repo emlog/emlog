@@ -36,8 +36,8 @@ if($action=='update_tag')
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$emTag->updateTagName($tagId, $tagName);
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_tags('tags');
+	$CACHE->mc_logtags();
+	$CACHE->mc_tags();
 	header("Location: ./tag.php");
 }
 
@@ -53,8 +53,8 @@ if($action== 'dell_all_tag')
 	{
 		$emTag->deleteTag($key);
 	}
-	$CACHE->mc_logtags('log_tags');
-	$CACHE->mc_tags('tags');
+	$CACHE->mc_logtags();
+	$CACHE->mc_tags();
 	header("Location: ./tag.php");
 }
 

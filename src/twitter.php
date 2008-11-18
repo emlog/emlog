@@ -24,8 +24,8 @@ if (ISLOGIN === true && $action == 'add')
 	{
 		$twitter = '';
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
-		$CACHE->mc_twitter('twitter');
-		$CACHE->mc_sta('sta');
+		$CACHE->mc_twitter();
+		$CACHE->mc_sta();
 		$twitter.=getindextw();
 		echo $twitter;
 	}
@@ -36,8 +36,8 @@ if (ISLOGIN === true && $action == 'del')
 	$twid = isset($_GET['twid']) ? intval($_GET['twid']) : '';
 	$twitter = '';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
-	$CACHE->mc_twitter('twitter');
-	$CACHE->mc_sta('sta');
+	$CACHE->mc_twitter();
+	$CACHE->mc_sta();
 	$twitter.=getindextw();
 	echo $twitter;
 }

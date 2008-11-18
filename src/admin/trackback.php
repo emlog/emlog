@@ -28,7 +28,7 @@ if ($action== 'del_tb')
 {
 	$tbid = isset($_GET['tbid']) ? intval($_GET['tbid']) : '';
 	$emTrackback->deleteTrackback($tbid);
-	$CACHE->mc_sta('sta');
+	$CACHE->mc_sta();
 	header("Location: ./trackback.php");
 }
 //批量删除引用
@@ -43,7 +43,7 @@ if($action== 'dell_all_tb')
 	{
 		$emTrackback->deleteTrackback($key);
 	}
-	$CACHE->mc_sta('sta');
+	$CACHE->mc_sta();
 	header("Location: ./trackback.php");
 }
 

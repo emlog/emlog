@@ -101,11 +101,11 @@ if ($action== "mod_config")
 	{
 		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$val' where option_name='$key'");
 	}
-	$CACHE->mc_tags('tags');
-	$CACHE->mc_comment('comments');
-	$CACHE->mc_options('options');
-	$CACHE->mc_record('records');
-	$CACHE->mc_twitter('twitter');
+	$CACHE->mc_tags();
+	$CACHE->mc_comment();
+	$CACHE->mc_options();
+	$CACHE->mc_record();
+	$CACHE->mc_twitter();
 	header("Location: ./configure.php?activated=true");
 }
 //phpinfo()
