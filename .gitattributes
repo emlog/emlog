@@ -64,7 +64,6 @@ src/admin/fckeditor/fckstyles.xml -text
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
-src/admin/music.php -text svn_keywords=Id
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/tips.php -text svn_keywords=Id
@@ -107,7 +106,6 @@ src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/main.css -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
-src/admin/views/default/music.php -text svn_keywords=Id
 src/admin/views/default/tag.php -text svn_keywords=Id
 src/admin/views/default/tagedit.php -text svn_keywords=Id
 src/admin/views/default/template.php -text svn_keywords=Id

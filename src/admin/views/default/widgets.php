@@ -69,9 +69,9 @@
 			<li>标题</li>
 			<li><input type="text" name="title" value=""  /></li>
 			<li>首页最新评论数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
 			<li>新近评论截取字节数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="submit" name="" value="更改"  /></li>
+			<li><input maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -86,7 +86,7 @@
 			<li>标题</li>
 			<li><input type="text" name="title" value=""  /></li>
 			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -100,8 +100,8 @@
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value=""  /></li>
-			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
+			<li>首页显示最新日志数</li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_newlognum; ?>" name="index_newlog" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -115,8 +115,8 @@
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value=""  /></li>
-			<li>首页显示twitter数</li>
-			<li><input class="input_line" maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
+			<li>首页显示随机日志数</li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_randlognum; ?>" name="index_randlognum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -129,7 +129,19 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value=""  /></li>
+		    <li>启用背景音乐 <input id="switch" type="checkbox" value="1" name="ismusic" <?php echo $ismusic; ?>/></li>
+			<li>音乐链接：(每行一个，仅支持mp3格式)</li>
+			<li><textarea name="mlinks" rows="6" wrap="off" style="width:400px;overflow:auto;"><?php echo $content; ?></textarea></li>
+			<li>启用随机播放：
+		      <input type="radio" value="1" name="randplay" <?php echo $randplay1; ?>/>是
+			  <input type="radio" value="0" name="randplay" <?php echo $randplay2; ?>/>否
+			</li>
+			<li>启用自动播放：
+		      <input type="radio" value="1" name="auto" <?php echo $auto1; ?>/>是
+			  <input type="radio" value="0" name="auto" <?php echo $auto2; ?>/>否
+			</li>
+			<li><input type="submit" value="确 定" /></li>
 		</div>
 	</div>
 	</form>
