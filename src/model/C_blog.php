@@ -202,7 +202,6 @@ class emBlog {
 
 	/**
 	 * 获取日志发布时间
-	 *
 	 */
 	function postDate($timezone=8, $hour=null, $min=null,$sec=null, $month=null, $day=null,$year=null)
 	{
@@ -219,11 +218,22 @@ class emBlog {
 		return $postTime;
 	}
 
+	/**
+	 * 增加阅读次数
+	 *
+	 * @param int $blogId
+	 */
 	function updateViewCount($blogId)
 	{
 		$this->dbhd->query("UPDATE $this->blogTable SET views=views+1 WHERE gid=$blogId");
 	}
 
+	/**
+	 * 获取相邻日志
+	 *
+	 * @param int $blogId
+	 * @return array
+	 */
 	function neighborLog($blogId)
 	{
 		$neighborlog = array();
@@ -231,8 +241,46 @@ class emBlog {
 		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
 		return $neighborlog;
 	}
+	
+	/**
+	 * 获取指定数量最新日志
+	 *
+	 * @param int $newLogNum
+	 * @return array
+	 */
+	function getNewLog($num)
+	{
+		$sql = "SELECT gid,title FROM $this->blogTable WHERE hide='n' ORDER BY gid DESC LIMIT 0, $num";
+		$res = $this->dbhd->query($sql);
+		$logs = array();
+		while($row = $this->dbhd->fetch_array($res))
+		{
+			$row['gid'] = intval($row['gid']);
+			$row['title'] = htmlspecialchars($row['title']);
+			$logs[] = $row;
+		}
+		return $logs;
+	}
 
-
+	/**
+	 * 随机获取指定数量日志
+	 *
+	 * @param int $newLogNum
+	 * @return array
+	 */
+	function getNewLog($num)
+	{
+		$sql = "SELECT gid,title FROM $this->blogTable WHERE hide='n' ORDER BY rand() LIMIT 0, $num";
+		$res = $this->dbhd->query($sql);
+		$logs = array();
+		while($row = $this->dbhd->fetch_array($res))
+		{
+			$row['gid'] = intval($row['gid']);
+			$row['title'] = htmlspecialchars($row['title']);
+			$logs[] = $row;
+		}
+		return $logs;
+	}
 
 }
 
