@@ -131,9 +131,6 @@ a:hover {
 	background-color:#F7F7F7;
 	color: #666666;
 }
-.toptd {
-	border: 1px solid #CCCCCC;
-}
 .submit{
 	background-color:#FFFFFF;
 	border: 3px double #999;
@@ -341,3 +338,28 @@ textarea{
 	padding:5px 30px;
 	border:1px #FFBA43 solid;
 }
+#login_logo{
+	width:240px;
+	height:60px;
+	background:url(images/logo.gif) center no-repeat;
+}
+.login_page {
+	width:240px;
+	margin-top: 100px;
+	margin-left:40%;
+	margin-right:30%;
+}
+.login_main{
+	background-color: #F6F6F6;
+	margin:10px 0px;
+	padding:5px 0px 5px 10px;
+}
+.login_page p{
+	margin:5px;
+};
+.login_input{
+	font-size:20px;
+	padding:3px;
+}
+#user,#pw{ height:28px;  width:210px;}
+#imgcode{ height:28px; width:80px;}

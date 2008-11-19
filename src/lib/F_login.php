@@ -65,9 +65,9 @@ function loginPage()
 {
 	global $login_code;
 	$login_code == 'y' ?
-	$ckcode = "<tr><td >验证码:<br /><input type=\"hidden\" name=\"action\" value=\"login\" >
-				<input name=\"imgcode\" type=\"text\" class=\"INPUT\" size=\"5\">&nbsp&nbsp\n
-				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></td></tr>\n" :
+	$ckcode = "<p>验证码</p><p><input type=\"hidden\" name=\"action\" value=\"login\" >
+				<input name=\"imgcode\" id=\"imgcode\" type=\"text\" class=\"login_input\">&nbsp&nbsp\n
+				<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></p>" :
 	$ckcode = '';
 	require_once(getViews('login'));
 	cleanPage();

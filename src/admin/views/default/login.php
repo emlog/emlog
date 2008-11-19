@@ -6,24 +6,24 @@
 <link rel="stylesheet" href="./views/<?php echo ADMIN_TPL; ?>/main.css">
 <script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 </head>
-<body bgcolor="#F9FCFE">
+<body id="center">
 <form name="f" method="post" action="index.php?action=login">
-<br /><br /><br /><br />
-<table align="center" class="toptd">
-<h3 align="center">Emlog</h3>
-<tr><td>
-用户名:<br /><input name="user" id="user" type="text" class="input"><br>
-密码:<br /><input name="pw" id="pw" type="password" class="input"><br>
-<?php echo $ckcode; ?><br>
-</td></tr>
-<tr><td>
+<div class="login_page">
+<div id="login_logo"></div>
+<div class="login_main">
+<p>用户名</p>
+<p><input name="user" id="user" type="text" class="login_input"></p>
+<p>密码</p>
+<p><input name="pw" id="pw" type="password" class="login_input"></p>
+<?php echo $ckcode; ?>
+<p>
 <input type="checkbox" id="ispersis" name="ispersis" value="1" /><label for="ispersis">记住我</label>
-</td></tr>
-<tr><td align="right"><input type="submit" value=" 登 录" class="submit"></td></tr>
-</table>
+<span style="margin-left:80px;"><input type="submit" value=" 登 录" class="submit"></span>
+</p>
+</div>
+<div><a href="../">&laquo;返回首页</a></div>
+</div>
 </form>
-<script>
-focusEle('user');
-</script>
+<script>focusEle('user');</script>
 </body>
 </html>
