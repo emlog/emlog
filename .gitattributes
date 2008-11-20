@@ -57,6 +57,7 @@ src/admin/fckeditor/editor/skins/images/toolbar.arrowright.gif -text
 src/admin/fckeditor/editor/skins/images/toolbar.buttonarrow.gif -text
 src/admin/fckeditor/editor/skins/images/toolbar.end.gif -text
 src/admin/fckeditor/editor/skins/images/toolbar.separator.gif -text
+src/admin/fckeditor/editor/skins/images/toolbar.space.gif -text
 src/admin/fckeditor/editor/skins/images/toolbar.start.gif -text
 src/admin/fckeditor/fckconfig.js -text
 src/admin/fckeditor/fckeditor.js -text

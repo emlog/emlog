@@ -11,7 +11,7 @@ body
 }
 
 #xToolbarSpace {
-    background-color: #efefde;
+    background-image:url(images/toolbar.space.gif);
     border: #696969 1px solid;
 	border-bottom:none;
 }
