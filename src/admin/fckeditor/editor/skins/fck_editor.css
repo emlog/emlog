@@ -7,12 +7,12 @@ body
 
 #xEditingArea
 {
-    border: #696969 1px solid;
+    border: #CCCCCC 1px solid;
 }
 
 #xToolbarSpace {
     background-image:url(images/toolbar.space.gif);
-    border: #696969 1px solid;
+    border: #CCCCCC 1px solid;
 	border-bottom:none;
 }
 
@@ -82,20 +82,18 @@ body
 
 .TB_Button_On, .TB_Button_Off, .TB_Button_On_Over, .TB_Button_Off_Over, .TB_Button_Disabled
 {
-    border: #efefde 1px solid; /* This is the default border */
+    /*border: #efefde 1px solid;  This is the default border */
     height: 22px; /* The height is necessary, otherwise IE will not apply the alpha */
 }
 
 .TB_Button_On
 {
-    border: #316ac5 1px solid;
     background-color: #c1d2ee;
 }
 
 .TB_Button_On_Over, .TB_Button_Off_Over
 {
-    border: #316ac5 1px solid;
-    background-color: #dff1ff;
+    background-color:#c1d2ee;
 }
 
 .TB_Button_Off

@@ -21,9 +21,6 @@ src/admin/fckeditor/editor/css/images/fck_flashlogo.gif -text
 src/admin/fckeditor/editor/css/images/fck_plugin.gif -text
 src/admin/fckeditor/editor/dialog/common/fck_dialog_common.css -text
 src/admin/fckeditor/editor/dialog/common/fck_dialog_common.js -text
-src/admin/fckeditor/editor/dialog/fck_about.html -text
-src/admin/fckeditor/editor/dialog/fck_about/logo_fckeditor.gif -text
-src/admin/fckeditor/editor/dialog/fck_about/logo_fredck.gif -text
 src/admin/fckeditor/editor/dialog/fck_flash.html -text
 src/admin/fckeditor/editor/dialog/fck_flash/fck_flash.js -text
 src/admin/fckeditor/editor/dialog/fck_flash/fck_flash_preview.html -text

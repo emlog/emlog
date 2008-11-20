@@ -47,11 +47,11 @@ FCKConfig.FloatingPanelsZIndex = 10000 ;
 FCKConfig.HtmlEncodeOutput = false ;
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','-','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','-','Link','Unlink','-','TextColor','BGColor','-','Blockquote','Image','Flash','Rule','Table','-','About']
+	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Blockquote','Image','Flash','Rule','Table']
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
-	['Source','Bold','Italic','-','OrderedList','UnorderedList','-','Link','Unlink','Image','-','About']
+	['Source','Bold','Italic','OrderedList','UnorderedList','Link','Unlink','Image','About']
 ] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
