@@ -80,14 +80,15 @@ a:hover {
 }
 .sidebarmenu {
 	background-position: center top; 
-	font-weight: bold; 
 	background-image: url(./images/mc_bg1.gif); 
 	width: 114px; 
 	padding-top: 4px; 
 	background-repeat: no-repeat; 
-	letter-spacing: 0.3em; 
+	letter-spacing: 0.2em; 
 	height: 24px;
+	color:#FFFFFF;
 	cursor:pointer;
+	font-weight:bold
 }
 .sidebarsubmenu {
 	background-position: center top; 
@@ -109,7 +110,7 @@ a:hover {
 	letter-spacing: 0.2em;
 }
 .line {
-	border-top: #999999 1px solid; 
+	border-top: #CCCCCC 1px solid; 
 	margin-top: 7px; 
 	margin-bottom: 10px; 
 	width: 98%
@@ -179,8 +180,11 @@ a:hover {
 	color: #009933;
 }
 .tips{
+	background:url(images/icon_tips.png) no-repeat left 3px;
+	padding:3px 18px;
+	margin:5px 0px;
 	font-size:12px;
-	color:#FF3300;
+	color:#999999;
 }
 /* End Miscellaneous */
 .attlist img{

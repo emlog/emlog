@@ -17,14 +17,14 @@
   <tbody>
   <tr>
     <td width="9" id=headerleft></td>
-    <td width=98 align=middle nowrap class="logo">Emlog</td>
+    <td width=98 align=middle nowrap class="logo"><a href="www.emlog.net">emlog</a></td>
     <td class="vesion"><?php echo EMLOG_VERSION; ?></td>
-    <td class="headtext"><a href="../index.php" target="_blank"><?php echo $blogname; ?></a></td>
+    <td class="headtext"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
 	欢迎您：<a href="blogger.php"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="configure.php">设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="configure.php">博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="index.php?action=logout">退出管理</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
+	<a href="index.php?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
     <td width="9" id="headerright"></td>
 	</tbody>
 </table>
@@ -38,7 +38,7 @@
           <td valign=top align=left width=114>
             <div id=sidebar>
             <div id=sidebartop></div>
-            <div class="sidebarmenu" onclick="showhidediv('blogctlpl');">Blog管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('blogctlpl');">博客管理</div>
 			<div id="blogctlpl">
             <div class=sidebarsubmenu><a href="widgets.php" >Widgets</a></div>
 			<div class=sidebarsubmenu><a href="template.php" >外观模板</a></div>
@@ -54,7 +54,7 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="showhidediv('logmg');">日志管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('logmg');">日志管理</div>
 			<div id="logmg">
             <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
 			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
@@ -73,7 +73,7 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="showhidediv('datamg');">数据管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('datamg');">数据管理</div>
 			<div id="datamg">
             <div class=sidebarsubmenu><A href="backup.php">数据备份</A></div>
             <div class=sidebarsubmenu><A href="cache.php">重建缓存</A><a href="admin_log.php"></a></div>
@@ -87,9 +87,4 @@
 </td>
 <td id=container valign=top align=left>
 <table cellspacing=0 cellpadding=10 width="100%" border=0>
-        <tbody>
-        <tr>
-          <td width="909" align="left" class="tips"><b>小贴士：</b><?php echo $tips; ?></td>
-</tr>
-</tbody>
-</table>
+<div class="tips">:) <?php echo $tips; ?></div>

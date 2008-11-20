@@ -47,3 +47,7 @@ function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
 	$(".actived").hide();
 }
+//show or hide div
+function displayToggle(id){
+	$("#"+id).toggle();
+}

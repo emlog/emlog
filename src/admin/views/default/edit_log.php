@@ -22,7 +22,7 @@ setTimeout("doautosave()",30000);
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td>
-					<b>内容：</b> <a href="javascript: showhidediv('FrameUpload');" class="thickbox">附件管理</a>
+					<b>内容：</b> <a href="javascript: displayToggle('FrameUpload');" class="thickbox">附件管理</a>
 					<span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
 					
 					<div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
