@@ -17,7 +17,7 @@
   <tbody>
   <tr>
     <td width="9" id=headerleft></td>
-    <td width=98 align=middle nowrap class="logo"><a href="www.emlog.net">emlog</a></td>
+    <td width=98 align=middle nowrap class="logo"><a href="http://www.emlog.net">emlog</a></td>
     <td class="vesion"><?php echo EMLOG_VERSION; ?></td>
     <td class="headtext"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
