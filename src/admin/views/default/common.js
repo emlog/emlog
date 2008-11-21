@@ -51,3 +51,7 @@ function hideActived(){
 function displayToggle(id){
 	$("#"+id).toggle();
 }
+function chekform(){
+	var t = $.trim($("#title").val());
+	if (t==""){alert("日志标题不能为空");$("#title").focus();return false;}else return true;
+}

@@ -41,7 +41,7 @@ if($action=='bakstart')
 	//如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
-		$sqldump = "#emlog_".EMLOG_VERSION." database bakup file\n#".date('Y-m-d H:i')."\n$sqldump";
+		$sqldump = "#emlog_".EMLOG_VERSION." database backuo file\n#".date('Y-m-d H:i')."\n$sqldump";
 		//备份到服务器
 		@$fp = fopen($filename, "w+");
 		if ($fp)

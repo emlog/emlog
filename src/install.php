@@ -88,9 +88,9 @@ body {
 <p class="title2">1.权限设置</p>
 Linux 系统请在执行安装程序之前设置如下文件或目录权限为777：(Win系统无需设置)<br>
 ./config.php（文件）<br>
-./cache/（目录下所有文件）<br>
-./upload（目录）<br>
-./admin/bakup（目录）<br>
+./content/cache/（目录下所有文件）<br>
+./content/uploadfile（目录）<br>
+./content/backup（目录）<br>
  请确保上面的权限正确设置，才能进行安装。</p>
 </div>
 <div class="b">

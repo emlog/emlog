@@ -34,7 +34,7 @@ $(document).ready(function(){
 	?>
     <tr>
       <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[<?php echo $value; ?>]" /></td>
-      <td><a href="./bakup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
+      <td><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
       <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');">导入</a></td>

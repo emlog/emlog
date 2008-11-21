@@ -1,17 +1,13 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script type="text/javascript">
 function savedraft(){
-	if(!chekform()){
-		return false;
-	}
+	if(!chekform()){return false;}
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
 	document.submit();
 }
 function doautosave(){
 	var title = $("title").value.Trim();
-	if(title!=""){
-		autosave('add_log.php?action=autosave','asmsg');
-	}	
+	if(title!=""){autosave('add_log.php?action=autosave','asmsg');}	
 }
 setTimeout("doautosave()",30000);
 </script>

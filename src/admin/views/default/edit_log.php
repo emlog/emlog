@@ -2,9 +2,7 @@
 <script>
 function doautosave(){
 	var title = $("title").value.Trim();
-	if(title!=""){
-		autosave('add_log.php?action=autosave','asmsg');
-	}	
+	if(title!=""){autosave('add_log.php?action=autosave','asmsg');}	
 }
 setTimeout("doautosave()",30000);
 </script>
