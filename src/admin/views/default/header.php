@@ -86,5 +86,4 @@
 	</table>
 </td>
 <td id=container valign=top align=left>
-<table cellspacing=0 cellpadding=10 width="100%" border=0>
 <div class="tips">:) <?php echo $tips; ?></div>

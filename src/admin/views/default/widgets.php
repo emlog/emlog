@@ -132,7 +132,7 @@
 			<li><input type="text" name="title" value=""  /></li>
 		    <li>启用背景音乐 <input id="switch" type="checkbox" value="1" name="ismusic" <?php echo $ismusic; ?>/></li>
 			<li>音乐链接：(每行一个，仅支持mp3格式)</li>
-			<li><textarea name="mlinks" rows="6" wrap="off" style="width:400px;overflow:auto;"><?php echo $content; ?></textarea></li>
+			<li><textarea name="mlinks" rows="6" wrap="off" style="width:350px;overflow:auto;"><?php echo $content; ?></textarea></li>
 			<li>启用随机播放：
 		      <input type="radio" value="1" name="randplay" <?php echo $randplay1; ?>/>是
 			  <input type="radio" value="0" name="randplay" <?php echo $randplay2; ?>/>否

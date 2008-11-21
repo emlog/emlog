@@ -25,7 +25,7 @@ a:hover {
 	background-repeat: repeat-x
 }
 #header a {
-	color: #F3F3F3; 
+	color: #FFFFFF; 
 	text-decoration: none
 }
 #header a:hover {
@@ -52,7 +52,6 @@ a:hover {
 	background-repeat: repeat-y; 
 	text-align: center
 }
-
 #sidebar a {
 	color: #333333; 
 	text-decoration: none
@@ -61,7 +60,6 @@ a:hover {
 	color:#2A9DDB;
 	text-decoration: none
 }
-
 #sidebartop {
 	background-position: left top; 
 	font-size: 4px; 
@@ -186,7 +184,6 @@ a:hover {
 	font-size:12px;
 	color:#999999;
 }
-/* End Miscellaneous */
 .attlist img{
 	border: 1px solid #ccc;
 	padding: 3px;
@@ -194,7 +191,6 @@ a:hover {
 textarea{
 	font-size:12px;
 }
-/*upload*/
 #media-upload-header{
 	background-color:#E4F2FD;
 	border-top:solid #C6D9E9 1px;
@@ -224,7 +220,6 @@ textarea{
 #media-upload-body{
 	margin:0px 200px 0px 0px;
 }
-/*table style*/
 .tralt_a{
 	background-color:#FFFFFF;
 }
@@ -234,13 +229,13 @@ textarea{
 .trover{
 	background-color:#E9F1FA;
 }
-/*widgets*/
 .widgetpage{
-	width:850px;
+	width:750px;
 	cursor:default;
+	margin-left:20px;
 }
 #adm_widget_list{
-	width:500px;
+	width:450px;
 	float:left;
 }
 .widget-line{
@@ -251,7 +246,7 @@ textarea{
 	padding:0px 0px 0px 0px;
 	margin:5px 0px 0px 0px;
 	background-color:#ECEFF5;
-	width:455px;
+	width:405px;
 }
 .widget-top li{
 	float:left;
@@ -262,11 +257,11 @@ textarea{
 .widget-title{
 	cursor:pointer;
 	font-weight:bold;
-	width:410px;
+	width:360px;
 }
 .widget-control {
 	float:left;
-	width:413px;
+	width:363px;
 	padding:10px 20px;
 	display:none;
 	margin:0px 0px 5px 0px;
@@ -276,7 +271,7 @@ textarea{
 	list-style-type:none;
 }
 #adm_widget_box {
-	width:350px;
+	width:300px;
 	float:right;
 }
 .widget-act-del{
@@ -302,32 +297,28 @@ textarea{
 	padding:5px;
 }
 .sortableitem textarea{
-	width:297px;
+	width:247px;
 	overflow:auto;
 	border: 1px solid #FFFFFF;
 	font-size: 12px;
 	height: 150px;
 }
+.sortableitem input{
+	width:247px;
+	border: 1px solid #FFFFFF;
+	font-size: 12px;
+}
 .wgbox_title{
 	cursor:move;
-	padding-right:155px;
+	padding-right:105px;
 }
-.wgbox_text{
-	display:none;
-}
-.wgbox_edit{
-	cursor:pointer;
-}
-.wgbox_del{
-	cursor:pointer;
-}
+.wgbox_text{display:none;}
+.wgbox_edit{cursor:pointer;}
+.wgbox_del{cursor:pointer;}
 .wg_hd{
 	cursor:move;
 	font-size:12px;
-	
 }
-
-/*templates*/
 .adm_tpl_list td{
 	border-bottom: #CCCCCC 1px dotted;
 	padding:10px;
