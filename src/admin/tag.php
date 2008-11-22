@@ -38,7 +38,7 @@ if($action=='update_tag')
 	$emTag->updateTagName($tagId, $tagName);
 	$CACHE->mc_logtags();
 	$CACHE->mc_tags();
-	header("Location: ./tag.php");
+	header("Location: ./tag.php?active_edit=true");
 }
 
 //批量删除标签
@@ -47,7 +47,8 @@ if($action== 'dell_all_tag')
 	$tags = isset($_POST['tag']) ? $_POST['tag'] : '';
 	if(!$tags)
 	{
-		formMsg('请选择要删除的标签','javascript:history.go(-1);',0);
+		header("Location: ./tag.php?error_a=true");
+		exit;
 	}
 	foreach($tags as $key=>$value)
 	{
@@ -55,7 +56,7 @@ if($action== 'dell_all_tag')
 	}
 	$CACHE->mc_logtags();
 	$CACHE->mc_tags();
-	header("Location: ./tag.php");
+	header("Location: ./tag.php?active_del=true");
 }
 
 ?>

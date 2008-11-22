@@ -333,6 +333,13 @@ textarea{
 	padding:5px 30px;
 	border:1px #FFBA43 solid;
 }
+.error{
+	margin:0px 300px;
+	background:url(images/icon_error.png) no-repeat 10px #FDFFCE ;
+	font-size:14px;
+	padding:5px 30px;
+	border:1px #FFBA43 solid;
+}
 #login_logo{
 	width:240px;
 	height:60px;
@@ -358,3 +365,5 @@ textarea{
 }
 #user,#pw{ height:28px;  width:210px;}
 #imgcode{ height:28px; width:80px;}
+.addItem{ margin-left:30px;}
+.sortname{ cursor:pointer; color:#2A9DDB;}

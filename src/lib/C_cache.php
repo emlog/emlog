@@ -172,7 +172,7 @@ class mkcache {
 		$cacheData = serialize($tw_cache);
 		$this->cacheWrite($cacheData,'twitter');
 	}
-	
+
 	/**
 	 * 最新日志
 	 */
@@ -192,7 +192,7 @@ class mkcache {
 		$cacheData = serialize($logs);
 		$this->cacheWrite($cacheData,'newlogs');
 	}
-	
+
 	/**
 	 * 日志归档缓存
 	 */
@@ -241,6 +241,25 @@ class mkcache {
 
 		$cacheData = serialize($dang_cache);
 		$this->cacheWrite($cacheData,'records');
+	}
+	/**
+	 * 日志分类缓存
+	 */
+	function mc_sort()
+	{
+		$sort_cache = array();
+		$query = $this->dbhd->query("SELECT sid,sortname FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid='".$row['sid']."' AND hide='n' "));
+			$sort_cache[] = array(
+			'lognum' => $logNum,
+			'sortname' => htmlspecialchars($row['sortname']),
+			'id' => intval($row['sid'])
+			);
+		}
+		$cacheData = serialize($sort_cache);
+		$this->cacheWrite($cacheData,'sort');
 	}
 	/**
 	 * 日志标签缓存

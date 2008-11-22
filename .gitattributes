@@ -62,6 +62,7 @@ src/admin/fckeditor/fckstyles.xml -text
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
+src/admin/sort.php -text
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/tips.php -text svn_keywords=Id
@@ -106,6 +107,7 @@ src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/main.css -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
+src/admin/views/default/sort.php -text
 src/admin/views/default/tag.php -text svn_keywords=Id
 src/admin/views/default/tagedit.php -text svn_keywords=Id
 src/admin/views/default/template.php -text svn_keywords=Id
@@ -694,6 +696,7 @@ src/lib/js/jquery/plugin-interface.js -text
 src/model/C_blog.php -text
 src/model/C_comment.php -text
 src/model/C_link.php -text
+src/model/C_sort.php -text
 src/model/C_tag.php -text
 src/model/C_trackback.php -text
 src/rss.php -text svn_keywords=Id

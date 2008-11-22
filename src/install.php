@@ -253,6 +253,7 @@ CREATE TABLE {$db_prefix}blog (
   title varchar(255) NOT NULL default '',
   date varchar(10) NOT NULL default '',
   content text NOT NULL,
+  sortid tinyint(3) NOT NULL default '-1',
   views mediumint(8) unsigned NOT NULL default '0',
   comnum mediumint(8) unsigned NOT NULL default '0',
   tbcount mediumint(8) unsigned NOT NULL default '0',
@@ -345,6 +346,13 @@ CREATE TABLE {$db_prefix}tag (
   KEY tagname (tagname)
 )".$add."
 INSERT INTO {$db_prefix}tag (tid, tagname, usenum,gid) VALUES (1, 'emlog', 1, ',1,');
+DROP TABLE IF EXISTS {$db_prefix}sort;
+CREATE TABLE {$db_prefix}sort (
+  sid tinyint(3) unsigned NOT NULL auto_increment,
+  sortname varchar(255) NOT NULL default '',
+  taxis tinyint(3) NOT NULL default '0',
+  PRIMARY KEY  (sid)
+)".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;
 CREATE TABLE {$db_prefix}trackback (
   tbid mediumint(8) unsigned NOT NULL auto_increment,

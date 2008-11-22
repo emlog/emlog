@@ -71,7 +71,7 @@ if ($action== "mod_config")
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
-	'$blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
+	'blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
 	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
 	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
 	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',

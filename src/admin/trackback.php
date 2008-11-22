@@ -23,28 +23,29 @@ if($action == '')
 	require_once(getViews('trackback'));
 	include getViews('footer');cleanPage();
 }
-//删除引用
+
 if ($action== 'del_tb')
 {
 	$tbid = isset($_GET['tbid']) ? intval($_GET['tbid']) : '';
 	$emTrackback->deleteTrackback($tbid);
 	$CACHE->mc_sta();
-	header("Location: ./trackback.php");
+	header("Location: ./trackback.php?active_del=true");
 }
-//批量删除引用
+
 if($action== 'dell_all_tb')
 {
 	$tbs = isset($_POST['tb']) ? $_POST['tb'] : '';
 	if(!$tbs)
 	{
-		formMsg('请选择要删除的引用','javascript:history.go(-1);',0);
+		header("Location: ./trackback.php?error_a=true");
+		exit;
 	}
 	foreach($tbs as $key=>$value)
 	{
 		$emTrackback->deleteTrackback($key);
 	}
 	$CACHE->mc_sta();
-	header("Location: ./trackback.php");
+	header("Location: ./trackback.php?active_del=true");
 }
 
 ?>

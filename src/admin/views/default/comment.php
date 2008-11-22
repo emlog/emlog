@@ -6,8 +6,16 @@ $(document).ready(function(){
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")})
 });
+setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>评论管理</b></div>
+<div class=containertitle><b>评论管理</b>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_hide'])):?><span class="actived">屏蔽评论成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的评论</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
+<?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
+</div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
   <table width="95%" id="adm_comment_list">

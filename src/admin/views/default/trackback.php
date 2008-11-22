@@ -6,8 +6,12 @@ $(document).ready(function(){
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")})
 });
+setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>引用管理</b></div>
+<div class=containertitle><b>引用管理</b>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除引用成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的引用</span><?php endif;?>
+</div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
   <table width="95%" id="adm_tb_list">

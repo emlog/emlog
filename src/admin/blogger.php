@@ -61,7 +61,7 @@ if($action== 'modintro')
 		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description'";
 		$DB->query($sql);
 		$CACHE->mc_blogger();
-		formMsg( "个人资料修改成功","./blogger.php",1);
+		header("Location: ./blogger.php?active_edit=true");
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
 		$sql="UPDATE ".DB_PREFIX."user SET description='$description' ";
@@ -74,7 +74,6 @@ if($action== 'modintro')
 //删除头像
 if($action== 'delicon')
 {
-	//删除头像文件
 	$query=$DB->query("select photo from ".DB_PREFIX."user");
 	$icon=$DB->fetch_array($query);
 	if(file_exists($icon['photo']))

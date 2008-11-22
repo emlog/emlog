@@ -121,7 +121,7 @@ if ($action == 'showlog')
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-	$comments = $emComment->getComment($logid);
+	$comments = $emComment->getComment($logid, 'n');
 	//trackback
 	$tb = $emTrackback->getTrackback($logid);
 

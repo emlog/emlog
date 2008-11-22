@@ -39,6 +39,10 @@ function em_confirm (id, property) {
 		var urlreturn="blogger.php?action=delicon";
 		var msg = "你确定要删除头像吗？";
 		break;
+		case 'sort':
+		var urlreturn="sort.php?action=del&sid="+id;
+		var msg = "你确定要删除该分类吗？";
+		break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -46,6 +50,7 @@ function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 
 function hideActived(){
 	$(".actived").hide();
+	$(".error").hide();
 }
 //show or hide div
 function displayToggle(id){

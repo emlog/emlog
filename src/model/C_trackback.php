@@ -103,7 +103,6 @@ class emTrackback {
 			$row['date'] = date("Y-m-d H:i",$row['date']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
-			$s_tb['date'] = date('Y-m-d H:i',$s_tb['date']);
 
 			$trackbacks[] = $row;
 		}
@@ -126,9 +125,9 @@ class emTrackback {
 	function deleteTrackback($tbid)
 	{
 		$sql = "SELECT gid FROM $this->tbTable WHERE tbid=$tbid";
-		$blog = $DB->once_fetch_array($sql);
-		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
-		$DB->query("DELETE FROM $this->tbTable where tbid=$tbid");
+		$blog = $this->dbhd->once_fetch_array($sql);
+		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
+		$this->dbhd->query("DELETE FROM $this->tbTable where tbid=$tbid");
 	}
 
 }

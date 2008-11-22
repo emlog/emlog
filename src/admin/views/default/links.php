@@ -1,13 +1,21 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
 <script type='text/javascript'>
 $(document).ready(function(){
+	$(".addItem a").click(function(){$(".addItem p").toggle("fast");});
 	$("#adm_link_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_link_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")})
 });
+setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>友情链接</b></div>
+<div class=containertitle><b>友情链接</b>
+<?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除链接成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">修改链接成功</span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived">添加链接成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">站点名称和地址不能为空</span><?php endif;?>
+</div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
   <table width="95%" align="center" id="adm_link_list">
@@ -33,14 +41,14 @@ $(document).ready(function(){
     <tfoot>
       <tr>
         <td align="center" colspan="4">
-	  	<input type="submit" value="确 定" class="submit2" />
-      	<input type="reset" value="重 置" class="submit2" />
+	  	<input type="submit" value="更新排序" class="submit2" />
+      	<input type="reset" value="重置" class="submit2" />
 		</td>
       </tr>
     </tfoot>
   </table>
 </form>
-<div class=containertitle><b>添加友情链接</b></div>
+<div class=containertitle><b>添加链接</b></div>
 <div class=line></div>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
@@ -61,9 +69,9 @@ $(document).ready(function(){
 		  </td>
         </tr>
         <tr>
-          <td align="center" colspan="2">
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />         
+          <td colspan="2">
+	 	 	<input type="submit" value="确 定" />
+     		<input type="reset" value="重 置" />         
 		  </td>
         </tr>
       </tbody>

@@ -2,8 +2,11 @@
 if(!defined('ADMIN_ROOT')) {exit('error!');}
 $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>":'';
 ?>
-	<div class=containertitle><b>个人资料</b></div>
-	<div class=line></div>
+<script>setTimeout(hideActived,2600);</script>
+<div class=containertitle><b>个人资料</b>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
+</div>
+<div class=line></div>
   <form action="blogger.php?action=modintro" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>

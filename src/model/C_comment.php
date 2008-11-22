@@ -25,7 +25,7 @@ class emComment {
 	 * @param int $page
 	 * @return array $comment
 	 */
-	function getComment($blogId = null, $page = null)
+	function getComment($blogId = null, $hide = null, $page = null)
 	{
 		$andQuery = $blogId ? "where gid=$blogId" : '';
 		$condition = '';
@@ -34,7 +34,8 @@ class emComment {
 			$startId = ($page - 1) *15;
 			$condition = "LIMIT $startId, 15";
 		}
-		$sql = "SELECT * FROM $this->commentTable $andQuery ORDER BY cid DESC $condition";
+		$ishide = $hide ? "and hide='$hide'" : '';
+		$sql = "SELECT * FROM $this->commentTable $andQuery $ishide ORDER BY cid DESC $condition";
 		$ret = $this->dbhd->query($sql);
 		$comments = array();
 		while($row = $this->dbhd->fetch_array($ret))
@@ -78,10 +79,13 @@ class emComment {
 	 */
 	function delComment($commentId)
 	{
-		$row = $this->dbhd->once_fetch_array("SELECT gid FROM $this->commentTable WHERE cid=$commentId");
+		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM $this->commentTable WHERE cid=$commentId");
 		$this->dbhd->query("DELETE FROM $this->commentTable where cid=$commentId");
 		$blogId = intval($row['gid']);
-		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+		if($row['hide'] == 'n')
+		{
+			$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+		}
 	}
 	/**
 	 * 显示/隐藏评论

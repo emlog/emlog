@@ -18,7 +18,7 @@ if($action == '')
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$addUrl = $blogId ? "gid={$blogId}&" : '';
-	$comment = $emComment->getComment($blogId, $page);
+	$comment = $emComment->getComment($blogId, null, $page);
 	$num = $emComment->getCommentNum($blogId);
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
 
@@ -36,11 +36,13 @@ if($action== 'admin_all_coms')
 
 	if($doWhat == '')
 	{
-		formMsg('请选择一个要执行的操作','./comment.php',0);
+		header("Location: ./comment.php?error_b=true");
+		exit;
 	}
 	if($comments == '')
 	{
-		formMsg('请选择要执行操作的评论','./comment.php',0);
+		header("Location: ./comment.php?error_a=true");
+		exit;
 	}
 	//删除
 	if($doWhat == 'delcom')
@@ -48,7 +50,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('delcom', $comments);
 		$CACHE->mc_sta();
 		$CACHE->mc_comment();
-		header("Location: ./comment.php");
+		header("Location: ./comment.php?active_del=true");
 	}
 	//屏蔽
 	if($doWhat == 'hidecom')
@@ -56,7 +58,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('hidecom', $comments);
 		$CACHE->mc_sta();
 		$CACHE->mc_comment();
-		header("Location: ./comment.php");
+		header("Location: ./comment.php?active_hide=true");
 	}
 	//审核
 	if($doWhat == 'showcom')
@@ -64,7 +66,7 @@ if($action== 'admin_all_coms')
 		$emComment->batchComment('showcom', $comments);
 		$CACHE->mc_sta();
 		$CACHE->mc_comment();
-		header("Location: ./comment.php");
+		header("Location: ./comment.php?active_show=true");
 	}
 }
 //删除评论
@@ -74,7 +76,7 @@ if ($action== 'del_comment')
 	$emComment->delComment($commentId);
 	$CACHE->mc_sta();
 	$CACHE->mc_comment();
-	header("Location: ./comment.php");
+	header("Location: ./comment.php?active_del=true");
 }
 //屏蔽评论
 if($action=='hide_comment')
@@ -83,7 +85,7 @@ if($action=='hide_comment')
 	$emComment->hideComment($commentId);
 	$CACHE->mc_sta();
 	$CACHE->mc_comment();
-	header("Location: ./comment.php");
+	header("Location: ./comment.php?active_hide=true");
 }
 //审核评论
 if($action=='show_comment')
@@ -92,7 +94,7 @@ if($action=='show_comment')
 	$emComment->showComment($commentId);
 	$CACHE->mc_sta();
 	$CACHE->mc_comment();
-	header("Location: ./comment.php");
+	header("Location: ./comment.php?active_show=true");
 }
 //回复评论
 if ($action== 'reply_comment')
@@ -118,7 +120,7 @@ if($action=='doreply')
 	{
 		$emComment->replyComment($commentId, $reply);
 		$CACHE->mc_comment();
-		header("Location: ./comment.php");
+		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
 		$emComment->replyComment($commentId, $reply);
