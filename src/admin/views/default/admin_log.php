@@ -15,18 +15,33 @@ $(document).ready(function(){
   <thead>
       <tr class="rowstop">
         <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="517"><b><a href="./admin_log.php?sortTitle=<?php echo $sortTitle.$sorturl; ?>">标题</a></b></td>
-        <td width="146"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
+        <td width="517"><b>标题</b></td>
+        <td width="146"><b>分类</b></td>
+        <td width="116"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
 		<td width="51"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
 		<td width="51"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
 		<td width="105"></td>
       </tr>
 	</thead>
  	<tbody>
-	<?php foreach($logs as $key=>$value): ?>
+	<?php 
+	foreach($logs as $key=>$value):
+	$sortName = $emSort->getSortName($value['sortid']);
+	$tags = $emTag->getTag($value['gid']);
+	$tagStr = '';
+	foreach ($tags as $val)
+	{
+		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tag={$val['tagname']}\">{$val['tagname']}</a></span>";
+	}
+	if($tagStr)
+	{
+		$tagStr = '<span class=logtags>'.$tagStr.'</span>';
+	}
+	?>
       <tr>
       <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
-      <td width="517"><a href="edit_log.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?></td>
+      <td width="517"><a href="edit_log.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> <?php echo $value['attach']; ?> <?php echo $value['istop']; ?> <?php echo $tagStr; ?></td>
+      <td><a href="./admin_log.php?sid=<?php echo $value['sortid']; ?>"><?php echo $sortName; ?></a></td>
       <td><?php echo $value['date']; ?></td>
 	  <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td><?php echo $value['views']; ?></a></td>
@@ -42,12 +57,12 @@ $(document).ready(function(){
 	</tbody>
 	<tfoot>
     <tr class="rowstop">
-    <td colspan="6">执行操作：
+    <td colspan="7">执行操作：
           <input type="radio" value="del_log" name="modall" />删除
 		  <?php echo $log_act; ?>
     </tr>
     <tr>
-    <td align="right" colspan="6">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
+    <td align="right" colspan="7">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>	  
 	<tr>
 	<td align="center" colspan="6">

@@ -9,6 +9,7 @@
 require_once('./globals.php');
 require_once(EMLOG_ROOT.'/model/C_blog.php');
 require_once(EMLOG_ROOT.'/model/C_tag.php');
+require_once(EMLOG_ROOT.'/model/C_sort.php');
 require_once(EMLOG_ROOT.'/model/C_trackback.php');
 
 //显示编辑页面
@@ -16,10 +17,12 @@ if ($action=='')
 {
 	$emBlog = new emBlog($DB);
 	$emTag = new emTag($DB);
+	$emSort = new emSort($DB);
 
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$blogData = $emBlog->getOneLog($logid); 
+	$blogData = $emBlog->getOneLog($logid);
 	extract($blogData);
+	$sorts = $emSort->getSorts();
 	//log tag
 	$tags = array();
 	foreach ($emTag->getTag($logid) as $val)
@@ -64,13 +67,14 @@ if ($action=='')
 }
 
 //修改日志
-if($action=="edit")
+if($action == 'edit')
 {
 	$emBlog = new emBlog($DB);
 	$emTag = new emTag($DB);
 	$emTb = new emTrackback($DB);
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$sort = isset($_POST['sort']) ? addslashes(trim($_POST['sort'])) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$edittime = isset($_POST['edittime']) ? intval($_POST['edittime']) : '';
 	$content = isset($_POST['content']) ? addslashes($_POST['content']) : '';
@@ -92,7 +96,14 @@ if($action=="edit")
 		$postTime = $date;
 	}
 
-	$logData = array('title'=>$title,'date'=>$postTime,'allow_remark'=>$allow_remark,'allow_tb'=>$allow_tb,'content'=>$content);
+	$logData = array(
+	'title'=>$title,
+	'sortid'=>$sort,
+	'date'=>$postTime,
+	'allow_remark'=>$allow_remark,
+	'allow_tb'=>$allow_tb,
+	'content'=>$content
+	);
 	$emBlog->updateLog($logData, $logid);
 	//更新tag
 	$emTag->updateTag($tagstring, $logid);

@@ -51,6 +51,19 @@ class emSort {
 	{
 		$this->dbhd->query("DELETE FROM $this->sortTable where sid=$sid");
 	}
+	
+	function getSortName($sid)
+	{
+		if($sid > 0)
+		{
+			$res = $this->dbhd->query("SELECT sortname FROM $this->sortTable where sid=$sid");
+			$row = $this->dbhd->fetch_array($res);
+			$sortName = $row['sortname'];
+		}else {
+			$sortName = '未分类';
+		}
+		return $sortName;
+	}
 
 }
 

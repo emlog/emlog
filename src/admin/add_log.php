@@ -10,10 +10,14 @@ require_once('./globals.php');
 require_once(EMLOG_ROOT.'/model/C_blog.php');
 require_once(EMLOG_ROOT.'/model/C_tag.php');
 require_once(EMLOG_ROOT.'/model/C_trackback.php');
+require_once(EMLOG_ROOT.'/model/C_sort.php');
 
 if($action == '')
 {
 	$emTag = new emTag($DB);
+	$emSort = new emSort($DB);
+
+	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 	$tagStr = '';
 	foreach ($tags as $val)
@@ -35,6 +39,7 @@ if($action == 'addlog')
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$sort = isset($_POST['sort']) ? addslashes($_POST['sort']) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
@@ -56,6 +61,7 @@ if($action == 'addlog')
 
 	$logData = array(
 	'title'=>$title,
+	'sortid'=>$sort,
 	'date'=>$postTime,
 	'allow_remark'=>$allow_remark,
 	'allow_tb'=>$allow_tb,

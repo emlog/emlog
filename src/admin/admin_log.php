@@ -8,20 +8,34 @@
 
 require_once('./globals.php');
 require_once(EMLOG_ROOT.'/model/C_blog.php');
+require_once(EMLOG_ROOT.'/model/C_tag.php');
+require_once(EMLOG_ROOT.'/model/C_sort.php');
 
 $emBlog = new emBlog($DB);
 
 //显示日志(草稿)管理页面
 if($action == '')
 {
+	$emTag = new emTag($DB);
+	$emSort = new emSort($DB);
+	
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
+	$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 
 	$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
 	$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC' : 'ASC';
 	$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
-	$sortTitle = (isset($_GET['sortTitle']) && $_GET['sortTitle'] == 'DESC') ?  'ASC' : 'DESC';
 
-	$sqlSegment = 'ORDER BY ';
+	$sqlSegment = '';
+	if($tag)
+	{
+		$blogIdStr = $emTag->getTagByName($tag);
+		$sqlSegment = "and gid IN ($blogIdStr)";
+	}elseif ($sid){
+		$sqlSegment = "and sortid=$sid";
+	}
+	$sqlSegment .= ' ORDER BY ';
 	if(isset($_GET['sortView']))
 	{
 		$sqlSegment .= "views $sortView";
@@ -29,8 +43,6 @@ if($action == '')
 		$sqlSegment .= "comnum $sortComm";
 	}elseif(isset($_GET['sortDate'])){
 		$sqlSegment .= "date $sortDate";
-	}elseif(isset($_GET['sortTitle'])){
-		$sqlSegment .= "title $sortTitle";
 	}else {
 		$sqlSegment .= 'top DESC,date DESC';
 	}

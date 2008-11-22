@@ -13,7 +13,18 @@ setTimeout("doautosave()",30000);
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:560px;" name="title" id="title" value="<?php echo $title; ?>"/></td>
+          <input maxlength="200" style="width:500px;" name="title" id="title" value="<?php echo $title; ?>"/>
+	        <select name="sort">
+			<?php if($sortid < 0):?>
+			<option value="-1">选择分类...</option>
+			<?php endif;
+			foreach($sorts as $val):
+			$flg = $val['sid'] == $sortid ? 'selected' : '';
+			?>
+			<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
+			<?php endforeach; ?>
+	       </select>
+          </td>
         </tr>
         <tr>
           <td>

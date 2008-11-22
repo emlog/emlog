@@ -367,3 +367,6 @@ textarea{
 #imgcode{ height:28px; width:80px;}
 .addItem{ margin-left:30px;}
 .sortname{ cursor:pointer; color:#2A9DDB;}
+.logtags{margin-left:20%;}
+.logtags a{ color:#FFFFFF;}
+.logtag{background-color: #F3BBA0; padding:0px 3px; margin:1px 3px;}

@@ -18,8 +18,14 @@ setTimeout("doautosave()",30000);
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b> <span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:560px;" name="title" id="title"/>
-          <br /></td>
+          <input maxlength="200" style="width:500px;" name="title" id="title"/>
+	        <select name="sort">
+	        <option value="-1">选择分类...</option>
+			<?php foreach($sorts as $val):?>
+			<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
+			<?php endforeach;?>
+	       </select> 
+        </td>
         </tr>
         <tr>
           <td>
