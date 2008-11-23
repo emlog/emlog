@@ -21,10 +21,12 @@ if ($action == 'mkcache')
 	$CACHE->mc_record();
 	$CACHE->mc_comment();
 	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
 	$CACHE->mc_logatts();
 	$CACHE->mc_sta();
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
+	$CACHE->mc_sort();
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 	formMsg('缓存更新成功', './cache.php',1);

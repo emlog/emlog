@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-
+<!--blogger-->
 <?php function widget_blogger($title){ ?>
 	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
 	<div class="lister"><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></div>
@@ -19,7 +19,7 @@
 		</li>
 	</ul>
 <?php }?>
-
+<!--日历-->
 <?php function widget_calendar($title){ ?>
 	<?php global $calendar_url; ?>
 	<div class="lister"><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></div>
@@ -27,7 +27,7 @@
 	</div>
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 <?php }?>
-
+<!--标签-->
 <?php function widget_tag($title){ ?>
 	<?php global $tag_cache; ?>
 	<div class="lister"><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></div>
@@ -40,7 +40,17 @@
 	</li>
 	</ul>
 <?php }?>
-
+<!--分类-->
+<?php function widget_sort($title){ ?>
+	<?php global $sort_cache; ?>
+	<div class="lister"><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></div>
+	<ul id="blogsort">
+	<?php foreach($sort_cache as $value): ?>
+	<li><a href="./index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a></li>
+	<?php endforeach; ?>
+	</ul>
+<?php }?>
+<!--twitter-->
 <?php function widget_twitter($title){ ?>
 	<?php global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
@@ -70,7 +80,7 @@
 		<?php endif;?>
 	<?php endif;?>
 <?php } ?>
-
+<!--音乐-->
 <?php function widget_music($title){ ?>
 	<?php global $ismusic,$musicdes,$em_tpldir,$musicurl,$autoplay; ?>
 	<?php if($ismusic): ?>
@@ -81,7 +91,7 @@
 	</ul>
 	<?php endif; ?>
 <?php }?>
-
+<!--最新评论-->
 <?php function widget_newcomm($title){ ?>
 	<?php global $com_cache,$em_tpldir; ?>
 	<div class="lister"><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></div>
@@ -97,7 +107,7 @@
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
-
+<!--最新日志-->
 <?php function widget_newlog($title){ ?>
 	<?php global $newLogs_cache; ?>
 	<div class="lister"><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></div>
@@ -107,7 +117,7 @@
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
-
+<!--随机日志-->
 <?php function widget_random_log($title){ ?>
 	<?php 
 	global $index_randlognum, $emBlog;
@@ -120,7 +130,7 @@
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
-
+<!--搜索-->
 <?php function widget_search($title){ ?>
 	<div class="lister"><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></div>
 	<ul id="logserch">
@@ -132,7 +142,7 @@
 	</li>
 	</ul>
 <?php } ?>
-
+<!--归档-->
 <?php function widget_archive($title){ ?>
 	<?php global $dang_cache; ?>
 	<div class="lister"><span onclick="showhidediv('record')"><?php echo $title; ?></span></div>
@@ -142,14 +152,14 @@
 	<?php endforeach; ?>		
 	</ul>
 <?php } ?>
-
+<!--自定义-->
 <?php function widget_custom_text($title, $content){ ?>
 	<div class="lister"><span onclick="showhidediv('record')"><?php echo $title; ?></span></div>
 	<ul id="record">
 	<li><?php echo $content; ?></li>	
 	</ul>
 <?php } ?>
-
+<!--链接-->
 <?php function widget_link($title){ ?>
 	<?php global $link_cache; ?>
 	<div class="lister"><span onclick="showhidediv('frlink')"><?php echo $title; ?></span></div>
@@ -159,7 +169,7 @@
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
-
+<!--信息-->
 <?php function widget_bloginfo($title){ ?>
 	<?php global $sta_cache; ?>
 	<div class="lister"><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></div>

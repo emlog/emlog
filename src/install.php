@@ -226,6 +226,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	'blogger'=>'EMER',
 	'calendar'=>'日历',
 	'tag'=>'标签',
+	'sort'=>'分类',
 	'archive'=>'存档',
 	'newcomm'=>'最新评论',
 	'twitter'=>'Twitter',

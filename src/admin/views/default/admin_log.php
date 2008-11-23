@@ -1,10 +1,11 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
 <script type='text/javascript'>
 $(document).ready(function(){
+	
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_log_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")});
 });
 </script>
 <div class=containertitle><b><?php echo $pwd; ?></b></div>
@@ -58,8 +59,21 @@ $(document).ready(function(){
 	<tfoot>
     <tr class="rowstop">
     <td colspan="7">执行操作：
-          <input type="radio" value="del_log" name="modall" />删除
-		  <?php echo $log_act; ?>
+    <input type="radio" value="del_log" name="modall" />删除
+	<?php if($pid == 'draft'): ?>
+	<input type="radio" value="show" name="modall"/>发布
+	<?php else: ?>
+	<input type="radio" value="top" name="modall" />推荐
+    <input type="radio" value="notop" name="modall"/> 取消推荐
+	<input type="radio" value="hide" name="modall" />转入草稿箱
+	<input type="radio" value="move" name="modall" />移动到
+	<select name="sort">
+	<option value="-1">选择分类...</option>
+	<?php foreach($sorts as $val):?>
+		<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
+	<?php endforeach;?>
+	</select>
+	<?php endif;?>
     </tr>
     <tr>
     <td align="right" colspan="7">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>

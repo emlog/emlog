@@ -37,6 +37,7 @@ if (!isset($action) || empty($action))
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
 	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
+	$sortid = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 
 	$start_limit = ($page - 1) * $index_lognum;
@@ -68,6 +69,10 @@ if (!isset($action) || empty($action))
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?keyword=$keyword&page";
+	}elseif($sortid) {
+		$sqlSegment = "and sortid=$sortid order by date desc";
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$pageurl .= "?sort=$sortid&page";
 	} else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);

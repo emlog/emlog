@@ -18,10 +18,11 @@ if($action == '')
 {
 	$emTag = new emTag($DB);
 	$emSort = new emSort($DB);
-	
+
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
 	$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC' : 'ASC';
@@ -47,18 +48,13 @@ if($action == '')
 		$sqlSegment .= 'top DESC,date DESC';
 	}
 
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$hide_state = $pid ? 'y' : 'n';
 	if($pid == 'draft')
 	{
-		$log_act = "<input type=\"radio\" value=\"show\" name=\"modall\" />发布";
 		$hide_stae = 'y';
 		$sorturl = '&pid=draft';
 		$pwd = '草稿箱';
 	}else{
-		$log_act = "<input type=\"radio\" value=\"top\" name=\"modall\" />推荐
-        	 	 	<input type=\"radio\" value=\"notop\" name=\"modall\" /> 取消推荐
-				 	<input type=\"radio\" value=\"hide\" name=\"modall\" />转入草稿箱";
 		$hide_stae = 'n';
 		$sorturl = '';
 		$pwd = '日志管理';
@@ -66,6 +62,7 @@ if($action == '')
 
 	$logNum = $emBlog->getLogNum($hide_state);
 	$logs = $emBlog->getLog($sqlSegment, $hide_state, $page);
+	$sorts = $emSort->getSorts();
 
 	$subPage = '';
 	foreach ($_GET as $key=>$val)
@@ -84,12 +81,13 @@ if($action == 'admin_all_log')
 {
 	$dowhat = isset($_POST['modall']) ? $_POST['modall'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
+	$logs = isset($_POST['blog']) ? $_POST['blog'] : '';
+	$sort = isset($_POST['sort']) ? $_POST['sort'] : '';
 
 	if($dowhat == '')
 	{
 		formMsg('请选择一个要执行的操作','javascript:history.back(-1);',0);
 	}
-	$logs = isset($_POST['blog']) ? $_POST['blog'] : '';
 	if(empty($logs))
 	{
 		formMsg('请选择要执行操作的日志','javascript:history.back(-1);',0);
@@ -152,6 +150,15 @@ if($action == 'admin_all_log')
 			$CACHE->mc_record();
 			$CACHE->mc_newlog();
 			formMsg('发布成功','./admin_log.php?pid=draft',1);
+			break;
+		case 'move':
+			foreach($logs as $key=>$value)
+			{
+				$emBlog->updateLog(array('sortid'=>$sort),$key);
+			}
+			$CACHE->mc_sort();
+			$CACHE->mc_logsort();
+			formMsg('移动日志成功','./admin_log.php',1);
 			break;
 	}
 }

@@ -55,6 +55,7 @@ if($action == 'update')
 
 	$emSort->updateSort(array('sortname'=>$sortname), $sid);
 	$CACHE->mc_sort();
+	$CACHE->mc_logsort();
 	header("Location: ./sort.php?active_edit=true");
 }
 
@@ -63,6 +64,7 @@ if ($action == 'del')
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$emSort->deleteSort($sid);
 	$CACHE->mc_sort();
+	$CACHE->mc_logsort();
 	header("Location: ./sort.php?active_del=true");
 }
 

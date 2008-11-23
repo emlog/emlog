@@ -135,6 +135,25 @@ class mkcache {
 		$this->cacheWrite($cacheData,'tags');
 	}
 	/**
+	 * 侧边栏分类缓存
+	 */
+	function mc_sort()
+	{
+		$sort_cache = array();
+		$query = $this->dbhd->query("SELECT sid,sortname FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid=".$row['sid']." AND hide='n' "));
+			$sort_cache[] = array(
+			'lognum' => $logNum,
+			'sortname' => htmlspecialchars($row['sortname']),
+			'sid' => intval($row['sid'])
+			);
+		}
+		$cacheData = serialize($sort_cache);
+		$this->cacheWrite($cacheData,'sort');
+	}
+	/**
 	 * 友站缓存
 	 */
 	function mc_link()
@@ -243,25 +262,6 @@ class mkcache {
 		$this->cacheWrite($cacheData,'records');
 	}
 	/**
-	 * 日志分类缓存
-	 */
-	function mc_sort()
-	{
-		$sort_cache = array();
-		$query = $this->dbhd->query("SELECT sid,sortname FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
-		while($row = $this->dbhd->fetch_array($query))
-		{
-			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid='".$row['sid']."' AND hide='n' "));
-			$sort_cache[] = array(
-			'lognum' => $logNum,
-			'sortname' => htmlspecialchars($row['sortname']),
-			'id' => intval($row['sid'])
-			);
-		}
-		$cacheData = serialize($sort_cache);
-		$this->cacheWrite($cacheData,'sort');
-	}
-	/**
 	 * 日志标签缓存
 	 */
 	function mc_logtags()
@@ -291,6 +291,30 @@ class mkcache {
 		}
 		$cacheData = serialize($log_cache_tags);
 		$this->cacheWrite($cacheData,'log_tags');
+	}
+	/**
+	 * 日志分类缓存
+	 */
+	function mc_logsort()
+	{
+		$sql = "SELECT gid,sortid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
+		$query = $this->dbhd->query($sql);
+		$log_cache_sort = array();
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			if($row['sortid'] > 0)
+			{
+				$res = $this->dbhd->query("SELECT sortname FROM ".$this->db_prefix."sort where sid=".$row['sortid']);
+				$srow = $this->dbhd->fetch_array($res);
+				$sortName = $srow['sortname'];
+			}else {
+				$sortName = '';
+			}
+			$log_cache_sort[$row['gid']] = $sortName;
+			unset($tag);
+		}
+		$cacheData = serialize($log_cache_sort);
+		$this->cacheWrite($cacheData,'log_sort');
 	}
 	/**
 	 * 日志附件缓存

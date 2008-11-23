@@ -49,6 +49,7 @@ class emSort {
 	
 	function deleteSort($sid)
 	{
+		$this->dbhd->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
 		$this->dbhd->query("DELETE FROM $this->sortTable where sid=$sid");
 	}
 	

@@ -45,6 +45,19 @@
 		</div>
 	</div>
 	</form>
+	<form action="widgets.php?action=setwg&wg=sort" method="post">
+	<div class="widget-line" id="sort">
+		<div class="widget-top">
+			<li class="widget-title">分类</li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
+		</div>
+		<div class="widget-control">
+			<li>标题</li>
+			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+		</div>
+	</div>
+	</form>
 	<form action="widgets.php?action=setwg&wg=archive" method="post">
 	<div class="widget-line" id="archive">
 		<div class="widget-top">

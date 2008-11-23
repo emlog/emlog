@@ -30,9 +30,11 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 //读取缓存
 $options_cache = $CACHE->readCache('options');
 $log_cache_tags = $CACHE->readCache('log_tags');
+$log_cache_sort = $CACHE->readCache('log_sort');
 $log_cache_atts = $CACHE->readCache('log_atts');
 $newLogs_cache = $CACHE->readCache('newlogs');
 $tag_cache = $CACHE->readCache('tags');
+$sort_cache = $CACHE->readCache('sort');
 $com_cache = $CACHE->readCache('comments');
 $link_cache = $CACHE->readCache('links');
 $user_cache = $CACHE->readCache('blogger');
