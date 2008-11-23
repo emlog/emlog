@@ -19,55 +19,11 @@ $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 $options_cache = mkcache::readCache('options');
 $user_cache = mkcache::readCache('blogger');
 
-/**
- * 获取url地址
- *
- * @return unknown
- */
-function GetURL()
-{
-	$path = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
-	$path = str_replace("/rss.php","",$path);
-	Return $path;
-}
-
-/**
- * 获取日志信息
- *
- * @return array
- */
-function GetBlog()
-{
-	global $DB;
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' ORDER BY gid DESC limit 0,20";
-	$result = $DB->query($sql);
-	$blog = array();
-	while ($re = $DB->fetch_array($result))
-	{
-		$re['id'] 		= $re['gid'];
-		$re['title']    = htmlspecialchars($re['title']);
-		$re['date']		= $re['date'];
-		$re['content']	= $re['content'];
-
-		$blog[] = $re;
-	}
-	return $blog;
-}
-
-/**
- * 获取日志数目
- *
- * @return unknown
- */
-function GetBlogNum()
-{
-	$blog_t =  GetBlog();
-	return count($blog_t);
-}
+$sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = GetURL();
 $site =  $options_cache;
-$blog = GetBlog();
+$blog = GetBlog($sort);
 $blognum = GetBlogNum();
 $author = $user_cache['name'];
 
@@ -98,6 +54,7 @@ print <<< END
 	<pubDate>$pubdate</pubDate>
 	<author>$author</author>
 	<guid>$link</guid>
+
 </item>
 END;
 }
@@ -105,5 +62,52 @@ print <<< END
 </channel>
 </rss>
 END;
+
+/**
+ * 获取url地址
+ *
+ * @return unknown
+ */
+function GetURL()
+{
+	$path = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+	$path = str_replace("/rss.php","",$path);
+	Return $path;
+}
+
+/**
+ * 获取日志信息
+ *
+ * @return array
+ */
+function GetBlog($sort = null)
+{
+	global $DB;
+	$subsql = $sort ? " and sortid=$sort" : '';
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' $subsql ORDER BY gid DESC limit 0,20";
+	$result = $DB->query($sql);
+	$blog = array();
+	while ($re = $DB->fetch_array($result))
+	{
+		$re['id'] 		= $re['gid'];
+		$re['title']    = htmlspecialchars($re['title']);
+		$re['date']		= $re['date'];
+		$re['content']	= $re['content'];
+
+		$blog[] = $re;
+	}
+	return $blog;
+}
+
+/**
+ * 获取日志数目
+ *
+ * @return unknown
+ */
+function GetBlogNum()
+{
+	$blog_t =  GetBlog();
+	return count($blog_t);
+}
 
 ?>

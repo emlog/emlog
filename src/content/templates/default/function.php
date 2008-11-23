@@ -42,11 +42,14 @@
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
-	<?php global $sort_cache; ?>
+	<?php global $sort_cache,$em_tpldir; ?>
 	<div class="lister"><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></div>
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
-	<li><a href="./index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a></li>
+	<li>
+	<a href="./index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo $em_tpldir; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
+	</li>
 	<?php endforeach; ?>
 	</ul>
 <?php }?>

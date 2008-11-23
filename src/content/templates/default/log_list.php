@@ -16,7 +16,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	
 	<div align="right">
 	<?php if($log_cache_sort[$value['logid']]): ?>
-	<a href="./?sort=<?php echo $value['sortid']; ?>">[ <?php echo $log_cache_sort[$value['logid']]; ?>) ]</a>
+	<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?> </a>
 	<?php endif;?>
 	<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
 	<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
