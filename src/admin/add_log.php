@@ -98,7 +98,7 @@ if($action == 'addlog')
 if($action == 'autosave')
 {
 	$emBlog = new emBlog($DB);
-
+	
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$logid = isset($_POST['as_logid']) ? intval((trim($_POST['as_logid']))) : '';
@@ -106,7 +106,7 @@ if($action == 'autosave')
 	if($logid >= 0)//编辑草稿
 	{
 		$logData = array('title'=>$title, 'content'=>$content);
-		$emBlog->updateLog($logData, $blogid);
+		$emBlog->updateLog($logData, $logid);
 		echo "autosave_gid:{$logid}_df:{$dftnum}_";
 	}else{
 		$logData = array(
@@ -115,8 +115,7 @@ if($action == 'autosave')
 		'content'=>$content,
 		'hide'=>'y',
 		'allow_remark'=>'y',
-		'allow_tb'=>'y',
-		'attcache'=>''
+		'allow_tb'=>'y'
 		);
 		$logid = $emBlog->addlog($logData);
 		$dftnum = $emBlog->getLogNum('y');

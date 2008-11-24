@@ -175,6 +175,7 @@ src/content/templates/default/footer.php -text svn_keywords=Id
 src/content/templates/default/function.php -text
 src/content/templates/default/header.php -text svn_keywords=Id
 src/content/templates/default/images/bg_cal_today.gif -text svn_keywords=Id
+src/content/templates/default/images/icon_rss.gif -text
 src/content/templates/default/images/import.gif -text
 src/content/templates/default/images/modify.gif -text svn_keywords=Id
 src/content/templates/default/images/player.swf -text

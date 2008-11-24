@@ -3,7 +3,7 @@ function CheckAll(form) {
 		var e = form.elements[i];
 		if (e.name != 'chkall')
 		e.checked = form.chkall.checked;
-		}
+	}
 }
 function em_confirm (id, property) {
 	switch (property){
@@ -52,11 +52,52 @@ function hideActived(){
 	$(".actived").hide();
 	$(".error").hide();
 }
-//show or hide div
 function displayToggle(id){
 	$("#"+id).toggle();
 }
 function chekform(){
 	var t = $.trim($("#title").val());
 	if (t==""){alert("日志标题不能为空");$("#title").focus();return false;}else return true;
+}
+function addhtml(content){
+	var oEditor = FCKeditorAPI.GetInstance('content');
+	if ( oEditor.EditMode == FCK_EDITMODE_WYSIWYG ) {
+		oEditor.InsertHtml(content) ;
+	} else {
+		alert('请先转换到所见即所得模式') ;
+	}
+}
+function addattach(imgurl,imgsrc,aid){
+	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+}
+function addattachfrom() {
+	var newnode = $('attachbodyhidden').firstChild.cloneNode(true);
+	$('attachbody').appendChild(newnode);
+}
+function removeattachfrom() {
+	$('attachbody').childNodes.length > 1 && $('attachbody').lastChild ? $('attachbody').removeChild($('attachbody').lastChild) : 0;
+}
+function autosave(url,nodeid){
+	var title = $.trim($("#title").val());
+	var logid = $("#as_logid").val();
+	var oEditor = FCKeditorAPI.GetInstance('content');
+	var content = oEditor.GetXHTML();
+	var querystr = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
+	$("#auto_msg").html("<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>");
+	$.post(url, querystr, function(data){
+		if(data.substring(0,9) == "autosave_"){
+			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
+			var logid = getvar[1];
+			var dfnum = getvar[2];
+			$("#dfnum").html("("+dfnum+")");
+			var iddiv = "<input type=hidden  name=as_logid id=as_logid value="+logid+">";
+		}
+		$("#"+nodeid).html(iddiv);
+		var digital = new Date();
+		var hours = digital.getHours();
+		var mins = digital.getMinutes();
+		var secs = digital.getSeconds();
+		$("#auto_msg").html("<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存,于"+hours+":"+mins+":"+secs+" </span>");
+	});
+	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
 }

@@ -1,8 +1,8 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script>
 function doautosave(){
-	var title = $("title").value.Trim();
-	if(title!=""){autosave('add_log.php?action=autosave','asmsg');}	
+	var title = $.trim($("#title").val());
+	if(title!=""){autosave('add_log.php?action=autosave','asmsg');}
 }
 setTimeout("doautosave()",30000);
 </script>
