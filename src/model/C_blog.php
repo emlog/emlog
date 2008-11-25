@@ -132,8 +132,7 @@ class emBlog {
 					$row['gid'] = $row['gid'];
 					$row['comnum'] = $row['comnum'];
 					$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
-					$attach_num = $this->getAttachmentNum($row['gid']);
-					$row['attach'] = $attach_num > 0 ? "<font color=\"green\">[附件:".$attach_num."]</font>" : '';
+					$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
 					break;
 				case 'homepage':
 					$row['post_time'] = date('Y-n-j G:i l',$row['date']);
@@ -192,12 +191,6 @@ class emBlog {
 	{
 		$this->dbhd->query("UPDATE $this->blogTable SET hide='$hideState' WHERE gid=$blogId");
 		$this->dbhd->query("UPDATE ".DB_PREFIX."comment SET hide='$hideState' WHERE gid=$blogId");
-	}
-
-	function getAttachmentNum($blogId)
-	{
-		$query=$this->dbhd->query("SELECT blogid FROM ".DB_PREFIX."attachment WHERE blogid=$blogId");
-		$attach_num = $this->dbhd->num_rows($query);
 	}
 
 	/**

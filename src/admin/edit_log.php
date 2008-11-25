@@ -75,7 +75,7 @@ if($action == 'edit')
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? addslashes(trim($_POST['sort'])) : '';
-	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
+	$tagstr = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$edittime = isset($_POST['edittime']) ? intval($_POST['edittime']) : '';
 	$content = isset($_POST['content']) ? addslashes($_POST['content']) : '';
 	$pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
@@ -106,7 +106,7 @@ if($action == 'edit')
 	);
 	$emBlog->updateLog($logData, $logid);
 	//更新tag
-	$emTag->updateTag($tagstring, $logid);
+	$emTag->updateTag($tagstr, $logid);
 	//发送Trackback
 	$tbmsg = '';
 	if(!empty($pingurl))

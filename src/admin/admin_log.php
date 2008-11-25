@@ -60,7 +60,7 @@ if($action == '')
 		$pwd = '日志管理';
 	}
 
-	$logNum = $emBlog->getLogNum($hide_state);
+	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment);
 	$logs = $emBlog->getLog($sqlSegment, $hide_state, $page);
 	$sorts = $emSort->getSorts();
 
@@ -86,11 +86,13 @@ if($action == 'admin_all_log')
 
 	if($dowhat == '')
 	{
-		formMsg('请选择一个要执行的操作','javascript:history.back(-1);',0);
+		header("Location: ./admin_log.php?pid=$pid&error_b=true");
+		exit;
 	}
 	if(empty($logs))
 	{
-		formMsg('请选择要执行操作的日志','javascript:history.back(-1);',0);
+		header("Location: ./admin_log.php?pid=$pid&error_a=true");
+		exit;
 	}
 
 	switch ($dowhat)
@@ -108,9 +110,9 @@ if($action == 'admin_all_log')
 			$CACHE->mc_newlog();
 			if($pid == 'draft')
 			{
-				header("Location: ./admin_log.php?pid=draft");
+				header("Location: ./admin_log.php?pid=draft&active_del=true");
 			}else{
-				header("Location: ./admin_log.php");
+				header("Location: ./admin_log.php?active_del=true");
 			}
 			break;
 		case 'top':
@@ -118,14 +120,14 @@ if($action == 'admin_all_log')
 			{
 				$emBlog->updateLog(array('top'=>'y'),$key);
 			}
-			header("Location: ./admin_log.php");
+			header("Location: ./admin_log.php?active_up=true");
 			break;
 		case 'notop':
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->updateLog(array('top'=>'n'),$key);
 			}
-			header("Location: ./admin_log.php");
+			header("Location: ./admin_log.php?active_down=true");
 			break;
 		case 'hide':
 			foreach($logs as $key=>$value)
@@ -137,7 +139,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_comment();
 			$CACHE->mc_logtags();
 			$CACHE->mc_newlog();
-			formMsg('日志成功转入草稿箱','./admin_log.php',1);
+			header("Location: ./admin_log.php?active_hide=true");
 			break;
 		case 'show':
 			foreach($logs as $key=>$value)
@@ -149,7 +151,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_logtags();
 			$CACHE->mc_record();
 			$CACHE->mc_newlog();
-			formMsg('发布成功','./admin_log.php?pid=draft',1);
+			header("Location: ./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
 			foreach($logs as $key=>$value)
@@ -158,7 +160,7 @@ if($action == 'admin_all_log')
 			}
 			$CACHE->mc_sort();
 			$CACHE->mc_logsort();
-			formMsg('移动日志成功','./admin_log.php',1);
+			header("Location: ./admin_log.php?active_move=true");
 			break;
 	}
 }
@@ -176,9 +178,9 @@ if ($action == 'dellog' || $action == 'deldraft')
 	$CACHE->mc_newlog();
 	if($action == 'dellog')
 	{
-		header("Location: ./admin_log.php");
+		header("Location: ./admin_log.php?active_del=true");
 	}else{
-		header("Location: ./admin_log.php?pid=draft");
+		header("Location: ./admin_log.php?pid=draft&active_del=true");
 	}
 }
 ?>

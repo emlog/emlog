@@ -94,8 +94,12 @@ class emTag {
 		{
 			$old_tag[] = $row['tagname'];
 		}
+		if(empty($old_tag))
+		{
+			$old_tag = array('');
+		}
 		$dif_tag = findArray(formatArray($tag),$old_tag);
-		for($n=0;$n<count($dif_tag);$n++)
+		for($n = 0; $n < count($dif_tag); $n++)
 		{
 			$a = 0;
 			for($j=0 ; $j<count($old_tag);$j++)
@@ -105,9 +109,7 @@ class emTag {
 					$this->dbhd->query("UPDATE $this->tagTable SET usenum=usenum-1,gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
 					$this->dbhd->query("DELETE FROM $this->tagTable WHERE usenum=0 ");
 					break;
-				}
-				elseif($j == count($old_tag)-1)
-				{
+				}elseif($j == count($old_tag)-1){
 					$result = $this->dbhd->once_fetch_array("SELECT tagname FROM $this->tagTable WHERE tagname='".trim($dif_tag[$n])."' ");
 					if(empty($result))
 					{
@@ -117,9 +119,9 @@ class emTag {
 						$query="UPDATE $this->tagTable SET usenum=usenum+1, gid=concat(gid,'$blogId,') where tagname = '".$dif_tag[$n]."' ";
 						$this->dbhd->query($query);
 					}
-				}//end elseif
-			}//end for2
-		}//end for1
+				}
+			}
+		}
 	}
 
 	function updateTagName($tagId, $tagName)

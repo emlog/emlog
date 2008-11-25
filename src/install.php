@@ -258,13 +258,14 @@ CREATE TABLE {$db_prefix}blog (
   views mediumint(8) unsigned NOT NULL default '0',
   comnum mediumint(8) unsigned NOT NULL default '0',
   tbcount mediumint(8) unsigned NOT NULL default '0',
+  attnum mediumint(8) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   allow_remark enum('n','y') NOT NULL default 'y',
   allow_tb enum('n','y') NOT NULL default 'y',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,tbcount,top,hide, allow_remark,allow_tb) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 'n', 'n', 'y', 'y');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 0, 'n', 'n', 'y', 'y');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -422,11 +423,14 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$CACHE->mc_record();
 	$CACHE->mc_comment();
 	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
 	$CACHE->mc_logatts();
 	$CACHE->mc_sta();
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
+	$CACHE->mc_sort();
 	$CACHE->mc_twitter();
+	$CACHE->mc_newlog();
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
 	sysMsg($result);

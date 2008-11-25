@@ -60,8 +60,9 @@ if($action == 'upload')
 						break;
 				}
 				//写入附件信息
-				$query="INSERT INTO ".DB_PREFIX."attachment (`blogid`,`filename`,`filesize`,`filepath`,`addtime`) values ('".$logid."','".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
+				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);
+				$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum+1 WHERE gid=$logid");
 			}
 		}
 	}
@@ -108,6 +109,8 @@ if ($action == 'del_attach')
 		}
 		@unlink($attach['filepath']) or die('删除附件失败');
 	}
+	$row = $DB->once_fetch_array("SELECT blogid FROM ".DB_PREFIX."attachment where aid=$aid");
+	$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum-1 WHERE gid={$row['blogid']}");
 	$DB->query("DELETE FROM ".DB_PREFIX."attachment where aid=$aid ");
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
