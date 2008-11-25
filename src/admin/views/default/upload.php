@@ -23,6 +23,13 @@ function showattlib()
 	var as_logid = parent.document.getElementById('as_logid').value
 	window.location.href="attachment.php?action=attlib&logid="+as_logid;	
 }
+function addattachfrom() {
+	var newnode = document.getElementById('attachbodyhidden').firstChild.cloneNode(true);
+	document.getElementById('attachbody').appendChild(newnode);
+}
+function removeattachfrom() {
+	document.getElementById('attachbody').childNodes.length > 1 && document.getElementById('attachbody').lastChild ? document.getElementById('attachbody').removeChild(document.getElementById('attachbody').lastChild) : 0;
+}
 </script>
 <body>
 <div id="media-upload-header">

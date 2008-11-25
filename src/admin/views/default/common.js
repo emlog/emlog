@@ -59,6 +59,7 @@ function chekform(){
 	var t = $.trim($("#title").val());
 	if (t==""){alert("日志标题不能为空");$("#title").focus();return false;}else return true;
 }
+//att^
 function addhtml(content){
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	if ( oEditor.EditMode == FCK_EDITMODE_WYSIWYG ) {
@@ -70,13 +71,7 @@ function addhtml(content){
 function addattach(imgurl,imgsrc,aid){
 	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 }
-function addattachfrom() {
-	var newnode = $('attachbodyhidden').firstChild.cloneNode(true);
-	$('attachbody').appendChild(newnode);
-}
-function removeattachfrom() {
-	$('attachbody').childNodes.length > 1 && $('attachbody').lastChild ? $('attachbody').removeChild($('attachbody').lastChild) : 0;
-}
+//autosave
 function autosave(url,nodeid){
 	var title = $.trim($("#title").val());
 	var logid = $("#as_logid").val();
