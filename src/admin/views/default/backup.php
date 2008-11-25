@@ -4,6 +4,8 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived">备份文件删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_backup'])):?><span class="actived">数据备份成功</span><?php endif;?>
 <?php if(isset($_GET['active_import'])):?><span class="actived">备份导入成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的备份文件</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">错误的备份文件名</span><?php endif;?>
 </div>
 <div class=line></div>
 <script type='text/javascript'>

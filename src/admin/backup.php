@@ -27,7 +27,8 @@ if($action=='bakstart')
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
 	{
-		formMsg('错误的备份文件名','javascript:history.go(-1);',0);
+		header("Location: ./backup.php?error_b=true");
+		exit;
 	}
 	$filename = '../content/backup/'.$bakfname.'.sql';
 
@@ -107,7 +108,7 @@ if($action== 'dell_all_bak')
 {
 	if(!isset($_POST['bak']))
 	{
-		formMsg('请选择要删除的备份文件','./backup.php',0);
+		header("Location: ./backup.php?error_a=true");
 	}else{
 		foreach($_POST['bak'] as $value)
 		{
