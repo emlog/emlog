@@ -115,9 +115,8 @@ a:hover {
 }
 .line2 {
 	border-top: #999999 1px dotted; 
-	margin-top: 5px; 
-	margin-bottom: 5px; 
-	width: 98%
+	margin:5px 20px;
+	width: 70%;
 }
 .rowstop {
 	background-image: url(./images/mc_bg3.gif);

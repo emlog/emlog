@@ -24,8 +24,7 @@ if($action == '')
 	include getViews('footer');cleanPage();
 }
 
-//修改个人资料
-if($action== 'modintro')
+if($action == 'modintro')
 {
 	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
 	if(!$flg)
@@ -64,18 +63,16 @@ if($action== 'modintro')
 		header("Location: ./blogger.php?active_edit=true");
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
-		$sql="UPDATE ".DB_PREFIX."user SET description='$description' ";
-		$DB->query($sql);
+		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description'");
 		$CACHE->mc_blogger();
 		echo $description;
 	}
 }
 
-//删除头像
-if($action== 'delicon')
+if($action == 'delicon')
 {
-	$query=$DB->query("select photo from ".DB_PREFIX."user");
-	$icon=$DB->fetch_array($query);
+	$query = $DB->query("select photo from ".DB_PREFIX."user");
+	$icon = $DB->fetch_array($query);
 	if(file_exists($icon['photo']))
 	{
 		$fpath = str_replace('thum-', '', $icon['photo']);
@@ -93,42 +90,41 @@ if($action== 'delicon')
 			formMsg('头像删除失败','./blogger.php',0);
 		}
 	}
-	//删除数据库记录
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
 	$CACHE->mc_blogger();
-	formMsg('头像成功删除','./blogger.php',1);
+	header("Location: ./blogger.php?active_del=true");
 }
 
-//修改用户名密码
-if($action=='update_admin')
+if($action == 'update_admin')
 {
-	$user=isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-	$newpass=isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
-	$oldpass=isset($_POST['oldpass']) ? md5(addslashes(trim($_POST['oldpass']))) : '';
-	$repeatpass=isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
-
-	$ispass = checkPass($oldpass);
+	require_once(EMLOG_ROOT.'/lib/C_phpass.php');
+	
+	$user = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
+	$oldpass = isset($_POST['oldpass']) ? addslashes(trim($_POST['oldpass'])) : '';
+	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
+	
+	$PHPASS = new PasswordHash(8, true);
+	$ispass = checkPassword($oldpass, $userData['password']);
 
 	//只修改密码
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0)
 	{
-		$sql=" UPDATE ".DB_PREFIX."user SET password='".md5($newpass)."' ";
-		$DB->query($sql);
+		$newpass = $PHPASS->HashPassword($newpass);
+		$DB->query(" UPDATE ".DB_PREFIX."user SET password='$newpass'");
 		formMsg('密码已修改!请重新登录','./index.php',1);
 	}
 	//修改密码及用户
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0)
 	{
-		$sql=" UPDATE ".DB_PREFIX."user SET
-			username='".$user."',
-			password='".md5($newpass)."' ";
-		$DB->query($sql);
+		$newpass = $PHPASS->HashPassword($newpass);
+		$DB->query("UPDATE ".DB_PREFIX."user SET username='$user',password='$newpass'");
 		formMsg('密码和用户名已修改!请重新登录','./index.php',1);
 	}
 	//只修改用户
 	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass)
 	{
-		$sql=" UPDATE ".DB_PREFIX."user SET username='".$user."' ";
+		$sql=" UPDATE ".DB_PREFIX."user SET username='$user'";
 		$DB->query($sql);
 		formMsg('用户名已修改!请重新登录','./index.php',1);
 	}
@@ -136,7 +132,7 @@ if($action=='update_admin')
 	if(!$ispass)
 	{
 		formMsg('错误的当前密码','javascript:history.go(-1);',0);
-	}elseif($newpass!=$repeatpass){
+	}elseif($newpass != $repeatpass){
 		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
 	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
 		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);

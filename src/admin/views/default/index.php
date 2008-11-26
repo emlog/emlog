@@ -3,8 +3,7 @@ if(!defined('ADMIN_ROOT')) {exit('error!');}
 $hctyle = $hidecom ? 'tips' : 'care2';
 $allcom = $hidecom + $comnum;
 ?>
-<div class=containertitle><b>博客信息</b></div>
-<div class=line></div>
+<div class=containertitle></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
 		<td width="50%">
@@ -13,7 +12,7 @@ $allcom = $hidecom + $comnum;
 <?php endif; ?>
 		日志: <span class=care2><b><?php echo $lognum; ?></b></span> | 
 		评论: <span class=care2><b><?php echo $allcom; ?></b></span> | 
-		引用(TrackBack): <span class=care2><b><?php echo $tbnum; ?></b></span>
+		引用: <span class=care2><b><?php echo $tbnum; ?></b></span>
 		</td>
 	</tr>
 </table>
