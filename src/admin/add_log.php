@@ -19,11 +19,7 @@ if($action == '')
 
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
-	$tagStr = '';
-	foreach ($tags as $val)
-	{
-		$tagStr .=" <a href=\"javascript: inserttag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
-	}
+
 	include getViews('header');
 	require_once(getViews('add_log'));
 	include getViews('footer');

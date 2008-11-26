@@ -1,5 +1,15 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script>
+function insertTag (tag, boxId) {
+	var targetinput = $("#"+boxId).val();
+	if(targetinput == '')  {
+		targetinput += tag;
+	}else{
+		var n = ',' + tag;
+		targetinput += n;
+	}
+	$("#"+boxId).val(targetinput);
+}
 function doautosave(){
 	var title = $.trim($("#title").val());
 	if(title!=""){autosave('add_log.php?action=autosave','asmsg');}
@@ -46,7 +56,17 @@ setTimeout("doautosave()",30000);
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签:</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-            <input id="tags" maxlength="200" style="width:715px;" name="tag" value="<?php echo $tagStr; ?>" /><br /><div style="width:715px;">选择已有标签：<?php echo $oldTagStr; ?></div></td>
+            <input id="tags" maxlength="200" style="width:715px;" name="tag" value="<?php echo $tagStr; ?>" /><br />
+            <div style="width:715px;">选择已有标签：
+            <?php 	
+            $oldTagStr = '';
+            foreach ($tags as $val)
+            {
+            	$oldTagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
+            }
+            echo $oldTagStr;
+			?>
+            </div></td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<br />

@@ -1,5 +1,15 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <script type="text/javascript">
+function insertTag (tag, boxId) {
+	var targetinput = $("#"+boxId).val();
+	if(targetinput == '')  {
+		targetinput += tag;
+	}else{
+		var n = ',' + tag;
+		targetinput += n;
+	}
+	$("#"+boxId).val(targetinput);
+}
 function savedraft(){
 	if(!chekform()){return false;}
 	document.addlog.action = "add_log.php?action=addlog&pid=draft";
@@ -49,7 +59,16 @@ setTimeout("doautosave()",30000);
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
             <input id="tags" maxlength="200" style="width:715px;"  name="tag" />
             <br />
-          <div style="width:715px;">选择已有标签：<?php echo $tagStr; ?></div></td></tr>
+          <div style="width:715px;">选择已有标签：
+          <?php 
+          $tagStr = '';
+          foreach ($tags as $val)
+          {
+          	$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
+          }
+          echo $tagStr;
+          ?>
+          </div></td></tr>
         <tr nowrap="nowrap">
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
           </b>

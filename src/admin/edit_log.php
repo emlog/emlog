@@ -32,11 +32,6 @@ if ($action=='')
 	$tagStr = implode(',', $tags);
 	//old tag
 	$tags = $emTag->getTag();
-	$oldTagStr = '';
-	foreach ($tags as $val)
-	{
-		$oldTagStr .=" <a href=\"javascript: inserttag('{$val['tagname']}','tags');\">{$val['tagname']}</a> ";
-	}
 	//date
 	$year = date('Y',$date);
 	$month = date('m',$date);

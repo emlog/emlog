@@ -47,7 +47,6 @@ function em_confirm (id, property) {
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
 function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
-
 function hideActived(){
 	$(".actived").hide();
 	$(".error").hide();
