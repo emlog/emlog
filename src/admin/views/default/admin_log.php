@@ -28,9 +28,9 @@ setTimeout(hideActived,2600);
         <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
         <td width="517"><b>标题</b></td>
         <td width="146"><b>分类</b></td>
-        <td width="116"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
-		<td width="51"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
-		<td width="51"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
+        <td width="138"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
+		<td width="40"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
+		<td width="40"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
 		<td width="105"></td>
       </tr>
 	</thead>
@@ -43,7 +43,8 @@ setTimeout(hideActived,2600);
 	$tagStr = '';
 	foreach ($tags as $val)
 	{
-		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tag={$val['tagname']}$isdraft\">{$val['tagname']}</a></span>";
+		$tagUrl = urlencode($val['tagname']);
+		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tag={$tagUrl}$isdraft\">{$val['tagname']}</a></span>";
 	}
 	if($tagStr)
 	{

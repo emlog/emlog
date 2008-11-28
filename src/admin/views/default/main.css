@@ -177,7 +177,7 @@ a:hover {
 	color: #009933;
 }
 .tips{
-	background:url(images/icon_tips.png) no-repeat left 3px;
+	background:url(images/icon_tips.gif) no-repeat left 3px;
 	padding:3px 18px;
 	margin:5px 0px;
 	font-size:12px;
@@ -274,7 +274,7 @@ textarea{
 	float:right;
 }
 .widget-act-del{
-	background:url(images/icon_del.png) no-repeat center;
+	background:url(images/icon_del.gif) no-repeat center;
 	margin:5px;
 	display:none;
 	width:10px;
@@ -282,7 +282,7 @@ textarea{
 	cursor:pointer;
 }
 .widget-act-add{
-	background:url(images/icon_add.png) no-repeat center;
+	background:url(images/icon_add.gif) no-repeat center;
 	margin:5px;
 	width:10px;
 	cursor:pointer;
@@ -326,15 +326,15 @@ textarea{
 	border: #CCCCCC 1px solid;
 }
 .actived{
-	margin:0px 300px;
+	margin:0px 200px;
 	background:url(images/icon_succ.gif) no-repeat 10px #FDFFCE ;
 	font-size:14px;
 	padding:5px 30px;
 	border:1px #FFBA43 solid;
 }
 .error{
-	margin:0px 300px;
-	background:url(images/icon_error.png) no-repeat 10px #FDFFCE ;
+	margin:0px 200px;
+	background:url(images/icon_error.gif) no-repeat 10px #FDFFCE ;
 	font-size:14px;
 	padding:5px 30px;
 	border:1px #FFBA43 solid;
