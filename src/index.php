@@ -79,12 +79,6 @@ if (!isset($action) || empty($action))
 		$pageurl .= "?page";
 	}
 	$logs = $emBlog->getLog($sqlSegment, 'n', $page, $index_lognum, 'homepage');
-	foreach ($logs as &$row)
-	{
-		$row['attachment'] = !empty($log_cache_atts[$row['gid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$row['gid']] : '';
-		$row['tag']  = !empty($log_cache_tags[$row['gid']]) ? '标签:'.$log_cache_tags[$row['gid']] : '';
-	}
-
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 	include getViews('header');
@@ -117,10 +111,6 @@ if ($action == 'showlog')
 	//neighborlog
 	$neighborLog = $emBlog->neighborLog($logid);
 	extract($neighborLog);
-	//tags
-	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
-	//attachment
-	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';

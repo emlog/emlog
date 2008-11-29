@@ -279,34 +279,31 @@ div.contentA {
 	background-repeat: no-repeat;
 	font-size: 14px;
 	padding: 8px 0px 0px 0px;
-	font-weight: bold;
 	color: #63617b;
 }
-
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
+}
 #tit {
-	background-repeat: no-repeat;
 	font-size: 16px;
 	padding: 8px 0px 0px 0px;
-	font-weight: bold;
 }
-
-#t a:link {
-	color: #2759CD;
-	text-decoration: underline
-}
-
-#t a:visited {
-	color: #2759CD;
-	text-decoration: underline
-}
-
 #t2 {
 	font-size: 22px;
 	padding: 4px 16px 0px;
 	color: #63617b;
 	border: 1px solid #63617b;
 }
-
 #date {
 	font-size: 12px;
 	color: #CC6600;
@@ -434,6 +431,5 @@ div.contentA {
 	border-bottom: #4f4f4f 1px solid;
 }
 
-.taglog {
-	margin: 10px 20px;
+.logtag {
 }

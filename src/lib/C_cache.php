@@ -321,21 +321,21 @@ class mkcache {
 	 */
 	function mc_logatts()
 	{
-		$sql="SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
+		$sql = "SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
 		$query = $this->dbhd->query($sql);
 		$log_cache_atts = array();
-		while($rows=$this->dbhd->fetch_array($query))
+		while($row = $this->dbhd->fetch_array($query))
 		{
-			$gid = $rows['gid'];
+			$gid = $row['gid'];
 			$attachment = '';
 			//attachment
-			$attquery = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."attachment WHERE blogid=$gid ");
-			while($show_attach=$this->dbhd->fetch_array($attquery))
+			$attQuery = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."attachment WHERE blogid=$gid ");
+			while($show_attach = $this->dbhd->fetch_array($attQuery))
 			{
 				$att_path = $show_attach['filepath'];//eg: ../uploadfile/200710/b.jpg
 				$atturl = substr($att_path,3);//eg: uploadfile/200710/b.jpg
 				$postfix = strtolower(substr(strrchr($show_attach['filename'], "."),1));
-				if($postfix != 'jpg' OR $postfix != 'jpeg' OR $postfix != 'gif' OR $postfix == 'png')
+				if(!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png')))
 				{
 					$file_atturl = $atturl;
 					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']);
