@@ -33,9 +33,10 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
             <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $bloggerdes; ?></textarea></td>
         </tr>
         <tr>
-          <td align="center" colspan="2">
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />          </td>
+        <td colspan="2">
+	  	<input type="submit" value="确 定" class="submit2" />
+      	<input type="reset" value="重 置" class="submit2" />
+      	</td>
         </tr>
       </tbody>
     </table>
@@ -64,10 +65,10 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
           <input maxlength="200" style="width:200px;" name="username" /></td>
       </tr>
       <tr>
-        <td align="center" colspan="2">
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />        
-			</td>
+        <td colspan="2">
+	  	<input type="submit" value="确 定" class="submit2" />
+      	<input type="reset" value="重 置" class="submit2" />
+      	</td>
       </tr>
     </tbody>
   </table>

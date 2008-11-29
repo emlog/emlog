@@ -41,8 +41,8 @@
             <div class="sidebarmenu" onclick="displayToggle('blogctlpl');">博客管理</div>
 			<div id="blogctlpl">
             <div class=sidebarsubmenu><a href="widgets.php" >Widgets</a></div>
-			<div class=sidebarsubmenu><a href="template.php" >外观模板</a></div>
-			<div class=sidebarsubmenu><a href="link.php">友情链接</a></div>
+			<div class=sidebarsubmenu><a href="template.php" >模板</a></div>
+			<div class=sidebarsubmenu><a href="link.php">链接</a></div>
 			</div>
 			</div>
 			</td>

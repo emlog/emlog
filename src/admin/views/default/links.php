@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>友情链接</b>
+<div class=containertitle><b>链接</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除链接成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改链接成功</span><?php endif;?>
@@ -21,7 +21,7 @@ setTimeout(hideActived,2600);
   <table width="95%" align="center" id="adm_link_list">
     <thead>
       <tr class="rowstop">
-        <td width="155"><b>友情链接</b></td>
+        <td width="155"><b>链接</b></td>
         <td width="230"><b>排序</b></td>
 		<td width="600"><b>描述</b></td>
         <td width="222"></td>
@@ -30,10 +30,10 @@ setTimeout(hideActived,2600);
     <tbody>
 	<?php foreach($links as $key=>$value):?>  
       <tr>
-        <td><a href="<?php echo $value['siteurl']; ?>" target="_blank"><?php echo $value['sitename']; ?></a></td>
+        <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?php echo $value['sitename']; ?></a></td>
 		<td><input size="18" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
         <td><?php echo $value['description']; ?></td>
-        <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
+        <td><a href="<?php echo $value['siteurl']; ?>" target="_blank">查看</a>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
       </tr>
 	<?php endforeach; ?>
@@ -54,17 +54,17 @@ setTimeout(hideActived,2600);
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td>站点名称
+          <td>名称
             <br />
             <input maxlength="200" size="35" name="sitename" />
             <br /></td></tr>
         <tr nowrap="nowrap">
-          <td>地址（站点地址必须以http://开头）<br />
+          <td>地址 [加http://]<br />
   <input maxlength="200" size="35" name="siteurl" />
               <br /></td>
         </tr>
         <tr nowrap="nowrap">
-        <td>描述（可选）不得超过255字节<br />
+        <td>描述 [可选 不宜太长]<br />
 			<textarea name="description" rows="5" cols="40" type="text"></textarea><br />
 		  </td>
         </tr>
