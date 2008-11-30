@@ -196,7 +196,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	."\n//cookie name\n"
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
 	."\n//blog root\n"
-	."define('EMLOG_ROOT','".dirname(__FILE__)."');"
+	."define('EMLOG_ROOT','".EMLOG_ROOT."');"
 	."\n//blog version\n"
 	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
 	."\n?>";
