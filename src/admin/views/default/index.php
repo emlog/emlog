@@ -1,6 +1,5 @@
 <?php 
 if(!defined('ADMIN_ROOT')) {exit('error!');}
-$hctyle = $hidecom ? 'tips' : 'care2';
 $allcom = $hidecom + $comnum;
 ?>
 <div class=containertitle></div>
@@ -8,7 +7,7 @@ $allcom = $hidecom + $comnum;
 	<tr>
 		<td width="50%">
 <?php if($ischkcomment == 'y' || $hidecom != 0): ?>
-		待审核评论: <span class="<?php echo $hctyle; ?>"><b><?php echo $hidecom; ?></b></span> | 
+		待审核评论: <span class="care"><b><?php echo $hidecom; ?></b></span> | 
 <?php endif; ?>
 		日志: <span class=care2><b><?php echo $lognum; ?></b></span> | 
 		评论: <span class=care2><b><?php echo $allcom; ?></b></span> | 

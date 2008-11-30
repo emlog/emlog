@@ -33,10 +33,11 @@ setTimeout(hideActived,2600);
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
+	$value['content'] = subString(htmlClean2($value['content']),0,30);
 	?>
      <tr>
         <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['comment']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
         <td><?php echo $value['poster']; ?></td>
         <td><?php echo $value['date']; ?></td>
         <td>
