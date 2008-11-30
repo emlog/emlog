@@ -406,6 +406,7 @@ src/content/templates/graffiti/readme.txt -text
 src/content/templates/graffiti/side.php -text
 src/content/templates/half-life/echo_log.php -text svn_keywords=Id
 src/content/templates/half-life/footer.php -text svn_keywords=Id
+src/content/templates/half-life/function.php -text
 src/content/templates/half-life/header.php -text svn_keywords=Id
 src/content/templates/half-life/images/half-life.jpg -text svn_keywords=Id
 src/content/templates/half-life/images/import.gif -text

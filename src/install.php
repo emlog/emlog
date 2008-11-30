@@ -325,6 +325,12 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_cont
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets2','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title2','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content2','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title3','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content3','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title4','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content4','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id smallint(4) unsigned NOT NULL auto_increment,

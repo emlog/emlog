@@ -139,7 +139,7 @@ if($action == 'compages')
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title{$wgNum}'");
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content{$wgNum}'");
 	$CACHE->mc_options();
-	header("Location: ./widgets.php?activated=true");
+	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
 
 ?>
