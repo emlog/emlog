@@ -187,6 +187,7 @@ src/content/templates/default/main.css -text svn_keywords=Id
 src/content/templates/default/message.php -text svn_keywords=Id
 src/content/templates/default/preview.jpg -text svn_keywords=Id
 src/content/templates/default/side.php -text svn_keywords=Id
+src/content/templates/default/tpl.ini -text
 src/content/templates/default/unique_tpl.js -text svn_keywords=Id
 src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
@@ -418,6 +419,7 @@ src/content/templates/half-life/message.php -text svn_keywords=Id
 src/content/templates/half-life/obar.php -text svn_keywords=Id
 src/content/templates/half-life/preview.jpg -text svn_keywords=Id
 src/content/templates/half-life/side.php -text svn_keywords=Id
+src/content/templates/half-life/tpl.ini -text
 src/content/templates/lust/echo_log.php -text svn_keywords=Id
 src/content/templates/lust/footer.php -text svn_keywords=Id
 src/content/templates/lust/header.php -text svn_keywords=Id

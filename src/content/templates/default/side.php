@@ -3,13 +3,13 @@
 <div class="contentA">
 <?php 
 require_once (getViews('function'));
-$widgets = unserialize($options_cache['widgets']);
+$widgets = unserialize($options_cache['widgets1']);
 $i = 0;
 foreach ($widgets as $val)
 {
 	$widget_title = @unserialize($options_cache['widget_title']);
-	$custom_title = @unserialize($options_cache['custom_title']);
-	$custom_content = @unserialize($options_cache['custom_content']);
+	$custom_title = @unserialize($options_cache['custom_title1']);
+	$custom_content = @unserialize($options_cache['custom_content1']);
 	$callback = 'widget_'.$val;
 	if($val == 'custom_text')
 	{

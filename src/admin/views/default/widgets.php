@@ -9,8 +9,8 @@
 	<div class="widget-line" id="blogger">
 		<div class="widget-top">
 			<li class="widget-title">EMER</li>
-			<li class="widget-act-add"> </li>
-			<li class="widget-act-del"> </li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
@@ -205,26 +205,45 @@
 </div>
 <form action="widgets.php?action=compages" method="post">
 <div id="adm_widget_box">
+<?php if($tpl_sidenum > 1):?>
+<p>
+<select id="wg_select">
+<?php 
+for ($i=1; $i<=$tpl_sidenum; $i++):
+if($i == $wgNum):
+?>
+<option value="<?php echo $i;?>" selected>侧边栏<?php echo $i;?></option>
+<?php else:?>
+<option value="<?php echo $i;?>">侧边栏<?php echo $i;?></option>
+<?php endif;endfor;?>
+</select>
+</p>
+<?php endif;?>
 <ul>
 <?php
 $i = 0;
 foreach ($widgets as $widget):
-$title = $widget == 'custom_text' ? $custom_title[$i] : '';
-$content = $widget == 'custom_text' ? $custom_content[$i] : '';
+$title = ($widget == 'custom_text' && isset($custom_title[$i])) ? $custom_title[$i] : '';
+$content = ($widget == 'custom_text' && isset($custom_content[$i])) ? $custom_content[$i] : '';
 if($widget == 'custom_text'){$i++;}
 $wg_edit = $widget=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-$wg_text = $widget=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title[]\" value=\"$title\" /><textarea name=\"custom_text[]\">$content</textarea></span>" : '';
+$wg_text = $widget=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title{$wgNum}[]\" value=\"$title\" /><textarea name=\"custom_text{$wgNum}[]\">$content</textarea></span>" : '';
 ?>
-<li class="sortableitem" id="<?php echo $widget; ?>"><span class="wgbox_title"><?php echo $widgetTitle[$widget]; ?></span><?php echo $wg_edit; ?><?php echo $wg_text; ?><input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" /></li>
+<li class="sortableitem" id="<?php echo $widget; ?>">
+<span class="wgbox_title"><?php echo $widgetTitle[$widget]; ?></span>
+<?php echo $wg_edit; ?><?php echo $wg_text; ?>
+<input type="hidden" name="widgets<?php echo $wgNum; ?>[]" value="<?php echo $widget; ?>" />
+</li>
 <?php endforeach;?>
 </ul>
 <div style="margin:10px 40px;"><input type="submit" value="确 定" class="submit2" /></div>
 </div>
+<input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 </form>
 </div>
 <script>
 $(document).ready(function(){
-	var widgets = $(".sortableitem").map(function(){return $(this).attr("id");}).get(); 
+	var widgets = $(".sortableitem").map(function(){return $(this).attr("id");});
 	$.each(widgets,function(i,widget_id){
 		if(widget_id != 'custom_text'){$("#"+widget_id+" .widget-act-add").hide();}
 		$("#"+widget_id+" .widget-act-del").show();
@@ -236,11 +255,12 @@ $(document).ready(function(){
 	);
 	//add widget
 	$("#adm_widget_list .widget-act-add").click(function(){
+		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
 		var wg_edit = widget_id=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-		var wg_text = widget_id=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title[]\" value=\"\" /><textarea name=\"custom_text[]\"></textarea></span>" : '';
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
+		var wg_text = widget_id=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title"+wgnum+"[]\" value=\"\" /><textarea name=\"custom_text"+wgnum+"[]\"></textarea></span>" : '';
+		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets"+wgnum+"[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 		if(widget_id != 'custom_text'){$(this).hide();}
 		$(this).next(".widget-act-del").show();
@@ -263,6 +283,10 @@ $(document).ready(function(){
 	});
 	var wg_edit_fun = function(){$(this).parent().find(".wgbox_text").toggle("fast");}
 	var wg_del_fun = function(){$(this).parent().remove();}
+	
+	$("#wg_select").change(function(){
+		window.location = "widgets.php?wg="+$(this).val();
+	})
 });
 </script>
 

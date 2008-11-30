@@ -269,10 +269,6 @@ textarea{
 .widget-control li{
 	list-style-type:none;
 }
-#adm_widget_box {
-	width:300px;
-	float:right;
-}
 .widget-act-del{
 	background:url(images/icon_del.gif) no-repeat center;
 	margin:5px;
@@ -287,6 +283,14 @@ textarea{
 	width:10px;
 	cursor:pointer;
 	height:15px;
+}
+#adm_widget_box {
+	width:300px;
+	float:right;
+}
+#adm_widget_box p{
+	margin-left:35px;
+	padding:5px;
 }
 .sortableitem{
 	background-color:#217AA9;

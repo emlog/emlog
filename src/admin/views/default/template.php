@@ -6,7 +6,11 @@
     <tr>
       <td width="27%">
 	  <img src="<?php echo $tpl_dir.$nonce_templet; ?>/preview.jpg" width="200" height="160"  border="1" />	  </td>
-	  <td width="73%"><?php echo $nonce_templet; ?></td>
+	  <td width="73%">
+	  <?php echo $tplName; ?><br>
+	  <?php echo $tplAuthor; ?><br>
+	  <?php echo $tplDes; ?><br>
+	  </td>
     </tr>
 </table>
 <div class=containertitle><b>可用模板</b></div>
@@ -18,13 +22,11 @@ foreach($tpls as $key=>$value):
 if($i % 3 == 0){echo "<tr>";}
 $i++;
 ?>
-      <td align="center">
-	  <a href="template.php?action=usetpl&tplname=<?php echo $value; ?>">
-	  <img alt="使用该模板" src="<?php echo $tpl_dir; ?><?php echo $value; ?>/preview.jpg" width="154" height="136" border="0" />
+      <td align="center" width="300">
+	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>">
+	  <img alt="点击使用该模板" src="<?php echo $tpl_dir; ?><?php echo $value['tplfile']; ?>/preview.jpg" width="154" height="136" border="0" />
 	  </a><br />
-      <b><?php echo $value; ?></b><br />
-      <a href="template.php?action=usetpl&tplname=<?php echo $value; ?>">使用该模板</a><br />
-      <br />
+      <b><a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>" title="点击使用该模板"><?php echo $value['tplname']; ?></a></b><br />
       </td>
 <?php 
 if($i > 0 && $i % 3 == 0){echo "</tr>";}

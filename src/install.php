@@ -310,6 +310,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlo
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
@@ -317,10 +318,13 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets','$widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title1','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content1','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets2','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title2','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content2','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id smallint(4) unsigned NOT NULL auto_increment,

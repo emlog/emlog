@@ -11,11 +11,12 @@ require_once('./globals.php');
 
 if($action == '')
 {
-	$widgets = @unserialize($options_cache['widgets']);
-	$widgetTitle = @unserialize($options_cache['widget_title']);
-	$custom_title = @unserialize($options_cache['custom_title']);
-	$custom_content = @unserialize($options_cache['custom_content']);
-
+	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
+	$widgets = $options_cache['widgets'.$wgNum] ? @unserialize($options_cache['widgets'.$wgNum]) : array();
+	$widgetTitle = $options_cache['widget_title'] ? @unserialize($options_cache['widget_title']) : array();
+	$custom_title = $options_cache['custom_title'.$wgNum] ? @unserialize($options_cache['custom_title'.$wgNum]) : array();
+	$custom_content = $options_cache['custom_content'.$wgNum] ? @unserialize($options_cache['custom_content'.$wgNum]) : array();
+	
 	//music
 	$music = $CACHE->readCache('musics');
 	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1 ? "checked=\"checked\"" : '';
@@ -127,13 +128,16 @@ if($action == 'setwg')
 
 if($action == 'compages')
 {
-	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : array();
-	$customTextTitle = isset($_POST['custom_title']) ? serialize($_POST['custom_title']) : array();
-	$customTextContent = isset($_POST['custom_text']) ? serialize($_POST['custom_text']) : array();
+	
+	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;
 
-	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets'");
-	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title'");
-	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content'");
+	$widgets = isset($_POST['widgets'.$wgNum]) ? serialize($_POST['widgets'.$wgNum]) : '';
+	$customTextTitle = isset($_POST['custom_title'.$wgNum]) ? serialize($_POST['custom_title'.$wgNum]) : '';
+	$customTextContent = isset($_POST['custom_text'.$wgNum]) ? serialize($_POST['custom_text'.$wgNum]) : '';
+
+	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets{$wgNum}'");
+	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title{$wgNum}'");
+	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content{$wgNum}'");
 	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true");
 }
