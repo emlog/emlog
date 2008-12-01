@@ -1,5 +1,8 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>重建缓存</b></div>
+<script>setTimeout(hideActived,2600);</script>
+<div class=containertitle><b>重建缓存</b>
+<?php if(isset($_GET['active_mc'])):?><span class="actived">缓存更新成功</span><?php endif;?>
+</div>
 <div class=line></div>
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
    <tr>

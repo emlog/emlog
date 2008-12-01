@@ -759,7 +759,7 @@ function formMsg($msg,$url,$type)
  */
 function msg($msg,$url)
 {
-	global $tpl_dir;
+	global $em_tpldir;
 	require_once getViews('message');
 	cleanPage();
 	exit;

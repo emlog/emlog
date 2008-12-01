@@ -202,9 +202,9 @@ class emComment {
 			if ($ischkcomment == 'n')
 			{
 				$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
-				msg('评论发表成功!',"?action=showlog&gid=$blogId#comment");
+				return 0;
 			} else {
-				msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$blogId#comment");
+				return 1;
 			}
 		}
 	}

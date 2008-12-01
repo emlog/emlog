@@ -29,7 +29,7 @@ if ($action == 'mkcache')
 	$CACHE->mc_sort();
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
-	formMsg('缓存更新成功', './cache.php',1);
+	header("Location: ./cache.php?active_mc=true");
 }
 
 ?>

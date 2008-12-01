@@ -136,10 +136,16 @@ if ($action == 'addcom')
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 
-	$emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
-
-	$CACHE->mc_sta();
-	$CACHE->mc_comment();
+	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
+	
+	if($ret === 0)
+	{
+		$CACHE->mc_sta();
+		$CACHE->mc_comment();
+		msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
+	}elseif ($ret === 1){
+		msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
+	}
 }
 
 cleanPage(true);
