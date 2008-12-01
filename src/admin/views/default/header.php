@@ -40,9 +40,9 @@
             <div id=sidebartop></div>
             <div class="sidebarmenu" onclick="displayToggle('blogctlpl');">博客管理</div>
 			<div id="blogctlpl">
-            <div class=sidebarsubmenu><a href="widgets.php" >Widgets</a></div>
-			<div class=sidebarsubmenu><a href="template.php" >模板</a></div>
-			<div class=sidebarsubmenu><a href="link.php">链接</a></div>
+            <div class="sidebarsubmenu"><a href="widgets.php" >Widgets</a></div>
+			<div class="sidebarsubmenu"><a href="template.php" >模板</a></div>
+			<div class="sidebarsubmenu"><a href="link.php">链接</a></div>
 			</div>
 			</div>
 			</td>
@@ -56,13 +56,13 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('logmg');">日志管理</div>
 			<div id="logmg">
-            <div class=sidebarsubmenu><a href="add_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
-			<div class=sidebarsubmenu><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
-			<div class=sidebarsubmenu><a href="admin_log.php">日志</a></div>
-            <div class=sidebarsubmenu><a href="tag.php">标签</a></div>
-            <div class=sidebarsubmenu><a href="sort.php">分类</a></div>
-            <div class=sidebarsubmenu><a href="comment.php">评论</a></div>
-            <div class=sidebarsubmenu><a href="trackback.php">引用</a></div>
+            <div class="sidebarsubmenu"><a href="add_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+			<div class="sidebarsubmenu"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
+			<div class="sidebarsubmenu"><a href="admin_log.php">日志</a></div>
+            <div class="sidebarsubmenu"><a href="tag.php">标签</a></div>
+            <div class="sidebarsubmenu"><a href="sort.php">分类</a></div>
+            <div class="sidebarsubmenu"><a href="comment.php">评论</a></div>
+            <div class="sidebarsubmenu"><a href="trackback.php">引用</a></div>
 			</div>
 			</div>
        	    </td>
@@ -76,10 +76,10 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('datamg');">数据管理</div>
 			<div id="datamg">
-            <div class=sidebarsubmenu><a href="backup.php">数据备份</a></div>
-            <div class=sidebarsubmenu><a href="cache.php">重建缓存</a></div>
+            <div class="sidebarsubmenu"><a href="backup.php">数据备份</a></div>
+            <div class="sidebarsubmenu"><a href="cache.php">重建缓存</a></div>
 			</div>
-			<div id=sidebarBottom></div>
+			<div id=""sidebarBottom""></div>
 			</div>
        	    </td>
 		  </tr>
