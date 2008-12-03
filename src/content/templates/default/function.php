@@ -126,8 +126,8 @@
 	global $index_randlognum, $emBlog;
 	$randLogs = $emBlog->getRandLog($index_randlognum);
 	?>
-	<div class="lister"><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></div>
-	<ul id="newlog">
+	<div class="lister"><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></div>
+	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
 	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
@@ -156,17 +156,17 @@
 	</ul>
 <?php } ?>
 <!--自定义-->
-<?php function widget_custom_text($title, $content){ ?>
-	<div class="lister"><span onclick="showhidediv('record')"><?php echo $title; ?></span></div>
-	<ul id="record">
-	<li><?php echo $content; ?></li>	
+<?php function widget_custom_text($title, $content, $id){ ?>
+	<div class="lister"><span onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></span></div>
+	<ul id="custom<?php echo $id; ?>">
+	<li><?php echo $content; ?></li>
 	</ul>
 <?php } ?>
 <!--链接-->
 <?php function widget_link($title){ ?>
 	<?php global $link_cache; ?>
-	<div class="lister"><span onclick="showhidediv('frlink')"><?php echo $title; ?></span></div>
-	<ul id="frlink">
+	<div class="lister"><span onclick="showhidediv('link')"><?php echo $title; ?></span></div>
+	<ul id="link">
 	<?php foreach($link_cache as $value): ?>     	
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 	<?php endforeach; ?>

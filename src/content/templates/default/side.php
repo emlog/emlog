@@ -15,7 +15,7 @@ foreach ($widgets as $val)
 	{
 		if(function_exists($callback))
 		{
-			call_user_func($callback, $custom_title[$i], $custom_content[$i]);
+			call_user_func($callback, $custom_title[$i], $custom_content[$i], $i);
 		}
 		$i++;
 	}else{
