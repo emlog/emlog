@@ -75,7 +75,7 @@ setTimeout("doautosave()",30000);
         </tr>
         <tr>
           <td><b>更改发布时间</b>
-            <input id="switch" onclick="doshow('changedate');" type="checkbox" value="1" name="edittime" />
+            <input id="switch" onclick="displayToggle('changedate');" type="checkbox" value="1" name="edittime" />
               <br />
               <div style="clear:both; display: none;" id="changedate">
 			  <input name="newyear" type="text" value="<?php echo $year; ?>" maxlength="" size="2"> 年 

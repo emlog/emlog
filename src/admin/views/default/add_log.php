@@ -70,22 +70,20 @@ setTimeout("doautosave()",30000);
           ?>
           </div></td></tr>
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br />
-          </b>
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br /></b>
 			<textarea name="pingurl" rows="3" cols="" style="width:715px;"  onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
           </td></tr>
         <tr>
           <td><b>更改发布时间</b>
-            <input id="switch" onclick="doshow('changedate');" type="checkbox" value="" name="edittime" />
-              <br />
+            <input id="switch" onclick="displayToggle('changedate');" type="checkbox" value="" name="edittime" /><br />
             <div style="clear:both; display: none;" id="changedate">
 			  <input name="newyear" type="text" value="" maxlength="" size="2"> 年 
 			  <input name="newmonth" type="text" value="" maxlength="2" size="1"> 月 
 			  <input name="newday" type="text" value="" maxlength="2" size="1"> 日 
-			  <input name="newhour" type="text" value="" maxlength="2" 	size="1"> 时
+			  <input name="newhour" type="text" value="" maxlength="2" 	size="1"> 时 
 			  <input name="newmin" type="text" value="" maxlength="2" size="1"> 分 
 			  <input name="newsec" type="text" value="" maxlength="2" size="1"> 秒
-				<br />
+			<br />
 		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
         </tr>
         <tr>

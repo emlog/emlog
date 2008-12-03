@@ -93,7 +93,7 @@ $value['content'] = htmlClean($value['content']);
 <?php if($allow_remark == 'y'): ?>
 <p><b>发表评论:</b><a name="comment"></a></p>
 <form  method="post"  name="commentform" action="index.php?action=addcom">
-<table width="620" border="0" cellspacing="5" cellpadding="0">
+<table width="620" border="0" cellspacing="8" cellpadding="0">
 <tr>
 <td class="f14">姓　 名：</td>
 <td>
