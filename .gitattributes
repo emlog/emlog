@@ -82,8 +82,6 @@ src/admin/views/default/footer.php -text svn_keywords=Id
 src/admin/views/default/header.php -text svn_keywords=Id
 src/admin/views/default/images/addblog.gif -text svn_keywords=Id
 src/admin/views/default/images/fnone.gif -text svn_keywords=Id
-src/admin/views/default/images/header_bg_l.gif -text svn_keywords=Id
-src/admin/views/default/images/header_bg_r.gif -text svn_keywords=Id
 src/admin/views/default/images/icon_add.gif -text
 src/admin/views/default/images/icon_del.gif -text
 src/admin/views/default/images/icon_error.gif -text
@@ -91,7 +89,6 @@ src/admin/views/default/images/icon_succ.gif -text
 src/admin/views/default/images/icon_tips.gif -text
 src/admin/views/default/images/logo.gif -text
 src/admin/views/default/images/mc_bg1.gif -text svn_keywords=Id
-src/admin/views/default/images/mc_bg2.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_bg3.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_btbg.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_no.gif -text svn_keywords=Id
@@ -101,6 +98,9 @@ src/admin/views/default/images/sidebar_bg_b.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_t.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_smenu_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/tar.gif -text svn_keywords=Id
+src/admin/views/default/images/top_l.gif -text
+src/admin/views/default/images/top_m.gif -text
+src/admin/views/default/images/top_r.gif -text
 src/admin/views/default/index.php -text svn_keywords=Id
 src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id

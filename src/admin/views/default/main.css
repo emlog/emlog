@@ -20,9 +20,20 @@ a:hover {
 	text-decoration: none
 }
 #header {
-	background-position: left top; 
-	background-image: url(./images/mc_bg2.gif); 
+	background-position: left center; 
+	background-image: url(./images/top_m.gif); 
 	background-repeat: repeat-x
+}
+#headerleft {
+	background-position: left center; 
+	background-image: url(./images/top_l.gif); 
+	background-repeat: no-repeat; 
+}
+#headerright {
+	background-position: right center; 
+	background-image: url(./images/top_r.gif); 
+	background-repeat: no-repeat;
+	width:7px;
 }
 #header a {
 	color: #FFFFFF; 
@@ -32,18 +43,16 @@ a:hover {
 	color: #CCCCCC;
 	text-decoration: none
 }
-#headerleft {
-	background-position: left top; 
-	background-image: url(./images/header_bg_l.gif); 
-	width: 10px; 
-	background-repeat: no-repeat; 
-	height: 70px
+.logo{
+	font-size:22px;
+	padding:8px 0px 12px 0px;
+	color:#FFFFFF;
+	font-weight:bold;
 }
-#headerright {
-	background-position: right top; 
-	background-image: url(./images/header_bg_r.gif); 
-	background-repeat: no-repeat; 
-	height: 70px
+.vesion{
+	color:#FFFFFF;
+	font-style : italic;
+	font-size:12px;
 }
 #sidebar {
 	background-position: left top; 
@@ -148,18 +157,6 @@ a:hover {
 	font-weight:bold;
 	cursor:hand;
 	padding:5px 10px;
-}
-.logo{
-	font-size:26px;
-	padding:5px 0px 20px 20px;
-	font-style : italic;
-	color:#FFFFFF;
-	font-weight:bold;
-}
-.vesion{
-	color:#FFFFFF;
-	font-style : italic;
-	font-size:12px;
 }
 .headtext{
 	color:#FFFFFF;
@@ -370,6 +367,6 @@ textarea{
 #imgcode{ height:28px; width:80px;}
 .addItem{ margin-left:30px;}
 .sortname{ cursor:pointer; color:#2A9DDB;}
-.logtags{margin-left:20%;}
+.logtags{margin-left:5%;}
 .logtags a{ color:#FFFFFF;}
 .logtag{background-color: #F3BBA0; padding:0px 3px; margin:1px 3px;}

@@ -13,7 +13,7 @@
 </head>
 <body>
 <center>
-<table id=header cellspacing=0 cellpadding=0 width="100%" border=0>
+<table id=header cellspacing=0 cellpadding=0 width="99%" border=0>
   <tbody>
   <tr>
     <td width="9" id=headerleft></td>
@@ -79,7 +79,7 @@
             <div class="sidebarsubmenu"><a href="backup.php">数据备份</a></div>
             <div class="sidebarsubmenu"><a href="cache.php">重建缓存</a></div>
 			</div>
-			<div id=""sidebarBottom""></div>
+			<div id="sidebarBottom"></div>
 			</div>
        	    </td>
 		  </tr>
