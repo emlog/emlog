@@ -15,7 +15,7 @@
 </table>
 <div class=containertitle><b>可用模板</b></div>
 <div class=line><span class="care" style="padding:0px 12px;">当前共有<?php echo $tplnums; ?>个可用模板 <a href="http://www.emlog.net" target="_blank">更多模板</a></span></div>
-<table cellspacing="0" cellpadding="0" width="80%" border="0" class="adm_tpl_list">
+<table cellspacing="0" cellpadding="0" width="90%" border="0" class="adm_tpl_list">
 <?php 
 $i = 0;
 foreach($tpls as $key=>$value):

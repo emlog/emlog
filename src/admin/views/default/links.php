@@ -21,17 +21,17 @@ setTimeout(hideActived,2600);
   <table width="95%" align="center" id="adm_link_list">
     <thead>
       <tr class="rowstop">
-        <td width="155"><b>链接</b></td>
-        <td width="230"><b>排序</b></td>
-		<td width="600"><b>描述</b></td>
-        <td width="222"></td>
+        <td width="230"><b>链接</b></td>
+        <td width="70"><b>排序</b></td>
+		<td width="350"><b>描述</b></td>
+        <td width="100"></td>
       </tr>
     </thead>
     <tbody>
 	<?php foreach($links as $key=>$value):?>  
       <tr>
         <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?php echo $value['sitename']; ?></a></td>
-		<td><input size="18" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+		<td><input size="5" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
         <td><?php echo $value['description']; ?></td>
         <td><a href="<?php echo $value['siteurl']; ?>" target="_blank">查看</a>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
