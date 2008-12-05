@@ -8,7 +8,6 @@
 
 require_once('./globals.php');
 
-
 if($action == '')
 {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
@@ -16,6 +15,17 @@ if($action == '')
 	$widgetTitle = $options_cache['widget_title'] ? @unserialize($options_cache['widget_title']) : array();
 	$custom_title = $options_cache['custom_title'.$wgNum] ? @unserialize($options_cache['custom_title'.$wgNum]) : array();
 	$custom_content = $options_cache['custom_content'.$wgNum] ? @unserialize($options_cache['custom_content'.$wgNum]) : array();
+	
+	$customWgTitle = array();
+	foreach ($widgetTitle as $key => $val)
+	{
+		if(preg_match("/^.*\s\((.*)\)/", $val, $matchs))
+		{
+			$customWgTitle[$key] = $matchs[1];
+		}else{
+			$customWgTitle[$key] = $val;
+		}
+	}
 	
 	//music
 	$music = $CACHE->readCache('musics');
@@ -53,14 +63,14 @@ if($action == '')
 
 if($action == 'setwg')
 {
-	$widgetTitle = @unserialize($options_cache['widget_title']);
-	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';
-	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';
+	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//组件标识符
+	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
 	$realWgTitle = $matchs[1] ? $matchs[1] : $widgetTitle[$widget];
 
-	$widgetTitle[$widget] = $realWgTitle.' ('.$wgTitle.')';
+	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
 	$widgetTitle = serialize($widgetTitle);
 
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgetTitle' where option_name='widget_title'");
@@ -128,7 +138,6 @@ if($action == 'setwg')
 
 if($action == 'compages')
 {
-	
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;
 
 	$widgets = isset($_POST['widgets'.$wgNum]) ? serialize($_POST['widgets'.$wgNum]) : '';

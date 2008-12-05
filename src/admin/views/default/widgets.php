@@ -14,7 +14,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -40,7 +40,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -53,7 +53,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -66,7 +66,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -79,7 +79,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['newcomm']; ?>"  /></li>
 			<li>首页最新评论数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
 			<li>新近评论截取字节数</li>
@@ -96,7 +96,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
 			<li>首页显示twitter数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
@@ -111,7 +111,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
 			<li>首页显示最新日志数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $index_newlognum; ?>" name="index_newlog" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
@@ -126,7 +126,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
 			<li>首页显示随机日志数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $index_randlognum; ?>" name="index_randlognum" /> <input type="submit" name="" value="更改"  /></li>
 		</div>
@@ -141,7 +141,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['music']; ?>"  /></li>
 		    <li>启用背景音乐 <input id="switch" type="checkbox" value="1" name="ismusic" <?php echo $ismusic; ?>/></li>
 			<li>音乐链接：(每行一个，仅支持mp3格式)</li>
 			<li><textarea name="mlinks" rows="6" wrap="off" style="width:350px;overflow:auto;"><?php echo $content; ?></textarea></li>
@@ -166,7 +166,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -179,7 +179,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
@@ -192,7 +192,7 @@
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
-			<li><input type="text" name="title" value=""  /> <input type="submit" name="" value="更改"  /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['bloginfo']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
 	</form>
