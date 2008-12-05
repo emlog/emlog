@@ -7,7 +7,7 @@
 
 如何安装使用你自己的模板或者从官方下载的其他模板 ?
 
-	Emlog 默认安装后附带一个模板，你可以在 content/templates 目录下找到它 
+	emlog 默认安装后附带一个模板，你可以在 content/templates 目录下找到它 
 
 	(即：content/templates 目录下的名为default的文件夹) 
 
