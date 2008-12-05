@@ -1,4 +1,4 @@
-Emlog 安装说明 
+Emlog 3.0.0 安装说明 
 
 安装步骤 :
 
@@ -7,20 +7,21 @@ Emlog 安装说明
 2.权限设置:
 
  (Windows系统服务器跳过该步) 
- 执行安装程序之前设置如下文件或目录权限为777 
+ 执行安装程序之前设置如下文件或目录权限为777
 
-    ./config.php	(单个文件) 
-    ./cache/		(目录下所有文件，依次设置为777) 
-    ./uploadfile 	(目录) 
-    ./adm/bakup 	(目录) 
+    ./config.php		(单个文件) 
+    ./content/cache		(目录下所有文件，依次设置为777) 
+    ./content/uploadfile 	(目录) 
+    ./content/backup 		(目录) 
 
-3.在你的mysql服务器上建立一个用于emlog的空数据库
+3.在你的mysql服务器上建立一个用于emlog的空数据库。
 
 4.在浏览器上访问根目录下的安装文件 install.php 按照提示安装。
 
-5.安装成功，删除安装文件 install.php  将 ./config.php 权限还原为644
+5.安装成功，删除安装文件：install.php
 
 
 
 如果你对上诉安装过程有任何疑问，
+
 请登录 http://www.emlog.net/bbs 获取帮助
