@@ -81,7 +81,7 @@ if($action == 'addlog')
 	$tbmsg = '';
 	if(!empty($pingurl))
 	{
-		$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $logid);
+		$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $logid, $title, $blogname, $content);
 	}
 	$CACHE->mc_sta();
 	$CACHE->mc_record();

@@ -118,7 +118,7 @@ if ($action == 'showlog')
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	$comments = $emComment->getComment($logid, 'n');
 	//trackback
-	$tb = $emTrackback->getTrackback($logid);
+	$tb = $emTrackback->getTrackback(null, $logid);
 
 	include getViews('header');
 	require_once getViews('echo_log');

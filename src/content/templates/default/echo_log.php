@@ -45,12 +45,13 @@ include getViews('side');
 </div>
 <?php endif; ?>
 
-<?php foreach($tb as $key=>$value):?>
+<?php 
+foreach($tb as $key=>$value):
+?>
 <div class="trackback">
-	<li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
-    <li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-    <li>摘要:<?php echo $value['excerpt'];?></li>
-	<li>引用时间:<?php echo $value['date'];?></li>
+	<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
+	<li>BLOG: <?php echo $value['blog_name'];?></li>
+	<li><?php echo $value['date'];?></li>
 </div>
 <?php endforeach; ?>
 

@@ -26,7 +26,7 @@ class emTrackback {
 	 * @param int $blogId
 	 * @return msg
 	 */
-	function postTrackback($blogurl, $pingUrl, $blogId)
+	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{
 		$url = $blogurl."index.php?action=showlog&gid=".$blogId;
 		$hosts = explode("\n", $pingUrl);
