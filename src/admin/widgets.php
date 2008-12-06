@@ -28,7 +28,7 @@ if($action == '')
 	}
 	
 	//music
-	$music = $CACHE->readCache('musics');
+	$music = @unserialize($options_cache['music']);
 	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1 ? "checked=\"checked\"" : '';
 	if(isset($music['auto']) && $music['auto'])
 	{
@@ -96,7 +96,7 @@ if($action == 'setwg')
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_randlognum' where option_name='index_randlognum'");
 			break;
 		case 'music':
-			$ismusic= isset($_POST['ismusic']) ? intval($_POST['ismusic']) : 0;
+			$ismusic = isset($_POST['ismusic']) ? intval($_POST['ismusic']) : 0;
 			$links = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
 			$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
 			$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
@@ -128,8 +128,8 @@ if($action == 'setwg')
 					}
 				}
 			}
-			$cacheData = serialize($music);
-			$CACHE->cacheWrite($cacheData,'musics');
+			$musicData = serialize($music);
+			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");
 			break;
 	}
 	$CACHE->mc_options();

@@ -318,6 +318,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title1','');

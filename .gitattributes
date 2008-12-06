@@ -124,7 +124,6 @@ src/content/cache/links -text svn_keywords=Id
 src/content/cache/log_atts -text svn_keywords=Id
 src/content/cache/log_sort -text
 src/content/cache/log_tags -text svn_keywords=Id
-src/content/cache/musics -text svn_keywords=Id
 src/content/cache/newlogs -text
 src/content/cache/options -text svn_keywords=Id
 src/content/cache/records -text svn_keywords=Id
