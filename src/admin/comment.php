@@ -100,8 +100,8 @@ if($action=='show_comment')
 if ($action== 'reply_comment')
 {
 	include getViews('header');
-	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $emComment->getOneComment($cid);
+	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
+	$commentArray = $emComment->getOneComment($commentId);
 	$comment = htmlspecialchars(trim($commentArray['comment']));
 	$reply = htmlspecialchars(trim($commentArray['reply']));
 	$name = trim($commentArray['poster']);
@@ -122,7 +122,7 @@ if($action=='doreply')
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_rep=true");
 	}else{
-		$reply = isset($_POST["reply$cid"]) ? addslashes($_POST["reply$cid"]) : '';
+		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
 		$emComment->replyComment($commentId, $reply);
 		$CACHE->mc_comment();
 		echo "<span><b>博主回复</b>：$reply</span>";

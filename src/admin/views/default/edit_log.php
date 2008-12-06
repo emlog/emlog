@@ -43,9 +43,9 @@ setTimeout("doautosave()",30000);
                     <td>
 					<b>内容：</b> <a href="javascript: displayToggle('FrameUpload');" class="thickbox">附件管理</a>
 					<span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
-					
+
 					<div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
-					
+
 					<input type="hidden" id="content" name="content" value="<?php echo $content; ?>" style="display:none" />
 					<input type="hidden" id="content___Config" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
 					<iframe id="content___Frame" src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
