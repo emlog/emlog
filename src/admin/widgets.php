@@ -68,7 +68,7 @@ if($action == 'setwg')
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
-	$realWgTitle = $matchs[1] ? $matchs[1] : $widgetTitle[$widget];
+	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
 
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
 	$widgetTitle = serialize($widgetTitle);
@@ -124,9 +124,11 @@ if($action == 'setwg')
 							$music['mdes'][] = '';
 						}
 					}else{
-						formMsg('链接中有错误的音乐地址','javascript: window.history.back()',0);
+						formMsg('有错误的音乐链接格式','javascript: window.history.back()',0);
 					}
 				}
+			}elseif($ismusic){
+				formMsg('音乐链接不能为空','javascript: window.history.back()',0);
 			}
 			$musicData = serialize($music);
 			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");
