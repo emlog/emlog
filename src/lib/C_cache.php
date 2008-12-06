@@ -178,7 +178,7 @@ class mkcache {
 	{
 		$show_config=$this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_twnum'"));
 		$index_twnum = $show_config['option_value']+1;
-		$query=$this->dbhd->query("SELECT * FROM ".$this->db_prefix."twitter ORDER BY id DESC LIMIT $index_twnum");
+		$query = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."twitter ORDER BY id DESC LIMIT $index_twnum");
 		$tw_cache = array();
 		while($show_tw=$this->dbhd->fetch_array($query))
 		{
@@ -218,12 +218,12 @@ class mkcache {
 	function mc_record()
 	{
 		global $isurlrewrite;
-		$query=$this->dbhd->query("select date from ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC");
-		$record='xxxx_x';
+		$query = $this->dbhd->query("select date from ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC");
+		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
 		$dang_cache = array();
-		while($show_record=$this->dbhd->fetch_array($query))
+		while($show_record = $this->dbhd->fetch_array($query))
 		{
 			$f_record=date('Y_n',$show_record['date']);
 			if ($record!=$f_record){
@@ -267,9 +267,9 @@ class mkcache {
 	function mc_logtags()
 	{
 		$sql="SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
-		$query1=$this->dbhd->query($sql);
+		$query1 = $this->dbhd->query($sql);
 		$log_cache_tags = array();
-		while($show_log=$this->dbhd->fetch_array($query1))
+		while($show_log = $this->dbhd->fetch_array($query1))
 		{
 			$tag = '';
 			$gid = $show_log['gid'];

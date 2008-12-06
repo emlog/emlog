@@ -182,6 +182,7 @@ src/content/templates/default/images/player.swf -text
 src/content/templates/default/images/reply.gif -text
 src/content/templates/default/images/rss.gif -text svn_keywords=Id
 src/content/templates/default/images/sidebar_border.gif -text svn_keywords=Id
+src/content/templates/default/images/wap.gif -text
 src/content/templates/default/log_list.php -text svn_keywords=Id
 src/content/templates/default/main.css -text svn_keywords=Id
 src/content/templates/default/message.php -text svn_keywords=Id

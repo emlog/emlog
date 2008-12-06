@@ -55,7 +55,7 @@
 <?php }?>
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate; ?>
+	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
 	<?php if($index_twnum>0): ?>
 		<div class="lister"><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></div>
 		<ul id="twitter">
@@ -65,6 +65,7 @@
 		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($localdate,$value['date']);
+		$value['content'] = str_replace("[wap]", " <img align=\"absmiddle\" src=\"{$em_tpldir}images/wap.gif\" alt=\"手机wap发布\"/>", $value['content']);
 		?>
 		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
 		<?php endforeach;?>

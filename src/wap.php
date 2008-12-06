@@ -38,7 +38,6 @@ if(!isset($action) || empty($action))
 //显示日志列表 blog list
 if ($action == 'logs')
 {
-	//page link
 	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
 	if ($page)
 	{
@@ -50,9 +49,9 @@ if ($action == 'logs')
 		$id = 0;
 	}
 
-	$sql =" SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
+	$sql = " SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 	$lognum = $sta_cache['lognum'];
-	$pageurl= './wap.php?action=logs&amp;page';
+	$pageurl = './wap.php?action=logs&amp;page';
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
@@ -61,9 +60,7 @@ if ($action == 'logs')
 		$row['logid']	  = $row['gid'];
 		$log[] = $row;
 	}
-	//分页
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
-
 	wap_header($options_cache['blogname']);
 	echo '<p>';
 	if(isset($log))
@@ -79,10 +76,9 @@ if ($action == 'logs')
 	wap_footer();
 }
 
-//显示日志 Display Log
+//显示日志
 if ($action == 'dis')
 {
-	//参数过滤
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : msg('提交参数错误','./wap.php');
 	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
 	OR msg('不存在该日志','./wap.php');
@@ -110,8 +106,7 @@ if($action == 'coms')
 		{
 			echo "{$value['name']}<br />{$value['content']}<br />";
 		}
-	}else
-	{
+	}else{
 		echo 'No comments yet!';
 	}
 	echo "<p><a href=\"./wap.php?tem=$tem\">首页</a></p>";
@@ -126,9 +121,7 @@ if ($action == 'twitter')
 	{
 		$start_limit = ($page - 1) * $index_twnum;
 		$id = ($page-1) * $index_twnum;
-	}
-	else
-	{
+	}else{
 		$start_limit = 0;
 		$page = 1;
 		$id = 0;
@@ -141,7 +134,7 @@ if ($action == 'twitter')
 	while($row = $DB->fetch_array($query))
 	{
 		$row['date'] = smartyDate($localdate,$row['date']);
-		$row['content'] = htmlspecialchars(trim($row['content']));
+		$row['content'] = str_replace("[wap]", '', htmlspecialchars(trim($row['content'])));
 		$tws[] = $row;
 	}
 	//分页
@@ -156,8 +149,7 @@ if ($action == 'twitter')
 			$doact = ISLOGIN===true?"<a href=\"./wap.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
 			echo $val['content'].$doact.'('.$val['date'].')<br />';
 		}
-	}else
-	{
+	}else{
 		echo 'No twitter yet!';
 	}
 	echo "</p><p>$page_url <br /><a href=\"./wap.php?tem=$tem\">首页</a></p>";
@@ -179,7 +171,7 @@ if ($action == 'addtw')
 //新增 twitter
 if(ISLOGIN === true && $action == 'add_tw')
 {
-	$content = isset($_POST['tw'])?addslashes($_POST['tw']):'';
+	$content = isset($_POST['tw']) ? addslashes($_POST['tw']).'[wap]' : '';
 	if(!empty($content))
 	{
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
@@ -236,7 +228,6 @@ if ($action == 'logout')
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	header("Location: wap.php?tem=$tem");
 }
-
 // WML 头
 function wap_header($title) {
 	header("Content-type: text/vnd.wap.wml; charset=utf-8");
@@ -248,7 +239,6 @@ function wap_header($title) {
 	echo "</head>\n";
 	echo "<card title=\"".$title."\">\n";
 }
-
 // WML 尾
 function wap_footer() {
 	echo "</card>\n";
