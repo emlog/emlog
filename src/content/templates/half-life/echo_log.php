@@ -1,10 +1,7 @@
-<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-$att_img = getAttachment($att_img,350,300);
-?>
-	<div class="narrowcolumn">
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<div class="narrowcolumn">
 
-		<div class="post" id="post-$logid">
+	<div class="post" id="post-$logid">
 
 		<h2><?php echo $log_title;?></h2>
 		<div class="postdate"><?php echo $post_time;?></div>

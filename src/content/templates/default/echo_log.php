@@ -1,7 +1,6 @@
 <?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
-//$att_img = getAttachment($att_img,600,500);
 ?>
 <div class="logcontent">
 <p id="tit"><b><?php echo $log_title; ?></b>

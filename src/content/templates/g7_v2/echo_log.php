@@ -1,6 +1,5 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-//$att_img = getAttachment($att_img,350,300);
 $datetime = explode("-",$post_time);
 $year = $datetime['0'] . "/" .$datetime['1'];
 $day = substr($datetime['2'],0,2);
