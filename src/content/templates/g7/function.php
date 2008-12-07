@@ -32,8 +32,8 @@
 <!--分类-->
 <?php function widget_sort($title){ ?>
 	<?php global $sort_cache,$em_tpldir; ?>
-	<li class="sort"><h2 onclick="showhidediv('sort')"><?php echo $title; ?></h2>
-	<ul id="sort">
+	<li class="logsort"><h2 onclick="showhidediv('logsort')"><?php echo $title; ?></h2>
+	<ul id="logsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
 	<a href="./index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
@@ -106,8 +106,8 @@
 <!--最新日志-->
 <?php function widget_newlog($title){ ?>
 	<?php global $newLogs_cache; ?>
-	<li class="randlog"><h2 onclick="showhidediv('randlog')"><?php echo $title; ?></h2>
-	<ul id="randlog">
+	<li class="newlog"><h2 onclick="showhidediv('newlog')"><?php echo $title; ?></h2>
+	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
 	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	

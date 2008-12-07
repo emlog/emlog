@@ -7,6 +7,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 <div class="post">
 <h2>
 <?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+<?php if($log_cache_sort[$value['logid']]): ?>
+<span class="sort"><a href="./?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
+<?php endif;?>
 </h2>
 </div>
 <div class="date">

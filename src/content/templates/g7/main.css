@@ -12,7 +12,7 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 #searchform br{display:none;}
 #searchform #s{width:161px;height:21px;border:1px solid #CFD9E2;margin-right:2px;color:#CFD9E2;font-weight:400;background-color:#fffffe;background-image:url(images/search_ico.png);background-repeat:no-repeat;background-position:left center;line-height:18px;margin-top:5px;float:left;padding:2px 20px 0 25px;}
 #searchform input{background:url(images/bg_none.gif) no-repeat;border:1px none;width:36px;height:26px;color:#069;vertical-align:middle;font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:18px;font-weight:700;margin-top:4px;}
-#page{width:950px;margin:0 auto;padding:0;}
+#page{width:950px;margin:0 auto;padding:0; display:block;}
 #content{overflow:hidden;width:580px;float:left;}
 .content111{overflow:hidden;width:538px;border:1px solid #e0e0e0;color:#4E4E4E;font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;margin-top:10px;margin-right:10px;clear:left;float:left;background-image:url(images/bg_post.gif);background-repeat:no-repeat;background-position:1px 1px;margin-bottom:0;background-color:#fff;padding:10px 20px 10px 10px !important;}
 .content{overflow:hidden;width:538px;border:1px solid #e0e0e0;background-color:#FFF;color:#4E4E4E;font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;font-size:12px;line-height:16px;background-image:url(images/bg_post.gif);background-repeat:no-repeat;background-position:1px 1px;margin-top:10px;margin-right:10px;clear:left;float:left;padding:10px 20px 10px 10px;}
@@ -45,7 +45,7 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 .commentlist li{font-family:Tahoma, Verdana, Arial, sans-serif;margin:0 0 15px;padding:10px;}
 .commentlist li.alt{background-color:#f9f8f7;font-family:Tahoma, Verdana, Arial, sans-serif;margin:0 0 15px;padding:10px;}
 .gra{border:1px solid #D3D3D3;background-color:#FFF;float:right;padding:2px;}
-#sidebar{font-family:Tahoma, Arial, Helvetica, sans-serif;overflow:hidden;width:370px;float:left;margin-top:10px;margin-bottom:10px;}
+#sidebar{font-family:Tahoma, Arial, Helvetica, sans-serif;overflow:hidden;width:370px;float:right;margin-top:10px;margin-bottom:10px;}
 #sidebar ul,#sidebar_1 ul,#sidebar_2 ul{font-size:12px;color:#7A7A7A;left:0;top:0;right:0;bottom:0;margin:0;padding:0;}
 #twitter_div ul{font-size:12px;color:#7A7A7A;list-style:none;font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-image:url(images/twitter.gif);background-repeat:no-repeat;background-position:left 2px;text-indent:20px;margin:5px 0 0;padding:0;}
 #sidebar li ul{padding:0 5px 0 8px;}
@@ -58,7 +58,7 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 #sidebar .children{margin-bottom:0;}
 #sidebar .children li{background-image:url(images/li_ul.png);}
 #sidebar .feed h2{background-image:url(images/rss.png);}
-#sidebar .sort h2{background-image:url(images/sort.gif);}
+#sidebar .logsort h2{background-image:url(images/sort.gif);}
 #sidebar .randlog h2{background-image:url(images/log.gif);}
 #sidebar .newlog h2{background-image:url(images/log.gif);}
 #sidebar .random h2{background-image:url(images/random.gif);}
@@ -94,7 +94,14 @@ body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:
 #sidebar .archives h2,#archives h2{background-image:url(images/archives.gif);}
 #sidebar .pagenav h2,#pages h2{background-image:url(images/page.gif);}
 #links h2,.linkcat h2{background-image:url(images/blogroll.gif);}
-/*������ʽ*/
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.postinfo{
+	text-align:right;
+}
 .calendar{
 	/*background-image:url(images/bg.jpg);*/
 	margin-left:0px;
