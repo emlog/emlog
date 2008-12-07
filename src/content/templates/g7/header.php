@@ -14,10 +14,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </head>
 
 <body>
-<div id="header"><div id="ing">
-<div id="ing_info"><div id="home"><img src="<?php echo $em_tpldir; ?>images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./"><?php echo $blogname;?></a></div>
+<div id="header">
+<div id="ing">
+<div id="ing_info">
+<div id="home"><img src="<?php echo $em_tpldir; ?>images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./"><?php echo $blogname;?></a></div>
 <?php echo $bloginfo;?>
-
 </div>
 <div>
 <form id="searchform" name="keyform" method="get" action="index.php">

@@ -59,7 +59,7 @@ $(document).ready(function(){
       <tr>
         <td valign="top" width="65">选择要备份的数据库表:<br /></td>
         <td width="608">
-        <select multiple="multiple" size="11" name="table_box[]">
+        <select multiple="multiple" size="12" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>	  

@@ -4,12 +4,16 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="content">
 		<div class="post" id="post-$logid">
-			<h2><?php echo $log_title;?></h2></div>
+		<h2><?php echo $log_title;?></h2>
+		<?php if($log_cache_sort[$logid]): ?>
+		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+		<?php endif;?>
+		</div>
 		<div class="mypost">
-				<?php echo $log_content;?>
+		<?php echo $log_content;?>
 		<a name="att"></a>
-		<p><?php echo $attachment;?></p>	
-		<p><?php echo $tag;?></p>
+		<p><?php $attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';echo $attachment;?></p>
+		<p><?php $tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';echo $tag;?></p>
 		<p>Posted on <?php echo $post_time;?><br /></p>
 		<p>
 		<?php if($prevLog):?>
@@ -29,14 +33,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	</div>
 <?php endif; ?>	
 </div>
-
-
 <div id="comments"><div class="content_c">
-
 <h2 id="comments"><a name="comment"></a>评论</h2>
-
 <p></p>
-
 <ol class="commentlist">
 <?php foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span style=\"color:#8DAB3B;\"><b>博主回复</b>：{$value['reply']}</span>":'';
@@ -100,7 +99,7 @@ $reply = $value['reply']?"<span style=\"color:#8DAB3B;\"><b>博主回复</b>：{
 	</p>
 
 	<p>
-	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /> <?php echo $cheackimg;?> <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small></td>
+	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /> <?php echo $cheackimg;?></td>
 	</p>
 </form>
 <?php endif; ?>

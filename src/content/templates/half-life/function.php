@@ -133,8 +133,8 @@
 	global $index_randlognum, $emBlog;
 	$randLogs = $emBlog->getRandLog($index_randlognum);
 	?>
-	<li><h2 onclick="showhidediv('blogroll')"><?php echo $title; ?></h2>
-	<ul id="blogroll">	
+	<li><h2 onclick="showhidediv('randlog')"><?php echo $title; ?></h2>
+	<ul id="randlog">	
 	<?php foreach($randLogs as $value): ?>
 	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
@@ -176,8 +176,8 @@
 <!--链接-->
 <?php function widget_link($title){ ?>
 	<?php global $link_cache; ?>
-	<li><h2 onclick="showhidediv('blogroll')"><?php echo $title; ?></h2>
-	<ul id="blogroll">
+	<li><h2 onclick="showhidediv('link')"><?php echo $title; ?></h2>
+	<ul id="link">
 	<?php foreach($link_cache as $value):?>     	
 	<li><a href="<?php echo $value['url'];?>" title="<?php echo $value['des'];?>" target="_blank"><?php echo $value['link'];?></a></li>
 	<?php endforeach;?>	
@@ -186,7 +186,7 @@
 <?php }?>
 <!--信息-->
 <?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache; ?>
+	<?php global $sta_cache,$em_tpldir; ?>
 	<li><h2 onclick="showhidediv('sta')"><?php echo $title; ?></h2>
 	<ul id="sta">
 	<li>日志数量：<?php echo $sta_cache['lognum'];?></li>

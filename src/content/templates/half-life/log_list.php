@@ -1,12 +1,9 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
-
-	<div class="narrowcolumn">
-	
+<div class="narrowcolumn">
 <?php
 foreach($logs as $value):
-$value['att_img'] = getAttachment($value['att_img'],300,280);
 ?>
 <div class="post" id="post-<?php echo $value['logid'];?>">
 <h2>
@@ -15,9 +12,18 @@ $value['att_img'] = getAttachment($value['att_img'],300,280);
 <div class="postdate"><?php echo $value['post_time'];?></div>
 <div class="entry">
 <?php echo $value['log_description'];?>
-<p><?php echo $value['att_img'];?></p>
-<p><?php echo $value['attachment'];?></p>
-<p><?php echo $value['tag'];?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+	echo $tag;
+	?>
+</p>
 
 <p class="postinfo">
  	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>

@@ -3,7 +3,7 @@
 <div class="contentA">
 <?php 
 require_once (getViews('function'));
-$widgets = unserialize($options_cache['widgets1']);
+$widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 $i = 0;
 foreach ($widgets as $val)
 {
