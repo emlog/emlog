@@ -378,8 +378,10 @@ src/content/templates/g7_v2/preview.jpg -text svn_keywords=Id
 src/content/templates/g7_v2/side.php -text svn_keywords=Id
 src/content/templates/g7_v3/echo_log.php -text svn_keywords=Id
 src/content/templates/g7_v3/footer.php -text svn_keywords=Id
+src/content/templates/g7_v3/function.php -text
 src/content/templates/g7_v3/header.php -text svn_keywords=Id
-src/content/templates/g7_v3/images/comment.gif -text
+src/content/templates/g7_v3/images/comment.png -text
+src/content/templates/g7_v3/images/icon_rss.gif -text
 src/content/templates/g7_v3/images/import.gif -text
 src/content/templates/g7_v3/images/modify.gif -text
 src/content/templates/g7_v3/images/player.swf -text

@@ -3,11 +3,21 @@
 <h2><?php echo $log_title;?></h2>
 <p class="postdata">Posted in $post_time</p>
 <div id="content_post">	
-		<p><?php echo $log_content;?></p>
-		<a name="att"></a>
-		<p><?php echo $attachment; ?></p>
-		<p class="tags"><?php echo $tag;?></p>
-		<p>
+<p><?php echo $log_content;?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+	echo $tag;
+	?>
+</p>
+<p class="tags"><?php echo $tag;?></p>
+<p>
 		<?php if($prevLog):?>
 			&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 		<?php endif;?>
@@ -17,21 +27,16 @@
 		<?php if($nextLog):?>
 			 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 		<?php endif;?>
-		</p>
-		</div>
+</p>
+</div>
 <?php if($allow_tb == 'y'): ?>	
 	<div class="comments-template">
 	<h2 id="comments">引用：<input type="text" style="width:350px" id="email" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>"><a name="tb"></a></h2>
 	</div>
 <?php endif; ?>	
-
-
 <div id="comments"><div class="content_c">
-
 <h2 id="comments"><a name="comment"></a>评论</h2>
-
 <p></p>
-
 <ol class="commentlist">
 <?php
 foreach($comments as $key=>$value):
@@ -79,24 +84,23 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 <form  method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
 	<p>
 	  <input type="text" name="comname" id="email" value="<?php echo $ckname;?>" size="40" tabindex="1" />
-	   <label for="author"><small>姓名</small></label>
+	  <label for="author"><small>姓名</small></label>
 	<input type="hidden" name="gid" value="<?php echo $logid;?>" />
 	</p>
 
 	<p>
 	  <input type="text" name="commail" id="email" value="<?php echo $ckmail;?>" size="40" tabindex="2" />
-	   <label for="email"><small>邮件地址(选填)</small></label>
+	  <label for="email"><small>邮件地址(选填)</small></label>
 	</p>
 	<p>
 	  <input type="text" name="comurl" id="email" value="<?php echo $ckurl;?>" size="40" tabindex="2" />
-	   <label for="email"><small>个人主页(选填)</small></label>
+	  <label for="email"><small>个人主页(选填)</small></label>
 	</p>
 	<p>
-	  <textarea name="comment" id="comment" cols="55" rows="15" tabindex="4"></textarea>
+	  <textarea name="comment" id="comment" cols="30" rows="15" tabindex="4"></textarea>
 	</p>
-
 	<p>
-	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /><?php echo $cheackimg;?> <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small></td>
+	 <input name="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /><?php echo $cheackimg;?></td>
 	</p>
 </form>
 <?php endif; ?>
