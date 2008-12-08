@@ -397,6 +397,7 @@ src/content/templates/g7_v3/side.php -text svn_keywords=Id
 src/content/templates/g7_v3/style.css -text svn_keywords=Id
 src/content/templates/graffiti/echo_log.php -text
 src/content/templates/graffiti/footer.php -text
+src/content/templates/graffiti/function.php -text
 src/content/templates/graffiti/graf.css -text
 src/content/templates/graffiti/graf.jpg -text
 src/content/templates/graffiti/graffiti_01/Thumbs.db -text
@@ -411,6 +412,7 @@ src/content/templates/graffiti/graffiti_02/graf_1.jpg -text
 src/content/templates/graffiti/graffiti_02/graf_2.jpg -text
 src/content/templates/graffiti/graffiti_02/graf_3.jpg -text
 src/content/templates/graffiti/header.php -text
+src/content/templates/graffiti/images/icon_rss.gif -text
 src/content/templates/graffiti/images/import.gif -text
 src/content/templates/graffiti/images/modify.gif -text
 src/content/templates/graffiti/images/player.swf -text
@@ -420,8 +422,8 @@ src/content/templates/graffiti/images/wap.gif -text
 src/content/templates/graffiti/log_list.php -text
 src/content/templates/graffiti/message.php -text
 src/content/templates/graffiti/preview.jpg -text
-src/content/templates/graffiti/readme.txt -text
 src/content/templates/graffiti/side.php -text
+src/content/templates/graffiti/tpl.ini -text
 src/content/templates/half-life/echo_log.php -text svn_keywords=Id
 src/content/templates/half-life/footer.php -text svn_keywords=Id
 src/content/templates/half-life/function.php -text

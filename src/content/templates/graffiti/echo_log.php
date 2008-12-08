@@ -3,13 +3,28 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 ?>
 <div class="logcontent">
-<p id="tit"><?php echo $log_title; ?></p>
+<p id="tit">
+<?php echo $log_title; ?>
+<?php if($log_cache_sort[$logid]): ?>
+<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+<?php endif;?>
+</p>
 <p id="date"><?php echo $post_time; ?></p>
 
 <div class="log_con">
 <?php echo $log_content; ?>
-<p><?php echo $attachment; ?></p>	
-<p><?php echo $tag; ?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+	echo $tag;
+	?>
+</p>
 </div>
 
 <div class="nextlog">
