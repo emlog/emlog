@@ -423,12 +423,9 @@ body {
 	color:#51b5d5;
 } 
 #sidebar h2 {
-	color: #7D7D7D;
+	color: #669900;
 	font-size: 14px;
-	background-image: url(images/sidebar_h2.gif);
-	background-repeat: no-repeat;
-	padding-left: 20px;
-	background-position: left 1px;
+	padding-left: 10px;
 	padding-top: 0px;
 	line-height: 18px;
 	margin: 0px;

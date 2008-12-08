@@ -11,14 +11,27 @@ $day = substr($datetime['2'],0,2);
 	</div>
 	<div class="posttitle">
 	<h2><?php echo $log_title;?></h2>
-    <p class="postmeta"></p>
+    <p class="postmeta">
+    <?php if($log_cache_sort[$logid]): ?>
+	<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+	<?php endif;?>
+    </p>
     </div>
 
 	<div class="content">
 		<p><?php echo $log_content;?></p>
-		<a name="att"></a>
-		<p><?php echo $attachment; ?></p>
-		<p class="tags"><?php echo $tag;?></p>
+		<p>
+			<?php 
+			$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+			echo $attachment;
+			?>
+		</p>
+		<p>
+			<?php 
+			$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+			echo $tag;
+			?>
+		</p>
 		<p>
 		<?php if($prevLog):?>
 			&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
@@ -103,7 +116,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 	</p>
 
 	<p>
-	 <input name="submit" id="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /><?php echo $cheackimg;?> <input type="checkbox" name="remember" value="1" checked="checked" /><small>记住我</small></td>
+	 <input name="submit" id="submit" type="submit" tabindex="5" value="发布我的评论" onclick="return checkform()" /><?php echo $cheackimg;?></td>
 	</p>
 </form>
 </div>

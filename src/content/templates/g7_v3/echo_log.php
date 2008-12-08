@@ -1,7 +1,12 @@
 
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <h2><?php echo $log_title;?></h2>
-<p class="postdata">Posted in $post_time</p>
+<p class="postdata">
+Posted in <?php echo $post_time; ?>
+<?php if($log_cache_sort[$logid]): ?>
+<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+<?php endif;?>
+</p>
 <div id="content_post">	
 <p><?php echo $log_content;?></p>
 <p>
@@ -16,7 +21,6 @@
 	echo $tag;
 	?>
 </p>
-<p class="tags"><?php echo $tag;?></p>
 <p>
 		<?php if($prevLog):?>
 			&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>

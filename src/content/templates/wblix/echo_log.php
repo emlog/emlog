@@ -98,8 +98,7 @@ $reply = $value['reply']?"<span style=\"color:#6C8C37;\"><b>博主回复</b>：{
 <p><input type="hidden" name="comment_post_ID" value="7" />
 <input type="submit" name="submit" value="发布我的评论" class="button" tabindex="5" onclick="return checkform()"/>
 <?php echo $cheackimg;?> 
-<input type="checkbox" name="remember" value="1" checked="checked" class="inp" /><small>记住我</small></p>
-
+</p>
 </fieldset>
 </form>
 <?php endif; ?>

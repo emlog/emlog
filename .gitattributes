@@ -338,12 +338,14 @@ src/content/templates/g7/message.php -text svn_keywords=Id
 src/content/templates/g7/preview.jpg -text svn_keywords=Id
 src/content/templates/g7/side.php -text svn_keywords=Id
 src/content/templates/g7/tpl.ini -text
+src/content/templates/g7_v2/comment.png -text
 src/content/templates/g7_v2/echo_log.php -text svn_keywords=Id
 src/content/templates/g7_v2/footer.php -text svn_keywords=Id
+src/content/templates/g7_v2/function.php -text
 src/content/templates/g7_v2/header.php -text svn_keywords=Id
 src/content/templates/g7_v2/images/body_bg.png -text svn_keywords=Id
 src/content/templates/g7_v2/images/children_li.gif -text svn_keywords=Id
-src/content/templates/g7_v2/images/comment.gif -text svn_keywords=Id
+src/content/templates/g7_v2/images/comment.png -text
 src/content/templates/g7_v2/images/comments.gif -text svn_keywords=Id
 src/content/templates/g7_v2/images/comments_bg.gif -text svn_keywords=Id
 src/content/templates/g7_v2/images/comments_li.gif -text svn_keywords=Id
@@ -354,6 +356,7 @@ src/content/templates/g7_v2/images/feedme.gif -text svn_keywords=Id
 src/content/templates/g7_v2/images/filed.gif -text svn_keywords=Id
 src/content/templates/g7_v2/images/footer_bg.png -text svn_keywords=Id
 src/content/templates/g7_v2/images/header_bg.png -text svn_keywords=Id
+src/content/templates/g7_v2/images/icon_rss.gif -text
 src/content/templates/g7_v2/images/import.gif -text
 src/content/templates/g7_v2/images/menu_a.gif -text svn_keywords=Id
 src/content/templates/g7_v2/images/modify.gif -text

@@ -110,17 +110,13 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		
 		<p><?php echo $cheackimg; ?>
 		<input name="submit" type="submit" id="submit" tabindex="5" src="http://localhost/wordpress/wp-content/themes/dum-dum/img/comm/trimite.jpg" value="发表评论" />
-		<input type="checkbox" name="remember" value="1" checked="checked" />记住我
 		<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 		</p>
-		
 		</form>
-		
 		</div>
 		</div> <!-- CONTENT TEXT -->
 		<img src="<?php echo $em_tpldir; ?>images/img_09.jpg" style="vertical-align: bottom;" alt="" />
 		</div> <!-- CONTENT -->
-
 <?php 
 include getViews('side');
 include getViews('footer'); 

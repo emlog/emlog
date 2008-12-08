@@ -78,8 +78,6 @@ Says:<br />
     <p><br />
           <?php echo $cheackimg;?>
           <input name="Submit" type="submit" value="提交我的评论" onclick="return checkform()" />
-          <input type="checkbox" name="remember" value="1" checked="checked" />
-          记住我
     </p>
 </form>
 <?php endif; ?>

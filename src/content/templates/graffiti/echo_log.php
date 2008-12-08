@@ -94,8 +94,9 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 
 <tr>
 <td valign="top"class="f14">&nbsp;</td>
-<td valign="top" class="f14"><?php echo $cheackimg; ?><input name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
-<input type="checkbox" name="remember" value="1" checked="checked" />记住我</td>
+<td valign="top" class="f14">
+<?php echo $cheackimg; ?><input name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
+</td>
 </tr>
 </table>
 </form>

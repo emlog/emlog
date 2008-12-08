@@ -73,16 +73,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				<label for="email">电子邮件 (选填)</label></p>
 
 				<p><input type="text" name="comurl" id="comurl" class="text" value="<?php echo $ckurl; ?>" />
-				<label for="url">个人主页 (选填)</label></p>
-						
-						
+				<label for="url">个人主页 (选填)</label></p>		
 			<p>
 			<?php echo $cheackimg; ?>
 			<input name="submit" type="submit" id="submit" value="发布我的评论" onclick="return checkform()" />
-			<input type="checkbox" name="remember" value="1" checked="checked" />记住我
 			</p>
-			
-			
-
 		</form>
 <?php endif; ?>

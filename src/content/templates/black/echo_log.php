@@ -5,7 +5,6 @@ include getViews('side');
 <div id="content">
 <div class="post">
 <?php
-$value['att_img'] = getAttachment($att_img,200,120);
 $datetime = explode("-",$post_time);
 $year = $datetime['0'];
 $day = $datetime['1']."/".substr($datetime['2'],0,2);
@@ -105,8 +104,9 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				</tr>
 				<tr>
 				<td valign="top">&nbsp;</td>
-				<td valign="top"><?php echo $cheackimg; ?><input class="sub" name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
-				<input type="checkbox" name="remember" value="1" checked="checked" />记住我</td>
+				<td valign="top">
+				<?php echo $cheackimg; ?><input class="sub" name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
+				</td>
 				</tr>
 				</table>
 				</form>

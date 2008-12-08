@@ -90,8 +90,8 @@ $reply = $value['reply']?"<span style=\"color:#A1410E;\"><b>博主回复</b>：{
 </p>
 <p><textarea name="comment" id="comment" cols="55" rows="10" tabindex="4"></textarea></p>
 
-<p><?php echo $cheackimg;?><input name="submit" type="submit" id="submit" tabindex="5" value="发布评论" onclick="return checkform()"/>
-<input type="checkbox" name="remember" value="1" checked="checked" />记住我</td>
+<p>
+<?php echo $cheackimg;?><input name="submit" type="submit" id="submit" tabindex="5" value="发布评论" onclick="return checkform()"/>
 </p>
 </form>
 <?php endif; ?>

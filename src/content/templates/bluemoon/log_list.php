@@ -14,7 +14,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</div>
 		<div class="logdes">
 		<?php echo $value['log_description']; ?>
-		<p><?php echo $value['att_img']; ?></p>
 		<p><?php echo $value['attachment']; ?></p>
 		</div>
 		<div class="clear"></div>

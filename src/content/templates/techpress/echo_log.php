@@ -90,7 +90,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 
 <p><input name="submit" type="submit" id="submit" tabindex="5" value="发表我的评论" />
 <?php echo $cheackimg;?> 
-<input type="checkbox" name="remember" value="1" checked="checked" class="inp" /><small>记住我</small></p>
+</p>
 </form>
 <?php endif; ?>
 </div>
