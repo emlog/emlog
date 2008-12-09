@@ -5,10 +5,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 	<?php if (is_array($logs) && !empty($logs)) :?>
 
-		<?php foreach($logs as $value):  ?>
+		<?php 
+		foreach($logs as $value):  
+		$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
+		?>
 
 			<div class="post" id="post-<?php echo $value['logid']; ?>">
-				<h1><?php echo $value['toplog']; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h1>
+				<h1><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h1>
 
 				<?php echo $value['log_description']; ?>
 				<p><?php echo $value['att_img']; ?></p>

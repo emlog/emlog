@@ -4,9 +4,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>		
 <div class="obar">
 <ul>
-<?php 
+<?php
 require_once (getViews('function'));
-$widgets = unserialize($options_cache['widgets2']);
+$widgets = !empty($options_cache['widgets2']) ? unserialize($options_cache['widgets2']) : array();
 $i = 0;
 foreach ($widgets as $val)
 {
@@ -18,7 +18,7 @@ foreach ($widgets as $val)
 	{
 		if(function_exists($callback))
 		{
-			call_user_func($callback, $custom_title[$i], $custom_content[$i]);
+			call_user_func($callback, $custom_title[$i], $custom_content[$i], $i);
 		}
 		$i++;
 	}else{
@@ -31,5 +31,6 @@ foreach ($widgets as $val)
 	}
 }
 ?>
+<p><a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a></p>	
 </ul>
 </div>

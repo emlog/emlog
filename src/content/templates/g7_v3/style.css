@@ -1,11 +1,12 @@
-
-
 @charset "UTF-8";
 body {
 	margin: 0;
 	padding: 0;
 	background-color: #E7E7E7;
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+img{
+	max-width:580px;
 }
 #shell {
 	width: 910px;

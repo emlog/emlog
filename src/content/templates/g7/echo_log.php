@@ -11,7 +11,6 @@
 		<p class="postdate">Posted on <?php echo $post_time;?><br /></p>
 		<div class="mypost">
 		<?php echo $log_content;?>
-		<a name="att"></a>
 		<p><?php $attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';echo $attachment;?></p>
 		<p><?php $tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';echo $tag;?></p>
 		<p>

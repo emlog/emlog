@@ -9,6 +9,7 @@ foreach($logs as $value):
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0'];
 $day = substr($datetime['2'],0,2)."/".$datetime['1'];
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
@@ -19,7 +20,7 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 				</div> <!-- POST DATE -->
 				
 				<div class="posttitle">
-					<h3><?php echo $value['toplog']; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h3>
+					<h3><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h3>
 				</div> <!-- POST TITLE -->
 
 				<div class="postmeta">

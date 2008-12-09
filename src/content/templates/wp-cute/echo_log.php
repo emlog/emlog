@@ -3,7 +3,6 @@
 <h2><b><?php echo $log_title;?></b></A></h2>
 <div class=entry>
 <p><?php echo $log_content;?></p>
-<a name="att"></a>
 <p><?php echo $attachment; ?></p>
 <p>
 <?php if($prevLog):?>

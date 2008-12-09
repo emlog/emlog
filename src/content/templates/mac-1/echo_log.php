@@ -16,7 +16,6 @@ $datetime = explode(".",$post_time);
 		  </div>
           <div class="entry">
 				<?php echo $log_content;?>
-<a name="att"></a>
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
 <p>

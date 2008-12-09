@@ -15,7 +15,6 @@
 
 			<div class="entry">
 				<p><?php echo $log_content;?></p>
-				<a name="att"></a>
 				<p><?php echo $attachment;?></p>	
 				<p><?php echo $tag;?></p>
 				<p>

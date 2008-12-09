@@ -1,5 +1,6 @@
 
 body{font-family:Tahoma, Verdana, Arial, Helvetica, sans-serif;background-color:#f9f8f7;background-image:url(images/bg.png);background-repeat:repeat-x;background-position:top;margin:0;padding:0;}
+img{max-width:520px;}
 #allbody{width:950px;margin:0 auto;padding:0;}
 #header{float:left;overflow:hidden;height:37px;width:100%;margin-top:15px;}
 #home{height:35px;line-height:normal;font-family:Verdana, Arial, Helvetica, sans-serif;float:left;overflow:hidden;padding-bottom:30px;width:172px;}

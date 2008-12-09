@@ -4,10 +4,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="content">
 <?php
 foreach($logs as $value):
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 <div class="entry single">
 <h1>
-<?php echo $value['toplog'];?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+<?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h1>
 <p class="info">
 <em class="date">Posted on <?php echo $value['post_time'];?></em>

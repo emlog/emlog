@@ -3,7 +3,6 @@
 			<h2><?php echo $log_title;?></h2>
 			<div class="entry">
 				<?php echo $log_content;?>
-<a name="att"></a>
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
 <p>Posted on <?php echo $post_time;?><br /></p>

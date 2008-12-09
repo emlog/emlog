@@ -8,7 +8,6 @@
 <em class="date">Posted on <?php echo $post_time;?></em>
 </p>
 				<?php echo $log_content;?>
-<a name="att"></a>
 <p><?php echo $attachment;?></p>	
 <p><?php echo $tag;?></p>
 <p>

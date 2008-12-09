@@ -16,7 +16,9 @@ body {
 	background-position: top;
 	font-size: 12px;
 }
-
+img{
+	max-width:580px;
+}
 #top {
 	padding: 0;
 	width: 880px;

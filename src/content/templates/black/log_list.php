@@ -9,11 +9,12 @@ foreach($logs as $value):
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0'];
 $day = $datetime['1']."/".substr($datetime['2'],0,2);
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?> 
 				<div class="dtm">
 					<div class="dtmtmc">
 						<div class="titlemeta">
-							<?php echo $value['toplog']; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a><br/>
+							<?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a><br/>
 							<span class="byline"><?php echo $value['tag']; ?></span>
 						</div>
 					</div>

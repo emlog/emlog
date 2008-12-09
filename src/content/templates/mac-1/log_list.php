@@ -12,12 +12,13 @@ foreach($logs as $value):
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0']."/".$datetime['1'];
 $day = substr($datetime['2'],0,2);
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
         <div class="post" id="post-<?php echo $value['logid'];?>">
 		  <div class="date"><span><?php echo $year;?></span><?php echo $day?></div>
 		  <div class="title">
 <h2>
-<?php echo $value['toplog'];?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+<?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h2>
           <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
 
