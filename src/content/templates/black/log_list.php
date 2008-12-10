@@ -15,7 +15,15 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 					<div class="dtmtmc">
 						<div class="titlemeta">
 							<?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a><br/>
-							<span class="byline"><?php echo $value['tag']; ?></span>
+							<span class="byline">
+							<?php 
+							$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+							echo $tag;
+							?>
+							<?php if($log_cache_sort[$value['logid']]): ?>
+							<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
+							<?php endif;?>
+							</span>
 						</div>
 					</div>
 					<div class="dtmdate">
@@ -24,7 +32,12 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				</div>
 				<div class="postcontent">
 				<?php echo $value['log_description']; ?>
-				<p><?php echo $value['attachment']; ?></p>
+				<p>
+					<?php 
+					$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
+					echo $attachment;
+					?>
+				</p>
 				</div>
 				<div class="posttags">	
 				<div class="comments">

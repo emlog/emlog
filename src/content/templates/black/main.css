@@ -18,6 +18,7 @@ a:hover {
 	color:#ffffff;
 	text-decoration:none
 }
+img{max-width:530px;}
 /* The main container */
 #container {
 height:100%;

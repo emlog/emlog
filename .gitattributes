@@ -133,12 +133,14 @@ src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
 src/content/templates/black/echo_log.php -text
 src/content/templates/black/footer.php -text
+src/content/templates/black/function.php -text
 src/content/templates/black/header.php -text
 src/content/templates/black/images/bkg.png -text
 src/content/templates/black/images/dtmbkg.gif -text
 src/content/templates/black/images/h2bkg.gif -text
 src/content/templates/black/images/h2bkg2.gif -text
 src/content/templates/black/images/headerbkg.png -text
+src/content/templates/black/images/icon_rss.gif -text
 src/content/templates/black/images/import.gif -text
 src/content/templates/black/images/modify.gif -text
 src/content/templates/black/images/nav.gif -text
@@ -584,6 +586,7 @@ src/content/templates/notepad-chaos/preview.jpg -text
 src/content/templates/notepad-chaos/side.php -text
 src/content/templates/sea/echo_log.php -text svn_keywords=Id
 src/content/templates/sea/footer.php -text svn_keywords=Id
+src/content/templates/sea/function.php -text
 src/content/templates/sea/header.php -text svn_keywords=Id
 src/content/templates/sea/images/banner.jpg -text svn_keywords=Id
 src/content/templates/sea/images/bg_body.gif -text svn_keywords=Id
@@ -596,6 +599,7 @@ src/content/templates/sea/images/bg_ul_li_h2.gif -text svn_keywords=Id
 src/content/templates/sea/images/bg_ul_ul.gif -text svn_keywords=Id
 src/content/templates/sea/images/bg_widecolumn_bottom.gif -text svn_keywords=Id
 src/content/templates/sea/images/bg_widecolumn_top.gif -text svn_keywords=Id
+src/content/templates/sea/images/icon_rss.gif -text
 src/content/templates/sea/images/import.gif -text
 src/content/templates/sea/images/modify.gif -text
 src/content/templates/sea/images/player.swf -text
@@ -609,10 +613,12 @@ src/content/templates/sea/side.php -text svn_keywords=Id
 src/content/templates/sea/style.css -text svn_keywords=Id
 src/content/templates/spring/echo_log.php -text svn_keywords=Id
 src/content/templates/spring/footer.php -text svn_keywords=Id
+src/content/templates/spring/function.php -text
 src/content/templates/spring/header.php -text svn_keywords=Id
 src/content/templates/spring/images/arrow.gif -text svn_keywords=Id
 src/content/templates/spring/images/bg.gif -text svn_keywords=Id
 src/content/templates/spring/images/commentslink.gif -text svn_keywords=Id
+src/content/templates/spring/images/icon_rss.gif -text
 src/content/templates/spring/images/import.gif -text
 src/content/templates/spring/images/modify.gif -text
 src/content/templates/spring/images/permalink.gif -text svn_keywords=Id

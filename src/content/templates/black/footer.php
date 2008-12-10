@@ -3,5 +3,5 @@
 </div>
 <div id="siteCopyright">Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>  Theme Modified by <a href="http://www.emlog.net/qiyu/" target="_blank">奇遇</a>
-<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a><?php echo $exarea; ?>
+<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
 </div>

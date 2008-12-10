@@ -13,7 +13,15 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 					<div class="dtmtmc">
 						<div class="titlemeta">
 							<?php echo $log_title; ?><br/>
-							<span class="byline"><?php echo $tag ?></span>
+							<span class="byline">
+							<?php 
+							$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+							echo $tag;
+							?>
+							<?php if($log_cache_sort[$logid]): ?>
+							<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+							<?php endif;?>
+							</span>
 						</div>
 					</div>
 					<div class="dtmdate">
@@ -22,7 +30,12 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				</div>
 				<div class="postcontent">
 				<?php echo $log_content; ?>
-				<p><?php echo $attachment; ?></p>	
+				<p>
+					<?php 
+					$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+					echo $attachment;
+					?>
+				</p>
 				</div>
 				<div class="neighbor">
 				<?php if($prevLog):?>
@@ -42,7 +55,6 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 				<?php foreach($tb as $key=>$value):?>
 				<li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
     			<li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-    			<li>摘要:<?php echo $value['excerpt'];?></li>
 				<li>引用时间:<?php echo $value['date'];?></li>
 				<?php endforeach; ?>
 				</div>
