@@ -1,12 +1,12 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
-      <div id="nav">
-        <ul>
-          <li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
-        </ul>
-      </div>
-  <div id="content">
+<div id="nav">
+<ul>
+<li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
+</ul>
+</div>
+<div id="content">
 <?php
 foreach($logs as $value):
 $datetime = explode("-",$value['post_time']);
@@ -14,20 +14,33 @@ $year = $datetime['0']."/".$datetime['1'];
 $day = substr($datetime['2'],0,2);
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
-        <div class="post" id="post-<?php echo $value['logid'];?>">
-		  <div class="date"><span><?php echo $year;?></span><?php echo $day?></div>
-		  <div class="title">
+<div class="post" id="post-<?php echo $value['logid'];?>">
+<div class="date"><span><?php echo $year;?></span><?php echo $day?></div>
+<div class="title">
 <h2>
 <?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+<?php if($log_cache_sort[$value['logid']]): ?>
+<span class="sort"><a href="./?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
+<?php endif;?>
 </h2>
-          <div class="postdata"><span class="comments"><a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
+<div class="postdata">
+<span class="comments"><a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
 
-		  </div>
-          <div class="entry">
+</div>
+<div class="entry">
 <?php echo $value['log_description'];?>
-<p><?php echo $value['att_img'];?></p>
-<p><?php echo $value['attachment'];?></p>
-<p><?php echo $value['tag'];?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+	echo $tag;
+	?>
+</p>
 
 <p class="info">
 <em class="caty">

@@ -1,23 +1,37 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $datetime = explode(".",$post_time);
-
 ?>
       <div id="nav">
         <ul>
           <li class="page_item current_page_item"><a href="./index.php" title="Home">Home</a></li>
         </ul>
       </div>
-  <div id="content">
+<div id="content">
         <div class="post" id="post-$logid">
 		  <div class="title">
           <h2><?php echo $log_title;?></h2>
-          <div class="postdata"><?php echo $post_time;?></div>
-		  </div>
-          <div class="entry">
-				<?php echo $log_content;?>
-<p><?php echo $attachment;?></p>	
-<p><?php echo $tag;?></p>
+<div class="postdata">
+<?php echo $post_time;?>
+<?php if($log_cache_sort[$logid]): ?>
+<span class="sort"> <a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
+<?php endif;?>
+</div>
+</div>
+<div class="entry">
+<?php echo $log_content;?>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+	echo $tag;
+	?>
+</p>
 <p>
 <?php if($prevLog):?>
 	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>

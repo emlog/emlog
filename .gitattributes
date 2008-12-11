@@ -476,6 +476,7 @@ src/content/templates/lust/preview.jpg -text svn_keywords=Id
 src/content/templates/lust/side.php -text svn_keywords=Id
 src/content/templates/mac-1/dbx.css -text svn_keywords=Id
 src/content/templates/mac-1/echo_log.php -text svn_keywords=Id
+src/content/templates/mac-1/function.php -text
 src/content/templates/mac-1/header.php -text svn_keywords=Id
 src/content/templates/mac-1/ie-gif.css -text svn_keywords=Id
 src/content/templates/mac-1/images/blank.gif -text svn_keywords=Id
@@ -497,6 +498,7 @@ src/content/templates/mac-1/images/gif/sidep-handle.gif -text svn_keywords=Id
 src/content/templates/mac-1/images/gif/sidep-toggle.gif -text svn_keywords=Id
 src/content/templates/mac-1/images/gif/sidep-top.gif -text svn_keywords=Id
 src/content/templates/mac-1/images/html-bg.gif -text svn_keywords=Id
+src/content/templates/mac-1/images/icon_rss.gif -text
 src/content/templates/mac-1/images/import.gif -text
 src/content/templates/mac-1/images/main-bg.jpg -text svn_keywords=Id
 src/content/templates/mac-1/images/mini-archive.gif -text svn_keywords=Id
