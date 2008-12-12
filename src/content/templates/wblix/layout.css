@@ -17,6 +17,9 @@ body {
 
 body#commentspopup {padding:0;}
 
+img{
+	max-width:460px;
+}
 
 /* headings
 --------------------------------------------------*/
@@ -525,7 +528,7 @@ form .info {padding-left:90px;}
 	width:260px;
 	background-color: #A3C159;
 }
-/*日历样式*/
+/*式*/
 #calendar{
 	margin-bottom:0px;
 	padding:0px;
@@ -582,4 +585,17 @@ form .info {padding-left:90px;}
 {
 	font-size:10px;
 	padding:0px 10px;
+}
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
 }

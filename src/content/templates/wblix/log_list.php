@@ -11,12 +11,26 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 <?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 </h1>
 <p class="info">
-<em class="date">Posted on <?php echo $value['post_time'];?></em>
+<em class="date">
+<?php if($log_cache_sort[$value['logid']]): ?>
+ <a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>
+<?php endif;?>
+Posted on <?php echo $value['post_time'];?>
+</em>
 </p>
 <?php echo $value['log_description'];?>
-<p><?php echo $value['att_img'];?></p>
-<p><?php echo $value['attachment'];?></p>
-<p><?php echo $value['tag'];?></p>
+<p>
+<?php 
+$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
+echo $attachment;
+?>
+</p>
+<p>
+<?php 
+$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+echo $tag;
+?>
+</p>
 <p class="info">
 <em class="caty">
  	<a href="./?action=showlog&gid=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>

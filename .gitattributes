@@ -663,6 +663,7 @@ src/content/templates/wblix/echo_log.php -text svn_keywords=Id
 src/content/templates/wblix/footer.php -text svn_keywords=Id
 src/content/templates/wblix/function.php -text
 src/content/templates/wblix/header.php -text svn_keywords=Id
+src/content/templates/wblix/images/icon_rss.gif -text
 src/content/templates/wblix/images/import.gif -text
 src/content/templates/wblix/images/modify.gif -text
 src/content/templates/wblix/images/player.swf -text
