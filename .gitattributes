@@ -702,8 +702,10 @@ src/content/templates/wblix/side.php -text svn_keywords=Id
 src/content/templates/wblix/spring_flavour.css -text svn_keywords=Id
 src/content/templates/wp-cute/echo_log.php -text svn_keywords=Id
 src/content/templates/wp-cute/footer.php -text svn_keywords=Id
+src/content/templates/wp-cute/function.php -text
 src/content/templates/wp-cute/header.php -text svn_keywords=Id
 src/content/templates/wp-cute/images/em_rss.gif -text svn_keywords=Id
+src/content/templates/wp-cute/images/icon_rss.gif -text
 src/content/templates/wp-cute/images/import.gif -text
 src/content/templates/wp-cute/images/kubrickbg.jpg -text svn_keywords=Id
 src/content/templates/wp-cute/images/kubrickbgcolor.jpg -text svn_keywords=Id
@@ -719,8 +721,10 @@ src/content/templates/wp-cute/message.php -text svn_keywords=Id
 src/content/templates/wp-cute/preview.jpg -text svn_keywords=Id
 src/content/templates/wp/echo_log.php -text svn_keywords=Id
 src/content/templates/wp/footer.php -text svn_keywords=Id
+src/content/templates/wp/function.php -text
 src/content/templates/wp/header.php -text svn_keywords=Id
 src/content/templates/wp/images/em_rss.gif -text svn_keywords=Id
+src/content/templates/wp/images/icon_rss.gif -text
 src/content/templates/wp/images/import.gif -text
 src/content/templates/wp/images/kubrickbg.jpg -text svn_keywords=Id
 src/content/templates/wp/images/kubrickbgcolor.jpg -text svn_keywords=Id

@@ -14,6 +14,10 @@ BODY {
 li{
 	list-style:none;
 	}
+img{
+	max-width:480px;
+	border:none;
+}
 #page {
 	BACKGROUND-COLOR: white; 
 	TEXT-ALIGN: left;
@@ -366,4 +370,17 @@ HR {
 #input{
   padding:3px;
   border:1px solid #CCCCCC;
+}
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
 }

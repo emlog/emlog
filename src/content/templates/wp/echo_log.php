@@ -1,9 +1,25 @@
-<?phpif(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div class=post id=post-1>
-<h2><b><?php echo $log_title;?></b></h2>
+<h2>
+<b><?php echo $log_title;?></b>
+<?php if($log_cache_sort[$logid]): ?>
+<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+<?php endif;?>
+</h2>
 <div class=entry>
 <p><?php echo $log_content;?></p>
-<p><?php echo $attachment; ?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+	echo $tag;
+	?>
+</p>
 <p>
 <?php if($prevLog):?>
 	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
