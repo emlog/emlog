@@ -25,13 +25,33 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 
 				<div class="postmeta">
 					<div class="postauthor">by <?php echo $name; ?></div> <!-- POST AUTHOR -->
-					<div class="postcategory"><?php echo $value['tag']; ?></div> <!-- POST CATEGORY -->
+					<div class="postcategory">
+					<?php if($log_cache_sort[$value['logid']]): ?>
+					分类：<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>
+					<?php endif;?>
+					<?php 
+					$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+					echo $tag;
+					?>
+					</div> <!-- POST CATEGORY -->
 				</div> <!-- POST META -->
 			</div> <!-- POST HEADER -->
 			<div style=" clear:both;"></div>
 			<div class="posttext">
 				<?php echo $value['log_description']; ?>
-			</div> <!-- POST TEXT -->
+					<p>
+				<?php 
+				$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
+				echo $attachment;
+				?>
+				</p>
+				<p>
+					<?php 
+					$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
+					echo $tag;
+					?>
+				</p>
+			</div>
 			<div style="clear:both;"></div>
 			<div class="postfooter" style="">
 				<div class="postcomments"><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论：(<?php echo $value['comnum']; ?>)</a></div> <!-- POST COMMENTS -->

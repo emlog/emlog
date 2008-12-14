@@ -225,12 +225,14 @@ src/content/templates/devart/style.css -text
 src/content/templates/devart/unique_tpl.js -text
 src/content/templates/dum-dum/echo_log.php -text
 src/content/templates/dum-dum/footer.php -text
+src/content/templates/dum-dum/function.php -text
 src/content/templates/dum-dum/header.php -text
 src/content/templates/dum-dum/ie6.css -text
 src/content/templates/dum-dum/ie7.css -text
 src/content/templates/dum-dum/images/designed-by.jpg -text
 src/content/templates/dum-dum/images/footer-left.jpg -text
 src/content/templates/dum-dum/images/footer-right.jpg -text
+src/content/templates/dum-dum/images/icon_rss.gif -text
 src/content/templates/dum-dum/images/img_03.jpg -text
 src/content/templates/dum-dum/images/img_04.jpg -text
 src/content/templates/dum-dum/images/img_08.jpg -text

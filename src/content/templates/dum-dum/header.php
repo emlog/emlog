@@ -30,24 +30,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="menu1">
 <div class="menu2">
 <ul>
-<li class="current_page_item"><a href="">首页</a></li>
+
 <?php if(ISLOGIN): ?>
 	<li class="nocurrent_page_item"><a href="./admin/add_log.php">写日志</a></li>
-	<li class="nocurrent_page_item"><a href="./admin/">管理</a></li>
-	<li class="nocurrent_page_item"><a href="./index.php?action=logout">退出</a></li>
-<?php
-else:
-	$login_code=='y'?
-	$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\">":
-	$ckcode = '';
-?>
-	<li id="loginfm" style="display:none" class="nocurrent_page_item">
-	用户：<input name="user" id="user" type="text" class="input" style="width:80px;"/>
-	密码：<input name="pw" type="password"  class="input" style="width:80px;"/>
-	<?php echo $ckcode; ?> 
-	<input type="submit" value="登录">
-	</li>
-	<li class="nocurrent_page_item"><a href="javascript:showhidediv('loginfm','user');">登录</a></li>
+	<li class="nocurrent_page_item"><a href="./admin/">管理中心</a></li>
+	<li class="nocurrent_page_item"><a href="./admin/index.php?action=logout">退出</a></li>
+<?php else: ?>
+	<li class="nocurrent_page_item"><a href="./admin/index.php">登录</a></li>
 <?php endif; ?>
 </ul>
 </div> <!-- MENU 2 -->

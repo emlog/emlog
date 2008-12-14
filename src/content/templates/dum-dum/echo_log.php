@@ -20,13 +20,26 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 
 				<div class="postmeta">
 					<div class="postauthor">by <?php echo $name; ?></div> <!-- POST AUTHOR -->
-					<div class="postcategory"><?php echo $tag; ?></div> <!-- POST CATEGORY -->
+					<div class="postcategory">
+					<?php if($log_cache_sort[$logid]): ?>
+					分类：<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
+					<?php endif;?>
+					<?php 
+					$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+					echo $tag;
+					?>
+					</div> <!-- POST CATEGORY -->
 				</div> <!-- POST META -->
 			</div> <!-- POST HEADER -->
 			<div style=" clear:both;"></div>
 			<div class="posttext">
 			<?php echo $log_content; ?>
-			<p><?php echo $attachment; ?></p>
+			<p>
+				<?php 
+				$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+				echo $attachment;
+				?>
+			</p>
 			</div> <!-- POST TEXT -->
 		</div> <!-- POST -->
 		<div class="navigation">

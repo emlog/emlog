@@ -5,6 +5,9 @@ padding-top: 20px;
 width: 760px;
 margin: 0 auto;
 }
+img{
+	max-width:480px;
+}
 
 /* HEADER */
 .header h1 a{
@@ -695,4 +698,17 @@ padding: 4px 10px 0px 10px;
 #twitter li small {
 	font-size: 10px;
 	padding: 0px 10px;
+}
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
 }
