@@ -1,5 +1,8 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
+$datetime = explode("-",$post_time);
+$year = $datetime['0']."/".$datetime['1'];
+$day = substr($datetime['2'],0,2);
 ?>
 <div id="container">
   <div id="search">
@@ -12,7 +15,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <ul id="menu">
   <li id="home"><a href="./">Home</a></li>
   <li id="about"><a href="http://www.emlog.net" target="_blank">emlog</a></li>
-  <li id="archives"><a href="/rss.php">Rss</a></li>
+  <li id="archives"><a href="./rss.php">Rss</a></li>
   </ul>
   </div>
   <div id="title">
@@ -22,14 +25,29 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="content">
   <div class="col01">
     <div class="post" id="post-<?php echo $logid; ?>">
-      <h3><a href="./?action=showlog&gid=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a></h3>
+      <h3>
+	  <a href="./?action=showlog&gid=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
+	  	<?php if($log_cache_sort[$logid]): ?>
+		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+		<?php endif;?>
+	  </h3>
       <div class="post-inner">
-        <div class="date-tab"><span class="month"><?php echo date('n月',$show_log['date']); ?></span><span class="day"><?php echo date('j',$show_log['date']); ?></span></div>
+        <div class="date-tab"><span class="month"><?php echo $year; ?></span><span class="day"><?php echo $day; ?></span>				</div>
         <div class="thumbnail"></div>
 		<?php echo $log_content; ?>
-		<p><?php echo $attachment; ?></p>
+<p>
+	<?php 
+	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+	echo $attachment;
+	?>
+</p>
+<p>
+	<?php 
+	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+	echo $tag;
+	?>
+</p>
       </div>
-	<div class="meta"><?php echo $tag; ?></div>
     </div>
     <div class="post-nav">
 	<?php if($nextLog):?>
@@ -88,7 +106,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<p><label for="url"><span class="website">Website Address:</span></label><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="22" tabindex="4" class="comment-field" />
 	<span class="txt-website-example">Website example</span></p>
 	<p><span class="comments">Your Comment:</span><textarea name="comment" id="comment" rows="10" tabindex="1" class="comment-box"></textarea></p>
-	<p><input name="submit" type="submit" id="submit" class="btnComment" tabindex="5" value="Add Comment &raquo;" /><?php echo $cheackimg; ?><input type="checkbox" name="remember" value="1" checked="checked" />Remember me
+	<p><input name="submit" type="submit" id="submit" class="btnComment" tabindex="5" value="Add Comment &raquo;" /><?php echo $cheackimg; ?>
 	</p>
 	</form>
 

@@ -1,116 +1,58 @@
-<div class="categories-upper"></div>
-<div class="categories">
-  <ul>
-	<?php foreach($com_cache as $value): ?>
-	<li>
-	<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?> by <?php echo $value['name']; ?>
-	<?php if($value['reply']): ?>
-	<img src="<?php echo $em_tpldir; ?>images/reply.gif" style="border:0" title="博主回复：<?php echo $value['reply']; ?>"align="absmiddle"/>
-	<?php endif;?>
-	</a>
-	</li>
-	<?php endforeach; ?>
-  </ul>
-</div>
-<div class="categories-btm"></div>
-<div class="links">
-<ul>
-	<?php foreach($link_cache as $value): ?>     	
-	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
-	<?php endforeach; ?>
-</ul>
-</div>
-<div class="side-meta">
-  <ul>
-    <li><span onclick="showhidediv('blogger')"><b>博主信息</b></span></li>
-    	<ul id="blogger">
-    	<li><?php echo $photo; ?></li>
-		<li><b><?php echo $name; ?></b></li>
-		<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
-		<?php if(ISLOGIN === true): ?>
-		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" style="border:0"alt="修改我的状态"/></a></li>
-		<li id='modbdes' style="display:none;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:60px;"><?php echo $blogger_des; ?></textarea>
-		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
-		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
-		<?php endif; ?>
-		</li>
-    	</ul>
-    <li><span onclick="showhidediv('tags')"><b>标签</b></span></li>
-    	<ul id="tags">
-    	<?php foreach($tag_cache as $value):?>
-		<a href="index.php?tag=<?php echo $value['tagurl']; ?>" style="font-size:<?php echo $value['fontsize']; ?>pt;;line-height:30px;" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
-		<?php endforeach; ?>
-    	</ul>
-    <li><span onclick="showhidediv('calendar')"><b>日历</b></span></li>
-    	<ul id="calendar">
-    	</ul>
-    	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
-    <?php if($index_twnum>0): ?>
-	<li><span onclick="showhidediv('twitter')"><b>Twitter</b></span></li>
-	<ul id="twitter">
-	<?php
-	if(isset($tw_cache) && is_array($tw_cache)):
-		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-			$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-			$value['date'] = smartyDate($localdate,$value['date']);
-			?>
-			<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><font color="#21565E"><?php echo $value['date']; ?></font></li>
-		<?php endforeach;?>
-		<?php echo $morebt;?>
-	<?php endif;?>
-	</ul>
-	<?php if(ISLOGIN === true): ?>
-		<ul>
-		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
-		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="overflow-y: hidden;width:200px;height:70px;" class="input"></textarea>
-		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
-		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
-		</li>
-		</ul>
-	<?php endif;?>
-	<?php endif;?>
-	<li><span onclick="showhidediv('record')"><b>日志归档</b></span></li>
-		<ul id="record">
-		<?php foreach($dang_cache as $value): ?>
-		<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
-		<?php endforeach; ?>		
-		</ul>
-	<li><span onclick="showhidediv('bloginfo')"><b>博客信息</b></span></li>
-		<ul id="bloginfo">
-		<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
-		<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
-		<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
-		<li>今日访问：<?php echo $sta_cache['day_view_count']; ?></li>
-		<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
-		</ul>
-	<?php echo $exarea; ?>
-	<?php 
-		if(ISLOGIN==false):
-		$login_code=='y'?
-		$ckcode= "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\"><input name=\"imgcode\" type=\"text\" class=\"input\" style=\"width:40px;\"><br/>":
-		$ckcode = '';
+    <div class="recent-posts">
+    <?php
+    	$topquery = $DB->query("SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY date DESC  LIMIT 5");
+		while($toplogs = $DB->fetch_array($topquery)):
+			$toplogs['post_time'] = date('Y-n-j G:i l',$toplogs['date']);
+			$toplogs['title'] = htmlspecialchars(trim($toplogs['title']));
 	?>
-	<li><span onclick="showhidediv('loginfm')"><b>登录</b></span></li>
-		<ul id="loginfm" style="display:none">
-		<form name="f" method="post" action="index.php?action=login">
-		用户：<input name="user" id="user" type="text" class="input" style="width:80px;"/><br/>
-		密码：<input name="pw" type="password"  class="input" style="width:80px;"/><br />
-		<?php echo $ckcode; ?> 
-		<input type="submit" value="登录">
-		</form>
-		</ul>
-	<?php else: ?>
-	<li><span onclick="showhidediv('admin')"><b>管理</b></span></li>
-		<ul id="admin">
+    <ul>
+    <li><a href="./?action=showlog&gid=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
+    <span class="listMeta"><?php echo $toplogs['post_time']; ?></span></a></li>
+    </ul>
+    <?php endwhile;?>
+    </div>
+    <div class="postit-bottom"></div>
+
+<div class="side-meta">
+<ul>
+<?php 
+require_once (getViews('function'));
+$widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
+$i = 0;
+foreach ($widgets as $val)
+{
+	$widget_title = @unserialize($options_cache['widget_title']);
+	$custom_title = @unserialize($options_cache['custom_title1']);
+	$custom_content = @unserialize($options_cache['custom_content1']);
+	$callback = 'widget_'.$val;
+	if($val == 'custom_text')
+	{
+		if(function_exists($callback))
+		{
+			call_user_func($callback, $custom_title[$i], $custom_content[$i], $i);
+		}
+		$i++;
+	}else{
+		if(function_exists($callback))
+		{
+			preg_match("/^.*\s\((.*)\)/", $widget_title[$val], $matchs);
+			$wgTitle = isset($matchs[1]) ? $matchs[1] : $widget_title[$val];
+			call_user_func($callback, $wgTitle);
+		}
+	}
+}
+?>
+	<li><span onclick="showhidediv('admin')"><b>登录</b></span></li>
+	<div id="admin">
+	  <ul>
+		<?php if(ISLOGIN): ?>
 			<li><a href="./admin/add_log.php">写日志</a></li>
 			<li><a href="./admin/">管理中心</a></li>
-			<li><a href="./index.php?action=logout">退出</a></li>
-		</ul>
-	<?php endif; ?>
-  	</ul>
+			<li><a href="./admin/index.php?action=logout">退出</a></li>
+		<?php else: ?>
+			<li><a href="./admin/index.php">登录</a></li>
+		<?php endif; ?>	
+	  </ul>
+	</div>
+</ul>
 </div>

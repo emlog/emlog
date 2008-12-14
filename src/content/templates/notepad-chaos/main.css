@@ -9,6 +9,10 @@ body {
 	position:relative;
 	height:252px;
 }
+img{
+	border:none;
+	max-width:460px;
+}
 
 /* search form */
 
@@ -397,8 +401,9 @@ body {
 	padding:0;
 }
 #content .col02 .side-meta ul li {
-	font-size:14px;
+	font-size:12px;
 	list-style:none;
+	line-height:160%;
 }
 #content .col02 .side-meta ul li span{
 	cursor:pointer;
@@ -673,4 +678,17 @@ body {
 	text-align: center;
 	font-size: 14px;
 	margin-left: 41px;
+}
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
 }
