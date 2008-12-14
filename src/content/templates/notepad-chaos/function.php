@@ -101,18 +101,6 @@
 	  </ul>
 	</div>
 <?php }?>
-<!--最新日志-->
-<?php function widget_newlog($title){ ?>
-	<?php global $newLogs_cache; ?>
-	<li><span onclick="showhidediv('newlog')"><b><?php echo $title; ?></b></span></li>
-	<div id="newlog">
-	  <ul>
-		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
-		<?php endforeach; ?>
-	  </ul>
-	</div>
-<?php }?>
 <!--随机日志-->
 <?php function widget_random_log($title){ ?>
 	<?php 
