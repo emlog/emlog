@@ -4,7 +4,7 @@
 	
 	<div id="footer"><div id="footer-inner"><div id="footer-content">
 		<p>
-			Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
+			powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
             <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> | 
 			Theme by <a href="http://deniart.ru">deniart</a>
 		</p>
