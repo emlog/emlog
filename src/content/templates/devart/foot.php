@@ -6,9 +6,8 @@
 		<p>
 			Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
             <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> | 
-			<a href="./rss.php">Entries (RSS)</a>
+			Theme by <a href="http://deniart.ru">deniart</a>
 		</p>
-		<p>Copyright &copy; 2008. All right reserved. Theme by <a href="http://deniart.ru">deniart</a></p>
 	</div></div></div>
 </div>
 

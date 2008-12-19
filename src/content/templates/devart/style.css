@@ -23,6 +23,10 @@ h4 { font-size: 16px; line-height: 20px; margin-bottom: 5px; }
 h5 { font-size: 14px; line-height: 18px; margin-bottom: 5px; }
 h6 { font-size: 12px; line-height: 16px; margin-bottom: 5px; }
 
+img{
+	max-width:630px;
+}
+
 h1 span { color: #999; }
 
 a { color: #3b5a4a; }
@@ -434,4 +438,16 @@ blockquote {
 	padding: 0px 10px;
 }
 
-
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
+}

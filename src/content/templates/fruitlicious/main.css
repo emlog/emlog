@@ -30,6 +30,8 @@ a:hover{ text-decoration: none; }
 
 a img{ border: 0; }
 
+img{max-width:480px;}
+
 abbr, acronym{ border: 0; }
 
 address, dl, p{ padding: 15px 0 0; }
@@ -435,4 +437,17 @@ table.calendartop td{
 	border: 1px solid #daefef;
 	background-color: #fff;
 	padding: 3px;
+}
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
 }

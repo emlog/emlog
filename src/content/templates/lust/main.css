@@ -518,3 +518,16 @@ input, textarea{
   padding:3px;
   border:1px solid #CCCCCC;
 }
+.sort{
+	margin-left:20px;
+	font-size:12px;
+	color:#999999;
+}
+.sort a {
+	color: #999999; 
+	text-decoration: none
+}
+.sort a:hover {
+	color: #999999;
+	text-decoration: none
+}

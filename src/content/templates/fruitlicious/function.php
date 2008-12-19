@@ -32,15 +32,13 @@
 <!--标签-->
 <?php function widget_tag($title){ ?>
 	<?php global $tag_cache; ?>
-	<li class="blogtags"><h2 onclick="showhidediv('blogtags')"><?php echo $title; ?></h2>
-	<ul id="blogtags">
-	<li>
+	<li><h2 onclick="showhidediv('tags')"><?php echo $title; ?></h2>
+	<ul id="tags">
 	<?php foreach($tag_cache as $value): ?>
-		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 	<?php endforeach; ?>
-	</li>
 	</ul>
+	</li>
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>

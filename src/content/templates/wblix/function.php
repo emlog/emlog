@@ -63,6 +63,7 @@
 	foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($localdate,$value['date']);
+		$value['content'] = str_replace("[wap]", " <img align=\"absmiddle\" src=\"{$em_tpldir}images/wap.gif\" alt=\"手机wap发布\"/>", $value['content']);
 	?>
 	<li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
 	<?php  endforeach; ?>
@@ -145,7 +146,7 @@
 <?php } ?>
 <!--自定义-->
 <?php function widget_custom_text($title, $content, $id){ ?>
-	<h4><em onclick="showhidediv('record')"><?php echo $title; ?></em></h4>
+	<h4><em onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></em></h4>
 	<ul id="custom<?php echo $id; ?>">
 	<p><?php echo $content; ?></p>	
 	</ul>	

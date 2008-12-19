@@ -88,6 +88,7 @@ float:left;
 list-style-type: none;
 margin: 0 ;
 padding-left:5px;
+cursor:pointer;
 }
 #sidebar .sbarright ul li {
 list-style-type: none;

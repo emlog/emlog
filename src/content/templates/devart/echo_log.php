@@ -3,11 +3,26 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="content">
     <div class="post" id="post">
-        <h1><?php echo $log_title; ?></h1>
+        <h1>
+		<?php echo $log_title; ?>
+		<?php if($log_cache_sort[$logid]): ?>
+		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+		<?php endif;?>
+		</h1>
 		<p>发布时间 <?php echo $post_time; ?></p>
         <?php echo $log_content; ?>
-        <p><?php echo $attachment; ?></p>	
-        <p><?php echo $tag; ?></p>
+		<p>
+			<?php 
+			$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+			echo $attachment;
+			?>
+		</p>
+		<p>
+			<?php 
+			$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+			echo $tag;
+			?>
+		</p>
         <div class="post-info">
           
             <?php if($prevLog):?>

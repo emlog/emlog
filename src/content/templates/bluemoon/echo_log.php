@@ -6,10 +6,25 @@
 	<div class="right">
 		<div class="title">
 			<h1><?php echo $log_title; ?></a></h1>
-			<h4><?php echo $tag; ?> by <?php echo $log_author; ?> on <?php echo $post_time; ?></h4>
+			<h4><?php echo $post_time; ?>
+			<?php if($log_cache_sort[$logid]): ?>
+			<span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
+			<?php endif;?>
+			</h4>
 		</div>
 		<div class="logdes"><?php echo $log_content; ?>
-		<p><?php echo $attachment; ?></p>
+		<p>
+			<?php 
+			$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
+			echo $attachment;
+			?>
+		</p>
+		<p>
+			<?php 
+			$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
+			echo $tag;
+			?>
+		</p>
 		</div>
 		<div class="clear"></div>
 		<div class="nextlog">
@@ -76,12 +91,11 @@
 		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="32" tabindex="1" />
 		<label for="author"><small>Name (required)</small></label></p>
 		<p><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="52" tabindex="2" />
-		<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+		<label for="email"><small>Mail</small></label></p>
 		<p><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="52" tabindex="3" />
 		<label for="url"><small>Website</small></label></p>
 		<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
 		<p><?php echo $cheackimg; ?><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
-		<input type="checkbox" name="remember" value="1" checked="checked" />Remember me
 		</p>
 		</form>
 		<?php endif; ?>

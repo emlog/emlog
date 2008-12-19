@@ -5,7 +5,7 @@
 	<div class="box1">
 		<div class="box1text">
 		<ul>
-		<li><h2>资料</h2>
+		<li><h2><?php echo $title; ?></h2>
 		<li style="text-align:center;"><?php echo $photo; ?></li>
 		<li style="text-align:center;"><b><?php echo $name; ?></b></li>
 			<li style="text-align:center;"><span id="bloggerdes"><?php echo $blogger_des; ?></span>
@@ -29,13 +29,13 @@
 	<div class="box2">
 		<div class="box2text">
 		<ul>
-			<li><h2>日历</h2>
+			<li><h2><?php echo $title; ?></h2>
 				<div id="calendar">
 				</div>
 			</li>
 		</ul>
 		</div> <!-- BOX2 TEXT -->
-	</div> <!-- BOX2 -->
+	</div> 
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 <?php }?>
 <!--标签-->
@@ -44,7 +44,7 @@
 	<div class="box3">
 		<div class="box3text">
 		<ul>
-		<li><h2>标签</h2>
+		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($tag_cache as $value): ?>
 			<a style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;" href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
 		<?php endforeach; ?>			
@@ -75,7 +75,7 @@
 	<div class="box2">
 		<div class="box2text">
 		<ul>
-			<li><h2>Twitter</h2>
+			<li><h2><?php echo $title; ?></h2>
 			<ul id="twitter">
 			<?php
 			if(isset($tw_cache) && is_array($tw_cache)):
@@ -103,7 +103,7 @@
 			</li>
 		</ul>
 		</div> <!-- BOX2 TEXT -->
-	</div> <!-- BOX2 -->
+	</div> 
 <?php } ?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
@@ -112,7 +112,7 @@
 	<div class="box1">
 		<div class="box1text">
 		<ul>
-		<li><h2>音乐</h2>
+		<li><h2><?php echo $title; ?></h2>
 		<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 		</ul>
 		</div> <!-- BOX1 TEXT -->
@@ -125,7 +125,7 @@
 	<div class="box3">
 		<div class="box3text">
 		<ul>
-		<li><h2>评论</h2>
+		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($com_cache as $value): ?>
 		<li id="comment"><?php echo $value['name']; ?> 
 		<?php if($value['reply']): ?>
@@ -147,7 +147,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $title; ?></a></li>
 		<?php endforeach; ?>			
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -164,7 +164,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $title; ?></a></li>
 		<?php endforeach; ?>		
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -176,21 +176,24 @@
 	<div class="box2">
 		<div class="box2text">
 		<ul>
-			<li><h2>存档</h2>
+			<li><h2><?php echo $title; ?></h2>
 			<?php foreach($dang_cache as $value): ?>
 			<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
 		</ul>
 		</div> <!-- BOX2 TEXT -->
-	</div> <!-- BOX2 -->
+	</div>
 <?php } ?>
 <!--自定义-->
 <?php function widget_custom_text($title, $content, $id){ ?>
-	<li class="custom"><h2 onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></h2>
-	<ul id="custom<?php echo $id; ?>">
-	<p><?php echo $content; ?></p>	
-	</ul>
-	</li>
+	<div class="box2">
+		<div class="box2text">
+		<ul>
+		<li><h2><?php echo $title; ?></h2>
+		<li><?php echo $content; ?></li>	
+		</ul>
+		</div>
+	</div>
 <?php } ?>
 <!--搜索-->
 <?php 
@@ -209,7 +212,7 @@ global $em_tpldir;
 	<div class="box1">
 		<div class="box1text">
 		<ul>
-			<li><h2>链接</h2>
+			<li><h2><?php echo $title; ?></h2>
 			<?php foreach($link_cache as $value): ?>     	
 			<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 			<?php endforeach; ?>
@@ -223,7 +226,7 @@ global $em_tpldir;
 	<div class="box3">
 		<div class="box3text">
 		<ul>
-			<li><h2>统计</h2>
+			<li><h2><?php echo $title; ?></h2>
 			<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
 			<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
 			<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>

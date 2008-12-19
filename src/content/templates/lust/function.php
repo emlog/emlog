@@ -32,15 +32,11 @@
 <!--标签-->
 <?php function widget_tag($title){ ?>
 	<?php global $tag_cache; ?>
-	<li class="blogtags"><h2 onclick="showhidediv('blogtags')"><?php echo $title; ?></h2>
-	<ul id="blogtags">
-	<li>
+	<li><h2 onclick="showhidediv('tags')"><?php echo $title; ?></h2>
 	<?php foreach($tag_cache as $value): ?>
-		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 	<?php endforeach; ?>
 	</li>
-	</ul>
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
@@ -193,7 +189,6 @@
 		<li>引用数量：<?php echo $sta_cache['tbnum'];?></li>
 		<li>今日访问：<?php echo $sta_cache['day_view_count'];?></li>
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
-		<li><a href="./rss.php"><img src="<?php echo $em_tpldir;?>images/rss.gif" alt="订阅Rss"/></a></li>
 		</ul>
 	</li>
 <?php }?>
