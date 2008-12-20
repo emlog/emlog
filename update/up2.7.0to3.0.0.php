@@ -165,7 +165,7 @@ if(!isset($_GET['action'])){
 </p>
 </div>
 <p class="foot">
-&copy;2007 emlog
+&copy;2008 emlog
 </p>
 </div>
 </div>
@@ -251,7 +251,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	
 	$res = $DB->query("select * from {$db_prefix}config");
 	$row = $DB->fetch_array($res);
-	extract($row);
+	@extract($row);
 	
 $insert = "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','$blogname');
@@ -329,7 +329,7 @@ UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';";
 			}
 		}
 	}
-	echo "恭喜你Emlog数据库升级成功！请删除该升级文件 <br />后台密码重置为：123456 请登录后马上修改 <br /><a href=\"./index.php\">进入Emlog </a>";
+	echo "恭喜你Emlog数据库升级成功！请删除该升级文件 <br />后台密码重置为：123456 请登录后马上修改。 你现在可以进行第二步 代码升级";
 }
 echo "</body>";
 echo "</html>";
