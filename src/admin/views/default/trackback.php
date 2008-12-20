@@ -18,10 +18,10 @@ setTimeout(hideActived,2600);
   <thead>
       <tr class="rowstop">
         <td width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="400"><b>标题</b></td>
-        <td width="180"><b>来源</b></td>
-		<td width="120"><b>IP</b></td>
-        <td width="150"><b>时间</b></td>
+        <td width="270"><b>标题</b></td>
+        <td width="300"><b>来源</b></td>
+		<td width="80"><b>IP</b></td>
+        <td width="120"><b>时间</b></td>
         <td width="80"></td>
       </tr>
   </thead>
