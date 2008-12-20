@@ -91,7 +91,7 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 ./content/cache/（目录下所有文件）<br>
 ./content/uploadfile（目录）<br>
 ./content/backup（目录）<br>
- 请确保上面的权限正确设置，才能进行安装。</p>
+ 请确保上面的权限正确设置，再进行安装。</p>
 </div>
 <div class="b">
 <p class="title2">2.Mysql数据库配置</p>
@@ -142,7 +142,7 @@ Linux 系统请在执行安装程序之前设置如下文件或目录权限为77
 </div>
 <div>
 <p class="foot">
-Powered by <a href="http://www.emlog.net">emlog</a>
+powered by <a href="http://www.emlog.net">emlog</a>
 </p>
 </div>
 </div>
@@ -238,13 +238,18 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	'bloginfo'=>'博客信息',
 	'custom_text'=>'自定义栏目'
 	);
-	$wg = array();
-	foreach ($widgets as $key=>$val)
-	{
-		$wg[] = $key;
-	}
+	$sider_wg = array(
+	'blogger',
+	'calendar',
+	'tag',
+	'archive',
+	'newcomm',
+	'link',
+	'search',
+	'bloginfo'
+	);
 	$widget_title = serialize($widgets);
-	$widgets = serialize($wg);
+	$widgets = serialize($sider_wg);
 
 	//sql language
 	$sql = $setchar."
@@ -252,7 +257,7 @@ DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid mediumint(8) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
-  date varchar(10) NOT NULL default '',
+  date bigint(20) NOT NULL,
   content text NOT NULL,
   sortid tinyint(3) NOT NULL default '-1',
   views mediumint(8) unsigned NOT NULL default '0',
@@ -273,7 +278,7 @@ CREATE TABLE {$db_prefix}attachment (
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
-  addtime varchar(10) NOT NULL default '',
+  addtime bigint(20) NOT NULL,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
@@ -281,7 +286,7 @@ DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
-  date varchar(10) NOT NULL default '',
+  date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
   reply text NOT NULL,
@@ -371,7 +376,7 @@ CREATE TABLE {$db_prefix}trackback (
   tbid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
   title varchar(255) NOT NULL default '',
-  date varchar(10) NOT NULL default '',
+  date bigint(20) NOT NULL,
   excerpt text NOT NULL,
   url varchar(255) NOT NULL default '',
   blog_name varchar(255) NOT NULL default '',
@@ -381,9 +386,9 @@ CREATE TABLE {$db_prefix}trackback (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT ,
-content VARCHAR(255) NOT NULL ,
-date VARCHAR(10) NOT NULL ,
+id INT NOT NULL AUTO_INCREMENT,
+content VARCHAR(255) NOT NULL,
+date bigint(20) NOT NULL,
 PRIMARY KEY (id)
 )".$add."
 INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1204460230');

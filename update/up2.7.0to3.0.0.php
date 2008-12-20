@@ -293,6 +293,11 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_cont
 $sql = "
 ALTER TABLE {$db_prefix}user CHANGE password password VARCHAR( 64 ) NOT NULL;
 ALTER TABLE {$db_prefix}blog DROP attcache;
+ALTER TABLE {$db_prefix}blog CHANGE date date BIGINT( 20 ) NOT NULL;
+ALTER TABLE {$db_prefix}attachment CHANGE addtime addtime BIGINT( 20 ) NOT NULL;
+ALTER TABLE {$db_prefix}comment CHANGE date date BIGINT( 20 ) NOT NULL;
+ALTER TABLE {$db_prefix}trackback CHANGE date date BIGINT( 20 ) NOT NULL;
+ALTER TABLE {$db_prefix}twitter CHANGE date date BIGINT( 20 ) NOT NULL;
 ALTER TABLE {$db_prefix}blog ADD sortid TINYINT( 3 ) NOT NULL DEFAULT '-1' AFTER content;
 ALTER TABLE {$db_prefix}blog ADD attnum MEDIUMINT( 8 ) UNSIGNED NOT NULL DEFAULT '0' AFTER tbcount;
 CREATE TABLE {$db_prefix}sort (
