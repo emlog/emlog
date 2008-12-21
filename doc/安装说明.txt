@@ -1,18 +1,17 @@
-emlog 3.0.0 安装说明 
+emlog 3.0.0 安装说明
 
 安装步骤 :
 
-1.将下载解压后的"src"文件夹下的所有文件上传到web服务器预安装emlog的根目录。 
+1.将下载解压后的"src"文件夹下的所有文件上传到web服务器预安装emlog的根目录。
 
-2.权限设置:
+2.权限设置:(Windows系统服务器请跳过该步)
 
- (Windows系统服务器跳过该步) 
- 执行安装程序之前设置如下文件或目录权限为777
+	执行安装程序之前设置如下文件或目录权限为777
 
-    ./config.php		(单个文件) 
-    ./content/cache		(目录下所有文件，依次设置为777) 
-    ./content/uploadfile 	(目录) 
-    ./content/backup 		(目录) 
+	./config.php		(单个文件)
+	./content/cache		(目录下所有文件，依次设置为777)
+	./content/uploadfile 	(目录)
+	./content/backup 	(目录)
 
 3.在你的mysql服务器上建立一个用于emlog的空数据库。
 
@@ -21,7 +20,4 @@ emlog 3.0.0 安装说明
 5.安装成功，删除安装文件：install.php
 
 
-
-如果你对上诉安装过程有任何疑问，
-
-请登录 http://www.emlog.net/bbs 获取帮助
+如果你对上诉安装过程有任何疑问，请登录 www.emlog.net 获取帮助。
