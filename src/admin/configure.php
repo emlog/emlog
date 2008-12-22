@@ -8,7 +8,7 @@
 
 require_once('./globals.php');
 
-if($action == '')
+if ($action == '')
 {
 	if($login_code=='y')
 	{
@@ -66,7 +66,7 @@ if($action == '')
 }
 
 //update config
-if ($action== "mod_config")
+if ($action == "mod_config")
 {
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
@@ -84,17 +84,22 @@ if ($action== "mod_config")
 	'istrackback' => isset($_POST['istrackback']) ? $_POST['istrackback'] : 'n',
 	);
 
-	if(!function_exists("ImageCreate") && $login_code=='y' || $comment_code=='y' && !function_exists("ImageCreate"))
+	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
-		formMsg("开启验证码失败!服务器不支持GD库","javascript:history.go(-1);",0);
+		formMsg("开启登录验证码失败!服务器不支持该功能","configure.php",0);
 	}
-	if($blogurl && substr($blogurl,-1) !='/')
+	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
-		$blogurl.='/';
+		formMsg("开启评论验证码失败!服务器不支持该功能","configure.php",0);
 	}
-	if($blogurl && strncasecmp($blogurl,'http://',7))//0 if they are equal
+
+	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
 	{
-		$blogurl = 'http://'.$blogurl;
+		$getData['blogurl'] .= '/';
+	}
+	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7))//0 if they are equal
+	{
+		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 
 	foreach ($getData as $key => $val)
@@ -109,7 +114,7 @@ if ($action== "mod_config")
 	header("Location: ./configure.php?activated=true");
 }
 //phpinfo()
-if($action=='phpinfo')
+if ($action == 'phpinfo')
 {
 	@phpinfo() OR die('phpinfo函数被禁用!');
 }
