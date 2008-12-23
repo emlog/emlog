@@ -135,6 +135,9 @@ if($action == 'setwg')
 			break;
 	}
 	$CACHE->mc_options();
+	$CACHE->mc_comment();
+	$CACHE->mc_twitter();
+	$CACHE->mc_newlog();
 	header("Location: ./widgets.php?activated=true");
 }
 

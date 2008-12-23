@@ -110,6 +110,7 @@ if($action == 'edit')
 	}
 
 	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
 	$CACHE->mc_logatts();
 	$CACHE->mc_record();
 	$CACHE->mc_tags();

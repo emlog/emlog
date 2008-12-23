@@ -112,21 +112,21 @@ if($action == 'update_admin')
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$DB->query(" UPDATE ".DB_PREFIX."user SET password='$newpass'");
-		formMsg('密码已修改!请重新登录','./index.php',1);
+		formMsg('密码修改成功!','./index.php',1);
 	}
 	//修改密码及用户
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0)
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$DB->query("UPDATE ".DB_PREFIX."user SET username='$user',password='$newpass'");
-		formMsg('密码和用户名已修改!请重新登录','./index.php',1);
+		formMsg('密码和后台登录名修改成功!请重新登录','./index.php',1);
 	}
-	//只修改用户
+	//只修改后台登录名
 	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass)
 	{
 		$sql=" UPDATE ".DB_PREFIX."user SET username='$user'";
 		$DB->query($sql);
-		formMsg('用户名已修改!请重新登录','./index.php',1);
+		formMsg('后台登录名修改成功!请重新登录','./index.php',1);
 	}
 	//错误处理
 	if(!$ispass)

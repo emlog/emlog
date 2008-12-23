@@ -25,9 +25,8 @@ setTimeout("doautosave()",30000);
           <td><b>标题：</b><span id="auto_msg"></span><br />
           <input maxlength="200" style="width:500px;" name="title" id="title" value="<?php echo $title; ?>"/>
 	        <select name="sort">
-			<?php if($sortid < 0):?>
-			<option value="-1">选择分类...</option>
-			<?php endif;
+	        <?php
+	        $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类……');
 			foreach($sorts as $val):
 			$flg = $val['sid'] == $sortid ? 'selected' : '';
 			?>
