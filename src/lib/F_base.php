@@ -47,10 +47,7 @@ function doStripslashes()
  */
 function stripslashesDeep($value)
 {
-	$value = is_array($value) ?
-	array_map('stripslashesDeep', $value) :
-	stripslashes($value);
-
+	$value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
 	return $value;
 }
 

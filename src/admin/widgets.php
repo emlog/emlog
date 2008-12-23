@@ -71,7 +71,7 @@ if($action == 'setwg')
 	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
 
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
-	$widgetTitle = serialize($widgetTitle);
+	$widgetTitle = addslashes(serialize($widgetTitle));
 
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgetTitle' where option_name='widget_title'");
 
@@ -146,8 +146,8 @@ if($action == 'compages')
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;
 
 	$widgets = isset($_POST['widgets'.$wgNum]) ? serialize($_POST['widgets'.$wgNum]) : '';
-	$customTextTitle = isset($_POST['custom_title'.$wgNum]) ? serialize($_POST['custom_title'.$wgNum]) : '';
-	$customTextContent = isset($_POST['custom_text'.$wgNum]) ? serialize($_POST['custom_text'.$wgNum]) : '';
+	$customTextTitle = isset($_POST['custom_title'.$wgNum]) ? addslashes(serialize($_POST['custom_title'.$wgNum])) : '';
+	$customTextContent = isset($_POST['custom_text'.$wgNum]) ? addslashes(serialize($_POST['custom_text'.$wgNum])) : '';
 
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets{$wgNum}'");
 	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title{$wgNum}'");
