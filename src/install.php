@@ -270,7 +270,7 @@ CREATE TABLE {$db_prefix}blog (
   allow_tb enum('n','y') NOT NULL default 'y',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb) VALUES (1, 'Hello Blogger', '1204460230', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 0, 'n', 'n', 'y', 'y');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb) VALUES (1, 'Hello Blogger', '1230508801', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 0, 'n', 'n', 'y', 'y');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -391,7 +391,7 @@ content VARCHAR(255) NOT NULL,
 date bigint(20) NOT NULL,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1204460230');
+INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1230508801');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,

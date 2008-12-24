@@ -26,7 +26,7 @@ setTimeout("doautosave()",30000);
           <input maxlength="200" style="width:500px;" name="title" id="title" value="<?php echo $title; ?>"/>
 	        <select name="sort">
 	        <?php
-	        $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类……');
+	        $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
 			foreach($sorts as $val):
 			$flg = $val['sid'] == $sortid ? 'selected' : '';
 			?>
