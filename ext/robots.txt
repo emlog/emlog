@@ -1,7 +1,5 @@
 User-agent: *
-Disallow: /adm/
-Disallow: /cache/
-Disallow: /images/
+Disallow: /admin/
+Disallow: /content/
 Disallow: /lib/
-Disallow: /templates/
-Disallow: /uploadfile/
+Disallow: /model/
