@@ -54,7 +54,7 @@ setTimeout("doautosave()",30000);
         </td>       
         </tr>
         <tr nowrap="nowrap">
-          <td><b>标签:</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
+          <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
             <input id="tags" maxlength="200" style="width:715px;" name="tag" value="<?php echo $tagStr; ?>" /><br />
             <div style="width:715px;">选择已有标签：
             <?php 	
@@ -86,18 +86,17 @@ setTimeout("doautosave()",30000);
 			  <input name="date" type="hidden" value="<?php echo $date; ?>" >
 		  <br />请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒 (24小时制)</div></td>
         </tr>
-    </table>
-	  <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
-          <td>接受评论？是
-              <input type="radio" checked="checked" value="y" name="allow_remark" <?php echo $ex; ?>/>
-            否
-          <input type="radio" value="n" name="allow_remark" <?php echo $ex2; ?> /></td>
+        <tr>
+        <td>接受评论？是
+          	<input type="radio" checked="checked" value="y" name="allow_remark" <?php echo $ex; ?>/>否
+          	<input type="radio" value="n" name="allow_remark" <?php echo $ex2; ?> />
+        </td>
         </tr>
         <tr>
           <td>接受引用？是
-              <input type="radio" checked="checked" value="y" name="allow_tb" <?php echo $add; ?> />
-            否
-          <input type="radio" value="n" name="allow_tb" <?php echo $add2; ?> /></td>
+          <input type="radio" checked="checked" value="y" name="allow_tb" <?php echo $add; ?> />否
+          <input type="radio" value="n" name="allow_tb" <?php echo $add2; ?> />
+          </td>
         </tr>
         <tr>
           <td align="center" colspan="2">

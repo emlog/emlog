@@ -42,7 +42,7 @@ setTimeout("doautosave()",30000);
               <table cellspacing="0" cellpadding="0" width="100%" border="0">
                   <tr>
                     <td>
-                    <b>内容：</b><a href="javascript: displayToggle('FrameUpload');autosave('add_log.php?action=autosave','asmsg');" class="thickbox">附件管理</a><span id="asmsg">
+                    <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave('add_log.php?action=autosave','asmsg');" class="thickbox">附件管理</a><span id="asmsg">
                     <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
 
                     <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
@@ -88,19 +88,20 @@ setTimeout("doautosave()",30000);
         </tr>
         <tr>
           <td>接受评论？是
-            <input type="radio" checked="checked" value="y" name="allow_remark" />否
-          <input type="radio" value="n" name="allow_remark" /></td>
+          <input type="radio" checked="checked" value="y" name="allow_remark" />否
+          <input type="radio" value="n" name="allow_remark" />
+          </td>
         </tr>
         <tr>
           <td>接受引用？是
-            <input type="radio" checked="checked" value="y" name="allow_tb" />否
-            <input type="radio" value="n" name="allow_tb" />
+          <input type="radio" checked="checked" value="y" name="allow_tb" />否
+          <input type="radio" value="n" name="allow_tb" />
 		  </td>
         </tr>
 		<tr>
           <td align="center">
-		  	  <input type="submit" value="发布日志" onclick="return chekform();" class="submit2" />
-			  <input type="submit" value="存为草稿" onclick="return savedraft();" class="submit2" />
+          <input type="submit" value="发布日志" onclick="return chekform();" class="submit2" />
+          <input type="submit" value="存为草稿" onclick="return savedraft();" class="submit2" />
 		  </td>
         </tr>
       </tbody>
