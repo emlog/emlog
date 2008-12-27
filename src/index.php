@@ -29,10 +29,8 @@ if (!in_array($action,$job))
 if (!isset($action) || empty($action))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
-	require_once(EMLOG_ROOT.'/model/C_tag.php');
 
 	$emBlog = new emBlog($DB);
-	$emTag = new emTag($DB);
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
@@ -45,12 +43,14 @@ if (!isset($action) || empty($action))
 
 	if ($record)
 	{
-		$blogtitle = $blogname.' - '.$record;
+		$blogtitle = $record.' - '.$blogname;
 		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?record=$record&page";
 	} elseif ($tag) {
-		$blogtitle = $blogname.' - '.$tag;
+		require_once(EMLOG_ROOT.'/model/C_tag.php');
+		$emTag = new emTag($DB);
+		$blogtitle = $tag.' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
@@ -70,6 +70,10 @@ if (!isset($action) || empty($action))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= '?keyword='.urlencode($keyword).'&page';
 	} elseif($sortid) {
+		require_once(EMLOG_ROOT.'/model/C_sort.php');
+		$emSort = new emSort($DB);
+		$sortName = $emSort->getSortName($sortid);
+		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?sort=$sortid&page";
@@ -103,7 +107,7 @@ if ($action == 'showlog')
 		msg('不存在该日志','./index.php');
 	}
 	extract($logData);
-	$blogtitle = $blogname.' - '.$log_title;
+	$blogtitle = $log_title.' - '.$blogname;
 	$log_author = $user_cache['name'];
 	$blogurl    = $blogurl;
 	//add viewcount
