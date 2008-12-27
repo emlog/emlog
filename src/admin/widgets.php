@@ -29,7 +29,6 @@ if($action == '')
 	
 	//music
 	$music = @unserialize($options_cache['music']);
-	$ismusic = isset($music['ismusic']) && $music['ismusic'] === 1 ? "checked=\"checked\"" : '';
 	if(isset($music['auto']) && $music['auto'])
 	{
 		$auto1 = "checked=\"checked\"";
@@ -96,7 +95,6 @@ if($action == 'setwg')
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_randlognum' where option_name='index_randlognum'");
 			break;
 		case 'music':
-			$ismusic = isset($_POST['ismusic']) ? intval($_POST['ismusic']) : 0;
 			$links = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
 			$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
 			$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
@@ -104,8 +102,7 @@ if($action == 'setwg')
 			'mlinks'=>array(),
 			'mdes'=>array(),
 			'auto'=>$auto,
-			'randplay'=>$randplay,
-			'ismusic'=>$ismusic
+			'randplay'=>$randplay
 			);
 			if($links)
 			{
@@ -127,8 +124,6 @@ if($action == 'setwg')
 						formMsg('有错误的音乐链接格式','javascript: window.history.back()',0);
 					}
 				}
-			}elseif($ismusic){
-				formMsg('音乐链接不能为空','javascript: window.history.back()',0);
 			}
 			$musicData = serialize($music);
 			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");

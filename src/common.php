@@ -58,7 +58,7 @@ $name = $user_cache['name'];
 
 //背景音乐
 $music = @unserialize($options_cache['music']);
-if ($ismusic = $music['ismusic'])
+if ($music['mlinks'])
 {
 	$key = $music['randplay'] ? mt_rand(0,count($music['mlinks']) - 1) : 0 ;
 	$musicurl = $music['mlinks'][$key];
