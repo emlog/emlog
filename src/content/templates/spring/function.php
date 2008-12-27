@@ -89,15 +89,13 @@
 <?php } ?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $ismusic,$musicdes,$em_tpldir,$musicurl,$autoplay; ?>
-	<?php if($ismusic): ?>
-	<li class="some"><h4 onclick="showhidediv('music')">音乐</h4>
+	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	<li class="some"><h4 onclick="showhidediv('music')"><?php echo $title; ?></h4>
 	<ul id="music">
-	<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="150" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+	<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="150" height="20"><param name="movie" value="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 	</p>
 	</ul>
 	</li>
-	<?php endif; ?>
 <?php }?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>

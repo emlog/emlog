@@ -102,18 +102,16 @@
 <?php } ?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $ismusic,$musicdes,$em_tpldir,$musicurl,$autoplay; ?>
-	<?php if($ismusic): ?>
+	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
 		  <div id="meta" class="dbx-box">
 			<h3 class="dbx-handle" onclick="showhidediv('music')"><?php echo $title; ?></h3>
 			<div class="dbx-content" id="music">
 			  <ul>
-	 <?php echo $musicdes;?><object type="application/x-shockwave-flash" data="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="./images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+	 <?php echo $musicdes;?><object type="application/x-shockwave-flash" data="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 	</p>
 			  </ul>
 			</div>
 		  </div>
-	<?php endif; ?>
 <?php }?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>
