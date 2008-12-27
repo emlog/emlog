@@ -144,6 +144,7 @@ if ($action == 'addcom')
 		$CACHE->mc_comment();
 		msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
 	}elseif ($ret === 1){
+		$CACHE->mc_sta();
 		msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 	}
 }

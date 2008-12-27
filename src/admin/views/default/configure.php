@@ -77,7 +77,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right">启用评论审核：<br /></td>
+        <td align="right">开启评论审核：<br /></td>
         <td>
 		<select name="ischkcomment">
           <option value="y" <?php echo $ex5; ?>>是</option>
@@ -95,7 +95,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
 	  <tr>
-        <td align="right">启用URL伪静态：<br /></td>
+        <td align="right">开启URL伪静态：<br /></td>
         <td class="care">
 		<select name="isurlrewrite">
           <option value="y" <?php echo $ex9; ?>>是</option>
@@ -104,7 +104,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		开启需要服务器支持，详情参看帮助文档</td>
       </tr>
       <tr>
-        <td align="right">启用页面Gzip压缩：<br /></td>
+        <td align="right">开启页面Gzip压缩：<br /></td>
         <td class="care">
 		<select name="isgzipenable">
           <option value="y" <?php echo $ex11; ?>>是</option>
@@ -113,7 +113,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
       <tr>
-        <td align="right">启用登录验证码：<br /></td>
+        <td align="right">开启登录验证码：<br /></td>
         <td class="care">
 				<select name="login_code">
           <option value="y" <?php echo $ex1; ?>>是</option>
@@ -122,7 +122,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right">启用评论验证码：<br /></td>
+        <td align="right">开启评论验证码：<br /></td>
         <td><select name="comment_code">
           <option value="y" <?php echo $ex3; ?>>是</option>
           <option value="n" <?php echo $ex4; ?>>否</option>
