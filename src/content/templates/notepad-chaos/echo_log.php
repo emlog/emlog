@@ -112,20 +112,6 @@ $day = substr($datetime['2'],0,2);
 
   </div>
   <div class="col02">
-    <div class="recent-posts">
-    <?php
-    	$topquery = $DB->query("SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY date DESC  LIMIT 5");
-		while($toplogs = $DB->fetch_array($topquery)):
-			$toplogs['post_time'] = date('Y-n-j G:i l',$toplogs['date']);
-			$toplogs['title'] = htmlspecialchars(trim($toplogs['title']));
-	?>
-    <ul>
-    <li><a href="./?action=showlog&gid=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
-    <span class="listMeta"><?php echo $toplogs['post_time']; ?></span></a></li>
-    </ul>
-    <?php endwhile;?>
-    </div>
-    <div class="postit-bottom"></div>
     <?php include getViews('side'); ?>
   </div>
   <br clear="all" />
