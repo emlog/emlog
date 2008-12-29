@@ -108,6 +108,8 @@ if($action == 'admin_all_log')
 			$CACHE->mc_logtags();
 			$CACHE->mc_tags();
 			$CACHE->mc_newlog();
+			$CACHE->mc_logsort();
+			$CACHE->mc_sort();
 			if($pid == 'draft')
 			{
 				header("Location: ./admin_log.php?pid=draft&active_del=true");
@@ -139,6 +141,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_comment();
 			$CACHE->mc_logtags();
 			$CACHE->mc_newlog();
+			$CACHE->mc_sort();
 			header("Location: ./admin_log.php?active_hide=true");
 			break;
 		case 'show':
@@ -151,6 +154,7 @@ if($action == 'admin_all_log')
 			$CACHE->mc_logtags();
 			$CACHE->mc_record();
 			$CACHE->mc_newlog();
+			$CACHE->mc_sort();
 			header("Location: ./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
@@ -176,6 +180,7 @@ if ($action == 'dellog' || $action == 'deldraft')
 	$CACHE->mc_logtags();
 	$CACHE->mc_tags();
 	$CACHE->mc_newlog();
+	$CACHE->mc_sort();
 	if($action == 'dellog')
 	{
 		header("Location: ./admin_log.php?active_del=true");

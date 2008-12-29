@@ -87,8 +87,8 @@ if($action == 'addlog')
 	$CACHE->mc_record();
 	$CACHE->mc_logtags();
 	$CACHE->mc_logatts();
-	$CACHE->mc_logsort();
 	$CACHE->mc_newlog();
+	$CACHE->mc_logsort();
 	$CACHE->mc_sort();
 	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 }
