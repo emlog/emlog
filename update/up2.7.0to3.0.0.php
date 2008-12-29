@@ -252,6 +252,9 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$res = $DB->query("select * from {$db_prefix}config");
 	$row = $DB->fetch_array($res);
 	@extract($row);
+	$blogname = addslashes($blogname);
+	$bloginfo = addslashes($bloginfo);
+	$site_key = addslashes($site_key);
 	
 $insert = "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','$blogname');
