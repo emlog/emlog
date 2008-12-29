@@ -145,7 +145,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $title; ?></a></li>
+		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>			
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -162,7 +162,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $title; ?></a></li>
+		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>		
 		</ul>
 		</div> <!-- BOX3 TEXT -->
