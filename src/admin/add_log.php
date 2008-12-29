@@ -89,6 +89,7 @@ if($action == 'addlog')
 	$CACHE->mc_logatts();
 	$CACHE->mc_logsort();
 	$CACHE->mc_newlog();
+	$CACHE->mc_sort();
 	formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 }
 //自动保存
