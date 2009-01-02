@@ -43,7 +43,7 @@ class emComment {
 			$row['cname'] = htmlspecialchars($row['poster']);
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
-			$row['content'] = $row['comment'];
+			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = date("Y-m-d H:i",$row['date']);
 			$row['reply'] = trim($row['reply']);
 			$comments[] = $row;
