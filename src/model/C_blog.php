@@ -202,7 +202,7 @@ class emBlog {
 		$postTime = $localtime;
 		if($hour && $min && $sec && $month && $day && $year)
 		{
-			$postTime = @gmmktime($hour, $min, $sec, $month, $day, $year);
+			$postTime = @gmmktime($hour, $min, $sec, $month, $day, $year)-$timezone*3600;
 			if($postTime === false)
 			{
 				$postTime = $localtime;
