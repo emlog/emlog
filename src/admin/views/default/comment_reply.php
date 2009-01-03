@@ -5,7 +5,7 @@
   <table width="600">
     <tbody>
       <tr>
-        <td align="right">姓名：</td><td> <?php echo $name; ?></td>
+        <td align="right">姓名：</td><td> <?php echo $poster; ?></td>
 	  </tr>
       <tr>
         <td align="right" valign="top" width="50">内容：</td><td> <?php echo $comment; ?></td>

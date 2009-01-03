@@ -62,7 +62,6 @@ foreach($tb as $key=>$value):
 <?php
 foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
-$value['content'] = htmlClean($value['content']);
 ?>
 <div id="com_line">
 	<a name="<?php echo $value['cid']; ?>"></a>

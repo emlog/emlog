@@ -97,7 +97,7 @@ class mkcache {
 			$com_cache[] = array(
 			'url' => "index.php?action=showlog&gid={$show_com['gid']}#{$show_com['cid']}",
 			'name' => htmlspecialchars($show_com['poster']),
-			'content' => htmlClean2(subString($show_com['comment'],0,$comment_subnum)),
+			'content' => htmlClean(subString($show_com['comment'],0,$comment_subnum), false),
 			'reply' => $show_com['reply']
 			);
 		}

@@ -102,10 +102,7 @@ if ($action== 'reply_comment')
 	include getViews('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$commentArray = $emComment->getOneComment($commentId);
-	$comment = htmlspecialchars(trim($commentArray['comment']));
-	$reply = htmlspecialchars(trim($commentArray['reply']));
-	$name = trim($commentArray['poster']);
-	$date = date("Y-m-d H:i",$commentArray['date']);
+	extract($commentArray);
 
 	require_once(getViews('comment_reply'));
 	include getViews('footer');cleanPage();

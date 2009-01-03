@@ -25,7 +25,7 @@ class emLink {
 		while($row = $this->dbhd->fetch_array($res))
 		{
 			$row['sitename'] = htmlspecialchars($row['sitename']);
-			$row['description'] = subString(htmlClean2($row['description']),0,80);
+			$row['description'] = subString(htmlClean($row['description'], false),0,80);
 			$row['siteurl'] = $row['siteurl'];
 			$links[] = $row;
 		}

@@ -45,7 +45,7 @@ class emComment {
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = date("Y-m-d H:i",$row['date']);
-			$row['reply'] = trim($row['reply']);
+			$row['reply'] = htmlClean($row['reply']);
 			$comments[] = $row;
 		}
 		return $comments;
@@ -55,6 +55,10 @@ class emComment {
 		$sql = "select * from $this->commentTable where cid=$commentId";
 		$res = $this->dbhd->query($sql);
 		$commentArray = $this->dbhd->fetch_array($res);
+		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
+		$commentArray['reply'] = htmlClean(trim($commentArray['reply']));
+		$commentArray['poster'] = trim($commentArray['poster']);
+		$commentArray['date'] = date("Y-m-d H:i",$commentArray['date']);
 		return $commentArray;
 	}
 	/**

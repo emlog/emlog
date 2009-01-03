@@ -54,27 +54,17 @@ function stripslashesDeep($value)
 /**
  * 转换HTML代码函数
  *
- * @param string $content
+ * @param unknown_type $content
+ * @param unknown_type $wrap 是否换行
  * @return unknown
  */
-function htmlClean($content)
+function htmlClean($content, $wrap=true)
 {
 	$content = htmlspecialchars($content);
-	$content = str_replace("\n", '<br>', $content);
-	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
-	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
-	return $content;
-}
-
-/**
- * 转换HTML代码函数(mk_cache.php 65 line)
- *
- * @param string $content
- * @return unknown
- */
-function htmlClean2($content)
-{
-	$content = htmlspecialchars($content);
+	if($wrap)
+	{
+		$content = str_replace("\n", '<br>', $content);
+	}
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
 	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
 	return $content;
