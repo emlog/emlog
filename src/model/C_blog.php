@@ -198,11 +198,11 @@ class emBlog {
 	 */
 	function postDate($timezone=8, $hour=null, $min=null,$sec=null, $month=null, $day=null,$year=null)
 	{
-		$localtime = $timezone != 8 ? time() - ($timezone - 8) * 3600 : time();
+		$localtime = time() - ($timezone - 8) * 3600;
 		$postTime = $localtime;
 		if($hour && $min && $sec && $month && $day && $year)
 		{
-			$postTime = @gmmktime($hour, $min, $sec, $month, $day, $year)-$timezone*3600;
+			$postTime = @mktime($hour, $min, $sec, $month, $day, $year);
 			if($postTime === false)
 			{
 				$postTime = $localtime;

@@ -82,7 +82,7 @@ if($action == 'edit')
 	//是否修改日期 /生成新的日期码
 	if($edittime == 1)
 	{
-		$postTime = @gmmktime($_POST['newhour'],$_POST['newmin'],$_POST['newsec'],$_POST['newmonth'],$_POST['newday'],$_POST['newyear'])-$timezone*3600;;
+		$postTime = @mktime($_POST['newhour'],$_POST['newmin'],$_POST['newsec'],$_POST['newmonth'],$_POST['newday'],$_POST['newyear']);
 		if($postTime === false)
 		{
 			$postTime = $date;
