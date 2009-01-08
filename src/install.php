@@ -178,7 +178,11 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	}elseif($adminpw!=$adminpw2)	 {
 		sysMsg('两次输入的密码不一致');
 	}
-	@$fp = fopen("config.php", 'w') OR die("<table width=\"600\" align=\"center\" bgcolor=\"#f6f6f6\"><tr><td>打开配置文件(config.php)失败!检查文件权限</td></tr></table>");
+	@$fp = fopen("config.php", 'w');
+	if(!$fp)
+	{
+		sysMsg('打开配置文件(config.php)失败!检查文件是否可写');
+	}
 
 	$config = "<?php\n"
 	."//mysql database address\n"
