@@ -45,7 +45,7 @@ class emLink {
 
 	function addLink($name, $url, $des)
 	{
-		$sql="insert into $this->linkTable (sitename,siteurl,description) values('$name','$url.','$des')";
+		$sql="insert into $this->linkTable (sitename,siteurl,description) values('$name','$url','$des')";
 		$this->dbhd->query($sql);
 	}
 
