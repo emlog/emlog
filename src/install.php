@@ -254,6 +254,10 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	);
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
+	//blog url
+	preg_match("/^.*\//", $_SERVER['SCRIPT_NAME'], $matches);
+	$subdir = $matches[0];
+	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$subdir;
 
 	//sql language
 	$sql = $setchar."
@@ -310,7 +314,7 @@ PRIMARY KEY (option_id)
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','welcome');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','http://');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','$blogUrl');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');

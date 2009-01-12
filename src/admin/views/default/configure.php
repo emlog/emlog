@@ -17,7 +17,7 @@ setTimeout(hideActived,2600);
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客地址：</td>
-        <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" />(必填) 如：http://www.emlog.net/blog/</td>
+        <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客关键字：</td>
