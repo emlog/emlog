@@ -59,14 +59,14 @@ setTimeout(hideActived,2600);
             <input maxlength="200" size="35" name="sitename" />
             <br /></td></tr>
         <tr nowrap="nowrap">
-          <td>地址 [加http://]<br />
-  <input maxlength="200" size="35" name="siteurl" />
-              <br /></td>
+        <td>地址<br />
+			<input maxlength="200" size="35" name="siteurl" /><br />
+		</td>
         </tr>
         <tr nowrap="nowrap">
-        <td>描述 [可选 不宜太长]<br />
-			<textarea name="description" rows="5" cols="40" type="text"></textarea><br />
-		  </td>
+        <td>描述<br />
+		<textarea name="description" rows="5" cols="40" type="text"></textarea><br />
+		</td>
         </tr>
         <tr>
           <td colspan="2">

@@ -46,6 +46,11 @@ if($action== 'addlink')
 		header("Location: ./link.php?error_a=true");
 		exit;
 	}
+	if(strncasecmp($siteurl, 'http://', 7))
+	{
+		$siteurl = 'http://'.$siteurl;
+	}
+	
 	$emLink->addLink($sitename, $siteurl, $description);
 	$CACHE->mc_link();
 	header("Location: ./link.php?active_add=true");
@@ -68,6 +73,11 @@ if($action=='update_link')
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$linkId = isset($_POST['linkid']) ? intval($_POST['linkid']) : '';
+	
+	if(strncasecmp($siteurl, 'http://', 7))
+	{
+		$siteurl = 'http://'.$siteurl;
+	}
 
 	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
