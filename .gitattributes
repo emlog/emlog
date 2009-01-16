@@ -131,6 +131,34 @@ src/content/cache/sort -text
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
+src/content/templates/azul/echo_log.php -text
+src/content/templates/azul/footer.php -text
+src/content/templates/azul/function.php -text
+src/content/templates/azul/header.php -text
+src/content/templates/azul/images/bodybg.jpg -text
+src/content/templates/azul/images/commentbubble.gif -text
+src/content/templates/azul/images/containerbg.jpg -text
+src/content/templates/azul/images/footerbg.jpg -text
+src/content/templates/azul/images/headerbg.jpg -text
+src/content/templates/azul/images/icon_rss.gif -text
+src/content/templates/azul/images/import.gif -text
+src/content/templates/azul/images/modify.gif -text
+src/content/templates/azul/images/navbarbg.jpg -text
+src/content/templates/azul/images/navbuttonbg-hover.gif -text
+src/content/templates/azul/images/navbuttonbg.gif -text
+src/content/templates/azul/images/player.swf -text
+src/content/templates/azul/images/reply.gif -text
+src/content/templates/azul/images/rss.gif -text
+src/content/templates/azul/images/searchsubmit.gif -text
+src/content/templates/azul/images/sidebar_border.gif -text
+src/content/templates/azul/images/wap.gif -text
+src/content/templates/azul/log_list.php -text
+src/content/templates/azul/main.css -text
+src/content/templates/azul/message.php -text
+src/content/templates/azul/preview.jpg -text
+src/content/templates/azul/side.php -text
+src/content/templates/azul/tpl.ini -text
+src/content/templates/azul/unique_tpl.js -text
 src/content/templates/black/echo_log.php -text
 src/content/templates/black/footer.php -text
 src/content/templates/black/function.php -text
