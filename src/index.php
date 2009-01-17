@@ -23,7 +23,7 @@ $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['re
 $job = array('showlog','search','addcom','taglog','');
 if (!in_array($action,$job))
 {
-	msg('error!','./index.php');
+	emMsg('error!','./index.php');
 }
 //日志列表
 if (!isset($action) || empty($action))
@@ -54,7 +54,7 @@ if (!isset($action) || empty($action))
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
-			msg('不存在该标签','./index.php');
+			emMsg('不存在该标签','./index.php');
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -64,7 +64,7 @@ if (!isset($action) || empty($action))
 		$keyword = str_replace('_','\_',$keyword);
 		if (strlen($keyword) > 30 || strlen($keyword) < 3)
 		{
-			msg('错误的关键字长度','./index.php');
+			emMsg('错误的关键字长度','./index.php');
 		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -95,7 +95,7 @@ if ($action == 'showlog')
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
 	require_once(EMLOG_ROOT.'/model/C_trackback.php');
 
-	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : msg('提交参数错误','./index.php');
+	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : emMsg('提交参数错误','./index.php');
 
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
@@ -104,7 +104,7 @@ if ($action == 'showlog')
 	$logData = $emBlog->getOneLog($logid, 'n', 'homepage');
 	if($logData === false)
 	{
-		msg('不存在该日志','./index.php');
+		emMsg('不存在该日志','./index.php');
 	}
 	extract($logData);
 	$blogtitle = $log_title.' - '.$blogname;
@@ -146,10 +146,10 @@ if ($action == 'addcom')
 	{
 		$CACHE->mc_sta();
 		$CACHE->mc_comment();
-		msg('评论发表成功!',"?action=showlog&gid=$gid#comment");
+		emMsg('评论发表成功!',"?action=showlog&gid=$gid#comment");
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
-		msg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
+		emMsg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 	}
 }
 

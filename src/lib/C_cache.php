@@ -354,8 +354,8 @@ class mkcache {
 	function cacheWrite ($cacheDate,$cachefile)
 	{
 		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
-		@ $fp = fopen($cachefile, 'wb') OR sysMsg('打开缓存文件失败，请查看文件权限');
-		@ $fw =	fwrite($fp,$cacheDate) OR sysMsg('写入缓存失败，请查看文件权限');
+		@ $fp = fopen($cachefile, 'wb') OR emMsg('打开缓存文件失败，请查看文件权限');
+		@ $fw =	fwrite($fp,$cacheDate) OR emMsg('写入缓存失败，请查看文件权限');
 		fclose($fp);
 	}
 

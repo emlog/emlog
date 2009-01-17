@@ -692,38 +692,6 @@ function formatArray($array)
 }
 
 /**
- * 返回显系统错误信息
- *
- * @param unknown_type $info
- */
-function sysMsg($info)
-{
-	print <<<EOT
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog system message</title>
-<style type="text/css">
-<!--
-body {
-	background-color:#D4E9EA;
-	font-family: Arial;
-	font-size: 12px;
-	line-height:150%;
-}
--->
-</style>
-</head>
-<body>
-<p>$info</p>
-<p><a href="javascript:history.back(-1);">返回</a></p>
-</body>
-</html>
-EOT;
-	exit;
-}
-
-/**
  * 后台操作返回信息
  *
  * @param unknown_type $msg
@@ -739,16 +707,52 @@ function formMsg($msg,$url,$type)
 }
 
 /**
- * 前台错误处理函数
+ * 显示系统信息
  *
- * @param string $msg 错误信息
- * @param string $url 返回url
+ * @param string $msg 信息
+ * @param string $url 返回地址
  */
-function msg($msg,$url)
+function emMsg($msg,$url='javascript:history.back(-1);')
 {
-	global $em_tpldir;
-	require_once getViews('message');
-	cleanPage();
-	exit;
+print <<<EOT
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>emlog system message</title>
+<style type="text/css">
+<!--
+body {
+	background-color:#F7F7F7;
+	font-family: Arial;
+	font-size: 12px;
+	line-height:150%;
+}
+.main {
+	background-color:#FFFFFF;
+	margin-top:20px;
+	font-size: 12px;
+	color: #666666;
+	width:600px;
+	margin:10px 200px;
+	padding:10px;
+	list-style:none;
+	border:#DFDFDF 1px solid;
+}
+.main p {
+	line-height: 18px;
+	margin: 5px 20px;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+<p>$msg</p>
+<p><a href="$url">返回</a></p>
+</div>
+</body>
+</html>
+EOT;
+exit;
 }
 ?>

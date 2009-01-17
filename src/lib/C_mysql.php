@@ -22,14 +22,14 @@ class MySql {
 	{
 		if (!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
 		{
-			sysMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
+			emMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
 		}
 		if ($this->getMysqlVersion() >'4.1')
 		{
 			mysql_query("SET NAMES 'utf8'");
 		}
 
-		@mysql_select_db($dbName, $this->conn) OR sysMsg("未找到指定数据库");
+		@mysql_select_db($dbName, $this->conn) OR emMsg("未找到指定数据库");
 	}
 
 	/**
@@ -54,7 +54,7 @@ class MySql {
 		$this->queryCount++;
 		if (!$this->result)
 		{
-			sysMsg("SQL语句执行错误：$sql <br />".$this->geterror());
+			emMsg("SQL语句执行错误：$sql <br />".$this->geterror());
 		} else {
 			return $this->result;
 		}

@@ -79,9 +79,9 @@ if ($action == 'logs')
 //显示日志
 if ($action == 'dis')
 {
-	isset($_GET['id']) ? $logid = intval($_GET['id']) : msg('提交参数错误','./wap.php');
+	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./wap.php');
 	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
-	OR msg('不存在该日志','./wap.php');
+	OR emMsg('不存在该日志','./wap.php');
 	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 
 	$log_title  = htmlspecialchars($show_log['title']);

@@ -26,7 +26,7 @@ if(!isset($_GET['action']))
 <style type="text/css">
 <!--
 body {
-	background-color:#D4E9EA;
+	background-color:#F7F7F7;
 	font-family: Arial;
 	font-size: 12px;
 	line-height:150%;
@@ -36,10 +36,11 @@ body {
 	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:500px;
+	width:600px;
 	margin:10px 200px;
 	padding:10px;
 	list-style:none;
+	border:#DFDFDF 1px solid;
 }
 .input {
 	border: 1px solid #CCCCCC;
@@ -168,20 +169,20 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	//错误返回函数
 	if(empty($db_prefix))
 	{
-		sysMsg('数据库前缀不能为空!');
+		emMsg('数据库前缀不能为空!');
 	}elseif(!ereg("^[a-zA-Z0-9_]+_$",$db_prefix)){
-		sysMsg('数据库前缀格式错误!');
+		emMsg('数据库前缀格式错误!');
 	}elseif($admin=="" || $adminpw==""){
-		sysMsg('管理员和管理员密码不能为空!');
+		emMsg('管理员和管理员密码不能为空!');
 	}elseif(strlen($adminpw) < 6){
-		sysMsg('管理员密码不得小于6位');
+		emMsg('管理员密码不得小于6位');
 	}elseif($adminpw!=$adminpw2)	 {
-		sysMsg('两次输入的密码不一致');
+		emMsg('两次输入的密码不一致');
 	}
 	@$fp = fopen("config.php", 'w');
 	if(!$fp)
 	{
-		sysMsg('打开配置文件(config.php)失败!检查文件是否可写');
+		emMsg('打开配置文件(config.php)失败!检查文件是否可写');
 	}
 
 	$config = "<?php\n"
@@ -208,7 +209,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	@$fw = fwrite($fp, $config) ;
 	if (!$fw)
 	{
-		sysMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
+		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
 	}else{
 		$result.="配置文件修改成功<br />";
 	}
@@ -427,7 +428,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 				if (!$ret)
 				{
 					$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
-					sysMsg($result);
+					emMsg($result);
 				}else{
 					$result .= "成功...<br />\n";
 				}
@@ -436,7 +437,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 				if (!$ret)
 				{
 					$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
-					sysMsg($result);
+					emMsg($result);
 				}
 			}
 		}
@@ -457,6 +458,6 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$CACHE->mc_newlog();
 
 	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
-	sysMsg($result);
+	emMsg($result);
 }
 ?>
