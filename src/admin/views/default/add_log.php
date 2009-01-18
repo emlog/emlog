@@ -28,13 +28,14 @@ setTimeout("doautosave()",30000);
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b> <span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:500px;" name="title" id="title"/>
-	        <select name="sort">
+          <input maxlength="200" style="width:380px;" name="title" id="title"/>
+	      <select name="sort">
 	        <option value="-1">选择分类...</option>
 			<?php foreach($sorts as $val):?>
 			<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
 			<?php endforeach;?>
-	       </select> 
+	      </select> 
+	      <input maxlength="200" style="width:125px;" name="postdate" id="title" value="<?php echo date('Y-m-d H:i:s'); ?>"/>
         </td>
         </tr>
         <tr>
@@ -73,19 +74,6 @@ setTimeout("doautosave()",30000);
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br /></b>
 			<textarea name="pingurl" rows="3" cols="" style="width:715px;"  onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
           </td></tr>
-        <tr>
-          <td><b>更改发布时间</b>
-            <input id="switch" onclick="displayToggle('changedate');" type="checkbox" value="" name="edittime" /><br />
-            <div style="clear:both; display: none;" id="changedate">
-			  <input name="newyear" type="text" value="" maxlength="" size="2"> 年 
-			  <input name="newmonth" type="text" value="" maxlength="2" size="1"> 月 
-			  <input name="newday" type="text" value="" maxlength="2" size="1"> 日 
-			  <input name="newhour" type="text" value="" maxlength="2" 	size="1"> 时 
-			  <input name="newmin" type="text" value="" maxlength="2" size="1"> 分 
-			  <input name="newsec" type="text" value="" maxlength="2" size="1"> 秒
-			<br />
-		  请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒  (24小时制)</div></td>
-        </tr>
         <tr>
           <td>接受评论？是
           <input type="radio" checked="checked" value="y" name="allow_remark" />否

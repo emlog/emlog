@@ -23,16 +23,18 @@ setTimeout("doautosave()",30000);
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:500px;" name="title" id="title" value="<?php echo $title; ?>"/>
-	        <select name="sort">
-	        <?php
-	        $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
+          <input maxlength="200" style="width:380px;" name="title" id="title" value="<?php echo $title; ?>"/>
+			<select name="sort">
+			<?php
+			$sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
 			foreach($sorts as $val):
 			$flg = $val['sid'] == $sortid ? 'selected' : '';
 			?>
 			<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
 			<?php endforeach; ?>
-	       </select>
+			</select>
+	       <input maxlength="200" style="width:125px;" name="postdate" id="title" value="<?php echo date('Y-m-d H:i:s', $date); ?>"/>
+	       <input name="date" type="hidden" value="<?php echo $date; ?>" >
           </td>
         </tr>
         <tr>
@@ -71,20 +73,6 @@ setTimeout("doautosave()",30000);
           <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<br />
           <textarea name="pingurl" cols="" rows="3" style="width:715px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';">每行输入一个引用地址</textarea>
           </td>
-        </tr>
-        <tr>
-          <td><b>更改发布时间</b>
-            <input id="switch" onclick="displayToggle('changedate');" type="checkbox" value="1" name="edittime" />
-              <br />
-              <div style="clear:both; display: none;" id="changedate">
-			  <input name="newyear" type="text" value="<?php echo $year; ?>" maxlength="" size="2"> 年 
-			  <input name="newmonth" type="text" value="<?php echo $month; ?>" maxlength="2" size="1"> 月 
-			  <input name="newday" type="text" value="<?php echo $day; ?>" maxlength="2" size="1"> 日 
-			  <input name="newhour" type="text" value="<?php echo $hour; ?>" maxlength="2" 	size="1"> 时
-			  <input name="newmin" type="text" value="<?php echo $minute; ?>" maxlength="2" size="1"> 分 
-			  <input name="newsec" type="text" value="<?php echo $second; ?>" maxlength="2" size="1"> 秒
-			  <input name="date" type="hidden" value="<?php echo $date; ?>" >
-		  <br />请正确填写各参数,如果参数错误将仍使用当前服务器时间! 范例:2006年01月08日08时06分01秒 (24小时制)</div></td>
         </tr>
         <tr>
         <td>接受评论？是

@@ -35,6 +35,7 @@ if($action == 'addlog')
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
 	$sort = isset($_POST['sort']) ? addslashes($_POST['sort']) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
@@ -53,7 +54,7 @@ if($action == 'addlog')
 		$ok_msg = '日志成功发布！';
 		$ok_url = 'admin_log.php';
 	}
-	$postTime = $emBlog->postDate($timezone,intval($_POST['newhour']),intval($_POST['newmin']),intval($_POST['newsec']),intval($_POST['newmonth']),intval($_POST['newday']),intval($_POST['newyear']));
+	$postTime = $emBlog->postDate($timezone, $postDate);
 
 	$logData = array(
 	'title'=>$title,

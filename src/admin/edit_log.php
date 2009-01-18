@@ -32,13 +32,6 @@ if ($action=='')
 	$tagStr = implode(',', $tags);
 	//old tag
 	$tags = $emTag->getTag();
-	//date
-	$year = date('Y',$date);
-	$month = date('m',$date);
-	$day = date('d',$date);
-	$hour = date('H',$date);
-	$minute = date('i',$date);
-	$second	 = date('s',$date);
 
 	if($allow_remark=='y')
 	{
@@ -69,6 +62,7 @@ if($action == 'edit')
 	$emTb = new emTrackback($DB);
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+	$postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
 	$sort = isset($_POST['sort']) ? addslashes(trim($_POST['sort'])) : '';
 	$tagstr = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$edittime = isset($_POST['edittime']) ? intval($_POST['edittime']) : '';
@@ -79,22 +73,16 @@ if($action == 'edit')
 	$logid = 	isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 
-	//是否修改日期 /生成新的日期码
-	if($edittime == 1)
+	$unixPostDate = @strtotime($postDate);
+	if($unixPostDate === false)
 	{
-		$postTime = @mktime($_POST['newhour'],$_POST['newmin'],$_POST['newsec'],$_POST['newmonth'],$_POST['newday'],$_POST['newyear']);
-		if($postTime === false)
-		{
-			$postTime = $date;
-		}
-	}else{
-		$postTime = $date;
+		$unixPostDate = $date;
 	}
 
 	$logData = array(
 	'title'=>$title,
 	'sortid'=>$sort,
-	'date'=>$postTime,
+	'date'=>$unixPostDate,
 	'allow_remark'=>$allow_remark,
 	'allow_tb'=>$allow_tb,
 	'content'=>$content
