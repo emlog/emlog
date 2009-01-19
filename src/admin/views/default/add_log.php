@@ -35,7 +35,7 @@ setTimeout("doautosave()",30000);
 			<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
 			<?php endforeach;?>
 	      </select> 
-	      <input maxlength="200" style="width:125px;" name="postdate" id="title" value="<?php echo date('Y-m-d H:i:s'); ?>"/>
+	      <input maxlength="200" style="width:125px;" name="postdate" id="title" value="<?php echo $postDate; ?>"/>
         </td>
         </tr>
         <tr>

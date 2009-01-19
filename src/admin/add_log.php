@@ -19,6 +19,9 @@ if($action == '')
 
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
+	
+	$localtime = time() - ($timezone - 8) * 3600;
+	$postDate = date('Y-m-d H:i:s', $localtime);
 
 	include getViews('header');
 	require_once(getViews('add_log'));
