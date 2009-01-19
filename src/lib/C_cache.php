@@ -199,7 +199,7 @@ class mkcache {
 	{
 		$row = $this->dbhd->fetch_array($this->dbhd->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_newlognum'"));
 		$index_newlognum = $row['option_value'];
-		$sql = "SELECT gid,title FROM ".$this->db_prefix."blog WHERE hide='n' ORDER BY gid DESC LIMIT 0, $index_newlognum";
+		$sql = "SELECT gid,title FROM ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))

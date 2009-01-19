@@ -93,9 +93,10 @@ class emBlog {
 					break;
 				case 'homepage':
 					$logData = array(
-					'log_title' => htmlspecialchars($row['title']),
+					'log_title'	=> htmlspecialchars($row['title']),
 					'post_time' => date('Y-n-j G:i l',$row['date']),
 					'logid' => intval($row['gid']),
+					'sortid' => intval($row['sortid']),
 					'tbscode' => substr(md5(date('Ynd')),0,5),
 					'log_content' => rmBreak($row['content']),
 					'allow_remark' => $row['allow_remark'],
@@ -234,7 +235,7 @@ class emBlog {
 		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
 		return $neighborlog;
 	}
-	
+
 	/**
 	 * 获取指定数量最新日志
 	 *
