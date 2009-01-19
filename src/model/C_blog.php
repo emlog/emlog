@@ -196,19 +196,19 @@ class emBlog {
 	/**
 	 * 获取日志发布时间
 	 */
-	function postDate($timezone=8, $hour=null, $min=null,$sec=null, $month=null, $day=null,$year=null)
+	function postDate($timezone=8, $postDate=null)
 	{
 		$localtime = time() - ($timezone - 8) * 3600;
-		$postTime = $localtime;
-		if($hour && $min && $sec && $month && $day && $year)
+		$unixPostDate = $localtime;
+		if($postDate)
 		{
-			$postTime = @mktime($hour, $min, $sec, $month, $day, $year);
-			if($postTime === false)
+			$unixPostDate = @strtotime($postDate);
+			if($unixPostDate === false)
 			{
-				$postTime = $localtime;
+				$unixPostDate = $localtime;
 			}
 		}
-		return $postTime;
+		return $unixPostDate;
 	}
 
 	/**

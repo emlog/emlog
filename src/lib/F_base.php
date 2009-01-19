@@ -536,34 +536,38 @@ function findArray($array1,$array2)
  * @param array $type 允许上传的文件类型
  * @param string $filetype 上传文件的类型 eg:image/jpeg
  * @param boolean $isIcon 是否为上传头像
- * @return unknown
+ * @return -1错误的附件类型 -2附件大小超出的限制 -3权限不足无法创建附件目录 -4上传附件失败
  */
 function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 {
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-		return -1;//错误的附件类型
+		return -1;
 	}
 	if ($filesize > UPLOADFILE_MAXSIZE)
 	{
-		return -2;//附件大小超出的限制
+		return -2;
 	}
 	$uppath = UPLOADFILE_PATH . date("Ym") . "/";
 	$fname = md5($filename) . date("YmdHis") .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(UPLOADFILE_PATH))
 	{
-		if (@mkdir(UPLOADFILE_PATH,0777) === false)
+		umask(0);
+		$ret = @mkdir(UPLOADFILE_PATH, 0777);
+		if ($ret === false)
 		{
-			return -3;//权限不足无法创建附件目录
+			return -3;
 		}
 	}
 	if (!is_dir($uppath))
 	{
-		if (@mkdir($uppath,0777) === false)
+		umask(0);
+		$ret = @mkdir($uppath, 0777);
+		if ($ret === false)
 		{
-			return -3;//权限不足无法创建附件目录
+			return -3;
 		}
 	}
 	//缩略
@@ -581,8 +585,9 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 		if (!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
-			return -4;//上传附件失败
+			return -4;
 		}
+		chmod($attachpath, 0777);
 	}
 	return 	$attach;
 }

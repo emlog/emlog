@@ -20,9 +20,13 @@ class MySql {
 
 	function MySql($dbHost = '', $dbUser = '', $dbPass = '', $dbName = '')
 	{
+		if (!function_exists('mysql_connect'))
+		{
+			emMsg('服务器PHP不支持MySql数据库');
+		}
 		if (!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
 		{
-			emMsg("连接数据库失败,可能是mysql数据库用户名或密码错误");
+			emMsg("连接数据库失败,可能是数据库用户名或密码错误");
 		}
 		if ($this->getMysqlVersion() >'4.1')
 		{
