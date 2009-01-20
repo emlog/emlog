@@ -482,6 +482,47 @@ src/content/templates/half-life/obar.php -text svn_keywords=Id
 src/content/templates/half-life/preview.jpg -text svn_keywords=Id
 src/content/templates/half-life/side.php -text svn_keywords=Id
 src/content/templates/half-life/tpl.ini -text
+src/content/templates/inove/echo_log.php -text
+src/content/templates/inove/footer.php -text
+src/content/templates/inove/function.php -text
+src/content/templates/inove/header.php -text
+src/content/templates/inove/images/bg.jpg -text
+src/content/templates/inove/images/bg_cal_today.gif -text
+src/content/templates/inove/images/blockquote.gif -text
+src/content/templates/inove/images/box.gif -text
+src/content/templates/inove/images/box_1col.gif -text
+src/content/templates/inove/images/comment.gif -text
+src/content/templates/inove/images/comment_1col.gif -text
+src/content/templates/inove/images/commentpoint.png -text
+src/content/templates/inove/images/feeds.gif -text
+src/content/templates/inove/images/header_footer.jpg -text
+src/content/templates/inove/images/header_footer_1col.jpg -text
+src/content/templates/inove/images/icon_rss.gif -text
+src/content/templates/inove/images/icons.gif -text
+src/content/templates/inove/images/import.gif -text
+src/content/templates/inove/images/light.gif -text
+src/content/templates/inove/images/menu.gif -text
+src/content/templates/inove/images/messagebox.gif -text
+src/content/templates/inove/images/messagebox_1col.gif -text
+src/content/templates/inove/images/modify.gif -text
+src/content/templates/inove/images/player.swf -text
+src/content/templates/inove/images/postbox.gif -text
+src/content/templates/inove/images/postbox_1col.gif -text
+src/content/templates/inove/images/readers.gif -text
+src/content/templates/inove/images/reply.gif -text
+src/content/templates/inove/images/rss.gif -text
+src/content/templates/inove/images/sidebar_border.gif -text
+src/content/templates/inove/images/sidesep.gif -text
+src/content/templates/inove/images/textfield.gif -text
+src/content/templates/inove/images/title.gif -text
+src/content/templates/inove/images/wap.gif -text
+src/content/templates/inove/images/widgetsep.png -text
+src/content/templates/inove/images/wp-logo.png -text
+src/content/templates/inove/log_list.php -text
+src/content/templates/inove/main.css -text
+src/content/templates/inove/message.php -text
+src/content/templates/inove/preview.jpg -text
+src/content/templates/inove/side.php -text
 src/content/templates/lust/echo_log.php -text svn_keywords=Id
 src/content/templates/lust/footer.php -text svn_keywords=Id
 src/content/templates/lust/function.php -text
