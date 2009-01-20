@@ -21,7 +21,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   	<li id="blogdes"><?php echo $bloginfo; ?></li>
 </ul>
 </div>
-<form name="f" method="post" action="index.php?action=login">
 <div id="navBar">
 <ul>
 <?php if(ISLOGIN): ?>
@@ -33,5 +32,4 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php endif; ?>
 </ul>
 </div>
-</form>
 </div>
