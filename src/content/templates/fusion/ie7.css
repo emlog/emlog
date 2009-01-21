@@ -1,0 +1,7 @@
+
+
+/* Internet Explorer 7 bug fixes */
+
+.comment{
+   display: inline; /* fixes the new cool and improved IE 7 double-margin bug */
+}
