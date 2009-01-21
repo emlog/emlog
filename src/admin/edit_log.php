@@ -103,5 +103,5 @@ if($action == 'edit')
 	$CACHE->mc_record();
 	$CACHE->mc_tags();
 	$CACHE->mc_newlog();
-	formMsg( "保存成功\t$tbmsg","javascript:history.go(-1);",1);
+	formMsg( "保存成功\t$tbmsg", "./edit_log.php?gid=$logid", 1);
 }
