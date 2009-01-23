@@ -66,7 +66,6 @@ body {
 }
 .care{
 	color:#0066CC;
-	padding:0px 10px;
 }
 .title2{
 	font-size:14px;
@@ -85,53 +84,43 @@ body {
 <div>
 <p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序</span></p>
 </div>
-<div class="a">
-<p class="title2">1.权限设置</p>
-Linux 系统请在执行安装程序之前设置如下文件或目录权限为777：(Win系统无需设置)<br>
-./config.php（文件）<br>
-./content/cache/（目录下所有文件）<br>
-./content/uploadfile（目录）<br>
-./content/backup（目录）<br>
- 请确保上面的权限正确设置，再进行安装。</p>
-</div>
 <div class="b">
-<p class="title2">2.Mysql数据库配置</p>
+<p class="title2">1. 数据库设置 （MySql数据库）</p>
 <li>
-    服务器地址:(通常为localhost不必修改) <br />
+	数据库地址：<span class="care">(通常为 localhost 不必修改)</span> <br />
     <input name="hostname" type="text" class="input" value="localhost">
 </li>
-<li>Mysql
-    数据库用户名<br />
+<li>
+    数据库用户名：<br />
     <input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    数据库用户密码:<br />
+    数据库密码：<br />
   <input name="password" type="password" class="input">
 </li>
 <li>
-    数据库名:
-	  <br>
-	  <span class="care">(请提前自行创建空数据库或使用已有数据库)</span><br />
+    数据库名：
+	  <span class="care">(程序不会自动创建数据库，请提前创建空数据库或使用已有数据库)</span><br />
       <input name="dbname" type="text" class="input" value="">
 </li>
 <li>
-    数据库前缀:<br>
+    数据库前缀：
     <span class="care"> (由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
 <div class="c">
-<p class="title2">3.管理员设置</p>
+<p class="title2">2. 博主设置 （用于安装成功后登录博客使用）</p>
 <li>
-管理员 <span class="care">(后台登录)</span><br />
+博主登录名：<br />
     <input name="admin" type="text" class="input">
 </li>
 <li>
-管理员密码<span class="care">(不小于6位)</span><br />
+博主登录密码：<span class="care">(不小于6位)</span><br />
 <input name="adminpw" type="password" class="input">
 </li>
 <li>
-再次输入管理员密码:<br />
+再次输入博主登录密码：<br />
 <input name="adminpw2" type="password" class="input">
 </li>
 </div>
@@ -161,9 +150,9 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	$db_pw = addslashes(trim($_POST['password']));//mysql 数据库密码
 	$db_name = addslashes(trim($_POST['dbname']));//数据库名
 	$db_prefix = addslashes(trim($_POST['dbprefix']));//数据库前缀
-	$admin = addslashes(trim($_POST['admin']));//管理员名
-	$adminpw = addslashes(trim($_POST['adminpw']));//管理员密码
-	$adminpw2 = addslashes(trim($_POST['adminpw2']));//管理员密码确认
+	$admin = addslashes(trim($_POST['admin']));//博主登录名
+	$adminpw = addslashes(trim($_POST['adminpw']));//博主登录密码
+	$adminpw2 = addslashes(trim($_POST['adminpw2']));//博主登录密码确认
 	$result = '';
 
 	//错误返回函数
@@ -173,9 +162,9 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	}elseif(!ereg("^[a-zA-Z0-9_]+_$",$db_prefix)){
 		emMsg('数据库前缀格式错误!');
 	}elseif($admin=="" || $adminpw==""){
-		emMsg('管理员和管理员密码不能为空!');
+		emMsg('博主登录名和密码不能为空!');
 	}elseif(strlen($adminpw) < 6){
-		emMsg('管理员密码不得小于6位');
+		emMsg('博主登录密码不得小于6位');
 	}elseif($adminpw!=$adminpw2)	 {
 		emMsg('两次输入的密码不一致');
 	}
@@ -457,7 +446,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUE
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
-	$result .= "管理员:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
+	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
 	emMsg($result);
 }
 ?>
