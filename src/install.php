@@ -100,12 +100,12 @@ body {
 </li>
 <li>
     数据库名：
-	  <span class="care">(程序不会自动创建数据库，请提前创建空数据库或使用已有数据库)</span><br />
+	  <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span><br />
       <input name="dbname" type="text" class="input" value="">
 </li>
 <li>
     数据库前缀：
-    <span class="care"> (由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+    <span class="care"> (可以随意填写，但要由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
@@ -171,7 +171,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	@$fp = fopen("config.php", 'w');
 	if(!$fp)
 	{
-		emMsg('打开配置文件(config.php)失败!检查文件是否可写');
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}
 
 	$config = "<?php\n"
@@ -198,7 +198,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	@$fw = fwrite($fp, $config) ;
 	if (!$fw)
 	{
-		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}else{
 		$result.="配置文件修改成功<br />";
 	}
