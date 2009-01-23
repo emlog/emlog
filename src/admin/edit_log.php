@@ -103,5 +103,6 @@ if($action == 'edit')
 	$CACHE->mc_record();
 	$CACHE->mc_tags();
 	$CACHE->mc_newlog();
+	$CACHE->mc_sort();
 	formMsg( "保存成功\t$tbmsg", "./edit_log.php?gid=$logid", 1);
 }
