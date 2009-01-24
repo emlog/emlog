@@ -44,7 +44,7 @@ $tw_cache = $CACHE->readCache('twitter');
 
 //配置项目
 extract($options_cache);
-$tpl_dir = './content/templates/';//所有模板目录
+$tpl_dir = './content/templates/';//模板目录
 $timezone  = intval($timezone);
 $localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
 

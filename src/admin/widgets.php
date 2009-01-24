@@ -8,6 +8,7 @@
 
 require_once('./globals.php');
 
+//显示组件管理面板
 if($action == '')
 {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
@@ -26,7 +27,7 @@ if($action == '')
 			$customWgTitle[$key] = $val;
 		}
 	}
-	
+
 	//music
 	$music = @unserialize($options_cache['music']);
 	if(isset($music['auto']) && $music['auto'])
@@ -60,6 +61,7 @@ if($action == '')
 	cleanPage();
 }
 
+//修改组件设置
 if($action == 'setwg')
 {
 	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
@@ -136,11 +138,13 @@ if($action == 'setwg')
 	header("Location: ./widgets.php?activated=true");
 }
 
+//保存组件排序
 if($action == 'compages')
 {
-	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;
+	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 
 	$widgets = isset($_POST['widgets'.$wgNum]) ? serialize($_POST['widgets'.$wgNum]) : '';
+	//自定义组件
 	$customTextTitle = isset($_POST['custom_title'.$wgNum]) ? addslashes(serialize($_POST['custom_title'.$wgNum])) : '';
 	$customTextContent = isset($_POST['custom_text'.$wgNum]) ? addslashes(serialize($_POST['custom_text'.$wgNum])) : '';
 

@@ -38,22 +38,6 @@ if($action == 'modintro')
 		if($_FILES['photo']['size']>0)
 		{
 			$usericon = uploadFile($_FILES['photo']['name'],$_FILES['photo']['tmp_name'],$_FILES['photo']['size'],$photo_type,$_FILES['photo']['type'],1);
-			switch ($usericon)
-			{
-				case -1:
-					formMsg("错误的文件类型","javascript:history.go(-1);",0);
-					break;
-				case -2:
-					$ret = changeFileSize(UPLOADFILE_MAXSIZE);
-					formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
-					break;
-				case -3:
-					formMsg("权限不足无法创建附件目录","javascript:history.go(-1);",0);
-					break;
-				case -4:
-					formMsg("上传头像失败","javascript:history.go(-1);",0);
-					break;
-			}
 		}else{
 			$usericon = $photo;
 		}

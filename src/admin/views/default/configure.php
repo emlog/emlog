@@ -83,7 +83,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
           <option value="y" <?php echo $ex5; ?>>是</option>
           <option value="n" <?php echo $ex6; ?>>否</option>
         </select>
-		如开启,评论需通过审核才能显示 </td>
+		开启后评论需通过审核才能显示 </td>
       </tr>
 	  <tr>
         <td align="right">开启引用通告：<br /></td>
@@ -91,24 +91,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<select name="istrackback">
           <option value="y" <?php echo $ex7; ?>>是</option>
           <option value="n" <?php echo $ex8; ?>>否</option>
-        </select>
-		</td>
-      </tr>
-	  <tr>
-        <td align="right">开启URL伪静态：<br /></td>
-        <td class="care">
-		<select name="isurlrewrite">
-          <option value="y" <?php echo $ex9; ?>>是</option>
-          <option value="n" <?php echo $ex10; ?>>否</option>
-        </select>
-		开启需要服务器支持，详情参看帮助文档</td>
-      </tr>
-      <tr>
-        <td align="right">开启页面Gzip压缩：<br /></td>
-        <td class="care">
-		<select name="isgzipenable">
-          <option value="y" <?php echo $ex11; ?>>是</option>
-          <option value="n" <?php echo $ex12; ?>>否</option>
         </select>
 		</td>
       </tr>
@@ -128,6 +110,25 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
           <option value="n" <?php echo $ex4; ?>>否</option>
         </select>
         </td>
+      </tr>
+      <tr>
+	  <tr>
+        <td align="right">开启URL伪静态：<br /></td>
+        <td class="care">
+		<select name="isurlrewrite">
+          <option value="y" <?php echo $ex9; ?>>是</option>
+          <option value="n" <?php echo $ex10; ?>>否</option>
+        </select>
+		开启需要其他操作配合，请勿在阅读帮助文档前开启，可能导致无法打开日志</td>
+      </tr>
+      <tr>
+        <td align="right">开启页面Gzip压缩：<br /></td>
+        <td class="care">
+		<select name="isgzipenable">
+          <option value="y" <?php echo $ex11; ?>>是</option>
+          <option value="n" <?php echo $ex12; ?>>否</option>
+        </select>
+		</td>
       </tr>
       <tr>
         <td align="center" colspan="2">

@@ -195,7 +195,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
 	."\n?>";
 
-	@$fw = fwrite($fp, $config) ;
+	@$fw = fwrite($fp, $config);
 	if (!$fw)
 	{
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
@@ -217,7 +217,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 
 	$widgets = array(
-	'blogger'=>'EMER',
+	'blogger'=>'blogger',
 	'calendar'=>'日历',
 	'tag'=>'标签',
 	'sort'=>'分类',
@@ -230,7 +230,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	'link'=>'链接',
 	'search'=>'搜索',
 	'bloginfo'=>'博客信息',
-	'custom_text'=>'自定义栏目'
+	'custom_text'=>'自定义组件'
 	);
 	$sider_wg = array(
 	'blogger',

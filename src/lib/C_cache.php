@@ -354,8 +354,8 @@ class mkcache {
 	function cacheWrite ($cacheDate,$cachefile)
 	{
 		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
-		@ $fp = fopen($cachefile, 'wb') OR emMsg('打开缓存文件失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
-		@ $fw =	fwrite($fp,$cacheDate) OR emMsg('写入缓存失败，请查看 content/cache 目录文件权限');
+		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
+		@ $fw =	fwrite($fp,$cacheDate) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
 		fclose($fp);
 	}
 

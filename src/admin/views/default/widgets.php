@@ -8,7 +8,7 @@
 	<form action="widgets.php?action=setwg&wg=blogger" method="post">
 	<div class="widget-line" id="blogger">
 		<div class="widget-top">
-			<li class="widget-title">EMER</li>
+			<li class="widget-title">blogger</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
@@ -198,7 +198,7 @@
 	</form>
 	<div class="widget-line" id="custom_text">
 		<div class="widget-top">
-			<li class="widget-title">自定义栏目</li>
+			<li class="widget-title">自定义组件</li>
 			<li class="widget-act-add"></li>
 		</div>
 	</div>
@@ -223,17 +223,30 @@ if($i == $wgNum):
 <?php
 $i = 0;
 foreach ($widgets as $widget):
-$title = ($widget == 'custom_text' && isset($custom_title[$i])) ? $custom_title[$i] : '';
-$content = ($widget == 'custom_text' && isset($custom_content[$i])) ? $custom_content[$i] : '';
-if($widget == 'custom_text'){$i++;}
-$wg_edit = $widget=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-$wg_text = $widget=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title{$wgNum}[]\" value=\"$title\" /><textarea name=\"custom_text{$wgNum}[]\">$content</textarea></span>" : '';
-?>
-<li class="sortableitem" id="<?php echo $widget; ?>">
-<span class="wgbox_title"><?php echo $widgetTitle[$widget]; ?></span>
-<?php echo $wg_edit; ?><?php echo $wg_text; ?>
-<input type="hidden" name="widgets<?php echo $wgNum; ?>[]" value="<?php echo $widget; ?>" />
-</li>
+	//获取自定义组件标题、内容
+	$title = ($widget == 'custom_text' && isset($custom_title[$i])) ? $custom_title[$i] : '';
+	$content = ($widget == 'custom_text' && isset($custom_content[$i])) ? $custom_content[$i] : '';
+	if($widget == 'custom_text')
+	{
+		$i++;
+	}
+	$wg_edit = $widget=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
+	$wg_text = $widget=='custom_text' ? "<input name=\"custom_title{$wgNum}[]\" value=\"$title\" class=\"wginput\" /><textarea name=\"custom_text{$wgNum}[]\">$content</textarea>" : '';
+	?>
+	<li class="sortableitem" id="<?php echo $widget; ?>">
+	<input type="hidden" name="widgets<?php echo $wgNum; ?>[]" value="<?php echo $widget; ?>" />
+	<span class="wgbox_title">
+	<?php 
+	if ($widget == 'custom_text' && $title != '')
+	{
+		echo subString($title, 0, 18);
+	}else{
+		echo $widgetTitle[$widget]; 
+	}
+	?>
+	</span>
+	<?php echo $wg_edit; ?><?php echo $wg_text; ?>
+	</li>
 <?php endforeach;?>
 </ul>
 <div style="margin:10px 40px;"><input type="submit" value="确 定" class="submit2" /></div>
@@ -259,7 +272,7 @@ $(document).ready(function(){
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
 		var wg_edit = widget_id=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-		var wg_text = widget_id=='custom_text' ? "<span class=\"wgbox_text\"><input name=\"custom_title"+wgnum+"[]\" value=\"\" /><textarea name=\"custom_text"+wgnum+"[]\"></textarea></span>" : '';
+		var wg_text = widget_id=='custom_text' ? "<input name=\"custom_title"+wgnum+"[]\" value=\"\" class=\"wginput\" /><textarea name=\"custom_text"+wgnum+"[]\"></textarea>" : '';
 		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets"+wgnum+"[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 		if(widget_id != 'custom_text'){$(this).hide();}
@@ -281,7 +294,7 @@ $(document).ready(function(){
 		$(".wgbox_edit").bind("click", wg_edit_fun);
 		$(".wgbox_del").bind("click", wg_del_fun);
 	});
-	var wg_edit_fun = function(){$(this).parent().find(".wgbox_text").toggle("fast");}
+	var wg_edit_fun = function(){$(this).parent().find("input,textarea").toggle();}
 	var wg_del_fun = function(){$(this).parent().remove();}
 	
 	$("#wg_select").change(function(){

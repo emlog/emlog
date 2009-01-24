@@ -543,11 +543,12 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-		return -1;
+		formMsg("错误的文件类型","javascript:history.go(-1);",0);
 	}
 	if ($filesize > UPLOADFILE_MAXSIZE)
 	{
-		return -2;
+		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
+		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . date("Ym") . "/";
 	$fname = md5($filename) . date("YmdHis") .'.'. $extension;
@@ -558,7 +559,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 		$ret = @mkdir(UPLOADFILE_PATH, 0777);
 		if ($ret === false)
 		{
-			return -3;
+			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
 		}
 	}
 	if (!is_dir($uppath))
@@ -567,7 +568,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false)
 		{
-			return -3;
+			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
 		}
 	}
 	//缩略
@@ -585,7 +586,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 		if (!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
-			return -4;
+			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
 		}
 		chmod($attachpath, 0777);
 	}

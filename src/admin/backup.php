@@ -51,12 +51,12 @@ if($action=='bakstart')
 			if(@!fwrite($fp, $sqldump))
 			{
 				@fclose($fp);
-				emMsg('备份失败。请检查备份目录(content/backup/)是否具有写权限','javascript:history.go(-1);',0);
+				emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
 			}else{
 				header("Location: ./backup.php?active_backup=true");
 			}
 		}else{
-			emMsg('创建备份文件失败。如果您使用的是Unix/Linux主机，请修改备份目录 (content/backup) 的权限为777。如果您使用的是Windows主机，请联系管理员，将此目录设为everyone可写。','javascript:history.go(-1);');
+			emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
 		}
 	}else{
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);

@@ -297,15 +297,17 @@ textarea{
 	padding:5px;
 }
 .sortableitem textarea{
+	display:none;
 	width:247px;
 	overflow:auto;
 	border: 1px solid #FFFFFF;
 	font-size: 12px;
 	height: 150px;
 }
-.sortableitem input{
+.sortableitem .wginput{
+	display:none;
 	width:247px;
-	border: 1px solid #FFFFFF;
+	border: 1px solid #F0F0F0;
 	font-size: 12px;
 }
 .wgbox_title{
