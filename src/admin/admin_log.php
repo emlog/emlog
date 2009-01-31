@@ -63,6 +63,7 @@ if($action == '')
 	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment);
 	$logs = $emBlog->getLog($sqlSegment, $hide_state, $page);
 	$sorts = $emSort->getSorts();
+	$tags = $emTag->getTag();
 
 	$subPage = '';
 	foreach ($_GET as $key=>$val)

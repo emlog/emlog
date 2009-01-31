@@ -15,11 +15,16 @@ $emComment = new emComment($DB);
 if($action == '')
 {
 	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
+	$hide = isset($_GET['hide']) ? $_GET['hide'] : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$addUrl = $blogId ? "gid={$blogId}&" : '';
-	$comment = $emComment->getComment($blogId, null, $page);
-	$num = $emComment->getCommentNum($blogId);
+	$addUrl_1 = $blogId ? "gid={$blogId}&" : '';
+	$addUrl_2 = $hide ? "hide=$hide&" : '';
+	$addUrl = $addUrl_1.$addUrl_2;
+
+	$comment = $emComment->getComment($blogId, $hide, $page);
+	$num = $emComment->getCommentNum($blogId, $hide);
+	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
 	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
 
 	include getViews('header');

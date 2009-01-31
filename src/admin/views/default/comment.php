@@ -17,6 +17,17 @@ setTimeout(hideActived,2600);
 <?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
 </div>
 <div class=line></div>
+<?php if ($hideCommNum > 0) : 
+$hide_ = $hide_y = $hide_n = '';
+$a = "hide_$hide";
+$$a = "class=\"filter\"";
+?>
+<div class="filters">
+<span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
+<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核</a></span>
+<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
+</div>
+<?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
   <table width="95%" id="adm_comment_list">
   	<thead>

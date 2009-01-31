@@ -27,15 +27,17 @@ class emComment {
 	 */
 	function getComment($blogId = null, $hide = null, $page = null)
 	{
-		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$andQuery = 'where 1=1';
+		$andQuery .= $blogId ? " and gid=$blogId" : '';
+		$andQuery .= $hide ? " and hide='$hide'" : '';
+
 		$condition = '';
 		if($page)
 		{
 			$startId = ($page - 1) *15;
 			$condition = "LIMIT $startId, 15";
 		}
-		$ishide = $hide ? "and hide='$hide'" : '';
-		$sql = "SELECT * FROM $this->commentTable $andQuery $ishide ORDER BY cid DESC $condition";
+		$sql = "SELECT * FROM $this->commentTable $andQuery ORDER BY cid DESC $condition";
 		$ret = $this->dbhd->query($sql);
 		$comments = array();
 		while($row = $this->dbhd->fetch_array($ret))
@@ -67,10 +69,13 @@ class emComment {
 	 * @param int $blogId
 	 * @return int $comNum
 	 */
-	function getCommentNum($blogId = null)
+	function getCommentNum($blogId = null, $hide = null)
 	{
 		$comNum = '';
-		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$andQuery = 'where 1=1';
+		$andQuery .= $blogId ? " and gid=$blogId" : '';
+		$andQuery .= $hide ? " and hide='$hide'" : '';
+
 		$res = $this->dbhd->query("SELECT cid FROM $this->commentTable $andQuery");
 		$comNum = $this->dbhd->num_rows($res);
 		return $comNum;

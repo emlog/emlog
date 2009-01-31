@@ -6,12 +6,12 @@ $allcom = $hidecom + $comnum;
 <table width="95%" align="center" border="0" cellspacing="1" cellpadding="4" class="formtd2">
 	<tr>
 		<td width="50%">
-<?php if($ischkcomment == 'y' || $hidecom != 0): ?>
-		待审核评论: <span class="care"><b><?php echo $hidecom; ?></b></span> | 
-<?php endif; ?>
 		日志: <span class=care2><b><?php echo $lognum; ?></b></span> | 
-		评论: <span class=care2><b><?php echo $allcom; ?></b></span> | 
-		引用: <span class=care2><b><?php echo $tbnum; ?></b></span>
+		引用: <span class=care2><b><?php echo $tbnum; ?></b></span>  | 
+		评论: <span class=care2><b><?php echo $allcom; ?></b></span> 
+		<?php if($ischkcomment == 'y' || $hidecom != 0): ?>
+		| 待审核评论: <b><a href="./comment.php?hide=y"><?php echo $hidecom; ?></a></b>
+		<?php endif; ?>
 		</td>
 	</tr>
 </table>

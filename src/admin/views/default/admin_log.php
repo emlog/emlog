@@ -1,4 +1,9 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
+<?php 
+if(!defined('ADMIN_ROOT')) {exit('error!');}
+$isdraft = $pid == 'draft' ? '&pid=draft' : '';
+$isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
+$isDisplayTag = !$tag ? "style=\"display:none;\"" : '';
+?>
 <script type='text/javascript'>
 $(document).ready(function(){
 	
@@ -6,6 +11,14 @@ $(document).ready(function(){
 	$("#adm_log_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")});
+	$("#f_t_sort").click(function(){
+		$("#f_sort").toggle();
+		$("#f_tag").hide();
+	});
+	$("#f_t_tag").click(function(){
+		$("#f_tag").toggle();
+		$("#f_sort").hide();
+	})
 });
 setTimeout(hideActived,2600);
 </script>
@@ -20,6 +33,37 @@ setTimeout(hideActived,2600);
 <?php if(isset($_GET['active_hide'])):?><span class="actived">转入草稿箱成功</span><?php endif;?>
 </div>
 <div class=line></div>
+<div class="filters">
+<div id="f_title">
+<span <?php echo !$sid && !$tag ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+<span id="f_t_sort"><a href="javascript:void(0);">分类<a></span>
+<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
+</div>
+<div id="f_sort" <?php echo $isDisplaySort ?>>
+分类：
+<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>">未分类</a></span>
+<?php foreach($sorts as $val):
+	$a = "sort_{$val['sid']}";
+	$$a = '';
+	$b = "sort_$sid";
+	$$b = "class=\"filter\"";
+?>
+	<span <?php echo $$a; ?>><a href="./admin_log.php?sid=<?php echo $val['sid'].$isdraft; ?>"><?php echo $val['sortname']; ?></a></span>
+<?php endforeach;?>
+</div>
+<div id="f_tag" <?php echo $isDisplayTag ?>>
+标签：
+<?php
+foreach($tags as $val):
+	$a = 'sort_'.md5($val['tagname']);
+	$$a = '';
+	$b = 'sort_'.md5($tag);
+	$$b = "class=\"filter\"";
+?>
+	<span <?php echo $$a; ?>><a href="./admin_log.php?tag=<?php echo urlencode($val['tagname']).$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
+<?php endforeach;?>
+</div>
+</div>
 <form action="admin_log.php?action=admin_all_log" method="post" name="form" id="form">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
   <table width="95%" id="adm_log_list">
@@ -36,7 +80,6 @@ setTimeout(hideActived,2600);
 	</thead>
  	<tbody>
 	<?php 
-	$isdraft = $pid == 'draft' ? '&pid=draft' : '';
 	foreach($logs as $key=>$value):
 	$sortName = $emSort->getSortName($value['sortid']);
 	$tags = $emTag->getTag($value['gid']);

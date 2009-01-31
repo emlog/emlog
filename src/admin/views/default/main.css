@@ -372,3 +372,20 @@ textarea{
 .logtags{margin-left:5%;}
 .logtags a{ color:#FFFFFF;}
 .logtag{background-color: #F3BBA0; padding:0px 3px; margin:1px 3px;}
+.filters{ margin:5px 4px;}
+.filter{background-color: #00CCFF; padding:1px; margin:1px;}
+.filter a{ color:#FFFFFF;}
+#f_sort{
+border: #E8E8E8 dotted 1px;
+background-color:#FFFAE5;
+width:500px;
+padding:10px;
+margin:10px 0px 5px 32px;
+}
+#f_tag{
+border: #E8E8E8 dotted 1px;
+background-color: #FEF8F1;
+width:500px;
+padding:10px;
+margin:10px 0px 5px 32px;
+}
