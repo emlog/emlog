@@ -99,6 +99,11 @@ class emBlog {
 					'sortid' => intval($row['sortid']),
 					'tbscode' => substr(md5(date('Ynd')),0,5),
 					'log_content' => rmBreak($row['content']),
+					'views'=>intval($row['views']),
+					'comnum'=>intval($row['comnum']),
+					'tbcount'=>intval($row['tbcount']),
+					'top'=>$row['top'],
+					'attnum'=>intval($row['attnum']),
 					'allow_remark' => $row['allow_remark'],
 					'allow_tb' => $row['allow_tb']
 					);
