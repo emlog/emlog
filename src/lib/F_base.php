@@ -316,14 +316,18 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/\<a href\=\"(index\.php|\.\/)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/)\?record=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?page=(\d+)\"([^\>]*)\>/e"
 			);
 			$replacelink = array(
 			"logRewrite(\\2,'\\3','\\4')",
 			"recordRewrite('\\2','\\3')",
-			"tagRewrite('\\2','\\3')"
+			"tagRewrite('\\2','\\3')",
+			"sortRewrite('\\2','\\3')",
+			"pageRewrite('\\2','\\3')"
 			);
 			$output = preg_replace($searchlink, $replacelink,$output);
 		}
@@ -372,6 +376,28 @@ function recordRewrite($date,$values)
 function tagRewrite($tag,$values)
 {
 	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
+}
+/**
+ * 分类链接重写
+ *
+ * @param unknown_type $sort 匹配出来的分类编号
+ * @param string $values 匹配出来的<a>标签中的其他属性
+ * @return unknown
+ */
+function sortRewrite($sort,$values)
+{
+	return '<a href="sort-'.$sort.'.html"'.stripslashes($values).'>';
+}
+/**
+ * 分页链接重写
+ *
+ * @param unknown_type $page 匹配出来的分类编号
+ * @param string $values 匹配出来的<a>标签中的其他属性
+ * @return unknown
+ */
+function pageRewrite($page,$values)
+{
+	return '<a href="page-'.$page.'.html"'.stripslashes($values).'>';
 }
 
 /**

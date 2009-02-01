@@ -9,4 +9,8 @@
 	RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
 	# tag规则
 	RewriteRule ^tag-(.+)\.html$ index.php?tag=$1
+	# 分类规则
+	RewriteRule ^sort-([0-9]+)\.html$ index.php?sort=$1
+	# 分页规则
+	RewriteRule ^page-([0-9]+)\.html$ index.php?page=$1
 </IfModule>
