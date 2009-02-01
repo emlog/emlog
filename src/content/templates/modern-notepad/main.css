@@ -576,6 +576,7 @@ a.more-link {
 }
 #twitter li{
 	width:183px;
+	padding-bottom:8px;
 }
 .box ul li a {
 	display:block;
@@ -845,7 +846,7 @@ a.more-link {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+	background: #fff url(./images/bg_cal_today.gif) no-repeat 0px 5px;
 }
 
 .day2 {

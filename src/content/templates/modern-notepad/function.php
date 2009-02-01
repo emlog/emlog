@@ -69,8 +69,8 @@
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
 	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
-	<?php if($index_twnum>0): ?>
-	<div class="box popular">
+	<?php if($index_twnum>0): ?>	
+		<div class="box popular">
 		<div class="header"><h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3></div>
 		<ul id="twitter">
 		<?php
@@ -81,22 +81,26 @@
 		$value['date'] = smartyDate($localdate,$value['date']);
 		$value['content'] = str_replace("[wap]", " <img align=\"absmiddle\" src=\"{$em_tpldir}images/wap.gif\" alt=\"手机wap发布\"/>", $value['content']);
 		?>
-		<li> <?php echo $value['content']; ?> <div id="delbt"><?php echo $delbt; ?></div><div style="color:#CCCCCC; padding:0px 0px 10px;"><?php echo $value['date']; ?></div></li>
+		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><div style="color:#CCCCCC; line-height:22px;"><?php echo $value['date']; ?></div></li>
 		<?php endforeach;?>
 		<?php echo $morebt;?>
 		<?php endif;?>
+		</ul>
 		<?php if(ISLOGIN === true): ?>
-		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
-		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
+		<ul style=" background:#fff; text-align:center; margin-bottom:-30px">
+		<a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a>
+		<div id='addtw' style="display: none;">
+		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea><br />
 		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
-		</li>
-		<?php endif;?>
+		</div>
 		</ul>
-	</div>
+		<?php endif;?>
+		</div>
+		
 	<?php endif;?>
 <?php } ?>
+
 <!--音乐-->
 <?php function widget_music($title){ ?>
 	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
