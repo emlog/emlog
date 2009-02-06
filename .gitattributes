@@ -179,6 +179,7 @@ src/content/templates/black/log_list.php -text
 src/content/templates/black/main.css -text
 src/content/templates/black/preview.jpg -text
 src/content/templates/black/side.php -text
+src/content/templates/black/tpl.ini -text
 src/content/templates/bluemoon/echo_log.php -text
 src/content/templates/bluemoon/footer.php -text
 src/content/templates/bluemoon/function.php -text
