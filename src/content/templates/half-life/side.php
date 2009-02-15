@@ -35,7 +35,7 @@ foreach ($widgets as $val)
 <?php else:?>
 <li class="random"><h2 onclick="showhidediv('loginfm')" >管理</h2>
 <ul id="loginfm">
-	<li><a href="./admin/add_log.php">写日志</a></li>
+	<li><a href="./admin/write_log.php">写日志</a></li>
 	<li><a href="./admin/">管理中心</a></li>
 	<li><a href="./admin/index.php?action=logout">退出</a></li>
 </ul>

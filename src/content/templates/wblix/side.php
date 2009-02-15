@@ -28,15 +28,4 @@ foreach ($widgets as $val)
 	}
 }
 ?>
-	<h4><em onclick="showhidediv('admin')">管理</em></h4>
-	<ul class="months" id="admin">
-	<?php if(ISLOGIN): ?>
-		<li><a href="./admin/add_log.php">写日志</a></li>
-		<li><a href="./admin/">管理中心</a></li>
-		<li><a href="./admin/index.php?action=logout">退出</a></li>
-	<?php else: ?>
-		<li><a href="./admin/index.php">登录</a></li>
-	<?php endif; ?>
-	</ul>
-
 </div>

@@ -33,7 +33,7 @@ foreach ($widgets as $val)
 <a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
 <ul>
 <?php if(ISLOGIN): ?>
-	<li><a href="./admin/add_log.php">写日志</a></li>
+	<li><a href="./admin/write_log.php">写日志</a></li>
 	<li><a href="./admin/">管理中心</a></li>
 	<li><a href="./admin/index.php?action=logout">退出</a></li>
 <?php else: ?>

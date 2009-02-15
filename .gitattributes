@@ -834,6 +834,7 @@ src/content/templates/techpress/main.css -text svn_keywords=Id
 src/content/templates/techpress/preview.jpg -text svn_keywords=Id
 src/content/templates/techpress/side.php -text svn_keywords=Id
 src/content/templates/techpress/style_comments_popup.css -text svn_keywords=Id
+src/content/templates/techpress/tpl.ini -text
 src/content/templates/wblix/echo_log.php -text svn_keywords=Id
 src/content/templates/wblix/footer.php -text svn_keywords=Id
 src/content/templates/wblix/function.php -text
@@ -888,6 +889,36 @@ src/content/templates/wp-cute/images/wap.gif -text
 src/content/templates/wp-cute/log_list.php -text svn_keywords=Id
 src/content/templates/wp-cute/main.css -text svn_keywords=Id
 src/content/templates/wp-cute/preview.jpg -text svn_keywords=Id
+src/content/templates/wp-themes-blogger/echo_log.php -text
+src/content/templates/wp-themes-blogger/footer.php -text
+src/content/templates/wp-themes-blogger/function.php -text
+src/content/templates/wp-themes-blogger/header.php -text
+src/content/templates/wp-themes-blogger/images/bg.png -text
+src/content/templates/wp-themes-blogger/images/bg_cal_today.gif -text
+src/content/templates/wp-themes-blogger/images/body_bg.jpg -text
+src/content/templates/wp-themes-blogger/images/but.jpg -text
+src/content/templates/wp-themes-blogger/images/favicon.ico -text
+src/content/templates/wp-themes-blogger/images/icon_rss.gif -text
+src/content/templates/wp-themes-blogger/images/import.gif -text
+src/content/templates/wp-themes-blogger/images/li.gif -text
+src/content/templates/wp-themes-blogger/images/modify.gif -text
+src/content/templates/wp-themes-blogger/images/newsletter.png -text
+src/content/templates/wp-themes-blogger/images/player.swf -text
+src/content/templates/wp-themes-blogger/images/reply.gif -text
+src/content/templates/wp-themes-blogger/images/rss.gif -text
+src/content/templates/wp-themes-blogger/images/rss.png -text
+src/content/templates/wp-themes-blogger/images/sidebar_border.gif -text
+src/content/templates/wp-themes-blogger/images/thumbnail.jpg -text
+src/content/templates/wp-themes-blogger/images/wap.gif -text
+src/content/templates/wp-themes-blogger/js/date.js -text
+src/content/templates/wp-themes-blogger/js/pngfix.js -text
+src/content/templates/wp-themes-blogger/log_list.php -text
+src/content/templates/wp-themes-blogger/main.css -text
+src/content/templates/wp-themes-blogger/message.php -text
+src/content/templates/wp-themes-blogger/preview.jpg -text
+src/content/templates/wp-themes-blogger/side.php -text
+src/content/templates/wp-themes-blogger/tpl.ini -text
+src/content/templates/wp-themes-blogger/unique_tpl.js -text
 src/content/templates/wp/echo_log.php -text svn_keywords=Id
 src/content/templates/wp/footer.php -text svn_keywords=Id
 src/content/templates/wp/function.php -text

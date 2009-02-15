@@ -32,7 +32,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <ul>
 
 <?php if(ISLOGIN): ?>
-	<li class="nocurrent_page_item"><a href="./admin/add_log.php">写日志</a></li>
+	<li class="nocurrent_page_item"><a href="./admin/write_log.php">写日志</a></li>
 	<li class="nocurrent_page_item"><a href="./admin/">管理中心</a></li>
 	<li class="nocurrent_page_item"><a href="./admin/index.php?action=logout">退出</a></li>
 <?php else: ?>

@@ -3,7 +3,7 @@
  * 显示撰写、编辑日志界面
  * @copyright (c) 2008, Emlog All Rights Reserved
  * @version emlog-3.0.1
- * $Id: add_log.php 859 2009-01-19 15:38:16Z emloog $
+ * $Id$
  */
 
 require_once('./globals.php');

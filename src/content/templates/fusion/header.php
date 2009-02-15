@@ -38,7 +38,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
               <!-- homepage tab (remove this section if you dont need it) -->
               <?php if(ISLOGIN): ?>
              	<li class="current_page_item"><a href="./index.php"><span>首页</span></a></li>
-				<li class="page_item page-item-2"><a href="./admin/add_log.php"><span>写日志</span></a></li>
+				<li class="page_item page-item-2"><a href="./admin/write_log.php"><span>写日志</span></a></li>
 				<li class="page_item page-item-2"><a href="./admin/"><span>管理中心</span></a></li>
 				<li class="page_item page-item-2"><a href="./admin/index.php?action=logout"><span>退出</span></a></li>
 				<?php else: ?>
