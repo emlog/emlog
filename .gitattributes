@@ -60,6 +60,7 @@ src/admin/fckeditor/fckstyles.xml -text
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
+src/admin/save_log.php -text
 src/admin/sort.php -text
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
