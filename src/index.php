@@ -107,6 +107,11 @@ if ($action == 'showlog')
 		emMsg('不存在该日志','./index.php');
 	}
 	extract($logData);
+	if(!empty($password))
+	{
+		$logpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
+		$emBlog->AuthPassword($password, $logpwd);
+	}
 	$blogtitle = $log_title.' - '.$blogname;
 	$log_author = $user_cache['name'];
 	$blogurl    = $blogurl;

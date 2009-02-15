@@ -105,7 +105,8 @@ class emBlog {
 					'top'=>$row['top'],
 					'attnum'=>intval($row['attnum']),
 					'allow_remark' => $row['allow_remark'],
-					'allow_tb' => $row['allow_tb']
+					'allow_tb' => $row['allow_tb'],
+					'password' => $row['password']
 					);
 					break;
 			}
@@ -144,7 +145,16 @@ class emBlog {
 					$row['post_time'] = date('Y-n-j G:i l',$row['date']);
 					$row['log_title'] = htmlspecialchars(trim($row['title']));
 					$row['logid'] = $row['gid'];
-					$row['log_description'] = breakLog($row['content'],$row['gid']);
+					if(!empty($row['password']))
+					{
+						$row['excerpt'] = '<p>[该日志已设置加密]</p>';
+					}else{
+						if(!empty($row['excerpt']))
+						{
+							$row['excerpt'] .= '<p><a href="./?action=showlog&gid='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
+						}
+					}
+					$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
 					$row['toplog'] = $row['top'];
 					$row['attachment'] = '';//attachment
 					$row['tag']  = '';//tag
@@ -281,6 +291,55 @@ class emBlog {
 		return $logs;
 	}
 
+	/**
+	 * 加密日志访问验证
+	 *
+	 * @param string $pwd
+	 * @param string $pwd2
+	 */
+	function authPassword($pwd, $pwd2)
+	{
+		if($pwd !== $pwd2)
+		{
+print <<<EOT
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>emlog system message</title>
+<style type="text/css">
+<!--
+body {
+	background-color:#F7F7F7;
+	font-family: Arial;
+	font-size: 12px;
+	line-height:150%;
+}
+.main {
+	background-color:#FFFFFF;
+	margin-top:20px;
+	font-size: 12px;
+	color: #666666;
+	width:600px;
+	margin:10px 200px;
+	padding:10px;
+	list-style:none;
+	border:#DFDFDF 1px solid;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+<form action="" method="post">
+密码：<input type="password" name="logpwd" /><input type="submit" value="进入.." /> 该日志需要输入访问密码！
+</form>
+</div>
+</body>
+</html>
+EOT;
+exit;
+		}
+	}
 }
 
 ?>

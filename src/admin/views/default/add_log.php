@@ -1,4 +1,5 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -94,6 +95,10 @@
   </form>
 <div class=line></div>
 <script type="text/javascript">
-$("#show_advset").click(function(){$("#advset").toggle();});
+$("#show_advset").click(function(){
+	$("#advset").toggle();
+	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
+});
+$("#advset").css('display', $.cookie('em.showAdv'));
 setTimeout("autosave(0)",30000);
 </script>
