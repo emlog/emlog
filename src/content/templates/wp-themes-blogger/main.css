@@ -14,6 +14,9 @@ body {
   background: #c4c0be url(images/bg.png) top repeat-x;
   width: 100%;
 }
+img {
+	max-width:600px;
+}
 /*** Hyperlinks	***/
 a, a:visited {
   color: #194E84;

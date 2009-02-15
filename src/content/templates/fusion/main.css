@@ -56,6 +56,7 @@ a:hover{
 
 img{
   border: 0;
+  max-width:600px;
 }
 
 pre{
@@ -1130,7 +1131,7 @@ ol#thecomments, ol#thecomments li{
 .alignright {
   float: right;
 }
-/*日历样式*/
+/*式*/
 .calendar { /*background-image:url(images/bg.jpg);*/
 	margin-left:0px;
 	border:0;

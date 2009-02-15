@@ -203,7 +203,10 @@ a:focus     	{ outline: 0; } /*remove border in ff*/
 
 /* Images
 *******************************/
-img 		{ outline:0;border:0; }
+img {
+	border: 0;
+	max-width:520px;
+}
 
 /* Form styles
 *******************************/
