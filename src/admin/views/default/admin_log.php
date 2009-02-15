@@ -36,7 +36,7 @@ setTimeout(hideActived,2600);
 <div class="filters">
 <div id="f_title">
 <span <?php echo !$sid && !$tag ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
-<span id="f_t_sort"><a href="javascript:void(0);">分类<a></span>
+<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
@@ -70,12 +70,15 @@ foreach($tags as $val):
   <thead>
       <tr class="rowstop">
         <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="517"><b>标题</b></td>
+        <td width="490"><b>标题</b></td>
+		<?php if ($pid != 'draft'): ?>
+		<td width="40" align="center"><b>查看</b></td>
+		<?php endif; ?>
         <td width="146"><b>分类</b></td>
-        <td width="138"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
-		<td width="40"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
-		<td width="40"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
-		<td width="105"></td>
+        <td width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
+		<td width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
+		<td width="40" align="center"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
+		<td width="85"></td>
       </tr>
 	</thead>
  	<tbody>
@@ -102,10 +105,16 @@ foreach($tags as $val):
       <?php echo $value['istop']; ?>
       <?php echo $tagStr; ?>
       </td>
+	  <?php if ($pid != 'draft'): ?>
+	  <td align="center">
+	  <a href="../?action=showlog&gid=<?php echo $value['gid']; ?>" target="_blank" title="在新窗口查看">
+	  <img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
+	  </td>
+	  <?php endif; ?>
       <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
       <td><?php echo $value['date']; ?></td>
-	  <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-	  <td><?php echo $value['views']; ?></a></td>
+	  <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+	  <td align="center"><?php echo $value['views']; ?></a></td>
       <td>
       <?php if ($pid == 'draft'): ?>
       <a href="javascript: em_confirm(<?php echo $value['gid']; ?>, 'draft');">删除</a>
@@ -118,7 +127,7 @@ foreach($tags as $val):
 	</tbody>
 	<tfoot>
     <tr class="rowstop">
-    <td colspan="7">执行操作：
+    <td colspan="8">执行操作：
     <input type="radio" value="del_log" name="modall" />删除
 	<?php if($pid == 'draft'): ?>
 	<input type="radio" value="show" name="modall"/>发布
@@ -136,7 +145,7 @@ foreach($tags as $val):
 	<?php endif;?>
     </tr>
     <tr>
-    <td align="right" colspan="7">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
+    <td align="right" colspan="8">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
     </tr>	  
 	<tr>
 	<td align="center" colspan="6">

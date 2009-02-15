@@ -42,7 +42,7 @@ function removeattachfrom() {
 	<p>
 	<a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> 
 	<a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> 
-	(最大允许<?php echo $maxsize ;?> 允许类型<?php echo $att_type_str; ?>)
+	(单个附件最大:<?php echo $maxsize ;?>, 允许类型:<?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]"></span></div>
 	<input type="button" name="html-upload" value="上传" onclick="uploadfile();"/>

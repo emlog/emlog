@@ -168,12 +168,8 @@ a:hover {
 	font-size:14px;
 	color:#FF3300;
 }
-.care{
-	color:#FF3300;
-}
-.care2{
-	color: #009933;
-}
+.care{color:#FF3300;}
+.care2{color: #009933;}
 .tips{
 	background:url(images/icon_tips.gif) no-repeat left 3px;
 	padding:3px 18px;
@@ -211,21 +207,11 @@ textarea{
 	margin:5px;
 	padding:3px;
 }
-#attmsg{
-	margin:40px 0px 0px 250px;
-}
-#media-upload-body{
-	margin:0px 200px 0px 0px;
-}
-.tralt_a{
-	background-color:#FFFFFF;
-}
-.tralt_b{
-	background-color:#F7F7F7;
-}
-.trover{
-	background-color:#E9F1FA;
-}
+#attmsg{margin:40px 0px 0px 250px;}
+#media-upload-body{margin:0px 200px 0px 0px;}
+.tralt_a{background-color:#FFFFFF;}
+.tralt_b{background-color:#F7F7F7;}
+.trover{background-color:#E9F1FA;}
 .widgetpage{
 	width:750px;
 	cursor:default;
@@ -235,9 +221,7 @@ textarea{
 	width:450px;
 	float:left;
 }
-.widget-line{
-	margin:0px;
-}
+.widget-line{margin:0px;}
 .widget-top {
 	float:left;
 	padding:0px 0px 0px 0px;
@@ -264,9 +248,7 @@ textarea{
 	margin:0px 0px 5px 0px;
 	border:1px solid #E9F1FA;
 }
-.widget-control li{
-	list-style-type:none;
-}
+.widget-control li{list-style-type:none;}
 .widget-act-del{
 	background:url(images/icon_del.gif) no-repeat center;
 	margin:5px;
@@ -326,9 +308,7 @@ textarea{
 	border-bottom: #CCCCCC 1px dotted;
 	padding:10px;
 }
-.adm_tpl_list img{
-	border: #CCCCCC 1px solid;
-}
+.adm_tpl_list img{border: #CCCCCC 1px solid;}
 .actived{
 	margin:0px 200px;
 	background:url(images/icon_succ.gif) no-repeat 10px #FDFFCE ;
@@ -378,9 +358,7 @@ textarea{
 	margin:10px 0px;
 	padding:5px 0px 5px 10px;
 }
-.login_page p{
-	margin:5px;
-};
+.login_page p{margin:5px;};
 .login_input{
 	font-size:20px;
 	padding:3px;

@@ -13,8 +13,8 @@
     <thead>
       <tr class="rowstop">
         <td width="230"><b>分类名称</b></td>
-        <td width="470"><b>分类排序</b></td>
-        <td width="20"></td>
+        <td width="300"><b>分类排序</b></td>
+        <td width="70"></td>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         <td>
         <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id">
         <input size="18" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</td>
+        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
       </tr>
 <?php endforeach;?>   
 </tbody>

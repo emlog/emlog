@@ -100,6 +100,7 @@ src/admin/views/default/images/tar.gif -text svn_keywords=Id
 src/admin/views/default/images/top_l.gif -text
 src/admin/views/default/images/top_m.gif -text
 src/admin/views/default/images/top_r.gif -text
+src/admin/views/default/images/vlog.gif -text
 src/admin/views/default/index.php -text svn_keywords=Id
 src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
