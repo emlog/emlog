@@ -97,7 +97,7 @@ foreach($tags as $val):
       <tr>
       <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
       <td width="517">
-      <a href="edit_log.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> 
+      <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> 
       <?php echo $value['attnum']; ?>
       <?php echo $value['istop']; ?>
       <?php echo $tagStr; ?>

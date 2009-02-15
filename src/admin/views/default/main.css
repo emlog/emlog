@@ -22,7 +22,8 @@ a:hover {
 #header {
 	background-position: left center; 
 	background-image: url(./images/top_m.gif); 
-	background-repeat: repeat-x
+	background-repeat: repeat-x;
+	margin-top:-4px;
 }
 #headerleft {
 	background-position: left center; 
@@ -113,8 +114,6 @@ a:hover {
 	background-position: left 3px; 
 	font-size: 18px;
 	margin: 20px 10px; 
-	white-space: nowrap; 
-	letter-spacing: 0.2em;
 }
 .line {
 	border-top: #CCCCCC 1px solid; 
@@ -132,11 +131,8 @@ a:hover {
 }
 .input {
 	border: 1px solid #CCCCCC;
-	font-family: Verdana, PMingLiU;
-	font-size: 18px;
-	height:28px;
-	background-color:#F7F7F7;
-	color: #666666;
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+	overflow-y: hidden;
 }
 .submit{
 	background-color:#FFFFFF;
@@ -157,6 +153,11 @@ a:hover {
 	font-weight:bold;
 	cursor:hand;
 	padding:5px 10px;
+}
+.button{
+	font-size:12px;
+	cursor:pointer;
+	padding:4px 10px;
 }
 .headtext{
 	color:#FFFFFF;
@@ -335,6 +336,25 @@ textarea{
 	padding:5px 30px;
 	border:1px #FFBA43 solid;
 }
+#msg{
+	margin:0px 300px;
+	font-size:12px;
+	position:fixed;
+	top:0px; left:200px;
+	font-weight:bold;
+}
+#msg_2{
+	margin:0px 300px;
+	font-size:12px;
+}
+.msg_autosave_do{
+	padding:10px;
+	background-color:#FFF1A8;
+}
+.msg_autosave_ok{
+	padding:3px 5px;
+	background-color:#FDFFCE;
+}
 .error{
 	margin:0px 200px;
 	background:url(images/icon_error.gif) no-repeat 10px #FDFFCE ;
@@ -376,16 +396,29 @@ textarea{
 .filter{background-color: #00CCFF; padding:1px; margin:1px;}
 .filter a{ color:#FFFFFF;}
 #f_sort{
-border: #E8E8E8 dotted 1px;
-background-color:#FFFAE5;
-width:500px;
-padding:10px;
-margin:10px 0px 5px 32px;
+	border: #E8E8E8 dotted 1px;
+	background-color:#FFFAE5;
+	width:500px;
+	padding:10px;
+	margin:10px 0px 5px 32px;
 }
 #f_tag{
-border: #E8E8E8 dotted 1px;
-background-color: #FEF8F1;
-width:500px;
-padding:10px;
-margin:10px 0px 5px 32px;
+	border: #E8E8E8 dotted 1px;
+	background-color: #FEF8F1;
+	width:500px;
+	padding:10px;
+	margin:10px 0px 5px 32px;
 }
+#show_advset{
+	margin:0px 0px 0px 32px;
+	background: url(images/advset.gif) no-repeat 56px 4px;
+	cursor:pointer;
+}
+#advset{
+	display:none;
+	background-color:#F5F5F5;
+	width:200px;
+	margin-left:30px;
+	border-top:#ECECEC solid 1px;
+}
+#log_pass{display:none;}

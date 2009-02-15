@@ -5,7 +5,6 @@ doc/模板说明.txt -text svn_keywords=Id
 ext/.htaccess -text svn_keywords=Id
 ext/robots.txt -text svn_keywords=Id
 /license.txt -text svn_keywords=Id
-src/admin/add_log.php -text svn_keywords=Id
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/backup.php -text svn_keywords=Id
@@ -13,7 +12,6 @@ src/admin/blogger.php -text svn_keywords=Id
 src/admin/cache.php -text svn_keywords=Id
 src/admin/comment.php -text svn_keywords=Id
 src/admin/configure.php -text svn_keywords=Id
-src/admin/edit_log.php -text
 src/admin/fckeditor/editor/css/fck_editorarea.css -text
 src/admin/fckeditor/editor/css/fck_internal.css -text
 src/admin/fckeditor/editor/css/images/fck_anchor.gif -text
@@ -115,6 +113,7 @@ src/admin/views/default/trackback.php -text svn_keywords=Id
 src/admin/views/default/upload.php -text
 src/admin/views/default/widgets.php -text
 src/admin/widgets.php -text
+src/admin/write_log.php -text
 src/calendar.php -text svn_keywords=Id
 src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id

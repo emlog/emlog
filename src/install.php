@@ -256,7 +256,8 @@ CREATE TABLE {$db_prefix}blog (
   gid mediumint(8) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date bigint(20) NOT NULL,
-  content text NOT NULL,
+  content longtext NOT NULL,
+  excerpt longtext NOT NULL,
   sortid tinyint(3) NOT NULL default '-1',
   views mediumint(8) unsigned NOT NULL default '0',
   comnum mediumint(8) unsigned NOT NULL default '0',
@@ -266,9 +267,10 @@ CREATE TABLE {$db_prefix}blog (
   hide enum('n','y') NOT NULL default 'n',
   allow_remark enum('n','y') NOT NULL default 'y',
   allow_tb enum('n','y') NOT NULL default 'y',
+  password varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb) VALUES (1, 'Hello Blogger', '1230508801', '感谢使用emlog,这是系统的默认日志,你可以删除它!', 0, 0, 0, 0, 'n', 'n', 'y', 'y');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'Hello Blogger', '1230508801', '感谢使用emlog,这是系统的默认日志,你可以删除它!', '', 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,

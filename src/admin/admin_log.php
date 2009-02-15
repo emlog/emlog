@@ -139,10 +139,14 @@ if($action == 'admin_all_log')
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_record();
-			$CACHE->mc_comment();
 			$CACHE->mc_logtags();
+			$CACHE->mc_logatts();
 			$CACHE->mc_newlog();
+			$CACHE->mc_logsort();
 			$CACHE->mc_sort();
+			$CACHE->mc_tags();
+			$CACHE->mc_comment();
+
 			header("Location: ./admin_log.php?active_hide=true");
 			break;
 		case 'show':
@@ -150,12 +154,17 @@ if($action == 'admin_all_log')
 			{
 				$emBlog->hideSwitch($key, 'n');
 			}
+
 			$CACHE->mc_sta();
-			$CACHE->mc_comment();
-			$CACHE->mc_logtags();
 			$CACHE->mc_record();
+			$CACHE->mc_logtags();
+			$CACHE->mc_logatts();
 			$CACHE->mc_newlog();
+			$CACHE->mc_logsort();
 			$CACHE->mc_sort();
+			$CACHE->mc_tags();
+			$CACHE->mc_comment();
+
 			header("Location: ./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':

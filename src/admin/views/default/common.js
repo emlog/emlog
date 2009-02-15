@@ -70,28 +70,74 @@ function addhtml(content){
 function addattach(imgurl,imgsrc,aid){
 	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 }
-//autosave
-function autosave(url,nodeid){
+function insertTag (tag, boxId){
+	var targetinput = $("#"+boxId).val();
+	if(targetinput == ''){
+		targetinput += tag;
+	}else{
+		var n = ',' + tag;
+		targetinput += n;
+	}
+	$("#"+boxId).val(targetinput);
+}
+//act:0 auto save,1 click att upload,2:click savedf button
+function autosave(act){
+	var url = "save_log.php?action=autosave";
+	var nodeid = "as_logid";
 	var title = $.trim($("#title").val());
+	var sort = $.trim($("#sort").val());
+	var postdate = $.trim($("#postdate").val());
 	var logid = $("#as_logid").val();
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
-	var querystr = "content="+encodeURIComponent(content)+"&title="+encodeURIComponent(title)+"&as_logid="+logid;
-	$("#auto_msg").html("<span style=\"background-color:#FF8000; color:#FFFFFF;\">正在自动保存日志……!</span>");
+	var oEditor = FCKeditorAPI.GetInstance('excerpt');
+	var excerpt = oEditor.GetXHTML();
+	var tag = $.trim($("#tag").val());
+	var allow_remark = $.trim($("#allow_remark").val());
+	var allow_tb = $.trim($("#allow_tb").val());
+	var password = $.trim($("#password").val());
+	var ishide = $.trim($("#ishide").val());
+	var ishide = ishide == "" ? "y" : ishide;
+	if(act == 0){
+		if (content == ""){
+			setTimeout("autosave(1)",30000);
+			return;
+		}
+	}
+	if(act == 1){
+		var gid = $("#"+nodeid).val();
+		if (gid != -1){return;}
+	}
+	var querystr = "content="+encodeURIComponent(content)
+					+"&excerpt="+encodeURIComponent(excerpt)
+					+"&title="+encodeURIComponent(title)
+					+"&sort="+sort
+					+"&postdate="+postdate
+					+"&tag="+encodeURIComponent(tag)
+					+"&allow_remark="+allow_remark
+					+"&allow_tb="+allow_tb
+					+"&password="+password
+					+"&ishide="+ishide
+					+"&as_logid="+logid;
+	$("#msg").html("<span class=\"msg_autosave_do\">正在保存日志……!</span>");
+	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		if(data.substring(0,9) == "autosave_"){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
 			var logid = getvar[1];
 			var dfnum = getvar[2];
 			$("#dfnum").html("("+dfnum+")");
-			var iddiv = "<input type=hidden  name=as_logid id=as_logid value="+logid+">";
 		}
-		$("#"+nodeid).html(iddiv);
+		$("#"+nodeid).val(logid);
 		var digital = new Date();
 		var hours = digital.getHours();
 		var mins = digital.getMinutes();
 		var secs = digital.getSeconds();
-		$("#auto_msg").html("<span style=\"background-color:#FF8000; color:#FFFFFF;\">草稿自动保存,于"+hours+":"+mins+":"+secs+" </span>");
+		$("#msg_2").html("<span class=\"msg_autosave_ok\">日志成功保存于"+hours+":"+mins+":"+secs+" </span>");
+		$("#savedf").attr("disabled", "");
+		$("#msg").html("");
 	});
-	setTimeout("autosave('add_log.php?action=autosave','asmsg')",30000);
+	if(act == 0){
+		setTimeout("autosave(0)",30000);
+	}
 }
