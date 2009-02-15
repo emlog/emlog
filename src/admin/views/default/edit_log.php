@@ -98,11 +98,12 @@
     </table>
   </form>
   <div class=line></div>
-<script>
+<script type="text/javascript">
 $("#show_advset").click(function(){
 	$("#advset").toggle();
 	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
 });
-$("#advset").css('display', $.cookie('em.showAdv'));
+var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
+$("#advset").css('display', showAdv);
 setTimeout("autosave(0)",30000);
 </script>
