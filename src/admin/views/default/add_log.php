@@ -3,7 +3,7 @@
 <div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
+    <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><br />
@@ -19,21 +19,13 @@
         </tr>
         <tr>
           <td>
-              <table cellspacing="0" cellpadding="0" width="100%" border="0">
-                  <tr>
-                    <td>
-                    <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
-                    <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
-
-                    <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
-
-					<input type="hidden" id="content" name="content" value="" style="display:none" />
-					<input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-					<iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
-                    </td>
-                  </tr>
-              </table>			  
-              </td>
+          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
+          <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
+          <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
+          <input type="hidden" id="content" name="content" value="" style="display:none" />
+          <input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
+          <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
+          </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
@@ -52,12 +44,12 @@
 	</tbody>
 	</table>
 	<div id="show_advset"><b>高级选项</b></div>
-	<table cellspacing="0" cellpadding="4" border="0" id="advset">
+	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
 			<input type="hidden" id="excerpt" name="excerpt" value="" style="display:none" />
 			<input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-			<iframe src="fckeditor/editor/fckeditor.html?InstanceName=excerpt&amp;Toolbar=Default" width="720" height="260" frameborder="0" scrolling="no"></iframe>
+			<iframe src="fckeditor/editor/fckeditor.html?InstanceName=excerpt&amp;Toolbar=Basic" width="720" height="260" frameborder="0" scrolling="no"></iframe>
           </td>
         </tr>      
         <tr nowrap="nowrap">
@@ -83,7 +75,7 @@
 		  </td>
         </tr>
 	</table>
-	<table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
+	<table cellspacing="1" cellpadding="4" width="720" border="0">
 		<tr>
           <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">

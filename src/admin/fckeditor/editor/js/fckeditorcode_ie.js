@@ -1,27 +1,3 @@
-﻿/*
- * FCKeditor - The text editor for Internet - http://www.fckeditor.net
- * Copyright (C) 2003-2008 Frederico Caldeira Knabben
- *
- * == BEGIN LICENSE ==
- *
- * Licensed under the terms of any of the following licenses at your
- * choice:
- *
- *  - GNU General Public License Version 2 or later (the "GPL")
- *    http://www.gnu.org/licenses/gpl.html
- *
- *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
- *    http://www.gnu.org/licenses/lgpl.html
- *
- *  - Mozilla Public License Version 1.1 or later (the "MPL")
- *    http://www.mozilla.org/MPL/MPL-1.1.html
- *
- * == END LICENSE ==
- *
- * This file has been compressed for better performance. The original source
- * can be found at "editor/_source".
- */
-
 var FCK_STATUS_NOTLOADED=window.parent.FCK_STATUS_NOTLOADED=0;var FCK_STATUS_ACTIVE=window.parent.FCK_STATUS_ACTIVE=1;var FCK_STATUS_COMPLETE=window.parent.FCK_STATUS_COMPLETE=2;var FCK_TRISTATE_OFF=window.parent.FCK_TRISTATE_OFF=0;var FCK_TRISTATE_ON=window.parent.FCK_TRISTATE_ON=1;var FCK_TRISTATE_DISABLED=window.parent.FCK_TRISTATE_DISABLED=-1;var FCK_UNKNOWN=window.parent.FCK_UNKNOWN=-9;var FCK_TOOLBARITEM_ONLYICON=window.parent.FCK_TOOLBARITEM_ONLYICON=0;var FCK_TOOLBARITEM_ONLYTEXT=window.parent.FCK_TOOLBARITEM_ONLYTEXT=1;var FCK_TOOLBARITEM_ICONTEXT=window.parent.FCK_TOOLBARITEM_ICONTEXT=2;var FCK_EDITMODE_WYSIWYG=window.parent.FCK_EDITMODE_WYSIWYG=0;var FCK_EDITMODE_SOURCE=window.parent.FCK_EDITMODE_SOURCE=1;var FCK_IMAGES_PATH='images/';var FCK_SPACER_PATH='images/spacer.gif';var CTRL=1000;var SHIFT=2000;var ALT=4000;var FCK_STYLE_BLOCK=0;var FCK_STYLE_INLINE=1;var FCK_STYLE_OBJECT=2;
 String.prototype.Contains=function(A){return (this.indexOf(A)>-1);};String.prototype.Equals=function(){var A=arguments;if (A.length==1&&A[0].pop) A=A[0];for (var i=0;i<A.length;i++){if (this==A[i]) return true;};return false;};String.prototype.IEquals=function(){var A=this.toUpperCase();var B=arguments;if (B.length==1&&B[0].pop) B=B[0];for (var i=0;i<B.length;i++){if (A==B[i].toUpperCase()) return true;};return false;};String.prototype.ReplaceAll=function(A,B){var C=this;for (var i=0;i<A.length;i++){C=C.replace(A[i],B[i]);};return C;};String.prototype.StartsWith=function(A){return (this.substr(0,A.length)==A);};String.prototype.EndsWith=function(A,B){var C=this.length;var D=A.length;if (D>C) return false;if (B){var E=new RegExp(A+'$','i');return E.test(this);}else return (D==0||this.substr(C-D,D)==A);};String.prototype.Remove=function(A,B){var s='';if (A>0) s=this.substring(0,A);if (A+B<this.length) s+=this.substring(A+B,this.length);return s;};String.prototype.Trim=function(){return this.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g,'');};String.prototype.LTrim=function(){return this.replace(/^[ \t\n\r]*/g,'');};String.prototype.RTrim=function(){return this.replace(/[ \t\n\r]*$/g,'');};String.prototype.ReplaceNewLineChars=function(A){return this.replace(/\n/g,A);};String.prototype.Replace=function(A,B,C){if (typeof B=='function'){return this.replace(A,function(){return B.apply(C||this,arguments);});}else return this.replace(A,B);};Array.prototype.AddItem=function(A){var i=this.length;this[i]=A;return i;};Array.prototype.IndexOf=function(A){for (var i=0;i<this.length;i++){if (this[i]==A) return i;};return-1;};
 var	FCKIECleanup=function(A){if (A._FCKCleanupObj) this.Items=A._FCKCleanupObj.Items;else{this.Items=[];A._FCKCleanupObj=this;FCKTools.AddEventListenerEx(A,'unload',FCKIECleanup_Cleanup);}};FCKIECleanup.prototype.AddItem=function(A,B){this.Items.push([A,B]);};function FCKIECleanup_Cleanup(){if (!this._FCKCleanupObj||!window.FCKUnloadFlag) return;var A=this._FCKCleanupObj.Items;while (A.length>0){var B=A.pop();if (B) B[1].call(B[0]);};this._FCKCleanupObj=null;if (CollectGarbage) CollectGarbage();};

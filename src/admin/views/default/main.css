@@ -388,15 +388,13 @@ textarea{
 	margin:10px 0px 5px 32px;
 }
 #show_advset{
-	margin:0px 0px 0px 32px;
+	margin:0px 0px 0px 3px;
 	background: url(images/advset.gif) no-repeat 56px 4px;
 	cursor:pointer;
 }
 #advset{
 	display:none;
 	background-color:#F5F5F5;
-	width:200px;
-	margin-left:30px;
 	border-top:#ECECEC solid 1px;
 }
 #log_pass{display:none;}

@@ -14,10 +14,6 @@ FCKConfig.SkinDialogCSS = '' ;	// FCKConfig.SkinPath + "|<minified css>" ;
 
 FCKConfig.PreloadImages = [ FCKConfig.SkinPath + 'images/toolbar.start.gif', FCKConfig.SkinPath + 'images/toolbar.buttonarrow.gif' ] ;
 
-// FCKConfig.ProtectedSource.Add( /<%[\s\S]*?%>/g ) ;	// ASP style server side code <%...%>
-// FCKConfig.ProtectedSource.Add( /<\?[\s\S]*?\?>/g ) ;	// PHP style server side code
-// FCKConfig.ProtectedSource.Add( /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi ) ;	// ASP.Net style tags <asp:control>
-
 FCKConfig.AutoDetectLanguage	= false ;
 FCKConfig.DefaultLanguage		= 'zh-cn' ;
 FCKConfig.ContentLangDirection	= 'ltr' ;
@@ -28,7 +24,7 @@ FCKConfig.IncludeGreekEntities	= true ;
 
 FCKConfig.ProcessNumericEntities = false ;
 
-FCKConfig.AdditionalNumericEntities = ''  ;		// Single Quote: "'"
+FCKConfig.AdditionalNumericEntities = ''  ;
 
 FCKConfig.FillEmptyBlocks	= true ;
 
@@ -47,11 +43,11 @@ FCKConfig.FloatingPanelsZIndex = 10000 ;
 FCKConfig.HtmlEncodeOutput = false ;
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Blockquote','Image','Flash','Rule','Table']
+	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Image','Flash','Rule','Table']
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
-	['Source','Bold','Italic','OrderedList','UnorderedList','Link','Unlink','Image','About']
+	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Image','Flash','Table']
 ] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
