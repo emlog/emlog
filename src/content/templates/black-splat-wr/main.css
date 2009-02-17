@@ -1,0 +1,647 @@
+/*  
+Theme Name: Black Splat WR
+Theme URI: http://samk.ca/freebies/free-wordpress-theme-blacksplat/
+Description: A simple, 3-column widget-ready WordPress theme designed to incorporate common ad formats.
+Author: sam
+Author URI: http://samk.ca/
+Version: 1.7
+Tags: black, gold, simple, grunge, right sidebar, 3 columns, fixed width, valid xhtml, valid css, widgets, adsense ready, rounded, 1024
+.
+Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
+.
+*/
+
+/* Defaults */
+
+* {
+  margin: 0;
+  padding: 0;
+  }
+
+h1, h2, h3, h4, h5, h6,{
+  margin: 0;
+  padding: 10px;
+  }
+p{
+	margin: 0;
+  padding: 5px 10px;
+}
+a {
+  color: #727248;
+  text-decoration: none;
+  }
+
+a:hover {
+  color: #727248;
+  text-decoration: underline;
+  }
+
+blockquote {
+  background: url(images/bquotes.gif) left top no-repeat;
+  padding-left: 35px;
+  margin: 10px 0 0 10px;
+  font-style: italic;
+  }
+
+code {
+  color: #555;
+  }
+
+body {
+  position: relative; /* Fixes browser resizing bug in IE6 */
+  margin: 10px auto;
+  width: 980px;
+  font-family: 'trebuchet ms', arial, sans-serif;
+  text-align: center; /* IE Centering Technique */
+  background: #000;
+  }
+
+
+/* Header and wrapper */
+#wrapper {
+  width: 980px;
+  text-align: left; /* IE Centering Technique */
+  background: url(images/topcurve.png) 40px 0 no-repeat;
+  }
+
+#headerwrapper {
+  background: url(images/topsplatleft.png) left top no-repeat;
+  }
+
+#header {
+  margin: 0 40px;
+  padding-top: 55px;
+  height: 140px;
+  background: url(images/bgheader.jpg) left 55px repeat-x;
+  }
+
+#title {
+  float: left;
+  margin-left: 15px;
+  width: 360px;
+  display:inline;
+  }
+#header h1 {
+  padding: 0;
+  font-size: 15pt;
+  }
+#header h1 a {
+  color: #d3d082;
+  font-size: 16pt;
+  text-decoration: none;
+  }
+#header h1 a:hover {
+  color: #EBE9BE;
+  text-decoration: none;
+  }
+#header h3 {
+  padding: 0;
+  color: #fff;
+  font-size: 11pt;
+  }
+
+#topright {
+	text-align:right;
+  color: #fff;
+  font-size: 10pt;
+  float: right;
+  margin-bottom: 24px;
+  margin-right: 15px;
+  width: 468px;
+  height: 60px;
+  display:inline;
+  }
+#topright a {
+  color: #B4B472;
+  }
+
+
+/* Menu and search */
+
+#nav {
+  clear: both;
+  height: 32px;
+  }
+
+#header #searchform {
+  float: right;
+  margin-left: 0;
+  }
+
+#searchform {
+  margin-left: 10px;
+  width: 228px;
+  padding-top: 7px;
+  height: 28px;
+  background: #ccc;
+  background: url(images/bgsearch.jpg) left 3px no-repeat;
+  }
+
+*:first-child+html #searchform { /* Filter for IE7 */
+  padding: 5px 0;
+  }
+
+* html #searchform { /* Filter for IE6 */
+  padding: 5px 0;
+  }
+
+#searchbox {
+  margin-left: 8px;
+  margin-bottom: 3px;
+  width: 145px;
+  background: none;
+  border: none;
+  }
+
+#searchbutton {
+  width: 50px;
+  background: none;
+  border: none;
+  }
+
+#searchbutton:hover {
+  cursor: pointer;
+  }
+
+#nav ul {
+  list-style: none;
+  width: 600px;
+  }
+
+#nav li {
+  float: left;
+  }
+
+#nav li a {
+  padding: 0 15px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 13px;
+  color: #FFF;
+  text-transform: lowercase;
+  }
+
+#nav li a:hover {
+  color: #d3d082;
+  text-decoration: none;
+  }
+
+#nav li.rssmenu a {
+  color: #d3d082;
+  }
+
+#nav li.rssmenu a:hover {
+  color: #fff;
+  }
+
+
+
+/* Content */
+
+#main {
+  clear: both;
+  margin: 0 40px;
+  width: 900px; /* Prevents IE6 miscalculation */
+  background: #fff;
+  }
+
+#contentwrapper {
+  width: 610px;
+  float: left;
+  padding-left: 20px;
+  padding-right: 15px;
+  }
+#contentwrapper_fullwidth {
+  width: 880px;
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+  }
+
+#content {
+  }
+
+#content .pageTitle {
+  font-size: 15pt;
+  letter-spacing: -1px;
+  color: #222;
+  }
+
+.post {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-bottom:1px #CCCCCC dashed;
+  padding-bottom:10px;
+  }
+
+h2.postTitle {
+  padding: 0 10px;
+  letter-spacing: -1px;
+  }
+
+h2.postTitle a {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #333;
+  }
+
+#content .postMeta {
+  padding: 0 10px;
+  font-size: 12px;
+  color: #7b7b7b;
+  }
+
+.post img {
+  margin: 10px;
+  }
+
+#content p, .postContent p {
+  font-size: 13px;
+  line-height:160%;
+  color: #333;
+  }
+
+.postContent ul, ol {
+  padding: 0 0 0 35px;
+  }
+
+.postContent ul li, ol li {
+  font-size:12px;
+  color: #333;
+  }
+
+.comment {
+  border-top: 1px solid #ebebeb;
+  }
+
+
+#commentslinks {
+  float: right;
+  text-align: right;
+  padding: 5px 10px;
+  width: 160px;
+  color: #727248;
+  font-size: 9pt;
+  }
+
+#commentslinks a {
+  text-decoration: underline;
+  }
+
+#comments {
+  margin: 0 10px;
+  padding: 5px 10px;
+  padding-left: 25px;
+  font-size:12px;
+  color: #727248;
+  background: url(images/comment.jpg) left 5px no-repeat;
+  }
+
+p.comments {
+  clear: both;
+  padding: 5px 10px;
+  }
+
+p.comment {
+  padding: 0 10px;
+  }
+
+p.comments a {
+  padding-left: 20px;
+  background: url(images/comment.jpg) left top no-repeat;
+  font-size: 10pt;
+  text-decoration: none;
+  }
+
+p.comments a:hover {
+  text-decoration: underline;
+  }
+
+.commentlist {
+  margin: 10px 25px;
+  padding: 0 10px;
+  font-size:12px;
+  list-style: none;
+  }
+
+.commentlist li {
+  margin: 0 0 0px -25px;
+  }
+
+.commentlist cite {
+  font-size: 10pt;
+  font-style: normal;
+  }
+
+.commentlist cite a {
+  }
+
+.comment .commentmetadata a {
+  color: #333;
+  }
+
+.commentlist p {
+  padding: 10px 0;
+  }
+
+.comment h3 {
+  font-size: 10pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  }
+
+p.comment a {
+  padding-left: 20px;
+  background: url(images/comment.jpg) left top no-repeat;
+  font-size: 10pt;
+  }
+
+textarea {
+  width: 480px;
+  }
+
+.comment #submit {
+  width: 118px;
+  height: 30px;
+  background: url(images/commentbutton.jpg) left top no-repeat;
+  border: none;
+  font-size: 9pt;
+  color: #fff;
+  }
+
+.comment #submit:hover {
+  cursor: pointer;
+  }
+
+#commentbody {
+  margin: 2px 0 5px 20px;
+  font-size:12px;
+  padding:3px 20px;
+  color:#666666;
+  border-bottom:1px #cccccc solid;
+  }
+#commentbody p{
+	font-size: 12px;
+	padding:3px 0px;
+	}
+a.gravatar {
+  float:left;
+  margin:10px 15px 20px 0;
+  width:69px;
+  }
+
+#nextprevious {
+  margin: 10px;
+  text-align:center;
+  }
+/* Sidebars */
+.sidebars {
+  float: right;
+  margin-top: 0px;
+  padding:5px 10px;
+  width: 230px;
+  color:#999;
+  }
+.sidebars h2 {
+  padding: 0 0px 2px 0px;;
+  font-size: 12pt;
+  color: #333;
+  letter-spacing: -1px;
+  border-bottom: 1px solid #e4e4e4;
+  }
+.sidebars table {
+  width: 160px;
+  }
+.sidebars ul ul{
+  margin: 0;
+  padding: 0 0px 5px 0px;
+  }
+
+.sidebars li {
+  margin-bottom: 20px;
+  list-style: none;
+  font-size:12px;
+  }
+  .sidebars ul ul{
+  	padding:10px 0;
+  }
+.sidebars ul ul li {
+  margin: 0;
+  padding: 3px 16px 2px 16px;
+  color: #999;
+  background: url(images/bullet.gif) left 7px no-repeat;
+  line-height: 17px; /* Required for cross-browser consistency; cross-browser defaults vary. */
+  }
+.sidebars a {
+  display: inline;
+  color: #999999;
+  text-decoration: none;
+  }
+.sidebars a.showit {
+  color: #727248;
+  }
+.sidebars a:hover {
+  color: #727248;
+  text-decoration: underline;
+  }
+
+.sidebars p {
+  padding: 2px 0;
+  font-size: 9pt;
+  color: #333;
+  }
+
+#tag_cloud a {
+  display: inline;
+  }
+
+.sidebars ul.children li {border-bottom:none;}
+.sidebars ul.children {margin-bottom:-5px;}
+
+
+
+
+/* footer*/
+
+#footerwrapper {
+  clear: both;
+  height: 158px;
+  background: url(images/bottomsplatright.png) right bottom no-repeat;
+  }
+
+#footer {
+  margin: 0 40px;
+  background: #fff url(images/bgfooter.png) left top repeat-x;
+  }
+
+#footerleft {
+  float: left;
+  margin-top: 70px;
+  margin-left: 15px;
+  width: 400px;
+  display: inline;
+  }
+
+#footerleft p a {
+  color: #B4B472;
+  }
+
+#footerleft p {
+  padding: 0;
+  line-height: 16px;
+  }
+
+#footer p {
+  font-size: 10pt;
+  color: #FFF;
+  }
+
+a img {
+  border: none;  
+  }
+
+#bottomcurve {
+  clear: both;
+  width: 900px;
+  height: 55px;
+  background: url(images/bottomcurve.png) left bottom no-repeat;
+  }
+#bottomcurve span{
+  float: right;
+  width: 125px;
+  height: 15px;
+  }
+#bottomcurve span:hover{
+  cursor: pointer;
+  }
+
+.highlight {
+  color: #D9D688;
+  font-weight: bold;
+  }
+
+
+/* Misc */
+.cleared {
+  clear: both;
+  }
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+
+.wp-caption {
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #f3f3f3;
+  padding-top: 4px;
+  margin: 10px;
+  /* optional rounded corners for browsers that support it */
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  }
+
+.wp-caption img {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  }
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  padding: 0 4px 5px;
+  margin: 0;
+  }
+#bloggerinfo li,#blogmusic li{
+	text-align:center;
+	background:0;;
+}
+/*日历样式*/
+.calendar { /*background-image:url(images/bg.jpg);*/
+	margin:0px 0px 10px 12px;
+}
+
+.calendar td {
+	font-size: 12px;
+	text-align: center;
+	padding: 2px 7px;
+}
+
+.calendar a:visited {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:link {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.calendar td a:hover {
+	color: #FF3300;
+	text-decoration: none;
+}
+
+.day {
+	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+}
+
+.day2 {
+	font-weight: bold;
+}
+
+.sun {
+	background-color: #F5F5F5;
+	color: #333333;
+	font-weight: bold;
+}
+
+.week {
+	background-color: #F5F5F5;
+	color: #333333;
+}
+
+.calendartop {
+	text-align: center;
+	font-size: 14px;
+	margin-left: 25px;
+	margin-top:10px;
+}
+#trackback{
+	font-size:12px;
+	background-color:#f5f5f5;
+}
+#trackback ul{
+	padding-left:12px;
+}
+.trackback{
+	border-bottom:1px solid #FFFFFF;
+}
+#trackback ul li{
+	list-style:none;
+	background: url(images/bullet.gif) left 7px no-repeat;
+	padding:2px 0px 2px 16px;
+}
+#respond{
+	background-color:#f7f7f7;
+	border-bottom:solid 1px #CCCCCC;
+}
+#commentform{
+	margin:10px 0px 5px;
+}
+#commentform input,#tb_list input{
+	border:solid 1px #CCCCCC;
+	padding:3px;
+}
+#commentform textarea{
+	border:solid 1px #CCCCCC;
+	padding:3px;
+}
