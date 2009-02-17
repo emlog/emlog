@@ -307,12 +307,13 @@ p.comment {
   }
 
 p.comments a {
-  padding-left: 20px;
-  background: url(images/comment.jpg) left top no-repeat;
+  padding-left:20px;
   font-size: 10pt;
   text-decoration: none;
   }
-
+.comment_a{
+	  background: url(images/comment.jpg) left top no-repeat;
+}
 p.comments a:hover {
   text-decoration: underline;
   }
@@ -591,7 +592,7 @@ div.aligncenter {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+	background: #fff url(./images/bg_cal_today.gif) no-repeat;
 }
 
 .day2 {
@@ -644,4 +645,7 @@ div.aligncenter {
 #commentform textarea{
 	border:solid 1px #CCCCCC;
 	padding:3px;
+}
+#blogtags{
+	line-height:180%;
 }

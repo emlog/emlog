@@ -125,7 +125,7 @@
 	global $index_randlognum, $emBlog;
 	$randLogs = $emBlog->getRandLog($index_randlognum);
 	?>
-	<div h2><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h2>
+	<h2><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
 	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>

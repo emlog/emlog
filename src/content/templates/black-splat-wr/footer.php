@@ -9,7 +9,7 @@
 
 <div id="footerleft">
 <p>powered by 
-<a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a><br />
+<a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></p><p>:)</p>
 </div> <!-- Closes footerleft -->
 
