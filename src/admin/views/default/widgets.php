@@ -15,6 +15,7 @@
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
+			<li><a href="blogger.php">修改个人资料...</a></li>
 		</div>
 	</div>
 	</form>

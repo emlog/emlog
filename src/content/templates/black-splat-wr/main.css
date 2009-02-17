@@ -565,7 +565,7 @@ div.aligncenter {
 	text-align:center;
 	background:0;;
 }
-/*日历样式*/
+/*式*/
 .calendar { /*background-image:url(images/bg.jpg);*/
 	margin:0px 0px 10px 12px;
 }
@@ -646,6 +646,9 @@ div.aligncenter {
 	border:solid 1px #CCCCCC;
 	padding:3px;
 }
-#blogtags{
-	line-height:180%;
+#blogtags a{
+	line-height:1.4;
+}
+#blogtags li{
+	background:0;
 }

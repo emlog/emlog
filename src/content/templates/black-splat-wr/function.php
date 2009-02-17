@@ -34,7 +34,7 @@
 	<ul id="blogtags">
 	<li>
 	<?php foreach($tag_cache as $value): ?>
-		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
+		<span style="font-size:<?php echo $value['fontsize']; ?>pt; ">
 		<a href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
