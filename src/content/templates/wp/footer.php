@@ -45,7 +45,7 @@ foreach ($widgets as $val)
 </UL></DIV>
 <HR>
 
-<DIV id=footer>powered by 
+<DIV id=footer>Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a><br />
 &nbsp;<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp;?></a></P>
 </DIV>

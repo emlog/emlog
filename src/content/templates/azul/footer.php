@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div id="footer">
-<p>powered by 
+<p>Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>
 &#124; Designed by <a href="http://www.switchroyale.com">Switchroyale</a>
 <br />

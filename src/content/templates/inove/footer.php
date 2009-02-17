@@ -2,7 +2,7 @@
 <!-- footer START -->
 <div class="footer">
 <div style="clear:both">&nbsp;</div>
-	powered by 
+	Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a><br />
 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></div>
 </div>

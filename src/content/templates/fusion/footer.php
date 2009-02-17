@@ -2,7 +2,7 @@
 <!-- footer -->
  <div id="footer">
    <!-- please do not remove this. respect the authors :) -->
-   <p>powered by 
+   <p>Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> Fusion theme by <a href="http://www.digitalnature.ro/projects/fusion">digitalnature</a> <br />
 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
    </p>
