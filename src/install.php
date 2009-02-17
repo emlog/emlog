@@ -132,7 +132,7 @@ body {
 </div>
 <div>
 <p class="foot">
-powered by <a href="http://www.emlog.net">emlog</a>
+Powered by <a href="http://www.emlog.net">emlog</a>
 </p>
 </div>
 </div>
