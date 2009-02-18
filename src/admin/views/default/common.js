@@ -100,7 +100,7 @@ function autosave(act){
 	var ishide = ishide == "" ? "y" : ishide;
 	if(act == 0){
 		if (content == ""){
-			setTimeout("autosave(1)",30000);
+			setTimeout("autosave(0)",30000);
 			return;
 		}
 	}
