@@ -237,7 +237,6 @@ textarea{
 }
 .widget-title{
 	cursor:pointer;
-	font-weight:bold;
 	width:360px;
 }
 .widget-control {
@@ -264,6 +263,17 @@ textarea{
 	cursor:pointer;
 	height:15px;
 }
+/*custom_widgets*/
+.wg_line{
+	float:left;
+	width:408px;
+	font-weight:bold;
+	padding:15px 0px 5px 0px;
+	margin:0px 0px 0px 0px;
+	border-bottom:2px solid #E9F1FA;
+}
+#custom_text_new{display:;}
+/*custom_widgets end*/
 #adm_widget_box {
 	width:300px;
 	float:right;

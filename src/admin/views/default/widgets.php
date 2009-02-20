@@ -196,13 +196,34 @@
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['bloginfo']; ?>"  /> <input type="submit" name="" value="更改"  /></li>
 		</div>
 	</div>
+	<div class="wg_line">自定义组件</div>
 	</form>
-	<div class="widget-line" id="custom_text">
+	<?php foreach ($custom_widget as $key=>$val): ?>
+	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
+	<div class="widget-line" id="<?php echo $key; ?>">
 		<div class="widget-top">
-			<li class="widget-title">自定义组件</li>
+			<li class="widget-title"><?php echo $val['title']; ?></li>
 			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
+		</div>
+		<div class="widget-control">
+			<input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
+			<li><input type="text" name="title" style="width:300px;" value="<?php echo $val['title']; ?>" />
+			<textarea name="content" rows="6" wrap="off" style="width:300px;overflow:auto;"><?php echo $val['content']; ?></textarea>
+			<input type="submit" name="" value="更改" /></li>
 		</div>
 	</div>
+	</form>
+	<?php endforeach;?>
+	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
+	<div id="custom_text_new">
+		<li>组件名</li>
+		<li><input type="text" name="new_title" style="width:350px;" value="" />
+		<li>内容 （支持html）</li>
+		<textarea name="new_content" rows="6" wrap="off" style="width:350px;overflow:auto;"></textarea>
+		<input type="submit" name="" value="添加组件"  /></li>
+	</div>
+	</form>
 </div>
 <form action="widgets.php?action=compages" method="post">
 <div id="adm_widget_box">
@@ -222,17 +243,10 @@ if($i == $wgNum):
 <?php endif;?>
 <ul>
 <?php
-$i = 0;
 foreach ($widgets as $widget):
 	//获取自定义组件标题、内容
-	$title = ($widget == 'custom_text' && isset($custom_title[$i])) ? $custom_title[$i] : '';
-	$content = ($widget == 'custom_text' && isset($custom_content[$i])) ? $custom_content[$i] : '';
-	if($widget == 'custom_text')
-	{
-		$i++;
-	}
-	$wg_edit = $widget=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-	$wg_text = $widget=='custom_text' ? "<input name=\"custom_title{$wgNum}[]\" value=\"$title\" class=\"wginput\" /><textarea name=\"custom_text{$wgNum}[]\">$content</textarea>" : '';
+	$flg = strpos($widget, 'custom_wp_') === 0 ? true : false;//是否为自定义组件
+	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';
 	?>
 	<li class="sortableitem" id="<?php echo $widget; ?>">
 	<input type="hidden" name="widgets<?php echo $wgNum; ?>[]" value="<?php echo $widget; ?>" />
@@ -259,7 +273,7 @@ foreach ($widgets as $widget):
 $(document).ready(function(){
 	var widgets = $(".sortableitem").map(function(){return $(this).attr("id");});
 	$.each(widgets,function(i,widget_id){
-		if(widget_id != 'custom_text'){$("#"+widget_id+" .widget-act-add").hide();}
+		$("#"+widget_id+" .widget-act-add").hide();
 		$("#"+widget_id+" .widget-act-del").show();
 	});
 	//show edit form
@@ -272,11 +286,9 @@ $(document).ready(function(){
 		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
-		var wg_edit = widget_id=='custom_text' ? "<span class=\"wgbox_edit\">编辑</span> <span class=\"wgbox_del\">移除</span>" : '';
-		var wg_text = widget_id=='custom_text' ? "<input name=\"custom_title"+wgnum+"[]\" value=\"\" class=\"wginput\" /><textarea name=\"custom_text"+wgnum+"[]\"></textarea>" : '';
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span>"+wg_edit+wg_text+"<input type=\"hidden\" name=\"widgets"+wgnum+"[]\" value=\""+widget_id+"\" /></li>";
+		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span><input type=\"hidden\" name=\"widgets"+wgnum+"[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
-		if(widget_id != 'custom_text'){$(this).hide();}
+		$(this).hide();
 		$(this).next(".widget-act-del").show();
 	});
 	//remove widget
@@ -292,12 +304,7 @@ $(document).ready(function(){
 			accept: 'sortableitem',
 			handle: 'span.wgbox_title'
 		});
-		$(".wgbox_edit").bind("click", wg_edit_fun);
-		$(".wgbox_del").bind("click", wg_del_fun);
 	});
-	var wg_edit_fun = function(){$(this).parent().find("input,textarea").toggle();}
-	var wg_del_fun = function(){$(this).parent().remove();}
-	
 	$("#wg_select").change(function(){
 		window.location = "widgets.php?wg="+$(this).val();
 	})

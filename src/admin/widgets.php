@@ -14,9 +14,8 @@ if($action == '')
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
 	$widgets = $options_cache['widgets'.$wgNum] ? @unserialize($options_cache['widgets'.$wgNum]) : array();
 	$widgetTitle = $options_cache['widget_title'] ? @unserialize($options_cache['widget_title']) : array();
-	$custom_title = $options_cache['custom_title'.$wgNum] ? @unserialize($options_cache['custom_title'.$wgNum]) : array();
-	$custom_content = $options_cache['custom_content'.$wgNum] ? @unserialize($options_cache['custom_content'.$wgNum]) : array();
-	
+	$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
+
 	$customWgTitle = array();
 	foreach ($widgetTitle as $key => $val)
 	{
@@ -65,6 +64,7 @@ if($action == '')
 if($action == 'setwg')
 {
 	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
+	$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//组件标识符
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
@@ -129,6 +129,26 @@ if($action == 'setwg')
 			}
 			$musicData = serialize($music);
 			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");
+			break;
+		case 'custom_text':
+			$title = isset($_POST['title']) ? addslashes($_POST['title']) : '';
+			$content = isset($_POST['content']) ? addslashes($_POST['content']) : '';
+			$custom_wg_id = isset($_POST['custom_wg_id']) ? addslashes($_POST['custom_wg_id']) : '';
+			$new_title = isset($_POST['new_title']) ? addslashes($_POST['new_title']) : '';
+			$new_content = isset($_POST['new_content']) ? addslashes($_POST['new_content']) : '';
+			//添加新自定义组件
+			if($new_title && $new_content)
+			{
+				$custom_wg_index = count($custom_widget)+1;
+				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
+				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
+				$custom_widget_str = serialize($custom_widget);
+				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+			}elseif ($title && $content){
+				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
+				$custom_widget_str = serialize($custom_widget);
+				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+			}
 			break;
 	}
 	$CACHE->mc_options();
