@@ -181,8 +181,8 @@
 <!--自定义-->
 <?php function widget_custom_text($title, $content, $id){ ?>
       <div id="links" class="dbx-box">
-        <h3 class="dbx-handle" onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></h3>
-        <div class="dbx-content" id="custom<?php echo $id; ?>">
+        <h3 class="dbx-handle" onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></h3>
+        <div class="dbx-content" id="<?php echo $id; ?>">
           <ul>
 			<p><?php echo $content; ?></p>
           </ul>

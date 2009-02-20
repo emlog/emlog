@@ -207,21 +207,25 @@
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
+			<li>
 			<input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
-			<li><input type="text" name="title" style="width:300px;" value="<?php echo $val['title']; ?>" />
-			<textarea name="content" rows="6" wrap="off" style="width:300px;overflow:auto;"><?php echo $val['content']; ?></textarea>
-			<input type="submit" name="" value="更改" /></li>
+			<input type="text" name="title" style="width:345px;" value="<?php echo $val['title']; ?>" />
+			</li>
+			<li><textarea name="content" rows="8" wrap="off" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
+			<li><input type="submit" name="" value="更改" />
+			<span style="margin-left:235px;"><a href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a></span></li>
 		</div>
 	</div>
 	</form>
 	<?php endforeach;?>
 	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
+	<div class="wg_line2"><a href="javascript:$('#custom_text_new').toggle();void(0);">自定义一个新的组件&raquo;</a></div>
 	<div id="custom_text_new">
 		<li>组件名</li>
-		<li><input type="text" name="new_title" style="width:350px;" value="" />
+		<li><input type="text" name="new_title" style="width:350px;" value="" /></li>
 		<li>内容 （支持html）</li>
-		<textarea name="new_content" rows="6" wrap="off" style="width:350px;overflow:auto;"></textarea>
-		<input type="submit" name="" value="添加组件"  /></li>
+		<li><textarea name="new_content" rows="8" wrap="off" style="width:350px;overflow:auto;"></textarea></li>
+		<li><input type="submit" name="" value="添加组件"  /></li>
 	</div>
 	</form>
 </div>
@@ -230,8 +234,7 @@
 <?php if($tpl_sidenum > 1):?>
 <p>
 <select id="wg_select">
-<?php 
-for ($i=1; $i<=$tpl_sidenum; $i++):
+<?php for ($i=1; $i<=$tpl_sidenum; $i++):
 if($i == $wgNum):
 ?>
 <option value="<?php echo $i;?>" selected>侧边栏<?php echo $i;?></option>
@@ -242,31 +245,27 @@ if($i == $wgNum):
 </p>
 <?php endif;?>
 <ul>
-<?php
-foreach ($widgets as $widget):
-	//获取自定义组件标题、内容
-	$flg = strpos($widget, 'custom_wp_') === 0 ? true : false;//是否为自定义组件
-	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';
+<?php foreach ($widgets as $widget):
+	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//是否为自定义组件
+	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';	//获取自定义组件标题
 	?>
 	<li class="sortableitem" id="<?php echo $widget; ?>">
-	<input type="hidden" name="widgets<?php echo $wgNum; ?>[]" value="<?php echo $widget; ?>" />
+	<input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
 	<span class="wgbox_title">
 	<?php 
-	if ($widget == 'custom_text' && $title != '')
+	if ($flg && $title != '')
 	{
 		echo subString($title, 0, 18);
 	}else{
-		echo $widgetTitle[$widget]; 
-	}
-	?>
+		echo $widgetTitle[$widget];
+	}?>
 	</span>
-	<?php echo $wg_edit; ?><?php echo $wg_text; ?>
 	</li>
 <?php endforeach;?>
 </ul>
+<input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 <div style="margin:10px 40px;"><input type="submit" value="确 定" class="submit2" /></div>
 </div>
-<input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 </form>
 </div>
 <script>
@@ -286,7 +285,7 @@ $(document).ready(function(){
 		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span><input type=\"hidden\" name=\"widgets"+wgnum+"[]\" value=\""+widget_id+"\" /></li>";
+		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span><input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 		$(this).hide();
 		$(this).next(".widget-act-del").show();

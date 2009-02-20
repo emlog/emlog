@@ -176,8 +176,8 @@
 <?php function widget_custom_text($title, $content, $id){ ?>
 <div class="box">
         	<div class="header">
-	<h3><span onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></span></h3></div>
-	<ul id="custom<?php echo $id; ?>">
+	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3></div>
+	<ul id="<?php echo $id; ?>">
 	<li><?php echo $content; ?></li>
 	</ul>
 	</div>

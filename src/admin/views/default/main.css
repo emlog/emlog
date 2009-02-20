@@ -221,6 +221,7 @@ textarea{
 	width:450px;
 	float:left;
 }
+#adm_widget_list li{list-style-type:none;}
 .widget-line{margin:0px;}
 .widget-top {
 	float:left;
@@ -241,13 +242,12 @@ textarea{
 }
 .widget-control {
 	float:left;
-	width:363px;
-	padding:10px 20px;
+	width:383px;
+	padding:10px 10px;
 	display:none;
 	margin:0px 0px 5px 0px;
 	border:1px solid #E9F1FA;
 }
-.widget-control li{list-style-type:none;}
 .widget-act-del{
 	background:url(images/icon_del.gif) no-repeat center;
 	margin:5px;
@@ -268,12 +268,20 @@ textarea{
 	float:left;
 	width:408px;
 	font-weight:bold;
-	padding:15px 0px 5px 0px;
-	margin:0px 0px 0px 0px;
-	border-bottom:2px solid #E9F1FA;
+	padding:15px 0px 0px 0px;
+	margin:0px 0px 5px 0px;
+	border-bottom:1px dotted #CCCCCC;
 }
-#custom_text_new{display:;}
-/*custom_widgets end*/
+.wg_line2{
+	float:left;
+	width:408px;
+	padding:15px 0px 0px 0px;
+	margin:0px 0px 5px 0px;
+}
+#custom_text_new{
+	float:left;
+	display:none;
+}
 #adm_widget_box {
 	width:300px;
 	float:right;

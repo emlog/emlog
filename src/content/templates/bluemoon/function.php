@@ -143,8 +143,8 @@
 <?php } ?>
 <!--自定义-->
 <?php function widget_custom_text($title, $content, $id){ ?>
-	<div class="title"><h1><span onclick="showhidediv('custom<?php echo $id; ?>')"><?php echo $title; ?></span></h1></div>
-	<ul id="custom<?php echo $id; ?>">
+	<div class="title"><h1><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h1></div>
+	<ul id="<?php echo $id; ?>">
 	<li><?php echo $content; ?></li>
 	</ul>
 <?php } ?>

@@ -64,8 +64,7 @@ if($action == '')
 if($action == 'setwg')
 {
 	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
-	$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
-	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//组件标识符
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
@@ -131,11 +130,13 @@ if($action == 'setwg')
 			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");
 			break;
 		case 'custom_text':
+			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
 			$title = isset($_POST['title']) ? addslashes($_POST['title']) : '';
 			$content = isset($_POST['content']) ? addslashes($_POST['content']) : '';
 			$custom_wg_id = isset($_POST['custom_wg_id']) ? addslashes($_POST['custom_wg_id']) : '';
 			$new_title = isset($_POST['new_title']) ? addslashes($_POST['new_title']) : '';
 			$new_content = isset($_POST['new_content']) ? addslashes($_POST['new_content']) : '';
+			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';
 			//添加新自定义组件
 			if($new_title && $new_content)
 			{
@@ -146,6 +147,26 @@ if($action == 'setwg')
 				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
 			}elseif ($title && $content){
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
+				$custom_widget_str = serialize($custom_widget);
+				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+			}elseif ($rmwg){
+				for($i=1; $i<5; $i++)
+				{
+					$widgets = $options_cache['widgets'.$i] ? @unserialize($options_cache['widgets'.$i]) : array();
+					if(is_array($widgets) && !empty($widgets))
+					{
+						foreach ($widgets as $key => $val)
+						{
+							if($val == $rmwg)
+							{
+								unset($widgets[$key]);
+							}
+						}
+						$widgets_str = serialize($widgets);
+						$DB->query("update ".DB_PREFIX."options set option_value='$widgets_str' where option_name='widgets$i'");
+					}
+				}
+				unset($custom_widget[$rmwg]);
 				$custom_widget_str = serialize($custom_widget);
 				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
 			}
@@ -162,15 +183,8 @@ if($action == 'setwg')
 if($action == 'compages')
 {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
-
-	$widgets = isset($_POST['widgets'.$wgNum]) ? serialize($_POST['widgets'.$wgNum]) : '';
-	//自定义组件
-	$customTextTitle = isset($_POST['custom_title'.$wgNum]) ? addslashes(serialize($_POST['custom_title'.$wgNum])) : '';
-	$customTextContent = isset($_POST['custom_text'.$wgNum]) ? addslashes(serialize($_POST['custom_text'.$wgNum])) : '';
-
+	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets{$wgNum}'");
-	$DB->query("update ".DB_PREFIX."options set option_value='$customTextTitle' where option_name='custom_title{$wgNum}'");
-	$DB->query("update ".DB_PREFIX."options set option_value='$customTextContent' where option_name='custom_content{$wgNum}'");
 	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
