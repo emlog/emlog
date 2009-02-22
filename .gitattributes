@@ -163,6 +163,38 @@ src/content/cache/sort -text
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
+src/content/templates/ColdBlue/css/legacy.css -text
+src/content/templates/ColdBlue/css/reset.css -text
+src/content/templates/ColdBlue/css/style.css -text
+src/content/templates/ColdBlue/echo_log.php -text
+src/content/templates/ColdBlue/footer.php -text
+src/content/templates/ColdBlue/function.php -text
+src/content/templates/ColdBlue/header.php -text
+src/content/templates/ColdBlue/images/background.gif -text
+src/content/templates/ColdBlue/images/bg_cal_today.gif -text
+src/content/templates/ColdBlue/images/header_background.gif -text
+src/content/templates/ColdBlue/images/icon_rss.gif -text
+src/content/templates/ColdBlue/images/import.gif -text
+src/content/templates/ColdBlue/images/index.html -text
+src/content/templates/ColdBlue/images/lil-arrow.gif -text
+src/content/templates/ColdBlue/images/meta_bottom.gif -text
+src/content/templates/ColdBlue/images/meta_top.gif -text
+src/content/templates/ColdBlue/images/modify.gif -text
+src/content/templates/ColdBlue/images/player.swf -text
+src/content/templates/ColdBlue/images/reply.gif -text
+src/content/templates/ColdBlue/images/rss.gif -text
+src/content/templates/ColdBlue/images/search_background.gif -text
+src/content/templates/ColdBlue/images/sidebar_border.gif -text
+src/content/templates/ColdBlue/images/technorati.gif -text
+src/content/templates/ColdBlue/images/wap.gif -text
+src/content/templates/ColdBlue/images/wrapper.gif -text
+src/content/templates/ColdBlue/log_list.php -text
+src/content/templates/ColdBlue/message.php -text
+src/content/templates/ColdBlue/preview.jpg -text
+src/content/templates/ColdBlue/screenshot.png -text
+src/content/templates/ColdBlue/side.php -text
+src/content/templates/ColdBlue/tpl.ini -text
+src/content/templates/ColdBlue/unique_tpl.js -text
 src/content/templates/azul/echo_log.php -text
 src/content/templates/azul/footer.php -text
 src/content/templates/azul/function.php -text
