@@ -255,7 +255,7 @@ if($i == $wgNum):
 	<?php 
 	if ($flg && $title != '')
 	{
-		echo subString($title, 0, 18);
+		echo subString($title, 0, 23);
 	}else{
 		echo $widgetTitle[$widget];
 	}?>
