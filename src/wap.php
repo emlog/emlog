@@ -85,7 +85,7 @@ if ($action == 'dis')
 	if(!empty($show_log['password']))
 	{
 		$logpwd = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-		AuthPassword($show_log['password'], $logpwd);
+		AuthPassword($show_log['password'], $logpwd, $show_log['gid']);
 	}
 	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 
@@ -251,14 +251,14 @@ function wap_footer() {
 	exit;
 }
 // 验证日志密码
-function authPassword($pwd, $pwd2)
+function authPassword($pwd, $pwd2, $blogid)
 {
 	if($pwd !== $pwd2)
 	{
 		wap_header('输入日志访问密码');
 		echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
 		echo "<p><anchor title=\"submit\">进入..\n";
-		echo "<go href=\"\" method=\"post\">\n";
+		echo "<go href=\"./wap.php?action=dis&amp;id=".$blogid."\" method=\"post\">\n";
 		echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 		echo "<postfield name=\"do\" value=\"\" />\n";
 		echo "</go></anchor>\n";
