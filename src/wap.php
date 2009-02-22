@@ -1,8 +1,8 @@
 <?php
 /**
  * 手机 wap 第一版
- * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-3.0.1
+ * @copyright (c) Emlog All Rights Reserved
+ * @version emlog-3.1.0
  * $Id: wap.php 526 2008-07-05 15:21:03Z emloog $
  */
 
@@ -82,6 +82,11 @@ if ($action == 'dis')
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./wap.php');
 	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
 	OR emMsg('不存在该日志','./wap.php');
+	if(!empty($show_log['password']))
+	{
+		$logpwd = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
+		AuthPassword($show_log['password'], $logpwd);
+	}
 	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 
 	$log_title  = htmlspecialchars($show_log['title']);
@@ -244,6 +249,24 @@ function wap_footer() {
 	echo "</card>\n";
 	echo "</wml>\n";
 	exit;
+}
+// 验证日志密码
+function authPassword($pwd, $pwd2)
+{
+	if($pwd !== $pwd2)
+	{
+		wap_header('输入日志访问密码');
+		echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
+		echo "<p><anchor title=\"submit\">进入..\n";
+		echo "<go href=\"\" method=\"post\">\n";
+		echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
+		echo "<postfield name=\"do\" value=\"\" />\n";
+		echo "</go></anchor>\n";
+		echo "</p>\n";
+		echo "<p><a href=\"./wap.php?action=logs\">返回日志列表</a></p>\n";
+		wap_footer();
+		exit;
+	}
 }
 
 ?>

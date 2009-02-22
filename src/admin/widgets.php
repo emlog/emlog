@@ -1,8 +1,8 @@
 <?php
 /**
  * Widgets 侧边栏目管理
- * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-3.0.1
+ * @copyright (c) Emlog All Rights Reserved
+ * @version emlog-3.1.0
  * $Id: comment.php 654 2008-09-07 10:36:15Z emloog $
  */
 

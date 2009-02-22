@@ -1,8 +1,8 @@
 <?php
 /**
  * 保存日志（增加、修改）
- * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-3.0.1
+ * @copyright (c) Emlog All Rights Reserved
+ * @version emlog-3.1.0
  * $Id$
  */
 

@@ -1,8 +1,8 @@
 <?php
 /**
  * 显示撰写、编辑日志界面
- * @copyright (c) 2008, Emlog All Rights Reserved
- * @version emlog-3.0.1
+ * @copyright (c) Emlog All Rights Reserved
+ * @version emlog-3.1.0
  * $Id$
  */
 
