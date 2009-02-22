@@ -1,40 +1,10 @@
 * text=auto !eol
-css/legacy.css -text
-css/reset.css -text
-css/style.css -text
 doc/功能介绍.txt -text svn_keywords=Id
 doc/安装说明.txt -text svn_keywords=Id
 doc/模板说明.txt -text svn_keywords=Id
-/echo_log.php -text
 ext/.htaccess -text svn_keywords=Id
 ext/robots.txt -text svn_keywords=Id
-/footer.php -text
-/function.php -text
-/header.php -text
-images/background.gif -text
-images/bg_cal_today.gif -text
-images/header_background.gif -text
-images/icon_rss.gif -text
-images/import.gif -text
-images/index.html -text
-images/lil-arrow.gif -text
-images/meta_bottom.gif -text
-images/meta_top.gif -text
-images/modify.gif -text
-images/player.swf -text
-images/reply.gif -text
-images/rss.gif -text
-images/search_background.gif -text
-images/sidebar_border.gif -text
-images/technorati.gif -text
-images/wap.gif -text
-images/wrapper.gif -text
 /license.txt -text svn_keywords=Id
-/log_list.php -text
-/message.php -text
-/preview.jpg -text
-/screenshot.png -text
-/side.php -text
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/backup.php -text svn_keywords=Id
@@ -1081,8 +1051,6 @@ src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
 src/wap.php -text
-/tpl.ini -text
-/unique_tpl.js -text
 update/up2.0.0to2.2.0.php -text svn_keywords=Id
 update/up2.1.6sp1to2.2.0.php -text svn_keywords=Id
 update/up2.1.6to2.2.0.php -text svn_keywords=Id
