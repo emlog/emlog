@@ -45,7 +45,7 @@ foreach($blog as $value)
 	$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  date('r',$value['date']);
-print <<< END
+	print <<< END
 
 <item>
 	<title>{$value['title']}</title>
@@ -82,7 +82,7 @@ function GetURL()
  */
 function GetBlog($sort = null)
 {
-	global $DB;
+	global $DB,$URL;
 	$subsql = $sort ? " and sortid=$sort" : '';
 	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' $subsql ORDER BY gid DESC limit 0,20";
 	$result = $DB->query($sql);
@@ -93,6 +93,16 @@ function GetBlog($sort = null)
 		$re['title']    = htmlspecialchars($re['title']);
 		$re['date']		= $re['date'];
 		$re['content']	= $re['content'];
+		if(!empty($re['password']))
+		{
+			$re['excerpt'] = '<p>[该日志已设置加密]</p>';
+		}else{
+			if(!empty($re['excerpt']))
+			{
+				$re['excerpt'] .= '<p><a href="http://'.$URL.'/?action=showlog&gid='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
+			}
+		}
+		$re['content'] = empty($re['excerpt']) ? $re['content'] : $re['excerpt'];
 
 		$blog[] = $re;
 	}

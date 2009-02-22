@@ -134,7 +134,7 @@ if ($action == 'twitter')
 	while($row = $DB->fetch_array($query))
 	{
 		$row['date'] = smartyDate($localdate,$row['date']);
-		$row['content'] = str_replace("[wap]", '', htmlspecialchars(trim($row['content'])));
+		$row['content'] = htmlspecialchars(trim($row['content']));
 		$tws[] = $row;
 	}
 	//分页
@@ -171,7 +171,7 @@ if ($action == 'addtw')
 //新增 twitter
 if(ISLOGIN === true && $action == 'add_tw')
 {
-	$content = isset($_POST['tw']) ? addslashes($_POST['tw']).'[wap]' : '';
+	$content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
 	if(!empty($content))
 	{
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
