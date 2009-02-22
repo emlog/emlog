@@ -229,7 +229,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	'music'=>'音乐',
 	'link'=>'链接',
 	'search'=>'搜索',
-	'bloginfo'=>'博客信息',
+	'bloginfo'=>'信息',
 	'custom_text'=>'自定义组件'
 	);
 	$sider_wg = array(
