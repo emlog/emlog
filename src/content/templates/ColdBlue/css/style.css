@@ -79,9 +79,8 @@ ul#sidebar input#s {
 a#rss-link, a#technorati-link {
 	display: block;
 	float: left;
-	color: #333;
+	color: #ccc;
 	font-size: 13px;
-	font-weight: bold;
 	position: relative;
 	top: 4px;
 	text-decoration: none;
@@ -94,11 +93,11 @@ a#technorati-link {
 	padding: 0 0 1px 19px;
 }
 a#rss-link strong, a#technorati-link strong {
-	color: #666!important;
+	color: #33CCFF;!important;
 	border-bottom: 1px dotted #222;
 }
 a#rss-link:hover strong, a#technorati-link:hover strong {
-	color: #ccc!important;
+	color: #fff;!important;
 	border-bottom: 1px solid #333;
 }
 div#wrapper {
