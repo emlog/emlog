@@ -1,7 +1,7 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <html><head><meta http-equiv="refresh" content="2;url=<?php echo $url; ?>">
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
-<title>msg</title><link rel="stylesheet" href="./views/<?php echo ADMIN_TPL; ?>/main.css"></head><body>
+<title>msg</title><link rel="stylesheet" href="./views/<?php echo ADMIN_TPL; ?>/css-main.css"></head><body>
 <center><br><br>
 <table width="80%" border="0" cellpadding="0" cellspacing="0"><tr>
 <td width="130" align="center">
