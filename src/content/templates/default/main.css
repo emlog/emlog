@@ -26,6 +26,7 @@ body {
 	font-family: Arial;
 	font-size: 12px;
 	line-height: 150%;
+	background-color:#fff;
 }
 
 #header * {
@@ -33,32 +34,33 @@ body {
 }
 
 #holder {
-	width: 960px;
-	padding: 20px 20px;
+	padding: 0px 0px;
 	margin: auto;
 }
-
+#header{
+	background-color:#f5f5f5;
+}
 #siteTitle {
 	font-size: 14px;
 	list-style: none;
 	font-family: Arial;
 	padding: 5px;
-	background-color: #FFFFFF;
 	margin: 0px;
 }
 
 #siteTitle li {
 	font-size: 14px;
-	padding: 5px 5px 1px;
+	padding: 1px 10px 1px;
 	color: #999999;
 	list-style: none;
 }
 
 #siteTitle #blogname {
-	font-size: 22px;
+	font-size: 40px;
+	font-weight:bold;
 	font-family: "黑体";
 	margin: 20px 0px 0px;
-	color: #63617b;
+	color: #0033CC;
 }
 
 #blogname a:link {
@@ -74,13 +76,13 @@ body {
 #siteTitle #blogdes {
 	font-size: 12px;
 	text-align: left;
+	padding-left:15px;
 }
 
 #navBar {
 	font-size: 12px;
 	margin: 0px;
-	background-color: #FFFFFF;
-	border-bottom: 2px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
 	padding: 2px;
 	text-align: right;
 }
@@ -94,35 +96,32 @@ body {
 #navBar a:link {
 	text-decoration: none;
 	color: #000000;
-	background-color: #ffffff;
 }
 
 #navBar a:visited {
 	text-decoration: none;
 	color: #000000;
-	background-color: #ffffff;
 }
 
 #navBar a:hover {
 	text-decoration: none;
 	color: #000000;
-	background-color: #ffffff;
 }
 
 /*右侧栏*/
 #page {
-	width: 960px;
 	float: left;
-	background: #fff url(./images/sidebar_border.gif) repeat-y;
+	background: #fff url(./images/sidebar_border.gif) repeat-y  right;
 }
 
 div.contentA {
 	float: right;
 	margin: 0px;
-	padding: 0px;
-	width: 230px;
+	padding: 0px 0px;
+	width: 240px;
 	table-layout: fixed;
 	word-wrap: break-word;
+	background-color:#FFFFFF;
 }
 
 .lister {
@@ -161,10 +160,7 @@ div.contentA {
 
 /*左侧日志*/
 #contentB {
-	margin-left: 10px;
-	float: left;
-	background-color: #FFFFFF;
-	width: 700px;
+	padding-right:260px;
 }
 
 #contentB li {
@@ -187,7 +183,6 @@ div.contentA {
 }
 
 .logcontent {
-	background-color: #FFFFFF;
 	padding: 8px 8px 0px;
 	margin: 0px 10px;
 	table-layout: fixed;
@@ -223,7 +218,7 @@ div.contentA {
 
 .log_desc {
 	font-size: 14px;
-	line-height: 1.7;
+	line-height: 1.6;
 }
 
 .line {
@@ -431,5 +426,6 @@ div.contentA {
 	border-bottom: #4f4f4f 1px solid;
 }
 
-.logtag {
+#blogtags{
+	line-height:1.4;
 }
