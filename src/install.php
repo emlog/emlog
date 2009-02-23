@@ -42,6 +42,10 @@ body {
 	list-style:none;
 	border:#DFDFDF 1px solid;
 }
+#top-title{
+	background:url(admin/views/default/images/logo.png) no-repeat right;
+	padding:5px 0px;
+}
 .input {
 	border: 1px solid #CCCCCC;
 	font-family: Arial;
@@ -61,7 +65,7 @@ body {
 	cursor:hand;
 }
 .title{
-	font-size:20px;
+	font-size:24px;
 	font-weight:bold;
 }
 .care{
@@ -81,8 +85,9 @@ body {
 <body>
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
-<div>
-<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序</span></p>
+<div id="top-title">
+<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序<br>
+</span></p>
 </div>
 <div class="b">
 <p class="title2">1. 数据库设置 （MySql数据库）</p>
