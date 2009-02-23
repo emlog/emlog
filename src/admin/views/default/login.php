@@ -25,7 +25,7 @@
 	</div>
 	<div style=" clear:both;"></div>
 	<div class="login-bottom"></div>
-	<div class="back"><a href="./index.php">&laquo;返回首页</a></div>
+	<div class="back"><a href="../index.php">&laquo;返回首页</a></div>
 </div>
 </div>
 <script>focusEle('user');</script>
