@@ -10,7 +10,7 @@
 <form name="f" method="post" action="index.php?action=login">
 <div class="login-main">
 	<div class="login-top"></div>
-	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="Emlog" width="294" height="68" /></a></div>
+	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
 	<small><?php echo EMLOG_VERSION; ?></small>
 	<div class="login-input">
 		<span>用户名</span>
