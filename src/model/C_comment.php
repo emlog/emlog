@@ -192,19 +192,19 @@ class emComment {
 		$this->setCommentCookie($name,$mail,$url,$localdate);
 		if($this->isLogCanComment($blogId) === false)
 		{
-			emMsg('该日志已关闭评论','javascript:history.back(-1);');
+			emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
 		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
-			emMsg('评论已存在','javascript:history.back(-1);');
+			emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
 		}elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
-			emMsg('姓名不符合规范!','javascript:history.back(-1);');
+			emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');
 		} elseif ($mail != '' && !checkMail($mail)) {
-			emMsg('邮件地址不符合规范!', 'javascript:history.back(-1);');
+			emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
 		} elseif (strlen($content) == '' || strlen($content) > 2000) {
-			emMsg('评论内容不符合规范','javascript:history.back(-1);');
+			emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
 		} elseif ($imgcode == '' && $comment_code == 'y') {
-			emMsg('验证码不能为空','javascript:history.back(-1);');
+			emMsg('发表评论失败：验证码不能为空','javascript:history.back(-1);');
 		} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
-			emMsg('验证码错误!','javascript:history.back(-1);');
+			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
 		} else {
 			$sql = "INSERT INTO $this->commentTable (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment')";
 			$ret = $this->dbhd->query($sql);

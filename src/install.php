@@ -36,7 +36,7 @@ body {
 	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:600px;
+	width:580px;
 	margin:10px 200px;
 	padding:10px;
 	list-style:none;

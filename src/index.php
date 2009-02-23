@@ -143,7 +143,7 @@ if ($action == 'addcom')
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
-	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : '';
+	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 
 	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
 	
