@@ -145,7 +145,8 @@ class emBlog {
 					$row['post_time'] = date('Y-n-j G:i l',$row['date']);
 					$row['log_title'] = htmlspecialchars(trim($row['title']));
 					$row['logid'] = $row['gid'];
-					if(!empty($row['password']))
+					$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
+					if(!empty($row['password']) && !$cookiePassword)
 					{
 						$row['excerpt'] = '<p>[该日志已设置加密]</p>';
 					}else{
@@ -297,15 +298,16 @@ class emBlog {
 	 * @param string $pwd
 	 * @param string $pwd2
 	 */
-	function authPassword($pwd, $pwd2)
+	function authPassword($postPwd, $cookiePwd, $logPwd, $logid)
 	{
-		if($pwd !== $pwd2)
+		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
+		if($pwd !== $logPwd)
 		{
 print <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog system message</title>
+<title>emlog message</title>
 <style type="text/css">
 <!--
 body {
@@ -319,7 +321,7 @@ body {
 	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:600px;
+	width:580px;
 	margin:10px 200px;
 	padding:10px;
 	list-style:none;
@@ -331,13 +333,17 @@ body {
 <body>
 <div class="main">
 <form action="" method="post">
-密码：<input type="password" name="logpwd" /><input type="submit" value="进入.." /> 该日志需要输入访问密码！
+请输入该日志的访问密码<br>
+<input type="password" name="logpwd" /><input type="submit" value="进入.." />
+<br /><br /><a href="./index.php">&laquo;返回首页</a>
 </form>
 </div>
 </body>
 </html>
 EOT;
 exit;
+		}else {
+			setcookie('em_logpwd_'.$logid,$logPwd);
 		}
 	}
 }

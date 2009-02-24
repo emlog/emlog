@@ -109,8 +109,9 @@ if ($action == 'showlog')
 	extract($logData);
 	if(!empty($password))
 	{
-		$logpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
-		$emBlog->AuthPassword($password, $logpwd);
+		$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
+		$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
+		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 	}
 	$blogtitle = $log_title.' - '.$blogname;
 	$log_author = $user_cache['name'];

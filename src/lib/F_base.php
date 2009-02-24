@@ -780,7 +780,7 @@ body {
 <body>
 <div class="main">
 <p>$msg</p>
-<p><a href="$url">返回</a></p>
+<p><a href="$url">&laquo;返回</a></p>
 </div>
 </body>
 </html>
