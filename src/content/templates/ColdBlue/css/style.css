@@ -114,6 +114,7 @@ div#content {
 	width: 520px;
 	float: left;
 	padding: 0 10px 0 0;
+	overflow:hidden;
 }
 ul#sidebar {
 	display: block;
