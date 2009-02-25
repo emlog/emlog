@@ -53,6 +53,15 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 	$dftnum = $emBlog->getLogNum('y');
 }
 
+$CACHE->mc_logtags();
+$CACHE->mc_logatts();
+$CACHE->mc_logsort();
+$CACHE->mc_record();
+$CACHE->mc_newlog();
+$CACHE->mc_sort();
+$CACHE->mc_tags();
+$CACHE->mc_sta();
+
 switch ($action)
 {
 	case 'autosave':
@@ -66,14 +75,6 @@ switch ($action)
 			$ok_msg = '草稿保存成功！';
 			$ok_url = 'admin_log.php?pid=draft';
 		}else{
-			$CACHE->mc_sta();
-			$CACHE->mc_record();
-			$CACHE->mc_logtags();
-			$CACHE->mc_logatts();
-			$CACHE->mc_newlog();
-			$CACHE->mc_logsort();
-			$CACHE->mc_sort();
-			$CACHE->mc_tags();
 			//发送Trackback
 			if(!empty($pingurl))
 			{

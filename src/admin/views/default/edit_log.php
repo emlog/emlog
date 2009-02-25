@@ -63,13 +63,13 @@
         </tr>
         <tr>
         <td>接受评论？是
-          	<input type="radio" checked="checked" value="y" name="allow_remark" id="allow_remark" <?php echo $ex; ?>/>否
+          	<input type="radio" checked="checked" value="y" name="allow_remark" <?php echo $ex; ?>/>否
           	<input type="radio" value="n" name="allow_remark" <?php echo $ex2; ?> />
         </td>
         </tr>
         <tr>
           <td>接受引用？是
-          <input type="radio" checked="checked" value="y" name="allow_tb" id="allow_tb" <?php echo $add; ?> />否
+          <input type="radio" checked="checked" value="y" name="allow_tb" <?php echo $add; ?> />否
           <input type="radio" value="n" name="allow_tb" <?php echo $add2; ?> />
           </td>
         </tr>
@@ -84,7 +84,8 @@
           <td align="center" colspan="2"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" value=<?php echo $logid; ?> />
-		  <input type="submit" value="保存日志" onclick="return chekform();" class="button" />
+		  <input type="submit" value="保存并返回" onclick="return chekform();" class="button" />
+		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
 		  </td>
         </tr>
     </table>

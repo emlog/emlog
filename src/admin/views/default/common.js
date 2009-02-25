@@ -93,8 +93,8 @@ function autosave(act){
 	var oEditor = FCKeditorAPI.GetInstance('excerpt');
 	var excerpt = oEditor.GetXHTML();
 	var tag = $.trim($("#tag").val());
-	var allow_remark = $.trim($("#allow_remark").val());
-	var allow_tb = $.trim($("#allow_tb").val());
+	var allow_remark = $.trim($("#advset input[name=allow_remark][checked]").val());
+	var allow_tb = $.trim($("#advset input[name=allow_tb][checked]").val());
 	var password = $.trim($("#password").val());
 	var ishide = $.trim($("#ishide").val());
 	var ishide = ishide == "" ? "y" : ishide;
