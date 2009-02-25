@@ -3,7 +3,7 @@
  * Widgets 侧边栏目管理
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.1.0
- * $Id: comment.php 654 2008-09-07 10:36:15Z emloog $
+ * $Id$
  */
 
 require_once('./globals.php');
