@@ -330,7 +330,9 @@ a:hover {color: #eead24; text-decoration: underline;}
 
 /* code*/
 /* ie5, ie6 sidebar fix */
-.span-7  { width: 237px;}
+.span-7  { 
+width: 237px;
+_width:230px;}
 
 div.main {
 	background:#f5f5f5; 
