@@ -120,6 +120,7 @@ function autosave(act){
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
+	$("#savedf").val("正在保存");
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		if(data.substring(0,9) == "autosave_"){
@@ -135,6 +136,7 @@ function autosave(act){
 		var secs = digital.getSeconds();
 		$("#msg_2").html("<span class=\"msg_autosave_ok\">日志成功保存于 "+hours+":"+mins+":"+secs+" </span>");
 		$("#savedf").attr("disabled", "");
+		$("#savedf").val("保存草稿");
 		$("#msg").html("");
 	});
 	if(act == 0){
