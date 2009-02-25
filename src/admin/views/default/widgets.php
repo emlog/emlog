@@ -198,11 +198,14 @@
 	</div>
 	<div class="wg_line">自定义组件</div>
 	</form>
-	<?php foreach ($custom_widget as $key=>$val): ?>
+	<?php
+	foreach ($custom_widget as $key=>$val): 
+	$custom_wg_title = empty($val['title']) ? '未命名组件('.substr($key,-1,1).')' : $val['title'];
+	?>
 	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
 	<div class="widget-line" id="<?php echo $key; ?>">
 		<div class="widget-top">
-			<li class="widget-title"><?php echo $val['title']; ?></li>
+			<li class="widget-title"><?php echo $custom_wg_title; ?></li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
@@ -245,15 +248,20 @@ if($i == $wgNum):
 </p>
 <?php endif;?>
 <ul>
-<?php foreach ($widgets as $widget):
+<?php 
+	foreach ($widgets as $widget):
 	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//是否为自定义组件
 	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';	//获取自定义组件标题
+	if($flg && empty($title))
+	{
+		$title = '未命名组件('.substr($widget,-1,1).')';
+	}	
 	?>
 	<li class="sortableitem" id="<?php echo $widget; ?>">
 	<input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
 	<span class="wgbox_title">
 	<?php 
-	if ($flg && $title != '')
+	if ($flg)
 	{
 		echo subString($title, 0, 23);
 	}else{

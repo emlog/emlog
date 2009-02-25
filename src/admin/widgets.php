@@ -136,16 +136,16 @@ if($action == 'setwg')
 			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//要修改的组件id
 			$new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
-			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';
+			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//要删除的组件id
 			//添加新自定义组件
-			if($new_title && $new_content)
+			if($new_content)
 			{
 				$custom_wg_index = count($custom_widget)+1;
 				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
-			}elseif ($title && $content){
+			}elseif ($content){
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
