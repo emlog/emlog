@@ -3,7 +3,7 @@
  * 模型：撰写日志
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.1.0
- * $Id: comment.php 682 2008-10-14 16:08:01Z emloog $
+ * $Id$
  */
 
 class emBlog {
