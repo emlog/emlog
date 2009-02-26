@@ -162,12 +162,12 @@ if($action == 'setwg')
 								unset($widgets[$key]);
 							}
 						}
-						$widgets_str = serialize($widgets);
+						$widgets_str = addslashes(serialize($widgets));
 						$DB->query("update ".DB_PREFIX."options set option_value='$widgets_str' where option_name='widgets$i'");
 					}
 				}
 				unset($custom_widget[$rmwg]);
-				$custom_widget_str = serialize($custom_widget);
+				$custom_widget_str = addslashes(serialize($custom_widget));
 				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
 			}
 			break;
