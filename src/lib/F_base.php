@@ -726,13 +726,13 @@ function formatArray($array)
 /**
  * 后台操作返回信息
  *
- * @param unknown_type $msg
- * @param unknown_type $url
- * @param unknown_type $type
+ * @param string $msg
+ * @param string $url
+ * @param boolean $type
  */
 function formMsg($msg,$url,$type)
 {
-	$typeimg = $type?'mc_ok.gif':'mc_no.gif';
+	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
 	require_once(getViews('msg'));
 	cleanPage();
 	exit;
