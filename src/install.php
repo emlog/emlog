@@ -19,7 +19,8 @@ define('EMLOG_ROOT', dirname(__FILE__));
 if(!isset($_GET['action']))
 {
 ?>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>emlog</title>
@@ -37,13 +38,13 @@ body {
 	font-size: 12px;
 	color: #666666;
 	width:580px;
-	margin:10px 200px;
+	margin:10px auto;
 	padding:10px;
 	list-style:none;
 	border:#DFDFDF 1px solid;
 }
 #top-title{
-	background:url(admin/views/default/images/logo.png) no-repeat right;
+	background:url(admin/views/default/images/logo.gif) no-repeat right;
 	padding:5px 0px;
 }
 .input {

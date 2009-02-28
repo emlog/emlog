@@ -1,10 +1,8 @@
 * text=auto !eol
-doc/功能介绍.txt -text svn_keywords=Id
-doc/安装说明.txt -text svn_keywords=Id
-doc/模板说明.txt -text svn_keywords=Id
 ext/.htaccess -text svn_keywords=Id
 ext/robots.txt -text svn_keywords=Id
 /license.txt -text svn_keywords=Id
+/readme.html -text
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/backup.php -text svn_keywords=Id
