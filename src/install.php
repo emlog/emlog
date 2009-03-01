@@ -357,12 +357,11 @@ DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
   tagname varchar(60) NOT NULL default '',
-  usenum mediumint(8) unsigned NOT NULL default '1',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$add."
-INSERT INTO {$db_prefix}tag (tid, tagname, usenum,gid) VALUES (1, 'emlog', 1, ',1,');
+INSERT INTO {$db_prefix}tag (tid, tagname,gid) VALUES (1, 'emlog', ',1,');
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid tinyint(3) unsigned NOT NULL auto_increment,

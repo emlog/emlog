@@ -179,8 +179,8 @@ class emBlog {
 		//引用
 		$this->dbhd->query("DELETE FROM ".DB_PREFIX."trackback where gid=$blogId");
 		//标签
-		$this->dbhd->query("UPDATE ".DB_PREFIX."tag SET usenum=usenum-1,gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%".$blogId."%' ");
-		$this->dbhd->query("DELETE FROM ".DB_PREFIX."tag WHERE usenum=0 ");
+		$this->dbhd->query("UPDATE ".DB_PREFIX."tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%".$blogId."%' ");
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."tag WHERE gid=',' ");
 		//附件
 		$query = $this->dbhd->query("select filepath from ".DB_PREFIX."attachment where blogid=$blogId ");
 		while ($attach=$this->dbhd->fetch_array($query))

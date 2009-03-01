@@ -73,7 +73,7 @@ class emTag {
 				$query="INSERT INTO $this->tagTable (tagname,gid) VALUES('".$tagName."',',$blogId,')";
 				$this->dbhd->query($query);
 			}else{
-				$query="UPDATE $this->tagTable SET usenum=usenum+1, gid=concat(gid,'$blogId,') where tagname = '$tagName'";
+				$query="UPDATE $this->tagTable SET gid=concat(gid,'$blogId,') where tagname = '$tagName'";
 				$this->dbhd->query($query);
 			}
 		}
@@ -106,8 +106,8 @@ class emTag {
 			{
 				if($dif_tag[$n] == $old_tag[$j])
 				{
-					$this->dbhd->query("UPDATE $this->tagTable SET usenum=usenum-1,gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
-					$this->dbhd->query("DELETE FROM $this->tagTable WHERE usenum=0 ");
+					$this->dbhd->query("UPDATE $this->tagTable SET gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
+					$this->dbhd->query("DELETE FROM $this->tagTable WHERE gid=',' ");
 					break;
 				}elseif($j == count($old_tag)-1){
 					$result = $this->dbhd->once_fetch_array("SELECT tagname FROM $this->tagTable WHERE tagname='".trim($dif_tag[$n])."' ");
@@ -116,7 +116,7 @@ class emTag {
 						$query="INSERT INTO $this->tagTable (tagname,gid) VALUES('".$dif_tag[$n]."',',$blogId,')";
 						$this->dbhd->query($query);
 					}else{
-						$query="UPDATE $this->tagTable SET usenum=usenum+1, gid=concat(gid,'$blogId,') where tagname = '".$dif_tag[$n]."' ";
+						$query="UPDATE $this->tagTable SET gid=concat(gid,'$blogId,') where tagname = '".$dif_tag[$n]."' ";
 						$this->dbhd->query($query);
 					}
 				}

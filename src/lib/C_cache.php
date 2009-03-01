@@ -110,25 +110,57 @@ class mkcache {
 	function mc_tags()
 	{
 		$tag_cache = array();
-		$query=$this->dbhd->query("SELECT max(usenum),min(usenum),count(*) FROM ".$this->db_prefix."tag");
-		$row = $this->dbhd->fetch_row($query);
-		$maxuse = $row[0];
-		$minuse = $row[1];
-		$tagnum = $row[2];
+		$query=$this->dbhd->query("SELECT gid FROM ".$this->db_prefix."tag");
+		$i = 0;
+		$j = 0;
+		$tagnum = 0;
+		$maxuse = 0;
+		$minuse = 0;
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			$usenum = substr_count($row['gid'], ',') - 1; 
+			if($usenum > $i)
+			{
+				$maxuse = $usenum;
+				$i = $usenum;
+			}
+			if($usenum < $j)
+			{
+				$minuse = $usenum;
+			}
+			$j = $usenum;
+			$tagnum++;
+		}
 		$spread = ($tagnum>12?12:$tagnum);
 		$rank = $maxuse-$minuse;
 		$rank = ($rank==0?1:$rank);
 		$rank = $spread/$rank;
-		$query=$this->dbhd->query("SELECT tagname,usenum FROM ".$this->db_prefix."tag");
+		//获取草稿id
+		$hideGids = array();
+		$query=$this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog where hide='y'");
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			$hideGids[] = $row['gid'];
+		}
+		$query=$this->dbhd->query("SELECT tagname,gid FROM ".$this->db_prefix."tag");
 		while($show_tag = $this->dbhd->fetch_array($query))
 		{
-			//maxfont:22pt,minfont:10pt
-			$fontsize=10+round(($show_tag['usenum']-$minuse)*$rank);
+			//排除草稿在tag日志数里的统计
+			foreach ($hideGids as $val)
+			{
+				$show_tag['gid'] = str_replace(','.$val.',', ',', $show_tag['gid']); 
+			}
+			if($show_tag['gid'] == ',')
+			{
+				continue;
+			}
+			$usenum = substr_count($show_tag['gid'], ',') - 1;
+			$fontsize = 10 + round(($usenum - $minuse) * $rank);//maxfont:22pt,minfont:10pt
 			$tag_cache[] = array(
 			'tagurl' => urlencode($show_tag['tagname']),
 			'tagname' => htmlspecialchars($show_tag['tagname']),
 			'fontsize' => $fontsize,
-			'usenum' => $show_tag['usenum']
+			'usenum' => $usenum
 			);
 		}
 		$cacheData = serialize($tag_cache);
