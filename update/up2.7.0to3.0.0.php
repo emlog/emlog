@@ -385,7 +385,7 @@ UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';";
 			}
 		}
 	}
-	emMsg("恭喜你Emlog数据库升级成功！请删除该升级文件,后台密码重置为：123456 请登录后马上修改。 你现在可以进行第二步 代码升级");
+	emMsg("恭喜你Emlog数据库升级成功,后台密码重置为：123456 请登录后马上修改。 你现在可以进行第二步 代码升级。记得删除该升级文件");
 }
 echo "</body>";
 echo "</html>";
