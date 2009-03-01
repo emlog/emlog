@@ -1,11 +1,11 @@
 <?php
 /**
- * 数据库升级程序2.7.0 to 3.0.0
+ * 数据库升级程序3.0.1 to 3.1.0
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.0.0
+ * @version emlog-3.1.0
  */
 
-define('EMLOG_VERSION', '3.0.0');
+define('EMLOG_VERSION', '3.1.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
 class MySql {
@@ -122,7 +122,7 @@ exit;
 <style type="text/css">
 <!--
 body {
-	background-color: #D4E9EA;
+	background-color:#F7F7F7;
 	font-family: Arial;
 	font-size: 12px;
 	line-height:150%;
@@ -132,10 +132,11 @@ body {
 	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:650px;
-	margin:10px 280px;
+	width:580px;
+	margin:10px auto;
 	padding:10px;
 	list-style:none;
+	border:#DFDFDF 1px solid;
 }
 .input {
 	border: 1px solid #CCCCCC;
@@ -180,10 +181,10 @@ li{
 <?php
 if(!isset($_GET['action'])){
 ?>
-<form name="form1" method="post" action="up2.7.0to3.0.0.php?action=install">
+<form name="form1" method="post" action="up3.0.1to3.1.0.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 2.7.0 to 3.0.0</span><span> 数据库升级程序</span></p>
+<p><span class="title">emlog 3.0.1 to 3.1.0</span><span> 数据库升级程序</span></p>
 </div>
 <div class="b">
 <p class="title2">请填写当前需要升级的emlog相关信息。<br>
@@ -215,7 +216,7 @@ if(!isset($_GET['action'])){
 </p>
 </div>
 <p class="foot">
-&copy;2008 emlog
+&copy;2009 emlog
 </p>
 </div>
 </div>
@@ -237,6 +238,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	{
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}
+
 	$config = "<?php\n"
 	."//mysql database address\n"
 	."define('DB_HOST','$db_host');"
@@ -277,9 +279,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$extra2 = "TYPE=".$type;
 	$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
 
-
 	$widgets = array(
-	'blogger'=>'EMER',
+	'blogger'=>'blogger',
 	'calendar'=>'日历',
 	'tag'=>'标签',
 	'sort'=>'分类',
@@ -291,86 +292,86 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	'music'=>'音乐',
 	'link'=>'链接',
 	'search'=>'搜索',
-	'bloginfo'=>'博客信息',
-	'custom_text'=>'自定义栏目'
+	'bloginfo'=>'信息',
+	'custom_text'=>'自定义组件'
 	);
-	$wg = array();
-	foreach ($widgets as $key=>$val)
-	{
-		$wg[] = $key;
-	}
-	$widget_title = serialize($widgets);
-	$widgets = serialize($wg);
-	
-	$res = $DB->query("select * from {$db_prefix}config");
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='widgets1'");
 	$row = $DB->fetch_array($res);
-	@extract($row);
-	$blogname = addslashes($blogname);
-	$bloginfo = addslashes($bloginfo);
-	$site_key = addslashes($site_key);
+	$widgets1 = $row['option_value'] ? unserialize($row['option_value']) : array();
 	
-$insert = "
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','$blogname');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','$bloginfo');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','$site_key');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','$blogurl');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','$icp');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','$index_lognum');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','$index_comnum');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','$index_twnum');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','$comment_subnum');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','$nonce_templet');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','$comment_code');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','$login_code');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','$ischkcomment');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','$isurlrewrite');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','$isgzipenable');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','$istrackback');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','$timezone');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title1','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content1','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets2','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title2','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content2','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title3','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content3','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_title4','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_content4','');
-";
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='widgets2");
+	$row = $DB->fetch_array($res);
+	$widgets2 = $row['option_value'] ? unserialize($row['option_value']) : array();
 	
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_content1'");
+	$row = $DB->fetch_array($res);
+	$custom_content1 = $row['option_value'] ? unserialize($row['option_value']) : array();
+	
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_content2'");
+	$row = $DB->fetch_array($res);
+	$custom_content2 = $row['option_value'] ? unserialize($row['option_value']) : array();
+	
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_title1'");
+	$row = $DB->fetch_array($res);
+	$custom_title1 = $row['option_value'] ? unserialize($row['option_value']) : array();
+	
+	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_title2'");
+	$row = $DB->fetch_array($res);
+	$custom_title2 = $row['option_value'] ? unserialize($row['option_value']) : array();
+	
+	$custom_widget = array();
+	$i = 1;
+	foreach ($custom_title1 as $key=>$val)
+	{
+		$custom_widget['custom_wg_'.$i]['title'] = $val;
+		$custom_widget['custom_wg_'.$i]['content'] = $custom_content1[$key];
+		$i++;
+	}
+	foreach ($custom_title2 as $key=>$val)
+	{
+		$custom_widget['custom_wg_'.$i]['title'] = $val;
+		$custom_widget['custom_wg_'.$i]['content'] = $custom_content2[$key];
+		$i++;
+	}
+
+	$widgets_1 = array();
+	$widgets_2 = array();
+	foreach ($widgets1 as $val)
+	{
+		if($val != 'custom_text')
+		{
+			$widgets_1[] = $val;
+		}
+	}	
+	foreach ($widgets2 as $val)
+	{
+		if($val != 'custom_text')
+		{
+			$widgets_2[] = $val;
+		}
+	}
+	$widgets_1 = addslashes(serialize($widgets_1));
+	$widgets_2 = addslashes(serialize($widgets_2));
+	$custom_widget = addslashes(serialize($custom_widget));
+	$widget_title = serialize($widgets);
+
 $sql = "
-ALTER TABLE {$db_prefix}user CHANGE password password VARCHAR( 64 ) NOT NULL;
-ALTER TABLE {$db_prefix}blog DROP attcache;
-ALTER TABLE {$db_prefix}blog CHANGE date date BIGINT( 20 ) NOT NULL;
-ALTER TABLE {$db_prefix}attachment CHANGE addtime addtime BIGINT( 20 ) NOT NULL;
-ALTER TABLE {$db_prefix}comment CHANGE date date BIGINT( 20 ) NOT NULL;
-ALTER TABLE {$db_prefix}trackback CHANGE date date BIGINT( 20 ) NOT NULL;
-ALTER TABLE {$db_prefix}twitter CHANGE date date BIGINT( 20 ) NOT NULL;
-ALTER TABLE {$db_prefix}blog ADD sortid TINYINT( 3 ) NOT NULL DEFAULT '-1' AFTER content;
-ALTER TABLE {$db_prefix}blog ADD attnum MEDIUMINT( 8 ) UNSIGNED NOT NULL DEFAULT '0' AFTER tbcount;
-CREATE TABLE {$db_prefix}sort (
-  sid tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  sortname varchar(255) NOT NULL DEFAULT '',
-  taxis tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (sid)
-)".$add."
-CREATE TABLE {$db_prefix}options (
-  option_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  option_name varchar(255) NOT NULL,
-  option_value longtext NOT NULL,
-  PRIMARY KEY (option_id)
-)".$add."
-$insert
-DROP TABLE {$db_prefix}config;
-UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';";
+ALTER TABLE {$db_prefix}blog ADD excerpt LONGTEXT NOT NULL AFTER content;
+ALTER TABLE {$db_prefix}blog CHANGE content content LONGTEXT NOT NULL;
+ALTER TABLE {$db_prefix}blog ADD password VARCHAR( 255 ) NOT NULL default '';
+ALTER TABLE {$db_prefix}tag DROP usenum;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_content1' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_content2' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_content3' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_content4' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_title1' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_title2' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_title3' LIMIT 1;
+DELETE FROM {$db_prefix}options WHERE option_name ='custom_title4' LIMIT 1;
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','$custom_widget');
+UPDATE {$db_prefix}options SET option_value = '$widget_title' WHERE option_name ='widget_title' LIMIT 1;
+UPDATE {$db_prefix}options SET option_value = '$widgets_1' WHERE option_name ='widgets1' LIMIT 1;
+UPDATE {$db_prefix}options SET option_value = '$widgets_2' WHERE option_name ='widgets2' LIMIT 1;";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
@@ -381,11 +382,11 @@ UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';";
 			$ret = $DB->query($query);
 			if(!$ret)
 			{
-				emMsg("升级失败，可能是你填写的参数错误，请确认后重新提交！MYSQL ERROR:".$DB->geterror());
+				emMsg("升级失败，可能是你填写的参数错误，请确认后重新提交！SQL:$query MYSQL ERROR:".$DB->geterror());
 			}
 		}
 	}
-	emMsg("恭喜你Emlog数据库升级成功！请删除该升级文件,后台密码重置为：123456 请登录后马上修改。 你现在可以进行第二步 代码升级");
+	emMsg("恭喜你emlog数据库升级成功！请删除该升级文件,你现在可以进行第二步 代码升级");
 }
 echo "</body>";
 echo "</html>";

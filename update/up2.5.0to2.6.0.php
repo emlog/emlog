@@ -1,7 +1,7 @@
 <?php
 /**
  * 数据库升级程序2.5.0 to 2.6.0
- * @copyright (c) 2008, Emlog All Rights Reserved
+ * @copyright (c) Emlog All Rights Reserved
  * @version emlog-2.6.0
  */
 
