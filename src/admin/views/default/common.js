@@ -128,7 +128,7 @@ function autosave(act){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
 			var logid = getvar[1];
 			var dfnum = getvar[2];
-			$("#dfnum").html("("+dfnum+")");
+			if(dfnum > 0){$("#dfnum").html("("+dfnum+")")};
 		}
 		$("#"+nodeid).val(logid);
 		var digital = new Date();
