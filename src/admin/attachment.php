@@ -50,6 +50,7 @@ if($action == 'upload')
 			}
 		}
 	}
+	$CACHE->mc_logatts();
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
 
@@ -96,6 +97,7 @@ if ($action == 'del_attach')
 	$row = $DB->once_fetch_array("SELECT blogid FROM ".DB_PREFIX."attachment where aid=$aid");
 	$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum-1 WHERE gid={$row['blogid']}");
 	$DB->query("DELETE FROM ".DB_PREFIX."attachment where aid=$aid ");
+	$CACHE->mc_logatts();
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
 ?>
