@@ -41,7 +41,7 @@ foreach ($widgets as $val)
 		$callback = 'widget_custom_text';
 		if(function_exists($callback))
 		{
-			call_user_func($callback, $custom_widget[$val]['title'], $custom_widget[$val]['content'], $val);
+			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content'], $val);
 		}
 	}else{
 		$callback = 'widget_'.$val;
@@ -49,7 +49,7 @@ foreach ($widgets as $val)
 		{
 			preg_match("/^.*\s\((.*)\)/", $widget_title[$val], $matchs);
 			$wgTitle = isset($matchs[1]) ? $matchs[1] : $widget_title[$val];
-			call_user_func($callback, $wgTitle);
+			call_user_func($callback, htmlspecialchars($wgTitle));
 		}
 	}
 }
@@ -70,7 +70,7 @@ foreach ($widgets as $val)
 		$callback = 'widget_custom_text';
 		if(function_exists($callback))
 		{
-			call_user_func($callback, $custom_widget[$val]['title'], $custom_widget[$val]['content'], $val);
+			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content'], $val);
 		}
 	}else{
 		$callback = 'widget_'.$val;
@@ -78,7 +78,7 @@ foreach ($widgets as $val)
 		{
 			preg_match("/^.*\s\((.*)\)/", $widget_title[$val], $matchs);
 			$wgTitle = isset($matchs[1]) ? $matchs[1] : $widget_title[$val];
-			call_user_func($callback, $wgTitle);
+			call_user_func($callback, htmlspecialchars($wgTitle));
 		}
 	}
 }

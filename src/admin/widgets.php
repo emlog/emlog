@@ -15,6 +15,11 @@ if($action == '')
 	$widgets = $options_cache['widgets'.$wgNum] ? @unserialize($options_cache['widgets'.$wgNum]) : array();
 	$widgetTitle = $options_cache['widget_title'] ? @unserialize($options_cache['widget_title']) : array();
 	$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
+	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
+	foreach ($custom_widget as $key => $val)
+	{
+		$custom_widget[$key] = array_map('htmlspecialchars', $val);
+	}
 
 	$customWgTitle = array();
 	foreach ($widgetTitle as $key => $val)
