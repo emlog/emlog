@@ -70,9 +70,9 @@ switch ($action)
 		break;
 	case 'add':
 	case 'edit':
+		$tbmsg = '';
 		if($ishide == 'y')
 		{
-			$tbmsg = '';
 			$ok_msg = '草稿保存成功！';
 			$ok_url = 'admin_log.php?pid=draft';
 		}else{

@@ -92,6 +92,8 @@ function getUserDataByLogin($userLogin)
 	{
 		return false;
 	}
+	$userData['nickname'] = htmlspecialchars($userData['nickname']);
+	$userData['username'] = htmlspecialchars($userData['username']);
 	return $userData;
 }
 
