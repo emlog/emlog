@@ -215,16 +215,17 @@ class emBlog {
 	/**
 	 * 获取日志发布时间
 	 */
-	function postDate($timezone=8, $postDate=null)
+	function postDate($timezone=8, $postDate=null, $oldDate=null)
 	{
 		$localtime = time() - ($timezone - 8) * 3600;
-		$unixPostDate = $localtime;
+		$logDate = $oldDate ? $oldDate : $localtime;
+		$unixPostDate = '';
 		if($postDate)
 		{
 			$unixPostDate = @strtotime($postDate);
 			if($unixPostDate === false)
 			{
-				$unixPostDate = $localtime;
+				$unixPostDate = $logDate;
 			}
 		}
 		return $unixPostDate;
@@ -251,6 +252,14 @@ class emBlog {
 		$neighborlog = array();
 		$neighborlog['nextLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
 		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		if($neighborlog['nextLog'])
+		{
+			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
+		}
+		if($neighborlog['prevLog'])
+		{
+			$neighborlog['prevLog']['title'] = htmlspecialchars($neighborlog['prevLog']['title']);
+		}
 		return $neighborlog;
 	}
 

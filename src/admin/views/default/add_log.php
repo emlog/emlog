@@ -15,6 +15,7 @@
 			<?php endforeach;?>
 	      </select>
 	      <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
+	      <input name="date" id="date" type="hidden" value="" >
         </td>
         </tr>
         <tr>

@@ -18,7 +18,7 @@
 			<?php endforeach; ?>
 			</select>
 	       <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo date('Y-m-d H:i:s', $date); ?>"/>
-	       <input name="date" type="hidden" value="<?php echo $date; ?>" >
+	       <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
           </td>
         </tr>
         <tr>

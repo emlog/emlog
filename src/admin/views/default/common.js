@@ -87,6 +87,7 @@ function autosave(act){
 	var title = $.trim($("#title").val());
 	var sort = $.trim($("#sort").val());
 	var postdate = $.trim($("#postdate").val());
+	var date = $.trim($("#date").val());
 	var logid = $("#as_logid").val();
 	var oEditor = FCKeditorAPI.GetInstance('content');
 	var content = oEditor.GetXHTML();
@@ -113,6 +114,7 @@ function autosave(act){
 					+"&title="+encodeURIComponent(title)
 					+"&sort="+sort
 					+"&postdate="+postdate
+					+"&date="+date
 					+"&tag="+encodeURIComponent(tag)
 					+"&allow_remark="+allow_remark
 					+"&allow_tb="+allow_tb

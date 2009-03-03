@@ -19,6 +19,7 @@ $emTb = new emTrackback($DB);
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
+$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的日志时间
 $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
@@ -30,7 +31,7 @@ $allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : '';
 $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
-$postTime = $emBlog->postDate($timezone, $postDate);
+$postTime = $emBlog->postDate($timezone, $postDate, $date);
 
 $logData = array(
 'title'=>$title,
