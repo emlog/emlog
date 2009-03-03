@@ -148,7 +148,23 @@ if($action == 'setwg')
 			//添加新自定义组件
 			if($new_content)
 			{
-				$custom_wg_index = count($custom_widget)+1;
+				//确定组件索引
+				$i = 0;
+				$maxKey = 0;
+				if(is_array($custom_widget))
+				{
+					foreach ($custom_widget as $key => $val)
+					{
+						preg_match("/^custom_wg_(\d+)/", $key, $matches);
+						$k = $matches[1];
+						if($k > $i)
+						{
+							$maxKey = $k;
+						}
+						$i = $k;
+					}
+				}
+				$custom_wg_index = $maxKey + 1;
 				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));

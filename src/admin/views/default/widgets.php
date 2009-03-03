@@ -200,7 +200,8 @@
 	</form>
 	<?php
 	foreach ($custom_widget as $key=>$val): 
-	$custom_wg_title = empty($val['title']) ? '未命名组件('.substr($key,-1,1).')' : $val['title'];
+	preg_match("/^custom_wg_(\d+)/", $key, $matches);
+	$custom_wg_title = empty($val['title']) ? '未命名组件('.$matches[1].')' : $val['title'];
 	?>
 	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
 	<div class="widget-line" id="<?php echo $key; ?>">
@@ -254,7 +255,8 @@ if($i == $wgNum):
 	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';	//获取自定义组件标题
 	if($flg && empty($title))
 	{
-		$title = '未命名组件('.substr($widget,-1,1).')';
+		preg_match("/^custom_wg_(\d+)/", $widget, $matches);
+		$title = '未命名组件('.$matches[1].')';
 	}	
 	?>
 	<li class="sortableitem" id="<?php echo $widget; ?>">
