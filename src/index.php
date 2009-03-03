@@ -50,7 +50,7 @@ if (!isset($action) || empty($action))
 	} elseif ($tag) {
 		require_once(EMLOG_ROOT.'/model/C_tag.php');
 		$emTag = new emTag($DB);
-		$blogtitle = $tag.' - '.$blogname;
+		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{

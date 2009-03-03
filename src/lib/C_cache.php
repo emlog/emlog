@@ -338,7 +338,7 @@ class mkcache {
 			{
 				$res = $this->dbhd->query("SELECT sortname FROM ".$this->db_prefix."sort where sid=".$row['sortid']);
 				$srow = $this->dbhd->fetch_array($res);
-				$sortName = $srow['sortname'];
+				$sortName = htmlspecialchars($srow['sortname']);
 			}else {
 				$sortName = '';
 			}

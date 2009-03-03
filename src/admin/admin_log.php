@@ -20,7 +20,7 @@ if($action == '')
 	$emSort = new emSort($DB);
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
-	$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+	$tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -29,9 +29,9 @@ if($action == '')
 	$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
 
 	$sqlSegment = '';
-	if($tag)
+	if($tagId)
 	{
-		$blogIdStr = $emTag->getTagByName($tag);
+		$blogIdStr = $emTag->getTagById($tagId);
 		$sqlSegment = "and gid IN ($blogIdStr)";
 	}elseif ($sid){
 		$sqlSegment = "and sortid=$sid";

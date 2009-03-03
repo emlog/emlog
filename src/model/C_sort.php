@@ -59,7 +59,7 @@ class emSort {
 		{
 			$res = $this->dbhd->query("SELECT sortname FROM $this->sortTable where sid=$sid");
 			$row = $this->dbhd->fetch_array($res);
-			$sortName = $row['sortname'];
+			$sortName = htmlspecialchars($row['sortname']);
 		}else {
 			$sortName = '未分类';
 		}

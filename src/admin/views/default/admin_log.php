@@ -2,7 +2,7 @@
 if(!defined('ADMIN_ROOT')) {exit('error!');}
 $isdraft = $pid == 'draft' ? '&pid=draft' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
-$isDisplayTag = !$tag ? "style=\"display:none;\"" : '';
+$isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 ?>
 <script type='text/javascript'>
 $(document).ready(function(){
@@ -35,7 +35,7 @@ setTimeout(hideActived,2600);
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tag ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
 <span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 </div>
@@ -55,12 +55,12 @@ setTimeout(hideActived,2600);
 标签：
 <?php
 foreach($tags as $val):
-	$a = 'sort_'.md5($val['tagname']);
+	$a = 'tag_'.$val['tid'];
 	$$a = '';
-	$b = 'sort_'.md5($tag);
+	$b = 'tag_'.$tagId;
 	$$b = "class=\"filter\"";
 ?>
-	<span <?php echo $$a; ?>><a href="./admin_log.php?tag=<?php echo urlencode($val['tagname']).$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
+	<span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'].$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
 <?php endforeach;?>
 </div>
 </div>
@@ -89,8 +89,7 @@ foreach($tags as $val):
 	$tagStr = '';
 	foreach ($tags as $val)
 	{
-		$tagUrl = urlencode($val['tagname']);
-		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tag={$tagUrl}$isdraft\">{$val['tagname']}</a></span>";
+		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tagid={$val['tid']}$isdraft\">{$val['tagname']}</a></span>";
 	}
 	if($tagStr)
 	{

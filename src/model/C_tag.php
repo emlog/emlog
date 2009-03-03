@@ -32,6 +32,7 @@ class emTag {
 		while($row = $this->dbhd->fetch_array($query))
 		{
 			$row['tagname'] = htmlspecialchars($row['tagname']);
+			$row['tid'] = intval($row['tid']);
 			$tags[] = $row;
 		}
 		return $tags;
@@ -49,6 +50,18 @@ class emTag {
 	{
 		$tag = array();
 		$row = $this->dbhd->once_fetch_array("SELECT tagname,gid FROM $this->tagTable WHERE tagname='$tagName'");
+		if(empty($row))
+		{
+			return false;
+		}
+		$blogIdStr  = substr(trim($row['gid']),1,-1);
+		return $blogIdStr;
+	}
+
+	function getTagById($tagId)
+	{
+		$tag = array();
+		$row = $this->dbhd->once_fetch_array("SELECT tagname,gid FROM $this->tagTable WHERE tid=$tagId");
 		if(empty($row))
 		{
 			return false;

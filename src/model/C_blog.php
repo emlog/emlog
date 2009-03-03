@@ -89,6 +89,8 @@ class emBlog {
 				case 'admin':
 					$row['title'] = htmlspecialchars($row['title']);
 					$row['content'] = htmlspecialchars($row['content']);
+					$row['excerpt'] = htmlspecialchars($row['excerpt']);
+					$row['password'] = htmlspecialchars($row['password']);
 					$logData = $row;
 					break;
 				case 'homepage':
@@ -301,7 +303,7 @@ class emBlog {
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid)
 	{
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
-		if($pwd !== $logPwd)
+		if($pwd !== addslashes($logPwd))
 		{
 print <<<EOT
 <html>
@@ -343,7 +345,7 @@ body {
 EOT;
 exit;
 		}else {
-			setcookie('em_logpwd_'.$logid,$logPwd);
+			setcookie('em_logpwd_'.$logid, $logPwd);
 		}
 	}
 }
