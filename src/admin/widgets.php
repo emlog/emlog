@@ -87,14 +87,17 @@ if($action == 'setwg')
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_comnum' where option_name='index_comnum'");
 			$DB->query("update ".DB_PREFIX."options set option_value='$comment_subnum' where option_name='comment_subnum'");
+			$CACHE->mc_comment();
 			break;
 		case 'twitter':
 			$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10;
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_twnum' where option_name='index_twnum'");
+			$CACHE->mc_twitter();
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_newlog' where option_name='index_newlognum'");
+			$CACHE->mc_newlog();
 			break;
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
@@ -178,9 +181,6 @@ if($action == 'setwg')
 			break;
 	}
 	$CACHE->mc_options();
-	$CACHE->mc_comment();
-	$CACHE->mc_twitter();
-	$CACHE->mc_newlog();
 	header("Location: ./widgets.php?activated=true");
 }
 

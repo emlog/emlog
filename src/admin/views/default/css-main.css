@@ -296,28 +296,8 @@ textarea{
 	list-style:none;
 	margin:5px 0px;
 	padding:5px;
-}
-.sortableitem textarea{
-	display:none;
-	width:247px;
-	overflow:auto;
-	border: 1px solid #FFFFFF;
-	font-size: 12px;
-	height: 150px;
-}
-.sortableitem .wginput{
-	display:none;
-	width:247px;
-	border: 1px solid #F0F0F0;
-	font-size: 12px;
-}
-.wgbox_title{
 	cursor:move;
-	padding-right:105px;
 }
-.wgbox_text{display:none;}
-.wgbox_edit{cursor:pointer;}
-.wgbox_del{cursor:pointer;}
 .wg_hd{
 	cursor:move;
 	font-size:12px;

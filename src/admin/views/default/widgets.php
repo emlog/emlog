@@ -259,15 +259,13 @@ if($i == $wgNum):
 	?>
 	<li class="sortableitem" id="<?php echo $widget; ?>">
 	<input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
-	<span class="wgbox_title">
 	<?php 
 	if ($flg)
 	{
-		echo subString($title, 0, 23);
+		echo $title;
 	}else{
 		echo $widgetTitle[$widget];
 	}?>
-	</span>
 	</li>
 <?php endforeach;?>
 </ul>
@@ -293,7 +291,7 @@ $(document).ready(function(){
 		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").text();
 		var widget_id = $(this).parent().parent().attr("id");
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\"><span class=\"wgbox_title\">"+title+"</span><input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
+		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\">"+title+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 		$(this).hide();
 		$(this).next(".widget-act-del").show();
@@ -308,8 +306,7 @@ $(document).ready(function(){
 	//move
 	$("#adm_widget_box ul").mouseover(function(){
 		$("#adm_widget_box ul").Sortable({
-			accept: 'sortableitem',
-			handle: 'span.wgbox_title'
+			accept: 'sortableitem'
 		});
 	});
 	$("#wg_select").change(function(){
