@@ -169,7 +169,8 @@ ALTER TABLE {$db_prefix}config ADD istrackback enum( 'n', 'y' ) default 'y' NOT 
 ALTER TABLE {$db_prefix}config CHANGE iscomment ischkcomment ENUM( 'n', 'y' ) NULL DEFAULT 'n';
 ALTER TABLE {$db_prefix}trackback ADD ip VARCHAR(16) NOT NULL;
 ALTER TABLE {$db_prefix}comment ADD reply TEXT NOT NULL AFTER comment;
-ALTER TABLE {$db_prefix}comment ADD url VARCHAR(75) NOT NULL AFTER mail;";
+ALTER TABLE {$db_prefix}comment ADD url VARCHAR(75) NOT NULL AFTER mail;
+UPDATE {$db_prefix}config SET nonce_templet ='default';";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query))

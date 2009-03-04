@@ -370,7 +370,8 @@ CREATE TABLE {$db_prefix}options (
 )".$add."
 $insert
 DROP TABLE {$db_prefix}config;
-UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';";
+UPdate {$db_prefix}user set password='\$P\$Bm/Mae5JrYYWaFcgb.hcSacUgvY4cK.';
+UPDATE {$db_prefix}options SET option_value='default' where option_name='nonce_templet';";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))

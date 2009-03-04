@@ -179,7 +179,8 @@ $sql = "
 ALTER TABLE {$db_prefix}config ADD isgzipenable ENUM( 'n', 'y' ) NOT NULL DEFAULT 'n' AFTER isurlrewrite;
 ALTER TABLE {$db_prefix}user CHANGE description description TEXT NOT NULL;
 ALTER TABLE {$db_prefix}config DROP index_tagnum;
-ALTER TABLE {$db_prefix}attachment DROP attdes;";
+ALTER TABLE {$db_prefix}attachment DROP attdes;
+UPDATE {$db_prefix}config SET nonce_templet ='default';";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query))

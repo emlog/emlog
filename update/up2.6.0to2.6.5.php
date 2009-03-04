@@ -178,7 +178,8 @@ content VARCHAR(255) NOT NULL ,
 date VARCHAR(10) NOT NULL ,
 PRIMARY KEY (id)
 ){$add}
-ALTER TABLE {$db_prefix}config ADD index_twnum TINYINT( 3 ) UNSIGNED DEFAULT '0' NOT NULL AFTER index_tagnum;";
+ALTER TABLE {$db_prefix}config ADD index_twnum TINYINT( 3 ) UNSIGNED DEFAULT '0' NOT NULL AFTER index_tagnum;
+UPDATE {$db_prefix}config SET nonce_templet ='default';";
 
 	$mysql_query = explode(";",$sql);
 	while (list(,$query) = each($mysql_query))

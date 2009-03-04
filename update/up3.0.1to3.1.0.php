@@ -371,7 +371,8 @@ DELETE FROM {$db_prefix}options WHERE option_name ='custom_title4' LIMIT 1;
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','$custom_widget');
 UPDATE {$db_prefix}options SET option_value = '$widget_title' WHERE option_name ='widget_title' LIMIT 1;
 UPDATE {$db_prefix}options SET option_value = '$widgets_1' WHERE option_name ='widgets1' LIMIT 1;
-UPDATE {$db_prefix}options SET option_value = '$widgets_2' WHERE option_name ='widgets2' LIMIT 1;";
+UPDATE {$db_prefix}options SET option_value = '$widgets_2' WHERE option_name ='widgets2' LIMIT 1;
+UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
