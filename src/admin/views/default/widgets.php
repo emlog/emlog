@@ -291,7 +291,7 @@ $(document).ready(function(){
 	//add widget
 	$("#adm_widget_list .widget-act-add").click(function(){
 		var wgnum = $("#wgnum").val();
-		var title = $(this).prevAll(".widget-title").text();
+		var title = $(this).prevAll(".widget-title").html();
 		var widget_id = $(this).parent().parent().attr("id");
 		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\">"+title+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
