@@ -72,7 +72,7 @@ function getRandStr($length = 12, $special_chars = true)
  */
 function emMsg($msg,$url='javascript:history.back(-1);')
 {
-print <<<EOT
+echo <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

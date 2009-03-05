@@ -22,10 +22,10 @@ class MySql {
 		mysql_query("SET NAMES 'utf8'");
 	}
 	function dbconnect($host,$user,$pass){
-		$this->id = @ mysql_connect($host,$user,$pass) OR die("连接数据库失败，可能是用户名或密码错误");
+		$this->id = @ mysql_connect($host,$user,$pass) OR emMsg("连接数据库失败，可能是用户名或密码错误");
 	}
 	function selectdb($db){
-		mysql_select_db($db,$this->id) or die("未找到指定数据库!");
+		mysql_select_db($db,$this->id) or emMsg("未找到指定数据库");
 	}
 
 	function query($sql) {
@@ -72,7 +72,7 @@ function getRandStr($length = 12, $special_chars = true)
  */
 function emMsg($msg,$url='javascript:history.back(-1);')
 {
-print <<<EOT
+echo <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -90,7 +90,7 @@ body {
 	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:580px;
+	width:560px;
 	margin:10px 200px;
 	padding:10px;
 	list-style:none;
