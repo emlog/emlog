@@ -152,7 +152,7 @@ if ($action == 'addcom')
 	{
 		$CACHE->mc_sta();
 		$CACHE->mc_comment();
-		emMsg('评论发表成功!',"?action=showlog&gid=$gid#comment");
+		emMsg('评论发表成功!',"?action=showlog&gid=$gid#comment", true);
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
 		emMsg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");

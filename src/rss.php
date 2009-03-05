@@ -29,7 +29,7 @@ $author = $user_cache['name'];
 
 header("Content-type:application/xml");
 
-print <<< END
+echo <<< END
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
@@ -45,7 +45,7 @@ foreach($blog as $value)
 	$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  date('r',$value['date']);
-	print <<< END
+	echo <<< END
 
 <item>
 	<title>{$value['title']}</title>
@@ -58,7 +58,7 @@ foreach($blog as $value)
 </item>
 END;
 }
-print <<< END
+echo <<< END
 </channel>
 </rss>
 END;

@@ -314,7 +314,7 @@ class emBlog {
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if($pwd !== addslashes($logPwd))
 		{
-print <<<EOT
+echo <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

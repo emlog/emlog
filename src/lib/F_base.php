@@ -743,12 +743,19 @@ function formMsg($msg,$url,$type)
  *
  * @param string $msg 信息
  * @param string $url 返回地址
+ * @param boolean $isAutoGo 是否自动返回 true false
  */
-function emMsg($msg,$url='javascript:history.back(-1);')
+function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false)
 {
-print <<<EOT
+echo <<<EOT
 <html>
 <head>
+EOT;
+if($isAutoGo)
+{
+	echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
+}
+echo <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>emlog system message</title>
 <style type="text/css">
@@ -780,7 +787,7 @@ body {
 <body>
 <div class="main">
 <p>$msg</p>
-<p><a href="$url">&laquo;返回</a></p>
+<p><a href="$url">&laquo;点击返回</a></p>
 </div>
 </body>
 </html>
