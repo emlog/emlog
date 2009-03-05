@@ -33,7 +33,7 @@ $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
 
-$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png');//允许上传的文件类型
+$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
 $tpl_dir = '../content/templates/';//所有模板目录
 define('ADMIN_TPL', 			'default');//后台模板
 define('UPLOADFILE_MAXSIZE',	2097152);//附件大小上限 单位：字节

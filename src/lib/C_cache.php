@@ -367,7 +367,7 @@ class mkcache {
 				$att_path = $show_attach['filepath'];//eg: ../uploadfile/200710/b.jpg
 				$atturl = substr($att_path,3);//eg: uploadfile/200710/b.jpg
 				$postfix = strtolower(substr(strrchr($show_attach['filename'], "."),1));
-				if(!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png')))
+				if(!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png', 'bmp')))
 				{
 					$file_atturl = $atturl;
 					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']);
