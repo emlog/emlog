@@ -148,7 +148,7 @@ class emBlog {
 					$row['log_title'] = htmlspecialchars(trim($row['title']));
 					$row['logid'] = $row['gid'];
 					$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
-					if(!empty($row['password']) && !$cookiePassword)
+					if(!empty($row['password']) && $cookiePassword != $row['password'])
 					{
 						$row['excerpt'] = '<p>[该日志已设置加密]</p>';
 					}else{
@@ -352,6 +352,10 @@ body {
 </body>
 </html>
 EOT;
+if($cookiePwd)
+{
+	setcookie('em_logpwd_'.$logid, ' ', time() - 31536000);
+}
 exit;
 		}else {
 			setcookie('em_logpwd_'.$logid, $logPwd);
