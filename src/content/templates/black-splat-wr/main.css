@@ -35,7 +35,9 @@ a:hover {
   color: #727248;
   text-decoration: underline;
   }
-
+img {
+	max-width:600px;
+}
 blockquote {
   background: url(images/bquotes.gif) left top no-repeat;
   padding-left: 35px;
