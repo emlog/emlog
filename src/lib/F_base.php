@@ -221,7 +221,7 @@ function changeFileSize($filesize)
  */
 function pagination($count,$perlogs,$page,$url)
 {
-	$pnums = ceil($count / $perlogs);
+	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++)
 	{
