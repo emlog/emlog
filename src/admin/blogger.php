@@ -35,7 +35,7 @@ if($action == 'modintro')
 		$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	
 		$photo_type = array('gif', 'jpg', 'jpeg','png');
-		if($_FILES['photo']['size']>0)
+		if($_FILES['photo']['size'] > 0)
 		{
 			$usericon = uploadFile($_FILES['photo']['name'],$_FILES['photo']['tmp_name'],$_FILES['photo']['size'],$photo_type,$_FILES['photo']['type'],1);
 		}else{

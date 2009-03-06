@@ -39,7 +39,11 @@ if($action == 'upload')
 	{
 		for ($i = 0; $i < count($attach['name']); $i++)
 		{
-			if($attach['error'][$i]!=4)
+			if($attach['error'][$i] == 1)
+			{
+				formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+			}
+			if($attach['error'][$i] != 4)
 			{
 				//$att_type 允许上传的后缀名
 				$upfname = uploadFile($attach['name'][$i],$attach['tmp_name'][$i],$attach['size'][$i],$att_type,$attach['type'][$i]);
