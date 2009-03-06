@@ -235,7 +235,7 @@ if ($action == 'logout')
 }
 // WML 头
 function wap_header($title) {
-	header("Content-type: text/vnd.wap.wml; charset=utf-8");
+	header('Content-type: text/vnd.wap.wml; charset=utf-8');
 	echo "<?xml version=\"1.0\"?>\n";
 	echo "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" \"http://www.wapforum.org/ DTD/wml_1.1.xml\">\n\n";
 	echo "<wml>\n";

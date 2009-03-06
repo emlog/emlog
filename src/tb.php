@@ -8,20 +8,20 @@
 
 require_once('./common.php');
 
-$blogid = intval($_REQUEST['id']);
-$ec = strtolower($_REQUEST['ec']);
-$sc = $_REQUEST['sc'];
+$blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
+$ec = isset($_REQUEST['ec']) ? strtolower($_REQUEST['ec']) : '';
+$sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
 $encode = 'utf-8';
-$charset = strtolower($_SERVER['HTTP_ACCEPT_CHARSET']);
+$charset = isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? strtolower($_SERVER['HTTP_ACCEPT_CHARSET']) : '';
 if ($charset && !strstr($charset, 'utf-8')) 
 {
 	$encode = $charset;
 }
 
-$title     = iconv2utf(html2text(addslashes(trim($_REQUEST['title']))));
-$excerpt   = trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255);
-$url       = addslashes(trim($_REQUEST['url']));
-$blog_name = iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name']))));
+$title     = isset($_REQUEST['title']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['title'])))) : '';
+$excerpt   = isset($_REQUEST['excerpt']) ? trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255) : '';
+$url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
+$blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name'])))) : '';
 $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)

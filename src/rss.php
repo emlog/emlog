@@ -27,7 +27,7 @@ $blog = GetBlog($sort);
 $blognum = GetBlogNum();
 $author = $user_cache['name'];
 
-header("Content-type:application/xml");
+header('Content-type: application/xml');
 
 echo <<< END
 <?xml version="1.0" encoding="utf-8"?>

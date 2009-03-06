@@ -35,7 +35,7 @@ for($j = 0; $j < 50; $j++)
 	imagesetpixel($img,$x,$y,$pixColor);
 }
 
-header("Content-Type:image/png");
+header('Content-Type: image/png');
 imagepng($img);
 imagedestroy($img);
 
