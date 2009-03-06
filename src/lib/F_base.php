@@ -339,7 +339,6 @@ function cleanPage($beUrlRewrite = false)
 	} else {
 		ob_start();
 	}
-	header('Content-Type: text/html; charset=UTF-8');
 	echo $output;
 	exit;
 }

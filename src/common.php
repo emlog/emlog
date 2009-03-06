@@ -15,17 +15,19 @@ require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
 require_once(EMLOG_ROOT.'/lib/C_mysql.php');
 
-//数据库操作对象
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-//cache
-$CACHE = new mkcache($DB,DB_PREFIX);
+//定义输出编码
+header('Content-Type: text/html; charset=UTF-8');
 //去除多余的转义字符
 doStripslashes();
+//获取操作
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+//数据库操作对象
+$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
+//缓存生成对象
+$CACHE = new mkcache($DB,DB_PREFIX);
 //登录验证
 $userData = array();
 define('ISLOGIN',	isLogin());
-//获取操作
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 //读取缓存
 $options_cache = $CACHE->readCache('options');
