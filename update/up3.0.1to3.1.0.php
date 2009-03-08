@@ -188,24 +188,24 @@ if(!isset($_GET['action'])){
 </div>
 <div class="b">
 <p class="title2">请填写当前需要升级的emlog相关信息。<br>
-  如下各个参数请参考当前emlog根目录下的 config.php 文件 认真填写。</p>
+  如下各个参数请参考服务器上emlog根目录下的 config.php 文件 认真填写。</p>
 <li><strong> 服务器地址</strong>：<span class="care">(通常为localhost不必修改)</span> <br />
     <input name="hostname" type="text" class="input" value="localhost">
 </li>
 <li><strong>Mysql
-    数据库用户名：</strong><span class="care"></span><br />
+    数据库用户名：</strong><span class="care">(服务器上config.php文件里 DB_USER 对应值)</span><br />
     <input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    <strong>数据库用户密码：</strong><span class="care"></span><br />
+    <strong>数据库用户密码：</strong><span class="care">(服务器上config.php文件里 DB_PASSWD 对应值)</span><br />
   <input name="password" type="password" class="input">
 </li>
 <li>
-    <strong>emlog的数据库名</strong>：<span class="care"></span><br />
+    <strong>emlog的数据库名</strong>：<span class="care">(服务器上config.php文件里 DB_NAME 对应值)</span><br />
       <input name="dbname" type="text" class="input" value="">
 </li>
 <li>
-    <strong>emlog的数据库前缀</strong>：<span class="care"></span><br />
+    <strong>emlog的数据库前缀</strong>：<span class="care">(服务器上config.php文件里 DB_PREFIX 对应值)</span><br />
   <input name="dbprefix" type="text" class="input" value="">
 </li>
 </div>
