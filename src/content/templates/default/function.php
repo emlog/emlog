@@ -85,7 +85,7 @@
 		<ul>
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="overflow-y: hidden;width:210px;height:70px;" class="input"></textarea>
+		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
 		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
