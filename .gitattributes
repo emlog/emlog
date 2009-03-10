@@ -268,24 +268,24 @@ src/content/templates/bluemoon/log_list.php -text
 src/content/templates/bluemoon/main.css -text
 src/content/templates/bluemoon/preview.jpg -text
 src/content/templates/bluemoon/side.php -text
-src/content/templates/default/echo_log.php -text svn_keywords=Id
-src/content/templates/default/footer.php -text svn_keywords=Id
-src/content/templates/default/function.php -text
-src/content/templates/default/header.php -text svn_keywords=Id
-src/content/templates/default/images/bg_cal_today.gif -text svn_keywords=Id
-src/content/templates/default/images/icon_rss.gif -text
-src/content/templates/default/images/import.gif -text
-src/content/templates/default/images/modify.gif -text svn_keywords=Id
-src/content/templates/default/images/player.swf -text
-src/content/templates/default/images/reply.gif -text
-src/content/templates/default/images/rss.gif -text svn_keywords=Id
-src/content/templates/default/images/sidebar_border.gif -text svn_keywords=Id
-src/content/templates/default/log_list.php -text svn_keywords=Id
-src/content/templates/default/main.css -text svn_keywords=Id
-src/content/templates/default/preview.jpg -text svn_keywords=Id
-src/content/templates/default/side.php -text svn_keywords=Id
-src/content/templates/default/tpl.ini -text
-src/content/templates/default/unique_tpl.js -text svn_keywords=Id
+src/content/templates/classics/echo_log.php -text svn_keywords=Id
+src/content/templates/classics/footer.php -text svn_keywords=Id
+src/content/templates/classics/function.php -text
+src/content/templates/classics/header.php -text svn_keywords=Id
+src/content/templates/classics/images/bg_cal_today.gif -text svn_keywords=Id
+src/content/templates/classics/images/icon_rss.gif -text
+src/content/templates/classics/images/import.gif -text
+src/content/templates/classics/images/modify.gif -text svn_keywords=Id
+src/content/templates/classics/images/player.swf -text
+src/content/templates/classics/images/reply.gif -text
+src/content/templates/classics/images/rss.gif -text svn_keywords=Id
+src/content/templates/classics/images/sidebar_border.gif -text svn_keywords=Id
+src/content/templates/classics/log_list.php -text svn_keywords=Id
+src/content/templates/classics/main.css -text svn_keywords=Id
+src/content/templates/classics/preview.jpg -text svn_keywords=Id
+src/content/templates/classics/side.php -text svn_keywords=Id
+src/content/templates/classics/tpl.ini -text
+src/content/templates/classics/unique_tpl.js -text svn_keywords=Id
 src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text
