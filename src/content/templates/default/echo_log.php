@@ -111,7 +111,7 @@ $reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 </p>
 
 <p>
-<?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" />
+<div class="comment_yz"><?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div>
 </p>
 </form>
 </div>

@@ -273,7 +273,12 @@ a:hover{
 	text-align:center;
 	cursor: pointer;
 	_cursor: hand;
-	margin:0 10px;
+}
+#content .comment_post .comment_yz img{
+	margin-right:10px;
+}
+#content .comment_post .comment_yz input{
+	margin-right:10px;
 }
 #content .comment_post .input{
 	width:100px;
