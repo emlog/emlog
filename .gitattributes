@@ -286,6 +286,37 @@ src/content/templates/classics/preview.jpg -text svn_keywords=Id
 src/content/templates/classics/side.php -text svn_keywords=Id
 src/content/templates/classics/tpl.ini -text
 src/content/templates/classics/unique_tpl.js -text svn_keywords=Id
+src/content/templates/default/echo_log.php -text
+src/content/templates/default/footer.php -text
+src/content/templates/default/function.php -text
+src/content/templates/default/header.php -text
+src/content/templates/default/images/bg_cal_today.gif -text
+src/content/templates/default/images/bloger_photo.jpg -text
+src/content/templates/default/images/bottom.png -text
+src/content/templates/default/images/button.png -text
+src/content/templates/default/images/c_bottom.gif -text
+src/content/templates/default/images/c_m.gif -text
+src/content/templates/default/images/c_top.gif -text
+src/content/templates/default/images/comment_back.gif -text
+src/content/templates/default/images/em_button.gif -text
+src/content/templates/default/images/em_input-back.gif -text
+src/content/templates/default/images/icon_rss.gif -text
+src/content/templates/default/images/import.gif -text
+src/content/templates/default/images/logserch_logserch.gif -text
+src/content/templates/default/images/modify.gif -text
+src/content/templates/default/images/player.swf -text
+src/content/templates/default/images/reply.gif -text
+src/content/templates/default/images/rss.gif -text
+src/content/templates/default/images/sidebar_list.gif -text
+src/content/templates/default/images/top.jpg -text
+src/content/templates/default/images/top.png -text
+src/content/templates/default/images/top_back.png -text
+src/content/templates/default/log_list.php -text
+src/content/templates/default/main.css -text
+src/content/templates/default/preview.jpg -text
+src/content/templates/default/side.php -text
+src/content/templates/default/tpl.ini -text
+src/content/templates/default/unique_tpl.js -text
 src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text
