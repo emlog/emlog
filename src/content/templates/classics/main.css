@@ -165,6 +165,7 @@ div.contentA {
 	float: left;
 	background-color: #FFFFFF;
 	width: 700px;
+	overflow:hidden;
 }
 
 #contentB li {
