@@ -34,7 +34,7 @@ $day = substr($datetime['2'],0,2);
       <div class="post-inner">
         <div class="date-tab"><span class="month"><?php echo $year; ?></span><span class="day"><?php echo $day; ?></span>				</div>
         <div class="thumbnail"></div>
-		<?php echo $log_content; ?>
+		<div class="post_P"><?php echo $log_content; ?></div>
 <p>
 	<?php 
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';

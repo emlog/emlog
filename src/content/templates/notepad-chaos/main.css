@@ -11,7 +11,7 @@ body {
 }
 img{
 	border:none;
-	max-width:460px;
+	max-width:420px;
 }
 
 /* search form */
@@ -142,7 +142,7 @@ img{
 
 #content {
 	background:url(images/notepad-back.gif) repeat-y;
-	width:764px;
+	width:763px;
 	margin:0 auto;
 	padding-right:55px;
 }
@@ -156,6 +156,7 @@ img{
 	width:425px;
 	font-size:12px;
 	line-height:20px;
+	overflow:hidden;
 }
 #content .col01 h3 {
 	font-size:24px;
@@ -184,6 +185,10 @@ img{
 }
 #content .col01 .post {
 	padding-bottom:30px;
+}
+#content .col01 .post .post_P{
+	width:420px;
+	overflow:hidden;
 }
 #content .col01 .thumbnail {
 	float:right;
@@ -224,19 +229,7 @@ img{
 	font-size:18px;
 	font-weight:bold;
 }
-#content .col01 .post-inner a {
-	color:#000;
-	position:relative;
-	text-decoration:none;
-	border-bottom:1px solid #868585;
-	background:#f4f0db;
-}
-#content .col01 .post-inner a:hover {
-	color:#000;
-	text-decoration:none;
-	border-bottom:1px solid #000;
-	background:#fffbc1;
-}
+
 #content .col01 .meta a {
 	color:#000;
 	text-decoration:none;

@@ -32,7 +32,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
       <div class="post-inner">
         <div class="date-tab"><span class="month"><?php echo date('n月',$value['date']); ?></span><span class="day"><?php echo date('j',$value['date']); ?></span></div>
         <div class="thumbnail"></div>
+        <div class="post_P">
 	<?php echo $value['log_description']; ?>
+    </div>
 	<p>
 		<?php 
 		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
