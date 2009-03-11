@@ -36,7 +36,7 @@ a:hover {
   text-decoration: underline;
   }
 img {
-	max-width:600px;
+	max-width:580px;
 }
 blockquote {
   background: url(images/bquotes.gif) left top no-repeat;
@@ -259,7 +259,10 @@ h2.postTitle a {
 .post img {
   margin: 10px;
   }
-
+#content p, .postContent{
+	width:595px;
+	overflow:hidden;
+  }
 #content p, .postContent p {
   font-size: 13px;
   line-height:160%;

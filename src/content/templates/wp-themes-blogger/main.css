@@ -15,7 +15,7 @@ body {
   width: 100%;
 }
 img {
-	max-width:600px;
+	max-width:585px;
 }
 /*** Hyperlinks	***/
 a, a:visited {
@@ -186,6 +186,10 @@ a:hover {
 #postarea {
   width: 630px;
   float: left;
+}
+#postarea  .excrept_post_p{
+	width:580px;
+	overflow:hidden;
 }
 .postcontent {
   border: 1px solid #a3a09e;

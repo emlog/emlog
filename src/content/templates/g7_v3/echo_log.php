@@ -8,7 +8,7 @@ Posted in <?php echo $post_time; ?>
 <?php endif;?>
 </p>
 <div id="content_post">	
-<p><?php echo $log_content;?></p>
+<div class="post_p"><?php echo $log_content;?></div>
 <p>
 	<?php 
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';

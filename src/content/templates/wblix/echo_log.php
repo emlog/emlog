@@ -12,7 +12,7 @@
 <p class="info">
 <em class="date">Posted on <?php echo $post_time;?></em>
 </p>
-<?php echo $log_content;?>
+<div class="post"><?php echo $log_content;?></div>
 <p>
 	<?php 
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';

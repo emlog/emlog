@@ -73,7 +73,9 @@ small{
 pre{
 	width: 90%;
 }
-
+img{
+	max-width:460px;
+}
 input, textarea{
 	font-family: Arial, Helvetica, Georgia, sans-serif;
 	font-size: 12px;
@@ -150,6 +152,8 @@ input#author, input#email, input#url{
 .entry{
 	padding: 0 20px;
 	line-height: 24px;
+	overflow:hidden;
+	width:450px;
 }
 
 .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6{
@@ -450,4 +454,10 @@ table.calendartop td{
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#blogger{
+	text-align:center;
+}
+#tags{
+	line-height:1.4;
 }

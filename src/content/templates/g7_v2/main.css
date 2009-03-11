@@ -17,7 +17,7 @@ body {
 	font-size: 12px;
 }
 img{
-	max-width:580px;
+	max-width:560px;
 }
 #top {
 	padding: 0;
@@ -272,6 +272,8 @@ img{
 	margin-right: 12px;
 	margin-left: 10px;
 	font-size:14px;
+	width:560px;
+	overflow:hidden;
 }
 #des
 {
@@ -704,4 +706,7 @@ img{
 	background-position: right 4px;
 	background-repeat: no-repeat;
 	padding-right: 10px;
+}
+#blogger{
+	text-align:center;
 }

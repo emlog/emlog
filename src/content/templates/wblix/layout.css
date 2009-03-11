@@ -10,7 +10,7 @@ body {
   margin:0;
   padding:15px 0;
   font-family:Arial, Helvetica, sans-serif;
-  font-size:75%;
+  font-size:12px;
   line-height:1.6em;
   text-align:center;
 }
@@ -18,7 +18,7 @@ body {
 body#commentspopup {padding:0;}
 
 img{
-	max-width:460px;
+	max-width:450px;
 }
 
 /* headings
@@ -213,11 +213,10 @@ img.center {
 }
 
 #navigation #searchbutton {
-  height:2em;
   width:auto;
   padding:0 1px;
   border:1px solid;
-  font-size:9px;
+  font-size:12px;
   letter-spacing:1px;
   text-align:center;
   vertical-align:middle;
@@ -256,7 +255,10 @@ img.center {
   border-bottom:1px solid;
   font-size:1.0em;
 }
-
+#content .post{
+	width:450px;
+	overflow:hidden;
+}
 .entry.single {clear:both;}
 
 .entry.single .info {margin:0 0 22px 0;}
@@ -540,7 +542,7 @@ form .info {padding-left:90px;}
 .calendar td{
 	font-size:12px;
 	text-align:center;
-	padding:0px 3px;
+	padding:0px 5px;
 }
 .day{
 	border:#63617b solid 1px;

@@ -308,6 +308,9 @@ textarea {
 	padding:5px 15px 15px;
 	float:left;
 }
+#main .post .content img{
+	max-width:570px;
+}
 #notice {
 	color:#080;
 }
@@ -392,6 +395,7 @@ textarea {
 	line-height:145%;
 	overflow:hidden;
 	clear:both;
+	width:580px;
 }
 .post .content p {
 	margin-bottom:10px;

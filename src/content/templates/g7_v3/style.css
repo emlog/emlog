@@ -6,7 +6,7 @@ body {
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
 img{
-	max-width:580px;
+	max-width:560px;
 }
 #shell {
 	width: 910px;
@@ -171,6 +171,10 @@ img {
 	padding-bottom: 12px;
 	line-height:150%;
 	display: inline-block;
+}
+#content_post .post_p{
+	width:560px;
+	overflow:hidden;
 }
 .postinfo{
 	font-size: 12px!important;
@@ -635,4 +639,10 @@ li a {
 	margin-left:20px;
 	font-size:12px;
 	color:#999999;
+}
+#blogger{
+	text-align:center;
+}
+#blogtags{
+	line-height:1.4;
 }

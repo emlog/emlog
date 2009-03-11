@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="post">
 
 	<div class="storycontent">
-		<p><?php echo $log_content; ?></p>
+		<div class="excrept_post_p"><?php echo $log_content; ?></div>
         <p>
 	<?php 
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';

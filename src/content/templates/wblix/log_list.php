@@ -18,7 +18,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 Posted on <?php echo $value['post_time'];?>
 </em>
 </p>
-<?php echo $value['log_description'];?>
+<div class="post"><?php echo $value['log_description'];?></div>
 <p>
 <?php 
 $attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
