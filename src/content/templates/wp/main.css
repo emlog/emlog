@@ -21,7 +21,7 @@ li{
 #page {
 	BACKGROUND-COLOR: white; 
 	TEXT-ALIGN: left;
-	background: url("./images/kubrickbg.jpg") repeat-y top; 
+	background: url("./images/kubrickbg.gif") repeat-y top; 
 	border: none;
 	margin:auto;
 }
@@ -39,7 +39,9 @@ li{
 	FONT-SIZE: 1.05em
 }
 .narrowcolumn .entry {
-	LINE-HEIGHT: 1.4em
+	LINE-HEIGHT: 1.4em;
+	overflow:hidden;
+	width:470px;
 }
 .widecolumn .entry {
 	LINE-HEIGHT: 1.4em
@@ -97,6 +99,9 @@ H2.pagetitle {
 }
 #sidebar h2{
 	cursor:hand;
+}
+#sidebar UL UL {
+	padding-bottom:10px;
 }
 #sidebar UL UL LI {
 	COLOR: #777
@@ -303,11 +308,13 @@ HR {
 .calendar{
 	/*background-image:url(images/bg.jpg);*/
 	margin-left:3px;
+	margin-bottom:10px;
 }
 .calendar td{
-	font-size:11px;
+	font-size:12px;
 	text-align:center;
-	padding:0px 2px;
+	padding:0px 3px;
+	line-height:19px;
 }
 .day{
 	font-weight:bold;
@@ -320,7 +327,7 @@ HR {
 .sun{
 	background-color:#4788C0;
 	color: #CCFF00;
-	font-weight:bold;
+	font-weight:300;
 }
 .week{
 	background-color:#4788C0;
@@ -387,4 +394,7 @@ HR {
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#tags{
+	line-height:1.4;
 }

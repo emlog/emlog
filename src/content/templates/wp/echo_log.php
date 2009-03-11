@@ -6,7 +6,7 @@
 <span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
 </h2>
-<div class=entry>
+<div class="entry">
 <p><?php echo $log_content;?></p>
 <p>
 	<?php 

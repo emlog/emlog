@@ -12,7 +12,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
 	<?php endif;?>
 </p>
-<DIV class=entry>
+<DIV class="entry">
 <P><?php echo $value['log_description'];?></P>
 </DIV>
 	<p>

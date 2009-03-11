@@ -1053,6 +1053,7 @@ src/content/templates/wp/header.php -text svn_keywords=Id
 src/content/templates/wp/images/em_rss.gif -text svn_keywords=Id
 src/content/templates/wp/images/icon_rss.gif -text
 src/content/templates/wp/images/import.gif -text
+src/content/templates/wp/images/kubrickbg.gif -text
 src/content/templates/wp/images/kubrickbg.jpg -text svn_keywords=Id
 src/content/templates/wp/images/kubrickbgcolor.jpg -text svn_keywords=Id
 src/content/templates/wp/images/kubrickfooter.jpg -text svn_keywords=Id
