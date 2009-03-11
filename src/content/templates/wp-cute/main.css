@@ -21,7 +21,7 @@ img{
 #page {
 	BACKGROUND-COLOR: white; 
 	TEXT-ALIGN: left;
-	background: url("./images/kubrickbg.jpg") repeat-y top; 
+	background: url("./images/kubrickbg.gif") repeat-y top; 
 	border: none;
 	margin:auto;
 }
@@ -39,7 +39,9 @@ img{
 	FONT-SIZE: 1.05em
 }
 .narrowcolumn .entry {
-	LINE-HEIGHT: 1.4em
+	LINE-HEIGHT: 1.4em;
+	overflow:hidden;
+	width:470px;
 }
 .widecolumn .entry {
 	LINE-HEIGHT: 1.4em
@@ -98,6 +100,9 @@ H2.pagetitle {
 }
 #sidebar h2{
 	cursor:hand;
+}
+#sidebar UL UL {
+	padding-bottom:10px;
 }
 #sidebar UL UL LI {
 	COLOR: #777
@@ -242,6 +247,9 @@ H3.comments {
 #sidebar UL {
 	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
 }
+#sidebar UL #bloggerinfo{
+	text-align:center;
+}
 #sidebar UL OL {
 	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
 }
@@ -305,11 +313,13 @@ HR {
 .calendar{
 	/*background-image:url(images/bg.jpg);*/
 	margin-left:3px;
+	margin-bottom:10px;
 }
 .calendar td{
-	font-size:11px;
+	font-size:12px;
 	text-align:center;
-	padding:0px 2px;
+	padding:0px 3px;
+	line-height:19px;
 }
 .day{
 	font-weight:bold;
@@ -331,7 +341,7 @@ HR {
 .calendartop{
 	text-align:center;
 	font-size:11px;
-	margin-left:18px;
+	margin-left:39px;
 	}
 .remsg {
 	width:500px;
@@ -383,4 +393,7 @@ HR {
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#tags{
+	line-height:1.4;
 }

@@ -3,7 +3,7 @@
 <?php function widget_blogger($title){ ?>
 	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
   <H2 onClick="showhidediv('bloggerinfo')"><?php echo $title; ?></H2>
-   <ul style="text-align:left" id="bloggerinfo" >
+   <ul id="bloggerinfo" >
 	<li><?php echo $photo;?></li>
 	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 	<?php if(ISLOGIN === true): ?>
