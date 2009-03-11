@@ -103,6 +103,9 @@ H2.pagetitle {
 #sidebar UL UL {
 	padding-bottom:10px;
 }
+#sidebar UL #bloggerinfo{
+	text-align:center;
+}
 #sidebar UL UL LI {
 	COLOR: #777
 }
