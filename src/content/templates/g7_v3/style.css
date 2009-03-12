@@ -171,6 +171,8 @@ img {
 	padding-bottom: 12px;
 	line-height:150%;
 	display: inline-block;
+	overflow:hidden;
+	width:560px;
 }
 #content_post .post_p{
 	width:560px;
