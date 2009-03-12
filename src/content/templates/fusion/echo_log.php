@@ -18,7 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
            <?php if($log_cache_sort[$logid]): ?>
 <span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
-				<p><?php echo $log_content; ?>
+				<p><div style="width:610px; overflow:hidden;"><?php echo $log_content; ?></div>
 </p>
 
 								

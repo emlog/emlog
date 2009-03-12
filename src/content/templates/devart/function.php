@@ -2,8 +2,8 @@
 <!--blogger-->
 <?php function widget_blogger($title){ ?>
 	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
-	<div class="block">
-		<h3><?php echo $title; ?></h3>
+	<div class="block" id="bloger">
+		<h3 style="text-align:left;"><?php echo $title; ?></h3>
 		<?php echo $photo; ?><br />
         <?php echo $name; ?><br />
 		<span id="bloggerdes"><?php echo $blogger_des; ?></span>

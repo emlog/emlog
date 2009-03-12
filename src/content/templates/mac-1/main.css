@@ -243,6 +243,8 @@ h1 a:hover {
 .entry {
 	padding: 10px 0px 5px;
 	clear: both;
+	width:500px;
+	overflow:hidden;
 }
 
 /* post title */

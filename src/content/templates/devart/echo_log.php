@@ -10,7 +10,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<?php endif;?>
 		</h1>
 		<p>发布时间 <?php echo $post_time; ?></p>
-        <?php echo $log_content; ?>
+       <div class="post_p"> <?php echo $log_content; ?></div>
 		<p>
 			<?php 
 			$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';

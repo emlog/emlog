@@ -185,7 +185,7 @@ blockquote {
 #content .post p { margin-bottom: 20px; }
 #content .post h1 a { text-decoration: none; }
 #content .post-list li { list-style: none; }
-
+#content .post .post_p { width:630px; overflow: hidden; }
 #content .post .post-info { 
 	clear: both; 
 	font-size: 11px; 
@@ -254,7 +254,7 @@ blockquote {
 
 #tags span{
 	margin: 15px 0px; 
-	line-height:135%;
+	line-height:1.4;
 }
 
 
@@ -267,6 +267,7 @@ blockquote {
 	float: left; 
 	margin-bottom: 7px; 
 	background: url(images/wrapper-bottom.gif) no-repeat bottom;
+	font-size:0px;
 }
 
 
@@ -450,4 +451,7 @@ blockquote {
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#bloger{
+	text-align:center;
 }

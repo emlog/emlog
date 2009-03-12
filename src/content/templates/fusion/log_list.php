@@ -26,7 +26,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
                 <!-- /story header -->
 				<div class="postbody entry">
 					<p>
-	<div class="log_desc"><?php echo $value['log_description']; ?></div>
+	<div class="log_desc"><div style="width:610px; overflow:hidden;"><?php echo $value['log_description']; ?></div></div>
     <?php 
 		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
 		echo $attachment;

@@ -12,7 +12,7 @@ body{
 	background: #eed497 url(images/bg_body.gif) repeat-x;
 	color: #000;
 }
-img{max-width:460px;}
+img{max-width:436px;}
 h1, h2, h3, h4, h5, h6{
 	font-family: Arial, Helvetica, Georgia, sans-serif;
 	font-size: 18px;
@@ -186,6 +186,8 @@ input#author, input#email, input#url{
 }
 
 .entry{
+	width:450px;
+	overflow:hidden;
 }
 
 .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6{
@@ -427,4 +429,10 @@ table#wp-calendar tfoot td{
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#blogger{
+	text-align:center;
+}
+#blogtags{
+	line-height:1.4;
 }

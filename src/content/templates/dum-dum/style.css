@@ -192,6 +192,8 @@ font-family: Verdana, Arial, Helvetica, sans-serif;
 font-size: 14px;
 line-height: 20px;
 color: #414449;
+width:485px;
+overflow:hidden;
 }
 
 .posttext img {
@@ -246,8 +248,7 @@ display: table-cell;
 vertical-align: middle;
 }
 .posttags2 {
-#position: relative;
-#top: -50%;
+	padding-top:5px;
 }
 .postfooter a{
 text-decoration: none;

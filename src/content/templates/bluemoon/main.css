@@ -158,6 +158,8 @@ img{
 .right .logdes{
 	padding: 5px 10px;
 	margin:  2px 20px 0 5px;
+	overflow:hidden;
+	width:570px;
 }
 h1 span{
 	cursor:pointer;
@@ -207,7 +209,7 @@ h1 span{
 }
 .permalink{
 	font-size: 12px;
-	text-align: right;
+	text-align:left;
 	margin: 0 10px;
 	padding: 5px 10px;
 	color: #ADADAD;

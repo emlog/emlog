@@ -670,6 +670,8 @@ div.com {
 }
 .paddings-p{
 	font-size:13px;
+	width:570px;
+	overflow:hidden;
 }
 .nextlog{
 	text-align:center;

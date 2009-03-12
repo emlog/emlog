@@ -43,7 +43,7 @@
 	<?php global $tag_cache; ?>
 	<div class="box3">
 		<div class="box3text">
-		<ul>
+		<ul style="line-height:1.4;">
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($tag_cache as $value): ?>
 			<a style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;" href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>

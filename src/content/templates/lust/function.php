@@ -32,10 +32,12 @@
 <!--标签-->
 <?php function widget_tag($title){ ?>
 	<?php global $tag_cache; ?>
+    <div style="line-height:1.4;">
 	<li><h2 onclick="showhidediv('tags')"><?php echo $title; ?></h2>
 	<?php foreach($tag_cache as $value): ?>
 	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 	<?php endforeach; ?>
+    </li>
 	</li>
 <?php }?>
 <!--分类-->

@@ -818,6 +818,8 @@ a.more-link {
 }
 .log_desc p{
 	line-height:24px;
+	width:520px;
+	overflow:hidden;
 }
 /*日历样式*/
 #calendar{

@@ -18,7 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 					<?php endif;?>
 				</h1>
 
-				<?php echo $value['log_description']; ?>
+				<div class="post_p"><?php echo $value['log_description']; ?></div>
 				<p>
 					<?php 
 					$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';

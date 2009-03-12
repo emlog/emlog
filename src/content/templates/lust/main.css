@@ -281,6 +281,7 @@ input, textarea{
 	margin: 0 20px;
 	display: inline;
 	line-height: 24px;
+	overflow:hidden;
 }
 
 .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6{

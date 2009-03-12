@@ -226,6 +226,8 @@ div.contentA {
 .log_desc {
 	font-size: 14px;
 	line-height: 1.7;
+	width:650px;
+	overflow:hidden;
 }
 
 .line {
@@ -449,4 +451,7 @@ div.contentA {
 .sort a:hover {
 	color: #999999;
 	text-decoration: none
+}
+#blogtags{
+	line-height:1.4;
 }

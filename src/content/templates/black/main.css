@@ -79,6 +79,7 @@ text-align:center;
 #sidebar .sbarright {
 float:right;
 width:152px;
+overflow:hidden;
 }
 #sidebar .sbarleft {
 width:250px;
@@ -251,6 +252,7 @@ margin-left:10px;
 margin-bottom:10px;
 padding:10px 10px 10px 10px;
 color: #ffffff;
+overflow:hidden;
 }
 .post .postcontent a {
 color: #e0e0e0;

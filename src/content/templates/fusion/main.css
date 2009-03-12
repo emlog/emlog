@@ -56,7 +56,7 @@ a:hover{
 
 img{
   border: 0;
-  max-width:600px;
+  max-width:610px;
 }
 
 pre{
@@ -92,7 +92,6 @@ small{
   list-style-position: inside;
   padding-left: 15px;
 }
-
 #main-content ol li{
   list-style-type: decimal;
   list-style-position: inside;

@@ -306,6 +306,8 @@ input#author, input#email, input#url{
 	font-family: Arial;
 	font-size: 12px;
 	line-height: 18px;
+	width:360px;
+	overflow:hidden;
 }
 
 .entry a, .entry a:hover{
@@ -405,6 +407,7 @@ table#wp-calendar tfoot td{
 /* end calendar */
 
 #footer{
+	text-align:center;
 	display: inline;
 	float: left;
 	margin: 2px 5px 5px;
