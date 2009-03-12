@@ -388,3 +388,10 @@ html>body #wp-calendar {
 	color: #999999;
 	text-decoration: none
 }
+#sidebar ul #blogtags li a{
+	line-height:1.4;
+	font-size:12px;
+}
+#blogger{
+	text-align:center;
+}
