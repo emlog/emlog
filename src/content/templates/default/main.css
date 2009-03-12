@@ -54,12 +54,15 @@ a:hover{
 }
 #menus{
 	font-size:14px;
-		float:right;
-		margin:6px 12px 0px 0px;
+	float:right;
+	margin:6px 12px 0px 0px;
+	_margin:6px 12px 0px 0px;
+	height:1%;
+	zoom:1;
 }
 #menus li{
 	float:left;
-	margin-right:5px;
+	margin-right:2px;
 }
 #menus li a{
 	width:73px;
