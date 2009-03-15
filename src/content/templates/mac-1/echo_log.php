@@ -124,7 +124,7 @@ $reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{
 
 </div>
 <div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>
- Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> </div>
+ Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></div>
 </div>
 <?php
 include getViews('side');
