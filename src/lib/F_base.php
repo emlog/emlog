@@ -608,7 +608,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 
 	if (@is_uploaded_file($tmpfile))
 	{
-		if (!move_uploaded_file($tmpfile ,$attachpath))
+		if (@!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
 			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
