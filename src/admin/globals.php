@@ -35,15 +35,17 @@ $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
 
-$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
-$tpl_dir = '../content/templates/';//所有模板目录
+//高级配置选项
+define('TEMPLATE_PATCH',		'../content/templates/');//模板目录
 define('ADMIN_TPL', 			'default');//后台模板
-define('UPLOADFILE_MAXSIZE',	2097152);//附件大小上限 单位：字节
+define('UPLOADFILE_MAXSIZE',	2097152);//附件大小上限 默认2M 单位：字节
 define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
+define('IS_THUMBNAIL',			0);//上传图片是否生成缩略图 1:是 0:否
 define('IMG_ATT_MAX_W',			420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',			460);//图片附件缩略图最大高
 define('ICON_MAX_W',			140);//个性头像缩略图最大宽
 define('ICON_MAX_H',			220);//个性头像缩略图最大高
+$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
 
 //检测后台模板
 define('ADMIN_ROOT', dirname(__FILE__));

@@ -11,17 +11,17 @@ require_once('./globals.php');
 if($action == '')
 {
 	//当前模板
-	$tpl = @parse_ini_file($tpl_dir.$nonce_templet.'/tpl.ini');
+	$tpl = @parse_ini_file(TEMPLATE_PATCH.$nonce_templet.'/tpl.ini');
 	$tplName = isset($tpl['tplname']) ? $tpl['tplname'] : $nonce_templet;
 	$tplAuthor = isset($tpl['author']) ? '作者：'.$tpl['author'] : '';
 	$tplDes = isset($tpl['des']) ? $tpl['des'] : '';
 	//模板列表
-	$handle = @opendir($tpl_dir) OR die('emlog template path error!');
+	$handle = @opendir(TEMPLATE_PATCH) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
 	{
-		$tplfiles = $tpl_dir.$file.'/header.php';
-		$tplinfo = @parse_ini_file($tpl_dir.$file.'/tpl.ini');
+		$tplfiles = TEMPLATE_PATCH.$file.'/header.php';
+		$tplinfo = @parse_ini_file(TEMPLATE_PATCH.$file.'/tpl.ini');
 		if(@filesize($tplfiles) > 0)
 		{
 			$tplinfo['tplfile'] = $file;

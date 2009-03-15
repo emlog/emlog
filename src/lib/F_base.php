@@ -599,7 +599,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	//缩略
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath."thum-". $fname;
-	if (in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
 	{
 		$attach = $thum;
 	} else{
