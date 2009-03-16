@@ -85,7 +85,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<a name="<?php echo $value['cid']; ?>"></a>
             
     		<div class="com_poster">
-			<?php echo $value['poster']; ?>&nbsp;<span style="color:#525454;;">|&nbsp;Posted on <?php echo $value['date']; ?></span> 
+			 <?php echo $value['poster']; ?>&nbsp;<span style="color:#525454;;">|&nbsp;Posted on <?php echo $value['date']; ?></span> 
             			<?php if($value['mail']):?>
 			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
 			<?php endif;?>
