@@ -706,7 +706,6 @@ src/content/templates/lover-emlog-fans/echo_log.php -text
 src/content/templates/lover-emlog-fans/footer.php -text
 src/content/templates/lover-emlog-fans/function.php -text
 src/content/templates/lover-emlog-fans/header.php -text
-src/content/templates/lover-emlog-fans/images/Thumbs.db -text
 src/content/templates/lover-emlog-fans/images/author.gif -text
 src/content/templates/lover-emlog-fans/images/bg_cal_today.gif -text
 src/content/templates/lover-emlog-fans/images/body-bg.gif -text
@@ -734,11 +733,9 @@ src/content/templates/lover-emlog-fans/images/sidebar_border.gif -text
 src/content/templates/lover-emlog-fans/images/tag.gif -text
 src/content/templates/lover-emlog-fans/images/views.gif -text
 src/content/templates/lover-emlog-fans/log_list.php -text
-src/content/templates/lover-emlog-fans/main.css -text
 src/content/templates/lover-emlog-fans/preview.jpg -text
 src/content/templates/lover-emlog-fans/side.php -text
 src/content/templates/lover-emlog-fans/tpl.ini -text
-src/content/templates/lover-emlog-fans/tpl.ini.bak -text
 src/content/templates/lover-emlog-fans/unique_tpl.js -text
 src/content/templates/lust/echo_log.php -text svn_keywords=Id
 src/content/templates/lust/footer.php -text svn_keywords=Id

@@ -124,18 +124,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			
   			<span>姓名</span>
             <input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/><input type="text" name="comname" class="textfield" maxlength="49" value="<?php echo $ckname; ?>">
-  			<span>必填</span><br />
+<br />
 		
 			<span>邮箱</span>
 			<input type="text" name="commail" class="textfield"  maxlength="128"  value="<?php echo $ckmail; ?>">
-			<span>选填，绝不公开</span><br />
+			<span>选填</span><br />
 			
 			<span>网站</span>
 			<input type="text" name="comurl" class="textfield" maxlength="128"  value="<?php echo $ckurl; ?>">
 			<span>选填</span><br />
-			
-			<span>留言</span>
-  			<textarea  class="textfield_2" name="comment" id="comment" cols="55" rows="10" tabindex="4"></textarea>
+内容
+<textarea  class="textfield_2" name="comment" id="comment" cols="55" rows="10" tabindex="4"></textarea>
 			<br/>
 			
 			<input name="submit" type="submit" id="submit" tabindex="5" value="提交留言" class="textfield_3" />
