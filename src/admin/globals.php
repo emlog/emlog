@@ -40,7 +40,7 @@ define('TEMPLATE_PATCH',		'../content/templates/');//模板目录
 define('ADMIN_TPL', 			'default');//后台模板
 define('UPLOADFILE_MAXSIZE',	2097152);//附件大小上限 默认2M 单位：字节
 define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
-define('IS_THUMBNAIL',			0);//上传图片是否生成缩略图 1:是 0:否
+define('IS_THUMBNAIL',			1);//上传图片是否生成缩略图 1:是 0:否
 define('IMG_ATT_MAX_W',			420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',			460);//图片附件缩略图最大高
 define('ICON_MAX_W',			140);//个性头像缩略图最大宽
