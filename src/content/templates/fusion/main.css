@@ -667,6 +667,7 @@ span.rate a.ratelink.down{ background: transparent url(images/thumb-down.gif) no
   width:270px; /* actual size is +36px right-padding + shadows (around 320px) */
   padding: 20px 36px 0 0;
   min-height: 350px;
+  overflow:hidden;
 }
 
 #sidebar ul, #sidebar ul, li{
@@ -688,7 +689,7 @@ span.rate a.ratelink.down{ background: transparent url(images/thumb-down.gif) no
 }
 #sidebar ul.nav li .rss{
 	float:right;
-	margin-top:-24px;
+	*margin-top:-18px;
 }
 
 
