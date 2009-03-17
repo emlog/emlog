@@ -485,6 +485,7 @@ src/content/templates/g7/images/categories2.gif -text svn_keywords=Id
 src/content/templates/g7/images/comment.png -text svn_keywords=Id
 src/content/templates/g7/images/comments.gif -text svn_keywords=Id
 src/content/templates/g7/images/custom.gif -text
+src/content/templates/g7/images/emlog_logo.gif -text
 src/content/templates/g7/images/favicon.gif -text svn_keywords=Id
 src/content/templates/g7/images/favicon.ico -text svn_keywords=Id
 src/content/templates/g7/images/import.gif -text
@@ -510,7 +511,6 @@ src/content/templates/g7/images/sort.gif -text
 src/content/templates/g7/images/statistics.gif -text svn_keywords=Id
 src/content/templates/g7/images/tag.gif -text svn_keywords=Id
 src/content/templates/g7/images/underone_logo_4.gif -text svn_keywords=Id
-src/content/templates/g7/images/wp_logo.gif -text svn_keywords=Id
 src/content/templates/g7/log_list.php -text svn_keywords=Id
 src/content/templates/g7/main.css -text svn_keywords=Id
 src/content/templates/g7/preview.jpg -text svn_keywords=Id
