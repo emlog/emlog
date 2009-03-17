@@ -252,6 +252,7 @@ input#author, input#email, input#url{
 .sidebar{
 	float: left;
 	width: 190px;
+	overflow:hidden;
 }
 
 .sidebar ul{
@@ -282,7 +283,11 @@ input#author, input#email, input#url{
 	padding: 5px 0 0;
 	background: #eee url(images/bg_ul_li.gif) no-repeat;
 }
-
+.sidebar ul li ul li{
+	margin: 5px 0 0;
+	padding: 5px 0 0;
+	background:0;
+}
 .sidebar ul li h2{
 	margin: 0 10px;
 	padding: 8px;
