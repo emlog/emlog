@@ -44,9 +44,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         	</div>
             <?php if($allow_tb == 'y'):?>	
             <div class="copy_box">
-            本文链接： 
-            <input value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>" type="text" style="border:0px; color:#FFCC00; width:350px;"  /><a name="tb"></a>  <br />
-			博客文章欢迎转载，转载请以链接形式注明原始出处和作者，谢谢合作。
+            引用地址： 
+            <input value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>" type="text" style="border:0px; color:#FFCC00; width:350px;"  /><a name="tb"></a>
          	</div>
             <?php endif; ?>
         	<div class="note_tag" style="margin-top:10px;">
@@ -73,7 +72,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--评论-->       
         <?php if($comments): ?>
          <div class="note_tag_2" style="margin-top:10px; margin-left:20px; color:#525454;">
-            	这篇文章已有的评论：
+         <b>评论</b>：
         </div> 
         <div class="com_box">   	
             <div class="commentlist">
@@ -85,7 +84,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<a name="<?php echo $value['cid']; ?>"></a>
             
     		<div class="com_poster">
-			 <?php echo $value['poster']; ?>&nbsp;<span style="color:#525454;;">|&nbsp;Posted on <?php echo $value['date']; ?></span> 
+			 <?php echo $value['poster']; ?>&nbsp;<span style="color:#525454;;"> <?php echo $value['date']; ?></span> 
             			<?php if($value['mail']):?>
 			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
 			<?php endif;?>
@@ -97,19 +96,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
    			    <span class="commenttxt"><?php echo $value['content']; ?></span>            
 				<div id="replycomm<?php echo $value['cid']; ?>">
    				<span class="commenttxt"><?php echo $reply; ?></span>
-            </div>
-            
-			<?php if(ISLOGIN === true): ?>
-<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
+   				<span class="commenttxt">
+   			<?php if(ISLOGIN === true): ?>
+			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
-		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
+			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 			<br />
 			<span class="commenttxt">
         	<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>		&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
         	</span>
 			</div>           
-			<?php endif; ?>  			            			
+			<?php endif; ?> 
+   				
+   				</span>
+            </div> 			            			
 			</div>
        		</li>
 			<?php endforeach; ?>       
@@ -117,7 +118,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         </div>
         <?php endif; ?>       
         <div class="note_tag_2" style="margin-top:20px; margin-left:20px; color:#525454;">
-            	请您写下对这篇文章的评论：
+       <b> 发表评论：</b>
         </div> 
         <div class="com_box_bottom"> 
         	<form  method="post"  name="commentform" action="index.php?action=addcom">
@@ -128,17 +129,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		
 			<span>邮箱</span>
 			<input type="text" name="commail" class="textfield"  maxlength="128"  value="<?php echo $ckmail; ?>">
-			<span>选填</span><br />
+			<span>(选填)</span><br />
 			
-			<span>网站</span>
+			<span>主页</span>
 			<input type="text" name="comurl" class="textfield" maxlength="128"  value="<?php echo $ckurl; ?>">
-			<span>选填</span><br />
+			<span>(选填)</span><br />
 内容
 <textarea  class="textfield_2" name="comment" id="comment" cols="55" rows="10" tabindex="4"></textarea>
 			<br/>
-			
-			<input name="submit" type="submit" id="submit" tabindex="5" value="提交留言" class="textfield_3" />
-			
+			<?php echo $cheackimg; ?><input name="submit" type="submit" id="submit" tabindex="5" value="提交留言" class="textfield_3" />
 			</form>         
         </div>        
     </div>
@@ -147,7 +146,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div id="sear_box">
          <form id="searchform" name="keyform" method="get" action="index.php">
          <div id="sear_box_left">
-        	<input type="text" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
+        	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>
          <div id="sear_box_right">
          <input type="submit" style="width:50px; height:20px; border:#E2E5EA solid 1px; font-size:12px; background-color:#f1f1f1;" value="搜索" />

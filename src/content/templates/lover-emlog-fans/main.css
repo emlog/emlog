@@ -238,7 +238,6 @@ white-space:nowrap;
 }
 .copy_box{
 width:615px;
-height:60px;
 background-color:#FFFFFF;
 border:#BEE1EA 1px dashed;
 font-size:12px;
@@ -251,6 +250,9 @@ width:615px;
 height:20px;
 font-size:12px;
 padding-left:10px;
+}
+#blogtags{
+	line-height:1.4;
 }
 /*页码样式*/
 #note_page{

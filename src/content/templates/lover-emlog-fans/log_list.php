@@ -58,7 +58,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
         <div id="sear_box">
          <form id="searchform" name="keyform" method="get" action="index.php">
          <div id="sear_box_left">
-        	<input type="text" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
+        	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>
          <div id="sear_box_right">
          <input type="submit" style="width:50px; height:20px; border:#E2E5EA solid 1px; font-size:12px; background-color:#f1f1f1;" value="搜索" />
