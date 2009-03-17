@@ -73,13 +73,6 @@ body{
 }
 .login-button .button input:hover{
 	background:url(images/login_button.gif) no-repeat 0px -29px;
-	border:0;
-	color:#FFFFFF;
-	width:111px;
-	height:29px;
-	text-align:center;
-	cursor: pointer;
-	_cursor: hand;
 }
 .login-main .back{
 	padding:5px 14px;
