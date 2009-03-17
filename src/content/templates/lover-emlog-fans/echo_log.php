@@ -46,6 +46,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <div class="copy_box">
             引用地址： 
             <input value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>" type="text" style="border:0px; color:#FFCC00; width:350px;"  /><a name="tb"></a>
+			<?php 
+			foreach($tb as $key=>$value):
+			?>
+			<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> <br>
+			BLOG: <?php echo $value['blog_name'];?><br>
+			<?php echo $value['date'];?><br>
+			<?php endforeach; ?>
          	</div>
             <?php endif; ?>
         	<div class="note_tag" style="margin-top:10px;">
@@ -57,16 +64,16 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             	</div>
         	</div>
             <div class="note_tag_2" style="margin-top:10px;">
- <?php if($prevLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
-<?php endif;?>
-<?php if($nextLog && $prevLog):?>
-	|
-<?php endif;?>
-<?php if($nextLog):?>
-	 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
-<?php endif;?>
-        	</div>           
+			 <?php if($prevLog):?>
+				&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+			<?php endif;?>
+			<?php if($nextLog && $prevLog):?>
+				|
+			<?php endif;?>
+			<?php if($nextLog):?>
+				 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+			<?php endif;?>
+        	</div>
         </div>
         
 <!--评论-->       
@@ -134,7 +141,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<span>主页</span>
 			<input type="text" name="comurl" class="textfield" maxlength="128"  value="<?php echo $ckurl; ?>">
 			<span>(选填)</span><br />
-内容
 <textarea  class="textfield_2" name="comment" id="comment" cols="55" rows="10" tabindex="4"></textarea>
 			<br/>
 			<?php echo $cheackimg; ?><input name="submit" type="submit" id="submit" tabindex="5" value="提交留言" class="textfield_3" />
