@@ -239,7 +239,6 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	'custom_text'=>'自定义组件'
 	);
 	$sider_wg = array(
-	'blogger',
 	'calendar',
 	'tag',
 	'archive',
@@ -276,7 +275,7 @@ CREATE TABLE {$db_prefix}blog (
   password varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'Hello Blogger', '1230508801', '感谢使用emlog,这是系统的默认日志,你可以删除它!', '', 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'Hi blogger :)', '1230508801', '欢迎使用emlog ，开始你的博客旅程。', '', 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -309,8 +308,8 @@ option_name VARCHAR( 255 ) NOT NULL ,
 option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id)
 )".$add."
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','emlog');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','welcome');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','$blogUrl');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
@@ -401,7 +400,7 @@ CREATE TABLE {$db_prefix}user (
   description text NOT NULL,
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','welcome to emlog!');";
+INSERT INTO {$db_prefix}user (uid, username, password, photo, description) VALUES (1,'$admin','".$adminpw."', '','');";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
