@@ -375,3 +375,28 @@ textarea{
 	border-top:#ECECEC solid 1px;
 }
 #log_pass{display:none;}
+#admindex_main{
+	width:600px;
+	margin:20px 5px;
+}
+#admindex_msg{
+	width:380px;
+	margin:10px 5px;
+	border:1px solid #CCCCCC;
+}
+#admindex_servinfo{
+	width:380px;
+	margin:10px 5px;
+	float:left;
+	border:1px solid #CCCCCC;
+}
+#admindex h3{
+	color: #999999;
+	background-color: #F0F0F0;
+	border-bottom:1px solid #CCCCCC;
+	font-size:14px;
+	padding:5px;
+}
+#admindex li{
+	list-style:none;
+}
