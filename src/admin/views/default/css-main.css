@@ -377,26 +377,26 @@ textarea{
 #log_pass{display:none;}
 #admindex_main{
 	width:600px;
-	margin:20px 5px;
+	margin:20px 5px 10px;
+}
+#admindex_servinfo{
+	float:left;
+	width:380px;
+	margin-right:10px;
 }
 #admindex_msg{
 	width:380px;
-	margin:10px 5px;
-	border:1px solid #CCCCCC;
-}
-#admindex_servinfo{
-	width:380px;
-	margin:10px 5px;
 	float:left;
-	border:1px solid #CCCCCC;
 }
-#admindex h3{
-	color: #999999;
-	background-color: #F0F0F0;
-	border-bottom:1px solid #CCCCCC;
-	font-size:14px;
-	padding:5px;
+#admindex div h3{
+	padding:2px 10px;
+	margin:0;
+	background: url(images/admindex_servinfo_bg.jpg) repeat-x;
+	border-bottom:1px #CCCCCC solid;
+	
 }
-#admindex li{
-	list-style:none;
+.clear{
+	clear:both;
+	height:1px;
+	font-size:1px;
 }
