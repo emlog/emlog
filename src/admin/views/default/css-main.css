@@ -383,10 +383,12 @@ textarea{
 	float:left;
 	width:380px;
 	margin-right:10px;
+	zoom:1;
 }
 #admindex_msg{
 	width:380px;
 	float:left;
+	zoom:1;
 }
 #admindex div h3{
 	padding:2px 10px;
