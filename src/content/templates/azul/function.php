@@ -3,7 +3,7 @@
 <?php function widget_blogger($title){ ?>
 	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
 	<li><h2><?php echo $title; ?></h2>
-	<ul>
+	<ul id="bloggerinfo">
 		<p><?php echo $photo;?></p>
 		<p><b><?php echo $name;?></b>
 		<div id="bloggerdes"><?php echo $blogger_des; ?></div>
