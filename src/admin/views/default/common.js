@@ -101,7 +101,7 @@ function autosave(act){
 	var ishide = ishide == "" ? "y" : ishide;
 	if(act == 0){
 		if (content == ""){
-			setTimeout("autosave(0)",30000);
+			setTimeout("autosave(0)",60000);
 			return;
 		}
 	}
@@ -143,6 +143,6 @@ function autosave(act){
 		$("#msg").html("");
 	});
 	if(act == 0){
-		setTimeout("autosave(0)",30000);
+		setTimeout("autosave(0)",60000);
 	}
 }

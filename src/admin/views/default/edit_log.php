@@ -98,5 +98,5 @@ $("#show_advset").click(function(){
 });
 var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
 $("#advset").css('display', showAdv);
-setTimeout("autosave(0)",30000);
+setTimeout("autosave(0)",60000);
 </script>
