@@ -137,7 +137,7 @@ function autosave(act){
 		var hours = digital.getHours();
 		var mins = digital.getMinutes();
 		var secs = digital.getSeconds();
-		$("#msg_2").html("<span class=\"msg_autosave_ok\">日志成功保存于 "+hours+":"+mins+":"+secs+" </span>");
+		$("#msg_2").html("<span class=\"ajax_remind_1\">日志成功保存于 "+hours+":"+mins+":"+secs+" </span>");
 		$("#savedf").attr("disabled", "");
 		$("#savedf").val(btname);
 		$("#msg").html("");

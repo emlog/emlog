@@ -329,7 +329,7 @@ textarea{
 	padding:10px;
 	background-color:#FFF1A8;
 }
-.msg_autosave_ok{
+.ajax_remind_1{
 	padding:3px 5px;
 	background-color:#FDFFCE;
 }
@@ -390,6 +390,15 @@ textarea{
 	float:left;
 	zoom:1;
 }
+#admindex_msg .i1{
+	padding:2px 0px;
+	float:left;
+}
+#admindex_msg .i2{
+	color:#CCCCCC;
+	padding:2px 0px;
+	float:right;
+}
 #admindex div h3{
 	font-weight:500;
 	font-size:12px;
@@ -400,6 +409,8 @@ textarea{
 #admindex div li{
 	list-style:none;
 	padding:2px 0px;
+	border-bottom:1px dotted #E4E4E4;
+	clear:both;
 }
 #admindex div ul{
 	list-style:none;

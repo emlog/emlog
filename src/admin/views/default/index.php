@@ -22,11 +22,12 @@ $allcom = $hidecom + $comnum;
 <div id="admindex_msg">
 <h3>官方消息</h3>
 <ul>
-	<li><a href="configure.php?action=phpinfo">更多信息师傅是大方说发生</a></li>
-	<li><a href="configure.php?action=phpinfo">更多信息范德萨发生时地方撒</a></li>
-	<li><a href="configure.php?action=phpinfo">更多信发生飞洒发生</a></li>
-	<li><a href="configure.php?action=phpinfo">往往往往往往往往</a></li>
-	<li><a href="configure.php?action=phpinfo">发送方师傅师傅是大方萨法</a></li>
+<li><span class="i1"><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
+<li><span class="i1"><img src="http://www.emlog.net/template/SP142/preview.jpg" width="180" height="150"><br /><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
+<li><span class="i1"><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
+<li><span class="i1"><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
+<li><span class="i1"><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
+<li><span class="i1"><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></span><span class="i2">2008-12-12</span></li>
 </ul>
 </div>
 <div class="clear"></div>
