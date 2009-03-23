@@ -131,7 +131,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 <textarea name="comment" class="comm_textarea_text" id="comment" cols="40" rows="8" style="width:400px" tabindex="4"></textarea></p>
 
 <p>
-<input name="Submit" type="submit" value="发表评论" onclick="return checkform()" style="border:1px solid #CCCCCC; background:#333333; color:#FFFFFF;" />
+<?php echo $cheackimg; ?><input name="Submit" type="submit" value="发表评论" onclick="return checkform()" style="border:1px solid #CCCCCC; background:#333333; color:#FFFFFF;" />
 </p>
 
 </form>
