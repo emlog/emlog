@@ -38,7 +38,7 @@ $tips = getTips($tips);//加载小提示
 //高级配置选项
 define('TEMPLATE_PATCH',		'../content/templates/');//模板目录
 define('ADMIN_TPL', 			'default');//后台模板
-define('UPLOADFILE_MAXSIZE',	2097152);//附件大小上限 默认2M 单位：字节
+define('UPLOADFILE_MAXSIZE',	20971520);//附件大小上限 单位：字节（默认20M）
 define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
 define('IS_THUMBNAIL',			1);//上传图片是否生成缩略图 1:是 0:否
 define('IMG_ATT_MAX_W',			420);//图片附件缩略图最大宽
