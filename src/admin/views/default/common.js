@@ -99,6 +99,7 @@ function autosave(act){
 	var password = $.trim($("#password").val());
 	var ishide = $.trim($("#ishide").val());
 	var ishide = ishide == "" ? "y" : ishide;
+	if(ishide == 'n'){return;}
 	if(act == 0){
 		if (content == ""){
 			setTimeout("autosave(0)",60000);
