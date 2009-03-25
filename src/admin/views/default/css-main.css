@@ -390,13 +390,14 @@ textarea{
 	float:left;
 	zoom:1;
 }
-#admindex_msg .i1{
-	padding:2px 0px;
-	float:left;
+#admindex_msg ul li{
+	line-height:1.6;
 }
-#admindex_msg .i2{
+#admindex_msg ul li img{
+	margin:5px;
+}
+#admindex_msg span{
 	color:#CCCCCC;
-	padding:2px 0px;
 	float:right;
 }
 #admindex div h3{
