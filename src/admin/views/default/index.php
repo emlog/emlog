@@ -21,14 +21,23 @@ $allcom = $hidecom + $comnum;
 </div>
 <div id="admindex_msg">
 <h3>官方消息</h3>
-<ul>
-<li><span>2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></li>
-<li><img src="http://www.emlog.net/template/SP142/preview.jpg" width="180" height="150"><br /><span>2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></li>
-<li><span>2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></li>
-<li><span >2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了我们发布了一款世界上最牛逼我们发布了一款世界上最牛逼一款世界上最牛逼的博客</a></li>
-<li><span>2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></li>
-<li><span >2008-12-12</span><a href="http://www.emlog.net" target="_blank">我们发布了一款世界上最牛逼的博客</a></li>
-</ul>
+<ul></ul>
 </div>
 <div class="clear"></div>
 </div>
+<script>
+$(document).ready(function(){
+	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+	$.getJSON("http://www.emlog.net/services/messenger.php?callback=?",
+	function(data){
+		$("#admindex_msg ul").html("");
+		$.each(data.items, function(i,item){
+			var image = '';
+			if (item.image != ''){
+				image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
+			}
+			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
+		});
+	});
+});
+</script>

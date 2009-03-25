@@ -126,9 +126,7 @@ a:hover {
 	margin:5px 20px;
 	width: 70%;
 }
-.rowstop {
-	background-image: url(./images/admindex_itembg.gif);
-}
+.rowstop {background-image: url(./images/admindex_itembg.gif);}
 .input {
 	border: 1px solid #CCCCCC;
 	font-family: tahoma, verdana, arial, helvetica, sans-serif;
@@ -181,9 +179,7 @@ a:hover {
 	border: 1px solid #ccc;
 	padding: 3px;
 }
-textarea{
-	font-size:12px;
-}
+textarea{font-size:12px;}
 #media-upload-header{
 	background-color:#E4F2FD;
 	border-top:solid #C6D9E9 1px;
@@ -390,12 +386,9 @@ textarea{
 	float:left;
 	zoom:1;
 }
-#admindex_msg ul li{
-	line-height:1.6;
-}
-#admindex_msg ul li img{
-	margin:5px;
-}
+#admindex_msg img{border:none;}
+#admindex_msg ul li{line-height:1.6;}
+#admindex_msg ul li img{margin:5px;}
 #admindex_msg span{
 	color:#CCCCCC;
 	float:right;
@@ -423,3 +416,7 @@ textarea{
 	height:1px;
 	font-size:1px;
 }
+.msg_type_1 a {font-weight:bold;color:#FF6600; text-decoration:none;}
+.msg_type_1 a:hover { color:#FF9900}
+.msg_type_2 a {color:#FF9933; text-decoration:none;}
+.msg_type_2 a:hover { color: #FFCC33}
