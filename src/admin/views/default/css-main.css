@@ -379,12 +379,10 @@ textarea{font-size:12px;}
 	float:left;
 	width:360px;
 	margin-right:10px;
-	zoom:1;
 }
 #admindex_msg{
 	width:360px;
 	float:left;
-	zoom:1;
 }
 #admindex_msg img{border:none;}
 #admindex_msg ul li{line-height:1.6;}
