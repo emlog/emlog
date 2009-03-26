@@ -356,8 +356,6 @@ src/content/templates/default/images/player.swf -text
 src/content/templates/default/images/reply.gif -text
 src/content/templates/default/images/rss.gif -text
 src/content/templates/default/images/sidebar_list.gif -text
-src/content/templates/default/images/top.jpg -text
-src/content/templates/default/images/top.png -text
 src/content/templates/default/images/top_back.png -text
 src/content/templates/default/log_list.php -text
 src/content/templates/default/main.css -text
