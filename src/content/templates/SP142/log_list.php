@@ -1,3 +1,6 @@
+<?php
+if(!defined('EMLOG_ROOT')) {exit('error!');}
+?>
 <div id="body">
     
 <div id="body_top">
