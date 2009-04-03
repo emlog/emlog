@@ -1,3 +1,4 @@
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
           	<div id="body_right">
     	<div id="body_right_content">
 		    <div id="sidebars">

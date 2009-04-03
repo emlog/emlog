@@ -46,6 +46,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 			</div>
 <?php endforeach; ?>
 	</div>
+<div class="navigation">
+<div class="alignleft"><?php echo $page_url;?></div>
+</div>
 <?php 
 include getViews('side');
 include getViews('footer'); 
