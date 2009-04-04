@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
-<link rel="alternate" type="application/rss+xml" title="订阅我的博客"  href="./rss.php">
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
 <link href="<?php echo $em_tpldir; ?>style.css" rel="stylesheet" type="text/css" />
 <script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
@@ -19,7 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <a href="./"><?php echo $blogname; ?></a><span class="description"><?php echo $bloginfo; ?></span>
         </h1>
 	<div id="header_rss">
-    	<a href="./rss.php" title="Rss"><img src="<?php echo $em_tpldir; ?>images/button_rss.png" /></a>
+    	<a href="./rss.php" title="RSS"><img src="<?php echo $em_tpldir; ?>images/button_rss.png" /></a>
     </div>
 </div>
 <div id="menu">

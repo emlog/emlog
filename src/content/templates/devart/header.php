@@ -5,7 +5,7 @@
 	<meta name="keywords" content="<?php echo $site_key; ?>" />
 	<meta name="generator" content="emlog" />
 	<title><?php echo $blogtitle; ?></title>
-	<link rel="alternate" type="application/rss+xml" title="<?php echo $blogtitle; ?>"  href="./rss.php">
+	<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
 	<link href="<?php echo $tpl_dir; ?>devart/style.css" rel="stylesheet" type="text/css" />
 	<!--[if IE]>
     	<link rel="stylesheet" type="text/css" href="<?php echo $tpl_dir; ?>/ie.css" media="screen" />
