@@ -22,7 +22,7 @@
           <td>
           <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
-          <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=selectFile"></iframe></div>
+          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
           <input type="hidden" id="content" name="content" value="" style="display:none" />
           <input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
           <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
@@ -31,7 +31,8 @@
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
           <input name="tag" id="tag" maxlength="200" style="width:715px;" /><br />
-          <div style="width:715px;">选择已有标签：
+          <div id="itag" style="cursor:pointer;">选择已有标签&raquo;</div>
+          <div id="tagbox" style="width:600px;margin-left:30px;display:none;">
           <?php 
           $tagStr = '';
           foreach ($tags as $val)
@@ -40,7 +41,8 @@
           }
           echo $tagStr;
           ?>
-          </div></td>
+          </div>
+          </td>
         </tr>
 	</tbody>
 	</table>
@@ -92,6 +94,7 @@ $("#show_advset").click(function(){
 	$("#advset").toggle();
 	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
 });
+$("#itag").click(function(){$("#tagbox").toggle();});
 var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
 $("#advset").css('display', showAdv);
 setTimeout("autosave(0)",60000);

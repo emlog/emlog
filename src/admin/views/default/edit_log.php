@@ -25,25 +25,27 @@
           <td>
           <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');" class="thickbox">附件管理</a>
           <span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
-          <div id="FrameUpload" style="display: none;"><iframe width="720" frameborder=0 height="160" frameborder=0 src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
+          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
           <input type="hidden" id="content" name="content" value="<?php echo $content; ?>" style="display:none" />
           <input type="hidden" id="content___Config" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
           <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
-          </td>       
+          </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-            <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
-            <div style="width:715px;">选择已有标签：
-            <?php 	
-            $oldTagStr = '';
-            foreach ($tags as $val)
-            {
-            	$oldTagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-            }
-            echo $oldTagStr;
-			?>
-            </div></td>
+          <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
+          <div id="itag" style="cursor:pointer;">选择已有标签&raquo;</div>
+          <div id="tagbox" style="width:600px;margin-left:30px;display:none;">
+          <?php 
+          $tagStr = '';
+          foreach ($tags as $val)
+          {
+          	$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+          }
+          echo $tagStr;
+          ?>
+          </div>
+            </td>
         </tr>
 	</tbody>
 	</table>
@@ -96,6 +98,7 @@ $("#show_advset").click(function(){
 	$("#advset").toggle();
 	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
 });
+$("#itag").click(function(){$("#tagbox").toggle();});
 var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
 $("#advset").css('display', showAdv);
 setTimeout("autosave(0)",60000);
