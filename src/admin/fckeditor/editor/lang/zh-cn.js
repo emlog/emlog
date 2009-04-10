@@ -48,7 +48,7 @@ InsertTable			: "插入/编辑表格",
 InsertLineLbl		: "分割符",
 InsertLine			: "插入日志分割符",
 InsertSmileyLbl		: "表情符",
-InsertSmiley		: "插入表情图标",
+InsertSmiley		: "插入表情",
 About				: "关于 FCKeditor",
 Bold				: "加粗",
 Italic				: "倾斜",
@@ -158,7 +158,7 @@ DlnLnkMsgInvPopName	: "弹出窗口名称必须以字母开头，并且不能含
 DlgColorTitle		: "选择颜色",
 
 // Smiley Dialog
-DlgSmileyTitle		: "插入表情图标",
+DlgSmileyTitle		: "插入表情",
 
 // Table Dialog
 DlgTableTitle		: "表格属性",
