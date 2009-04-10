@@ -34,7 +34,7 @@
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
           <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
-          <div id="itag" style="cursor:pointer;">选择已有标签&raquo;</div>
+          <div id="itag" style="color:#2A9DDB;cursor:pointer;">选择已有标签&raquo;</div>
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
           <?php 
           $tagStr = '';
