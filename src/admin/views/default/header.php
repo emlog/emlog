@@ -17,11 +17,12 @@
   <tbody>
   <tr>
     <td width="9" id=headerleft></td>
-    <td width=98 align=middle nowrap class="logo"><a href="./index.php">emlog</a></td>
+    <td width=98 align=middle nowrap class="logo"><a href="./index.php" title="返回管理首页">emlog</a></td>
     <td class="vesion"><?php echo EMLOG_VERSION; ?></td>
     <td class="headtext"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
 	你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" style="margin:2px 0px 3px;" align="absbottom" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="configure.php">博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="index.php?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
@@ -41,15 +42,17 @@
             <div class="sidebarmenu" onclick="displayToggle('blogctlpl');">博客管理</div>
 			<div id="blogctlpl">
             <div class="sidebarsubmenu"><a href="widgets.php" >Widgets</a></div>
-			<div class="sidebarsubmenu"><a href="template.php" >模板</a></div>
+			<div class="sidebarsubmenu"><a href="widgets.php" >页面</a></div>
 			<div class="sidebarsubmenu"><a href="link.php">链接</a></div>
+			<div class="sidebarsubmenu"><a href="widgets.php" >用户</a></div>
+			<div class="sidebarsubmenu"><a href="link.php">数据</a></div>
 			</div>
 			</div>
 			</td>
 		  </tr>
 		</tbody>
 	</table>
-	      <table cellspacing=0 cellpadding=0 width="100%" border=0>
+	<table cellspacing=0 cellpadding=0 width="100%" border=0>
         <tbody>
         <tr>
           <td valign=top align=left width=114>
@@ -69,15 +72,14 @@
 		  </tr>
 		</tbody>
 	</table>
-	      <table cellspacing=0 cellpadding=0 width="100%" border=0>
-        <tbody>
+	<table cellspacing=0 cellpadding=0 width="100%" border=0>
+      <tbody>
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('datamg');">数据管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('datamg');">功能扩展</div>
 			<div id="datamg">
-            <div class="sidebarsubmenu"><a href="backup.php">数据备份</a></div>
-            <div class="sidebarsubmenu"><a href="cache.php">重建缓存</a></div>
+            <div class="sidebarsubmenu"><a href="tag.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
 			</div>
 			<div id="sidebarBottom"></div>
 			</div>
