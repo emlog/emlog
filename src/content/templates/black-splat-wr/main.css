@@ -15,8 +15,7 @@ Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">
 
 * {
   margin: 0;
-  padding: 0;
-  }
+  padding: 0; }
 
 h1, h2, h3, h4, h5, h6,{
   margin: 0;
@@ -259,10 +258,11 @@ h2.postTitle a {
 .post img {
   margin: 10px;
   }
-#content p, .postContent{
+#content p{
 	width:595px;
 	overflow:hidden;
-  }
+	  }
+
 #content p, .postContent p {
   font-size: 13px;
   line-height:160%;
