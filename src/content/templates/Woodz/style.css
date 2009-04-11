@@ -1,4 +1,4 @@
-/*  
+﻿/*  
 Theme Name: Woodz
 Theme URI: http://www.skinpress.com/woodys/
 Description: 
@@ -49,7 +49,7 @@ body{
 #header{
 	width:100%;
 	height:157px;
-	background:url(images/bgr_header.png) no-repeat;
+	background:url(images/bgr_header.jpg) no-repeat;
 	overflow:hidden;
 }
 
@@ -456,7 +456,7 @@ h2.page_title{
 #footer{
 	width:100%;
 	height:95px;
-	background:url(images/bgr_footer.png) no-repeat;
+	background:url(images/bgr_footer.jpg) no-repeat;
 	overflow:hidden;
 }
 #footer h2{

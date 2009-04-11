@@ -262,8 +262,8 @@ src/content/templates/Woodz/header.php -text
 src/content/templates/Woodz/images/bg_cal_today.gif -text
 src/content/templates/Woodz/images/bgr_body.png -text
 src/content/templates/Woodz/images/bgr_body_top.png -text
-src/content/templates/Woodz/images/bgr_footer.png -text
-src/content/templates/Woodz/images/bgr_header.png -text
+src/content/templates/Woodz/images/bgr_footer.jpg -text
+src/content/templates/Woodz/images/bgr_header.jpg -text
 src/content/templates/Woodz/images/bgr_main.png -text
 src/content/templates/Woodz/images/bgr_menu.png -text
 src/content/templates/Woodz/images/bgr_post_comment.png -text
@@ -273,7 +273,7 @@ src/content/templates/Woodz/images/bgr_sidebars_h2.gif -text
 src/content/templates/Woodz/images/blockquote_bg.gif -text
 src/content/templates/Woodz/images/blockquote_bg2.gif -text
 src/content/templates/Woodz/images/button_go.gif -text
-src/content/templates/Woodz/images/button_rss.png -text
+src/content/templates/Woodz/images/button_rss.jpg -text
 src/content/templates/Woodz/images/ico_ar.gif -text
 src/content/templates/Woodz/images/ico_cat.gif -text
 src/content/templates/Woodz/images/ico_entry.gif -text

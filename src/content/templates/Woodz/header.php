@@ -19,7 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <a href="./"><?php echo $blogname; ?></a><span class="description"><?php echo $bloginfo; ?></span>
         </h1>
 	<div id="header_rss">
-    	<a href="./rss.php" title="RSS"><img src="<?php echo $em_tpldir; ?>images/button_rss.png" /></a>
+    	<a href="./rss.php" title="RSS"><img src="<?php echo $em_tpldir; ?>images/button_rss.jpg" /></a>
     </div>
 </div>
 <div id="menu">
