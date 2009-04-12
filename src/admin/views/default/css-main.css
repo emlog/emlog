@@ -411,3 +411,4 @@ textarea{font-size:12px;}
 .msg_type_1 a:hover { color:#FF9900}
 .msg_type_2 a {color:#FF9933; text-decoration:none;}
 .msg_type_2 a:hover { color: #FFCC33}
+#adm_plugin_list img{ cursor:pointer}

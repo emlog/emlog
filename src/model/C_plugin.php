@@ -10,12 +10,41 @@
 class emPlugin {
 
 	var $dbhd;
+	var $plugin;
+	var $table;
 
-	function emTrackback($dbhandle)
+	function emPlugin($dbhandle, $plugin='')
 	{
 		$this->dbhd = $dbhandle;
+		$this->table = DB_PREFIX.'options';
+		$this->plugin = $plugin;
 	}
 
+	function active_plugin($active_plugins)
+	{
+		if (in_array($this->plugin, $active_plugins))
+		{
+			return ;
+		} else {
+			$active_plugins[] = $this->plugin;
+		}
+		$active_plugins = serialize($active_plugins);
+		$this->dbhd->query("update $this->table set option_value='$active_plugins' where option_name='active_plugins'");
+	}
+	
+	function inactive_plugin($active_plugins)
+	{
+		if (in_array($this->plugin, $active_plugins))
+		{
+			$key = array_search($this->plugin, $active_plugins);
+			unset($active_plugins[$key]);
+		} else {
+			return;
+		}
+		$active_plugins = serialize($active_plugins);
+		$this->dbhd->query("update $this->table set option_value='$active_plugins' where option_name='active_plugins'");
+	}
+	
 	/**
 	 * 获取插件
 	 *
@@ -78,7 +107,7 @@ class emPlugin {
 			{
 				continue;
 			}
-			$emPlugins[basename($pluginFile)] = $pluginData;
+			$emPlugins[$pluginFile] = $pluginData;
 		}
 		return $emPlugins;
 	}
@@ -96,29 +125,24 @@ class emPlugin {
 		preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
 		preg_match("/Description:(.*)/i", $pluginData, $description);
 		preg_match("/Author:(.*)/i", $pluginData, $author_name);
-		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
-		if ( preg_match("/Version:(.*)/i", $pluginData, $version) )
-		{
-			$version = $version[1];
-		}else{
-			$version ='';
-		}
-		$name = isset($plugin_name[1]) ? trim($plugin_name[1]) : '';
+		preg_match("/Author Email:(.*)/i", $pluginData, $author_email);
+		preg_match("/Version:(.*)/i", $pluginData, $version);
+
+		$plugin_name = isset($plugin_name[1]) ? trim($plugin_name[1]) : '';
 		$description = isset($description[1]) ? $description[1] : '';
 		$plugin_url = isset($plugin_url[1]) ? trim($plugin_url[1]) : '';
-		$author_url = isset($author_url[1]) ? trim($author_url[1]) : '';
 		$author = isset($author_name[1]) ? trim($author_name[1]) : '';
-		$title = $name;
+		$author_email = isset($author_email[1]) ? trim($author_email[1]) : '';
+		$version = isset($version[1]) ? $version[1] : '';
 
-		if ($plugin_url != '' && $name != '')
-		{
-			$title = "<a href='{$plugin_url}' title='查看插件首页' target='_blank'>{$title}</a>";
-		}
-		if ($author_url != '' && $author != '')
-		{
-			$author = "<a href='{$author_url}' title='查看作者首页' target='_blank'>{$author}</a>";
-		}
-		return array('Name' => $name,'Title' => $title,'Description' => $description,'Author' => $author,'Version' => $version);
+		return array(
+		'Name' => $plugin_name,
+		'Description' => $description, 
+		'Url' => $plugin_url,
+		'Author' => $author,
+		'Email' => $author_email,
+		'Version' => $version,
+		);
 	}
 }
 

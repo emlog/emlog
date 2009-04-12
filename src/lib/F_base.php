@@ -259,30 +259,6 @@ function addAction($hook, $actionFunc)
 }
 
 /**
- * 删除钩子上挂载的函数
- *
- * @param string $hook
- * @param string $rmActionFunc
- * @return boolearn
- */
-function rmAction($hook, $rmActionFunc)
-{
-	global $emHooks;
-	if (@in_array($rmActionFunc, $emHooks[$hook]))
-	{
-		foreach ($emHooks[$hook] as $function)
-		{
-			if ($rmActionFunc != $function)
-			{
-				$newFuncList[] = $function;
-			}
-		}
-		$emHooks[$tag] = $newFuncList;
-	}
-	return true;
-}
-
-/**
  * 执行挂在钩子上的函数
  *
  * @param string $hook

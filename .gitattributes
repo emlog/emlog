@@ -139,6 +139,8 @@ src/admin/views/default/images/mc_btbg.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_no.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_ok.gif -text svn_keywords=Id
 src/admin/views/default/images/plugin.gif -text
+src/admin/views/default/images/plugin_active.gif -text
+src/admin/views/default/images/plugin_inactive.gif -text
 src/admin/views/default/images/sidebar_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_b.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_t.gif -text svn_keywords=Id

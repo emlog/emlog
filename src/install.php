@@ -328,6 +328,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
