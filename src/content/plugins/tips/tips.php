@@ -45,7 +45,8 @@ function tips()
 
 addAction('adm_main_top', 'tips');
 
-function tips_css() {
+function tips_css()
+{
 	echo "
 	<style type='text/css'>
 	#tip{
@@ -55,8 +56,7 @@ function tips_css() {
 		font-size:12px;
 		color:#999999;
 	}
-	</style>
-	";
+	</style>";
 }
 
 addAction('adm_head', 'tips_css');

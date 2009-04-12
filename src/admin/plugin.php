@@ -6,7 +6,7 @@
  * $Id: plugin.php 900 2009-02-22 04:16:34Z emloog $
  */
 
-require_once('./globals.php');
+require_once('globals.php');
 require_once(EMLOG_ROOT.'/model/C_plugin.php');
 
 $emPlugin = new emPlugin($DB);

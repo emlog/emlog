@@ -6,8 +6,7 @@
  * $Id$
  */
 
-require_once('../config.php');
-require_once(EMLOG_ROOT.'/init.php');
+require_once('../init.php');
 
 //高级配置选项
 define('TEMPLATE_PATCH', '../content/templates/');//模板目录

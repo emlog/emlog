@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('./globals.php');
+require_once('globals.php');
 require_once(EMLOG_ROOT.'/model/C_trackback.php');
 
 $emTrackback = new emTrackback($DB);

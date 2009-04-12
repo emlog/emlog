@@ -6,7 +6,7 @@
  * $Id: wap.php 526 2008-07-05 15:21:03Z emloog $
  */
 
-require_once('./common.php');
+require_once('common.php');
 
 define('CURPAGE','wap');
 

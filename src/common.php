@@ -6,8 +6,7 @@
  * $Id$
  */
 
-require_once('./config.php');
-require_once(EMLOG_ROOT.'/init.php');
+require_once('init.php');
 
 //登录验证
 $userData = array();
