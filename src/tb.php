@@ -6,7 +6,8 @@
  * $Id$
  */
 
-require_once('./common.php');
+require_once('./config.php');
+require_once(EMLOG_ROOT.'/init.php');
 
 $blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 $ec = isset($_REQUEST['ec']) ? strtolower($_REQUEST['ec']) : '';

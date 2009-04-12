@@ -79,7 +79,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('datamg');">功能扩展</div>
 			<div id="datamg">
-            <div class="sidebarsubmenu"><a href="tag.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
+            <div class="sidebarsubmenu"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
 			</div>
 			<div id="sidebarBottom"></div>
 			</div>

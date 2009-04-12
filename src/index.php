@@ -13,7 +13,7 @@ viewCount();
 define('CURPAGE','index');
 
 //当前模板目录
-$em_tpldir = $tpl_dir.$nonce_templet.'/';
+$em_tpldir = TEMPLATE_PATCH.$nonce_templet.'/';
 if (!is_dir($em_tpldir))
 {
 	exit('Template Error: no template directory!');

@@ -6,7 +6,8 @@
  * $Id$
  */
 
-require_once('./common.php');
+require_once('./config.php');
+require_once(EMLOG_ROOT.'/init.php');
 
 //建立日志时间写入数组
 $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' ");

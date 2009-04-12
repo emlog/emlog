@@ -97,6 +97,7 @@ src/admin/fckeditor/fckstyles.xml -text
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
+src/admin/plugin.php -text
 src/admin/save_log.php -text svn_keywords=Id
 src/admin/sort.php -text svn_keywords=Id
 src/admin/tag.php -text svn_keywords=Id
@@ -155,6 +156,7 @@ src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
+src/admin/views/default/plugin.php -text
 src/admin/views/default/sort.php -text
 src/admin/views/default/tag.php -text svn_keywords=Id
 src/admin/views/default/tagedit.php -text svn_keywords=Id
@@ -180,6 +182,7 @@ src/content/cache/sort -text
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
+src/content/plugins/tips.php -text
 src/content/templates/ColdBlue/css/legacy.css -text
 src/content/templates/ColdBlue/css/reset.css -text
 src/content/templates/ColdBlue/css/style.css -text
@@ -1223,6 +1226,7 @@ src/content/templates/wp/log_list.php -text svn_keywords=Id
 src/content/templates/wp/main.css -text svn_keywords=Id
 src/content/templates/wp/preview.jpg -text svn_keywords=Id
 src/index.php -text svn_keywords=Id
+src/init.php -text
 src/install.php -text svn_keywords=Id
 src/lib/C_cache.php -text svn_keywords=Id
 src/lib/C_checkcode.php -text svn_keywords=Id
@@ -1237,13 +1241,14 @@ src/lib/js/jquery/plugin-interface.js -text
 src/model/C_blog.php -text
 src/model/C_comment.php -text
 src/model/C_link.php -text
+src/model/C_plugin.php -text
 src/model/C_sort.php -text svn_keywords=Id
 src/model/C_tag.php -text
 src/model/C_trackback.php -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
-src/wap.php -text
+src/wap/index.php -text
 update/up2.0.0to2.2.0.php -text svn_keywords=Id
 update/up2.1.6sp1to2.2.0.php -text svn_keywords=Id
 update/up2.1.6to2.2.0.php -text svn_keywords=Id

@@ -6,9 +6,9 @@
 	<meta name="generator" content="emlog" />
 	<title><?php echo $blogtitle; ?></title>
 	<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-	<link href="<?php echo $tpl_dir; ?>devart/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $em_tpldir; ?>style.css" rel="stylesheet" type="text/css" />
 	<!--[if IE]>
-    	<link rel="stylesheet" type="text/css" href="<?php echo $tpl_dir; ?>/ie.css" media="screen" />
+    	<link rel="stylesheet" type="text/css" href="<?php echo $em_tpldir; ?>ie.css" media="screen" />
     <![endif]-->
     <script src="./lib/js/common_tpl.js" type="text/javascript"></script>
 </head>

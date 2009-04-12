@@ -1,42 +1,21 @@
 <?php
 /**
- * 后台全局项加载主程序
+ * 后台全局项加载
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.1.0
  * $Id$
  */
 
-error_reporting(E_ALL);
-ob_start();
-
 require_once('../config.php');
-require_once(EMLOG_ROOT.'/lib/F_base.php');
-require_once(EMLOG_ROOT.'/lib/F_login.php');
-require_once(EMLOG_ROOT.'/lib/C_mysql.php');
-require_once(EMLOG_ROOT.'/lib/C_cache.php');
+require_once(EMLOG_ROOT.'/init.php');
 require_once(EMLOG_ROOT.'/admin/tips.php');
 
-//定义输出编码
-header('Content-Type: text/html; charset=UTF-8');
-//去除多余转义字符
-doStripslashes();
-//获取GET变量
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-//数据库操作对象
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-//缓存生成对象
-$CACHE = new mkcache($DB, DB_PREFIX);
-
-//读取配置参数
-$options_cache = $CACHE->readCache('options');
-extract($options_cache);
-$timezone  = intval($timezone);
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
 $tips = getTips($tips);//加载小提示
 
 //高级配置选项
-define('TEMPLATE_PATCH',		'../content/templates/');//模板目录
+define('TEMPLATE_PATCH', '../content/templates/');//模板目录
 define('ADMIN_TPL', 			'default');//后台模板
 define('UPLOADFILE_MAXSIZE',	20971520);//附件大小上限 单位：字节（默认20M）
 define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
@@ -82,7 +61,6 @@ if ($action == 'logout')
 }
 
 $userData = array();
-
 if(isLogin() === false)
 {
 	loginpage();

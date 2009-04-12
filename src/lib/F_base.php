@@ -242,6 +242,70 @@ function pagination($count,$perlogs,$page,$url)
 }
 
 /**
+ * 挂载插件函数到预留的钩子上
+ *
+ * @param string $hook
+ * @param string $actionFunc
+ * @return boolearn
+ */
+function addAction($hook, $actionFunc)
+{
+	global $emHooks;
+	if (!@in_array($actionFunc, $emHooks[$hook]))
+	{
+		$emHooks[$tag][] = $actionFunc;
+	}
+	return true;
+}
+
+/**
+ * 删除钩子上挂载的函数
+ *
+ * @param string $hook
+ * @param string $rmActionFunc
+ * @return boolearn
+ */
+function rmAction($hook, $rmActionFunc)
+{
+	global $emHooks;
+	if (@in_array($rmActionFunc, $emHooks[$hook]))
+	{
+		foreach ($emHooks[$hook] as $function)
+		{
+			if ($rmActionFunc != $function)
+			{
+				$newFuncList[] = $function;
+			}
+		}
+		$emHooks[$tag] = $newFuncList;
+	}
+	return true;
+}
+
+/**
+ * 执行挂在钩子上的函数
+ *
+ * @param string $hook
+ * @param array $args
+ */
+function doAction($hook, $args = array())
+{
+	global $emHooks;
+	if (isset($emHooks[$hook]))
+	{
+		foreach ($emHooks[$hook] as $functions) {
+			if (!is_null($functions))
+			{
+				foreach($functions as $function)
+				{
+					$string = call_user_func_array($function, $args);
+				}
+			}
+		}
+	}
+}
+
+/**
  * 按照比例改变图片大小(非生成缩略图)
  *
  * @param string $img 图片路径
@@ -793,4 +857,5 @@ body {
 EOT;
 exit;
 }
+
 ?>

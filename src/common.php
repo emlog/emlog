@@ -1,36 +1,19 @@
 <?php
 /**
- * 前端全局项加载主程序
+ * 前端全局项加载
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.1.0
  * $Id$
  */
 
-error_reporting(E_ALL);
-ob_start();
-
 require_once('./config.php');
-require_once(EMLOG_ROOT.'/lib/F_base.php');
-require_once(EMLOG_ROOT.'/lib/F_login.php');
-require_once(EMLOG_ROOT.'/lib/C_cache.php');
-require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once(EMLOG_ROOT.'/init.php');
 
-//定义输出编码
-header('Content-Type: text/html; charset=UTF-8');
-//去除多余的转义字符
-doStripslashes();
-//获取操作
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-//数据库操作对象
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-//缓存生成对象
-$CACHE = new mkcache($DB,DB_PREFIX);
 //登录验证
 $userData = array();
 define('ISLOGIN',	isLogin());
 
 //读取缓存
-$options_cache = $CACHE->readCache('options');
 $log_cache_tags = $CACHE->readCache('log_tags');
 $log_cache_sort = $CACHE->readCache('log_sort');
 $log_cache_atts = $CACHE->readCache('log_atts');
@@ -44,19 +27,11 @@ $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 $tw_cache = $CACHE->readCache('twitter');
 
-//配置项目
-extract($options_cache);
-$tpl_dir = './content/templates/';//模板目录
-$timezone  = intval($timezone);
-$localdate = $timezone != 8 ? time() - ($timezone-8) * 3600 : time();
-
-//站点信息
-$icp = $icp;
 $photo = $user_cache['photo'];
 $blogger_des = $user_cache['des'];
-$user_cache['mail']!=''?
-$name = "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>":
-$name = $user_cache['name'];
+$name = $user_cache['mail'] != '' ? "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>" : $user_cache['name'];
+//模板目录
+define('TEMPLATE_PATCH', './content/templates/');
 
 //背景音乐
 $music = @unserialize($options_cache['music']);
