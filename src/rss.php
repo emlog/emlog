@@ -6,18 +6,9 @@
  * $Id$
  */
 
-error_reporting(E_ALL);
+require_once('./common.php');
 
-require_once('./config.php');
-require_once(EMLOG_ROOT.'/lib/F_base.php');
-require_once(EMLOG_ROOT.'/lib/C_mysql.php');
-require_once(EMLOG_ROOT.'/lib/C_cache.php');
-
-//初始化数据库类
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-//cache
-$options_cache = mkcache::readCache('options');
-$user_cache = mkcache::readCache('blogger');
+header('Content-type: application/xml');
 
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
@@ -26,8 +17,6 @@ $site =  $options_cache;
 $blog = GetBlog($sort);
 $blognum = GetBlogNum();
 $author = $user_cache['name'];
-
-header('Content-type: application/xml');
 
 echo <<< END
 <?xml version="1.0" encoding="utf-8"?>
