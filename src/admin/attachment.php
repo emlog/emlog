@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('./globals.php');
+require_once('globals.php');
 
 //上传表单显示
 if($action == 'selectFile')
