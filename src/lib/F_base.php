@@ -253,7 +253,7 @@ function addAction($hook, $actionFunc)
 	global $emHooks;
 	if (!@in_array($actionFunc, $emHooks[$hook]))
 	{
-		$emHooks[$tag][] = $actionFunc;
+		$emHooks[$hook][] = $actionFunc;
 	}
 	return true;
 }
@@ -293,14 +293,9 @@ function doAction($hook, $args = array())
 	global $emHooks;
 	if (isset($emHooks[$hook]))
 	{
-		foreach ($emHooks[$hook] as $functions) {
-			if (!is_null($functions))
-			{
-				foreach($functions as $function)
-				{
-					$string = call_user_func_array($function, $args);
-				}
-			}
+		foreach ($emHooks[$hook] as $function)
+		{
+			$string = call_user_func_array($function, $args);
 		}
 	}
 }
@@ -751,18 +746,6 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 }
 
 /**
- * 随机读取一个数组元素
- *
- * @param array $array
- * @return unknow
- */
-function getTips($array)
-{
-	$num = mt_rand(0,count($array)-1);
-	return $array[$num];
-}
-
-/**
  * 删除数组中相同元素，只保留一个
  *
  * @param array $array
@@ -810,15 +793,15 @@ function formMsg($msg,$url,$type)
  */
 function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false)
 {
-echo <<<EOT
+	echo <<<EOT
 <html>
 <head>
 EOT;
-if($isAutoGo)
-{
-	echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
-}
-echo <<<EOT
+	if($isAutoGo)
+	{
+		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
+	}
+	echo <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>emlog system message</title>
 <style type="text/css">
@@ -855,7 +838,7 @@ body {
 </body>
 </html>
 EOT;
-exit;
+	exit;
 }
 
 ?>

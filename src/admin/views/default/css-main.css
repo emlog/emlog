@@ -168,13 +168,6 @@ a:hover {
 }
 .care{color:#FF3300;}
 .care2{color: #009933;}
-.tips{
-	background:url(images/icon_tips.gif) no-repeat left 3px;
-	padding:3px 18px;
-	margin:5px 0px;
-	font-size:12px;
-	color:#999999;
-}
 .attlist img{
 	border: 1px solid #ccc;
 	padding: 3px;

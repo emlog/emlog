@@ -128,7 +128,6 @@ src/admin/views/default/images/icon_add.gif -text
 src/admin/views/default/images/icon_del.gif -text
 src/admin/views/default/images/icon_error.gif -text
 src/admin/views/default/images/icon_succ.gif -text
-src/admin/views/default/images/icon_tips.gif -text
 src/admin/views/default/images/login_back.gif -text
 src/admin/views/default/images/login_bottom.png -text
 src/admin/views/default/images/login_button.gif -text
@@ -182,7 +181,8 @@ src/content/cache/sort -text
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
-src/content/plugins/tips.php -text
+src/content/plugins/tips/icon_tips.gif -text
+src/content/plugins/tips/tips.php -text
 src/content/templates/ColdBlue/css/legacy.css -text
 src/content/templates/ColdBlue/css/reset.css -text
 src/content/templates/ColdBlue/css/style.css -text

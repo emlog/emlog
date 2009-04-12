@@ -8,7 +8,7 @@ Version: 1.0
 Author URL: http://www.emlog.net/blog/
 */ 
 
-$tips = array(
+$array_tips = array(
 '你可以点击编辑器上的 插入日志分割符按钮 将内容部分显示在首页。',
 '你可以在日志中上传多个附件',
 'emlog支持灵活的标签(tag)分类功能',
@@ -35,6 +35,30 @@ $tips = array(
 '生命在于运动，别总对着电脑，出去走走吧'
 );
 
+function tips()
+{
+	global $array_tips;
+	$i = mt_rand(0,count($array_tips)-1);
+	$tip = $array_tips[$i];	
+	echo "<div id=\"tip\">:) $tip</div>";
+}
 
+addAction('adm_main_top', 'tips');
+
+function tips_css() {
+	echo "
+	<style type='text/css'>
+	#tip{
+		background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
+		padding:3px 18px;
+		margin:5px 0px;
+		font-size:12px;
+		color:#999999;
+	}
+	</style>
+	";
+}
+
+addAction('adm_head', 'tips_css');
 
 ?>

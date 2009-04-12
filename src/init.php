@@ -30,5 +30,17 @@ $timezone  = intval($timezone);
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 //获取时间
 $localdate = time() - ($timezone-8) * 3600;
+//加载插件
+$active_plugins = unserialize($active_plugins);
+if ($active_plugins && is_array($active_plugins))
+{
+	foreach($active_plugins as $plugin)
+	{
+		if($plugin != '' && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin))
+		{
+			include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
+		}
+	}
+}
 
 ?>

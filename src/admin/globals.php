@@ -8,7 +8,6 @@
 
 require_once('../config.php');
 require_once(EMLOG_ROOT.'/init.php');
-require_once(EMLOG_ROOT.'/admin/tips.php');
 
 //高级配置选项
 define('TEMPLATE_PATCH', '../content/templates/');//模板目录
@@ -24,7 +23,6 @@ $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传
 
 $dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
 $draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
-$tips = getTips($tips);//加载小提示
 
 //检测后台模板
 define('ADMIN_ROOT', dirname(__FILE__));
