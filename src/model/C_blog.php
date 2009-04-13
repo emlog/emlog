@@ -150,7 +150,7 @@ class emBlog {
 					$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
 					if(!empty($row['password']) && $cookiePassword != $row['password'])
 					{
-						$row['excerpt'] = '<p>[该日志已设置加密]</p>';
+						$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
 					}else{
 						if(!empty($row['excerpt']))
 						{
