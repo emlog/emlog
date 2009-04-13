@@ -3,10 +3,10 @@
  * 手机 wap 第一版
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.1.0
- * $Id: wap.php 526 2008-07-05 15:21:03Z emloog $
+ * $Id: index.php 526 2008-07-05 15:21:03Z emloog $
  */
 
-require_once('common.php');
+require_once('../common.php');
 
 define('CURPAGE','wap');
 
@@ -17,17 +17,17 @@ if(!isset($action) || empty($action))
 	wap_header($options_cache['blogname']);
 	echo '<p>'.$options_cache['bloginfo'].'</p>';
 	echo "<p>\n";
-	echo "<a href=\"wap.php?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
-	echo "<a href=\"wap.php?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
-	echo "<a href=\"wap.php?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
+	echo "<a href=\"index.php?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
+	echo "<a href=\"index.php?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
+	echo "<a href=\"index.php?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
 	echo "<br />\n";
 	if(ISLOGIN === true)
 	{
 		echo "欢迎你,你已登录<br />\n";
-		echo "<a href=\"wap.php?action=addtw\">唠叨两句</a><br />\n";
-		echo "<a href=\"wap.php?action=logout\">退出</a><br />\n";
+		echo "<a href=\"index.php?action=addtw\">唠叨两句</a><br />\n";
+		echo "<a href=\"index.php?action=logout\">退出</a><br />\n";
 	}else {
-		echo "<a href=\"wap.php?action=waplogin\">登录</a><br />\n";
+		echo "<a href=\"index.php?action=waplogin\">登录</a><br />\n";
 	}
 	echo "<br />\n";
 	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$sta_cache['day_view_count']})总访问量({$sta_cache['view_count']})<br />\n";
@@ -51,7 +51,7 @@ if ($action == 'logs')
 
 	$sql = " SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
 	$lognum = $sta_cache['lognum'];
-	$pageurl = './wap.php?action=logs&amp;page';
+	$pageurl = './index.php?action=logs&amp;page';
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
@@ -67,21 +67,21 @@ if ($action == 'logs')
 	{
 		foreach ($log as $val)
 		{
-			echo '<a href="./wap.php?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
+			echo '<a href="./index.php?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
 		}
 	}else{
 		echo 'No logs yet!';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./wap.php?tem=$tem\">首页</a></p>";
+	echo "</p><p>$page_url <br /><a href=\"./index.php?tem=$tem\">首页</a></p>";
 	wap_footer();
 }
 
 //显示日志
 if ($action == 'dis')
 {
-	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./wap.php');
+	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./index.php');
 	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
-	OR emMsg('不存在该日志','./wap.php');
+	OR emMsg('不存在该日志','./index.php');
 	if(!empty($show_log['password']))
 	{
 		$logpwd = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
@@ -98,7 +98,7 @@ if ($action == 'dis')
 	wap_header($log_title);
 	echo "<p>发布时间：$post_time <br /></p>";
 	echo "<p>$log_content</p>";
-	echo "<p><a href=\"./wap.php?tem=$tem\">首页</a> <a href=\"./wap.php?action=logs\">返回日志列表</a></p>";
+	echo "<p><a href=\"./index.php?tem=$tem\">首页</a> <a href=\"./index.php?action=logs\">返回日志列表</a></p>";
 
 	wap_footer();
 }
@@ -114,7 +114,7 @@ if($action == 'coms')
 	}else{
 		echo 'No comments yet!';
 	}
-	echo "<p><a href=\"./wap.php?tem=$tem\">首页</a></p>";
+	echo "<p><a href=\"./index.php?tem=$tem\">首页</a></p>";
 	wap_footer();
 }
 //twitter list
@@ -134,7 +134,7 @@ if ($action == 'twitter')
 
 	$sql =" SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
 	$twnum = $sta_cache['twnum'];
-	$pageurl= './wap.php?action=twitter&amp;page';
+	$pageurl= './index.php?action=twitter&amp;page';
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
@@ -151,13 +151,13 @@ if ($action == 'twitter')
 	{
 		foreach ($tws as $val)
 		{
-			$doact = ISLOGIN===true?"<a href=\"./wap.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
+			$doact = ISLOGIN===true?"<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
 			echo $val['content'].$doact.'('.$val['date'].')<br />';
 		}
 	}else{
 		echo 'No twitter yet!';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./wap.php?tem=$tem\">首页</a></p>";
+	echo "</p><p>$page_url <br /><a href=\"./index.php?tem=$tem\">首页</a></p>";
 	wap_footer();
 }
 if ($action == 'addtw')
@@ -165,12 +165,12 @@ if ($action == 'addtw')
 	wap_header('Twitter');
 	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
 	echo "<p><anchor title=\"submit\">提交\n";
-	echo "<go href=\"wap.php?action=add_tw\" method=\"post\">\n";
+	echo "<go href=\"index.php?action=add_tw\" method=\"post\">\n";
 	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"wap.php?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"index.php?tem=$tem\">返回主页</a></p>\n";
 	wap_footer();
 }
 //新增 twitter
@@ -182,7 +182,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
 		$CACHE->mc_twitter();
 		$CACHE->mc_sta();
-		header("Location: wap.php?action=twitter&amp;tem=$time");
+		header("Location: index.php?action=twitter&amp;tem=$time");
 	}
 }
 //删除 twitter
@@ -192,7 +192,7 @@ if(ISLOGIN === true && $action == 'del_tw')
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
 	$CACHE->mc_twitter();
 	$CACHE->mc_sta();
-	header("Location: wap.php?action=twitter");
+	header("Location: index.php?action=twitter");
 }
 if ($action == 'waplogin')
 {
@@ -200,13 +200,13 @@ if ($action == 'waplogin')
 	echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
 	echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
 	echo "<p><anchor title=\"submit\">登录\n";
-	echo "<go href=\"wap.php?action=dowaplogin\" method=\"post\">\n";
+	echo "<go href=\"index.php?action=dowaplogin\" method=\"post\">\n";
 	echo "<postfield name=\"user\" value=\"$(user)\" />\n";
 	echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"wap.php?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"index.php?tem=$tem\">返回主页</a></p>\n";
 	wap_footer();
 }
 //登陆验证
@@ -219,9 +219,9 @@ if ($action == 'dowaplogin')
 	if (checkUser($username, $password, '', 'n') === true)
 	{
 		setAuthCookie($username, $ispersis);
-		header("Location: wap.php?tem=$tem");
+		header("Location: index.php?tem=$tem");
 	}else{
-		header("Location: wap.php?action=waplogin&amp;tem=$tem");
+		header("Location: index.php?action=waplogin&amp;tem=$tem");
 	}
 }
 //登出
@@ -231,7 +231,7 @@ if ($action == 'logout')
 	session_unset();
 	session_destroy();
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	header("Location: wap.php?tem=$tem");
+	header("Location: index.php?tem=$tem");
 }
 // WML 头
 function wap_header($title) {
@@ -258,12 +258,12 @@ function authPassword($pwd, $pwd2, $blogid)
 		wap_header('输入日志访问密码');
 		echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
 		echo "<p><anchor title=\"submit\">进入..\n";
-		echo "<go href=\"./wap.php?action=dis&amp;id=".$blogid."\" method=\"post\">\n";
+		echo "<go href=\"./index.php?action=dis&amp;id=".$blogid."\" method=\"post\">\n";
 		echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 		echo "<postfield name=\"do\" value=\"\" />\n";
 		echo "</go></anchor>\n";
 		echo "</p>\n";
-		echo "<p><a href=\"./wap.php?action=logs\">返回日志列表</a></p>\n";
+		echo "<p><a href=\"./index.php?action=logs\">返回日志列表</a></p>\n";
 		wap_footer();
 		exit;
 	}
