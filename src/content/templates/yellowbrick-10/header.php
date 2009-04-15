@@ -28,7 +28,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 					Search: 
 				</td>
 				<td>
-					<input name="keyword"  type="text" value="" />
+					<input name="keyword"  type="text" value="" style="border:#FFCC00 solid 1px;" />
 				</td>
 				<td>
 					<input type="image" class="sub" src="<?php echo $em_tpldir; ?>images/go.png" align="middle" />
@@ -67,10 +67,5 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			</tr>
 		</table>
 	</div>
-	<div id="menu_title">
-		welcome to my blog
-	</div>
-	<div id="menu_text">
-		这是一段对此bolg的介绍，可以在header.php中修改
-	</div>
+
 </div>
