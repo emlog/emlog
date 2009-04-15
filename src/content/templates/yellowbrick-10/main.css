@@ -151,7 +151,7 @@ div#blog #blog_right #sidebar{
 	background:url(images/right_bg.png) repeat-y top left;
 }
 div#blog #blog_right #sidebar ul{
-	padding:0px 0px 0px 8px;
+	padding:0px 4px 0px 4px;
 	margin:0px;
 }
 div#blog #blog_right #sidebar li{
@@ -435,6 +435,7 @@ div#footer a{
 }
 .calendar { /*background-image:url(images/bg.jpg);*/
 margin-bottom:10px;
+margin-left:4px;
 }
 
 .calendar td {
@@ -459,7 +460,7 @@ margin-bottom:10px;
 }
 
 .day {
-	background: url(./images/bg_cal_today.gif) repeat-y;
+	background: url(./images/bg_cal_today.gif)  no-repeat 0px 2px;
 }
 
 .day2 {
