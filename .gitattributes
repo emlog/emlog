@@ -212,7 +212,6 @@ src/content/templates/ColdBlue/log_list.php -text
 src/content/templates/ColdBlue/preview.jpg -text
 src/content/templates/ColdBlue/side.php -text
 src/content/templates/ColdBlue/tpl.ini -text
-src/content/templates/ColdBlue/unique_tpl.js -text
 src/content/templates/SP142/echo_log.php -text
 src/content/templates/SP142/footer.php -text
 src/content/templates/SP142/function.php -text
@@ -321,7 +320,6 @@ src/content/templates/azul/main.css -text
 src/content/templates/azul/preview.jpg -text
 src/content/templates/azul/side.php -text
 src/content/templates/azul/tpl.ini -text
-src/content/templates/azul/unique_tpl.js -text
 src/content/templates/black-splat-wr/echo_log.php -text
 src/content/templates/black-splat-wr/footer.php -text
 src/content/templates/black-splat-wr/function.php -text
@@ -354,7 +352,6 @@ src/content/templates/black-splat-wr/main.css -text
 src/content/templates/black-splat-wr/preview.jpg -text
 src/content/templates/black-splat-wr/side.php -text
 src/content/templates/black-splat-wr/tpl.ini -text
-src/content/templates/black-splat-wr/unique_tpl.js -text
 src/content/templates/black/echo_log.php -text
 src/content/templates/black/footer.php -text
 src/content/templates/black/function.php -text
@@ -413,7 +410,6 @@ src/content/templates/classic/main.css -text svn_keywords=Id
 src/content/templates/classic/preview.jpg -text svn_keywords=Id
 src/content/templates/classic/side.php -text svn_keywords=Id
 src/content/templates/classic/tpl.ini -text
-src/content/templates/classic/unique_tpl.js -text svn_keywords=Id
 src/content/templates/default/echo_log.php -text
 src/content/templates/default/footer.php -text
 src/content/templates/default/function.php -text
@@ -442,7 +438,6 @@ src/content/templates/default/main.css -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
 src/content/templates/default/tpl.ini -text
-src/content/templates/default/unique_tpl.js -text
 src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text
@@ -472,7 +467,6 @@ src/content/templates/devart/log_list.php -text
 src/content/templates/devart/preview.jpg -text
 src/content/templates/devart/side.php -text
 src/content/templates/devart/style.css -text
-src/content/templates/devart/unique_tpl.js -text
 src/content/templates/dum-dum/echo_log.php -text
 src/content/templates/dum-dum/footer.php -text
 src/content/templates/dum-dum/function.php -text
@@ -744,7 +738,6 @@ src/content/templates/gear/main.css -text
 src/content/templates/gear/preview.jpg -text
 src/content/templates/gear/side.php -text
 src/content/templates/gear/tpl.ini -text
-src/content/templates/gear/unique_tpl.js -text
 src/content/templates/graffiti/echo_log.php -text
 src/content/templates/graffiti/footer.php -text
 src/content/templates/graffiti/function.php -text
@@ -863,7 +856,6 @@ src/content/templates/lover-emlog-fans/main.css -text
 src/content/templates/lover-emlog-fans/preview.jpg -text
 src/content/templates/lover-emlog-fans/side.php -text
 src/content/templates/lover-emlog-fans/tpl.ini -text
-src/content/templates/lover-emlog-fans/unique_tpl.js -text
 src/content/templates/lust/echo_log.php -text svn_keywords=Id
 src/content/templates/lust/footer.php -text svn_keywords=Id
 src/content/templates/lust/function.php -text
@@ -1015,7 +1007,6 @@ src/content/templates/modern-notepad/main.css -text
 src/content/templates/modern-notepad/preview.jpg -text
 src/content/templates/modern-notepad/side.php -text
 src/content/templates/modern-notepad/tpl.ini -text
-src/content/templates/modern-notepad/unique_tpl.js -text
 src/content/templates/notepad-chaos/echo_log.php -text
 src/content/templates/notepad-chaos/footer.php -text
 src/content/templates/notepad-chaos/function.php -text
@@ -1207,7 +1198,6 @@ src/content/templates/wp-themes-blogger/message.php -text
 src/content/templates/wp-themes-blogger/preview.jpg -text
 src/content/templates/wp-themes-blogger/side.php -text
 src/content/templates/wp-themes-blogger/tpl.ini -text
-src/content/templates/wp-themes-blogger/unique_tpl.js -text
 src/content/templates/wp/echo_log.php -text svn_keywords=Id
 src/content/templates/wp/footer.php -text svn_keywords=Id
 src/content/templates/wp/function.php -text
@@ -1264,7 +1254,6 @@ src/content/templates/yellowbrick/main.css -text
 src/content/templates/yellowbrick/preview.jpg -text
 src/content/templates/yellowbrick/side.php -text
 src/content/templates/yellowbrick/tpl.ini -text
-src/content/templates/yellowbrick/unique_tpl.js -text
 src/index.php -text svn_keywords=Id
 src/init.php -text
 src/install.php -text svn_keywords=Id
