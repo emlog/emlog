@@ -10,10 +10,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				<table cellpadding="0" cellspacing="0" width="540">
 							<tr>
 								<td valign="top" class="item_date">
-									<div class="date_month">
-										鍥?								</div>
-									<div class="date_day">
-										10									</div>
+									<div class="date_month"><?php echo date('n月', $date); ?></div>
+									<div class="date_day"><?php echo date('j', $date); ?></div>
 								</td>
 								<td width="10"></td>
 								<td valign="top" class="item_titles">
@@ -25,7 +23,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 									Filed Under <i><span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
 									
-										 on <?php echo $post_time; ?></i>
+										 on <?php echo date('Y-n-j G:i l', $date); ?></i>
 									</div>
 									<div class="item_text">
 										<?php echo $log_content; ?>

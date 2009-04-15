@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 		<?php endif;?>
 		</h1>
-		<p>发布时间 <?php echo $post_time; ?></p>
+		<p>发布时间 <?php echo date('Y-n-j G:i l', $date); ?></p>
        <div class="post_p"> <?php echo $log_content; ?></div>
 		<p>
 			<?php 

@@ -13,7 +13,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 </h2>
 </div>
 <div class="date">
-<span class="postdate">Posted on <?php echo $value['post_time'];?></span>
+<span class="postdate">Posted on <?php echo date('Y-n-j G:i l', $value['date']); ?></span>
 </div>
 <div class="mypost">
 <?php echo $value['log_description'];?>

@@ -6,9 +6,6 @@ include getViews('side');
 <div class="post">
 <?php
 foreach($logs as $value):
-$datetime = explode("-",$value['post_time']);
-$year = $datetime['0'];
-$day = $datetime['1']."/".substr($datetime['2'],0,2);
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?> 
 				<div class="dtm">
@@ -27,7 +24,8 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 						</div>
 					</div>
 					<div class="dtmdate">
-						<div class="date"><?php echo $year; ?><br /><span><?php echo $day ?></span></div>
+						<div class="date"><?php echo date('Y', $value['date']); ?><br />
+						<span><?php echo date('j', $value['date']); ?></span></div>
 					</div>
 				</div>
 				<div class="postcontent">

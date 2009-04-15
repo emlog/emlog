@@ -6,7 +6,7 @@
 	<div class="right">
 		<div class="title">
 			<h1><?php echo $log_title; ?></a></h1>
-			<h4><?php echo $post_time; ?>
+			<h4><?php echo date('Y-n-j G:i l', $date); ?>
 			<?php if($log_cache_sort[$logid]): ?>
 			<span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
 			<?php endif;?>

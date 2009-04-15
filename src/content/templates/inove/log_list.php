@@ -6,7 +6,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<div class="post">
 			<h2><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
 			<div class="info">
-				<span class="date"><?php echo $value['post_time']; ?></span>
+				<span class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></span>
 				<div class="act">
 					<span class="comments"><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">(<?php echo $value['comnum']; ?>) 条评论</a></span>
 				</div>

@@ -8,7 +8,7 @@ include getViews('side');
 <span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
 </p>
-<p id="date"><?php echo $post_time; ?></p>
+<p id="date"><?php echo date('Y-n-j G:i l', $date); ?></p>
 
 <div class="log_con">
 <?php echo $log_content; ?>

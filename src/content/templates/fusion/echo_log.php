@@ -38,7 +38,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				</p>
                 	<p class="postmetadata alt">
 <small>
-	<?php echo $post_time; ?><br />
+	<?php echo date('Y-n-j G:i l', $date); ?><br />
     <?php if($prevLog):?>
 	 &laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>

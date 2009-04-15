@@ -37,7 +37,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<?php endif;?>
             	</div>
                 <div class="note_tag_text2">
-            	<?php echo $value['post_time']; ?>
+            	<?php echo date('Y-n-j G:i l', $value['date']); ?>
             	</div>
                 <div class="note_tag_text3">
             	<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>

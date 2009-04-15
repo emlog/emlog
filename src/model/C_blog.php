@@ -96,7 +96,7 @@ class emBlog {
 				case 'homepage':
 					$logData = array(
 					'log_title'	=> htmlspecialchars($row['title']),
-					'post_time' => date('Y-n-j G:i l',$row['date']),
+					'date' => $row['date'],
 					'logid' => intval($row['gid']),
 					'sortid' => intval($row['sortid']),
 					'tbscode' => substr(md5(date('Ynd')),0,5),
@@ -144,7 +144,7 @@ class emBlog {
 					$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
 					break;
 				case 'homepage':
-					$row['post_time'] = date('Y-n-j G:i l',$row['date']);
+					//$row['date'];
 					$row['log_title'] = htmlspecialchars(trim($row['title']));
 					$row['logid'] = $row['gid'];
 					$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
@@ -159,8 +159,8 @@ class emBlog {
 					}
 					$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
 					$row['toplog'] = $row['top'];
-					$row['attachment'] = '';//attachment
-					$row['tag']  = '';//tag
+					$row['attachment'] = '';
+					$row['tag']  = '';
 					break;
 			}
 			$logs[] = $row;

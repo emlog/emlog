@@ -8,7 +8,7 @@
 		<?php endif;?>
 		</div>
 		</h2>
-		<p class="postdate">Posted on <?php echo $post_time;?><br /></p>
+		<p class="postdate">Posted on <?php echo date('Y-n-j G:i l', $date); ?><br /></p>
 		<div class="mypost">
 		<?php echo $log_content;?>
 		<p><?php $attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';echo $attachment;?></p>

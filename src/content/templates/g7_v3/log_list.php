@@ -9,7 +9,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 <span class="sort"><a href="./?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
 <?php endif;?>
 </h2>
-<p class="postdata">Posted in <?php echo $value['post_time'];?></p>
+<p class="postdata">Posted in <?php echo date('Y-n-j G:i l', $value['date']); ?></p>
 <div id="content_post">
 	<p><?php echo $value['log_description'];?></p>
 	<p>

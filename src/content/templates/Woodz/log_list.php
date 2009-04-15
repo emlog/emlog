@@ -18,7 +18,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 					<h3>
 					<?php if($log_cache_sort[$value['logid']]): ?>
 					Posted in <span><a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>  |  </span>
-					<?php endif;?>Posted on <?php echo $value['post_time']; ?>
+					<?php endif;?>Posted on <?php echo date('Y-n-j G:i l', $value['date']); ?>
 					</h3>
                 </div>
 

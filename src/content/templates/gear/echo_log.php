@@ -25,7 +25,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 								<div class="info">
 								<span class="tag "><?php 
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';echo $tag;?></span><br />
-	<span class="date"><?php echo $post_time; ?></span>	
+	<span class="date"><?php echo date('Y-n-j G:i l', $date); ?></span>	
 																											
 						</div>
                         

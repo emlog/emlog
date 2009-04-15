@@ -1,15 +1,12 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-	$datetime = explode("-",$value['post_time']);
-	$year = $datetime['0'] . "/" .$datetime['1'];
-	$day = substr($datetime['2'],0,2);
-	$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 <div class="post">
 	<div class="postdate">
-	  <p class="date"><?php echo $day;?>th</p>
-	  <p class="year"><?php echo $year;?></p>
+	  <p class="date"><?php echo date('j', $value['date']); ?>th</p>
+	  <p class="year"><?php echo date('Y', $value['date']); ?></p>
 	</div>
 	<div class="posttitle">
     <h2>

@@ -9,9 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
-
-	
-						
+		
 				<table cellpadding="0" cellspacing="0" width="540">
 							<tr>
 								<td valign="top" class="item_date">
@@ -30,7 +28,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 									Filed Under <i>(<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>) 
 
 	<?php endif;?>
-										on <?php echo $value['post_time']; ?> </i>
+										on <?php echo date('Y-n-j G:i l', $value['date']); ?> </i>
 									</div>
 									<div class="item_text">
 										<?php echo $value['log_description']; ?>

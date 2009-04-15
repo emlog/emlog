@@ -19,7 +19,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
                     <div class="postinfo">
     				<p> <?php if($log_cache_sort[$value['logid']]): ?>
 	<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
-	<?php endif;?> <?php echo $value['post_time']; ?><!-- by admin -->
+	<?php endif;?> <?php echo date('Y-n-j G:i l', $value['date']); ?><!-- by admin -->
 					</p>
                     </div>
                 </div>

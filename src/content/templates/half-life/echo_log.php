@@ -3,7 +3,7 @@
 <div class="post" id="post-$logid">
 <h2><?php echo $log_title;?></h2>
 <div class="postdate">
-		<?php echo $post_time;?>
+		<?php echo date('Y-n-j G:i l', $date); ?>
 		<?php if($log_cache_sort[$logid]): ?>
 		<span class="sort"><a href="./?sort=<?php echo $sortid; ?>">[<?php echo $log_cache_sort[$logid]; ?>]</a></span>
 		<?php endif;?>

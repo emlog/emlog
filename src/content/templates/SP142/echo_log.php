@@ -16,7 +16,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                     	<h2><?php echo $log_title; ?></h2>
 						 <h3><?php if($log_cache_sort[$logid]): ?>
 <span class="sort">Filed Under [<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
-<?php endif;?> on <?php echo $post_time; ?>                        </h3>
+<?php endif;?> on <?php echo date('Y-n-j G:i l', $date); ?>                        </h3>
 						                    </div>
                 </div>
 

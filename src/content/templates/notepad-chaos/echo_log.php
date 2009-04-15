@@ -1,8 +1,5 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-$datetime = explode("-",$post_time);
-$year = $datetime['0']."/".$datetime['1'];
-$day = substr($datetime['2'],0,2);
 ?>
 <div id="container">
   <div id="search">
@@ -32,7 +29,7 @@ $day = substr($datetime['2'],0,2);
 		<?php endif;?>
 	  </h3>
       <div class="post-inner">
-        <div class="date-tab"><span class="month"><?php echo $year; ?></span><span class="day"><?php echo $day; ?></span>				</div>
+        <div class="date-tab"><span class="month"><?php echo date('Y', $date); ?></span><span class="day"><?php echo date('j', $date); ?></span>				</div>
         <div class="thumbnail"></div>
 		<div class="post_P"><?php echo $log_content; ?></div>
 <p>

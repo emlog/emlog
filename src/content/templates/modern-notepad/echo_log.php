@@ -13,7 +13,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                                <?php if($log_cache_sort[$logid]): ?>
 <span class="category">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
-                                <span class="date"><?php echo $post_time; ?></span>
+                                <span class="date"><?php echo date('Y-n-j G:i l', $date); ?></span>
                             </div><!--.postdata-->
 							
                     		<div class="entry">

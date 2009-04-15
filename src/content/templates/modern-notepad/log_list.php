@@ -22,7 +22,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
                                 <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
                                 <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
                                 <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a></span>
-                                <span class="date"><?php echo $value['post_time']; ?></span>
+                                <span class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></span>
                             </div><!--.postdata-->
                     		<div class="entry">
                     		   	<p id="date"></p>

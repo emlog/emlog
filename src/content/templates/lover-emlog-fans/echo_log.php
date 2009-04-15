@@ -30,7 +30,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				<?php endif;?>
             	</div>
                 <div class="note_tag_text2">
-            	<?php echo $post_time; ?>
+            	<?php echo date('Y-n-j G:i l', $date); ?>
             	</div>           
         	</div>
         	<div class="note_content">

@@ -6,8 +6,6 @@ include getViews('side');
 <div class="post">
 <?php
 $datetime = explode("-",$post_time);
-$year = $datetime['0'];
-$day = $datetime['1']."/".substr($datetime['2'],0,2);
 ?> 
 				<div class="dtm">
 					<div class="dtmtmc">
@@ -25,7 +23,7 @@ $day = $datetime['1']."/".substr($datetime['2'],0,2);
 						</div>
 					</div>
 					<div class="dtmdate">
-						<div class="date"><?php echo $year; ?><br /><span><?php echo $day ?></span></div>
+						<div class="date"><?php echo date('Y', $date); ?><br /><span><?php echo date('j', $date); ?></span></div>
 					</div>
 				</div>
 				<div class="postcontent">

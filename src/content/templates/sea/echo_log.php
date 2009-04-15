@@ -20,7 +20,7 @@
 	echo $tag;
 	?>
 </p>
-<p>Posted on <?php echo $post_time;?><br /></p>
+<p>Posted on <?php echo date('Y-n-j G:i l', $date); ?><br /></p>
 <p>
 <?php if($prevLog):?>
 	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>

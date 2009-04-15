@@ -1,13 +1,10 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-$datetime = explode("-",$post_time);
-$year = $datetime['0'] . "/" .$datetime['1'];
-$day = substr($datetime['2'],0,2);
 ?>
 <div class="post">
 	<div class="postdate">
-	  <p class="date"><?php echo $day;?>th</p>
-	  <p class="year"><?php echo $year;?></p>
+	  <p class="date"><?php echo date('j', $date); ?>th</p>
+	  <p class="year"><?php echo date('Y', $date); ?></p>
 	</div>
 	<div class="posttitle">
 	<h2><?php echo $log_title;?></h2>

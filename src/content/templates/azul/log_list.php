@@ -5,7 +5,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 ?>
 	<div class="post">
 		<h2><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a></h2>
-			<div class="date"><?php echo $value['post_time']; ?></div>
+			<div class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 					<div class="entry">
 						<p><?php echo $value['log_description']; ?></p>
 						<p>

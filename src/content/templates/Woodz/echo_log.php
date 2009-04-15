@@ -10,7 +10,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 						 <h3>
 						 <?php if($log_cache_sort[$logid]): ?>
 						Post in <span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
-						<?php endif;?> | Post on <?php echo $post_time; ?>                        
+						<?php endif;?> | Post on <?php echo date('Y-n-j G:i l', $date); ?>                        
 						</h3>
 				</div>
                 </div>

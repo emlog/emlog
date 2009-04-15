@@ -5,7 +5,7 @@ foreach($logs as $value):
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 <div class="post">
-<div class="postdate"><?php echo $value['post_time'];?></div>
+<div class="postdate"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 <h2>
 <?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
 <?php if($log_cache_sort[$value['logid']]): ?>

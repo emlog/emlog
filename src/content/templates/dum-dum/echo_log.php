@@ -1,8 +1,5 @@
 <?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-$datetime = explode("-",$post_time);
-$year = $datetime['0'];
-$day = substr($datetime['2'],0,2)."/".$datetime['1'];
 ?>
 <div class="content">
 <img src="<?php echo $em_tpldir; ?>images/img_08.jpg" alt="" />
@@ -10,8 +7,8 @@ $day = substr($datetime['2'],0,2)."/".$datetime['1'];
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
 			<div class="postheader">
 				<div class="postdate">
-					<div class="postday"><?php echo $day; ?></div> <!-- POST DAY -->
-					<div class="postmonth"><?php echo $year; ?></div> <!-- POST MONTH -->
+					<div class="postday"><?php echo date('Y', $date); ?></div>
+					<div class="postmonth"><?php echo date('Y', $date); ?></div>
 				</div> <!-- POST DATE -->
 				
 				<div class="posttitle">

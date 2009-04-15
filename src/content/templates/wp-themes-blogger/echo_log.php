@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <?php if($log_cache_sort[$logid]): ?>
 <span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
-<?php endif;?><?php echo $post_time; ?>
+<?php endif;?><?php echo date('Y-n-j G:i l', $date); ?>
 <div class="post">
 
 	<div class="storycontent">

@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="post" id="post-1">
 		<h2><?php echo $log_title; ?></h2>
 		<div class="info">
-			<span class="date"><?php echo $post_time; ?></span>
+			<span class="date"><?php echo date('Y-n-j G:i l', $date); ?></span>
 			<div class="act">
 									<span class="comments"><a href="#comments">评论</a></span>
 					<span class="addcomment"><a href="#respond">发表评论</a></span>

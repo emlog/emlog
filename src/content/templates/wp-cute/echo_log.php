@@ -32,7 +32,7 @@
 <?php endif;?>
 </p>
 </div></div>
-<p><?php echo $post_time;?> <?php echo $log_author;?></p>
+<p><?php echo date('Y-n-j G:i l', $date); ?> <?php echo $log_author;?></p>
 <?php if($allow_tb == 'y'): ?>
 <h5>引用地址:<a name="tb"></a></h5>
 <input type="text" id="input" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>

@@ -10,7 +10,7 @@
 </h1>
 
 <p class="info">
-<em class="date">Posted on <?php echo $post_time;?></em>
+<em class="date">Posted on <?php echo date('Y-n-j G:i l', $date); ?></em>
 </p>
 <div class="post"><?php echo $log_content;?></div>
 <p>

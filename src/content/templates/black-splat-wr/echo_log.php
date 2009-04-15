@@ -5,7 +5,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <h2 class="postTitle"><?php echo $log_title; ?></h2>
 <p class="postMeta">filed in <?php if($log_cache_sort[$logid]): ?>
 <span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
-<?php endif;?> on <?php echo $post_time; ?></p>
+<?php endif;?> on <?php echo date('Y-n-j G:i l', $date); ?></p>
 <div class="postContent"><?php echo $log_content; ?>
 </div>
 <p class="tags"><?php 

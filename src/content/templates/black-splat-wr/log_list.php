@@ -10,7 +10,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 <h2 class="postTitle"><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
 <p class="postMeta">filed in <?php if($log_cache_sort[$value['logid']]): ?>
 	<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
-	<?php endif;?> <?php echo $value['post_time']; ?></p>
+	<?php endif;?> <?php echo date('Y-n-j G:i l', $value['date']); ?></p>
 <div class="postContent"><?php echo $value['log_description']; ?>
 </div>
 <p class="tags"><?php 

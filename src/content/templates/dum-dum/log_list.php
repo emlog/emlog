@@ -6,17 +6,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="contenttext">
 <?php 
 foreach($logs as $value):
-$datetime = explode("-",$value['post_time']);
-$year = $datetime['0'];
-$day = substr($datetime['2'],0,2)."/".$datetime['1'];
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
 			<div class="postheader">
 				<div class="postdate">
-					<div class="postday"><?php echo $day; ?></div> <!-- POST DAY -->
-					<div class="postmonth"><?php echo $year; ?></div> <!-- POST MONTH -->
+					<div class="postday"><?php echo date('j', $value['date']); ?></div>
+					<div class="postmonth"><?php echo date('Y', $value['date']); ?></div>
 				</div> <!-- POST DATE -->
 				
 				<div class="posttitle">

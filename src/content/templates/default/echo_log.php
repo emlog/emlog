@@ -18,7 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<?php $attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';echo $attachment;?>
 			</div>
 			<div class="tag"><?php $tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';echo $tag;?></div>
-			<div class="date"><?php echo $post_time; ?></div>
+			<div class="date"><?php echo date('Y-n-j G:i l', $date); ?></div>
 			<div>&nbsp;</div>
 		</div>
 		<div class="bottom"></div>

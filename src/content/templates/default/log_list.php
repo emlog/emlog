@@ -32,7 +32,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 		echo $tag;
 		?>
 		</div>
-		<div class="date"><?php echo $value['post_time']; ?></div>
+		<div class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 		<div>
 		<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
 		<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 

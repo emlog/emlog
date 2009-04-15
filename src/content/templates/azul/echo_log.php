@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="post">
 <h2><?php echo $log_title; ?></h2>
-<div class="date"><?php echo $post_time; ?></div>
+<div class="date"><?php echo date('Y-n-j G:i l', $date); ?></div>
 <div class="entry">
 	<p><?php echo $log_content; ?></p>
 	<p>

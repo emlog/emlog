@@ -7,7 +7,7 @@
 
 			<div class="postmeta">
 				<ul>
-					<li>Posted on: <?php echo $post_time;?></li>
+					<li>Posted on: <?php echo date('Y-n-j G:i l', $date); ?></li>
 				</ul>
 			</div>
 
