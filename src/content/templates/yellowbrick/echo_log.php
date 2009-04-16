@@ -18,7 +18,7 @@
 									</div>
 									<div class="item_title2">
 									<?php if($log_cache_sort[$logid]): ?>
-									Filed Under <i><span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
+									Filed Under <span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
 <?php endif;?>
 									
 										 Post on <?php echo date('Y-n-j G:i l', $date); ?></i>

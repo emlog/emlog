@@ -17,7 +17,7 @@ body{
 
 img{
 	border:0px;
-	max-width:460px;
+	max-width:470px;
 }
 
 a{
@@ -182,7 +182,6 @@ div#blog #blog_right #sidebar li a{
 	font-size:12px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	text-decoration:none;
-	font-weight:normal;
 }
 div#blog #blog_right #sidebar ul{
 	padding-bottom:0px;
@@ -246,14 +245,11 @@ div.item_class .item_title2{
 	color:#b50101;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
-	background:url(images/title_line.png) bottom no-repeat left;
-	padding-bottom:7px;
-	line-height:20px;
-	font-weight:bold;
+	background:url(images/title_line.png) bottom no-repeat;
+	height:27px;
 }
 
 div.item_class .item_title2 a{
-	font-weight:bold;
 	color:#b50101;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
@@ -266,11 +262,13 @@ div.item_class .item_text{
 	padding-top:5px;
 	padding-bottom:5px;
 	line-height:22px;
-	width:460px;
+	width:470px;
 	overflow:hidden;
 	padding-right:5px;
 }
-
+div.item_class .item_text p{
+	clear:both;
+}
 div.item_class .item_panel{
 	background:url(images/comm_panel.png) repeat-x top;
 	width:100%;
@@ -427,7 +425,6 @@ div#footer a{
 }
 
 .item_class img{
-	float: left;
 	margin:5px;
 }
 #pageurl{
@@ -463,8 +460,8 @@ margin-left:4px;
 	background: url(./images/bg_cal_today.gif)  no-repeat 0px 2px;
 }
 
-.day2 {
-	font-weight: bold;
+.day2{
+	font-weight:bold;
 }
 
 .sun {

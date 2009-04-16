@@ -27,3 +27,4 @@ foreach ($widgets as $val)
 <div class="lister">
 <a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
 </div>
+<br />

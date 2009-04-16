@@ -25,7 +25,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 									</div>
 									<div class="item_title2">
 									<?php if($log_cache_sort[$value['logid']]): ?>
-									Filed Under <i><span class="sort"><a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a></span>
+									Filed Under <span class="sort"><a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a></span>
 
 	<?php endif;?>
 										Post on <?php echo date('Y-n-j G:i l', $value['date']); ?></i>
@@ -76,6 +76,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 		<div id="pageurl"><?php echo $page_url;?></div>
 		</div>
 				</div>
+                <br />
 			</td>
 		<td valign="top" id="blog_right">
 						<div id="blog_right_top">
