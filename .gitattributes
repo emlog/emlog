@@ -412,7 +412,6 @@ src/content/templates/classic/side.php -text svn_keywords=Id
 src/content/templates/classic/tpl.ini -text
 src/content/templates/default/echo_log.php -text
 src/content/templates/default/footer.php -text
-src/content/templates/default/function.php -text
 src/content/templates/default/header.php -text
 src/content/templates/default/images/bg_cal_today.gif -text
 src/content/templates/default/images/bloger_photo.jpg -text
@@ -435,9 +434,10 @@ src/content/templates/default/images/sidebar_list.gif -text
 src/content/templates/default/images/top_back.png -text
 src/content/templates/default/log_list.php -text
 src/content/templates/default/main.css -text
+src/content/templates/default/module.php -text
+src/content/templates/default/page.php -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
-src/content/templates/default/tpl.ini -text
 src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text
