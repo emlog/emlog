@@ -1,8 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-	<div id="sidebar">
-		<ul>
+<div id="sidebar">
+<ul>
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 foreach ($widgets as $val)
 {
@@ -26,9 +25,9 @@ foreach ($widgets as $val)
 	}
 }
 ?>
-		</ul>
+</ul>
 <div class="rss">
 <a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
 </div>
-	</div>
-		<!--end sidebar-->
+</div>
+<!--end sidebar-->

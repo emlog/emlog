@@ -1,4 +1,14 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<?php
+/*
+TemplateName: 默认模板
+Description = 这是emlog的默认模板，简洁明快 ……
+SidebarAmount: 1
+Author: emlog开发小组
+Author Homepage: www.emlog.net
+*/
+if(!defined('EMLOG_ROOT')) {exit('error!');}
+require_once (getViews('module'));
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
