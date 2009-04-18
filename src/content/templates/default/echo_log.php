@@ -1,9 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div id="content">
 <ul>
-<?php
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
 <li>
 	<h2 class="content_h2"><?php echo $log_title; ?></h2>
 	<?php if($log_cache_sort[$logid]): ?>

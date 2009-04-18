@@ -1,8 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content">
 <ul>
-<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
+<?php
 foreach($logs as $value):
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
