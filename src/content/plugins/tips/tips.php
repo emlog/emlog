@@ -4,6 +4,7 @@ Plugin Name: tips
 Plugin URL: http://www.emlog.net/
 Description: 这是世界上第一个emlog插件，它象征着希望和热情
 Author: dawei
+Author Email: emloog@gmail.com
 Version: 1.0
 Author URL: http://www.emlog.net/blog/
 */ 

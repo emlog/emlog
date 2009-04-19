@@ -97,6 +97,7 @@ src/admin/fckeditor/fckstyles.xml -text
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
+src/admin/page.php -text
 src/admin/plugin.php -text
 src/admin/save_log.php -text svn_keywords=Id
 src/admin/sort.php -text svn_keywords=Id
@@ -104,7 +105,9 @@ src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/trackback.php -text svn_keywords=Id
 src/admin/views/default/add_log.php -text svn_keywords=Id
+src/admin/views/default/add_page.php -text
 src/admin/views/default/admin_log.php -text svn_keywords=Id
+src/admin/views/default/admin_page.php -text
 src/admin/views/default/attlib.php -text
 src/admin/views/default/backup.php -text svn_keywords=Id
 src/admin/views/default/blogger.php -text svn_keywords=Id
@@ -116,6 +119,7 @@ src/admin/views/default/configure.php -text svn_keywords=Id
 src/admin/views/default/css-login.css -text
 src/admin/views/default/css-main.css -text svn_keywords=Id
 src/admin/views/default/edit_log.php -text svn_keywords=Id
+src/admin/views/default/edit_page.php -text
 src/admin/views/default/footer.php -text svn_keywords=Id
 src/admin/views/default/header.php -text svn_keywords=Id
 src/admin/views/default/images/addblog.gif -text svn_keywords=Id

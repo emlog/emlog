@@ -9,7 +9,7 @@
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
-  <table width="95%" align="center" id="adm_sort_list">
+  <table width="95%" id="adm_sort_list">
     <thead>
       <tr class="rowstop">
         <td width="230"><b>分类名称</b></td>

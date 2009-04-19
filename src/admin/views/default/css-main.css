@@ -113,7 +113,7 @@ a:hover {
 .containertitle {
 	background-position: left 3px; 
 	font-size: 18px;
-	margin: 20px 10px; 
+	margin: 20px 0px; 
 }
 .line {
 	border-top: #CCCCCC 1px solid; 
@@ -331,7 +331,7 @@ textarea{font-size:12px;}
 }
 #user,#pw{ height:28px;  width:210px;}
 #imgcode{ height:28px; width:80px;}
-.addItem{ margin-left:30px;}
+.addItem{ margin-left:5px;}
 .sortname{ cursor:pointer; color:#2A9DDB;}
 .logtags{margin-left:5%;}
 .logtags a{ color:#FFFFFF;}

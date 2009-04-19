@@ -59,8 +59,9 @@ class emBlog {
 	/**
 	 * 获取指定条件的日志条数
 	 *
-	 * @param unknown_type $blogId
-	 * @return unknown
+	 * @param string $hide
+	 * @param string $condition
+	 * @return int
 	 */
 	function getLogNum($hide = 'n', $condition = '')
 	{
@@ -74,9 +75,11 @@ class emBlog {
 	 * 获取单条日志
 	 *
 	 * @param int $blogId
+	 * @param string $hide 是否隐藏
+	 * @param string $spot 使用场所：前台、后台
 	 * @return array
 	 */
-	function getOneLog($blogId,  $hide='', $type='admin')
+	function getOneLog($blogId,  $hide = '', $spot = 'admin')
 	{
 		$hideState = $hide == 'n' ? "and hide='n'" :'';
 		$sql = "select * from $this->blogTable where gid=$blogId $hideState";
@@ -84,7 +87,7 @@ class emBlog {
 		$row = $this->dbhd->fetch_array($res);
 		if($row)
 		{
-			switch ($type)
+			switch ($spot)
 			{
 				case 'admin':
 					$row['title'] = htmlspecialchars($row['title']);
@@ -119,21 +122,27 @@ class emBlog {
 	}
 
 	/**
-	 * 获取日志
+	 * 获取多条日志
 	 *
 	 * @param string $condition
+	 * @param string $hide_state
 	 * @param int $page
+	 * @param string $prePageNum
+	 * @param string $spot 使用场所：前台、后台
+	 * @param string $type 类型：日志、页面
 	 * @return array
 	 */
-	function getLog($condition, $hide_state, $page = 1, $prePageNum = 15, $type='admin')
+	function getLog($condition = '', $hide_state = '', $page = 1, $prePageNum = 15, $spot = 'admin', $type = 'blog')
 	{
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
-		$sql = "SELECT * FROM $this->blogTable WHERE hide='$hide_state' $condition LIMIT $start_limit, $prePageNum";
+		$hide_state  = $hide_state ? "and hide='$hide_state'" : '';
+		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
+		$sql = "SELECT * FROM $this->blogTable WHERE type='$type' $hide_state $condition $limit";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
-			switch ($type)
+			switch ($spot)
 			{
 				case 'admin':
 					$row['date'] = date("Y-m-d H:i",$row['date']);
@@ -171,7 +180,7 @@ class emBlog {
 	/**
 	 * 删除日志
 	 *
-	 * @param unknown_type $gid
+	 * @param int $gid
 	 */
 	function deleteLog($blogId)
 	{
@@ -214,6 +223,11 @@ class emBlog {
 
 	/**
 	 * 获取日志发布时间
+	 *
+	 * @param int $timezone
+	 * @param string $postDate
+	 * @param string $oldDate
+	 * @return unknown
 	 */
 	function postDate($timezone=8, $postDate=null, $oldDate=null)
 	{
@@ -227,6 +241,8 @@ class emBlog {
 			{
 				$unixPostDate = $logDate;
 			}
+		}else{
+			return $localtime;
 		}
 		return $unixPostDate;
 	}

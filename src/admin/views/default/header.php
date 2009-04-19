@@ -43,7 +43,7 @@
             <div class="sidebarmenu" onclick="displayToggle('blogctlpl');">博客管理</div>
 			<div id="blogctlpl">
             <div class="sidebarsubmenu"><a href="widgets.php" >Widgets</a></div>
-			<div class="sidebarsubmenu"><a href="widgets.php" >页面</a></div>
+			<div class="sidebarsubmenu"><a href="page.php" >页面</a></div>
 			<div class="sidebarsubmenu"><a href="link.php">链接</a></div>
 			<div class="sidebarsubmenu"><a href="widgets.php" >用户</a></div>
 			<div class="sidebarsubmenu"><a href="link.php">数据</a></div>
