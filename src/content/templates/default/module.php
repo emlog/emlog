@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<?php 
+<?php
 //widget：blogger
 function widget_blogger($title){
 	global $photo,$name,$blogger_des,$em_tpldir; ?>
@@ -22,7 +22,7 @@ function widget_blogger($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：日历
 function widget_calendar($title){
 	global $calendar_url; ?>
@@ -33,7 +33,7 @@ function widget_calendar($title){
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：标签
 function widget_tag($title){
 	global $tag_cache; ?>
@@ -49,7 +49,7 @@ function widget_tag($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：分类
 function widget_sort($title){
 	global $sort_cache,$em_tpldir; ?>
@@ -65,7 +65,7 @@ function widget_sort($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：twitter
 function widget_twitter($title){
 	global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
@@ -110,7 +110,7 @@ function widget_music($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：最新评论
 function widget_newcomm($title){
 	global $com_cache,$em_tpldir; ?>
@@ -129,7 +129,7 @@ function widget_newcomm($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：最新日志
 function widget_newlog($title){
 	global $newLogs_cache; ?>
@@ -156,7 +156,7 @@ function widget_random_log($title){
 	</ul>
 	</li>
 <?php }?>
-<?php 
+<?php
 //widget：搜索
 function widget_search($title){ ?>
 	<li>
@@ -187,12 +187,12 @@ function widget_archive($title){
 <?php
 //widget：自定义组件
 function widget_custom_text($title, $content, $id){ ?>
-<li>
+	<li>
 	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3>
 	<ul id="<?php echo $id; ?>">
 	<li><?php echo $content; ?></li>
 	</ul>
-</li>
+	</li>
 <?php } ?>
 <?php
 //widget：链接
@@ -316,7 +316,7 @@ function blog_comments(){
 			</div>
 		<?php endif; ?>
 	</div>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：发表评论表单
