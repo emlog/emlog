@@ -102,6 +102,7 @@ class emBlog {
 					'date' => $row['date'],
 					'logid' => intval($row['gid']),
 					'sortid' => intval($row['sortid']),
+					'type' => $row['type'],
 					'tbscode' => substr(md5(date('Ynd')),0,5),
 					'log_content' => rmBreak($row['content']),
 					'views'=>intval($row['views']),

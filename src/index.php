@@ -20,7 +20,7 @@ if (!is_dir($em_tpldir))
 }
 $blogtitle = $blogname;
 $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
-$job = array('showlog','search','addcom','taglog','');
+$job = array('showlog','search','addcom','taglog','showpage','');
 if (!in_array($action,$job))
 {
 	emMsg('error!','./index.php');
@@ -88,12 +88,13 @@ if (!isset($action) || empty($action))
 	include getViews('header');
 	include getViews('log_list');
 }
-//显示日志
+//显示日志、页面
 if ($action == 'showlog')
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
 	require_once(EMLOG_ROOT.'/model/C_trackback.php');
+	include getViews('header');
 
 	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : emMsg('提交参数错误','./index.php');
 
@@ -104,7 +105,7 @@ if ($action == 'showlog')
 	$logData = $emBlog->getOneLog($logid, 'n', 'homepage');
 	if($logData === false)
 	{
-		emMsg('不存在该日志','./index.php');
+		emMsg('不存在该条目','./index.php');
 	}
 	extract($logData);
 	if(!empty($password))
@@ -115,23 +116,25 @@ if ($action == 'showlog')
 	}
 	$blogtitle = $log_title.' - '.$blogname;
 	$log_author = $user_cache['name'];
-	$blogurl    = $blogurl;
-	//add viewcount
-	$emBlog->updateViewCount($logid);
-	//neighborlog
-	$neighborLog = $emBlog->neighborLog($logid);
-	extract($neighborLog);
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	$comments = $emComment->getComment($logid, 'n');
-	//trackback
-	$tb = $emTrackback->getTrackback(null, $logid);
-
-	include getViews('header');
-	require_once getViews('echo_log');
+	if ($type == 'blog')
+	{
+		//add viewcount
+		$emBlog->updateViewCount($logid);
+		//neighborlog
+		$neighborLog = $emBlog->neighborLog($logid);
+		extract($neighborLog);
+		//trackback
+		$tb = $emTrackback->getTrackback(null, $logid);
+		require_once getViews('echo_log');
+	}elseif ($type == 'page'){
+		include getViews('page');
+	}
 }
 //添加评论
 if ($action == 'addcom')

@@ -31,6 +31,8 @@ $blogger_des = $user_cache['des'];
 $name = $user_cache['mail'] != '' ? "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>" : $user_cache['name'];
 //模板目录
 define('TEMPLATE_PATCH', './content/templates/');
+//导航条
+$navibar = unserialize($navibar);
 
 //背景音乐
 $music = @unserialize($options_cache['music']);

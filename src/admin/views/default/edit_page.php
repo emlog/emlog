@@ -33,8 +33,8 @@
         </tr>
         <tr>
         <td>在新窗口打开页面？是
-          	<input type="radio" checked="checked" value="y" name="is_blank" <?php echo $ex3; ?>/>否
-          	<input type="radio" value="n" name="is_blank" <?php echo $ex4; ?> />
+          	<input type="radio" checked="checked" value="_blank" name="is_blank" <?php echo $ex3; ?>/>否
+          	<input type="radio" value="_parent" name="is_blank" <?php echo $ex4; ?> />
         </td>
         </tr>
         <tr>

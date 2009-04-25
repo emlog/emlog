@@ -53,7 +53,7 @@ if ($action == 'mod')
 		$ex="";
 		$ex2="checked=\"checked\"";
 	}
-	if($navibar[$pageId]['is_blank']=='y'){
+	if($navibar[$pageId]['is_blank']=='_blank'){
 		$ex3="checked=\"checked\"";
 		$ex4="";
 	}else{
