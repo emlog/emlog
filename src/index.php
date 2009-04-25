@@ -20,7 +20,7 @@ if (!is_dir($em_tpldir))
 }
 $blogtitle = $blogname;
 $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
-$job = array('showlog','search','addcom','taglog','showpage','');
+$job = array('showlog','search','addcom','taglog','');
 if (!in_array($action,$job))
 {
 	emMsg('error!','./index.php');
