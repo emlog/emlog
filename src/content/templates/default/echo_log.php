@@ -23,7 +23,7 @@
 	<?php blog_trackback(); ?>
 
 	<?php blog_comments(); ?>
-	<?php blog_comments_post(); ?>
+	<?php if ($allow_remark == 'y'){blog_comments_post();}?>
 </li>
 </ul>
 </div>
