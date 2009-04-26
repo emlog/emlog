@@ -10,9 +10,6 @@ require_once('globals.php');
 
 if ($action == '')
 {
-	$sta_cache = $CACHE->readCache('sta');
-	extract($sta_cache);
-	
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;

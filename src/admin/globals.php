@@ -19,10 +19,6 @@ define('IMG_ATT_MAX_H',			460);//图片附件缩略图最大高
 define('ICON_MAX_W',			140);//个性头像缩略图最大宽
 define('ICON_MAX_H',			220);//个性头像缩略图最大高
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
-
-$dftnum = $DB->num_rows($DB->query("SELECT gid FROM ".DB_PREFIX."blog WHERE hide='y'"));
-$draftnum = $dftnum>0 ? "($dftnum)" : '';//草稿数目
-
 //检测后台模板
 define('ADMIN_ROOT', dirname(__FILE__));
 $em_tpldir = ADMIN_ROOT.'/views/'.ADMIN_TPL.'/';
@@ -30,6 +26,9 @@ if (!is_dir($em_tpldir))
 {
 	exit('the adm tmplate net found!');
 }
+//读取统计信息
+$sta_cache = $CACHE->readCache('sta');
+extract($sta_cache);
 
 //登陆验证
 if ($action == 'login')

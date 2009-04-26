@@ -63,16 +63,17 @@ class mkcache {
 	function mc_sta()
 	{
 		$dh = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."statistics");
-		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE hide='n' "));
+		$lognum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE type='blog' and hide='n' "));
+		$draftnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".DB_PREFIX."blog WHERE type='blog' and hide='y'"));
 		$comnum = $this->dbhd->num_rows($this->dbhd->query("SELECT cid FROM ".$this->db_prefix."comment WHERE hide='n' "));
 		$tbnum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."trackback "));
 		$twnum = $this->dbhd->num_rows($this->dbhd->query("SELECT id FROM ".$this->db_prefix."twitter "));
 		$hidecom = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."comment where hide='y' "));
-
 		$sta_cache = array(
 		'day_view_count' => $dh['day_view_count'],
 		'view_count' =>$dh['view_count'],
 		'lognum'=>$lognum,
+		'draftnum'=>$draftnum,
 		'comnum'=>$comnum,
 		'twnum'=>$twnum,
 		'hidecom'=>$hidecom,

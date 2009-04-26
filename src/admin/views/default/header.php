@@ -61,7 +61,7 @@
             <div class="sidebarmenu" onclick="displayToggle('logmg');">日志管理</div>
 			<div id="logmg">
             <div class="sidebarsubmenu"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
-			<div class="sidebarsubmenu"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum; ?></span></a></div>
+			<div class="sidebarsubmenu"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $draftnum == 0 ? '' : '('.$draftnum.')'; ?></span></a></div>
 			<div class="sidebarsubmenu"><a href="admin_log.php">日志</a></div>
             <div class="sidebarsubmenu"><a href="tag.php">标签</a></div>
             <div class="sidebarsubmenu"><a href="sort.php">分类</a></div>
