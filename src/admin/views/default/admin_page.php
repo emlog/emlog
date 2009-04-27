@@ -42,4 +42,4 @@ setTimeout(hideActived,2600);
 	</tbody>
   </table>
 </form>
-<div style="margin:50px 0px 0px 5px;"><a href="page.php?action=new">新建一个页面&raquo;</a></div>
+<div style="margin:50px 0px 0px 5px;"><a href="page.php?action=new">新建页面&raquo;</a></div>

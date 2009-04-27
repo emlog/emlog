@@ -49,13 +49,3 @@
 	</table>
   </form>
 <div class=line></div>
-<script type="text/javascript">
-$("#show_advset").click(function(){
-	$("#advset").toggle();
-	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
-});
-$("#itag").click(function(){$("#tagbox").toggle();});
-var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
-$("#advset").css('display', showAdv);
-setTimeout("autosave(0)",60000);
-</script>
