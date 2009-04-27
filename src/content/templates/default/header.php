@@ -30,6 +30,7 @@ require_once (getViews('module'));
 		<ul id="menus">
 			<li class="menus1"><a href="./index.php">首页</a></li>
 			<?php foreach ($navibar as $key => &$val):
+			if ($val['hide'] == 'y'){continue;};
 			if (empty($val['url'])){$val['url'] = './?action=showlog&gid='.$key;}
 			?>
 			<li class="menus2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>

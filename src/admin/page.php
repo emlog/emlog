@@ -22,7 +22,6 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-
 //显示新建页面表单
 if ($action == 'new')
 {
@@ -43,22 +42,23 @@ if ($action == 'mod')
 	$pageData = $emPage->getOneLog($pageId);
 	extract($pageData);
 
-	$pageUrl = $navibar[$pageId]['url'];
+	$pageUrl = isset($dnavibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
+	$is_blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
 
 	if($allow_remark == 'y')
 	{
-		$ex="checked=\"checked\"";
-		$ex2="";
+		$ex = "checked=\"checked\"";
+		$ex2 = '';
 	}else{
-		$ex="";
-		$ex2="checked=\"checked\"";
+		$ex = '';
+		$ex2 = "checked=\"checked\"";
 	}
-	if($navibar[$pageId]['is_blank']=='_blank'){
-		$ex3="checked=\"checked\"";
-		$ex4="";
+	if($is_blank == '_blank'){
+		$ex3 = "checked=\"checked\"";
+		$ex4 = '';
 	}else{
-		$ex3="";
-		$ex4="checked=\"checked\"";
+		$ex3 = '';
+		$ex4 = "checked=\"checked\"";
 	}
 
 	include getViews('header');
@@ -94,15 +94,13 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	if($pageId > 0)//自动保存后,添加变为更新
 	{
 		$emPage->updateLog($logData, $pageId);
-		$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank);
-		$navibar = serialize($navibar);
-		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 	}else{
 		$pageId = $emPage->addlog($logData);
-		$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank);
-		$navibar = serialize($navibar);
-		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 	}
+	
+	$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank, 'hide' => $ishide);
+	$navibar = serialize($navibar);
+	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 	$CACHE->mc_logatts();
 	$CACHE->mc_options();
@@ -120,6 +118,25 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 			formMsg($ok_msg,$ok_url, 1);
 			break;
 	}
+}
+//发布、禁用页面
+if ($action == 'ishide')
+{
+	$emPage = new emBlog($DB);
+
+	$ishide = isset($_GET['ishide']) ? $_GET['ishide'] : 'n';
+	$pageId = isset($_GET['pid']) ? $_GET['pid'] : '';
+	
+	$logData = array('hide'=>$ishide);
+	$emPage->updateLog($logData, $pageId);
+
+	$navibar[$pageId]['hide'] = $ishide;
+	$navibar = serialize($navibar);
+	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+
+	$CACHE->mc_options();
+
+	header("Location: ./page.php?active_hide_".$ishide."=true");
 }
 //删除页面
 if ($action == 'del')
