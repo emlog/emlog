@@ -149,8 +149,9 @@ a:hover {
 	color: #FFFFFF;
 	font-size:14px;
 	font-weight:bold;
-	cursor:hand;
-	padding:5px 10px;
+	cursor: pointer;
+	_cursor: hand;
+	padding:3px 10px;
 }
 .button{
 	font-size:12px;
@@ -341,6 +342,8 @@ textarea{font-size:12px;}
 .filter a{ color:#FFFFFF;}
 .adm_link{background-color:#FF9966; padding:1px 3px; margin:1px;}
 .adm_link a{ color:#FFFFFF;}
+.page span{background-color: #FF6633; color:#FFFFFF; padding:3px 6px; }
+.page a{ background-color:#3399FF; color:#FFFFFF; padding:1px 5px;}
 #f_sort{
 	border: #FFF5CE solid 1px;
 	background-color:#FFF7D7;

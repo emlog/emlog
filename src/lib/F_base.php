@@ -229,14 +229,14 @@ function pagination($count,$perlogs,$page,$url)
 		{
 			if ($i == $page)
 			{
-				$re .= " [$i] ";
+				$re .= " <span>$i</span> ";
 			} else {
 				$re .= " <a href=\"$url=$i\">$i</a> ";
 			}
 		}
 	}
-	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a>…$re";
-	if ($page + 5 < $pnums) $re .= "…<a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>";
+	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a> ...$re";
+	if ($page + 5 < $pnums) $re .= "... <a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>";
 	if ($pnums <= 1) $re = '';
 	return $re;
 }

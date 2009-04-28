@@ -126,32 +126,26 @@ foreach($tags as $val):
 	</tbody>
 	<tfoot>
     <tr class="rowstop">
-    <td colspan="8">执行操作：
-    <input type="radio" value="del_log" name="modall" />删除
+    <td colspan="8">选中项：
+    删除
+	转入草稿箱
 	<?php if($pid == 'draft'): ?>
-	<input type="radio" value="show" name="modall"/>发布
+	发布
 	<?php else: ?>
-	<input type="radio" value="top" name="modall" />推荐
-    <input type="radio" value="notop" name="modall"/> 取消推荐
-	<input type="radio" value="hide" name="modall" />转入草稿箱
-	<input type="radio" value="move" name="modall" />移动到
+	推荐
+    取消推荐
 	<select name="sort">
-	<option value="-1">选择分类...</option>
+	<option value="-1">移动到分类...</option>
 	<?php foreach($sorts as $val):?>
 		<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
 	<?php endforeach;?>
 	</select>
 	<?php endif;?>
+	</td>
     </tr>
     <tr>
-    <td align="right" colspan="8">(共<?php echo $logNum; ?>条日志/每页最多显示15条) <?php echo $pageurl; ?></td>
-    </tr>	  
-	<tr>
-	<td align="center" colspan="6">
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />
-	</td>
-	</tr>
+    <td align="center" colspan="8" class="page"><?php echo $pageurl; ?></td>
+    </tr>
 	</tfoot>
 </table>
 </form>
