@@ -34,8 +34,8 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
         </tr>
         <tr>
         <td colspan="2">
-	  	<input type="submit" value="确 定" class="submit2" />
-      	<input type="reset" value="重 置" class="submit2" />
+	  	<input type="submit" value="确 定" />
+      	<input type="reset" value="重 置" />
       	</td>
         </tr>
       </tbody>
@@ -66,8 +66,8 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
       </tr>
       <tr>
         <td colspan="2">
-	  	<input type="submit" value="确 定" class="submit2" />
-      	<input type="reset" value="重 置" class="submit2" />
+	  	<input type="submit" value="确 定" />
+      	<input type="reset" value="重 置" />
       	</td>
       </tr>
     </tbody>

@@ -104,6 +104,7 @@ src/admin/sort.php -text svn_keywords=Id
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/trackback.php -text svn_keywords=Id
+src/admin/user.php -text
 src/admin/views/default/add_log.php -text svn_keywords=Id
 src/admin/views/default/add_page.php -text
 src/admin/views/default/admin_log.php -text svn_keywords=Id

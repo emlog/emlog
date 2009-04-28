@@ -339,6 +339,8 @@ textarea{font-size:12px;}
 .filters{ margin:5px 4px;}
 .filter{background-color: #00CCFF; padding:1px; margin:1px;}
 .filter a{ color:#FFFFFF;}
+.adm_link{background-color:#FF9966; padding:1px 3px; margin:1px;}
+.adm_link a{ color:#FFFFFF;}
 #f_sort{
 	border: #FFF5CE solid 1px;
 	background-color:#FFF7D7;
