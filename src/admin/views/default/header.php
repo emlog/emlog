@@ -46,7 +46,7 @@
 			<div class="sidebarsubmenu"><a href="page.php" >页面</a></div>
 			<div class="sidebarsubmenu"><a href="link.php">链接</a></div>
 			<div class="sidebarsubmenu"><a href="user.php" >用户</a></div>
-			<div class="sidebarsubmenu"><a href="link.php">数据</a></div>
+			<div class="sidebarsubmenu"><a href="backup.php">数据</a></div>
 			</div>
 			</div>
 			</td>

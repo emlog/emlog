@@ -131,9 +131,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
       <tr>
-        <td align="center" colspan="2">
-	  <input type="submit" value="确 定" class="submit2" />
-      <input type="reset" value="重 置" class="submit2" />        </td>
+        <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
       </tr>
     </tbody>
   </table>

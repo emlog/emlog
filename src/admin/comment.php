@@ -36,10 +36,10 @@ if($action == '')
 //批量操作评论
 if($action== 'admin_all_coms')
 {
-	$doWhat = isset($_POST['modall']) ? $_POST['modall'] : '';
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$comments = isset($_POST['com']) ? $_POST['com'] : '';
 
-	if($doWhat == '')
+	if($operate == '')
 	{
 		header("Location: ./comment.php?error_b=true");
 		exit;
@@ -50,7 +50,7 @@ if($action== 'admin_all_coms')
 		exit;
 	}
 	//删除
-	if($doWhat == 'delcom')
+	if($operate == 'del')
 	{
 		$emComment->batchComment('delcom', $comments);
 		$CACHE->mc_sta();
@@ -58,7 +58,7 @@ if($action== 'admin_all_coms')
 		header("Location: ./comment.php?active_del=true");
 	}
 	//屏蔽
-	if($doWhat == 'hidecom')
+	if($operate == 'hide')
 	{
 		$emComment->batchComment('hidecom', $comments);
 		$CACHE->mc_sta();
@@ -66,7 +66,7 @@ if($action== 'admin_all_coms')
 		header("Location: ./comment.php?active_hide=true");
 	}
 	//审核
-	if($doWhat == 'showcom')
+	if($operate == 'pub')
 	{
 		$emComment->batchComment('showcom', $comments);
 		$CACHE->mc_sta();

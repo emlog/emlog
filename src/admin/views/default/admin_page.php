@@ -55,4 +55,6 @@ setTimeout(hideActived,2600);
 	</tbody>
   </table>
 </form>
-<div style="margin:30px 0px 0px 4px;"><span class="adm_link"><a href="page.php?action=new">新建一个页面&raquo;</a></span></div>
+<div style="margin:30px 0px 0px 3px;">
+<input name="" type="button" onclick="window.location='page.php?action=new';" value="新建一个页面&raquo;" class="submit" />
+</div>

@@ -12,35 +12,28 @@
   <table width="95%" id="adm_sort_list">
     <thead>
       <tr class="rowstop">
-        <td width="230"><b>分类名称</b></td>
-        <td width="300"><b>分类排序</b></td>
-        <td width="70"></td>
+        <td width="30"><b>序号</b></td>
+        <td width="560"><b>分类名称</b></td>
+        <td width="260"></td>
       </tr>
     </thead>
     <tbody>
 <?php foreach($sorts as $key=>$value): ?>
       <tr>
-        <td class="sortname"><?php echo $value['sortname']; ?></td>
         <td>
-        <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id">
-        <input size="18" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
+        <input type="hidden" value="<?php echo $value['sid'];?>" />
+        <input size="1" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
+		<td class="sortname"><?php echo $value['sortname']; ?></td>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
       </tr>
 <?php endforeach;?>   
 </tbody>
-<tfoot>
-        <tr>
-          <td align="center" colspan="3">
-	 	 	<input type="submit" value="更新排序" class="submit2" />
-     		<input type="reset" value="重置" class="submit2" />         
-		  </td>
-        </tr>
-</tfoot>
 </table>
+<div class="list_footer"><input type="submit" value="更新排序" class="submit" /></div>
 </form>
 <form action="sort.php?action=add" method="post">
-<div class="addItem">
-<input maxlength="200" size="15" name="sortname" /> <input type="submit" value="添加新分类" />
+<div style="margin:50px 0px 0px 3px">
+<input maxlength="200" size="15" name="sortname" /> <input type="submit" value="添加新分类" class="submit"/>
 </div>
 </form>
 <script type='text/javascript'>

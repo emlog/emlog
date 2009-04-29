@@ -28,7 +28,7 @@ $$a = "class=\"filter\"";
 <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
 </div>
 <?php endif; ?>
-<form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
+<form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
   <table width="95%" id="adm_comment_list">
   	<thead>
       <tr class="rowstop">
@@ -59,25 +59,20 @@ $$a = "class=\"filter\"";
      </tr>
 	<?php endforeach; ?>
 	</tbody>
-	<tfoot>
-      <tr class="rowstop">
-        <td colspan="7">对选中的评论执行操作：
-          <input type="radio" value="delcom" name="modall" />
-          删除
-          <input type="radio" value="hidecom" name="modall" />
-          屏蔽
-          <input type="radio" value="showcom" name="modall" />
-          审核
-      </tr>
-	  <tr>
-      	<td align="right" colspan="7">(共<?php echo $num; ?>条评论/每页最多显示15条) <?php echo $pageurl; ?></td>
-      </tr>
-	  <tr>
-		  <td align="center" colspan="7">
-		  <input type="submit" value="确 定" class="submit2" />
-	      <input type="reset" value="重 置" class="submit2" />
-		  </td>
-	  </tr>
-	 </tfoot>
   </table>
+	<div class="list_footer">
+	选中项：
+    <a href="javascript:commentact('del');">删除</a>
+	<a href="javascript:commentact('hide');">屏蔽</a>
+	<a href="javascript:commentact('pub');">审核</a>
+	<input name="operate" id="operate" value="" type="hidden" />
+	</div>
+    <div class="page"><?php echo $pageurl; ?></div> 
 </form>
+<script>
+function commentact(act){
+	if(act == 'del' && !confirm('你确定要删除所选评论吗？')){return;}
+	$("#operate").val(act);
+	$("#form_com").submit();
+}
+</script>

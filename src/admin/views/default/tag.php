@@ -23,7 +23,7 @@
     <tbody>
       <tr>
         <td align="center" colspan="5">
-		<input type="submit" value="删除所选标签" class="submit2" />
+		<input type="submit" value="删除所选标签" class="submit" />
 		</td>
       </tr>
     </tbody>

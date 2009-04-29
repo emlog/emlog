@@ -60,7 +60,6 @@ foreach($tags as $val):
         <td width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
 		<td width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
 		<td width="40" align="center"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
-		<td width="50"></td>
       </tr>
 	</thead>
  	<tbody>
@@ -96,19 +95,12 @@ foreach($tags as $val):
       <td><?php echo $value['date']; ?></td>
 	  <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td align="center"><?php echo $value['views']; ?></a></td>
-      <td>
-      <?php if ($pid == 'draft'): ?>
-      <a href="javascript: em_confirm(<?php echo $value['gid']; ?>, 'draft');">删除</a>
-      <?php else: ?>
-      <a href="javascript: em_confirm(<?php echo $value['gid']; ?>, 'log');">删除</a>
-      <?php endif; ?>
-      </td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>
-	<tfoot>
-    <tr class="rowstop">
-    <td colspan="8">选中项：
+	</table>
+	<div class="list_footer">
+	选中项：
     <a href="javascript:logact('del');">删除</a>
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');">发布</a>
@@ -124,13 +116,8 @@ foreach($tags as $val):
 	</select>
 	<?php endif;?>
 	<input name="operate" id="operate" value="" type="hidden" />
-	</td>
-    </tr>
-    <tr>
-    <td align="center" colspan="8" class="page"><?php echo $pageurl; ?></td>
-    </tr>
-	</tfoot>
-</table>
+	</div>
+    <div class="page"><?php echo $pageurl; ?></div>
 </form>
 <script>
 $(document).ready(function(){
@@ -149,16 +136,8 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 function logact(act){
-	if(act == 'del') var act_des = '删除';
-	if(act == 'hide') var act_des = '转入草稿箱';
-	if(act == 'top') var act_des = '置顶';
-	if(act == 'notop') var act_des = '取消置顶';
-	if(act == 'pub') var act_des = '发布';
-	if(confirm('你确定要将所选日志'+act_des+'？')){
-		$("#operate").val(act);
-		$("#form_log").submit();
-	}else{
-		return;
-	}
+	if(act == 'del' && !confirm('你确定要删除所选日志吗？')){return;}
+	$("#operate").val(act);
+	$("#form_log").submit();
 }
 </script>

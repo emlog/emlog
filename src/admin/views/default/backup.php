@@ -46,7 +46,7 @@ $(document).ready(function(){
 	<tfoot>
 	<tr>
 	<td align="center" colspan="5">
-	<input type="submit" value="删除所选备份" class="submit2" />
+	<input type="submit" value="删除所选备份" class="submit" />
 	</td>
 	</tr>
 	</tfoot>
@@ -76,7 +76,7 @@ $(document).ready(function(){
       <tr>
         <td align="left" width="65"></td>
         <td valign="top">	  
-		<input type="submit" value="开始备份" class="submit2" />
+		<input type="submit" value="开始备份" class="submit" />
         </td>
       </tr>
     </tbody>

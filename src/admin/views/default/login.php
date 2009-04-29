@@ -27,7 +27,7 @@
 	<div class="login-bottom"></div>
 	<div class="back"><a href="../index.php">&laquo;返回首页</a></div>
 </div>
-</div>
+</form>
 <script>focusEle('user');</script>
 </body>
 </html>

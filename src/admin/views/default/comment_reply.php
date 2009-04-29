@@ -17,8 +17,8 @@
       <tr>
         <td></td><td>
 		<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
-		<input type="submit" value="确 定" class="submit2" />
-		<input type="button" value="取 消" class="submit2" onclick="javascript: window.history.back();"/>
+		<input type="submit" value="确 定" class="submit" />
+		<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();"/>
 		</td>
       </tr>
     </tbody>

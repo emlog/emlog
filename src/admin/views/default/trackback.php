@@ -13,7 +13,7 @@ setTimeout(hideActived,2600);
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的引用</span><?php endif;?>
 </div>
 <div class=line></div>
-<form action="trackback.php?action=dell_all_tb" method="post">
+<form action="trackback.php?action=dell_all_tb" method="post" name="form_tb" id="form_tb">
   <table width="95%" id="adm_tb_list">
   <thead>
       <tr class="rowstop">
@@ -37,15 +37,17 @@ setTimeout(hideActived,2600);
       </tr>
 	<?php endforeach; ?>
 	</tbody>
-	<tfoot>
-	  <tr>
-      <td align="right" colspan="7">(共<?php echo $num; ?>条引用/每页最多显示15条) <?php echo $pageurl; ?></td>
-      </tr>  
-      <tr>
-        <td align="center" colspan="5">
-		<input type="submit" value="删除所选引用" class="submit2" />
-		</td>
-      </tr>
-    </tfoot>
   </table>
+	<div class="list_footer">
+	选中项：
+    <a href="javascript:tbact('del');">删除</a>
+	</div>
+  <div class="page"><?php echo $pageurl; ?></div> 
 </form>
+<script>
+function tbact(act){
+	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}
+	$("#operate").val(act);
+	$("#form_tb").submit();
+}
+</script>
