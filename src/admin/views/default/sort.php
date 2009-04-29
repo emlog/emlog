@@ -21,7 +21,7 @@
 <?php foreach($sorts as $key=>$value): ?>
       <tr>
         <td>
-        <input type="hidden" value="<?php echo $value['sid'];?>" />
+        <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
         <input size="1" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
 		<td class="sortname"><?php echo $value['sortname']; ?></td>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>

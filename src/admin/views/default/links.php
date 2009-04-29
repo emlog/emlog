@@ -1,7 +1,6 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
 <script type='text/javascript'>
 $(document).ready(function(){
-	$(".addItem a").click(function(){$(".addItem p").toggle("fast");});
 	$("#adm_link_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_link_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
