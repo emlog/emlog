@@ -80,12 +80,12 @@ if($action == '')
 //批量操作日志
 if($action == 'admin_all_log')
 {
-	$dowhat = isset($_POST['modall']) ? $_POST['modall'] : '';
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
 	$logs = isset($_POST['blog']) ? $_POST['blog'] : '';
 	$sort = isset($_POST['sort']) ? $_POST['sort'] : '';
 
-	if($dowhat == '')
+	if($operate == '')
 	{
 		header("Location: ./admin_log.php?pid=$pid&error_b=true");
 		exit;
@@ -96,9 +96,9 @@ if($action == 'admin_all_log')
 		exit;
 	}
 
-	switch ($dowhat)
+	switch ($operate)
 	{
-		case 'del_log':
+		case 'del':
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->deleteLog($key);
@@ -149,7 +149,7 @@ if($action == 'admin_all_log')
 
 			header("Location: ./admin_log.php?active_hide=true");
 			break;
-		case 'show':
+		case 'pub':
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->hideSwitch($key, 'n');

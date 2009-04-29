@@ -4,24 +4,6 @@ $isdraft = $pid == 'draft' ? '&pid=draft' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 ?>
-<script type='text/javascript'>
-$(document).ready(function(){
-	
-	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_log_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")});
-	$("#f_t_sort").click(function(){
-		$("#f_sort").toggle();
-		$("#f_tag").hide();
-	});
-	$("#f_t_tag").click(function(){
-		$("#f_tag").toggle();
-		$("#f_sort").hide();
-	})
-});
-setTimeout(hideActived,2600);
-</script>
 <div class=containertitle><b><?php echo $pwd; ?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除日志成功</span><?php endif;?>
 <?php if(isset($_GET['active_up'])):?><span class="actived">推荐日志成功</span><?php endif;?>
@@ -64,7 +46,7 @@ foreach($tags as $val):
 <?php endforeach;?>
 </div>
 </div>
-<form action="admin_log.php?action=admin_all_log" method="post" name="form" id="form">
+<form action="admin_log.php?action=admin_all_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
   <table width="95%" id="adm_log_list">
   <thead>
@@ -127,13 +109,13 @@ foreach($tags as $val):
 	<tfoot>
     <tr class="rowstop">
     <td colspan="8">选中项：
-    删除
-	转入草稿箱
+    <a href="javascript:logact('del');">删除</a>
 	<?php if($pid == 'draft'): ?>
-	发布
+	<a href="javascript:logact('pub');">发布</a>
 	<?php else: ?>
-	推荐
-    取消推荐
+	<a href="javascript:logact('hide');">转入草稿箱</a>
+	<a href="javascript:logact('top');">置顶</a>
+    <a href="javascript:logact('notop');">取消置顶</a>
 	<select name="sort">
 	<option value="-1">移动到分类...</option>
 	<?php foreach($sorts as $val):?>
@@ -141,6 +123,7 @@ foreach($tags as $val):
 	<?php endforeach;?>
 	</select>
 	<?php endif;?>
+	<input name="operate" id="operate" value="" type="hidden" />
 	</td>
     </tr>
     <tr>
@@ -149,3 +132,33 @@ foreach($tags as $val):
 	</tfoot>
 </table>
 </form>
+<script>
+$(document).ready(function(){
+	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_log_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")});
+	$("#f_t_sort").click(function(){
+		$("#f_sort").toggle();
+		$("#f_tag").hide();
+	});
+	$("#f_t_tag").click(function(){
+		$("#f_tag").toggle();
+		$("#f_sort").hide();
+	})
+});
+setTimeout(hideActived,2600);
+function logact(act){
+	if(act == 'del') var act_des = '删除';
+	if(act == 'hide') var act_des = '转入草稿箱';
+	if(act == 'top') var act_des = '置顶';
+	if(act == 'notop') var act_des = '取消置顶';
+	if(act == 'pub') var act_des = '发布';
+	if(confirm('你确定要将所选日志'+act_des+'？')){
+		$("#operate").val(act);
+		$("#form_log").submit();
+	}else{
+		return;
+	}
+}
+</script>
