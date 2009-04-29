@@ -36,7 +36,6 @@ $$a = "class=\"filter\"";
         <td width="320"><b>内容</b></td>
         <td width="160"><b>评论者</b></td>
         <td width="150"><b>时间</b></td>
-        <td width="150" colspan="3"></td>
       </tr>
     </thead>
     <tbody>
@@ -51,11 +50,6 @@ $$a = "class=\"filter\"";
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
         <td><?php echo $value['poster']; ?></td>
         <td><?php echo $value['date']; ?></td>
-        <td>
-        <a href="comment.php?action=show_comment&amp;cid=<?php echo $value['cid']; ?>">审核</a>
-        <a href="comment.php?action=hide_comment&amp;cid=<?php echo $value['cid']; ?>">屏蔽</a>
-        <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
-		</td>
      </tr>
 	<?php endforeach; ?>
 	</tbody>

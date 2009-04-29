@@ -23,16 +23,8 @@ if($action == '')
 	require_once(getViews('trackback'));
 	include getViews('footer');cleanPage();
 }
-
-if ($action== 'del_tb')
-{
-	$tbid = isset($_GET['tbid']) ? intval($_GET['tbid']) : '';
-	$emTrackback->deleteTrackback($tbid);
-	$CACHE->mc_sta();
-	header("Location: ./trackback.php?active_del=true");
-}
-
-if($action== 'dell_all_tb')
+//删除引用
+if($action == 'dell')
 {
 	$tbs = isset($_POST['tb']) ? $_POST['tb'] : '';
 	if(!$tbs)

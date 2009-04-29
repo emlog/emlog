@@ -13,7 +13,7 @@ setTimeout(hideActived,2600);
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的引用</span><?php endif;?>
 </div>
 <div class=line></div>
-<form action="trackback.php?action=dell_all_tb" method="post" name="form_tb" id="form_tb">
+<form action="trackback.php?action=dell" method="post" name="form_tb" id="form_tb">
   <table width="95%" id="adm_tb_list">
   <thead>
       <tr class="rowstop">
@@ -22,7 +22,6 @@ setTimeout(hideActived,2600);
         <td width="300"><b>来源</b></td>
 		<td width="80"><b>IP</b></td>
         <td width="120"><b>时间</b></td>
-        <td width="80"></td>
       </tr>
   </thead>
   <tbody>
@@ -33,7 +32,6 @@ setTimeout(hideActived,2600);
         <td><?php echo $value['blog_name']; ?></td>
         <td><?php echo $value['ip']; ?></td>
         <td><?php echo $value['date']; ?></td>
-        <td> <a href="javascript: em_confirm(<?php echo $value['tbid']; ?>, 'trackback');">删除</a> </td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>

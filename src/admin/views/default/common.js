@@ -7,25 +7,9 @@ function CheckAll(form) {
 }
 function em_confirm (id, property) {
 	switch (property){
-		case 'comment':
-		var urlreturn="comment.php?action=del_comment&commentid="+id;
-		var msg = "你确定要删除该评论吗？";
-		break;
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
-		var msg = "你确定要删除该友情站点吗？";
-		break;
-		case 'log':
-		var urlreturn="admin_log.php?action=dellog&gid="+id;
-		var msg = "你确定要删除该篇日志吗？";
-		break;
-		case 'draft':
-		var urlreturn="admin_log.php?action=deldraft&gid="+id;
-		var msg = "你确定要删除该篇草稿吗？";
-		break;
-		case 'trackback':
-		var urlreturn="trackback.php?action=del_tb&tbid="+id;
-		var msg = "你确定要删除该引用吗？";
+		var msg = "你确定要删除该链接吗？";
 		break;
 		case 'backup':
 		var urlreturn="backup.php?action=renewdata&sqlfile="+id;

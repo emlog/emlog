@@ -32,8 +32,7 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-
-//批量操作评论
+//操作评论
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -49,7 +48,6 @@ if($action== 'admin_all_coms')
 		header("Location: ./comment.php?error_a=true");
 		exit;
 	}
-	//删除
 	if($operate == 'del')
 	{
 		$emComment->batchComment('delcom', $comments);
@@ -57,7 +55,6 @@ if($action== 'admin_all_coms')
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_del=true");
 	}
-	//屏蔽
 	if($operate == 'hide')
 	{
 		$emComment->batchComment('hidecom', $comments);
@@ -65,7 +62,6 @@ if($action== 'admin_all_coms')
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_hide=true");
 	}
-	//审核
 	if($operate == 'pub')
 	{
 		$emComment->batchComment('showcom', $comments);
@@ -73,33 +69,6 @@ if($action== 'admin_all_coms')
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_show=true");
 	}
-}
-//删除评论
-if ($action== 'del_comment')
-{
-	$commentId = isset($_GET['commentid']) ? intval($_GET['commentid']) : '';
-	$emComment->delComment($commentId);
-	$CACHE->mc_sta();
-	$CACHE->mc_comment();
-	header("Location: ./comment.php?active_del=true");
-}
-//屏蔽评论
-if($action=='hide_comment')
-{
-	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$emComment->hideComment($commentId);
-	$CACHE->mc_sta();
-	$CACHE->mc_comment();
-	header("Location: ./comment.php?active_hide=true");
-}
-//审核评论
-if($action=='show_comment')
-{
-	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$emComment->showComment($commentId);
-	$CACHE->mc_sta();
-	$CACHE->mc_comment();
-	header("Location: ./comment.php?active_show=true");
 }
 //回复评论
 if ($action== 'reply_comment')

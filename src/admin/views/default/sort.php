@@ -13,8 +13,8 @@
     <thead>
       <tr class="rowstop">
         <td width="30"><b>序号</b></td>
-        <td width="560"><b>分类名称</b></td>
-        <td width="260"></td>
+        <td width="500"><b>分类名称</b></td>
+        <td width="300"></td>
       </tr>
     </thead>
     <tbody>

@@ -23,7 +23,7 @@ setTimeout(hideActived,2600);
 	  	<td width="30"><b>序号</b></td>
         <td width="230"><b>链接</b></td>
 		<td width="30" align="center"><b>查看</b></td>
-		<td width="350"><b>描述</b></td>
+		<td width="550"><b>描述</b></td>
         <td width="100"></td>
       </tr>
     </thead>
