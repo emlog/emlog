@@ -17,7 +17,7 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部(<?php echo $logNum; ?>)</a></span>
 <span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 </div>

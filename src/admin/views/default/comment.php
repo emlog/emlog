@@ -23,7 +23,7 @@ $a = "hide_$hide";
 $$a = "class=\"filter\"";
 ?>
 <div class="filters">
-<span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
+<span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部(<?php echo $comnum_all; ?>)</a></span>
 <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核</a></span>
 <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
 </div>
