@@ -229,7 +229,8 @@
 		<li><input type="text" name="new_title" style="width:350px;" value="" /></li>
 		<li>内容 （支持html）</li>
 		<li><textarea name="new_content" rows="8" wrap="off" style="width:350px;overflow:auto;"></textarea></li>
-		<li><input type="submit" name="" value="添加组件"  /></li>
+		<li><input type="submit" name="" value="添加组件"  />
+		<span style="margin-left:158px;"><a href="http://www.emlog.net/extend/widgets" target="_blank">获取更多有趣的组件&raquo;</a></span></li>
 	</div>
 	</form>
 </div>

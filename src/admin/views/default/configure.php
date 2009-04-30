@@ -113,7 +113,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       </tr>
       <tr>
 	  <tr>
-        <td align="right">开启URL伪静态：<br /></td>
+        <td align="right">开启URL优化：<br /></td>
         <td class="care">
 		<select name="isurlrewrite">
           <option value="y" <?php echo $ex9; ?>>是</option>
