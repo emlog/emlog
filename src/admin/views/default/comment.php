@@ -46,7 +46,7 @@ $$a = "class=\"filter\"";
 	$value['content'] = subString($value['content'],0,30);
 	?>
      <tr>
-        <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" /></td>
+        <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" class="ids" /></td>
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
         <td><?php echo $value['poster']; ?></td>
         <td><?php echo $value['date']; ?></td>
@@ -65,6 +65,10 @@ $$a = "class=\"filter\"";
 </form>
 <script>
 function commentact(act){
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的日志');
+		return;
+	}
 	if(act == 'del' && !confirm('你确定要删除所选评论吗？')){return;}
 	$("#operate").val(act);
 	$("#form_com").submit();

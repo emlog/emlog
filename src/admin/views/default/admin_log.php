@@ -78,7 +78,7 @@ foreach($tags as $val):
 	}
 	?>
       <tr>
-      <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" /></td>
+      <td><input type="checkbox" name="blog[<?php echo $value['gid']; ?>]" value="1" class="ids" /></td>
       <td width="517">
       <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> 
       <?php echo $value['attnum']; ?>
@@ -108,11 +108,12 @@ foreach($tags as $val):
 	<a href="javascript:logact('hide');">转入草稿箱</a>
 	<a href="javascript:logact('top');">置顶</a>
     <a href="javascript:logact('notop');">取消置顶</a>
-	<select name="sort">
-	<option value="-1">移动到分类...</option>
+	<select name="sort" id="sort" onChange="move2sort(this);">
+	<option value="" selected="selected">移动到分类...</option>
 	<?php foreach($sorts as $val):?>
 		<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
 	<?php endforeach;?>
+	<option value="-1">未分类</option>
 	</select>
 	<?php endif;?>
 	<input name="operate" id="operate" value="" type="hidden" />
@@ -136,8 +137,20 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 function logact(act){
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的日志');
+		return;}
 	if(act == 'del' && !confirm('你确定要删除所选日志吗？')){return;}
 	$("#operate").val(act);
+	$("#form_log").submit();
+}
+function move2sort(obj) {
+	var sortId = obj.value;
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的日志');
+		return;}
+	if($('#sort').val() == '')return;
+	$("#operate").val('move');
 	$("#form_log").submit();
 }
 </script>

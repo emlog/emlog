@@ -27,7 +27,7 @@ setTimeout(hideActived,2600);
   <tbody>
 	<?php foreach($trackback as $key=>$value):?>	
       <tr>
-        <td><input type="checkbox" name="tb[<?php echo $value['tbid']; ?>]" value="1" ></td>
+        <td><input type="checkbox" name="tb[<?php echo $value['tbid']; ?>]" value="1" class="ids" ></td>
         <td><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['title']; ?></a></td>
         <td><?php echo $value['blog_name']; ?></td>
         <td><?php echo $value['ip']; ?></td>
@@ -44,6 +44,10 @@ setTimeout(hideActived,2600);
 </form>
 <script>
 function tbact(act){
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的日志');
+		return;
+	}
 	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}
 	$("#operate").val(act);
 	$("#form_tb").submit();

@@ -5,6 +5,15 @@ function CheckAll(form) {
 		e.checked = form.chkall.checked;
 	}
 }
+function getChecked(node) {
+	var re = false;
+	$('input.'+node).each(function(i){
+		if (this.checked) {
+			re = true;
+		}
+	});
+	return re;
+}
 function em_confirm (id, property) {
 	switch (property){
 		case 'link':
