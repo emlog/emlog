@@ -52,7 +52,7 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 }else{
 	$blogid = $emBlog->addlog($logData);
 	$emTag->addTag($tagstring, $blogid);
-	$dftnum = $emBlog->getLogNum('y', '', $uid,);
+	$dftnum = $emBlog->getLogNum('y', '', $uid);
 }
 
 $CACHE->mc_logtags();
