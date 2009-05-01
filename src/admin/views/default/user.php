@@ -13,8 +13,8 @@
       <tr class="rowstop">
         <td width="60"><b>用户名</b></td>
         <td width="130"><b>昵称</b></td>
-        <td width="150"><b>电子邮件</b></td>
-        <td width="30" align="center"><b>日志数</b></td>
+		<td width="60" align="center"><b>日志数</b></td>
+        <td width="260"><b>电子邮件</b></td>
       </tr>
     </thead>
     <tbody>
@@ -24,8 +24,8 @@
      <tr>
         <td><a href="user.php?action=mod&id=<?php echo $value['uid']?>"><?php echo $val['login']; ?></a></td>
 		<td><?php echo $val['name']; ?></td>
+		<td align="center"></td>
         <td><?php echo $val['email']; ?></td>
-        <td align="center"></td>
      </tr>
 	<?php endforeach; ?>
 	</tbody>
@@ -33,7 +33,7 @@
 </form>
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 0px 3px;"><a href="javascript:$('#user_new').toggle();void(0);">添加作者&raquo;</a></div>
-<div id="user_new">
+<div id="user_new" style="display:none;">
 <table width="500" id="adm_comment_list" cellpadding="2">
 	<tr>
 		<td align="right">用户名</td>

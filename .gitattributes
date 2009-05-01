@@ -5,11 +5,10 @@ ext/robots.txt -text svn_keywords=Id
 /readme.html -text
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
-src/admin/backup.php -text svn_keywords=Id
 src/admin/blogger.php -text svn_keywords=Id
-src/admin/cache.php -text svn_keywords=Id
 src/admin/comment.php -text svn_keywords=Id
 src/admin/configure.php -text svn_keywords=Id
+src/admin/data.php -text svn_keywords=Id
 src/admin/fckeditor/editor/css/fck_editorarea.css -text
 src/admin/fckeditor/editor/css/fck_internal.css -text
 src/admin/fckeditor/editor/css/images/fck_anchor.gif -text
@@ -110,15 +109,14 @@ src/admin/views/default/add_page.php -text
 src/admin/views/default/admin_log.php -text svn_keywords=Id
 src/admin/views/default/admin_page.php -text
 src/admin/views/default/attlib.php -text
-src/admin/views/default/backup.php -text svn_keywords=Id
 src/admin/views/default/blogger.php -text svn_keywords=Id
-src/admin/views/default/cache.php -text svn_keywords=Id
 src/admin/views/default/comment.php -text svn_keywords=Id
 src/admin/views/default/comment_reply.php -text svn_keywords=Id
 src/admin/views/default/common.js -text
 src/admin/views/default/configure.php -text svn_keywords=Id
 src/admin/views/default/css-login.css -text
 src/admin/views/default/css-main.css -text svn_keywords=Id
+src/admin/views/default/data.php -text svn_keywords=Id
 src/admin/views/default/edit_log.php -text svn_keywords=Id
 src/admin/views/default/edit_page.php -text
 src/admin/views/default/footer.php -text svn_keywords=Id

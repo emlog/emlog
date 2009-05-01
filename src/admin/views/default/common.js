@@ -21,7 +21,7 @@ function em_confirm (id, property) {
 		var msg = "你确定要删除该链接吗？";
 		break;
 		case 'backup':
-		var urlreturn="backup.php?action=renewdata&sqlfile="+id;
+		var urlreturn="data.php?action=renewdata&sqlfile="+id;
 		var msg = "你确定要导入该备份文件吗？";
 		break;
 		case 'attachment':

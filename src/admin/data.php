@@ -16,18 +16,18 @@ if($action == '')
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	
 	include getViews('header');	
-	require_once(getViews('backup'));
+	require_once(getViews('data'));
 	include getViews('footer');
 	cleanPage();
 }
-if($action=='bakstart')
+if($action == 'bakstart')
 {
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
 	$table_box = isset($_POST['table_box']) ? $_POST['table_box'] : '';
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
 	{
-		header("Location: ./backup.php?error_b=true");
+		header("Location: ./data.php?error_b=true");
 		exit;
 	}
 	$filename = '../content/backup/'.$bakfname.'.sql';
@@ -53,7 +53,7 @@ if($action=='bakstart')
 				@fclose($fp);
 				emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
 			}else{
-				header("Location: ./backup.php?active_backup=true");
+				header("Location: ./data.php?active_backup=true");
 			}
 		}else{
 			emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
@@ -100,22 +100,40 @@ if ($action == 'renewdata')
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_twitter();
-	header("Location: ./backup.php?active_import=true");
+	header("Location: ./data.php?active_import=true");
 }
 
 //批量删除备份文件
-if($action== 'dell_all_bak')
+if($action == 'dell_all_bak')
 {
 	if(!isset($_POST['bak']))
 	{
-		header("Location: ./backup.php?error_a=true");
+		header("Location: ./data.php?error_a=true");
 	}else{
 		foreach($_POST['bak'] as $value)
 		{
 			unlink($value);
 		}
-		header("Location: ./backup.php?active_del=true");
+		header("Location: ./data.php?active_del=true");
 	}
+}
+//更新缓存
+if ($action == 'mkcache')
+{
+	$CACHE->mc_user();
+	$CACHE->mc_options();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
+	$CACHE->mc_logatts();
+	$CACHE->mc_sta();
+	$CACHE->mc_link();
+	$CACHE->mc_tags();
+	$CACHE->mc_sort();
+	$CACHE->mc_twitter();
+	$CACHE->mc_newlog();
+	header("Location: ./data.php?active_mc=true");
 }
 
 function bakindata($filename)
