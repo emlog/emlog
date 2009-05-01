@@ -12,7 +12,7 @@ if($action == '')
 {
 	include getViews('header');
 
-	$result = $DB->query("select * from ".DB_PREFIX."user");
+	$result = $DB->query("select * from ".DB_PREFIX."user where uid=$uid");
 	$row=$DB->fetch_array($result);
 	extract($row);
 	$name = htmlspecialchars($nickname);
@@ -26,7 +26,7 @@ if($action == '')
 
 if($action == 'modintro')
 {
-	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
+	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;//前台调用标识
 	if(!$flg)
 	{
 		$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
@@ -41,14 +41,16 @@ if($action == 'modintro')
 		}else{
 			$usericon = $photo;
 		}
-		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description'";
+		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description' where uid=$uid";
 		$DB->query($sql);
-		$CACHE->mc_blogger();
+
+		$CACHE->mc_user();
+
 		header("Location: ./blogger.php?active_edit=true");
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
-		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description'");
-		$CACHE->mc_blogger();
+		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description' where uid=$uid");
+		$CACHE->mc_user();
 		echo $description;
 	}
 }
@@ -75,7 +77,7 @@ if($action == 'delicon')
 		}
 	}
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
-	$CACHE->mc_blogger();
+	$CACHE->mc_user();
 	header("Location: ./blogger.php?active_del=true");
 }
 

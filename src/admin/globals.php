@@ -19,6 +19,7 @@ define('IMG_ATT_MAX_H',			460);//图片附件缩略图最大高
 define('ICON_MAX_W',			140);//个性头像缩略图最大宽
 define('ICON_MAX_H',			220);//个性头像缩略图最大高
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
+
 //检测后台模板
 define('ADMIN_ROOT', dirname(__FILE__));
 $em_tpldir = ADMIN_ROOT.'/views/'.ADMIN_TPL.'/';
@@ -28,7 +29,8 @@ if (!is_dir($em_tpldir))
 }
 //读取统计信息
 $sta_cache = $CACHE->readCache('sta');
-extract($sta_cache);
+$sort_cache = $CACHE->readCache('sort');
+$user_cache = $CACHE->readCache('user');
 
 //登陆验证
 if ($action == 'login')
@@ -41,7 +43,7 @@ if ($action == 'login')
 	if (checkUser($username, $password, $img_code, $login_code) === true)
 	{
 		setAuthCookie($username, $ispersis);
-		header("Location: ../index.php"); 
+		header("Location: ../index.php");
 	}else{
 		loginPage();
 	}
@@ -60,6 +62,15 @@ $userData = array();
 if(isLogin() === false)
 {
 	loginpage();
+}
+
+$uid = $userData['uid'];
+$role = $userData['role'];
+
+$request_uri = substr(basename($_SERVER['SCRIPT_NAME']), 0, -4);
+if ($role == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))
+{
+	formMsg('权限不足！','./index.php', 0);
 }
 
 ?>

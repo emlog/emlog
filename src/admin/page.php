@@ -15,7 +15,7 @@ $navibar = unserialize($navibar);
 if($action == '')
 {
 	$emPage = new emBlog($DB);
-	$pages = $emPage->getLog('', '', 1, 0, 'admin', 'page');
+	$pages = $emPage->getBlogsForAdmin('', '', 1, $uid, 'page');
 
 	include getViews('header');
 	require_once(getViews('admin_page'));

@@ -72,7 +72,7 @@ if (!isset($action) || empty($action))
 	} elseif($sortid) {
 		require_once(EMLOG_ROOT.'/model/C_sort.php');
 		$emSort = new emSort($DB);
-		$sortName = $emSort->getSortName($sortid);
+		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -82,7 +82,7 @@ if (!isset($action) || empty($action))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?page";
 	}
-	$logs = $emBlog->getLog($sqlSegment, 'n', $page, $index_lognum, 'homepage');
+	$logs = $emBlog->getBlogsForHome($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 	include getViews('header');

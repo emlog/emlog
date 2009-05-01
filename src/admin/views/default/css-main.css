@@ -99,3 +99,5 @@ textarea{font-size:12px}
 .msg_type_2 a{color:#F93; text-decoration:none}
 .msg_type_2 a:hover{color:#FC3}
 #adm_plugin_list img{cursor:pointer}
+#user_new { margin:20px 10px;}
+#user_new li{ list-style:none; }

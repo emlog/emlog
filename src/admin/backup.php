@@ -91,7 +91,7 @@ if ($action == 'renewdata')
 	fclose($fp);
 	unset($sql);
 	bakindata($sqlfile);
-	$CACHE->mc_blogger();
+	$CACHE->mc_user();
 	$CACHE->mc_options();
 	$CACHE->mc_record();
 	$CACHE->mc_comment();

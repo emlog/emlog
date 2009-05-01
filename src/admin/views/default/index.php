@@ -1,7 +1,10 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div id="admindex">
 <div id="admindex_main">
-你有<span class=care2><b><?php echo $lognum; ?></b></span>篇日志，<span class=care2><b><?php echo $tbnum; ?></b></span>条引用通告，<span class=care2><b><?php echo $comnum_all; ?></b></span>条评论<?php if($ischkcomment == 'y' || $hidecom != 0): ?>，其中有<b><a href="./comment.php?hide=y"><?php echo $hidecom; ?></a></b>条评论等待审核<?php endif; ?>。
+目前有<span class=care2><b><?php echo $uid == 1 ? $sta_cache['lognum'] : $user_cache[$uid]['lognum']; ?></b></span>篇日志，
+<span class=care2><b><?php echo $sta_cache['tbnum']; ?></b></span>条引用通告，
+<span class=care2><b><?php echo $sta_cache['comnum_all']; ?></b></span>条评论<?php if($ischkcomment == 'y' || $sta_cache['hidecom'] != 0): ?>，
+其中有<b><a href="./comment.php?hide=y"><?php echo $sta_cache['hidecom']; ?></a></b>条评论等待审核<?php endif; ?>。
 </div>
 <div class="clear"></div>
 <div id="admindex_servinfo">

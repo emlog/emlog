@@ -50,13 +50,12 @@ setTimeout(hideActived,2600);
     <table width="95%">
       <tbody>
         <tr nowrap="nowrap">
-          <td>名称
-            <br />
-            <input maxlength="200" size="35" name="sitename" />
-            <br /></td></tr>
+        <td>名称<br />
+        <input maxlength="200" size="35" name="sitename" /><br />
+        </td></tr>
         <tr nowrap="nowrap">
         <td>地址<br />
-			<input maxlength="200" size="35" name="siteurl" /><br />
+		<input maxlength="200" size="35" name="siteurl" /><br />
 		</td>
         </tr>
         <tr nowrap="nowrap">
@@ -65,10 +64,10 @@ setTimeout(hideActived,2600);
 		</td>
         </tr>
         <tr>
-          <td colspan="2">
-	 	 	<input type="submit" value="添加链接" class="submit" />     
-		  </td>
-        </tr>
+         <td colspan="2">
+	 	 <input type="submit" value="添加链接" class="submit" />
+		 </td>
+		 </tr>
       </tbody>
     </table>
 </form>

@@ -59,14 +59,17 @@ class emBlog {
 	/**
 	 * 获取指定条件的日志条数
 	 *
-	 * @param string $hide
-	 * @param string $condition
-	 * @return int
+	 * @param unknown_type $hide
+	 * @param unknown_type $condition
+	 * @param unknown_type $uid
+	 * @param unknown_type $type
+	 * @return unknown
 	 */
-	function getLogNum($hide = 'n', $condition = '', $type = 'blog')
+	function getLogNum($hide = 'n', $condition = '', $uid = 1, $type = 'blog')
 	{
 		$DraftNum = '';
-		$res = $this->dbhd->query("SELECT gid FROM $this->blogTable WHERE type='$type' and hide='$hide' $condition");
+		$author = $uid == 1 && $hide == 'n' ? '' : 'and author='.$uid;
+		$res = $this->dbhd->query("SELECT gid FROM $this->blogTable WHERE type='$type' and hide='$hide' $author $condition");
 		$LogNum = $this->dbhd->num_rows($res);
 		return $LogNum;
 	}
@@ -123,56 +126,71 @@ class emBlog {
 	}
 
 	/**
-	 * 获取多条日志
+	 * 后台获取日志列表
 	 *
-	 * @param string $condition
-	 * @param string $hide_state
-	 * @param int $page
-	 * @param string $prePageNum
-	 * @param string $spot 使用场所：前台、后台
-	 * @param string $type 类型：日志、页面
-	 * @return array
+	 * @param unknown_type $condition
+	 * @param unknown_type $hide_state
+	 * @param unknown_type $page
+	 * @param unknown_type $uid
+	 * @param unknown_type $type
+	 * @return unknown
 	 */
-	function getLog($condition = '', $hide_state = '', $page = 1, $prePageNum = 15, $spot = 'admin', $type = 'blog')
+	function getBlogsForAdmin($condition = '', $hide_state = '', $page = 1, $uid = 1, $type = 'blog')
 	{
-		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
+		$start_limit = !empty($page) ? ($page - 1) * 15 : 0;
+		$author = $uid == 1 && $hide_state == 'n' ? '' : 'and author='.$uid;
 		$hide_state  = $hide_state ? "and hide='$hide_state'" : '';
-		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
-		$sql = "SELECT * FROM $this->blogTable WHERE type='$type' $hide_state $condition $limit";
+		$limit = "LIMIT $start_limit, 15";
+		$sql = "SELECT * FROM $this->blogTable WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
-			switch ($spot)
+			$row['date'] = date("Y-m-d H:i",$row['date']);
+			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
+			$row['gid'] = $row['gid'];
+			$row['comnum'] = $row['comnum'];
+			$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
+			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
+			$logs[] = $row;
+		}
+		return $logs;
+	}
+
+	/**
+	 * 前台获取日志列表
+	 *
+	 * @param unknown_type $page
+	 * @param unknown_type $prePageNum
+	 * @param unknown_type $condition
+	 * @return unknown
+	 */
+	function getBlogsForHome($condition = '', $page = 1, $prePageNum)
+	{
+		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
+		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
+		$sql = "SELECT * FROM $this->blogTable WHERE type='blog' and hide='n' $condition $limit";
+		$res = $this->dbhd->query($sql);
+		$logs = array();
+		while($row = $this->dbhd->fetch_array($res))
+		{
+			//$row['date'];
+			$row['log_title'] = htmlspecialchars(trim($row['title']));
+			$row['logid'] = $row['gid'];
+			$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
+			if(!empty($row['password']) && $cookiePassword != $row['password'])
 			{
-				case 'admin':
-					$row['date'] = date("Y-m-d H:i",$row['date']);
-					$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
-					$row['gid'] = $row['gid'];
-					$row['comnum'] = $row['comnum'];
-					$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
-					$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
-					break;
-				case 'homepage':
-					//$row['date'];
-					$row['log_title'] = htmlspecialchars(trim($row['title']));
-					$row['logid'] = $row['gid'];
-					$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
-					if(!empty($row['password']) && $cookiePassword != $row['password'])
-					{
-						$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
-					}else{
-						if(!empty($row['excerpt']))
-						{
-							$row['excerpt'] .= '<p><a href="./?action=showlog&gid='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
-						}
-					}
-					$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
-					$row['toplog'] = $row['top'];
-					$row['attachment'] = '';
-					$row['tag']  = '';
-					break;
+				$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+			}else{
+				if(!empty($row['excerpt']))
+				{
+					$row['excerpt'] .= '<p><a href="./?action=showlog&gid='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
+				}
 			}
+			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
+			$row['toplog'] = $row['top'];
+			$row['attachment'] = '';
+			$row['tag']  = '';
 			$logs[] = $row;
 		}
 		return $logs;
@@ -331,7 +349,7 @@ class emBlog {
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if($pwd !== addslashes($logPwd))
 		{
-echo <<<EOT
+			echo <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -369,14 +387,14 @@ body {
 </body>
 </html>
 EOT;
-if($cookiePwd)
-{
-	setcookie('em_logpwd_'.$logid, ' ', time() - 31536000);
+			if($cookiePwd)
+			{
+				setcookie('em_logpwd_'.$logid, ' ', time() - 31536000);
+			}
+			exit;
+}else {
+	setcookie('em_logpwd_'.$logid, $logPwd);
 }
-exit;
-		}else {
-			setcookie('em_logpwd_'.$logid, $logPwd);
-		}
 	}
 }
 

@@ -167,13 +167,13 @@ src/admin/views/default/tagedit.php -text svn_keywords=Id
 src/admin/views/default/template.php -text svn_keywords=Id
 src/admin/views/default/trackback.php -text svn_keywords=Id
 src/admin/views/default/upload.php -text
+src/admin/views/default/user.php -text
 src/admin/views/default/widgets.php -text
 src/admin/widgets.php -text
 src/admin/write_log.php -text svn_keywords=Id
 src/calendar.php -text svn_keywords=Id
 src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
-src/content/cache/blogger -text svn_keywords=Id
 src/content/cache/comments -text svn_keywords=Id
 src/content/cache/links -text svn_keywords=Id
 src/content/cache/log_atts -text svn_keywords=Id
@@ -186,6 +186,7 @@ src/content/cache/sort -text
 src/content/cache/sta -text svn_keywords=Id
 src/content/cache/tags -text svn_keywords=Id
 src/content/cache/twitter -text svn_keywords=Id
+src/content/cache/user -text
 src/content/plugins/tips/icon_tips.gif -text
 src/content/plugins/tips/tips.php -text
 src/content/templates/ColdBlue/css/legacy.css -text
@@ -1278,6 +1279,7 @@ src/model/C_plugin.php -text
 src/model/C_sort.php -text svn_keywords=Id
 src/model/C_tag.php -text
 src/model/C_trackback.php -text
+src/model/C_user.php -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id

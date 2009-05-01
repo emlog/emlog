@@ -60,8 +60,8 @@ if($action == '')
 		$pwd = '日志管理';
 	}
 
-	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment);
-	$logs = $emBlog->getLog($sqlSegment, $hide_state, $page);
+	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, $uid, 'blog');
+	$logs = $emBlog->getBlogsForAdmin($sqlSegment, $hide_state, $page, $uid);
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 
@@ -104,6 +104,7 @@ if($action == 'admin_all_log')
 				$emBlog->deleteLog($key);
 			}
 			$CACHE->mc_sta();
+			$CACHE->mc_user();
 			$CACHE->mc_record();
 			$CACHE->mc_comment();
 			$CACHE->mc_logtags();
@@ -138,6 +139,7 @@ if($action == 'admin_all_log')
 				$emBlog->hideSwitch($key, 'y');
 			}
 			$CACHE->mc_sta();
+			$CACHE->mc_user();
 			$CACHE->mc_record();
 			$CACHE->mc_logtags();
 			$CACHE->mc_logatts();
@@ -156,6 +158,7 @@ if($action == 'admin_all_log')
 			}
 
 			$CACHE->mc_sta();
+			$CACHE->mc_user();
 			$CACHE->mc_record();
 			$CACHE->mc_logtags();
 			$CACHE->mc_logatts();

@@ -6,9 +6,7 @@
  * $Id$
  */
 
-
 class mkcache {
-
 	var $dbhd;
 	var $db_prefix;
 
@@ -34,28 +32,6 @@ class mkcache {
 		}
 		$cacheData = serialize($options_cache);
 		$this->cacheWrite($cacheData,'options');
-	}
-	/**
-	 * 个人资料缓存
-	 */
-	function mc_blogger()
-	{
-		$blogger = $this->dbhd->once_fetch_array("select * from ".$this->db_prefix."user ");
-		$icon = '';
-		if($blogger['photo'])
-		{
-			$photosrc = substr($blogger['photo'],3);
-			$imgsize = chImageSize($blogger['photo'],ICON_MAX_W,ICON_MAX_H);
-			$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
-		}
-		$user_cache = array(
-		'photo' => $icon,
-		'name' =>htmlspecialchars($blogger['nickname']),
-		'mail'	=>htmlspecialchars($blogger['email']),
-		'des'=>$blogger['description']
-		);
-		$cacheData = serialize($user_cache);
-		$this->cacheWrite($cacheData,'blogger');
 	}
 	/**
 	 * 博客统计缓存
@@ -178,7 +154,7 @@ class mkcache {
 		while($row = $this->dbhd->fetch_array($query))
 		{
 			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid=".$row['sid']." AND hide='n' "));
-			$sort_cache[] = array(
+			$sort_cache[$row['sid']] = array(
 			'lognum' => $logNum,
 			'sortname' => htmlspecialchars($row['sortname']),
 			'sid' => intval($row['sid'])
@@ -186,6 +162,36 @@ class mkcache {
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData,'sort');
+	}
+	/**
+	 * 用户信息缓存
+	 */
+	function mc_user()
+	{
+		$user_cache = array();
+		$query = $this->dbhd->query("SELECT * FROM ".$this->db_prefix."user");
+		while($row = $this->dbhd->fetch_array($query))
+		{
+			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
+			$draftNum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
+			$icon = '';
+			if($row['photo'])
+			{
+				$photosrc = substr($row['photo'],3);
+				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);
+				$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
+			}
+			$user_cache[$row['uid']] = array(
+			'photo' => $icon,
+			'name' =>htmlspecialchars($row['nickname']),
+			'mail'	=>htmlspecialchars($row['email']),
+			'des'=>$row['description'],
+			'lognum' => $logNum,
+			'draftnum' => $draftNum
+			);
+		}
+		$cacheData = serialize($user_cache);
+		$this->cacheWrite($cacheData,'user');
 	}
 	/**
 	 * 友站缓存

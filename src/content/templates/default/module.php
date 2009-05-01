@@ -2,18 +2,19 @@
 <?php
 //widget：blogger
 function widget_blogger($title){
-	global $photo,$name,$blogger_des,$em_tpldir; ?>
+	global $user_cache,$em_tpldir; 
+	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
 	<li>
 	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
 	<ul style="text-align:center" id="bloggerinfo">
-	<div id="bloggerinfoimg"><?php echo $photo; ?></div>
+	<div id="bloggerinfoimg"><?php echo $user_cache[1]['photo']; ?></div>
 	<li><b><?php echo $name; ?></b></li>
-		<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ISLOGIN === true): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 		<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $blogger_des; ?></textarea>
+		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
 		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>

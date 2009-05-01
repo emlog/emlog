@@ -16,7 +16,7 @@ if ($action == '')
 }
 if ($action == 'mkcache')
 {
-	$CACHE->mc_blogger();
+	$CACHE->mc_user();
 	$CACHE->mc_options();
 	$CACHE->mc_record();
 	$CACHE->mc_comment();
@@ -24,6 +24,7 @@ if ($action == 'mkcache')
 	$CACHE->mc_logsort();
 	$CACHE->mc_logatts();
 	$CACHE->mc_sta();
+	$CACHE->mc_user();
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_sort();

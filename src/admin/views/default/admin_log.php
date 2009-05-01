@@ -17,7 +17,7 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部(<?php echo $logNum; ?>)</a></span>
+<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
 <span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 </div>
@@ -56,6 +56,7 @@ foreach($tags as $val):
 		<?php if ($pid != 'draft'): ?>
 		<td width="40" align="center"><b>查看</b></td>
 		<?php endif; ?>
+		<td width="100"><b>作者</b></td>
         <td width="146"><b>分类</b></td>
         <td width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
 		<td width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
@@ -65,7 +66,8 @@ foreach($tags as $val):
  	<tbody>
 	<?php 
 	foreach($logs as $key=>$value):
-	$sortName = $emSort->getSortName($value['sortid']);
+	$sortName = $value['sortid'] == -1 ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
+	$author = $user_cache[$value['author']]['name'];
 	$tags = $emTag->getTag($value['gid']);
 	$tagStr = '';
 	foreach ($tags as $val)
@@ -91,6 +93,7 @@ foreach($tags as $val):
 	  <img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
 	  </td>
 	  <?php endif; ?>
+      <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $author; ?></a></td>
       <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
       <td><?php echo $value['date']; ?></td>
 	  <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -118,7 +121,7 @@ foreach($tags as $val):
 	<?php endif;?>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>
-    <div class="page"><?php echo $pageurl; ?></div>
+    <div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
 </form>
 <script>
 $(document).ready(function(){

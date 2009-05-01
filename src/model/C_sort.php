@@ -52,20 +52,6 @@ class emSort {
 		$this->dbhd->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
 		$this->dbhd->query("DELETE FROM $this->sortTable where sid=$sid");
 	}
-	
-	function getSortName($sid)
-	{
-		if($sid > 0)
-		{
-			$res = $this->dbhd->query("SELECT sortname FROM $this->sortTable where sid=$sid");
-			$row = $this->dbhd->fetch_array($res);
-			$sortName = htmlspecialchars($row['sortname']);
-		}else {
-			$sortName = '未分类';
-		}
-		return $sortName;
-	}
-
 }
 
 ?>

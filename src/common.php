@@ -21,14 +21,11 @@ $tag_cache = $CACHE->readCache('tags');
 $sort_cache = $CACHE->readCache('sort');
 $com_cache = $CACHE->readCache('comments');
 $link_cache = $CACHE->readCache('links');
-$user_cache = $CACHE->readCache('blogger');
+$user_cache = $CACHE->readCache('user');
 $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 $tw_cache = $CACHE->readCache('twitter');
 
-$photo = $user_cache['photo'];
-$blogger_des = $user_cache['des'];
-$name = $user_cache['mail'] != '' ? "<a href=\"mailto:".$user_cache['mail']."\">".$user_cache['name']."</a>" : $user_cache['name'];
 //模板目录
 define('TEMPLATE_PATCH', './content/templates/');
 //导航条
