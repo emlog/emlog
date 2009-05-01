@@ -38,7 +38,7 @@ if ($action == 'edit')
 	$emSort = new emSort($DB);
 
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$blogData = $emBlog->getOneLog($logid);
+	$blogData = $emBlog->getOneLogForAdmin($logid);
 	extract($blogData);
 	$sorts = $emSort->getSorts();
 	//log tag

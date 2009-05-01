@@ -61,7 +61,7 @@ if($action == '')
 	}
 
 	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, $uid, 'blog');
-	$logs = $emBlog->getBlogsForAdmin($sqlSegment, $hide_state, $page, $uid);
+	$logs = $emBlog->getLogsForAdmin($sqlSegment, $hide_state, $page, $uid);
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 

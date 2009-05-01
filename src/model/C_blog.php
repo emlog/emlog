@@ -59,11 +59,11 @@ class emBlog {
 	/**
 	 * 获取指定条件的日志条数
 	 *
-	 * @param unknown_type $hide
-	 * @param unknown_type $condition
-	 * @param unknown_type $uid
-	 * @param unknown_type $type
-	 * @return unknown
+	 * @param string $hide
+	 * @param string $condition
+	 * @param int $uid
+	 * @param string $type
+	 * @return int
 	 */
 	function getLogNum($hide = 'n', $condition = '', $uid = 1, $type = 'blog')
 	{
@@ -75,14 +75,13 @@ class emBlog {
 	}
 
 	/**
-	 * 获取单条日志
+	 * 后台获取单条日志
 	 *
 	 * @param int $blogId
-	 * @param string $hide 是否隐藏
-	 * @param string $spot 使用场所：前台、后台
+	 * @param string $hide
 	 * @return array
 	 */
-	function getOneLog($blogId,  $hide = '', $spot = 'admin')
+	function getOneLogForAdmin($blogId,  $hide = '')
 	{
 		$hideState = $hide == 'n' ? "and hide='n'" :'';
 		$sql = "select * from $this->blogTable where gid=$blogId $hideState";
@@ -90,35 +89,48 @@ class emBlog {
 		$row = $this->dbhd->fetch_array($res);
 		if($row)
 		{
-			switch ($spot)
-			{
-				case 'admin':
-					$row['title'] = htmlspecialchars($row['title']);
-					$row['content'] = htmlspecialchars($row['content']);
-					$row['excerpt'] = htmlspecialchars($row['excerpt']);
-					$row['password'] = htmlspecialchars($row['password']);
-					$logData = $row;
-					break;
-				case 'homepage':
-					$logData = array(
-					'log_title'	=> htmlspecialchars($row['title']),
-					'date' => $row['date'],
-					'logid' => intval($row['gid']),
-					'sortid' => intval($row['sortid']),
-					'type' => $row['type'],
-					'tbscode' => substr(md5(date('Ynd')),0,5),
-					'log_content' => rmBreak($row['content']),
-					'views'=>intval($row['views']),
-					'comnum'=>intval($row['comnum']),
-					'tbcount'=>intval($row['tbcount']),
-					'top'=>$row['top'],
-					'attnum'=>intval($row['attnum']),
-					'allow_remark' => $row['allow_remark'],
-					'allow_tb' => $row['allow_tb'],
-					'password' => $row['password']
-					);
-					break;
-			}
+			$row['title'] = htmlspecialchars($row['title']);
+			$row['content'] = htmlspecialchars($row['content']);
+			$row['excerpt'] = htmlspecialchars($row['excerpt']);
+			$row['password'] = htmlspecialchars($row['password']);
+			$logData = $row;
+			return $logData;
+		}else {
+			return false;
+		}
+	}
+
+	/**
+	 * 前台获取单条日志
+	 *
+	 * @param int $blogId
+	 * @return array
+	 */
+	function getOneLogForHome($blogId)
+	{
+		$sql = "select * from $this->blogTable where gid=$blogId and hide='n'";
+		$res = $this->dbhd->query($sql);
+		$row = $this->dbhd->fetch_array($res);
+		if($row)
+		{
+			$logData = array(
+			'log_title'	=> htmlspecialchars($row['title']),
+			'date' => $row['date'],
+			'logid' => intval($row['gid']),
+			'sortid' => intval($row['sortid']),
+			'type' => $row['type'],
+			'author' => $row['author'],
+			'tbscode' => substr(md5(date('Ynd')),0,5),
+			'log_content' => rmBreak($row['content']),
+			'views'=>intval($row['views']),
+			'comnum'=>intval($row['comnum']),
+			'tbcount'=>intval($row['tbcount']),
+			'top'=>$row['top'],
+			'attnum'=>intval($row['attnum']),
+			'allow_remark' => $row['allow_remark'],
+			'allow_tb' => $row['allow_tb'],
+			'password' => $row['password']
+			);
 			return $logData;
 		}else {
 			return false;
@@ -128,14 +140,14 @@ class emBlog {
 	/**
 	 * 后台获取日志列表
 	 *
-	 * @param unknown_type $condition
-	 * @param unknown_type $hide_state
-	 * @param unknown_type $page
-	 * @param unknown_type $uid
-	 * @param unknown_type $type
-	 * @return unknown
+	 * @param string $condition
+	 * @param string $hide_state
+	 * @param int $page
+	 * @param int $uid
+	 * @param string $type
+	 * @return array
 	 */
-	function getBlogsForAdmin($condition = '', $hide_state = '', $page = 1, $uid = 1, $type = 'blog')
+	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $uid = 1, $type = 'blog')
 	{
 		$start_limit = !empty($page) ? ($page - 1) * 15 : 0;
 		$author = $uid == 1 && $hide_state == 'n' ? '' : 'and author='.$uid;
@@ -160,12 +172,12 @@ class emBlog {
 	/**
 	 * 前台获取日志列表
 	 *
-	 * @param unknown_type $page
-	 * @param unknown_type $prePageNum
-	 * @param unknown_type $condition
-	 * @return unknown
+	 * @param int $page
+	 * @param int $prePageNum
+	 * @param string $condition
+	 * @return array
 	 */
-	function getBlogsForHome($condition = '', $page = 1, $prePageNum)
+	function getLogsForHome($condition = '', $page = 1, $prePageNum)
 	{
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
 		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';

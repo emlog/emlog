@@ -82,7 +82,7 @@ if (!isset($action) || empty($action))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?page";
 	}
-	$logs = $emBlog->getBlogsForHome($sqlSegment, $page, $index_lognum);
+	$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 	include getViews('header');
@@ -102,7 +102,7 @@ if ($action == 'showlog')
 	$emComment = new emComment($DB);
 	$emTrackback = new emTrackback($DB);
 
-	$logData = $emBlog->getOneLog($logid, 'n', 'homepage');
+	$logData = $emBlog->getOneLogForHome($logid);
 	if($logData === false)
 	{
 		emMsg('不存在该条目','./index.php');
@@ -115,7 +115,7 @@ if ($action == 'showlog')
 		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 	}
 	$blogtitle = $log_title.' - '.$blogname;
-	$log_author = $user_cache['name'];
+	$log_author = $user_cache[$author]['name'];
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';

@@ -15,7 +15,7 @@ $navibar = unserialize($navibar);
 if($action == '')
 {
 	$emPage = new emBlog($DB);
-	$pages = $emPage->getBlogsForAdmin('', '', 1, $uid, 'page');
+	$pages = $emPage->getLogsForAdmin('', '', 1, $uid, 'page');
 
 	include getViews('header');
 	require_once(getViews('admin_page'));
@@ -39,7 +39,7 @@ if ($action == 'mod')
 	$emPage = new emBlog($DB);
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$pageData = $emPage->getOneLog($pageId);
+	$pageData = $emPage->getOneLogForAdmin($pageId);
 	extract($pageData);
 
 	$pageUrl = isset($dnavibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
