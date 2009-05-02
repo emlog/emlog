@@ -60,7 +60,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 #content #trackback li{margin:5px 0px; padding:0px; clear:both}
 #content .comment{margin:15px 0px 5px 0px}
 #com_line{margin:5px 0; padding:0px 0px 3px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
-#content div span{color:#F90}
+#content .under div span{color:#F90}
 #content  .comment_post p{margin:5px 0px}
 #content  .comment_post small{font-size:12px; color:#999}
 #content  .comment_post input{padding:5px 5px; border:1px #b6b6b6 solid; background:url(images/em_input-back.gif) no-repeat; font-size:12px; color:#333; width:270px}

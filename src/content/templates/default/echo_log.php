@@ -14,7 +14,7 @@
 		<div class="top"></div>
 		<div class="under_p">
 		<div class="tag"><?php blog_tag($logid); ?></div>
-		<div class="date"><?php echo date('Y-n-j G:i l', $date); ?></div>
+		<div class="date"><span>作者:</span><a href="#">小抽风</a> <?php echo date('Y-n-j G:i l', $date); ?></div>
 		<div>&nbsp;</div>
 		</div>
 		<div class="bottom"></div>
