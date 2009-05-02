@@ -15,9 +15,9 @@ if($action == '')
 {
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$trackback = $emTrackback->getTrackback($page);
-	$num = $emTrackback->getTbNum();
-	$pageurl =  pagination($num,15,$page,"trackback.php?page");
+	$trackback = $emTrackback->getTrackbacks($page, null, $uid);
+	$tbnum = $emTrackback->getTbNum($uid);
+	$pageurl =  pagination($tbnum,15,$page,"trackback.php?page");
 
 	include getViews('header');
 	require_once(getViews('trackback'));

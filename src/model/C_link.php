@@ -6,21 +6,18 @@
  * $Id$
  */
 
-
 class emLink {
 
 	var $dbhd;
-	var $linkTable;
 
 	function emLink($dbhandle)
 	{
 		$this->dbhd = $dbhandle;
-		$this->linkTable = DB_PREFIX.'link';
 	}
 
 	function getLinks()
 	{
-		$res = $this->dbhd->query("SELECT * FROM $this->linkTable ORDER BY taxis ASC");
+		$res = $this->dbhd->query("SELECT * FROM ".DB_PREFIX."link ORDER BY taxis ASC");
 		$links = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
@@ -40,18 +37,18 @@ class emLink {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update $this->linkTable set $upStr where id=$linkId");
+		$this->dbhd->query("update ".DB_PREFIX."link set $upStr where id=$linkId");
 	}
 
 	function addLink($name, $url, $des)
 	{
-		$sql="insert into $this->linkTable (sitename,siteurl,description) values('$name','$url','$des')";
+		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description) values('$name','$url','$des')";
 		$this->dbhd->query($sql);
 	}
 
 	function getOneLink($linkId)
 	{
-		$sql = "select * from $this->linkTable where id=$linkId ";
+		$sql = "select * from ".DB_PREFIX."link where id=$linkId ";
 		$res = $this->dbhd->query($sql);
 		$row = $this->dbhd->fetch_array($res);
 		$linkData = array();
@@ -68,7 +65,7 @@ class emLink {
 	
 	function deleteLink($linkId)
 	{
-		$this->dbhd->query("DELETE FROM $this->linkTable where id=$linkId");
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."link where id=$linkId");
 	}
 
 }

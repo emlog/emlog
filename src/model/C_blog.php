@@ -9,12 +9,10 @@
 class emBlog {
 
 	var $dbhd;
-	var $blogTable;
 
 	function emBlog($dbhandle)
 	{
 		$this->dbhd = $dbhandle;
-		$this->blogTable = DB_PREFIX.'blog';
 	}
 
 	/**
@@ -34,7 +32,7 @@ class emBlog {
 		}
 		$field = implode(',', $kItem);
 		$values = "'".implode("','", $dItem)."'";
-		$this->dbhd->query("insert into $this->blogTable ($field) values($values)");
+		$this->dbhd->query("insert into ".DB_PREFIX."blog ($field) values($values)");
 		$logid = $this->dbhd->insert_id();
 		return $logid;
 	}
@@ -53,7 +51,7 @@ class emBlog {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update $this->blogTable set $upStr where gid=$blogId");
+		$this->dbhd->query("update ".DB_PREFIX."blog set $upStr where gid=$blogId");
 	}
 
 	/**
@@ -69,7 +67,7 @@ class emBlog {
 	{
 		$DraftNum = '';
 		$author = $uid == 1 && $hide == 'n' ? '' : 'and author='.$uid;
-		$res = $this->dbhd->query("SELECT gid FROM $this->blogTable WHERE type='$type' and hide='$hide' $author $condition");
+		$res = $this->dbhd->query("SELECT gid FROM ".DB_PREFIX."blog WHERE type='$type' and hide='$hide' $author $condition");
 		$LogNum = $this->dbhd->num_rows($res);
 		return $LogNum;
 	}
@@ -84,7 +82,7 @@ class emBlog {
 	function getOneLogForAdmin($blogId,  $hide = '')
 	{
 		$hideState = $hide == 'n' ? "and hide='n'" :'';
-		$sql = "select * from $this->blogTable where gid=$blogId $hideState";
+		$sql = "select * from ".DB_PREFIX."blog where gid=$blogId $hideState";
 		$res = $this->dbhd->query($sql);
 		$row = $this->dbhd->fetch_array($res);
 		if($row)
@@ -108,7 +106,7 @@ class emBlog {
 	 */
 	function getOneLogForHome($blogId)
 	{
-		$sql = "select * from $this->blogTable where gid=$blogId and hide='n'";
+		$sql = "select * from ".DB_PREFIX."blog where gid=$blogId and hide='n'";
 		$res = $this->dbhd->query($sql);
 		$row = $this->dbhd->fetch_array($res);
 		if($row)
@@ -153,7 +151,7 @@ class emBlog {
 		$author = $uid == 1 && $hide_state == 'n' ? '' : 'and author='.$uid;
 		$hide_state  = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, 15";
-		$sql = "SELECT * FROM $this->blogTable WHERE type='$type' $author $hide_state $condition $limit";
+		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
@@ -181,7 +179,7 @@ class emBlog {
 	{
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
 		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
-		$sql = "SELECT * FROM $this->blogTable WHERE type='blog' and hide='n' $condition $limit";
+		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE type='blog' and hide='n' $condition $limit";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
@@ -211,11 +209,19 @@ class emBlog {
 	/**
 	 * 删除日志
 	 *
-	 * @param int $gid
+	 * @param int $blogId
+	 * @param int $uid
+	 * @return unknown
 	 */
-	function deleteLog($blogId)
+	function deleteLog($blogId, $uid)
 	{
-		$this->dbhd->query("DELETE FROM $this->blogTable where gid=$blogId");
+		$condition = $uid == 1 ? '' : 'and author='.$uid;
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."blog where gid=$blogId $condition");
+		$del_nums = $this->dbhd->affected_rows();
+		if ($del_nums < 1)
+		{
+			return false;
+		}
 		//评论
 		$this->dbhd->query("DELETE FROM ".DB_PREFIX."comment where gid=$blogId");
 		//引用
@@ -248,7 +254,7 @@ class emBlog {
 	 */
 	function hideSwitch($blogId, $hideState)
 	{
-		$this->dbhd->query("UPDATE $this->blogTable SET hide='$hideState' WHERE gid=$blogId");
+		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET hide='$hideState' WHERE gid=$blogId");
 		$this->dbhd->query("UPDATE ".DB_PREFIX."comment SET hide='$hideState' WHERE gid=$blogId");
 	}
 
@@ -285,7 +291,7 @@ class emBlog {
 	 */
 	function updateViewCount($blogId)
 	{
-		$this->dbhd->query("UPDATE $this->blogTable SET views=views+1 WHERE gid=$blogId");
+		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid=$blogId");
 	}
 
 	/**
@@ -297,8 +303,8 @@ class emBlog {
 	function neighborLog($blogId)
 	{
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM $this->blogTable WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		$neighborlog['nextLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+		$neighborlog['prevLog'] = $this->dbhd->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid > $blogId AND hide = 'n' LIMIT 1");
 		if($neighborlog['nextLog'])
 		{
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
@@ -318,7 +324,7 @@ class emBlog {
 	 */
 	function getNewLog($num)
 	{
-		$sql = "SELECT gid,title FROM $this->blogTable WHERE hide='n' ORDER BY gid DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY gid DESC LIMIT 0, $num";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))
@@ -338,7 +344,7 @@ class emBlog {
 	 */
 	function getRandLog($num)
 	{
-		$sql = "SELECT gid,title FROM $this->blogTable WHERE hide='n' ORDER BY rand() LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->dbhd->query($sql);
 		$logs = array();
 		while($row = $this->dbhd->fetch_array($res))

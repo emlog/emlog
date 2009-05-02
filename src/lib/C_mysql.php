@@ -132,6 +132,16 @@ class MySql {
 	{
 		return mysql_error();
 	}
+	
+	/**
+	 * Get number of affected rows in previous MySQL operation
+	 *
+	 * @return int
+	 */
+	function affected_rows()
+	{
+		return mysql_affected_rows();
+	}
 
 	/**
 	 * 取得数据库版本信息

@@ -2,9 +2,14 @@
 <div id="admindex">
 <div id="admindex_main">
 目前有<span class=care2><b><?php echo $uid == 1 ? $sta_cache['lognum'] : $user_cache[$uid]['lognum']; ?></b></span>篇日志，
-<span class=care2><b><?php echo $sta_cache['tbnum']; ?></b></span>条引用通告，
-<span class=care2><b><?php echo $sta_cache['comnum_all']; ?></b></span>条评论<?php if($ischkcomment == 'y' || $sta_cache['hidecom'] != 0): ?>，
-其中有<b><a href="./comment.php?hide=y"><?php echo $sta_cache['hidecom']; ?></a></b>条评论等待审核<?php endif; ?>。
+<span class=care2><b><?php echo $uid == 1 ? $sta_cache['comnum_all'] : $user_cache[$uid]['commentnum']; ?></b></span>条评论
+<?php 
+$hidecmnum = $uid == 1 ? $sta_cache['hidecomnum'] : $user_cache[$uid]['hidecommentnum'];
+if ($hidecmnum > 0):
+?>
+(未审核:<b><a href="./comment.php?hide=y"><?php echo $hidecmnum; ?></a></b>)
+<?php endif; ?>
+<span class=care2>，<b><?php echo $uid == 1 ? $sta_cache['tbnum'] : $user_cache[$uid]['tbnum']; ?></b></span>条引用通告
 </div>
 <div class="clear"></div>
 <div id="admindex_servinfo">

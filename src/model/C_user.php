@@ -10,17 +10,15 @@
 class emUser {
 
 	var $dbhd;
-	var $userTable;
 
 	function emUser($dbhandle)
 	{
 		$this->dbhd = $dbhandle;
-		$this->userTable = DB_PREFIX.'user';
 	}
 
 	function getUsers($role = 'writer')
 	{
-		$res = $this->dbhd->query("SELECT * FROM $this->userTable where role='$role'");
+		$res = $this->dbhd->query("SELECT * FROM ".DB_PREFIX."user where role='$role'");
 		$users = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
@@ -39,19 +37,19 @@ class emUser {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update $this->userTable set $upStr where uid=$sid");
+		$this->dbhd->query("update ".DB_PREFIX."user set $upStr where uid=$sid");
 	}
 
 	function addUser($login, $password, $name, $description, $email, $role)
 	{
-		$sql="insert into $this->userTable (username,password,nickname,description,email,role) values('$login','$password','$name','$description','$email','$role')";
+		$sql="insert into ".DB_PREFIX."user (username,password,nickname,description,email,role) values('$login','$password','$name','$description','$email','$role')";
 		$this->dbhd->query($sql);
 	}
 	
 	function deleteUser($sid)
 	{
 		$this->dbhd->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
-		$this->dbhd->query("DELETE FROM $this->userTable where sid=$sid");
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."user where sid=$sid");
 	}
 
 }

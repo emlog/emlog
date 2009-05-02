@@ -23,7 +23,7 @@ $a = "hide_$hide";
 $$a = "class=\"filter\"";
 ?>
 <div class="filters">
-<span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部(<?php echo $comnum_all; ?>)</a></span>
+<span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
 <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核</a></span>
 <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
 </div>
@@ -61,7 +61,7 @@ $$a = "class=\"filter\"";
 	<a href="javascript:commentact('pub');">审核</a>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>
-    <div class="page"><?php echo $pageurl; ?></div> 
+    <div class="page">(有<?php echo $cmnum; ?>条评论)<?php echo $pageurl; ?></div> 
 </form>
 <script>
 function commentact(act){

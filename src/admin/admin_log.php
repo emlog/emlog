@@ -77,7 +77,7 @@ if($action == '')
 	include getViews('footer');cleanPage();
 }
 
-//批量操作日志
+//操作日志
 if($action == 'admin_all_log')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -101,7 +101,7 @@ if($action == 'admin_all_log')
 		case 'del':
 			foreach($logs as $key=>$value)
 			{
-				$emBlog->deleteLog($key);
+				$emBlog->deleteLog($key, $uid);
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_user();
@@ -182,23 +182,4 @@ if($action == 'admin_all_log')
 	}
 }
 
-//删除日志/草稿
-if ($action == 'dellog' || $action == 'deldraft')
-{
-	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$emBlog->deleteLog($gid);
-	$CACHE->mc_sta();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_tags();
-	$CACHE->mc_newlog();
-	$CACHE->mc_sort();
-	if($action == 'dellog')
-	{
-		header("Location: ./admin_log.php?active_del=true");
-	}else{
-		header("Location: ./admin_log.php?pid=draft&active_del=true");
-	}
-}
 ?>

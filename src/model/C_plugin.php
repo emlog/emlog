@@ -6,17 +6,14 @@
  * $Id$
  */
 
-
 class emPlugin {
 
 	var $dbhd;
 	var $plugin;
-	var $table;
 
 	function emPlugin($dbhandle, $plugin='')
 	{
 		$this->dbhd = $dbhandle;
-		$this->table = DB_PREFIX.'options';
 		$this->plugin = $plugin;
 	}
 
@@ -29,7 +26,7 @@ class emPlugin {
 			$active_plugins[] = $this->plugin;
 		}
 		$active_plugins = serialize($active_plugins);
-		$this->dbhd->query("update $this->table set option_value='$active_plugins' where option_name='active_plugins'");
+		$this->dbhd->query("update ".DB_PREFIX."options set option_value='$active_plugins' where option_name='active_plugins'");
 	}
 	
 	function inactive_plugin($active_plugins)
@@ -42,7 +39,7 @@ class emPlugin {
 			return;
 		}
 		$active_plugins = serialize($active_plugins);
-		$this->dbhd->query("update $this->table set option_value='$active_plugins' where option_name='active_plugins'");
+		$this->dbhd->query("update ".DB_PREFIX."options set option_value='$active_plugins' where option_name='active_plugins'");
 	}
 	
 	/**

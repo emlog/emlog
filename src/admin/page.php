@@ -143,7 +143,7 @@ if ($action == 'del')
 {
 	$emPage = new emBlog($DB);
 	$pageId = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$emPage->deleteLog($pageId);
+	$emPage->deleteLog($pageId, $uid);
 
 	unset($navibar[$pageId]);
 	$navibar = serialize($navibar);

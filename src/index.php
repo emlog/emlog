@@ -121,7 +121,7 @@ if ($action == 'showlog')
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-	$comments = $emComment->getComment($logid, 'n');
+	$comments = $emComment->getComments($logid, 'n');
 	if ($type == 'blog')
 	{
 		//add viewcount
@@ -130,7 +130,7 @@ if ($action == 'showlog')
 		$neighborLog = $emBlog->neighborLog($logid);
 		extract($neighborLog);
 		//trackback
-		$tb = $emTrackback->getTrackback(null, $logid);
+		$tb = $emTrackback->getTrackbacks(null, $logid);
 		require_once getViews('echo_log');
 	}elseif ($type == 'page'){
 		include getViews('page');

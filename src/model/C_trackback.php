@@ -10,12 +10,10 @@
 class emTrackback {
 
 	var $dbhd;
-	var $tbTable;
 
 	function emTrackback($dbhandle)
 	{
 		$this->dbhd = $dbhandle;
-		$this->tbTable = DB_PREFIX.'trackback';
 	}
 
 	/**
@@ -84,16 +82,23 @@ class emTrackback {
 	 * @param unknown_type $blogId
 	 * @return unknown
 	 */
-	function getTrackback($page = null, $blogId = null)
+	function getTrackbacks($page = null, $blogId = null, $uid = 1)
 	{
-		$andQuery = $blogId ? "where gid=$blogId" : '';
+		$andQuery = '1=1';
+		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$condition = '';
 		if($page)
 		{
 			$startId = ($page - 1) *15;
 			$condition = "LIMIT $startId, 15";
 		}
-		$sql = "SELECT * FROM $this->tbTable $andQuery ORDER BY tbid DESC $condition";
+		if ($uid == 1)
+		{
+			$sql = "SELECT * FROM ".DB_PREFIX."trackback as a where $andQuery ORDER BY a.tbid DESC $condition";
+		}else {
+			$sql = "SELECT *,a.title FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=$uid ORDER BY a.tbid DESC $condition";
+		}
+		
 		$ret = $this->dbhd->query($sql);
 		$trackbacks = array();
 		while($row = $this->dbhd->fetch_array($ret))
@@ -114,20 +119,26 @@ class emTrackback {
 	 *
 	 * @return int $tbNum
 	 */
-	function getTbNum()
+	function getTbNum($uid = 1)
 	{
 		$comNum = '';
-		$res = $this->dbhd->query("SELECT tbid FROM $this->tbTable");
+		if ($uid == 1)
+		{
+			$sql = "SELECT tbid FROM ".DB_PREFIX."trackback";
+		}else {
+			$sql = "SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author=$uid";
+		}
+		$res = $this->dbhd->query($sql);
 		$tbNum = $this->dbhd->num_rows($res);
 		return $tbNum;
 	}
 
 	function deleteTrackback($tbid)
 	{
-		$sql = "SELECT gid FROM $this->tbTable WHERE tbid=$tbid";
+		$sql = "SELECT gid FROM ".DB_PREFIX."trackback WHERE tbid=$tbid";
 		$blog = $this->dbhd->once_fetch_array($sql);
 		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
-		$this->dbhd->query("DELETE FROM $this->tbTable where tbid=$tbid");
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."trackback where tbid=$tbid");
 	}
 
 }

@@ -6,21 +6,18 @@
  * $Id$
  */
 
-
 class emSort {
 
 	var $dbhd;
-	var $sortTable;
 
 	function emSort($dbhandle)
 	{
 		$this->dbhd = $dbhandle;
-		$this->sortTable = DB_PREFIX.'sort';
 	}
 
 	function getSorts()
 	{
-		$res = $this->dbhd->query("SELECT * FROM $this->sortTable ORDER BY taxis ASC");
+		$res = $this->dbhd->query("SELECT * FROM ".DB_PREFIX."sort ORDER BY taxis ASC");
 		$sorts = array();
 		while($row = $this->dbhd->fetch_array($res))
 		{
@@ -38,19 +35,19 @@ class emSort {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update $this->sortTable set $upStr where sid=$sid");
+		$this->dbhd->query("update ".DB_PREFIX."sort set $upStr where sid=$sid");
 	}
 
 	function addSort($name)
 	{
-		$sql="insert into $this->sortTable (sortname) values('$name')";
+		$sql="insert into ".DB_PREFIX."sort (sortname) values('$name')";
 		$this->dbhd->query($sql);
 	}
 	
 	function deleteSort($sid)
 	{
 		$this->dbhd->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
-		$this->dbhd->query("DELETE FROM $this->sortTable where sid=$sid");
+		$this->dbhd->query("DELETE FROM ".DB_PREFIX."sort where sid=$sid");
 	}
 }
 

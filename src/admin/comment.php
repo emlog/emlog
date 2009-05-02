@@ -22,10 +22,10 @@ if($action == '')
 	$addUrl_2 = $hide ? "hide=$hide&" : '';
 	$addUrl = $addUrl_1.$addUrl_2;
 
-	$comment = $emComment->getComment($blogId, $hide, $page);
-	$num = $emComment->getCommentNum($blogId, $hide);
-	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
-	$pageurl =  pagination($num,15,$page,"comment.php?{$addUrl}page");
+	$comment = $emComment->getComments($blogId, $hide, $page, $uid);
+	$cmnum = $emComment->getCommentNum($blogId, $hide, $uid);
+	$hideCommNum = $emComment->getCommentNum($blogId, 'y', $uid);
+	$pageurl =  pagination($cmnum,15,$page,"comment.php?{$addUrl}page");
 
 	include getViews('header');
 	require_once(getViews('comment'));
