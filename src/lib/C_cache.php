@@ -174,9 +174,9 @@ class mkcache {
 		{
 			$logNum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
 			$draftNum = $this->dbhd->num_rows($this->dbhd->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
-			$commentNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.cid FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$hidecommentNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.cid FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$tbNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+			$commentNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+			$hidecommentNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
+			$tbNum = $this->dbhd->num_rows($this->dbhd->query("SELECT a.tbid FROM ".$this->db_prefix."trackback as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$icon = '';
 			if($row['photo'])
 			{
