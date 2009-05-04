@@ -46,7 +46,7 @@
 <a href="javascript:pageact('pub');">发布</a>
 </div>
 <div class="page">(有<?php echo $pageNum; ?>个页面)<?php echo $pageurl; ?></div>
-<div style="margin:30px 0px 0px 3px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="新建一个页面&raquo;" class="submit" /></div>
+<div style="margin:20px 0px 0px 0px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="新建一个页面&raquo;" class="submit" /></div>
 <script>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
