@@ -64,7 +64,7 @@ if(isLogin() === false)
 	loginpage();
 }
 
-define('ROLE', $userData['role']);	//用户组 'admin'：管理员 'writer':联合撰稿人
+define('ROLE', $userData['role']);	//用户组 'admin'：管理员 'writer':联合撰写人
 define('UID', $userData['uid']);	//用户ID
 
 $request_uri = substr(basename($_SERVER['SCRIPT_NAME']), 0, -4);

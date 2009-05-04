@@ -25,7 +25,7 @@ if($action== 'new')
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = 'writer';//用户组：联合撰稿人
+	$role = 'writer';//用户组：联合撰写人
 
 	if($login == '')
 	{
