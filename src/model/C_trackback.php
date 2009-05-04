@@ -9,11 +9,11 @@
 
 class emTrackback {
 
-	var $dbhd;
+	var $db;
 
 	function emTrackback($dbhandle)
 	{
-		$this->dbhd = $dbhandle;
+		$this->db = $dbhandle;
 	}
 
 	/**
@@ -82,7 +82,7 @@ class emTrackback {
 	 * @param unknown_type $blogId
 	 * @return unknown
 	 */
-	function getTrackbacks($page = null, $blogId = null, $uid = 1)
+	function getTrackbacks($page = null, $blogId = null, $spot = 0)
 	{
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
@@ -92,16 +92,17 @@ class emTrackback {
 			$startId = ($page - 1) *15;
 			$condition = "LIMIT $startId, 15";
 		}
-		if ($uid == 1)
+		if($spot == 0)
 		{
 			$sql = "SELECT * FROM ".DB_PREFIX."trackback as a where $andQuery ORDER BY a.tbid DESC $condition";
-		}else {
-			$sql = "SELECT *,a.title FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=$uid ORDER BY a.tbid DESC $condition";
+		}else{
+			$sql = ROLE == 'admin' ?
+			"SELECT * FROM ".DB_PREFIX."trackback as a where $andQuery ORDER BY a.tbid DESC $condition" :
+			"SELECT *,a.title FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID." ORDER BY a.tbid DESC $condition";
 		}
-		
-		$ret = $this->dbhd->query($sql);
+		$ret = $this->db->query($sql);
 		$trackbacks = array();
-		while($row = $this->dbhd->fetch_array($ret))
+		while($row = $this->db->fetch_array($ret))
 		{
 			$row['title'] = htmlspecialchars($row['title']);
 			$row['blog_name'] = htmlspecialchars($row['blog_name']);
@@ -119,26 +120,26 @@ class emTrackback {
 	 *
 	 * @return int $tbNum
 	 */
-	function getTbNum($uid = 1)
+	function getTbNum()
 	{
 		$comNum = '';
-		if ($uid == 1)
+		if (ROLE == 'admin')
 		{
 			$sql = "SELECT tbid FROM ".DB_PREFIX."trackback";
 		}else {
-			$sql = "SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author=$uid";
+			$sql = "SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author=".UID;
 		}
-		$res = $this->dbhd->query($sql);
-		$tbNum = $this->dbhd->num_rows($res);
+		$res = $this->db->query($sql);
+		$tbNum = $this->db->num_rows($res);
 		return $tbNum;
 	}
 
 	function deleteTrackback($tbid)
 	{
 		$sql = "SELECT gid FROM ".DB_PREFIX."trackback WHERE tbid=$tbid";
-		$blog = $this->dbhd->once_fetch_array($sql);
-		$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
-		$this->dbhd->query("DELETE FROM ".DB_PREFIX."trackback where tbid=$tbid");
+		$blog = $this->db->once_fetch_array($sql);
+		$this->db->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);
+		$this->db->query("DELETE FROM ".DB_PREFIX."trackback where tbid=$tbid");
 	}
 
 }

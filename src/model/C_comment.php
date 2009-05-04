@@ -8,11 +8,11 @@
 
 class emComment {
 
-	var $dbhd;
+	var $db;
 
 	function emComment($dbhandle)
 	{
-		$this->dbhd = $dbhandle;
+		$this->db = $dbhandle;
 	}
 
 	/**
@@ -22,7 +22,7 @@ class emComment {
 	 * @param int $page
 	 * @return array $comment
 	 */
-	function getComments($blogId = null, $hide = null, $page = null, $uid = 1)
+	function getComments($spot = 0, $blogId = null, $hide = null, $page = null)
 	{
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
@@ -33,15 +33,17 @@ class emComment {
 			$startId = ($page - 1) *15;
 			$condition = "LIMIT $startId, 15";
 		}
-		if ($uid == 1)
+		if($spot == 0)
 		{
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition";
-		}else {
-			$sql = "SELECT *,a.hide FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=$uid ORDER BY a.cid DESC $condition";
+		}else{
+			$sql = ROLE == 'admin' ?
+			"SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition" :
+			"SELECT *,a.hide FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID." ORDER BY a.cid DESC $condition";
 		}
-		$ret = $this->dbhd->query($sql);
+		$ret = $this->db->query($sql);
 		$comments = array();
-		while($row = $this->dbhd->fetch_array($ret))
+		while($row = $this->db->fetch_array($ret))
 		{
 			$row['cname'] = htmlspecialchars($row['poster']);
 			$row['mail'] = htmlspecialchars($row['mail']);
@@ -57,8 +59,8 @@ class emComment {
 	function getOneComment($commentId)
 	{
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
-		$res = $this->dbhd->query($sql);
-		$commentArray = $this->dbhd->fetch_array($res);
+		$res = $this->db->query($sql);
+		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
 		$commentArray['reply'] = htmlClean(trim($commentArray['reply']));
 		$commentArray['poster'] = trim($commentArray['poster']);
@@ -71,20 +73,20 @@ class emComment {
 	 * @param int $blogId
 	 * @return int $comNum
 	 */
-	function getCommentNum($blogId = null, $hide = null, $uid = 1)
+	function getCommentNum($blogId = null, $hide = null)
 	{
 		$comNum = '';
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if ($uid == 1)
+		if (ROLE == 'admin')
 		{
 			$sql = "SELECT a.cid FROM ".DB_PREFIX."comment as a where $andQuery";
 		}else {
-			$sql = "SELECT a.cid FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=$uid";
+			$sql = "SELECT a.cid FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
 		}
-		$res = $this->dbhd->query($sql);
-		$comNum = $this->dbhd->num_rows($res);
+		$res = $this->db->query($sql);
+		$comNum = $this->db->num_rows($res);
 		return $comNum;
 	}
 	/**
@@ -94,12 +96,12 @@ class emComment {
 	 */
 	function delComment($commentId)
 	{
-		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
-		$this->dbhd->query("DELETE FROM ".DB_PREFIX."comment where cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
+		$this->db->query("DELETE FROM ".DB_PREFIX."comment where cid=$commentId");
 		$blogId = intval($row['gid']);
 		if($row['hide'] == 'n')
 		{
-			$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
 		}
 	}
 	/**
@@ -109,25 +111,25 @@ class emComment {
 	 */
 	function hideComment($commentId)
 	{
-		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$isHide = $row['hide'];
 		if($isHide == 'n')
 		{
-			$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
 		}
-		$this->dbhd->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid=$commentId");
+		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid=$commentId");
 	}
 	function showComment($commentId)
 	{
-		$row = $this->dbhd->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$isHide = $row['hide'];
 		if($isHide == 'y')
 		{
-			$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum+1 WHERE gid=$blogId");
+			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum+1 WHERE gid=$blogId");
 		}
-		$this->dbhd->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE cid=$commentId");
+		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE cid=$commentId");
 	}
 
 	/**
@@ -139,7 +141,7 @@ class emComment {
 	function replyComment($commentId, $reply)
 	{
 		$sql="UPDATE ".DB_PREFIX."comment SET reply='$reply' where cid=$commentId ";
-		$this->dbhd->query($sql);
+		$this->db->query($sql);
 	}
 
 	/**
@@ -214,10 +216,10 @@ class emComment {
 			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
 		} else {
 			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment')";
-			$ret = $this->dbhd->query($sql);
+			$ret = $this->db->query($sql);
 			if ($ischkcomment == 'n')
 			{
-				$this->dbhd->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+				$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 				return 0;
 			} else {
 				return 1;
@@ -227,8 +229,8 @@ class emComment {
 
 	function isCommentExist($blogId, $name, $content)
 	{
-		$query = $this->dbhd->query("SELECT cid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
-		$result = $this->dbhd->num_rows($query);
+		$query = $this->db->query("SELECT cid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
+		$result = $this->db->num_rows($query);
 		if ($result > 0)
 		{
 			return true;
@@ -239,8 +241,8 @@ class emComment {
 
 	function isLogCanComment($blogId)
 	{
-		$query = $this->dbhd->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
-		$show_remark = $this->dbhd->fetch_array($query);
+		$query = $this->db->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
+		$show_remark = $this->db->fetch_array($query);
 		if ($show_remark['allow_remark'] == 'n')
 		{
 			return false;

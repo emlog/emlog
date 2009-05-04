@@ -1,15 +1,15 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div id="admindex">
 <div id="admindex_main">
-目前有<span class=care2><b><?php echo $uid == 1 ? $sta_cache['lognum'] : $user_cache[$uid]['lognum']; ?></b></span>篇日志，
-<span class=care2><b><?php echo $uid == 1 ? $sta_cache['comnum_all'] : $user_cache[$uid]['commentnum']; ?></b></span>条评论
+目前有<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['lognum'] : $user_cache[UID]['lognum']; ?></b></span>篇日志，
+<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['comnum_all'] : $user_cache[UID]['commentnum']; ?></b></span>条评论
 <?php 
-$hidecmnum = $uid == 1 ? $sta_cache['hidecomnum'] : $user_cache[$uid]['hidecommentnum'];
+$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0):
 ?>
 (未审核:<b><a href="./comment.php?hide=y"><?php echo $hidecmnum; ?></a></b>)
 <?php endif; ?>
-<span class=care2>，<b><?php echo $uid == 1 ? $sta_cache['tbnum'] : $user_cache[$uid]['tbnum']; ?></b></span>条引用通告
+<span class=care2>，<b><?php echo ROLE == 'admin' ? $sta_cache['tbnum'] : $user_cache[UID]['tbnum']; ?></b></span>条引用通告
 </div>
 <div class="clear"></div>
 <div id="admindex_servinfo">

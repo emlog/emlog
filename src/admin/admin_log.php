@@ -9,7 +9,7 @@
 require_once('globals.php');
 require_once(EMLOG_ROOT.'/model/C_blog.php');
 require_once(EMLOG_ROOT.'/model/C_tag.php');
-require_once(EMLOG_ROOT.'/model/C_sort.php');
+require_once(EMLOG_ROOT.'/model/C_user.php');
 
 $emBlog = new emBlog($DB);
 
@@ -17,11 +17,12 @@ $emBlog = new emBlog($DB);
 if($action == '')
 {
 	$emTag = new emTag($DB);
-	$emSort = new emSort($DB);
+	$emUser = new emUser($DB);
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
+	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
@@ -35,6 +36,8 @@ if($action == '')
 		$sqlSegment = "and gid IN ($blogIdStr)";
 	}elseif ($sid){
 		$sqlSegment = "and sortid=$sid";
+	}elseif ($uid){
+		$sqlSegment = "and author=$uid";
 	}
 	$sqlSegment .= ' ORDER BY ';
 	if(isset($_GET['sortView']))
@@ -60,9 +63,10 @@ if($action == '')
 		$pwd = '日志管理';
 	}
 
-	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, $uid, 'blog');
-	$logs = $emBlog->getLogsForAdmin($sqlSegment, $hide_state, $page, $uid);
-	$sorts = $emSort->getSorts();
+	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, 'blog', 1);
+	$logs = $emBlog->getLogsForAdmin($sqlSegment, $hide_state, $page);
+	$sorts = $sort_cache;
+	$users = $user_cache;
 	$tags = $emTag->getTag();
 
 	$subPage = '';
@@ -78,12 +82,13 @@ if($action == '')
 }
 
 //操作日志
-if($action == 'admin_all_log')
+if($action == 'operate_log')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
 	$logs = isset($_POST['blog']) ? $_POST['blog'] : '';
 	$sort = isset($_POST['sort']) ? $_POST['sort'] : '';
+	$author = isset($_POST['author']) ? $_POST['author'] : '';
 
 	if($operate == '')
 	{
@@ -101,7 +106,7 @@ if($action == 'admin_all_log')
 		case 'del':
 			foreach($logs as $key=>$value)
 			{
-				$emBlog->deleteLog($key, $uid);
+				$emBlog->deleteLog($key);
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_user();
@@ -122,14 +127,14 @@ if($action == 'admin_all_log')
 		case 'top':
 			foreach($logs as $key=>$value)
 			{
-				$emBlog->updateLog(array('top'=>'y'),$key);
+				$emBlog->updateLog(array('top'=>'y'), $key);
 			}
 			header("Location: ./admin_log.php?active_up=true");
 			break;
 		case 'notop':
 			foreach($logs as $key=>$value)
 			{
-				$emBlog->updateLog(array('top'=>'n'),$key);
+				$emBlog->updateLog(array('top'=>'n'), $key);
 			}
 			header("Location: ./admin_log.php?active_down=true");
 			break;
@@ -173,11 +178,23 @@ if($action == 'admin_all_log')
 		case 'move':
 			foreach($logs as $key=>$value)
 			{
-				$emBlog->updateLog(array('sortid'=>$sort),$key);
+				$emBlog->updateLog(array('sortid'=>$sort), $key);
 			}
 			$CACHE->mc_sort();
 			$CACHE->mc_logsort();
 			header("Location: ./admin_log.php?active_move=true");
+			break;
+		case 'change_author':
+			if (ROLE != 'admin')
+			{
+				formMsg('权限不足！','./index.php', 0);
+			}
+			foreach($logs as $key=>$value)
+			{
+				$emBlog->updateLog(array('author'=>$author), $key);
+			}
+			$CACHE->mc_user();
+			header("Location: ./admin_log.php?active_change_author=true");
 			break;
 	}
 }

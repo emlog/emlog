@@ -37,7 +37,7 @@ $logData = array(
 'title'=>$title,
 'content'=>$content,
 'excerpt'=>$excerpt,
-'author'=>$uid,
+'author'=>UID,
 'sortid'=>$sort,
 'date'=>$postTime,
 'allow_remark'=>$allow_remark,
@@ -52,7 +52,7 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 }else{
 	$blogid = $emBlog->addlog($logData);
 	$emTag->addTag($tagstring, $blogid);
-	$dftnum = $emBlog->getLogNum('y', '', $uid);
+	$dftnum = $emBlog->getLogNum('y', '', 'blog', 1);
 }
 
 $CACHE->mc_logtags();

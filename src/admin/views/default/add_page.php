@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave(4);" class="thickbox">附件管理</a><span id="asmsg">
+          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);autosave(4);" class="thickbox">附件管理</a><span id="asmsg">
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
           <input type="hidden" id="content" name="content" value="" style="display:none" />

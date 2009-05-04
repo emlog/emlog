@@ -21,7 +21,7 @@ if(!isset($action) || empty($action))
 	echo "<a href=\"index.php?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
 	echo "<a href=\"index.php?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
 	echo "<br />\n";
-	if(ISLOGIN === true)
+	if(ROLE == 'admin')
 	{
 		echo "欢迎你,你已登录<br />\n";
 		echo "<a href=\"index.php?action=addtw\">唠叨两句</a><br />\n";
@@ -151,7 +151,7 @@ if ($action == 'twitter')
 	{
 		foreach ($tws as $val)
 		{
-			$doact = ISLOGIN===true?"<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>":'';
+			$doact = ROLE == 'admin' ? "<a href=\"./index.php?action=del_tw&amp;id=".$val['id']."\">删除</a>" : '';
 			echo $val['content'].$doact.'('.$val['date'].')<br />';
 		}
 	}else{
@@ -174,7 +174,7 @@ if ($action == 'addtw')
 	wap_footer();
 }
 //新增 twitter
-if(ISLOGIN === true && $action == 'add_tw')
+if(ROLE == 'admin' && $action == 'add_tw')
 {
 	$content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
 	if(!empty($content))
@@ -186,7 +186,7 @@ if(ISLOGIN === true && $action == 'add_tw')
 	}
 }
 //删除 twitter
-if(ISLOGIN === true && $action == 'del_tw')
+if(ROLE == 'admin' && $action == 'del_tw')
 {
 	$twid = isset($_GET['id'])?intval($_GET['id']):'';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");

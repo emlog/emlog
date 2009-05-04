@@ -8,18 +8,18 @@
 
 class emLink {
 
-	var $dbhd;
+	var $db;
 
 	function emLink($dbhandle)
 	{
-		$this->dbhd = $dbhandle;
+		$this->db = $dbhandle;
 	}
 
 	function getLinks()
 	{
-		$res = $this->dbhd->query("SELECT * FROM ".DB_PREFIX."link ORDER BY taxis ASC");
+		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."link ORDER BY taxis ASC");
 		$links = array();
-		while($row = $this->dbhd->fetch_array($res))
+		while($row = $this->db->fetch_array($res))
 		{
 			$row['sitename'] = htmlspecialchars($row['sitename']);
 			$row['description'] = subString(htmlClean($row['description'], false),0,80);
@@ -37,20 +37,20 @@ class emLink {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->dbhd->query("update ".DB_PREFIX."link set $upStr where id=$linkId");
+		$this->db->query("update ".DB_PREFIX."link set $upStr where id=$linkId");
 	}
 
 	function addLink($name, $url, $des)
 	{
 		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description) values('$name','$url','$des')";
-		$this->dbhd->query($sql);
+		$this->db->query($sql);
 	}
 
 	function getOneLink($linkId)
 	{
 		$sql = "select * from ".DB_PREFIX."link where id=$linkId ";
-		$res = $this->dbhd->query($sql);
-		$row = $this->dbhd->fetch_array($res);
+		$res = $this->db->query($sql);
+		$row = $this->db->fetch_array($res);
 		$linkData = array();
 		if($row)
 		{
@@ -65,7 +65,7 @@ class emLink {
 	
 	function deleteLink($linkId)
 	{
-		$this->dbhd->query("DELETE FROM ".DB_PREFIX."link where id=$linkId");
+		$this->db->query("DELETE FROM ".DB_PREFIX."link where id=$linkId");
 	}
 
 }

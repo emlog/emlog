@@ -14,7 +14,7 @@
 function isLogin()
 {
 	global $userData;
-	if( ! isset($_COOKIE[AUTH_COOKIE_NAME]) )
+	if( !isset($_COOKIE[AUTH_COOKIE_NAME]) )
 	{
 		return false;
 	}

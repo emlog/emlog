@@ -1,5 +1,6 @@
 body{font-size:12px; color:#000; line-height:18px; font-family:tahoma,verdana,arial,helvetica,sans-serif}
 td{font-size:12px; color:#000; line-height:18px; font-family:tahoma,verdana,arial,helvetica,sans-serif}
+li{list-style:none;}
 a{color:#2A9DDB; text-decoration:none}
 a:hover{color:#333; text-decoration:none}
 #header{background-position:left center; background-image:url(./images/top_m.gif); background-repeat:repeat-x; margin-top:-4px}
@@ -80,6 +81,7 @@ textarea{font-size:12px}
 .page a{background-color:#39F; color:#FFF; padding:1px 5px}
 #f_sort{border:#FFF5CE solid 1px; background-color:#FFF7D7; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #f_tag{border:#FDF1E3 solid 1px; background-color:#FEF8F1; width:500px; padding:10px; margin:10px 0px 5px 32px}
+#f_user{border: #C1FBB7 solid 1px; background-color: #E1FDE2; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #show_advset{margin:0px 0px 0px 3px; background:url(images/advset.gif) no-repeat 56px 4px; cursor:pointer}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px}
 #log_pass{display:none}
@@ -99,5 +101,3 @@ textarea{font-size:12px}
 .msg_type_2 a{color:#F93; text-decoration:none}
 .msg_type_2 a:hover{color:#FC3}
 #adm_plugin_list img{cursor:pointer}
-#user_new { margin:20px 10px;}
-#user_new li{ list-style:none; }

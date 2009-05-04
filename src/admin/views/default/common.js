@@ -18,28 +18,25 @@ function em_confirm (id, property) {
 	switch (property){
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
-		var msg = "你确定要删除该链接吗？";
-		break;
+		var msg = "你确定要删除该链接吗？";break;
 		case 'backup':
 		var urlreturn="data.php?action=renewdata&sqlfile="+id;
-		var msg = "你确定要导入该备份文件吗？";
-		break;
+		var msg = "你确定要导入该备份文件吗？";break;
 		case 'attachment':
 		var urlreturn="attachment.php?action=del_attach&aid="+id;
-		var msg = "你确定要删除该附件吗？";
-		break;
+		var msg = "你确定要删除该附件吗？";break;
 		case 'avatar':
 		var urlreturn="blogger.php?action=delicon";
-		var msg = "你确定要删除头像吗？";
-		break;
+		var msg = "你确定要删除头像吗？";break;
 		case 'sort':
 		var urlreturn="sort.php?action=del&sid="+id;
-		var msg = "你确定要删除该分类吗？";
-		break;
+		var msg = "你确定要删除该分类吗？";break;
 		case 'page':
 		var urlreturn="page.php?action=del&gid="+id;
-		var msg = "你确定要删除该页面吗？";
-		break;
+		var msg = "你确定要删除该页面吗？";break;
+		case 'user':
+		var urlreturn="user.php?action=del&uid="+id;
+		var msg = "你确定要删除该用户吗？";break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -48,8 +45,9 @@ function hideActived(){
 	$(".actived").hide();
 	$(".error").hide();
 }
-function displayToggle(id){
+function displayToggle(id, keep){
 	$("#"+id).toggle();
+	if (keep == 1){$.cookie('em_'+id,$("#"+id).css('display'),{expires:365});}
 }
 function chekform(){
 	var t = $.trim($("#title").val());

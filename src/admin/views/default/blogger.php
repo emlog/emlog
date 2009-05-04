@@ -17,7 +17,7 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
           <input maxlength="50" style="width:245px;" value="<?php echo $name; ?>" name="name" /></td>
         </tr>
 		 <tr nowrap="nowrap">
-          <td>电子邮件地址<br />
+          <td>电子邮件<br />
            <input name="mail" value="<?php echo $email; ?>" style="width:245px;" maxlength="200" /></td>
         </tr>
 		<tr nowrap="nowrap">
@@ -28,7 +28,7 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td>我的状态<b><br />
+          <td>个人描述<b><br />
           </b>
             <textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $bloggerdes; ?></textarea></td>
         </tr>

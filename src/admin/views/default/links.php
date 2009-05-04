@@ -1,19 +1,11 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
-<script type='text/javascript'>
-$(document).ready(function(){
-	$("#adm_link_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_link_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
-});
-setTimeout(hideActived,2600);
-</script>
 <div class=containertitle><b>链接</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除链接成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改链接成功</span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加链接成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">站点名称和地址不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的链接</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
@@ -44,30 +36,25 @@ setTimeout(hideActived,2600);
   </table>
   <div class="list_footer"><input type="submit" value="更新排序" class="submit" /></div>
 </form>
-<div class=containertitle><b>添加链接</b></div>
-<div class=line></div>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
-    <table width="95%">
-      <tbody>
-        <tr nowrap="nowrap">
-        <td>名称<br />
-        <input maxlength="200" size="35" name="sitename" /><br />
-        </td></tr>
-        <tr nowrap="nowrap">
-        <td>地址<br />
-		<input maxlength="200" size="35" name="siteurl" /><br />
-		</td>
-        </tr>
-        <tr nowrap="nowrap">
-        <td>描述<br />
-		<textarea name="description" rows="5" cols="40" type="text"></textarea><br />
-		</td>
-        </tr>
-        <tr>
-         <td colspan="2">
-	 	 <input type="submit" value="添加链接" class="submit" />
-		 </td>
-		 </tr>
-      </tbody>
-    </table>
+<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 1);">添加链接&raquo;</a></div>
+<div id="link_new">
+	<li>名称</li>
+	<li><input maxlength="200" size="35" name="sitename" /></li>
+	<li>地址</li>
+	<li><input maxlength="200" size="35" name="siteurl" /></li>
+	<li>描述</li>
+	<li><textarea name="description" rows="5" cols="40" type="text"></textarea></li>
+	<li><input type="submit" name="" value="添加链接"  /></li>
+</div>
 </form>
+<script type='text/javascript'>
+$("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
+$(document).ready(function(){
+	$("#adm_link_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_link_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")})
+});
+setTimeout(hideActived,2600);
+</script>

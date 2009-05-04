@@ -6,6 +6,7 @@
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改分类成功</span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加分类成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">分类名称不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的分类</span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">

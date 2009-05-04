@@ -64,11 +64,11 @@ if(isLogin() === false)
 	loginpage();
 }
 
-$uid = $userData['uid'];
-$role = $userData['role'];
+define('ROLE', $userData['role']);	//用户组 'admin'：管理员 'writer':联合撰稿人
+define('UID', $userData['uid']);	//用户ID
 
 $request_uri = substr(basename($_SERVER['SCRIPT_NAME']), 0, -4);
-if ($role == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))
+if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))
 {
 	formMsg('权限不足！','./index.php', 0);
 }

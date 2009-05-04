@@ -32,6 +32,8 @@ if ($action == 'taxis')
 		}
 		$CACHE->mc_sort();
 		header("Location: ./sort.php?active_taxis=true");
+	}else{
+		header("Location: ./sort.php?error_b=true");
 	}
 }
 

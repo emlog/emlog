@@ -166,6 +166,7 @@ src/admin/views/default/template.php -text svn_keywords=Id
 src/admin/views/default/trackback.php -text svn_keywords=Id
 src/admin/views/default/upload.php -text
 src/admin/views/default/user.php -text
+src/admin/views/default/useredit.php -text
 src/admin/views/default/widgets.php -text
 src/admin/widgets.php -text
 src/admin/write_log.php -text svn_keywords=Id

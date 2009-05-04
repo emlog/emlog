@@ -1,5 +1,4 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -20,7 +19,7 @@
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
+          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
           <input type="hidden" id="content" name="content" value="" style="display:none" />
@@ -31,7 +30,7 @@
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
           <input name="tag" id="tag" maxlength="200" style="width:715px;" /><br />
-          <div id="itag" style="color:#2A9DDB;cursor:pointer;">选择已有标签&raquo;</div>
+          <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签&raquo;</a></div>
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
           <?php 
           $tagStr = '';
@@ -46,7 +45,7 @@
         </tr>
 	</tbody>
 	</table>
-	<div id="show_advset"><b>高级选项</b></div>
+	<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
@@ -90,12 +89,6 @@
   </form>
 <div class=line></div>
 <script type="text/javascript">
-$("#show_advset").click(function(){
-	$("#advset").toggle();
-	$.cookie('em.showAdv',$("#advset").css('display'),{expires:365});
-});
-$("#itag").click(function(){$("#tagbox").toggle();});
-var showAdv = $.cookie('em.showAdv') ? $.cookie('em.showAdv') : 'none';
-$("#advset").css('display', showAdv);
+$("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 setTimeout("autosave(0)",60000);
 </script>

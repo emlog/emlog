@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload');" class="thickbox">附件管理</a>
+          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a>
           <span id="asmsg"><input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
           <input type="hidden" id="content" name="content" value="<?php echo $content; ?>" style="display:none" />

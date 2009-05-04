@@ -402,10 +402,10 @@ CREATE TABLE {$db_prefix}user (
   role varchar(60) NOT NULL default '',
   photo varchar(255) NOT NULL default '',
   email varchar(60) NOT NULL default '',
-  description text NOT NULL,
+  description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid)
 )".$add."
-INSERT INTO {$db_prefix}user (uid, username, password, role,description) VALUES (1,'$admin','".$adminpw."','administrator','');";
+INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
@@ -450,7 +450,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role,description) VALUES 
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
-	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功，<b>请删除该安装文件</b> <a href=\"./index.php\">进入emlog </a>";
+	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功<br /><span style=\"color:red;\"><b>请删除根目录下安装文件(install.php)</b></span> <a href=\"./index.php\"> 进入emlog </a>";
 	emMsg($result);
 }
 ?>

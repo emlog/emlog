@@ -12,7 +12,7 @@ if($action == '')
 {
 	include getViews('header');
 
-	$result = $DB->query("select * from ".DB_PREFIX."user where uid=$uid");
+	$result = $DB->query("select * from ".DB_PREFIX."user where uid=".UID);
 	$row=$DB->fetch_array($result);
 	extract($row);
 	$name = htmlspecialchars($nickname);
@@ -41,7 +41,7 @@ if($action == 'modintro')
 		}else{
 			$usericon = $photo;
 		}
-		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description' where uid=$uid";
+		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description' where uid=".UID;
 		$DB->query($sql);
 
 		$CACHE->mc_user();
@@ -49,7 +49,7 @@ if($action == 'modintro')
 		header("Location: ./blogger.php?active_edit=true");
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
-		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description' where uid=$uid");
+		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description' where uid=".UID);
 		$CACHE->mc_user();
 		echo $description;
 	}

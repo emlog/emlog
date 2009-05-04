@@ -3,6 +3,7 @@ if(!defined('ADMIN_ROOT')) {exit('error!');}
 $isdraft = $pid == 'draft' ? '&pid=draft' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
+$isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <div class=containertitle><b><?php echo $pwd; ?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除日志成功</span><?php endif;?>
@@ -12,41 +13,53 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 <?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
 <?php if(isset($_GET['active_post'])):?><span class="actived">发布日志成功</span><?php endif;?>
 <?php if(isset($_GET['active_move'])):?><span class="actived">移动日志成功</span><?php endif;?>
+<?php if(isset($_GET['active_change_author'])):?><span class="actived">更改作者成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">转入草稿箱成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+<span <?php echo !$sid && !$tagId && !$uid ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
 <span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
+<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
-分类：
-<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>">未分类</a></span>
-<?php foreach($sorts as $val):
-	$a = "sort_{$val['sid']}";
-	$$a = '';
-	$b = "sort_$sid";
-	$$b = "class=\"filter\"";
-?>
+	分类：<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>">未分类</a></span>
+	<?php foreach($sorts as $val):
+		$a = "sort_{$val['sid']}";
+		$$a = '';
+		$b = "sort_$sid";
+		$$b = "class=\"filter\"";
+	?>
 	<span <?php echo $$a; ?>><a href="./admin_log.php?sid=<?php echo $val['sid'].$isdraft; ?>"><?php echo $val['sortname']; ?></a></span>
-<?php endforeach;?>
+	<?php endforeach;?>
 </div>
 <div id="f_tag" <?php echo $isDisplayTag ?>>
-标签：
-<?php
-foreach($tags as $val):
-	$a = 'tag_'.$val['tid'];
-	$$a = '';
-	$b = 'tag_'.$tagId;
-	$$b = "class=\"filter\"";
-?>
+	标签：
+	<?php foreach($tags as $val):
+		$a = 'tag_'.$val['tid'];
+		$$a = '';
+		$b = 'tag_'.$tagId;
+		$$b = "class=\"filter\"";
+	?>
 	<span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'].$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
-<?php endforeach;?>
+	<?php endforeach;?>
+</div>
+<div id="f_user" <?php echo $isDisplayUser ?>>
+	作者：
+	<?php foreach($users as $key => $val):
+		$a = 'user_'.$key;
+		$$a = '';
+		$b = 'user_'.$uid;
+		$$b = "class=\"filter\"";
+		$val['name'] = !empty($val['name']) ? $val['name'] : $emUser->getUserLogin($key); 
+	?>
+	<span <?php echo $$a; ?>><a href="./admin_log.php?uid=<?php echo $key.$isdraft; ?>"><?php echo $val['name']; ?></a></span>
+	<?php endforeach;?>
 </div>
 </div>
-<form action="admin_log.php?action=admin_all_log" method="post" name="form_log" id="form_log">
+<form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
   <table width="95%" id="adm_log_list">
   <thead>
@@ -67,7 +80,9 @@ foreach($tags as $val):
 	<?php 
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
-	$author = $user_cache[$value['author']]['name'];
+	$author = !empty($user_cache[$value['author']]['name']) ? 
+				$user_cache[$value['author']]['name'] : 
+				$emUser->getUserLogin($value['author']);
 	$tags = $emTag->getTag($value['gid']);
 	$tagStr = '';
 	foreach ($tags as $val)
@@ -93,7 +108,7 @@ foreach($tags as $val):
 	  <img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
 	  </td>
 	  <?php endif; ?>
-      <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $author; ?></a></td>
+      <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
       <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
       <td><?php echo $value['date']; ?></td>
 	  <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -102,6 +117,7 @@ foreach($tags as $val):
 	<?php endforeach; ?>
 	</tbody>
 	</table>
+	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
 	选中项：
     <a href="javascript:logact('del');">删除</a>
@@ -111,32 +127,39 @@ foreach($tags as $val):
 	<a href="javascript:logact('hide');">转入草稿箱</a>
 	<a href="javascript:logact('top');">置顶</a>
     <a href="javascript:logact('notop');">取消置顶</a>
-	<select name="sort" id="sort" onChange="move2sort(this);">
+
+	<select name="sort" id="sort" onChange="changeSort(this);">
 	<option value="" selected="selected">移动到分类...</option>
 	<?php foreach($sorts as $val):?>
-		<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
+	<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
 	<?php endforeach;?>
 	<option value="-1">未分类</option>
 	</select>
+
+	<?php if (ROLE == 'admin' && count($users) > 1):?>
+	<select name="author" id="author" onChange="changeAuthor(this);">
+	<option value="" selected="selected">更改作者为...</option>
+	<?php foreach($users as $key => $val):
+	$val['name'] = !empty($val['name']) ? $val['name'] : $emUser->getUserLogin($key); 
+	?>
+	<option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
+	<?php endforeach;?>
+	</select>
 	<?php endif;?>
-	<input name="operate" id="operate" value="" type="hidden" />
+
+	<?php endif;?>
 	</div>
-    <div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
 </form>
+    <div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
 <script>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_log_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")});
-	$("#f_t_sort").click(function(){
-		$("#f_sort").toggle();
-		$("#f_tag").hide();
-	});
-	$("#f_t_tag").click(function(){
-		$("#f_tag").toggle();
-		$("#f_sort").hide();
-	})
+	$("#f_t_sort").click(function(){$("#f_sort").toggle();$("#f_tag").hide();$("#f_user").hide();});
+	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
+	$("#f_t_user").click(function(){$("#f_user").toggle();$("#f_sort").hide();$("#f_tag").hide();});
 });
 setTimeout(hideActived,2600);
 function logact(act){
@@ -147,13 +170,22 @@ function logact(act){
 	$("#operate").val(act);
 	$("#form_log").submit();
 }
-function move2sort(obj) {
+function changeSort(obj) {
 	var sortId = obj.value;
 	if (getChecked('ids') == false) {
 		alert('请选择要操作的日志');
 		return;}
 	if($('#sort').val() == '')return;
 	$("#operate").val('move');
+	$("#form_log").submit();
+}
+function changeAuthor(obj) {
+	var sortId = obj.value;
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的日志');
+		return;}
+	if($('#author').val() == '')return;
+	$("#operate").val('change_author');
 	$("#form_log").submit();
 }
 </script>

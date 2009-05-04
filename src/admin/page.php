@@ -15,7 +15,13 @@ $navibar = unserialize($navibar);
 if($action == '')
 {
 	$emPage = new emBlog($DB);
-	$pages = $emPage->getLogsForAdmin('', '', 1, $uid, 'page');
+
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
+	$pageNum = $emPage->getLogNum('','','page', 1);
+
+	$pageurl =  pagination($pageNum, 15, $page, "page.php?page");
 
 	include getViews('header');
 	require_once(getViews('admin_page'));
@@ -70,7 +76,7 @@ if ($action == 'mod')
 if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 {
 	$emPage = new emBlog($DB);
-	
+
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
@@ -78,9 +84,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
 	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-	
+
 	$postTime = $emPage->postDate($timezone);
-	
+
 	$logData = array(
 	'title'=>$title,
 	'content'=>$content,
@@ -97,14 +103,14 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
-	
+
 	$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = serialize($navibar);
 	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 	$CACHE->mc_logatts();
 	$CACHE->mc_options();
-	
+
 	switch ($action)
 	{
 		case 'autosave':
@@ -119,40 +125,46 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 			break;
 	}
 }
-//发布、禁用页面
-if ($action == 'ishide')
+//操作页面
+if ($action == 'operate_page')
 {
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$pages = isset($_POST['page']) ? $_POST['page'] : '';
+	
 	$emPage = new emBlog($DB);
 
-	$ishide = isset($_GET['ishide']) ? $_GET['ishide'] : 'n';
-	$pageId = isset($_GET['pid']) ? $_GET['pid'] : '';
-	
-	$logData = array('hide'=>$ishide);
-	$emPage->updateLog($logData, $pageId);
+	switch ($operate)
+	{
+		case 'del':
+			foreach($pages as $key => $value)
+			{
+				$emPage->deleteLog($key);
+				unset($navibar[$key]);
+			}
+			$navibar = serialize($navibar);
+			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
-	$navibar[$pageId]['hide'] = $ishide;
-	$navibar = serialize($navibar);
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+			$CACHE->mc_logatts();
+			$CACHE->mc_options();
 
-	$CACHE->mc_options();
+			header("Location: ./page.php?active_del=true");
+			break;
+		case 'hide':
+		case 'pub':
+			$ishide = $operate == 'hide' ? 'y' : 'n';
+			foreach($pages as $key => $value)
+			{
+				$emPage->updateLog(array('hide'=>$ishide), $key);
+				$navibar[$key]['hide'] = $ishide;
+			}
+			$navibar = serialize($navibar);
+			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
-	header("Location: ./page.php?active_hide_".$ishide."=true");
-}
-//删除页面
-if ($action == 'del')
-{
-	$emPage = new emBlog($DB);
-	$pageId = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$emPage->deleteLog($pageId, $uid);
+			$CACHE->mc_options();
 
-	unset($navibar[$pageId]);
-	$navibar = serialize($navibar);
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
-	
-	$CACHE->mc_logatts();
-	$CACHE->mc_options();
-
-	header("Location: ./page.php?active_del=true");
+			header("Location: ./page.php?active_hide_".$ishide."=true");
+			break;
+	}
 }
 
 ?>

@@ -32,6 +32,8 @@ if ($action== 'link_taxis')
 		}
 		$CACHE->mc_link();
 		header("Location: ./link.php?active_taxis=true");
+	}else {
+		header("Location: ./link.php?error_b=true");
 	}
 }
 

@@ -121,7 +121,7 @@ if ($action == 'showlog')
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-	$comments = $emComment->getComments($logid, 'n');
+	$comments = $emComment->getComments(0, $logid, 'n');
 	if ($type == 'blog')
 	{
 		//add viewcount
@@ -130,7 +130,7 @@ if ($action == 'showlog')
 		$neighborLog = $emBlog->neighborLog($logid);
 		extract($neighborLog);
 		//trackback
-		$tb = $emTrackback->getTrackbacks(null, $logid);
+		$tb = $emTrackback->getTrackbacks(null, $logid, 0);
 		require_once getViews('echo_log');
 	}elseif ($type == 'page'){
 		include getViews('page');
@@ -154,10 +154,12 @@ if ($action == 'addcom')
 	if($ret === 0)
 	{
 		$CACHE->mc_sta();
+		$CACHE->mc_user();
 		$CACHE->mc_comment();
 		emMsg('评论发表成功!',"?action=showlog&gid=$gid#comment", true);
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
+		$CACHE->mc_user();
 		emMsg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
 	}
 }

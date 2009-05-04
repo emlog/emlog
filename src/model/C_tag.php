@@ -8,11 +8,11 @@
 
 class emTag {
 
-	var $dbhd;
+	var $db;
 
 	function emTag($dbhandle)
 	{
-		$this->dbhd = $dbhandle;
+		$this->db = $dbhandle;
 	}
 
 	/**
@@ -25,8 +25,8 @@ class emTag {
 	{
 		$tags = array();
 		$condition = $blogId ? "WHERE gid LIKE '%,$blogId,%'" : '';
-		$query = $this->dbhd->query("select tagname,tid from ".DB_PREFIX."tag $condition");
-		while($row = $this->dbhd->fetch_array($query))
+		$query = $this->db->query("select tagname,tid from ".DB_PREFIX."tag $condition");
+		while($row = $this->db->fetch_array($query))
 		{
 			$row['tagname'] = htmlspecialchars($row['tagname']);
 			$row['tid'] = intval($row['tid']);
@@ -37,7 +37,7 @@ class emTag {
 	function getOneTag($tagId)
 	{
 		$tag = array();
-		$row = $this->dbhd->once_fetch_array("SELECT tagname,tid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
+		$row = $this->db->once_fetch_array("SELECT tagname,tid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
 		$tag['tagid'] = intval($row['tid']);
 		return $tag;
@@ -46,7 +46,7 @@ class emTag {
 	function getTagByName($tagName)
 	{
 		$tag = array();
-		$row = $this->dbhd->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
+		$row = $this->db->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
 		if(empty($row))
 		{
 			return false;
@@ -58,7 +58,7 @@ class emTag {
 	function getTagById($tagId)
 	{
 		$tag = array();
-		$row = $this->dbhd->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
+		$row = $this->db->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
 		if(empty($row))
 		{
 			return false;
@@ -78,13 +78,13 @@ class emTag {
 		$tag = formatArray($tag);
 		foreach ($tag as $tagName)
 		{
-			$result = $this->dbhd->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
+			$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
 			if(empty($result)) {
 				$query="INSERT INTO ".DB_PREFIX."tag (tagname,gid) VALUES('".$tagName."',',$blogId,')";
-				$this->dbhd->query($query);
+				$this->db->query($query);
 			}else{
 				$query="UPDATE ".DB_PREFIX."tag SET gid=concat(gid,'$blogId,') where tagname = '$tagName'";
-				$this->dbhd->query($query);
+				$this->db->query($query);
 			}
 		}
 	}
@@ -98,9 +98,9 @@ class emTag {
 	function updateTag($tagStr, $blogId)
 	{
 		$tag = explode(',',$tagStr);
-		$query = $this->dbhd->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$blogId."%' ");
+		$query = $this->db->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$blogId."%' ");
 		$old_tag = array();
-		while($row = $this->dbhd->fetch_array($query))
+		while($row = $this->db->fetch_array($query))
 		{
 			$old_tag[] = $row['tagname'];
 		}
@@ -116,18 +116,18 @@ class emTag {
 			{
 				if($dif_tag[$n] == $old_tag[$j])
 				{
-					$this->dbhd->query("UPDATE ".DB_PREFIX."tag SET gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
-					$this->dbhd->query("DELETE FROM ".DB_PREFIX."tag WHERE gid=',' ");
+					$this->db->query("UPDATE ".DB_PREFIX."tag SET gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
+					$this->db->query("DELETE FROM ".DB_PREFIX."tag WHERE gid=',' ");
 					break;
 				}elseif($j == count($old_tag)-1){
-					$result = $this->dbhd->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='".trim($dif_tag[$n])."' ");
+					$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='".trim($dif_tag[$n])."' ");
 					if(empty($result))
 					{
 						$query="INSERT INTO ".DB_PREFIX."tag (tagname,gid) VALUES('".$dif_tag[$n]."',',$blogId,')";
-						$this->dbhd->query($query);
+						$this->db->query($query);
 					}else{
 						$query="UPDATE ".DB_PREFIX."tag SET gid=concat(gid,'$blogId,') where tagname = '".$dif_tag[$n]."' ";
-						$this->dbhd->query($query);
+						$this->db->query($query);
 					}
 				}
 			}
@@ -137,12 +137,12 @@ class emTag {
 	function updateTagName($tagId, $tagName)
 	{
 		$sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
-		$this->dbhd->query($sql);
+		$this->db->query($sql);
 	}
 	
 	function deleteTag($tagId)
 	{
-		$this->dbhd->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
+		$this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
 	}
 
 }

@@ -11,6 +11,7 @@ require_once('init.php');
 //登录验证
 $userData = array();
 define('ISLOGIN',	isLogin());
+define('ROLE', ISLOGIN ? $userData['role'] : 'visitor');
 
 //读取缓存
 $log_cache_tags = $CACHE->readCache('log_tags');
@@ -30,7 +31,6 @@ $tw_cache = $CACHE->readCache('twitter');
 define('TEMPLATE_PATCH', './content/templates/');
 //导航条
 $navibar = unserialize($navibar);
-
 //背景音乐
 $music = @unserialize($options_cache['music']);
 if ($music['mlinks'])

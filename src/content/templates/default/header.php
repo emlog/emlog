@@ -35,7 +35,7 @@ require_once (getViews('module'));
 			?>
 			<li class="menus2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 			<?php endforeach;?>
-			<?php if(ISLOGIN): ?>
+			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 			<li class="menus2"><a href="./admin/write_log.php">写日志</a></li>
 			<li class="menus2"><a href="./admin/">管理中心</a></li>
 			<li class="menus2"><a href="./admin/index.php?action=logout">退出</a></li>

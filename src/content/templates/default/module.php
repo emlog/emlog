@@ -10,7 +10,7 @@ function widget_blogger($title){
 	<div id="bloggerinfoimg"><?php echo $user_cache[1]['photo']; ?></div>
 	<li><b><?php echo $name; ?></b></li>
 		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
-		<?php if(ISLOGIN === true): ?>
+		<?php if(ROLE == 'admin'): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 		<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
@@ -87,7 +87,7 @@ function widget_twitter($title){
 		<?php endif;?>
 		</ul>
 	</li>
-		<?php if(ISLOGIN === true): ?>
+		<?php if(ROLE == 'admin'): ?>
 		<ul>
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
@@ -250,6 +250,22 @@ function blog_tag($blogid){
 	?>
 <?php }?>
 <?php
+//blog：日志作者
+function blog_author($uid){
+	global $user_cache,$DB;?>
+	<?php 
+	if (empty($user_cache[$uid]['name']))
+	{
+		require_once(EMLOG_ROOT.'/model/C_user.php');
+		$emUser = new emUser($DB);
+		$author = $emUser->getUserLogin($uid);
+	}else{
+		$author = $user_cache[$uid]['name'];
+	}
+	echo $author;
+	?>
+<?php }?>
+<?php
 //blog：相邻日志
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
@@ -307,7 +323,7 @@ function blog_comments(){
 			<?php echo $value['content']; ?>
 			</div>
 			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
-		<?php if(ISLOGIN === true): ?>
+		<?php if(ROLE == 'admin'): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;">		<?php echo $value['reply']; ?></textarea>

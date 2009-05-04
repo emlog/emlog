@@ -7,25 +7,13 @@
 </div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post">
-  <table width="95%" align="center">
-    <tbody>
-      <tr>
-        <td width="800">
-		<?php foreach($tags as $key=>$value): ?>	
-		<input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" value="1" >
-		<a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
-		<?php endforeach; ?>
-		</td>
-      </tr>
-    </tbody>
-  </table>
-  <table width="95%">
-    <tbody>
-      <tr>
-        <td align="center" colspan="5">
-		<input type="submit" value="删除所选标签" class="submit" />
-		</td>
-      </tr>
-    </tbody>
-  </table>
+<div>
+	<li>
+	<?php foreach($tags as $key=>$value): ?>	
+	<input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" value="1" >
+	<a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
+	<?php endforeach; ?>
+	</li>
+	<p><input type="submit" value="删除所选标签" class="submit" /></p>
+</div>
 </form>
