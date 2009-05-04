@@ -30,8 +30,8 @@ class emComment {
 		$condition = '';
 		if($page)
 		{
-			$startId = ($page - 1) *15;
-			$condition = "LIMIT $startId, 15";
+			$startId = ($page - 1) *ADMIN_PERPAGE_NUM;
+			$condition = "LIMIT $startId, ".ADMIN_PERPAGE_NUM;
 		}
 		if($spot == 0)
 		{

@@ -31,6 +31,16 @@ $timezone  = intval($timezone);
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 //获取时间
 $localdate = time() - ($timezone-8) * 3600;
+//登录验证
+$userData = array();
+define('ISLOGIN',	isLogin());
+define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//用户组: admin管理员, writer联合撰写人, visitor访客
+define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
+//全局配置
+define('IMG_ATT_MAX_W',	420);//图片附件缩略图最大宽
+define('IMG_ATT_MAX_H',	460);//图片附件缩略图最大高
+define('ICON_MAX_W', 140);//头像缩略图最大宽
+define('ICON_MAX_H', 220);//头像缩略图最大高
 //加载插件
 $active_plugins = unserialize($active_plugins);
 if ($active_plugins && is_array($active_plugins))

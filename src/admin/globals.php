@@ -14,10 +14,7 @@ define('ADMIN_TPL', 			'default');//后台模板
 define('UPLOADFILE_MAXSIZE',	20971520);//附件大小上限 单位：字节（默认20M）
 define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
 define('IS_THUMBNAIL',			1);//上传图片是否生成缩略图 1:是 0:否
-define('IMG_ATT_MAX_W',			420);//图片附件缩略图最大宽
-define('IMG_ATT_MAX_H',			460);//图片附件缩略图最大高
-define('ICON_MAX_W',			140);//个性头像缩略图最大宽
-define('ICON_MAX_H',			220);//个性头像缩略图最大高
+define('ADMIN_PERPAGE_NUM',		15);//后台管理每页条目数
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
 
 //检测后台模板
@@ -58,14 +55,10 @@ if ($action == 'logout')
 	formMsg('退出成功！','../index.php',1);
 }
 
-$userData = array();
-if(isLogin() === false)
+if(ISLOGIN === false)
 {
 	loginpage();
 }
-
-define('ROLE', $userData['role']);	//用户组 'admin'：管理员 'writer':联合撰写人
-define('UID', $userData['uid']);	//用户ID
 
 $request_uri = substr(basename($_SERVER['SCRIPT_NAME']), 0, -4);
 if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))

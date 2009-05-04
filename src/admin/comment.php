@@ -25,7 +25,7 @@ if($action == '')
 	$comment = $emComment->getComments(1, $blogId, $hide, $page);
 	$cmnum = $emComment->getCommentNum($blogId, $hide);
 	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
-	$pageurl =  pagination($cmnum,15,$page,"comment.php?{$addUrl}page");
+	$pageurl =  pagination($cmnum, ADMIN_PERPAGE_NUM, $page, "comment.php?{$addUrl}page");
 
 	include getViews('header');
 	require_once(getViews('comment'));

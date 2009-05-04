@@ -8,11 +8,6 @@
 
 require_once('init.php');
 
-//登录验证
-$userData = array();
-define('ISLOGIN',	isLogin());
-define('ROLE', ISLOGIN ? $userData['role'] : 'visitor');
-
 //读取缓存
 $log_cache_tags = $CACHE->readCache('log_tags');
 $log_cache_sort = $CACHE->readCache('log_sort');

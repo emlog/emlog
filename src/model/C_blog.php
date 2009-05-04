@@ -158,10 +158,10 @@ class emBlog {
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog')
 	{
-		$start_limit = !empty($page) ? ($page - 1) * 15 : 0;
+		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
 		$author = ROLE == 'admin' && $hide_state == 'n' ? '' : 'and author='.UID;
 		$hide_state  = $hide_state ? "and hide='$hide_state'" : '';
-		$limit = "LIMIT $start_limit, 15";
+		$limit = "LIMIT $start_limit, ".ADMIN_PERPAGE_NUM;
 		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();
