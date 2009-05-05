@@ -18,19 +18,19 @@
 <table id=header cellspacing=0 cellpadding=0 width="99%" border=0>
   <tbody>
   <tr>
-    <td width="9" id=headerleft></td>
-    <td width=98 align=middle nowrap class="logo"><a href="./index.php" title="返回管理首页">emlog</a></td>
+    <td width="9" id="headerleft"></td>
+    <td width=98  class="logo"><a href="./index.php" title="返回管理首页">emlog</a></td>
     <td class="vesion"><?php echo EMLOG_VERSION; ?></td>
-    <td class="headtext"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
+    <td  class="home" align="left"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
 	你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php if (ROLE == 'admin'):?>
-    <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" style="margin:2px 0px 3px;" align="absbottom" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="configure.php">博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="index.php?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
-    <td width="9" id="headerright"></td>
+    <td width="9" id="headerright" ></td>
 	</tbody>
 </table>
 <table cellspacing=0 cellpadding=0 width="100%" border=0>
@@ -65,7 +65,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
 			<div id="log_mg">
-            <div class="sidebarsubmenu"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+            <div class="sidebarsubmenu1"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
 			<div class="sidebarsubmenu"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $user_cache[UID]['draftnum'] == 0 ? '' : '('.$user_cache[UID]['draftnum'].')'; ?></span></a></div>
 			<div class="sidebarsubmenu"><a href="admin_log.php">日志</a></div>
 			<?php if (ROLE == 'admin'):?>
