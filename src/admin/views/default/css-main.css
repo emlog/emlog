@@ -1,5 +1,6 @@
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin:0; padding:0; border:0; }
 body{font-size:12px; color:#000; line-height:1.6; font-family:arial,helvetica,sans-serif; padding:0; margin:0;}
-center{ margin:5px auto 0px; }
+center{ margin:5px auto 0px; width:960px; }
 li{list-style:none;}
 a{color:#2A9DDB; text-decoration:none}
 a:hover{color:#333; text-decoration:none}
@@ -9,7 +10,7 @@ a:hover{color:#333; text-decoration:none}
 #header a{color:#FFF; text-decoration:none}
 #header a:hover{color:#CCC; text-decoration:none}
 #header .logo a{ text-indent:-9999px; height:40px; width:120px; background:url(images/logo.png) no-repeat; display:block;}
-#header .vesion{font-size:10px; padding-top:12px; color: #CEE7FF; padding-right:5px;}
+#header .vesion{font-size:10px; padding-top:10px; color: #CEE7FF; padding-right:5px;}
 #header .home{ background:url(images/top_line1.png) no-repeat; font-size:15px; padding-left:20px;}
 #sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif); margin-left:5px; width:114px; background-repeat:repeat-y; text-align:center}
 #sidebar a{color:#333; text-decoration:none; display:block;}
