@@ -6,7 +6,7 @@
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table width="95%" id="adm_comment_list">
+  <table width="99%" id="adm_comment_list">
   	<thead>
       <tr class="rowstop">
       	<td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>

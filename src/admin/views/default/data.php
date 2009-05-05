@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 </script>
 <form  method="post" action="data.php?action=dell_all_bak">
-<table width="95%" id="adm_bakdata_list">
+<table width="99%" id="adm_bakdata_list">
   <thead>
     <tr class="rowstop">
       <td width="22"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>

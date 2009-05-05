@@ -9,7 +9,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
-  <table width="95%" id="adm_comment_list">
+  <table width="99%" id="adm_comment_list">
   	<thead>
       <tr class="rowstop">
         <td width="60"><b>用户名</b></td>

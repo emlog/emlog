@@ -3,7 +3,7 @@
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
-  <table width="95%" id="adm_plugin_list">
+  <table width="99%" id="adm_plugin_list">
   <thead>
       <tr class="rowstop">
         <td width="60"></td>

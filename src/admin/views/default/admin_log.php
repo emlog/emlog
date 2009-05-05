@@ -61,7 +61,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
-  <table width="95%" id="adm_log_list">
+  <table width="99%" id="adm_log_list">
   <thead>
       <tr class="rowstop">
         <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
