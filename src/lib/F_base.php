@@ -387,7 +387,7 @@ function cleanPage($beUrlRewrite = false)
  */
 function logRewrite($gid,$ext,$values)
 {
-	return '<a href="showlog-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
+	return '<a href="post-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
 }
 /**
  * 日志归档链接重写
