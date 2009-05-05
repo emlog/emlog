@@ -110,7 +110,7 @@
 	<div id="randlog">
 	  <ul>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>	
 	  </ul>
 	</div>

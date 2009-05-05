@@ -8,7 +8,7 @@
 
 require_once('../common.php');
 
-define('CURPAGE','wap');
+$isgzipenable = 'n';//wap浏览关闭gzip压缩
 
 $tem = time();
 

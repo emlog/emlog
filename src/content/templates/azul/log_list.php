@@ -4,7 +4,7 @@ foreach($logs as $value):
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
 ?>
 	<div class="post">
-		<h2><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a></h2>
+		<h2><?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a></h2>
 			<div class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 					<div class="entry">
 						<p><?php echo $value['log_description']; ?></p>
@@ -21,7 +21,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 							?>
 						</p>
 						<div class="commentbubble">
-						<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
+						<a href="./?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
 						</div>
 						
 						<p class="postmetadata">
@@ -29,8 +29,8 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 						<?php if($log_cache_sort[$value['logid']]): ?>
 						<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
 						<?php endif;?>
-						<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
-						<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+						<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+						<a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 						</p>
 					</div>
 			</div>

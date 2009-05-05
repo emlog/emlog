@@ -131,7 +131,7 @@
 		<h3><?php echo $title; ?></h3>
 		<ul>
 		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>
@@ -146,7 +146,7 @@
 		<h3><?php echo $title; ?></h3>
 		<ul>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>

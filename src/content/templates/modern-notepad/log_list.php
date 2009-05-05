@@ -11,7 +11,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
                                     <li class="post" id="post-1">
                 		<div class="content">
                             <div class="title">
-                        	    <h2><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
+                        	    <h2><?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
                             </div>
                             <div class="postdata">
                                 <span class="category">	<?php if($log_cache_sort[$value['logid']]): ?>
@@ -19,9 +19,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<?php endif;?></span>
                                 
                                 <span class="comments">
-                                <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
-                                <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
-                                <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a></span>
+                                <a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
+                                <a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+                                <a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a></span>
                                 <span class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></span>
                             </div><!--.postdata-->
                     		<div class="entry">

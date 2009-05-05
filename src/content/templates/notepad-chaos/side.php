@@ -6,7 +6,7 @@
 			$toplogs['title'] = htmlspecialchars(trim($toplogs['title']));
 	?>
     <ul>
-    <li><a href="./?action=showlog&gid=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
+    <li><a href="./?post=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
     <span class="listMeta"><?php echo $toplogs['post_time']; ?></span></a></li>
     </ul>
     <?php endwhile;?>

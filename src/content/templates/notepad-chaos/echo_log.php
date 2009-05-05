@@ -23,7 +23,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <div class="col01">
     <div class="post" id="post-<?php echo $logid; ?>">
       <h3>
-	  <a href="./?action=showlog&gid=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
+	  <a href="./?post=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
 	  	<?php if($log_cache_sort[$logid]): ?>
 		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 		<?php endif;?>
@@ -48,10 +48,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     </div>
     <div class="post-nav">
 	<?php if($nextLog):?>
-    <span class="previous"><a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"></a></span>
+    <span class="previous"><a href="./?post=<?php echo $nextLog['gid']; ?>"></a></span>
     <?php endif;?>
     <?php if($prevLog):?>
-    <span class="next"><a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"></a></span>
+    <span class="next"><a href="./?post=<?php echo $prevLog['gid']; ?>"></a></span>
     <?php endif;?>
     </div>
     <?php if($allow_tb == 'y'):?>	

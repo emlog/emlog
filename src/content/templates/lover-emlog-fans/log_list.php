@@ -25,7 +25,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
     	<div class="note_box">
     		<div class="note_title">
             <div class="p"></div>
-       <?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
+       <?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
         	</div>
         	<div class="note_content">
        <?php echo $value['log_description']; ?>
@@ -40,10 +40,10 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
             	<?php echo date('Y-n-j G:i l', $value['date']); ?>
             	</div>
                 <div class="note_tag_text3">
-            	<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
+            	<a href="./?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
             	</div>
                 <div class="note_tag_text4">
-            	<a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['views']; ?></a>
+            	<a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['views']; ?></a>
             	</div>    
         	</div>
          </div>

@@ -8,8 +8,6 @@
 
 require_once('common.php');
 
-define('CURPAGE','twitter');
-
 if ($action == '')
 {
 	$twitter = '';

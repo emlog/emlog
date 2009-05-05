@@ -41,10 +41,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</div> <!-- POST -->
 		<div class="navigation">
 		<?php if($prevLog):?>
-		<div class="alignleft"><a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>" title="<?php echo $prevLog['title'];?>">&laquo; 上一篇</a></div>
+		<div class="alignleft"><a href="./?post=<?php echo $prevLog['gid']; ?>" title="<?php echo $prevLog['title'];?>">&laquo; 上一篇</a></div>
 		<?php endif;?>
 		<?php if($nextLog):?>
-			 <div class="alignright"><a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>" title="<?php echo $nextLog['title'];?>">下一篇&raquo;</a></div>
+			 <div class="alignright"><a href="./?post=<?php echo $nextLog['gid']; ?>" title="<?php echo $nextLog['title'];?>">下一篇&raquo;</a></div>
 		<?php endif;?>
 		</div>
 		<div style="clear: both; height: 20px;"></div>

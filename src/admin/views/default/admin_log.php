@@ -104,7 +104,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td align="center">
-	  <a href="../?action=showlog&gid=<?php echo $value['gid']; ?>" target="_blank" title="在新窗口查看">
+	  <a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="在新窗口查看">
 	  <img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
 	  </td>
 	  <?php endif; ?>

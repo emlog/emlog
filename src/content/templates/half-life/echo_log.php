@@ -14,13 +14,13 @@
 <p><?php $tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';echo $tag;?></p>
 <p>
 <?php if($prevLog):?>
-	&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
-	<a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+	<a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 <?php endif;?>
 </p>
 </div>

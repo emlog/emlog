@@ -351,7 +351,7 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?action=showlog&gid=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
@@ -368,7 +368,7 @@ function cleanPage($beUrlRewrite = false)
 		}
 	}
 	ob_end_clean();
-	if ($isgzipenable == 'y' && function_exists('ob_gzhandler') && defined('CURPAGE') && !in_array(CURPAGE, array('wap', 'twitter')))
+	if ($isgzipenable == 'y' && function_exists('ob_gzhandler'))
 	{
 		ob_start('ob_gzhandler');
 	} else {
@@ -445,7 +445,7 @@ function breakLog($content,$lid)
 {
 	$a = explode("[break]",$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="./?action=showlog&gid='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
 }
 

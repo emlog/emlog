@@ -114,7 +114,7 @@
 	<h4><em onclick="showhidediv('newlog')"><?php echo $title; ?></em></h4>
 	<ul id="newlog" class="posts">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php }?>
@@ -127,7 +127,7 @@
 	<h4><em onclick="showhidediv('randlog')"><?php echo $title; ?></em></h4>
 	<ul id="randlog" class="posts">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php }?>

@@ -7,7 +7,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
     <div class="excrept_in">
     <!-- Thumbnail from Custom Field, Post first image or default thumbnail -->
             <div class="the_excrept">
-            <h2 class="hte_excrept_h2"><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a></h2>
+            <h2 class="hte_excrept_h2"><?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a></h2>
             <?php if($log_cache_sort[$value['logid']]): ?>
 	<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
 	<?php endif;?>
@@ -32,12 +32,12 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
                <?php echo date('Y-n-j G:i l', $value['date']); ?>            </div>
             <div class="excrept_right">
                 <div class="excrept_but">
-                   <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>  </div>
+                   <a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>  </div>
                 <div class="excrept_but">
-                   <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+                   <a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
                 </div>
                 <div class="excrept_but">
-                  <a href="./?action=showlog&gid=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+                  <a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
                 </div>
             </div>
         <div class="clear"></div>

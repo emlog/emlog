@@ -17,7 +17,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				</div> <!-- POST DATE -->
 				
 				<div class="posttitle">
-					<h3><?php echo $topFlg; ?><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h3>
+					<h3><?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h3>
 				</div> <!-- POST TITLE -->
 
 				<div class="postmeta">
@@ -51,9 +51,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 			</div>
 			<div style="clear:both;"></div>
 			<div class="postfooter" style="">
-				<div class="postcomments"><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#comment">评论：(<?php echo $value['comnum']; ?>)</a></div> <!-- POST COMMENTS -->
-				<div class="posttags"><div class="posttags2"><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> </div> <!-- POST TAGS 2 --></div> <!-- POST TAGS -->
-				<div class="postnr"><div class="postnrtext"><a href="./?action=showlog&gid=<?php echo $value['logid']; ?>" title="浏览：<?php echo $value['views']; ?> 次"><?php echo $value['views']; ?></a></div> <!-- POST NR TEXT --></div> <!-- POST NR -->
+				<div class="postcomments"><a href="./?post=<?php echo $value['logid']; ?>#comment">评论：(<?php echo $value['comnum']; ?>)</a></div> <!-- POST COMMENTS -->
+				<div class="posttags"><div class="posttags2"><a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> </div> <!-- POST TAGS 2 --></div> <!-- POST TAGS -->
+				<div class="postnr"><div class="postnrtext"><a href="./?post=<?php echo $value['logid']; ?>" title="浏览：<?php echo $value['views']; ?> 次"><?php echo $value['views']; ?></a></div> <!-- POST NR TEXT --></div> <!-- POST NR -->
 			</div> <!-- POST FOOTER -->
 		</div> <!-- POST -->
 		<?php endforeach; ?>

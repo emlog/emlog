@@ -8,25 +8,23 @@
 
 require_once('common.php');
 
+//访问统计
 viewCount();
-
-define('CURPAGE','index');
-
 //当前模板目录
 $em_tpldir = TEMPLATE_PATCH.$nonce_templet.'/';
 if (!is_dir($em_tpldir))
 {
-	exit('Template Error: no template directory!');
+	exit('Error: no template directory!');
 }
+//页面标题
 $blogtitle = $blogname;
+//日历链接
 $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
-$job = array('showlog','search','addcom','taglog','');
-if (!in_array($action,$job))
-{
-	emMsg('error!','./index.php');
-}
+//日志id(浏览日志)
+$logid = isset($_GET['post']) ? intval($_GET['post']) : '';
+
 //日志列表
-if (!isset($action) || empty($action))
+if (empty($action) && empty($logid))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
 
@@ -88,15 +86,13 @@ if (!isset($action) || empty($action))
 	include getViews('header');
 	include getViews('log_list');
 }
-//显示日志、页面
-if ($action == 'showlog')
+//浏览日志、页面
+if (!empty($logid))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
 	require_once(EMLOG_ROOT.'/model/C_trackback.php');
 	include getViews('header');
-
-	isset($_GET['gid']) ? $logid = intval($_GET['gid']) : emMsg('提交参数错误','./index.php');
 
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
@@ -156,11 +152,11 @@ if ($action == 'addcom')
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
 		$CACHE->mc_comment();
-		emMsg('评论发表成功!',"?action=showlog&gid=$gid#comment", true);
+		emMsg('评论发表成功!',"?post=$gid#comment", true);
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		emMsg('评论发表成功!请等待管理员审核!',"?action=showlog&gid=$gid#comment");
+		emMsg('评论发表成功!请等待管理员审核!',"?post=$gid#comment");
 	}
 }
 

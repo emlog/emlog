@@ -138,7 +138,7 @@ function widget_newlog($title){
 	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -152,7 +152,7 @@ function widget_random_log($title){
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="index.php?action=showlog&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -271,13 +271,13 @@ function neighbor_log(){
 	global $prevLog,$nextLog; ?>
 	<div class="nextlog">
 	<?php if($prevLog):?>
-		&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+		&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
 	<?php if($nextLog && $prevLog):?>
 		|
 	<?php endif;?>
 	<?php if($nextLog):?>
-		 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
 	</div>		
 <?php }?>

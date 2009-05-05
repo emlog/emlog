@@ -23,13 +23,13 @@ Posted in <?php echo date('Y-n-j G:i l', $date); ?>
 </p>
 <p>
 		<?php if($prevLog):?>
-			&laquo; <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+			&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 		<?php endif;?>
 		<?php if($nextLog && $prevLog):?>
 			|
 		<?php endif;?>
 		<?php if($nextLog):?>
-			 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+			 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 		<?php endif;?>
 </p>
 </div>

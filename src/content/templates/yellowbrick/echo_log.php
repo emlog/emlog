@@ -42,13 +42,13 @@
 										<div class="panel_links">
 <div class="nextlog">
 <?php if($prevLog):?>
-	&laquo; 上一篇 <a href="./?action=showlog&gid=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; 上一篇 <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
-	 <a href="./?action=showlog&gid=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a> 下一篇 &raquo;
+	 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a> 下一篇 &raquo;
 <?php endif;?>
 </div>
 										</div>
