@@ -26,7 +26,7 @@ a:hover{color:#333; text-decoration:none}
 .containertitle{background-position:left 3px; font-size:18px; margin:0px 0px}
 .line{border-top:#CCC 1px solid; margin:5px 0px 15px; font-size:0px; height:1%;}
 .line2{border-top:#999 1px dotted; margin:5px 20px; width:70%; font-size:0px;}
-.template_line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:99%; font-size:12px; height:1%; padding:0px;}
+.template_line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:100%; font-size:12px; height:1%; padding:0px;}
 .rowstop{background-image:url(./images/admindex_itembg.gif);}
 .input{border:1px solid #CCC; overflow-y:hidden}
 .submit{font-size:12px;cursor:pointer; _cursor:hand;}
