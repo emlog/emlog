@@ -123,7 +123,7 @@ if (!empty($logid))
 		//add viewcount
 		$emBlog->updateViewCount($logid);
 		//neighborlog
-		$neighborLog = $emBlog->neighborLog($logid);
+		$neighborLog = $emBlog->neighborLog($date);
 		extract($neighborLog);
 		//trackback
 		$tb = $emTrackback->getTrackbacks(null, $logid, 0);

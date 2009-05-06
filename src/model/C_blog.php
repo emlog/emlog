@@ -305,14 +305,14 @@ class emBlog {
 	/**
 	 * 获取相邻日志
 	 *
-	 * @param int $blogId
+	 * @param int $date unix时间戳
 	 * @return array
 	 */
-	function neighborLog($blogId)
+	function neighborLog($date)
 	{
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid < $blogId AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE gid > $blogId AND hide = 'n' LIMIT 1");
+		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date < $date AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date > $date AND hide = 'n' LIMIT 1");
 		if($neighborlog['nextLog'])
 		{
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
