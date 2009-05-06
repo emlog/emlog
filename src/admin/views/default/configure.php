@@ -5,7 +5,7 @@ setTimeout(hideActived,2600);
 <div class=containertitle><b>博客设置</b><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
-  <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
     <tbody>
       <tr nowrap="nowrap">
         <td width="18%" align="right">博客名称：</td>

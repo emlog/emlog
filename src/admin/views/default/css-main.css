@@ -1,3 +1,4 @@
+html{overflow-y:scroll;}
 fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin:0; padding:0; border:0; }
 body{font-size:12px; color:#000; line-height:1.6; font-family:arial,helvetica,sans-serif; padding:0; margin:0;}
 center{ margin:5px auto 0px; width:1003px; }
@@ -87,9 +88,9 @@ textarea{font-size:12px}
 #show_advset{margin:0px 0px 0px 3px; background:url(images/advset.gif) no-repeat 56px 4px; cursor:pointer}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px}
 #log_pass{display:none}
-#admindex_main{width:600px; margin:30px 5px 15px}
-#admindex_servinfo{float:left; width:360px; margin-right:10px}
-#admindex_msg{width:360px; float:left}
+#admindex_main{width:600px; margin:5px 5px 8px}
+#admindex_servinfo{float:left; width:414px; margin-right:10px}
+#admindex_msg{width:414px; float:left}
 #admindex_msg img{border:none}
 #admindex_msg ul li{line-height:1.6}
 #admindex_msg ul li img{margin:5px}
