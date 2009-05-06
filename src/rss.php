@@ -16,7 +16,6 @@ $URL = GetURL();
 $site =  $options_cache;
 $blog = GetBlog($sort);
 $blognum = GetBlogNum();
-$author = $user_cache['name'];
 
 echo <<< END
 <?xml version="1.0" encoding="utf-8"?>
@@ -34,6 +33,14 @@ foreach($blog as $value)
 	$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  date('r',$value['date']);
+	if (empty($user_cache[$value['author']]['name']))
+	{
+		require_once(EMLOG_ROOT.'/model/C_user.php');
+		$emUser = new emUser($DB);
+		$author = $emUser->getUserLogin($uid);
+	}else{
+		$author = $user_cache[$value['author']]['name'];
+	}
 	echo <<< END
 
 <item>

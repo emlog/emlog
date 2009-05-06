@@ -10,7 +10,7 @@ require_once('common.php');
 
 //访问统计
 viewCount();
-//当前模板目录
+//模板目录
 $em_tpldir = TEMPLATE_PATCH.$nonce_templet.'/';
 if (!is_dir($em_tpldir))
 {
@@ -20,7 +20,7 @@ if (!is_dir($em_tpldir))
 $blogtitle = $blogname;
 //日历链接
 $calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
-//日志id(浏览日志)
+//日志id
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 
 //日志列表
@@ -132,7 +132,7 @@ if (!empty($logid))
 		include getViews('page');
 	}
 }
-//添加评论
+//发表评论
 if ($action == 'addcom')
 {
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
