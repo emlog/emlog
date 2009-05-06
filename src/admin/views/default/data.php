@@ -37,6 +37,7 @@
 	<tfoot>
 	<tr>
 	<td align="center" colspan="5">
+    <br />
 	<input type="submit" value="删除所选备份" class="submit" />
 	</td>
 	</tr>
