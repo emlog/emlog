@@ -91,8 +91,8 @@ textarea{font-size:12px}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px}
 #log_pass{display:none}
 #admindex_main{width:600px; margin:5px 5px 8px}
-#admindex_servinfo{float:left; width:408px; margin-right:10px}
-#admindex_msg{width:408px; float:left}
+#admindex_servinfo{float:left; width:400px; margin-right:10px}
+#admindex_msg{width:400px; float:left}
 #admindex_msg img{border:none}
 #admindex_msg ul li{line-height:1.6}
 #admindex_msg ul li img{margin:5px}
