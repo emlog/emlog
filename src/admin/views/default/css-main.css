@@ -4,7 +4,7 @@ body{font-size:12px; color:#000; line-height:1.6; font-family:arial,helvetica,sa
 .mb-8{ margin-bottom:8px;}
 .center{ margin:5px auto 0px; width:960px;}
 li{list-style:none;}
-a{color:#2A9DDB; text-decoration:none}
+a{color:#2A9DDB; text-decoration:none;outline:none; }
 a:hover{color:#333; text-decoration:none}
 #header{ background:url(images/top_mid.gif) repeat-x; color:#FFFFFF; height:40px; margin-bottom:10px;}
 #headerleft{ background: url(images/top_left.png) no-repeat;}
