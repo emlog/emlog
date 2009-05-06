@@ -9,7 +9,7 @@
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
-  <table width="99%" id="adm_link_list">
+  <table width="100%" id="adm_link_list">
     <thead>
       <tr class="rowstop">
 	  	<td width="50"><b>序号</b></td>

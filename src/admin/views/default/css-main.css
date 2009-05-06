@@ -14,7 +14,7 @@ a:hover{color:#333; text-decoration:none}
 #header .logo a{ text-indent:-9999px; height:40px; width:120px; background:url(images/logo.png) no-repeat; display:block;}
 #header .vesion{font-size:10px; padding:10px 10px 0 5px; color: #CEE7FF;}
 #header .home{ background:url(images/top_line1.png) no-repeat; font-size:15px; padding-left:15px;}
-#sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif); margin-left:5px; width:114px; background-repeat:repeat-y; text-align:center}
+#sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif);width:114px; background-repeat:repeat-y; text-align:center}
 #sidebar a{color:#333; text-decoration:none; display:block;}
 #sidebar a:hover{color:#2A9DDB; text-decoration:none;}
 #sidebartop{background:url(./images/sidebar_bg_t.gif) no-repeat; width:114px; font-size:4px; height:4px}
@@ -24,7 +24,7 @@ a:hover{color:#333; text-decoration:none}
 .sidebarsubmenu1{background: url(images/left_b.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}
 #container{padding-left:30px;}
 .containertitle{background-position:left 3px; font-size:18px; margin:0px 0px}
-.line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:99%; font-size:0px; height:1%;}
+.line{border-top:#CCC 1px solid; margin:5px 0px 15px; font-size:0px; height:1%;}
 .line2{border-top:#999 1px dotted; margin:5px 20px; width:70%; font-size:0px;}
 .template_line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:99%; font-size:12px; height:1%; padding:0px;}
 .rowstop{background-image:url(./images/admindex_itembg.gif);}

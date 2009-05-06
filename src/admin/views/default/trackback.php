@@ -14,7 +14,7 @@ setTimeout(hideActived,2600);
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell" method="post" name="form_tb" id="form_tb">
-  <table width="99%" id="adm_tb_list">
+  <table width="100%" id="adm_tb_list">
   <thead>
       <tr class="rowstop">
         <td width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>

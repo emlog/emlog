@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="center">
-<table id=header cellspacing=0 cellpadding=0 width="99%" border=0>
+<table id=header cellspacing=0 cellpadding=0 width="992" border=0>
   <tbody>
   <tr>
     <td width="9" id="headerleft"></td>
@@ -34,13 +34,13 @@
 	</tbody>
 </table>
 <table cellspacing=0 cellpadding=0 width="100%" border=0>
-<tbody>
+<tbody >
   <tr>
-    <td valign=top align=left width=114>
+    <td valign=top align=left width="114">
 	<table cellspacing=0 cellpadding=0 width="100%" border=0>
         <tbody>
         <tr>
-          <td valign=top align=left width=114>
+          <td valign=top align=left width="114">
             <div id=sidebar>
             <div id=sidebartop></div>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
