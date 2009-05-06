@@ -151,12 +151,10 @@ src/admin/views/default/images/sidebar_bg_t.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_smenu_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/skin.gif -text
 src/admin/views/default/images/tar.gif -text svn_keywords=Id
-src/admin/views/default/images/top_l.gif -text
 src/admin/views/default/images/top_left.png -text
 src/admin/views/default/images/top_line1.png -text
 src/admin/views/default/images/top_m.gif -text
 src/admin/views/default/images/top_mid.gif -text
-src/admin/views/default/images/top_r.gif -text
 src/admin/views/default/images/top_right.png -text
 src/admin/views/default/images/vlog.gif -text
 src/admin/views/default/index.php -text svn_keywords=Id
