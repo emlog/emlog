@@ -8,7 +8,7 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>
 </div>
 <div class=line></div>
-  <form action="blogger.php?action=modintro" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
+  <form action="blogger.php?action=modintro" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
     <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">
       <tbody>
         <tr nowrap="nowrap">
@@ -40,7 +40,7 @@ $Icon = $photo?" <img src=\"$photo\" border=\"1\" align=\"absbottom\" /><a href=
       </tbody>
     </table>
   </form>
-  	<div class=containertitle><b>修改密码/登录名</b></div>
+  	<div class="containertitle"><b>修改密码/登录名</b></div>
 	<div class=line></div>
   <form action="blogger.php?action=update_admin" method="post" name="blooger" id="blooger">
   <table cellspacing="1" cellpadding="4" width="95%" align="center" border="0">

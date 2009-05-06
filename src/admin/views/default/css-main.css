@@ -1,7 +1,8 @@
 html{overflow-y:scroll;}
 fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin:0; padding:0; border:0; }
 body{font-size:12px; color:#000; line-height:1.6; font-family:arial,helvetica,sans-serif; padding:0; margin:0;}
-center{ margin:5px auto 0px; width:1003px; }
+.mb-8{ margin-bottom:8px;}
+center{ margin:5px auto 0px; width:980px; }
 li{list-style:none;}
 a{color:#2A9DDB; text-decoration:none}
 a:hover{color:#333; text-decoration:none}
@@ -11,8 +12,8 @@ a:hover{color:#333; text-decoration:none}
 #header a{color:#FFF; text-decoration:none}
 #header a:hover{color:#CCC; text-decoration:none}
 #header .logo a{ text-indent:-9999px; height:40px; width:120px; background:url(images/logo.png) no-repeat; display:block;}
-#header .vesion{font-size:10px; padding-top:10px; color: #CEE7FF; padding-right:5px;}
-#header .home{ background:url(images/top_line1.png) no-repeat; font-size:15px; padding-left:20px;}
+#header .vesion{font-size:10px; padding:10px 10px 0 5px; color: #CEE7FF;}
+#header .home{ background:url(images/top_line1.png) no-repeat; font-size:15px; padding-left:15px;}
 #sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif); margin-left:5px; width:114px; background-repeat:repeat-y; text-align:center}
 #sidebar a{color:#333; text-decoration:none; display:block;}
 #sidebar a:hover{color:#2A9DDB; text-decoration:none;}
@@ -90,8 +91,8 @@ textarea{font-size:12px}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px}
 #log_pass{display:none}
 #admindex_main{width:600px; margin:5px 5px 8px}
-#admindex_servinfo{float:left; width:414px; margin-right:10px}
-#admindex_msg{width:414px; float:left}
+#admindex_servinfo{float:left; width:408px; margin-right:10px}
+#admindex_msg{width:408px; float:left}
 #admindex_msg img{border:none}
 #admindex_msg ul li{line-height:1.6}
 #admindex_msg ul li img{margin:5px}
