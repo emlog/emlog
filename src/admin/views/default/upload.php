@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/<?php echo ADMIN_TPL; ?>/css-main.css" type=text/css rel=stylesheet>
+<link href="./views/<?php echo ADMIN_TPL; ?>/css-att.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 <script>
 function uploadfile()
@@ -40,9 +40,9 @@ function removeattachfrom() {
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
 	<p>
-	<a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[+]</a> 
-	<a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[-]</a> 
-	(单个附件最大:<?php echo $maxsize ;?>, 允许类型:<?php echo $att_type_str; ?>)
+	<a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[ + ]</a> 
+	<a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a> 
+	(单个附件最大：<?php echo $maxsize ;?>，允许类型：<?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]"></span></div>
 	<input type="button" name="html-upload" value="上传" onclick="uploadfile();"/>

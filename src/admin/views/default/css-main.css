@@ -36,12 +36,6 @@ a:hover{color:#333; text-decoration:none}
 .care2{color:#093}
 .attlist img{border:1px solid #ccc; padding:3px}
 textarea{font-size:12px}
-#media-upload-header{background-color:#E4F2FD; border-top:solid #C6D9E9 1px}
-#media-upload-header span{margin:5px 5px; padding:5; list-style-type:none}
-#curtab{background-color:#FFF; border-left:1px solid #C6D9E9; border-right:1px solid #C6D9E9; border-top:1px solid #C6D9E9}
-#attlist{float:left; border:1px solid #CCC; list-style:none; text-align:center; margin:5px; padding:3px}
-#attmsg{margin:40px 0px 0px 250px}
-#media-upload-body{margin:0px 200px 0px 0px}
 .tralt_a{background-color:#FFF}
 .tralt_b{background-color:#F7F7F7}
 .trover{background-color:#E9F1FA}

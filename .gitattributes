@@ -114,6 +114,7 @@ src/admin/views/default/comment.php -text svn_keywords=Id
 src/admin/views/default/comment_reply.php -text svn_keywords=Id
 src/admin/views/default/common.js -text
 src/admin/views/default/configure.php -text svn_keywords=Id
+src/admin/views/default/css-att.css -text
 src/admin/views/default/css-login.css -text
 src/admin/views/default/css-main.css -text svn_keywords=Id
 src/admin/views/default/data.php -text svn_keywords=Id
