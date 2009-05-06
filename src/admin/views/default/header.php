@@ -14,7 +14,7 @@
 <title><?php echo $blogname; ?> - 管理中心</title>
 </head>
 <body>
-<center>
+<div class="center">
 <table id=header cellspacing=0 cellpadding=0 width="99%" border=0>
   <tbody>
   <tr>
