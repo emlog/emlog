@@ -59,4 +59,5 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 setTimeout(hideActived,2600);
+$("#menu_user").addClass('sidebarsubmenu1');
 </script>

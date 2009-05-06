@@ -1,5 +1,4 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>标签管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除标签成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改标签成功</span><?php endif;?>
@@ -17,3 +16,7 @@
 	<p><input type="submit" value="删除所选标签" class="submit" /></p>
 </div>
 </form>
+<script>
+setTimeout(hideActived,2600);
+$("#menu_tag").addClass('sidebarsubmenu1');
+</script>

@@ -89,6 +89,7 @@
   </form>
 <div class=line></div>
 <script type="text/javascript">
+$("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 setTimeout("autosave(0)",60000);
 </script>

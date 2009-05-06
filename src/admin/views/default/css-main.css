@@ -19,7 +19,7 @@ a:hover{color:#333; text-decoration:none}
 #sidebarBottom{font-size:5px; background:url(./images/sidebar_bg_b.gif) no-repeat bottom; width:114px;height:5px}
 .sidebarmenu{background:url(./images/mc_bg1.gif) center no-repeat; width:114px; padding-top:4px; letter-spacing:0.2em; height:24px; color:#FFF; cursor:pointer; font-weight:bold}
 .sidebarsubmenu{ background:url(./images/adm_menu_bg.gif) repeat-x; width:104px; padding-top:3px;height:22px;margin:auto;}
-.sidebarsubmenu1{background: url(images/left_b.gif) repeat-x; width:103px; padding-top:3px;  height:22px; margin:auto;}
+.sidebarsubmenu1{background: url(images/left_b.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}
 #container{padding-left:30px;}
 .containertitle{background-position:left 3px; font-size:18px; margin:0px 0px}
 .line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:99%; font-size:0px; height:1%;}

@@ -52,4 +52,5 @@ function tbact(act){
 	$("#operate").val(act);
 	$("#form_tb").submit();
 }
+$("#menu_tb").addClass('sidebarsubmenu1');
 </script>

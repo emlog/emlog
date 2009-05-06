@@ -1,4 +1,7 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php 
+if(!defined('ADMIN_ROOT')) {exit('error!');}
+$isdraft = $hide == 'y' ? true : false;
+?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <div class=containertitle><b>编辑日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
@@ -96,4 +99,9 @@
 <script type="text/javascript">
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 setTimeout("autosave(0)",60000);
+<?php if ($isdraft) :?>
+$("#menu_draft").addClass('sidebarsubmenu1');
+<?php else:?>
+$("#menu_log").addClass('sidebarsubmenu1');
+<?php endif;?>
 </script>

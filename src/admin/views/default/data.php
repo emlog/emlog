@@ -1,5 +1,4 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
-<script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>数据备份</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">备份文件删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_backup'])):?><span class="actived">数据备份成功</span><?php endif;?>
@@ -8,14 +7,6 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">错误的备份文件名</span><?php endif;?>
 </div>
 <div class=line></div>
-<script type='text/javascript'>
-$(document).ready(function(){
-	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_bakdata_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
-});
-</script>
 <form  method="post" action="data.php?action=dell_all_bak">
 <table width="99%" id="adm_bakdata_list">
   <thead>
@@ -74,3 +65,13 @@ $(document).ready(function(){
 	<p class="notice">缓存技术可以大幅度加快你博客首页的加载速度。<br>通常系统会自动更新缓存，但也有些特殊情况需要你手动更新，比如缓存文件被无意修改、你手动修改过数据库等。</p>
 	<p><input name="" type="button" onclick="window.location='data.php?action=mkcache';" value="重建缓存" class="submit" /></p>
 </div>
+<script type='text/javascript'>
+setTimeout(hideActived,2600);
+$(document).ready(function(){
+	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_bakdata_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")})
+});
+$("#menu_data").addClass('sidebarsubmenu1');
+</script>

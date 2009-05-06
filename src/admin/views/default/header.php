@@ -37,46 +37,46 @@
 <tbody>
   <tr>
     <td valign=top align=left width=114>
-      <table cellspacing=0 cellpadding=0 width="100%" border=0 >
-        <tbody>
-        <tr>
-          <td valign=top align=left width=114>
-            <div id=sidebar>
-            <div id=sidebartop></div>
-			<?php if (ROLE == 'admin'):?>
-            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">博客管理</div>
-			<div id="blog_mg">
-            <div class="sidebarsubmenu"><a href="widgets.php" >Widgets</a></div>
-			<div class="sidebarsubmenu"><a href="page.php" >页面</a></div>
-			<div class="sidebarsubmenu"><a href="link.php">链接</a></div>
-			<div class="sidebarsubmenu"><a href="user.php" >作者</a></div>
-			<div class="sidebarsubmenu"><a href="data.php">数据</a></div>
-			</div>
-			<?php endif;?>
-			</div>
-			</td>
-		  </tr>
-		</tbody>
-	</table>
 	<table cellspacing=0 cellpadding=0 width="100%" border=0>
         <tbody>
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
+            <div id=sidebartop></div>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
 			<div id="log_mg">
-            <div class="sidebarsubmenu1"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
-			<div class="sidebarsubmenu"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $user_cache[UID]['draftnum'] == 0 ? '' : '('.$user_cache[UID]['draftnum'].')'; ?></span></a></div>
-			<div class="sidebarsubmenu"><a href="admin_log.php">日志</a></div>
+            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+			<div class="sidebarsubmenu" id="menu_draft"><a href="admin_log.php?pid=draft">草稿<span id="dfnum"><?php echo $user_cache[UID]['draftnum'] == 0 ? '' : '('.$user_cache[UID]['draftnum'].')'; ?></span></a></div>
+			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">日志</a></div>
 			<?php if (ROLE == 'admin'):?>
-            <div class="sidebarsubmenu"><a href="tag.php">标签</a></div>
-            <div class="sidebarsubmenu"><a href="sort.php">分类</a></div>
+            <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></div>
+            <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></div>
             <?php endif;?>
-            <div class="sidebarsubmenu"><a href="comment.php">评论</a></div>
-            <div class="sidebarsubmenu"><a href="trackback.php">引用</a></div>
+            <div class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a></div>
+            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
 			</div>
 			</div>
        	    </td>
+		  </tr>
+		</tbody>
+	</table>
+      <table cellspacing=0 cellpadding=0 width="100%" border=0 >
+        <tbody>
+        <tr>
+          <td valign=top align=left width=114>
+            <div id=sidebar>
+			<?php if (ROLE == 'admin'):?>
+            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">博客管理</div>
+			<div id="blog_mg">
+            <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
+			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
+			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
+			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >作者</a></div>
+			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
+			</div>
+			<?php endif;?>
+			</div>
+			</td>
 		  </tr>
 		</tbody>
 	</table>
@@ -88,7 +88,7 @@
 			<?php if (ROLE == 'admin'):?>
             <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">功能扩展</div>
 			<div id="extend_mg">
-            <div class="sidebarsubmenu"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
+            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
 			</div>
 			<?php endif;?>
 			<div id="sidebarBottom"></div>

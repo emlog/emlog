@@ -9,3 +9,6 @@
 		<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();"/></p>
 </div>
 </form>
+<script>
+$("#menu_tag").addClass('sidebarsubmenu1');
+</script>

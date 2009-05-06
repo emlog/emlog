@@ -188,4 +188,9 @@ function changeAuthor(obj) {
 	$("#operate").val('change_author');
 	$("#form_log").submit();
 }
+<?php if ($isdraft) :?>
+$("#menu_draft").addClass('sidebarsubmenu1');
+<?php else:?>
+$("#menu_log").addClass('sidebarsubmenu1');
+<?php endif;?>
 </script>

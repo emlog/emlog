@@ -73,4 +73,5 @@ function commentact(act){
 	$("#operate").val(act);
 	$("#form_com").submit();
 }
+$("#menu_cm").addClass('sidebarsubmenu1');
 </script>

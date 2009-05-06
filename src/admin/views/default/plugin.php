@@ -61,4 +61,5 @@ function do_plugin (plugin, action, id){
 		$("#msg").html("");
 	});
 }
+$("#menu_plug").addClass('sidebarsubmenu1');
 </script>

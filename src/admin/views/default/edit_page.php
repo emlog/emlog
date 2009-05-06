@@ -1,5 +1,4 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
-<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
@@ -49,3 +48,6 @@
 	</table>
   </form>
 <div class=line></div>
+<script>
+$("#menu_page").addClass('sidebarsubmenu1');
+</script>

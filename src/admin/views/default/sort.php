@@ -58,5 +58,6 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$("#menu_sort").addClass('sidebarsubmenu1');
 });
 </script>
