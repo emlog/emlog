@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="center">
-<table id=header cellspacing=0 cellpadding=0 width="992" border=0>
+<table id=header cellspacing=0 cellpadding=0 width="960" border=0>
   <tbody>
   <tr>
     <td width="9" id="headerleft"></td>
