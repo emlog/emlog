@@ -29,6 +29,8 @@ class emUser {
 		{
 			$row['name'] = htmlspecialchars($row['nickname']);
 			$row['login'] = htmlspecialchars($row['username']);
+			$row['email'] = htmlspecialchars($row['email']);
+			$row['description'] = htmlspecialchars($row['description']);
 			$users[] = $row;
 		}
 		return $users;
@@ -41,10 +43,11 @@ class emUser {
 		if($row)
 		{
 			$userData = array(
-			'username' => htmlspecialchars(trim($row['username'])),
-			'nickname' => htmlspecialchars(trim($row['nickname'])),
-			'email' => $row['email'],
-			'description' => htmlspecialchars(trim($row['description']))
+			'username' => htmlspecialchars($row['username']),
+			'nickname' => htmlspecialchars($row['nickname']),
+			'email' => htmlspecialchars($row['email']),
+			'photo' => htmlspecialchars($row['photo']),
+			'description' => htmlspecialchars($row['description'])
 			);
 		}
 		return $userData;

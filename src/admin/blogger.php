@@ -7,31 +7,35 @@
  */
 
 require_once('globals.php');
+require_once(EMLOG_ROOT.'/model/C_user.php');
 
 if($action == '')
 {
-	include getViews('header');
-
-	$result = $DB->query("select * from ".DB_PREFIX."user where uid=".UID);
-	$row=$DB->fetch_array($result);
+	$emUser = new emUser($DB);
+	$row = $emUser->getOneUser(UID);
 	extract($row);
-	$name = htmlspecialchars($nickname);
-	$email = htmlspecialchars($email);
-	$photo = htmlspecialchars(trim($photo));
-	$bloggerdes = htmlspecialchars($description);
-
+	$icon = '';
+	if ($photo)
+	{
+		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
+		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a><br>";
+	}
+	include getViews('header');
 	require_once(getViews('blogger'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 
-if($action == 'modintro')
+if($action == 'update')
 {
+	$emUser = new emUser($DB);
+	
 	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;//前台调用标识
 	if(!$flg)
 	{
 		$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 		$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
-		$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
+		$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 		$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	
 		$photo_type = array('gif', 'jpg', 'jpeg','png');
@@ -41,15 +45,15 @@ if($action == 'modintro')
 		}else{
 			$usericon = $photo;
 		}
-		$sql="UPDATE ".DB_PREFIX."user SET nickname='$nickname',email='$mail',photo='$usericon',description='$description' where uid=".UID;
-		$DB->query($sql);
+		
+		$emUser->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
 
 		$CACHE->mc_user();
 
 		header("Location: ./blogger.php?active_edit=true");
 	}else {
 		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
-		$DB->query("UPDATE ".DB_PREFIX."user SET description='$description' where uid=".UID);
+		$emUser->updateUser(array('description'=>$description), UID);
 		$CACHE->mc_user();
 		echo $description;
 	}
@@ -81,9 +85,11 @@ if($action == 'delicon')
 	header("Location: ./blogger.php?active_del=true");
 }
 
-if($action == 'update_admin')
+if($action == 'update_pwd')
 {
 	require_once(EMLOG_ROOT.'/lib/C_phpass.php');
+	
+	$emUser = new emUser($DB);
 	
 	$user = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
@@ -97,21 +103,20 @@ if($action == 'update_admin')
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0)
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
-		$DB->query(" UPDATE ".DB_PREFIX."user SET password='$newpass'");
+		$emUser->updateUser(array('password'=>$newpass), UID);
 		formMsg('密码修改成功!','./index.php',1);
 	}
 	//修改密码及用户
 	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0)
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
-		$DB->query("UPDATE ".DB_PREFIX."user SET username='$user',password='$newpass'");
+		$emUser->updateUser(array('username'=>$user, 'password'=>$newpass), UID);
 		formMsg('密码和后台登录名修改成功!请重新登录','./index.php',1);
 	}
 	//只修改后台登录名
 	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass)
 	{
-		$sql=" UPDATE ".DB_PREFIX."user SET username='$user'";
-		$DB->query($sql);
+		$emUser->updateUser(array('username'=>$user), UID);
 		formMsg('后台登录名修改成功!请重新登录','./index.php',1);
 	}
 	//错误处理
