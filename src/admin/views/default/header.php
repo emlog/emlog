@@ -37,12 +37,12 @@
 <tbody >
   <tr>
     <td valign=top align=left width="114">
+    <div id=sidebartop></div>
 	<table cellspacing=0 cellpadding=0 width="100%" border=0>
         <tbody>
         <tr>
           <td valign=top align=left width="114">
             <div id=sidebar>
-            <div id=sidebartop></div>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
 			<div id="log_mg">
             <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
@@ -60,12 +60,12 @@
 		  </tr>
 		</tbody>
 	</table>
+	<?php if (ROLE == 'admin'):?>
       <table cellspacing=0 cellpadding=0 width="100%" border=0 >
         <tbody>
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-			<?php if (ROLE == 'admin'):?>
             <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">博客管理</div>
 			<div id="blog_mg">
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
@@ -74,7 +74,6 @@
 			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >作者</a></div>
 			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
 			</div>
-			<?php endif;?>
 			</div>
 			</td>
 		  </tr>
@@ -85,18 +84,17 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-			<?php if (ROLE == 'admin'):?>
             <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">功能扩展</div>
 			<div id="extend_mg">
             <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
 			</div>
-			<?php endif;?>
-			<div id="sidebarBottom"></div>
 			</div>
        	    </td>
 		  </tr>
 		</tbody>
 	</table>
+	<?php endif;?>
+	<div id="sidebarBottom"></div>
 </td>
 <td id=container valign=top align=left>
 <?php doAction('adm_main_top'); ?>
