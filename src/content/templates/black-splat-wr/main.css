@@ -582,6 +582,7 @@ div.aligncenter {
 	font-size: 12px;
 	text-align: center;
 	padding: 2px 7px;
+	width:100%;
 }
 
 .calendar a:visited {
@@ -608,14 +609,14 @@ div.aligncenter {
 }
 
 .sun {
-	background-color: #F5F5F5;
-	color: #333333;
+	background-color: #FF0033;
+	color: #fff;
 	font-weight: bold;
 }
 
 .week {
-	background-color: #F5F5F5;
-	color: #333333;
+	background-color:#333;
+	color: #fff;
 }
 
 .calendartop {

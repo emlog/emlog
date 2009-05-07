@@ -375,7 +375,7 @@ blockquote {
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 0px 5px;
+	padding: 1px 6px;
 	background-color:#D6DED4;
 }
 
@@ -414,7 +414,8 @@ blockquote {
 
 .calendartop {
 	font-size: 14px;
-	margin-left:35px;
+	margin-left:42px;
+	margin-bottom:5px;
 }
 /*�������ʽ*/
 .input {

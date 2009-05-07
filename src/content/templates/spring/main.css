@@ -331,6 +331,7 @@ html>body #wp-calendar {
 .calendar td{
 	font-size:12px;
 	text-align:center;
+	padding:1px 3px;
 }
 .day{
 	border:#63617b solid 1px;

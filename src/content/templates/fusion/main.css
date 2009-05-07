@@ -1140,7 +1140,7 @@ ol#thecomments, ol#thecomments li{
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 0px 6px;
+	padding: 2px 8px;
 	border:0;
 }
 
@@ -1160,7 +1160,7 @@ ol#thecomments, ol#thecomments li{
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+	background: #fff url(./images/bg_cal_today.gif) no-repeat;
 }
 
 .day2 {

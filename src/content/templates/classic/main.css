@@ -351,7 +351,7 @@ div.contentA {
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 0px 6px;
+	padding: 1px 7px;
 }
 
 .calendar a:visited {
@@ -370,7 +370,7 @@ div.contentA {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) repeat-y;
+	background: #fff url(./images/bg_cal_today.gif) no-repeat
 }
 
 .day2 {
@@ -391,7 +391,7 @@ div.contentA {
 .calendartop {
 	text-align: center;
 	font-size: 14px;
-	margin-left: 41px;
+	margin-left: 56px;
 }
 
 /*页码样式*/

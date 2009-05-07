@@ -80,8 +80,8 @@ a:hover{color:#0079b7; text-decoration:underline}
 #sidebar #bloggerinfoimg{padding:0px 0px 12px 0px; background:url(images/bloger_photo.jpg) bottom no-repeat}
 #blogtags{font-size:12px; line-height:1.4}
 #blogsort li, #twitter li, #newcomment li, #newlog li, #randlog li, #record li, #link li, #bloginfo li{background:url(images/sidebar_list.gif) no-repeat 0px 1px; padding-left:20px; margin:3px 0px}
-#logserch input{padding:3px 5px; *padding:4px 5px 2px; border:1px #b6b6b6 solid; background:url(images/em_input-back.gif) no-repeat; font-size:12px; color:#333}
-#logserch #logserch_logserch{background:url(images/logserch_logserch.gif) no-repeat; color:#FFF; border:0}
+#logserch input{padding:3px 5px; *padding:4px 5px 2px; border:1px #b6b6b6 solid; background:url(images/em_input-back.gif) no-repeat; font-size:12px; color:#333;}
+#logserch #logserch_logserch{background:url(images/logserch_logserch.gif) no-repeat; color:#FFF; border:0; height:23px; width:45px;}
 /*footer*/
 #footer{background:url(images/bottom.png) no-repeat #f7f7f7; color:#FFF; font-size:12px; padding:15px 20px 30px 20px; text-align:center; zoom:1}
 #footer a{color:#FFF}
@@ -90,11 +90,11 @@ a:hover{color:#0079b7; text-decoration:underline}
 #footer a:hover{color:#fff; text-decoration:underline}
 /*&#26085; &#21382; &#26679; &#24335; */
 .calendar{/*background-image:url(images/bg.jpg); */margin-bottom:10px}
-.calendar td{font-size:12px; text-align:center; padding:0px 5px}
+.calendar td{font-size:12px; text-align:center; padding:0px 5px; width:100%;line-height:1.6;}
 .calendar a:visited{color:#F30; text-decoration:none}
 .calendar td a:link{color:#F30; text-decoration:none}
 .calendar td a:hover{color:#F30; text-decoration:none}
-.day{background:url(./images/bg_cal_today.gif) repeat-y}
+.day{background:url(./images/bg_cal_today.gif)  no-repeat}
 .day2{font-weight:bold}
 .sun{background-color:#F5F5F5; color:#333; font-weight:bold}
 .week{background-color:#F5F5F5; color:#333}

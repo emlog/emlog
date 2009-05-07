@@ -646,7 +646,7 @@ padding: 4px 10px 0px 10px;
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 0px 6px;
+	padding: 1px 7px;
 }
 
 .calendar a:visited {
@@ -684,7 +684,7 @@ padding: 4px 10px 0px 10px;
 .calendartop {
 	text-align: center;
 	font-size: 14px;
-	margin-left: 41px;
+	margin-left: 45px;
 }
 
 #twitter li {

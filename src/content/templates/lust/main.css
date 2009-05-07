@@ -466,9 +466,9 @@ input, textarea{
 	margin-left:0px;
 }
 .calendar td{
-	font-size:10px;
+	font-size:12px;
 	text-align:center;
-	padding:1px 3px;
+	padding:2px 4px;
 }
 .calendar a:visited{
 	color:#FF3300;
@@ -499,7 +499,8 @@ input, textarea{
 .calendartop{
 	text-align:center;
 	font-size:14px;
-	margin-left:15px;
+	margin-left:25px;
+	margin-bottom:8px;
 	}
 #twitter li 
 {

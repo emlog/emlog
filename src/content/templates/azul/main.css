@@ -284,13 +284,13 @@ img {
 /*日历样式*/
 .calendar { /*background-image:url(images/bg.jpg);*/
 	margin-left: 0px;
-	background:#EBEBEB;
 }
 
 .calendar td {
 	font-size: 12px;
 	text-align: center;
 	padding: 5px 7px;
+	width:100%;
 }
 
 .calendar a:visited {

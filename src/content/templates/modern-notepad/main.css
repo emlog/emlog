@@ -832,7 +832,7 @@ a.more-link {
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 3px 6px 2px;
+	padding: 3px 7px 2px;
 }
 
 .calendar a:visited {
@@ -872,7 +872,7 @@ a.more-link {
 .calendartop {
 	text-align: center;
 	font-size: 12px;
-	margin-left: 60px;
+	margin: 0px 0px 8px 60px;
 	padding:5px 0px 10px;
 	*padding-top:0px;
 }

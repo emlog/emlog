@@ -630,7 +630,7 @@ img{
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 0px 4px;
+	padding: 1px 6px;
 }
 
 .calendar a:visited {

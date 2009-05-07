@@ -453,7 +453,7 @@ table#wp-calendar tfoot td{
 .calendar td{
 	font-size:12px;
 	text-align:center;
-	padding:0px 3px;
+	padding:1px 4px;
 }
 .day{
 	border:#63617b solid 1px;
@@ -472,7 +472,7 @@ table#wp-calendar tfoot td{
 .calendartop{
 	text-align:center;
 	font-size:14px;
-	margin-left:10px;
+	margin-left:30px;
 	}
 #twitter li 
 {

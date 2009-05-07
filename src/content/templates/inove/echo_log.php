@@ -52,7 +52,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php 
 foreach($tb as $key=>$value):
 ?>
-<ul>
+<ul style="list-style:none;">
 	<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
 	<li>BLOG: <?php echo $value['blog_name'];?></li>
 	<li><?php echo $value['date'];?></li>

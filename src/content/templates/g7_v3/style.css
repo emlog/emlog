@@ -602,8 +602,7 @@ li a {
 .calendar td{
 	font-size:12px;
 	text-align:center;
-	padding:1px 6px;
-	background-color:#FFFFFF;
+	padding:3px 9px;
 }
 .calendar a:visited{
 	color:#FF3300;
@@ -625,17 +624,18 @@ li a {
 
 }
 .sun{
-	background-color:#63617b;
-	color: #333333;
+	background-color: #FF3300;
+	color: #fff;
 	font-weight:bold;
 }
 .week{
-	background-color:#63617b;
-	color: #333333;
+	background-color: #CC6600;
+	color: #fff;
 	}
 .calendartop{
 	text-align:center;
 	font-size:14px;
+	margin-left:60px;
 }
 .sort{
 	margin-left:20px;
