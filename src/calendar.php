@@ -56,7 +56,7 @@ $url3 = "./calendar.php?record=" . $year_down . $m;//上一月份
 $url4 = "./calendar.php?record=" . $year_up . $mj;//下一月份
 
 $calendar =
-"<table class=\"calendartop\">
+"<table class=\"calendartop\" cellspacing=\"0\">
 <tr>
 <td>
 <a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a>
@@ -66,7 +66,7 @@ $calendar =
 </td>
 </tr>
 </table>
-<table class=\"calendar\">
+<table class=\"calendar\" cellspacing=\"0\">
 <tr>
 <td class=\"week\">一</td>
 <td class=\"week\">二</td>
