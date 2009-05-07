@@ -15,7 +15,7 @@ if($action == '')
 	$row = $emUser->getOneUser(UID);
 	extract($row);
 	$icon = '';
-	if ($photo)
+	if ($photo && file_exists($photo))
 	{
 		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a><br>";

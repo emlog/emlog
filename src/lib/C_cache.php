@@ -178,7 +178,7 @@ class mkcache {
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
 			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM ".$this->db_prefix."trackback as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$icon = '';
-			if($row['photo'])
+			if($row['photo'] && file_exists($row['photo']))
 			{
 				$photosrc = substr($row['photo'],3);
 				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);

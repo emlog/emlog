@@ -68,10 +68,23 @@ if($action=='update')
 {
 	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
+	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
+	if(strlen($password) >0 && strlen($password) < 6)
+	{
+		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd_len=true");
+		exit;
+	}
+	if($password != $password2)
+	{
+		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd2=true");
+		exit;
+	}	
+	
 	$emUser->updateUser(array('username'=>$username, 'nickname'=>$nickname, 'email'=>$email, 'description'=>$description), $uid);
 
 	$CACHE->mc_user();
