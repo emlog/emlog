@@ -111,7 +111,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </select>
         </td>
       </tr>
-      <tr>
 	  <tr>
         <td align="right">开启URL优化：<br /></td>
         <td class="care">
