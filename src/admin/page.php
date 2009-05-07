@@ -103,6 +103,11 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
+	
+	if($pageUrl && strncasecmp($pageUrl, 'http://', 7))
+	{
+		$pageUrl = 'http://'.$pageUrl;
+	}
 
 	$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = serialize($navibar);

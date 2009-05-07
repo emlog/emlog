@@ -21,7 +21,7 @@
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>链接：</b>(不指定将自动生成)<br />
+          <td><b>转向地址：</b>(如果填写，页面标题将指向该地址)<br />
           <input name="url" id="url" maxlength="200" style="width:715px;" /><br />
           </td>
         </tr>

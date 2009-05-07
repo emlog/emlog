@@ -10,10 +10,10 @@
   	<thead>
       <tr class="rowstop">
       	<td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="420"><b>标题</b></td>
+        <td width="460"><b>标题</b></td>
         <td width="30" align="center"><b>查看</b></td>
         <td width="30" align="center"><b>评论</b></td>
-        <td width="150"><b>时间</b></td>
+        <td width="280"><b>时间</b></td>
       </tr>
     </thead>
     <tbody>
