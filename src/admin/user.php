@@ -57,8 +57,8 @@ if ($action== 'edit')
 {
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 
-	$userData = $emUser->getOneUser($uid);
-	extract($userData);
+	$data = $emUser->getOneUser($uid);
+	extract($data);
 
 	include getViews('header');
 	require_once(getViews('useredit'));
