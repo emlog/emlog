@@ -48,6 +48,7 @@ function hideActived(){
 function displayToggle(id, keep){
 	$("#"+id).toggle();
 	if (keep == 1){$.cookie('em_'+id,$("#"+id).css('display'),{expires:365});}
+	if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
 function chekform(){
 	var t = $.trim($("#title").val());

@@ -223,7 +223,7 @@
 	</form>
 	<?php endforeach;?>
 	<form action="widgets.php?action=setwg&wg=custom_text" method="post">
-	<div class="wg_line2"><a href="javascript:$('#custom_text_new').toggle();void(0);">自定义一个新的组件&raquo;</a></div>
+	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);">自定义一个新的组件&raquo;</a></div>
 	<div id="custom_text_new">
 		<li>组件名</li>
 		<li><input type="text" name="new_title" style="width:350px;" value="" /></li>
@@ -279,6 +279,7 @@ if($i == $wgNum):
 </div>
 <script>
 $(document).ready(function(){
+	$("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 	var widgets = $(".sortableitem").map(function(){return $(this).attr("id");});
 	$.each(widgets,function(i,widget_id){
 		$("#"+widget_id+" .widget-act-add").hide();

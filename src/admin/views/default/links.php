@@ -37,7 +37,7 @@
   <div class="list_footer"><input type="submit" value="更新排序" class="submit" /></div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 1);">添加链接&raquo;</a></div>
+<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);">添加链接&raquo;</a></div>
 <div id="link_new">
 	<li>名称</li>
 	<li><input maxlength="200" size="35" name="sitename" /></li>
