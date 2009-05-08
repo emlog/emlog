@@ -48,3 +48,6 @@
 	</table>
   </form>
 <div class=line></div>
+<script type="text/javascript">
+$("#title").focus();
+</script>

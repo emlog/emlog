@@ -33,7 +33,7 @@ FCKConfig.ToolbarSets["Default"] = [
 	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Image','Smiley','Flash','Table','Rule']
 ] ;
 FCKConfig.ToolbarSets["Basic"] = [
-	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Image','Smiley','Flash','Table','Rule']
+	['Source','-','Bold','Italic','Underline','StrikeThrough','FontSize','OrderedList','UnorderedList','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','Link','Unlink','TextColor','BGColor','Image','Smiley','Flash','Table']
 ] ;
 FCKConfig.EnterMode = 'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br

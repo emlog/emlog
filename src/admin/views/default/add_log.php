@@ -6,7 +6,7 @@
       <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><br />
-          <input maxlength="200" style="width:380px;" name="title" id="title"/>
+          <input type="text" maxlength="200" style="width:380px;" name="title" id="title"/>
 	      <select name="sort" id="sort">
 	        <option value="-1">选择分类...</option>
 			<?php foreach($sorts as $val):?>
@@ -89,6 +89,7 @@
   </form>
 <div class=line></div>
 <script type="text/javascript">
+$("#title").focus();
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 setTimeout("autosave(0)",60000);
