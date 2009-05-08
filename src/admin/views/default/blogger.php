@@ -11,11 +11,13 @@
 	<li><input maxlength="50" style="width:245px;" value="<?php echo $nickname; ?>" name="name" /></li>
 	<li>电子邮件</li>
 	<li><input name="email" value="<?php echo $email; ?>" style="width:245px;" maxlength="200" /></li>
+	<?php if (ROLE == 'admin'):?>
 	<li>头像 (推荐上传大小为185 X 230，格式为jpg或png的图片)</li>
 	<li>
 	<?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/>
 	<input name="photo" type="file" style="width:245px;" />
 	</li>
+	<?php endif;?>
 	<li>个人描述</li>
 	<li><textarea name="description" rows="5" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
 	<li><input type="submit" value="保存资料" class="submit" /></li>

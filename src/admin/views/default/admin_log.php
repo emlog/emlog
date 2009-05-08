@@ -125,8 +125,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<a href="javascript:logact('pub');">发布</a>
 	<?php else: ?>
 	<a href="javascript:logact('hide');">转入草稿箱</a>
+
+	<?php if (ROLE == 'admin'):?>
 	<a href="javascript:logact('top');">置顶</a>
     <a href="javascript:logact('notop');">取消置顶</a>
+    <?php endif;?>
 
 	<select name="sort" id="sort" onChange="changeSort(this);">
 	<option value="" selected="selected">移动到分类...</option>
@@ -150,7 +153,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php endif;?>
 	</div>
 </form>
-    <div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
+<div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
 <script>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
