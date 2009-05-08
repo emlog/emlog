@@ -18,7 +18,7 @@ if($action == '')
 	if ($photo && file_exists($photo))
 	{
 		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
-		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a><br>";
+		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>";
 	}
 	include getViews('header');
 	require_once(getViews('blogger'));
