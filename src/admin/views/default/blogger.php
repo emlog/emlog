@@ -27,11 +27,11 @@
 <div>
 	<li>当前密码</li>
 	<li><input type="password" maxlength="200" style="width:200px;" value="" name="oldpass" /></li>
-	<li>新密码(不得小于6位)</li>
+	<li>新密码</li>
 	<li><input type="password" maxlength="200" style="width:200px;" value="" name="newpass" /></li>
-	<li>确认新密码(确保与上面新密码一致)</li>
+	<li>重复新密码</li>
 	<li><input type="password" maxlength="200" style="width:200px;" value="" name="repeatpass" /></li>
-	<li>后台登录名</li>
+	<li>用户名</li>
 	<li><input maxlength="200" style="width:200px;" name="username" /></li>
 	<li></li>
 	<li><input type="submit" value="确认修改" class="submit" /></li>

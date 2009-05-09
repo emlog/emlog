@@ -32,6 +32,11 @@ if($action== 'new')
 		header("Location: ./user.php?error_login=true");
 		exit;
 	}
+	if($emUser->isUserExist($login))
+	{
+		header("Location: ./user.php?error_exist=true");
+		exit;
+	}
 	if(strlen($password) < 6)
 	{
 		header("Location: ./user.php?error_pwd_len=true");
@@ -66,7 +71,7 @@ if ($action== 'edit')
 }
 if($action=='update')
 {
-	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
@@ -74,6 +79,16 @@ if($action=='update')
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
+	if($login == '')
+	{
+		header("Location: ./user.php?action=edit&uid={$uid}&error_login=true");
+		exit;
+	}
+	if($emUser->isUserExist($login, $uid))
+	{
+		header("Location: ./user.php?action=edit&uid={$uid}&error_exist=true");
+		exit;
+	}
 	if(strlen($password) >0 && strlen($password) < 6)
 	{
 		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd_len=true");
@@ -85,7 +100,7 @@ if($action=='update')
 		exit;
 	}	
 	
-	$emUser->updateUser(array('username'=>$username, 'nickname'=>$nickname, 'email'=>$email, 'description'=>$description), $uid);
+	$emUser->updateUser(array('username'=>$login, 'nickname'=>$nickname, 'email'=>$email, 'description'=>$description), $uid);
 
 	$CACHE->mc_user();
 

@@ -4,6 +4,7 @@
 <?php if(isset($_GET['active_update'])):?><span class="actived">修改作者资料成功</span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加作者成功</span><?php endif;?>
 <?php if(isset($_GET['error_login'])):?><span class="error">用户名不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_exist'])):?><span class="error">该用户名已存在</span><?php endif;?>
 <?php if(isset($_GET['error_pwd_len'])):?><span class="error">密码长度不得小于6位</span><?php endif;?>
 <?php if(isset($_GET['error_pwd2'])):?><span class="error">两次输入密码不一致</span><?php endif;?>
 </div>

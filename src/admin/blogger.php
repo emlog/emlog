@@ -91,7 +91,7 @@ if($action == 'update_pwd')
 	
 	$emUser = new emUser($DB);
 	
-	$user = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
 	$oldpass = isset($_POST['oldpass']) ? addslashes(trim($_POST['oldpass'])) : '';
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
@@ -99,36 +99,33 @@ if($action == 'update_pwd')
 	$PHPASS = new PasswordHash(8, true);
 	$ispass = checkPassword($oldpass, $userData['password']);
 
-	//只修改密码
-	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)==0)
+	if(!$ispass)
+	{
+		formMsg('错误的当前密码','javascript:history.go(-1);',0);
+	}elseif(!empty($login) && $emUser->isUserExist($login, UID)){
+		formMsg('用户名已存在','javascript:history.go(-1);',0);
+	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
+		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
+	}elseif(!empty($newpass) && $newpass != $repeatpass){
+		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
+	}
+
+	if(!empty($newpass) && empty($login))//只修改密码
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('password'=>$newpass), UID);
 		formMsg('密码修改成功!','./index.php',1);
-	}
-	//修改密码及用户
-	if(strlen($newpass)>=6 && $newpass==$repeatpass && $ispass && strlen($user)!=0)
+	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
-		$emUser->updateUser(array('username'=>$user, 'password'=>$newpass), UID);
+		$emUser->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
 		formMsg('密码和后台登录名修改成功!请重新登录','./index.php',1);
-	}
-	//只修改后台登录名
-	if(strlen($user)!=0 && strlen($newpass)==0 && $ispass)
+	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
 	{
-		$emUser->updateUser(array('username'=>$user), UID);
+		$emUser->updateUser(array('username'=>$login), UID);
 		formMsg('后台登录名修改成功!请重新登录','./index.php',1);
-	}
-	//错误处理
-	if(!$ispass)
-	{
-		formMsg('错误的当前密码','javascript:history.go(-1);',0);
-	}elseif($newpass != $repeatpass){
-		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
-	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
-		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
 	}else{
-		formMsg('请输入修改项目参数','javascript:history.go(-1);',0);
+		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);
 	}
 }
 

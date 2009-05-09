@@ -106,6 +106,26 @@ class emUser {
 		return $row['username'];
 	}
 
+	/**
+	 * 判断用户名是否存在
+	 *
+	 * @param string $login
+	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @return boolean
+	 */
+	function isUserExist($login, $uid = '')
+	{
+		$subSql = $uid ? 'and uid!='.$uid : '';
+		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE username='$login' $subSql");
+		$res = $this->db->num_rows($query);
+		if ($res > 0)
+		{
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }
 
 ?>
