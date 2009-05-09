@@ -48,7 +48,7 @@ if ($action == 'mod')
 	$pageData = $emPage->getOneLogForAdmin($pageId);
 	extract($pageData);
 
-	$pageUrl = isset($dnavibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
+	$pageUrl = isset($navibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
 	$is_blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
 
 	if($allow_remark == 'y')
