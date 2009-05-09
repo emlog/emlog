@@ -44,7 +44,7 @@ foreach($attach as $key=>$value):
 		$embedlink = '';
 	}
 ?>
-	<li id="attlist"><a href="<?php echo $atturl; ?>" target="_blank"><img src="<?php echo $imgpath; ?>" width="60" height="60" border="0" align="absmiddle"/></a>
+	<li id="attlist"><a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $value['filename']; ?>"><img src="<?php echo $imgpath; ?>" width="60" height="60" border="0" align="absmiddle"/></a>
 	<br><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');">删除</a> <?php echo $embedlink; ?></li>
 <?php endforeach; endif; ?>
 </div>
