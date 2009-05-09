@@ -2,7 +2,7 @@
 <div class="narrowcolumn">
 <?php
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 <div class="post">
 <div class="postdate"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>

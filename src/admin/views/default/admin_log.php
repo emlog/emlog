@@ -7,8 +7,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <div class=containertitle><b><?php echo $pwd; ?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除日志成功</span><?php endif;?>
-<?php if(isset($_GET['active_up'])):?><span class="actived">推荐日志成功</span><?php endif;?>
-<?php if(isset($_GET['active_down'])):?><span class="actived">取消推荐日志成功</span><?php endif;?>
+<?php if(isset($_GET['active_up'])):?><span class="actived">日志置顶成功</span><?php endif;?>
+<?php if(isset($_GET['active_down'])):?><span class="actived">取消置顶成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要处理的日志</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
 <?php if(isset($_GET['active_post'])):?><span class="actived">发布日志成功</span><?php endif;?>

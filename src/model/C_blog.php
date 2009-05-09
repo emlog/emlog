@@ -171,7 +171,7 @@ class emBlog {
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
 			$row['gid'] = $row['gid'];
 			$row['comnum'] = $row['comnum'];
-			$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[推荐]</font>" : '';
+			$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[置顶]</font>" : '';
 			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
 			$logs[] = $row;
 		}
@@ -311,8 +311,8 @@ class emBlog {
 	function neighborLog($date)
 	{
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date < $date AND hide = 'n' ORDER BY gid DESC  LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date > $date AND hide = 'n' LIMIT 1");
+		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date < $date and hide = 'n' and type='blog' ORDER BY date DESC LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date > $date and hide = 'n' and type='blog' LIMIT 1");
 		if($neighborlog['nextLog'])
 		{
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);

@@ -3,7 +3,7 @@
 <ul>
 <?php
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"推荐日志\" />" : '';
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 	<li>
 	<h2 class="content_h2">
