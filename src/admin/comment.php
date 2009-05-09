@@ -52,6 +52,7 @@ if($action== 'admin_all_coms')
 	{
 		$emComment->batchComment('delcom', $comments);
 		$CACHE->mc_sta();
+		$CACHE->mc_user();
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_del=true");
 	}
@@ -59,6 +60,7 @@ if($action== 'admin_all_coms')
 	{
 		$emComment->batchComment('hidecom', $comments);
 		$CACHE->mc_sta();
+		$CACHE->mc_user();
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_hide=true");
 	}
@@ -66,6 +68,7 @@ if($action== 'admin_all_coms')
 	{
 		$emComment->batchComment('showcom', $comments);
 		$CACHE->mc_sta();
+		$CACHE->mc_user();
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_show=true");
 	}

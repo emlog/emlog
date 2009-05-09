@@ -34,6 +34,42 @@ class mkcache {
 		$this->cacheWrite($cacheData,'options');
 	}
 	/**
+	 * 用户信息缓存
+	 */
+	function mc_user()
+	{
+		$user_cache = array();
+		$query = $this->db->query("SELECT * FROM ".$this->db_prefix."user");
+		while($row = $this->db->fetch_array($query))
+		{
+			$logNum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
+			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
+			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
+			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM ".$this->db_prefix."trackback as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+			$icon = '';
+			if($row['photo'] && file_exists($row['photo']))
+			{
+				$photosrc = substr($row['photo'],3);
+				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);
+				$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
+			}
+			$user_cache[$row['uid']] = array(
+			'photo' => $icon,
+			'name' =>htmlspecialchars($row['nickname']),
+			'mail'	=>htmlspecialchars($row['email']),
+			'des'=>$row['description'],
+			'lognum' => $logNum,
+			'draftnum' => $draftNum,
+			'commentnum' => $commentNum,
+			'hidecommentnum' => $hidecommentNum,
+			'tbnum' => $tbNum
+			);
+		}
+		$cacheData = serialize($user_cache);
+		$this->cacheWrite($cacheData,'user');
+	}
+	/**
 	 * 博客统计缓存
 	 */
 	function mc_sta()
@@ -162,42 +198,6 @@ class mkcache {
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData,'sort');
-	}
-	/**
-	 * 用户信息缓存
-	 */
-	function mc_user()
-	{
-		$user_cache = array();
-		$query = $this->db->query("SELECT * FROM ".$this->db_prefix."user");
-		while($row = $this->db->fetch_array($query))
-		{
-			$logNum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
-			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
-			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM ".$this->db_prefix."trackback as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$icon = '';
-			if($row['photo'] && file_exists($row['photo']))
-			{
-				$photosrc = substr($row['photo'],3);
-				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);
-				$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
-			}
-			$user_cache[$row['uid']] = array(
-			'photo' => $icon,
-			'name' =>htmlspecialchars($row['nickname']),
-			'mail'	=>htmlspecialchars($row['email']),
-			'des'=>$row['description'],
-			'lognum' => $logNum,
-			'draftnum' => $draftNum,
-			'commentnum' => $commentNum,
-			'hidecommentnum' => $hidecommentNum,
-			'tbnum' => $tbNum
-			);
-		}
-		$cacheData = serialize($user_cache);
-		$this->cacheWrite($cacheData,'user');
 	}
 	/**
 	 * 友站缓存

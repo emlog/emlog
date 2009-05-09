@@ -37,6 +37,7 @@ if($action == 'dell')
 		$emTrackback->deleteTrackback($key);
 	}
 	$CACHE->mc_sta();
+	$CACHE->mc_user();
 	header("Location: ./trackback.php?active_del=true");
 }
 
