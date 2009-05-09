@@ -92,7 +92,6 @@ if (!empty($logid))
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
 	require_once(EMLOG_ROOT.'/model/C_trackback.php');
-	include getViews('header');
 
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
@@ -118,6 +117,7 @@ if (!empty($logid))
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
+	include getViews('header');
 	if ($type == 'blog')
 	{
 		//add viewcount

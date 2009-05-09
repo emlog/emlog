@@ -11,7 +11,6 @@
       <tr class="rowstop">
       	<td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
         <td width="460"><b>标题</b></td>
-        <td width="30" align="center"><b>查看</b></td>
         <td width="30" align="center"><b>评论</b></td>
         <td width="280"><b>时间</b></td>
       </tr>
@@ -23,15 +22,13 @@
 	{
 		$navibar[$value['gid']]['url'] = '../?post='.$value['gid'];
 	}
-	$isHide = $value['hide'] == 'y' ? "<font color=\"red\">[隐藏]</font>" : '';
+	$isHide = $value['hide'] == 'y' ? 
+	'<font color="red">[隐藏]</font>' : 
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/'.ADMIN_TPL.'/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td><input type="checkbox" name="page[<?php echo $value['gid']; ?>]" value="1" class="ids" /></td>
         <td><a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> <?php echo $isHide; ?></td>
-		<td align="center">
-		<a href="<?php echo $navibar[$value['gid']]['url']; ?>" target="_blank" title="在新窗口查看">
-		<img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
-		</td>
         <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>

@@ -13,12 +13,12 @@
   <table width="100%" id="adm_comment_list">
   	<thead>
       <tr class="rowstop">
-        <td width="60"><b>用户名</b></td>
-        <td width="80"><b>昵称</b></td>
-        <td width="230"><b>个人描述</b></td>
+        <td width="90"><b>用户名</b></td>
+        <td width="100"><b>昵称</b></td>
+        <td width="260"><b>个人描述</b></td>
         <td width="80"><b>电子邮件</b></td>
 		<td width="30" align="center"><b>日志</b></td>
-		<td width="230"></td>
+		<td width="130"></td>
       </tr>
     </thead>
     <tbody>
