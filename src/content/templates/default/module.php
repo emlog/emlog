@@ -225,10 +225,10 @@ function widget_bloginfo($title){
 <?php }?>
 <?php
 //blog：分类
-function blog_sort($blogid){
+function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	<div class="act">[<a href="./?sort=<?php echo $blogid; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]</div>
+	<div class="act">[<a href="./?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]</div>
 	<?php endif;?>
 <?php }?>
 <?php
@@ -254,15 +254,11 @@ function blog_tag($blogid){
 function blog_author($uid){
 	global $user_cache,$DB;?>
 	<?php 
-	if (empty($user_cache[$uid]['name']))
-	{
-		require_once(EMLOG_ROOT.'/model/C_user.php');
-		$emUser = new emUser($DB);
-		$author = $emUser->getUserLogin($uid);
-	}else{
-		$author = $user_cache[$uid]['name'];
-	}
-	echo $author;
+	$author = $user_cache[$uid]['name'];
+	$mail = $user_cache[$uid]['mail'];
+	$des = $user_cache[$uid]['des'];
+	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
+	echo "<a href=\"./?author=$uid\" $title>$author</a>";
 	?>
 <?php }?>
 <?php

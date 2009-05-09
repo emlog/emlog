@@ -90,13 +90,13 @@ if ($action == 'dis')
 	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
 
 	$log_title  = htmlspecialchars($show_log['title']);
-	$log_author = $user_cache['name'];
+	$log_author = $user_cache[$show_log['author']]['name'];
 	$post_time  = date('Y-n-j G:i l',$show_log['date']);
 	$logid	    = intval($show_log['gid']);
 	$log_content = rmBreak($show_log['content']);
 
 	wap_header($log_title);
-	echo "<p>发布时间：$post_time <br /></p>";
+	echo "<p>发布时间：$post_time <br />作者：$log_author <br /></p>";
 	echo "<p>$log_content</p>";
 	echo "<p><a href=\"./index.php?tem=$tem\">首页</a> <a href=\"./index.php?action=logs\">返回日志列表</a></p>";
 

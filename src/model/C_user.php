@@ -93,18 +93,6 @@ class emUser {
 		$this->db->query("update ".DB_PREFIX."blog set author=1 where author=$uid");
 		$this->db->query("DELETE FROM ".DB_PREFIX."user where uid=$uid");
 	}
-	
-	/**
-	 * 获取用户登录名
-	 *
-	 * @param int $uid
-	 * @return unknown
-	 */
-	function getUserLogin($uid)
-	{
-		$row = $this->db->once_fetch_array("SELECT username FROM ".DB_PREFIX."user WHERE uid=$uid");
-		return $row['username'];
-	}
 
 	/**
 	 * 判断用户名是否存在

@@ -54,6 +54,7 @@ class mkcache {
 				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);
 				$icon = "<img src=\"".htmlspecialchars($photosrc)."\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" alt=\"blogger\" />";
 			}
+			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = array(
 			'photo' => $icon,
 			'name' =>htmlspecialchars($row['nickname']),

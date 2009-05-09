@@ -53,7 +53,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 		$$a = '';
 		$b = 'user_'.$uid;
 		$$b = "class=\"filter\"";
-		$val['name'] = !empty($val['name']) ? $val['name'] : $emUser->getUserLogin($key); 
+		$val['name'] = $val['name']; 
 	?>
 	<span <?php echo $$a; ?>><a href="./admin_log.php?uid=<?php echo $key.$isdraft; ?>"><?php echo $val['name']; ?></a></span>
 	<?php endforeach;?>
@@ -80,9 +80,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php 
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
-	$author = !empty($user_cache[$value['author']]['name']) ? 
-				$user_cache[$value['author']]['name'] : 
-				$emUser->getUserLogin($value['author']);
+	$author = $user_cache[$value['author']]['name'];
 	$tags = $emTag->getTag($value['gid']);
 	$tagStr = '';
 	foreach ($tags as $val)
@@ -143,7 +141,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($users as $key => $val):
-	$val['name'] = !empty($val['name']) ? $val['name'] : $emUser->getUserLogin($key); 
+	$val['name'] = $val['name']; 
 	?>
 	<option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
 	<?php endforeach;?>

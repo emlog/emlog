@@ -34,6 +34,7 @@ if (empty($action) && empty($logid))
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
 	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
 	$sortid = isset($_GET['sort']) ? intval($_GET['sort']) : '';
+	$author = isset($_GET['author']) ? intval($_GET['author']) : '';
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 
 	$start_limit = ($page - 1) * $index_lognum;
@@ -68,14 +69,17 @@ if (empty($action) && empty($logid))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= '?keyword='.urlencode($keyword).'&page';
 	} elseif($sortid) {
-		require_once(EMLOG_ROOT.'/model/C_sort.php');
-		$emSort = new emSort($DB);
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?sort=$sortid&page";
-	} else {
+	} elseif($author) {
+		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
+		$sqlSegment = "and author=$author order by date desc";
+		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$pageurl .= "?author=$author&page";
+	}else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "?page";
@@ -110,7 +114,6 @@ if (!empty($logid))
 		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 	}
 	$blogtitle = $log_title.' - '.$blogname;
-	$log_author = $user_cache[$author]['name'];
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';

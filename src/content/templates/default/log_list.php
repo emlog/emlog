@@ -9,7 +9,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<h2 class="content_h2">
 	<?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 	</h2>
-	<?php blog_sort($value['logid']); ?>
+	<?php blog_sort($value['sortid'], $value['logid']); ?>
 
 	<div class="clear"></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
