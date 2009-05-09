@@ -13,7 +13,7 @@
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:170px;height:50px;"><?php echo $blogger_des; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=modintro&flg=1','bdes','bloggerdes');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 		<?php endif; ?>
 	</ul>
