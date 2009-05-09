@@ -115,7 +115,7 @@ class mkcache {
 		$rank = $spread/$rank;
 		//获取草稿id
 		$hideGids = array();
-		$query=$this->db->query("SELECT gid FROM ".$this->db_prefix."blog where hide='y'");
+		$query=$this->db->query("SELECT gid FROM ".$this->db_prefix."blog where hide='y' and type='blog'");
 		while($row = $this->db->fetch_array($query))
 		{
 			$hideGids[] = $row['gid'];
@@ -153,7 +153,7 @@ class mkcache {
 		$query = $this->db->query("SELECT sid,sortname FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
 		while($row = $this->db->fetch_array($query))
 		{
-			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid=".$row['sid']." AND hide='n' "));
+			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid=".$row['sid']." and hide='n' and type='blog'"));
 			$sort_cache[$row['sid']] = array(
 			'lognum' => $logNum,
 			'sortname' => htmlspecialchars($row['sortname']),
@@ -245,7 +245,7 @@ class mkcache {
 	{
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_newlognum'"));
 		$index_newlognum = $row['option_value'];
-		$sql = "SELECT gid,title FROM ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_newlognum";
+		$sql = "SELECT gid,title FROM ".$this->db_prefix."blog WHERE hide='n' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while($row = $this->db->fetch_array($res))
@@ -264,7 +264,7 @@ class mkcache {
 	function mc_record()
 	{
 		global $isurlrewrite;
-		$query = $this->db->query("select date from ".$this->db_prefix."blog WHERE hide='n' ORDER BY date DESC");
+		$query = $this->db->query("select date from ".$this->db_prefix."blog WHERE hide='n' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
@@ -312,27 +312,25 @@ class mkcache {
 	 */
 	function mc_logtags()
 	{
-		$sql="SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
-		$query1 = $this->db->query($sql);
+		$query = $this->db->query("SELECT gid FROM ".$this->db_prefix."blog where type='blog'");
 		$log_cache_tags = array();
-		while($show_log = $this->db->fetch_array($query1))
+		while($show_log = $this->db->fetch_array($query))
 		{
 			$tag = '';
 			$gid = $show_log['gid'];
-			//tag
 			$tquery = "SELECT tagname FROM ".$this->db_prefix."tag WHERE gid LIKE '%,$gid,%' " ;
 			$result = $this->db->query($tquery);
 			$tagnum = $this->db->num_rows($result);
-			if($tagnum>0)
+			if($tagnum > 0)
 			{
-				while($show_tag=$this->db->fetch_array($result))
+				while($show_tag = $this->db->fetch_array($result))
 				{
 					$tag .= "	<a href=\"./?tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
 				}
 			}else{
 				$tag = '';
 			}
-			$log_cache_tags[$show_log['gid']] = $tag;
+			$log_cache_tags[$gid] = $tag;
 			unset($tag);
 		}
 		$cacheData = serialize($log_cache_tags);
@@ -343,7 +341,7 @@ class mkcache {
 	 */
 	function mc_logsort()
 	{
-		$sql = "SELECT gid,sortid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
+		$sql = "SELECT gid,sortid FROM ".$this->db_prefix."blog where type='blog'";
 		$query = $this->db->query($sql);
 		$log_cache_sort = array();
 		while($row = $this->db->fetch_array($query))
@@ -363,11 +361,11 @@ class mkcache {
 		$this->cacheWrite($cacheData,'log_sort');
 	}
 	/**
-	 * 日志附件缓存
+	 * 日志\页面附件缓存
 	 */
 	function mc_logatts()
 	{
-		$sql = "SELECT gid FROM ".$this->db_prefix."blog ORDER BY top DESC ,date DESC";
+		$sql = "SELECT gid FROM ".$this->db_prefix."blog";
 		$query = $this->db->query($sql);
 		$log_cache_atts = array();
 		while($row = $this->db->fetch_array($query))

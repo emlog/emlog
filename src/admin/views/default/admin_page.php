@@ -28,7 +28,11 @@
 	?>
      <tr>
      	<td><input type="checkbox" name="page[<?php echo $value['gid']; ?>]" value="1" class="ids" /></td>
-        <td><a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> <?php echo $isHide; ?></td>
+        <td>
+        <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
+        <?php echo $value['attnum']; ?>
+        <?php echo $isHide; ?>
+        </td>
         <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>

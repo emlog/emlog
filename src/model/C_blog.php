@@ -332,7 +332,7 @@ class emBlog {
 	 */
 	function getNewLog($num)
 	{
-		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY gid DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog' ORDER BY gid DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while($row = $this->db->fetch_array($res))
@@ -352,7 +352,7 @@ class emBlog {
 	 */
 	function getRandLog($num)
 	{
-		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY rand() LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while($row = $this->db->fetch_array($res))
