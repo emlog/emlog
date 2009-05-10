@@ -11,8 +11,8 @@ require_once('./lib/C_mysql.php');
 require_once('./lib/C_cache.php');
 require_once("./lib/C_phpass.php");
 
+header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-
 define('EMLOG_VERSION', '3.1.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
@@ -22,7 +22,7 @@ if(!isset($_GET['action']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>emlog</title>
 <style type="text/css">
 <!--
