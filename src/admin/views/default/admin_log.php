@@ -81,7 +81,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
 	$author = $user_cache[$value['author']]['name'];
-	$tags = $emTag->getTag($value['gid']);
+	$tags = $log_cache_tags[$value['gid']];
 	$tagStr = '';
 	foreach ($tags as $val)
 	{

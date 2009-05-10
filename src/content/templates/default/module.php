@@ -244,9 +244,16 @@ function blog_att($blogid){
 //blog：日志标签
 function blog_tag($blogid){
 	global $log_cache_tags; ?>
-	<?php 
-	$tag  = !empty($log_cache_tags[$blogid]) ? '标签:'.$log_cache_tags[$blogid] : '';
-	echo $tag;
+	<?php
+	if (!empty($log_cache_tags[$blogid]))
+	{
+		$tag = '标签:';
+		foreach ($log_cache_tags[$blogid] as $val)
+		{
+			$tag .= "	<a href=\"./?tag=".urlencode($val['tagname'])."\">".htmlspecialchars($val['tagname']).'</a>';
+		}
+		echo $tag;
+	}
 	?>
 <?php }?>
 <?php

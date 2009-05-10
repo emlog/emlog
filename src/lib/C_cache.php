@@ -312,24 +312,20 @@ class mkcache {
 	{
 		$query = $this->db->query("SELECT gid FROM ".$this->db_prefix."blog where type='blog'");
 		$log_cache_tags = array();
-		while($show_log = $this->db->fetch_array($query))
+		while($row = $this->db->fetch_array($query))
 		{
-			$tag = '';
-			$gid = $show_log['gid'];
-			$tquery = "SELECT tagname FROM ".$this->db_prefix."tag WHERE gid LIKE '%,$gid,%' " ;
+			$gid = $row['gid'];
+			$tags = array();
+			$tquery = "SELECT tagname,tid FROM ".$this->db_prefix."tag WHERE gid LIKE '%,$gid,%' " ;
 			$result = $this->db->query($tquery);
-			$tagnum = $this->db->num_rows($result);
-			if($tagnum > 0)
+			while($trow = $this->db->fetch_array($result))
 			{
-				while($show_tag = $this->db->fetch_array($result))
-				{
-					$tag .= "	<a href=\"./?tag=".urlencode($show_tag['tagname'])."\">".htmlspecialchars($show_tag['tagname']).'</a>';
-				}
-			}else{
-				$tag = '';
+				$trow['tagname'] = htmlspecialchars($trow['tagname']);
+				$trow['tid'] = intval($trow['tid']);
+				$tags[] = $trow;
 			}
-			$log_cache_tags[$gid] = $tag;
-			unset($tag);
+			$log_cache_tags[$gid] = $tags;
+			unset($tags);
 		}
 		$cacheData = serialize($log_cache_tags);
 		$this->cacheWrite($cacheData,'log_tags');

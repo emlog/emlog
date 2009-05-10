@@ -77,11 +77,11 @@ if (empty($action) && empty($logid))
 	} elseif($author) {
 		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
 		$sqlSegment = "and author=$author order by date desc";
-		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$lognum = $user_cache[$author]['lognum'];
 		$pageurl .= "?author=$author&page";
 	}else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
-		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$lognum = $sta_cache['lognum'];
 		$pageurl .= "?page";
 	}
 	$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);

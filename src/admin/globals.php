@@ -24,10 +24,11 @@ if (!is_dir($em_tpldir))
 {
 	exit('the adm tmplate net found!');
 }
-//读取统计信息
+//读取缓存
 $sta_cache = $CACHE->readCache('sta');
 $sort_cache = $CACHE->readCache('sort');
 $user_cache = $CACHE->readCache('user');
+$log_cache_tags = $CACHE->readCache('log_tags');
 
 //登陆验证
 if ($action == 'login')
