@@ -16,5 +16,5 @@ define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_gHmuA6naXejs6tQpEVKHVPpcvg2k585i');
 //blog root
 define('EMLOG_ROOT','D:\website\emlog\trunk\src');
 //blog version
-define('EMLOG_VERSION','3.1.0');
+define('EMLOG_VERSION','3.2.0');
 ?>

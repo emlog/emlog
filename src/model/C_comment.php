@@ -2,7 +2,7 @@
 /**
  * 模型：评论管理
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.1.0
+ * @version emlog-3.2.0
  * $Id: comment.php 682 2008-10-14 16:08:01Z emloog $
  */
 
