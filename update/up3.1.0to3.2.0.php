@@ -1,12 +1,12 @@
 <?php
 /**
- * 数据库升级程序3.0.1 to 3.1.0
+ * 数据库升级程序3.1.0 to 3.2.0
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.1.0
+ * @version emlog-3.2.0
  */
 
 header('Content-Type: text/html; charset=UTF-8');
-define('EMLOG_VERSION', '3.1.0');
+define('EMLOG_VERSION', '3.2.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
 class MySql {
@@ -182,10 +182,10 @@ li{
 <?php
 if(!isset($_GET['action'])){
 ?>
-<form name="form1" method="post" action="up3.0.1to3.1.0.php?action=install">
+<form name="form1" method="post" action="up3.1.0to3.2.0.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 3.0.1 to 3.1.0</span><span> 数据库升级程序</span></p>
+<p><span class="title">emlog 3.1.0 to 3.2.0</span><span> 数据库升级程序</span></p>
 </div>
 <div class="b">
 <p class="title2">请填写当前需要升级的emlog相关信息。<br>
@@ -279,101 +279,23 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
 	$extra2 = "TYPE=".$type;
 	$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
-
-	$widgets = array(
-	'blogger'=>'blogger',
-	'calendar'=>'日历',
-	'tag'=>'标签',
-	'sort'=>'分类',
-	'archive'=>'存档',
-	'newcomm'=>'最新评论',
-	'twitter'=>'Twitter',
-	'newlog'=>'最新日志',
-	'random_log'=>'随机日志',
-	'music'=>'音乐',
-	'link'=>'链接',
-	'search'=>'搜索',
-	'bloginfo'=>'信息',
-	'custom_text'=>'自定义组件'
-	);
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='widgets1'");
-	$row = $DB->fetch_array($res);
-	$widgets1 = $row['option_value'] ? unserialize($row['option_value']) : array();
 	
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='widgets2");
+	$res = $DB->query("select * from {$db_prefix}statistics");
 	$row = $DB->fetch_array($res);
-	$widgets2 = $row['option_value'] ? unserialize($row['option_value']) : array();
-	
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_content1'");
-	$row = $DB->fetch_array($res);
-	$custom_content1 = $row['option_value'] ? unserialize($row['option_value']) : array();
-	
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_content2'");
-	$row = $DB->fetch_array($res);
-	$custom_content2 = $row['option_value'] ? unserialize($row['option_value']) : array();
-	
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_title1'");
-	$row = $DB->fetch_array($res);
-	$custom_title1 = $row['option_value'] ? unserialize($row['option_value']) : array();
-	
-	$res = $DB->query("select option_value from {$db_prefix}options where option_name='custom_title2'");
-	$row = $DB->fetch_array($res);
-	$custom_title2 = $row['option_value'] ? unserialize($row['option_value']) : array();
-	
-	$custom_widget = array();
-	$i = 1;
-	foreach ($custom_title1 as $key=>$val)
-	{
-		$custom_widget['custom_wg_'.$i]['title'] = $val;
-		$custom_widget['custom_wg_'.$i]['content'] = $custom_content1[$key];
-		$i++;
-	}
-	foreach ($custom_title2 as $key=>$val)
-	{
-		$custom_widget['custom_wg_'.$i]['title'] = $val;
-		$custom_widget['custom_wg_'.$i]['content'] = $custom_content2[$key];
-		$i++;
-	}
-
-	$widgets_1 = array();
-	$widgets_2 = array();
-	foreach ($widgets1 as $val)
-	{
-		if($val != 'custom_text')
-		{
-			$widgets_1[] = $val;
-		}
-	}	
-	foreach ($widgets2 as $val)
-	{
-		if($val != 'custom_text')
-		{
-			$widgets_2[] = $val;
-		}
-	}
-	$widgets_1 = addslashes(serialize($widgets_1));
-	$widgets_2 = addslashes(serialize($widgets_2));
-	$custom_widget = addslashes(serialize($custom_widget));
-	$widget_title = serialize($widgets);
+	@extract($row);
 
 $sql = "
-ALTER TABLE {$db_prefix}blog ADD excerpt LONGTEXT NOT NULL AFTER content;
-ALTER TABLE {$db_prefix}blog CHANGE content content LONGTEXT NOT NULL;
-ALTER TABLE {$db_prefix}blog ADD password VARCHAR( 255 ) NOT NULL default '';
-ALTER TABLE {$db_prefix}tag DROP usenum;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_content1' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_content2' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_content3' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_content4' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_title1' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_title2' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_title3' LIMIT 1;
-DELETE FROM {$db_prefix}options WHERE option_name ='custom_title4' LIMIT 1;
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','$custom_widget');
-UPDATE {$db_prefix}options SET option_value = '$widget_title' WHERE option_name ='widget_title' LIMIT 1;
-UPDATE {$db_prefix}options SET option_value = '$widgets_1' WHERE option_name ='widgets1' LIMIT 1;
-UPDATE {$db_prefix}options SET option_value = '$widgets_2' WHERE option_name ='widgets2' LIMIT 1;
-UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';";
+ALTER TABLE {$db_prefix}blog ADD author INT( 10 ) NOT NULL DEFAULT '1' AFTER excerpt;
+ALTER TABLE {$db_prefix}blog ADD type VARCHAR( 20 ) NOT NULL DEFAULT 'blog' AFTER sortid;
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','$day_view_count');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_all','$view_count');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
+DROP TABLE IF EXISTS {$db_prefix}statistics;
+ALTER TABLE {$db_prefix}user ADD role VARCHAR( 60 ) NOT NULL AFTER nickname;
+ALTER TABLE {$db_prefix}user CHANGE description description VARCHAR( 255 ) NOT NULL;
+UPDATE {$db_prefix}user SET role = 'admin' WHERE uid =1 LIMIT 1;";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))

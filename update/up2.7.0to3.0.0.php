@@ -5,6 +5,7 @@
  * @version emlog-3.0.0
  */
 
+header('Content-Type: text/html; charset=UTF-8');
 define('EMLOG_VERSION', '3.0.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
