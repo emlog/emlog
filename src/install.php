@@ -330,9 +330,12 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','0');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_all','0');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
@@ -349,13 +352,6 @@ CREATE TABLE {$db_prefix}link (
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
-DROP TABLE IF EXISTS {$db_prefix}statistics;
-CREATE TABLE {$db_prefix}statistics (
-  day_view_count int(11) unsigned NOT NULL default '0',
-  view_count int(11) unsigned default '0',
-  curdate varchar(20) default NULL
-)".$add."
-INSERT INTO {$db_prefix}statistics (day_view_count, view_count, curdate) VALUES (0, 0, '2006-10-13');
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,

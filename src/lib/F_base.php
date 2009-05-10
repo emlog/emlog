@@ -104,26 +104,24 @@ function getIp()
  */
 function viewCount()
 {
-	global $CACHE,$DB,$localdate;
-
+	global $CACHE,$viewcount_day,$viewcount_all,$viewcount_date,$DB,$localdate;
 	$userip = getIp();
 	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
 	if ($em_viewip != $userip)
 	{
-		$ret = setcookie('em_viewip', getIp(), $localdate + (6*3600));
+		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
 		if ($ret)
 		{
 			$curtime = date("Y-m-d");
-			$rs = $DB->once_fetch_array("SELECT curdate FROM ".DB_PREFIX."statistics WHERE curdate='". $curtime ."'");
-			if (!$rs)
+			if ($viewcount_date != $curtime)
 			{
-				$DB->query("UPDATE ".DB_PREFIX."statistics SET curdate ='". $curtime ."'");
-				$DB->query("UPDATE ".DB_PREFIX."statistics SET day_view_count = '1'");
+				$DB->query("UPDATE ".DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
+				$DB->query("UPDATE ".DB_PREFIX."options SET option_value ='1' where option_name='viewcount_day'");
 			} else {
-				$DB->query("UPDATE ".DB_PREFIX."statistics SET day_view_count = day_view_count+1");
+				$DB->query("UPDATE ".DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_day'");
 			}
-			$DB->query("UPDATE ".DB_PREFIX."statistics SET view_count = view_count+1");
-			$CACHE->mc_sta();
+			$DB->query("UPDATE ".DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_all'");
+			$CACHE->mc_options();
 		}
 	}
 }

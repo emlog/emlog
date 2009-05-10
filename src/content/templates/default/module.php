@@ -211,15 +211,15 @@ function widget_link($title){
 <?php
 //widget：博客信息
 function widget_bloginfo($title){
-	global $sta_cache; ?>
+	global $sta_cache,$viewcount_day,$viewcount_all; ?>
 	<li>
 	<h3><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></h3>
 	<ul id="bloginfo">
 	<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
 	<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
 	<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
-	<li>今日访问：<?php echo $sta_cache['day_view_count']; ?></li>
-	<li>总访问量：<?php echo $sta_cache['view_count']; ?></li>
+	<li>今日访问：<?php echo $viewcount_day; ?></li>
+	<li>总访问量：<?php echo $viewcount_all; ?></li>
 	</ul>
 	</li>
 <?php }?>

@@ -75,7 +75,6 @@ class mkcache {
 	 */
 	function mc_sta()
 	{
-		$dh = $this->db->once_fetch_array("select * from ".$this->db_prefix."statistics");
 		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE type='blog' and hide='n' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."blog WHERE type='blog' and hide='y'"));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM ".$this->db_prefix."comment WHERE hide='n' "));
@@ -83,8 +82,6 @@ class mkcache {
 		$tbnum = $this->db->num_rows($this->db->query("SELECT gid FROM ".$this->db_prefix."trackback "));
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM ".$this->db_prefix."twitter "));
 		$sta_cache = array(
-		'day_view_count' => $dh['day_view_count'],
-		'view_count' =>$dh['view_count'],
 		'lognum'=>$lognum,
 		'draftnum'=>$draftnum,
 		'comnum'=>$comnum,
