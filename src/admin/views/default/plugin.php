@@ -6,8 +6,8 @@
   <table width="100%" id="adm_plugin_list">
   <thead>
       <tr class="rowstop">
-        <td width="60"></td>
-        <td width="26" align="center"><b>状态</b></td>
+        <td width="100"></td>
+        <td width="36" align="center"><b>状态</b></td>
 		<td width="30" align="center"><b>版本</b></td>
 		<td width="500"><b>描述</b></td>
       </tr>

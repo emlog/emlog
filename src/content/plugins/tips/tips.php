@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: tips
+Version: 1.0
 Plugin URL: http://www.emlog.net/
-Description: 这是世界上第一个emlog插件，它象征着希望和热情
+Description: 这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示。
 Author: dawei
 Author Email: emloog@gmail.com
-Version: 1.0
 Author URL: http://www.emlog.net/blog/
-*/ 
+*/
 
 $array_tips = array(
 '你可以点击编辑器上的 插入日志分割符按钮 将内容部分显示在首页。',

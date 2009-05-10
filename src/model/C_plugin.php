@@ -43,19 +43,19 @@ class emPlugin {
 	}
 	
 	/**
-	 * 获取插件
-	 *
+	 * 获取所有插件列表
+	 * 插件目录：content\plugins
+	 * 1、插件根目录下的每一个*.php 文件，将视为一个插件
+	 * 2、插件目录下一级文件夹（且该文件夹根目录中包含 文件夹名.php ），将视为一个插件
 	 * @return array
 	 */
 	function getPlugins()
 	{
 		global $emPlugins;
-
 		if (isset($emPlugins))
 		{
 			return $emPlugins;
 		}
-
 		$emPlugins = array();
 		$pluginPath = EMLOG_ROOT . '/content/plugins';
 		$pluginDir = @ dir($pluginPath);
@@ -78,7 +78,7 @@ class emPlugin {
 							{
 								continue;
 							}
-							if (preg_match('|\.php$|', $subFile))
+							if ($subFile == $file.'.php')
 							{
 								$pluginFiles[] = "$file/$subFile";
 							}
