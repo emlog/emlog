@@ -14,6 +14,7 @@ if ($action == '')
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
+	$safe_mode = ini_get('safe_mode');
 	$serverdate = date('Y-n-d G:i:s',time());
 
 	if (function_exists("imagecreate"))
@@ -26,7 +27,7 @@ if ($action == '')
 			$gd_ver = '支持';
 		}
 	}else{
-		$gd_ver = '不支持GD图形库';
+		$gd_ver = '不支持';
 	}
 
 	include getViews('header');
