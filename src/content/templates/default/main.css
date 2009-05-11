@@ -45,7 +45,6 @@ a:hover{color:#0079b7; text-decoration:underline}
 #content .act a:hover{color:#a5a5a5; text-decoration:underline}
 #content .post{width:582px; padding:10px 0 0; overflow:hidden;}
 #content .fujian{ color:#999;}
-#content .fujian br{ display:none;}
 #content .under{margin-top:20px; font-size:12px; background:url(images/c_m.gif) repeat-y; color:#418bc5}
 #content  .tag{color:#87b342}
 .under .tag a:link, .under .tag a:active,{color:#87b342; text-decoration:none}
