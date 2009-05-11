@@ -274,7 +274,7 @@ function neighbor_log(){
 	global $prevLog,$nextLog; ?>
 	<div class="nextlog">
 	<?php if($prevLog):?>
-		&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
 	<?php if($nextLog && $prevLog):?>
 		|

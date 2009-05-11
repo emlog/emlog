@@ -6,19 +6,11 @@
 	<?php if($log_cache_sort[$logid]): ?>
 	<div class="act">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</div>
 	<?php endif;?>
-	<div class="clear"></div>
+	<div class="clear line"></div>
+    <div class="date">post by <?php echo blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?></div>
 	<div class="post"><?php echo $log_content; ?></div>
-	<div><?php blog_att($logid); ?></div>
-
-	<div class="under">
-		<div class="top"></div>
-		<div class="under_p">
-		<div class="tag"><?php blog_tag($logid); ?></div>
-		<div class="date">post by <?php echo blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?></div>
-		<div>&nbsp;</div>
-		</div>
-		<div class="bottom"></div>
-	</div>
+	<div class="fujian"><?php blog_att($logid); ?></div>
+	<div class="tag echo_tag"><?php blog_tag($logid); ?></div>
 	<?php neighbor_log(); ?>
 	<?php blog_trackback(); ?>
 

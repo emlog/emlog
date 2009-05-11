@@ -30,28 +30,32 @@ a:hover{color:#0079b7; text-decoration:underline}
 #menus .menus2 a:hover{background:url(images/button.png) no-repeat -74px -29px; color:#FFF; text-decoration:none}
 /*content*/
 #content{width:582px; float:left; padding:10px 33px 10px 55px; font-size:14px; color:#333; line-height:1.6; overflow:hidden}
-#content p{margin-bottom:20px}
+#content p{margin-bottom:10px}
 #content img{max-width:540px}
 #content ul li{margin-bottom:20px}
-#content .content_h2{font-size:16px; float:left; font-weight:800; color:#ff7a15}
+#content .content_h2{font-size:18px; float:left; font-weight:800; color:#ff7a15;}
 #content .content_h2 a:link{color:#ff7a15; text-decoration:none}
 #content .content_h2 a:hover{color:#ff7a15; text-decoration:underline}
 #content .content_h2 a:visited{color:#ff7a15; text-decoration:none}
+#content .line{ border-bottom:1px #f0f0f0 solid;}
 #content .act{color:#c1c1c1; font-size:12px; float:left; margin:5px 0px 0px 5px}
 #content .act a:link{color:#a5a5a5; text-decoration:none}
 #content .act a:active{color:#a5a5a5; text-decoration:none}
 #content .act a:visited{color:#a5a5a5; text-decoration:none}
 #content .act a:hover{color:#a5a5a5; text-decoration:underline}
-.post{width:582px; margin:10px 0px; overflow:hidden}
-.under{margin-top:20px; font-size:12px; background:url(images/c_m.gif) repeat-y; color:#418bc5}
-.under .tag{color:#87b342}
+#content .post{width:582px; padding:10px 0 0; overflow:hidden;}
+#content .fujian{ color:#999;}
+#content .fujian br{ display:none;}
+#content .under{margin-top:20px; font-size:12px; background:url(images/c_m.gif) repeat-y; color:#418bc5}
+#content  .tag{color:#87b342}
 .under .tag a:link, .under .tag a:active,{color:#87b342; text-decoration:none}
 .under .tag a:visited{color:#87b342; text-decoration:none}
 .under .tag a:hover{color:#87b342; text-decoration:underline}
 .under .top{background:url(images/c_top.gif) no-repeat; height:9px}
 .under .bottom{background:url(images/c_bottom.gif) no-repeat; height:9px; font-size:0}
 .under_p{padding:0px 20px}
-.under .date{float:right; color:#888}
+#content .date{color: #999999; font-size:12px;}
+#content .echo_tag{ background:url(images/ecoh_tag.gif) no-repeat; font-size:12px;  height:29px; padding: 9px 0px 0px 18px; margin:15px 0px 10px}
 #pagenavi{text-align:center; font-size:12px}
 #content .nextlog{text-align:center; margin:5px 0; font-size:12px}
 #trackback_address{font-size:12px; color:#999}
