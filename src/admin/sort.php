@@ -13,7 +13,7 @@ $emSort = new emSort($DB);
 
 if($action == '')
 {
-	$sorts = $emSort->getSorts();
+	$sorts = $sort_cache;
 	include getViews('header');
 	require_once(getViews('sort'));
 	include getViews('footer');

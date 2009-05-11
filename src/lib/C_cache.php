@@ -184,14 +184,15 @@ class mkcache {
 	function mc_sort()
 	{
 		$sort_cache = array();
-		$query = $this->db->query("SELECT sid,sortname FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT sid,sortname,taxis FROM ".$this->db_prefix."sort ORDER BY taxis ASC");
 		while($row = $this->db->fetch_array($query))
 		{
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM ".$this->db_prefix."blog WHERE sortid=".$row['sid']." and hide='n' and type='blog'"));
 			$sort_cache[$row['sid']] = array(
 			'lognum' => $logNum,
 			'sortname' => htmlspecialchars($row['sortname']),
-			'sid' => intval($row['sid'])
+			'sid' => intval($row['sid']),
+			'taxis' => intval($row['taxis'])
 			);
 		}
 		$cacheData = serialize($sort_cache);

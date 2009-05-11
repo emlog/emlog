@@ -15,6 +15,7 @@
       <tr class="rowstop">
         <td width="50"><b>序号</b></td>
         <td width="500"><b>分类名称</b></td>
+        <td width="50" align="center"><b>日志</b></td>
         <td width="300"></td>
       </tr>
     </thead>
@@ -25,6 +26,7 @@
         <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
         <input size="3" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
 		<td class="sortname"><?php echo $value['sortname']; ?></td>
+		<td align="center"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
       </tr>
 <?php endforeach;?>   
