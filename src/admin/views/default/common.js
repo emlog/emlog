@@ -104,6 +104,7 @@ function autosave(act){
 		var postdate = $.trim($("#postdate").val());
 		var date = $.trim($("#date").val());
 		var logid = $("#as_logid").val();
+		var author = $("#author").val();
 		var oEditor = FCKeditorAPI.GetInstance('content');
 		var content = oEditor.GetXHTML();
 		var oEditor = FCKeditorAPI.GetInstance('excerpt');
@@ -117,6 +118,7 @@ function autosave(act){
 		var querystr = "content="+encodeURIComponent(content)
 					+"&excerpt="+encodeURIComponent(excerpt)
 					+"&title="+encodeURIComponent(title)
+					+"&author="+author
 					+"&sort="+sort
 					+"&postdate="+postdate
 					+"&date="+date

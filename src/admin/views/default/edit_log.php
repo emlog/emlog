@@ -89,7 +89,7 @@ $isdraft = $hide == 'y' ? true : false;
           <td align="center" colspan="2"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" value=<?php echo $logid; ?> />
-		  <input type="hidden" name="author" value=<?php echo $author; ?> />	  
+		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />	  
 		  <input type="submit" value="保存并返回" onclick="return chekform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
 		  </td>
