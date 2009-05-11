@@ -43,6 +43,7 @@ define('ICON_MAX_W', 140);//头像缩略图最大宽
 define('ICON_MAX_H', 220);//头像缩略图最大高
 //加载插件
 $active_plugins = unserialize($active_plugins);
+$emHooks = array();
 if ($active_plugins && is_array($active_plugins))
 {
 	foreach($active_plugins as $plugin)

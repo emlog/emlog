@@ -38,8 +38,14 @@
 		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank">插件主页&raquo;</a><?php endif;?>
 		<br />
 		<?php if ($val['Author'] != ''):?>
-		作者：<a href="mailto:<?php echo $val['Email'];?>" title="给作者发邮件"><?php echo $val['Author'];?></a>
+		作者：
+			<?php if ($val['Email'] != ''):?>
+			<a href="mailto:<?php echo $val['Email'];?>"><?php echo $val['Author'];?></a>
+			<?php else:?>
+			<?php echo $val['Author'];?>
+			<?php endif;?>
 		<?php endif;?>
+		<?php if ($val['AuthorUrl'] != ''):?>，<a href="<?php echo $val['AuthorUrl'];?>" target="_blank">作者主页&raquo;</a><?php endif;?>
 		</td>
       </tr>
 	<?php endforeach; ?>

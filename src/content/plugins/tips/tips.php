@@ -2,7 +2,7 @@
 /*
 Plugin Name: tips
 Version: 1.0
-Plugin URL: http://www.emlog.net/
+Plugin URL:
 Description: 这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示。
 Author: dawei
 Author Email: emloog@gmail.com

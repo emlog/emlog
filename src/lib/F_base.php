@@ -240,9 +240,9 @@ function pagination($count,$perlogs,$page,$url)
 }
 
 /**
- * 挂载插件函数到预留的钩子上
- *
- * @param string $hook
+ * 该函数在插件中调用,挂载插件函数到预留的钩子上
+ * 
+ * @param string $hook 
  * @param string $actionFunc
  * @return boolearn
  */

@@ -17,6 +17,11 @@ class emPlugin {
 		$this->plugin = $plugin;
 	}
 
+	/**
+	 * 激活插件
+	 *
+	 * @param string $active_plugins 插件路径名 eg：tips/tips.php 
+	 */
 	function active_plugin($active_plugins)
 	{
 		if (in_array($this->plugin, $active_plugins))
@@ -29,6 +34,11 @@ class emPlugin {
 		$this->db->query("update ".DB_PREFIX."options set option_value='$active_plugins' where option_name='active_plugins'");
 	}
 	
+	/**
+	 * 禁用插件
+	 *
+	 * @param string $active_plugins
+	 */
 	function inactive_plugin($active_plugins)
 	{
 		if (in_array($this->plugin, $active_plugins))
@@ -43,7 +53,7 @@ class emPlugin {
 	}
 	
 	/**
-	 * 获取所有插件列表
+	 * 获取所有插件列表，未定义插件名称的插件将不予获取
 	 * 插件目录：content\plugins
 	 * 1、插件根目录下的每一个*.php 文件，将视为一个插件
 	 * 2、插件目录下一级文件夹（且该文件夹根目录中包含 文件夹名.php ），将视为一个插件
@@ -119,26 +129,29 @@ class emPlugin {
 	{
 		$pluginData = implode('', file($pluginFile));
 		preg_match("/Plugin Name:(.*)/i", $pluginData, $plugin_name);
+		preg_match("/Version:(.*)/i", $pluginData, $version);
 		preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
 		preg_match("/Description:(.*)/i", $pluginData, $description);
 		preg_match("/Author:(.*)/i", $pluginData, $author_name);
 		preg_match("/Author Email:(.*)/i", $pluginData, $author_email);
-		preg_match("/Version:(.*)/i", $pluginData, $version);
+		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
 		$plugin_name = isset($plugin_name[1]) ? trim($plugin_name[1]) : '';
+		$version = isset($version[1]) ? $version[1] : '';
 		$description = isset($description[1]) ? $description[1] : '';
 		$plugin_url = isset($plugin_url[1]) ? trim($plugin_url[1]) : '';
 		$author = isset($author_name[1]) ? trim($author_name[1]) : '';
 		$author_email = isset($author_email[1]) ? trim($author_email[1]) : '';
-		$version = isset($version[1]) ? $version[1] : '';
+		$author_url = isset($author_url[1]) ? trim($author_url[1]) : '';
 
 		return array(
 		'Name' => $plugin_name,
+		'Version' => $version,
 		'Description' => $description, 
 		'Url' => $plugin_url,
 		'Author' => $author,
 		'Email' => $author_email,
-		'Version' => $version,
+		'AuthorUrl' => $author_url,
 		);
 	}
 }

@@ -20,7 +20,7 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-
+//激活
 if ($action== 'active')
 {
 	$plugin = isset($_POST['plugin']) ? $_POST['plugin'] : '';
@@ -32,7 +32,7 @@ if ($action== 'active')
 
 	echo "<img src=\"./views/".ADMIN_TPL."/images/plugin_{$action}.gif\" onclick=\"do_plugin('$plugin', 'inactive', '$id');\" title=\"已激活\" align=\"absmiddle\">";
 }
-
+//禁用
 if($action== 'inactive')
 {
 	$plugin = isset($_POST['plugin']) ? $_POST['plugin'] : '';
