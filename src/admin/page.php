@@ -3,7 +3,7 @@
  * 页面管理
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.0
- * $Id: comment.php 1048 2009-04-12 03:46:42Z emloog $
+ * $Id$
  */
 
 require_once('globals.php');

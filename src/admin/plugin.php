@@ -3,7 +3,7 @@
  * 插件管理
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.0
- * $Id: plugin.php 900 2009-02-22 04:16:34Z emloog $
+ * $Id$
  */
 
 require_once('globals.php');
