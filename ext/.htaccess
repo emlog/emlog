@@ -1,16 +1,10 @@
 <IfModule mod_rewrite.c>
-	# RewriteEngine 打开URL重写模块
 	RewriteEngine on
-	# 重写根目录，博客在网站根目录则改为/
 	#RewriteBase /
-	# 显示日志规则
 	RewriteRule ^post-([0-9]+)\.html$ index.php?post=$1
-	# 日志归档
 	RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
-	# tag规则
 	RewriteRule ^tag-(.+)\.html$ index.php?tag=$1
-	# 分类规则
 	RewriteRule ^sort-([0-9]+)\.html$ index.php?sort=$1
-	# 分页规则
+	RewriteRule ^author-([0-9]+)\.html$ index.php?author=$1
 	RewriteRule ^page-([0-9]+)\.html$ index.php?page=$1
 </IfModule>

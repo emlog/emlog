@@ -353,6 +353,7 @@ function cleanPage($beUrlRewrite = false)
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?author=(\d+)\"([^\>]*)\>/e",
 			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?page=(\d+)\"([^\>]*)\>/e"
 			);
 			$replacelink = array(
@@ -360,6 +361,7 @@ function cleanPage($beUrlRewrite = false)
 			"recordRewrite('\\2','\\3')",
 			"tagRewrite('\\2','\\3')",
 			"sortRewrite('\\2','\\3')",
+			"authorRewrite('\\2','\\3')",
 			"pageRewrite('\\2','\\3')"
 			);
 			$output = preg_replace($searchlink, $replacelink,$output);
@@ -387,46 +389,22 @@ function logRewrite($gid,$ext,$values)
 {
 	return '<a href="post-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
 }
-/**
- * 日志归档链接重写
- *
- * @param int $date 匹配出来的日志归档时间
- * @param string $values 匹配出来的<a>标签中的其他属性
- * @return unknown
- */
 function recordRewrite($date,$values)
 {
 	return '<a href="record-'.$date.'.html"'.stripslashes($values).'>';
 }
-/**
- * 标签链接重写
- *
- * @param unknown_type $tag 匹配出来的标签编码
- * @param string $values 匹配出来的<a>标签中的其他属性
- * @return unknown
- */
 function tagRewrite($tag,$values)
 {
 	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
 }
-/**
- * 分类链接重写
- *
- * @param unknown_type $sort 匹配出来的分类编号
- * @param string $values 匹配出来的<a>标签中的其他属性
- * @return unknown
- */
 function sortRewrite($sort,$values)
 {
 	return '<a href="sort-'.$sort.'.html"'.stripslashes($values).'>';
 }
-/**
- * 分页链接重写
- *
- * @param unknown_type $page 匹配出来的分类编号
- * @param string $values 匹配出来的<a>标签中的其他属性
- * @return unknown
- */
+function authorRewrite($author,$values)
+{
+	return '<a href="author-'.$author.'.html"'.stripslashes($values).'>';
+}
 function pageRewrite($page,$values)
 {
 	return '<a href="page-'.$page.'.html"'.stripslashes($values).'>';
