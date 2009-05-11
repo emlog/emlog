@@ -12,7 +12,7 @@ if($action == '')
 {
 	$retval = glob("../content/backup/*.sql");
 	$bakfiles = $retval ? $retval : array();
-	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','statistics','tag','trackback','twitter','user');
+	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','tag','trackback','twitter','user');
 	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
 	
 	include getViews('header');	
