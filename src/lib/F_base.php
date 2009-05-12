@@ -257,14 +257,16 @@ function addAction($hook, $actionFunc)
 }
 
 /**
- * 执行挂在钩子上的函数
+ * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
  *
  * @param string $hook
- * @param array $args
  */
-function doAction($hook, $args = array())
+function doAction($hook)
 {
 	global $emHooks;
+
+	$args = array_slice(func_get_args(), 1);
+
 	if (isset($emHooks[$hook]))
 	{
 		foreach ($emHooks[$hook] as $function)
