@@ -93,11 +93,11 @@ a:hover{color:#0079b7; text-decoration:underline}
 #footer a:hover{color:#fff; text-decoration:underline}
 /*&#26085; &#21382; &#26679; &#24335; */
 .calendar{/*background-image:url(images/bg.jpg); */margin-bottom:10px}
-.calendar td{font-size:12px; text-align:center; padding:0px 5px; width:100%;line-height:1.6;}
+.calendar td{font-size:12px; text-align:center; padding:1px 6px; line-height:1.6;}
 .calendar a:visited{color:#F30; text-decoration:none}
 .calendar td a:link{color:#F30; text-decoration:none}
 .calendar td a:hover{color:#F30; text-decoration:none}
-.day{background:url(./images/bg_cal_today.gif)  no-repeat 9px 1px}
+.day{background:url(./images/bg_cal_today.gif)  no-repeat 4px 2px}
 .day2{font-weight:bold}
 .sun{background-color:#F5F5F5; color:#333; font-weight:bold}
 .week{background-color:#F5F5F5; color:#333}
