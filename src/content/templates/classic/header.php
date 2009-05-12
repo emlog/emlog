@@ -1,4 +1,11 @@
 <?php
+/*
+Template Name:经典模板
+Description:这个模板曾经伴随emlog走过那么多的风风雨雨……
+Author:emlog开发小组
+Author Url:http://www.emlog.net
+Sidebar Amount:1
+*/
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
