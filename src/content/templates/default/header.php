@@ -1,10 +1,10 @@
 <?php
 /*
-TemplateName: 默认模板
-Description = 这是emlog的默认模板，简洁明快 ……
-SidebarAmount: 1
+Template Name: 默认模板
+Description: 这是emlog的默认模板，简洁明快 ……
+Sidebar Amount: 1
 Author: emlog开发小组
-Author Homepage: www.emlog.net
+Author Url: www.emlog.net
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once (getViews('module'));
