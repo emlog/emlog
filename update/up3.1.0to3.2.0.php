@@ -289,7 +289,7 @@ ALTER TABLE {$db_prefix}blog ADD author INT( 10 ) NOT NULL DEFAULT '1' AFTER exc
 ALTER TABLE {$db_prefix}blog ADD type VARCHAR( 20 ) NOT NULL DEFAULT 'blog' AFTER sortid;
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','$day_view_count');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_all','$view_count');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','$curdate');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
 DROP TABLE IF EXISTS {$db_prefix}statistics;
