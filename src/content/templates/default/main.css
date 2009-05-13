@@ -33,7 +33,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 #content p{margin-bottom:10px}
 #content img{max-width:540px}
 #content ul li{margin-bottom:20px}
-#content .content_h2{font-size:18px; float:left; font-weight:800; color:#ff7a15;}
+#content .content_h2{font-size:16px; float:left; font-weight:800; color:#ff7a15; font-family:"微软雅黑";}
 #content .content_h2 a:link{color:#ff7a15; text-decoration:none}
 #content .content_h2 a:hover{color:#ff7a15; text-decoration:underline}
 #content .content_h2 a:visited{color:#ff7a15; text-decoration:none}
