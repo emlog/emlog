@@ -71,7 +71,8 @@ a:hover{color:#0079b7; text-decoration:underline}
 #content .comment_post .comment_yz img{margin-right:10px}
 #content .comment_post .comment_yz input{margin-right:10px}
 #content .comment_post .input{width:100px}
-.com_date{color:#333; font-size:12px}
+.com_date{color: #666666; font-size:12px; margin:4px 0;}
+#com_line span{color:#ff7a15;}
 /*sidebar*/
 #sidebar{float:right; width:185px; font-size:12px; color:#858585; margin-right:30px; display:inline; overflow:hidden}
 #sidebar img{max-width:540px}
