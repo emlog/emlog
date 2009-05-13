@@ -11,14 +11,14 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	</h2>
 	<?php blog_sort($value['sortid'], $value['logid']); ?>
 	<div class="clear line"></div>
-   	<div class="date"> post by <?php echo blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
+   	<div class="bloger"> post by <?php echo blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
 	<div class="fujian"><?php blog_att($value['logid']); ?></div>
 	<div class="under">
 	<div class="top"></div>
 	<div class="under_p">
 	<div class="tag"><?php blog_tag($value['logid']); ?></div>
-	<div class="date"></div>
+	<div class="editor"><a href="#">编辑</a></div>
 	<div>
 	<a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
 	<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
