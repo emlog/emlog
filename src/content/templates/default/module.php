@@ -321,7 +321,7 @@ function blog_comments(){
 		<?php if($value['url']):?>
 			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 		<?php endif;?>
-			<?php echo $value['date']; ?>
+			<div class="time"><?php echo $value['date']; ?></div>
 			<div class="com_date">
 			<?php echo $value['content']; ?>
 			</div>
