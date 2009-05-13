@@ -11,7 +11,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	</h2>
 	<?php blog_sort($value['sortid'], $value['logid']); ?>
 	<div class="clear line"></div>
-   	<div class="bloger"> post by <?php echo blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
+   	<div class="bloger"> post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
 	<div class="fujian"><?php blog_att($value['logid']); ?></div>
 	<div class="under">
