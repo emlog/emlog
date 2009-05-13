@@ -10,6 +10,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 	</h2>
 	<?php blog_sort($value['sortid'], $value['logid']); ?>
+	<div class="editor"><a href="#">编辑</a></div>
 	<div class="clear line"></div>
    	<div class="bloger"> post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
@@ -18,7 +19,6 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	<div class="top"></div>
 	<div class="under_p">
 	<div class="tag"><?php blog_tag($value['logid']); ?></div>
-	<div class="editor"><a href="#">编辑</a></div>
 	<div>
 	<a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
 	<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 

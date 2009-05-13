@@ -54,7 +54,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 .under .bottom{background:url(images/c_bottom.gif) no-repeat; height:9px; font-size:0}
 .under_p{padding:0px 20px}
 #content .bloger{color: #999999; font-size:12px;}
-#content .editor{ float:right; background:url(images/modify.gif) no-repeat 0px 1px; padding-left:18px;}
+#content .editor{ float:right; padding-top:6px;font-size:12px;}
 #content .echo_tag{ background:url(images/ecoh_tag.gif) no-repeat; font-size:12px; line-height:38px; padding-left:18px; margin:15px 0px 10px}
 #pagenavi{text-align:center; font-size:12px}
 #content .nextlog{text-align:center; margin:5px 0; font-size:12px}

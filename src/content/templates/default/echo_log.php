@@ -6,6 +6,7 @@
 	<?php if($log_cache_sort[$logid]): ?>
 	<div class="act">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</div>
 	<?php endif;?>
+	<div class="editor"><a href="#">编辑</a></div>
 	<div class="clear line"></div>
     <div class="date">post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?></div>
 	<div class="post"><?php echo $log_content; ?></div>
