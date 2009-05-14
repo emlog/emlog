@@ -9,40 +9,44 @@
 require_once('globals.php');
 require_once(EMLOG_ROOT.'/model/C_plugin.php');
 
+$plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
+
 if($action == '')
 {
 	$emPlugin = new emPlugin($DB);
 
 	$plugins = $emPlugin->getPlugins();
-	
+
 	include getViews('header');
 	require_once(getViews('plugin'));
 	include getViews('footer');
 	cleanPage();
 }
 //激活
-if ($action== 'active')
+if ($action == 'active')
 {
-	$plugin = isset($_POST['plugin']) ? $_POST['plugin'] : '';
-	$id = isset($_POST['id']) ? $_POST['id'] : '';
 
 	$emPlugin = new emPlugin($DB, $plugin);
 	$emPlugin->active_plugin($active_plugins);
 	$CACHE->mc_options();
 
-	echo "<img src=\"./views/".ADMIN_TPL."/images/plugin_{$action}.gif\" onclick=\"do_plugin('$plugin', 'inactive', '$id');\" title=\"已激活\" align=\"absmiddle\">";
+	header("Location: ./plugin.php?active=true");
 }
 //禁用
-if($action== 'inactive')
+if($action == 'inactive')
 {
-	$plugin = isset($_POST['plugin']) ? $_POST['plugin'] : '';
-	$id = isset($_POST['id']) ? $_POST['id'] : '';
-	
 	$emPlugin = new emPlugin($DB, $plugin);
 	$emPlugin->inactive_plugin($active_plugins);
 	$CACHE->mc_options();
 	
-	echo "<img src=\"./views/".ADMIN_TPL."/images/plugin_{$action}.gif\" onclick=\"do_plugin('$plugin', 'active', '$id');\" title=\"未激活\" align=\"absmiddle\">";
+	header("Location: ./plugin.php?inactive=true");
+}
+//加载插件配置页面
+if ($action == '' && $plug)
+{
+	include getViews('header');
+	require_once(getViews($plug_page.'_config.php'));
+	include getViews('footer');
 }
 
 ?>

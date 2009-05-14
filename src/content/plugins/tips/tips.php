@@ -35,7 +35,6 @@ $array_tips = array(
 '新建一个允许发表评论的页面，你会发现其实它还是一个简单的留言板',
 '后台左侧菜单可以折叠哦、而且可以记住折叠状态',
 '今天你备份数据了吗？',
-'你吃了吗？',
 '今天天气还不错哦 :)',
 '节约能源，保护环境',
 '如果你拥有爱，请在失去之前好好珍惜',
@@ -45,7 +44,7 @@ $array_tips = array(
 function tips()
 {
 	global $array_tips;
-	$i = mt_rand(0,count($array_tips)-1);
+	$i = mt_rand(0, count($array_tips) - 1);
 	$tip = $array_tips[$i];	
 	echo "<div id=\"tip\">:) $tip</div>";
 }
