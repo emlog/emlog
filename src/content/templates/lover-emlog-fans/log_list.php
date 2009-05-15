@@ -20,7 +20,7 @@ foreach($logs as $value):
 $datetime = explode("-",$value['post_time']);
 $year = $datetime['0']."/".$datetime['1'];
 $day = substr($datetime['2'],0,2);
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
+$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
     	<div class="note_box">
     		<div class="note_title">

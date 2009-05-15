@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!--blogger-->
 <?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
+	<?php global $photo,$name,$blogger_des; ?>
 	<li><h2 onclick="showhidediv('blogger')"><?php echo $title; ?></h2>
 	<ul id="blogger">
 	<li><?php echo $photo;?></li>
@@ -43,7 +43,7 @@
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
-	<?php global $sort_cache,$em_tpldir; ?>
+	<?php global $sort_cache; ?>
 	<li><h2 onclick="showhidediv('blogroll')"><?php echo $title; ?></h2>
 	<ul id="blogroll">	
 	<?php foreach($sort_cache as $value): ?>
@@ -57,7 +57,7 @@
 <?php }?>
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
+	<?php global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
 	<li><h2 onclick="showhidediv('twitter')"><?php echo $title; ?></h2>
 	<ul id="twitter">
@@ -89,7 +89,7 @@
 	}?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	<?php global $musicdes,$musicurl,$autoplay; ?>
 	<li><h2 onclick="showhidediv('music')"><?php echo $title; ?></h2>
 	<ul id="music">
 	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="140" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
@@ -99,7 +99,7 @@
 <?php }?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>
-	<?php global $com_cache,$em_tpldir; ?>
+	<?php global $com_cache; ?>
 	<li><h2 onclick="showhidediv('comm')"><?php echo $title; ?></h2>
 	<ul id="comm">
 	<?php foreach($com_cache as $value): ?>
@@ -184,7 +184,7 @@
 <?php }?>
 <!--信息-->
 <?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$em_tpldir; ?>
+	<?php global $sta_cache; ?>
 	<li><h2 onclick="showhidediv('sta')"><?php echo $title; ?></h2>
 	<ul id="sta">
 	<li>日志数量：<?php echo $sta_cache['lognum'];?></li>

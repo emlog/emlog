@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!--blogger-->
 <?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
+	<?php global $photo,$name,$blogger_des; ?>
 	<h4><em onclick="showhidediv('blogger')"><?php echo $title; ?></em></h4>
 	<ul id="blogger">
 		<li><?php echo $photo;?></li>
@@ -41,7 +41,7 @@
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
-	<?php global $sort_cache,$em_tpldir; ?>
+	<?php global $sort_cache; ?>
 	<h4><em onclick="showhidediv('sort')"><?php echo $title; ?></em></h4>
 	<ul id="sort">
 	<?php foreach($sort_cache as $value): ?>
@@ -54,7 +54,7 @@
 <?php }?>
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
+	<?php global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
 	<h4 onclick="showhidediv('twitter')"><em><?php echo $title; ?></em></h4>
 	<ul id="twitter" class="posts">
@@ -83,7 +83,7 @@
 <?php } ?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	<?php global $musicdes,$musicurl,$autoplay; ?>
 	<h4><em onclick="showhidediv('music')"><?php echo $title; ?></em></h4>
 	<ul id="music">
 	<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?>
@@ -94,7 +94,7 @@
 <?php }?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>
-	<?php global $com_cache,$em_tpldir; ?>
+	<?php global $com_cache; ?>
 	<h4><em onclick="showhidediv('newcomm')"><?php echo $title; ?></em></h4>
 	<ul id="newcomm" class="posts">
 	<?php foreach($com_cache as $value): ?>
@@ -160,7 +160,7 @@
 <?php }?>
 <!--信息-->
 <?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$em_tpldir; ?>
+	<?php global $sta_cache; ?>
 	<h4><em onclick="showhidediv('sta')"><?php echo $title; ?></em></h4>
 	<ul class="months" id="sta">
 			<li>日志数量：<?php echo $sta_cache['lognum'];?></li>

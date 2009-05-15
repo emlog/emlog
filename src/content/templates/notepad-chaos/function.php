@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!--blogger-->
 <?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
+	<?php global $photo,$name,$blogger_des; ?>
     <li><span onclick="showhidediv('blogger')"><b><?php echo $title; ?></b></span></li>
     	<ul id="blogger">
     	<li><?php echo $photo; ?></li>
@@ -39,7 +39,7 @@
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
-	<?php global $sort_cache,$em_tpldir; ?>
+	<?php global $sort_cache; ?>
 	<li><span onclick="showhidediv('sort')"><b><?php echo $title; ?></b></span></li>
 	<div class="sort">
 	  <ul>
@@ -54,7 +54,7 @@
 <?php }?>
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
+	<?php global $tw_cache,$index_twnum,$localdate; ?>
     <?php if($index_twnum>0): ?>
 	<li><span onclick="showhidediv('twitter')"><b><?php echo $title; ?></b></span></li>
 	<ul id="twitter">
@@ -84,7 +84,7 @@
 <?php } ?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>
-	<?php global $com_cache,$em_tpldir; ?>
+	<?php global $com_cache; ?>
 	<li><span onclick="showhidediv('comm')"><b><?php echo $title; ?></b></span></li>
 	<div class="comm">
 	  <ul>
@@ -117,7 +117,7 @@
 <?php }?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	<?php global $musicdes,$musicurl,$autoplay; ?>
 	<li><span onclick="showhidediv('music')"><b><?php echo $title; ?></b></span></li>
 	<ul id="music">
 	<li>
@@ -158,7 +158,7 @@
 <?php }?>
 <!--信息-->
 <?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$em_tpldir; ?>
+	<?php global $sta_cache; ?>
 	<li><span onclick="showhidediv('bloginfo')"><b><?php echo $title; ?></b></span></li>
 		<ul id="bloginfo">
 		<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>

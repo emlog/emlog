@@ -2,7 +2,7 @@
 <?php
 //widget：blogger
 function widget_blogger($title){
-	global $user_cache,$em_tpldir; 
+	global $user_cache; 
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
 	<li>
 	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
@@ -53,7 +53,7 @@ function widget_tag($title){
 <?php
 //widget：分类
 function widget_sort($title){
-	global $sort_cache,$em_tpldir; ?>
+	global $sort_cache; ?>
 	<li>
 	<h3><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h3>
 	<ul id="blogsort">
@@ -69,7 +69,7 @@ function widget_sort($title){
 <?php
 //widget：twitter
 function widget_twitter($title){
-	global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
+	global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
 	<li>
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
@@ -102,7 +102,7 @@ function widget_twitter($title){
 <?php 
 //widget：音乐
 function widget_music($title){
-	global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	global $musicdes,$musicurl,$autoplay; ?>
 	<li>
 	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>	
 	<ul id="blogmusic">
@@ -114,7 +114,7 @@ function widget_music($title){
 <?php
 //widget：最新评论
 function widget_newcomm($title){
-	global $com_cache,$em_tpldir; ?>
+	global $com_cache; ?>
 	<li>
 	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
 	<ul id="newcomment">

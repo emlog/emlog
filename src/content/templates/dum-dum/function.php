@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!--blogger-->
 <?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des,$em_tpldir; ?>
+	<?php global $photo,$name,$blogger_des; ?>
 	<div class="box1">
 		<div class="box1text">
 		<ul>
@@ -54,7 +54,7 @@
 <?php }?>
 <!--分类-->
 <?php function widget_sort($title){ ?>
-	<?php global $sort_cache,$em_tpldir; ?>
+	<?php global $sort_cache; ?>
 	<div class="box3">
 		<div class="box3text">
 		<ul>
@@ -71,7 +71,7 @@
 <?php }?>
 <!--twitter-->
 <?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate,$em_tpldir; ?>
+	<?php global $tw_cache,$index_twnum,$localdate; ?>
 	<div class="box2">
 		<div class="box2text">
 		<ul>
@@ -106,7 +106,7 @@
 <?php } ?>
 <!--音乐-->
 <?php function widget_music($title){ ?>
-	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
+	<?php global $musicdes,$musicurl,$autoplay; ?>
 	<div class="box1">
 		<div class="box1text">
 		<ul>
@@ -118,7 +118,7 @@
 <?php }?>
 <!--最新评论-->
 <?php function widget_newcomm($title){ ?>
-	<?php global $com_cache,$em_tpldir; ?>
+	<?php global $com_cache; ?>
 	<div class="box3">
 		<div class="box3text">
 		<ul>
@@ -195,7 +195,6 @@
 <!--搜索-->
 <?php 
 function widget_search($title){ 
-global $em_tpldir;
 ?>
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php" id="searchform">
 	<div>
@@ -219,7 +218,7 @@ global $em_tpldir;
 <?php }?>
 <!--信息-->
 <?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$em_tpldir; ?>
+	<?php global $sta_cache; ?>
 	<div class="box3">
 		<div class="box3text">
 		<ul>
