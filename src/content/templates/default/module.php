@@ -250,7 +250,7 @@ function blog_tag($blogid){
 		$tag = '标签:';
 		foreach ($log_cache_tags[$blogid] as $val)
 		{
-			$tag .= "	<a href=\"<?php echo BLOG_URL; ?>?tag=".urlencode($val['tagname'])."\">".htmlspecialchars($val['tagname']).'</a>';
+			$tag .= "	<a href=\"".BLOG_URL."?tag=".urlencode($val['tagname'])."\">".htmlspecialchars($val['tagname']).'</a>';
 		}
 		echo $tag;
 	}
@@ -265,7 +265,7 @@ function blog_author($uid){
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
-	echo "<a href=\"<?php echo BLOG_URL; ?>?author=$uid\" $title>$author</a>";
+	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
 	?>
 <?php }?>
 <?php
