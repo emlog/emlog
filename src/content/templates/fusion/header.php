@@ -8,10 +8,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-<link href="<?php echo $em_tpldir; ?>main.css" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
+<link href="<?php echo CERTEMPLATE_URL; ?>/main.css" rel="stylesheet" type="text/css" />
 
-<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
+<script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
   <!-- page wrappers (100% width) -->
@@ -28,7 +28,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <div id="header">
 
               <div id="topnav" class="description"><?php echo $bloginfo; ?></div>
-              <h1 id="title"><a href="./"><?php echo $blogname; ?></a></h1>
+              <h1 id="title"><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
 
 
               <!-- top tab navigation -->
@@ -37,13 +37,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
               <!-- homepage tab (remove this section if you dont need it) -->
               <?php if(ISLOGIN): ?>
-             	<li class="current_page_item"><a href="./index.php"><span>首页</span></a></li>
-				<li class="page_item page-item-2"><a href="./admin/write_log.php"><span>写日志</span></a></li>
-				<li class="page_item page-item-2"><a href="./admin/"><span>管理中心</span></a></li>
-				<li class="page_item page-item-2"><a href="./admin/index.php?action=logout"><span>退出</span></a></li>
+             	<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php"><span>首页</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><span>写日志</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/"><span>管理中心</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout"><span>退出</span></a></li>
 				<?php else: ?>
-                <li class="current_page_item"><a href="./index.php"><span>首页</span></a></li>
-				<li class="page_item page-item-2"><a href="./admin/index.php"><span>登录</span></a></li>
+                <li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php"><span>首页</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php"><span>登录</span></a></li>
 				<?php endif; ?>
                </ul>
               </div>

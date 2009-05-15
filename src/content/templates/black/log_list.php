@@ -11,14 +11,14 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				<div class="dtm">
 					<div class="dtmtmc">
 						<div class="titlemeta">
-							<?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a><br/>
+							<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a><br/>
 							<span class="byline">
 							<?php 
 							$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
 							echo $tag;
 							?>
 							<?php if($log_cache_sort[$value['logid']]): ?>
-							<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
+							<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
 							<?php endif;?>
 							</span>
 						</div>
@@ -42,7 +42,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				<?php if($value['allow_remark']=='n'): ?>
 				Comments Off
 				<?php else: ?>
-				<a href="./?post=<?php echo $value['logid']; ?>#comment">
+				<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">
 				<?php if($value['comnum']==1 || $value['comnum']==0): ?>
 				<?php echo $value['comnum']; ?> Comment
 				<?php else: ?>
@@ -54,7 +54,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				<?php if($value['allow_tb']=='n'): ?>
 				Trackback Off
 				<?php else: ?>
-				<a href="./?post=<?php echo $value['logid']; ?>#tb">
+				<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">
 				<?php if($value['tbcount']==0 || $value['tbcount']==1): ?>
 				<?php echo $value['tbcount']; ?> Trackback
 				<?php else: ?>
@@ -63,7 +63,7 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 				</a>
 				<?php endif; ?>
 				|
-				<a href="./?post=<?php echo $value['logid']; ?>">
+				<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">
 				<?php if($value['views']==0 || $value['views']==1): ?>
 				<?php echo $value['views']; ?> View
 				<?php else: ?>

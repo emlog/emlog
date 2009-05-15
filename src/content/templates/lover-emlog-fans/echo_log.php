@@ -5,9 +5,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="center_small">
 	<div class="clear"></div>
 	<div id="day_text">
-        您的位置：<a href="index.php">首页</a>>
+        您的位置：<a href="<?php echo BLOG_URL; ?>index.php">首页</a>>
 		<?php if($log_cache_sort[$logid]): ?>
-         <a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
+         <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
 		<?php endif;?> > 
         <?php echo $log_title; ?>
     </div>
@@ -26,7 +26,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <div class="note_tag">
             	<div class="note_tag_text1">
             	<?php if($log_cache_sort[$logid]): ?>
-        		 <a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
+        		 <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
 				<?php endif;?>
             	</div>
                 <div class="note_tag_text2">
@@ -45,7 +45,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <?php if($allow_tb == 'y'):?>	
             <div class="copy_box">
             引用地址： 
-            <input value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>" type="text" style="border:0px; color:#FFCC00; width:350px;"  /><a name="tb"></a>
+            <input value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>" type="text" style="border:0px; color:#FFCC00; width:350px;"  /><a name="tb"></a>
 			<?php 
 			foreach($tb as $key=>$value):
 			?>
@@ -65,13 +65,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         	</div>
             <div class="note_tag_2" style="margin-top:10px;">
 			 <?php if($prevLog):?>
-				&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+				&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 			<?php endif;?>
 			<?php if($nextLog && $prevLog):?>
 				|
 			<?php endif;?>
 			<?php if($nextLog):?>
-				 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+				 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 			<?php endif;?>
         	</div>
         </div>
@@ -110,7 +110,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 			<br />
 			<span class="commenttxt">
-        	<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>		&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+        	<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>		&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
         	</span>
 			</div>           
@@ -128,7 +128,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
        <b> 发表评论：</b>
         </div> 
         <div class="com_box_bottom"> 
-        	<form  method="post"  name="commentform" action="index.php?action=addcom">
+        	<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
 			
   			<span>姓名</span>
             <input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/><input type="text" name="comname" class="textfield" maxlength="49" value="<?php echo $ckname; ?>">
@@ -150,7 +150,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--页面右侧部分-->
     <div id="right_box">
         <div id="sear_box">
-         <form id="searchform" name="keyform" method="get" action="index.php">
+         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
          <div id="sear_box_left">
         	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>

@@ -1,28 +1,28 @@
 <div id="sidebar">
 	<div id="sbarheader">
-	<div class="ti"><h1><a href="./"><?php echo $blogname; ?></a></h1></div>
+	<div class="ti"><h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1></div>
 			<div class="des"><?php echo $bloginfo; ?></div>
 	<div class="rsssubscribe">
-	<a href="./rss.php">
-	<img style="vertical-align:middle" border="0" src="<?php echo $em_tpldir; ?>images/rss.gif" alt="Subscribe to <?php echo $blogname; ?>" /><br/>
+	<a href="<?php echo BLOG_URL; ?>rss.php">
+	<img style="vertical-align:middle" border="0" src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="Subscribe to <?php echo $blogname; ?>" /><br/>
 	Subscribe via RSS</a>
 	</div>
 	</div>
 	<div id="nav">
 		<ul>
-			<li><a href="./">首页</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<li><a href="http://www.emlog.net" target="_blank">emlog</a></li>
 			<?php if(ISLOGIN): ?>
-			<li><a href="./admin/write_log.php">写日志</a></li>
-			<li><a href="./admin/">管理中心</a></li>
-			<li><a href="./admin/index.php?action=logout">退出</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
 			<?php else: ?>
-			<li><a href="./admin/index.php">登录</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
 			<?php endif; ?>
 		</ul>
 	</div>
 	<div id="sbarsearch">
-	<form method="get" id="searchform" action="index.php">
+	<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>index.php">
 	<input value="" type="text" name="keyword" class="s" />
 	<input type="submit" class="sub" value="search" onclick="return keyw()"/>
 	</form>

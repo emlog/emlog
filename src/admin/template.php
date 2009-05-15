@@ -11,7 +11,7 @@ require_once('globals.php');
 if($action == '')
 {
 	//当前模板
-	$tplData = implode('', @file(TEMPLATE_PATCH.$nonce_templet.'/header.php'));
+	$tplData = implode('', @file(TEMPLATE_PATH.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $tplData, $tplName);
 	preg_match("/Author:(.*)/i", $tplData, $tplAuthor);
 	preg_match("/Description:(.*)/i", $tplData, $tplDes);
@@ -25,13 +25,13 @@ if($action == '')
 		$tplAuthor = '';
 	}
 	//模板列表
-	$handle = @opendir(TEMPLATE_PATCH) OR die('emlog template path error!');
+	$handle = @opendir(TEMPLATE_PATH) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
 	{
-		if(file_exists(TEMPLATE_PATCH.$file.'/header.php'))
+		if(file_exists(TEMPLATE_PATH.$file.'/header.php'))
 		{
-			$tplData = implode('', @file(TEMPLATE_PATCH.$file.'/header.php'));
+			$tplData = implode('', @file(TEMPLATE_PATH.$file.'/header.php'));
 			preg_match("/Template Name:(.*)/i", $tplData, $name);
 			preg_match("/Sidebar Amount:(.*)/i", $tplData, $sidebar);
 			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;

@@ -1102,7 +1102,7 @@ a.imageswitcher_button:hover {
 }
 
 .day {
-	background: url(./images/bg_cal_today.gif) repeat-y;
+	background: url(images/bg_cal_today.gif) repeat-y;
 }
 
 .day2 {

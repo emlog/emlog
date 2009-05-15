@@ -30,11 +30,11 @@ foreach ($widgets as $val)
 </ul>
 <ul>
 <?php if(ISLOGIN): ?>
-	<a href="./admin/write_log.php">写日志</a>
-	<a href="./admin/">管理中心</a>
-	<a href="./admin/index.php?action=logout">退出</a>
+	<a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
+	<a href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
+	<a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a>
 <?php else: ?>
-	<a href="./admin/index.php">登录</a>
+	<a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a>
 <?php endif; ?>
 </ul>
 </div>

@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="sidebar">
 <div id="search">
-<form name="keyform" method="get" action="index.php">
+<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 <div>
 <input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onblur="this.value='输入搜索';this.style.color='#CCCCCC';" />
 <input type="submit" id="go" value="" onclick="return keyw()"/>
@@ -37,5 +37,5 @@ foreach ($widgets as $val)
 }
 ?>
 </ul>
-<a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
+<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="订阅Rss"/></a>
 </div>

@@ -8,29 +8,29 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-<link rel="stylesheet" href="<?php echo $em_tpldir; ?>css/reset.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?php echo $em_tpldir; ?>css/style.css" type="text/css" media="screen" />
-<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
+<link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/css/style.css" type="text/css" media="screen" />
+<script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="header"><div class="inner clear">
-		<h1><a href="./"><?php echo $blogname; ?></a></h1>
+		<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
 		<ul id="navigation">
 			<li><?php echo $bloginfo; ?></li>
 		</ul>
 	</div></div>
 	
 	<div id="search"><div class="inner clear">
-		<a id="rss-link" href="./index.php"><strong>首页</strong></a>
+		<a id="rss-link" href="<?php echo BLOG_URL; ?>index.php"><strong>首页</strong></a>
 		<?php if(ISLOGIN): ?>
-	<a id="rss-link" href="./admin/write_log.php">写日志</a>
-	<a id="rss-link" href="./admin/">管理中心</a>
-	<a id="rss-link" href="./admin/index.php?action=logout">退出</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a>
 <?php else: ?>
-	<a id="rss-link" href="./admin/index.php">登录</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/index.php">登录</a>
 <?php endif; ?>
-		<form name="keyform" method="get" id="searchform" action="index.php"><div>
+		<form name="keyform" method="get" id="searchform" action="<?php echo BLOG_URL; ?>index.php"><div>
 	<input name="keyword"  type="text" value="" id="s" />
 	<input type="submit" id="searchsubmit" value="Search" onclick="return keyw()" />
 </div></form>

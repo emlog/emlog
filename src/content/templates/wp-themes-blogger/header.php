@@ -8,9 +8,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-<link href="<?php echo $em_tpldir; ?>main.css" rel="stylesheet" type="text/css" />
-<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
+<link href="<?php echo CERTEMPLATE_URL; ?>/main.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
     <script type="text/javascript"><!--//--><![CDATA[//><!--
 
 sfHover = function() {
@@ -28,7 +28,7 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 
     //--><!]]></script>
     <!--[if lt IE 7]>
-        <script defer type="text/javascript" src="<?php echo $em_tpldir; ?>/js/pngfix.js"></script>
+        <script defer type="text/javascript" src="<?php echo CERTEMPLATE_URL; ?>//js/pngfix.js"></script>
     <style type="text/css">
         *html .excrept_in {height: 1%;}
     </style>
@@ -40,17 +40,17 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
     <div id="topnav">
         
         <div id="topnav_right">
-            <script src="<?php echo $em_tpldir; ?>/js/date.js" type="text/javascript"></script>
+            <script src="<?php echo CERTEMPLATE_URL; ?>//js/date.js" type="text/javascript"></script>
         </div>
     <div class="clear"></div>
     </div><!-- End Topnav -->
         <div id="header_left">
-            <h1><a href="./"><?php echo $blogname; ?></a></h1>
+            <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
             <p><?php echo $bloginfo; ?></p>
         </div>
         <div id="header_right">
             <div id="top_search">
-                <form id="searchform" method="get" name="keyform" action="index.php">
+                <form id="searchform" method="get" name="keyform" action="<?php echo BLOG_URL; ?>index.php">
                 <input type="text" value="Search This Site..." name="keyword" id="topsearch" onfocus="if (this.value == 'Search This Site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search This Site...';}" />
                 <input type="submit" id="searchbut" value="GO" /></form>
             </div>
@@ -62,19 +62,19 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
                 <ul id="nav">
                 <ul>
 <?php if(ISLOGIN): ?>
-	<li><a href="./index.php">Home</a></li>
-	<li  class="cat-item cat-item-1"><a href="./admin/write_log.php">写日志</a></li>
-	<li  class="cat-item cat-item-1"><a href="./admin/">管理中心</a></li>
-	<li  class="cat-item cat-item-1"><a href="./admin/index.php?action=logout">退出</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php">Home</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
 <?php else: ?>
-	<li><a href="./index.php">Home</a></li>
-	<li  class="cat-item cat-item-1"><a href="./admin/index.php">登录</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php">Home</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
 <?php endif; ?>
 </ul>
           </div>
             <div id="nav_right">
-                        <a href="./rss.php" target="_blank">Subscribe to RSS</a>
-                <a href="./rss.php" target="_blank"><img style="vertical-align:middle" src="<?php echo $em_tpldir; ?>images/rss.png" alt="订阅Rss"/></a>
+                        <a href="<?php echo BLOG_URL; ?>rss.php" target="_blank">Subscribe to RSS</a>
+                <a href="<?php echo BLOG_URL; ?>rss.php" target="_blank"><img style="vertical-align:middle" src="<?php echo CERTEMPLATE_URL; ?>/images/rss.png" alt="订阅Rss"/></a>
                     </div>
         <div class="clear"></div>
         </div>

@@ -113,7 +113,7 @@ body {
 #page {
 	width: 960px;
 	float: left;
-	background: #fff url(./images/sidebar_border.gif) repeat-y;
+	background: #fff url(images/sidebar_border.gif) repeat-y;
 }
 
 div.contentA {
@@ -370,7 +370,7 @@ div.contentA {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) no-repeat 2px 1px;
+	background: #fff url(images/bg_cal_today.gif) no-repeat 2px 1px;
 }
 
 .day2 {

@@ -6,7 +6,7 @@
 			$toplogs['title'] = htmlspecialchars(trim($toplogs['title']));
 	?>
     <ul>
-    <li><a href="./?post=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
+    <li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $toplogs['gid']; ?>"><?php echo $toplogs['title']; ?><br />
     <span class="listMeta"><?php echo $toplogs['post_time']; ?></span></a></li>
     </ul>
     <?php endwhile;?>
@@ -44,11 +44,11 @@ foreach ($widgets as $val)
 	<div id="admin">
 	  <ul>
 		<?php if(ISLOGIN): ?>
-			<li><a href="./admin/write_log.php">写日志</a></li>
-			<li><a href="./admin/">管理中心</a></li>
-			<li><a href="./admin/index.php?action=logout">退出</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
 		<?php else: ?>
-			<li><a href="./admin/index.php">登录</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
 		<?php endif; ?>	
 	  </ul>
 	</div>

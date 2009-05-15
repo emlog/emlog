@@ -4,11 +4,11 @@ foreach($logs as $value):
 $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 	<div class="post">
-			<h2><?php echo $topFlg; ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
+			<h2><?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
 			<div class="info">
 				<span class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></span>
 				<div class="act">
-					<span class="comments"><a href="./?post=<?php echo $value['logid']; ?>#comment">(<?php echo $value['comnum']; ?>) 条评论</a></span>
+					<span class="comments"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">(<?php echo $value['comnum']; ?>) 条评论</a></span>
 				</div>
 			</div>
 			<div class="content">
@@ -21,9 +21,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"{$em_tpldir}images/import.gif\" 
 	</p>
 				<p class="under">
 				<span class="categories"><?php if($log_cache_sort[$value['logid']]): ?>
-	<span class="sort">[<a href="./?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
-	<?php endif;?> <a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
-	<a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a></span>					<span class="tags"><?php 
+	<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
+	<?php endif;?> <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a></span>					<span class="tags"><?php 
 		$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
 		echo $tag;
 		?></span>				</p>

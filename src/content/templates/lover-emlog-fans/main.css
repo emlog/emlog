@@ -23,7 +23,7 @@ a:active {color: #148EC0}
 margin: 0 auto;
 width:962px;
 height:143px;
-background-image:url(./images/body-bg.gif);
+background-image:url(images/body-bg.gif);
 background-repeat:repeat-x;
 }
 #header_left{
@@ -51,14 +51,14 @@ margin-left:2px;
 float:left;
 width:19px;
 height:34px;
-background-image: url(./images/menu-left.gif);
+background-image: url(images/menu-left.gif);
 background-repeat:no-repeat;
 }
 #header_dh_cen{
 float:left;
 width:657px;
 height:34px;
-background-image: url(./images/menu-center.gif);
+background-image: url(images/menu-center.gif);
 background-repeat:repeat-x;
 line-height:34px;
 font-size:14px;
@@ -76,14 +76,14 @@ margin-right:20px;
 float:right;
 width:8px;
 height:34px;
-background-image: url(./images/menu-right.gif);
+background-image: url(images/menu-right.gif);
 background-repeat:no-repeat;
 }
 #header_right{
 float:right;
 width:276px;
 height:143px;
-background-image: url(./images/header-right-1.gif);
+background-image: url(images/header-right-1.gif);
 background-repeat:no-repeat;
 }
 /*当前页面所在位置，博客简单说明*/
@@ -109,7 +109,7 @@ height:33px;
 float:left;
 width:664px;
 height:33px;
-background-image: url(./images/lead-line.gif);
+background-image: url(images/lead-line.gif);
 background-repeat:no-repeat;
 background-position: -1px bottom;
 background-color:#F3F6F7;
@@ -128,14 +128,14 @@ width:276px;
 _width:277px;
 height:33px;
 _display:inline;
-background-image: url(./images/header-right-2.gif);
+background-image: url(images/header-right-2.gif);
 background-repeat:no-repeat;
 }
 /*页面中部*/
 #center_box{
 margin: 0 auto;
 width:961px;
-background-image: url(./images/content-bg.gif);
+background-image: url(images/content-bg.gif);
 background-repeat:repeat-y;
 padding-bottom:15px;
 }
@@ -180,7 +180,7 @@ height:16px;
 line-height:22px;
 font-size:12px;
 color:#525454;
-background-image:url(./images/cat.gif);
+background-image:url(images/cat.gif);
 background-repeat:no-repeat;
 padding-left:25px;
 float:left;
@@ -192,7 +192,7 @@ height:16px;
 line-height:16px;
 font-size:12px;
 color:#525454;
-background-image:url(./images/date.gif);
+background-image:url(images/date.gif);
 background-repeat:no-repeat;
 padding-left:25px;
 float:left;
@@ -205,7 +205,7 @@ height:16px;
 line-height:16px;
 font-size:12px;
 color:#525454;
-background-image:url(./images/comments.gif);
+background-image:url(images/comments.gif);
 background-repeat:no-repeat;
 padding-left:25px;
 float:left;
@@ -217,7 +217,7 @@ height:16px;
 line-height:16px;
 font-size:12px;
 color:#525454;
-background-image:url(./images/views.gif);
+background-image:url(images/views.gif);
 background-repeat:no-repeat;
 padding-left:25px;
 float:left;
@@ -229,7 +229,7 @@ height:16px;
 line-height:16px;
 font-size:12px;
 color:#525454;
-background-image:url(./images/tag.gif);
+background-image:url(images/tag.gif);
 background-repeat:no-repeat;
 padding-left:25px;
 float:left;
@@ -267,7 +267,7 @@ color: #FFCC00;
 margin: 0 auto;
 width:960px;
 height:63px;
-background-image: url(./images/footer-bg.gif);
+background-image: url(images/footer-bg.gif);
 background-repeat:repeat-x;
 padding-top:20px;
 }
@@ -289,7 +289,7 @@ margin: 0  auto;
 margin-top:10px;
 width:248px;
 height:22px;
-background-image: url(./images/side-title.gif);
+background-image: url(images/side-title.gif);
 background-repeat:repeat-x;
 line-height:22px;
 font-size:12px;
@@ -339,7 +339,7 @@ line-height:22px;
 font-size:12px;
 font-weight:bold;
 color:#484847;
-background-image: url(./images/side-title.gif);
+background-image: url(images/side-title.gif);
 background-repeat:repeat-x;
 padding-left:10px;
 border:#E2E5EA solid 1px;
@@ -425,7 +425,7 @@ color: #FF3300;
 text-decoration: none;
 }
 .day {
-background: #fff url(./images/bg_cal_today.gif) no-repeat 2px 5px;
+background: #fff url(images/bg_cal_today.gif) no-repeat 2px 5px;
 }
 .day2 {
 font-weight: bold;

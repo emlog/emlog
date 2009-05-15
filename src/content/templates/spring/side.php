@@ -28,14 +28,14 @@ foreach ($widgets as $val)
 	}
 }
 ?>
-<a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a>
+<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="订阅Rss"/></a>
 <ul>
 <?php if(ISLOGIN): ?>
-	<li><a href="./admin/write_log.php">写日志</a></li>
-	<li><a href="./admin/">管理中心</a></li>
-	<li><a href="./admin/index.php?action=logout">退出</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
 <?php else: ?>
-	<li><a href="./admin/index.php">登录</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
 <?php endif; ?>
 </ul>
 </li>

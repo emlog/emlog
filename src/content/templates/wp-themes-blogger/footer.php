@@ -13,7 +13,7 @@
         
         Design by <a href="http://www.wp-them.es" title="free premium wordpress themes" target="_blank">wp-them.es</a>
     </div>
-     <div id="footer_right"><a href="./rss.php"><img style="vertical-align:middle;" src="<?php echo $em_tpldir; ?>images/rss.gif"alt="rss" /></a><a href="./rss.php">RSS</a>
+     <div id="footer_right"><a href="<?php echo BLOG_URL; ?>rss.php"><img style="vertical-align:middle;" src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif"alt="rss" /></a><a href="<?php echo BLOG_URL; ?>rss.php">RSS</a>
      </div>
 <div class="clear"></div>
 </div>

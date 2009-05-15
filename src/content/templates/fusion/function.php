@@ -12,11 +12,11 @@
 		<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
 		<?php if(ISLOGIN === true): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:60px;"><?php echo $blogger_des; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 		<?php endif; ?>
 		</li>
@@ -51,7 +51,7 @@
 	<li>
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo BLOG_URL; ?>index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -83,7 +83,7 @@
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:210px;height:70px;" class="input"></textarea><br>
-		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
 		</ul>
@@ -99,7 +99,7 @@
     <div class="box">
 	<h2><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h2>	
 	<ul id="blogmusic">
-	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
+	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
 	</ul>
     </div>
@@ -116,7 +116,7 @@
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
 	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-	<img src="<?php echo $em_tpldir; ?>images/reply.gif" align="absmiddle"/>
+	<img src="<?php echo CERTEMPLATE_URL; ?>/images/reply.gif" align="absmiddle"/>
 	</a>
 	<?php endif;?>
 	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
@@ -133,7 +133,7 @@
 	<h2><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
     </div>
@@ -150,7 +150,7 @@
 	<h2><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
     </div>

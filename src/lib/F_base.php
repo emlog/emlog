@@ -10,17 +10,17 @@
  * 加载模板文件
  *
  * @param string $template 模板名
- * @param string $EXT 模板后缀名
+ * @param string $ext 模板后缀名
  * @return string 模板路径
  */
-function getViews($template,$EXT = ".php")
+function getViews($template, $ext = ".php")
 {
-	global $em_tpldir;
+	global $cerTemplatePath;
 	if (!$template)
 	{
 		$template = 'none';
 	}
-	$path=$em_tpldir.$template.$EXT;
+	$path = $cerTemplatePath.$template.$ext;
 	return $path;
 }
 

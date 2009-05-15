@@ -9,20 +9,19 @@
 require_once('../init.php');
 
 //高级配置选项
-define('TEMPLATE_PATCH', '../content/templates/');//模板目录
-define('ADMIN_TPL', 			'default');//后台模板
-define('UPLOADFILE_MAXSIZE',	20971520);//附件大小上限 单位：字节（默认20M）
-define('UPLOADFILE_PATH',		'../content/uploadfile/');//附件保存目录
-define('IS_THUMBNAIL',			0);//上传图片是否生成缩略图 1:是 0:否
-define('ADMIN_PERPAGE_NUM',		15);//后台管理每页条目数
+define('UPLOADFILE_MAXSIZE', 20971520);//附件大小上限 单位：字节（默认20M）
+define('UPLOADFILE_PATH', '../content/uploadfile/');//附件保存目录
+define('IS_THUMBNAIL', 0);//上传图片是否生成缩略图 1:是 0:否
+define('ADMIN_PERPAGE_NUM', 15);//后台管理每页条目数
+define('ADMIN_TPL', 'default');//后台模板名
+define('ADMIN_ROOT', dirname(__FILE__));
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
 
-//检测后台模板
-define('ADMIN_ROOT', dirname(__FILE__));
-$em_tpldir = ADMIN_ROOT.'/views/'.ADMIN_TPL.'/';
-if (!is_dir($em_tpldir))
+//后台当前模板路径
+$cerTemplatePath = ADMIN_ROOT.'/views/'.ADMIN_TPL.'/';
+if (!is_dir($cerTemplatePath))
 {
-	exit('the adm tmplate net found!');
+	exit('The Management Center Template Path Error');
 }
 //读取缓存
 $sta_cache = $CACHE->readCache('sta');

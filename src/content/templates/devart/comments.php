@@ -4,7 +4,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!-- 引用 -->
 <?php if($allow_tb == 'y'):?>	
 <div>
-<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
+<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 </div>
 <?php endif; ?>
 
@@ -50,7 +50,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                         <div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
                         <textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
                         <br />
-                        <a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+                        <a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
                         <a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
                         </div>
                     <?php endif; ?>
@@ -63,7 +63,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <?php if($allow_remark == 'y'): ?>
 <h1 class="comments-title"></h1>
-<form method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
+<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 			<p><textarea name="comment" id="comment"></textarea></p>
 				<p><input type="text" name="comname" id="comname" class="text" value="" />

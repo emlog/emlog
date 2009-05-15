@@ -21,7 +21,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	?>
 </p>
 			<p class="under">				<span class="categories"><?php if($log_cache_sort[$logid]): ?>
-[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]
+[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]
 <?php endif;?></span>				<span class="tags"><?php 
 	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
 	echo $tag;
@@ -34,19 +34,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <div id="cmtswitcher">
 <?php if($prevLog):?>
-	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
-	 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+	 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 <?php endif;?>
 		<div class="fixed"></div>
 		<?php if($allow_tb == 'y'):?>	
 <div id="tb_list">
 <p><b>引用地址：</b>
-<input class="textfield" type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
+<input class="textfield" type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 </div>
 <?php endif; ?>
 <?php 
@@ -95,7 +95,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 		</div>
 	<?php endif; ?>
@@ -120,7 +120,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 
 <?php if($allow_remark == 'y'): ?>
 <p style="margin:10px 0px 3px;"><b>评论:</b></p>
-<form  method="post"  name="commentform" action="index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
 	<div id="respond">
 
 					

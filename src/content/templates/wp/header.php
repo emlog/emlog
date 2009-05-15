@@ -6,15 +6,15 @@
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-<link href="<?php echo $em_tpldir; ?>main.css" rel="stylesheet" type="text/css" />
-<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
+<link href="<?php echo CERTEMPLATE_URL; ?>/main.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <DIV id=page>
 <DIV id=header>
 <DIV id=headerimg>
-<H1><a href="./"><?php echo $blogname;?></a></H1><p>
+<H1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></H1><p>
 <DIV class=description><?php echo $bloginfo;?></DIV></DIV></DIV>
 <HR>
 <DIV class=narrowcolumn id=content>

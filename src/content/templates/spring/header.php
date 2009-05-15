@@ -9,15 +9,15 @@ $loadcal = " onload=\"sendinfo('$calendar_url');\"";
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle;?></title>
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo $blogurl; ?>rss.php">
-<link href="<?php echo $em_tpldir; ?>main.css" rel="stylesheet" type="text/css" />
-<script src="./lib/js/common_tpl.js" type="text/javascript"></script>
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
+<link href="<?php echo CERTEMPLATE_URL; ?>/main.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="wrapper">
 
 <div id="header">
-<h1><a href="./"><?php echo $blogname;?></a></h1><?php echo $bloginfo;?>
+<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></h1><?php echo $bloginfo;?>
 </div>
 
 <div id="content">

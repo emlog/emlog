@@ -1238,7 +1238,7 @@ margin-bottom:10px;
 	text-decoration: none;
 }
 .day {
-	background: url(./images/bg_cal_today.gif) repeat-y center;
+	background: url(images/bg_cal_today.gif) repeat-y center;
 }
 .day2 {
 	font-weight: bold;

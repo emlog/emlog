@@ -1160,7 +1160,7 @@ ol#thecomments, ol#thecomments li{
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) no-repeat;
+	background: #fff url(images/bg_cal_today.gif) no-repeat;
 }
 
 .day2 {

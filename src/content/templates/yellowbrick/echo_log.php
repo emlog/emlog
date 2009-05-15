@@ -18,7 +18,7 @@
 									</div>
 									<div class="item_title2">
 									<?php if($log_cache_sort[$logid]): ?>
-									Filed Under <span class="sort"><a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
+									Filed Under <span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a></span>
 <?php endif;?>
 									
 										 Post on <?php echo date('Y-n-j G:i l', $date); ?></i>
@@ -42,13 +42,13 @@
 										<div class="panel_links">
 <div class="nextlog">
 <?php if($prevLog):?>
-	&laquo; 上一篇 <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; 上一篇 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
-	 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a> 下一篇 &raquo;
+	 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a> 下一篇 &raquo;
 <?php endif;?>
 </div>
 										</div>
@@ -59,7 +59,7 @@
 				<br />
 				<?php if($allow_tb == 'y'):?>	
 <div id="trackback">
-<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
+<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 </div>
 <?php endif; ?>
 
@@ -111,7 +111,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 		</div>
 	<?php endif; ?>
@@ -133,7 +133,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 		<div id="form_title_text">Post a comment</div>
 	</div>
 	<br />
-<form  method="post"  name="commentform" action="index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
 <table cellpadding="2" style="padding-left:15px;"> 
 <tr>
 <td class="f14">姓　 名：</td>
@@ -159,7 +159,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 <td valign="top"class="f14">&nbsp;</td>
 <td valign="top" class="f14">
 <?php echo $cheackimg; ?>
-<input  name="Submit" type="image" src="<?php echo $em_tpldir; ?>images/sub.png" width="65" height="25" id="submit" tabindex="5" onclick="return checkform()" />
+<input  name="Submit" type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/sub.png" width="65" height="25" id="submit" tabindex="5" onclick="return checkform()" />
 </td>
 </tr>
 </table>

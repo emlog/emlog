@@ -29,6 +29,6 @@ foreach ($widgets as $val)
 	}
 }
 ?>
-<p><a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.gif" alt="订阅Rss"/></a></p>	
+<p><a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="订阅Rss"/></a></p>	
 </ul>
 </div>

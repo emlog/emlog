@@ -851,7 +851,7 @@ a.more-link {
 }
 
 .day {
-	background: #fff url(./images/bg_cal_today.gif) no-repeat 0px 5px;
+	background: #fff url(images/bg_cal_today.gif) no-repeat 0px 5px;
 }
 
 .day2 {

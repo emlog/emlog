@@ -9,11 +9,11 @@
 		<div id="bloggerdes"><?php echo $blogger_des; ?></div>
 		<?php if(ISLOGIN === true): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo $em_tpldir; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:170px;height:50px;"><?php echo $blogger_des; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 		<?php endif; ?>
 	</ul>
@@ -35,7 +35,7 @@
 	<li><h2 onclick="showhidediv('tags')"><?php echo $title; ?></h2>
 	<ul id="tags">
 	<?php foreach($tag_cache as $value): ?>
-	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -47,8 +47,8 @@
 	<ul id="logsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="./index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo $em_tpldir; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>	
 	</ul>
@@ -77,7 +77,7 @@
 	<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 	<li id='addtw' style="display: none;">
 	<textarea name="tw" id="tw" style="overflow-y: hidden;width:190px;height:60px;"></textarea><br />
-	<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+	<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 	</li>
 	</ul>
@@ -89,7 +89,7 @@
 	<?php global $musicdes,$em_tpldir,$musicurl,$autoplay; ?>
 	<li class="some"><h2 onclick="showhidediv('music')"><?php echo $title; ?></h2>
 	<ul id="music">
-	<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="150" height="20"><param name="movie" value="<?php echo $em_tpldir; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
+	<?php echo $musicdes;?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" width="150" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay;?>&autoreplay=1" /></object>
 	</p>
 	</ul>
 	</li>
@@ -103,7 +103,7 @@
 	<li><?php echo $value['name'];?>
 	<?php if($value['reply']): ?>
 		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-		<img src="<?php echo $em_tpldir; ?>images/reply.gif" align="absmiddle"/>
+		<img src="<?php echo CERTEMPLATE_URL; ?>/images/reply.gif" align="absmiddle"/>
 		</a>
 	<?php endif;?>
 	<br /><a href="<?php echo $value['url'];?>"><?php echo $value['content'];?></a></li>
@@ -117,7 +117,7 @@
 	<li class="newlog"><h2 onclick="showhidediv('newlog')"><?php echo $title; ?></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -131,7 +131,7 @@
 	<li class="randlog"><h2 onclick="showhidediv('randlog')"><?php echo $title; ?></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -160,7 +160,7 @@
 	<li class="logserch"><h2 onclick="showhidediv('logserch')"><?php echo $title; ?></h2>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="index.php">
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 	<input name="keyword"  type="text" value="" style="width:80px;"/>
 	<input type="submit" value="搜索" onclick="return keyw()" />
 	</form>
@@ -188,7 +188,7 @@
 		<li>引用数量：<?php echo $sta_cache['tbnum'];?></li>
 		<li>今日访问：<?php echo $sta_cache['day_view_count'];?></li>
 		<li>总访问量：<?php echo $sta_cache['view_count'];?></li>
-		<li><a href="./rss.php"><img src="<?php echo $em_tpldir;?>images/rss.gif" alt="订阅Rss"/></a></li>
+		<li><a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="订阅Rss"/></a></li>
 		</ul>
 	</li>
 <?php }?>

@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="content">
-<img src="<?php echo $em_tpldir; ?>images/img_08.jpg" alt="" />
+<img src="<?php echo CERTEMPLATE_URL; ?>/images/img_08.jpg" alt="" />
 	<div class="contenttext">
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
 			<div class="postheader">
@@ -19,7 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 					<div class="postauthor">by <?php echo $name; ?></div> <!-- POST AUTHOR -->
 					<div class="postcategory">
 					<?php if($log_cache_sort[$logid]): ?>
-					分类：<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
+					分类：<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
 					<?php endif;?>
 					<?php 
 					$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
@@ -41,10 +41,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</div> <!-- POST -->
 		<div class="navigation">
 		<?php if($prevLog):?>
-		<div class="alignleft"><a href="./?post=<?php echo $prevLog['gid']; ?>" title="<?php echo $prevLog['title'];?>">&laquo; 上一篇</a></div>
+		<div class="alignleft"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>" title="<?php echo $prevLog['title'];?>">&laquo; 上一篇</a></div>
 		<?php endif;?>
 		<?php if($nextLog):?>
-			 <div class="alignright"><a href="./?post=<?php echo $nextLog['gid']; ?>" title="<?php echo $nextLog['title'];?>">下一篇&raquo;</a></div>
+			 <div class="alignright"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>" title="<?php echo $nextLog['title'];?>">下一篇&raquo;</a></div>
 		<?php endif;?>
 		</div>
 		<div style="clear: both; height: 20px;"></div>
@@ -52,7 +52,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<?php if($allow_tb == 'y'):?>
 		<div class="cite2"><cite>
 		<span class="author">引用地址：
-		<input type="text" style="width:350px" class="input" value="<?php echo $blogurl; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
+		<input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
 		<a name="tb"></a></span>
 		</cite></div>
 		<?php endif; ?>
@@ -91,7 +91,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 			<br />
-			<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
@@ -107,7 +107,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</ol>
 
 		<div class="comm">
-		<form method="post"  name="commentform" action="index.php?action=addcom" id="commentform">
+		<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />
 		<label for="author"><small>姓名</small></label></p>
 		
@@ -125,7 +125,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</form>
 		</div>
 		</div> <!-- CONTENT TEXT -->
-		<img src="<?php echo $em_tpldir; ?>images/img_09.jpg" style="vertical-align: bottom;" alt="" />
+		<img src="<?php echo CERTEMPLATE_URL; ?>/images/img_09.jpg" style="vertical-align: bottom;" alt="" />
 		</div> <!-- CONTENT -->
 <?php 
 include getViews('side');

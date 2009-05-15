@@ -10,11 +10,11 @@ require_once('common.php');
 
 //访问统计
 viewCount();
-//模板目录
-$em_tpldir = TEMPLATE_PATCH.$nonce_templet.'/';
-if (!is_dir($em_tpldir))
+//前台当前模板路径
+$cerTemplatePath = TEMPLATE_PATH.$nonce_templet.'/';
+if (!is_dir($cerTemplatePath))
 {
-	exit('Error: no template directory!');
+	exit('The Template Path Error');
 }
 //页面标题
 $blogtitle = $blogname;

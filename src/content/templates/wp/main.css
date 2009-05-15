@@ -21,7 +21,7 @@ li{
 #page {
 	BACKGROUND-COLOR: white; 
 	TEXT-ALIGN: left;
-	background: url("./images/kubrickbg.gif") repeat-y top; 
+	background: url("<?php echo BLOG_URL; ?>images/kubrickbg.gif") repeat-y top; 
 	border: none;
 	margin:auto;
 }

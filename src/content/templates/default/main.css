@@ -100,7 +100,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 .calendar a:visited{color:#F30; text-decoration:none}
 .calendar td a:link{color:#F30; text-decoration:none}
 .calendar td a:hover{color:#F30; text-decoration:none}
-.day{background:url(./images/bg_cal_today.gif)  no-repeat 4px 2px}
+.day{background:url(images/bg_cal_today.gif)  no-repeat 4px 2px}
 .day2{font-weight:bold}
 .sun{background-color:#F5F5F5; color:#333; font-weight:bold}
 .week{background-color:#F5F5F5; color:#333}

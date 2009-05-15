@@ -3,7 +3,7 @@
 <h2>
 <b><?php echo $log_title;?></b>
 <?php if($log_cache_sort[$logid]): ?>
-<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
 </h2>
 <div class="entry">
@@ -22,20 +22,20 @@
 </p>
 <p>
 <?php if($prevLog):?>
-	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 <?php endif;?>
 <?php if($nextLog && $prevLog):?>
 	|
 <?php endif;?>
 <?php if($nextLog):?>
-	<a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 <?php endif;?>
 </p>
 </div></div>
 <p><?php echo date('Y-n-j G:i l', $date); ?> <?php echo $log_author;?></p>
 <?php if($allow_tb == 'y'): ?>
 <h5>引用地址:<a name="tb"></a></h5>
-<input type="text" id="input" style="width:350px" value="<?php echo $blogurl;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>
+<input type="text" id="input" style="width:350px" value="<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>
 <?php endif; ?>
 <?php foreach($tb as $key=>$value): ?>
 <ul class="trackback">
@@ -68,7 +68,7 @@ Says:<br />
 		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 		</div>
 	<?php endif; ?>
@@ -76,7 +76,7 @@ Says:<br />
 <?php endforeach; ?>
 <?php if($allow_remark == 'y'): ?>
 <h3 id=respond>参与评论</h3>
-<form  method="post"  name="commentform" action="index.php?action=addcom" onsubmit="return checkcomment(this)">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" onsubmit="return checkcomment(this)">
     <p>
         <input type="hidden" name="gid" value="<?php echo $logid;?>" />
       <br />

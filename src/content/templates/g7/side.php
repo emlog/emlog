@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="sidebar_tag">
 <?php foreach($tag_cache as $value): ?>
-<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 <?php endforeach; ?>
 </div>
 
@@ -64,16 +64,16 @@ foreach ($widgets as $val)
 }
 ?>
 <?php if(ISLOGIN === false):?> 
-<li class="random"><h2><a href="./admin/index.php">登录</a></h2>
+<li class="random"><h2><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></h2>
 <?php else:?>
 <li class="random"><h2 onclick="showhidediv('loginfm')" >管理</h2>
 <ul id="loginfm">
-	<li><a href="./admin/write_log.php">写日志</a></li>
-	<li><a href="./admin/">管理中心</a></li>
-	<li><a href="./admin/index.php?action=logout">退出</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
 </ul>
 <?php endif; ?>
-<p><a href="./rss.php"><img src="<?php echo $em_tpldir; ?>images/rss.png" alt="订阅Rss"/></a></p>
+<p><a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.png" alt="订阅Rss"/></a></p>
 </ul>
 </div>
 

@@ -6,7 +6,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <h1>
 		<?php echo $log_title; ?>
 		<?php if($log_cache_sort[$logid]): ?>
-		<span class="sort">[<a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
+		<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 		<?php endif;?>
 		</h1>
 		<p>发布时间 <?php echo date('Y-n-j G:i l', $date); ?></p>
@@ -26,13 +26,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div class="post-info">
           
             <?php if($prevLog):?>
-                &laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+                &laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
             <?php endif;?>
             <?php if($nextLog && $prevLog):?>
                 |
             <?php endif;?>
             <?php if($nextLog):?>
-                 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+                 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
             <?php endif;?>
         </div>
     </div>
