@@ -95,6 +95,7 @@
             <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">功能扩展</div>
 			<div id="extend_mg">
             <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
+            <?php doAction('adm_sidebar_ext'); ?>
 			</div>
 			</div>
        	    </td>

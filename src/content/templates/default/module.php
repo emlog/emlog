@@ -76,9 +76,9 @@ function widget_twitter($title){
 		<ul id="twitter">
 		<?php
 		if(isset($tw_cache) && is_array($tw_cache)):
-		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
+		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
+		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($localdate,$value['date']);
 		?>
 		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
@@ -147,6 +147,12 @@ function widget_newlog($title){
 //widget：随机日志
 function widget_random_log($title){
 	global $index_randlognum, $emBlog;
+	if (!isset($emBlog))
+	{
+		global $DB;
+		require_once(EMLOG_ROOT.'/model/C_blog.php');
+		$emBlog = new emBlog($DB);
+	}
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	<li>
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
@@ -234,17 +240,15 @@ function blog_sort($sort, $blogid){
 <?php
 //blog：文件附件
 function blog_att($blogid){
-	global $log_cache_atts; ?>
-	<?php 
+	global $log_cache_atts; 
 	$attachment = !empty($log_cache_atts[$blogid]) ? '文件附件：'.$log_cache_atts[$blogid] : '';
 	echo $attachment;
-	?>
-<?php }?>
+}
+?>
 <?php
 //blog：日志标签
 function blog_tag($blogid){
-	global $log_cache_tags; ?>
-	<?php
+	global $log_cache_tags; 
 	if (!empty($log_cache_tags[$blogid]))
 	{
 		$tag = '标签:';
@@ -254,20 +258,19 @@ function blog_tag($blogid){
 		}
 		echo $tag;
 	}
-	?>
-<?php }?>
+}
+?>
 <?php
 //blog：日志作者
 function blog_author($uid){
-	global $user_cache,$DB;?>
-	<?php 
+	global $user_cache,$DB;
 	$author = $user_cache[$uid]['name'];
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
 	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
-	?>
-<?php }?>
+}
+?>
 <?php
 //blog：相邻日志
 function neighbor_log(){

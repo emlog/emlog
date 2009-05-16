@@ -25,7 +25,6 @@ if($action == '')
 //激活
 if ($action == 'active')
 {
-
 	$emPlugin = new emPlugin($DB, $plugin);
 	$emPlugin->active_plugin($active_plugins);
 	$CACHE->mc_options();

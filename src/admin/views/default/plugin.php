@@ -1,5 +1,7 @@
 <?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>插件管理</b><div id="msg"></div>
+<?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
+<?php if(isset($_GET['inactive'])):?><span class="actived">插件禁用成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
@@ -30,7 +32,7 @@
       <tr>
         <td align="center"><b><?php echo $val['Name']; ?></b></td>
 		<td align="center" id="plugin_<?php echo $i;?>">
-		<img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin_<?php echo $plug_state; ?>.gif" onclick="do_plugin('<?php echo $key;?>', '<?php echo $plug_action; ?>', 'plugin_<?php echo $i;?>');" title="<?php echo $plug_state_des; ?>" align="absmiddle">
+		<a href="./plugin.php?action=<?php echo $plug_action;?>&plugin=<?php echo $key;?>"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
 		</td>
         <td align="center"><?php echo $val['Version']; ?></td>
         <td>
@@ -58,14 +60,5 @@ $("#adm_plugin_list tbody tr")
 	.mouseover(function(){$(this).addClass("trover")})
 	.mouseout(function(){$(this).removeClass("trover")})
 setTimeout(hideActived,2600);
-function do_plugin (plugin, action, id){
-	var url = 'plugin.php?action='+action;
-	var querystr = "plugin="+plugin+"&id="+id;
-	$("#msg").html("<span class=\"msg_autosave_do\">正在更改插件状态...</span>");
-	$.post(url, querystr, function(data){
-		$("#"+id).html(data);
-		$("#msg").html("");
-	});
-}
 $("#menu_plug").addClass('sidebarsubmenu1');
 </script>

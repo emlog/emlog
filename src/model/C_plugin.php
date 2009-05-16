@@ -20,7 +20,7 @@ class emPlugin {
 	/**
 	 * 激活插件
 	 *
-	 * @param string $active_plugins 插件路径名 eg：tips/tips.php 
+	 * @param array $active_plugins 当前已激活的全部插件
 	 */
 	function active_plugin($active_plugins)
 	{
@@ -37,7 +37,7 @@ class emPlugin {
 	/**
 	 * 禁用插件
 	 *
-	 * @param string $active_plugins
+	 * @param string $active_plugins 当前已激活的全部插件
 	 */
 	function inactive_plugin($active_plugins)
 	{

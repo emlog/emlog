@@ -19,7 +19,7 @@ if (!is_dir($cerTemplatePath))
 //页面标题
 $blogtitle = $blogname;
 //日历链接
-$calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
+$calendar_url = isset($_GET['record']) ? BLOG_URL.'calendar.php?record='.intval($_GET['record']) : BLOG_URL.'calendar.php?' ;
 //日志id
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 

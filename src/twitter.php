@@ -58,7 +58,7 @@ function getindextw()
 		extract($rows);
 		$content = htmlspecialchars($content);
 		$date = smartyDate($localdate,$date);
-		$delbt = ISLOGIN === true ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>" : '';
+		$delbt = ISLOGIN === true ? "<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."',$id,'twitter')\">删除</a>" : '';
 		$twitter .= "<li>$content $delbt<br /><span>$date</span></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);
@@ -66,11 +66,11 @@ function getindextw()
 	$UpPage = $page > 1 ? $page - 1 : $page ;
 	if ($page != 1 && $page != $pagenums)
 	{
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a><small>$page/$pagenums</small><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">较早的&raquo;</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a><small>$page/$pagenums</small><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=$NextPage','twitter')\">较早的&raquo;</a></li>";
 	} elseif ($page == 1 && $pagenums > 1) {
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=2','twitter')\">较早的&raquo;</a></li>";
 	} elseif ($page == $pagenums && $pagenums > 1) {
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a></li>";
+		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a></li>";
 	}
 	return $twitter;
 }

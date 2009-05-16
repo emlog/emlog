@@ -351,12 +351,12 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?author=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(index\.php|\.\/|\.\/index.php)\?page=(\d+)\"([^\>]*)\>/e"
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?author=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\".+(index\.php|\/|\/index.php)\?page=(\d+)\"([^\>]*)\>/e"
 			);
 			$replacelink = array(
 			"logRewrite(\\2,'\\3','\\4')",
