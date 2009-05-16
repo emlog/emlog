@@ -32,9 +32,9 @@ foreach ($widgets as $val)
             <?php if(ISLOGIN): ?>
 			<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 			<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-			<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php else: ?>
-				<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+				<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 			<?php endif; ?>
           </ul>
         </div>

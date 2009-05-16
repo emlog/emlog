@@ -123,7 +123,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 </div>
 
 <?php if($allow_remark == 'y'): ?>
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
 <table width="620" border="0" cellspacing="8" cellpadding="0">
 <tr>
 <td class="f14">姓　 名：</td>

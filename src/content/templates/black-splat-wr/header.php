@@ -26,20 +26,20 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </div><!-- Closes topright -->
 
 <div id="nav">
-<div id="search"><form method="get" id="searchform" name="keyform" action="<?php echo BLOG_URL; ?>index.php">
+<div id="search"><form method="get" id="searchform" name="keyform" action="<?php echo BLOG_URL; ?>">
 <div>
 <input type="text" value="" name="keyword" id="searchbox"/>
 <input type="submit" id="searchbutton" value="" onclick="return keyw()" />
 </div>
 </form></div> <!-- Closes search -->
 <ul>
-	<li><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 <?php if(ISLOGIN): ?>
 	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 <?php else: ?>
-	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 <?php endif; ?>
 </ul>
 </div> <!-- Closes nav -->

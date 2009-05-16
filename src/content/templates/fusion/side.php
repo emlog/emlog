@@ -10,7 +10,7 @@
 
 <div id="searchtab">
   <div class="inside">
-    <form method="get" id="searchform"  name="keyform" action="<?php echo BLOG_URL; ?>index.php">
+    <form method="get" id="searchform"  name="keyform" action="<?php echo BLOG_URL; ?>">
       <input type="text" name="keyword" id="searchbox" size="16" class="searchfield" value="Search website..." onfocus="if(this.value == 'Search website...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search website...';}" />
        <input type="submit" value="Go" class="searchbutton" />
     </form>
@@ -29,7 +29,7 @@
               <ul class="nav">
                 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a><div class="rss"><a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a></div>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a><div class="rss"><a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a></div>
 	</li>
 	<?php endforeach; ?>
                             </ul>

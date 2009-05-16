@@ -118,7 +118,7 @@ $reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$v
 <div class="comments_form">
 <?php if($allow_remark == 'y'): ?>
 <h3 id="respond">发表你的评论</h3>
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 	<p>
 	  <input type="text" name="comname" id="email" value="<?php echo $ckname;?>" size="40" tabindex="1" />
 	   <label for="author"><small>姓名</small></label>

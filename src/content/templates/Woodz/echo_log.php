@@ -105,7 +105,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 
 <div id="respond">
 <h3 id="respond_title">Write a comment</h3>
-<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 
 
 <p>

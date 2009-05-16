@@ -29,13 +29,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         	<div id="header_dh_left">
             </div>
             <div id="header_dh_cen">
-                <span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>index.php">首页</a></span>
+                <span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>">首页</a></span>
 				<?php if(ISLOGIN): ?>
 				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></span>
 				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></span>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></span>
+				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></span>
 				<?php else: ?>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></span>
+				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></span>
 				<?php endif; ?>          
             </div>
             <div id="header_dh_right">

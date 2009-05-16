@@ -40,7 +40,7 @@
 			
 				<?php foreach($tag_cache as $value): ?>
 				<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-					<a href="<?php echo BLOG_URL; ?>index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
+					<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
 				</span>
 				<?php endforeach; ?>
             
@@ -55,7 +55,7 @@
 		<ul>
 			<?php foreach($sort_cache as $value): ?>
 			<li>
-			<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+			<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 			<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 			</li>
 			<?php endforeach; ?>
@@ -131,7 +131,7 @@
 		<h3><?php echo $title; ?></h3>
 		<ul>
 		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>
@@ -146,7 +146,7 @@
 		<h3><?php echo $title; ?></h3>
 		<ul>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>

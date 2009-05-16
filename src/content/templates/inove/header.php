@@ -30,19 +30,19 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div id="navigation">
 		<ul id="menus">
 			<?php if(ISLOGIN): ?>
-			<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
+			<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php else: ?>
-			<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
-			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+			<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+			<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 			<?php endif; ?>
 		</ul>
 
 		<!-- searchbox START -->
 		<div id="searchbox">
-							<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+							<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 					<div class="content">
 						<input class="textfield" name="keyword"  type="text" value="" style="width:130px;"/>
 						<span class="switcher" >切换搜索引擎</span>

@@ -51,7 +51,7 @@
 	<li>
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="<?php echo BLOG_URL; ?>index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -133,7 +133,7 @@
 	<h2><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
     </div>
@@ -150,7 +150,7 @@
 	<h2><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
     </div>

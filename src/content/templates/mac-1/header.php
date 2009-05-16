@@ -20,7 +20,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div id="header">
       <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></h1>
       <div class="description"><?php echo $bloginfo;?></div>
-<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>index.php">
+<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>">
 <div>
 <input type="text" value="Search" name="keyword" id="s" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
 <input type="submit" id="searchsubmit" value="Go" />

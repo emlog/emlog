@@ -46,7 +46,7 @@
 		<ul style="line-height:1.4;">
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($tag_cache as $value): ?>
-			<a style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;" href="<?php echo BLOG_URL; ?>index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
+			<a style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;" href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
 		<?php endforeach; ?>			
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -61,7 +61,7 @@
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($sort_cache as $value): ?>
 		<li>
-		<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+		<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 		<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 		</li>
 		<?php endforeach; ?>			
@@ -144,7 +144,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($newLogs_cache as $value): ?>
-		<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>			
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -161,7 +161,7 @@
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
 		<?php foreach($randLogs as $value): ?>
-		<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>		
 		</ul>
 		</div> <!-- BOX3 TEXT -->
@@ -196,7 +196,7 @@
 <?php 
 function widget_search($title){ 
 ?>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php" id="searchform">
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>" id="searchform">
 	<div>
    	<input name="keyword"  type="text" value="" id="s" /><input type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/search-button.jpg" id="searchsubmit" value="Search" />
 	</div>

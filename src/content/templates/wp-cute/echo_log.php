@@ -76,7 +76,7 @@ Says:<br />
 <?php endforeach; ?>
 <?php if($allow_remark == 'y'): ?>
 <h3 id=respond>参与评论</h3>
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" onsubmit="return checkcomment(this)">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" onsubmit="return checkcomment(this)">
     <p>
         <input type="hidden" name="gid" value="<?php echo $logid;?>" />
       <br />

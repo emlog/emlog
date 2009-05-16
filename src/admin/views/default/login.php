@@ -7,7 +7,7 @@
 <title>登录</title>
 </head>
 <body>
-<form name="f" method="post" action="index.php?action=login">
+<form name="f" method="post" action="?action=login">
 <div class="login-main">
 	<div class="login-top"></div>
 	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
@@ -25,7 +25,7 @@
 	</div>
 	<div style=" clear:both;"></div>
 	<div class="login-bottom"></div>
-	<div class="back"><a href="../index.php">&laquo;返回首页</a></div>
+	<div class="back"><a href="../">&laquo;返回首页</a></div>
 </div>
 </form>
 <script>focusEle('user');</script>

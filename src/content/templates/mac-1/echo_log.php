@@ -4,7 +4,7 @@ $datetime = explode(".",$post_time);
 ?>
       <div id="nav">
         <ul>
-          <li class="page_item current_page_item"><a href="<?php echo BLOG_URL; ?>index.php" title="Home">Home</a></li>
+          <li class="page_item current_page_item"><a href="<?php echo BLOG_URL; ?>" title="Home">Home</a></li>
         </ul>
       </div>
 <div id="content">
@@ -100,7 +100,7 @@ $reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{
 	</ol>
 <?php if($allow_remark == 'y'): ?>
 <h3 id="respond">发布评论</h3>
-<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 <p><input type="text" name="comname" id="comname" value="<?php echo $ckname;?>" size="22" tabindex="1" class="input2"/>
 <label for="author">姓名</label>
 </p>

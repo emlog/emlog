@@ -94,7 +94,7 @@ class emBlog {
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1)
 		{
-			formMsg('权限不足！','./index.php', 0);
+			formMsg('权限不足！','./', 0);
 		}
 		$row = $this->db->fetch_array($res);
 		if($row)
@@ -228,7 +228,7 @@ class emBlog {
 		$this->db->query("DELETE FROM ".DB_PREFIX."blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1)
 		{
-			formMsg('权限不足！','./index.php', 0);
+			formMsg('权限不足！','./', 0);
 		}
 		//评论
 		$this->db->query("DELETE FROM ".DB_PREFIX."comment where gid=$blogId");
@@ -407,7 +407,7 @@ body {
 <form action="" method="post">
 请输入该日志的访问密码<br>
 <input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="./index.php">&laquo;返回首页</a>
+<br /><br /><a href="./">&laquo;返回首页</a>
 </form>
 </div>
 </body>

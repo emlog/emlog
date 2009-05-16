@@ -26,7 +26,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
 		<h2><?php echo $bloginfo; ?></h2>
 	</div> <!-- HEADER -->
-<form name="f" method="post" action="<?php echo BLOG_URL; ?>index.php?action=login">
+<form name="f" method="post" action="<?php echo BLOG_URL; ?>?action=login">
 <div class="menu1">
 <div class="menu2">
 <ul>
@@ -34,9 +34,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php if(ISLOGIN): ?>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 <?php else: ?>
-	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 <?php endif; ?>
 </ul>
 </div> <!-- MENU 2 -->

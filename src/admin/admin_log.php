@@ -187,7 +187,7 @@ if($action == 'operate_log')
 		case 'change_author':
 			if (ROLE != 'admin')
 			{
-				formMsg('权限不足！','./index.php', 0);
+				formMsg('权限不足！','./', 0);
 			}
 			foreach($logs as $key=>$value)
 			{

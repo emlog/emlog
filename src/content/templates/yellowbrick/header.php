@@ -21,7 +21,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
 		<span><?php echo $bloginfo; ?></span>	</div>
 	<div id="header_search">
-	<form id="searchform" style="display:inline;"name="keyform" method="get"  action="<?php echo BLOG_URL; ?>index.php">
+	<form id="searchform" style="display:inline;"name="keyform" method="get"  action="<?php echo BLOG_URL; ?>">
 		<table cellpadding="3" cellspacing="0" align="right">
 			<tr>
 				<td>
@@ -43,7 +43,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>index.php">home</a>
+					<a href="<?php echo BLOG_URL; ?>">home</a>
 				</td>
 				<?php if(ISLOGIN): ?>
 				<td width="50">|</td>
@@ -56,12 +56,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 				</td>
 				<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a>
+					<a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
 				</td>
 <?php else: ?>
 	<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a>
+					<a href="<?php echo BLOG_URL; ?>admin/">登录</a>
 				</td>
 <?php endif; ?>
 			</tr>

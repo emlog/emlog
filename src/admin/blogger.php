@@ -114,16 +114,16 @@ if($action == 'update_pwd')
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('password'=>$newpass), UID);
-		formMsg('密码修改成功!','./index.php',1);
+		formMsg('密码修改成功!','./',1);
 	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
-		formMsg('密码和后台登录名修改成功!请重新登录','./index.php',1);
+		formMsg('密码和后台登录名修改成功!请重新登录','./',1);
 	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
 	{
 		$emUser->updateUser(array('username'=>$login), UID);
-		formMsg('后台登录名修改成功!请重新登录','./index.php',1);
+		formMsg('后台登录名修改成功!请重新登录','./',1);
 	}else{
 		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);
 	}

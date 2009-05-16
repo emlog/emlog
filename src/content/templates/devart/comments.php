@@ -63,7 +63,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <?php if($allow_remark == 'y'): ?>
 <h1 class="comments-title"></h1>
-<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 			<p><textarea name="comment" id="comment"></textarea></p>
 				<p><input type="text" name="comname" id="comname" class="text" value="" />

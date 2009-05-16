@@ -120,7 +120,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 
 <?php if($allow_remark == 'y'): ?>
 <p style="margin:10px 0px 3px;"><b>评论:</b></p>
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
 	<div id="respond">
 
 					

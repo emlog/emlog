@@ -22,7 +22,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 <div id="navigation">
 
-<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 <fieldset>
 <input name="keyword" value="" maxlength="30" id="s" />
 <input type="submit" value="Go!" id="searchbutton" name="searchbutton" />
@@ -34,9 +34,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php if(ISLOGIN): ?>
 	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 <?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 <?php endif; ?>
 </ul>
 

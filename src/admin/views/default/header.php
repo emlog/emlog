@@ -19,17 +19,17 @@
   <tbody>
   <tr>
     <td width="9" id="headerleft"></td>
-    <td width="125"  class="logo" align="left"><a href="./index.php" title="返回管理首页">emlog</a></td>
+    <td width="125"  class="logo" align="left"><a href="./" title="返回管理首页">emlog</a></td>
     <td class="vesion" width="20"><?php echo EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../index.php" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
+    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
 	你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php if (ROLE == 'admin'):?>
     <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="configure.php">博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
-	<a href="./index.php">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="index.php?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
+	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
     <td width="9" id="headerright" ></td>
 	</tbody>
 </table>

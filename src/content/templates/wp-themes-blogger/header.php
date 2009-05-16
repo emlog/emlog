@@ -50,7 +50,7 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
         </div>
         <div id="header_right">
             <div id="top_search">
-                <form id="searchform" method="get" name="keyform" action="<?php echo BLOG_URL; ?>index.php">
+                <form id="searchform" method="get" name="keyform" action="<?php echo BLOG_URL; ?>">
                 <input type="text" value="Search This Site..." name="keyword" id="topsearch" onfocus="if (this.value == 'Search This Site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search This Site...';}" />
                 <input type="submit" id="searchbut" value="GO" /></form>
             </div>
@@ -62,13 +62,13 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
                 <ul id="nav">
                 <ul>
 <?php if(ISLOGIN): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php">Home</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>">Home</a></li>
 	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 <?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php">Home</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>">Home</a></li>
+	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 <?php endif; ?>
 </ul>
           </div>

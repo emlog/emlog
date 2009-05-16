@@ -46,7 +46,7 @@
 	<ul id="sort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>	
@@ -114,7 +114,7 @@
 	<h4><em onclick="showhidediv('newlog')"><?php echo $title; ?></em></h4>
 	<ul id="newlog" class="posts">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php }?>
@@ -127,7 +127,7 @@
 	<h4><em onclick="showhidediv('randlog')"><?php echo $title; ?></em></h4>
 	<ul id="randlog" class="posts">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php }?>

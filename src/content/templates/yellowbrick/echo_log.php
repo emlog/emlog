@@ -133,7 +133,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 		<div id="form_title_text">Post a comment</div>
 	</div>
 	<br />
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
 <table cellpadding="2" style="padding-left:15px;"> 
 <tr>
 <td class="f14">姓　 名：</td>

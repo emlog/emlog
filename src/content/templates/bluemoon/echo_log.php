@@ -86,7 +86,7 @@
 		</div>
 		<?php if($allow_remark == 'y'): ?>
 		<h2 id="postcomment">Leave a comment</h2>
-		<form action="<?php echo BLOG_URL; ?>index.php?action=addcom" method="post" id="commentform">
+		<form action="<?php echo BLOG_URL; ?>?action=addcom" method="post" id="commentform">
 		<p><input type="hidden" name="gid" value="<?php echo $logid; ?>" /></p>
 		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="32" tabindex="1" />
 		<label for="author"><small>Name (required)</small></label></p>

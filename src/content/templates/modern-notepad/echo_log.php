@@ -97,7 +97,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 
 <?php if($allow_remark == 'y'): ?>
 <a name="respond"></a><h3 id="leavecomment">Leave a Comment</h3>
-<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
+<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
 <table  border="0" cellspacing="8" cellpadding="0">
 <tr>
 <td class="f14">姓　 名：</td>

@@ -38,7 +38,7 @@ if (empty($action) && empty($logid))
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 
 	$start_limit = ($page - 1) * $index_lognum;
-	$pageurl= './index.php';
+	$pageurl= './';
 
 	if ($record)
 	{
@@ -53,7 +53,7 @@ if (empty($action) && empty($logid))
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
-			emMsg('不存在该标签','./index.php');
+			emMsg('不存在该标签','./');
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -63,7 +63,7 @@ if (empty($action) && empty($logid))
 		$keyword = str_replace('_','\_',$keyword);
 		if (strlen($keyword) > 30 || strlen($keyword) < 3)
 		{
-			emMsg('错误的关键字长度','./index.php');
+			emMsg('错误的关键字长度','./');
 		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -104,7 +104,7 @@ if (!empty($logid))
 	$logData = $emBlog->getOneLogForHome($logid);
 	if($logData === false)
 	{
-		emMsg('不存在该条目','./index.php');
+		emMsg('不存在该条目','./');
 	}
 	extract($logData);
 	if(!empty($password))

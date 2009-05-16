@@ -24,17 +24,17 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </div>
 <div id="menu">
     <ul>
-    <li><span><a href="<?php echo BLOG_URL; ?>index.php">首页</a></span></li>
+    <li><span><a href="<?php echo BLOG_URL; ?>">首页</a></span></li>
 	<?php if(ISLOGIN): ?>
 	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 	<?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 	<?php endif; ?>
 	 </ul>
     <div id="main_search">
-        <form method="get" id="searchform_top" action="<?php echo BLOG_URL; ?>index.php">
+        <form method="get" id="searchform_top" action="<?php echo BLOG_URL; ?>">
             <div>
                 <input type="text" value="Type your search here..." name="keyword" id="searchform_top_text" onclick="this.value='';" />
                 <input type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/button_go.gif" id="gosearch" />

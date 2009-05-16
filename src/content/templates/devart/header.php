@@ -20,7 +20,7 @@
 	<div id="header">
 		<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a><span><?php echo $bloginfo; ?></span></h1>
 		<div id="search">
-			<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>index.php">
+			<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>">
 				<input type="text" value="搜索..." name="keyword" id="s" onfocus="if(this.value=='搜索...')this.value=''" onblur="if(this.value=='')this.value='搜索...'" />
 				<input type="submit" id="searchsubmit" value="" />
 			</form>
@@ -33,9 +33,9 @@
 			<?php if(ISLOGIN): ?>
 			<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 			<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-			<li><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+			<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php else: ?>
-				<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+				<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 			<?php endif; ?>
 		</ul>
 		<a href="<?php echo BLOG_URL; ?>rss.php" id="feed"></a>

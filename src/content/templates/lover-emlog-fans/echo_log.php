@@ -5,7 +5,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="center_small">
 	<div class="clear"></div>
 	<div id="day_text">
-        您的位置：<a href="<?php echo BLOG_URL; ?>index.php">首页</a>>
+        您的位置：<a href="<?php echo BLOG_URL; ?>">首页</a>>
 		<?php if($log_cache_sort[$logid]): ?>
          <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
 		<?php endif;?> > 
@@ -128,7 +128,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
        <b> 发表评论：</b>
         </div> 
         <div class="com_box_bottom"> 
-        	<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom">
+        	<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
 			
   			<span>姓名</span>
             <input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/><input type="text" name="comname" class="textfield" maxlength="49" value="<?php echo $ckname; ?>">
@@ -150,7 +150,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--页面右侧部分-->
     <div id="right_box">
         <div id="sear_box">
-         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
          <div id="sear_box_left">
         	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>

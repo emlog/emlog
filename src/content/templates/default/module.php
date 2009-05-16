@@ -44,7 +44,7 @@ function widget_tag($title){
 	<li>
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="<?php echo BLOG_URL; ?>index.php?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -59,7 +59,7 @@ function widget_sort($title){
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
@@ -138,7 +138,7 @@ function widget_newlog($title){
 	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -158,7 +158,7 @@ function widget_random_log($title){
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -170,7 +170,7 @@ function widget_search($title){ ?>
 	<h3><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php"><p>
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>"><p>
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
 	</form>
@@ -348,7 +348,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
-	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">

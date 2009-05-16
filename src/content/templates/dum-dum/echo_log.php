@@ -107,7 +107,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</ol>
 
 		<div class="comm">
-		<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+		<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />
 		<label for="author"><small>姓名</small></label></p>
 		

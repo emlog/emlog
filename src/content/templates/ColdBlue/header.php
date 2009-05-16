@@ -22,15 +22,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	</div></div>
 	
 	<div id="search"><div class="inner clear">
-		<a id="rss-link" href="<?php echo BLOG_URL; ?>index.php"><strong>首页</strong></a>
+		<a id="rss-link" href="<?php echo BLOG_URL; ?>"><strong>首页</strong></a>
 		<?php if(ISLOGIN): ?>
 	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
 	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
 <?php else: ?>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/index.php">登录</a>
+	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/">登录</a>
 <?php endif; ?>
-		<form name="keyform" method="get" id="searchform" action="<?php echo BLOG_URL; ?>index.php"><div>
+		<form name="keyform" method="get" id="searchform" action="<?php echo BLOG_URL; ?>"><div>
 	<input name="keyword"  type="text" value="" id="s" />
 	<input type="submit" id="searchsubmit" value="Search" onclick="return keyw()" />
 </div></form>

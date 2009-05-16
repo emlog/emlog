@@ -91,7 +91,7 @@ $reply = $value['reply']?"<span style=\"color:#6C8C37;\"><b>博主回复</b>：{
 <h2>发表评论</h2>
 <p></p>
 
-<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 <fieldset>
 
 <input type="hidden" name="gid" value="<?php echo $logid;?>" />

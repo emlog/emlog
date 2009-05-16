@@ -351,20 +351,20 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?record=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?sort=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?author=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\".+(index\.php|\/|\/index.php)\?page=(\d+)\"([^\>]*)\>/e"
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?record=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?sort=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?author=(\d+)\"([^\>]*)\>/e",
+			"/\<a href\=\"(.+)(\/|\/index\.php)\?page=(\d+)\"([^\>]*)\>/e"
 			);
 			$replacelink = array(
-			"logRewrite(\\2,'\\3','\\4')",
-			"recordRewrite('\\2','\\3')",
-			"tagRewrite('\\2','\\3')",
-			"sortRewrite('\\2','\\3')",
-			"authorRewrite('\\2','\\3')",
-			"pageRewrite('\\2','\\3')"
+			"logRewrite('\\1','\\3','\\4','\\5')",
+			"recordRewrite('\\1','\\3','\\4')",
+			"tagRewrite('\\1','\\3','\\4')",
+			"sortRewrite('\\1','\\3','\\4')",
+			"authorRewrite('\\1','\\3','\\4')",
+			"pageRewrite('\\1','\\3','\\4')"
 			);
 			$output = preg_replace($searchlink, $replacelink,$output);
 		}
@@ -387,29 +387,29 @@ function cleanPage($beUrlRewrite = false)
  * @param string $values 匹配出来的<a>标签中的其他属性
  * @return unknown
  */
-function logRewrite($gid,$ext,$values)
+function logRewrite($url,$gid,$ext,$values)
 {
-	return '<a href="post-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/post-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
 }
-function recordRewrite($date,$values)
+function recordRewrite($url,$date,$values)
 {
-	return '<a href="record-'.$date.'.html"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/record-'.$date.'.html"'.stripslashes($values).'>';
 }
-function tagRewrite($tag,$values)
+function tagRewrite($url,$tag,$values)
 {
-	return '<a href="tag-'.$tag.'.html"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/tag-'.$tag.'.html"'.stripslashes($values).'>';
 }
-function sortRewrite($sort,$values)
+function sortRewrite($url,$sort,$values)
 {
-	return '<a href="sort-'.$sort.'.html"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/sort-'.$sort.'.html"'.stripslashes($values).'>';
 }
-function authorRewrite($author,$values)
+function authorRewrite($url,$author,$values)
 {
-	return '<a href="author-'.$author.'.html"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/author-'.$author.'.html"'.stripslashes($values).'>';
 }
-function pageRewrite($page,$values)
+function pageRewrite($url,$page,$values)
 {
-	return '<a href="page-'.$page.'.html"'.stripslashes($values).'>';
+	return '<a href="'.$url.'/page-'.$page.'.html"'.stripslashes($values).'>';
 }
 
 /**

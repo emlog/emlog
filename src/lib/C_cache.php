@@ -262,7 +262,6 @@ class mkcache {
 	 */
 	function mc_record()
 	{
-		global $isurlrewrite;
 		$query = $this->db->query("select date from ".$this->db_prefix."blog WHERE hide='n' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
@@ -277,18 +276,10 @@ class mkcache {
 				{
 					$dang_cache[$h]['lognum'] = $lognum;
 				}
-				if($isurlrewrite == 'y')
-				{
-					$dang_cache[$p] = array(
-					'record'=>date("Y年n月",$show_record['date']),
-					'url'=>"record-".date("Ym",$show_record['date']).".html"
-					);
-				}else{
-					$dang_cache[$p] = array(
-					'record'=>date("Y年n月",$show_record['date']),
-					'url'=>BLOG_URL."?record=".date("Ym",$show_record['date'])
-					);
-				}
+				$dang_cache[$p] = array(
+				'record'=>date("Y年n月",$show_record['date']),
+				'url'=>BLOG_URL."?record=".date("Ym",$show_record['date'])
+				);
 				$p++;
 				$lognum = 1;
 			}else{

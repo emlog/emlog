@@ -47,7 +47,7 @@
 	<ul id="logsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>index.php?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>	
@@ -117,7 +117,7 @@
 	<li class="newlog"><h2 onclick="showhidediv('newlog')"><?php echo $title; ?></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -131,7 +131,7 @@
 	<li class="randlog"><h2 onclick="showhidediv('randlog')"><?php echo $title; ?></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>index.php?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -160,7 +160,7 @@
 	<li class="logserch"><h2 onclick="showhidediv('logserch')"><?php echo $title; ?></h2>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 	<input name="keyword"  type="text" value="" style="width:80px;"/>
 	<input type="submit" value="搜索" onclick="return keyw()" />
 	</form>

@@ -37,13 +37,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
               <!-- homepage tab (remove this section if you dont need it) -->
               <?php if(ISLOGIN): ?>
-             	<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php"><span>首页</span></a></li>
+             	<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>"><span>首页</span></a></li>
 				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><span>写日志</span></a></li>
 				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/"><span>管理中心</span></a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout"><span>退出</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><span>退出</span></a></li>
 				<?php else: ?>
-                <li class="current_page_item"><a href="<?php echo BLOG_URL; ?>index.php"><span>首页</span></a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php"><span>登录</span></a></li>
+                <li class="current_page_item"><a href="<?php echo BLOG_URL; ?>"><span>首页</span></a></li>
+				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/"><span>登录</span></a></li>
 				<?php endif; ?>
                </ul>
               </div>

@@ -24,7 +24,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php echo $bloginfo;?>
 </div>
 <div>
-<form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+<form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 <div>
 <input name="keyword"  type="text" id="s" value="" />
 <input type="submit" id="searchsubmit" value="GO" />

@@ -27,11 +27,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 					<div class="paddings">
 						<div class="icons-wrapper">
 							<a href="<?php echo BLOG_URL; ?>rss.php" title="RSS link"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/rss.gif" alt="RSS icon" /></a>
-							<a href="<?php echo BLOG_URL; ?>index.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/home.gif" alt="Home icon" /></a>
+							<a href="<?php echo BLOG_URL; ?>"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/home.gif" alt="Home icon" /></a>
 						</div>
 						
 						<div class="search fr">
-							<form action="<?php echo BLOG_URL; ?>index.php" method="get" id="srch-frm" name="keyform">
+							<form action="<?php echo BLOG_URL; ?>" method="get" id="srch-frm" name="keyform">
 							<div class="search-wrapper">
 								<input type="text" value="" class="textfield" name="keyword" id="s" />
 							</div>
@@ -43,13 +43,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 			<div class="menu span-24">
             <ul class="menu-wrapper">
-            <li class="first current_page_item"><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
+            <li class="first current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
             <?php if(ISLOGIN): ?>
 	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 	<?php else: ?>
-	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+	<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 	<?php endif; ?>
 	</ul>
 			</div>

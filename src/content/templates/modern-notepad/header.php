@@ -24,16 +24,16 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                 <div class="description"><?php echo $bloginfo; ?></div>
 				<ul id="nav-bar">               
                 <?php if(ISLOGIN): ?>
-					<li><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
+					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
                     <li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
                     <li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/index.php?action=logout">退出</a></li>
+					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
                     <?php else: ?>
-					<li><a href="<?php echo BLOG_URL; ?>index.php">首页</a></li>
-					<li><a href="<?php echo BLOG_URL; ?>admin/index.php">登录</a></li>
+					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+					<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
                 <?php endif; ?>
 				</ul>
-                <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+                <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
                     <div><input type="text" value="" name="keyword" id="s" class="text" /><input type="submit" value="Search" class="button" /></div>
                 </form>
             </div>
