@@ -42,9 +42,9 @@ function widget_tag($title){
 	<h3><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></h3>
 	<ul id="blogtags">
 	<li>
-	<?php foreach($tag_cache as $value): ?>
-		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+	<?php foreach($tag_cache as $val): ?>
+		<span style="font-size:<?php echo $val['fontsize']; ?>pt; height:30px;">
+		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $val['tagurl']; ?>" title="<?php echo $val['usenum']; ?> 篇日志"><?php echo $val['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -57,10 +57,10 @@ function widget_sort($title){
 	<li>
 	<h3><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h3>
 	<ul id="blogsort">
-	<?php foreach($sort_cache as $value): ?>
+	<?php foreach($sort_cache as $val): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?>(<?php echo $val['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $val['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
 	</ul>
@@ -77,11 +77,11 @@ function widget_twitter($title){
 		<?php
 		if(isset($tw_cache) && is_array($tw_cache)):
 		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$value['id']}','twitter')\">删除</a>":'';
-		$value['date'] = smartyDate($localdate,$value['date']);
+		foreach (array_slice($tw_cache,0,$index_twnum) as $val):
+		$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$val['id']}','twitter')\">删除</a>":'';
+		$val['date'] = smartyDate($localdate,$val['date']);
 		?>
-		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
+		<li> <?php echo $val['content']; ?> <?php echo $delbt; ?><br><span><?php echo $val['date']; ?></span></li>
 		<?php endforeach;?>
 		<?php echo $morebt;?>
 		<?php endif;?>
@@ -118,14 +118,17 @@ function widget_newcomm($title){
 	<li>
 	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
 	<ul id="newcomment">
-	<?php foreach($com_cache as $value): ?>
-	<li id="comment"><?php echo $value['name']; ?> 
-	<?php if($value['reply']): ?>
-	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<?php 
+	foreach($com_cache as $val): 
+	$val['url'] = BLOG_URL.$val['url'];
+	?>
+	<li id="comment"><?php echo $val['name']; ?> 
+	<?php if($val['reply']): ?>
+	<a href="<?php echo $val['url']; ?>" title="博主回复：<?php echo $val['reply']; ?>">
 	<img src="<?php echo CERTEMPLATE_URL; ?>/images/reply.gif" align="absmiddle"/>
 	</a>
 	<?php endif;?>
-	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+	<br /><a href="<?php echo $val['url']; ?>"><?php echo $val['content']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -137,8 +140,8 @@ function widget_newlog($title){
 	<li>
 	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
 	<ul id="newlog">
-	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<?php foreach($newLogs_cache as $val): ?>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $val['gid']; ?>"><?php echo $val['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -157,8 +160,8 @@ function widget_random_log($title){
 	<li>
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
 	<ul id="randlog">
-	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<?php foreach($randLogs as $val): ?>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $val['gid']; ?>"><?php echo $val['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -185,8 +188,8 @@ function widget_archive($title){
 	<li>
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
 	<ul id="record">
-	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+	<?php foreach($dang_cache as $val): ?>
+	<li><a href="<?php echo $val['url']; ?>"><?php echo $val['record']; ?>(<?php echo $val['lognum']; ?>)</a></li>
 	<?php endforeach; ?>		
 	</ul>
 	</li>
@@ -208,8 +211,8 @@ function widget_link($title){
 	<li>
 	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3>
 	<ul id="link">
-	<?php foreach($link_cache as $value): ?>     	
-	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+	<?php foreach($link_cache as $val): ?>     	
+	<li><a href="<?php echo BLOG_URL; ?><?php echo $val['url']; ?>" title="<?php echo $val['des']; ?>" target="_blank"><?php echo $val['link']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -297,10 +300,10 @@ function blog_trackback(){
 	<a name="tb"></a></p>
 	</div>
 	<?php endif; ?>
-	<?php foreach($tb as $key=>$value):?>
+	<?php foreach($tb as $key=>$val):?>
 		<ul id="trackback">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
+		<li><a href="<?php echo $val['url'];?>" target="_blank"><?php echo $val['title'];?></a></li>
+		<li>BLOG: <?php echo $val['blog_name'];?></li><li><?php echo $val['date'];?></li>
 		</ul>
 	<?php endforeach; ?>	
 <?php }?>
@@ -312,30 +315,30 @@ function blog_comments(){
 	<p class="comment"><b>评论：</b><a name="comment"></a></p>
 	<?php endif; ?>
 	<?php
-	foreach($comments as $key=>$value):
-	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
+	foreach($comments as $key=>$val):
+	$reply = $val['reply']?"<span>博主回复：{$val['reply']}</span>":'';
 	?>
 	<div id="com_line">
-		<a name="<?php echo $value['cid']; ?>"></a>
-		<b><?php echo $value['poster']; ?> </b>
-		<?php if($value['mail']):?>
-			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+		<a name="<?php echo $val['cid']; ?>"></a>
+		<b><?php echo $val['poster']; ?> </b>
+		<?php if($val['mail']):?>
+			<a href="mailto:<?php echo $val['mail']; ?>" title="发邮件给<?php echo $val['poster']; ?>">Email</a>
 		<?php endif;?>
-		<?php if($value['url']):?>
-			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+		<?php if($val['url']):?>
+			<a href="<?php echo $val['url']; ?>" title="访问<?php echo $val['poster']; ?>的主页" target="_blank">主页</a>
 		<?php endif;?>
-			<div class="time"><?php echo $value['date']; ?></div>
+			<div class="time"><?php echo $val['date']; ?></div>
 			<div class="com_date">
-			<?php echo $value['content']; ?>
+			<?php echo $val['content']; ?>
 			</div>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+			<div id="replycomm<?php echo $val['cid']; ?>"><?php echo $reply; ?></div>
 		<?php if(ROLE == 'admin'): ?>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
-			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
-			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;">		<?php echo $value['reply']; ?></textarea>
+			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $val['cid']; ?>','reply<?php echo $val['cid']; ?>')">回复</a>
+			<div id='replybox<?php echo $val['cid']; ?>' style="display:none;">
+			<textarea name="reply<?php echo $val['cid']; ?>" class="input" id="reply<?php echo $val['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;">		<?php echo $val['reply']; ?></textarea>
 			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
+			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $val['cid']; ?>&flg=1','reply<?php echo $val['cid']; ?>','replycomm<?php echo $val['cid']; ?>');">提交</a>
+			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $val['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
 	</div>

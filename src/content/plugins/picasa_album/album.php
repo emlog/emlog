@@ -24,12 +24,9 @@ if (!$album)
 
 	$albumData = $albumData['feed'];
 
-	$blogtitle =  $albumData['title']['value'] . ' - ' . $blogname;
-	$log_title =  $albumData['title']['value'];
+	$blogtitle =  $albumData['author']['name']['value'] . '的相册 - ' . $blogname;
+	$log_title =  $albumData['author']['name']['value'] . '的相册';
 	$log_content = '';
-
-	$icon = $albumData['icon']['value'];
-	$log_title = '<img src="'.$icon.'">'.$log_title;
 
 	foreach ($albumData['entry'] as $val)
 	{
@@ -53,11 +50,8 @@ if (!$album)
 	</div>';
 	}
 
-
 	$allow_remark = 'n';
 	$logid = '';
-
-
 
 	include getViews('header');
 	include getViews('page');
