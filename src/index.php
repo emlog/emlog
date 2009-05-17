@@ -38,7 +38,7 @@ if (empty($action) && empty($logid))
 	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 
 	$start_limit = ($page - 1) * $index_lognum;
-	$pageurl= './';
+	$pageurl = BLOG_URL;
 
 	if ($record)
 	{
