@@ -7,14 +7,14 @@ function widget_blogger($title){
     <div class="widget">
 	<h2><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h2>
 	<ul style="text-align:center; padding-right:45px;" id="bloggerinfo">
-	<li style=" background:0;margin: 0px 0px 2px 0px;"><?php echo $photo; ?></li>
+	<li style=" background:0;margin: 0px 0px 2px 0px;"><?php echo $user_cache[1]['photo']; ?></li>
 	<li style="background:0;margin: 0px 0px 2px 0px;"><b><?php echo $name; ?></b></li>
-		<li style="background:0;margin: 0px 0px 2px 0px;"><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+		<li style="background:0;margin: 0px 0px 2px 0px;"><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ISLOGIN === true): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;list-style:none;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:60px;"><?php echo $blogger_des; ?></textarea>
+		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:190px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
 		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>

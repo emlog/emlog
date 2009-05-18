@@ -6,13 +6,13 @@ function widget_blogger($title){
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
   <H2 onClick="showhidediv('bloggerinfo')"><?php echo $title; ?></H2>
    <ul id="bloggerinfo" >
-	<li><?php echo $photo;?></li>
-	<li><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+	<li><?php echo $user_cache[1]['photo']; ?></li>
+	<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 	<?php if(ROLE == 'admin'): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 	<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态" border="0"/></a></li>
 	<li id='modbdes' style="display:none;">
-	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"><?php echo $blogger_des; ?></textarea>
+	<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:160px;height:50px;"><?php echo $user_cache[1]['des']; ?></textarea>
 	<br />
 	<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>

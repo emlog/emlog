@@ -8,14 +8,14 @@ function widget_blogger($title){
 	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
 	<ul style="text-align:center" id="bloggerinfo">
 	<br />
-	<div id="bloggerinfoimg"><?php echo $photo; ?></div>
+	<div id="bloggerinfoimg"><?php echo $user_cache[1]['photo']; ?></div>
 	<li style="background:0;"><b><?php echo $name; ?></b></li>
-		<li style="background:0;"><span id="bloggerdes"><?php echo $blogger_des; ?></span>
+		<li style="background:0;"><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ROLE == 'admin'): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none; background:0;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $blogger_des; ?></textarea>
+		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
 		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
