@@ -112,7 +112,10 @@
     <div class="box">
 	<h2><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h2>
 	<ul id="newcomment">
-	<?php foreach($com_cache as $value): ?>
+	<?php 
+	foreach($com_cache as $value): 
+	$val['url'] = BLOG_URL.$value['url'];
+	?>
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
 	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
@@ -164,7 +167,7 @@
 	<h2><span onclick="showhidediv('record')"><?php echo $title; ?></span></h2>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+	<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>		
 	</ul>
     </div>

@@ -118,8 +118,11 @@
       <div id="recent-comments" class="dbx-box">
         <h3 class="dbx-handle" onclick="showhidediv('comm')"><?php echo $title; ?></h3>
         <div class="dbx-content" id="comm">
-          <ul>
-			<?php foreach($com_cache as $value): ?>
+          <ul>	
+		  	<?php 
+			foreach($com_cache as $value): 
+			$val['url'] = BLOG_URL.$value['url'];
+			?>
 			<li><?php echo $value['name'];?>
 			<?php if($value['reply']): ?>
 				<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
@@ -171,7 +174,7 @@
         <div class="dbx-content" id="dang">
           <ul>
 			<?php foreach($dang_cache as $value): ?>
-					<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
+					<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>	
           </ul>
         </div>

@@ -88,7 +88,10 @@
 	<li><span onclick="showhidediv('comm')"><b><?php echo $title; ?></b></span></li>
 	<div class="comm">
 	  <ul>
-		<?php foreach($com_cache as $value): ?>
+	  	<?php 
+		foreach($com_cache as $value): 
+		$val['url'] = BLOG_URL.$value['url'];
+		?>
 		<li>
 		<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?> by <?php echo $value['name']; ?>
 		<?php if($value['reply']): ?>
@@ -131,7 +134,7 @@
 	<li><span onclick="showhidediv('record')"><b><?php echo $title; ?></b></span></li>
 		<ul id="record">
 		<?php foreach($dang_cache as $value): ?>
-		<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+		<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 		<?php endforeach; ?>		
 		</ul>
 <?php } ?>

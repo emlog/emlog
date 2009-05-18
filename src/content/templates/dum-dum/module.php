@@ -122,8 +122,12 @@
 	<div class="box3">
 		<div class="box3text">
 		<ul>
-		<li><h2><?php echo $title; ?></h2>
-		<?php foreach($com_cache as $value): ?>
+		<li><h2>
+		<?php echo $title; ?></h2>	
+		<?php 
+		foreach($com_cache as $value): 
+		$val['url'] = BLOG_URL.$value['url'];
+		?>
 		<li id="comment"><?php echo $value['name']; ?> 
 		<?php if($value['reply']): ?>
 			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
@@ -175,7 +179,7 @@
 		<ul>
 			<li><h2><?php echo $title; ?></h2>
 			<?php foreach($dang_cache as $value): ?>
-			<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+			<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
 		</ul>
 		</div> <!-- BOX2 TEXT -->

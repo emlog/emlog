@@ -97,7 +97,10 @@
 	<?php global $com_cache; ?>
 	<h4><em onclick="showhidediv('newcomm')"><?php echo $title; ?></em></h4>
 	<ul id="newcomm" class="posts">
-	<?php foreach($com_cache as $value): ?>
+	<?php 
+	foreach($com_cache as $value): 
+	$val['url'] = BLOG_URL.$value['url'];
+	?>
 			<li><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
 		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
@@ -137,7 +140,7 @@
 	<h4><em onclick="showhidediv('record')"><?php echo $title; ?></em></h4>
 	<ul class="record" id="record">
 	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
+	<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php } ?>

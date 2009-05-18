@@ -143,7 +143,7 @@
 	 <H2 onClick="showhidediv('record')"><?php echo $title; ?></H2>
 	<ul id="record">
 	<?php foreach($dang_cache as $key=>$value): ?>
-		<li><a href="<?php echo $value['url'];?>"><?php echo $value['record'];?>(<?php echo $value['lognum'];?>)</a></li>
+		<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>	
 	</ul>
 <?php } ?>
