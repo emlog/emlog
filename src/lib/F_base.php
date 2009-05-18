@@ -352,7 +352,7 @@ function cleanPage($beUrlRewrite = false)
 		{
 			$searchlink = array(
 			"/(href\=\".+?)(\/|\/index\.php)\?(post)=(\d+)(#*[\w]*)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(record)=(\d+)\"/e",
+			"/(href\=\".+?)(\/|\/index\.php)\?(record)=(\d+)\"/i",
 			"/(href\=\".+?)(\/|\/index\.php)\?(tag)=([%A-Za-z0-9]+)\"/i",
 			"/(href\=\".+?)(\/|\/index\.php)\?(sort)=(\d+)\"/i",
 			"/(href\=\".+?)(\/|\/index\.php)\?(author)=(\d+)\"/i",
