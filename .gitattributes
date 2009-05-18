@@ -195,7 +195,6 @@ src/content/plugins/picasa_album/XMLParser.php -text
 src/content/plugins/picasa_album/album.php -text
 src/content/plugins/picasa_album/album_set.php -text
 src/content/plugins/picasa_album/css/jquery.lightbox-0.5.css -text
-src/content/plugins/picasa_album/images/Thumbs.db -text
 src/content/plugins/picasa_album/images/lightbox-blank.gif -text
 src/content/plugins/picasa_album/images/lightbox-btn-close.gif -text
 src/content/plugins/picasa_album/images/lightbox-btn-next.gif -text
