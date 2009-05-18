@@ -15,7 +15,7 @@ if ($action == '')
 	echo $twitter;
 }
 //add twitter
-if (ISLOGIN === true && $action == 'add')
+if (ROLE == 'admin' && $action == 'add')
 {
 	$content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
 	if (!empty($content))
@@ -29,7 +29,7 @@ if (ISLOGIN === true && $action == 'add')
 	}
 }
 //del twitter
-if (ISLOGIN === true && $action == 'del')
+if (ROLE == 'admin' && $action == 'del')
 {
 	$twid = isset($_GET['twid']) ? intval($_GET['twid']) : '';
 	$twitter = '';
@@ -58,7 +58,7 @@ function getindextw()
 		extract($rows);
 		$content = htmlspecialchars($content);
 		$date = smartyDate($localdate,$date);
-		$delbt = ISLOGIN === true ? "<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."',$id,'twitter')\">删除</a>" : '';
+		$delbt = ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."',$id,'twitter')\">删除</a>" : '';
 		$twitter .= "<li>$content $delbt<br /><span>$date</span></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);
