@@ -99,7 +99,7 @@
 	<ul id="newcomment">
 	<?php 
 	foreach($com_cache as $value): 
-	$val['url'] = BLOG_URL.$value['url'];
+	$value['url'] = BLOG_URL.$value['url'];
 	?>
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>

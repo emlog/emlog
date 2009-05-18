@@ -93,7 +93,10 @@
 	<?php global $com_cache; ?>
    <H2 onClick="showhidediv('newcomment')"><?php echo $title; ?></H2>
 		<ul id="newcomment">
-<?php foreach($com_cache as $key=>$value): ?>
+		<?php 
+		foreach($com_cache as $value): 
+		$value['url'] = BLOG_URL.$value['url'];
+		?>
 		<li id="comment"> &raquo; <?php echo $value['name'];?>
 		<?php if($value['reply']): ?>
 		<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">

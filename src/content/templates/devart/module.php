@@ -113,9 +113,9 @@
 		<h3><?php echo $title; ?></h3>
 		<ul>
 		<?php 
-	foreach($com_cache as $value): 
-	$val['url'] = BLOG_URL.$value['url'];
-	?>
+		foreach($com_cache as $value): 
+		$value['url'] = BLOG_URL.$value['url'];
+		?>
 		<li><?php echo $value['name']; ?> 
 		<?php if($value['reply']): ?>
 			<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">

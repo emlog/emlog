@@ -102,7 +102,7 @@
 	<li><h2><?php echo $title; ?></h2>
 	<ul>	<?php 
 	foreach($com_cache as $value): 
-	$val['url'] = BLOG_URL.$value['url'];
+	$value['url'] = BLOG_URL.$value['url'];
 	?>
 	<li><?php echo $value['name'];?>
 	<?php if($value['reply']): ?>

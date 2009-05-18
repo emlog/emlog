@@ -90,7 +90,7 @@
 	  <ul>
 	  	<?php 
 		foreach($com_cache as $value): 
-		$val['url'] = BLOG_URL.$value['url'];
+		$value['url'] = BLOG_URL.$value['url'];
 		?>
 		<li>
 		<a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?> by <?php echo $value['name']; ?>
