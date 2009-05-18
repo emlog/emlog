@@ -339,7 +339,7 @@ function getAttachment($attstr,$width,$height)
 }
 
 /**
- * 清除模板中的注释,并完成URL重写功能
+ * 清除模板中的注释,并完成URL优化
  *
  */
 function cleanPage($beUrlRewrite = false)
@@ -351,22 +351,22 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?post=(\d+)(#*[\w]*)\"([^\>]*)\>/e",
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?record=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?tag=([%A-Za-z0-9]+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?sort=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?author=(\d+)\"([^\>]*)\>/e",
-			"/\<a href\=\"(.+?)(\/|\/index\.php)\?page=(\d+)\"([^\>]*)\>/e"
+			"/(href\=\".+?)(\/|\/index\.php)\?(post)=(\d+)(#*[\w]*)\"/i",
+			"/(href\=\".+?)(\/|\/index\.php)\?(record)=(\d+)\"/e",
+			"/(href\=\".+?)(\/|\/index\.php)\?(tag)=([%A-Za-z0-9]+)\"/i",
+			"/(href\=\".+?)(\/|\/index\.php)\?(sort)=(\d+)\"/i",
+			"/(href\=\".+?)(\/|\/index\.php)\?(author)=(\d+)\"/i",
+			"/(href\=\".+?)(\/|\/index\.php)\?(page)=(\d+)\"/i"
 			);
 			$replacelink = array(
-			"logRewrite('\\1','\\3','\\4','\\5')",
-			"recordRewrite('\\1','\\3','\\4')",
-			"tagRewrite('\\1','\\3','\\4')",
-			"sortRewrite('\\1','\\3','\\4')",
-			"authorRewrite('\\1','\\3','\\4')",
-			"pageRewrite('\\1','\\3','\\4')"
+			"$1/$3-$4.html$5\"",
+			"$1/$3-$4.html\"",
+			"$1/$3-$4.html\"",
+			"$1/$3-$4.html\"",
+			"$1/$3-$4.html\"",
+			"$1/$3-$4.html\""
 			);
-			$output = preg_replace($searchlink, $replacelink,$output);
+			$output = preg_replace($searchlink, $replacelink, $output);
 		}
 	}
 	ob_end_clean();
@@ -378,38 +378,6 @@ function cleanPage($beUrlRewrite = false)
 	}
 	echo $output;
 	exit;
-}
-/**
- * 日志链接重写
- *
- * @param int $gid 匹配出来的日志编号
- * @param string $ext 匹配出来的锚点信息
- * @param string $values 匹配出来的<a>标签中的其他属性
- * @return unknown
- */
-function logRewrite($url,$gid,$ext,$values)
-{
-	return '<a href="'.$url.'/post-'.$gid.'.html'.stripslashes($ext).'"'.stripslashes($values).'>';
-}
-function recordRewrite($url,$date,$values)
-{
-	return '<a href="'.$url.'/record-'.$date.'.html"'.stripslashes($values).'>';
-}
-function tagRewrite($url,$tag,$values)
-{
-	return '<a href="'.$url.'/tag-'.$tag.'.html"'.stripslashes($values).'>';
-}
-function sortRewrite($url,$sort,$values)
-{
-	return '<a href="'.$url.'/sort-'.$sort.'.html"'.stripslashes($values).'>';
-}
-function authorRewrite($url,$author,$values)
-{
-	return '<a href="'.$url.'/author-'.$author.'.html"'.stripslashes($values).'>';
-}
-function pageRewrite($url,$page,$values)
-{
-	return '<a href="'.$url.'/page-'.$page.'.html"'.stripslashes($values).'>';
 }
 
 /**
@@ -423,7 +391,7 @@ function breakLog($content,$lid)
 {
 	$a = explode("[break]",$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
 }
 
