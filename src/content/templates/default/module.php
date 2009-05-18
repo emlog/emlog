@@ -212,7 +212,7 @@ function widget_link($title){
 	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3>
 	<ul id="link">
 	<?php foreach($link_cache as $value): ?>     	
-	<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
