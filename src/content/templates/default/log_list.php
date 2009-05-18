@@ -7,7 +7,7 @@
 	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 	</h2>
 	<div class="act"><?php blog_sort($value['sortid'], $value['logid']); ?></div>
-	<div class="editor"><?php editflg($value['logid']); ?></div>
+	<div class="editor"><?php editflg($value['logid'],$value['author']); ?></div>
 	<div class="clear line"></div>
    	<div class="bloger"> post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>

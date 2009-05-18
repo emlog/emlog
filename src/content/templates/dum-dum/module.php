@@ -9,7 +9,7 @@
 		<li style="text-align:center;"><?php echo $photo; ?></li>
 		<li style="text-align:center;"><b><?php echo $name; ?></b></li>
 			<li style="text-align:center;"><span id="bloggerdes"><?php echo $blogger_des; ?></span>
-			<?php if(ISLOGIN === true): ?>
+			<?php if(ROLE == 'admin'): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 			<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 			<li id='modbdes' style="display:none;">
@@ -81,7 +81,7 @@
 			if(isset($tw_cache) && is_array($tw_cache)):
 				$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 				foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-					$delbt = ISLOGIN === true?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$value['id']}','twitter')\">删除</a>":'';
+					$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$value['id']}','twitter')\">删除</a>":'';
 					$value['date'] = smartyDate($localdate,$value['date']);
 					?>
 					<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
@@ -89,7 +89,7 @@
 				<?php echo $morebt;?>
 			<?php endif;?>
 			</ul>
-			<?php if(ISLOGIN === true): ?>
+			<?php if(ROLE == 'admin'): ?>
 				<ul>
 				<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 				<li id='addtw' style="display: none;">
