@@ -6,7 +6,7 @@ foreach($logs as $value):
 	<div class="logcontent">
 	<div id="t">
 	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
-	<?php blog_sort($value['sortid'], $value['logid']); ?>
+	<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 	</div>
 	<p id="date">post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></p>
 	<div class="log_desc"><?php echo $value['log_description']; ?></div>

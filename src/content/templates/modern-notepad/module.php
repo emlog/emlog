@@ -1,7 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<!--blogger-->
-<?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des; ?>
+<?php
+//widget：blogger
+function widget_blogger($title){
+	global $user_cache; 
+	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
     <div class="box categories">
 	<div class="header"><h3 onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></h3></div>
 	<ul style="text-align:center" id="bloggerinfo">
@@ -20,9 +22,10 @@
 	</ul>
     </div>
 <?php }?>
-<!--日历-->
-<?php function widget_calendar($title){ ?>
-	<?php global $calendar_url; ?>
+<?php
+//widget：日历
+function widget_calendar($title){
+	global $calendar_url; ?>
 	<div class="box blogroll">
 	<div class="header">
 	<h3 class="lister"><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></h3>
@@ -32,9 +35,10 @@
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 	</div>
 <?php }?>
-<!--标签-->
-<?php function widget_tag($title){ ?>
-	<?php global $tag_cache; ?>
+<?php
+//widget：标签
+function widget_tag($title){
+	global $tag_cache; ?>
 	<div class="box biaoq">
 	<div class="header">
 	<h3><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></h3>
@@ -49,9 +53,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--分类-->
-<?php function widget_sort($title){ ?>
-	<?php global $sort_cache; ?>
+<?php
+//widget：分类
+function widget_sort($title){
+	global $sort_cache; ?>
 	<div class="box archive">
 	<div class="header">
 	<h3><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h3>
@@ -66,9 +71,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--twitter-->
-<?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate; ?>
+<?php
+//widget：twitter
+function widget_twitter($title){
+	global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>	
 		<div class="box popular">
 		<div class="header"><h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3></div>
@@ -100,9 +106,10 @@
 	<?php endif;?>
 <?php } ?>
 
-<!--音乐-->
-<?php function widget_music($title){ ?>
-	<?php global $musicdes,$musicurl,$autoplay; ?>
+<?php 
+//widget：音乐
+function widget_music($title){
+	global $musicdes,$musicurl,$autoplay; ?>
 	<div class="box popular">
 		<div class="header"><h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></h3></div>	
 	<ul id="blogmusic">
@@ -111,9 +118,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--最新评论-->
-<?php function widget_newcomm($title){ ?>
-	<?php global $com_cache; ?>
+<?php
+//widget：最新评论
+function widget_newcomm($title){
+	global $com_cache; ?>
 	<div class="box popular">
 		<div class="header"><h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3></div>
 	<ul id="newcomment">
@@ -132,9 +140,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--最新日志-->
-<?php function widget_newlog($title){ ?>
-	<?php global $newLogs_cache; ?>
+<?php
+//widget：最新日志
+function widget_newlog($title){
+	global $newLogs_cache; ?>
 	 <div class="box categories">
         	<div class="header">
 	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3></div>
@@ -145,12 +154,17 @@
 	</ul>
 	</div>
 <?php }?>
-<!--随机日志-->
-<?php function widget_random_log($title){ ?>
-	<?php 
+<?php
+//widget：随机日志
+function widget_random_log($title){
 	global $index_randlognum, $emBlog;
-	$randLogs = $emBlog->getRandLog($index_randlognum);
-	?>
+	if (!isset($emBlog))
+	{
+		global $DB;
+		require_once(EMLOG_ROOT.'/model/C_blog.php');
+		$emBlog = new emBlog($DB);
+	}
+	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	 <div class="box categories">
         	<div class="header">
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3></div>
@@ -161,9 +175,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--归档-->
-<?php function widget_archive($title){ ?>
-	<?php global $dang_cache; ?>
+<?php
+//widget：归档
+function widget_archive($title){
+	global $dang_cache; ?>
 	 <div class="box categories">
         	<div class="header">
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3></div>
@@ -174,8 +189,9 @@
 	</ul>
 	</div>
 <?php } ?>
-<!--自定义-->
-<?php function widget_custom_text($title, $content, $id){ ?>
+<?php
+//widget：自定义组件
+function widget_custom_text($title, $content, $id){ ?>
 <div class="box">
         	<div class="header">
 	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3></div>
@@ -184,9 +200,10 @@
 	</ul>
 	</div>
 <?php } ?>
-<!--链接-->
-<?php function widget_link($title){ ?>
-	<?php global $link_cache; ?>
+<?php
+//widget：链接
+function widget_link($title){
+	global $link_cache; ?>
 	 <div class="box categories">
         	<div class="header">
 	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3></div>
@@ -197,9 +214,10 @@
 	</ul>
 	</div>
 <?php }?>
-<!--信息-->
-<?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$viewcount_day,$viewcount_all; ?>
+<?php
+//widget：博客信息
+function widget_bloginfo($title){
+	global $sta_cache,$viewcount_day,$viewcount_all; ?>
 	 <div class="box bloginfo">
         	<div class="header">
 	<h3><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></h3></div>

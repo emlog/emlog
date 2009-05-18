@@ -1,7 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<!--blogger-->
-<?php function widget_blogger($title){ ?>
-	<?php global $photo,$name,$blogger_des; ?>
+<?php
+//widget：blogger
+function widget_blogger($title){
+	global $user_cache; 
+	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
     <li><span onclick="showhidediv('blogger')"><b><?php echo $title; ?></b></span></li>
     	<ul id="blogger">
     	<li><?php echo $photo; ?></li>
@@ -19,17 +21,19 @@
 		</li>
     	</ul>
 <?php }?>
-<!--日历-->
-<?php function widget_calendar($title){ ?>
-	<?php global $calendar_url; ?>
+<?php
+//widget：日历
+function widget_calendar($title){
+	global $calendar_url; ?>
     <li><span onclick="showhidediv('calendar')"><b><?php echo $title; ?></b></span></li>
     	<ul id="calendar">
     	</ul>
     	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 <?php }?>
-<!--标签-->
-<?php function widget_tag($title){ ?>
-	<?php global $tag_cache; ?>
+<?php
+//widget：标签
+function widget_tag($title){
+	global $tag_cache; ?>
     <li><span onclick="showhidediv('tags')"><b><?php echo $title; ?></b></span></li>
     	<ul id="tags">
     	<?php foreach($tag_cache as $value):?>
@@ -37,9 +41,10 @@
 		<?php endforeach; ?>
     	</ul>
 <?php }?>
-<!--分类-->
-<?php function widget_sort($title){ ?>
-	<?php global $sort_cache; ?>
+<?php
+//widget：分类
+function widget_sort($title){
+	global $sort_cache; ?>
 	<li><span onclick="showhidediv('sort')"><b><?php echo $title; ?></b></span></li>
 	<div class="sort">
 	  <ul>
@@ -52,9 +57,10 @@
 	  </ul>
 	</div>
 <?php }?>
-<!--twitter-->
-<?php function widget_twitter($title){ ?>
-	<?php global $tw_cache,$index_twnum,$localdate; ?>
+<?php
+//widget：twitter
+function widget_twitter($title){
+	global $tw_cache,$index_twnum,$localdate; ?>
     <?php if($index_twnum>0): ?>
 	<li><span onclick="showhidediv('twitter')"><b><?php echo $title; ?></b></span></li>
 	<ul id="twitter">
@@ -82,9 +88,10 @@
 	<?php endif;?>
 	<?php endif;?>
 <?php } ?>
-<!--最新评论-->
-<?php function widget_newcomm($title){ ?>
-	<?php global $com_cache; ?>
+<?php
+//widget：最新评论
+function widget_newcomm($title){
+	global $com_cache; ?>
 	<li><span onclick="showhidediv('comm')"><b><?php echo $title; ?></b></span></li>
 	<div class="comm">
 	  <ul>
@@ -103,12 +110,17 @@
 	  </ul>
 	</div>
 <?php }?>
-<!--随机日志-->
-<?php function widget_random_log($title){ ?>
-	<?php 
+<?php
+//widget：随机日志
+function widget_random_log($title){
 	global $index_randlognum, $emBlog;
-	$randLogs = $emBlog->getRandLog($index_randlognum);
-	?>
+	if (!isset($emBlog))
+	{
+		global $DB;
+		require_once(EMLOG_ROOT.'/model/C_blog.php');
+		$emBlog = new emBlog($DB);
+	}
+	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	<li><span onclick="showhidediv('randlog')"><b><?php echo $title; ?></b></span></li>
 	<div id="randlog">
 	  <ul>
@@ -118,9 +130,10 @@
 	  </ul>
 	</div>
 <?php }?>
-<!--音乐-->
-<?php function widget_music($title){ ?>
-	<?php global $musicdes,$musicurl,$autoplay; ?>
+<?php 
+//widget：音乐
+function widget_music($title){
+	global $musicdes,$musicurl,$autoplay; ?>
 	<li><span onclick="showhidediv('music')"><b><?php echo $title; ?></b></span></li>
 	<ul id="music">
 	<li>
@@ -128,9 +141,10 @@
 	</li>
 	</ul>
 <?php }?>
-<!--归档-->
-<?php function widget_archive($title){ ?>
-	<?php global $dang_cache; ?>
+<?php
+//widget：归档
+function widget_archive($title){
+	global $dang_cache; ?>
 	<li><span onclick="showhidediv('record')"><b><?php echo $title; ?></b></span></li>
 		<ul id="record">
 		<?php foreach($dang_cache as $value): ?>
@@ -138,8 +152,9 @@
 		<?php endforeach; ?>		
 		</ul>
 <?php } ?>
-<!--自定义-->
-<?php function widget_custom_text($title, $content, $id){ ?>
+<?php
+//widget：自定义组件
+function widget_custom_text($title, $content, $id){ ?>
 	<li><span onclick="showhidediv('<?php echo $id; ?>')"><b><?php echo $title; ?></b></span></li>
 	<div id="<?php echo $id; ?>">
 	  <ul>
@@ -147,9 +162,10 @@
 	  </ul>
 	</div>
 <?php } ?>
-<!--链接-->
-<?php function widget_link($title){ ?>
-	<?php global $link_cache; ?>
+<?php
+//widget：链接
+function widget_link($title){
+	global $link_cache; ?>
 	<li><span onclick="showhidediv('link')"><b><?php echo $title; ?></b></span></li>
 	<div id="link">
 	  <ul>
@@ -159,9 +175,10 @@
 	  </ul>
 	</div>
 <?php }?>
-<!--信息-->
-<?php function widget_bloginfo($title){ ?>
-	<?php global $sta_cache,$viewcount_day,$viewcount_all; ?>
+<?php
+//widget：博客信息
+function widget_bloginfo($title){
+	global $sta_cache,$viewcount_day,$viewcount_all; ?>
 	<li><span onclick="showhidediv('bloginfo')"><b><?php echo $title; ?></b></span></li>
 		<ul id="bloginfo">
 		<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
