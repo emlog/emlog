@@ -1,5 +1,6 @@
 ﻿<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
+require_once (getViews('module'));
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +14,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/dbx.css" type="text/css" media="screen, projection" />
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/print.css" type="text/css" media="print" />
 <script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
+<?php doAction('index_header'); ?>
 </head>
 <body>
 <div id="page">

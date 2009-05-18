@@ -5,7 +5,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="obar">
 <ul>
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets2']) ? unserialize($options_cache['widgets2']) : array();
 foreach ($widgets as $val)
 {

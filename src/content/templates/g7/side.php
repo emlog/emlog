@@ -9,7 +9,6 @@
 <div id="sidebar_1">
 <ul>
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 foreach ($widgets as $val)
 {
@@ -39,7 +38,6 @@ foreach ($widgets as $val)
 <div id="sidebar_2">
 <ul>
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets2']) ? unserialize($options_cache['widgets2']) : array();
 foreach ($widgets as $val)
 {

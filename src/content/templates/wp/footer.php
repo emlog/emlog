@@ -5,7 +5,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <DIV id=sidebar>
 <UL>
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 foreach ($widgets as $val)
 {

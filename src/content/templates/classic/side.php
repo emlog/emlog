@@ -2,7 +2,6 @@
 <div id="page">
 <div class="contentA">
 <?php 
-require_once (getViews('function'));
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 foreach ($widgets as $val)
 {
