@@ -196,6 +196,7 @@ class emBlog {
 		while($row = $this->db->fetch_array($res))
 		{
 			//$row['date'];
+			//$row['top'];
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
@@ -209,7 +210,6 @@ class emBlog {
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
-			$row['toplog'] = $row['top'];
 			$row['attachment'] = '';
 			$row['tag']  = '';
 			$logs[] = $row;

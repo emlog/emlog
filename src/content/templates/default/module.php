@@ -233,15 +233,30 @@ function widget_bloginfo($title){
 	</li>
 <?php }?>
 <?php
-//blog：分类
+//blog：置顶(无样式)
+function topflg($istop){
+	global $log_cache_sort; 
+	$topflg = $istop == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
+	echo $topflg;
+}
+?>
+<?php
+//blog：编辑(无样式)
+function editflg($logid){
+	$editflg = ROLE == 'admin' ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	echo $editflg;
+}
+?>
+<?php 
+//blog：分类(无样式)
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	<div class="act">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]</div>
+	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
 <?php
-//blog：文件附件
+//blog：文件附件(无样式)
 function blog_att($blogid){
 	global $log_cache_atts; 
 	$attachment = !empty($log_cache_atts[$blogid]) ? '文件附件：'.$log_cache_atts[$blogid] : '';
@@ -249,7 +264,7 @@ function blog_att($blogid){
 }
 ?>
 <?php
-//blog：日志标签
+//blog：日志标签(无样式)
 function blog_tag($blogid){
 	global $log_cache_tags; 
 	if (!empty($log_cache_tags[$blogid]))
@@ -264,7 +279,7 @@ function blog_tag($blogid){
 }
 ?>
 <?php
-//blog：日志作者
+//blog：日志作者(无样式)
 function blog_author($uid){
 	global $user_cache,$DB;
 	$author = $user_cache[$uid]['name'];
@@ -275,10 +290,9 @@ function blog_author($uid){
 }
 ?>
 <?php
-//blog：相邻日志
+//blog：相邻日志(无样式)
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
-	<div class="nextlog">
 	<?php if($prevLog):?>
 	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
@@ -288,7 +302,6 @@ function neighbor_log(){
 	<?php if($nextLog):?>
 		 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
-	</div>		
 <?php }?>
 <?php
 //blog：引用通告
