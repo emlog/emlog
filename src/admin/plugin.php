@@ -11,7 +11,7 @@ require_once(EMLOG_ROOT.'/model/C_plugin.php');
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
-if($action == '')
+if($action == '' && !$plugin)
 {
 	$emPlugin = new emPlugin($DB);
 
@@ -41,10 +41,10 @@ if($action == 'inactive')
 	header("Location: ./plugin.php?inactive=true");
 }
 //加载插件配置页面
-if ($action == '' && $plug)
+if ($action == '' && $plugin)
 {
 	include getViews('header');
-	require_once(getViews($plug_page.'_config.php'));
+	require_once("../content/plugins/{$plugin}/{$plugin}_set.php");
 	include getViews('footer');
 }
 

@@ -19,12 +19,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId && !$uid ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+<span <?php echo !$sid && !$tagId && !$uid ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
 <span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
 <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
-<?php if(ROLE == 'admin'):?>
 <span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
-<?php endif; ?>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
 	分类：<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>">未分类</a></span>
@@ -48,10 +46,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'].$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
 	<?php endforeach;?>
 </div>
-<?php if(ROLE == 'admin'):?>
 <div id="f_user" <?php echo $isDisplayUser ?>>
 	作者：
 	<?php foreach($users as $key => $val):
+		if (ROLE != 'admin' && $key != UID){
+			continue;
+		}
 		$a = 'user_'.$key;
 		$$a = '';
 		$b = 'user_'.$uid;
@@ -61,7 +61,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<span <?php echo $$a; ?>><a href="./admin_log.php?uid=<?php echo $key.$isdraft; ?>"><?php echo $val['name']; ?></a></span>
 	<?php endforeach;?>
 </div>
-<?php endif; ?>
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
