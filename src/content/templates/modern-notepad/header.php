@@ -15,7 +15,7 @@ require_once (getViews('module'));
 <!--[if IE ]>
 <link type="text/css" rel="stylesheet" media="screen" href="<?php echo CERTEMPLATE_URL; ?>/ie.css" />
 <![endif]-->
-<?php doAction('index_header'); ?>
+<?php doAction('index_head'); ?>
 </head>
 <body>
 	<div class="top-line"><div class="bottom-line">

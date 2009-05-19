@@ -44,8 +44,19 @@ if($action == 'inactive')
 if ($action == '' && $plugin)
 {
 	include getViews('header');
-	require_once("../content/plugins/{$plugin}/{$plugin}_set.php");
+	require_once("../content/plugins/{$plugin}/{$plugin}_setting.php");
+	plugin_setting_veiw();
 	include getViews('footer');
+}
+//保存插件设置
+if ($action == 'setting')
+{
+	if(!empty($_POST))
+	{
+		require_once("../content/plugins/{$plugin}/{$plugin}_setting.php");
+		plugin_setting();
+	}
+	header("Location: ./plugin.php?plugin={$plugin}&setting=true");
 }
 
 ?>

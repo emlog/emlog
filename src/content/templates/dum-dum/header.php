@@ -20,7 +20,7 @@ require_once (getViews('module'));
 
 
 <script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
-<?php doAction('index_header'); ?>
+<?php doAction('index_head'); ?>
 </head>
 <body>
 <div class="all">

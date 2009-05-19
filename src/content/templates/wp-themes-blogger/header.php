@@ -34,7 +34,7 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
         *html .excrept_in {height: 1%;}
     </style>
     <![endif]-->
-<?php doAction('index_header'); ?>
+<?php doAction('index_head'); ?>
 </head>
 <body>
 <body>

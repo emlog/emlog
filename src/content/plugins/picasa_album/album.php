@@ -12,11 +12,19 @@ $calendar_url = BLOG_URL.'calendar.php?' ;
 
 $album = isset($_GET['album']) ? $_GET['album'] : '';
 
+$account = '';
+$cachefile = './cache/account';
+if(@$fp = fopen($cachefile, 'r'))
+{
+	$account = @fread($fp,filesize($cachefile));
+	fclose($fp);
+}
+
 if (!$album)
 {
 	$XMLP = new SofeeXmlParser();
 
-	$feed = "http://picasaweb.google.com/data/feed/base/user/emloog?kind=album&access=public&hl=zh_CN";
+	$feed = "http://picasaweb.google.com/data/feed/base/user/{$account}?kind=album&access=public&hl=zh_CN";
 
 	$XMLP->parseFile($feed);
 
@@ -60,7 +68,7 @@ if (!$album)
 if ($album)
 {
 	$XMLP = new SofeeXmlParser();
-	$feed = "http://picasaweb.google.com/data/feed/base/user/emloog/albumid/".$album."?hl=zh_CN";
+	$feed = "http://picasaweb.google.com/data/feed/base/user/{$account}/albumid/".$album."?hl=zh_CN";
 
 	$XMLP->parseFile($feed);
 	$albumData = $XMLP->getTree();
@@ -79,7 +87,7 @@ if ($album)
 		$thumb_width = $thumb['width'];
 		$thumb_height = $thumb['height'];
 		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s512$3', $thumb_url);
-	
+
 		$log_content .=	'
 
         <li>
@@ -87,13 +95,13 @@ if ($album)
 		<img src="'.$thumb_url.'" width="'.$thumb_width.'" height="'.$thumb_height.'"></a>
 		</li>';
 	}
-		$log_content .= '</ul>
+	$log_content .= '</ul>
     </div>';
 
 	$allow_remark = 'n';
 	$logid = '';
 
-	addAction('index_header', 'album_css');
+	addAction('index_head', 'album_css');
 
 	include getViews('header');
 	include getViews('page');
@@ -102,7 +110,7 @@ if ($album)
 
 function album_css()
 {
-echo <<<EOT
+	echo <<<EOT
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />

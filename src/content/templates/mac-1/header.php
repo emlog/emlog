@@ -14,7 +14,7 @@ require_once (getViews('module'));
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/dbx.css" type="text/css" media="screen, projection" />
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/print.css" type="text/css" media="print" />
 <script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
-<?php doAction('index_header'); ?>
+<?php doAction('index_head'); ?>
 </head>
 <body>
 <div id="page">

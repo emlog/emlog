@@ -11,7 +11,7 @@ Author URL: http://www.emlog.net/blog/
 
 function adm_album_menu()
 {
-	echo '<div class="sidebarsubmenu" id="menu_album"><a href="./plugin.php?plugin=picasa_album">picasa相册</a></div>';
+	echo '<div class="sidebarsubmenu" id="menu_picasa_album"><a href="./plugin.php?plugin=picasa_album">picasa相册</a></div>';
 }
 
 addAction('adm_sidebar_ext', 'adm_album_menu');

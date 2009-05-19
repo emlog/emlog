@@ -13,7 +13,7 @@ require_once (getViews('module'));
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php echo CERTEMPLATE_URL; ?>/css/style.css" type="text/css" media="screen" />
 <script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
-<?php doAction('index_header'); ?>
+<?php doAction('index_head'); ?>
 </head>
 <body>
 	<div id="header"><div class="inner clear">

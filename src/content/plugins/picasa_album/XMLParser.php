@@ -82,7 +82,7 @@ class SofeeXmlParser {
     * @since         
     */ 
     function parseFile($file) {
-        $data = @file_get_contents($file) or die("Can't open file $file for reading!");
+        $data = @file_get_contents($file) or die("获取相册信息失败，请稍后再试!");
         $this->parseString($data);
     }
 

@@ -193,6 +193,8 @@ src/content/cache/twitter -text svn_keywords=Id
 src/content/cache/user -text
 src/content/plugins/picasa_album/XMLParser.php -text
 src/content/plugins/picasa_album/album.php -text
+src/content/plugins/picasa_album/cache/account -text
+src/content/plugins/picasa_album/cache/album -text
 src/content/plugins/picasa_album/css/jquery.lightbox-0.5.css -text
 src/content/plugins/picasa_album/images/lightbox-blank.gif -text
 src/content/plugins/picasa_album/images/lightbox-btn-close.gif -text
@@ -204,7 +206,7 @@ src/content/plugins/picasa_album/js/jquery.lightbox-0.5.js -text
 src/content/plugins/picasa_album/js/jquery.lightbox-0.5.min.js -text
 src/content/plugins/picasa_album/js/jquery.lightbox-0.5.pack.js -text
 src/content/plugins/picasa_album/picasa_album.php -text
-src/content/plugins/picasa_album/picasa_album_set.php -text
+src/content/plugins/picasa_album/picasa_album_setting.php -text
 src/content/plugins/tips/icon_tips.gif -text
 src/content/plugins/tips/tips.php -text
 src/content/templates/ColdBlue/css/legacy.css -text
