@@ -351,20 +351,20 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/(href\=\".+?)(\/|\/index\.php)\?(post)=(\d+)(#*[\w]*)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(record)=(\d+)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(tag)=([%A-Za-z0-9]+)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(sort)=(\d+)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(author)=(\d+)\"/i",
-			"/(href\=\".+?)(\/|\/index\.php)\?(page)=(\d+)\"/i"
+			"/(href\=\".+?\/)\?(post)=(\d+)(#*[\w]*)\"/i",
+			"/(href\=\".+?\/)\?(record)=(\d+)\"/i",
+			"/(href\=\".+?\/)\?(tag)=([%A-Za-z0-9]+)\"/i",
+			"/(href\=\".+?\/)\?(sort)=(\d+)\"/i",
+			"/(href\=\".+?\/)\?(author)=(\d+)\"/i",
+			"/(href\=\".+?\/)\?(page)=(\d+)\"/i"
 			);
 			$replacelink = array(
-			"$1/$3-$4.html$5\"",
-			"$1/$3-$4.html\"",
-			"$1/$3-$4.html\"",
-			"$1/$3-$4.html\"",
-			"$1/$3-$4.html\"",
-			"$1/$3-$4.html\""
+			"$1$2-$3.html$4\"",
+			"$1$2-$3.html\"",
+			"$1$2-$3.html\"",
+			"$1$2-$3.html\"",
+			"$1$2-$3.html\"",
+			"$1$2-$3.html\""
 			);
 			$output = preg_replace($searchlink, $replacelink, $output);
 		}
