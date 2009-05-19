@@ -240,7 +240,6 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	);
 	$sider_wg = array(
 	'calendar',
-	'tag',
 	'archive',
 	'newcomm',
 	'link',
@@ -277,7 +276,7 @@ CREATE TABLE {$db_prefix}blog (
   password varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'hi blogger', '1230508801', '欢迎使用emlog ，开始你的博客之旅。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'hi blogger', '1230508801', '欢迎使用emlog开始你的博客之旅。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -360,7 +359,6 @@ CREATE TABLE {$db_prefix}tag (
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$add."
-INSERT INTO {$db_prefix}tag (tid, tagname,gid) VALUES (1, 'emlog', ',1,');
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid tinyint(3) unsigned NOT NULL auto_increment,
