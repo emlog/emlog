@@ -371,6 +371,7 @@ src/content/templates/black-splat-wr/images/topsplatleft.png -text
 src/content/templates/black-splat-wr/log_list.php -text
 src/content/templates/black-splat-wr/main.css -text
 src/content/templates/black-splat-wr/module.php -text
+src/content/templates/black-splat-wr/page.php -text
 src/content/templates/black-splat-wr/preview.jpg -text
 src/content/templates/black-splat-wr/side.php -text
 src/content/templates/bluemoon/echo_log.php -text
