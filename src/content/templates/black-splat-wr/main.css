@@ -608,14 +608,12 @@ div.aligncenter {
 }
 
 .sun {
-	background-color: #FF0033;
-	color: #fff;
+	color: #CC0000;
 	font-weight: bold;
 }
 
 .week {
-	background-color:#333;
-	color: #fff;
+	color: #666666;
 }
 
 .calendartop {
