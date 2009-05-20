@@ -10,11 +10,11 @@
 <p class="tags"><?php blog_att($logid); ?></p>
 <p class="tags"><?php blog_tag($logid); ?></p>
 <div id="nextprevious"><?php neighbor_log(); ?></div>
-</div> <!-- Closes Post -->
+</div>
 <?php blog_trackback(); ?>
 <?php blog_comments(); ?>
 <?php if ($allow_remark == 'y'){blog_comments_post();}?>
-</div></div> <!-- Closes Content -->
+</div></div>
 <div class="sidebars">
 <?php
 include getViews('side');
