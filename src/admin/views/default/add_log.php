@@ -82,6 +82,7 @@
           <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
           <input type="submit" value="发布日志" onclick="return chekform();" class="button" />
+          <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
           <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="button" />
 		  </td>
         </tr>
