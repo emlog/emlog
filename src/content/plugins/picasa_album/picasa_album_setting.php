@@ -4,11 +4,9 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 if(!defined('ADMIN_ROOT')) {exit('error!');}
-?>
-<?php 
+
 function plugin_setting_veiw()
 {
-
 $user_info = '';
 $cachefile = EMLOG_ROOT.'/content/plugins/picasa_album/cache/account';
 if(@$fp = fopen($cachefile, 'r'))
@@ -18,22 +16,22 @@ if(@$fp = fopen($cachefile, 'r'))
 }
 $account = $user_info['account'];
 $thum_width = $user_info['thum_width'];
-if($thum_width == 512)
+$ex1 = $ex2 = $ex3 = $ex4 = $ex5 = '';
+switch ($thum_width)
 {
-	$ex1 = 'selected="selected"';
-	$ex2 = '';
-}elseif ($thum_width == 800){
-	$ex1 = '';
-	$ex2 = 'selected="selected"';
+	case 512:$ex1 = 'selected="selected"';break;
+	case 576:$ex2 = 'selected="selected"';break;
+	case 640:$ex3 = 'selected="selected"';break;
+	case 720:$ex4 = 'selected="selected"';break;
+	case 800:$ex5 = 'selected="selected"';break;	
 }
-
 ?>
 <div class=containertitle><b>Picasa网络相册</b>
 <?php if(isset($_GET['setting'])):?><span class="actived">插件设置完成</span><?php endif;?>
 </div>
 <div class=line></div>
 <div>
-<img src="../content/plugins/picasa_album/images/logo.jpg">
+<img src="../content/plugins/picasa_album/images/logo.gif">
 <p>还没有Google Picasa网络相册账户？<a href="http://picasaweb.google.com/" target="_blank"> 注册一个</a></p>
 </div>
 <form action="plugin.php?plugin=picasa_album&action=setting" method="post">
@@ -43,7 +41,10 @@ if($thum_width == 512)
 	<p>照片缩放尺寸：
 	<select name="thum_width">
        <option value="512" <?php echo $ex1; ?>>512像素</option>
-       <option value="800" <?php echo $ex2; ?>>800像素</option>
+       <option value="576" <?php echo $ex2; ?>>576像素</option>
+       <option value="640" <?php echo $ex3; ?>>640像素</option>
+       <option value="720" <?php echo $ex4; ?>>720像素</option>
+       <option value="800" <?php echo $ex5; ?>>800像素</option>
     </select>
     </p>
 	<p><input type="submit" value="保 存" class="submit" /></p>

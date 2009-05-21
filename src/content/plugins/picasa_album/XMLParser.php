@@ -81,7 +81,7 @@ class SofeeXmlParser {
     * @since         
     */ 
     function parseFile($file) {
-        $data = @file_get_contents($file) or die("打开相册失败，请核对Picasa账户是否正确!");
+        $data = @file_get_contents($file) or emMsg("打开相册失败，请核对Picasa网络相册账户是否正确!");
         $this->parseString($data);
     }
 
@@ -101,8 +101,8 @@ class SofeeXmlParser {
         if ($this->dstenc !== null) {
             @xml_parser_set_option($this->parser, XML_OPTION_TARGET_ENCODING, $this->dstenc) or die('Invalid target encoding');
         }
-        xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);   // lowercase tags 
-        xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);       // skip empty tags 
+        xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
+        xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
         if (!@xml_parse_into_struct($this->parser, $data, &$this->_struct)) {
             printf("XML error: %s at line %d",  
                     xml_error_string(xml_get_error_code($this->parser)),  
@@ -124,7 +124,6 @@ class SofeeXmlParser {
     function getTree() {
         $i = 0;
         $tree = array();
-
         $tree = $this->addNode( 
             $tree,  
             $this->_struct[$i]['tag'],  
@@ -132,7 +131,6 @@ class SofeeXmlParser {
             (isset($this->_struct[$i]['attributes'])) ? $this->_struct[$i]['attributes'] : '',  
             $this->getChild($i) 
         );
-
         unset($this->_struct);
         return ($tree);
     }
@@ -191,7 +189,6 @@ class SofeeXmlParser {
                     $target[$key][$k] = $v;
                 }
             }
-             
             $target[$key]['value'] = $value;
         }else {
             if (!isset($target[$key][0])) {
@@ -202,11 +199,9 @@ class SofeeXmlParser {
             }else {
                 $index = count($target[$key]);
             }
-
             if ($child != '') {
                 $target[$key][$index] = $child;
             }
-
             if ($attributes != '') {
                 foreach ($attributes as $k => $v) {
                     $target[$key][$index][$k] = $v;
