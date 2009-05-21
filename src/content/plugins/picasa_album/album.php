@@ -1,7 +1,7 @@
 <?php
 /**
- * emlog相册插件
- * by：emlog
+ * google picasa相册插件
+ * @copyright (c) Emlog All Rights Reserved
  */
 require_once('XMLParser.php');
 require_once('../../../common.php');
@@ -28,11 +28,22 @@ if (!$album)
 	$albumData = $XMLP->getTree();
 	$albumData = $albumData['feed'];
 
+
 	$blogtitle =  $albumData['author']['name']['value'] . '的相册 - ' . $blogname;
 	$log_title =  $albumData['author']['name']['value'] . '的相册';
 	$log_content = '';
-
-	foreach ($albumData['entry'] as $val)
+	
+	$albums = isset($albumData['entry']) ? $albumData['entry'] : array();
+	
+	foreach ($albums as $val)
+	{
+		if(!is_array($val))
+		{
+			$albums = array($albums);
+			break;
+		}
+	}
+	foreach ($albums as $val)
 	{
 		$title = $val['media:group']['media:title']['value'];
 		$description = $val['media:group']['media:description']['value'];
@@ -74,16 +85,28 @@ if ($album)
 	$blogtitle =  $albumData['title']['value'] . ' - ' . $blogname;
 	$log_title =  $albumData['title']['value'];
 	$log_content = '
+	<div class="pic_back"> <a href="./album.php">&laquo;返回相册列表</a></div>
 	<div id="gallery">
-	<div class="pic_back"> <a href="#">返回相册列表</a></div>
 	<ul>';
-	foreach ($albumData['entry'] as $val)
+
+	$photos = isset($albumData['entry']) ? $albumData['entry'] : array();
+	
+	foreach ($photos as $val)
+	{
+		if(!is_array($val))
+		{
+			$photos = array($photos);
+			break;
+		}
+	}
+
+	foreach ($photos as $val)
 	{
 		$thumb = $val['media:group']['media:thumbnail'][1];
 		$thumb_url = $thumb['url'];
 		$thumb_width = $thumb['width'];
 		$thumb_height = $thumb['height'];
-		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s800$3', $thumb_url);
+		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s512$3', $thumb_url);
 
 		$log_content .=	'
         <li>
@@ -122,7 +145,7 @@ $('#gallery a').lightBox();
 #gallery ul li { display: inline; }
 #gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}
 #gallery ul a:hover img {border:1px solid #000;margin:5px;}
-#gallery  .pic_back a{ background:url(images/back.gif)  right no-repeat; padding:0px 20px;}
+.pic_back {text-align:center; font-size:12px; padding:0px 20px;}
 </style>
 EOT;
 }
@@ -130,11 +153,6 @@ EOT;
 function album_list_css()
 {
 echo <<<EOT
-<script type="text/javascript">
-$(function() {
-$('#gallery a').lightBox();
-});
-</script>
 <style type="text/css">
 #pic_list{font-size:12px;color: #666666;float:left;margin:3px;padding:0px;text-align:center;}
 #pic_list p{margin:0px; padding:0px;width:180px;}

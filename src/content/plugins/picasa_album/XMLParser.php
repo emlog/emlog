@@ -11,7 +11,7 @@
 * @author        Justin Wu <wenlong@php.net> 
 * @copyright     Copyright (c) 2004-2005 Sofee Development Team.(http://www.sofee.cn) 
 * @see           PEAR:XML_Parser | SimpleXML extension 
-*/ 
+*/
 class SofeeXmlParser {
     /** 
     * XML parser handle 
@@ -55,7 +55,6 @@ class SofeeXmlParser {
     function SofeeXmlParser($srcenc = 'UTF-8', $dstenc = 'UTF-8') {
         $this->srcenc = $srcenc;
         $this->dstenc = $dstenc;
-        // initialize the variable. 
         $this->parser = null;
         $this->_struct = array();
     }
@@ -99,7 +98,6 @@ class SofeeXmlParser {
         }else {
             $this->parser = @xml_parser_create($this->srcenc) or die('Unable to create XML parser resource with '. $this->srcenc .' encoding.');
         }
-         
         if ($this->dstenc !== null) {
             @xml_parser_set_option($this->parser, XML_OPTION_TARGET_ENCODING, $this->dstenc) or die('Invalid target encoding');
         }
@@ -113,7 +111,6 @@ class SofeeXmlParser {
             $this->free();
             exit();
         }
-         
         $this->_count = count($this->_struct);
         $this->free();
     }
@@ -148,39 +145,28 @@ class SofeeXmlParser {
     * @return        array 
     */ 
     function getChild(&$i) {
-        // contain node data 
         $children = array();
-
-        // loop 
         while (++$i < $this->_count) {
-            // node tag name 
             $tagname = $this->_struct[$i]['tag'];
             $value = isset($this->_struct[$i]['value']) ? $this->_struct[$i]['value'] : '';
             $attributes = isset($this->_struct[$i]['attributes']) ? $this->_struct[$i]['attributes'] : '';
 
             switch ($this->_struct[$i]['type']) {
                 case 'open': 
-                    // node has more children 
                     $child = $this->getChild($i);
-                    // append the children data to the current node 
                     $children = $this->addNode($children, $tagname, $value, $attributes, $child);
                     break;
                 case 'complete': 
-                    // at end of current branch 
                     $children = $this->addNode($children, $tagname, $value, $attributes);
                     break;
                 case 'cdata': 
-                    // node has CDATA after one of it's children 
                     $children['value'] .= $value;
                     break;
                 case 'close': 
-                    // end of node, return collected data  
                     return $children;
                     break;
             }
-         
         }
-        //return $children;
     }
 
     /** 
@@ -209,13 +195,11 @@ class SofeeXmlParser {
             $target[$key]['value'] = $value;
         }else {
             if (!isset($target[$key][0])) {
-                // is string or other 
                 $oldvalue = $target[$key];
                 $target[$key] = array();
                 $target[$key][0] = $oldvalue;
                 $index = 1;
             }else {
-                // is array 
                 $index = count($target[$key]);
             }
 

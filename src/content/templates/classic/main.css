@@ -195,6 +195,13 @@ div.contentA {
 	word-wrap: break-word;
 	border-bottom: #BBBBBB dashed 1px;
 }
+.logcontent2 {
+	background-color: #FFFFFF;
+	padding: 8px 8px 0px;
+	margin: 0px 10px;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
 
 #twitter li {
 	border-top: dotted #999999 1px;

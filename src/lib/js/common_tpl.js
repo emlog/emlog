@@ -1,26 +1,20 @@
 /*前台模板共享js*/
-function $(id){
-	if(typeof id == 'object')
-		return id;
-	if(typeof id == 'string')
-		return document.getElementById(id);
-}
 function focusEle(ele){
-	try {$(ele).focus();}
+	try {document.getElementById(ele).focus();}
 	catch(e){}
 }
 function displayToggle(ele) {
-	var ele = $(ele);
+	var ele = document.getElementById(ele);
 	ele.style.display = ele.style.display == 'none' ? '' : 'none' ;
 }
 function hideEle(ele) {
-	$(ele).style.display == 'none';
+	document.getElementById(ele).style.display == 'none';
 }
 function showEle(ele){
-	$(ele).style.display == '';
+	document.getElementById(ele).style.display == '';
 }
 function updateEle(ele,content){
-	$(ele).innerHTML = content;
+	document.getElementById(ele).innerHTML = content;
 }
 function timestamp(){
 	return new Date().getTime();
@@ -136,7 +130,7 @@ function postinfo(url,post_id,show_id){
 	xmlhttp.open("POST", url2, true);
 	xmlhttp.onreadystatechange = processRequest;
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-	var pdata = $(post_id).value;
+	var pdata = document.getElementById(post_id).value;
 	var querystring = post_id+"="+encodeURIComponent(pdata);
 	xmlhttp.send(querystring);
 }

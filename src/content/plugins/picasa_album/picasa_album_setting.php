@@ -1,4 +1,10 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php 
+/**
+ * google picasa相册插件
+ * @copyright (c) Emlog All Rights Reserved
+ */
+if(!defined('ADMIN_ROOT')) {exit('error!');}
+?>
 <?php 
 function plugin_setting_veiw()
 {
