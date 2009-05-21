@@ -57,6 +57,8 @@ if (!$album)
 	$allow_remark = 'n';
 	$logid = '';
 
+	addAction('index_head', 'album_list_css');
+	
 	include getViews('header');
 	include getViews('page');
 }
@@ -96,14 +98,14 @@ if ($album)
 	$allow_remark = 'n';
 	$logid = '';
 
-	addAction('index_head', 'album_css');
+	addAction('index_head', 'album_photo_css');
 
 	include getViews('header');
 	include getViews('page');
 }
 
-//相册css样式
-function album_css()
+//单个相册里的照片 css样式
+function album_photo_css()
 {
 echo <<<EOT
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -130,6 +132,23 @@ $('#gallery a').lightBox();
 		color: #fff;
 	}
 	#gallery ul a:hover { color: #fff; }
+</style>
+EOT;
+}
+//相册列表 css样式
+function album_list_css()
+{
+echo <<<EOT
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
+<script type="text/javascript">
+$(function() {
+$('#gallery a').lightBox();
+});
+</script>
+<style type="text/css">
+
 </style>
 EOT;
 }
