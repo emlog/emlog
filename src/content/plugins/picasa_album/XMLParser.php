@@ -81,7 +81,7 @@ class SofeeXmlParser {
     * @since         
     */ 
     function parseFile($file) {
-        $data = @file_get_contents($file) or die("获取相册信息失败，请稍后再试!");
+        $data = @file_get_contents($file) or die("打开相册失败，请核对Picasa账户是否正确!");
         $this->parseString($data);
     }
 

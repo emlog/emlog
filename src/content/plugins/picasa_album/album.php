@@ -11,13 +11,16 @@ $calendar_url = BLOG_URL.'calendar.php?' ;
 
 $album = isset($_GET['album']) ? $_GET['album'] : '';
 
-$account = '';
+$user_info = '';
 $cachefile = './cache/account';
 if(@$fp = fopen($cachefile, 'r'))
 {
-	$account = @fread($fp,filesize($cachefile));
+	$user_info = unserialize(fread($fp,filesize($cachefile)));
 	fclose($fp);
 }
+$account = $user_info['account'];
+$thum_width = $user_info['thum_width'];
+
 //显示相册列表
 if (!$album)
 {
@@ -106,7 +109,7 @@ if ($album)
 		$thumb_url = $thumb['url'];
 		$thumb_width = $thumb['width'];
 		$thumb_height = $thumb['height'];
-		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s512$3', $thumb_url);
+		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s'.$thum_width.'$3', $thumb_url);
 
 		$log_content .=	'
         <li>

@@ -97,15 +97,16 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right">开启登录验证码：<br /></td>
         <td class="care">
-				<select name="login_code">
+        <select name="login_code">
           <option value="y" <?php echo $ex1; ?>>是</option>
           <option value="n" <?php echo $ex2; ?>>否</option>
-        	</select>
+        </select>
         </td>
       </tr>
       <tr>
         <td align="right">开启评论验证码：<br /></td>
-        <td><select name="comment_code">
+        <td>
+        <select name="comment_code">
           <option value="y" <?php echo $ex3; ?>>是</option>
           <option value="n" <?php echo $ex4; ?>>否</option>
         </select>
