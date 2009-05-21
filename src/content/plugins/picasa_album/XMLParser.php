@@ -105,7 +105,7 @@ class SofeeXmlParser {
         }
         xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);   // lowercase tags 
         xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);       // skip empty tags 
-        if (!xml_parse_into_struct($this->parser, $data, &$this->_struct)) {
+        if (!@xml_parse_into_struct($this->parser, $data, &$this->_struct)) {
             printf("XML error: %s at line %d",  
                     xml_error_string(xml_get_error_code($this->parser)),  
                     xml_get_current_line_number($this->parser) 
