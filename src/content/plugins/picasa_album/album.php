@@ -44,14 +44,13 @@ if (!$album)
 		$thumb_width = $thumb['width'];
 		$thumb_height = $thumb['height'];
 		$log_content .=	'
-		<div>
-		<div>
+		<ul id="pic_list">
+		<li>
 		<a href="album.php?album='.$albumId.'">
 		<img src="'.$thumb_url.'" width="'.$thumb_width.'" height="'.$thumb_height.'"></a>
-		</div>
-		<p><a href="album.php?album='.$albumId.'">'.$title.'</a></p>
-		<p>'.$description.'</p>
-		</div>';
+		<p><a href="album.php?album='.$albumId.'">'.$title.'</a><br /><span>'.$description.'</span></p>
+		</li>
+		</ul>';
 	}
 
 	$allow_remark = 'n';
@@ -76,6 +75,7 @@ if ($album)
 	$log_title =  $albumData['title']['value'];
 	$log_content = '
 	<div id="gallery">
+	<div class="pic_back"> <a href="#">返回相册列表</a></div>
 	<ul>';
 	foreach ($albumData['entry'] as $val)
 	{
@@ -83,7 +83,7 @@ if ($album)
 		$thumb_url = $thumb['url'];
 		$thumb_width = $thumb['width'];
 		$thumb_height = $thumb['height'];
-		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s512$3', $thumb_url);
+		$photo_src = preg_replace('/^(.+\/)(s\d+)(.+)$/', '$1s800$3', $thumb_url);
 
 		$log_content .=	'
         <li>
@@ -117,21 +117,12 @@ $('#gallery a').lightBox();
 });
 </script>
 <style type="text/css">
-	#gallery {
-		padding: 10px;
-	}
-	#gallery ul { list-style: none; }
-	#gallery ul li { display: inline; }
-	#gallery ul img {
-		border: 5px solid #3e3e3e;
-		border-width: 5px 5px 20px;
-	}
-	#gallery ul a:hover img {
-		border: 5px solid #fff;
-		border-width: 5px 5px 20px;
-		color: #fff;
-	}
-	#gallery ul a:hover { color: #fff; }
+#gallery {padding: 10px;text-align:center; font-size:12px;}
+#gallery ul { list-style: none; }
+#gallery ul li { display: inline; }
+#gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}
+#gallery ul a:hover img {border:1px solid #000;margin:5px;}
+#gallery  .pic_back a{ background:url(images/back.gif)  right no-repeat; padding:0px 20px;}
 </style>
 EOT;
 }
@@ -139,16 +130,16 @@ EOT;
 function album_list_css()
 {
 echo <<<EOT
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
 <script type="text/javascript">
 $(function() {
 $('#gallery a').lightBox();
 });
 </script>
 <style type="text/css">
-
+#pic_list{font-size:12px;color: #666666;float:left;margin:3px;padding:0px;text-align:center;}
+#pic_list p{margin:0px; padding:0px;width:180px;}
+#pic_list li{width:180px;height:200px;margin:0px;padding:0px;list-style:none;}
+#pic_list li img{margin:0px;padding:0px;border-bottom:1px #fff solid;}
 </style>
 EOT;
 }
