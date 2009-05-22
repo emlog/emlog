@@ -88,7 +88,7 @@ if ($album)
 	$log_title =  $albumData['title']['value'];
 	$description =  $albumData['subtitle']['value'];
 	$log_content = '
-	<div>'.$description.'</div>
+	<div class="pic_info">'.$description.'</div>
 	<div class="pic_back"> <a href="./album.php">&laquo;返回相册列表</a></div>
 	<div id="gallery"><ul>';
 
@@ -142,6 +142,7 @@ $('#gallery a').lightBox();
 </script>
 <style type="text/css">
 #gallery {padding: 10px;text-align:center; font-size:12px;}
+.pic_info{ font-size:12px; color:#999999; padding:5px 17px; line-height:1.6;}
 #gallery ul { list-style: none; }
 #gallery ul li { display: inline; }
 #gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}

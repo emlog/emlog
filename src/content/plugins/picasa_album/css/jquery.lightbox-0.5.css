@@ -37,6 +37,7 @@
 	margin: 0 auto;
 }
 #lightbox-container-image { padding: 10px; }
+#lightbox-container-image #lightbox-image{ max-width:100%;}
 #lightbox-loading {
 	position: absolute;
 	top: 40%;
