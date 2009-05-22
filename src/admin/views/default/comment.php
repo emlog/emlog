@@ -33,9 +33,10 @@ $$a = "class=\"filter\"";
   	<thead>
       <tr class="rowstop">
         <td width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="320"><b>内容</b></td>
-        <td width="160"><b>评论者</b></td>
-        <td width="150"><b>时间</b></td>
+        <td width="300"><b>内容</b></td>
+        <td width="100"><b>评论者</b></td>
+        <td width="120"><b>时间</b></td>
+        <td width="260"><b>所属日志</b></td>
       </tr>
     </thead>
     <tbody>
@@ -44,12 +45,14 @@ $$a = "class=\"filter\"";
 	$ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 	$value['content'] = subString($value['content'],0,30);
+	$value['title'] = subString($value['title'],0,42);
 	?>
      <tr>
         <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" class="ids" /></td>
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
         <td><?php echo $value['poster']; ?></td>
         <td><?php echo $value['date']; ?></td>
+        <td><a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach; ?>
 	</tbody>

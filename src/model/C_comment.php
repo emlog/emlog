@@ -18,9 +18,11 @@ class emComment {
 	/**
 	 * 获取评论
 	 *
+	 * @param int $spot 0：前台 1：后台
 	 * @param int $blogId
+	 * @param string $hide
 	 * @param int $page
-	 * @return array $comment
+	 * @return array
 	 */
 	function getComments($spot = 0, $blogId = null, $hide = null, $page = null)
 	{
@@ -37,9 +39,8 @@ class emComment {
 		{
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition";
 		}else{
-			$sql = ROLE == 'admin' ?
-			"SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition" :
-			"SELECT *,a.hide FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID." ORDER BY a.cid DESC $condition";
+			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
+			$sql = "SELECT *,a.hide FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.cid DESC $condition";
 		}
 		$ret = $this->db->query($sql);
 		$comments = array();
@@ -51,7 +52,9 @@ class emComment {
 			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = date("Y-m-d H:i",$row['date']);
 			$row['reply'] = htmlClean($row['reply']);
-			$row['hide'] = $row['hide'];
+			//$row['hide'];
+			//$row['title'];
+			//$row['gid'];
 			$comments[] = $row;
 		}
 		return $comments;
