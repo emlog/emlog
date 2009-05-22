@@ -275,7 +275,6 @@ blockquote {
 /* Comments
 -------------------------------------------------------------------*/
 .comments-title { 
-	text-align: center; 
 	font: bold 22px "Trebuchet MS", Helvetica, Arial, Geneva; 
 	color: #414d4c; 
 }
@@ -327,9 +326,9 @@ blockquote {
 }
 #commentform p { margin-bottom: 7px; }
 #commentform textarea { 
-	width: 600px; 
+	width: 360px; 
 	border: 1px solid #aaa; 
-	height: 120px;
+	height: 200px;
 }
 #commentform input.text { 
 	width: 150px; 

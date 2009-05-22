@@ -234,7 +234,7 @@ function topflg($istop){
 <?php
 //blog：编辑(无样式)
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a> |' : '';
 	echo $editflg;
 }
 ?>
@@ -243,7 +243,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php
@@ -369,15 +369,15 @@ function blog_comments_post(){
 	<h1 class="comments-title"></h1>
 	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 				<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
-				<p><textarea name="comment" id="comment"></textarea></p>
-					<p><input type="text" name="comname" id="comname" class="text" value="" />
-					<label for="author">名字</label></p>
+				<p><input type="text" name="comname" id="comname" class="text" value="" />
+				<label for="author">名字</label></p>
 	
-					<p><input type="text" name="commail" id="commail" class="text" value="<?php echo $ckmail; ?>" />
-					<label for="email">电子邮件 (选填)</label></p>
+				<p><input type="text" name="commail" id="commail" class="text" value="<?php echo $ckmail; ?>" />
+				<label for="email">电子邮件 (选填)</label></p>
 	
-					<p><input type="text" name="comurl" id="comurl" class="text" value="<?php echo $ckurl; ?>" />
-					<label for="url">个人主页 (选填)</label></p>		
+				<p><input type="text" name="comurl" id="comurl" class="text" value="<?php echo $ckurl; ?>" />
+				<label for="url">个人主页 (选填)</label></p>	
+				<p><textarea name="comment" id="comment"></textarea></p>	
 				<p>
 				<?php echo $cheackimg; ?>
 				<input name="submit" type="submit" id="submit" value="发布我的评论" onclick="return checkform()" />
