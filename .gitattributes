@@ -442,7 +442,6 @@ src/content/templates/default/module.php -text
 src/content/templates/default/page.php -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
-src/content/templates/devart/comments.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text
 src/content/templates/devart/header.php -text
@@ -468,6 +467,7 @@ src/content/templates/devart/images/sidebar-bg.gif -text
 src/content/templates/devart/images/wrapper-bottom.gif -text
 src/content/templates/devart/log_list.php -text
 src/content/templates/devart/module.php -text
+src/content/templates/devart/page.php -text
 src/content/templates/devart/preview.jpg -text
 src/content/templates/devart/side.php -text
 src/content/templates/devart/style.css -text

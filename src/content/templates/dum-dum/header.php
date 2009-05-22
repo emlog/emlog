@@ -32,15 +32,22 @@ require_once (getViews('module'));
 <div class="menu1">
 <div class="menu2">
 <ul>
-
-<?php if(ISLOGIN): ?>
+	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+	<?php foreach ($navibar as $key => $val):
+	if ($val['hide'] == 'y'){continue;}
+	if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+	?>
+	<li class="nocurrent_page_item"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+	<?php endforeach;?>
+	<?php doAction('navbar', '<li>', '</li>'); ?>
+	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
-<?php else: ?>
+	<?php else: ?>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
-<?php endif; ?>
+	<?php endif; ?>
 </ul>
-</div> <!-- MENU 2 -->
-</div> <!-- MENU 1 -->
+</div>
+</div>
 </form>

@@ -1,6 +1,4 @@
-<?php
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content">
     <div class="post" id="post">
         <h1>
@@ -11,35 +9,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</h1>
 		<p>发布时间 <?php echo date('Y-n-j G:i l', $date); ?></p>
        <div class="post_p"> <?php echo $log_content; ?></div>
-		<p>
-			<?php 
-			$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
-			echo $attachment;
-			?>
-		</p>
-		<p>
-			<?php 
-			$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
-			echo $tag;
-			?>
-		</p>
-        <div class="post-info">
-          
-            <?php if($prevLog):?>
-                &laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
-            <?php endif;?>
-            <?php if($nextLog && $prevLog):?>
-                |
-            <?php endif;?>
-            <?php if($nextLog):?>
-                 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
-            <?php endif;?>
-        </div>
+		<p><?php blog_att($logid); ?></p>
+		<p><?php blog_tag($logid); ?></p>
+        <div class="post-info"><?php neighbor_log(); ?></div>
     </div>
-    
-	<?php include getViews('comments'); ?>
-
+	<?php blog_trackback(); ?>
+	<?php blog_comments(); ?>
+	<?php if ($allow_remark == 'y'){blog_comments_post();}?>
 </div>
-
 <?php include getViews('side'); ?>
 <?php include getViews('foot'); ?>

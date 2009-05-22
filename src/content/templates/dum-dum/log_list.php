@@ -1,14 +1,8 @@
-<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="content">
 <img src="<?php echo CERTEMPLATE_URL; ?>/images/img_08.jpg" alt="" />
-	<div class="contenttext">
-<?php 
-foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
-?>
-
+<div class="contenttext">
+<?php foreach($logs as $value):?>
 		<div class="post" id="post-<?php echo $value['logid']; ?>">
 			<div class="postheader">
 				<div class="postdate">
@@ -61,7 +55,6 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 	</div> <!-- CONTENT TEXT -->
 <img src="<?php echo CERTEMPLATE_URL; ?>/images/img_09.jpg" style="vertical-align: bottom;" alt="" />
 </div> <!-- CONTENT -->
-
 <?php
 include getViews('side'); 
 include getViews('footer');
