@@ -4,7 +4,7 @@ foreach($logs as $value):
 ?>
 	<div class="post">
 		<h2><?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
-			<div class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
+			<div class="date">Post by <?php blog_author($value['author']); ?> <?php echo date('Y-n-j G:i l', $value['date']); ?> <?php editflg($value['logid'],$value['author']); ?></div>
 					<div class="entry">
 						<p><?php echo $value['log_description']; ?></p>
 						<p><?php blog_att($value['logid']); ?></p>
@@ -14,8 +14,7 @@ foreach($logs as $value):
 						</div>
 						
 						<p class="postmetadata">
-						Filed under&#58;<br />
-						<?php blog_sort($value['sortid'], $value['logid']); ?>
+						<?php blog_sort($value['sortid'], $value['logid']); ?><br>
 						<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
 						<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 						</p>

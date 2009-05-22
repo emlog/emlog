@@ -2,7 +2,6 @@
 <div class="post">
 <h2 class="postTitle"><?php topflg($top); ?><?php echo $log_title; ?></h2>
 <p class="postMeta"><?php if($log_cache_sort[$logid]): ?>
-	filed in 
 	<?php blog_sort($sortid, $logid); ?>
 	<?php endif;?>post by <?php blog_author($author); ?> on<?php echo date('Y-n-j G:i l', $date); ?> <?php editflg($logid,$author); ?>
     </p>

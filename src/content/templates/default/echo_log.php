@@ -14,7 +14,6 @@
 	<div class="tag echo_tag"><?php blog_tag($logid); ?></div>
 	<div class="nextlog"><?php neighbor_log(); ?></div>
 	<?php blog_trackback(); ?>
-
 	<?php blog_comments(); ?>
 	<?php if ($allow_remark == 'y'){blog_comments_post();}?>
 </li>

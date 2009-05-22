@@ -341,6 +341,7 @@ src/content/templates/azul/images/sidebar_border.gif -text
 src/content/templates/azul/log_list.php -text
 src/content/templates/azul/main.css -text
 src/content/templates/azul/module.php -text
+src/content/templates/azul/page.php -text
 src/content/templates/azul/preview.jpg -text
 src/content/templates/azul/side.php -text
 src/content/templates/black-splat-wr/echo_log.php -text

@@ -213,7 +213,7 @@ function topflg($istop){
 <?php
 //blog：编辑(无样式)
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">(edit)</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -222,7 +222,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	Filed under:<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php
@@ -278,17 +278,18 @@ function neighbor_log(){
 function blog_trackback(){
 	global $allow_tb,$tbscode,$logid,$tb; ?>
 	<?php if($allow_tb == 'y'):?>	
-	<div id="trackback_address">
-	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
-	<a name="tb"></a></p>
+	<div id="tb_list">
+	<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 	</div>
 	<?php endif; ?>
+	
 	<?php foreach($tb as $key=>$value):?>
-		<ul id="trackback">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
-		</ul>
-	<?php endforeach; ?>	
+	<div class="comments-template">
+		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
+		<li>BLOG: <?php echo $value['blog_name'];?></li>
+		<li><?php echo $value['date'];?></li>
+	</div>
+	<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：博客评论列表
