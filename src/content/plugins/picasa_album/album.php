@@ -31,7 +31,6 @@ if (!$album)
 	$albumData = $XMLP->getTree();
 	$albumData = $albumData['feed'];
 
-
 	$blogtitle =  $albumData['author']['name']['value'] . '的相册 - ' . $blogname;
 	$log_title =  $albumData['author']['name']['value'] . '的相册';
 	$log_content = '';
@@ -49,7 +48,7 @@ if (!$album)
 	foreach ($albums as $val)
 	{
 		$title = $val['media:group']['media:title']['value'];
-		$description = $val['media:group']['media:description']['value'];
+		$description = subString($val['media:group']['media:description']['value'], 0, 30);
 		preg_match('/albumid\/(\d+)/', $val['id']['value'], $match);
 		$albumId = $match[1];
 		$thumb = $val['media:group']['media:thumbnail'];
@@ -87,10 +86,11 @@ if ($album)
 
 	$blogtitle =  $albumData['title']['value'] . ' - ' . $blogname;
 	$log_title =  $albumData['title']['value'];
+	$description =  $albumData['subtitle']['value'];
 	$log_content = '
+	<div>'.$description.'</div>
 	<div class="pic_back"> <a href="./album.php">&laquo;返回相册列表</a></div>
-	<div id="gallery">
-	<ul>';
+	<div id="gallery"><ul>';
 
 	$photos = isset($albumData['entry']) ? $albumData['entry'] : array();
 	
@@ -117,9 +117,7 @@ if ($album)
 		<img src="'.$thumb_url.'" width="'.$thumb_width.'" height="'.$thumb_height.'"></a>
 		</li>';
 	}
-	$log_content .= '
-	</ul>
-    </div>';
+	$log_content .= '</ul></div>';
 
 	$allow_remark = 'n';
 	$logid = '';
