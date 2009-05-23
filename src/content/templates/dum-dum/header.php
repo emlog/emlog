@@ -39,7 +39,7 @@ require_once (getViews('module'));
 	?>
 	<li class="nocurrent_page_item"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 	<?php endforeach;?>
-	<?php doAction('navbar', '<li>', '</li>'); ?>
+	<?php doAction('navbar', '<li class="nocurrent_page_item">', '</li>'); ?>
 	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
 	<li class="nocurrent_page_item"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>

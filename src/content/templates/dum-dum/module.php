@@ -37,7 +37,7 @@ function widget_calendar($title){
 				</div>
 			</li>
 		</ul>
-		</div> <!-- BOX2 TEXT -->
+		</div> 
 	</div> 
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 <?php }?>
@@ -53,8 +53,8 @@ function widget_tag($title){
 			<a style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;" href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a>
 		<?php endforeach; ?>			
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：分类
@@ -71,8 +71,8 @@ function widget_sort($title){
 		</li>
 		<?php endforeach; ?>			
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：twitter
@@ -107,7 +107,7 @@ function widget_twitter($title){
 			<?php endif;?>
 			</li>
 		</ul>
-		</div> <!-- BOX2 TEXT -->
+		</div> 
 	</div> 
 <?php } ?>
 <?php 
@@ -120,8 +120,8 @@ function widget_music($title){
 		<li><h2><?php echo $title; ?></h2>
 		<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 		</ul>
-		</div> <!-- BOX1 TEXT -->
-	</div> <!-- BOX1 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：最新评论
@@ -145,8 +145,8 @@ function widget_newcomm($title){
 		<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
 		<?php endforeach; ?>			
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：最新日志
@@ -160,8 +160,8 @@ function widget_newlog($title){
 		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>			
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：随机日志
@@ -182,8 +182,8 @@ function widget_random_log($title){
 		<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 		<?php endforeach; ?>		
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：归档
@@ -197,7 +197,7 @@ function widget_archive($title){
 			<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
 		</ul>
-		</div> <!-- BOX2 TEXT -->
+		</div> 
 	</div>
 <?php } ?>
 <?php
@@ -233,8 +233,8 @@ function widget_link($title){
 			<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 			<?php endforeach; ?>
 		</ul>
-		</div> <!-- BOX1 TEXT -->
-	</div> <!-- BOX1 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //widget：博客信息
@@ -250,8 +250,8 @@ function widget_bloginfo($title){
 			<li>今日访问：<?php echo $viewcount_day; ?></li>
 			<li>总访问量：<?php echo $viewcount_all; ?></li>
 		</ul>
-		</div> <!-- BOX3 TEXT -->
-	</div> <!-- BOX3 -->
+		</div> 
+	</div> 
 <?php }?>
 <?php
 //blog：置顶(无样式)
@@ -264,7 +264,7 @@ function topflg($istop){
 <?php
 //blog：编辑(无样式)
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">(edit)</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '编辑:<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">edit</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -273,7 +273,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	Filed under:<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
+	分类:<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php
@@ -328,48 +328,50 @@ function neighbor_log(){
 //blog：引用通告
 function blog_trackback(){
 	global $allow_tb,$tbscode,$logid,$tb; ?>
-	<?php if($allow_tb == 'y'):?>	
-	<div id="tb_list">
-	<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
-	</div>
-	<?php endif; ?>
-	
-	<?php foreach($tb as $key=>$value):?>
-	<div class="comments-template">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li>
-		<li><?php echo $value['date'];?></li>
-	</div>
-	<?php endforeach; ?>
+		<div style="clear: both; height: 20px;"></div>
+		
+		<?php if($allow_tb == 'y'):?>
+		<div class="cite2"><cite>
+		<span class="author">引用地址：
+		<input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
+		<a name="tb"></a></span>
+		</cite></div>
+		<?php endif; ?>
+
+		<?php foreach($tb as $key=>$value):?>
+		<ol class="commentlist">
+				<li class="alt" id="comment-1">
+		<cite>
+		<span class="author"><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></span>
+		<span class="time">引用时间:<?php echo $value['date'];?></span><br />
+		标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br />
+		摘要:<?php echo $value['excerpt'];?>
+		</cite>
+		</ol>
+		<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：博客评论列表
 function blog_comments(){
 	global $comments; ?>
-	<div class="comments-template">
-	<?php if($comments): ?>
-	<h3 id="comments">评论:<a name="comment"></a></h3>
-	<?php endif; ?>
-	
-	<ol class="commentlist">
-	<?php
-	foreach($comments as $key=>$value):
-	$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
-	?>
-	<li class="alt">
+		<div style="clear: both; height: 20px;"></div>
+		<ol class="commentlist">
+		<?php
+		foreach($comments as $key=>$value):
+		$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
+		?>
 		<a name="<?php echo $value['cid']; ?>"></a>
-		<b><?php echo $value['poster']; ?> </b>
+		<li class="alt" id="comment-1">
+		<div class="cite2"><cite>
+		<span class="author"><?php echo $value['poster']; ?>
 		<?php if($value['mail']):?>
-			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+		<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
 		<?php endif;?>
 		<?php if($value['url']):?>
 			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
 		<?php endif;?>
-			<?php echo $value['date']; ?>
-			<br />
-			<?php echo $value['content']; ?>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
-		<?php if(ISLOGIN === true): ?>
+		</span><span class="time"><?php echo $value['date']; ?></span>
+		<?php if(ISLOGIN === true): ?>	
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
@@ -378,46 +380,37 @@ function blog_comments(){
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
-	</li>
-	<?php endforeach; ?>
-</ol>
-</div>
+		</cite>
+		<div style="clear: both;"></div>
+		</div>
+		<div class="commenttext"><div class="commenttext2">
+		<p><?php echo $value['content']; ?></p>
+		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+		</div></div>
+		</li>
+		<?php endforeach; ?>
+		</ol>
 <?php }?>
 <?php
 //blog：发表评论表单
 function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
-	<?php if($allow_remark == 'y'): ?>
-	<p><b>发表评论:</b><a name="comment"></a></p>
-	<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
-	<table width="620" border="0" cellspacing="8" cellpadding="0">
-	<tr>
-	<td class="f14">姓　 名：</td>
-	<td>
-	<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
-	<input type="text" name="comname" style="width:200px" maxlength="49" value="<?php echo $ckname; ?>" class="input"></td>
-	</tr>
-	<tr>
-	<td class="f14">电子邮件:</td>
-	<td><input type="text" name="commail" style="width:300px" maxlength="128"  value="<?php echo $ckmail; ?>" class="input"> (选填)</td>
-	</tr>
-	<tr>
-	<td class="f14">个人主页:</td>
-	<td><input type="text" name="comurl" style="width:300px" maxlength="128"  value="<?php echo $ckurl; ?>" class="input"> (选填)</td>
-	</tr>
-	<tr>
-	<td valign="top" class="f14">内　 容：</td>
-	<td><textarea name="comment" style="width:520px;height:155px" class="textarea"></textarea>
-	</td>
-	</tr>
-	
-	<tr>
-	<td valign="top"class="f14">&nbsp;</td>
-	<td valign="top" class="f14">
-	<?php echo $cheackimg; ?> <input name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
-	</td>
-	</tr>
-	</table>
-	</form>
-	<?php endif; ?>
+	<div class="comm">
+		<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
+		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />
+		<label for="author"><small>姓名</small></label></p>
+		
+		<p><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="22" tabindex="2" />
+		<label for="email"><small>电子邮件(选填)</small></label></p>
+		
+		<p><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="22" tabindex="3" />
+		<label for="url"><small>主页</small></label></p>
+		<p><textarea name="comment" id="comment" cols="54" rows="10" tabindex="4"></textarea></p>
+		
+		<p><?php echo $cheackimg; ?>
+		<input name="submit" type="submit" id="submit" tabindex="5" src="http://localhost/wordpress/wp-content/themes/dum-dum/img/comm/trimite.jpg" value="发表评论" />
+		<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
+		</p>
+		</form>
+		</div>
 <?php }?>

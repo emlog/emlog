@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once (getViews('module'));
 ?>

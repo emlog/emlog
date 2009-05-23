@@ -3,9 +3,7 @@
 <ul>
 <li>
 	<h2 class="content_h2"><?php topflg($top); ?><?php echo $log_title; ?></h2>
-	<?php if($log_cache_sort[$logid]): ?>
 	<div class="act"><?php blog_sort($sortid, $logid); ?></div>
-	<?php endif;?>
 	<div class="editor"><?php editflg($logid,$author); ?></div>
 	<div class="clear line"></div>
     <div class="bloger">post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?></div>
