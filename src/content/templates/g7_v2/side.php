@@ -5,7 +5,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="search">
 <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 <div>
-<input type="text" name="keyword" id="s" value="输入搜索" onfocus="this.value=''" onblur="this.value='输入搜索';this.style.color='#CCCCCC';" />
+<input type="text" name="keyword" id="s" />
 <input type="submit" id="go" value="" onclick="return keyw()"/>
 </div>
 </form>
