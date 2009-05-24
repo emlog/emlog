@@ -29,11 +29,10 @@ function isLogin()
 /**
  * 验证密码/用户
  *
- * @param unknown_type $username
- * @param unknown_type $password
- * @param unknown_type $imgcode
- * @param unknown_type $logincode
- * @return boolean
+ * @param string $username
+ * @param string $password
+ * @param string $imgcode
+ * @param string $logincode
  */
 function checkUser($username,$password,$imgcode,$logincode)
 {
@@ -46,9 +45,9 @@ function checkUser($username,$password,$imgcode,$logincode)
 		$userData = getUserDataByLogin($username);
 		if ($userData === false)
 		{
-			return false;//用户名不存在
+			return false;
 		} elseif ($logincode == 'y' && $imgcode != $_SESSION['code']) {
-			return false;//验证码错误
+			return false;
 		} else {
 			$hash = $userData['password'];
 			$check = checkPassword($password, $hash);

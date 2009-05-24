@@ -25,15 +25,22 @@ foreach ($widgets as $val)
 	}
 }
 ?>
+	<li class="logserch"><h2 onclick="showhidediv('meta')">META</h2>
+	<ul id="meta">
+	<?php foreach ($navibar as $key => $val):
+	if ($val['hide'] == 'y'){continue;}
+	if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+	?>
+		<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+	<?php endforeach;?>
+	<?php doAction('navbar', '<li>', '</li>'); ?>
+	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+		<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+		<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+		<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+	<?php else: ?>
+		<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+	<?php endif; ?>
+	</ul>
 
-</ul>
-<ul>
-<?php if(ISLOGIN): ?>
-	<a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
-	<a href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
-	<a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
-<?php else: ?>
-	<a href="<?php echo BLOG_URL; ?>admin/">登录</a>
-<?php endif; ?>
-</ul>
 </div>
