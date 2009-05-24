@@ -7,22 +7,18 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </ul>
 </div>
 <div id="content">
-<?php
-foreach($logs as $value):
-?>
-<div class="post" id="post-<?php echo $value['logid'];?>">
+<?php foreach($logs as $value):?>
+<div class="post">
 <div class="date"><span><?php echo date('Y', $value['date']); ?></span>
 <?php echo date('j', $value['date']); ?></div>
 <div class="title">
 <h2>
-<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
-<?php if($log_cache_sort[$value['logid']]): ?>
-<span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
-<?php endif;?>
+<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 </h2>
 <div class="postdata">
+post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?>
 <span class="comments"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#comment" title="<?php echo $value['log_title'];?> 的评论"><?php echo $value['comnum'];?> Comments &#187;</a></span></div>
-
 </div>
 <div class="entry">
 <?php echo $value['log_description'];?>
@@ -36,9 +32,9 @@ foreach($logs as $value):
  	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
 </em>
 </p>
-          </div>
+</div>
 
-	</div>
+</div>
 <?php endforeach; ?>
 <p><?php echo $page_url;?></p>
 
