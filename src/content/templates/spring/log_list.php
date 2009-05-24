@@ -4,17 +4,16 @@ foreach($logs as $value):
 ?>
 <div class="post" id="post-<?php echo $value['logid'];?>">
 <h2 class="posttitle">
-<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 </h2>
 
 <p class="postmeta"> 
-Posted on <?php echo date('Y-n-j G:i l', $value['date']); ?><br />
+post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?> 
+<?php blog_sort($value['sortid'], $value['logid']); ?> 
+<?php editflg($value['logid'],$value['author']); ?><br />
 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#tb">引用(<?php echo $value['tbcount'];?>)</a> 
 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>">浏览(<?php echo $value['views'];?>)</a>
-<?php if($log_cache_sort[$value['logid']]): ?>
- <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>
-<?php endif;?>
 </p>
 <div class="postentry">
 <?php echo $value['log_description'];?>
