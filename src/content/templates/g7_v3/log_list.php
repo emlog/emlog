@@ -1,29 +1,18 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 <h2>
-<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
-<?php if($log_cache_sort[$value['logid']]): ?>
-<span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
-<?php endif;?>
+<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 </h2>
-<p class="postdata">Posted in <?php echo date('Y-n-j G:i l', $value['date']); ?></p>
+<p class="postdata">post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?> 
+<?php editflg($value['logid'],$value['author']); ?>
+</p>
 <div id="content_post">
 	<p><?php echo $value['log_description'];?></p>
-	<p>
-		<?php 
-		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-		echo $attachment;
-		?>
-	</p>
-	<p>
-		<?php 
-		$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-		echo $tag;
-		?>
-	</p>
+	<p><?php blog_att($value['logid']); ?></p>
+	<p><?php blog_tag($value['logid']); ?></p>
 	<p class="tags"><?php echo $value['tag'];?></p>
 	<p class="postinfo" >				  
  	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
