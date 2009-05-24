@@ -239,3 +239,164 @@ function widget_bloginfo($title){
         </div>
       </div>
 <?php }?>
+<?php
+//blog：置顶(无样式)
+function topflg($istop){
+	global $log_cache_sort; 
+	$topflg = $istop == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
+	echo $topflg;
+}
+?>
+<?php
+//blog：编辑(无样式)
+function editflg($logid,$author){
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	echo $editflg;
+}
+?>
+<?php 
+//blog：分类(无样式)
+function blog_sort($sort, $blogid){
+	global $log_cache_sort; ?>
+	<?php if($log_cache_sort[$blogid]): ?>
+	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	<?php endif;?>
+<?php }?>
+<?php
+//blog：文件附件(无样式)
+function blog_att($blogid){
+	global $log_cache_atts; 
+	$attachment = !empty($log_cache_atts[$blogid]) ? '文件附件：'.$log_cache_atts[$blogid] : '';
+	echo $attachment;
+}
+?>
+<?php
+//blog：日志标签(无样式)
+function blog_tag($blogid){
+	global $log_cache_tags; 
+	if (!empty($log_cache_tags[$blogid]))
+	{
+		$tag = '标签:';
+		foreach ($log_cache_tags[$blogid] as $value)
+		{
+			$tag .= "	<a href=\"".BLOG_URL."?tag=".urlencode($value['tagname'])."\">".htmlspecialchars($value['tagname']).'</a>';
+		}
+		echo $tag;
+	}
+}
+?>
+<?php
+//blog：日志作者(无样式)
+function blog_author($uid){
+	global $user_cache,$DB;
+	$author = $user_cache[$uid]['name'];
+	$mail = $user_cache[$uid]['mail'];
+	$des = $user_cache[$uid]['des'];
+	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
+	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
+}
+?>
+<?php
+//blog：相邻日志(无样式)
+function neighbor_log(){
+	global $prevLog,$nextLog; ?>
+	<?php if($prevLog):?>
+	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	<?php endif;?>
+	<?php if($nextLog && $prevLog):?>
+		|
+	<?php endif;?>
+	<?php if($nextLog):?>
+		 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+	<?php endif;?>
+<?php }?>
+<?php
+//blog：引用通告
+function blog_trackback(){
+	global $allow_tb,$tbscode,$logid,$tb; ?>
+	<?php if($allow_tb == 'y'): ?>	
+	<p class="info">
+	<h2 id="comments">引用：</h2>
+	<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>
+	<a name="tb"></a></h2>
+	</p>
+	<?php endif; ?>	
+	<ol class="commentlist">
+	<?php foreach($tb as $key=>$value): ?>
+		
+			<li class="alt" id="comment-2"><a name="<?php echo $value['cid'];?>"></a>
+				<strong>Trackback by:</strong><cite><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></cite>
+							<br />
+	
+				<small class="commentmetadata"> <?php echo $value['date'];?> </small>
+	
+				<p><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br/>
+		<?php echo $value['excerpt'];?></p>
+	
+			</li>	
+	<?php endforeach; ?>	
+	</ol>	
+<?php }?>
+<?php
+//blog：博客评论列表
+function blog_comments(){
+	global $comments; ?>
+	<ol class="commentlist">
+	<?php
+	foreach($comments as $key=>$value):
+	$reply = $value['reply']?"<span style=\"color:#669900;\"><b>博主回复</b>：{$value['reply']}</span>":'';
+	?>
+		
+			<li class="alt" id="comment-2"><a name="<?php echo $value['cid'];?>"></a>
+				<cite><?php echo $value['poster'];?></cite>
+						<?php if($value['mail']):?>
+							<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+						<?php endif;?>
+						<?php if($value['url']):?>
+							<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+						<?php endif;?>
+				 说：
+							<br />
+				<small class="commentmetadata"> <?php echo $value['date'];?> </small>
+				<p><?php echo $value['content'];?></p>
+				<p><div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply;?></div></p>
+		<?php if(ISLOGIN === true): ?>	
+			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
+			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
+			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
+			<br />
+			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
+			</div>
+		<?php endif; ?>
+			</li>	
+	<?php  endforeach; ?>	
+	</ol>
+<?php }?>
+<?php
+//blog：发表评论表单
+function blog_comments_post(){
+	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
+	<?php if($allow_remark == 'y'): ?>
+	<h3 id="respond">发布评论</h3>
+	<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
+	<p><input type="text" name="comname" id="comname" value="<?php echo $ckname;?>" size="22" tabindex="1" class="input2"/>
+	<label for="author">姓名</label>
+	</p>
+	
+	<p><input type="text" name="commail" id="commail" value="<?php echo $ckmail;?>" size="22" tabindex="2" class="input2"/>
+	<label for="email">电子邮件地址 (选填)</label>
+	</p>
+	
+	<p><input type="text" name="comurl" id="commail" value="<?php echo $ckurl;?>" size="22" tabindex="2" class="input2"/>
+	<label for="email">个人主页 (选填)</label>
+	</p>
+	
+	<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+	
+	<p><?php echo $cheackimg;?><input name="submit" type="submit" id="submit" tabindex="5" value="发布我的评论" onclick="return checkform()"  />
+	<input type="hidden" name="gid" value="<?php echo $logid;?>" />
+	</p>
+	</form>
+	<?php endif; ?>
+<?php }?>

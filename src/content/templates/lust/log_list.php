@@ -3,14 +3,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="maincolumn">
 <div class="clear"></div>
-<?php
-foreach($logs as $value):
-?>
-		<div class="post" id="post-<?php echo $value['logid'];?>">
+<?php foreach($logs as $value):?>
+		<div class="post">
 		<div class="wrapper">
 			<div class="postmeta">
 				<ul>
-					<li>Posted on: <?php echo date('Y-n-j G:i l', $value['date']); ?></li>
+					<li>post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?> 
+					<?php editflg($value['logid'],$value['author']); ?>
+					</li>
 					<li> 
 						<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
 						<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#tb">引用(<?php echo $value['tbcount'];?>)</a> 
@@ -19,10 +19,8 @@ foreach($logs as $value):
 				</ul>
 			</div>
 <h2>
-<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
-<?php if($log_cache_sort[$value['logid']]): ?>
-<span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>">[<?php echo $log_cache_sort[$value['logid']]; ?>]</a></span>
-<?php endif;?>
+<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 </h2>
 
 <div class="entry">
