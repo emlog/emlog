@@ -11,7 +11,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 
 																					<li>
@@ -25,22 +24,10 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 																	</div>
 
 								<div class="paddings-p"><?php echo $value['log_description']; ?></div>
-                                	<p>
-		<?php 
-		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-		echo $attachment;
-		?>
-	</p>
+								<p><?php blog_att($value['logid']); ?></p>
 								<div class="clear"></div>
-
-								
 								<div class="info">
-                                <span class="tag "><?php 
-		$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-		echo $tag;
-		?></span><br />
-                                
-                                
+                                <span class="tag "><?php blog_tag($value['logid']); ?></span><br />
                                 <span class="date"><?php echo date('Y-n-j G:i l', $value['date']); ?></span>
 									<span class="comment">
 											<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>

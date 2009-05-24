@@ -2,7 +2,6 @@
 <div class="narrowcolumn">
 <?php
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 <div class="post">
 <div class="postdate"><?php echo date('Y-n-j G:i l', $value['date']); ?></div>
@@ -14,18 +13,8 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 </h2>
 <div class="entry">
 <?php echo $value['log_description'];?>
-<p>
-<?php 
-$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-echo $attachment;
-?>
-</p>
-<p>
-<?php 
-$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-echo $tag;
-?>
-</p>
+<p><?php blog_att($value['logid']); ?></p>
+<p><?php blog_tag($value['logid']); ?></p>
 <p class="postinfo">
  	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#comment">评论(<?php echo $value['comnum'];?>)</a>
  	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>#tb">引用(<?php echo $value['tbcount'];?>)</a> 

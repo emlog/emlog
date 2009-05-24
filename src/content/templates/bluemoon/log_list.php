@@ -21,18 +21,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		</div>
 		<div class="logdes">
 		<?php echo $value['log_description']; ?>
-		<p>
-			<?php 
-			$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-			echo $attachment;
-			?>
-		</p>
-		<p>
-			<?php 
-			$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-			echo $tag;
-			?>
-		</p>
+		<p><?php blog_att($value['logid']); ?></p>
+		<p><?php blog_tag($value['logid']); ?></p>
 		</div>
 		<div class="clear"></div>
 		<div class="permalink">

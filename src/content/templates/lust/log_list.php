@@ -5,7 +5,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="clear"></div>
 <?php
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 		<div class="post" id="post-<?php echo $value['logid'];?>">
 		<div class="wrapper">
@@ -28,18 +27,8 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 
 <div class="entry">
 <?php echo $value['log_description'];?>
-<p>
-	<?php 
-	$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-	echo $attachment;
-	?>
-</p>
-<p>
-	<?php 
-	$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-	echo $tag;
-	?>
-</p>
+<p><?php blog_att($value['logid']); ?></p>
+<p><?php blog_tag($value['logid']); ?></p>
 </div>
 </div>
 </div>

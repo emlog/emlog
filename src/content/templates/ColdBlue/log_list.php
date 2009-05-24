@@ -1,7 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 			<div class="post" id="post-1">
 				
@@ -16,17 +15,9 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 				<div class="post-content">
 					<?php echo $value['log_description']; ?>
 				</div>
-	<p>
-		<?php 
-		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-		echo $attachment;
-		?>
-	</p>
-	<span><?php 
-		$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-		echo $tag;
-		?></span>
-		<div class="post-p"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
+	<p><?php blog_att($value['logid']); ?></p>
+	<span><?php blog_tag($value['logid']); ?></span>
+	<div class="post-p"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
 	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a></div>
 			</div>

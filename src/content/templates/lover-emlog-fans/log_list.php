@@ -1,6 +1,4 @@
-<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <!--博客说明或者页面当前位置-->
 <div id="center_small">
 	<div class="clear"></div>
@@ -15,30 +13,23 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="center_box">
 <!--页面左侧日志部分-->
 	<div id="left_box">
-<?php
-foreach($logs as $value):
-$datetime = explode("-",$value['post_time']);
-$year = $datetime['0']."/".$datetime['1'];
-$day = substr($datetime['2'],0,2);
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
-?>
+<?php foreach($logs as $value):?>
     	<div class="note_box">
     		<div class="note_title">
             <div class="p"></div>
-       <?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
+			<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
         	</div>
         	<div class="note_content">
-       <?php echo $value['log_description']; ?>
+       		<?php echo $value['log_description']; ?>
+			<p><?php blog_att($value['logid']); ?></p>
+			<p><?php blog_tag($value['logid']); ?></p>
         	</div>
         	<div class="note_tag">
             	<div class="note_tag_text1">
-            	<?php if($log_cache_sort[$value['logid']]): ?>
-	<span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a></span>
-	<?php endif;?>
-            	</div>
-                <div class="note_tag_text2">
-            	<?php echo date('Y-n-j G:i l', $value['date']); ?>
-            	</div>
+            	post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?>
+            	<?php blog_sort($value['sortid'], $value['logid']); ?> 
+				<?php editflg($value['logid'],$value['author']); ?>
+				</div>
                 <div class="note_tag_text3">
             	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
             	</div>

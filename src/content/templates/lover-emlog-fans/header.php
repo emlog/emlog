@@ -31,14 +31,22 @@ require_once (getViews('module'));
         	<div id="header_dh_left">
             </div>
             <div id="header_dh_cen">
-                <span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>">首页</a></span>
-				<?php if(ISLOGIN): ?>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></span>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></span>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></span>
-				<?php else: ?>
-				<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></span>
-				<?php endif; ?>          
+			
+			<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>">首页</a></span>
+			<?php foreach ($navibar as $key => $val):
+			if ($val['hide'] == 'y'){continue;}
+			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+			?>
+			<span class="header_dh_cen_text"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></span>
+			<?php endforeach;?>
+			<?php doAction('navbar', '<span class="header_dh_cen_text">', '</span>'); ?>
+			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+			<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></span>
+			<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></span>
+			<?php else: ?>
+			<span class="header_dh_cen_text"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></span>
+			<?php endif; ?> 
             </div>
             <div id="header_dh_right">
             </div>

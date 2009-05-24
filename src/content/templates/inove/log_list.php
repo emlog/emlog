@@ -1,7 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
-$topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  alt=\"置顶日志\" />" : '';
 ?>
 	<div class="post">
 			<h2><?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
@@ -13,20 +12,16 @@ $topFlg = $value['toplog'] == 'y' ? "<img src=\"".CERTEMPLATE_URL."/images/impor
 			</div>
 			<div class="content">
 				<p><?php echo $value['log_description']; ?></p>
-				<p>
-		<?php 
-		$attachment = !empty($log_cache_atts[$value['logid']]) ? '<b>文件附件：</b>'.$log_cache_atts[$value['logid']] : '';
-		echo $attachment;
-		?>
-	</p>
+				<p><?php blog_att($value['logid']); ?></p>
 				<p class="under">
-				<span class="categories"><?php if($log_cache_sort[$value['logid']]): ?>
-	<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
-	<?php endif;?> <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a></span>					<span class="tags"><?php 
-		$tag  = !empty($log_cache_tags[$value['logid']]) ? '标签:'.$log_cache_tags[$value['logid']] : '';
-		echo $tag;
-		?></span>				</p>
+				<span class="categories">
+				<?php if($log_cache_sort[$value['logid']]): ?>
+				<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
+				<?php endif;?> 
+				<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+				<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a></span>
+				<span class="tags"><?php blog_tag($value['logid']); ?></span>
+				</p>
 			</div>
 		</div>
 
