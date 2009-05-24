@@ -39,7 +39,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 {
 	session_start();
 	global $DB;
-	if (trim($username) == '' || trim($username) == '')
+	if (trim($username) == '' || trim($password) == '')
 	{
 		return false;
 	} else {
