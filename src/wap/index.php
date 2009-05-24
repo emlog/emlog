@@ -30,7 +30,7 @@ if(!isset($action) || empty($action))
 		echo "<a href=\"?action=waplogin\">登录</a><br />\n";
 	}
 	echo "<br />\n";
-	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$sta_cache['day_view_count']})总访问量({$sta_cache['view_count']})<br />\n";
+	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$viewcount_day})总访问量({$viewcount_all})<br />\n";
 	echo "</p>\n";
 	wap_footer();
 }
