@@ -1,14 +1,3 @@
-/*
-Theme Name: iNove
-Theme URI: http://wordpress.org/extend/themes/inove/
-Description: Inspired by <a href="http://maczone.sk/">MacZone.sk</a>, created by <a href="http://www.neoease.com/">mg12</a>. It is very stylish, widget supported and doesn’t require any plugin.
-Version: 1.2.2
-Author: mg12
-Author URI: http://www.neoease.com/
-Tags: white, light, two-columns, fixed-width, theme-options, right-sidebar
-*/
-
-/* static START */
 * {
 	margin:0;
 	padding:0;
@@ -347,8 +336,7 @@ textarea {
 .post .comments, 
 .post .addcomment, 
 .post .editlinks {
-	background:url(images/icons.gif) no-repeat;
-	padding-left:22px;
+	padding-left:10px;
 	height:16px;
 	line-height:16px;
 	display:block;

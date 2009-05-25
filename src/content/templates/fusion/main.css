@@ -1,25 +1,3 @@
-/*
-Theme Name: Fusion
-Theme URI: http://www.digitalnature.ro/projects/fusion/
-Description: Two-columns, fixed-width (or fluid), with a light and clean design; Wordpress theme from <a href="http://www.digitalnature.ro/">digitalnature.ro</a>
-Version: 1.6
-Author: digitalnature.ro
-Author URI: http://www.digitalnature.ro/
-Tags: light, two-columns, fixed-width, right-sidebar, white
-
-	Fusion v1.6
-	  http://www.digitalnature.ro/projects/fusion/
-
-	Theme designed by digitalnature.ro. See the project page for more information
-
-	The CSS, XHTML and design is released under GPL.
-    http://www.opensource.org/licenses/gpl-license.php
-
-*/
-
-
-
-/* global prop. */
 *{
   margin: 0;
   padding: 0;
@@ -46,7 +24,7 @@ body{
 
 a{
   color: #2d83d5;
-  text-decoration: underline;
+  text-decoration:underline;
 }
 
 a:hover{
@@ -226,9 +204,25 @@ a#logo{
  line-height:30px;
 }
 
-#tabs a {
+#tabs li span {
  float:left;
  background:url(images/tab-left.png) no-repeat left top;
+ color:#0470a0;
+ padding-left:5px;
+ margin-right:3px;
+ _margin-bottom:-1px;
+ text-decoration:none;
+ color:#cfcfcf;
+ width:60px;
+ cursor: pointer; /* IE 7 bug-fix */
+}
+
+#tabs li a{
+ float:left;
+ display:block;
+ background:url(images/tab-right.png) no-repeat right top;
+ height: 29px;
+ padding-right: 10px;
  color:#0470a0;
  padding-left:10px;
  margin-right:3px;
@@ -239,21 +233,6 @@ a#logo{
  cursor: pointer; /* IE 7 bug-fix */
 }
 
-#tabs a span{
- float:left;
- display:block;
- background:url(images/tab-right.png) no-repeat right top;
- height: 29px;
- padding-right: 10px;
-}
-
-#tabs a span span{
- display:block;
- background:none;
- height: auto;
- padding: 4px 4px 0 4px;
-}
-
 /* Commented Backslash Hack hides rule from IE5-Mac \*/
 #tabs a span {float:none;}
 /* End IE5-Mac hack */
@@ -261,9 +240,13 @@ a#logo{
  color:#cfcfcf;
 }
 
+#tabs a:link{
+ text-decoration:none;
+}
 #tabs a:hover{
  background-position:0% -29px;
  color:#fff;
+ text-decoration:none;
 }
 #tabs a:hover span{
  background-position:100% -29px;

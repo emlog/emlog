@@ -1,25 +1,3 @@
-/*  
-Theme Name: SP142
-Theme URI: http://www.skinpress.com/
-Description: Custom blog design starts from just $500 @ <a href="http://www.askgraphics.com/blog-design.html">AskGraphics.com</a>.
-Version: 1.0
-Author: AskGraphics
-Author URI: http://www.AskGraphics.com/
-
-
-License Information :
-
-All templates are free to use as long as you leave the credits unchanged.
-You cannot claim these templates or modifications of these templates as yours.
-
-You cannot redistribute these templates on your website.
-
-You cannot modify these templates and distribute them.
-
-*/
-
-
-
 ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{
 	margin:0;
 	padding:0;
@@ -1094,14 +1072,11 @@ h3#respond{
 }
 
 .sun {
-	background-color: #591c32;
-	color: #fff;
+	color: #000000;
 	font-weight: bold;
 }
 
 .week {
-	background-color:#a53d62;
-	color: #fff;
 }
 
 .calendartop {

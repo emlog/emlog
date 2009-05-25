@@ -1,26 +1,3 @@
-/*
-Theme Name: Gear
-Theme URI: http://www.mymobiles.com/wordpress-themes/gear
-Description: High quality WordPress theme named "Gear". Includes a very customizable banner. Change visibility, banner's image (includes 6 variations: gear, bird, bulb, user, user2, binoculars), text through an options page. You may also change theme's background with available 13 patterns. Compatible with WordPress 2.7. Valid CSS & HTML. Theme is ready for localization. Please contact us, if you like to contribute your own language. Supported languages: Lithuanian, Italian, Danish. Designed by <a href="http://www.mymobiles.com">My Mobiles</a> Web Development Team.
-Version: 1.1.3
-Author: My Mobiles
-Author URI: http://www.mymobiles.com
-Tags: black, blue, dark, white, two-columns, fixed-width, theme-options, right-sidebar
-
-
-  BLUEPRINT CSS
-   * Version:         0.7.1 (2008-02-25) YYYY-MM-DD
-   * Website:         http://code.google.com/p/blueprintcss/
-   
-  == STRUCTURE: ========================
-   * Page width:            852 px
-   * Number of columns:     24
-   * Column width:          24 px
-   * Margin width:          12 px
-  ======================================
-   
-*/
-
 /* reset.css */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
 body {line-height:1.5;}
@@ -500,7 +477,6 @@ code {
 		}
 		.items ul li {
 			padding-left: 21px;
-			background: transparent url(images/ico/bullet-white.gif) no-repeat scroll 2px 6px;
 		}
 		.items ul li, .items ol li {
 			margin-bottom: 0.25em;
@@ -733,14 +709,11 @@ div.com {
 }
 
 .sun {
-	background-color: #666666;
-	color: #fff;
+	color: #FF3300;
 	font-weight: bold;
 }
 
 .week {
-	background-color: #666666;
-	color: #fff;
 }
 
 .calendartop {
