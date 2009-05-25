@@ -24,14 +24,23 @@ require_once (getViews('module'));
 	</div></div>
 	
 	<div id="search"><div class="inner clear">
-		<a id="rss-link" href="<?php echo BLOG_URL; ?>"><strong>首页</strong></a>
-		<?php if(ISLOGIN): ?>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
-<?php else: ?>
-	<a id="rss-link" href="<?php echo BLOG_URL; ?>admin/">登录</a>
-<?php endif; ?>
+	<ul id="nav-link">
+	<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+	<?php foreach ($navibar as $key => $val):
+	if ($val['hide'] == 'y'){continue;}
+	if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+	?>
+	<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+	<?php endforeach;?>
+	<?php doAction('navbar', '<li>', '</li>'); ?>
+	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+	<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+	<?php else: ?>
+	<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+	<?php endif; ?>
+	</ul>
 		<form name="keyform" method="get" id="searchform" action="<?php echo BLOG_URL; ?>"><div>
 	<input name="keyword"  type="text" value="" id="s" />
 	<input type="submit" id="searchsubmit" value="Search" onclick="return keyw()" />

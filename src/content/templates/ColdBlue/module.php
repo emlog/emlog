@@ -217,7 +217,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php
@@ -273,76 +273,80 @@ function neighbor_log(){
 function blog_trackback(){
 	global $allow_tb,$tbscode,$logid,$tb; ?>
 	<?php if($allow_tb == 'y'):?>	
-	<div id="trackback_address">
-	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
-	<a name="tb"></a></p>
+	<div id="trackback1">
+	<p><b>引用地址：</b> <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
 	</div>
 	<?php endif; ?>
-	<?php foreach($tb as $key=>$value):?>
-		<ul id="trackback">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
-		</ul>
+	
+	<?php 
+	foreach($tb as $key=>$value):
+	?>
+	<div class="trackback">
+		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
+		<li>BLOG: <?php echo $value['blog_name'];?></li>
+		<li><?php echo $value['date'];?></li>
+	</div>
 	<?php endforeach; ?>	
 <?php }?>
 <?php
 //blog：博客评论列表
 function blog_comments(){
 	global $comments; ?>
-	<?php if($comments): ?>
-	<p class="comment"><b>评论：</b><a name="comment"></a></p>
-	<?php endif; ?>
+	<ul class="post-comments clear">
+	<?php if($comments): ?><h3>评论:<a name="comment"></a></h3><?php endif; ?>
 	<?php
 	foreach($comments as $key=>$value):
-	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
+	$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 	?>
-	<div id="com_line">
-		<a name="<?php echo $value['cid']; ?>"></a>
-		<b><?php echo $value['poster']; ?> </b>
-		<?php if($value['mail']):?>
-			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
-		<?php endif;?>
-		<?php if($value['url']):?>
-			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
-		<?php endif;?>
-			<div class="time"><?php echo $value['date']; ?></div>
-			<div class="com_date">
-			<?php echo $value['content']; ?>
-			</div>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
-		<?php if(ROLE == 'admin'): ?>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
-			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
-			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
-			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
-			</div>
-		<?php endif; ?>
+	<li class="comment clear alt" id="comment-1">
+	<cite class="comment-author"><a name="<?php echo $value['cid']; ?>"></a>
+	<b><?php echo $value['poster']; ?> </b>		
+	</cite>
+	<div class="comment-content">
+	<p><?php echo $value['content']; ?>
+		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div><br /><?php echo $value['date']; ?><?php if($value['mail']):?>
+		<a  href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
+	<?php endif;?>
+	<?php if($value['url']):?>
+		<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
+	<?php endif;?>
+		<?php if(ISLOGIN === true): ?>
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
+		<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
+		<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
+		<br />
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
+		</div>
+	<?php endif; ?>
+	</p>
 	</div>
-	<?php endforeach; ?>
+	</li>
+	<?php endforeach; ?>		
+	</ul>
 <?php }?>
 <?php
 //blog：发表评论表单
 function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
-	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
-	<div class="comment_post">
+	<h3>发表评论</h3>
 	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">
-	<label for="author"><small>昵称</small></label></p>
+	<label for="author"><small>Name (required)</small></label></p>
 	<p>
 	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2"> 
-	<label for="email"><small>邮件地址 (选填)</small></label></p>
+	<label for="email"><small>Mail</small></label></p>
 	<p><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-	<label for="url"><small>个人主页 (选填)</small></label>
+	<label for="url"><small>Website</small></label></p>
+	<p>
+	<textarea name="comment" id="comment" cols="60" rows="10" tabindex="4"></textarea>
 	</p>
-	<p><textarea name="comment" id="comment"  rows="10" tabindex="4"></textarea></p>
-	<p><div class="comment_yz"><?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
+	<p>
+	<?php echo $cheackimg; ?><input name="Submit" type="submit" value="发表评论" onclick="return checkform()" />
+	</p>
 	</form>
-	</div>
 	<?php endif; ?>
 <?php }?>
