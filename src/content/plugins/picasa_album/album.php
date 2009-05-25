@@ -148,7 +148,7 @@ $('#gallery a').lightBox();
 #gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}
 #gallery ul a:hover img {border:1px solid #000;margin:5px;}
 .pic_back {text-align:center; font-size:12px; padding:0px 20px;}
-</style>
+
 EOT;
 }
 //相册列表 css样式
@@ -158,7 +158,7 @@ echo <<<EOT
 <style type="text/css">
 #pic_list{font-size:12px;color: #666666;float:left;margin:3px;padding:0px;text-align:center;}
 #pic_list p{margin:0px; padding:0px;width:180px;}
-#pic_list li{width:180px;height:200px;margin:0px;padding:0px;list-style:none;}
+#pic_list li{width:180px;height:210px;margin:0px !important;padding:0px;list-style:none; overflow:hidden; float:left;}
 #pic_list li img{margin:0px;padding:0px;border-bottom:1px #fff solid;}
 </style>
 EOT;
