@@ -1,20 +1,15 @@
-﻿<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
+﻿<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content">
-<?php
-foreach($logs as $value):
-?>
+<?php foreach($logs as $value):?>
 <div class="entry single">
 <h1>
-<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid'];?>"><?php echo $value['log_title'];?></a>
+<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a> 
+<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 </h1>
 <p class="info">
 <em class="date">
-<?php if($log_cache_sort[$value['logid']]): ?>
- <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>
-<?php endif;?>
-Posted on <?php echo date('Y-n-j G:i l', $value['date']); ?>
+<?php echo date('Y-n-j G:i l', $value['date']); ?> / post by <?php blog_author($value['author']); ?> 
+<?php editflg($value['logid'],$value['author']); ?>
 </em>
 </p>
 <div class="post"><?php echo $value['log_description'];?></div>
