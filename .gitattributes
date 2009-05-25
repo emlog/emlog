@@ -1168,7 +1168,6 @@ src/content/templates/wp-cute/page.php -text
 src/content/templates/wp-cute/preview.jpg -text svn_keywords=Id
 src/content/templates/wp-themes-blogger/echo_log.php -text
 src/content/templates/wp-themes-blogger/footer.php -text
-src/content/templates/wp-themes-blogger/function.php -text
 src/content/templates/wp-themes-blogger/header.php -text
 src/content/templates/wp-themes-blogger/images/bg.png -text
 src/content/templates/wp-themes-blogger/images/bg_cal_today.gif -text
@@ -1190,6 +1189,7 @@ src/content/templates/wp-themes-blogger/js/date.js -text
 src/content/templates/wp-themes-blogger/js/pngfix.js -text
 src/content/templates/wp-themes-blogger/log_list.php -text
 src/content/templates/wp-themes-blogger/main.css -text
+src/content/templates/wp-themes-blogger/module.php -text
 src/content/templates/wp-themes-blogger/page.php -text
 src/content/templates/wp-themes-blogger/preview.jpg -text
 src/content/templates/wp-themes-blogger/side.php -text
