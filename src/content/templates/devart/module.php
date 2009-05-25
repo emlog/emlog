@@ -6,7 +6,7 @@ function widget_blogger($title){
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
 	<div class="block" id="bloger">
 		<h3 style="text-align:left;"><?php echo $title; ?></h3>
-		<?php echo $user_cache[1]['photo']; ?><br />
+		<?php echo BLOG_URL; ?><?php echo $user_cache[1]['photo']; ?><br />
         <?php echo $name; ?><br />
 		<span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
         <?php if(ROLE == 'admin'): ?>

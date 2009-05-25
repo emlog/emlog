@@ -7,7 +7,7 @@ function widget_blogger($title){
     <div class="box categories">
 	<div class="header"><h3 onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></h3></div>
 	<ul style="text-align:center" id="bloggerinfo">
-	<li><?php echo $user_cache[1]['photo']; ?></li>
+	<li><?php echo BLOG_URL; ?><?php echo $user_cache[1]['photo']; ?></li>
 	<li><b><?php echo $name; ?></b></li>
 		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ROLE == 'admin'): ?>

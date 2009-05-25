@@ -6,7 +6,7 @@ function widget_blogger($title){
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
   <H2 onClick="showhidediv('bloggerinfo')"><?php echo $title; ?></H2>
    <ul id="bloggerinfo" >
-	<li><?php echo $user_cache[1]['photo']; ?></li>
+	<li><?php echo BLOG_URL; ?><?php echo $user_cache[1]['photo']; ?></li>
 	<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 	<?php if(ROLE == 'admin'): ?>
 	<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
