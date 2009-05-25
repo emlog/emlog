@@ -8,7 +8,11 @@ function widget_blogger($title){
 		<div class="box1text">
 		<ul>
 		<li><h2><?php echo $title; ?></h2>
-		<li style="text-align:center;"><?php echo BLOG_URL; ?><?php echo $user_cache[1]['photo']; ?></li>
+		<li style="text-align:center;">
+		<?php if (!empty($user_cache[1]['photo']['src'])): ?>
+		<img src="<?php BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php $user_cache[1]['photo']['width']; ?>" height="<?php $user_cache[1]['photo']['height']; ?>" alt=\"blogger\" />
+		<?php endif;?>
+		</li>
 		<li style="text-align:center;"><b><?php echo $name; ?></b></li>
 			<li style="text-align:center;"><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 			<?php if(ROLE == 'admin'): ?>

@@ -8,7 +8,11 @@ function widget_blogger($title){
 	<h3 class="dbx-handle" onclick="showhidediv('blogger')"><?php echo $title; ?></h3>
 	<div class="dbx-content" id="blogger">
 	<ul>
-	<p align="center"><?php echo BLOG_URL; ?><?php echo $user_cache[1]['photo']; ?></p>
+		<p align="center">
+		<?php if (!empty($user_cache[1]['photo']['src'])): ?>
+		<img src="<?php BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php $user_cache[1]['photo']['width']; ?>" height="<?php $user_cache[1]['photo']['height']; ?>" alt=\"blogger\" />
+		<?php endif;?>
+		</p>
 		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ROLE == 'admin'): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
