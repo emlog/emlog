@@ -21,7 +21,7 @@ img{
 #page {
 	BACKGROUND-COLOR: white; 
 	TEXT-ALIGN: left;
-	background: url("<?php echo BLOG_URL; ?>images/kubrickbg.gif") repeat-y top; 
+	background: url("images/kubrickbg.gif") repeat-y top; 
 	border: none;
 	margin:auto;
 }
@@ -330,13 +330,10 @@ HR {
 
 }
 .sun{
-	background-color:#FF4C4C;
-	color: #CCFF00;
+	color: #FF3333;
 	font-weight:bold;
 }
 .week{
-	background-color:#FF4C4C;
-	color:#FFFFFF;
 	}
 .calendartop{
 	text-align:center;

@@ -1,23 +1,20 @@
-<?php
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content" class="narrowcolumn">
-<?php 
-if(!defined('EMLOG_ROOT')) {exit('error!');}
-foreach($logs as $value):
-?>
+<?php foreach($logs as $value):?>
 			<div class="post" id="post-1">
                 <div class="post-top">
                     <div class="post-title">
-					<h2><?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a></h2>
+					<h2>
+					<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+					</h2>
 					<h4>
 					<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
 					</h4>
                     </div>
 					<h3>
-					<?php if($log_cache_sort[$value['logid']]): ?>
-					Posted in <span><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>  |  </span>
-					<?php endif;?>Posted on <?php echo date('Y-n-j G:i l', $value['date']); ?>
+					<?php blog_sort($value['sortid'], $value['logid']); ?> 
+					post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?> 
+					<?php editflg($value['logid'],$value['author']); ?>
 					</h3>
                 </div>
 
