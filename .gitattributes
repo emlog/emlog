@@ -1112,29 +1112,6 @@ src/content/templates/spring/module.php -text
 src/content/templates/spring/page.php -text
 src/content/templates/spring/preview.jpg -text svn_keywords=Id
 src/content/templates/spring/side.php -text svn_keywords=Id
-src/content/templates/techpress/echo_log.php -text svn_keywords=Id
-src/content/templates/techpress/footer.php -text svn_keywords=Id
-src/content/templates/techpress/header.php -text svn_keywords=Id
-src/content/templates/techpress/images/background_body.gif -text svn_keywords=Id
-src/content/templates/techpress/images/background_footer.gif -text svn_keywords=Id
-src/content/templates/techpress/images/background_header.jpg -text svn_keywords=Id
-src/content/templates/techpress/images/background_topmenu.jpg -text svn_keywords=Id
-src/content/templates/techpress/images/dotted_horizontal.gif -text svn_keywords=Id
-src/content/templates/techpress/images/dotted_vertical.gif -text svn_keywords=Id
-src/content/templates/techpress/images/icon_rss.gif -text
-src/content/templates/techpress/images/import.gif -text
-src/content/templates/techpress/images/modify.gif -text
-src/content/templates/techpress/images/player.swf -text
-src/content/templates/techpress/images/reply.gif -text
-src/content/templates/techpress/images/rss.gif -text svn_keywords=Id
-src/content/templates/techpress/images/topmenu_bullet.gif -text svn_keywords=Id
-src/content/templates/techpress/log_list.php -text svn_keywords=Id
-src/content/templates/techpress/main.css -text svn_keywords=Id
-src/content/templates/techpress/module.php -text
-src/content/templates/techpress/page.php -text
-src/content/templates/techpress/preview.jpg -text svn_keywords=Id
-src/content/templates/techpress/side.php -text svn_keywords=Id
-src/content/templates/techpress/style_comments_popup.css -text svn_keywords=Id
 src/content/templates/wblix/echo_log.php -text svn_keywords=Id
 src/content/templates/wblix/footer.php -text svn_keywords=Id
 src/content/templates/wblix/header.php -text svn_keywords=Id
