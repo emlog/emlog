@@ -148,7 +148,7 @@ $('#gallery a').lightBox();
 #gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}
 #gallery ul a:hover img {border:1px solid #000;margin:5px;}
 .pic_back {text-align:center; font-size:12px; padding:0px 20px;}
-
+</style>
 EOT;
 }
 //相册列表 css样式
