@@ -10,7 +10,7 @@ function widget_blogger($title){
 	<br />
 		<div id="bloggerinfoimg">
 		<?php if (!empty($user_cache[1]['photo']['src'])): ?>
-		<img src="<?php BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php $user_cache[1]['photo']['width']; ?>" height="<?php $user_cache[1]['photo']['height']; ?>" alt=\"blogger\" />
+		<img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
 		<?php endif;?>
 		</div>
 		<li style="background:0;"><b><?php echo $name; ?></b></li>
