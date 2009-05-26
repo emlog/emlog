@@ -1,12 +1,3 @@
-/*
-	Theme Name: Wp-Them.es Blogger
-	Theme URL: http://www.wp-them.es/wp-themes-blogger-theme/
-	Description: Two column theme with options menu, 3 level dropdown menu, featured contect section and banner management. Right sidebar fixed with theme with clean design by <a href="http://www.wp-them.es">Wp-Them.es</a>. New build in contact form in the theme.
-	Author: Wp-Them.es
-	Author URI: http://www.wp-them.es
-	Version: 1.6
-    Tags: brown, light, two-columns, fixed-width, theme-options, right-sidebar
-*/
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
@@ -823,14 +814,11 @@ h6, h6 a, h6 a:visited{font-size:11px;}
 }
 
 .sun {
-	background-color: #990000;
-	color: #fff;
+	color: #FF3300;
 	font-weight: bold;
 }
 
 .week {
-	background-color: #333333;
-	color: #fff;
 }
 
 .calendartop {

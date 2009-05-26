@@ -61,18 +61,23 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
     <div id="navbar">
         <div id="navigation">
             <div id="nav_left">
-                <ul id="nav">
-                <ul>
-<?php if(ISLOGIN): ?>
-	<li><a href="<?php echo BLOG_URL; ?>">Home</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
-<?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>">Home</a></li>
-	<li  class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
-<?php endif; ?>
-</ul>
+				<ul id="nav">
+					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+					<?php foreach ($navibar as $key => $val):
+					if ($val['hide'] == 'y'){continue;}
+					if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+					?>
+					<li class="cat-item cat-item-1"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+					<?php endforeach;?>
+					<?php doAction('navbar', '<li class="cat-item cat-item-1">', '</li>'); ?>
+					<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+					<?php else: ?>
+					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+					<?php endif; ?>
+				</ul>
           </div>
             <div id="nav_right">
                         <a href="<?php echo BLOG_URL; ?>rss.php" target="_blank">Subscribe to RSS</a>
