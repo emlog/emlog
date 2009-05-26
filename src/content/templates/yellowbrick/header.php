@@ -45,9 +45,18 @@ require_once (getViews('module'));
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>">home</a>
+					<a href="<?php echo BLOG_URL; ?>">首页</a>
 				</td>
-				<?php if(ISLOGIN): ?>
+				<?php foreach ($navibar as $key => $val):
+				if ($val['hide'] == 'y'){continue;}
+				if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+				?>
+				<td width="50">|</td>
+				<td><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></td>
+				<?php endforeach;?>
+				<td width="50">|</td>
+				<?php doAction('navbar', '<td>', '</td>'); ?>
+				<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 				<td width="50">|</td>
 				<td>
 					<a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
@@ -60,12 +69,12 @@ require_once (getViews('module'));
 				<td>
 					<a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
 				</td>
-<?php else: ?>
-	<td width="50">|</td>
+				<?php else: ?>
+				<td width="50">|</td>
 				<td>
 					<a href="<?php echo BLOG_URL; ?>admin/">登录</a>
 				</td>
-<?php endif; ?>
+				<?php endif; ?>
 			</tr>
 		</table>
 	</div>

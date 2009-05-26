@@ -3,12 +3,10 @@
 		<tr>
 			<td valign="top" id="blog_left">
 				<div class="item_class">
-
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 foreach($logs as $value):
 ?>
-		
 				<table cellpadding="0" cellspacing="0" width="540">
 							<tr>
 								<td valign="top" class="item_date">
@@ -20,14 +18,13 @@ foreach($logs as $value):
 								<td width="10"></td>
 								<td valign="top" class="item_titles">
 									<div class="item_title1">
-										<?php echo $topFlg; ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
+									<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 									</div>
 									<div class="item_title2">
-									<?php if($log_cache_sort[$value['logid']]): ?>
-									Filed Under <span class="sort"><a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a></span>
-
-	<?php endif;?>
-										Post on <?php echo date('Y-n-j G:i l', $value['date']); ?></i>
+									<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
+									post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?>
+									<?php editflg($value['logid'],$value['author']); ?>
+									</i>
 									</div>
 									<div class="item_text">
 										<?php echo $value['log_description']; ?>
@@ -64,15 +61,15 @@ foreach($logs as $value):
 	<div class="navigation">
 		<div id="pageurl"><?php echo $page_url;?></div>
 		</div>
-				</div>
+			</div>
                 <br />
-			</td>
+		</td>
 		<td valign="top" id="blog_right">
-						<div id="blog_right_top">
+					<div id="blog_right_top">
 				</div>
-				<div id="blog_right_pad">
-						<div id="sidebar">
-		<ul>
+			<div id="blog_right_pad">
+		<div id="sidebar">
+	<ul>
 <?php 
 include getViews('side');
 include getViews('footer'); ?>

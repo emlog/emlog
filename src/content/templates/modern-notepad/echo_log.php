@@ -3,21 +3,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
  <div id="main"><div id="main-block">
  <div id="content">
-    	            <ul>
-            	    <li class="post" id="post-1">
-                		<div class="content">
-                            <div class="title">
-                        	    <h2><?php echo $log_title; ?></h2>
-                            </div>
+     <ul>
+    <li class="post" id="post-1">
+    	<div class="content">
+    <div class="title">
+    <h2><?php echo $log_title; ?></h2>
+    </div>
 							<div class="postdata">
-                               <?php if($log_cache_sort[$logid]): ?>
+       <?php if($log_cache_sort[$logid]): ?>
 <span class="category">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
 <?php endif;?>
-                                <span class="date"><?php echo date('Y-n-j G:i l', $date); ?></span>
-                            </div><!--.postdata-->
+        <span class="date"><?php echo date('Y-n-j G:i l', $date); ?></span>
+    </div><!--.postdata-->
 							
-                    		<div class="entry">
-                    		    <p><div class="log_desc"> <?php echo $log_content; ?></div>
+        	<div class="entry">
+        	    <p><div class="log_desc"> <?php echo $log_content; ?></div>
 <p>
 	<?php 
 	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
@@ -30,9 +30,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	echo $tag;
 	?>
 </p></p>
-                    		</div>
-               		  </div>
-                		<div class="footer"></div>
+        	</div>
+   	  </div>
+    	<div class="footer"></div>
 <div class="nextlog">
 <?php if($prevLog):?>
 	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
@@ -44,29 +44,21 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 <?php endif;?>
 </div>
-                	
-					
+</li>
+<li class="post">
+<div class="content">
 
-				
-					
-					</li>
-            	            	<li class="post">
-            		<div class="content">
-            			
-<!-- You can start editing here. -->
-
-    <h3>评论(<?php echo $comnum; ?>)</h3>
-
-    <ul class="comments-list">
+<h3>评论(<?php echo $comnum; ?>)</h3>
+<ul class="comments-list">
 <?php
 foreach($comments as $key=>$value):
 $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
 ?>
-                <li class="<?=$oddcomment;?>">
-            <a name="<?php echo $value['cid']; ?>"></a>
+<li class="<?=$oddcomment;?>">
+<a name="<?php echo $value['cid']; ?>"></a>
 	<b><?php echo $value['poster']; ?> </b> Says:<br />
            
-            <div class="comment"><p>	<?php echo $value['content']; ?>
+<div class="comment"><p>	<?php echo $value['content']; ?>
 		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
 	<?php if(ISLOGIN === true): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
@@ -89,12 +81,7 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 </div>
         </li>
 <?php endforeach; ?>
-        
-        
-    </ul>
-
- 
-
+</ul>
 <?php if($allow_remark == 'y'): ?>
 <a name="respond"></a><h3 id="leavecomment">Leave a Comment</h3>
 <form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom">
@@ -129,12 +116,10 @@ $reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":
 </form>
 <?php endif;?>
 
-            		</div>
-            		<div class="footer"></div>
-            	</li>
-				
-				
-				<?php if($allow_tb == 'y'):?>	
+	</div>
+	<div class="footer"></div>
+</li>
+<?php if($allow_tb == 'y'):?>	
 <li class="post">
 <div class="content">
 <div id="tb_list">
@@ -152,10 +137,10 @@ foreach($tb as $key=>$value):
 </li>
 
 <?php endif; ?>
-             </ul>
-            </div><!--#content-->
-			</div><!--#main-block-->
-
+</ul>
+</div><!--#content-->
+</div><!--#main-block-->
 <?php
-	include getViews('side'); 
-include getViews('footer'); ?>
+include getViews('side'); 
+include getViews('footer'); 
+?>
