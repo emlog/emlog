@@ -24,89 +24,20 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div class="post" id="post-<?php echo $logid; ?>">
       <h3>
 	  <a href="<?php echo BLOG_URL; ?>?post=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
-	  	<?php if($log_cache_sort[$logid]): ?>
-		<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>]</span>
-		<?php endif;?>
+		<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 	  </h3>
       <div class="post-inner">
         <div class="date-tab"><span class="month"><?php echo date('Y', $date); ?></span><span class="day"><?php echo date('j', $date); ?></span>				</div>
         <div class="thumbnail"></div>
 		<div class="post_P"><?php echo $log_content; ?></div>
-<p>
-	<?php 
-	$attachment = !empty($log_cache_atts[$logid]) ? '<b>文件附件</b>:'.$log_cache_atts[$logid] : '';
-	echo $attachment;
-	?>
-</p>
-<p>
-	<?php 
-	$tag = !empty($log_cache_tags[$logid]) ? '标签:'.$log_cache_tags[$logid] : '';
-	echo $tag;
-	?>
-</p>
+		<p><?php blog_att($logid); ?></p>
+		<p><?php blog_tag($logid); ?></p>
       </div>
     </div>
-    <div class="post-nav">
-	<?php if($nextLog):?>
-    <span class="previous"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"></a></span>
-    <?php endif;?>
-    <?php if($prevLog):?>
-    <span class="next"><a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"></a></span>
-    <?php endif;?>
-    </div>
-    <?php if($allow_tb == 'y'):?>	
-	<p><b>引用地址：</b><input type="text" style="width:300px" style="border:1px solid #939393;" value="<?php echo BLOG_URL; ?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>"><a name="tb"></a></p>
-	<?php endif; ?>
-	<?php foreach($tb as $key=>$value):?>
-	<div class="trackback">
-		<li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
-    	<li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-    	<li>摘要:<?php echo $value['excerpt'];?></li>
-		<li>引用时间:<?php echo $value['date'];?></li>
-	</div>
-	<?php endforeach; ?>
-	<ol class="commentlist">
-	<a name="comment"></a>
-		<?php
-		foreach($comments as $key=>$value):
-		$reply = $value['reply']?"<span><b>博主回复</b>：{$value['reply']}</span>":'';
-		?>
-		<li class="alt">
-			<a name="<?php echo $value['cid']; ?>"></a>
-			<span class="commentdate"><a href="#<?php echo $value['cid']; ?>" title=""><?php echo $value['date']; ?></a> </span>
-            <cite><?php echo $value['poster']; ?>
-            <?php if($value['mail']):?>
-			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
-			<?php endif;?>
-			<?php if($value['url']):?>
-            <a href="<?php echo $value['url'];?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">Home</a>
-            <?php endif;?>
-            </cite> Says:
-			<?php echo $value['content'];?>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
-			<?php if(ISLOGIN === true): ?>	
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
-			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
-			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
-			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
-			</div>
-			<?php endif; ?>
-		</li>
-		<?php endforeach; ?>
-	</ol>
-    <form action="<?php echo BLOG_URL; ?>?action=addcom" method="post" id="commentform">
-    <input type="hidden" name="gid" value="<?php echo $logid; ?>" />
-	<p><label for="author"><span class="name">Name:</span></label><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="2" class="comment-field" /></p>
-	<p><label for="email"><span class="email">Email:</span></label><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="22" tabindex="3" class="comment-field" /></p>
-	<p><label for="url"><span class="website">Website Address:</span></label><input type="text" name="comurl" id="url" value="<?php echo $ckurl; ?>" size="22" tabindex="4" class="comment-field" />
-	<span class="txt-website-example">Website example</span></p>
-	<p><span class="comments">Your Comment:</span><textarea name="comment" id="comment" rows="10" tabindex="1" class="comment-box"></textarea></p>
-	<p><input name="submit" type="submit" id="submit" class="btnComment" tabindex="5" value="Add Comment &raquo;" /><?php echo $cheackimg; ?>
-	</p>
-	</form>
-
+    <div class="post-nav"><?php neighbor_log(); ?></div>
+	<?php blog_trackback(); ?>
+	<?php blog_comments(); ?>
+	<?php if ($allow_remark == 'y'){blog_comments_post();}?>
   </div>
   <div class="col02">
     <?php include getViews('side'); ?>

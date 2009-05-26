@@ -23,11 +23,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <div class="col01">
   <?php foreach($logs as $value):?>
     <div class="post" id="post-<?php echo $value['gid']; ?>">
-      <h3><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>" rel="bookmark" title="Permanent Link to <?php echo $value['log_title']; ?>">
-	  <?php echo $value['log_title']; ?></a>
-		<?php if($log_cache_sort[$value['logid']]): ?>
-		<span class="sort">[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sortid']; ?>"><?php echo $log_cache_sort[$value['logid']]; ?></a>]</span>
-		<?php endif;?>
+      <h3>
+	  <?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+		<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?> 
+		<?php editflg($value['logid'],$value['author']); ?> 
+		</span>
 	  </h3>
       <div class="post-inner">
         <div class="date-tab"><span class="month"><?php echo date('n月',$value['date']); ?></span><span class="day"><?php echo date('j',$value['date']); ?></span></div>

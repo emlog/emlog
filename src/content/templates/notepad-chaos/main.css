@@ -96,9 +96,6 @@ img{
 	width:106px;
 	background:transparent url(images/menu.jpg) -214px 0px no-repeat;
 }
-
-
-
 #home a:hover {
 	background:transparent url(images/menu.jpg) 0px 0px no-repeat;
 }
@@ -649,7 +646,6 @@ img{
 }
 
 .day {
-
 }
 
 .day2 {
@@ -657,14 +653,11 @@ img{
 }
 
 .sun {
-	background-color: #F5F5F5;
-	color: #333333;
+	color: #666666;
 	font-weight: bold;
 }
 
 .week {
-	background-color: #F5F5F5;
-	color: #333333;
 }
 
 .calendartop {

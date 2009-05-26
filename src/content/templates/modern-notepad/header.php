@@ -24,17 +24,23 @@ require_once (getViews('module'));
             <div class="content">
                 <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
                 <div class="description"><?php echo $bloginfo; ?></div>
-				<ul id="nav-bar">               
-                <?php if(ISLOGIN): ?>
-					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
-                    <li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-                    <li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
-                    <?php else: ?>
-					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
-					<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
-                <?php endif; ?>
-				</ul>
+					<ul id="nav-bar">
+						<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+						<?php foreach ($navibar as $key => $val):
+						if ($val['hide'] == 'y'){continue;}
+						if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+						?>
+						<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+						<?php endforeach;?>
+						<?php doAction('navbar', '<li>', '</li>'); ?>
+						<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+						<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+						<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+						<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+						<?php else: ?>
+						<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+						<?php endif; ?>
+					</ul>
                 <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
                     <div><input type="text" value="" name="keyword" id="s" class="text" /><input type="submit" value="Search" class="button" /></div>
                 </form>
