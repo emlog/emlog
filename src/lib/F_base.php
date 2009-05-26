@@ -537,15 +537,23 @@ function findArray($array1,$array2)
  * 附件上传
  *
  * @param string $filename 文件名
+ * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpfile 上传后的临时文件
  * @param string $filesize 文件大小 KB
- * @param array $type 允许上传的文件类型
  * @param string $filetype 上传文件的类型 eg:image/jpeg
+ * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
- * @return -1错误的附件类型 -2附件大小超出的限制 -3权限不足无法创建附件目录 -4上传附件失败
+ * @return string 文件路径
  */
-function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
+function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type, $isIcon = 0)
 {
+	if ($errorNum == 1)
+	{
+		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+	}elseif ($errorNum > 1)
+	{
+		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
+	}
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
@@ -584,7 +592,7 @@ function uploadFile($filename,$tmpfile,$filesize,$type,$filetype,$isIcon=0)
 	{
 		$attach = $thum;
 	} else{
-		$attach = 	$attachpath;
+		$attach = $attachpath;
 	}
 
 	if (@is_uploaded_file($tmpfile))
