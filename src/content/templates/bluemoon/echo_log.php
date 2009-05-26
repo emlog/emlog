@@ -5,7 +5,7 @@
 	</div></div>
 	<div class="right">
 		<div class="title">
-			<h1><?php echo $log_title; ?></a></h1>
+			<h1><?php topflg($top); ?><?php echo $log_title; ?></a></h1>
 			<h4>post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?>
 			<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 			</h4>

@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="post" id="post-$logid">
 <h2>
-<?php echo $log_title;?>
+<?php topflg($top); ?><?php echo $log_title;?>
 <?php if($log_cache_sort[$logid]): ?>
 <span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 <?php endif;?>

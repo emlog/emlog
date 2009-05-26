@@ -10,7 +10,7 @@
 				</div> 
 				
 				<div class="posttitle">
-					<h3><?php echo $log_title; ?></h3>
+					<h3><?php topflg($top); ?><?php echo $log_title; ?></h3>
 				</div> 
 
 				<div class="postmeta">

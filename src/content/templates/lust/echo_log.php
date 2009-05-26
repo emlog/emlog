@@ -10,7 +10,7 @@
 			</div>
 
 			<h2>
-			<?php echo $log_title;?>
+			<?php topflg($top); ?><?php echo $log_title;?>
 			<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 			</h2>
 

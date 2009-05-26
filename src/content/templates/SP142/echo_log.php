@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div class="post" id="post-1">
                 <div class="post-top">
                     <div class="post-title">
-                    	<h2><?php echo $log_title; ?></h2>
+                    	<h2><?php topflg($top); ?><?php echo $log_title;?></h2>
 						 <h3>
 <?php blog_sort($sortid, $logid); ?>
 post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?>

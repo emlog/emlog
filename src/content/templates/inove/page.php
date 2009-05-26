@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="post" id="post-1">
-		<h2><?php echo $log_title; ?></h2>
+		<h2><?php echo $log_title;?></h2>
 		<div class="content">
 <?php echo $log_content; ?>
 <p><?php blog_att($logid); ?></p>

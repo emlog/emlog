@@ -7,7 +7,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   	    <li class="post" id="post-1">
       		<div class="content">
         <div class="title">
-    	    <h2><?php echo $log_title; ?></h2>
+    	    <h2><?php echo $log_title;?></h2>
         </div>
 		<div class="entry">
 		    <p><div class="log_desc"> <?php echo $log_content; ?></div>

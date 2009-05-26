@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content">
     <div class="post" id="post">
-        <h1><?php echo $log_title; ?> <?php blog_sort($sortid, $logid); ?></h1>
+        <h1><?php topflg($top); ?><?php echo $log_title; ?> <?php blog_sort($sortid, $logid); ?></h1>
 		<p>发布时间 <?php echo date('Y-n-j G:i l', $date); ?></p>
        <div class="post_p"> <?php echo $log_content; ?></div>
 		<p><?php blog_att($logid); ?></p>

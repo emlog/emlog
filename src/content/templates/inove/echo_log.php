@@ -2,7 +2,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="post" id="post-1">
-		<h2><?php echo $log_title; ?></h2>
+		<h2><?php topflg($top); ?><?php echo $log_title;?></h2>
 		<div class="info">
 			<span class="date">post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?></span>
 			<div class="act">

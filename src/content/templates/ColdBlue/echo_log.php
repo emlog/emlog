@@ -3,9 +3,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div class="post" id="post-1">
 <div class="post-title">
-	<h2><?php echo $log_title; ?></h2>
+	<h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
 	<h3>post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?>  |   
 	<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
+	</h3>
 </div>
 <div class="post-content">
 	<?php echo $log_content; ?>

@@ -1,8 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="post">
-<h2>
-<?php echo $log_title;?>
-</h2>
+<h2><?php echo $log_title;?></h2>
 <div class="entry"><?php echo $log_content;?>
 <p><?php blog_att($logid); ?></p>
 </div>

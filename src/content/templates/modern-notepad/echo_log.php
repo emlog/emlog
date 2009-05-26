@@ -1,4 +1,3 @@
-<<<<<<< .mine
 <?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
@@ -8,10 +7,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   	    <li class="post" id="post-1">
       		<div class="content">
         <div class="title">
-    	    <h2><?php echo $log_title; ?></h2>
+    	    <h2><?php topflg($top); ?><?php echo $log_title;?></h2>
         </div>
 	<div class="postdata">
-  <span class="date">post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?> <?php blog_sort($sortid, $logid); ?></span>
+  	post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?> <?php blog_sort($sortid, $logid); ?>
         </div><!--.postdata-->
 		<div class="entry">
 		    <p><div class="log_desc"> <?php echo $log_content; ?></div>
@@ -46,7 +45,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <li class="post" id="post-1">
     	<div class="content">
     <div class="title">
-    <h2><?php echo $log_title; ?></h2>
+    <h2><?php topflg($top); ?><?php echo $log_title;?></h2>
     </div>
 							<div class="postdata">
        <?php if($log_cache_sort[$logid]): ?>

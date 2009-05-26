@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 			<div class="post" id="post-1">
                 <div class="post-top">
                     <div class="post-title">
-                    	<h2><?php echo $log_title; ?></h2>
+                    	<h2><?php echo $log_title;?></h2>
 </div>
                 </div>
 	<div class="entry clear">

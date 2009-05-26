@@ -23,7 +23,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
   <div class="col01">
     <div class="post" id="post-<?php echo $logid; ?>">
       <h3>
-	  <a href="<?php echo BLOG_URL; ?>?post=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
+	  <?php topflg($top); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $logid; ?>" rel="bookmark" title="Permanent Link to <?php echo $log_title; ?>"><?php echo $log_title; ?></a>
 		<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 	  </h3>
       <div class="post-inner">

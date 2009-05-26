@@ -4,7 +4,7 @@ foreach($logs as $value):
 ?>
 <div class="post" id="post-<?php echo $value['logid'];?>">
 <h2 class="posttitle">
-	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php topflg($value['top']); ?><?php echo $value['log_title']; ?></a>
 </h2>
 
 <p class="postmeta"> 

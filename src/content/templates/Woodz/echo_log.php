@@ -3,7 +3,7 @@
 	<div class="post" id="post-1">
 	<div class="post-top">
      <div class="post-title">
-	 <h2><?php echo $log_title; ?></h2>
+	 <h2><?php topflg($top); ?><?php echo $log_title;?></h2>
 	 <h4><?php echo $comnum; ?></h4>
 	 <h3>
 	 <span class="sort"><?php blog_sort($sortid, $logid); ?></span>

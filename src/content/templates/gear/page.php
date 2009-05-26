@@ -7,7 +7,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 					<div class="paddings">
 						<ul class="items">
 																					<li>
-<h2><?php echo $log_title; ?></h2>
+<h2><?php echo $log_title;?></h2>
 <div class="info">
 </div>
 <div class="paddings-p"><?php echo $log_content; ?></div>

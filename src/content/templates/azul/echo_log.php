@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="post">
-<h2><?php echo $log_title; ?></h2>
+<h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
 <div class="date">Post by <?php blog_author($author); ?> <?php echo date('Y-n-j G:i l', $date); ?> <?php blog_sort($sortid, $logid); ?> <?php editflg($logid,$author); ?></div>
 <div class="entry">
 	<p><?php echo $log_content; ?></p>

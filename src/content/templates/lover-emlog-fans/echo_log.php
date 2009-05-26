@@ -21,18 +21,18 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div id="left_box">
     	<div class="note_box">
     		<div class="note_title">
-        	<?php echo $log_title; ?>
+        	<?php topflg($top); ?><?php echo $log_title; ?>
+        	</div>
+        	<div class="note_content">
+       			<?php echo $log_content; ?>
+			<p><?php blog_att($logid); ?></p>
+			<p><?php blog_tag($logid); ?></p>
         	</div>
             <div class="note_tag">
                 <div class="note_tag_text1">
             	post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?> 
 				<?php blog_sort($sortid, $logid); ?>
             	</div>           
-        	</div>
-        	<div class="note_content">
-       			<?php echo $log_content; ?>
-			<p><?php blog_att($logid); ?></p>
-			<p><?php blog_tag($logid); ?></p>
         	</div>
 			<?php blog_trackback(); ?>
             <div class="note_tag_2" style="margin-top:10px;"><?php neighbor_log(); ?></div>

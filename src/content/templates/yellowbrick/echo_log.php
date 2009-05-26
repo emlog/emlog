@@ -14,7 +14,7 @@
 								<td width="10"></td>
 								<td valign="top" class="item_titles">
 									<div class="item_title1">
-									<?php echo $log_title; ?>
+									<?php topflg($top); ?><?php echo $log_title; ?>
 									</div>
 									<div class="item_title2">
 									<span class="sort"><?php blog_sort($sortid, $logid); ?></span>

@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
    <div class="postcontent">
             <div class="postcontent_in">
-<h2><?php echo $log_title; ?></h2>
+<h2><?php echo $log_title;?></h2>
 <div class="post">
 	<div class="storycontent">
 		<div class="excrept_post_p"><?php echo $log_content; ?></div>
