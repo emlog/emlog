@@ -36,8 +36,8 @@ switch ($thum_width)
 </div>
 <form action="plugin.php?plugin=picasa_album&action=setting" method="post">
 <div>
-	<li>Google Picasa网络相册账户：</li>
-	<li><input size="40" name="account" type="text" value="<?php echo $account; ?>" /><br></li>
+	<p>Google Picasa网络相册账户：<br />
+	<input size="40" name="account" type="text" value="<?php echo $account; ?>" /></p>
 	<p>照片缩放尺寸：
 	<select name="thum_width">
        <option value="512" <?php echo $ex1; ?>>512像素</option>
