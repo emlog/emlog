@@ -315,7 +315,6 @@ input#author, input#email, input#url{
 }
 
 .entry img{
-	border: 1px solid #ccc;
 	padding: 4px;
 }
 

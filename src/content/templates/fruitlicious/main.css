@@ -182,9 +182,7 @@ input#author, input#email, input#url{
 .entry h6{ font-size: 11px; font-weight: normal; }
 
 .entry img{
-	border: 1px solid #daefef;
 	padding: 4px;
-	background-color: #fff;
 }
 
 .entry img.wp-smiley{

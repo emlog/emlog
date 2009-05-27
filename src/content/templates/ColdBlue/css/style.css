@@ -207,16 +207,7 @@ p {
 	line-height: 20px;
 }
 p img {
-	background: #fff;
 	padding: 5px;
-	border: 1px solid #999;
-	border-top: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-}
-p a:hover img {
-	border: 1px solid #777;
-	border-top: 1px solid #aaa;
-	border-left: 1px solid #aaa;
 }
 img.float-left, img.alignleft {
 	display: block;
