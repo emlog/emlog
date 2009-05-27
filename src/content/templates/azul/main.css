@@ -205,7 +205,11 @@ img {
 	margin: 0;
 	font-size: 12px;
 }
+.trackback{
+list-style:none;
+border-bottom:dotted 1px #999999;
 
+}
 #commentform #author, #commentform #email, #commentform #url, #commentform #comment {
 	background: #ffffff;
 	border: 1px solid #cccccc;

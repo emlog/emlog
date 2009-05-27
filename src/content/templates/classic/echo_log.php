@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 include getViews('side');
 ?>
 <div class="logcontent">
-<p id="tit"><b><?php topflg($top); ?><?php echo $log_title; ?></b><?php blog_sort($sortid, $logid); ?></p>
+<p id="tit"><b><?php topflg($top); ?><?php echo $log_title; ?></b><span class="sort"><?php blog_sort($sortid, $logid); ?></span></p>
 <p id="date">post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?></p>
 
 <div class="log_con">

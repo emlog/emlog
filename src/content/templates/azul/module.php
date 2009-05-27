@@ -288,7 +288,7 @@ function blog_trackback(){
 	<?php endif; ?>
 	
 	<?php foreach($tb as $key=>$value):?>
-	<div class="comments-template">
+	<div class="trackback">
 		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
 		<li>BLOG: <?php echo $value['blog_name'];?></li>
 		<li><?php echo $value['date'];?></li>

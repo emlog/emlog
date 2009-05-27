@@ -656,6 +656,11 @@ img{
 	padding-left: 10px;
 	font-style: normal;
 }
+.trackback{
+	list-style:none;
+	border-bottom:dotted 1px #666666;
+	margin-left:20px;
+}
 #wp-nav {
 	width: 575px;
 	padding-left: 20px;

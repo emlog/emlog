@@ -273,10 +273,9 @@ function blog_trackback(){
 		</div>
 		<?php endif; ?>
 		<?php foreach($tb as $key=>$value):?>
-		<div>
+		<div class="trackback">
 		<li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
     	<li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
-    	<li>摘要:<?php echo $value['excerpt'];?></li>
 		<li>引用时间:<?php echo $value['date'];?></li>
 		</div>
 		<?php endforeach; ?>	

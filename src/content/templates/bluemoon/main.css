@@ -293,7 +293,11 @@ p, li, .feedback {
 	border: 1px dotted #ccc;
 	padding: 2px;
 }
-
+.trackback{
+	list-style:none;
+	border-bottom:dotted 1px #666666;
+	margin-left:20px;
+}
 
 #wp-calendar {
 	border: 1px solid #ddd;

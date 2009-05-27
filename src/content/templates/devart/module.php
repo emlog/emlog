@@ -309,11 +309,10 @@ function blog_trackback(){
 	
 	<?php if (is_array($tb) && !empty($tb)): ?>
 		<?php foreach($tb as $key=>$value):?>
-	   <div class="comment-content">
-	        <p>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></p>
-	        <p>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </p>
-	        <p>摘要:<?php echo $value['excerpt'];?></p>
-	        <p>引用时间:<?php echo $value['date'];?></p>
+	   <div class="trackback">
+	        <li>来自: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></li>
+	        <li>标题: <a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a> </li>
+	        <li>引用时间:<?php echo $value['date'];?></li>
 	    </div>
 	    <?php endforeach; ?>
 	<?php endif;?>	

@@ -338,7 +338,12 @@ blockquote {
 }
 #commentform input#submit { padding: 3px 10px; }
 
-
+.trackback{
+	list-style:none;
+	border-bottom:dotted 1px #666666;
+	margin-left:20px;
+	margin-bottom:10px;
+}
 
 /* Footer
 -------------------------------------------------------------------*/

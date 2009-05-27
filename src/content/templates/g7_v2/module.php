@@ -286,15 +286,13 @@ function blog_trackback(){
 		<h3 id="respond">引用地址：<input type="text" style="width:350px" value="<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a></h3>
 		</div>
 	<?php endif; ?>	
-	<ol class="commentlist">
+	<ol class="trackback">
 	<?php foreach($tb as $key=>$value): ?>
-		<li id="comment-<?php echo $value['cid'];?>">
-		<cite>引用来自：<strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></cite>		<br/>
-		<cite>标题：<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></cite><br />
-		<cite>摘要：<?php echo $value['excerpt'];?></cite>
-		</li>
+		<li>引用来自：<strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong> &#8212; <?php echo $value['date'];?></li>
+		<li>标题：<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
+		<li>摘要：<?php echo $value['excerpt'];?></li><br />
 	<?php endforeach; ?>
-</ol>	
+	</ol>	
 <?php }?>
 <?php
 //blog：博客评论列表

@@ -292,28 +292,17 @@ function neighbor_log(){
 function blog_trackback(){
 	global $allow_tb,$tbscode,$logid,$tb; ?>
 	<?php if($allow_tb == 'y'): ?>	
-	<div class="entry">
-	<h2 id="comments">引用:<a name="tb"></a></h2>
+	<div>
+	<h2>引用:<a name="tb"></a></h2>
 	<input type="text" id="input" style="width:350px" value="<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode;?>&amp;id=<?php echo $logid;?>" /><a name="tb"></a>
 	</div>
 	<?php endif; ?>
-	<ol class="commentlist">
 		<?php foreach($tb as $key=>$value): ?>
-			<li id="comment-<?php echo $value['cid'];?>">
-					<div class="commentmeta">
-					<ul>
-						<li>引用：<strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong></li>
-						<li><?php echo $value['date'];?></li>
-					</ul>
-					</div>
-					<div class="commenentry">
-						<p>	<a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a><br/>
-			<?php echo $value['excerpt'];?></p>
-					</div>
-		
-				</li>
+					<p>来自：<strong><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['blog_name'];?></a></strong>
+					<br /><?php echo $value['date'];?>
+					<br /><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a>
+					<?php echo $value['excerpt'];?></p>
 		<?php endforeach; ?>
-	</ol>	
 <?php }?>
 <?php
 //blog：博客评论列表
@@ -327,7 +316,7 @@ function blog_comments(){
 	foreach($comments as $key=>$value):
 	$reply = $value['reply']?"<span style=\"color:green;\"><b>博主回复</b>：{$value['reply']}</span>":'';
 	?>
-		<li id="comment-<?php echo $value['cid'];?>">
+		<li>
 				<div class="commentmeta">
 				<ul>
 					<li>
