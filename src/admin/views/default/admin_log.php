@@ -154,7 +154,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php endif;?>
 	</div>
 </form>
-<div class="page">(有<?php echo $logNum; ?>条日志)<?php echo $pageurl; ?></div>
+<div class="page">(有<?php echo $logNum; ?>条<?php echo $pid == 'draft' ? '草稿' : '日志'; ?>)<?php echo $pageurl; ?></div>
 <script>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
