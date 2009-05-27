@@ -7,11 +7,8 @@
  */
 
 require_once('../common.php');
-
 $isgzipenable = 'n';//wap浏览关闭gzip压缩
-
 $tem = time();
-
 if(!isset($action) || empty($action))
 {
 	wap_header($options_cache['blogname']);
@@ -34,7 +31,6 @@ if(!isset($action) || empty($action))
 	echo "</p>\n";
 	wap_footer();
 }
-
 //显示日志列表 blog list
 if ($action == 'logs')
 {
@@ -48,8 +44,7 @@ if ($action == 'logs')
 		$page = 1;
 		$id = 0;
 	}
-
-	$sql = " SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' ORDER BY top DESC ,date DESC  LIMIT $start_limit, $index_lognum";
+	$sql = " SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog' ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
 	$lognum = $sta_cache['lognum'];
 	$pageurl = './?action=logs&amp;page';
 	$query = $DB->query($sql);
@@ -75,7 +70,6 @@ if ($action == 'logs')
 	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">首页</a></p>";
 	wap_footer();
 }
-
 //显示日志
 if ($action == 'dis')
 {
@@ -120,7 +114,6 @@ if($action == 'coms')
 //twitter list
 if ($action == 'twitter')
 {
-	//page link
 	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
 	if ($page)
 	{
@@ -131,7 +124,6 @@ if ($action == 'twitter')
 		$page = 1;
 		$id = 0;
 	}
-
 	$sql =" SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
 	$twnum = $sta_cache['twnum'];
 	$pageurl= './?action=twitter&amp;page';
@@ -142,7 +134,6 @@ if ($action == 'twitter')
 		$row['content'] = htmlspecialchars(trim($row['content']));
 		$tws[] = $row;
 	}
-	//分页
 	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
 
 	wap_header($options_cache['blogname']);
