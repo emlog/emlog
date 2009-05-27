@@ -96,10 +96,14 @@ if ($action == 'renewdata')
 	$CACHE->mc_record();
 	$CACHE->mc_comment();
 	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
+	$CACHE->mc_logatts();
 	$CACHE->mc_sta();
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
+	$CACHE->mc_sort();
 	$CACHE->mc_twitter();
+	$CACHE->mc_newlog();
 	header("Location: ./data.php?active_import=true");
 }
 
