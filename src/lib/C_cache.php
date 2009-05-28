@@ -48,9 +48,10 @@ class mkcache {
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM ".$this->db_prefix."comment as a, ".$this->db_prefix."blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
 			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM ".$this->db_prefix."trackback as a, ".$this->db_prefix."blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$icon = array();
-			if($row['photo'] && file_exists($row['photo']))
+			$row['photo'] = !empty($row['photo']) && file_exists(substr($row['photo'], 1)) ? substr($row['photo'], 1) : $row['photo'];
+			if(!empty($row['photo']) && file_exists($row['photo']))
 			{
-				$photosrc = substr($row['photo'],3);
+				$photosrc = preg_replace("/(\.+\/)(.+)/", '$2', $row['photo']);
 				$imgsize = chImageSize($row['photo'],ICON_MAX_W,ICON_MAX_H);
 				$icon['src'] = htmlspecialchars($photosrc);
 				$icon['width'] = $imgsize['w'];

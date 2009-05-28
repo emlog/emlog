@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="content">
-		<div class="post" id="post-$logid">
+		<div class="post">
 		<h2>
 		<?php topflg($top); ?><?php echo $log_title;?>
 		<span class="sort"><?php blog_sort($sortid, $logid); ?></a></span>
-		</div>
 		</h2>
+		</div>
 		<p class="postdate">Post by <?php blog_author($author); ?> on <?php echo date('Y-n-j G:i l', $date); ?><br /></p>
 		<div class="mypost">
 		<?php echo $log_content;?>

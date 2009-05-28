@@ -10,7 +10,7 @@
 <?php echo $log_content;?>
 <p><?php blog_att($logid); ?></p>
 <p><?php blog_tag($logid); ?></p>
-<p>Posted on <?php echo date('Y-n-j G:i l', $date); ?><br /></p>
+<p>post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?></p>
 <p><?php neighbor_log(); ?></p>
 
 </div>

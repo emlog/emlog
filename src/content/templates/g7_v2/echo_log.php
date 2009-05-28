@@ -5,10 +5,10 @@
 	  <p class="year"><?php echo date('Y', $date); ?></p>
 	</div>
 	<div class="posttitle">
-	<h2><?php topflg($top); ?><?php echo $log_title;?></h2>
+	<h2><?php topflg($top); ?><?php echo $log_title;?><span class="sort"><?php blog_sort($sortid, $logid); ?></span>
+	</h2>
     <p class="postmeta">
-	post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?>
-	<?php blog_sort($sortid, $logid); ?>
+	作者:<?php blog_author($author); ?> 时间:<?php echo date('Y-n-j G:i l', $date); ?>
     </p>
     </div>
 

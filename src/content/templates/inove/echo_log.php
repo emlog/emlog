@@ -4,21 +4,18 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div class="post" id="post-1">
 		<h2><?php topflg($top); ?><?php echo $log_title;?></h2>
 		<div class="info">
-			<span class="date">post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?></span>
+			<span class="date">post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?> 
+			<?php blog_sort($sortid, $logid); ?></span>
 			<div class="act">
-									<span class="comments"><a href="#comments">评论</a></span>
 					<span class="addcomment"><a href="#respond">发表评论</a></span>
-												<div class="fixed"></div>
+					<div class="fixed"></div>
 			</div>
 			<div class="fixed"></div>
 		</div>
 		<div class="content">
 <?php echo $log_content; ?>
 <p><?php blog_att($logid); ?></p>
-			<p class="under">
-			<span class="categories">
-<?php blog_sort($sortid, $logid); ?>
-</span>
+<p class="under">
 <span class="tags"><?php blog_tag($logid); ?></span>			
 </p>
 </div>

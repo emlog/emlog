@@ -246,7 +246,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>">[<?php echo $log_cache_sort[$blogid]; ?>]</a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a> | 
 	<?php endif;?>
 <?php }?>
 <?php

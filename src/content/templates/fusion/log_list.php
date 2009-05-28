@@ -11,7 +11,8 @@ foreach($logs as $value):
 <div class="postinfo">
 <p>
 	post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?>
-	<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
+	<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?> 
+	<?php editflg($value['logid'],$value['author']); ?></span>
 </p>
 </div>
 </div>

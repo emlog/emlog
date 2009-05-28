@@ -1,8 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<h2><?php topflg($top); ?><?php echo $log_title;?></h2>
+<h2><?php topflg($top); ?><?php echo $log_title;?><span class="sort"><?php blog_sort($sortid, $logid); ?></span></h2>
 <p class="postdata">
 post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date); ?>
-<span class="sort"><?php blog_sort($sortid, $logid); ?></span>
 </p>
 <div id="content_post">	
 <div class="post_p"><?php echo $log_content;?></div>
