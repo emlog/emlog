@@ -148,8 +148,9 @@ if ($action == 'addcom')
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 
+	doAction('post_comment', $comment, $comname, $comurl, $commail);
 	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
-	
+
 	if($ret === 0)
 	{
 		$CACHE->mc_sta();

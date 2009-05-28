@@ -5,6 +5,7 @@
    <p>Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> Fusion theme by <a href="http://www.digitalnature.ro/projects/fusion">digitalnature</a> <br />
 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<?php doAction('index_footer'); ?>
    </p>
  </div>
  <!-- /footer -->

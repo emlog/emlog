@@ -15,6 +15,7 @@ post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); 
 	</div>
 
     <div class="meta"><?php blog_tag($logid); ?></div>
+	<?php doAction('log_related'); ?>
 	<div class="feedback"></div>
 </div>
 <div class="nextlog"><?php neighbor_log(); ?></div>

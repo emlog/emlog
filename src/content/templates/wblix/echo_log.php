@@ -13,6 +13,7 @@
 <div class="post"><?php echo $log_content;?></div>
 <p><?php blog_att($logid); ?></p>
 <p><?php blog_tag($logid); ?></p>
+<?php doAction('log_related'); ?>
 <p><?php neighbor_log(); ?></p>
 </div>
 	<?php blog_trackback(); ?>

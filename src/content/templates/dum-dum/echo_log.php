@@ -17,6 +17,7 @@
 					<div class="postauthor">by <?php blog_author($author); ?></div> 
 					<div class="postcategory"><?php blog_sort($sortid, $logid); ?>
 					<?php blog_tag($logid); ?>
+					<?php doAction('log_related'); ?>
 					</div> 
 				</div> 
 			</div> 

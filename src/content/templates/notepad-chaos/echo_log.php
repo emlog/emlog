@@ -32,6 +32,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 		<div class="post_P"><?php echo $log_content; ?></div>
 		<p><?php blog_att($logid); ?></p>
 		<p><?php blog_tag($logid); ?></p>
+		<?php doAction('log_related'); ?>
       </div>
     </div>
     <div class="post-nav"><?php neighbor_log(); ?></div>

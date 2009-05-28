@@ -107,6 +107,7 @@ if($action == 'operate_log')
 			foreach($logs as $key=>$value)
 			{
 				$emBlog->deleteLog($key);
+				doAction('del_log', $key);
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_user();

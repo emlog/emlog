@@ -18,7 +18,8 @@
 		
     </div>
 	<div id="footer_ask">
-<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>	
+<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<?php doAction('index_footer'); ?>	
     </div>
     <div class="clear"></div>
       

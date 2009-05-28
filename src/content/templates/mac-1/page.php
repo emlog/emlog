@@ -31,7 +31,8 @@ if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
 </div>
 </div>
 <div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>
- Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></div>
+ Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<?php doAction('index_footer'); ?></div>
 </div>
 <?php
 include getViews('side');

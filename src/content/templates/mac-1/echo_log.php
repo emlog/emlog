@@ -18,6 +18,7 @@ post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date);
 <?php echo $log_content;?>
 <p><?php blog_att($logid); ?></p>
 <p><?php blog_tag($logid); ?></p>
+<?php doAction('log_related'); ?>
 <p><?php neighbor_log(); ?></p>
 </div>
 	<?php blog_trackback(); ?>
@@ -26,7 +27,8 @@ post by <?php blog_author($author); ?> /  <?php echo date('Y-n-j G:i l', $date);
 </div>
 </div>
 <div id="footer">Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a>
- Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></div>
+ Theme by <a href="http://www.ndesign-studio.com/">Nick La</a> <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<?php doAction('index_footer'); ?></div>
 </div>
 <?php
 include getViews('side');

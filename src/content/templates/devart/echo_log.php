@@ -6,6 +6,7 @@
 		<p><?php blog_att($logid); ?></p>
 		<p><?php blog_tag($logid); ?></p>
         <p><?php neighbor_log(); ?></p>
+		<?php doAction('log_related'); ?>
 		<div class="post-info">
 			post by <?php blog_author($author); ?> | <?php echo date('Y-n-j G:i l', $date); ?> | 
 			<?php blog_sort($sortid, $logid); ?>

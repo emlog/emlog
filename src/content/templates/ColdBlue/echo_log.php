@@ -13,6 +13,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </div>
 	<p><?php blog_att($logid); ?></p>
 	<span><?php blog_tag($logid); ?></span>
+	<?php doAction('log_related'); ?>
+
 	<div class="nextlog"><?php neighbor_log(); ?></div>
 	<?php blog_trackback(); ?>
 	<?php blog_comments(); ?>

@@ -10,6 +10,8 @@ include getViews('side');
 <?php echo $log_content; ?>
 <p><?php blog_att($logid); ?></p>
 <p><?php blog_tag($logid); ?></p>
+<?php doAction('log_related'); ?>
+
 </div>
 <div class="nextlog"><?php neighbor_log(); ?></div>
 <?php blog_trackback(); ?>

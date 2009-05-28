@@ -18,6 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <p class="under">
 <span class="tags"><?php blog_tag($logid); ?></span>			
 </p>
+<?php doAction('log_related'); ?>
 </div>
 </div>
 

@@ -27,6 +27,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
        			<?php echo $log_content; ?>
 			<p><?php blog_att($logid); ?></p>
 			<p><?php blog_tag($logid); ?></p>
+			<?php doAction('log_related'); ?>
         	</div>
             <div class="note_tag">
                 <div class="note_tag_text1">

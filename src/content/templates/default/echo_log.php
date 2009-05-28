@@ -10,6 +10,7 @@
 	<div class="post"><?php echo $log_content; ?></div>
 	<div class="fujian"><?php blog_att($logid); ?></div>
 	<div class="tag echo_tag"><?php blog_tag($logid); ?></div>
+	<?php doAction('log_related'); ?>
 	<div class="nextlog"><?php neighbor_log(); ?></div>
 	<?php blog_trackback(); ?>
 	<?php blog_comments(); ?>

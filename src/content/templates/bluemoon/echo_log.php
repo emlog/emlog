@@ -13,6 +13,8 @@
 		<div class="logdes"><?php echo $log_content; ?>
 		<p><?php blog_att($logid); ?></p>
 		<p><?php blog_tag($logid); ?></p>
+		<?php doAction('log_related'); ?>
+
 		</div>
 		<div class="clear"></div>
 		<div class="nextlog"><?php neighbor_log(); ?></div>

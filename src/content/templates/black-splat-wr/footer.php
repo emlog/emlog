@@ -10,7 +10,8 @@
 <div id="footerleft">
 <p>Powered by 
 <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
-<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a></p><p>:)</p>
+<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<?php doAction('index_footer'); ?></p><p>:)</p>
 </div> <!-- Closes footerleft -->
 
 <div id="bottomcurve"><a href="http://samk.ca" title="design by sam@samk.ca"><span></span></a></div>
