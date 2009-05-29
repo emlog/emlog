@@ -261,7 +261,7 @@ function blog_tag($blogid){
 		$tag = '标签:';
 		foreach ($log_cache_tags[$blogid] as $value)
 		{
-			$tag .= "	<a href=\"".BLOG_URL."?tag=".urlencode($value['tagname'])."\">".htmlspecialchars($value['tagname']).'</a>';
+			$tag .= "	<a href=\"".BLOG_URL."?tag=".urlencode($value['tagname'])."\">".$value['tagname'].'</a>';
 		}
 		echo $tag;
 	}

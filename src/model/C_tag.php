@@ -102,7 +102,7 @@ class emTag {
 		$old_tag = array();
 		while($row = $this->db->fetch_array($query))
 		{
-			$old_tag[] = $row['tagname'];
+			$old_tag[] = addslashes($row['tagname']);
 		}
 		if(empty($old_tag))
 		{
