@@ -142,11 +142,11 @@ $('#gallery a').lightBox();
 </script>
 <style type="text/css">
 #gallery {padding: 10px;text-align:center; font-size:12px;}
-.pic_info{ font-size:12px; color:#999999; padding:5px 17px; line-height:1.6; border:1px solid #fff;}
+.pic_info{ font-size:12px; color:#999999; padding:5px 17px; line-height:1.6;}
 #gallery ul { list-style: none; }
-#gallery ul li { float:left; margin:5px;padding:5px 5px 20px; border:1px solid #ccc; }
-#gallery ul img {border:1px solid #fff; }
-#gallery ul a:hover img {border-width:5px 5px 20px; border:1px solid #000; }
+#gallery ul li { display: inline; }
+#gallery ul img {padding: 5px 5px 20px;border:1px solid #CCCCCC; margin:5px;}
+#gallery ul a:hover img {border:1px solid #000;margin:5px;}
 .pic_back {text-align:center; font-size:12px; padding:0px 20px;}
 </style>
 EOT;
