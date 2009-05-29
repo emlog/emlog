@@ -54,6 +54,7 @@
 	</tbody>
   </table>
 </form>
+<div style="margin:30px 0px 10px 3px;"><a href="http://www.emlog.net/extend/plugins" target="_blank">获取更多插件&raquo;</a></div>
 <script type='text/javascript'>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")
