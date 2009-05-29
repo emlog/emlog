@@ -43,8 +43,8 @@ a:hover{color:#0079b7; text-decoration:underline}
 #content .act a:active{color:#a5a5a5; text-decoration:none}
 #content .act a:visited{color:#a5a5a5; text-decoration:none}
 #content .act a:hover{color:#a5a5a5; text-decoration:underline}
-#content .post{width:582px; padding:10px 0 0; overflow:hidden; vertical-align: top;}
-#content .post img{ margin:0px 8px;vertical-align:top;}
+#content .post{width:582px; padding:10px 0 0; overflow:hidden;}
+#content .post p img{ margin:0px 8px;vertical-align:top;}
 #content .fujian{ color:#999;}
 #content .under{margin-top:20px; font-size:12px; background:url(images/c_m.gif) repeat-y; color:#418bc5}
 #content  .tag{color:#87b342}
