@@ -46,6 +46,7 @@ body {
 #top-title{
 	background:url(admin/views/default/images/logo.gif) no-repeat right;
 	padding:5px 0px;
+	margin:20px 0px 60px 0px;
 }
 .input {
 	border: 1px solid #CCCCCC;
@@ -87,11 +88,10 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div id="top-title">
-<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序<br>
-</span></p>
+<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
 </div>
 <div class="b">
-<p class="title2">1. 数据库设置 （MySql数据库）</p>
+<p class="title2">1、数据库设置 （MySQL数据库）</p>
 <li>
 	数据库地址：<span class="care">(通常为 localhost 不必修改)</span> <br />
     <input name="hostname" type="text" class="input" value="localhost">
@@ -116,7 +116,7 @@ body {
 </li>
 </div>
 <div class="c">
-<p class="title2">2. 博主设置 （用于安装成功后登录博客使用）</p>
+<p class="title2">2、博主设置 （用于安装成功后登录博客）</p>
 <li>
 博主登录名：<br />
     <input name="admin" type="text" class="input">

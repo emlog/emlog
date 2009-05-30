@@ -114,6 +114,7 @@ if($action == 'operate_log')
 			$CACHE->mc_record();
 			$CACHE->mc_comment();
 			$CACHE->mc_logtags();
+			$CACHE->mc_logatts();
 			$CACHE->mc_tags();
 			$CACHE->mc_newlog();
 			$CACHE->mc_logsort();

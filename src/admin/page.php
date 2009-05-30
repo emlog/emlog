@@ -151,6 +151,9 @@ if ($action == 'operate_page')
 
 			$CACHE->mc_logatts();
 			$CACHE->mc_options();
+			$CACHE->mc_sta();
+			$CACHE->mc_user();
+			$CACHE->mc_comment();
 
 			header("Location: ./page.php?active_del=true");
 			break;
@@ -159,13 +162,17 @@ if ($action == 'operate_page')
 			$ishide = $operate == 'hide' ? 'y' : 'n';
 			foreach($pages as $key => $value)
 			{
-				$emPage->updateLog(array('hide'=>$ishide), $key);
+				$emPage->hideSwitch($key, $ishide);
 				$navibar[$key]['hide'] = $ishide;
 			}
 			$navibar = serialize($navibar);
 			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 			$CACHE->mc_options();
+			$CACHE->mc_sta();
+			$CACHE->mc_user();
+			$CACHE->mc_logatts();
+			$CACHE->mc_comment();
 
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;
