@@ -36,20 +36,20 @@ require_once (getViews('module'));
               <!-- top tab navigation -->
               <div id="tabs">
 				<ul>
-					<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+					<li class="current_page_item"><span><a href="<?php echo BLOG_URL; ?>">首页</a></span></li>
 					<?php foreach ($navibar as $key => $val):
 					if ($val['hide'] == 'y'){continue;}
 					if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
 					?>
-					<li class="page_item page-item-2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+					<li class="page_item page-item-2"><span><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></span></li>
 					<?php endforeach;?>
-					<?php doAction('navbar', '<li class="page_item page-item-2">', '</li>'); ?>
+					<?php doAction('navbar', '<li class="page_item page-item-2"><span>', '</span></li>'); ?>
 					<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日</a></li>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中</a></li>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+					<li class="page_item page-item-2"><span><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日</a></span></li>
+					<li class="page_item page-item-2"><span><a href="<?php echo BLOG_URL; ?>admin/">管理中</a></span></li>
+					<li class="page_item page-item-2"><span><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></span></li>
 					<?php else: ?>
-					<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+					<li class="page_item page-item-2"><span><a href="<?php echo BLOG_URL; ?>admin/">登录</a></span></li>
 					<?php endif; ?>
 				</ul>
               </div>

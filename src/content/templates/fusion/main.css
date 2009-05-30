@@ -204,16 +204,17 @@ a#logo{
  line-height:30px;
 }
 
-#tabs li span {
+#tabs li{
  float:left;
- background:url(images/tab-left.png) no-repeat left top;
+ background: url(images/tab-left.png) no-repeat left top;
  color:#0470a0;
  padding-left:5px;
  margin-right:3px;
  _margin-bottom:-1px;
  text-decoration:none;
  color:#cfcfcf;
- width:60px;
+ width:80px;
+ display:block;
  cursor: pointer; /* IE 7 bug-fix */
 }
 
@@ -244,15 +245,8 @@ a#logo{
  text-decoration:none;
 }
 #tabs a:hover{
- background-position:0% -29px;
- color:#fff;
- text-decoration:none;
-}
-#tabs a:hover span{
- background-position:100% -29px;
  color:#fff;
 }
-
 #tabs a.active {
  background-position:0% -58px;
  color:#000;
@@ -880,14 +874,12 @@ a.setLiquid span{
 .widget#tag_cloud a{
   line-height: 150%;
 }
-
+#tabs li.current_page_item{
+	 background-position:0% -58px;
+}
 
 #tabs li.current_page_item  a {
- background-position:0% -58px;
- color:#000;
-}
-#tabs li.current_page_item a span {
- background-position:100% -58px;
+ background-position:-420px -58px;
  color:#000;
 }
 
