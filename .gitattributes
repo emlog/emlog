@@ -1274,16 +1274,16 @@ src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
 src/wap/index.php -text
-update/up2.0.0to2.2.0.php -text svn_keywords=Id
-update/up2.1.6sp1to2.2.0.php -text svn_keywords=Id
-update/up2.1.6to2.2.0.php -text svn_keywords=Id
-update/up2.2.0to2.3.0.php -text svn_keywords=Id
-update/up2.3.0to2.4.0.php -text svn_keywords=Id
-update/up2.4.0to2.5.0.php -text svn_keywords=Id
-update/up2.5.0to2.6.0.php -text svn_keywords=Id
-update/up2.6.0to2.6.5.php -text svn_keywords=Id
-update/up2.6.5to2.7.0.php -text
-update/up2.7.0to3.0.0.php -text
-update/up3.0.1to3.1.0.php -text
+update/old_version/up2.0.0to2.2.0.php -text
+update/old_version/up2.1.6sp1to2.2.0.php -text
+update/old_version/up2.1.6to2.2.0.php -text
+update/old_version/up2.2.0to2.3.0.php -text
+update/old_version/up2.3.0to2.4.0.php -text
+update/old_version/up2.4.0to2.5.0.php -text
+update/old_version/up2.5.0to2.6.0.php -text
+update/old_version/up2.6.0to2.6.5.php -text
+update/old_version/up2.6.5to2.7.0.php -text
+update/old_version/up2.7.0to3.0.0.php -text
+update/old_version/up3.0.1to3.1.0.php -text
 update/up3.1.0to3.2.0.php -text
 update/升级说明.txt -text svn_keywords=Id

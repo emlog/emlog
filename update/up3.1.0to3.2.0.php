@@ -190,7 +190,7 @@ if(!isset($_GET['action'])){
 <div class="b">
 <p class="title2">请填写当前需要升级的emlog相关信息。<br>
   如下各个参数请参考服务器上emlog根目录下的 config.php 文件 认真填写。</p>
-<li><strong> 服务器地址</strong>：<span class="care">(通常为localhost不必修改)</span> <br />
+<li><strong> 服务器地址</strong>：<span class="care">(服务器上config.php文件里 DB_HOST 对应值)</span> <br />
     <input name="hostname" type="text" class="input" value="localhost">
 </li>
 <li><strong>Mysql
