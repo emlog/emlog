@@ -9,111 +9,10 @@ header('Content-Type: text/html; charset=UTF-8');
 define('EMLOG_VERSION', '3.2.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
-class MySql {
-	var $user,$pass,$host,$db;
-	var $id,$data,$fields,$row,$row_num,$insertid,$version,$query_num=0;
-	function MySql($host,$user,$pass,$db) {
-		$this->host = $host;
-		$this->pass = $pass;
-		$this->user = $user;
-		$this->db = $db;
-		$this->dbconnect($this->host, $this->user, $this->pass);
-		$this->selectdb($this->db);
-		if($this->version() >'4.1')
-		mysql_query("SET NAMES 'utf8'");
-	}
-	function dbconnect($host,$user,$pass){
-		$this->id = @ mysql_connect($host,$user,$pass) OR emMsg("连接数据库失败，可能是用户名或密码错误");
-	}
-	function selectdb($db){
-		mysql_select_db($db,$this->id) or emMsg("未找到指定数据库");
-	}
+require_once('./lib/F_base.php');
+require_once('./lib/C_mysql.php');
+require_once('./lib/C_cache.php');
 
-	function query($sql) {
-		$ret = @ mysql_query($sql,$this->id);
-		return $ret;
-	}
-	function fetch_array($query){
-		$this->data = @mysql_fetch_array($query);
-		return $this->data;
-	}
-	function num_rows($query) {
-		$this->row_num = @mysql_num_rows($query);
-		return $this->row_num;
-	}
-	function version() {
-		$this->version = mysql_get_server_info();
-		return $this->version;
-	}
-	function geterror()
-	{
-		return mysql_error();
-	}
-}
-
-function getRandStr($length = 12, $special_chars = true)
-{
-	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	if ( $special_chars )
-	{
-		$chars .= '!@#$%^&*()';
-	}
-	$randStr = '';
-	for ( $i = 0; $i < $length; $i++ )
-	{
-		$randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-	}
-	return $randStr;
-}
-/**
- * 显示系统信息
- *
- * @param string $msg 信息
- * @param string $url 返回地址
- */
-function emMsg($msg,$url='javascript:history.back(-1);')
-{
-echo <<<EOT
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog system message</title>
-<style type="text/css">
-<!--
-body {
-	background-color:#F7F7F7;
-	font-family: Arial;
-	font-size: 12px;
-	line-height:150%;
-}
-.main {
-	background-color:#FFFFFF;
-	margin-top:20px;
-	font-size: 12px;
-	color: #666666;
-	width:560px;
-	margin:10px 200px;
-	padding:10px;
-	list-style:none;
-	border:#DFDFDF 1px solid;
-}
-.main p {
-	line-height: 18px;
-	margin: 5px 20px;
-}
--->
-</style>
-</head>
-<body>
-<div class="main">
-<p>$msg</p>
-<p><a href="$url">&laquo;返回</a></p>
-</div>
-</body>
-</html>
-EOT;
-exit;
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
@@ -272,13 +171,14 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 
 	//初始化数据库类
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	unset($db_host, $db_user, $db_pw,$db_name);
+	//数据缓存对象
+	$CACHE = new mkcache($DB, $db_prefix);
 
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
 	$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
 	$extra2 = "TYPE=".$type;
-	$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
+	$DB->getMysqlVersion() > '4.1' ? $add = $extra:$add = $extra2.";";
 	
 	$res = $DB->query("select * from {$db_prefix}statistics");
 	$row = $DB->fetch_array($res);
@@ -295,7 +195,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a
 DROP TABLE IF EXISTS {$db_prefix}statistics;
 ALTER TABLE {$db_prefix}user ADD role VARCHAR( 60 ) NOT NULL AFTER nickname;
 ALTER TABLE {$db_prefix}user CHANGE description description VARCHAR( 255 ) NOT NULL;
-UPDATE {$db_prefix}user SET role = 'admin' WHERE uid =1 LIMIT 1;";
+UPDATE {$db_prefix}user SET role = 'admin' WHERE uid =1 LIMIT 1;
+UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
@@ -310,7 +211,22 @@ UPDATE {$db_prefix}user SET role = 'admin' WHERE uid =1 LIMIT 1;";
 			}
 		}
 	}
-	emMsg("恭喜你emlog数据库升级成功！请删除该升级文件,你现在可以进行第二步 代码升级");
+	
+	$CACHE->mc_user();
+	$CACHE->mc_options();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logsort();
+	$CACHE->mc_logatts();
+	$CACHE->mc_sta();
+	$CACHE->mc_link();
+	$CACHE->mc_tags();
+	$CACHE->mc_sort();
+	$CACHE->mc_twitter();
+	$CACHE->mc_newlog();
+
+	emMsg("恭喜你！emlog成功升级到3.2.0 <a href=\"./\"> 进入emlog&raquo; </a>");
 }
 echo "</body>";
 echo "</html>";

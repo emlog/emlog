@@ -195,7 +195,7 @@ UPDATE {$db_prefix}config SET nonce_templet ='default';";
 			}
 		}
 	}
-	echo "恭喜你Emlog数据库升级成功！请删除该升级文件 <a href=\"./index.php\">进入Emlog </a>";
+	echo "恭喜你！emlog成功升级到2.7.0";
 }
 echo "</body>";
 echo "</html>";

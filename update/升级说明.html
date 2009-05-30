@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>emlog 说明文档</title>
+<style type="text/css">
+<!--
+body {
+	background-color:#F7F7F7;
+	font-family: Arial;
+	font-size: 12px;
+	line-height:150%;
+}
+.main {
+	background-color:#FFFFFF;
+	color: #666666;
+	width:730px;
+	margin:10px auto;
+	padding:10px;
+	list-style:none;
+	border:#DFDFDF 1px solid;
+}
+#ver{
+	font-size:18px;
+	text-align:center;
+}
+.title{
+	font-size:24px;
+	font-weight:bold;
+}
+.iteam{
+	font-size:18px;
+	font-weight:bold;
+	color:#666666;
+	border-bottom: #CCCCCC 1px solid;
+	padding:10px;
+}
+li{
+	list-style:none;
+}
+.foot{
+	text-align:center;
+}
+-->
+</style>
+</head>
+<body>
+<div class="main">
+
+<div>
+<p id="ver">emlog升级说明</p>
+</div>
+
+<div>
+<p class="iteam">尊敬的emlog用户你好：</p>
+<ul>
+<li>请你按照下面提示升级你的emlog</li>
+</ul>
+
+<p class="iteam">特别提示，声明</p>
+<ul>
+<li>1、升级之前务必对老的数据库以及全部的代码文件（特别是附件目录）进行备份！</li>
+<li>2、我们愿意为你解决升级过程中遇到的问题，但不承担由此造成的数据丢失等责任，特此声明！</li>
+<li>3、请在升级前认真阅读该文档</li>
+</ul>
+
+<p class="iteam">注意</p>
+<ul>
+<li><b>【1】</b>从2.7.0升级到3.0.0 你的博客的密码会被自动重置为123456，请登录后修改！</li>
+<li><b>【2】</b>从3.0.0升级到3.0.1 不需要升级数据库，直接从代码升级开始既可。</li>
+<li><b>【3】</b>从3.0.0或者3.0.1 升级到3.1.0 都选择 up3.0.1to3.1.0.php 升级脚本进行数据库升级</li>
+<li><b>【4】</b>old_version 文件夹里是一些老版本的升级脚本</li>
+<li><b>【5】</b>假如你是从更早的版本开始升级，比如：3.0.1升级到3.2.0。 你必须重复升级步骤里的第2、3步，先从3.0.1升级到3.1.0 然后再从3.1.0升级到3.2.0 </li>
+<li><b>【6】</b>升级完成后将使用默认模板，因为老的模板无法在新版本中使用，请下载最新版本的模板覆盖老的</li>
+</ul>
+
+<p class="iteam">升级步骤</p>
+<ul style="line-height:1.8;">
+<li><span style="color: #FF0000;"><b>第1步</b></span>：将下载的最新版本的emlog源代码上传，注意不要覆盖config.php</li>
+<li><span style="color: #FF0099;"><b>第2步</b></span>：在数据库升级包内找到适合你当前版本的升级脚本,将它上传到emlog根目录</li>
+<li><span style="color: #0066FF;"><b>第3步</b></span>：通过浏览器运行刚才上传的数据库升级脚本，按照提示填写提交</li>
+<li><span style="color: #993333;"><b>第4步</b></span>：如果顺利，你会看到升级成的提示，删除掉该升级脚本。OK搞定</li>
+</ul>
+
+</div>
+
+<div>
+<p class="foot">
+Powered by <a href="http://www.emlog.net">emlog</a>
+</p>
+</div>
+
+</div>
+</form>
+</body>
+</html>

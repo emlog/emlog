@@ -388,7 +388,7 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 			}
 		}
 	}
-	emMsg("恭喜你emlog数据库升级成功！请删除该升级文件,你现在可以进行第二步 代码升级");
+	emMsg("恭喜你！emlog成功升级到3.1.0");
 }
 echo "</body>";
 echo "</html>";

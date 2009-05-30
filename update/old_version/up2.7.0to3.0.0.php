@@ -387,7 +387,7 @@ UPDATE {$db_prefix}options SET option_value='default' where option_name='nonce_t
 			}
 		}
 	}
-	emMsg("恭喜你Emlog数据库升级成功,后台密码重置为：123456 请登录后马上修改。 你现在可以进行第二步 代码升级。记得删除该升级文件");
+	emMsg("恭喜你！emlog成功升级到3.0.0");
 }
 echo "</body>";
 echo "</html>";
