@@ -116,6 +116,6 @@ if ($action == "mod_config")
 //phpinfo()
 if ($action == 'phpinfo')
 {
-	@phpinfo() OR die('phpinfo函数被禁用!');
+	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
 }
 ?>
