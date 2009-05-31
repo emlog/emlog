@@ -164,9 +164,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	if (!$fw)
 	{
 		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
-	}else{
-		$result.="配置文件修改成功<br />";
 	}
+
 	fclose($fp);
 
 	//初始化数据库类
@@ -226,7 +225,7 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
-	emMsg("恭喜你！emlog成功升级到3.2.0 <a href=\"./\"> 进入emlog&raquo; </a>");
+	emMsg("恭喜你！emlog已成功升级到3.2.0 <a href=\"./\"> 进入博客&raquo; </a>");
 }
 echo "</body>";
 echo "</html>";

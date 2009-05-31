@@ -263,8 +263,6 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	if (!$fw)
 	{
 		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
-	}else{
-		$result.="配置文件修改成功<br />";
 	}
 	fclose($fp);
 
@@ -387,7 +385,7 @@ UPDATE {$db_prefix}options SET option_value='default' where option_name='nonce_t
 			}
 		}
 	}
-	emMsg("恭喜你！emlog成功升级到3.0.0");
+	emMsg("恭喜你！你的emlog博客已成功升级到3.0.0");
 }
 echo "</body>";
 echo "</html>";

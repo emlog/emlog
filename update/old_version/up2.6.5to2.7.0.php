@@ -195,7 +195,7 @@ UPDATE {$db_prefix}config SET nonce_templet ='default';";
 			}
 		}
 	}
-	echo "恭喜你！emlog成功升级到2.7.0";
+	echo "恭喜你！你的emlog博客已成功升级到2.7.0";
 }
 echo "</body>";
 echo "</html>";
