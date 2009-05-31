@@ -16,7 +16,7 @@ function widget_blogger($title){
 		<div id="bloggerdes"><?php echo $user_cache[1]['des']; ?></div>
 		<?php if(ROLE == 'admin'): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a>
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:170px;height:50px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
