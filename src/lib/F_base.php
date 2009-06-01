@@ -351,19 +351,11 @@ function cleanPage($beUrlRewrite = false)
 		if ($isurlrewrite == 'y' )
 		{
 			$searchlink = array(
-			"/(href\=\".+?\/)\?(post)=(\d+)(#*[\w]*)\"/i",
-			"/(href\=\".+?\/)\?(record)=(\d+)\"/i",
-			"/(href\=\".+?\/)\?(tag)=([%A-Za-z0-9]+)\"/i",
-			"/(href\=\".+?\/)\?(sort)=(\d+)\"/i",
-			"/(href\=\".+?\/)\?(author)=(\d+)\"/i",
-			"/(href\=\".+?\/)\?(page)=(\d+)\"/i"
+			"/(href\=\".+?\/)\?(post|record|sort|author|page)=(\d+)(#*[\w]*)\"/i",
+			"/(href\=\".+?\/)\?(tag)=([%A-Za-z0-9]+)\"/i"
 			);
 			$replacelink = array(
 			"$1$2-$3.html$4\"",
-			"$1$2-$3.html\"",
-			"$1$2-$3.html\"",
-			"$1$2-$3.html\"",
-			"$1$2-$3.html\"",
 			"$1$2-$3.html\""
 			);
 			$output = preg_replace($searchlink, $replacelink, $output);

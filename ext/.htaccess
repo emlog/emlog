@@ -1,10 +1,6 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
 	#RewriteBase /
-	RewriteRule ^post-([0-9]+)\.html$ index.php?post=$1
-	RewriteRule ^record-([0-9]+)\.html$ index.php?record=$1
+	RewriteRule ^(post|record|sort|author|page)-([0-9]+)\.html$ index.php?$1=$2
 	RewriteRule ^tag-(.+)\.html$ index.php?tag=$1
-	RewriteRule ^sort-([0-9]+)\.html$ index.php?sort=$1
-	RewriteRule ^author-([0-9]+)\.html$ index.php?author=$1
-	RewriteRule ^page-([0-9]+)\.html$ index.php?page=$1
 </IfModule>
