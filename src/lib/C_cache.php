@@ -315,6 +315,7 @@ class mkcache {
 			$result = $this->db->query($tquery);
 			while($trow = $this->db->fetch_array($result))
 			{
+				$trow['tagurl'] = urlencode($trow['tagname']);
 				$trow['tagname'] = htmlspecialchars($trow['tagname']);
 				$trow['tid'] = intval($trow['tid']);
 				$tags[] = $trow;

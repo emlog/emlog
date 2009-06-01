@@ -109,8 +109,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 		$pageUrl = 'http://'.$pageUrl;
 	}
 
-	$navibar[$pageId] = array('title' => $title, 'url' => $pageUrl, 'is_blank' => $is_blank, 'hide' => $ishide);
-	$navibar = serialize($navibar);
+	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
+	$navibar = addslashes(serialize($navibar));
 	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 	$CACHE->mc_logatts();
