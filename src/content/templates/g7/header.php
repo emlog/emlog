@@ -22,11 +22,11 @@ require_once (getViews('module'));
 <div id="header">
 <div id="ing">
 <div id="ing_info">
-<div id="home"><img src="<?php echo CERTEMPLATE_URL; ?>/images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></div>
+<div id="home"><img src="<?php echo CERTEMPLATE_URL; ?>/images/underone_logo_4.gif" alt="blog" align="absmiddle"/><a href="./"><?php echo $blogname;?></a></div>
 <?php echo $bloginfo;?>
 </div>
 <div>
-<form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+<form id="searchform" name="keyform" method="get" action="./">
 <div>
 <input name="keyword"  type="text" id="s" value="" />
 <input type="submit" id="searchsubmit" value="GO" />

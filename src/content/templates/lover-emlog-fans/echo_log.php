@@ -5,9 +5,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="center_small">
 	<div class="clear"></div>
 	<div id="day_text">
-        您的位置：<a href="<?php echo BLOG_URL; ?>">首页</a>>
+        您的位置：<a href="./">首页</a>>
 		<?php if($log_cache_sort[$logid]): ?>
-         <a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
+         <a href="./?sort=<?php echo $sortid; ?>"><?php echo $log_cache_sort[$logid]; ?></a>
 		<?php endif;?> > 
         <?php echo $log_title; ?>
     </div>
@@ -46,7 +46,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--页面右侧部分-->
     <div id="right_box">
         <div id="sear_box">
-         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+         <form id="searchform" name="keyform" method="get" action="./">
          <div id="sear_box_left">
         	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>

@@ -17,5 +17,5 @@ require_once (getViews('module'));
 <body>
 <div id="container">
 <div class="maincolumn">
-<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></h1>
+<h1><a href="./"><?php echo $blogname;?></a></h1>
 <div id="banner"></div>

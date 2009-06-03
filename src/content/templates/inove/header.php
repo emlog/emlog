@@ -24,33 +24,33 @@ require_once (getViews('module'));
 <!-- header START -->
 <div id="header">
 	<div id="caption">
-		<h1 id="title"><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
+		<h1 id="title"><a href="./"><?php echo $blogname; ?></a></h1>
 		<div id="tagline"><?php echo $bloginfo; ?></div>
 	</div>
 
 	<!-- navigation START -->
 	<div id="navigation">
 			<ul id="menus">
-				<li class="current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+				<li class="current_page_item"><a href="./">首页</a></li>
 				<?php foreach ($navibar as $key => $val):
 				if ($val['hide'] == 'y'){continue;}
-				if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+				if (empty($val['url'])){$val['url'] = './?post='.$key;}
 				?>
 				<li class="page_item page-item-2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 				<?php endforeach;?>
 				<?php doAction('navbar', '<li class="page_item page-item-2">', '</li>'); ?>
 				<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+				<li class="page_item page-item-2"><a href="./admin/write_log.php">写日志</a></li>
+				<li class="page_item page-item-2"><a href="./admin/">管理中心</a></li>
+				<li class="page_item page-item-2"><a href="./admin/?action=logout">退出</a></li>
 				<?php else: ?>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+				<li class="page_item page-item-2"><a href="./admin/">登录</a></li>
 				<?php endif; ?>
 			</ul>
 
 		<!-- searchbox START -->
 		<div id="searchbox">
-							<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+							<form name="keyform" method="get" action="./">
 					<div class="content">
 						<input class="textfield" name="keyword"  type="text" value="" style="width:130px;"/>
 						<span class="switcher" >切换搜索引擎</span>

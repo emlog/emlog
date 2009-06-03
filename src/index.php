@@ -19,12 +19,13 @@ if (!is_dir($cerTemplatePath))
 //页面标题
 $blogtitle = $blogname;
 //日历链接
-$calendar_url = isset($_GET['record']) ? BLOG_URL.'calendar.php?record='.intval($_GET['record']) : BLOG_URL.'calendar.php?' ;
-//日志id
+$calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
+
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
+$plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 
 //日志列表
-if (empty($action) && empty($logid))
+if (empty($action) && empty($logid) && empty($plugin))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
 
@@ -162,6 +163,11 @@ if ($action == 'addcom')
 		$CACHE->mc_user();
 		emMsg('评论发表成功!请等待管理员审核!',"?post=$gid#comment");
 	}
+}
+//加载插件页面
+if (!empty($plugin))
+{
+	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
 }
 
 cleanPage(true);

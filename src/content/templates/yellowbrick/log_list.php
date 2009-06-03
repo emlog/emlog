@@ -18,7 +18,7 @@ foreach($logs as $value):
 								<td width="10"></td>
 								<td valign="top" class="item_titles">
 									<div class="item_title1">
-									<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+									<?php topflg($value['top']); ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 									</div>
 									<div class="item_title2">
 									<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
@@ -38,15 +38,15 @@ foreach($logs as $value):
 												<tr>
 													<td width="330">
 														<span class="read">
-															<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+															<a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 														</span>
 														&nbsp;&nbsp;
 														<span class="comm">
-															<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 					</span>
+															<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 					</span>
 													</td>
 													<td>
 														<span class="comm">
-															<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a></span>
+															<a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a></span>
 													</td>
 												</tr>
 											</table>

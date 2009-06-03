@@ -47,12 +47,12 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
     <div class="clear"></div>
     </div><!-- End Topnav -->
         <div id="header_left">
-            <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
+            <h1><a href="./"><?php echo $blogname; ?></a></h1>
             <p><?php echo $bloginfo; ?></p>
         </div>
         <div id="header_right">
             <div id="top_search">
-                <form id="searchform" method="get" name="keyform" action="<?php echo BLOG_URL; ?>">
+                <form id="searchform" method="get" name="keyform" action="./">
                 <input type="text" value="Search This Site..." name="keyword" id="topsearch" onfocus="if (this.value == 'Search This Site...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search This Site...';}" />
                 <input type="submit" id="searchbut" value="GO" /></form>
             </div>
@@ -62,20 +62,20 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
         <div id="navigation">
             <div id="nav_left">
 				<ul id="nav">
-					<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+					<li><a href="./">首页</a></li>
 					<?php foreach ($navibar as $key => $val):
 					if ($val['hide'] == 'y'){continue;}
-					if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+					if (empty($val['url'])){$val['url'] = './?post='.$key;}
 					?>
 					<li class="cat-item cat-item-1"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 					<?php endforeach;?>
 					<?php doAction('navbar', '<li class="cat-item cat-item-1">', '</li>'); ?>
 					<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+					<li class="cat-item cat-item-1"><a href="./admin/write_log.php">写日志</a></li>
+					<li class="cat-item cat-item-1"><a href="./admin/">管理中心</a></li>
+					<li class="cat-item cat-item-1"><a href="./admin/?action=logout">退出</a></li>
 					<?php else: ?>
-					<li class="cat-item cat-item-1"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+					<li class="cat-item cat-item-1"><a href="./admin/">登录</a></li>
 					<?php endif; ?>
 				</ul>
           </div>

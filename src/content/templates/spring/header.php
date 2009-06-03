@@ -18,7 +18,7 @@ require_once (getViews('module'));
 <div id="wrapper">
 
 <div id="header">
-<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></h1><?php echo $bloginfo;?>
+<h1><a href="./"><?php echo $blogname;?></a></h1><?php echo $bloginfo;?>
 </div>
 
 <div id="content">

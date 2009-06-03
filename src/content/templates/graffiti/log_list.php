@@ -5,7 +5,7 @@ foreach($logs as $value):
 ?>
 	<div class="logcontent">
 	<div id="t">
-	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
+	<?php topflg($value['top']); ?><a href="./?post=<?php echo $value['logid']; ?>"><b><?php echo $value['log_title']; ?></b></a>
 	<span class="sort"><?php blog_sort($value['sortid'], $value['logid']); ?></span>
 	</div>
 	<p id="date">post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?> 
@@ -16,9 +16,9 @@ foreach($logs as $value):
 	<p><?php blog_tag($value['logid']); ?></p>
 	
 	<div align="right">
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+	<a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
+	<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+	<a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 	</div>
 	</div>
 <?php endforeach; ?>

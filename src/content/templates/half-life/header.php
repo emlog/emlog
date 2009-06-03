@@ -26,7 +26,7 @@ require_once (getViews('module'));
 
 		<div id="menu">
 <ul>
-	<li><h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a> </h1><smaill> (<?php echo $bloginfo;?>)</small></li>
+	<li><h1><a href="./"><?php echo $blogname;?></a> </h1><smaill> (<?php echo $bloginfo;?>)</small></li>
 </ul>
 		</div>
 <?php include getViews('side'); ?>

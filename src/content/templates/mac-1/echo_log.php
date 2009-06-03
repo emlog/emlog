@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="nav">
 <ul>
-<li class="page_item current_page_item"><a href="<?php echo BLOG_URL; ?>" title="Home">Home</a></li>
+<li class="page_item current_page_item"><a href="./" title="Home">Home</a></li>
 </ul>
 </div>
 <div id="content">

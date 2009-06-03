@@ -18,7 +18,7 @@ addAction('adm_sidebar_ext', 'adm_album_menu');
 
 function index_album_menu($label_a, $label_b)
 {
-	echo $label_a.'<a href="'.BLOG_URL.'content/plugins/picasa_album/album.php">相册</a>'.$label_b;
+	echo $label_a.'<a href="./?plugin=picasa_album">相册</a>'.$label_b;
 }
 addAction('navbar', 'index_album_menu');
 

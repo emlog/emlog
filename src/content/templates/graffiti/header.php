@@ -19,27 +19,27 @@ require_once (getViews('module'));
 <div id="header">
 	<div id="siteTitle">
 	<ul>
-  		<li id="blogname"><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></li>
+  		<li id="blogname"><a href="./"><?php echo $blogname; ?></a></li>
   		<li id="blogdes"><?php echo $bloginfo; ?></li>
 	</ul>
   	</div>
-<form name="f" method="post" action="<?php echo BLOG_URL; ?>?action=login">
+<form name="f" method="post" action="./?action=login">
 <div id="navBar">
 <ul>
-	<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+	<li><a href="./">首页</a></li>
 <?php foreach ($navibar as $key => $val):
 if ($val['hide'] == 'y'){continue;}
-if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+if (empty($val['url'])){$val['url'] = './?post='.$key;}
 ?>
 	<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 <?php endforeach;?>
 <?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+	<li><a href="./admin/write_log.php">写日志</a></li>
+	<li><a href="./admin/">管理中心</a></li>
+	<li><a href="./admin/?action=logout">退出</a></li>
 <?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+	<li><a href="./admin/">登录</a></li>
 <?php endif; ?>
 </ul>
 </div>

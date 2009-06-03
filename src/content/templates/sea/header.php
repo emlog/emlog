@@ -20,7 +20,7 @@ require_once (getViews('module'));
 
 		<div id="menu">
 <ul>
-	<li><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></li>
+	<li><a href="./"><?php echo $blogname;?></a></li>
 	<li><?php echo $bloginfo;?></li>
 </ul>
 		</div>

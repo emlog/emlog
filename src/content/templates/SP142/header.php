@@ -20,7 +20,7 @@ require_once (getViews('module'));
 <div id="header">
 	<div id="header_title">
         <h1>
-            <a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a><span class="description"><?php echo $bloginfo; ?></span>
+            <a href="./"><?php echo $blogname; ?></a><span class="description"><?php echo $bloginfo; ?></span>
         </h1>
     </div> 
 	<div id="header_rss">
@@ -32,26 +32,26 @@ require_once (getViews('module'));
 <div id="menu">
 	<div id="menu_items">
 <ul>
-	<li><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+	<li><a href="./">首页</a></li>
 	<?php foreach ($navibar as $key => $val):
 	if ($val['hide'] == 'y'){continue;}
-	if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+	if (empty($val['url'])){$val['url'] = './?post='.$key;}
 	?>
 	<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 	<?php endforeach;?>
 	<?php doAction('navbar', '<li>', '</li>'); ?>
 	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+	<li><a href="./admin/write_log.php">写日志</a></li>
+	<li><a href="./admin/">管理中心</a></li>
+	<li><a href="./admin/?action=logout">退出</a></li>
 	<?php else: ?>
-	<li><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+	<li><a href="./admin/">登录</a></li>
 	<?php endif; ?>
 </ul>
         <div class="clear"></div>
     </div>
     <div id="main_search">
-        <form method="get" name="keyform" id="searchform_top" action="<?php echo BLOG_URL; ?>">
+        <form method="get" name="keyform" id="searchform_top" action="./">
             <div>
             	<span>Search:</span>
                 <input type="text" value="" name="keyword" id="searchform_top_text" />

@@ -9,7 +9,7 @@ foreach($logs as $value):
                 		<div class="content">
                             <div class="title">
                         	    <h2>
-									<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+									<?php topflg($value['top']); ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
 								</h2>
                             </div>
                             <div class="postdata">
@@ -24,9 +24,9 @@ foreach($logs as $value):
 								<p><?php blog_tag($value['logid']); ?></p>
                     		</div>
 							   <div class="postdata">
-                                <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
-                                <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
-                                <a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
+                                <a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
+                                <a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+                                <a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
                             </div><!--.postdata-->
                     		                		</div>
                 		<div class="footer"></div>

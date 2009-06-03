@@ -17,7 +17,7 @@ require_once (getViews('module'));
 <DIV id=page>
 <DIV id=header>
 <DIV id=headerimg>
-<H1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></H1><p>
+<H1><a href="./"><?php echo $blogname;?></a></H1><p>
 <DIV class=description><?php echo $bloginfo;?></DIV></DIV></DIV>
 <HR>
 <DIV class=narrowcolumn id=content>

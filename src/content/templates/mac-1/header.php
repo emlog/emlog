@@ -20,9 +20,9 @@ require_once (getViews('module'));
 <div id="page">
   <div id="wrapper">
     <div id="header">
-      <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname;?></a></h1>
+      <h1><a href="./"><?php echo $blogname;?></a></h1>
       <div class="description"><?php echo $bloginfo;?></div>
-<form method="get" id="searchform" action="<?php echo BLOG_URL; ?>">
+<form method="get" id="searchform" action="./">
 <div>
 <input type="text" value="Search" name="keyword" id="s" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
 <input type="submit" id="searchsubmit" value="Go" />

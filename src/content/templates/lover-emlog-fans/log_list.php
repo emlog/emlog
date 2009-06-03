@@ -17,7 +17,7 @@
     	<div class="note_box">
     		<div class="note_title">
             <div class="p"></div>
-			<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+			<?php topflg($value['top']); ?><a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
         	</div>
         	<div class="note_content">
        		<?php echo $value['log_description']; ?>
@@ -31,10 +31,10 @@
 				<?php editflg($value['logid'],$value['author']); ?>
 				</div>
                 <div class="note_tag_text3">
-            	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
+            	<a href="./?post=<?php echo $value['logid']; ?>#comment"><?php echo $value['comnum']; ?></a>
             	</div>
                 <div class="note_tag_text4">
-            	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['views']; ?></a>
+            	<a href="./?post=<?php echo $value['logid']; ?>"><?php echo $value['views']; ?></a>
             	</div>    
         	</div>
          </div>
@@ -47,7 +47,7 @@
 <!--右侧部分sider-->
     <div id="right_box">
         <div id="sear_box">
-         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+         <form id="searchform" name="keyform" method="get" action="./">
          <div id="sear_box_left">
         	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>

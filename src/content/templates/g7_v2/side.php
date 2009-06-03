@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="sidebar">
 <div id="search">
-<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+<form name="keyform" method="get" action="./">
 <div>
 <input type="text" name="keyword" id="s" />
 <input type="submit" id="go" value="" onclick="return keyw()"/>

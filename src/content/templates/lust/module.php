@@ -8,7 +8,7 @@ function widget_blogger($title){
 	<ul id="blogger">
 		<p>
 		<?php if (!empty($user_cache[1]['photo']['src'])): ?>
-		<img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
+		<img src="<?php echo $user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
 		<?php endif;?>
 		</p>
 		<p><b><?php echo $name;?></b>
@@ -19,7 +19,7 @@ function widget_blogger($title){
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:170px;height:50px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
-		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
+		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
 		<?php endif; ?>
 	</ul>
@@ -43,7 +43,7 @@ function widget_tag($title){
     <div style="line-height:1.4;">
 	<li><h2 onclick="showhidediv('tags')"><?php echo $title; ?></h2>
 	<?php foreach($tag_cache as $value): ?>
-	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
+	<span style="font-size:<?php echo $value['fontsize'];?>pt; height:30px;"><a href="./?tag=<?php echo $value['tagurl'];?>"><?php echo $value['tagname'];?></a></span>&nbsp;
 	<?php endforeach; ?>
     </li>
 	</li>
@@ -56,8 +56,8 @@ function widget_sort($title){
 	<ul id="logsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="./?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>	
 	</ul>
@@ -72,9 +72,9 @@ function widget_twitter($title){
 	<ul id="twitter">
 	<?php  
 	if(isset($tw_cache) && is_array($tw_cache)) :
-	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('".BLOG_URL."twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
+	$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('./twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 	foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-	$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('".BLOG_URL."','{$value['id']}','twitter')\">删除</a>":'';
+	$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 	$value['date'] = smartyDate($localdate,$value['date']);
 	?>
 	<li> <?php echo $value['content'];?> <?php echo $delbt;?><br><span><?php echo $value['date'];?></span></li>
@@ -87,7 +87,7 @@ function widget_twitter($title){
 	<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 	<li id='addtw' style="display: none;">
 	<textarea name="tw" id="tw" style="overflow-y: hidden;width:190px;height:60px;"></textarea><br />
-	<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">提交</a>
+	<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 	<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 	</li>
 	</ul>
@@ -112,7 +112,7 @@ function widget_newcomm($title){
 	<li class="r_comments"><h2 onclick="showhidediv('comm')"><?php echo $title; ?></h2>
 	<ul id="comm">	<?php 
 	foreach($com_cache as $value): 
-	$value['url'] = BLOG_URL.$value['url'];
+	$value['url'] = $value['url'];
 	?>
 	<li><?php echo $value['name'];?>
 	<?php if($value['reply']): ?>
@@ -132,7 +132,7 @@ function widget_newlog($title){
 	<li class="newlog"><h2 onclick="showhidediv('newlog')"><?php echo $title; ?></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -151,7 +151,7 @@ function widget_random_log($title){
 	<li class="randlog"><h2 onclick="showhidediv('randlog')"><?php echo $title; ?></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -163,7 +163,7 @@ function widget_archive($title){
 	<li class="archives"><h2 onclick="showhidediv('dang')"><?php echo $title; ?></h2>
 	<ul id="dang">
 	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?><?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+	<li><a href="./<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>	
 	</ul>
 	</li>
@@ -183,7 +183,7 @@ function widget_search($title){ ?>
 	<li class="logserch"><h2 onclick="showhidediv('logserch')"><?php echo $title; ?></h2>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+	<form name="keyform" method="get" action="./">
 	<input name="keyword"  type="text" value="" style="width:80px;"/>
 	<input type="submit" value="搜索" onclick="return keyw()" />
 	</form>
@@ -227,7 +227,7 @@ function topflg($istop){
 <?php
 //blog：编辑
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.'./admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -236,7 +236,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	[<a href="./?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
 <?php
@@ -256,7 +256,7 @@ function blog_tag($blogid){
 		$tag = '标签:';
 		foreach ($log_cache_tags[$blogid] as $value)
 		{
-			$tag .= "	<a href=\"".BLOG_URL."?tag=".$value['tagurl']."\">".$value['tagname'].'</a>';
+			$tag .= "	<a href=\"./?tag=".$value['tagurl']."\">".$value['tagname'].'</a>';
 		}
 		echo $tag;
 	}
@@ -270,7 +270,7 @@ function blog_author($uid){
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
-	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
+	echo "<a href=\"./?author=$uid\" $title>$author</a>";
 }
 ?>
 <?php
@@ -278,13 +278,13 @@ function blog_author($uid){
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
 	<?php if($prevLog):?>
-	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
 	<?php if($nextLog && $prevLog):?>
 		|
 	<?php endif;?>
 	<?php if($nextLog):?>
-		 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
 <?php }?>
 <?php
@@ -339,7 +339,7 @@ function blog_comments(){
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+			<a href="javascript:void(0);" onclick="postinfo('./admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
@@ -356,7 +356,7 @@ function blog_comments_post(){
 	<div class="comments_form">
 	<?php if($allow_remark == 'y'): ?>
 	<h3 id="respond">发表你的评论</h3>
-	<form  method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
+	<form  method="post"  name="commentform" action="./?action=addcom" id="commentform">
 		<p>
 		  <input type="text" name="comname" id="email" value="<?php echo $ckname;?>" size="40" tabindex="1" />
 		   <label for="author"><small>姓名</small></label>

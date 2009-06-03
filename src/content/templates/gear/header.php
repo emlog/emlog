@@ -20,7 +20,7 @@ require_once (getViews('module'));
 						<div class="header span-24">
 				<div class="intro span-18">
 					<div class="intro-wrapper paddings">
-													<h1 class="logo"><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
+													<h1 class="logo"><a href="./"><?php echo $blogname; ?></a></h1>
 												<span class="slogan"><?php echo $bloginfo; ?></span>
 					</div>
 				</div>
@@ -29,11 +29,11 @@ require_once (getViews('module'));
 					<div class="paddings">
 						<div class="icons-wrapper">
 							<a href="<?php echo BLOG_URL; ?>rss.php" title="RSS link"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/rss.gif" alt="RSS icon" /></a>
-							<a href="<?php echo BLOG_URL; ?>"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/home.gif" alt="Home icon" /></a>
+							<a href="./"><img src="<?php echo CERTEMPLATE_URL; ?>/images/ico/home.gif" alt="Home icon" /></a>
 						</div>
 						
 						<div class="search fr">
-							<form action="<?php echo BLOG_URL; ?>" method="get" id="srch-frm" name="keyform">
+							<form action="./" method="get" id="srch-frm" name="keyform">
 							<div class="search-wrapper">
 								<input type="text" value="" class="textfield" name="keyword" id="s" />
 							</div>
@@ -45,20 +45,20 @@ require_once (getViews('module'));
 
 			<div class="menu span-24">
 			<ul class="menu-wrapper">
-				<li class="first current_page_item"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+				<li class="first current_page_item"><a href="./">首页</a></li>
 				<?php foreach ($navibar as $key => $val):
 				if ($val['hide'] == 'y'){continue;}
-				if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+				if (empty($val['url'])){$val['url'] = './?post='.$key;}
 				?>
 				<li class="page_item page-item-2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 				<?php endforeach;?>
 				<?php doAction('navbar', '<li class="page_item page-item-2">', '</li>'); ?>
 				<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+				<li class="page_item page-item-2"><a href="./admin/write_log.php">写日志</a></li>
+				<li class="page_item page-item-2"><a href="./admin/">管理中心</a></li>
+				<li class="page_item page-item-2"><a href="./admin/?action=logout">退出</a></li>
 				<?php else: ?>
-				<li class="page_item page-item-2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+				<li class="page_item page-item-2"><a href="./admin/">登录</a></li>
 				<?php endif; ?>
 			</ul>
 			</div>

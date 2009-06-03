@@ -3,10 +3,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <div id="nav">
 <ul>
-<li class="page_item current_page_item"><a href="<?php echo BLOG_URL; ?>" title="Home">Home</a></li>
+<li class="page_item current_page_item"><a href="./" title="Home">Home</a></li>
 <?php foreach ($navibar as $key => $val):
 if ($val['hide'] == 'y'){continue;}
-if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+if (empty($val['url'])){$val['url'] = './?post='.$key;}
 ?>
 	<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 <?php endforeach;?>

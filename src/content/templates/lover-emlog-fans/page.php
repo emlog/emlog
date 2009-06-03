@@ -35,7 +35,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--页面右侧部分-->
     <div id="right_box">
         <div id="sear_box">
-         <form id="searchform" name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+         <form id="searchform" name="keyform" method="get" action="./">
          <div id="sear_box_left">
         	<input type="text" name="keyword" style="width:195px; height:15px; border:#E2E5EA solid 1px;" />
          </div>

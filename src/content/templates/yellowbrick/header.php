@@ -20,10 +20,10 @@ require_once (getViews('module'));
 
 <div id="header">
 	<div id="header_title">
-		<h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
+		<h1><a href="./"><?php echo $blogname; ?></a></h1>
 		<span><?php echo $bloginfo; ?></span>	</div>
 	<div id="header_search">
-	<form id="searchform" style="display:inline;"name="keyform" method="get"  action="<?php echo BLOG_URL; ?>">
+	<form id="searchform" style="display:inline;"name="keyform" method="get"  action="./">
 		<table cellpadding="3" cellspacing="0" align="right">
 			<tr>
 				<td>
@@ -45,11 +45,11 @@ require_once (getViews('module'));
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>">首页</a>
+					<a href="./">首页</a>
 				</td>
 				<?php foreach ($navibar as $key => $val):
 				if ($val['hide'] == 'y'){continue;}
-				if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+				if (empty($val['url'])){$val['url'] = './?post='.$key;}
 				?>
 				<td width="50">|</td>
 				<td><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></td>
@@ -59,20 +59,20 @@ require_once (getViews('module'));
 				<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 				<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a>
+					<a href="./admin/write_log.php">写日志</a>
 				</td>
 				<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/">管理中心</a>
+					<a href="./admin/">管理中心</a>
 				</td>
 				<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a>
+					<a href="./admin/?action=logout">退出</a>
 				</td>
 				<?php else: ?>
 				<td width="50">|</td>
 				<td>
-					<a href="<?php echo BLOG_URL; ?>admin/">登录</a>
+					<a href="./admin/">登录</a>
 				</td>
 				<?php endif; ?>
 			</tr>
