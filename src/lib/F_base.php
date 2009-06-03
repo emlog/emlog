@@ -383,7 +383,7 @@ function breakLog($content,$lid)
 {
 	$a = explode("[break]",$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
 }
 
