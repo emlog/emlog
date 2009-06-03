@@ -17,7 +17,7 @@ if($action == '')
 
 	$trackback = $emTrackback->getTrackbacks($page, null, 1);
 	$tbnum = $emTrackback->getTbNum();
-	$pageurl =  pagination($tbnum, ADMIN_PERPAGE_NUM, $page, "trackback.php?page");
+	$pageurl =  pagination($tbnum, ADMIN_PERPAGE_NUM, $page, "./trackback.php?page");
 
 	include getViews('header');
 	require_once(getViews('trackback'));

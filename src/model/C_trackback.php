@@ -26,7 +26,7 @@ class emTrackback {
 	 */
 	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{
-		$url = $blogurl."?post=".$blogId;
+		$url = $blogurl."./?post=".$blogId;
 		$hosts = explode("\n", $pingUrl);
 		$tbmsg = '';
 		foreach ($hosts as $key => $value)

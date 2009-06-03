@@ -19,7 +19,7 @@ if (!is_dir($cerTemplatePath))
 //页面标题
 $blogtitle = $blogname;
 //日历链接
-$calendar_url = isset($_GET['record']) ? 'calendar.php?record='.intval($_GET['record']) : 'calendar.php?' ;
+$calendar_url = isset($_GET['record']) ? './calendar.php?record='.intval($_GET['record']) : './calendar.php?' ;
 
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
@@ -46,7 +46,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$blogtitle = $record.' - '.$blogname;
 		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
-		$pageurl .= "?record=$record&page";
+		$pageurl .= "./?record=$record&page";
 	} elseif ($tag) {
 		require_once(EMLOG_ROOT.'/model/C_tag.php');
 		$emTag = new emTag($DB);
@@ -74,16 +74,16 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
-		$pageurl .= "?sort=$sortid&page";
+		$pageurl .= "./?sort=$sortid&page";
 	} elseif($author) {
 		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
 		$sqlSegment = "and author=$author order by date desc";
 		$lognum = $user_cache[$author]['lognum'];
-		$pageurl .= "?author=$author&page";
+		$pageurl .= "./?author=$author&page";
 	}else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
 		$lognum = $sta_cache['lognum'];
-		$pageurl .= "?page";
+		$pageurl .= "./?page";
 	}
 	$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
@@ -157,11 +157,11 @@ if ($action == 'addcom')
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
 		$CACHE->mc_comment();
-		emMsg('评论发表成功!',"?post=$gid#comment", true);
+		emMsg('评论发表成功!',"./?post=$gid#comment", true);
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		emMsg('评论发表成功!请等待管理员审核!',"?post=$gid#comment");
+		emMsg('评论发表成功!请等待管理员审核!',"./?post=$gid#comment");
 	}
 }
 //加载插件页面

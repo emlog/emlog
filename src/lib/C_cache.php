@@ -110,7 +110,7 @@ class mkcache {
 		while($show_com=$this->db->fetch_array($query))
 		{
 			$com_cache[] = array(
-			'url' => "?post={$show_com['gid']}#{$show_com['cid']}",
+			'url' => "./?post={$show_com['gid']}#{$show_com['cid']}",
 			'name' => htmlspecialchars($show_com['poster']),
 			'content' => htmlClean(subString($show_com['comment'],0,$comment_subnum), false),
 			'reply' => $show_com['reply']
@@ -281,7 +281,7 @@ class mkcache {
 				}
 				$dang_cache[$p] = array(
 				'record'=>date("Y年n月",$show_record['date']),
-				'url'=>"?record=".date("Ym",$show_record['date'])
+				'url'=>"./?record=".date("Ym",$show_record['date'])
 				);
 				$p++;
 				$lognum = 1;

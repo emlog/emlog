@@ -7,7 +7,7 @@ require_once('XMLParser.php');
 require_once('./common.php');
 
 $cerTemplatePath = TEMPLATE_PATH.$nonce_templet.'/';
-$calendar_url = 'calendar.php?' ;
+$calendar_url = './calendar.php?' ;
 
 $album = isset($_GET['album']) ? $_GET['album'] : '';
 
