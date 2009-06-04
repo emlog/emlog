@@ -29,7 +29,7 @@
 	<a href="configure.php">博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
+	<a href="./?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
     <td width="9" id="headerright" ></td>
 	</tbody>
 </table>

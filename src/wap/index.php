@@ -14,17 +14,17 @@ if(!isset($action) || empty($action))
 	wap_header($options_cache['blogname']);
 	echo '<p>'.$options_cache['bloginfo'].'</p>';
 	echo "<p>\n";
-	echo "<a href=\"?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
-	echo "<a href=\"?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
-	echo "<a href=\"?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
+	echo "<a href=\"./?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
+	echo "<a href=\"./?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
+	echo "<a href=\"./?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
 	echo "<br />\n";
 	if(ROLE == 'admin')
 	{
 		echo "欢迎你,你已登录<br />\n";
-		echo "<a href=\"?action=addtw\">唠叨两句</a><br />\n";
-		echo "<a href=\"?action=logout\">退出</a><br />\n";
+		echo "<a href=\"./?action=addtw\">唠叨两句</a><br />\n";
+		echo "<a href=\"./?action=logout\">退出</a><br />\n";
 	}else {
-		echo "<a href=\"?action=waplogin\">登录</a><br />\n";
+		echo "<a href=\"./?action=waplogin\">登录</a><br />\n";
 	}
 	echo "<br />\n";
 	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$viewcount_day})总访问量({$viewcount_all})<br />\n";
@@ -156,7 +156,7 @@ if ($action == 'addtw')
 	wap_header('Twitter');
 	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
 	echo "<p><anchor title=\"submit\">提交\n";
-	echo "<go href=\"?action=add_tw\" method=\"post\">\n";
+	echo "<go href=\"./?action=add_tw\" method=\"post\">\n";
 	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
@@ -191,7 +191,7 @@ if ($action == 'waplogin')
 	echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
 	echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
 	echo "<p><anchor title=\"submit\">登录\n";
-	echo "<go href=\"?action=dowaplogin\" method=\"post\">\n";
+	echo "<go href=\"./?action=dowaplogin\" method=\"post\">\n";
 	echo "<postfield name=\"user\" value=\"$(user)\" />\n";
 	echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";

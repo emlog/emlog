@@ -7,7 +7,7 @@
 <title>登录</title>
 </head>
 <body>
-<form name="f" method="post" action="?action=login">
+<form name="f" method="post" action="./index.php?action=login">
 <div class="login-main">
 	<div class="login-top"></div>
 	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>

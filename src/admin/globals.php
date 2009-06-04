@@ -60,7 +60,7 @@ if(ISLOGIN === false)
 	loginpage();
 }
 
-$request_uri = substr(basename($_SERVER['SCRIPT_NAME']), 0, -4);
+$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))
 {
 	formMsg('权限不足！','./', 0);
