@@ -368,7 +368,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
-	<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">

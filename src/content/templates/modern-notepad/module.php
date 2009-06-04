@@ -372,7 +372,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
 	<a name="respond"></a><h3 id="leavecomment">Leave a Comment</h3>
-	<form  method="post"  name="commentform" action="./?action=addcom">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom">
 	<table  border="0" cellspacing="8" cellpadding="0">
 	<tr>
 	<td class="f14">姓　 名：</td>

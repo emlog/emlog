@@ -360,7 +360,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
 	<p style="margin:10px 0px 3px;"><b>评论:</b></p>
-	<form  method="post"  name="commentform" action="./?action=addcom">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom">
 		<div id="respond">
 				<div id="author_info">
 					<div class="row">

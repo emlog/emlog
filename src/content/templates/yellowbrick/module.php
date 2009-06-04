@@ -372,7 +372,7 @@ function blog_comments_post(){
 			<div id="form_title_text">Post a comment</div>
 		</div>
 		<br />
-	<form  method="post"  name="commentform" action="./?action=addcom">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom">
 	<table cellpadding="2" style="padding-left:15px;"> 
 	<tr>
 	<td class="f14">姓　 名：</td>

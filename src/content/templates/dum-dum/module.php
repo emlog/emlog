@@ -400,7 +400,7 @@ function blog_comments(){
 function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<div class="comm">
-		<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+		<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 		<p><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />
 		<label for="author"><small>姓名</small></label></p>
 		

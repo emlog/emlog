@@ -342,7 +342,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
 	<p><b>发表评论:</b><a name="comment"></a></p>
-	<form  method="post"  name="commentform" action="./?action=addcom">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom">
 	<table width="620" border="0" cellspacing="8" cellpadding="0">
 	<tr>
 	<td class="f14">姓　 名：</td>

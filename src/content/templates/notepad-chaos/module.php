@@ -320,7 +320,7 @@ function blog_comments(){
 function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
-	<form action="./?action=addcom" method="post" id="commentform">
+	<form action="./index.php?action=addcom" method="post" id="commentform">
 		<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 		<p><label for="author"><span class="name">Name:</span></label><input type="text" name="comname" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="2" class="comment-field" /></p>
 		<p><label for="email"><span class="email">Email:</span></label><input type="text" name="commail" id="email" value="<?php echo $ckmail; ?>" size="22" tabindex="3" class="comment-field" /></p>

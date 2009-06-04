@@ -383,7 +383,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
 	<h3 id="respond">发布评论</h3>
-	<form method="post" name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post" name="commentform" action="./index.php?action=addcom" id="commentform">
 	<p><input type="text" name="comname" id="comname" value="<?php echo $ckname;?>" size="22" tabindex="1" class="input2"/>
 	<label for="author">姓名</label>
 	</p>

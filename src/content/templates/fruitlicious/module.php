@@ -353,7 +353,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<h2>发表评论</h2>
 	<p></p>
-	<form  method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 		<p>
 		  <input type="text" name="comname" id="email" value="<?php echo $ckname;?>" size="40" tabindex="1" />
 		   <label for="author"><small>姓名</small></label>

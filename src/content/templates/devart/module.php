@@ -369,7 +369,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
 	<h1 class="comments-title"></h1>
-	<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 				<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 				<p><input type="text" name="comname" id="comname" class="text" value="" />
 				<label for="author">名字</label></p>

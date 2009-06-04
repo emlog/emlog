@@ -343,7 +343,7 @@ function blog_comments_post(){
        <b> 发表评论：</b>
         </div> 
         <div class="com_box_bottom"> 
-        	<form  method="post"  name="commentform" action="./?action=addcom">
+        	<form  method="post"  name="commentform" action="./index.php?action=addcom">
 			
   			<span>姓名</span>
             <input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/><input type="text" name="comname" class="textfield" maxlength="49" value="<?php echo $ckname; ?>">

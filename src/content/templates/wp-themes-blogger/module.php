@@ -360,7 +360,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<div id="respond">
 	<h3>Leave a Reply</h3>
-	<form  method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form  method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 	<table width="620" border="0" cellspacing="8" cellpadding="0">
 	<tr>
 	<td class="f14">姓　 名：</td>

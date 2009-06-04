@@ -331,7 +331,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<div id="respond_box">
 	<h3 id="respond">Post a comment</h3>
-	<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 	<input type="text" name="comname" class="comm_input_text" id="author" value="<?php echo $ckname; ?>" size="22" tabindex="1" />

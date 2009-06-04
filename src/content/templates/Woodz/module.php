@@ -344,7 +344,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<div id="respond">
 	<h3 id="respond_title">Write a comment</h3>
-	<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 	
 	
 	<p>

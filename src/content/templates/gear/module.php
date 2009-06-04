@@ -332,7 +332,7 @@ function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
   	<?php if($allow_remark == 'y'): ?>    
 	<h3 id="respond">我要评论</h3>
-	<form method="post"  name="commentform" action="./?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">
