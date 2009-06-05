@@ -106,7 +106,7 @@ function getUserDataByLogin($userLogin)
 function checkPassword($password, $hash)
 {
 	global $em_hasher;
-	if ( empty($wp_hasher) )
+	if ( empty($em_hasher) )
 	{
 		require_once(EMLOG_ROOT.'/lib/C_phpass.php');
 		$em_hasher = new PasswordHash(8, true);
