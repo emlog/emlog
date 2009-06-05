@@ -149,8 +149,11 @@ if ($action == 'addcom')
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 
-	doAction('post_comment', $comment, $comname, $comurl, $commail);
+	doAction('comment_post');
+
 	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
+
+	doAction('comment_saved');
 
 	if($ret === 0)
 	{
