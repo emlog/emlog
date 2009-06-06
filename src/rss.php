@@ -30,7 +30,7 @@ echo <<< END
 END;
 foreach($blog as $value)
 {
-	$link = "http://".$URL."/?action=showlog&amp;gid=".$value['id'];
+	$link = "http://".$URL."/?post=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  date('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
