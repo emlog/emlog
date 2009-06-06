@@ -133,41 +133,6 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$db_name = trim($_POST['dbname']);//数据库名
 	$db_prefix = trim($_POST['dbprefix']);//数据库前缀
 
-	@$fp = fopen("config.php", 'w');
-	if(!$fp)
-	{
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
-	}
-
-	$config = "<?php\n"
-	."//mysql database address\n"
-	."define('DB_HOST','$db_host');"
-	."\n//mysql database user\n"
-	."define('DB_USER','$db_user');"
-	."\n//database password\n"
-	."define('DB_PASSWD','$db_pw');"
-	."\n//database name\n"
-	."define('DB_NAME','$db_name');"
-	."\n//database prefix\n"
-	."define('DB_PREFIX','$db_prefix');"
-	."\n//auth key\n"
-	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
-	."\n//cookie name\n"
-	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
-	."\n//blog root\n"
-	."define('EMLOG_ROOT','".EMLOG_ROOT."');"
-	."\n//blog version\n"
-	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
-	."\n?>";
-
-	@$fw = fwrite($fp, $config) ;
-	if (!$fw)
-	{
-		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
-	}
-
-	fclose($fp);
-
 	//初始化数据库类
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 	//数据缓存对象
@@ -210,6 +175,42 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 			}
 		}
 	}
+
+
+	@$fp = fopen("config.php", 'w');
+	if(!$fp)
+	{
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
+	}
+
+	$config = "<?php\n"
+	."//mysql database address\n"
+	."define('DB_HOST','$db_host');"
+	."\n//mysql database user\n"
+	."define('DB_USER','$db_user');"
+	."\n//database password\n"
+	."define('DB_PASSWD','$db_pw');"
+	."\n//database name\n"
+	."define('DB_NAME','$db_name');"
+	."\n//database prefix\n"
+	."define('DB_PREFIX','$db_prefix');"
+	."\n//auth key\n"
+	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
+	."\n//cookie name\n"
+	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
+	."\n//blog root\n"
+	."define('EMLOG_ROOT','".EMLOG_ROOT."');"
+	."\n//blog version\n"
+	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
+	."\n?>";
+
+	@$fw = fwrite($fp, $config) ;
+	if (!$fw)
+	{
+		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
+	}
+
+	fclose($fp);
 	
 	$CACHE->mc_user();
 	$CACHE->mc_options();
