@@ -88,18 +88,10 @@ if(!isset($_GET['action'])){
 <p><span class="title">emlog <span style="color: #0099FF">3.1.0</span> to <span style="color: #FF0000; font-size:26px">3.2.0</span></span><span> 升级程序</span></p>
 </div>
 <div class="b">
-<p class="title2">请填写当前需要升级的emlog相关信息。<br>
-  如下各个参数请参考服务器上emlog根目录下的 config.php 文件 认真填写。</p>
-<li><strong> 服务器地址</strong>：<span class="care">(服务器上config.php文件里 DB_HOST 对应值)</span> <br />
-    <input name="hostname" type="text" class="input" value="localhost">
-</li>
-<li><strong>Mysql
-    数据库用户名：</strong><span class="care">(服务器上config.php文件里 DB_USER 对应值)</span><br />
-    <input name="dbuser" type="text" class="input" value="">
-</li>
+<p class="title2"></p>
 <li>
     <strong>数据库用户密码：</strong><span class="care">(服务器上config.php文件里 DB_PASSWD 对应值)</span><br />
-  <input name="password" type="password" class="input">
+  <input name="password" type="password" class="input" value="">
 </li>
 </div>
 <div>
@@ -119,8 +111,8 @@ if(!isset($_GET['action'])){
 
 if(isset($_GET['action'])&&$_GET['action'] == "install")
 {
-	$db_host = trim($_POST['hostname']);
-	$db_user = trim($_POST['dbuser']);
+	$db_host = DB_HOST;
+	$db_user = DB_USER;
 	$db_pw   = trim($_POST['password']);
 	$db_name = DB_NAME;
 	$db_prefix = DB_PREFIX;
