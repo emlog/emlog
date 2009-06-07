@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库升级程序3.1.0 to 3.2.0
+ * 升级程序3.1.0 to 3.2.0
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.0
  */
@@ -9,6 +9,7 @@ header('Content-Type: text/html; charset=UTF-8');
 define('EMLOG_VERSION', '3.2.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
+require_once('./config.php');
 require_once('./lib/F_base.php');
 require_once('./lib/C_mysql.php');
 require_once('./lib/C_cache.php');
@@ -18,7 +19,7 @@ require_once('./lib/C_cache.php');
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog 数据库升级程序</title>
+<title>emlog 升级程序</title>
 <style type="text/css">
 <!--
 body {
@@ -84,7 +85,7 @@ if(!isset($_GET['action'])){
 <form name="form1" method="post" action="up3.1.0to3.2.0.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog 3.1.0 to 3.2.0</span><span> 数据库升级程序</span></p>
+<p><span class="title">emlog <span style="color: #0099FF">3.1.0</span> to <span style="color: #FF0000; font-size:26px">3.2.0</span></span><span> 升级程序</span></p>
 </div>
 <div class="b">
 <p class="title2">请填写当前需要升级的emlog相关信息。<br>
@@ -99,14 +100,6 @@ if(!isset($_GET['action'])){
 <li>
     <strong>数据库用户密码：</strong><span class="care">(服务器上config.php文件里 DB_PASSWD 对应值)</span><br />
   <input name="password" type="password" class="input">
-</li>
-<li>
-    <strong>emlog的数据库名</strong>：<span class="care">(服务器上config.php文件里 DB_NAME 对应值)</span><br />
-      <input name="dbname" type="text" class="input" value="">
-</li>
-<li>
-    <strong>emlog的数据库前缀</strong>：<span class="care">(服务器上config.php文件里 DB_PREFIX 对应值)</span><br />
-  <input name="dbprefix" type="text" class="input" value="">
 </li>
 </div>
 <div>
@@ -126,16 +119,13 @@ if(!isset($_GET['action'])){
 
 if(isset($_GET['action'])&&$_GET['action'] == "install")
 {
-	// 获取表单信息，修改配置文件
-	$db_host = trim($_POST['hostname']);//服务器地址
-	$db_user = trim($_POST['dbuser']);	 //mysql 数据库用户名
-	$db_pw   = trim($_POST['password']);//mysql 数据库密码
-	$db_name = trim($_POST['dbname']);//数据库名
-	$db_prefix = trim($_POST['dbprefix']);//数据库前缀
+	$db_host = trim($_POST['hostname']);
+	$db_user = trim($_POST['dbuser']);
+	$db_pw   = trim($_POST['password']);
+	$db_name = DB_NAME;
+	$db_prefix = DB_PREFIX;
 
-	//初始化数据库类
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	//数据缓存对象
 	$CACHE = new mkcache($DB, $db_prefix);
 
 	$dbcharset = 'utf8';
@@ -175,7 +165,6 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 			}
 		}
 	}
-
 
 	@$fp = fopen("config.php", 'w');
 	if(!$fp)
