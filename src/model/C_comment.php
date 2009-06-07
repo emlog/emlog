@@ -40,7 +40,7 @@ class emComment {
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition";
 		}else{
 			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
-			$sql = "SELECT *,a.hide FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.cid DESC $condition";
+			$sql = "SELECT *,a.hide,a.date FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.cid DESC $condition";
 		}
 		$ret = $this->db->query($sql);
 		$comments = array();
