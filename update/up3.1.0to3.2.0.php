@@ -157,8 +157,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_d
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
 DROP TABLE IF EXISTS {$db_prefix}statistics;
-ALTER TABLE {$db_prefix}user ADD role VARCHAR( 60 ) NOT NULL AFTER nickname;
-ALTER TABLE {$db_prefix}user CHANGE description description VARCHAR( 255 ) NOT NULL;
+ALTER TABLE {$db_prefix}user ADD role VARCHAR( 60 ) NOT NULL DEFAULT '' AFTER nickname;
+ALTER TABLE {$db_prefix}user CHANGE description description VARCHAR( 255 ) NOT NULL DEFAULT '';
 UPDATE {$db_prefix}user SET role = 'admin' WHERE uid =1 LIMIT 1;
 UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';";
 
