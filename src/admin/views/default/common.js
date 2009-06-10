@@ -145,8 +145,9 @@ function autosave(act){
 	$("#savedf").val("正在保存");
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
+		data = $.trim(data);
 		if(data.substring(0,9) == "autosave_"){
-			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]+)\_/);
+			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
 			var logid = getvar[1];
 			if (act != 3){
 				var dfnum = getvar[2];

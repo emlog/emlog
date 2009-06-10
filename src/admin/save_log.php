@@ -50,6 +50,7 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 {
 	$emBlog->updateLog($logData, $blogid);
 	$emTag->updateTag($tagstring, $blogid);
+	$dftnum = '';
 }else{
 	$blogid = $emBlog->addlog($logData);
 	$emTag->addTag($tagstring, $blogid);

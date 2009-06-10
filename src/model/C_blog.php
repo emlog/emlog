@@ -66,7 +66,6 @@ class emBlog {
 	 */
 	function getLogNum($hide = 'n', $condition = '', $type = 'blog', $spot = 0)
 	{
-		$DraftNum = '';
 		$hide_state  = $hide ? "and hide='$hide'" : '';
 
 		if($spot == 0)
