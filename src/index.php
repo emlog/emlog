@@ -58,7 +58,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
-		$pageurl .= '?tag='.urlencode($tag).'&page';
+		$pageurl .= './?tag='.urlencode($tag).'&page';
 	} elseif($keyword) {
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
@@ -68,7 +68,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
-		$pageurl .= '?keyword='.urlencode($keyword).'&page';
+		$pageurl .= './?keyword='.urlencode($keyword).'&page';
 	} elseif($sortid) {
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
