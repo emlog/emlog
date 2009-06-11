@@ -125,19 +125,10 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}
 
-	$dbcharset = 'utf8';
-	$type = 'MYISAM';
-	$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
-	$extra2 = "TYPE=".$type;
-	$DB->getMysqlVersion() > '4.1' ? $add = $extra:$add = $extra2.";";
-	
-	$res = $DB->query("select * from {$db_prefix}statistics");
-	$row = $DB->fetch_array($res);
-	@extract($row);
-
 $sql = "
 ALTER TABLE {$db_prefix}user CHANGE role role VARCHAR( 60 ) NOT NULL DEFAULT '';
 ALTER TABLE {$db_prefix}user CHANGE description description VARCHAR( 255 ) NOT NULL DEFAULT '';
+UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';
 ";
 
 	$mysql_query = explode(";\n",$sql);
