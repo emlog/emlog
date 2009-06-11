@@ -281,7 +281,7 @@ class mkcache {
 				}
 				$dang_cache[$p] = array(
 				'record'=>date("Y年n月",$show_record['date']),
-				'url'=>"./?record=".date("Ym",$show_record['date'])
+				'url'=>"?record=".date("Ym",$show_record['date'])
 				);
 				$p++;
 				$lognum = 1;

@@ -350,14 +350,8 @@ function cleanPage($beUrlRewrite = false)
 	{
 		if ($isurlrewrite == 'y' )
 		{
-			$searchlink = array(
-			"/(href\=\".*?)\?(post|record|sort|author|page)=(\d+)(#*[\w]*)\"/i",
-			"/(href\=\".*?)\?(tag)=([%+-_A-Za-z0-9]+)\"/i"
-			);
-			$replacelink = array(
-			"$1$2-$3.html$4\"",
-			"$1$2-$3.html\""
-			);
+			$searchlink = "/href\=\"(index\.php|\.\/|\.\/index.php)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
+			$replacelink = "href=\"./$2-$3.html$4\"";
 			$output = preg_replace($searchlink, $replacelink, $output);
 		}
 	}
