@@ -2,7 +2,7 @@
 /**
  * 插件管理
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.0
+ * @version emlog-3.2.1
  * $Id$
  */
 

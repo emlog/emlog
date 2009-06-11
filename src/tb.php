@@ -2,7 +2,7 @@
 /**
  * 引用通告接收主程序
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.0
+ * @version emlog-3.2.1
  * $Id$
  */
 
