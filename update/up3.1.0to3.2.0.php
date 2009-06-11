@@ -2,7 +2,6 @@
 /**
  * 升级程序3.1.0 to 3.2.0
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.0
  */
 
 header('Content-Type: text/html; charset=UTF-8');
