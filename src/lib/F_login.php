@@ -163,15 +163,14 @@ function emHash($data)
 	return hash_hmac('md5', $data, $key);
 }
 
-
 /**
-	 * hmac 加密
-	 *
-	 * @param unknown_type $algo hash算法 md5
-	 * @param unknown_type $data 用户名和到期时间
-	 * @param unknown_type $key
-	 * @return unknown
-	 */
+ * hmac 加密
+ *
+ * @param unknown_type $algo hash算法 md5
+ * @param unknown_type $data 用户名和到期时间
+ * @param unknown_type $key
+ * @return unknown
+ */
 if( !function_exists('hash_hmac') )
 {
 	function hash_hmac($algo, $data, $key)
