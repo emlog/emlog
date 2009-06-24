@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">

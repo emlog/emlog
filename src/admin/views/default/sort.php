@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>分类管理</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>

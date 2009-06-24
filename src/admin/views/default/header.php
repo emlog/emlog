@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html>
 <head>

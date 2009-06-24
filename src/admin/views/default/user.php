@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>作者管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除作者成功</span><?php endif;?>
 <?php if(isset($_GET['active_update'])):?><span class="actived">修改作者资料成功</span><?php endif;?>

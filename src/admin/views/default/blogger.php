@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>个人资料</b>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>

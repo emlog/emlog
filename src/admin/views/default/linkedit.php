@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>修改链接</b></div>
 <div class=line></div>
 <form action="link.php?action=update_link" method="post">

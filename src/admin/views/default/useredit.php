@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>修改作者资料</b>
 <?php if(isset($_GET['error_login'])):?><span class="error">用户名不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_exist'])):?><span class="error">该用户名已存在</span><?php endif;?>

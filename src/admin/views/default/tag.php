@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>标签管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除标签成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改标签成功</span><?php endif;?>

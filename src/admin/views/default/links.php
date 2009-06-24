@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');} ?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div class=containertitle><b>链接</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除链接成功</span><?php endif;?>

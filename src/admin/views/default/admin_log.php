@@ -1,5 +1,5 @@
 <?php 
-if(!defined('ADMIN_ROOT')) {exit('error!');}
+if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $pid == 'draft' ? '&pid=draft' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';

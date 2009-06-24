@@ -1,5 +1,5 @@
 <?php 
-if(!defined('ADMIN_ROOT')) {exit('error!');}
+if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>

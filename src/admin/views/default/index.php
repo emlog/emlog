@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="admindex">
 <div id="admindex_main">
 目前有<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['lognum'] : $user_cache[UID]['lognum']; ?></b></span>篇日志 ，

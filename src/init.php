@@ -9,7 +9,9 @@
 error_reporting(E_ALL);
 ob_start();
 
-require_once('config.php');
+define('EMLOG_ROOT', dirname(__FILE__));
+
+require_once(EMLOG_ROOT.'/config.php');
 require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
@@ -35,8 +37,8 @@ define('ISLOGIN',	isLogin());
 define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//用户组: admin管理员, writer联合撰写人, visitor访客
 define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
 //全局配置
-define('TEMPLATE_PATH', EMLOG_ROOT.'/content/templates/');//前台模板路径
 define('BLOG_URL', $blogurl);//博客地址
+define('TEMPLATE_PATH', EMLOG_ROOT.'/content/templates/');//前台模板路径
 define('TEMPLATE_URL', $blogurl.'content/templates/');//前台模板目录地址
 define('IMG_ATT_MAX_W',	420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',	460);//图片附件缩略图最大高

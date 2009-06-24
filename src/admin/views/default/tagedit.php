@@ -1,4 +1,4 @@
-<?php if(!defined('ADMIN_ROOT')) {exit('error!');}?>
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>标签修改</b></div>
 <div class=line></div>
 <form  method="post" action="tag.php?action=update_tag">

@@ -3,7 +3,7 @@
  * google picasa相册插件
  * @copyright (c) Emlog All Rights Reserved
  */
-if(!defined('ADMIN_ROOT')) {exit('error!');}
+if(!defined('EMLOG_ROOT')) {exit('error!');}
 
 function plugin_setting_veiw()
 {
