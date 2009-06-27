@@ -18,7 +18,6 @@
 					<div class="postcategory"><?php blog_sort($sortid, $logid); ?>
 					<?php blog_tag($logid); ?>
 					<?php editflg($logid,$author); ?>
-					<?php doAction('log_related'); ?>
 					</div> 
 				</div> 
 			</div> 
@@ -26,6 +25,7 @@
 			<div class="posttext">
 			<?php echo $log_content; ?>
 			<p><?php blog_att($logid); ?></p>
+			<?php doAction('log_related'); ?>
 			</div> 
 		</div> 
 		<div><?php neighbor_log(); ?></div>
