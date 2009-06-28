@@ -311,7 +311,7 @@ class emBlog {
 	{
 		$neighborlog = array();
 		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date < $date and hide = 'n' and type='blog' ORDER BY date DESC LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date > $date and hide = 'n' and type='blog' LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM ".DB_PREFIX."blog WHERE date > $date and hide = 'n' and type='blog' ORDER BY date LIMIT 1");
 		if($neighborlog['nextLog'])
 		{
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
