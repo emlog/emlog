@@ -256,7 +256,7 @@ INPUT.button{BORDER:#ccc 1px solid; FONT-WEIGHT:bold; FONT-SIZE:12px; BACKGROUND
 .form-textarea{width:456px; height:216px; border:1px #888 solid; margin-left:5px}
 .form-file, .form-select{BORDER:#5b5b5b 1px solid; BACKGROUND:#eee; COLOR:#000}
 INPUT.form-submit{font-size:12px; BORDER:#666 1px solid; BACKGROUND:#eee; COLOR:#000}
-.search-form{margin:0; padding:0 0 8px 0; position:relative}
+.search-form{margin:0; height:20px; padding-bottom:3px; *padding-bottom:0px;position:relative}
 #SMSearchForm{position:absolute; margin:0px; top:195px; left:0}
 .search-text{position:absolute; top:0px; left:0px; font-style:italic; font-size:14px; width:150px; height:20px; border:0; padding:4px 3px 0 3px; margin:0; BACKGROUND:url(images/search-input.png) repeat-x left bottom; COLOR:#575757}
 .search-submit{position:absolute; top:0px; left:156px; width:20px; height:24px; border:0; margin:0; BACKGROUND:url(images/search-button.png) repeat-x left bottom; cursor:pointer}
