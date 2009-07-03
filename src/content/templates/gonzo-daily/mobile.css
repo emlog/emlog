@@ -1,0 +1,109 @@
+html {
+	background: #fff;
+	text-align:left;
+}
+
+body {
+	background: #fff;
+	text-align:left;
+	margin:0;
+	padding:0;
+	max-width:1200px;
+	color:black;
+	font-size:12px;
+}
+
+h1 {
+	font-size:1.4em;
+}
+
+h2 {
+	font-size:1.2em;
+}
+
+h3 {
+	font-size:1em;
+}
+
+blockquote {
+	font-size: 1em;
+}
+
+div.latest h2 {
+	font-size: 3em;
+}
+
+div.latest div.post_content {
+	-moz-column-count: 1;
+	-webkit-column-count: 1;
+	column-count: 1;
+}
+
+#content {
+	width:auto;
+	float:none;
+	text-align:left;
+}
+
+#content div.post {
+	margin-right:.5em;
+}
+
+/**
+* RIGHT SIDEBARS
+*/
+
+.sidebar {
+	padding:0px;
+	margin: 1.5em 0;
+	float:right;
+}
+
+#sidebarFrame {
+	clear:both;
+	float:none;
+	width:auto;
+	text-align:left;
+	padding:0em 1.5em;
+	border-top:2px solid #AE3000;
+}
+
+#sidebarA {
+	padding-top:1em;
+	padding-bottom:0px;
+	float:none;
+}
+
+#sidebarC {
+	width:49%;
+	float:left;
+}
+
+#sidebarB {
+	width:50%;
+}
+
+.sidebar h2 {
+	font-size:1.1em;
+	border-bottom: 1px solid #000;
+}
+
+.sidebar ul li {
+	margin-left: 0em;
+}
+
+/**
+* FOOTER
+*/
+#footer {
+	padding-left:0;
+	padding-top:1.5em;
+}
+
+
+#footer p {
+	float:none !important;
+	padding:0 !important;
+	width:auto !important;
+	margin:0 1em 1.5em 1em !important;
+}

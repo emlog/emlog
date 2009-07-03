@@ -1,0 +1,19 @@
+ul#navigation li {
+	zoom: 1;
+	*display: inline;
+}
+
+div.latest h2 a:link,
+div.latest h2 a:visited,
+div.latest h2 a:active {
+	color:#000;
+}
+
+
+#sidebarA {
+	margin-right:5px;
+}
+
+textarea {
+	width:99%;
+}
