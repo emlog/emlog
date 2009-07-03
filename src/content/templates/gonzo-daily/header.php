@@ -33,3 +33,12 @@ require_once (getViews('module'));
 		<h1><a href="./"><?php echo $blogname; ?></a></h1>
 		<div class="description"><?php echo $bloginfo; ?></div>
 	</div>
+		<ul id="navigation">
+			<?php foreach ($navibar as $key => $val):
+			if ($val['hide'] == 'y'){continue;}
+			if (empty($val['url'])){$val['url'] = './?post='.$key;}
+			?>
+			<li><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+			<?php endforeach;?>
+			<?php doAction('navbar', '<li>', '</li>'); ?>
+		</ul>
