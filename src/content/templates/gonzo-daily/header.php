@@ -30,6 +30,6 @@ require_once (getViews('module'));
 <body>
 
 	<div id="header">
-		<h1><a href="/"><?php echo $blogname; ?></a></h1>
+		<h1><a href="./"><?php echo $blogname; ?></a></h1>
 		<div class="description"><?php echo $bloginfo; ?></div>
 	</div>
