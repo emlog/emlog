@@ -297,7 +297,6 @@ function blog_author($uid){
 //blog：相邻日志
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
-	<div class="navigation">
 		<div class="prev">
 		<?php if($prevLog):?>
 	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
@@ -308,7 +307,6 @@ function neighbor_log(){
 		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 		<?php endif;?>
 		</div>
-	</div>
 <?php }?>
 <?php
 //blog：引用通告
