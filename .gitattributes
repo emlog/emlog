@@ -1320,6 +1320,25 @@ src/content/templates/sea/page.php -text
 src/content/templates/sea/preview.jpg -text svn_keywords=Id
 src/content/templates/sea/side.php -text svn_keywords=Id
 src/content/templates/sea/style.css -text svn_keywords=Id
+src/content/templates/shades-of-blue/echo_log.php -text
+src/content/templates/shades-of-blue/footer.php -text
+src/content/templates/shades-of-blue/header.php -text
+src/content/templates/shades-of-blue/images/arrow.gif -text
+src/content/templates/shades-of-blue/images/icon_rss.gif -text
+src/content/templates/shades-of-blue/images/import.gif -text
+src/content/templates/shades-of-blue/images/modify.gif -text
+src/content/templates/shades-of-blue/images/navbar.png -text
+src/content/templates/shades-of-blue/images/navhover.png -text
+src/content/templates/shades-of-blue/images/player.swf -text
+src/content/templates/shades-of-blue/images/reply.gif -text
+src/content/templates/shades-of-blue/images/wrap.png -text
+src/content/templates/shades-of-blue/log_list.php -text
+src/content/templates/shades-of-blue/main.css -text
+src/content/templates/shades-of-blue/module.php -text
+src/content/templates/shades-of-blue/page.php -text
+src/content/templates/shades-of-blue/preview.jpg -text
+src/content/templates/shades-of-blue/search.php -text
+src/content/templates/shades-of-blue/sidebar.php -text
 src/content/templates/spring/echo_log.php -text svn_keywords=Id
 src/content/templates/spring/footer.php -text svn_keywords=Id
 src/content/templates/spring/header.php -text svn_keywords=Id
