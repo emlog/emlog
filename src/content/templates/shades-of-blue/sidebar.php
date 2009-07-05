@@ -27,5 +27,6 @@ foreach ($widgets as $val)
 }
 ?>
 	</ul>
+	<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo CERTEMPLATE_URL; ?>/images/rss.gif" alt="订阅Rss"/></a>
 </div>
 <!-- end r_sidebar -->
