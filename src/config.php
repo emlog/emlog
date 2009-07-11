@@ -10,11 +10,9 @@ define('DB_NAME','emlog');
 //database prefix
 define('DB_PREFIX','emlog_');
 //auth key
-define('AUTH_KEY','k1tQqx@HPKbIQ$sIxKqU2HwR!3KaBOOlb609e9c0cba93fc74f55bf4c1368e99b');
+define('AUTH_KEY','CE#LGOplb#%y0e*W@&ZHJLp@YYTdHngEadb152c174271ecbed4c170794f0d545');
 //cookie name
-define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_rbiZzLqNfMiqsCCmJosmbweqL91iDprf');
-//blog root
-define('EMLOG_ROOT','D:\website\emlog\trunk\src');
+define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_i1Wcma7JMkF6YX61xe94ithUM8qdD2cp');
 //blog version
 define('EMLOG_VERSION','3.2.1');
 ?>
