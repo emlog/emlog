@@ -16,12 +16,12 @@ a:hover{color:#000; text-decoration:none}
 a:visited{color:#333; text-decoration:none}
 /*ͷ*/
 .head-wrap {background:#fff; padding-top:8px;}
-#toptool{width:980px;margin:0 auto; font-size:12px;}
-#toptool a{ color: #666666}
-#toptool input{ border:1px #CCCCCC solid;}
+#toptool{width:980px;margin:0 auto; font-size:12px; height:30px;}
+#toptool{ color: #999999}
+#toptool input{ border:1px #CCCCCC solid; background-color:#FFFFFF; color:#999}
 #head {width:980px;margin:0 auto;}
 #head h1 a{font-size:20px; font-weight:800;color:#50AAC3}
-#tagline{font-size:12px; color:#D8D8D8}
+#tagline{font-size:12px; color: #666666}
 .nav-wrap {background:url(images/navbg.gif) repeat-x;height:30px;width:100%}
 #nav {width:980px;margin:0 auto;padding-top:3px;background:url(images/navbg.gif) repeat-x;}
 #menus{font-size:14px;margin:0px;position:relative;height:27px}

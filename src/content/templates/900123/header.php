@@ -36,7 +36,7 @@ require_once (getViews('module'));
 			<INPUT id="user" name="user" value="" />
 			<label>密码</label>
 			<INPUT id="pw" type="password" name="pw" value="" />
-			<INPUT id="ispersis" type="checkbox" name="ispersis" value="1" checked /><label>记住我</label>
+			<INPUT id="ispersis" style="border:0;" type="checkbox" name="ispersis" value="1" checked /><label>记住我</label>
 
 			<INPUT class="submit" type="submit" value=" 登 录" />
 			</div>
