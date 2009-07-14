@@ -505,7 +505,7 @@ src/content/templates/default/log_list.php -text
 src/content/templates/default/main.css -text
 src/content/templates/default/module.php -text
 src/content/templates/default/page.php -text
-src/content/templates/default/preview.jpg -text
+src/content/templates/default/preview.jpg -text svneol=unset#application/octet-stream
 src/content/templates/default/side.php -text
 src/content/templates/devart/echo_log.php -text
 src/content/templates/devart/foot.php -text

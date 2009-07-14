@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <?php
 //widget：blogger
+
 function widget_blogger($title){
 	global $user_cache; 
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
-	<li>
-	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
+	<li class="widget_meta"><h2><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h2>
 	<ul style="text-align:center" id="bloggerinfo">
 	<div id="bloggerinfoimg">
 	<?php if (!empty($user_cache[1]['photo']['src'])): ?>
@@ -31,8 +31,7 @@ function widget_blogger($title){
 //widget：日历
 function widget_calendar($title){
 	global $calendar_url; ?>
-	<li>
-	<h3><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></h2>
 	<div id="calendar">
 	</div>
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
@@ -42,8 +41,7 @@ function widget_calendar($title){
 //widget：标签
 function widget_tag($title){
 	global $tag_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></h2>
 	<ul id="blogtags">
 	<li>
 	<?php foreach($tag_cache as $value): ?>
@@ -58,8 +56,7 @@ function widget_tag($title){
 //widget：分类
 function widget_sort($title){
 	global $sort_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h2>
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
@@ -75,8 +72,7 @@ function widget_sort($title){
 function widget_twitter($title){
 	global $tw_cache,$index_twnum,$localdate; ?>
 	<?php if($index_twnum>0): ?>
-	<li>
-		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h2>
 		<ul id="twitter">
 		<?php
 		if(isset($tw_cache) && is_array($tw_cache)):
@@ -107,8 +103,7 @@ function widget_twitter($title){
 //widget：音乐
 function widget_music($title){
 	global $musicdes,$musicurl,$autoplay; ?>
-	<li>
-	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>	
+<li class="widget_meta"><h2><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h2>	
 	<ul id="blogmusic">
 	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
@@ -119,8 +114,7 @@ function widget_music($title){
 //widget：最新评论
 function widget_newcomm($title){
 	global $com_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h2>
 	<ul id="newcomment">
 	<?php 
 	foreach($com_cache as $value): 
@@ -141,8 +135,7 @@ function widget_newcomm($title){
 //widget：最新日志
 function widget_newlog($title){
 	global $newLogs_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h2>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
 	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
@@ -161,8 +154,7 @@ function widget_random_log($title){
 		$emBlog = new emBlog($DB);
 	}
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>
-	<li>
-	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h2>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
 	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
@@ -170,27 +162,12 @@ function widget_random_log($title){
 	</ul>
 	</li>
 <?php }?>
-<?php
-//widget：搜索
-function widget_search($title){ ?>
-	<li>
-	<h3><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></h3>
-	<ul id="logserch">
-	<li>
-	<form name="keyform" method="get" action="./"><p>
-	<input name="keyword"  type="text" value="" style="width:120px;"/>
-	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
-	</form>
-	</li>
-	</ul>
-	</li>
-<?php } ?>
+
 <?php
 //widget：归档
 function widget_archive($title){
 	global $dang_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('record')"><?php echo $title; ?></span></h2>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
 	<li><a href="./<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
@@ -201,8 +178,7 @@ function widget_archive($title){
 <?php
 //widget：自定义组件
 function widget_custom_text($title, $content, $id){ ?>
-	<li>
-	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h2>
 	<ul id="<?php echo $id; ?>">
 	<li><?php echo $content; ?></li>
 	</ul>
@@ -212,8 +188,7 @@ function widget_custom_text($title, $content, $id){ ?>
 //widget：链接
 function widget_link($title){
 	global $link_cache; ?>
-	<li>
-	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('link')"><?php echo $title; ?></span></h2>
 	<ul id="link">
 	<?php foreach($link_cache as $value): ?>     	
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
@@ -225,8 +200,7 @@ function widget_link($title){
 //widget：博客信息
 function widget_bloginfo($title){
 	global $sta_cache,$viewcount_day,$viewcount_all; ?>
-	<li>
-	<h3><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></h3>
+<li class="widget_meta"><h2><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></h2>
 	<ul id="bloginfo">
 	<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
 	<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
@@ -328,27 +302,33 @@ function blog_trackback(){
 //blog：博客评论列表
 function blog_comments(){
 	global $comments; ?>
-	<?php if($comments): ?>
-	<p class="comment"><b>评论：</b><a name="comment"></a></p>
-	<?php endif; ?>
-	<?php
+    	<?php
 	foreach($comments as $key=>$value):
 	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 	?>
-	<div id="com_line">
-		<a name="<?php echo $value['cid']; ?>"></a>
-		<b><?php echo $value['poster']; ?> </b>
-		<?php if($value['mail']):?>
+        	<div class="blog_comm"> 
+	<?php if($comments): ?>
+		<div class="comm_title"> 
+			Comments:
+		</div> 
+        	<?php endif; ?>
+			
+		<div class="comm_data"> 
+			<div class="comm_data_pad"> 
+					<a name="<?php echo $value['cid']; ?>"></a>
+		<b><?php echo $value['poster']; ?> </b><?php if($value['mail']):?>
 			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
 		<?php endif;?>
 		<?php if($value['url']):?>
 			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
-		<?php endif;?>
-			<div class="time"><?php echo $value['date']; ?></div>
-			<div class="com_date">
-			<?php echo $value['content']; ?>
-			</div>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+		<?php endif;?> on <?php echo $value['date']; ?>
+			</div> 
+		</div> 
+		<div class="comm_text"> 
+			<p><?php echo $value['content']; ?></p> 
+		</div> 
+        <div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+        		
 		<?php if(ROLE == 'admin'): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
@@ -358,7 +338,9 @@ function blog_comments(){
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
-	</div>
+		<div class="bl_line"></div> 				
+	</div> 
+
 	<?php endforeach; ?>
 <?php }?>
 <?php
@@ -366,22 +348,49 @@ function blog_comments(){
 function blog_comments_post(){
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
-	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
-	<div class="comment_post">
-	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
-	<p>
-	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
-	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">
-	<label for="author"><small>昵称</small></label></p>
-	<p>
-	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2"> 
-	<label for="email"><small>邮件地址 (选填)</small></label></p>
-	<p><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-	<label for="url"><small>个人主页 (选填)</small></label>
-	</p>
-	<p><textarea name="comment" id="comment"  rows="10" tabindex="4"></textarea></p>
-	<p><div class="comment_yz"><?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
-	</form>
-	</div>
+<div id="comm_form"> 
+ 
+ 
+<div class="form_table"> 
+	<div id="form_title"> 
+		<div id="form_title_text">Post a comment</div> 
+	</div> 
+<table cellpadding="2"> 
+<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform"> 
+ 
+ 
+<tr> 
+	<td align="right" width="110">Name:&nbsp;</td> 
+	<td><input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
+	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1"></td> 
+</tr> 
+<tr> 
+	<td align="right">Email:&nbsp;</td> 
+	<td><input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2"> </td> 
+</tr> 
+<tr> 
+	<td align="right">URL:&nbsp;</td> 
+	<td><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3"></td> 
+</tr> 
+ 
+ 
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>--> 
+<tr> 
+	<td align="right" valign="top">Comments:&nbsp;</td> 
+	<td><textarea name="comment" cols="60"  rows="10" id="comment" tabindex="4"></textarea></td> 
+</tr> 
+<tr> 
+	<td></td> 
+	<td> 
+		<input type="hidden" name="comment_post_ID" value="6" /> 
+		<input type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/sub.png" width="65" height="25" id="submit" tabindex="5" class="sub" /> 
+	</td> 
+</tr> 
+ 
+</form> 
+</table> 
+								<div class="form_comm_end"></div> 
+							</div> 
+
 	<?php endif; ?>
 <?php }?>

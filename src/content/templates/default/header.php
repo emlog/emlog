@@ -1,10 +1,10 @@
 <?php
 /*
-Template Name:默认模板
-Description:这是emlog的默认模板，简洁明快 ……
-Author:emlog开发小组
-Author Url:http://www.emlog.net
-Sidebar Amount:1
+Template Name:bluedark-10
+Description:高科技的,明快的,深邃的 ……
+Author:Askgraphics.com
+Author Url:http://www.skinpress.com
+Sidebar Amount:2
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once (getViews('module'));
@@ -21,30 +21,86 @@ require_once (getViews('module'));
 <script src="<?php echo BLOG_URL; ?>lib/js/common_tpl.js" type="text/javascript"></script>
 <?php doAction('index_head'); ?>
 </head>
-<body>
-<div class="main">
-	<div class="header">
-		<ul>
-			<li id="title"><h1><a href="./"><?php echo $blogname; ?></a></h1></li>
-			<li id="tagline"><?php echo $bloginfo; ?></li>
-		</ul>
-		<ul id="menus">
-			<li class="menus1"><a href="./">首页</a></li>
-			<?php foreach ($navibar as $key => $val):
+<body> 
+<center> 
+<div id="page"> 
+ 
+<div id="header"> 
+	<div id="header_top"> 
+		<div id="header_title"> 
+			<a href="./"><?php echo $blogname; ?></a> | <span><?php echo $bloginfo; ?></span> 
+		</div> 
+		
+			<div id="menu"> 
+				<div id="menu_pad"> 
+					<table cellpadding="0" cellspacing="0" align="left" width="99%"> 
+						<tr> 
+							<td> 
+								<table cellpadding="0" cellspacing="0" align="left"> 
+									<td class="menu"> 
+										<a href="./">首页</a>
+									</td> 
+									<td class="m_sep">&nbsp;</td> 
+								<?php foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
 			if (empty($val['url'])){$val['url'] = './?post='.$key;}
 			?>
-			<li class="menus2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+            	<td class="menu"> 
+								<a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a>
+							</td> 
+							<td class="m_sep">&nbsp;</td> 	
 			<?php endforeach;?>
-			<?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
-			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-			<li class="menus2"><a href="./admin/write_log.php">写日志</a></li>
-			<li class="menus2"><a href="./admin/">管理中心</a></li>
-			<li class="menus2"><a href="./admin/?action=logout">退出</a></li>
+            
+          <?php doAction('navbar', '<td class="menu">', '</td><td class="m_sep">&nbsp;</td>'); ?>
+						
+                        	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
+                            
+                            <td class="menu"> 
+								<a href="./admin/write_log.php">写日志</a>
+							</td> 
+							<td class="m_sep">&nbsp;</td>
+                            <td class="menu"> 
+								<a href="./admin/">管理中心</a>
+							</td> 
+							<td class="m_sep">&nbsp;</td> 
+                            <td class="menu"> 
+								<a href="./admin/?action=logout">退出</a>
+							</td> 
+							<td class="m_sep">&nbsp;</td> 
 			<?php else: ?>
-			<li class="menus2"><a href="./admin/">登录</a></li>
-			<?php endif; ?>
-		</ul>
-		<div class="clear"></div>
-	</div>
-	<!--header end-->
+             <td class="menu"> 
+								<a href="./admin/">登录</a>
+							</td> 
+							<td class="m_sep">&nbsp;</td>
+			<?php endif; ?>          
+								</table> 
+							</td> 
+							<td align="right"> 
+								<div id="right_search_box"> 
+								<form method="get" id="searchform" name="keyform" style="display:inline;" action="./"> 
+								<table> 
+									<tr> 
+										<td>Serach:</td> 
+										<td><input type="text" class="s" value="" name="s" id="s" /></td> 
+										<td><input type="image" id="logserch_logserch" class="sub" onclick="return keyw()"  src="<?php echo CERTEMPLATE_URL; ?>/images/go.png" /></td> 
+									</tr> 
+								</table> 
+								</form> 
+							</div> 
+							</td> 
+						</tr> 
+					</table> 
+				</div> 
+			</div> 
+	</div> 
+	<div id="header_end"> 
+		<div id="header_text_pad"> 
+			<div id="header_end_title"> 
+				你可以修改这段文字在header.php
+			</div> 
+			<div id="header_end_text"> 
+			可以写下这个blog的简短介绍：）
+			</div> 
+		</div> 
+	</div> 
+</div> 
