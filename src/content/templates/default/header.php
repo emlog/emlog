@@ -81,12 +81,15 @@ require_once (getViews('module'));
 								<table> 
 									<tr> 
 										<td>Serach:</td> 
-										<td><input type="text" class="s" value="" name="s" id="s" /></td> 
-										<td><input type="image" id="logserch_logserch" class="sub" onclick="return keyw()"  src="<?php echo CERTEMPLATE_URL; ?>/images/go.png" /></td> 
+										<td><input name="keyword"  type="text" class="s" value="" name="s" id="s" /></td> 
+										<td><input type="image" id="logserch_logserch" class="sub" onclick="return keyw()"  src="<?php echo CERTEMPLATE_URL; ?>/images/go.png" onclick="return keyw()"/></td> 
 									</tr> 
 								</table> 
 								</form> 
 							</div> 
+
+                            
+                            
 							</td> 
 						</tr> 
 					</table> 
