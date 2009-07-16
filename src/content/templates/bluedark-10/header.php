@@ -99,7 +99,7 @@ require_once (getViews('module'));
 	<div id="header_end"> 
 		<div id="header_text_pad"> 
 			<div id="header_end_title"> 
-				你可以修改这段文字在header.php
+				你可以修改这段文字在模板目录下的header.php文件里
 			</div> 
 			<div id="header_end_text"> 
 			可以写下这个blog的简短介绍：）

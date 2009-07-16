@@ -18,7 +18,7 @@ function widget_blogger($title){
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
 		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
+		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:100px;height:80px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
 		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
@@ -91,8 +91,8 @@ function widget_twitter($title){
 		<ul>
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
 		<li id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
-		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
+		<textarea name="tw" id="tw" style="overflow-y: hidden;width:120px;height:80px;" class="input"></textarea>
+		<br><a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">提交</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
 		</ul>
@@ -383,7 +383,7 @@ function blog_comments_post(){
 	<td></td> 
 	<td> 
 		<input type="hidden" name="comment_post_ID" value="6" /> 
-		<input type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/sub.png" width="65" height="25" id="submit" tabindex="5" class="sub" /> 
+		<?php echo $cheackimg; ?><br /><input type="image" src="<?php echo CERTEMPLATE_URL; ?>/images/sub.png" width="65" height="25" id="submit" tabindex="5" class="sub" /> 
 	</td> 
 </tr> 
  
