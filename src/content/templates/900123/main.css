@@ -21,7 +21,7 @@ a:visited{color:#333; text-decoration:none}
 #toptool input{ border:1px #CCCCCC solid; background-color:#FFFFFF; color:#999}
 #head {width:980px;margin:0 auto;}
 #head h1 a{font-size:20px; font-weight:800;color:#50AAC3}
-#tagline{font-size:12px; color: #666666}
+#tagline{font-size:12px; color: #666666; margin:10px 0px 20px 0px;}
 .nav-wrap {background:url(images/navbg.gif) repeat-x;height:30px;width:100%}
 #nav {width:980px;margin:0 auto;padding-top:3px;background:url(images/navbg.gif) repeat-x;}
 #menus{font-size:14px;margin:0px;position:relative;height:27px}

@@ -491,7 +491,6 @@ src/content/templates/classic/module.php -text
 src/content/templates/classic/page.php -text
 src/content/templates/classic/preview.jpg -text svn_keywords=Id
 src/content/templates/classic/side.php -text svn_keywords=Id
-src/content/templates/coolwater/comments.php -text
 src/content/templates/coolwater/echo_log.php -text
 src/content/templates/coolwater/footer.php -text
 src/content/templates/coolwater/header.php -text
@@ -1437,7 +1436,6 @@ src/content/templates/shades-of-blue/main.css -text
 src/content/templates/shades-of-blue/module.php -text
 src/content/templates/shades-of-blue/page.php -text
 src/content/templates/shades-of-blue/preview.jpg -text
-src/content/templates/shades-of-blue/search.php -text
 src/content/templates/shades-of-blue/sidebar.php -text
 src/content/templates/spring/echo_log.php -text svn_keywords=Id
 src/content/templates/spring/footer.php -text svn_keywords=Id

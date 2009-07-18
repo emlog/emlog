@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 Template Name:900123
 Description:这是以我的生日命名的模板 ……
@@ -29,21 +29,9 @@ require_once (getViews('module'));
 			<div class="login" style="float:left">
 			<a href="./admin/">管理中心</a> 丨 <a href="./admin/?action=logout">退出</a>
 			</div>
-			<?php else: ?>
-			<form action="admin/index.php?action=login" method="post">
-			<div class="login" style="float:left">
-			<label>用户名</label>
-			<INPUT id="user" name="user" value="" />
-			<label>密码</label>
-			<INPUT id="pw" type="password" name="pw" value="" />
-			<INPUT id="ispersis" style="border:0;" type="checkbox" name="ispersis" value="1" checked /><label>记住我</label>
-
-			<INPUT class="submit" type="submit" value=" 登 录" />
-			</div>
-			</form>
 			<?php endif; ?>
 			<div class="tool" style="float:right;">
-			<span style="CURSOR: hand;" onClick="window.external.addFavorite('<?php echo BLOG_URL; ?>','<?php echo $blogname; ?>')" >加入收藏</span>
+			<span><a href="./admin/">登录</a></span>
 			</div>
 			</div>
 			<div id="head" style="clear:both">

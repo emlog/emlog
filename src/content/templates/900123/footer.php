@@ -14,8 +14,7 @@
 <P id="copyright">
 Powered by <a href="http://www.emlog.net" title="emlog <?php echo EMLOG_VERSION;?>">emlog</a> 
 </P>
-<P id="debuginfo">
-备案：<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
+<P id="debuginfo"><a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a>
 </P>
 
 
