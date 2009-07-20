@@ -150,7 +150,6 @@ Powered by <a href="http://www.emlog.net">emlog</a>
 
 if(isset($_GET['action']) && $_GET['action'] == "install")
 {
-	// 获取表单信息，修改配置文件
 	$db_host = addslashes(trim($_POST['hostname']));//服务器地址
 	$db_user = addslashes(trim($_POST['dbuser']));	 //mysql 数据库用户名
 	$db_pw = addslashes(trim($_POST['password']));//mysql 数据库密码
@@ -161,7 +160,6 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	$adminpw2 = addslashes(trim($_POST['adminpw2']));//博主登录密码确认
 	$result = '';
 
-	//错误返回函数
 	if(empty($db_prefix))
 	{
 		emMsg('数据库前缀不能为空!');
@@ -246,12 +244,11 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	);
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
-	//blog url
+
 	preg_match("/^.*\//", $_SERVER['SCRIPT_NAME'], $matches);
 	$subdir = $matches[0];
 	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$subdir;
 
-	//sql language
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
@@ -399,31 +396,22 @@ PRIMARY KEY  (uid)
 )".$add."
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
-	$mysql_query = explode(";\n",$sql);
+	$mysql_query = explode(";\n", $sql);
 	while (list(,$query) = each($mysql_query))
 	{
 		$query = trim($query);
 		if ($query)
 		{
-			if (strstr($query,'CREATE TABLE'))
+			if (strstr($query, 'CREATE TABLE'))
 			{
-				ereg('CREATE TABLE ([^ ]*)',$query,$regs);
-				$result .= "数据库表: ".$regs[1]." 创建";
+				preg_match('/CREATE TABLE ([^ ]*)/', $query, $matches);
 				$ret = $DB->query($query);
-				if (!$ret)
+				if ($ret)
 				{
-					$result .= "<b>失败！</b>，安装无法顺利完成，请检查该mysql用户是否有权限创建表\n";
-					emMsg($result);
-				}else{
-					$result .= "成功...<br />\n";
+					$result .= '数据库表：'.$matches[1].' 创建成功<br />';
 				}
 			} else {
 				$ret = $DB->query($query);
-				if (!$ret)
-				{
-					$result .= "<b>抱歉！</b>如下sql语句运行错误，安装无法顺利完成<br />$query";
-					emMsg($result);
-				}
 			}
 		}
 	}
