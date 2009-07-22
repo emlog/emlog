@@ -140,6 +140,11 @@ if ($action == 'mkcache')
 	header("Location: ./data.php?active_mc=true");
 }
 
+/**
+ * 导入备份文件
+ *
+ * @param string $filename
+ */
 function bakindata($filename)
 {
 	global $db,$DB;
@@ -156,10 +161,10 @@ function bakindata($filename)
 		{
 			continue;
 		}
-		if(eregi("\;$",$value))
+		if(preg_match("/\;$/i", $value))
 		{
 			$query .= $value;
-			if(eregi("^CREATE",$query))
+			if(preg_match("/^CREATE/i", $query))
 			{
 				$query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is",'',$query);
 			}

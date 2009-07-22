@@ -163,7 +163,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	if(empty($db_prefix))
 	{
 		emMsg('数据库前缀不能为空!');
-	}elseif(!ereg("^[a-zA-Z0-9_]+_$",$db_prefix)){
+	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
 		emMsg('数据库前缀格式错误!');
 	}elseif($admin=="" || $adminpw==""){
 		emMsg('博主登录名和密码不能为空!');
