@@ -95,7 +95,7 @@ function getIp()
 			$ip = getenv("REMOTE_ADDR");
 		}
 	}
-	if($ip && !preg_match("/\d+\.\d+\.\d+\.\d+/", $ip))
+	if(!preg_match("/\d+\.\d+\.\d+\.\d+/", $ip))
 	{
 		$ip = '';
 	}
