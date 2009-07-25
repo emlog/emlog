@@ -168,7 +168,7 @@ if ($action == 'addcom')
 	}
 }
 //加载插件页面
-if (!empty($plugin))
+if (preg_match("/^[\w\-]+$/", $plugin))
 {
 	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
 }
