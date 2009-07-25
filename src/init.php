@@ -18,11 +18,10 @@ require_once(EMLOG_ROOT.'/lib/C_cache.php');
 require_once(EMLOG_ROOT.'/lib/C_mysql.php');
 
 header('Content-Type: text/html; charset=UTF-8');
-doStripslashes();//去除多余的转义字符
-//数据库操作对象
+doStripslashes();
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-//数据缓存对象
 $CACHE = new mkcache($DB,DB_PREFIX);
+
 //读取配置
 $options_cache = $CACHE->readCache('options');
 extract($options_cache);
@@ -44,6 +43,7 @@ define('IMG_ATT_MAX_W',	420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',	460);//图片附件缩略图最大高
 define('ICON_MAX_W', 140);//头像缩略图最大宽
 define('ICON_MAX_H', 220);//头像缩略图最大高
+define('EMLOG_VERSION','3.2.1');
 //加载插件
 $active_plugins = unserialize($active_plugins);
 $emHooks = array();

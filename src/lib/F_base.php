@@ -25,7 +25,7 @@ function getViews($template, $ext = ".php")
 }
 
 /**
- * 执行去除转义字符
+ * 去除多余的转义字符
  *
  */
 function doStripslashes()

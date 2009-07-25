@@ -16,7 +16,9 @@ doStripslashes();
 define('EMLOG_VERSION', '3.2.1');
 define('EMLOG_ROOT', dirname(__FILE__));
 
-if(!isset($_GET['action']))
+$act = isset($_GET['action'])? $_GET['action'] : '';
+
+if(!$act)
 {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -148,16 +150,16 @@ Powered by <a href="http://www.emlog.net">emlog</a>
 <?php
 }
 
-if(isset($_GET['action']) && $_GET['action'] == "install")
+if($act == 'install' || $act == 'reinstall')
 {
-	$db_host = addslashes(trim($_POST['hostname']));//服务器地址
-	$db_user = addslashes(trim($_POST['dbuser']));	 //mysql 数据库用户名
-	$db_pw = addslashes(trim($_POST['password']));//mysql 数据库密码
-	$db_name = addslashes(trim($_POST['dbname']));//数据库名
-	$db_prefix = addslashes(trim($_POST['dbprefix']));//数据库前缀
-	$admin = addslashes(trim($_POST['admin']));//博主登录名
-	$adminpw = addslashes(trim($_POST['adminpw']));//博主登录密码
-	$adminpw2 = addslashes(trim($_POST['adminpw2']));//博主登录密码确认
+	$db_host = addslashes(trim($_POST['hostname']));
+	$db_user = addslashes(trim($_POST['dbuser']));
+	$db_pw = addslashes(trim($_POST['password']));
+	$db_name = addslashes(trim($_POST['dbname']));
+	$db_prefix = addslashes(trim($_POST['dbprefix']));
+	$admin = addslashes(trim($_POST['admin']));
+	$adminpw = addslashes(trim($_POST['adminpw']));
+	$adminpw2 = addslashes(trim($_POST['adminpw2']));
 	$result = '';
 
 	if(empty($db_prefix))
@@ -172,6 +174,49 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	}elseif($adminpw!=$adminpw2)	 {
 		emMsg('两次输入的密码不一致');
 	}
+	
+	//初始化数据库类
+	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
+	$CACHE = new mkcache($DB, $db_prefix);
+	
+	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
+	{
+		echo <<<EOT
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>emlog system message</title>
+<style type="text/css">
+<!--
+body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main p {line-height: 18px;margin: 5px 20px;}
+-->
+</style>
+</head><body>
+<form name="form1" method="post" action="install.php?action=reinstall">
+<div class="main">
+	<input name="hostname" type="hidden" class="input" value="$db_host">
+	<input name="dbuser" type="hidden" class="input" value="$db_user">
+	<input name="password" type="hidden" class="input" value="$db_pw">
+	<input name="dbname" type="hidden" class="input" value="$db_name">
+	<input name="dbprefix" type="hidden" class="input" value="$db_prefix">
+	<input name="admin" type="hidden" class="input" value="$admin">
+	<input name="adminpw" type="hidden" class="input" value="$adminpw">
+	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
+<p>
+你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？ 
+<input name="Submit" type="submit" value="继续&raquo;">
+</p>
+<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+</div>
+</form>
+</body>
+</html>
+EOT;
+		exit;
+	}
+	
 	@$fp = fopen("config.php", 'w');
 	if(!$fp)
 	{
@@ -193,8 +238,6 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
 	."\n//cookie name\n"
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
-	."\n//blog version\n"
-	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
 	."\n?>";
 
 	@$fw = fwrite($fp, $config);
@@ -206,9 +249,7 @@ if(isset($_GET['action']) && $_GET['action'] == "install")
 	}
 	fclose($fp);
 
-	//初始化数据库类
-	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	$CACHE = new mkcache($DB, $db_prefix);
+
 	//密码加密存储
 	$PHPASS = new PasswordHash(8, true);
 	$adminpw = $PHPASS->HashPassword($adminpw);
