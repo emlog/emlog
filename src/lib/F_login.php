@@ -42,17 +42,18 @@ function checkUser($username,$password,$imgcode,$logincode)
 	{
 		return false;
 	} else {
-		$userData = getUserDataByLogin($username);
-		if ($userData === false)
+		$sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
+		if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
 		{
 			return false;
-		} elseif ($logincode == 'y' && $imgcode != $_SESSION['code']) {
-			return false;
-		} else {
-			$hash = $userData['password'];
-			$check = checkPassword($password, $hash);
-			return $check;
 		}
+		$userData = getUserDataByLogin($username);
+		if ($userData === false){
+			return false;
+		}
+		$hash = $userData['password'];
+		$check = checkPassword($password, $hash);
+		return $check;
 	}
 }
 
