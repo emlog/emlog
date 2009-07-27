@@ -636,13 +636,14 @@ padding: 4px 10px 0px 10px;
 
 /*calendar*/
 .calendar { /*background-image:url(images/bg.jpg);*/
-	margin-left: 5px;
+width:180px;
+margin:auto;
 }
 
 .calendar td {
 	font-size: 12px;
 	text-align: center;
-	padding: 1px 7px;
+	padding: 1px 4px;
 }
 
 .calendar a:visited {
@@ -662,6 +663,7 @@ padding: 4px 10px 0px 10px;
 
 .day {
 	border:1px dotted #FF6600;
+	
 }
 
 .day2 {
