@@ -9,6 +9,8 @@ Author Email: emloog@gmail.com
 Author URL: http://www.emlog.net/blog/
 */
 
+!defined('EMLOG_ROOT') && exit('access deined!');
+
 $array_tips = array(
 '你可以在日志中上传多个附件',
 'emlog支持灵活的标签(tag)分类功能',
