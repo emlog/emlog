@@ -22,7 +22,7 @@ if ($hidecmnum > 0):
 	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
 	<li>安全模式：<?php echo $safe_mode ? '开启' : '关闭'; ?></li>
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
-	<li><a href="configure.php?action=phpinfo">更多信息&raquo;</a></li>
+	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
 </div>
 <div id="admindex_msg">

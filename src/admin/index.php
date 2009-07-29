@@ -35,4 +35,10 @@ if ($action == '')
 	include getViews('footer');
 	cleanPage();
 }
+//phpinfo()
+if ($action == 'phpinfo')
+{
+	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
+}
+
 ?>

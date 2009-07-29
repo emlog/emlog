@@ -113,9 +113,5 @@ if ($action == "mod_config")
 	$CACHE->mc_twitter();
 	header("Location: ./configure.php?activated=true");
 }
-//phpinfo()
-if ($action == 'phpinfo')
-{
-	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
-}
+
 ?>
