@@ -16,7 +16,7 @@ function widget_blogger($title){
 		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
 		<?php if(ROLE == 'admin'): ?>
 		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo CERTEMPLATE_URL; ?>/images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
+		<img src="<?php echo $cerTemplatePath; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
 		<li id='modbdes' style="display:none;">
 		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
 		<br />
@@ -64,7 +64,7 @@ function widget_sort($title){
 	<?php foreach($sort_cache as $value): ?>
 	<li>
 	<a href="./?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo CERTEMPLATE_URL; ?>/images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo $cerTemplatePath; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
 	</ul>
@@ -110,7 +110,7 @@ function widget_music($title){
 	<li>
 	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>	
 	<ul id="blogmusic">
-	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo CERTEMPLATE_URL; ?>/images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
+	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo $cerTemplatePath; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo $cerTemplatePath; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
 	</ul>
 	</li>
@@ -129,7 +129,7 @@ function widget_newcomm($title){
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
 	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-	<img src="<?php echo CERTEMPLATE_URL; ?>/images/reply.gif" align="absmiddle"/>
+	<img src="<?php echo $cerTemplatePath; ?>images/reply.gif" align="absmiddle"/>
 	</a>
 	<?php endif;?>
 	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>

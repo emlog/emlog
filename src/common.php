@@ -22,8 +22,6 @@ $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 $tw_cache = $CACHE->readCache('twitter');
 
-//当前模板
-define('CERTEMPLATE_URL', TEMPLATE_URL.$nonce_templet);//前台模板目录地址
 //导航条
 $navibar = unserialize($navibar);
 //背景音乐

@@ -5,7 +5,7 @@
 <table cellspacing="10" cellpadding="0" width="80%" border="0">
     <tr>
       <td width="27%">
-	  <img src="<?php echo TEMPLATE_URL.$nonce_templet; ?>/preview.jpg" width="300" height="225"  border="1" />	  </td>
+	  <img src="<?php echo $template_path.$nonce_templet; ?>/preview.jpg" width="300" height="225"  border="1" />	  </td>
 	  <td width="73%">
 	  <?php echo $tplName; ?><br>
 	  <?php echo $tplAuthor; ?><br>
@@ -24,7 +24,7 @@ $i++;
 ?>
       <td align="center" width="300">
 	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>">
-	  <img alt="点击使用该模板" src="<?php echo TEMPLATE_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
+	  <img alt="点击使用该模板" src="<?php echo $template_path.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
 	  </a><br />
       <b><a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>" title="点击使用该模板"><?php echo $value['tplname']; ?></a></b><br />
       </td>
