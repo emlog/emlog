@@ -146,7 +146,7 @@ if ($action == 'operate_page')
 				$emPage->deleteLog($key);
 				unset($navibar[$key]);
 			}
-			$navibar = serialize($navibar);
+			$navibar = addslashes(serialize($navibar));
 			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 			$CACHE->mc_logatts();
@@ -165,7 +165,7 @@ if ($action == 'operate_page')
 				$emPage->hideSwitch($key, $ishide);
 				$navibar[$key]['hide'] = $ishide;
 			}
-			$navibar = serialize($navibar);
+			$navibar = addslashes(serialize($navibar));
 			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
 
 			$CACHE->mc_options();
