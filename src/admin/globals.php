@@ -18,17 +18,13 @@ $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传
 
 //后台当前模板路径
 $cerTemplatePath = EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/';
-if (!is_dir($cerTemplatePath))
-{
-	exit('The Management Center Template Path Error');
-}
 //读取缓存
 $sta_cache = $CACHE->readCache('sta');
 $sort_cache = $CACHE->readCache('sort');
 $user_cache = $CACHE->readCache('user');
 $log_cache_tags = $CACHE->readCache('log_tags');
 
-//登陆验证
+//登录验证
 if ($action == 'login')
 {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';

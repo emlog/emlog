@@ -13,12 +13,12 @@
  * @param string $ext 模板后缀名
  * @return string 模板路径
  */
-function getViews($template, $ext = ".php")
+function getViews($template, $ext = '.php')
 {
 	global $cerTemplatePath;
-	if (!$template)
+	if (!is_dir($cerTemplatePath))
 	{
-		$template = 'none';
+		exit('The Template Path Error');
 	}
 	$path = $cerTemplatePath.$template.$ext;
 	return $path;

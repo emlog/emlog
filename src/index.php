@@ -8,19 +8,10 @@
 
 require_once('common.php');
 
-//访问统计
 viewCount();
-//前台当前模板路径
 $cerTemplatePath = TEMPLATE_PATH.$nonce_templet.'/';
-if (!is_dir($cerTemplatePath))
-{
-	exit('The Template Path Error');
-}
-//页面标题
 $blogtitle = $blogname;
-//日历链接
 $calendar_url = isset($_GET['record']) ? './calendar.php?record='.intval($_GET['record']) : './calendar.php?' ;
-
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 
@@ -125,12 +116,9 @@ if (!empty($logid))
 	include getViews('header');
 	if ($type == 'blog')
 	{
-		//add viewcount
 		$emBlog->updateViewCount($logid);
-		//neighborlog
 		$neighborLog = $emBlog->neighborLog($date);
 		extract($neighborLog);
-		//trackback
 		$tb = $emTrackback->getTrackbacks(null, $logid, 0);
 		require_once getViews('echo_log');
 	}elseif ($type == 'page'){
@@ -169,14 +157,9 @@ if ($action == 'addcom')
 	}
 }
 //加载插件页面
-if (preg_match("/^[\w\-]+$/", $plugin))
+if (preg_match("/^[\w\-]+$/", $plugin) && file_exists("./content/plugins/{$plugin}/{$plugin}_show.php"))
 {
-	if(file_exists("./content/plugins/{$plugin}/{$plugin}_show.php"))
-	{
-		include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
-	}else{
-		emMsg('参数错误','./');
-	}
+	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
 }
 
 cleanPage(true);
