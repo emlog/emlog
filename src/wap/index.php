@@ -200,7 +200,7 @@ if ($action == 'waplogin')
 	echo "<p><a href=\"?tem=$tem\">返回主页</a></p>\n";
 	wap_footer();
 }
-//登陆验证
+//登录验证
 if ($action == 'dowaplogin')
 {
 	session_start();
