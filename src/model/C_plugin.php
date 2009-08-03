@@ -55,8 +55,7 @@ class emPlugin {
 	/**
 	 * 获取所有插件列表，未定义插件名称的插件将不予获取
 	 * 插件目录：content\plugins
-	 * 1、插件根目录下的每一个*.php 文件，将视为一个插件
-	 * 2、插件目录下一级文件夹（且该文件夹根目录中包含 文件夹名.php ），将视为一个插件
+	 * 仅识别 插件目录/插件/插件.php 目录结构的插件
 	 * @return array
 	 */
 	function getPlugins()
@@ -67,6 +66,7 @@ class emPlugin {
 			return $emPlugins;
 		}
 		$emPlugins = array();
+		$pluginFiles = array();
 		$pluginPath = EMLOG_ROOT . '/content/plugins';
 		$pluginDir = @ dir($pluginPath);
 		if ($pluginDir)
@@ -93,11 +93,6 @@ class emPlugin {
 								$pluginFiles[] = "$file/$subFile";
 							}
 						}
-					}
-				} else {
-					if (preg_match('|\.php$|', $file))
-					{
-						$pluginFiles[] = $file;
 					}
 				}
 			}
