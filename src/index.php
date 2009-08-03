@@ -70,6 +70,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= './?keyword='.urlencode($keyword).'&page';
 	} elseif($sortid) {
+		echo $sortid;
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
@@ -170,7 +171,12 @@ if ($action == 'addcom')
 //加载插件页面
 if (preg_match("/^[\w\-]+$/", $plugin))
 {
-	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
+	if(file_exists("./content/plugins/{$plugin}/{$plugin}_show.php"))
+	{
+		include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
+	}else{
+		emMsg('参数错误','./');
+	}
 }
 
 cleanPage(true);
