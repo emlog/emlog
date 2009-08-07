@@ -48,7 +48,8 @@ if($action== 'addlink')
 		header("Location: ./link.php?error_a=true");
 		exit;
 	}
-	if(strncasecmp($siteurl, 'http://', 7))
+
+	if(!preg_match("/^http|ftp.+$/i", $siteurl))
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
