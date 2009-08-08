@@ -1,6 +1,6 @@
 <?php
 /**
- * 友站管理
+ * 链接管理
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.1
  * $Id$
@@ -48,12 +48,10 @@ if($action== 'addlink')
 		header("Location: ./link.php?error_a=true");
 		exit;
 	}
-
 	if(!preg_match("/^http|ftp.+$/i", $siteurl))
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
-	
 	$emLink->addLink($sitename, $siteurl, $description);
 	$CACHE->mc_link();
 	header("Location: ./link.php?active_add=true");
@@ -76,8 +74,8 @@ if($action=='update_link')
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$linkId = isset($_POST['linkid']) ? intval($_POST['linkid']) : '';
-	
-	if(strncasecmp($siteurl, 'http://', 7))
+
+	if(!preg_match("/^http|ftp.+$/i", $siteurl))
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
@@ -87,7 +85,6 @@ if($action=='update_link')
 	$CACHE->mc_link();
 	header("Location: ./link.php?active_edit=true");
 }
-//删除
 if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
