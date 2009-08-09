@@ -104,7 +104,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 		$pageId = $emPage->addlog($logData);
 	}
 	
-	if($pageUrl && strncasecmp($pageUrl, 'http://', 7))
+	if(!preg_match("/^http|ftp.+$/i", $pageUrl))
 	{
 		$pageUrl = 'http://'.$pageUrl;
 	}
