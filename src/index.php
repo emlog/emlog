@@ -61,7 +61,6 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= './?keyword='.urlencode($keyword).'&page';
 	} elseif($sortid) {
-		echo $sortid;
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
