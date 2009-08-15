@@ -92,7 +92,33 @@ if ($action == "mod_config")
 	{
 		formMsg("开启评论验证码失败!服务器不支持该功能","configure.php",0);
 	}
-
+	if($getData['isurlrewrite'] == 'y')
+	{
+		if(stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
+		{
+			$apache_mods = @apache_get_modules();
+			if(!empty($apache_mods))
+			{
+				$f = false;
+				foreach($apache_mods as $val)
+				{
+					if(strtolower($val) == 'mod_rewrite')
+					{
+						$f = true;
+						break;
+					}
+				}
+				if(!$f)
+				{
+					formMsg("开启URL优化失败!服务器未开启mod_rewrite模块","configure.php",0);
+				}
+			}
+			if(!file_exists(EMLOG_ROOT.'/.htaccess'))
+			{
+				formMsg("开启URL优化失败!未找到.htaccess文件,请将下载包内ext目录下该文件上传至根目录","configure.php",0);
+			}
+		}
+	}
 	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
 	{
 		$getData['blogurl'] .= '/';

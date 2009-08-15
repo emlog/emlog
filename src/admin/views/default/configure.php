@@ -118,8 +118,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<select name="isurlrewrite">
           <option value="y" <?php echo $ex9; ?>>是</option>
           <option value="n" <?php echo $ex10; ?>>否</option>
-        </select>
-		开启需要其他操作配合，请勿在阅读帮助文档前开启，可能导致无法打开日志</td>
+        </select> 开启需要服务器支持，如果开启后出现日志无法访问的情况请关闭</td>
       </tr>
       <tr>
         <td align="right">开启页面Gzip压缩：<br /></td>

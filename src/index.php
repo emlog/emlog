@@ -156,7 +156,7 @@ if ($action == 'addcom')
 	}
 }
 //加载插件页面
-if (preg_match("/^[\w\-]+$/", $plugin) && file_exists("./content/plugins/{$plugin}/{$plugin}_show.php"))
+if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugins/{$plugin}/{$plugin}_show.php"))
 {
 	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
 }
