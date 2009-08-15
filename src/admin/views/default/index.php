@@ -7,7 +7,7 @@
 $hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0):
 ?>
-(未审核:<b><a href="./comment.php?hide=y"><?php echo $hidecmnum; ?></a></b>)
+(未审核：<b><a href="./comment.php?hide=y"><?php echo $hidecmnum; ?></a></b>)
 <?php endif; ?>
 ，<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['tbnum'] : $user_cache[UID]['tbnum']; ?></b></span>条引用通告
 </div>
