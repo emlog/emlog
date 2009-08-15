@@ -151,7 +151,7 @@ if ($action == 'addcom')
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		emMsg('评论发表成功!请等待管理员审核!',"./?post=$gid#comment", true);
+		emMsg('评论发表成功!请等待管理员审核!',"./?post=$gid");
 	}
 }
 //加载插件页面
