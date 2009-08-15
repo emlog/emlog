@@ -7,9 +7,8 @@
  */
 
 require_once('common.php');
-
 viewCount();
-$cerTemplatePath = TEMPLATE_PATH.$nonce_templet.'/';
+define('TPL_PATH', TEMPLATE_PATH.$nonce_templet.'/');
 $blogtitle = $blogname;
 $calendar_url = isset($_GET['record']) ? './calendar.php?record='.intval($_GET['record']) : './calendar.php?' ;
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';

@@ -15,12 +15,11 @@
  */
 function getViews($template, $ext = '.php')
 {
-	global $cerTemplatePath;
-	if (!is_dir($cerTemplatePath))
+	if (!is_dir(TPL_PATH))
 	{
 		exit('The Template Path Error');
 	}
-	$path = $cerTemplatePath.$template.$ext;
+	$path = TPL_PATH.$template.$ext;
 	return $path;
 }
 
