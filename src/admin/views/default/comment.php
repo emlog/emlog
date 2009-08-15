@@ -46,7 +46,7 @@ $$a = "class=\"filter\"";
 	$ip = !empty($value['ip']) ? "({$value['ip']})" : '';
 	$mail = !empty($value['mail']) ? "<br />邮箱：{$value['mail']}" : '';
 	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
-	$value['content'] = subString(str_replace("<br>","",$value['content']),0,50);
+	$value['content'] = subString(str_replace('<br>','',$value['content']),0,50);
 	$value['title'] = subString($value['title'],0,42);
 	?>
      <tr>
