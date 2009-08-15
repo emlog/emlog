@@ -93,11 +93,13 @@ if($action=='doreply')
 	if(!$flg)
 	{
 		$emComment->replyComment($commentId, $reply);
+		doAction('comment_reply', $commentId, $reply);
 		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
 		$emComment->replyComment($commentId, $reply);
+		doAction('comment_reply', $commentId, $reply);
 		$CACHE->mc_comment();
 		echo "<span><b>博主回复</b>：$reply</span>";
 	}

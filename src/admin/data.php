@@ -10,12 +10,13 @@ require_once('globals.php');
 
 if($action == '')
 {
-	$retval = glob("../content/backup/*.sql");
+	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
 	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','tag','trackback','twitter','user');
-	$defname = date("Y_m_d").'_'.substr(md5(date('YmdHis')),0,18);
-	
-	include getViews('header');	
+	$defname = date('Y_m_d').'_'.substr(md5(date('YmdHis')),0,18);
+	doAction('data_prebakup');
+
+	include getViews('header');
 	require_once(getViews('data'));
 	include getViews('footer');
 	cleanPage();
@@ -32,18 +33,14 @@ if($action == 'bakstart')
 	}
 	$filename = '../content/backup/'.$bakfname.'.sql';
 
-	//获取数据库结构和数据内容
 	$sqldump = '';
 	foreach($table_box as $table)
 	{
 		$sqldump .= dataBak($table);
 	}
-
-	//如果数据内容不是空就开始保存
 	if(trim($sqldump))
 	{
-		$sqldump = "#emlog_".EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i')."\n$sqldump";
-		//备份到服务器
+		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i')."\n$sqldump";
 		@$fp = fopen($filename, "w+");
 		if ($fp)
 		{
