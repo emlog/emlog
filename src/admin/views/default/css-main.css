@@ -1,5 +1,5 @@
 html{overflow-y:scroll;}
-fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin:0; padding:0; border:0; }
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td{margin:0; padding:0; border:0;}
 body{font-size:12px; color:#000; line-height:1.6; font-family:arial,helvetica,sans-serif; padding:0; margin:0;}
 .mb-8{ margin-bottom:8px;}
 .center{ margin:5px auto 0px; width:988px;}
@@ -28,8 +28,11 @@ a:hover{color:#333; text-decoration:none}
 .line{border-top:#CCC 1px solid; margin:5px 0px 15px; font-size:0px; height:1%;}
 .line2{border-top:#999 1px dotted; margin:5px 20px; width:70%; font-size:0px;}
 .template_line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:100%; font-size:12px; height:1%; padding:0px;}
-.rowstop{background-image:url(./images/admindex_itembg.gif);}
+.item_list{border:1px solid #f0f0f0; color:#999;border-collapse:collapse; border-spacing:0;}
+.item_list th { height:23px; line-height:23px; background: url(./images/admindex_itembg.gif) repeat-x bottom; border:1px solid #dfdfdf; padding-left:5px; color:#666; border-top:none; }
+.item_list td { height:24px; padding-left:5px; vertical-align: middle; }
 .input{border:1px solid #CCC; overflow-y:hidden}
+.num_input{border:1px dotted #EFEFEF; overflow-y:hidden; width:43px; height:16px;}
 .submit{font-size:12px;cursor:pointer; _cursor:hand;}
 .button{font-size:12px; cursor:pointer; padding:4px 10px}
 .notice{padding:10px 5px; ; font-size:14px; color:#F30}
@@ -75,7 +78,7 @@ textarea{font-size:12px}
 .filters{margin:5px 4px}
 .filter{background-color:#0CF; padding:1px; margin:1px}
 .filter a{color:#FFF}
-.list_footer{ margin:5px 3px;}
+.list_footer{ margin:5px 0px;}
 .page{text-align:center; margin:10px 0px}
 .page span{background-color: #CC3300; color:#FFF; padding:3px 6px}
 .page a{background-color: #68aee1; color:#FFF; padding:1px 5px}

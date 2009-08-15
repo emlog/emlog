@@ -64,19 +64,19 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
-  <table width="100%" id="adm_log_list">
+  <table width="100%" id="adm_log_list" class="item_list">
   <thead>
-      <tr class="rowstop">
-        <td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="490"><b>标题</b></td>
+      <tr>
+        <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+        <th width="490"><b>标题</b></th>
 		<?php if ($pid != 'draft'): ?>
-		<td width="40" align="center"><b>查看</b></td>
+		<th width="40" align="center"><b>查看</b></th>
 		<?php endif; ?>
-		<td width="100"><b>作者</b></td>
-        <td width="146"><b>分类</b></td>
-        <td width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></td>
-		<td width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></td>
-		<td width="40" align="center"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></td>
+		<th width="100"><b>作者</b></th>
+        <th width="146"><b>分类</b></th>
+        <th width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></th>
+		<th width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
+		<th width="40" align="center"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
       </tr>
 	</thead>
  	<tbody>

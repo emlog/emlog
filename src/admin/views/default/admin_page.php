@@ -6,13 +6,13 @@
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table width="100%" id="adm_comment_list">
+  <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
-      <tr class="rowstop">
-      	<td width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="460"><b>标题</b></td>
-        <td width="30" align="center"><b>评论</b></td>
-        <td width="280"><b>时间</b></td>
+      <tr>
+      	<th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+        <th width="460"><b>标题</b></th>
+        <th width="30" align="center"><b>评论</b></th>
+        <th width="280"><b>时间</b></th>
       </tr>
     </thead>
     <tbody>
@@ -58,7 +58,7 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function pageact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的页面');
 		return;}
 	if(act == 'del' && !confirm('你确定要删除所选页面吗？')){return;}
 	$("#operate").val(act);

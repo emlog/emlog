@@ -14,14 +14,14 @@ setTimeout(hideActived,2600);
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell" method="post" name="form_tb" id="form_tb">
-  <table width="100%" id="adm_tb_list">
+  <table width="100%" id="adm_tb_list" class="item_list">
   <thead>
-      <tr class="rowstop">
-        <td width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="270"><b>标题</b></td>
-        <td width="300"><b>来源</b></td>
-		<td width="80"><b>IP</b></td>
-        <td width="120"><b>时间</b></td>
+      <tr>
+        <th width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+        <th width="270"><b>标题</b></th>
+        <th width="300"><b>来源</b></th>
+		<th width="80"><b>IP</b></th>
+        <th width="120"><b>时间</b></th>
       </tr>
   </thead>
   <tbody>
@@ -36,16 +36,13 @@ setTimeout(hideActived,2600);
 	<?php endforeach; ?>
 	</tbody>
   </table>
-	<div class="list_footer">
-	选中项：
-    <a href="javascript:tbact('del');">删除</a>
-	</div>
-  <div class="page">(有<?php echo $tbnum; ?>条引用)<?php echo $pageurl; ?></div> 
+<div class="list_footer">选中项：<a href="javascript:tbact('del');">删除</a></div>
+<div class="page">(有<?php echo $tbnum; ?>条引用)<?php echo $pageurl; ?></div> 
 </form>
 <script>
 function tbact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的引用');
 		return;
 	}
 	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}

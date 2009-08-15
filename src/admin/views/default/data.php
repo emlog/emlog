@@ -7,15 +7,15 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">错误的备份文件名</span><?php endif;?>
 </div>
 <div class=line></div>
-<form  method="post" action="data.php?action=dell_all_bak">
-<table width="100%" id="adm_bakdata_list">
+<form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
+<table width="100%" id="adm_bakdata_list" class="item_list">
   <thead>
-    <tr class="rowstop">
-      <td width="22"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-      <td width="661"><b>备份文件</b></td>
-      <td width="226"><b>备份时间</b></td>
-      <td width="149"><b>文件大小</b></td>
-      <td width="87"></td>
+    <tr>
+      <th width="22"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+      <th width="661"><b>备份文件</b></th>
+      <th width="226"><b>备份时间</b></th>
+      <th width="149"><b>文件大小</b></th>
+      <th width="87"></th>
     </tr>
   </head>
   <tbody>
@@ -26,7 +26,7 @@
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
     <tr>
-      <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[<?php echo $value; ?>]" /></td>
+      <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[<?php echo $value; ?>]" class="ids" /></td>
       <td><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
@@ -34,15 +34,8 @@
     </tr>
 	<?php endforeach; ?>
 	</tbody>
-	<tfoot>
-	<tr>
-	<td align="center" colspan="5">
-    <br />
-	<input type="submit" value="删除所选备份" class="submit" />
-	</td>
-	</tr>
-	</tfoot>
 </table>
+<div class="list_footer">选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
 <form action="data.php?action=bakstart" method="post">
 <div style="margin:0px 0px 20px 3px;"><a href="javascript:displayToggle('backup', 0);">备份数据&raquo;</a></div>
@@ -74,5 +67,14 @@ $(document).ready(function(){
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")})
 });
+function bakact(act){
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的备份文件');
+		return;
+	}
+	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}
+	$("#operate").val(act);
+	$("#form_bak").submit();
+}
 $("#menu_data").addClass('sidebarsubmenu1');
 </script>

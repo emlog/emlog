@@ -5,13 +5,13 @@
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
-  <table width="100%" id="adm_plugin_list">
+  <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
-      <tr class="rowstop">
-        <td width="100"></td>
-        <td width="36" align="center"><b>状态</b></td>
-		<td width="30" align="center"><b>版本</b></td>
-		<td width="500"><b>描述</b></td>
+      <tr>
+        <th width="100"></th>
+        <th width="36" align="center"><b>状态</b></th>
+		<th width="30" align="center"><b>版本</b></th>
+		<th width="500"><b>描述</b></th>
       </tr>
   </thead>
   <tbody>

@@ -9,20 +9,20 @@
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
-  <table width="100%" id="adm_link_list">
+  <table width="100%" id="adm_link_list" class="item_list">
     <thead>
-      <tr class="rowstop">
-	  	<td width="50"><b>序号</b></td>
-        <td width="230"><b>链接</b></td>
-		<td width="30" align="center"><b>查看</b></td>
-		<td width="550"><b>描述</b></td>
-        <td width="100"></td>
+      <tr>
+	  	<th width="50"><b>序号</b></th>
+        <th width="230"><b>链接</b></th>
+		<th width="30" align="center"><b>查看</b></th>
+		<th width="550"><b>描述</b></th>
+        <th width="100"></th>
       </tr>
     </thead>
     <tbody>
 	<?php foreach($links as $key=>$value):?>  
       <tr>
-		<td><input size="3" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+		<td><input class="num_input" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?php echo $value['sitename']; ?></a></td>
 		<td align="center">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
@@ -34,7 +34,7 @@
 	<?php endforeach; ?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="更新排序" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);">添加链接&raquo;</a></div>

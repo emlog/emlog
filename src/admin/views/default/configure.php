@@ -33,7 +33,7 @@ setTimeout(hideActived,2600);
         <td><input maxlength="5" size="10" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
 	  <tr>
-        <td valign="top" align="right">服务器所在时区：<br /></td>
+        <td valign="top" align="right">服务器时区：<br /></td>
         <td>
 		<select name="timezone">
 <?php

@@ -10,15 +10,15 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
-  <table width="100%" id="adm_comment_list">
+  <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
-      <tr class="rowstop">
-        <td width="90"><b>用户名</b></td>
-        <td width="100"><b>昵称</b></td>
-        <td width="260"><b>个人描述</b></td>
-        <td width="80"><b>电子邮件</b></td>
-		<td width="30" align="center"><b>日志</b></td>
-		<td width="130"></td>
+      <tr>
+        <th width="90"><b>用户名</b></th>
+        <th width="100"><b>昵称</b></th>
+        <th width="260"><b>个人描述</b></th>
+        <th width="80"><b>电子邮件</b></th>
+		<th width="30" align="center"><b>日志</b></th>
+		<th width="130"></th>
       </tr>
     </thead>
     <tbody>

@@ -29,14 +29,14 @@ $$a = "class=\"filter\"";
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
-  <table width="100%" id="adm_comment_list">
+  <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
-      <tr class="rowstop">
-        <td width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></td>
-        <td width="300"><b>内容</b></td>
-        <td width="100"><b>评论者</b></td>
-        <td width="120"><b>时间</b></td>
-        <td width="260"><b>所属日志</b></td>
+      <tr>
+        <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
+        <th width="300"><b>内容</b></th>
+        <th width="100"><b>评论者</b></th>
+        <th width="120"><b>时间</b></th>
+        <th width="260"><b>所属日志</b></th>
       </tr>
     </thead>
     <tbody>
@@ -69,7 +69,7 @@ $$a = "class=\"filter\"";
 <script>
 function commentact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的评论');
 		return;
 	}
 	if(act == 'del' && !confirm('你确定要删除所选评论吗？')){return;}
