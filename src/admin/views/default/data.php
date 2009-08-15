@@ -72,7 +72,7 @@ function bakact(act){
 		alert('请选择要操作的备份文件');
 		return;
 	}
-	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}
+	if(act == 'del' && !confirm('你确定要删除所选备份文件吗？')){return;}
 	$("#operate").val(act);
 	$("#form_bak").submit();
 }
