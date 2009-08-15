@@ -38,7 +38,7 @@
 <div class="list_footer">选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
 <form action="data.php?action=bakstart" method="post">
-<div style="margin:0px 0px 20px 3px;"><a href="javascript:displayToggle('backup', 0);">备份数据&raquo;</a></div>
+<div style="margin:20px 0px 20px 0px;"><a href="javascript:displayToggle('backup', 0);">备份数据&raquo;</a></div>
 <div id="backup" style="display:none;margin:0px 0px 20px 20px;">
 	<li>选择要备份的数据库表：</li>
 	<li><select multiple="multiple" size="11" name="table_box[]">
