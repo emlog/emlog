@@ -70,13 +70,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
         <th width="490"><b>标题</b></th>
 		<?php if ($pid != 'draft'): ?>
-		<th width="40" align="center"><b>查看</b></th>
+		<th width="40" class="tdcenter"><b>查看</b></th>
 		<?php endif; ?>
 		<th width="100"><b>作者</b></th>
         <th width="146"><b>分类</b></th>
         <th width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></th>
-		<th width="40" align="center"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
-		<th width="40" align="center"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
+		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
+		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
       </tr>
 	</thead>
  	<tbody>
@@ -104,7 +104,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <?php echo $tagStr; ?>
       </td>
 	  <?php if ($pid != 'draft'): ?>
-	  <td align="center">
+	  <td class="tdcenter">
 	  <a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="在新窗口查看">
 	  <img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
 	  </td>
@@ -112,8 +112,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
       <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
       <td><?php echo $value['date']; ?></td>
-	  <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-	  <td align="center"><?php echo $value['views']; ?></a></td>
+	  <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>

@@ -14,7 +14,7 @@
       <tr>
 	  	<th width="50"><b>序号</b></th>
         <th width="230"><b>链接</b></th>
-		<th width="30" align="center"><b>查看</b></th>
+		<th width="30" class="tdcenter"><b>查看</b></th>
 		<th width="550"><b>描述</b></th>
         <th width="100"></th>
       </tr>
@@ -24,7 +24,7 @@
       <tr>
 		<td><input class="num_input" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?php echo $value['sitename']; ?></a></td>
-		<td align="center">
+		<td class="tdcenter">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
 	  	<img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>

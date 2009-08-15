@@ -9,9 +9,9 @@
   <thead>
       <tr>
         <th width="100"></th>
-        <th width="36" align="center"><b>状态</b></th>
-		<th width="30" align="center"><b>版本</b></th>
-		<th width="500"><b>描述</b></th>
+        <th width="36" class="tdcenter"><b>状态</b></th>
+		<th width="30" class="tdcenter"><b>版本</b></th>
+		<th width="500" class="tdcenter"><b>描述</b></th>
       </tr>
   </thead>
   <tbody>
@@ -30,11 +30,11 @@
 		$i++;
 	?>	
       <tr>
-        <td align="center"><b><?php echo $val['Name']; ?></b></td>
-		<td align="center" id="plugin_<?php echo $i;?>">
+        <td class="tdcenter"><b><?php echo $val['Name']; ?></b></td>
+		<td class="tdcenter" id="plugin_<?php echo $i;?>">
 		<a href="./plugin.php?action=<?php echo $plug_action;?>&plugin=<?php echo $key;?>"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
 		</td>
-        <td align="center"><?php echo $val['Version']; ?></td>
+        <td class="tdcenter"><?php echo $val['Version']; ?></td>
         <td>
 		<?php echo $val['Description']; ?>
 		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank">插件主页&raquo;</a><?php endif;?>

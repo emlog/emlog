@@ -11,7 +11,7 @@
       <tr>
       	<th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
         <th width="460"><b>标题</b></th>
-        <th width="30" align="center"><b>评论</b></th>
+        <th width="30" class="tdcenter"><b>评论</b></th>
         <th width="280"><b>时间</b></th>
       </tr>
     </thead>
@@ -33,7 +33,7 @@
         <?php echo $value['attnum']; ?>
         <?php echo $isHide; ?>
         </td>
-        <td align="center"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach; ?>

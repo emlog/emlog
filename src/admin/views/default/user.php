@@ -17,7 +17,7 @@
         <th width="100"><b>昵称</b></th>
         <th width="260"><b>个人描述</b></th>
         <th width="80"><b>电子邮件</b></th>
-		<th width="30" align="center"><b>日志</b></th>
+		<th width="30" class="tdcenter"><b>日志</b></th>
 		<th width="130"></th>
       </tr>
     </thead>
@@ -30,7 +30,7 @@
 		<td><?php echo $val['name']; ?></td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
-		<td align="center"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $user_cache[$val['uid']]['lognum']; ?></a></td>
+		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $user_cache[$val['uid']]['lognum']; ?></a></td>
 		<td><a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a></td>
      </tr>
 	<?php endforeach; ?>
