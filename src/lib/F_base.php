@@ -429,14 +429,17 @@ function fopen_url($url)
 }
 /**
  * 时间转化函数
- *
- * @param unix timestamp $datetemp
+ * 
+ * @param $now
+ * @param $datetemp
+ * @param $dstr
  * @return string
  */
-function smartyDate($now,$datetemp,$dstr='Y-m-d H:i')
+function smartyDate($datetemp,$dstr='Y-m-d H:i')
 {
+	global $localdate;
 	$op = '';
-	$sec = $now-$datetemp;
+	$sec = $localdate-$datetemp;
 	$hover = floor($sec/3600);
 	if ($hover == 0){
 		$min = floor($sec/60);

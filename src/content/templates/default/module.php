@@ -73,7 +73,7 @@ function widget_sort($title){
 <?php
 //widget：twitter
 function widget_twitter($title){
-	global $tw_cache,$index_twnum,$localdate; ?>
+	global $tw_cache,$index_twnum; ?>
 	<?php if($index_twnum>0): ?>
 	<li>
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
@@ -83,7 +83,7 @@ function widget_twitter($title){
 		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('./twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
 		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
 		$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-		$value['date'] = smartyDate($localdate,$value['date']);
+		$value['date'] = smartyDate($value['date']);
 		?>
 		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
 		<?php endforeach;?>

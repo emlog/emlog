@@ -33,8 +33,7 @@ $$a = "class=\"filter\"";
   	<thead>
       <tr>
         <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="300"><b>内容</b></th>
-        <th width="100"><b>评论者</b></th>
+        <th width="380"><b>内容</b></th>
         <th width="120"><b>时间</b></th>
         <th width="260"><b>所属日志</b></th>
       </tr>
@@ -44,13 +43,17 @@ $$a = "class=\"filter\"";
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
-	$value['content'] = subString($value['content'],0,30);
+	$ip = !empty($value['ip']) ? "({$value['ip']})" : '';
+	$mail = !empty($value['mail']) ? "<br />邮箱：{$value['mail']}" : '';
+	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
+	$value['content'] = subString($value['content'],0,60);
 	$value['title'] = subString($value['title'],0,42);
 	?>
      <tr>
         <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?></td>
-        <td><?php echo $value['poster']; ?></td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
+        <br />来自：<?php echo $poster;?> <?php echo $ip;?> <?php echo $mail;?> 
+        </td>
         <td><?php echo $value['date']; ?></td>
         <td><a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
      </tr>

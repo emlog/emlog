@@ -130,7 +130,7 @@ if ($action == 'twitter')
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
-		$row['date'] = smartyDate($localdate,$row['date']);
+		$row['date'] = smartyDate($row['date']);
 		$row['content'] = htmlspecialchars(trim($row['content']));
 		$tws[] = $row;
 	}

@@ -50,7 +50,7 @@ class emComment {
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
-			$row['date'] = date("Y-m-d H:i",$row['date']);
+			$row['date'] = smartyDate($row['date']);
 			$row['reply'] = htmlClean($row['reply']);
 			//$row['hide'];
 			//$row['title'];
@@ -218,7 +218,9 @@ class emComment {
 		} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
 			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
 		} else {
-			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide) VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment')";
+			$ipaddr = getIp();
+			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip) 
+					VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
 			if ($ischkcomment == 'n')
 			{
