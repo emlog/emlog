@@ -34,6 +34,7 @@ foreach($blog as $value)
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  date('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
+	doAction('rss_display');
 	echo <<< END
 
 <item>
