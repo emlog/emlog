@@ -356,6 +356,7 @@ function cleanPage($beUrlRewrite = false)
 			$searchlink = "/href\=\"(index\.php|\.\/|\.\/index.php)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
 			$replacelink = "href=\"./$2-$3.html$4\"";
 			$output = preg_replace($searchlink, $replacelink, $output);
+			doAction('url_rewrite');
 		}
 	}
 	ob_end_clean();
@@ -577,6 +578,7 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
 		}
 	}
+	doAction('attach_upload');
 	//缩略
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath."thum-". $fname;
