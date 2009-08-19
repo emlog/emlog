@@ -24,7 +24,12 @@ $$a = "class=\"filter\"";
 ?>
 <div class="filters">
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
-<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核</a></span>
+<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核
+<?php
+$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
+if ($hidecmnum > 0) echo '('.$hidecmnum.')';
+?>
+</a></span>
 <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
 </div>
 <?php endif; ?>
