@@ -25,6 +25,7 @@ if($action == 'bakstart')
 {
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
 	$table_box = isset($_POST['table_box']) ? $_POST['table_box'] : '';
+	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
 	{
@@ -41,19 +42,35 @@ if($action == 'bakstart')
 	if(trim($sqldump))
 	{
 		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i')."\n$sqldump";
-		@$fp = fopen($filename, "w+");
-		if ($fp)
+		if($bakplace == 'local')
 		{
-			@flock($fp, 3);
-			if(@!fwrite($fp, $sqldump))
+			header ('Content-Type: text/x-sql');
+			header ('Expires: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
+			header ('Content-Disposition: attachment; filename='.$filename );
+			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT']))
 			{
-				@fclose($fp);
-				emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
-			}else{
-				header("Location: ./data.php?active_backup=true");
+				header ('Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+				header ('Pragma: public' );
+			} else {
+				header ('Pragma: no-cache' );
+				header ('Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
 			}
-		}else{
-			emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
+			echo $sqldump;
+		} else {
+			@$fp = fopen($filename, 'w+');
+			if ($fp)
+			{
+				@flock($fp, 3);
+				if(@!fwrite($fp, $sqldump))
+				{
+					@fclose($fp);
+					emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
+				}else{
+					header("Location: ./data.php?active_backup=true");
+				}
+			}else{
+				emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
+			}			
 		}
 	}else{
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
