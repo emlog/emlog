@@ -106,3 +106,4 @@ textarea{font-size:12px}
 .msg_type_2 a{color:#F93; text-decoration:none}
 .msg_type_2 a:hover{color:#FC3}
 #adm_plugin_list img{cursor:pointer}
+#backup{display:none;margin:0px 0px 20px 20px;}

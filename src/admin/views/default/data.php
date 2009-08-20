@@ -39,15 +39,16 @@
 </form>
 <form action="data.php?action=bakstart" method="post">
 <div style="margin:20px 0px 20px 0px;"><a href="javascript:displayToggle('backup', 0);">备份数据&raquo;</a></div>
-<div id="backup" style="display:none;margin:0px 0px 20px 20px;">
-	<li>选择要备份的数据库表：</li>
-	<li><select multiple="multiple" size="11" name="table_box[]">
+<div id="backup">
+	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="11" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>	  
-      	</select></li>
-	<li>备份文件名：<span class="care">(由英文字母、数字、下划线组成)</span></li>
-	<li><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></li>
+      	</select></p>
+	<p>备份文件名：(由英文字母、数字、下划线组成) <br /><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
+	<p>备份文件保存在？
+	本地<input type="radio" checked="checked" value="local" name="bakplace" id="bakup_place" />
+	服务器<input type="radio" value="server" name="bakplace" id="bakup_place" /></p>
 	<p><input type="submit" value="开始备份" class="submit" /></p>
 </div>
 </form>
