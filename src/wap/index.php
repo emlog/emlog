@@ -1,6 +1,6 @@
 <?php
 /**
- * 手机 wap 第一版
+ * 手机 wap
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.1
  * $Id:  526 2008-07-05 15:21:03Z emloog $
@@ -34,7 +34,7 @@ if(!isset($action) || empty($action))
 //显示日志列表 blog list
 if ($action == 'logs')
 {
-	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	if ($page)
 	{
 		$start_limit = ($page - 1) * $index_lognum;
@@ -114,7 +114,7 @@ if($action == 'coms')
 //twitter list
 if ($action == 'twitter')
 {
-	$page = intval(isset($_GET['page']) ? $_GET['page'] : 1);
+	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	if ($page)
 	{
 		$start_limit = ($page - 1) * $index_twnum;
@@ -179,7 +179,7 @@ if(ROLE == 'admin' && $action == 'add_tw')
 //删除 twitter
 if(ROLE == 'admin' && $action == 'del_tw')
 {
-	$twid = isset($_GET['id'])?intval($_GET['id']):'';
+	$twid = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
 	$CACHE->mc_twitter();
 	$CACHE->mc_sta();
@@ -224,7 +224,7 @@ if ($action == 'logout')
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	header("Location: ?tem=$tem");
 }
-// WML 头
+//WML 头
 function wap_header($title) {
 	header('Content-type: text/vnd.wap.wml; charset=utf-8');
 	echo "<?xml version=\"1.0\"?>\n";
@@ -235,13 +235,13 @@ function wap_header($title) {
 	echo "</head>\n";
 	echo "<card title=\"".$title."\">\n";
 }
-// WML 尾
+//WML 尾
 function wap_footer() {
 	echo "</card>\n";
 	echo "</wml>\n";
 	exit;
 }
-// 验证日志密码
+//验证日志密码
 function authPassword($pwd, $pwd2, $blogid)
 {
 	if($pwd !== $pwd2)
