@@ -29,7 +29,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		showXML('invalid trackback url');
 	}
 	
-	$blog = $DB->once_fetch_array("SELECT allow_tb FROM ".DB_PREFIX."blog WHERE gid='".$blogid."'");
+	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
 		showXML('log not exist');
@@ -62,13 +62,13 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	}
 	$interval = 3600 * 5;
 	$timestamp = time();
-	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
 		$point -= 2;
 	}
 
-	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
 	if ($DB->num_rows($query))
 	{
 		$point -= 1;
@@ -78,9 +78,9 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 
 	if ($visible === true)
 	{
-		$query = "INSERT INTO ".DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
+		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
-		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
+		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
 		showXML('success', 0);
@@ -101,6 +101,7 @@ function showXML($message, $error = 1)
 	echo "</response>\n";
 	exit;
 }
+//HTML转换为纯文本
 function html2text($content)
 {
 	$content = preg_replace("/<style .*?<\/style>/is", "", $content);
@@ -115,6 +116,7 @@ function html2text($content)
 	$content = preg_replace("/\&\#.*?\;/i", "", $content);
 	return $content;
 }
+//格式化标题，截取过长的标题并转化编码为utf8
 function trimmed_title($text, $limit=12)
 {
 	$val = csubstr($text, 0, $limit);
@@ -137,17 +139,18 @@ function csubstr($text, $start=0, $limit=12)
 			if (count($ar[0])>$limit)
 			{
 				$more = TRUE;
-				$text = join("",array_slice($ar[0],0,$limit))."...";
+				$text = join('', array_slice($ar[0],0,$limit))."...";
 			}
 			$more = TRUE;
-			$text = join("",array_slice($ar[0],0,$limit));
+			$text = join('', array_slice($ar[0],0,$limit));
 		} else {
 			$more = FALSE;
-			$text =  join("",array_slice($ar[0],0));
+			$text =  join('', array_slice($ar[0],0));
 		}
 		return array($text, $more);
 	}
 }
+//转换到UTF-8编码
 function iconv2utf($chs)
 {
 	global $encode;
@@ -162,4 +165,5 @@ function iconv2utf($chs)
 	}
 	return $chs;
 }
+
 ?>
