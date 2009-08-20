@@ -1,6 +1,6 @@
 <?php
 /**
- * 引用通告接收主程序
+ * 引用通告接收
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.1
  * $Id$

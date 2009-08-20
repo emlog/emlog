@@ -1,6 +1,6 @@
 <?php
 /**
- * 日历生成
+ * 日历
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.2.1
  * $Id$
