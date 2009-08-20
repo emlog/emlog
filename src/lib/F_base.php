@@ -86,12 +86,12 @@ function getIp()
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 	} else {
-		if (getenv("HTTP_X_FORWARDED_FOR")) {
-			$ip = getenv( "HTTP_X_FORWARDED_FOR");
-		} elseif (getenv("HTTP_CLIENT_IP")) {
-			$ip = getenv("HTTP_CLIENT_IP");
+		if (getenv('HTTP_X_FORWARDED_FOR')) {
+			$ip = getenv('HTTP_X_FORWARDED_FOR');
+		} elseif (getenv('HTTP_CLIENT_IP')) {
+			$ip = getenv('HTTP_CLIENT_IP');
 		} else {
-			$ip = getenv("REMOTE_ADDR");
+			$ip = getenv('REMOTE_ADDR');
 		}
 	}
 	if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip))
@@ -115,15 +115,15 @@ function viewCount()
 		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
 		if ($ret)
 		{
-			$curtime = date("Y-m-d");
+			$curtime = date('Y-m-d');
 			if ($viewcount_date != $curtime)
 			{
-				$DB->query("UPDATE ".DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
-				$DB->query("UPDATE ".DB_PREFIX."options SET option_value ='1' where option_name='viewcount_day'");
+				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
+				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='1' where option_name='viewcount_day'");
 			} else {
-				$DB->query("UPDATE ".DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_day'");
+				$DB->query('UPDATE '.DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_day'");
 			}
-			$DB->query("UPDATE ".DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_all'");
+			$DB->query('UPDATE '.DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_all'");
 			$CACHE->mc_options();
 		}
 	}
@@ -355,8 +355,8 @@ function cleanPage($beUrlRewrite = false)
 		{
 			$searchlink = "/href\=\"(index\.php|\.\/|\.\/index.php)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
 			$replacelink = "href=\"./$2-$3.html$4\"";
-			$output = preg_replace($searchlink, $replacelink, $output);
 			doAction('url_rewrite');
+			$output = preg_replace($searchlink, $replacelink, $output);
 		}
 	}
 	ob_end_clean();
@@ -379,7 +379,7 @@ function cleanPage($beUrlRewrite = false)
  */
 function breakLog($content,$lid)
 {
-	$a = explode("[break]",$content,2);
+	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
 	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
@@ -550,15 +550,15 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-		formMsg("错误的文件类型","javascript:history.go(-1);",0);
+		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
 	if ($filesize > UPLOADFILE_MAXSIZE)
 	{
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
-	$uppath = UPLOADFILE_PATH . date("Ym") . "/";
-	$fname = md5($filename) . date("YmdHis") .'.'. $extension;
+	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
+	$fname = md5($filename) . date('YmdHis') .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(UPLOADFILE_PATH))
 	{
@@ -575,14 +575,14 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false)
 		{
-			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
+			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
 	}
 	doAction('attach_upload');
-	//缩略
+	//resizeImage
 	$imtype = array('jpg','png','jpeg');
-	$thum = $uppath."thum-". $fname;
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists("ImageCreate") && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	$thum = $uppath.'thum-'. $fname;
+	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpfile,$filetype,$thum,$isIcon))
 	{
 		$attach = $thum;
 	} else{
@@ -594,7 +594,7 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 		if (@!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
-			formMsg("上传失败。文件上传目录(content/uploadfile)不可写","javascript:history.go(-1);",0);
+			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
 		chmod($attachpath, 0777);
 	}
@@ -629,23 +629,23 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	{
 		return false;
 	}
-	if ($imgtype == "image/pjpeg" || $imgtype == "image/jpeg")
+	if ($imgtype == 'image/pjpeg' || $imgtype == 'image/jpeg')
 	{
-		if(function_exists("imagecreatefromjpeg"))
+		if(function_exists('imagecreatefromjpeg'))
 		{
 			$img = imagecreatefromjpeg($img);
 		}else{
 			return false;
 		}
-	} elseif ($imgtype == "image/x-png" || $imgtype == "image/png") {
-		if (function_exists("imagecreatefrompng"))
+	} elseif ($imgtype == 'image/x-png' || $imgtype == 'image/png') {
+		if (function_exists('imagecreatefrompng'))
 		{
 			$img = imagecreatefrompng($img);
 		}else{
 			return false;
 		}
 	}
-	if (function_exists("imagecopyresampled"))
+	if (function_exists('imagecopyresampled'))
 	{
 		$newim = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
@@ -653,13 +653,13 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
-	if ($imgtype == "image/pjpeg" || $imgtype == "image/jpeg")
+	if ($imgtype == 'image/pjpeg' || $imgtype == 'image/jpeg')
 	{
 		if(!imagejpeg($newim,$name))
 		{
 			return false;
 		}
-	} elseif ($imgtype == "image/x-png" || $imgtype == "image/png") {
+	} elseif ($imgtype == 'image/x-png' || $imgtype == 'image/png') {
 		if (!imagepng($newim,$name))
 		{
 			return false;
