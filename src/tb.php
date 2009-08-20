@@ -9,15 +9,13 @@
 require_once('init.php');
 
 $blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
-$ec = isset($_REQUEST['ec']) ? strtolower($_REQUEST['ec']) : '';
 $sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
 $encode = 'utf-8';
 $charset = isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? strtolower($_SERVER['HTTP_ACCEPT_CHARSET']) : '';
-if ($charset && !strstr($charset, 'utf-8')) 
+if ($charset && !strstr($charset, 'utf-8'))
 {
 	$encode = $charset;
 }
-
 $title     = isset($_REQUEST['title']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['title'])))) : '';
 $excerpt   = isset($_REQUEST['excerpt']) ? trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255) : '';
 $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
@@ -28,15 +26,15 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 {
 	if($sc != substr(md5(date('Ynd')),0,5))
 	{
-		showXML('引用地址已失效');
+		showXML('invalid trackback url');
 	}
 	
 	$blog = $DB->once_fetch_array("SELECT allow_tb FROM ".DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
-		showXML('日志不存在');
-	}elseif ($blog['allow_tb']=='n'){
-		showXML('该日志不允许引用');
+		showXML('log not exist');
+	}elseif ($blog['allow_tb'] == 'n'){
+		showXML('trackback closed');
 	}
 
 	$visible = false;
@@ -44,32 +42,26 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	$source_content = '';
 	$source_content = fopen_url($url);
 	$this_server = str_replace(array('www.', 'http://'), '', $_SERVER['HTTP_HOST']);
-	
-	//获取接受来的url原代码和本服务器的hostname
+
 	if (empty($source_content))
 	{
-		//没有获得原代码就-1分
 		$point -= 1;
 	}else {
 		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE)
 		{
-			//对比链接，如果原代码中包含本站的hostname就+1分，这个未必成立
 			$point += 1;
 		}
 		if (strpos(strtolower($source_content), strtolower($title)) !== FALSE)
 		{
-			//对比标题，如果原代码中包含发送来的title就+1分，这个基本可以成立
 			$point += 1;
 		}
 		if (strpos(strtolower($source_content), strtolower($excerpt)) !== FALSE)
 		{
-			//对比内容，如果原代码中包含发送来的excerpt就+1分，这个由于标签或者其他原因，未必成立
 			$point += 1;
 		}
 	}
-	$interval = 3600*5;
+	$interval = 3600 * 5;
 	$timestamp = time();
-	//设置防范时间间隔 同一ip每5小时能引用一次
 	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
@@ -77,7 +69,6 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	}
 
 	$query = $DB->query("SELECT tbid FROM ".DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
-	//对比数据库中的url和接收来的
 	if ($DB->num_rows($query))
 	{
 		$point -= 1;
@@ -87,22 +78,19 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 
 	if ($visible === true)
 	{
-		//插入数据
 		$query = "INSERT INTO ".DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
-		//更新文章Trackback数量
 		$DB->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		showXML('成功接收', 0);
+		showXML('success', 0);
 	}else {
-		showXML('主动拒绝引用');
+		showXML('refuse trackback');
 	}
 }else{
-	showXML('参数错误');
+	showXML('param error');
 }
 
-//发送消息页面
 function showXML($message, $error = 1)
 {
 	header('Content-type: text/xml');
@@ -113,8 +101,6 @@ function showXML($message, $error = 1)
 	echo "</response>\n";
 	exit;
 }
-
-// HTML转换为纯文本
 function html2text($content)
 {
 	$content = preg_replace("/<style .*?<\/style>/is", "", $content);
@@ -129,7 +115,6 @@ function html2text($content)
 	$content = preg_replace("/\&\#.*?\;/i", "", $content);
 	return $content;
 }
-//格式化标题，截取过长的标题并转化编码为utf8
 function trimmed_title($text, $limit=12)
 {
 	$val = csubstr($text, 0, $limit);
@@ -163,7 +148,6 @@ function csubstr($text, $start=0, $limit=12)
 		return array($text, $more);
 	}
 }
-//转换到UTF-8编码
 function iconv2utf($chs)
 {
 	global $encode;
