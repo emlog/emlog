@@ -27,7 +27,7 @@ setTimeout(hideActived,2600);
   <tbody>
 	<?php foreach($trackback as $key=>$value):?>	
       <tr>
-        <td><input type="checkbox" name="tb[<?php echo $value['tbid']; ?>]" value="1" class="ids" ></td>
+        <td><input type="checkbox" name="tb[]" value="<?php echo $value['tbid']; ?>" class="ids" ></td>
         <td><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['title']; ?></a></td>
         <td><?php echo $value['blog_name']; ?></td>
         <td><?php echo $value['ip']; ?></td>

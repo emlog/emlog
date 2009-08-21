@@ -26,15 +26,15 @@ if($action == '')
 //删除引用
 if($action == 'dell')
 {
-	$tbs = isset($_POST['tb']) ? $_POST['tb'] : '';
+	$tbs = isset($_POST['tb']) ? array_map('intval', $_POST['tb']) : array();
 	if(!$tbs)
 	{
 		header("Location: ./trackback.php?error_a=true");
 		exit;
 	}
-	foreach($tbs as $key=>$value)
+	foreach($tbs as $value)
 	{
-		$emTrackback->deleteTrackback($key);
+		$emTrackback->deleteTrackback($value);
 	}
 	$CACHE->mc_sta();
 	$CACHE->mc_user();

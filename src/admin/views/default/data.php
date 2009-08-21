@@ -26,7 +26,7 @@
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
     <tr>
-      <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[<?php echo $value; ?>]" class="ids" /></td>
+      <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[]" class="ids" /></td>
       <td><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>

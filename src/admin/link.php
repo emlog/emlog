@@ -28,6 +28,7 @@ if ($action== 'link_taxis')
 		foreach($link as $key=>$value)
 		{
 			$value = intval($value);
+			$key = intval($key);
 			$emLink->updateLink(array('taxis'=>$value), $key);
 		}
 		$CACHE->mc_link();

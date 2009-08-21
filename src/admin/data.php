@@ -24,7 +24,7 @@ if($action == '')
 if($action == 'bakstart')
 {
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
-	$table_box = isset($_POST['table_box']) ? $_POST['table_box'] : '';
+	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
 	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname))
@@ -77,7 +77,7 @@ if($action == 'bakstart')
 	}
 }
 
-//恢复数据
+//导入数据
 if ($action == 'renewdata')
 {
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
@@ -128,9 +128,9 @@ if($action == 'dell_all_bak')
 	{
 		header("Location: ./data.php?error_a=true");
 	}else{
-		foreach($_POST['bak'] as $value)
+		foreach($_POST['bak'] as $val)
 		{
-			unlink($value);
+			unlink($val);
 		}
 		header("Location: ./data.php?active_del=true");
 	}
@@ -162,7 +162,7 @@ if ($action == 'mkcache')
 function bakindata($filename)
 {
 	global $db,$DB;
-	
+
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
 	array_unshift($sql,$setchar);

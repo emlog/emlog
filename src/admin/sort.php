@@ -28,6 +28,7 @@ if ($action == 'taxis')
 		foreach($sort as $key=>$value)
 		{
 			$value = intval($value);
+			$key = intval($key);
 			$emSort->updateSort(array('taxis'=>$value), $key);
 		}
 		$CACHE->mc_sort();

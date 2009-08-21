@@ -27,7 +27,7 @@
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/'.ADMIN_TPL.'/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
-     	<td><input type="checkbox" name="page[<?php echo $value['gid']; ?>]" value="1" class="ids" /></td>
+     	<td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
         <td>
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
         <?php echo $value['attnum']; ?>

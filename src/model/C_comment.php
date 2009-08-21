@@ -158,21 +158,21 @@ class emComment {
 		switch ($action)
 		{
 			case 'delcom':
-				foreach($comments as $key=>$val)
+				foreach($comments as $val)
 				{
-					$this->delComment($key);
+					$this->delComment($val);
 				}
 				break;
 			case 'hidecom':
-				foreach($comments as $key=>$val)
+				foreach($comments as $val)
 				{
-					$this->hideComment($key);
+					$this->hideComment($val);
 				}
 				break;
 			case 'showcom':
-				foreach($comments as $key=>$val)
+				foreach($comments as $val)
 				{
-					$this->showComment($key);
+					$this->showComment($val);
 				}
 				break;
 		}

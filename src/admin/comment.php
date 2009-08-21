@@ -15,7 +15,7 @@ $emComment = new emComment($DB);
 if($action == '')
 {
 	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
-	$hide = isset($_GET['hide']) ? $_GET['hide'] : '';
+	$hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$addUrl_1 = $blogId ? "gid={$blogId}&" : '';
@@ -36,7 +36,7 @@ if($action == '')
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
-	$comments = isset($_POST['com']) ? $_POST['com'] : '';
+	$comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : array();
 
 	if($operate == '')
 	{

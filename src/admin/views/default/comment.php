@@ -55,7 +55,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	$value['title'] = subString($value['title'],0,42);
 	?>
      <tr>
-        <td><input type="checkbox" value="" name="com[<?php echo $value['cid']; ?>]" class="ids" /></td>
+        <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
         <br />来自：<?php echo $poster;?> <?php echo $ip;?> <?php echo $mail;?> 
         </td>

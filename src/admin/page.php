@@ -134,17 +134,17 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 if ($action == 'operate_page')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
-	$pages = isset($_POST['page']) ? $_POST['page'] : '';
+	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 	
 	$emPage = new emBlog($DB);
 
 	switch ($operate)
 	{
 		case 'del':
-			foreach($pages as $key => $value)
+			foreach($pages as $value)
 			{
-				$emPage->deleteLog($key);
-				unset($navibar[$key]);
+				$emPage->deleteLog($value);
+				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
 			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
@@ -160,10 +160,10 @@ if ($action == 'operate_page')
 		case 'hide':
 		case 'pub':
 			$ishide = $operate == 'hide' ? 'y' : 'n';
-			foreach($pages as $key => $value)
+			foreach($pages as $value)
 			{
-				$emPage->hideSwitch($key, $ishide);
-				$navibar[$key]['hide'] = $ishide;
+				$emPage->hideSwitch($value, $ishide);
+				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
 			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");

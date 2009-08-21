@@ -76,12 +76,12 @@ if ($action == "mod_config")
 	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
 	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
-	'login_code'   => isset($_POST['login_code']) ? $_POST['login_code'] : 'n',
-	'comment_code' => isset($_POST['comment_code']) ? $_POST['comment_code'] : 'n',
-	'ischkcomment' => isset($_POST['ischkcomment']) ? $_POST['ischkcomment'] : 'n',
-	'isurlrewrite' => isset($_POST['isurlrewrite']) ? $_POST['isurlrewrite'] : 'n',
-	'isgzipenable' => isset($_POST['isgzipenable']) ? $_POST['isgzipenable'] : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? $_POST['istrackback'] : 'n',
+	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
+	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
+	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
+	'isurlrewrite' => isset($_POST['isurlrewrite']) ? addslashes($_POST['isurlrewrite']) : 'n',
+	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
+	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
 	);
 
 	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))

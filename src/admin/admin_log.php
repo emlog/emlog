@@ -86,9 +86,9 @@ if($action == 'operate_log')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
-	$logs = isset($_POST['blog']) ? $_POST['blog'] : '';
-	$sort = isset($_POST['sort']) ? $_POST['sort'] : '';
-	$author = isset($_POST['author']) ? $_POST['author'] : '';
+	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
+	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
+	$author = isset($_POST['author']) ? intval($_POST['author']) : '';
 
 	if($operate == '')
 	{
@@ -104,10 +104,10 @@ if($action == 'operate_log')
 	switch ($operate)
 	{
 		case 'del':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->deleteLog($key);
-				doAction('del_log', $key);
+				$emBlog->deleteLog($val);
+				doAction('del_log', $val);
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_user();
@@ -127,23 +127,23 @@ if($action == 'operate_log')
 			}
 			break;
 		case 'top':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('top'=>'y'), $key);
+				$emBlog->updateLog(array('top'=>'y'), $val);
 			}
 			header("Location: ./admin_log.php?active_up=true");
 			break;
 		case 'notop':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('top'=>'n'), $key);
+				$emBlog->updateLog(array('top'=>'n'), $val);
 			}
 			header("Location: ./admin_log.php?active_down=true");
 			break;
 		case 'hide':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->hideSwitch($key, 'y');
+				$emBlog->hideSwitch($val, 'y');
 			}
 			$CACHE->mc_sta();
 			$CACHE->mc_user();
@@ -159,9 +159,9 @@ if($action == 'operate_log')
 			header("Location: ./admin_log.php?active_hide=true");
 			break;
 		case 'pub':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->hideSwitch($key, 'n');
+				$emBlog->hideSwitch($val, 'n');
 			}
 
 			$CACHE->mc_sta();
@@ -178,9 +178,9 @@ if($action == 'operate_log')
 			header("Location: ./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('sortid'=>$sort), $key);
+				$emBlog->updateLog(array('sortid'=>$sort), $val);
 			}
 			$CACHE->mc_sort();
 			$CACHE->mc_logsort();
@@ -191,9 +191,9 @@ if($action == 'operate_log')
 			{
 				formMsg('权限不足！','./', 0);
 			}
-			foreach($logs as $key=>$value)
+			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('author'=>$author), $key);
+				$emBlog->updateLog(array('author'=>$author), $val);
 			}
 			$CACHE->mc_user();
 			header("Location: ./admin_log.php?active_change_author=true");
