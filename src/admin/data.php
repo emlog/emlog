@@ -13,7 +13,7 @@ if($action == '')
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
 	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','tag','trackback','twitter','user');
-	$defname = 'emlog_'.date('Ymd').'_'.substr(md5(date('YmdHis')),0,18);
+	$defname = 'emlog_'.date('Ymd', $localdate).'_'.substr(md5(date('YmdHis')),0,18);
 	doAction('data_prebakup');
 
 	include getViews('header');
@@ -41,19 +41,19 @@ if($action == 'bakstart')
 	}
 	if(trim($sqldump))
 	{
-		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i')."\n$sqldump";
+		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i', $localdate)."\n$sqldump";
 		if($bakplace == 'local')
 		{
 			header('Content-Type: text/x-sql');
-			header('Expires: '.date('D, d M Y H:i:s') . ' GMT');
-			header('Content-Disposition: attachment; filename='.$bakfname.'.sql');
+			header('Expires: '.date('D, d M Y H:i:s', $localdate) . ' GMT');
+			header('Content-Disposition: attachment; filename=emlog_'.date('Ymd', $localdate).'.sql');
 			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT']))
 			{
 				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				header('Pragma: public');
 			} else {
 				header('Pragma: no-cache');
-				header('Last-Modified: '.date('D, d M Y H:i:s') . ' GMT');
+				header('Last-Modified: '.date('D, d M Y H:i:s', $localdate) . ' GMT');
 			}
 			echo $sqldump;
 		} else {

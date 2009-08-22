@@ -29,7 +29,7 @@ $timezone  = intval($timezone);
 //获取操作
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 //获取时间
-$localdate = time() - ($timezone-8) * 3600;
+$localdate = time() - ($timezone - 8) * 3600;
 //登录验证
 $userData = array();
 define('ISLOGIN',	isLogin());
