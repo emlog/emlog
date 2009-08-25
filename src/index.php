@@ -2,7 +2,7 @@
 /**
  * 前端页面加载
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.1
+ * @version emlog-3.3.0
  * $Id$
  */
 

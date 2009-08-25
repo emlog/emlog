@@ -2,7 +2,7 @@
 /**
  * 安装程序
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.1
+ * @version emlog-3.3.0
  * $Id$
  */
 
@@ -13,7 +13,7 @@ require_once('./lib/C_phpass.php');
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-define('EMLOG_VERSION', '3.2.1');
+define('EMLOG_VERSION', '3.3.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
 $act = isset($_GET['action'])? $_GET['action'] : '';

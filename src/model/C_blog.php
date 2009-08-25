@@ -2,7 +2,7 @@
 /**
  * 模型：日志、页面管理
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.2.1
+ * @version emlog-3.3.0
  * $Id$
  */
 
