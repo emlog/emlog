@@ -113,7 +113,7 @@ body {
 </li>
 <li>
     数据库前缀：
-    <span class="care"> (由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+    <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
