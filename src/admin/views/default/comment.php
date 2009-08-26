@@ -53,6 +53,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
 	$value['content'] = subString(str_replace('<br>','',$value['content']),0,50);
 	$value['title'] = subString($value['title'],0,42);
+	doAction('adm_comment_display');
 	?>
      <tr>
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
