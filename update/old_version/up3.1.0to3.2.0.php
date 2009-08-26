@@ -154,11 +154,7 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 		$query = trim($query);
 		if ($query)
 		{
-			$ret = $DB->query($query);
-			if(!$ret)
-			{
-				emMsg("升级失败，可能是你填写的参数错误，请确认后重新提交！SQL:$query MYSQL ERROR:".$DB->geterror());
-			}
+			$DB->query($query);
 		}
 	}
 
