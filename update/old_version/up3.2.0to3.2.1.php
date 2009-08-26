@@ -119,8 +119,7 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 	$CACHE = new mkcache($DB, $db_prefix);
 
-	@$fp = fopen("config.php", 'w');
-	if(!$fp)
+	if(!is_writable('config.php'))
 	{
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}
@@ -137,11 +136,7 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 		$query = trim($query);
 		if ($query)
 		{
-			$ret = $DB->query($query);
-			if(!$ret)
-			{
-				emMsg("升级失败，可能是你填写的参数错误，请确认后重新提交！SQL:$query MYSQL ERROR:".$DB->geterror());
-			}
+			$DB->query($query);
 		}
 	}
 
@@ -166,7 +161,8 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 	."define('EMLOG_VERSION','".EMLOG_VERSION."');"
 	."\n?>";
 
-	@$fw = fwrite($fp, $config) ;
+	$fp = @fopen('config.php', 'w');
+	$fw = @fwrite($fp, $config) ;
 	if (!$fw)
 	{
 		emMsg('抱歉！配置文件(config.php)修改失败!请检查该文件是否可写');
