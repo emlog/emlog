@@ -115,7 +115,7 @@ function viewCount()
 		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
 		if ($ret)
 		{
-			$curtime = date('Y-m-d');
+			$curtime = date('Y-m-d', $localdate);
 			if ($viewcount_date != $curtime)
 			{
 				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
@@ -347,7 +347,7 @@ function getAttachment($attstr,$width,$height)
  */
 function cleanPage($beUrlRewrite = false)
 {
-	global $isurlrewrite,$isgzipenable;
+	global $isurlrewrite,$isgzipenable,$output;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
 	if($beUrlRewrite)
 	{
