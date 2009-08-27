@@ -347,7 +347,7 @@ function getAttachment($attstr,$width,$height)
  */
 function cleanPage($beUrlRewrite = false)
 {
-	global $isurlrewrite,$isgzipenable,$output;
+	global $isurlrewrite,$isgzipenable;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
 	if($beUrlRewrite)
 	{
