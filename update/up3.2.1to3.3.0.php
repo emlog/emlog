@@ -125,7 +125,8 @@ if(isset($_GET['action'])&&$_GET['action'] == "install")
 	}
 
 $sql = "
-ALTER TABLE {$db_prefix}comment ADD ip VARCHAR(128) NOT NULL AFTER url ;
+ALTER TABLE {$db_prefix}comment ADD ip VARCHAR(128) NOT NULL AFTER url;
+UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce_templet';
 ";
 
 	$mysql_query = explode(";\n",$sql);
