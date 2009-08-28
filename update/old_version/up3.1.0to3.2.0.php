@@ -7,6 +7,8 @@
 header('Content-Type: text/html; charset=UTF-8');
 define('EMLOG_VERSION', '3.2.0');
 define('EMLOG_ROOT', dirname(__FILE__));
+define('ICON_MAX_W', 140);
+define('ICON_MAX_H', 220);
 
 require_once('./config.php');
 require_once('./lib/F_base.php');
