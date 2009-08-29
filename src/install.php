@@ -221,7 +221,10 @@ EOT;
 	{
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
 	}
-
+	if(!is_writable(EMLOG_ROOT.'/content/cache/options'))
+	{
+		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
+	}
 	$config = "<?php\n"
 	."//mysql database address\n"
 	."define('DB_HOST','$db_host');"
