@@ -94,23 +94,26 @@ if ($action == "mod_config")
 	}
 	if($getData['isurlrewrite'] == 'y')
 	{
-		if(function_exists('apache_get_modules') && stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
+		if(stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
 		{
-			$apache_mods = @apache_get_modules();
-			if(!empty($apache_mods))
+			if(function_exists('apache_get_modules'))
 			{
-				$f = false;
-				foreach($apache_mods as $val)
+				$apache_mods = @apache_get_modules();
+				if(!empty($apache_mods))
 				{
-					if(strtolower($val) == 'mod_rewrite')
+					$f = false;
+					foreach($apache_mods as $val)
 					{
-						$f = true;
-						break;
+						if(strtolower($val) == 'mod_rewrite')
+						{
+							$f = true;
+							break;
+						}
 					}
-				}
-				if(!$f)
-				{
-					formMsg("开启URL优化失败!服务器未开启mod_rewrite模块","configure.php",0);
+					if(!$f)
+					{
+						formMsg("开启URL优化失败!服务器未开启mod_rewrite模块","configure.php",0);
+					}
 				}
 			}
 			if(!file_exists(EMLOG_ROOT.'/.htaccess'))
