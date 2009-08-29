@@ -94,7 +94,7 @@ if ($action == "mod_config")
 	}
 	if($getData['isurlrewrite'] == 'y')
 	{
-		if(stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
+		if(function_exists('apache_get_modules') && stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
 		{
 			$apache_mods = @apache_get_modules();
 			if(!empty($apache_mods))
