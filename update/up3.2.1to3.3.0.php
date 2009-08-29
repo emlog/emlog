@@ -87,6 +87,9 @@ if(!isset($_GET['action'])){
 <div class="main">
 <div>
 <p><span class="title">emlog <span style="color: #0099FF">3.2.1</span> to <span style="color: #FF0000; font-size:26px">3.3.0</span></span><span> 升级程序</span></p>
+<p style="color: #FF0000;">你当前处于升级步骤的第二步，请确保第一步覆盖代码的操作已完成，再进行本步操作。</p>
+<p>详细升级步骤见升级程序包内的：升级说明.html</p>
+</ul>
 </div>
 <div class="b">
 <p class="title2"></p>
