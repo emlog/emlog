@@ -16,13 +16,19 @@ doStripslashes();
 define('EMLOG_VERSION', '3.3.0');
 define('EMLOG_ROOT', dirname(__FILE__));
 
+//blog language //vot
+//define('EMLOG_LANGUAGE','zh-CN');
+define('EMLOG_LANGUAGE','en-US');
+//define('EMLOG_LANGUAGE','ru-RU');
+require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');//vot
+
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if(!$act)
 {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<? echo EMLOG_LANGUAGE;?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>emlog</title>
@@ -227,20 +233,22 @@ EOT;
 	}
 	$config = "<?php\n"
 	."//mysql database address\n"
-	."define('DB_HOST','$db_host');"
-	."\n//mysql database user\n"
-	."define('DB_USER','$db_user');"
-	."\n//database password\n"
-	."define('DB_PASSWD','$db_pw');"
-	."\n//database name\n"
-	."define('DB_NAME','$db_name');"
-	."\n//database prefix\n"
-	."define('DB_PREFIX','$db_prefix');"
-	."\n//auth key\n"
-	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
-	."\n//cookie name\n"
-	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
-	."\n?>";
+	."define('DB_HOST','$db_host');\n\n"
+	."//mysql database user\n"
+	."define('DB_USER','$db_user');\n\n"
+	."//database password\n"
+	."define('DB_PASSWD','$db_pw');\n\n"
+	."//database name\n"
+	."define('DB_NAME','$db_name');\n\n"
+	."//database prefix\n"
+	."define('DB_PREFIX','$db_prefix');\n\n"
+	."//auth key\n"
+	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');\n\n"
+	."//cookie name\n"
+	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');\n\n"
+	."//blog language //vot\n"
+	."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."');\n\n"
+	;
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);

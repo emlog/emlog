@@ -24,7 +24,7 @@ echo <<< END
 <title><![CDATA[{$site['blogname']}]]></title> 
 <description><![CDATA[{$site['bloginfo']}]]></description>
 <link>http://$URL</link>
-<language>zh-cn</language>
+<language>{EMLOG_LANGUAGE}</language>
 <generator>www.emlog.net</generator>
 
 END;

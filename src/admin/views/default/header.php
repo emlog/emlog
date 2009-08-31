@@ -3,12 +3,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="zh-CN" />
+<meta http-equiv="Content-Language" content="<?php echo EMLOG_LANGUAGE; ?>" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <link href="./views/<?php echo ADMIN_TPL; ?>/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
+<script src="../lang/<?php echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 <?php doAction('adm_head');?>
 <title><?php echo $blogname; ?> - 管理中心</title>

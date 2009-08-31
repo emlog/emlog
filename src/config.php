@@ -13,4 +13,9 @@ define('DB_PREFIX','emlog_');
 define('AUTH_KEY','jkzL(@Y5neK7Z*A$lPz8A)lOxnLQo&jS863f05d8876969e8c5350f256b53b896');
 //cookie name
 define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_z3jMlMbHQDVltVGJrMuQccDIZMN4o5AX');
-?>
+
+//--------------------------------------------------------
+//blog language //vot
+//define('EMLOG_LANGUAGE','zh-CN');
+define('EMLOG_LANGUAGE','en-US');
+//define('EMLOG_LANGUAGE','ru-RU');

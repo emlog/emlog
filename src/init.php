@@ -12,6 +12,7 @@ ob_start();
 define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once(EMLOG_ROOT.'/config.php');
+/*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
 require_once(EMLOG_ROOT.'/lib/F_base.php');
 require_once(EMLOG_ROOT.'/lib/F_login.php');
 require_once(EMLOG_ROOT.'/lib/C_cache.php');
