@@ -96,52 +96,52 @@ body {
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div id="top-title">
-<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
+<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> <? echo $lang['install'];?><br></span></p>
 </div>
 <div class="b">
-<p class="title2">1、数据库设置 （MySQL数据库）</p>
+<p class="title2"><? echo $lang['install_step1'];?></p>
 <li>
-	数据库地址：<span class="care">(通常为 localhost 不必修改)</span> <br />
+	<? echo $lang['db_hostname'];?>: <span class="care">(<? echo $lang['db_hostname_info'];?>)</span> <br />
     <input name="hostname" type="text" class="input" value="localhost">
 </li>
 <li>
-    数据库用户名：<br />
+    <? echo $lang['db_username'];?>:<br />
     <input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    数据库密码：<br />
+    <? echo $lang['db_password'];?>:<br />
   <input name="password" type="password" class="input">
 </li>
 <li>
-    数据库名：
-	  <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span><br />
+    <? echo $lang['db_name'];?>:
+	  <span class="care">(<? echo $lang['db_name_info'];?>)</span><br />
       <input name="dbname" type="text" class="input" value="">
 </li>
 <li>
-    数据库前缀：
-    <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+    <? echo $lang['db_prefix'];?>:
+    <span class="care"> (<? echo $lang['db_prefix_info'];?>)</span><br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
 <div class="c">
-<p class="title2">2、博主设置 （用于安装成功后登录博客）</p>
+<p class="title2"><? echo $lang['install_step2'];?></p>
 <li>
-博主登录名：<br />
+<? echo $lang['admin_name'];?>:<br />
     <input name="admin" type="text" class="input">
 </li>
 <li>
-博主登录密码：<span class="care">(不小于6位)</span><br />
+<? echo $lang['admin_password'];?>:<span class="care">(<? echo $lang['password_length'];?>)</span><br />
 <input name="adminpw" type="password" class="input">
 </li>
 <li>
-再次输入博主登录密码：<br />
+<? echo $lang['admin_password_repeat'];?>:<br />
 <input name="adminpw2" type="password" class="input">
 </li>
 </div>
 <div>
 <p class="foot">
-<input name="Submit" type="submit" class="submit" value="确 定">
-<input name="Submit2" type="reset" class="submit" value="重 置">
+<input name="Submit" type="submit" class="submit" value="<? echo $lang['submit'];?>">
+<input name="Submit2" type="reset" class="submit" value="<? echo $lang['reset'];?>">
 </p>
 </div>
 <div>
@@ -170,15 +170,15 @@ if($act == 'install' || $act == 'reinstall')
 
 	if(empty($db_prefix))
 	{
-		emMsg('数据库前缀不能为空!');
+		emMsg($lang['db_prefix_empty']);
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
-		emMsg('数据库前缀格式错误!');
+		emMsg($lang['db_prefix_invalid']);
 	}elseif($admin=="" || $adminpw==""){
-		emMsg('博主登录名和密码不能为空!');
-	}elseif(strlen($adminpw) < 6){
-		emMsg('博主登录密码不得小于6位');
+		emMsg($lang['admin_password_empty']);
+	}elseif(strlen($adminpw) < 5){
+		emMsg($lang['password_short']);
 	}elseif($adminpw!=$adminpw2)	 {
-		emMsg('两次输入的密码不一致');
+		emMsg($lang['password_not_equal']);
 	}
 	
 	//初始化数据库类
@@ -211,10 +211,10 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw" type="hidden" class="input" value="$adminpw">
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
-你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？ 
-<input name="Submit" type="submit" value="继续&raquo;">
+{$lang['install_seems_installed']}
+<input name="Submit" type="submit" value="{$lang['install_continue']} &raquo;">
 </p>
-<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+<p><a href="javascript:history.back(-1);">&laquo; {$lang['return_back']}</a></p>
 </div>
 </form>
 </body>
@@ -225,11 +225,11 @@ EOT;
 
 	if(!is_writable('config.php'))
 	{
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
+		emMsg($lang['config_no_permission']);
 	}
 	if(!is_writable(EMLOG_ROOT.'/content/cache/options'))
 	{
-		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
+		emMsg($lang['cache_write_error']);
 	}
 	$config = "<?php\n"
 	."//mysql database address\n"
@@ -254,9 +254,9 @@ EOT;
 	$fw = @fwrite($fp, $config);
 	if (!$fw)
 	{
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
+		emMsg($lang['config_no_permission']);
 	}else{
-		$result.="配置文件修改成功<br />";
+		$result.=$lang['config_saved']."<br />";
 	}
 	fclose($fp);
 
@@ -271,20 +271,20 @@ EOT;
 	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
 
 	$widgets = array(
-	'blogger'=>'blogger',
-	'calendar'=>'日历',
-	'tag'=>'标签',
-	'sort'=>'分类',
-	'archive'=>'存档',
-	'newcomm'=>'最新评论',
-	'twitter'=>'Twitter',
-	'newlog'=>'最新日志',
-	'random_log'=>'随机日志',
-	'music'=>'音乐',
-	'link'=>'链接',
-	'search'=>'搜索',
-	'bloginfo'=>'信息',
-	'custom_text'=>'自定义组件'
+	'blogger'=>$lang['widget_blogger'],
+	'calendar'=>$lang['calendar'],
+	'tag'=>$lang['tags'],
+	'sort'=>$lang['categories'],
+	'archive'=>$lang['archive'],
+	'newcomm'=>$lang['latest_comments'],
+	'twitter'=>$lang['twitter'],
+	'newlog'=>$lang['latest_posts'],
+	'random_log'=>$lang['random_posts'],
+	'music'=>$lang['music'],
+	'link'=>$lang['links'],
+	'search'=>$lang['search'],
+	'bloginfo'=>$lang['statistics'],
+	'custom_text'=>$lang['widget_custom']
 	);
 	$sider_wg = array(
 	'calendar',
@@ -323,7 +323,8 @@ CREATE TABLE {$db_prefix}blog (
   password varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'hi blogger', '1230508801', '欢迎使用emlog开始你的博客之旅。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES 
+(1, 'hi blogger', '1230508801', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -358,7 +359,7 @@ option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id)
 )".$add."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','{$lang['install_slogan']}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','$blogUrl');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
@@ -398,7 +399,8 @@ CREATE TABLE {$db_prefix}link (
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES 
+(1, 'emlog', 'http://www.emlog.net', '{$lang['emlog_homepage']}', 0);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
@@ -434,7 +436,8 @@ content VARCHAR(255) NOT NULL,
 date bigint(20) NOT NULL,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1230508801');
+INSERT INTO {$db_prefix}twitter (id,content, date) VALUES 
+(1,'{$lang['install_twitter']}','1230508801');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,
@@ -461,7 +464,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 				$ret = $DB->query($query);
 				if ($ret)
 				{
-					$result .= '数据库表：'.$matches[1].' 创建成功<br />';
+					$result .= $lang['db_table'].': '.$matches[1].' '.$lang['db_table_created'].'<br />';
 				}
 			} else {
 				$ret = $DB->query($query);
@@ -483,7 +486,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
-	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功<br /><span style=\"color:red;\"><b>请删除根目录下安装文件(install.php)</b></span> <a href=\"./\"> 进入emlog </a>";
+	$result .= $lang['admin_name'].": ".$admin." ".$lang['install_ok'];
 	emMsg($result);
 }
 ?>
