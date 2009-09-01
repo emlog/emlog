@@ -26,17 +26,17 @@ function showhidediv(id){
 }
 function keyw(){
 	if (document.keyform.keyword.value==""){
-		alert("关键字不能为空");
+		alert(l_keyword_empty);
 		document.keyform.keyword.focus();
 		return false;
 	}
 	if (document.keyform.keyword.value.length<3){
-		alert("关键字太短");
+		alert(l_keyword_short);
 		document.keyform.keyword.focus();
 		return false;
 	}
 	if (document.keyform.keyword.value.length>31){
-		alert("关键字太长");
+		alert(l_keyword_long);
 		document.keyform.keyword.focus();
 		return false;
 	}
@@ -49,33 +49,33 @@ function checkEmail (str){
 
 function checkform(){
 	if (document.commentform.comname.value==""){
-		alert("名字不能为空");
+		alert(l_name_empty);
 		document.commentform.comname.focus();
 		return false;
 	}
 	if(document.commentform.comname.value.length>16){
-		alert("名字太长");
+		alert(l_key_too_long);
 		document.commentform.comname.focus();
 		return false;
 	}
 	if(document.commentform.comment.value.length==""){
-		alert("评论内容不能为空");
+		alert(l_comment_empty);
 		document.commentform.comment.focus();
 		return false;
 	}
 	if(document.commentform.comment.value.length>2000){
-		alert("评论内容太长");
+		alert(l_comment_too_long);
 		document.commentform.comment.focus();
 		return false;
 	}
 	if(document.commentform.commail.value!=""){
 		if(document.commentform.commail.value.length>60){
-			alert("邮件地址长度超出系统接受范围");
+			alert(l_email_long);
 			document.commentform.commail.focus();
 			return false;
 		}
 		if(!checkEmail(document.commentform.commail.value)){
-			alert("邮件地址格式不正确！");
+			alert(l_email_invalid);
 			document.commentform.commail.focus();
 			return false;
 		}
@@ -83,11 +83,12 @@ function checkform(){
 }
 function isdel (id,type){
 	if(type == 'twitter'){
-		var msg = "你确定要删除吗？";
+		var msg = l_sure_delete;
 		if(confirm(msg)){sendinfo('twitter.php?action=del&twid='+id,'twitter')}
 		else {return;}
 	}
 }
+
 //ajax
 var xmlhttp = false;
 var node = '';
@@ -109,13 +110,13 @@ function createxmlhttp() {
 		}
 	}
 	if (!xmlhttp) {
-		window.alert("不能创建XMLHttpRequest对象实例.");
+		window.alert(l_not_supported);
 		return false;
 	}
 }
 function sendinfo(url,nodeid){
 	node = nodeid;
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>");
+	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">"+l_loading+"...</span></div>");
 	createxmlhttp();
 	var querystring = url+ "&timetmp=" + timestamp();
 	xmlhttp.open("GET", querystring, true);
@@ -124,7 +125,7 @@ function sendinfo(url,nodeid){
 }
 function postinfo(url,post_id,show_id){
 	node = show_id;
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>");
+	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">"+l_processing+"</span></div>");
 	createxmlhttp();
 	var url2 = url + "&timetmp=" + timestamp();
 	xmlhttp.open("POST", url2, true);
