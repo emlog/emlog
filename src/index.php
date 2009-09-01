@@ -44,7 +44,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
-			emMsg('不存在该标签','./');
+			emMsg($lang['tag_not_exists'],'./');
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -54,7 +54,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$keyword = str_replace('_','\_',$keyword);
 		if (strlen($keyword) > 30 || strlen($keyword) < 3)
 		{
-			emMsg('错误的关键字长度','./');
+			emMsg($lang['tag_too_long'],'./');
 		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -95,7 +95,7 @@ if (!empty($logid))
 	$logData = $emBlog->getOneLogForHome($logid);
 	if($logData === false)
 	{
-		emMsg('不存在该条目','./');
+		emMsg($lang['post_not_exists'],'./');
 	}
 	extract($logData);
 	if(!empty($password))
@@ -126,6 +126,7 @@ if (!empty($logid))
 //发表评论
 if ($action == 'addcom')
 {
+	global $lang;
 	require_once(EMLOG_ROOT.'/model/C_comment.php');
 
 	$emComment = new emComment($DB);
@@ -147,11 +148,11 @@ if ($action == 'addcom')
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
 		$CACHE->mc_comment();
-		emMsg('评论发表成功',"./?post=$gid#comment", true);
+		emMsg($lang['comment_posted_ok'],"./?post=$gid#comment", true);
 	}elseif ($ret === 1){
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		emMsg('评论发表成功，请等待管理员审核',"./?post=$gid");
+		emMsg($lang['comment_posted_premod'],"./?post=$gid");
 	}
 }
 //加载插件页面
