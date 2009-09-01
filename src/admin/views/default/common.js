@@ -18,25 +18,25 @@ function em_confirm (id, property) {
 	switch (property){
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
-		var msg = "你确定要删除该链接吗？";break;
+		var msg = l_sure_delete_link;break;
 		case 'backup':
 		var urlreturn="data.php?action=renewdata&sqlfile="+id;
-		var msg = "你确定要导入该备份文件吗？";break;
+		var msg = l_sure_import;break;
 		case 'attachment':
 		var urlreturn="attachment.php?action=del_attach&aid="+id;
-		var msg = "你确定要删除该附件吗？";break;
+		var msg = l_sure_delete_attach;break;
 		case 'avatar':
 		var urlreturn="blogger.php?action=delicon";
-		var msg = "你确定要删除头像吗？";break;
+		var msg = l_sure_delete_image;break;
 		case 'sort':
 		var urlreturn="sort.php?action=del&sid="+id;
-		var msg = "你确定要删除该分类吗？";break;
+		var msg = l_sure_delete_category;break;
 		case 'page':
 		var urlreturn="page.php?action=del&gid="+id;
-		var msg = "你确定要删除该页面吗？";break;
+		var msg = l_sure_delete_page;break;
 		case 'user':
 		var urlreturn="user.php?action=del&uid="+id;
-		var msg = "你确定要删除该用户吗？";break;
+		var msg = l_sure_delete_user;break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -52,7 +52,7 @@ function displayToggle(id, keep){
 }
 function chekform(){
 	var t = $.trim($("#title").val());
-	if (t==""){alert("标题不能为空");$("#title").focus();return false;}else return true;
+	if (t==""){alert(l_title_empty);$("#title").focus();return false;}else return true;
 }
 //att
 function addhtml(content){
@@ -60,11 +60,11 @@ function addhtml(content){
 	if ( oEditor.EditMode == FCK_EDITMODE_WYSIWYG ) {
 		oEditor.InsertHtml(content) ;
 	} else {
-		alert('请先转换到所见即所得模式') ;
+		alert(l_switch_wysiwyg) ;
 	}
 }
 function addattach(imgurl,imgsrc,aid){
-	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+l_show_orig_img+'\"" border=\"0\"></a>');
 }
 function insertTag (tag, boxId){
 	var targetinput = $("#"+boxId).val();
@@ -140,9 +140,9 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
-	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
+	$("#msg").html("<span class=\"msg_autosave_do\">"+l_saving+"...</span>");
 	var btname = $("#savedf").val();
-	$("#savedf").val("正在保存");
+	$("#savedf").val(l_saving);
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
@@ -159,7 +159,7 @@ function autosave(act){
 		var hours = digital.getHours();
 		var mins = digital.getMinutes();
 		var secs = digital.getSeconds();
-		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
+		$("#msg_2").html("<span class=\"ajax_remind_1\">"+l_saved_at+hours+":"+mins+":"+secs+"</span>");
 		$("#savedf").attr("disabled", "");
 		$("#savedf").val(btname);
 		$("#msg").html("");
