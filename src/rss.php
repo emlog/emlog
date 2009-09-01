@@ -72,6 +72,7 @@ function GetURL()
  */
 function GetBlog($sort = null)
 {
+	global $lang;
 	global $DB,$URL;
 	$subsql = $sort ? "and sortid=$sort" : '';
 	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY gid DESC limit 0,10";
@@ -85,11 +86,11 @@ function GetBlog($sort = null)
 		$re['content']	= $re['content'];
 		if(!empty($re['password']))
 		{
-			$re['excerpt'] = '<p>[该日志已设置加密]</p>';
+			$re['excerpt'] = '<p>['.$lang['blog_password_protected'].']</p>';
 		}else{
 			if(!empty($re['excerpt']))
 			{
-				$re['excerpt'] .= '<p><a href="http://'.$URL.'/?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
+				$re['excerpt'] .= '<p><a href="http://'.$URL.'/?post='.$re['id'].'">'.$lang['read_more'].' &gt;&gt;</a></p>';
 			}
 		}
 		$re['content'] = empty($re['excerpt']) ? $re['content'] : $re['excerpt'];
