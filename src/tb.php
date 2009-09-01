@@ -26,15 +26,15 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 {
 	if($sc != substr(md5(date('Ynd')),0,5))
 	{
-		showXML('invalid trackback url');
+		showXML($lang['trackback_url_invalid']);
 	}
 	
 	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
-		showXML('log not exist');
+		showXML($lang['post_not_exist']);
 	}elseif ($blog['allow_tb'] == 'n'){
-		showXML('trackback closed');
+		showXML($lang['trackback_disabled']);
 	}
 
 	$visible = false;
@@ -83,12 +83,12 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		showXML('success', 0);
+		showXML($lang['trackback_successful'], 0);
 	}else {
-		showXML('refuse trackback');
+		showXML($lang['trackback_refused']);
 	}
 }else{
-	showXML('param error');
+	showXML($lang['parameter_error']);
 }
 
 function showXML($message, $error = 1)
