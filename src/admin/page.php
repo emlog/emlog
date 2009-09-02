@@ -124,7 +124,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 		case 'add':
 		case 'edit':
 			$tbmsg = '';
-			$ok_msg = $action == 'add' ? '页面发布成功！' : '页面保存成功！';
+			$ok_msg = $action == 'add' ? $lang['page_published_ok'] : $lang['page_saved_ok'];
 			$ok_url = 'page.php';
 			formMsg($ok_msg,$ok_url, 1);
 			break;

@@ -130,7 +130,7 @@ if($action == 'setwg')
 							$music['mdes'][] = '';
 						}
 					}else{
-						formMsg('有错误的音乐链接格式','javascript: window.history.back()',0);
+						formMsg($lang['music_link_invalid'],'javascript: window.history.back()',0);
 					}
 				}
 			}

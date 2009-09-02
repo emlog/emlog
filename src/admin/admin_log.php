@@ -54,13 +54,13 @@ if($action == '')
 	$hide_state = $pid ? 'y' : 'n';
 	if($pid == 'draft')
 	{
-		$hide_stae = 'y';
+		$hide_state = 'y';
 		$sorturl = '&pid=draft';
-		$pwd = '草稿箱';
+		$pwd = $lang['drafts'];
 	}else{
-		$hide_stae = 'n';
+		$hide_state = 'n';
 		$sorturl = '';
-		$pwd = '日志管理';
+		$pwd = $lang['published'];
 	}
 
 	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, 'blog', 1);
@@ -189,7 +189,7 @@ if($action == 'operate_log')
 		case 'change_author':
 			if (ROLE != 'admin')
 			{
-				formMsg('权限不足！','./', 0);
+				formMsg($lang['access_disabled'],'./', 0);
 			}
 			foreach($logs as $val)
 			{

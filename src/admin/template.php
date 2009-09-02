@@ -21,7 +21,7 @@ if($action == '')
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
 	if(isset($tplAuthor[1]))
 	{
-		$tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
+		$tplAuthor = !empty($tplUrl[1]) ? $lang['author'].": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : $lang['author'].": {$tplAuthor[1]}";
 	}else{
 		$tplAuthor = '';
 	}

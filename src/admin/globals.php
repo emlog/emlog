@@ -46,7 +46,7 @@ if ($action == 'logout')
 	session_unset();
 	session_destroy();
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	formMsg('退出成功！','../',1);
+	formMsg($lang['logout_ok'],'../',1);
 }
 
 if(ISLOGIN === false)
@@ -57,7 +57,7 @@ if(ISLOGIN === false)
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log','trackback')))
 {
-	formMsg('权限不足！','./', 0);
+	formMsg($lang['access_disabled'],'./', 0);
 }
 
 ?>

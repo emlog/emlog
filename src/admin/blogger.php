@@ -18,7 +18,7 @@ if($action == '')
 	if ($photo && file_exists($photo))
 	{
 		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
-		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>";
+		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[".$lang['photo_delete']."]</a>";
 	}
 	include getViews('header');
 	require_once(getViews('blogger'));
@@ -71,13 +71,13 @@ if($action == 'delicon')
 			$ret = unlink($fpath);
 			if(!$ret)
 			{
-				formMsg('头像删除失败','./blogger.php',0);
+				formMsg($lang['photo_delete_failed'],'./blogger.php',0);
 			}
 		}
 		$ret = unlink($icon['photo']);
 		if(!$ret)
 		{
-			formMsg('头像删除失败','./blogger.php',0);
+			formMsg($lang['photo_delete_failed'],'./blogger.php',0);
 		}
 	}
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
@@ -101,31 +101,31 @@ if($action == 'update_pwd')
 
 	if(!$ispass)
 	{
-		formMsg('错误的当前密码','javascript:history.go(-1);',0);
+		formMsg($lang['wrong_current_password'],'javascript:history.go(-1);',0);
 	}elseif(!empty($login) && $emUser->isUserExist($login, UID)){
-		formMsg('用户名已存在','javascript:history.go(-1);',0);
+		formMsg($lang['username_allready_exists'],'javascript:history.go(-1);',0);
 	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
-		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
+		formMsg($lang['password_short'],'javascript:history.go(-1);',0);
 	}elseif(!empty($newpass) && $newpass != $repeatpass){
-		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
+		formMsg($lang['password_not_equal'],'javascript:history.go(-1);',0);
 	}
 
 	if(!empty($newpass) && empty($login))//只修改密码
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('password'=>$newpass), UID);
-		formMsg('密码修改成功!','./',1);
+		formMsg($lang['password_modified_ok'],'./',1);
 	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
-		formMsg('密码和后台登录名修改成功!请重新登录','./',1);
+		formMsg($lang['login_and_password_modified_ok'],'./',1);
 	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
 	{
 		$emUser->updateUser(array('username'=>$login), UID);
-		formMsg('后台登录名修改成功!请重新登录','./',1);
+		formMsg($lang['login_modified_ok'],'./',1);
 	}else{
-		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);
+		formMsg($lang['enter_items'],'javascript:history.go(-1);',0);
 	}
 }
 

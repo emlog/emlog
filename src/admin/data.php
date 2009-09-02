@@ -64,16 +64,16 @@ if($action == 'bakstart')
 				if(@!fwrite($fp, $sqldump))
 				{
 					@fclose($fp);
-					emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
+					emMsg($lang['backup_directory_not_writable'],'javascript:history.go(-1);',0);
 				}else{
 					header("Location: ./data.php?active_backup=true");
 				}
 			}else{
-				emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
+				emMsg($lang['backup_create_file_error'],'javascript:history.go(-1);');
 			}			
 		}
 	}else{
-		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
+		formMsg($lang['backup_empty'],'javascript:history.go(-1);',0);
 	}
 }
 
@@ -83,21 +83,21 @@ if ($action == 'renewdata')
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile))
 	{
-		formMsg('文件不存在', 'javascript:history.go(-1);',0);
+		formMsg($lang['file_not_exists'], 'javascript:history.go(-1);',0);
 	}else{
 		$extension = strtolower(substr(strrchr($sqlfile,'.'),1));
 		if ($extension !== 'sql')
 		{
-			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件', 'javascript:history.go(-1);',0);
+			formMsg($lang['backup_extension_invalid'], 'javascript:history.go(-1);',0);
 		}
 		$fp = fopen($sqlfile,'rb');
 		$bakinfo = fread($fp,200);
 		fclose($fp);
 		if (!strstr($bakinfo,"emlog_".EMLOG_VERSION))
 		{
-			formMsg("导入失败! 该备份文件不是 emlog ".EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
+			formMsg($lang['backup_format_invalid'].EMLOG_VERSION."!", 'javascript:history.go(-1);',0);
 		}elseif (!strstr($bakinfo,DB_PREFIX)){
-			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
+			formMsg($lang['backup_prefix_invalid'], 'javascript:history.go(-1);',0);
 		}
 	}
 	$fp = fopen($sqlfile, 'rb');

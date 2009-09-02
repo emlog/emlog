@@ -24,10 +24,10 @@ if ($action == '')
 			$ver_info = gd_info();
 			$gd_ver = $ver_info['GD Version'];
 		}else{
-			$gd_ver = '支持';
+			$gd_ver = $lang['supported'];
 		}
 	}else{
-		$gd_ver = '不支持';
+		$gd_ver = $lang['not_supported'];
 	}
 
 	include getViews('header');
@@ -38,7 +38,7 @@ if ($action == '')
 //phpinfo()
 if ($action == 'phpinfo')
 {
-	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
+	@phpinfo() OR formMsg($lang['phpinfo_disabled'], "javascript:history.go(-1);", 0);
 }
 
 ?>

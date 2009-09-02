@@ -79,7 +79,7 @@ switch ($action)
 		$tbmsg = '';
 		if($ishide == 'y')
 		{
-			$ok_msg = '草稿保存成功！';
+			$ok_msg = $lang['post_saved_draft_ok'];
 			$ok_url = 'admin_log.php?pid=draft';
 		}else{
 			//发送Trackback
@@ -87,7 +87,7 @@ switch ($action)
 			{
 				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);
 			}
-			$ok_msg = $action == 'add' ? '日志发布成功！' : '日志保存成功！';
+			$ok_msg = $action == 'add' ? $lang['post_published_ok'] : $lang['post_saved_ok'];
 			$ok_url = 'admin_log.php';
 		}
 		formMsg("$ok_msg\t$tbmsg",$ok_url,1);

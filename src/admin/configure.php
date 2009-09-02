@@ -86,11 +86,11 @@ if ($action == "mod_config")
 
 	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
-		formMsg("开启登录验证码失败!服务器不支持该功能","configure.php",0);
+		formMsg($lang['verification_code_not_supported'],"configure.php",0);
 	}
 	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
-		formMsg("开启评论验证码失败!服务器不支持该功能","configure.php",0);
+		formMsg($lang['verification_code_not_supported'],"configure.php",0);
 	}
 	if($getData['isurlrewrite'] == 'y')
 	{
@@ -112,13 +112,13 @@ if ($action == "mod_config")
 					}
 					if(!$f)
 					{
-						formMsg("开启URL优化失败!服务器未开启mod_rewrite模块","configure.php",0);
+						formMsg($lang['url_rewrite_not_supported'],"configure.php",0);
 					}
 				}
 			}
 			if(!file_exists(EMLOG_ROOT.'/.htaccess'))
 			{
-				formMsg("开启URL优化失败!未找到.htaccess文件,请将下载包内ext目录下该文件上传至根目录","configure.php",0);
+				formMsg($lang['url_rewrite_no_htaccess'],"configure.php",0);
 			}
 		}
 	}
