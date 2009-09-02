@@ -14,20 +14,21 @@ if(!isset($action) || empty($action))
 	wap_header($options_cache['blogname']);
 	echo '<p>'.$options_cache['bloginfo'].'</p>';
 	echo "<p>\n";
-	echo "<a href=\"./?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
-	echo "<a href=\"./?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
-	echo "<a href=\"./?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
+	echo "<a href=\"./?action=logs&amp;tem=$tem\">".$lang['blog_view']."</a><br />\n";
+	echo "<a href=\"./?action=twitter&amp;tem=$tem\">".$lang['twitter']."</a><br />\n";
+	echo "<a href=\"./?action=coms&amp;tem=$tem\">".$lang['latest_comments']."</a><br />\n";
 	echo "<br />\n";
 	if(ROLE == 'admin')
 	{
-		echo "欢迎你,你已登录<br />\n";
-		echo "<a href=\"./?action=addtw\">唠叨两句</a><br />\n";
-		echo "<a href=\"./?action=logout\">退出</a><br />\n";
+		echo $lang['welcome_login']."<br />\n";
+		echo "<a href=\"./?action=addtw\">".$lang['twitter_add']."</a><br />\n";
+		echo "<a href=\"./?action=logout\">".$lang['logout']."</a><br />\n";
 	}else {
-		echo "<a href=\"./?action=waplogin\">登录</a><br />\n";
+		echo "<a href=\"./?action=waplogin\">".$lang['login']."</a><br />\n";
 	}
 	echo "<br />\n";
-	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$viewcount_day})总访问量({$viewcount_all})<br />\n";
+	echo $lang['number_of_posts'].": {$sta_cache['lognum']}, {$lang['number_of_comments']}: {$sta_cache['comnum']}, {$lang['number_of_trackbacks']}: {$sta_cache['tbnum']}<br />".
+             $lang['visits_today'].": {$viewcount_day}, {$lang['visits_total']}: {$viewcount_all}<br />\n";
 	echo "</p>\n";
 	wap_footer();
 }
@@ -67,15 +68,16 @@ if ($action == 'logs')
 	}else{
 		echo 'No logs yet!';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">首页</a></p>";
+	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">".$lang['home']."</a></p>";
 	wap_footer();
 }
 //显示日志
 if ($action == 'dis')
 {
-	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./');
+	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg($lang['parameter_invalid'],'./');
+
 	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
-	OR emMsg('不存在该日志','./');
+	OR emMsg($lang['post_not_exists'],'./');
 	if(!empty($show_log['password']))
 	{
 		$logpwd = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
@@ -90,9 +92,9 @@ if ($action == 'dis')
 	$log_content = rmBreak($show_log['content']);
 
 	wap_header($log_title);
-	echo "<p>发布时间：$post_time <br />作者：$log_author <br /></p>";
+	echo "<p>{$lang['post_time']}: $post_time <br />{$lang['author']}: $log_author <br /></p>";
 	echo "<p>$log_content</p>";
-	echo "<p><a href=\"./?tem=$tem\">首页</a> <a href=\"./?action=logs\">返回日志列表</a></p>";
+	echo "<p><a href=\"./?tem=$tem\">{$lang['home']}</a> <a href=\"./?action=logs\">{$lang['back_to_list']}</a></p>";
 
 	wap_footer();
 }
@@ -108,7 +110,7 @@ if($action == 'coms')
 	}else{
 		echo 'No comments yet!';
 	}
-	echo "<p><a href=\"./?tem=$tem\">首页</a></p>";
+	echo "<p><a href=\"./?tem=$tem\">{$lang['home']}</a></p>";
 	wap_footer();
 }
 //twitter list
@@ -142,26 +144,26 @@ if ($action == 'twitter')
 	{
 		foreach ($tws as $val)
 		{
-			$doact = ROLE == 'admin' ? "<a href=\"./?action=del_tw&amp;id=".$val['id']."\">删除</a>" : '';
+			$doact = ROLE == 'admin' ? "<a href=\"./?action=del_tw&amp;id=".$val['id']."\">{$lang['remove']}</a>" : '';
 			echo $val['content'].$doact.'('.$val['date'].')<br />';
 		}
 	}else{
-		echo 'No twitter yet!';
+		echo $lang['no_twitter_yet']';
 	}
-	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">首页</a></p>";
+	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">{$lang['home']}</a></p>";
 	wap_footer();
 }
 if ($action == 'addtw')
 {
 	wap_header('Twitter');
-	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
-	echo "<p><anchor title=\"submit\">提交\n";
+	echo "<p>{$lang['content']}:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
+	echo "<p><anchor title=\"submit\">{$lang['submit']}\n";
 	echo "<go href=\"./?action=add_tw\" method=\"post\">\n";
 	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"?tem=$tem\">{$lang['back_home']}</a></p>\n";
 	wap_footer();
 }
 //新增 twitter
@@ -187,17 +189,17 @@ if(ROLE == 'admin' && $action == 'del_tw')
 }
 if ($action == 'waplogin')
 {
-	wap_header('用户登录');
-	echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
-	echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
-	echo "<p><anchor title=\"submit\">登录\n";
+	wap_header($lang['login']);
+	echo "<p>{$lang['user_name']}: <input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
+	echo "<p>{$lang['password']}: <input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
+	echo "<p><anchor title=\"submit\">{$lang['login']}\n";
 	echo "<go href=\"./?action=dowaplogin\" method=\"post\">\n";
 	echo "<postfield name=\"user\" value=\"$(user)\" />\n";
 	echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"?tem=$tem\">{$lang['back_home']}</a></p>\n";
 	wap_footer();
 }
 //登录验证
@@ -246,15 +248,15 @@ function authPassword($pwd, $pwd2, $blogid)
 {
 	if($pwd !== $pwd2)
 	{
-		wap_header('输入日志访问密码');
-		echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
-		echo "<p><anchor title=\"submit\">进入..\n";
+		wap_header($lang['blog_enter_password']);
+		echo "<p>{$lang['password']}: <input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
+		echo "<p><anchor title=\"submit\">{$lang['submit']}\n";
 		echo "<go href=\"./?action=dis&amp;id=".$blogid."\" method=\"post\">\n";
 		echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
 		echo "<postfield name=\"do\" value=\"\" />\n";
 		echo "</go></anchor>\n";
 		echo "</p>\n";
-		echo "<p><a href=\"./?action=logs\">返回日志列表</a></p>\n";
+		echo "<p><a href=\"./?action=logs\">{$lang['back_to_list']}</a></p>\n";
 		wap_footer();
 		exit;
 	}
