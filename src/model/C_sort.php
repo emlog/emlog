@@ -52,13 +52,14 @@ class emSort {
 
 	function getSortName($sid)
 	{
+		global $lang;
 		if($sid > 0)
 		{
 			$res = $this->dbhd->query("SELECT sortname FROM $this->sortTable where sid=$sid");
 			$row = $this->dbhd->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		}else {
-			$sortName = '未分类';
+			$sortName = $lang['unclassified'];
 		}
 		return $sortName;
 	}

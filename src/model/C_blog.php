@@ -88,12 +88,13 @@ class emBlog {
 	 */
 	function getOneLogForAdmin($blogId)
 	{
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author='.UID;
 		$sql = "select * from ".DB_PREFIX."blog where gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1)
 		{
-			formMsg('权限不足！','./', 0);
+			formMsg($lang['access_disabled'],'./', 0);
 		}
 		$row = $this->db->fetch_array($res);
 		if($row)
@@ -157,6 +158,7 @@ class emBlog {
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog')
 	{
+		global $lang;
 		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
 		$author = ROLE == 'admin' ? '' : 'and author='.UID;
 		$hide_state  = $hide_state ? "and hide='$hide_state'" : '';
@@ -170,8 +172,8 @@ class emBlog {
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
 			$row['gid'] = $row['gid'];
 			$row['comnum'] = $row['comnum'];
-			$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[置顶]</font>" : '';
-			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:".$row['attnum']."]</font>" : '';
+			$row['istop'] = $row['top']=='y' ? "<font color=\"red\">[".$lang['recommended']."]</font>" : '';
+			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[".$lang['attachments'].": ".$row['attnum']."]</font>" : '';
 			$logs[] = $row;
 		}
 		return $logs;
@@ -187,6 +189,7 @@ class emBlog {
 	 */
 	function getLogsForHome($condition = '', $page = 1, $prePageNum)
 	{
+		global $lang;
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
 		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
 		$sql = "SELECT * FROM ".DB_PREFIX."blog WHERE type='blog' and hide='n' $condition $limit";
@@ -201,11 +204,11 @@ class emBlog {
 			$cookiePassword = isset($_COOKIE['em_logpwd_'.$row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_'.$row['gid']])) : '';
 			if(!empty($row['password']) && $cookiePassword != $row['password'])
 			{
-				$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+				$row['excerpt'] = '<p>['.$lang['blog_password_protected_info'].']</p>';
 			}else{
 				if(!empty($row['excerpt']))
 				{
-					$row['excerpt'] .= '<p><a href="./?post='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
+					$row['excerpt'] .= '<p><a href="./?post='.$row['logid'].'">'.$lang['read_more'].'&gt;&gt;</a></p>';
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];
@@ -223,11 +226,12 @@ class emBlog {
 	 */
 	function deleteLog($blogId)
 	{
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author='.UID;
 		$this->db->query("DELETE FROM ".DB_PREFIX."blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1)
 		{
-			formMsg('权限不足！','./', 0);
+			formMsg($lang['access_disabled'],'./', 0);
 		}
 		//评论
 		$this->db->query("DELETE FROM ".DB_PREFIX."comment where gid=$blogId");
@@ -404,9 +408,9 @@ body {
 <body>
 <div class="main">
 <form action="" method="post">
-请输入该日志的访问密码<br>
-<input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="./">&laquo;返回首页</a>
+{$lang['blog_enter_password']}<br>
+<input type="password" name="logpwd" /><input type="submit" value="{$lang['enter']}.." />
+<br /><br /><a href="./">&laquo; {$lang['home']}</a>
 </form>
 </div>
 </body>
