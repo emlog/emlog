@@ -68,13 +68,13 @@ $calendar =
 </table>
 <table class=\"calendar\" cellspacing=\"0\">
 <tr>
-<td class=\"week\">一</td>
-<td class=\"week\">二</td>
-<td class=\"week\">三</td>
-<td class=\"week\">四</td>
-<td class=\"week\">五</td>
-<td class=\"week\">六</td>
-<td class=\"sun\">日</td>
+    <td class=\"week\">{$lang['monday_short']}</td>
+    <td class=\"week\">{$lang['tuesday_short']}</td>
+    <td class=\"week\">{$lang['wednesday_short']}</td>
+    <td class=\"week\">{$lang['thursday_short']}</td>
+    <td class=\"week\">{$lang['friday_short']}</td>
+    <td class=\"week\">{$lang['saturday_short']}</td>
+    <td class=\"sun\">{$lang['sunday_short']}</td>
 </tr>";
 
 //获取给定年月的第一天是星期几
