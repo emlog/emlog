@@ -9,7 +9,7 @@
 	<div class="act"><?php blog_sort($value['sortid'], $value['logid']); ?></div>
 	<div class="editor"><?php editflg($value['logid'],$value['author']); ?></div>
 	<div class="clear line"></div>
-   	<div class="bloger">post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
+   	<div class="bloger"><? echo $lang['posted_by']; ?> <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
 	<div class="fujian"><?php blog_att($value['logid']); ?></div>
 	<div class="under">
@@ -17,9 +17,9 @@
 	<div class="under_p">
 	<div class="tag"><?php blog_tag($value['logid']); ?></div>
 	<div>
-	<a href="./?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
-	<a href="./?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
-	<a href="./?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+	<a href="./?post=<?php echo $value['logid']; ?>#comment"><?php echo $lang['number_of_comments']; ?>: <?php echo $value['comnum']; ?></a>,
+	<a href="./?post=<?php echo $value['logid']; ?>#tb"><?php echo $lang['number_of_trackbacks'].": ".$value['tbcount']; ?></a>,
+	<a href="./?post=<?php echo $value['logid']; ?>"><?php echo $lang['views'].": ".$value['views']; ?></a>
 	</div>
 	</div>
 	<div class="bottom"></div>

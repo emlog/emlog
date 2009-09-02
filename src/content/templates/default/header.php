@@ -30,7 +30,7 @@ require_once (getViews('module'));
 			<li id="tagline"><?php echo $bloginfo; ?></li>
 		</ul>
 		<ul id="menus">
-			<li class="menus1"><a href="./">首页</a></li>
+			<li class="menus1"><a href="./"><? echo $lang['home']; ?></a></li>
 			<?php foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
 			if (empty($val['url'])){$val['url'] = './?post='.$key;}
@@ -39,11 +39,11 @@ require_once (getViews('module'));
 			<?php endforeach;?>
 			<?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
 			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-			<li class="menus2"><a href="./admin/write_log.php">写日志</a></li>
-			<li class="menus2"><a href="./admin/">管理中心</a></li>
-			<li class="menus2"><a href="./admin/?action=logout">退出</a></li>
+			<li class="menus2"><a href="./admin/write_log.php"><? echo $lang['post_add']; ?></a></li>
+			<li class="menus2"><a href="./admin/"><? echo $lang['admin_center'];?></a></li>
+			<li class="menus2"><a href="./admin/?action=logout"><? echo $lang['logout'];?></a></li>
 			<?php else: ?>
-			<li class="menus2"><a href="./admin/">登录</a></li>
+			<li class="menus2"><a href="./admin/"><? echo $lang['login'];?></a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="clear"></div>
