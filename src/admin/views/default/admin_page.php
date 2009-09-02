@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>页面管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除页面成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide_n'])):?><span class="actived">发布页面成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide_y'])):?><span class="actived">禁用页面成功</span><?php endif;?>
+<div class=containertitle><b><? echo $lang['page_management'];?></b>
+<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['page_deleted_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_hide_n'])):?><span class="actived"><? echo $lang['page_published_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_hide_y'])):?><span class="actived"><? echo $lang['page_unpublished_ok'];?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
@@ -10,9 +10,9 @@
   	<thead>
       <tr>
       	<th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="460"><b>标题</b></th>
-        <th width="30" class="tdcenter"><b>评论</b></th>
-        <th width="280"><b>时间</b></th>
+        <th width="460"><b><? echo $lang['title'];?></b></th>
+        <th width="30" class="tdcenter"><b><? echo $lang['comments'];?></b></th>
+        <th width="280"><b><? echo $lang['time'];?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -23,8 +23,8 @@
 		$navibar[$value['gid']]['url'] = '../?post='.$value['gid'];
 	}
 	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red">[隐藏]</font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/'.ADMIN_TPL.'/images/vlog.gif" align="absbottom" border="0" /></a>';
+	'<font color="red">['.$lang['draft'].']</font>' : 
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.$lang['page_new_window'].'"><img src="./views/'.ADMIN_TPL.'/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
@@ -41,13 +41,13 @@
   </table>
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
-<div class="list_footer">选中项：
-<a href="javascript:pageact('del');">删除</a> 
-<a href="javascript:pageact('hide');">隐藏</a> 
-<a href="javascript:pageact('pub');">发布</a>
+<div class="list_footer"><? echo $lang['with_selected_do'];?>:
+<a href="javascript:pageact('del');"><? echo $lang['remove'];?></a> 
+<a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
+<a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
 </div>
-<div class="page">(有<?php echo $pageNum; ?>个页面)<?php echo $pageurl; ?></div>
-<div style="margin:20px 0px 0px 0px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="新建一个页面&raquo;" class="submit" /></div>
+<div class="page">(<? echo $lang['with'];?> <?php echo $pageNum; ?> <? echo $lang['pages'];?>) <?php echo $pageurl; ?></div>
+<div style="margin:20px 0px 0px 0px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="<? echo $lang['page_add'];?> &raquo;" class="submit" /></div>
 <script>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
@@ -58,9 +58,9 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function pageact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的页面');
+		alert('<? echo $lang['page_select_to_deal'];?>');
 		return;}
-	if(act == 'del' && !confirm('你确定要删除所选页面吗？')){return;}
+	if(act == 'del' && !confirm('<? echo $lang['page_delete_sure'];?>')){return;}
 	$("#operate").val(act);
 	$("#form_page").submit();
 }

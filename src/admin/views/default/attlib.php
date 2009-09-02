@@ -21,12 +21,12 @@ function showattlib()
 </script>
 <body>
 <div id="media-upload-header">
-	<span><a href="javascript:showupload();">上传附件</a></span>
-	<span id="curtab"><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
+	<span><a href="javascript:showupload();"><? echo $lang['attachment_upload'];?></a></span>
+	<span id="curtab"><a href="javascript:showattlib();"><? echo $lang['attachment_library'];?> ( <?php echo $attachnum; ?> )</a></span>
 </div>
 <div id="media-upload-body">
 <?php if(!$attach): ?>
-<p id="attmsg">该日志没有附件</p>
+<p id="attmsg"><? echo $lang['attachment_no'];?></p>
 <?php else:
 foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));
@@ -34,18 +34,18 @@ foreach($attach as $key=>$value):
 	$emImageType = array('gif', 'jpg', 'jpeg', 'png', 'bmp');//支持的图片类型
 	if($extension == 'zip' || $extension == 'rar'){
 		$imgpath = "./views/".ADMIN_TPL."/images/tar.gif";
-		$embedlink = '压缩包';
+		$embedlink = $lang['attachment_type_archive'];
 	}elseif (in_array($extension, $emImageType)) {
 		$imgpath = $value['filepath'];
 		$ed_imgpath = $blogurl.substr($imgpath,3);
-		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">嵌入 </a>";
+		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">{$lang['attachment_embed']}</a>";
 	}else {
 		$imgpath = "./views/".ADMIN_TPL."/images/fnone.gif";
 		$embedlink = '';
 	}
 ?>
 	<li id="attlist"><a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $value['filename']; ?>"><img src="<?php echo $imgpath; ?>" width="60" height="60" border="0" align="absmiddle"/></a>
-	<br><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');">删除</a> <?php echo $embedlink; ?></li>
+	<br><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');"><? echo $lang['remove'];?></a> <?php echo $embedlink; ?></li>
 <?php endforeach; endif; ?>
 </div>
 </body>

@@ -1,21 +1,21 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>分类管理</b>
-<?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除分类成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改分类成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="actived">添加分类成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">分类名称不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的分类</span><?php endif;?>
+<div class=containertitle><b><? echo $lang['categories_management'];?></b>
+<?php if(isset($_GET['active_taxis'])):?><span class="actived"><? echo $lang['categories_ordered_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['categories_deleted_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['categories_edited_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived"><? echo $lang['category_added_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['category_is_empty'];?></span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['category_order_nothing'];?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
   <table width="100%" id="adm_sort_list" class="item_list">
     <thead>
       <tr>
-        <th width="55"><b>序号</b></th>
-        <th width="500"><b>分类名称</b></th>
-        <th width="50" class="tdcenter"><b>日志</b></th>
+        <th width="55"><b><? echo $lang['order'];?></b></th>
+        <th width="500"><b><? echo $lang['category_name'];?></b></th>
+        <th width="50" class="tdcenter"><b><? echo $lang['posts'];?></b></th>
         <th width="300"></th>
       </tr>
     </thead>
@@ -27,16 +27,16 @@
         <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
 		<td class="sortname"><?php echo $value['sortname']; ?></td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
+        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');"><? echo $lang['remove'];?></a></td>
       </tr>
 <?php endforeach;?>   
 </tbody>
 </table>
-<div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
+<div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="submit" /></div>
 </form>
 <form action="sort.php?action=add" method="post">
 <div style="margin:50px 0px 0px 3px">
-<input maxlength="200" size="15" name="sortname" /> <input type="submit" value="添加新分类" class="submit"/>
+<input maxlength="200" size="15" name="sortname" /> <input type="submit" value="<? echo $lang['category_add'];?>" class="submit"/>
 </div>
 </form>
 <script type='text/javascript'>

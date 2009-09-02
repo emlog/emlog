@@ -32,21 +32,23 @@ function removeattachfrom() {
 	document.getElementById('attachbody').childNodes.length > 1 && document.getElementById('attachbody').lastChild ? document.getElementById('attachbody').removeChild(document.getElementById('attachbody').lastChild) : 0;
 }
 </script>
+</head>
+
 <body>
 <div id="media-upload-header">
-	<span id="curtab"><a href="javascript:showupload();">上传附件</a></span>
-	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
+	<span id="curtab"><a href="javascript:showupload();"><? echo $lang['attachment_upload'];?></a></span>
+	<span><a href="javascript:showattlib();"><? echo $lang['attachment_library'];?> ( <?php echo $attachnum; ?> )</a></span>
 </div>
 
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
 	<p>
-	<a id="attach" title="增加附件" onclick="addattachfrom()" href="javascript:;" name="attach">[ + ]</a> 
-	<a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a> 
-	(单个附件最大：<?php echo $maxsize ;?>，允许类型：<?php echo $att_type_str; ?>)
+	<a id="attach" title="<? echo $lang['attachment_increase'];?>" onclick="addattachfrom()" href="javascript:;" name="attach">[ <b>+</b> ]</a> 
+	<a id="attach" title="<? echo $lang['attachment_decrease'];?>" onclick="removeattachfrom()" href="javascript:;" name="attach">[ <b>-</b> ]</a> 
+	(<? echo $lang['attachment_max_size'];?>: <?php echo $maxsize ;?>, <? echo $lang['attachment_types'];?>: <?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]"></span></div>
-	<input type="button" name="html-upload" value="上传" onclick="uploadfile();"/>
+	<input type="button" name="html-upload" value="<? echo $lang['upload'];?>" onclick="uploadfile();"/>
 	</p>
 </div>
 </form>
