@@ -20,20 +20,21 @@ class MySql {
 
 	function MySql($dbHost = '', $dbUser = '', $dbPass = '', $dbName = '')
 	{
+		global $lang;
 		if (!function_exists('mysql_connect'))
 		{
-			emMsg('服务器PHP不支持MySql数据库');
+			emMsg($lang['mysql_not_supported']);
 		}
 		if (!$this->conn = @mysql_connect($dbHost, $dbUser, $dbPass))
 		{
-			emMsg("连接数据库失败,可能是数据库用户名或密码错误");
+			emMsg($lang['db_connect_error']);
 		}
 		if ($this->getMysqlVersion() >'4.1')
 		{
 			mysql_query("SET NAMES 'utf8'");
 		}
 
-		@mysql_select_db($dbName, $this->conn) OR emMsg("未找到指定数据库");
+		@mysql_select_db($dbName, $this->conn) OR emMsg($lang['db_not_found']);
 	}
 
 	/**
@@ -58,7 +59,7 @@ class MySql {
 		$this->queryCount++;
 		if (!$this->result)
 		{
-			emMsg("SQL语句执行错误：$sql <br />".$this->geterror());
+			emMsg($lang['sql_statement_error'].": $sql <br />".$this->geterror());
 		} else {
 			return $this->result;
 		}

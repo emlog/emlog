@@ -15,9 +15,10 @@
  */
 function getViews($template, $ext = '.php')
 {
+	global $lang;
 	if (!is_dir(TPL_PATH))
 	{
-		exit('The Template Path Error');
+		exit($lang['template_path_error']);
 	}
 	$path = TPL_PATH.$template.$ext;
 	return $path;
@@ -198,6 +199,8 @@ function subString($strings,$start,$length)
  */
 function changeFileSize($filesize)
 {
+	global $lang;
+
 	if($filesize >= 1073741824)
 	{
 		$filesize = round($filesize / 1073741824  ,2) . 'GB';
@@ -206,7 +209,7 @@ function changeFileSize($filesize)
 	} elseif($filesize >= 1024){
 		$filesize = round($filesize / 1024, 2) . 'KB';
 	} else{
-		$filesize = $filesize . '字节';
+		$filesize = $filesize . ' '.$lang['bytes'];
 	}
 	return $filesize;
 }
@@ -222,6 +225,7 @@ function changeFileSize($filesize)
  */
 function pagination($count,$perlogs,$page,$url)
 {
+	global $lang;
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++)
@@ -236,8 +240,8 @@ function pagination($count,$perlogs,$page,$url)
 			}
 		}
 	}
-	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a> ...$re";
-	if ($page + 5 < $pnums) $re .= "... <a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>";
+	if ($page > 6) $re = "<a href=\"$url=1\" title=\"".$lang['first_page']."\">&laquo;</a> ... $re";
+	if ($page + 5 < $pnums) $re .= "... <a href=\"$url=$pnums\" title=\"".$lang['last_page']."\">&raquo;</a>";
 	if ($pnums <= 1) $re = '';
 	return $re;
 }
@@ -379,9 +383,10 @@ function cleanPage($beUrlRewrite = false)
  */
 function breakLog($content,$lid)
 {
+	global $lang;
 	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="./?post='.$lid.'">'.$lang['read_more'].'&gt;&gt;</a></p>';
 	return $a[0];
 }
 
@@ -437,6 +442,7 @@ function fopen_url($url)
  */
 function smartyDate($datetemp,$dstr='Y-m-d H:i')
 {
+	global $lang;
 	global $localdate;
 	$op = '';
 	$sec = $localdate-$datetemp;
@@ -444,12 +450,12 @@ function smartyDate($datetemp,$dstr='Y-m-d H:i')
 	if ($hover == 0){
 		$min = floor($sec/60);
 		if ( $min == 0) {
-			$op = $sec.' 秒前';
+			$op = $sec . $lang['seconds_ago'];
 		} else {
-			$op = "$min 分钟前";
+			$op = $min . $lang['minutes_ago'];
 		}
 	} elseif ($hover < 24){
-		$op = "约 {$hover} 小时前";
+		$op = $lang['about']." ".$hover . $lang['hours_ago'];
 	} else {
 		$op = date($dstr,$datetemp);
 	}
@@ -540,22 +546,23 @@ function findArray($array1,$array2)
  */
 function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type, $isIcon = 0)
 {
+	global $lang;
 	if ($errorNum == 1)
 	{
-		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+		formMsg($lang['attachment_exceed_system_limit'].' '.ini_get('upload_max_filesize').' '.$lang['bytes'], 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1)
 	{
-		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
+		formMsg($lang['upload_failed_code'].': '.$errorNum, 'javascript:history.go(-1);', 0);
 	}
 	$extension  = strtolower(substr(strrchr($filename, "."),1));
 	if (!in_array($extension, $type))
 	{
-		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
+		formMsg($lang['wrong_file_type'],"javascript:history.go(-1);",0);
 	}
 	if ($filesize > UPLOADFILE_MAXSIZE)
 	{
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
-		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+		formMsg($lang['file_size_exceeded']." ".$ret." ".$lang['restrictions'],"javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
 	$fname = md5($filename) . date('YmdHis') .'.'. $extension;
@@ -566,7 +573,7 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 		$ret = @mkdir(UPLOADFILE_PATH, 0777);
 		if ($ret === false)
 		{
-			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
+			formMsg($lang['attachment_create_failed'], "javascript:history.go(-1);", 0);
 		}
 	}
 	if (!is_dir($uppath))
@@ -575,7 +582,7 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false)
 		{
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			formMsg($lang['uploads_not_written'],"javascript:history.go(-1);",0);
 		}
 	}
 	doAction('attach_upload');
@@ -594,7 +601,7 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 		if (@!move_uploaded_file($tmpfile ,$attachpath))
 		{
 			@unlink($tmpfile);
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			formMsg($lang['uploads_not_written'],"javascript:history.go(-1);",0);
 		}
 		chmod($attachpath, 0777);
 	}
@@ -702,6 +709,7 @@ function formatArray($array)
  */
 function formMsg($msg,$url,$type)
 {
+	global $lang;
 	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
 	require_once(getViews('msg'));
 	cleanPage();
@@ -717,6 +725,7 @@ function formMsg($msg,$url,$type)
  */
 function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false)
 {
+	global $lang;
 	echo <<<EOT
 <html>
 <head>
@@ -757,7 +766,7 @@ body {
 <body>
 <div class="main">
 <p>$msg</p>
-<p><a href="$url">&laquo;点击返回</a></p>
+<p><a href="$url">&laquo; {$lang['return_back']}</a></p>
 </div>
 </body>
 </html>

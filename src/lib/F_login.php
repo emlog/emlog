@@ -63,9 +63,10 @@ function checkUser($username,$password,$imgcode,$logincode)
  */
 function loginPage()
 {
+	global $lang;
 	global $login_code;
 	$login_code == 'y' ?
-	$ckcode = "<span>验证码</span>
+	$ckcode = "<span>{$lang['verification_code']}</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
 	<img src=\"../lib/C_checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
