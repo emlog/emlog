@@ -1,6 +1,6 @@
 <?php
 /**
- * 显示撰写、编辑日志界面
+ * Post writing, editing interface
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -12,7 +12,7 @@ require_once(EMLOG_ROOT.'/model/C_tag.php');
 require_once(EMLOG_ROOT.'/model/C_trackback.php');
 require_once(EMLOG_ROOT.'/model/C_sort.php');
 
-//显示撰写日志页面
+//Write post page
 if($action == '')
 {
 	$emTag = new emTag($DB);
@@ -30,7 +30,7 @@ if($action == '')
 	cleanPage();
 }
 
-//显示编辑日志页面
+//Edit blog page
 if ($action == 'edit')
 {
 	$emBlog = new emBlog($DB);

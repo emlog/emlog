@@ -1,6 +1,6 @@
 <?php
 /**
- * 附件处理
+ * Attachment Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -8,7 +8,7 @@
 
 require_once('globals.php');
 
-//上传表单显示
+//Show Upload Form
 if($action == 'selectFile')
 {
 	$attachnum = 0;
@@ -20,7 +20,8 @@ if($action == 'selectFile')
 		$attachnum = $DB->num_rows($query);
 	}
 	$maxsize = changeFileSize(UPLOADFILE_MAXSIZE);
-	//允许附件类型
+
+	//Allowed attachment type
 	$att_type_str = '';
 	foreach ($att_type as $val)
 	{
@@ -30,7 +31,7 @@ if($action == 'selectFile')
 	cleanPage();
 }
 
-//上传附件
+//Upload attachment
 if($action == 'upload')
 {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -42,7 +43,7 @@ if($action == 'upload')
 			if($attach['error'][$i] != 4)
 			{
 				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], $attach['type'][$i], $att_type);
-				//写入附件信息
+				//Save Attachment Information
 				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);
 				$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum+1 WHERE gid=$logid");
@@ -53,7 +54,7 @@ if($action == 'upload')
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
 
-//附件库
+//Attachment Gallery
 if($action == 'attlib')
 {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -77,7 +78,7 @@ if($action == 'attlib')
 	cleanPage();
 }
 
-//删除附件
+//Delete attachment
 if ($action == 'del_attach')
 {
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';

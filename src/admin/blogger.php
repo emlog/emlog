@@ -1,6 +1,6 @@
 <?php
 /**
- * 个人资料
+ * Blogger Profile
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -30,7 +30,7 @@ if($action == 'update')
 {
 	$emUser = new emUser($DB);
 	
-	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;//前台调用标识
+	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;//Frontend call identification
 	if(!$flg)
 	{
 		$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
@@ -110,17 +110,17 @@ if($action == 'update_pwd')
 		formMsg($lang['password_not_equal'],'javascript:history.go(-1);',0);
 	}
 
-	if(!empty($newpass) && empty($login))//只修改密码
+	if(!empty($newpass) && empty($login)) // Change Password Only
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('password'=>$newpass), UID);
 		formMsg($lang['password_modified_ok'],'./',1);
-	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
+	}elseif(!empty($newpass) && !empty($login)) //Change password and login name
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$emUser->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
 		formMsg($lang['login_and_password_modified_ok'],'./',1);
-	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
+	}elseif(empty($newpass) && !empty($login)) //Modify the login name
 	{
 		$emUser->updateUser(array('username'=>$login), UID);
 		formMsg($lang['login_modified_ok'],'./',1);

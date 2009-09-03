@@ -1,6 +1,6 @@
 <?php
 /**
- * Widgets 侧边栏目管理
+ * Widget Sidebar Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -8,7 +8,7 @@
 
 require_once('globals.php');
 
-//显示组件管理面板
+//Display widget management panel
 if($action == '')
 {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
@@ -65,12 +65,12 @@ if($action == '')
 	cleanPage();
 }
 
-//修改组件设置
+//Modify the widget settings
 if($action == 'setwg')
 {
-	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
-	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
-	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
+	$widgetTitle = @unserialize($options_cache['widget_title']);//The current title of all the widgets
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';	        //The widget to modify
+	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';   //New widget name
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
 	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
@@ -141,14 +141,15 @@ if($action == 'setwg')
 			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
 			$title = isset($_POST['title']) ? $_POST['title'] : '';
 			$content = isset($_POST['content']) ? $_POST['content'] : '';
-			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//要修改的组件id
+			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//Widget id to modify
 			$new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
-			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//要删除的组件id
-			//添加新自定义组件
+			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Widget id to remove
+
+			//Add a new custom widget
 			if($new_content)
 			{
-				//确定组件索引
+				//Determine the widget index
 				$i = 0;
 				$maxKey = 0;
 				if(is_array($custom_widget))
@@ -200,10 +201,10 @@ if($action == 'setwg')
 	header("Location: ./widgets.php?activated=true");
 }
 
-//保存组件排序
+//Save widget sorting
 if($action == 'compages')
 {
-	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
+	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3...
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets{$wgNum}'");
 	$CACHE->mc_options();

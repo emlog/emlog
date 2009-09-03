@@ -1,6 +1,6 @@
 <?php
 /**
- * 插件管理
+ * Plugin management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -22,7 +22,7 @@ if($action == '' && !$plugin)
 	include getViews('footer');
 	cleanPage();
 }
-//激活
+//Activate
 if ($action == 'active')
 {
 	$emPlugin = new emPlugin($DB, $plugin);
@@ -31,7 +31,7 @@ if ($action == 'active')
 
 	header("Location: ./plugin.php?active=true");
 }
-//禁用
+//Deactivate
 if($action == 'inactive')
 {
 	$emPlugin = new emPlugin($DB, $plugin);
@@ -40,7 +40,7 @@ if($action == 'inactive')
 	
 	header("Location: ./plugin.php?inactive=true");
 }
-//加载插件配置页面
+//Load the plug-in configuration page
 if ($action == '' && $plugin)
 {
 	include getViews('header');
@@ -48,7 +48,7 @@ if ($action == '' && $plugin)
 	plugin_setting_veiw();
 	include getViews('footer');
 }
-//保存插件设置
+//Save plug-in settings
 if ($action == 'setting')
 {
 	if(!empty($_POST))

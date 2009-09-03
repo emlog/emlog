@@ -1,6 +1,6 @@
 <?php
 /**
- * 博客设置
+ * Blog settings
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$

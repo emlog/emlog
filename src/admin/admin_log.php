@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理日志
+ * Posts Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -13,7 +13,7 @@ require_once(EMLOG_ROOT.'/model/C_user.php');
 
 $emBlog = new emBlog($DB);
 
-//显示日志(草稿)管理页面
+//Published/Drafts posts management page
 if($action == '')
 {
 	$emTag = new emTag($DB);
@@ -81,7 +81,7 @@ if($action == '')
 	include getViews('footer');cleanPage();
 }
 
-//操作日志
+//Blog Operation
 if($action == 'operate_log')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';

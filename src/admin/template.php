@@ -1,6 +1,6 @@
 <?php
 /**
- * 模板管理
+ * Template Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -10,7 +10,7 @@ require_once('globals.php');
 
 if($action == '')
 {
-	//当前模板
+	//Current template 
 	$template_path = '../'.TEMPLATE_PATH;
 	$tplData = implode('', @file($template_path.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $tplData, $tplName);
@@ -25,7 +25,7 @@ if($action == '')
 	}else{
 		$tplAuthor = '';
 	}
-	//模板列表
+	//Template List
 	$handle = @opendir($template_path) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
@@ -51,7 +51,7 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-//使用模板
+//Using a template
 if($action == 'usetpl')
 {
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';

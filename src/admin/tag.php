@@ -1,6 +1,6 @@
 <?php
 /**
- * 标签管理
+ * Tags Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -30,7 +30,7 @@ if ($action== "mod_tag")
 	include getViews('footer');cleanPage();
 }
 
-//标签修改
+//Update Tags
 if($action=='update_tag')
 {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
@@ -41,7 +41,7 @@ if($action=='update_tag')
 	header("Location: ./tag.php?active_edit=true");
 }
 
-//批量删除标签
+//Bulk Delete Tags
 if($action== 'dell_all_tag')
 {
 	$tags = isset($_POST['tag']) ? $_POST['tag'] : '';

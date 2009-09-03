@@ -1,6 +1,6 @@
 <?php
 /**
- * 后台全局项加载
+ * Load Background Global items
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -8,22 +8,22 @@
 
 require_once('../init.php');
 
-//高级配置选项
-define('UPLOADFILE_MAXSIZE', 20971520);//附件大小上限 单位：字节（默认20M）
-define('UPLOADFILE_PATH', '../content/uploadfile/');//附件保存目录
-define('IS_THUMBNAIL', 1);//上传图片是否生成缩略图 1:是 0:否
-define('ADMIN_PERPAGE_NUM', 15);//后台管理每页条目数
-define('ADMIN_TPL', 'default');//后台模板名
-define('TPL_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/');//后台当前模板路径
-$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
+//Advanced Configuration Options
+define('UPLOADFILE_MAXSIZE', 20971520);//Attachment size limit (unit: bytes, default is 20M)
+define('UPLOADFILE_PATH', '../content/uploadfile/');//Save attachments directory
+define('IS_THUMBNAIL', 1);//Upload pictures is generated thumbnails 1: yes 0: No
+define('ADMIN_PERPAGE_NUM', 15);//Admin number of entries per page
+define('ADMIN_TPL', 'default');//Background templates were
+define('TPL_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/');//Background current template path
+$att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//Allow upload file types
 
-//读取缓存
+//Read the Cache
 $sta_cache = $CACHE->readCache('sta');
 $sort_cache = $CACHE->readCache('sort');
 $user_cache = $CACHE->readCache('user');
 $log_cache_tags = $CACHE->readCache('log_tags');
 
-//登录验证
+//Login authentication
 if ($action == 'login')
 {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
@@ -39,7 +39,7 @@ if ($action == 'login')
 		loginPage();
 	}
 }
-//登出
+//Logout
 if ($action == 'logout')
 {
 	session_start();

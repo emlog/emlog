@@ -1,6 +1,6 @@
 <?php
 /**
- * 链接管理
+ * Link Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$

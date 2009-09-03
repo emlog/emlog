@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户管理
+ * User Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -11,7 +11,7 @@ require_once(EMLOG_ROOT.'/model/C_user.php');
 
 $emUser = new emUser($DB);
 
-//加载用户管理页面
+//User Management page
 if($action == '')
 {
 	$users = $emUser->getUsers();
@@ -25,7 +25,7 @@ if($action== 'new')
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = 'writer';//用户组：联合撰写人
+	$role = 'writer';//User Group: Co-author
 
 	if($login == '')
 	{

@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据备份
+ * Data Backup
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -77,7 +77,7 @@ if($action == 'bakstart')
 	}
 }
 
-//导入数据
+//Import Backup Data
 if ($action == 'renewdata')
 {
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
@@ -121,7 +121,7 @@ if ($action == 'renewdata')
 	header("Location: ./data.php?active_import=true");
 }
 
-//批量删除备份文件
+//Bulk delete the backup files
 if($action == 'dell_all_bak')
 {
 	if(!isset($_POST['bak']))
@@ -135,7 +135,8 @@ if($action == 'dell_all_bak')
 		header("Location: ./data.php?active_del=true");
 	}
 }
-//更新缓存
+
+//Update the cache
 if ($action == 'mkcache')
 {
 	$CACHE->mc_user();
@@ -155,7 +156,7 @@ if ($action == 'mkcache')
 }
 
 /**
- * 导入备份文件
+ * Import the backup file
  *
  * @param string $filename
  */
@@ -191,9 +192,9 @@ function bakindata($filename)
 }
 
 /**
- * 备份数据库结构和所有数据
+ * Back up the database structure and all the data
  *
- * @param string $table 数据库表名
+ * @param string $table Database table name
  * @return string
  */
 function dataBak($table)

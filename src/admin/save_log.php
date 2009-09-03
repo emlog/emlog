@@ -1,6 +1,6 @@
 <?php
 /**
- * 保存日志（增加、修改）
+ * Save the post (add, modify)
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -19,13 +19,13 @@ $emTb = new emTrackback($DB);
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的日志时间
+$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//Post time before modification
 $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
 $allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
 $allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : '';
@@ -46,7 +46,7 @@ $logData = array(
 'hide'=>$ishide,
 'password'=>$password
 );
-if($blogid > 0)//自动保存草稿后,添加变为更新
+if($blogid > 0) //auto-save drafts, add into update
 {
 	$emBlog->updateLog($logData, $blogid);
 	$emTag->updateTag($tagstring, $blogid);

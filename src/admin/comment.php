@@ -1,6 +1,6 @@
 <?php
 /**
- * 评论管理
+ * Comment Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -11,7 +11,7 @@ require_once(EMLOG_ROOT.'/model/C_comment.php');
 
 $emComment = new emComment($DB);
 
-//加载评论管理页面
+//Load the comment management page
 if($action == '')
 {
 	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
@@ -32,7 +32,7 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-//操作评论
+//Comments Operations
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -73,7 +73,8 @@ if($action== 'admin_all_coms')
 		header("Location: ./comment.php?active_show=true");
 	}
 }
-//回复评论
+
+//Reply Operations
 if ($action== 'reply_comment')
 {
 	include getViews('header');

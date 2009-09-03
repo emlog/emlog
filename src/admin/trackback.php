@@ -1,6 +1,6 @@
 <?php
 /**
- * 引用通告管理
+ * Trackbacks Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -23,7 +23,8 @@ if($action == '')
 	require_once(getViews('trackback'));
 	include getViews('footer');cleanPage();
 }
-//删除引用
+
+//Delete Trackback
 if($action == 'dell')
 {
 	$tbs = isset($_POST['tb']) ? array_map('intval', $_POST['tb']) : array();

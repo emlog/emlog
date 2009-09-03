@@ -1,6 +1,6 @@
 <?php
 /**
- * 页面管理
+ * Page Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -11,7 +11,7 @@ require_once(EMLOG_ROOT.'/model/C_blog.php');
 
 $navibar = unserialize($navibar);
 
-//加载页面管理页面
+//Page Management page
 if($action == '')
 {
 	$emPage = new emBlog($DB);
@@ -28,7 +28,7 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-//显示新建页面表单
+//Display a new page form
 if ($action == 'new')
 {
 	$localtime = time() - ($timezone - 8) * 3600;
@@ -39,7 +39,7 @@ if ($action == 'new')
 	include getViews('footer');
 	cleanPage();
 }
-//显示编辑页面表单
+//Show edit page form
 if ($action == 'mod')
 {
 	$emPage = new emBlog($DB);
@@ -72,7 +72,7 @@ if ($action == 'mod')
 	include getViews('footer');
 	cleanPage();
 }
-//保存页面
+//Save Page
 if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 {
 	$emPage = new emBlog($DB);
@@ -80,7 +80,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
-	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft, there blog id number
 	$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
 	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
@@ -97,7 +97,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	'type'=>'page'
 	);
 
-	if($pageId > 0)//自动保存后,添加变为更新
+	if($pageId > 0)//auto-save, add into update
 	{
 		$emPage->updateLog($logData, $pageId);
 	}else{
@@ -130,7 +130,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 			break;
 	}
 }
-//操作页面
+//Page Operations
 if ($action == 'operate_page')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
