@@ -1,8 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
+
 <div id="sidebar">
 <ul>
 <?php 
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
+
 foreach ($widgets as $val)
 {
 	$widget_title = @unserialize($options_cache['widget_title']);

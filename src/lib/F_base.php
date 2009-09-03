@@ -1,17 +1,17 @@
 <?php
 /**
- * 基础函数库
+ * Miscellaneous Functions
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
  */
 
 /**
- * 加载模板文件
+ * Load template file
  *
- * @param string $template 模板名
- * @param string $ext 模板后缀名
- * @return string 模板路径
+ * @param string $template Template Name
+ * @param string $ext Template suffix
+ * @return string Template path
  */
 function getViews($template, $ext = '.php')
 {
@@ -25,7 +25,7 @@ function getViews($template, $ext = '.php')
 }
 
 /**
- * 去除多余的转义字符
+ * Remove of escaped characters
  *
  */
 function doStripslashes()
@@ -40,7 +40,7 @@ function doStripslashes()
 }
 
 /**
- * 递归去除转义字符
+ * Recursive removal of escaped characters
  *
  * @param unknown_type $value
  * @return unknown
@@ -52,10 +52,10 @@ function stripslashesDeep($value)
 }
 
 /**
- * 转换HTML代码函数
+ * Clean HTML code
  *
  * @param unknown_type $content
- * @param unknown_type $wrap 是否换行
+ * @param unknown_type $wrap Do wrap
  * @return unknown
  */
 function htmlClean($content, $wrap=true)
@@ -71,7 +71,7 @@ function htmlClean($content, $wrap=true)
 }
 
 /**
- * 获取用户ip地址
+ * Get User IP
  *
  * @return string
  */
@@ -103,7 +103,7 @@ function getIp()
 }
 
 /**
- * 访问统计
+ * Get Statistics
  *
  */
 function viewCount()
@@ -131,7 +131,7 @@ function viewCount()
 }
 
 /**
- * 验证email地址格式
+ * Validate email address format
  *
  * @param unknown_type $address
  * @return unknown
@@ -147,11 +147,11 @@ function checkMail($address)
 }
 
 /**
- * 截取编码为utf8的字符串
+ * SUbstring of utf8 encoded string
  *
- * @param string $strings 预处理字符串
- * @param int $start 开始处 eg:0
- * @param int $length 截取长度
+ * @param string $strings Source string
+ * @param int $start Start position, eg: 0
+ * @param int $length Substring length
  * @return unknown
  */
 function subString($strings,$start,$length)
@@ -192,9 +192,9 @@ function subString($strings,$start,$length)
 }
 
 /**
- * 转换附件大小单位
+ * Convert Attachment size units
  *
- * @param string $filesize 文件大小 kb
+ * @param string $filesize File Size kb
  * @return unknown
  */
 function changeFileSize($filesize)
@@ -215,12 +215,12 @@ function changeFileSize($filesize)
 }
 
 /**
- * 分页函数
+ * Pagination Function
  *
- * @param int $count 条目总数
- * @param int $perlogs 每页显示条数目
- * @param int $page 当前页码
- * @param string $url 页码的地址
+ * @param int $count The total number of entries
+ * @param int $perlogs The number of articles per page
+ * @param int $page The current page number
+ * @param string $url Page URL
  * @return unknown
  */
 function pagination($count,$perlogs,$page,$url)
@@ -247,7 +247,7 @@ function pagination($count,$perlogs,$page,$url)
 }
 
 /**
- * 该函数在插件中调用,挂载插件函数到预留的钩子上
+ * This function is called in the plug-in, and the plug-in function is mounted to the reserved hook
  * 
  * @param string $hook 
  * @param string $actionFunc
@@ -264,7 +264,7 @@ function addAction($hook, $actionFunc)
 }
 
 /**
- * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
+ * Execute the hook function, support multiple parameters eg:doAction('post_comment', $author, $email, $url, $comment);
  *
  * @param string $hook
  */
@@ -284,11 +284,11 @@ function doAction($hook)
 }
 
 /**
- * 按照比例改变图片大小(非生成缩略图)
+ * Change the image size according to the proportion (not generating thumbnails)
  *
- * @param string $img 图片路径
- * @param int $max_w 最大缩放宽
- * @param int $max_h 最大缩放高
+ * @param string $img Image path
+ * @param int $max_w Max width
+ * @param int $max_h Max height
  * @return unknown
  */
 function chImageSize ($img,$max_w,$max_h)
@@ -296,10 +296,12 @@ function chImageSize ($img,$max_w,$max_h)
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
-	//计算缩放比例
+
+	//Calculate the scaling
 	@$w_ratio = $max_w / $w;
 	@$h_ratio =	$max_h / $h;
-	//决定处理后的图片宽和高
+
+	//Decide what to do with widh and height
 	if( ($w <= $max_w) && ($h <= $max_h) )
 	{
 		$tn['w'] = $w;
@@ -317,11 +319,11 @@ function chImageSize ($img,$max_w,$max_h)
 }
 
 /**
- * 改变图片附件的比例，用于模板中
+ * Change the ratio of image attachment for template
  *
- * @param string $attstr 缓存中的附件串
- * @param int $width 新的宽
- * @param int $height 新的高
+ * @param string $attstr Attachment string in cache
+ * @param int $width New width
+ * @param int $height New height
  * @return unknown
  */
 function getAttachment($attstr,$width,$height)
@@ -346,7 +348,7 @@ function getAttachment($attstr,$width,$height)
 }
 
 /**
- * 清除模板中的注释,并完成URL优化
+ * Clear the template comments and complete URL optimization
  *
  */
 function cleanPage($beUrlRewrite = false)
@@ -375,10 +377,10 @@ function cleanPage($beUrlRewrite = false)
 }
 
 /**
- * 日志分割
+ * Blog cutting by [break] tag
  *
- * @param string $content 日志内容
- * @param int $lid 日志id
+ * @param string $content Blog content
+ * @param int $lid Blog id
  * @return unknown
  */
 function breakLog($content,$lid)
@@ -391,9 +393,9 @@ function breakLog($content,$lid)
 }
 
 /**
- * 删除[break]标签
+ * Remove the [break] tag
  *
- * @param string $content 日志内容
+ * @param string $content Content
  * @return unknown
  */
 function rmBreak($content)
@@ -403,9 +405,9 @@ function rmBreak($content)
 }
 
 /**
- * 获取远程文件内容
+ * Load the remote file content
  *
- * @param 文件http地址 $url
+ * @param $url File http address
  * @return unknown
  */
 function fopen_url($url)
@@ -433,8 +435,8 @@ function fopen_url($url)
 	return $file_content;
 }
 /**
- * 时间转化函数
- * 
+ * Time transformation function
+ *
  * @param $now
  * @param $datetemp
  * @param $dstr
@@ -463,7 +465,7 @@ function smartyDate($datetemp,$dstr='Y-m-d H:i')
 }
 
 /**
- * 生成一个随机的字符串
+ * Generate a random string
  *
  * @param int $length
  * @param boolean $special_chars
@@ -485,7 +487,7 @@ function getRandStr($length = 12, $special_chars = true)
 }
 
 /**
- * 寻找两数组所有不同元素
+ * Looking for all the different elements in two arrays
  *
  * @param array $array1
  * @param array $array2
@@ -493,7 +495,7 @@ function getRandStr($length = 12, $special_chars = true)
  */
 function findArray($array1,$array2)
 {
-	#合并数组
+	#Merging arrays
 	$num1 = count($array1) ;
 	$num2 = count($array2);
 	$temp = array();
@@ -509,7 +511,8 @@ function findArray($array1,$array2)
 			}
 		}
 		$k = 0;
-		#寻找不同项
+
+		#Look for different items
 		for($n = 0;$n < count($addarray);$n++)
 		{
 			$a = 0;
@@ -533,16 +536,20 @@ function findArray($array1,$array2)
 }
 
 /**
- * 附件上传
+ * Upload Attachment
  *
- * @param string $filename 文件名
- * @param string $errorNum 错误码：$_FILES['error']
- * @param string $tmpfile 上传后的临时文件
- * @param string $filesize 文件大小 KB
- * @param string $filetype 上传文件的类型 eg:image/jpeg
- * @param array $type 允许上传的文件类型
- * @param boolean $isIcon 是否为上传头像
- * @return string 文件路径
+ * @param string $filename File Name
+ * @param string $errorNum Error Code: $_FILES['error']
+ * @param string $tmpfile Temporary files after upload
+ * @param string $filesize File Size KB
+ * @param string $filetype Upload file type eg:image/jpeg
+ * @param array $type Permit to upload file types
+ * @param boolean $isIcon Whether or not to upload image
+ * @return string 
+ * -1 Wrong attachment type
+ * -2 attachment size limit is invalid
+ * -3 permissions
+ * -4 Can not create attachment directory, upload attachment failure
  */
 function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type, $isIcon = 0)
 {
@@ -609,12 +616,12 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 }
 
 /**
- * 图片生成缩略图
+ * Generate thumbnails (Resize image)
  *
- * @param string $img 预缩略的图片
- * @param unknown_type $imgtype 上传文件的类型 eg:image/jpeg
- * @param string $name 缩略图名
- * @param boolean $isIcon 是否为上传个性头像
+ * @param string $img original image
+ * @param unknown_type $imgtype Upload file type eg:image/jpeg
+ * @param string $name Thumbnail name
+ * @param boolean $isIcon Whether to upload a personal avatar
  * @return unknown
  */
 function resizeImage($img,$imgtype,$name,$isIcon)
@@ -677,7 +684,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 }
 
 /**
- * 删除数组中相同元素，只保留一个
+ * Delete the same element in the array, only keep unique
  *
  * @param array $array
  * @return array
@@ -701,7 +708,7 @@ function formatArray($array)
 }
 
 /**
- * 后台操作返回信息
+ * Background operation information
  *
  * @param string $msg
  * @param string $url
@@ -717,11 +724,11 @@ function formMsg($msg,$url,$type)
 }
 
 /**
- * 显示系统信息
+ * Display system information
  *
- * @param string $msg 信息
- * @param string $url 返回地址
- * @param boolean $isAutoGo 是否自动返回 true false
+ * @param string $msg Message
+ * @param string $url Return to URL
+ * @param boolean $isAutoGo Whether or not auto-return: true/false
  */
 function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false)
 {

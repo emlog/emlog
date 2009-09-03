@@ -1,8 +1,8 @@
 <?php
 /*
-Template Name:默认模板
-Description:这是emlog的默认模板，简洁明快 ……
-Author:emlog开发小组
+Template Name: Default Template
+Description: This is the emlog the default template, a simple and neat ... ...
+Author: emlog development team
 Author Url:http://www.emlog.net
 Sidebar Amount:1
 */

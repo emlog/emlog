@@ -7,7 +7,7 @@
  */
 
 require_once('../common.php');
-$isgzipenable = 'n';//wap浏览关闭gzip压缩
+$isgzipenable = 'n';//Disable gzip compression for wap browsing
 $tem = time();
 if(!isset($action) || empty($action))
 {
@@ -18,6 +18,7 @@ if(!isset($action) || empty($action))
 	echo "<a href=\"./?action=twitter&amp;tem=$tem\">".$lang['twitter']."</a><br />\n";
 	echo "<a href=\"./?action=coms&amp;tem=$tem\">".$lang['latest_comments']."</a><br />\n";
 	echo "<br />\n";
+
 	if(ROLE == 'admin')
 	{
 		echo $lang['welcome_login']."<br />\n";
@@ -32,7 +33,8 @@ if(!isset($action) || empty($action))
 	echo "</p>\n";
 	wap_footer();
 }
-//显示日志列表 blog list
+
+//Show blog list
 if ($action == 'logs')
 {
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -71,7 +73,8 @@ if ($action == 'logs')
 	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">".$lang['home']."</a></p>";
 	wap_footer();
 }
-//显示日志
+
+//Show Blog
 if ($action == 'dis')
 {
 	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg($lang['parameter_invalid'],'./');
@@ -98,6 +101,7 @@ if ($action == 'dis')
 
 	wap_footer();
 }
+
 if($action == 'coms')
 {
 	wap_header($options_cache['blogname']);
@@ -113,6 +117,7 @@ if($action == 'coms')
 	echo "<p><a href=\"./?tem=$tem\">{$lang['home']}</a></p>";
 	wap_footer();
 }
+
 //twitter list
 if ($action == 'twitter')
 {
@@ -153,6 +158,7 @@ if ($action == 'twitter')
 	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">{$lang['home']}</a></p>";
 	wap_footer();
 }
+
 if ($action == 'addtw')
 {
 	wap_header('Twitter');
@@ -166,7 +172,8 @@ if ($action == 'addtw')
 	echo "<p><a href=\"?tem=$tem\">{$lang['back_home']}</a></p>\n";
 	wap_footer();
 }
-//新增 twitter
+
+//Add twitter
 if(ROLE == 'admin' && $action == 'add_tw')
 {
 	$content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
@@ -178,7 +185,8 @@ if(ROLE == 'admin' && $action == 'add_tw')
 		header("Location: ?action=twitter&amp;tem=$time");
 	}
 }
-//删除 twitter
+
+//Delete twitter
 if(ROLE == 'admin' && $action == 'del_tw')
 {
 	$twid = isset($_GET['id']) ? intval($_GET['id']) : '';
@@ -187,6 +195,7 @@ if(ROLE == 'admin' && $action == 'del_tw')
 	$CACHE->mc_sta();
 	header("Location: ?action=twitter");
 }
+
 if ($action == 'waplogin')
 {
 	wap_header($lang['login']);
@@ -202,7 +211,8 @@ if ($action == 'waplogin')
 	echo "<p><a href=\"?tem=$tem\">{$lang['back_home']}</a></p>\n";
 	wap_footer();
 }
-//登录验证
+
+//Login Authentication
 if ($action == 'dowaplogin')
 {
 	session_start();
@@ -217,7 +227,8 @@ if ($action == 'dowaplogin')
 		header("Location: ?action=waplogin&amp;tem=$tem");
 	}
 }
-//登出
+
+//Logout
 if ($action == 'logout')
 {
 	session_start();
@@ -226,7 +237,8 @@ if ($action == 'logout')
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	header("Location: ?tem=$tem");
 }
-//WML 头
+
+// WML Header
 function wap_header($title) {
 	header('Content-type: text/vnd.wap.wml; charset=utf-8');
 	echo "<?xml version=\"1.0\"?>\n";
@@ -237,13 +249,15 @@ function wap_header($title) {
 	echo "</head>\n";
 	echo "<card title=\"".$title."\">\n";
 }
-//WML 尾
+
+// WML Footer
 function wap_footer() {
 	echo "</card>\n";
 	echo "</wml>\n";
 	exit;
 }
-//验证日志密码
+
+// Authentication password
 function authPassword($pwd, $pwd2, $blogid)
 {
 	if($pwd !== $pwd2)

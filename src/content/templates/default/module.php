@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <?php
-//widget：blogger
+//widget:blogger
 function widget_blogger($title){
 	global $lang; 
 	global $user_cache; 
@@ -28,8 +28,9 @@ function widget_blogger($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：日历
+//widget: Calendar
 function widget_calendar($title){
 	global $lang; 
 	global $calendar_url; ?>
@@ -41,7 +42,8 @@ function widget_calendar($title){
 	</li>
 <?php }?>
 <?php
-//widget：标签
+
+//widget: Tags
 function widget_tag($title){
 	global $lang; 
 	global $tag_cache; ?>
@@ -57,8 +59,9 @@ function widget_tag($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：分类
+//widget: Categories
 function widget_sort($title){
 	global $lang; 
 	global $sort_cache; ?>
@@ -74,8 +77,9 @@ function widget_sort($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：twitter
+//widget: twitter
 function widget_twitter($title){
 	global $lang; 
 	global $tw_cache,$index_twnum; ?>
@@ -109,7 +113,8 @@ function widget_twitter($title){
 	<?php endif;?>
 <?php } ?>
 <?php 
-//widget：音乐
+
+//widget: Music
 function widget_music($title){
 	global $lang; 
 	global $musicdes,$musicurl,$autoplay; ?>
@@ -122,7 +127,8 @@ function widget_music($title){
 	</li>
 <?php }?>
 <?php
-//widget：最新评论
+
+//widget: Latest comments
 function widget_newcomm($title){
 	global $lang; 
 	global $com_cache; ?>
@@ -144,8 +150,9 @@ function widget_newcomm($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：最新日志
+//widget: Latest Posts
 function widget_newlog($title){
 	global $newLogs_cache; ?>
 	<li>
@@ -157,8 +164,9 @@ function widget_newlog($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：随机日志
+//widget: Random Post
 function widget_random_log($title){
 	global $index_randlognum, $emBlog;
 	if (!isset($emBlog))
@@ -177,8 +185,9 @@ function widget_random_log($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：搜索
+//widget: Search
 function widget_search($title){
 	global $lang; 
 ?>
@@ -194,8 +203,9 @@ function widget_search($title){
 	</ul>
 	</li>
 <?php } ?>
+
 <?php
-//widget：归档
+//widget: Archive
 function widget_archive($title){
 	global $lang;
 	global $dang_cache;
@@ -212,8 +222,9 @@ $m = $lang['month_'.intval($da[1])].' '.$da[0];
 	</ul>
 	</li>
 <?php } ?>
+
 <?php
-//widget：自定义组件
+//widget: Custom Component
 function widget_custom_text($title, $content, $id){ ?>
 	<li>
 	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3>
@@ -222,8 +233,9 @@ function widget_custom_text($title, $content, $id){ ?>
 	</ul>
 	</li>
 <?php } ?>
+
 <?php
-//widget：链接
+//widget: Links
 function widget_link($title){
 	global $link_cache; ?>
 	<li>
@@ -235,8 +247,9 @@ function widget_link($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//widget：博客信息
+//widget: Statistics
 function widget_bloginfo($title){
 	global $lang; 
 	global $sta_cache,$viewcount_day,$viewcount_all; ?>
@@ -251,8 +264,9 @@ function widget_bloginfo($title){
 	</ul>
 	</li>
 <?php }?>
+
 <?php
-//blog：置顶
+//blog: Top Blog Flag
 function topflg($istop){
 	global $lang;
 	global $log_cache_sort; 
@@ -260,24 +274,27 @@ function topflg($istop){
 	echo $topflg;
 }
 ?>
+
 <?php
-//blog：编辑
+//blog: Edit
 function editflg($logid,$author){
 	global $lang;
 	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.'./admin/write_log.php?action=edit&gid='.$logid.'">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
+
 <?php 
-//blog：分类
+//blog: Categories
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
 	[<a href="./?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
+
 <?php
-//blog：文件附件
+//blog: Attachments
 function blog_att($blogid){
 	global $lang;
 	global $log_cache_atts; 
@@ -285,8 +302,9 @@ function blog_att($blogid){
 	echo $attachment;
 }
 ?>
+
 <?php
-//blog：日志标签
+//blog: Blog Tags
 function blog_tag($blogid){
 	global $lang;
 	global $log_cache_tags; 
@@ -301,8 +319,9 @@ function blog_tag($blogid){
 	}
 }
 ?>
+
 <?php
-//blog：日志作者
+//blog: Blog Author
 function blog_author($uid){
 	global $user_cache,$DB;
 	$author = $user_cache[$uid]['name'];
@@ -312,8 +331,9 @@ function blog_author($uid){
 	echo "<a href=\"./?author=$uid\" $title>$author</a>";
 }
 ?>
+
 <?php
-//blog：相邻日志
+//blog: Nearest Posts
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
 	<?php if($prevLog):?>
@@ -323,11 +343,12 @@ function neighbor_log(){
 		|
 	<?php endif;?>
 	<?php if($nextLog):?>
-		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a> &raquo;
 	<?php endif;?>
 <?php }?>
+
 <?php
-//blog：引用通告
+//blog: Trackbacks
 function blog_trackback(){
 	global $lang;
 	global $allow_tb,$tbscode,$logid,$tb; ?>
@@ -344,8 +365,9 @@ function blog_trackback(){
 		</ul>
 	<?php endforeach; ?>	
 <?php }?>
+
 <?php
-//blog：博客评论列表
+//blog: Blog Comment List
 function blog_comments(){
 	global $lang; 
 	global $comments; ?>
@@ -382,8 +404,9 @@ function blog_comments(){
 	</div>
 	<?php endforeach; ?>
 <?php }?>
+
 <?php
-//blog：发表评论表单
+//blog: Comment form
 function blog_comments_post(){
 	global $lang;
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>

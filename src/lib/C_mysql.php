@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库操作类
+ * Database operations
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -8,7 +8,7 @@
 
 
 /**
- * MYSQL数据操方法封装类
+ * MYSQL data manipulation methods
  * 
  */
 
@@ -38,7 +38,7 @@ class MySql {
 	}
 
 	/**
-	 * 关闭数据库连接
+	 * Close database connection
 	 *
 	 * @return boolean
 	 */
@@ -48,7 +48,7 @@ class MySql {
 	}
 
 	/**
-	 * 发送查询语句
+	 * Send query
 	 *
 	 * @param string $sql
 	 * @return boolean
@@ -66,7 +66,7 @@ class MySql {
 	}
 
 	/**
-	 * 从结果集中取得一行作为关联数组/数字索引数组
+	 * Get a result row as an associative array
 	 *
 	 * @param resource $query
 	 * @return array
@@ -83,7 +83,7 @@ class MySql {
 	}
 	
 	/**
-	 * 从结果集中取得一行作为数字索引数组
+	 * Get a result row as an array
 	 *
 	 * @param resource $query
 	 * @return integer
@@ -94,7 +94,7 @@ class MySql {
 	}
 
 	/**
-	 * 取得行的数目
+	 * Get a number of resulting rows
 	 *
 	 * @param resource $query
 	 * @return integer
@@ -105,7 +105,7 @@ class MySql {
 	}
 
 	/**
-	 * 取得结果集中字段的数目
+	 * Get a number of fields
 	 *
 	 * @param resource $query
 	 * @return integer
@@ -114,8 +114,9 @@ class MySql {
 	{
 		return mysql_num_fields($query);
 	}
+
 	/**
-	 * 取得上一步 INSERT 操作产生的 ID 
+	 * Get the last ID generated after INSERT operation
 	 *
 	 * @return integer
 	 */
@@ -125,7 +126,7 @@ class MySql {
 	}
 
 	/**
-	 * 获取mysql错误
+	 * Get mysql error
 	 *
 	 * @return unknown
 	 */
@@ -145,7 +146,7 @@ class MySql {
 	}
 
 	/**
-	 * 取得数据库版本信息
+	 * Get MySQL Version
 	 *
 	 * @return string
 	 */

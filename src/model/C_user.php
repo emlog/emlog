@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：用户管理
+ * Model: User Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -16,9 +16,9 @@ class emUser {
 	}
 
 	/**
-	 * 获取用户列表
+	 * Get a list of users
 	 *
-	 * @param 用户组 $role
+	 * @param $role User role
 	 * @return array
 	 */
 	function getUsers($role = 'writer')
@@ -54,7 +54,7 @@ class emUser {
 	}
 
 	/**
-	 * 更新用户信息
+	 * Update User Information
 	 *
 	 * @param array $userData
 	 * @param int $uid
@@ -71,7 +71,7 @@ class emUser {
 	}
 
 	/**
-	 * 添加用户
+	 * Add a User
 	 *
 	 * @param string $login
 	 * @param string $password
@@ -84,7 +84,7 @@ class emUser {
 	}
 	
 	/**
-	 * 删除用户
+	 * Delete User
 	 *
 	 * @param int $uid
 	 */
@@ -95,10 +95,10 @@ class emUser {
 	}
 
 	/**
-	 * 判断用户名是否存在
+	 * Check the User name exists
 	 *
 	 * @param string $login
-	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @param int $uid Compatible with the fact that the user name has not changed when updating the author's information
 	 * @return boolean
 	 */
 	function isUserExist($login, $uid = '')

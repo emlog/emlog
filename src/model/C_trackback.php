@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：撰写日志
+ * Model: Blog Trackbacks
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -17,7 +17,7 @@ class emTrackback {
 	}
 
 	/**
-	 * 发送trackback
+	 * Send trackback
 	 *
 	 * @param string $blogurl
 	 * @param string $pingUrl
@@ -77,7 +77,7 @@ class emTrackback {
 	}
 
 	/**
-	 * 获取trackbak
+	 * Get trackbacks
 	 *
 	 * @param unknown_type $page
 	 * @param unknown_type $blogId
@@ -117,7 +117,7 @@ class emTrackback {
 	}
 	
 	/**
-	 * 获取引用的数目
+	 * Get the number of trackbacks
 	 *
 	 * @return int $tbNum
 	 */

@@ -1,4 +1,4 @@
-/*前台模板共享js*/
+/*Foreground template js*/
 function focusEle(ele){
 	try {document.getElementById(ele).focus();}
 	catch(e){}

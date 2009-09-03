@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：日志分类
+ * Model: Blog Categories
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$

@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：插件
+ * Model: Plug-in
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -18,9 +18,9 @@ class emPlugin {
 	}
 
 	/**
-	 * 激活插件
+	 * Activate the plug-in
 	 *
-	 * @param array $active_plugins 当前已激活的全部插件
+	 * @param array $active_plugins All the currently active plug-ins
 	 */
 	function active_plugin($active_plugins)
 	{
@@ -35,9 +35,9 @@ class emPlugin {
 	}
 	
 	/**
-	 * 禁用插件
+	 * Disable plug-in
 	 *
-	 * @param string $active_plugins 当前已激活的全部插件
+	 * @param string $active_plugins All the currently active plug-ins
 	 */
 	function inactive_plugin($active_plugins)
 	{
@@ -53,9 +53,9 @@ class emPlugin {
 	}
 	
 	/**
-	 * 获取所有插件列表，未定义插件名称的插件将不予获取
-	 * 插件目录：content\plugins
-	 * 仅识别 插件目录/插件/插件.php 目录结构的插件
+	 * Get a list of all plug-ins, plug-ins without a defined plug-in name will not be obtained
+	 * Plug-in directory: content/plugins
+	 * Only recognize plug-ins with plug-in directory structure: /plug-in/plug-in.php
 	 * @return array
 	 */
 	function getPlugins()
@@ -115,7 +115,7 @@ class emPlugin {
 	}
 
 	/**
-	 * 获取插件信息
+	 * Get plug-in information
 	 *
 	 * @param string $pluginFile
 	 * @return array

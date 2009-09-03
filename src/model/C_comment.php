@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：评论管理
+ * Model: Comments Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -16,9 +16,9 @@ class emComment {
 	}
 
 	/**
-	 * 获取评论
+	 * Get comments by condition
 	 *
-	 * @param int $spot 0：前台 1：后台
+	 * @param int $spot //0: foreground 1: Background
 	 * @param int $blogId
 	 * @param string $hide
 	 * @param int $page
@@ -71,7 +71,7 @@ class emComment {
 		return $commentArray;
 	}
 	/**
-	 * 获取查询评论的数目
+	 * Count the post comments
 	 *
 	 * @param int $blogId
 	 * @return int $comNum
@@ -93,7 +93,7 @@ class emComment {
 		return $comNum;
 	}
 	/**
-	 * 删除评论
+	 * Delete the comment by ID
 	 *
 	 * @param int $commentId
 	 */
@@ -108,7 +108,7 @@ class emComment {
 		}
 	}
 	/**
-	 * 显示/隐藏评论
+	 * Hide the comment by ID
 	 *
 	 * @param int $commentId
 	 */
@@ -123,6 +123,11 @@ class emComment {
 		}
 		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid=$commentId");
 	}
+	/**
+	 * Show the comment by ID
+	 *
+	 * @param int $commentId
+	 */
 	function showComment($commentId)
 	{
 		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -136,7 +141,7 @@ class emComment {
 	}
 
 	/**
-	 * 回复评论
+	 * Reply the comment
 	 *
 	 * @param int $commentId
 	 * @param string $reply
@@ -148,7 +153,7 @@ class emComment {
 	}
 
 	/**
-	 * 批量处理评论
+	 * Batch Comment Actions
 	 *
 	 * @param string $action
 	 * @param array $comments
@@ -179,7 +184,7 @@ class emComment {
 	}
 
 	/**
-	 * 添加评论
+	 * Add a comment
 	 *
 	 * @param unknown_type $name
 	 * @param unknown_type $content

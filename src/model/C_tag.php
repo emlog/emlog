@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：标签管理
+ * Model: Tag Management
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -16,7 +16,7 @@ class emTag {
 	}
 
 	/**
-	 * 获取标签
+	 * Get Post Tags
 	 *
 	 * @param int $gid
 	 * @return array
@@ -68,7 +68,7 @@ class emTag {
 	}
 
 	/**
-	 * 添加标签
+	 * Add tags
 	 *
 	 * @param string $tagStr
 	 */
@@ -90,7 +90,7 @@ class emTag {
 	}
 
 	/**
-	 * 更新标签
+	 * Update Post Tags
 	 *
 	 * @param string $tagStr
 	 * @param int $blogId

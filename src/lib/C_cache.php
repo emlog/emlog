@@ -1,6 +1,6 @@
 <?php
 /**
- * 生成文本缓存类
+ * Generate text type cache
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -16,7 +16,7 @@ class mkcache {
 		$this->db_prefix = $db_prefix;
 	}
 	/**
-	 * 站点配置缓存
+	 * Site Configuration cache
 	 */
 	function mc_options()
 	{
@@ -34,7 +34,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'options');
 	}
 	/**
-	 * 用户信息缓存
+	 * User information cache
 	 */
 	function mc_user()
 	{
@@ -74,7 +74,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'user');
 	}
 	/**
-	 * 博客统计缓存
+	 * Blog statistics cache
 	 */
 	function mc_sta()
 	{
@@ -97,7 +97,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'sta');
 	}
 	/**
-	 * 最新评论缓存
+	 * Latest Comments cache
 	 */
 	function mc_comment()
 	{
@@ -120,7 +120,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'comments');
 	}
 	/**
-	 * 侧边栏标签缓存
+	 * Tags cache for  sidebar
 	 */
 	function mc_tags()
 	{
@@ -150,7 +150,8 @@ class mkcache {
 		$rank = $maxuse-$minuse;
 		$rank = ($rank==0?1:$rank);
 		$rank = $spread/$rank;
-		//获取草稿id
+
+		//Draft access id
 		$hideGids = array();
 		$query=$this->db->query("SELECT gid FROM ".$this->db_prefix."blog where hide='y' and type='blog'");
 		while($row = $this->db->fetch_array($query))
@@ -160,7 +161,7 @@ class mkcache {
 		$query=$this->db->query("SELECT tagname,gid FROM ".$this->db_prefix."tag");
 		while($show_tag = $this->db->fetch_array($query))
 		{
-			//排除草稿在tag日志数里的统计
+			//Exclude the statistics of drafts from the number of blog tags
 			foreach ($hideGids as $val)
 			{
 				$show_tag['gid'] = str_replace(','.$val.',', ',', $show_tag['gid']); 
@@ -182,7 +183,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'tags');
 	}
 	/**
-	 * 侧边栏分类缓存
+	 * Categories sidebar cache
 	 */
 	function mc_sort()
 	{
@@ -202,7 +203,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'sort');
 	}
 	/**
-	 * 友站缓存
+	 * Friend Links Cache
 	 */
 	function mc_link()
 	{
@@ -220,7 +221,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'links');
 	}
 	/**
-	 * twitter缓存
+	 * twitter Cache
 	 */
 	function mc_twitter()
 	{
@@ -241,7 +242,7 @@ class mkcache {
 	}
 
 	/**
-	 * 最新日志
+	 * The latest posts cache
 	 */
 	function mc_newlog()
 	{
@@ -261,7 +262,7 @@ class mkcache {
 	}
 
 	/**
-	 * 日志归档缓存
+	 * Blog archive cache
 	 */
 	function mc_record()
 	{
@@ -280,7 +281,7 @@ class mkcache {
 					$dang_cache[$h]['lognum'] = $lognum;
 				}
 				$dang_cache[$p] = array(
-				'record'=>date("Y年n月",$show_record['date']),
+				'record'=>date("Y-n",$show_record['date']),
 				'url'=>"?record=".date("Ym",$show_record['date'])
 				);
 				$p++;
@@ -301,7 +302,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'records');
 	}
 	/**
-	 * 日志标签缓存
+	 * Blog tags cache
 	 */
 	function mc_logtags()
 	{
@@ -327,7 +328,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'log_tags');
 	}
 	/**
-	 * 日志分类缓存
+	 * Blog Categories cache
 	 */
 	function mc_logsort()
 	{
@@ -351,7 +352,7 @@ class mkcache {
 		$this->cacheWrite($cacheData,'log_sort');
 	}
 	/**
-	 * 日志\页面附件缓存
+	 * Blog attachment cache
 	 */
 	function mc_logatts()
 	{
@@ -383,7 +384,7 @@ class mkcache {
 	}
 
 	/**
-	 * 写入缓存
+	 * Write the cache
 	 */
 	function cacheWrite ($cacheDate,$cachefile)
 	{
@@ -394,7 +395,7 @@ class mkcache {
 	}
 
 	/**
-	 * 读取缓存文件
+	 * Read cache file
 	 */
 	function readCache($cachefile)
 	{
