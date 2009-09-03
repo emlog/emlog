@@ -1,6 +1,6 @@
 <?php
 /**
- * 全局项加载
+ * Load Global Items
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id: init.php 966 2009-03-06 10:00:43Z emloog $
@@ -23,28 +23,33 @@ doStripslashes();
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
 $CACHE = new mkcache($DB,DB_PREFIX);
 
-//读取配置
+//Read Configuration
 $options_cache = $CACHE->readCache('options');
 extract($options_cache);
 $timezone  = intval($timezone);
-//获取操作
+
+//Get Action
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-//获取时间
+
+//Capture the Time
 $localdate = time() - ($timezone - 8) * 3600;
-//登录验证
+
+//Login Authentication
 $userData = array();
 define('ISLOGIN',	isLogin());
-define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//用户组: admin管理员, writer联合撰写人, visitor访客
-define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
-//全局配置
-define('BLOG_URL', $blogurl);//博客地址
-define('TEMPLATE_PATH', 'content/templates/');//前台模板路径
-define('IMG_ATT_MAX_W',	420);//图片附件缩略图最大宽
-define('IMG_ATT_MAX_H',	460);//图片附件缩略图最大高
-define('ICON_MAX_W', 140);//头像缩略图最大宽
-define('ICON_MAX_H', 220);//头像缩略图最大高
+define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//User Group: admin=administrator, writer=co-writer, visitor=visitors
+define('UID', ISLOGIN === true ? $userData['uid'] : '');//User ID
+
+//Global Configuration
+define('BLOG_URL', $blogurl);//Blog URL
+define('TEMPLATE_PATH', 'content/templates/');//Foreground template path
+define('IMG_ATT_MAX_W',	420);//Thumbnail image attachment maximum width
+define('IMG_ATT_MAX_H',	460);//Thumbnail image Maximum height
+define('ICON_MAX_W', 140);//Icon image Maximum width
+define('ICON_MAX_H', 220);//Icon image Maximum height          
 define('EMLOG_VERSION','3.3.0');
-//加载插件
+
+//Load plug-ins
 $active_plugins = unserialize($active_plugins);
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins))

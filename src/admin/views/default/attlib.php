@@ -31,7 +31,7 @@ function showattlib()
 foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));
 	$atturl = $blogurl.substr(str_replace('thum-','',$value['filepath']),3);
-	$emImageType = array('gif', 'jpg', 'jpeg', 'png', 'bmp');//支持的图片类型
+	$emImageType = array('gif', 'jpg', 'jpeg', 'png', 'bmp');//Enabled attacment types
 	if($extension == 'zip' || $extension == 'rar'){
 		$imgpath = "./views/".ADMIN_TPL."/images/tar.gif";
 		$embedlink = $lang['attachment_type_archive'];

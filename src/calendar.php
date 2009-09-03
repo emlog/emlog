@@ -1,6 +1,6 @@
 <?php
 /**
- * 日历
+ * Calendar
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -8,13 +8,14 @@
 
 require_once('init.php');
 
-//建立日志时间写入数组
+//Array of Blog time
 $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
 while ($date = $DB->fetch_array($query))
 {
 	$logdate[] = date("Ymd",$date['date']);
 }
-//获取当前日期
+
+//Get the current date
 $n_year  = date("Y",$localdate);
 $n_year2 = date("Y",$localdate);
 $n_month = date("m",$localdate);
@@ -30,7 +31,7 @@ if (isset($_GET['record']))
 	$year_month = substr(intval($_GET['record']),0,6);
 }
 
-//年月跳转连接
+//Date link to jump
 $m  = $n_month - 1;
 $mj = $n_month + 1;
 
@@ -50,10 +51,10 @@ if ( $m < 1)
 	$m = '12';
 	$year_down = $n_year - 1;
 }
-$url = './calendar.php?record=' . ($n_year - 1) . $n_month;//上一年份
-$url2 = './calendar.php?record=' . ($n_year + 1) . $n_month;//下一年份
-$url3 = './calendar.php?record=' . $year_down . $m;//上一月份
-$url4 = './calendar.php?record=' . $year_up . $mj;//下一月份
+$url = './calendar.php?record=' . ($n_year - 1) . $n_month;//Pevious Year
+$url2 = './calendar.php?record=' . ($n_year + 1) . $n_month;//Next Year
+$url3 = './calendar.php?record=' . $year_down . $m;//Previous Month
+$url4 = './calendar.php?record=' . $year_up . $mj;//Next Month
 
 $calendar =
 "<table class=\"calendartop\" cellspacing=\"0\">
@@ -66,6 +67,7 @@ $calendar =
 </td>
 </tr>
 </table>
+
 <table class=\"calendar\" cellspacing=\"0\">
 <tr>
     <td class=\"week\">{$lang['monday_short']}</td>
@@ -77,11 +79,13 @@ $calendar =
     <td class=\"sun\">{$lang['sunday_short']}</td>
 </tr>";
 
-//获取给定年月的第一天是星期几
+//Day of the week for the first day of the month
 $week = @date("w",mktime(0,0,0,$n_month,1,$n_year));
-//获取给定年月的天数
+
+//Last day of the month
 $lastday = @date("t",mktime(0,0,0,$n_month,1,$n_year));
-//获取给定年月的最后一天是星期几
+
+//Day of the week for the last day of the month
 $lastweek = @date("w",mktime(0,0,0,$n_month,$lastday,$n_year));
 if ( $week == 0)
 {
@@ -90,7 +94,8 @@ if ( $week == 0)
 $j = 1;
 $w = 7;
 $isend = false;
-//外循环生成行
+
+//Outer loop
 for ($i = 1;$i <= 6;$i++)
 {
 	if ($isend || ($i == 6 && $lastweek==0))
@@ -98,7 +103,8 @@ for ($i = 1;$i <= 6;$i++)
 		break;
 	}
 	$calendar .= '<tr>';
-	//内循环生成列
+
+	//Inner loop
 	for($j ; $j <= $w; $j++)
 	{
 		if ($j < $week)
@@ -106,9 +112,11 @@ for ($i = 1;$i <= 6;$i++)
 			$calendar.= '<td>&nbsp;</td>';
 		} elseif ( $j <= 7 ) {
 			$r = $j - $week + 1;
-			//如果该日有日志就显示url样式
+
+			//If there are blogs on that day, display the url style
 			$n_time = $n_year . $n_month . '0' . $r;
-			//有日志且为当天
+
+			//There is a blog and it is the same day
 			if (@in_array($n_time,$logdate) && $n_time == $time)
 			{
 				$calendar .= "<td class=\"day\"><a href=\"./?record=$n_time\">". $r .'</a></td>';
@@ -126,7 +134,7 @@ for ($i = 1;$i <= 6;$i++)
 				$isend = true;
 				$calendar .= '<td>&nbsp;</td>';
 			} else {
-				//如果该日有日志就显示url样式
+				//If there are blogs on that day, display the url style
 				$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 				if (@in_array($n_time,$logdate) && $n_time == $time)
 				{
@@ -140,10 +148,12 @@ for ($i = 1;$i <= 6;$i++)
 				}
 			}
 		}
-	}//内循环结束
+	}//End of inner loop
+
 	$calendar .= '</tr>';
 	$w += 7;
-}//外循环结束
+}//End of outer loop
+
 $calendar .= '</table>';
 
 echo $calendar;

@@ -14,6 +14,7 @@ if ($action == '')
 	$twitter.= getindextw();
 	echo $twitter;
 }
+
 //add twitter
 if (ROLE == 'admin' && $action == 'add')
 {
@@ -28,6 +29,7 @@ if (ROLE == 'admin' && $action == 'add')
 		echo $twitter;
 	}
 }
+
 //del twitter
 if (ROLE == 'admin' && $action == 'del')
 {
@@ -39,6 +41,7 @@ if (ROLE == 'admin' && $action == 'del')
 	$twitter.=getindextw();
 	echo $twitter;
 }
+
 //get twitter
 function getindextw()
 {

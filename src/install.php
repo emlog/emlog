@@ -1,6 +1,6 @@
 <?php
 /**
- * 安装程序
+ * Install
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -181,7 +181,7 @@ if($act == 'install' || $act == 'reinstall')
 		emMsg($lang['password_not_equal']);
 	}
 	
-	//初始化数据库类
+	//Initialize the database class
 	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
 	$CACHE = new mkcache($DB, $db_prefix);
 	
@@ -261,7 +261,7 @@ EOT;
 	fclose($fp);
 
 
-	//密码加密存储
+	//Encrypt the Password
 	$PHPASS = new PasswordHash(8, true);
 	$adminpw = $PHPASS->HashPassword($adminpw);
 
@@ -471,7 +471,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 			}
 		}
 	}
-	//重建缓存
+	//Rebuild the cache
 	$CACHE->mc_user();
 	$CACHE->mc_options();
 	$CACHE->mc_record();

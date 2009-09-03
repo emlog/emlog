@@ -42,6 +42,7 @@ $(document).ready(function(){
 			if (item.image != ''){
 				image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
 			}
+			//!!! ToDo: Convert item.date to international standard!!!
 			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
 		});
 	});

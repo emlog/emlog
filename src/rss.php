@@ -1,6 +1,6 @@
 <?php
 /**
- * RSS输出
+ * RSS Output
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -54,7 +54,7 @@ echo <<< END
 END;
 
 /**
- * 获取url地址
+ * Get URL address
  *
  * @return unknown
  */
@@ -66,7 +66,7 @@ function GetURL()
 }
 
 /**
- * 获取日志信息
+ * Get blog information
  *
  * @return array
  */
@@ -101,7 +101,7 @@ function GetBlog($sort = null)
 }
 
 /**
- * 获取日志数目
+ * Number of blogs
  *
  * @return unknown
  */

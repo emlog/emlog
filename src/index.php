@@ -1,6 +1,6 @@
 <?php
 /**
- * 前端页面加载
+ * Front-end main page
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -14,7 +14,7 @@ $calendar_url = isset($_GET['record']) ? './calendar.php?record='.intval($_GET['
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 
-//日志列表
+//Blog List
 if (empty($action) && empty($logid) && empty($plugin))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
@@ -81,7 +81,8 @@ if (empty($action) && empty($logid) && empty($plugin))
 	include getViews('header');
 	include getViews('log_list');
 }
-//浏览日志、页面
+
+//Blog post list
 if (!empty($logid))
 {
 	require_once(EMLOG_ROOT.'/model/C_blog.php');
@@ -105,6 +106,7 @@ if (!empty($logid))
 		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 	}
 	$blogtitle = $log_title.' - '.$blogname;
+
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
@@ -123,7 +125,8 @@ if (!empty($logid))
 		include getViews('page');
 	}
 }
-//发表评论
+
+//Comments
 if ($action == 'addcom')
 {
 	global $lang;
@@ -155,7 +158,8 @@ if ($action == 'addcom')
 		emMsg($lang['comment_posted_premod'],"./?post=$gid");
 	}
 }
-//加载插件页面
+
+//Load plug-ins
 if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugins/{$plugin}/{$plugin}_show.php"))
 {
 	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");

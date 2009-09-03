@@ -1,6 +1,6 @@
 <?php
 /**
- * 引用通告接收
+ * Trackbacks
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id$
@@ -16,6 +16,7 @@ if ($charset && !strstr($charset, 'utf-8'))
 {
 	$encode = $charset;
 }
+
 $title     = isset($_REQUEST['title']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['title'])))) : '';
 $excerpt   = isset($_REQUEST['excerpt']) ? trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255) : '';
 $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
@@ -60,8 +61,11 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 			$point += 1;
 		}
 	}
+
 	$interval = 3600 * 5;
 	$timestamp = time();
+
+	//Set time interval to prevent the same IP request every 5 hours
 	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
@@ -91,6 +95,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	showXML($lang['parameter_error']);
 }
 
+//Send Message Page
 function showXML($message, $error = 1)
 {
 	header('Content-type: text/xml');
@@ -101,7 +106,8 @@ function showXML($message, $error = 1)
 	echo "</response>\n";
 	exit;
 }
-//HTML转换为纯文本
+
+// Convert HTML to plain text
 function html2text($content)
 {
 	$content = preg_replace("/<style .*?<\/style>/is", "", $content);
@@ -116,7 +122,8 @@ function html2text($content)
 	$content = preg_replace("/\&\#.*?\;/i", "", $content);
 	return $content;
 }
-//格式化标题，截取过长的标题并转化编码为utf8
+
+//Format title, trim the too long title, convert to utf8
 function trimmed_title($text, $limit=12)
 {
 	$val = csubstr($text, 0, $limit);
@@ -150,7 +157,8 @@ function csubstr($text, $start=0, $limit=12)
 		return array($text, $more);
 	}
 }
-//转换到UTF-8编码
+
+//Convert encoding to UTF-8
 function iconv2utf($chs)
 {
 	global $encode;
