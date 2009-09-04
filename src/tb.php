@@ -173,5 +173,3 @@ function iconv2utf($chs)
 	}
 	return $chs;
 }
-
-?>

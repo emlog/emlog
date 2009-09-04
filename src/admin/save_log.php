@@ -93,5 +93,3 @@ switch ($action)
 		formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 		break;
 }
-
-?>

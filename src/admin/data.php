@@ -223,5 +223,3 @@ function dataBak($table)
 
 	return $sql;
 }
-
-?>

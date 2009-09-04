@@ -62,5 +62,3 @@ if ($active_plugins && is_array($active_plugins))
 		}
 	}
 }
-
-?>

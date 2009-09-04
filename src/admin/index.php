@@ -40,5 +40,3 @@ if ($action == 'phpinfo')
 {
 	@phpinfo() OR formMsg($lang['phpinfo_disabled'], "javascript:history.go(-1);", 0);
 }
-
-?>

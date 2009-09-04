@@ -105,5 +105,3 @@ if($action=='doreply')
 		echo "<span><b>".$lang['blog_reply']."</b>: $reply</span>";
 	}
 }
-
-?>

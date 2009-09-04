@@ -24,7 +24,7 @@ $array_tips = array(
 'Different moods, log emoticons will convey to you',
 'emlog supports Trackback, you can notify the log you want to comment on',
 'If your server supports it, you can turn on URL optimization, which is more conducive to search engines to include your blog',
-'emlog uses UTF-8 encoding, which can support text in almost all languages ​​in the world. ',
+'emlog uses UTF-8 encoding, which can support text in almost all languages in the world. ',
 'emlog can sing, try to add music components to widgets',
 'You can save your unfinished log in the draft box and write it when you have time next time',
 'emlog will automatically produce thumbnails for image attachments that are too large to speed up page loading speed',
@@ -41,7 +41,7 @@ $array_tips = array(
 'The weather is pretty good today :)',
 'Save energy and protect the environment',
 'If you have love, please cherish it before you lose it',
-'Life lies in exercise, don't always face the computer, go for a walk'
+'Life lies in exercise, don\'t always face the computer, go for a walk',
 );
 
 function tips()
@@ -69,5 +69,3 @@ function tips_css()
 }
 
 addAction('adm_head', 'tips_css');
-
-?>

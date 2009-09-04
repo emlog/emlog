@@ -489,4 +489,3 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	$result .= $lang['admin_name'].": ".$admin." ".$lang['install_ok'];
 	emMsg($result);
 }
-?>

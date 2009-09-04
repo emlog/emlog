@@ -33,5 +33,3 @@ if ($music['mlinks'])
 	$musicdes = !empty($music['mdes'][$key]) ? $music['mdes'][$key] .'<br>' : '';
 	$autoplay = $music['auto'] ? "&autoplay=1" : '';
 }
-
-?>

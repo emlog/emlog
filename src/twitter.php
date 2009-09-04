@@ -77,5 +77,3 @@ function getindextw()
 	}
 	return $twitter;
 }
-
-?>

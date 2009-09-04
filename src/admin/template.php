@@ -62,5 +62,3 @@ if($action == 'usetpl')
 	$CACHE->mc_options();
 	header("Location: ./template.php?activated=true");
 }
-
-?>

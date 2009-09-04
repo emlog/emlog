@@ -275,5 +275,3 @@ function authPassword($pwd, $pwd2, $blogid)
 		exit;
 	}
 }
-
-?>

@@ -210,5 +210,3 @@ if($action == 'compages')
 	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
-
-?>

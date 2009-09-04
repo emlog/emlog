@@ -93,5 +93,3 @@ if ($action== 'dellink')
 	$CACHE->mc_link();
 	header("Location: ./link.php?active_del=true");
 }
-
-?>

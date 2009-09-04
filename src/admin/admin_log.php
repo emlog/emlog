@@ -200,5 +200,3 @@ if($action == 'operate_log')
 			break;
 	}
 }
-
-?>

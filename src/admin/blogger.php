@@ -128,5 +128,3 @@ if($action == 'update_pwd')
 		formMsg($lang['enter_items'],'javascript:history.go(-1);',0);
 	}
 }
-
-?>

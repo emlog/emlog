@@ -157,5 +157,3 @@ for ($i = 1;$i <= 6;$i++)
 $calendar .= '</table>';
 
 echo $calendar;
-
-?>

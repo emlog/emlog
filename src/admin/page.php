@@ -178,5 +178,3 @@ if ($action == 'operate_page')
 			break;
 	}
 }
-
-?>

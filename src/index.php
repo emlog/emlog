@@ -166,5 +166,3 @@ if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugi
 }
 
 cleanPage(true);
-
-?>

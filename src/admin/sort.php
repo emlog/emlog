@@ -70,5 +70,3 @@ if ($action == 'del')
 	$CACHE->mc_logsort();
 	header("Location: ./sort.php?active_del=true");
 }
-
-?>

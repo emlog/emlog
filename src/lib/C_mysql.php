@@ -155,5 +155,3 @@ class MySql {
 		return mysql_get_server_info();
 	}
 }
-
-?>

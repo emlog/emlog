@@ -41,5 +41,3 @@ if($action == 'dell')
 	$CACHE->mc_user();
 	header("Location: ./trackback.php?active_del=true");
 }
-
-?>

@@ -110,5 +110,3 @@ function GetBlogNum()
 	$blog_t =  GetBlog();
 	return count($blog_t);
 }
-
-?>

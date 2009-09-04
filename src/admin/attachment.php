@@ -100,4 +100,3 @@ if ($action == 'del_attach')
 	$CACHE->mc_logatts();
 	header("Location: attachment.php?action=attlib&logid=$logid");
 }
-?>

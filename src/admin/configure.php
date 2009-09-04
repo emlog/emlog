@@ -142,5 +142,3 @@ if ($action == "mod_config")
 	$CACHE->mc_twitter();
 	header("Location: ./configure.php?activated=true");
 }
-
-?>

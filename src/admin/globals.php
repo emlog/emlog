@@ -59,5 +59,3 @@ if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','a
 {
 	formMsg($lang['access_disabled'],'./', 0);
 }
-
-?>

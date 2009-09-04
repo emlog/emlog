@@ -58,5 +58,3 @@ if($action== 'dell_all_tag')
 	$CACHE->mc_tags();
 	header("Location: ./tag.php?active_del=true");
 }
-
-?>

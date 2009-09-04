@@ -71,7 +71,3 @@ if ($action == 'edit')
 	require_once(getViews('edit_log'));
 	include getViews('footer');cleanPage();
 }
-
-
-
-?>

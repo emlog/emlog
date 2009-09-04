@@ -116,5 +116,3 @@ if ($action== 'del')
 
 	header("Location: ./user.php?active_del=true");
 }
-
-?>

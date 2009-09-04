@@ -780,5 +780,3 @@ body {
 EOT;
 	exit;
 }
-
-?>

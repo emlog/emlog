@@ -58,5 +58,3 @@ if ($action == 'setting')
 	}
 	header("Location: ./plugin.php?plugin={$plugin}&setting=true");
 }
-
-?>
