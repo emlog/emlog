@@ -9,6 +9,8 @@
 error_reporting(E_ALL);
 ob_start();
 
+/*vot*/mb_internal_encoding('UTF-8');
+
 define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once(EMLOG_ROOT.'/config.php');
