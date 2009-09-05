@@ -88,7 +88,7 @@ $lang['post_not_exists'] = '不存在该日志';//'The entry does not exist';
 $lang['post_time'] = '发布时间：';//'Post Time';
 $lang['post_abstract'] = '日志摘要';//'Abstract';
 $lang['post_edit'] = '编辑日志';//'Edit Post';
-
+$lang['posted_by'] = 'post by';
 
 $lang['publish'] = '发布';//'Publish';
 $lang['unpublish'] = '转入草稿箱';//'Make Draft';
