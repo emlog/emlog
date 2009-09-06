@@ -214,7 +214,10 @@ function widget_archive($title){
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
-<?php $da = split("-",$value['record']);
+<?php
+//2008年12月, 2008-12
+$sep = mb_substr($value['record'],4,1);
+$da = explode($sep,$value['record']);
 $m = $lang['month_'.intval($da[1])].' '.$da[0];
 ?>
 	<li><a href="./<?php echo $value['url']; ?>"><?php echo $m; ?> ( <?php echo $value['lognum']; ?> )</a></li>
@@ -288,7 +291,7 @@ function editflg($logid,$author){
 //blog: Categories
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
-	<?php if($log_cache_sort[$blogid]): ?>
+	<?php if(@$log_cache_sort[$blogid]): ?>
 	[<a href="./?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>

@@ -22,8 +22,12 @@ $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 $tw_cache = $CACHE->readCache('twitter');
 
-//Navigation bar 
-$navibar = unserialize($navibar);
+//Navigation bar
+if(empty($navibar)) {
+	$navibar = 'a:0:{}';
+}
+$navibar = unserialize(@$navibar);
+
 //Background music
 $music = @unserialize($options_cache['music']);
 if ($music['mlinks'])
