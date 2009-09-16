@@ -56,9 +56,9 @@ function chekform(){
 }
 //att
 function addhtml(content){
-	var oEditor = FCKeditorAPI.GetInstance('content');
-	if ( oEditor.EditMode == FCK_EDITMODE_WYSIWYG ) {
-		oEditor.InsertHtml(content) ;
+	var oEditor = CKEDITOR.instances.content;
+	if ( oEditor.mode == 'wysiwyg' ) {
+		oEditor.insertHtml(content) ;
 	} else {
 		alert('请先转换到所见即所得模式') ;
 	}
@@ -83,8 +83,8 @@ function autosave(act){
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var logid = $("#as_logid").val();
-		var oEditor = FCKeditorAPI.GetInstance('content');
-		var content = oEditor.GetXHTML();
+		var oEditor = CKEDITOR.instances.content;
+		var content = oEditor.getData();
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $.trim($("table input[name=allow_remark][checked]").val());
 		var is_blank = $.trim($("table input[name=is_blank][checked]").val());
@@ -105,10 +105,10 @@ function autosave(act){
 		var date = $.trim($("#date").val());
 		var logid = $("#as_logid").val();
 		var author = $("#author").val();
-		var oEditor = FCKeditorAPI.GetInstance('content');
-		var content = oEditor.GetXHTML();
-		var oEditor = FCKeditorAPI.GetInstance('excerpt');
-		var excerpt = oEditor.GetXHTML();
+		var oEditor = CKEDITOR.instances.content;
+		var content = oEditor.getData();
+		var oEditor = CKEDITOR.instances.excerpt;
+		var excerpt = oEditor.getData();
 		var tag = $.trim($("#tag").val());
 		var allow_remark = $.trim($("#advset input[name=allow_remark][checked]").val());
 		var allow_tb = $.trim($("#advset input[name=allow_tb][checked]").val());

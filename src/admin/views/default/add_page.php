@@ -16,9 +16,8 @@
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
-          <input type="hidden" id="content" name="content" value="" style="display:none" />
-          <input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-          <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
+          <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"></textarea>
           </td>
         </tr>
         <tr nowrap="nowrap">

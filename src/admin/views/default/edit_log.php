@@ -3,6 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
+<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <div class=containertitle><b>编辑日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
@@ -30,9 +31,7 @@ $isdraft = $hide == 'y' ? true : false;
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
-          <input type="hidden" id="content" name="content" value="<?php echo $content; ?>" style="display:none" />
-          <input type="hidden" id="content___Config" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-          <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
+		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
           </td>
         </tr>
         <tr nowrap="nowrap">
@@ -57,9 +56,7 @@ $isdraft = $hide == 'y' ? true : false;
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
-			<input type="hidden" id="excerpt" name="excerpt" value="<?php echo $excerpt; ?>" style="display:none" />
-			<input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-			<iframe src="fckeditor/editor/fckeditor.html?InstanceName=excerpt&amp;Toolbar=Basic" width="720" height="260" frameborder="0" scrolling="no"></iframe>
+		  <textarea class="ckeditor" id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
           </td>
         </tr>      
         <tr nowrap="nowrap">

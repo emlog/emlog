@@ -1,4 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -23,9 +24,7 @@
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
-          <input type="hidden" id="content" name="content" value="" style="display:none" />
-          <input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-          <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
+		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"></textarea>
           </td>
         </tr>
         <tr nowrap="nowrap">
@@ -50,9 +49,7 @@
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
-			<input type="hidden" id="excerpt" name="excerpt" value="" style="display:none" />
-			<input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-			<iframe src="fckeditor/editor/fckeditor.html?InstanceName=excerpt&amp;Toolbar=Basic" width="720" height="260" frameborder="0" scrolling="no"></iframe>
+			<textarea class="ckeditor" id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea>
           </td>
         </tr>      
         <tr nowrap="nowrap">
