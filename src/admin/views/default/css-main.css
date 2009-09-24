@@ -21,10 +21,8 @@ a:hover{color:#333; text-decoration:none}
 #sidebar a:active{ text-decoration:none; padding:1px 0px 0px 1px}
 #sidebartop{background:url(./images/sidebar_bg_t.gif) no-repeat; width:114px; font-size:4px; height:4px}
 #sidebarBottom{font-size:5px; background:url(./images/sidebar_bg_b.gif) no-repeat bottom; width:114px;height:5px}
-#sidebar .coment_number{ background: url(images/coment_numbg.gif) no-repeat; font-size:9px; position: relative; margin-top:-30px; height:30px; width:30px; float:right; margin-right:10px;_margin-right:5px;}
-#sidebar .coment_number a ,#sidebar .coment_number a:hover{ color:#FFFFFF}
-
-
+#sidebar .coment_number{ background: url(images/coment_numbg.gif) no-repeat;font-size:9px; position: relative; margin-top:-30px; height:30px; width:20px; float:right; margin-right:10px;_margin-right:5px;}
+#sidebar .coment_number a ,#sidebar .coment_number a:hover{ color:#FFFFFF; height:20px;}
 .sidebarmenu{background:url(./images/mc_bg1.gif) center no-repeat; width:114px; padding-top:4px; letter-spacing:0.2em; height:24px; color:#FFF; cursor:pointer; font-weight:bold}
 .sidebarsubmenu{ background:url(./images/adm_menu_bg.gif) repeat-x; width:104px; padding-top:3px;height:22px;margin:auto;}
 .sidebarsubmenu1{background: url(images/left_b.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}

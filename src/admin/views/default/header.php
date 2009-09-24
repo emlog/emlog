@@ -61,7 +61,7 @@
             <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></div>
             <?php endif;?>
             <div class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </div>
-            <div class="coment_number"><a href="#">1</a></div>
+            <div class="coment_number"><a href="#">99+</a></div>
             <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
 			</div>
 			</div>
