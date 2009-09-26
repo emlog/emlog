@@ -24,13 +24,13 @@ $$a = "class=\"filter\"";
 ?>
 <div class="filters">
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
-<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">未审核
+<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
 <?php
 $hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
-<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审核</a></span>
+<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></span>
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
@@ -46,7 +46,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     <tbody>
 	<?php
 	foreach($comment as $key=>$value):
-	$ishide = $value['hide']=='y'?'<font color="red">[未审核]</font>':'';
+	$ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 	$ip = !empty($value['ip']) ? "({$value['ip']})" : '';
 	$mail = !empty($value['mail']) ? "<br />邮箱：{$value['mail']}" : '';
