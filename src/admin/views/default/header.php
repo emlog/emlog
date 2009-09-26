@@ -64,8 +64,9 @@
             <?php
 			$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
 			if ($hidecmnum > 0):
+			$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 			?>
-			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $hidecmnum; ?></a></div>
+			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
 			<?php endif; ?>
             <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
 			</div>
