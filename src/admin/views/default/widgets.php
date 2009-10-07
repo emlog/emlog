@@ -1,7 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-interface.js"></script>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>Widgets</b><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<div class=containertitle><b>Widgets</b><span class="title_des">(侧边栏组件管理)</span>
+<?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">
 <div id="adm_widget_list">
@@ -226,9 +227,9 @@
 	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);">自定义一个新的组件&raquo;</a></div>
 	<div id="custom_text_new">
 		<li>组件名</li>
-		<li><input type="text" name="new_title" style="width:350px;" value="" /></li>
+		<li><input type="text" name="new_title" style="width:400px;" value="" /></li>
 		<li>内容 （支持html）</li>
-		<li><textarea name="new_content" rows="8" wrap="off" style="width:350px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" rows="8" style="width:400px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="添加组件"  />
 		<span style="margin-left:158px;"><a href="http://www.emlog.net/extend/widgets" target="_blank">获取更多有趣的组件&raquo;</a></span></li>
 	</div>
