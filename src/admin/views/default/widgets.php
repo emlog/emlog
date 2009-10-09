@@ -216,7 +216,7 @@
 			<input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
 			<input type="text" name="title" style="width:345px;" value="<?php echo $val['title']; ?>" />
 			</li>
-			<li><textarea name="content" rows="8" wrap="off" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
+			<li><textarea name="content" rows="8" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
 			<li><input type="submit" name="" value="更改" />
 			<span style="margin-left:235px;"><a href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a></span></li>
 		</div>
@@ -227,9 +227,9 @@
 	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);">自定义一个新的组件&raquo;</a></div>
 	<div id="custom_text_new">
 		<li>组件名</li>
-		<li><input type="text" name="new_title" style="width:400px;" value="" /></li>
+		<li><input type="text" name="new_title" style="width:380px;" value="" /></li>
 		<li>内容 （支持html）</li>
-		<li><textarea name="new_content" rows="8" style="width:400px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" rows="10" style="width:380px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="添加组件"  />
 		<span style="margin-left:158px;"><a href="http://www.emlog.net/extend/widgets" target="_blank">获取更多有趣的组件&raquo;</a></span></li>
 	</div>
