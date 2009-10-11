@@ -41,7 +41,7 @@ if($action == 'bakstart')
 	}
 	if(trim($sqldump))
 	{
-		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i', $localdate)."\n$sqldump";
+		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i', $localdate)."\n$sqldump\n#The end of the backup file";
 		if($bakplace == 'local')
 		{
 			header('Content-Type: text/x-sql');
