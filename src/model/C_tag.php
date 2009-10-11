@@ -74,7 +74,7 @@ class emTag {
 	 */
 	function addTag($tagStr, $blogId)
 	{
-		$tag = explode(',',$tagStr);
+		$tag = !empty($tagStr) ? explode(',', $tagStr) : array();
 		$tag = array_unique($tag);
 		foreach ($tag as $tagName)
 		{
@@ -97,7 +97,7 @@ class emTag {
 	 */
 	function updateTag($tagStr, $blogId)
 	{
-		$tag = explode(',',$tagStr);
+		$tag = !empty($tagStr) ? explode(',', $tagStr) : array();
 		$query = $this->db->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$blogId."%' ");
 		$old_tag = array();
 		while($row = $this->db->fetch_array($query))
