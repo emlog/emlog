@@ -42,9 +42,6 @@ if ($action == 'login')
 //登出
 if ($action == 'logout')
 {
-	session_start();
-	session_unset();
-	session_destroy();
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	formMsg('退出成功！','../',1);
 }
