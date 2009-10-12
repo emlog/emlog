@@ -108,3 +108,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 .sun{background-color:#F5F5F5; color:#333; font-weight:bold}
 .week{background-color:#F5F5F5; color:#333}
 .calendartop{text-align:center; font-size:14px; margin-left:41px}
+.rss{ margin:20px 0px;}
+#twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
+#twitter li span {font-size: 10px;padding-left: 120px;}
+#twitter li small {font-size: 10px;padding: 0px 10px;}

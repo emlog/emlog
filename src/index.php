@@ -52,10 +52,6 @@ if (empty($action) && empty($logid) && empty($plugin))
 	} elseif($keyword) {
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
-		if (strlen($keyword) > 30 || strlen($keyword) < 3)
-		{
-			emMsg('错误的关键字长度','./');
-		}
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= './?keyword='.urlencode($keyword).'&page';

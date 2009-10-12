@@ -26,17 +26,7 @@ function showhidediv(id){
 }
 function keyw(){
 	if (document.keyform.keyword.value==""){
-		alert("关键字不能为空");
-		document.keyform.keyword.focus();
-		return false;
-	}
-	if (document.keyform.keyword.value.length<3){
-		alert("关键字太短");
-		document.keyform.keyword.focus();
-		return false;
-	}
-	if (document.keyform.keyword.value.length>31){
-		alert("关键字太长");
+		alert("请输入要搜索的关键字");
 		document.keyform.keyword.focus();
 		return false;
 	}
@@ -46,7 +36,6 @@ function checkEmail (str){
 	isEmail2=/^.*@[^_]*$/;
 	return (isEmail1.test(str)&&isEmail2.test(str));
 }
-
 function checkform(){
 	if (document.commentform.comname.value==""){
 		alert("名字不能为空");
@@ -75,7 +64,7 @@ function checkform(){
 			return false;
 		}
 		if(!checkEmail(document.commentform.commail.value)){
-			alert("邮件地址格式不正确！");
+			alert("邮件地址格式错误！");
 			document.commentform.commail.focus();
 			return false;
 		}
