@@ -41,7 +41,10 @@ if($action == 'bakstart')
 	}
 	if(trim($sqldump))
 	{
-		$sqldump = '#emlog_'.EMLOG_VERSION." database backup file\n#".date('Y-m-d H:i', $localdate)."\n$sqldump\n#The end of the backup file";
+		$dumpfile = '#version:emlog '. EMLOG_VERSION . "\n";
+		$dumpfile .= '#date:' . date('Y-m-d H:i', $localdate) . "\n";
+		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
+		$dumpfile .= $sqldump;
 		if($bakplace == 'local')
 		{
 			header('Content-Type: text/x-sql');
@@ -55,13 +58,13 @@ if($action == 'bakstart')
 				header('Pragma: no-cache');
 				header('Last-Modified: '.date('D, d M Y H:i:s', $localdate) . ' GMT');
 			}
-			echo $sqldump;
+			echo $dumpfile;
 		} else {
 			@$fp = fopen($filename, 'w+');
 			if ($fp)
 			{
 				@flock($fp, 3);
-				if(@!fwrite($fp, $sqldump))
+				if(@!fwrite($fp, $dumpfile))
 				{
 					@fclose($fp);
 					emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
@@ -90,20 +93,35 @@ if ($action == 'renewdata')
 		{
 			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件', 'javascript:history.go(-1);',0);
 		}
-		$fp = fopen($sqlfile,'rb');
-		$bakinfo = fread($fp,200);
-		fclose($fp);
-		if (!strstr($bakinfo,"emlog_".EMLOG_VERSION))
+		// 读取备份文件信息
+		$fp = @fopen($sqlfile, 'r');
+		if ($fp) 
 		{
-			formMsg("导入失败! 该备份文件不是 emlog ".EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
-		}elseif (!strstr($bakinfo,DB_PREFIX)){
-			formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
+			$dumpinfo = array();
+			$line = 0;
+			while (!feof($fp)) 
+			{
+				$dumpinfo[] = fgets($fp, 4096);
+				$line++;
+				if ($line == 3) break;
+			}
+			fclose($fp);
+			if (!empty($dumpinfo))
+			{
+				// 验证版本
+				if (preg_match('/#version:emlog '. EMLOG_VERSION .'/', $dumpinfo[0]) === 0)
+					formMsg("导入失败! 该备份文件不是 emlog ".EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
+				// 验证表前缀
+				if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0)
+					formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配", 'javascript:history.go(-1);',0);
+			} else {
+				formMsg("导入失败! 该备份文件不是 emlog 的备份文件!", 'javascript:history.go(-1);',0);
+			}
+		} else {
+			formMsg("导入失败! 备份文件无法读取!", 'javascript:history.go(-1);',0);
 		}
 	}
-	$fp = fopen($sqlfile, 'rb');
-	$sql = fread($fp, filesize($sqlfile));
-	fclose($fp);
-	unset($sql);
+	
 	bakindata($sqlfile);
 	$CACHE->mc_user();
 	$CACHE->mc_options();
