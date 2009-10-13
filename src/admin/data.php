@@ -45,6 +45,7 @@ if($action == 'bakstart')
 		$dumpfile .= '#date:' . date('Y-m-d H:i', $localdate) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
+		$dumpfile .= "\n#the end of backup";
 		if($bakplace == 'local')
 		{
 			header('Content-Type: text/x-sql');
