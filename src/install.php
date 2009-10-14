@@ -259,8 +259,8 @@ EOT;
 
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
-	$add = $DB->getMysqlVersion() > '4.1' ? "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";":"TYPE=".$type.";";
-	$setchar = $DB->getMysqlVersion() > '4.1'?"ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;":'';
+	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
+	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE {$db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 
 	$widgets = array(
 	'blogger'=>'blogger',
