@@ -135,9 +135,9 @@ function viewCount()
  * @param unknown_type $address
  * @return unknown
  */
-function checkMail($address)
+function checkMail($email)
 {
-	if (preg_match("/^[_.0-9a-z-]+@([0-9a-z][0-9a-z-]+.)+[a-z]{2,3}$/",$address))
+	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60)
 	{
 		return true;
 	} else {

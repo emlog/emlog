@@ -33,8 +33,7 @@ function keyw(){
 }
 function checkEmail (str){
 	isEmail1=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
-	isEmail2=/^.*@[^_]*$/;
-	return (isEmail1.test(str)&&isEmail2.test(str));
+	return (isEmail1.test(str));
 }
 function checkform(){
 	if (document.commentform.comname.value==""){
@@ -58,11 +57,6 @@ function checkform(){
 		return false;
 	}
 	if(document.commentform.commail.value!=""){
-		if(document.commentform.commail.value.length>60){
-			alert("邮件地址长度超出系统接受范围");
-			document.commentform.commail.focus();
-			return false;
-		}
 		if(!checkEmail(document.commentform.commail.value)){
 			alert("邮件地址格式错误！");
 			document.commentform.commail.focus();
