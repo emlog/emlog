@@ -101,7 +101,7 @@ if($action=='doreply')
 		$emComment->replyComment($commentId, $reply);
 		doAction('comment_reply', $commentId, $reply);
 		$CACHE->mc_comment();
-		echo "<span><b>博主回复</b>：$reply</span>";
+		echo "<span>博主回复：$reply</span>";
 	}
 }
 

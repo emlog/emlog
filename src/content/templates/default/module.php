@@ -334,21 +334,16 @@ function blog_comments(){
 	<?php
 	foreach($comments as $key=>$value):
 	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
+	$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 	?>
 	<div id="com_line">
 		<a name="<?php echo $value['cid']; ?>"></a>
 		<b><?php echo $value['poster']; ?> </b>
-		<?php if($value['mail']):?>
-			<a href="mailto:<?php echo $value['mail']; ?>" title="发邮件给<?php echo $value['poster']; ?>">Email</a>
-		<?php endif;?>
-		<?php if($value['url']):?>
-			<a href="<?php echo $value['url']; ?>" title="访问<?php echo $value['poster']; ?>的主页" target="_blank">主页</a>
-		<?php endif;?>
-			<div class="time"><?php echo $value['date']; ?></div>
-			<div class="com_date">
-			<?php echo $value['content']; ?>
-			</div>
-			<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
+		<div class="time"><?php echo $value['date']; ?></div>
+		<div class="com_date">
+		<?php echo $value['content']; ?>
+		</div>
+		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
 		<?php if(ROLE == 'admin'): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">

@@ -14,7 +14,7 @@ define('UPLOADFILE_PATH', '../content/uploadfile/');//附件保存目录
 define('IS_THUMBNAIL', 1);//上传图片是否生成缩略图 1:是 0:否
 define('ADMIN_PERPAGE_NUM', 15);//后台管理每页条目数
 define('ADMIN_TPL', 'default');//后台模板名
-define('TPL_PATH', dirname(__FILE__).'/views/'.ADMIN_TPL.'/');//后台当前模板路径
+define('TPL_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/');//后台当前模板路径
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');//允许上传的文件类型
 
 //读取缓存
