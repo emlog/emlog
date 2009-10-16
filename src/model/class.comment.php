@@ -248,7 +248,7 @@ class emComment {
 	{
 		$query = $this->db->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
 		$show_remark = $this->db->fetch_array($query);
-		if ($show_remark['allow_remark'] == 'n')
+		if ($show_remark['allow_remark'] == 'n' || $show_remark === false)
 		{
 			return false;
 		}else {
