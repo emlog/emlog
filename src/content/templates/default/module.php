@@ -13,17 +13,7 @@ function widget_blogger($title){
 	<?php endif;?>
 	</div>
 	<li><b><?php echo $name; ?></b></li>
-		<li><span id="bloggerdes"><?php echo $user_cache[1]['des']; ?></span>
-		<?php if(ROLE == 'admin'): ?>
-		<a href="javascript:void(0);" onclick="showhidediv('modbdes','bdes')">
-		<img src="<?php echo TPL_PATH; ?>images/modify.gif" align="absmiddle" alt="修改我的状态"/></a></li>
-		<li id='modbdes' style="display:none;">
-		<textarea name="bdes" class="input" id="bdes" style="overflow-y: hidden;width:180px;height:60px;"><?php echo $user_cache[1]['des']; ?></textarea>
-		<br />
-		<a href="javascript:void(0);" onclick="postinfo('./admin/blogger.php?action=update&flg=1','bdes','bloggerdes');">提交</a>
-		<a href="javascript:void(0);" onclick="showhidediv('modbdes')">取消</a>
-		<?php endif; ?>
-		</li>
+	<li><?php echo $user_cache[1]['des']; ?></li>
 	</ul>
 	</li>
 <?php }?>

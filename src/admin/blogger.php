@@ -29,34 +29,20 @@ if($action == '')
 if($action == 'update')
 {
 	$emUser = new emUser($DB);
-	
-	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;//前台调用标识
-	if(!$flg)
+	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
+	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
+	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
+	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+	$photo_type = array('gif', 'jpg', 'jpeg','png');
+	if($_FILES['photo']['size'] > 0)
 	{
-		$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
-		$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
-		$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-		$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	
-		$photo_type = array('gif', 'jpg', 'jpeg','png');
-		if($_FILES['photo']['size'] > 0)
-		{
-			$usericon = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $_FILES['photo']['type'], $photo_type, 1);
-		}else{
-			$usericon = $photo;
-		}
-		
-		$emUser->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
-
-		$CACHE->mc_user();
-
-		header("Location: ./blogger.php?active_edit=true");
-	}else {
-		$description = isset($_POST['bdes']) ? addslashes(trim($_POST['bdes'])) : '';
-		$emUser->updateUser(array('description'=>$description), UID);
-		$CACHE->mc_user();
-		echo $description;
+		$usericon = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $_FILES['photo']['type'], $photo_type, 1);
+	}else{
+		$usericon = $photo;
 	}
+	$emUser->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
+	$CACHE->mc_user();
+	header("Location: ./blogger.php?active_edit=true");
 }
 
 if($action == 'delicon')

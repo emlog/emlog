@@ -197,7 +197,6 @@ src/content/templates/default/echo_log.php -text
 src/content/templates/default/footer.php -text
 src/content/templates/default/header.php -text
 src/content/templates/default/images/bg_cal_today.gif -text
-src/content/templates/default/images/bloger_photo.jpg -text
 src/content/templates/default/images/bottom.png -text
 src/content/templates/default/images/button.png -text
 src/content/templates/default/images/c_bottom.gif -text
@@ -210,7 +209,6 @@ src/content/templates/default/images/em_input-back.gif -text
 src/content/templates/default/images/icon_rss.gif -text
 src/content/templates/default/images/import.gif -text
 src/content/templates/default/images/logserch_logserch.gif -text
-src/content/templates/default/images/modify.gif -text
 src/content/templates/default/images/player.swf -text
 src/content/templates/default/images/reply.gif -text
 src/content/templates/default/images/rss.gif -text
