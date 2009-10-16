@@ -225,24 +225,24 @@ src/content/templates/default/side.php -text
 src/index.php -text svn_keywords=Id
 src/init.php -text
 src/install.php -text svn_keywords=Id
-src/lib/C_cache.php -text svn_keywords=Id
-src/lib/C_checkcode.php -text svn_keywords=Id
-src/lib/C_mysql.php -text svn_keywords=Id
-src/lib/C_phpass.php -text
-src/lib/F_base.php -text svn_keywords=Id
-src/lib/F_login.php -text svn_keywords=Id
+src/lib/checkcode.php -text svn_keywords=Id
+src/lib/class.cache.php -text svn_keywords=Id
+src/lib/class.mysql.php -text svn_keywords=Id
+src/lib/class.phpass.php -text
+src/lib/function.base.php -text svn_keywords=Id
+src/lib/function.login.php -text svn_keywords=Id
 src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
 src/lib/js/jquery/plugin-cookie.js -text
 src/lib/js/jquery/plugin-interface.js -text
-src/model/C_blog.php -text svn_keywords=Id
-src/model/C_comment.php -text svn_keywords=Id
-src/model/C_link.php -text svn_keywords=Id
-src/model/C_plugin.php -text svn_keywords=Id
-src/model/C_sort.php -text svn_keywords=Id
-src/model/C_tag.php -text svn_keywords=Id
-src/model/C_trackback.php -text svn_keywords=Id
-src/model/C_user.php -text svn_keywords=Id
+src/model/class.blog.php -text svn_keywords=Id
+src/model/class.comment.php -text svn_keywords=Id
+src/model/class.link.php -text svn_keywords=Id
+src/model/class.plugin.php -text svn_keywords=Id
+src/model/class.sort.php -text svn_keywords=Id
+src/model/class.tag.php -text svn_keywords=Id
+src/model/class.trackback.php -text svn_keywords=Id
+src/model/class.user.php -text svn_keywords=Id
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
