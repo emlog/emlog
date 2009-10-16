@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_plugin.php');
+require_once(EMLOG_ROOT.'/model/class.plugin.php');
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 

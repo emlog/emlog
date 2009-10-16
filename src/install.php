@@ -6,10 +6,10 @@
  * $Id$
  */
 
-require_once('./lib/F_base.php');
-require_once('./lib/C_mysql.php');
-require_once('./lib/C_cache.php');
-require_once('./lib/C_phpass.php');
+require_once('./lib/function.base.php');
+require_once('./lib/class.mysql.php');
+require_once('./lib/class.cache.php');
+require_once('./lib/class.phpass.php');
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();

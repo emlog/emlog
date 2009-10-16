@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
+require_once(EMLOG_ROOT.'/model/class.blog.php');
 
 $navibar = unserialize($navibar);
 

@@ -17,7 +17,7 @@ $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 //日志列表
 if (empty($action) && empty($logid) && empty($plugin))
 {
-	require_once(EMLOG_ROOT.'/model/C_blog.php');
+	require_once(EMLOG_ROOT.'/model/class.blog.php');
 
 	$emBlog = new emBlog($DB);
 
@@ -38,7 +38,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= "./?record=$record&page";
 	} elseif ($tag) {
-		require_once(EMLOG_ROOT.'/model/C_tag.php');
+		require_once(EMLOG_ROOT.'/model/class.tag.php');
 		$emTag = new emTag($DB);
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
@@ -80,9 +80,9 @@ if (empty($action) && empty($logid) && empty($plugin))
 //浏览日志、页面
 if (!empty($logid))
 {
-	require_once(EMLOG_ROOT.'/model/C_blog.php');
-	require_once(EMLOG_ROOT.'/model/C_comment.php');
-	require_once(EMLOG_ROOT.'/model/C_trackback.php');
+	require_once(EMLOG_ROOT.'/model/class.blog.php');
+	require_once(EMLOG_ROOT.'/model/class.comment.php');
+	require_once(EMLOG_ROOT.'/model/class.trackback.php');
 
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
@@ -102,7 +102,7 @@ if (!empty($logid))
 	}
 	$blogtitle = $log_title.' - '.$blogname;
 	//comments
-	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/C_checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
+	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
@@ -122,7 +122,7 @@ if (!empty($logid))
 //发表评论
 if ($action == 'addcom')
 {
-	require_once(EMLOG_ROOT.'/model/C_comment.php');
+	require_once(EMLOG_ROOT.'/model/class.comment.php');
 
 	$emComment = new emComment($DB);
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';

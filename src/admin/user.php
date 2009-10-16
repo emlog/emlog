@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_user.php');
+require_once(EMLOG_ROOT.'/model/class.user.php');
 
 $emUser = new emUser($DB);
 
@@ -48,7 +48,7 @@ if($action== 'new')
 		exit;
 	}
 	
-	require_once(EMLOG_ROOT.'/lib/C_phpass.php');
+	require_once(EMLOG_ROOT.'/lib/class.phpass.php');
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 

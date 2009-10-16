@@ -12,10 +12,10 @@ ob_start();
 define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once(EMLOG_ROOT.'/config.php');
-require_once(EMLOG_ROOT.'/lib/F_base.php');
-require_once(EMLOG_ROOT.'/lib/F_login.php');
-require_once(EMLOG_ROOT.'/lib/C_cache.php');
-require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once(EMLOG_ROOT.'/lib/function.base.php');
+require_once(EMLOG_ROOT.'/lib/function.login.php');
+require_once(EMLOG_ROOT.'/lib/class.cache.php');
+require_once(EMLOG_ROOT.'/lib/class.mysql.php');
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();

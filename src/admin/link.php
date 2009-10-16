@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_link.php');
+require_once(EMLOG_ROOT.'/model/class.link.php');
 
 $emLink = new emLink($DB);
 

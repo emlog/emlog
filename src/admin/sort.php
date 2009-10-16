@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_sort.php');
+require_once(EMLOG_ROOT.'/model/class.sort.php');
 
 $emSort = new emSort($DB);
 

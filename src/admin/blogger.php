@@ -7,7 +7,7 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_user.php');
+require_once(EMLOG_ROOT.'/model/class.user.php');
 
 if($action == '')
 {
@@ -87,7 +87,7 @@ if($action == 'delicon')
 
 if($action == 'update_pwd')
 {
-	require_once(EMLOG_ROOT.'/lib/C_phpass.php');
+	require_once(EMLOG_ROOT.'/lib/class.phpass.php');
 	
 	$emUser = new emUser($DB);
 	

@@ -7,9 +7,9 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
-require_once(EMLOG_ROOT.'/model/C_user.php');
+require_once(EMLOG_ROOT.'/model/class.blog.php');
+require_once(EMLOG_ROOT.'/model/class.tag.php');
+require_once(EMLOG_ROOT.'/model/class.user.php');
 
 $emBlog = new emBlog($DB);
 

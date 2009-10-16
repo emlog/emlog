@@ -7,10 +7,10 @@
  */
 
 require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
-require_once(EMLOG_ROOT.'/model/C_trackback.php');
-require_once(EMLOG_ROOT.'/model/C_sort.php');
+require_once(EMLOG_ROOT.'/model/class.blog.php');
+require_once(EMLOG_ROOT.'/model/class.tag.php');
+require_once(EMLOG_ROOT.'/model/class.trackback.php');
+require_once(EMLOG_ROOT.'/model/class.sort.php');
 
 //显示撰写日志页面
 if($action == '')
