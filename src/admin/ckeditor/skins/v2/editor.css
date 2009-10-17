@@ -1,8 +1,3 @@
-/*
-Copyright (c) 2003-2009, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
-*/
-
 .cke_skin_v2 *,.cke_skin_v2 a:hover,.cke_skin_v2 a:link,.cke_skin_v2 a:visited,.cke_skin_v2 a:active{margin:0;padding:0;border:0;background:transparent;text-decoration:none;font:normal normal normal 100% Sans-Serif;width:auto;height:auto;border-collapse:collapse;text-align:left;vertical-align:baseline;white-space:nowrap;cursor:auto;color:#000;font-size:11px;font-family:'Microsoft Sans Serif',Tahoma,Arial,Verdana,Sans-Serif;}
 .cke_skin_v2 .cke_rtl *,.cke_skin_v2 .cke_rtl a:hover,.cke_skin_v2 .cke_rtl a:link,.cke_skin_v2 .cke_rtl a:visited,.cke_skin_v2 .cke_rtl a:active,.cke_rtl .cke_skin_v2 *,.cke_rtl .cke_skin_v2 a:hover,.cke_rtl .cke_skin_v2 a:link,.cke_rtl .cke_skin_v2 a:visited,.cke_rtl .cke_skin_v2 a:active{text-align:right;}
 .cke_skin_v2 iframe{vertical-align:inherit;}
