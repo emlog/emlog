@@ -193,22 +193,22 @@ function subString($strings,$start,$length)
 /**
  * 转换附件大小单位
  *
- * @param string $filesize 文件大小 kb
+ * @param string $fileSize 文件大小 kb
  * @return unknown
  */
-function changeFileSize($filesize)
+function changeFileSize($fileSize)
 {
-	if($filesize >= 1073741824)
+	if($fileSize >= 1073741824)
 	{
-		$filesize = round($filesize / 1073741824  ,2) . 'GB';
-	} elseif($filesize >= 1048576){
-		$filesize = round($filesize / 1048576 ,2) . 'MB';
-	} elseif($filesize >= 1024){
-		$filesize = round($filesize / 1024, 2) . 'KB';
+		$fileSize = round($fileSize / 1073741824  ,2) . 'GB';
+	} elseif($fileSize >= 1048576){
+		$fileSize = round($fileSize / 1048576 ,2) . 'MB';
+	} elseif($fileSize >= 1024){
+		$fileSize = round($fileSize / 1024, 2) . 'KB';
 	} else{
-		$filesize = $filesize . '字节';
+		$fileSize = $fileSize . '字节';
 	}
-	return $filesize;
+	return $fileSize;
 }
 
 /**
@@ -496,16 +496,16 @@ function findArray($array1,$array2)
 /**
  * 附件上传
  *
- * @param string $filename 文件名
+ * @param string $fileName 文件名
  * @param string $errorNum 错误码：$_FILES['error']
- * @param string $tmpfile 上传后的临时文件
- * @param string $filesize 文件大小 KB
- * @param string $filetype 上传文件的类型 eg:image/jpeg
+ * @param string $tmpFile 上传后的临时文件
+ * @param string $fileSize 文件大小 KB
+ * @param string $fileType 上传文件的类型 eg:image/jpeg
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @return string 文件路径
  */
-function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type, $isIcon = 0)
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0)
 {
 	if ($errorNum == 1)
 	{
@@ -514,18 +514,18 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 	{
 		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
 	}
-	$extension  = strtolower(substr(strrchr($filename, "."),1));
+	$extension  = strtolower(substr(strrchr($fileName, "."),1));
 	if (!in_array($extension, $type))
 	{
 		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
-	if ($filesize > UPLOADFILE_MAXSIZE)
+	if ($fileSize > UPLOADFILE_MAXSIZE)
 	{
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
-	$fname = md5($filename) . date('YmdHis') .'.'. $extension;
+	$fname = md5($fileName) . date('YmdHis') .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(UPLOADFILE_PATH))
 	{
@@ -545,22 +545,22 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
 			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
 	}
-	doAction('attach_upload');
+	doAction('attach_upload', $tmpFile);
 	//resizeImage
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath.'thum-'. $fname;
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpfile,$filetype,$thum,$isIcon))
+	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpFile,$fileType,$thum,$isIcon))
 	{
 		$attach = $thum;
 	} else{
 		$attach = $attachpath;
 	}
 
-	if (@is_uploaded_file($tmpfile))
+	if (@is_uploaded_file($tmpFile))
 	{
-		if (@!move_uploaded_file($tmpfile ,$attachpath))
+		if (@!move_uploaded_file($tmpFile ,$attachpath))
 		{
-			@unlink($tmpfile);
+			@unlink($tmpFile);
 			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
 		chmod($attachpath, 0777);
@@ -572,12 +572,12 @@ function uploadFile($filename, $errorNum, $tmpfile, $filesize, $filetype, $type,
  * 图片生成缩略图
  *
  * @param string $img 预缩略的图片
- * @param unknown_type $imgtype 上传文件的类型 eg:image/jpeg
- * @param string $name 缩略图名
- * @param boolean $isIcon 是否为上传个性头像
+ * @param unknown_type $imgType 上传文件的类型 eg:image/jpeg
+ * @param string $thumPatch 生成缩略图路径
+ * @param boolean $isIcon 是否为上传头像
  * @return unknown
  */
-function resizeImage($img,$imgtype,$name,$isIcon)
+function resizeImage($img, $imgType, $thumPatch, $isIcon)
 {
 	if ($isIcon)
 	{
@@ -596,7 +596,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 	{
 		return false;
 	}
-	if ($imgtype == 'image/pjpeg' || $imgtype == 'image/jpeg')
+	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')
 	{
 		if(function_exists('imagecreatefromjpeg'))
 		{
@@ -604,7 +604,7 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		}else{
 			return false;
 		}
-	} elseif ($imgtype == 'image/x-png' || $imgtype == 'image/png') {
+	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
 		if (function_exists('imagecreatefrompng'))
 		{
 			$img = imagecreatefrompng($img);
@@ -620,14 +620,14 @@ function resizeImage($img,$imgtype,$name,$isIcon)
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
-	if ($imgtype == 'image/pjpeg' || $imgtype == 'image/jpeg')
+	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')
 	{
-		if(!imagejpeg($newim,$name))
+		if(!imagejpeg($newim,$thumPatch))
 		{
 			return false;
 		}
-	} elseif ($imgtype == 'image/x-png' || $imgtype == 'image/png') {
-		if (!imagepng($newim,$name))
+	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
+		if (!imagepng($newim,$thumPatch))
 		{
 			return false;
 		}
