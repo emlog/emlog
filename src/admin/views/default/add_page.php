@@ -51,4 +51,5 @@
 <div class=line></div>
 <script type="text/javascript">
 $("#title").focus();
+$("#menu_page").addClass('sidebarsubmenu1');
 </script>
