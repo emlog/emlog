@@ -46,8 +46,7 @@ a.cke_colorbox{border:#fff 1px solid;padding:2px;float:left;}
 a:hover.cke_colorbox,a:focus.cke_colorbox,a:active.cke_colorbox{border:#316ac5 1px solid;background-color:#dff1ff;}
 a.cke_colorauto,a.cke_colormore{border:#fff 1px solid;padding:2px;display:block;}
 a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_colormore,a:active.cke_colorauto,a:active.cke_colormore{border:#316ac5 1px solid;background-color:#dff1ff;}
-@media print{.cke_skin_v2 .cke_toolbox{display:none;}
-}
+@media print{.cke_skin_v2 .cke_toolbox{display:none;}}
 .cke_skin_v2 .cke_browser_webkit .cke_toolbox,.cke_skin_v2 .cke_browser_webkit .cke_toolbox>span{white-space:normal;}
 .cke_skin_v2 a.cke_toolbox_collapser,.cke_skin_v2 a:hover.cke_toolbox_collapser{background-image:url(images/sprites.png);_background-image:url(images/sprites_ie6.png);background-position:3px -739px;background-repeat:no-repeat;width:11px;height:11px;float:right;border:outset 1px;margin:11px 2px 2px;cursor:pointer;}
 .cke_skin_v2 .cke_rtl a.cke_toolbox_collapser,.cke_skin_v2 .cke_rtl a:hover.cke_toolbox_collapser{float:left;}
@@ -156,8 +155,7 @@ a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_co
 .cke_skin_v2 .cke_browser_gecko18 .cke_rcombo,.cke_skin_v2 .cke_browser_gecko18 .cke_rcombo .cke_label,.cke_skin_v2 .cke_browser_gecko18 .cke_rcombo .cke_text,.cke_skin_v2 .cke_browser_gecko18 .cke_rcombo .cke_openbutton,.cke_skin_v2 .cke_browser_webkit .cke_rcombo .cke_label,.cke_skin_v2 .cke_browser_webkit .cke_rcombo .cke_text,.cke_skin_v2 .cke_browser_webkit .cke_rcombo .cke_openbutton{display:block;float:left;}
 .cke_skin_v2 .cke_browser_gecko18 .cke_rtl .cke_rcombo,.cke_skin_v2 .cke_browser_gecko18 .cke_rtl .cke_rcombo .cke_label,.cke_skin_v2 .cke_browser_gecko18 .cke_rtl .cke_rcombo .cke_text,.cke_skin_v2 .cke_browser_gecko18 .cke_rtl .cke_rcombo .cke_openbutton,.cke_skin_v2 .cke_browser_webkit .cke_rtl .cke_rcombo .cke_label,.cke_skin_v2 .cke_browser_webkit .cke_rtl .cke_rcombo .cke_text,.cke_skin_v2 .cke_browser_webkit .cke_rtl .cke_rcombo .cke_openbutton{float:right;}
 .cke_skin_v2 .cke_browser_ie .cke_rtl .cke_rcombo,.cke_skin_v2 .cke_browser_ie .cke_rtl .cke_rcombo a,.cke_skin_v2 .cke_browser_ie .cke_rtl .cke_rcombo .cke_label{float:none;}
-@media print{.cke_path{display:none;}
-}
+@media print{.cke_path{display:none;}}
 .cke_skin_v2 .cke_path{padding:3px 3px 0 3px;display:inline-block;float:left;}
 .cke_skin_v2 .cke_rtl .cke_path{float:right;}
 .cke_skin_v2 .cke_path a,.cke_skin_v2 .cke_path .cke_empty{display:inline-block;float:left;padding-top:1px;padding-bottom:1px;padding-left:4px;padding-right:4px;margin-bottom:3px;}
@@ -236,4 +234,3 @@ a:hover.cke_colorauto,a:hover.cke_colormore,a:focus.cke_colorauto,a:focus.cke_co
 .cke_skin_v2 .cke_fontSize .cke_text{width:20px;}
 .cke_skin_v2 .cke_browser_iequirks .cke_fontSize .cke_text{width:32px;}
 html .cke_skin_v2,html.cke_skin_v2_container{visibility:visible;}
-
