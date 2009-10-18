@@ -17,8 +17,9 @@
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
           <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
-		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"></textarea>
-          </td>
+		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"></textarea>
+		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
+		  </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>转向地址：</b>(如果填写，页面标题将指向该地址)<br />

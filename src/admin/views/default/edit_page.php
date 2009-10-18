@@ -17,7 +17,8 @@
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe></div> 
           <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
-          </td>
+		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
+		  </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>转向地址：</b>(如果填写，页面标题将指向该地址)<br />

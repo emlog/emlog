@@ -31,8 +31,9 @@ $isdraft = $hide == 'y' ? true : false;
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
-		  <textarea class="ckeditor" id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
-          </td>
+		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script> 
+		  </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
@@ -57,7 +58,8 @@ $isdraft = $hide == 'y' ? true : false;
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
 		  <textarea class="ckeditor" id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
-          </td>
+		  <script type="text/javascript">CKEDITOR.replace( 'excerpt',{resize_minHeight : 230,height : 230});</script>
+		  </td>
         </tr>      
         <tr nowrap="nowrap">
           <td>引用通告：(Trackback，通知你所引用的日志)<b><br /></b>
