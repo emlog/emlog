@@ -45,7 +45,7 @@ if ($action == '' && $plugin)
 {
 	include getViews('header');
 	require_once("../content/plugins/{$plugin}/{$plugin}_setting.php");
-	plugin_setting_veiw();
+	plugin_setting_view();
 	include getViews('footer');
 }
 //保存插件设置
