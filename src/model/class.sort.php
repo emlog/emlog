@@ -54,8 +54,8 @@ class emSort {
 	{
 		if($sid > 0)
 		{
-			$res = $this->dbhd->query("SELECT sortname FROM $this->sortTable where sid=$sid");
-			$row = $this->dbhd->fetch_array($res);
+			$res = $this->db->query("SELECT sortname FROM ". DB_PREFIX ."sort WHERE sid = $sid");
+			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		}else {
 			$sortName = '未分类';
