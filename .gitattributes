@@ -237,7 +237,8 @@ src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
 src/wap/index.php -text
-src/xmlrpc.php -text
+src/wlwmanifest.xml -text
+src/xmlrpc.php -text svn_keywords=Id
 update/old_version/up2.0.0to2.2.0.php -text
 update/old_version/up2.1.6sp1to2.2.0.php -text
 update/old_version/up2.1.6to2.2.0.php -text

@@ -1,4 +1,10 @@
 <?php
+/**
+ * xmlrpc博客服务接口
+ * @copyright (c) Emlog All Rights Reserved
+ * @version emlog-3.3.0
+ * $Id$
+ */
 define('EMLOG_ROOT', dirname(__FILE__));
 ob_start();
 require_once EMLOG_ROOT . '/config.php';
@@ -50,9 +56,10 @@ if (isset($_GET['rsd'])) {
 				<service>
 					<engineName>emlog</engineName>
 					<engineLink>http://emlog.net/</engineLink>
-					<homePageLink>http://emlog.net/</homePageLink>
+					<homePageLink>' . $options_cache['blogurl'] .'</homePageLink>
 					<apis>
-						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="xmlrpc2.php" />
+						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="xmlrpc.php" />
+						<api name="Blogger" blogID="1" preferred="false" apiLink="xmlrpc.php" />
 					</apis>
 				</service>
 			</rsd>
@@ -354,7 +361,7 @@ function mw_getPost($args) {
 		</member>
 		<member>
 			<name>link</name>
-			<value>http://blogs.law.harvard.edu/lydon/2003/07/18#a187</value>
+			<value>{$options_cache['blogurl']}index.php?post={$post['gid']}</value>
 		</member>
 		<member>
 			<name>postid</name>
