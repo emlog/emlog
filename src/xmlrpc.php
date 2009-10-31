@@ -37,7 +37,7 @@ $_COOKIE = array();
 if (!isset($HTTP_RAW_POST_DATA)) {
 	$HTTP_RAW_POST_DATA = file_get_contents('php://input');
 }
-// 修复mozBlog或其他个例不兼容<?xml标签不在第一行的情况
+// 修复mozBlog或其他个例不兼容xml标签不在第一行的情况
 if (isset($HTTP_RAW_POST_DATA))
 	$HTTP_RAW_POST_DATA = trim($HTTP_RAW_POST_DATA);
 
@@ -79,10 +79,7 @@ xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
 xml_set_element_handler($parser, 'tag_open', 'tag_close');
 xml_set_character_data_handler($parser, 'cdata');
 if (!xml_parse($parser, $data)) {
-	/* die(sprintf('XML error: %s at line %d',
-		xml_error_string(xml_get_error_code($this->_parser)),
-		xml_get_current_line_number($this->_parser))); */
-	return false;
+	die;
 }
 xml_parser_free($parser);
 if (!array_key_exists($method_name, $api_methods)) die('unknow request');
@@ -94,42 +91,35 @@ call_user_func($api_methods[$method_name], $params);
  *
  */
 function blogger_getUsersBlogs() {
-	$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-		<methodResponse>
-			<params>
-				<param>
-					<value>
-						<array>
-							<data>
-								<value>
-									<struct>
-										<member>
-											<name>url</name>
-											<value>
-												<string>1</string>
-											</value>
-										</member>
-										<member>
-											<name>blogid</name>
-											<value>
-												<string>2</string>
-											</value>
-										</member>
-										<member>
-											<name>blogName</name>
-											<value>
-												<string>3</string>
-											</value>
-										</member>
-									</struct>
-								</value>
-							</data>
-						</array>
-					</value>
-				</param>
-			</params>
-		</methodResponse>";
-	echo $xml;
+	global $options_cache;
+	$xml = "
+		<array>
+			<data>
+				<value>
+					<struct>
+						<member>
+							<name>url</name>
+							<value>
+								<string>{$options_cache['blogurl']}</string>
+							</value>
+						</member>
+						<member>
+							<name>blogid</name>
+							<value>
+								<string>1</string>
+							</value>
+						</member>
+						<member>
+							<name>blogName</name>
+							<value>
+								<string>{$options_cache['blogname']}</string>
+							</value>
+						</member>
+					</struct>
+				</value>
+			</data>
+		</array>";
+	response($xml);
 }
 
 /**
@@ -137,13 +127,23 @@ function blogger_getUsersBlogs() {
  *
  */
 function mw_deletePost($args) {
-	global $DB;
+	global $DB,$CACHE;
 	escape($args);
 	$id = intval($args[1]);
 	$user = login($args[2], $args[3]);
 	define('UID', $user['uid']);
 	$emBlog = new emBlog($DB);
 	$emBlog->deleteLog($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_tags();
+	$CACHE->mc_newlog();
+	$CACHE->mc_logsort();
+	$CACHE->mc_sort();
 	response('<boolean>1</boolean>');
 }
 /**
@@ -165,13 +165,13 @@ function mw_editPost($args) {
 	$data = $args[3];
 	$publish = $args[4];
 
-	$update_data['title'] = addslashes($data[0]);
-	$update_data['content'] = addslashes(htmlspecialchars_decode($data[1]));
+	$update_data['title'] = $data[0];
+	$update_data['content'] = htmlspecialchars_decode($data[1]);
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	
 	// 根据分类名称取分类id,注意只取第一个分类
-	$sort_name = isset($data[2][0]) ? addslashes($data[2][0]) : '';
+	$sort_name = isset($data[2][0]) ? $data[2][0] : '';
 	$emSort = new emSort($DB);
 	$sorts = $emSort->getSorts();
 	unset($emSort);
@@ -258,14 +258,14 @@ function mw_newPost($args) {
 	$password = $args[2];
 	$data = $args[3];
 	$publish = $args[4];
-	$update_data['title'] = addslashes($data[0]);
-	$update_data['content'] = addslashes(htmlspecialchars_decode($data[1]));
+	$update_data['title'] = $data[0];
+	$update_data['content'] = htmlspecialchars_decode($data[1]);
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	$update_data['excerpt'] = '';
 	
 	// 只取第一个分类
-	$sort_name = isset($data[2][0]) ? addslashes($data[2][0]) : '';
+	$sort_name = isset($data[2][0]) ? $data[2][0] : '';
 	$emSort = new emSort($DB);
 	$sorts = $emSort->getSorts();
 	unset($emSort);
@@ -460,7 +460,8 @@ function mw_getRecentPosts($args) {
 
 function mw_newMediaObject($args) {
 	global $DB,$options_cache;
-	escape($args);
+	escape($args[1]);
+	escape($args[2]);
 	$username = $args[1];
 	$password = $args[2];
 	$user = login($username, $password);
@@ -503,9 +504,7 @@ function mw_newMediaObject($args) {
 			error_message(500,'上传失败。文件上传目录(content/uploadfile)不可写');
 		}
 	}
-    Header( "Content-type: image/jpg"); 
-    echo $bits;
-    die;
+    
     $fp = @fopen($attachpath, 'wb');
 	if (!$fp)
 		error_message(500,'文件无法写入');
@@ -518,6 +517,7 @@ function mw_newMediaObject($args) {
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath.'thum-'. $fname;
     $thum_created = true;
+	
 	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
 	    $max_w = IMG_ATT_MAX_W;
 		$max_h = IMG_ATT_MAX_H;
@@ -529,14 +529,14 @@ function mw_newMediaObject($args) {
     	if ($w <= $max_w && $h <= $max_h) {
     		$thum_created = false;
     	}
-        
-    	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg') {
+		
+    	if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
     		if (function_exists('imagecreatefromjpeg')) {
     			$img = imagecreatefromjpeg($attachpath);
     		} else {
     			$thum_created = false;
     		}
-    	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
+    	} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
     		if (function_exists('imagecreatefrompng')) {
     			$img = imagecreatefrompng($attachpath);
     		} else {
@@ -544,26 +544,34 @@ function mw_newMediaObject($args) {
     		}
     	}
         
-    	if (function_exists('imagecopyresampled')) {
+    	if ($thum_created && function_exists('imagecopyresampled')) {
     		$newim = imagecreatetruecolor($newwidth, $newheight);
     		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
-    	} else {
+    	} elseif ($thum_created ) {
     		$newim = imagecreate($newwidth, $newheight);
     		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
     	}
         
-    	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg') {
+    	if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
     		if(!imagejpeg($newim,$thumPatch)) {
     			$thum_created = false;
     		}
-    	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
+    	} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
     		if (!imagepng($newim,$thumPatch)) {
     			$thum_created = false;
     		}
     	}
-    	ImageDestroy($newim);
+		if ($thum_created)
+			ImageDestroy($newim);
 	}
-    $img_url = $options_cache['blogurl'] . '/content/upload/' . date('Ym') . $fname;
+	
+	//写入附件信息
+	//$query = "INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
+	//$DB->query($query);
+	//$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum+1 WHERE gid=$logid");
+	
+	
+    $img_url = $options_cache['blogurl'] . 'content/uploadfile/' . date('Ym') . '/' . $fname;
     $file_name = $thum_created ? 'thum-'. $fname : $fname;
     $xml = "
         <struct>
