@@ -10,11 +10,10 @@ define('EMLOG_ROOT', dirname(__FILE__));
 define('ICON_MAX_W', 140);
 define('ICON_MAX_H', 220);
 
-require_once('./config.php');
-require_once('./lib/F_base.php');
-require_once('./lib/C_mysql.php');
-require_once('./lib/C_cache.php');
-
+require_once(EMLOG_ROOT.'/config.php');
+require_once(EMLOG_ROOT.'/lib/F_base.php');
+require_once(EMLOG_ROOT.'/lib/C_mysql.php');
+require_once(EMLOG_ROOT.'/lib/C_cache.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">

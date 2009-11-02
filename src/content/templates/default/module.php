@@ -38,7 +38,7 @@ function widget_tag($title){
 	<li>
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="./?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -53,8 +53,8 @@ function widget_sort($title){
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="./?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="./rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo TPL_PATH; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo TEMPLATE_URL; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
 	</ul>
@@ -96,11 +96,17 @@ function widget_twitter($title){
 <?php 
 //widget：音乐
 function widget_music($title){
-	global $musicdes,$musicurl,$autoplay; ?>
+	global $options_cache;
+	$music = @unserialize($options_cache['music']);
+	$key = $music['randplay'] ? mt_rand(0,count($music['mlinks']) - 1) : 0 ;
+	$musicurl = $music['mlinks'] ? $music['mlinks'][$key] : '';
+	$musicdes = !empty($music['mdes'][$key]) ? $music['mdes'][$key] .'<br>' : '';
+	$autoplay = $music['auto'] ? "&autoplay=1" : '';
+	?>
 	<li>
 	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>	
 	<ul id="blogmusic">
-	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo TPL_PATH; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo TPL_PATH; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
+	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
 	</ul>
 	</li>
@@ -112,14 +118,11 @@ function widget_newcomm($title){
 	<li>
 	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
 	<ul id="newcomment">
-	<?php 
-	foreach($com_cache as $value): 
-	$value['url'] = $value['url'];
-	?>
+	<?php foreach($com_cache as $value): ?>
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
 	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-	<img src="<?php echo TPL_PATH; ?>images/reply.gif" align="absmiddle"/>
+	<img src="<?php echo TEMPLATE_URL; ?>images/reply.gif" align="absmiddle"/>
 	</a>
 	<?php endif;?>
 	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
@@ -135,7 +138,7 @@ function widget_newlog($title){
 	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -155,7 +158,7 @@ function widget_random_log($title){
 	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -167,7 +170,7 @@ function widget_search($title){ ?>
 	<h3><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="./"><p>
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php"><p>
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
 	</form>
@@ -183,7 +186,7 @@ function widget_archive($title){
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
-	<li><a href="./<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+	<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>		
 	</ul>
 	</li>
@@ -230,14 +233,14 @@ function widget_bloginfo($title){
 //blog：置顶
 function topflg($istop){
 	global $log_cache_sort; 
-	$topflg = $istop == 'y' ? "<img src=\"".TPL_PATH."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
+	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
 	echo $topflg;
 }
 ?>
 <?php
 //blog：编辑
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.'./admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -246,7 +249,7 @@ function editflg($logid,$author){
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="./?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
 <?php
@@ -266,7 +269,7 @@ function blog_tag($blogid){
 		$tag = '标签:';
 		foreach ($log_cache_tags[$blogid] as $value)
 		{
-			$tag .= "	<a href=\"./?tag=".$value['tagurl']."\">".$value['tagname'].'</a>';
+			$tag .= "	<a href=\"".BLOG_URL."?tag=".$value['tagurl']."\">".$value['tagname'].'</a>';
 		}
 		echo $tag;
 	}
@@ -280,7 +283,7 @@ function blog_author($uid){
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
-	echo "<a href=\"./?author=$uid\" $title>$author</a>";
+	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
 }
 ?>
 <?php
@@ -288,13 +291,13 @@ function blog_author($uid){
 function neighbor_log(){
 	global $prevLog,$nextLog; ?>
 	<?php if($prevLog):?>
-	&laquo; <a href="./?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
 	<?php if($nextLog && $prevLog):?>
 		|
 	<?php endif;?>
 	<?php if($nextLog):?>
-		 <a href="./?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
 <?php }?>
 <?php
@@ -353,7 +356,7 @@ function blog_comments_post(){
 	<?php if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
-	<form method="post"  name="commentform" action="./index.php?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">

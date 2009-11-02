@@ -6,20 +6,20 @@
  * $Id$
  */
 
-require_once('./lib/function.base.php');
-require_once('./lib/class.mysql.php');
-require_once('./lib/class.cache.php');
-require_once('./lib/class.phpass.php');
+define('EMLOG_ROOT', dirname(__FILE__));
+
+require_once(EMLOG_ROOT.'/lib/function.base.php');
+require_once(EMLOG_ROOT.'/lib/class.mysql.php');
+require_once(EMLOG_ROOT.'/lib/class.cache.php');
+require_once(EMLOG_ROOT.'/lib/class.phpass.php');
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
 define('EMLOG_VERSION', '3.3.0');
-define('EMLOG_ROOT', dirname(__FILE__));
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
-if(!$act)
-{
+if(!$act){
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
@@ -28,61 +28,15 @@ if(!$act)
 <title>emlog</title>
 <style type="text/css">
 <!--
-body {
-	background-color:#F7F7F7;
-	font-family: Arial;
-	font-size: 12px;
-	line-height:150%;
-}
-.main {
-	background-color:#FFFFFF;
-	margin-top:20px;
-	font-size: 12px;
-	color: #666666;
-	width:580px;
-	margin:10px auto;
-	padding:10px;
-	list-style:none;
-	border:#DFDFDF 1px solid;
-}
-#top-title{
-	background:url(admin/views/default/images/logo.gif) no-repeat right;
-	padding:5px 0px;
-	margin:20px 0px 60px 0px;
-}
-.input {
-	border: 1px solid #CCCCCC;
-	font-family: Arial;
-	font-size: 18px;
-	height:28px;
-	background-color:#F7F7F7;
-	color: #666666;
-	margin:5px 25px;
-}
-.submit{
-	background-color:#FFFFFF;
-	border: 3px double #999;
-	border-left-color: #ccc;
-	border-top-color: #ccc;
-	color: #333;
-	padding: 0.25em;
-	cursor:hand;
-}
-.title{
-	font-size:24px;
-	font-weight:bold;
-}
-.care{
-	color:#0066CC;
-}
-.title2{
-	font-size:14px;
-	color:#000000;
-	border-bottom: #CCCCCC 1px solid;
-}
-.foot{
-	text-align:center;
-}
+body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+#top-title{background:url(admin/views/default/images/logo.gif) no-repeat right;padding:5px 0px;margin:20px 0px 60px 0px;}
+.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:5px 25px;}
+.submit{background-color:#FFFFFF;border: 3px double #999;border-left-color: #ccc;border-top-color: #ccc;color: #333;padding: 0.25em;cursor:hand;}
+.title{font-size:24px;font-weight:bold;}
+.care{color:#0066CC;}
+.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid;}
+.foot{text-align:center;}
 -->
 </style>
 </head>
@@ -99,12 +53,10 @@ body {
     <input name="hostname" type="text" class="input" value="localhost">
 </li>
 <li>
-    数据库用户名：<br />
-    <input name="dbuser" type="text" class="input" value="">
+    数据库用户名：<br /><input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    数据库密码：<br />
-  <input name="password" type="password" class="input">
+    数据库密码：<br /><input name="password" type="password" class="input">
 </li>
 <li>
     数据库名：
@@ -113,7 +65,7 @@ body {
 </li>
 <li>
     数据库前缀：
-    <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+  <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
 </li>
 </div>
@@ -121,7 +73,7 @@ body {
 <p class="title2">2、博主设置 （用于安装成功后登录博客）</p>
 <li>
 博主登录名：<br />
-    <input name="admin" type="text" class="input">
+<input name="admin" type="text" class="input">
 </li>
 <li>
 博主登录密码：<span class="care">(不小于6位)</span><br />
@@ -138,18 +90,13 @@ body {
 <input name="Submit2" type="reset" class="submit" value="重 置">
 </p>
 </div>
-<div>
-<p class="foot">
-Powered by <a href="http://www.emlog.net">emlog</a>
-</p>
-</div>
+<div><p class="foot">Powered by <a href="http://www.emlog.net">emlog</a></p></div>
 </div>
 </form>
 </body>
 </html>
 <?php
 }
-
 if($act == 'install' || $act == 'reinstall')
 {
 	$db_host = addslashes(trim($_POST['hostname']));

@@ -205,7 +205,7 @@ class emBlog {
 			}else{
 				if(!empty($row['excerpt']))
 				{
-					$row['excerpt'] .= '<p><a href="./?post='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
+					$row['excerpt'] .= '<p><a href="'.BLOG_URL.'?post='.$row['logid'].'">阅读全文&gt;&gt;</a></p>';
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'],$row['gid']) : $row['excerpt'];

@@ -1,6 +1,4 @@
 * text=auto !eol
-ext/.htaccess -text svn_keywords=Id
-ext/robots.txt -text svn_keywords=Id
 /license.txt -text svn_keywords=Id
 /readme.html -text
 src/admin/admin_log.php -text svn_keywords=Id
@@ -88,6 +86,7 @@ src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
 src/admin/page.php -text svn_keywords=Id
+src/admin/permalink.php -text
 src/admin/plugin.php -text svn_keywords=Id
 src/admin/save_log.php -text svn_keywords=Id
 src/admin/sort.php -text svn_keywords=Id
@@ -138,6 +137,7 @@ src/admin/views/default/images/mc_ok.gif -text svn_keywords=Id
 src/admin/views/default/images/plugin.gif -text
 src/admin/views/default/images/plugin_active.gif -text
 src/admin/views/default/images/plugin_inactive.gif -text
+src/admin/views/default/images/setting.gif -text
 src/admin/views/default/images/sidebar_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_b.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_t.gif -text svn_keywords=Id
@@ -155,6 +155,7 @@ src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
+src/admin/views/default/permalink.php -text
 src/admin/views/default/plugin.php -text
 src/admin/views/default/sort.php -text
 src/admin/views/default/tag.php -text svn_keywords=Id
@@ -233,6 +234,7 @@ src/model/class.sort.php -text svn_keywords=Id
 src/model/class.tag.php -text svn_keywords=Id
 src/model/class.trackback.php -text svn_keywords=Id
 src/model/class.user.php -text svn_keywords=Id
+src/robots.txt -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id

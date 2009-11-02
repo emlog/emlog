@@ -2,7 +2,8 @@
 <script>
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>博客设置</b><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<div class=containertitle><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<div class=containertitle><a href="./configure.php">基本设置</a> <a href="./permalink.php">固定连接</a></div>
 <div class=line></div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
@@ -111,14 +112,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
           <option value="n" <?php echo $ex4; ?>>否</option>
         </select>
         </td>
-      </tr>
-	  <tr>
-        <td align="right">开启URL优化：<br /></td>
-        <td class="care">
-		<select name="isurlrewrite">
-          <option value="y" <?php echo $ex9; ?>>是</option>
-          <option value="n" <?php echo $ex10; ?>>否</option>
-        </select> 开启需要服务器支持，如果开启后出现日志无法访问的情况请关闭</td>
       </tr>
       <tr>
         <td align="right">开启页面Gzip压缩：<br /></td>

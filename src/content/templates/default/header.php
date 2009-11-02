@@ -17,7 +17,7 @@ require_once (getViews('module'));
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php">
-<link href="<?php echo TPL_PATH; ?>main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo TEMPLATE_URL; ?>main.css" rel="stylesheet" type="text/css" />
 
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wlwmanifest.xml" />
@@ -29,24 +29,26 @@ require_once (getViews('module'));
 <div class="main">
 	<div class="header">
 		<ul>
-			<li id="title"><h1><a href="./"><?php echo $blogname; ?></a></h1></li>
+			<li id="title"><h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1></li>
 			<li id="tagline"><?php echo $bloginfo; ?></li>
 		</ul>
 		<ul id="menus">
-			<li class="menus1"><a href="./">首页</a></li>
-			<?php foreach ($navibar as $key => $val):
+			<li class="menus1"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+			<?php 
+			$navibar = unserialize($navibar);
+			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
-			if (empty($val['url'])){$val['url'] = './?post='.$key;}
+			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
 			?>
 			<li class="menus2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 			<?php endforeach;?>
 			<?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
 			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-			<li class="menus2"><a href="./admin/write_log.php">写日志</a></li>
-			<li class="menus2"><a href="./admin/">管理中心</a></li>
-			<li class="menus2"><a href="./admin/?action=logout">退出</a></li>
+			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php else: ?>
-			<li class="menus2"><a href="./admin/">登录</a></li>
+			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="clear"></div>

@@ -42,14 +42,6 @@ if ($action == '')
 		$ex7="";
 		$ex8="selected=\"selected\"";
 	}
-	if($isurlrewrite=='y')
-	{
-		$ex9="selected=\"selected\"";
-		$ex10="";
-	}else{
-		$ex9="";
-		$ex10="selected=\"selected\"";
-	}
 	if($isgzipenable=='y')
 	{
 		$ex11="selected=\"selected\"";
@@ -79,7 +71,6 @@ if ($action == "mod_config")
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
-	'isurlrewrite' => isset($_POST['isurlrewrite']) ? addslashes($_POST['isurlrewrite']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
 	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
 	);
@@ -91,36 +82,6 @@ if ($action == "mod_config")
 	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
 		formMsg("开启评论验证码失败!服务器不支持该功能","configure.php",0);
-	}
-	if($getData['isurlrewrite'] == 'y')
-	{
-		if(stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
-		{
-			if(function_exists('apache_get_modules'))
-			{
-				$apache_mods = @apache_get_modules();
-				if(!empty($apache_mods))
-				{
-					$f = false;
-					foreach($apache_mods as $val)
-					{
-						if(strtolower($val) == 'mod_rewrite')
-						{
-							$f = true;
-							break;
-						}
-					}
-					if(!$f)
-					{
-						formMsg("开启URL优化失败!服务器未开启mod_rewrite模块","configure.php",0);
-					}
-				}
-			}
-			if(!file_exists(EMLOG_ROOT.'/.htaccess'))
-			{
-				formMsg("开启URL优化失败!未找到.htaccess文件,请将下载包内ext目录下该文件上传至根目录","configure.php",0);
-			}
-		}
 	}
 	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
 	{

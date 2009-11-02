@@ -50,10 +50,10 @@ if ( $m < 1)
 	$m = '12';
 	$year_down = $n_year - 1;
 }
-$url = './calendar.php?record=' . ($n_year - 1) . $n_month;//上一年份
-$url2 = './calendar.php?record=' . ($n_year + 1) . $n_month;//下一年份
-$url3 = './calendar.php?record=' . $year_down . $m;//上一月份
-$url4 = './calendar.php?record=' . $year_up . $mj;//下一月份
+$url = BLOG_URL.'calendar.php?record=' . ($n_year - 1) . $n_month;//上一年份
+$url2 = BLOG_URL.'calendar.php?record=' . ($n_year + 1) . $n_month;//下一年份
+$url3 = BLOG_URL.'calendar.php?record=' . $year_down . $m;//上一月份
+$url4 = BLOG_URL.'calendar.php?record=' . $year_up . $mj;//下一月份
 
 $calendar =
 "<table class=\"calendartop\" cellspacing=\"0\">
@@ -111,9 +111,9 @@ for ($i = 1;$i <= 6;$i++)
 			//有日志且为当天
 			if (@in_array($n_time,$logdate) && $n_time == $time)
 			{
-				$calendar .= "<td class=\"day\"><a href=\"./?record=$n_time\">". $r .'</a></td>';
+				$calendar .= '<td class="day"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $r .'</a></td>';
 			} elseif (@in_array($n_time,$logdate)) {
-				$calendar .= "<td class=\"day2\"><a href=\"./?record=$n_time\">". $r .'</a></td>';
+				$calendar .= '<td class="day2"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $r .'</a></td>';
 			} elseif ($n_time == $time){
 				$calendar .= '<td class="day">'. $r .'</td>';
 			} else {
@@ -130,9 +130,9 @@ for ($i = 1;$i <= 6;$i++)
 				$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 				if (@in_array($n_time,$logdate) && $n_time == $time)
 				{
-					$calendar .= "<td class=\"day\"><a href=\"./?record=$n_time\">". $t .'</a></td>';
+					$calendar .= '<td class="day"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $t .'</a></td>';
 				} elseif(@in_array($n_time,$logdate)){
-					$calendar .= "<td class=\"day2\"><a href=\"./?record=$n_time\">". $t .'</a></td>';
+					$calendar .= '<td class="day2"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $t .'</a></td>';
 				} elseif($n_time == $time) {
 					$calendar .= '<td class="day">'. $t .'</td>';
 				} else {

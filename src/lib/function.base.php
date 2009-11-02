@@ -15,11 +15,11 @@
  */
 function getViews($template, $ext = '.php')
 {
-	if (!is_dir(TPL_PATH))
+	if (!is_dir(TEMPLATE_PATH))
 	{
 		exit('The Template Path Error');
 	}
-	$path = TPL_PATH.$template.$ext;
+	$path = TEMPLATE_PATH.$template.$ext;
 	return $path;
 }
 
@@ -351,12 +351,18 @@ function cleanPage($beUrlRewrite = false)
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
 	if($beUrlRewrite)
 	{
-		if ($isurlrewrite == 'y' )
+		switch ($isurlrewrite)
 		{
-			$searchlink = "/href\=\"(index\.php|\.\/|\.\/index.php)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
-			$replacelink = "href=\"./$2-$3.html$4\"";
-			doAction('url_rewrite');
-			$output = preg_replace($searchlink, $replacelink, $output);
+			case '1':
+				$searchlink = "/href\=\"(.*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
+				$replacelink = "href=\"$1/$3-$4.html$5\"";
+				$output = preg_replace($searchlink, $replacelink, $output);
+				break;
+			case '2':
+				$searchlink = "/href\=\"(.*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
+				$replacelink = "href=\"$1/$3/$4$5\"";
+				$output = preg_replace($searchlink, $replacelink, $output);
+				break;
 		}
 	}
 	ob_end_clean();
@@ -381,7 +387,7 @@ function breakLog($content,$lid)
 {
 	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="./?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
 }
 

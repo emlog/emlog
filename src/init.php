@@ -36,13 +36,14 @@ define('ISLOGIN',	isLogin());
 define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//用户组: admin管理员, writer联合撰写人, visitor访客
 define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
 //全局配置
-define('BLOG_URL', $blogurl);//博客地址
-define('TEMPLATE_PATH', 'content/templates/');//前台模板路径
+define('BLOG_URL', 		$blogurl);//博客地址
+define('TPLS_URL', 		$blogurl.'content/templates/');//模板库地址
+define('TPLS_PATH', 	EMLOG_ROOT.'/content/templates/');//模板库路径
 define('IMG_ATT_MAX_W',	420);//图片附件缩略图最大宽
 define('IMG_ATT_MAX_H',	460);//图片附件缩略图最大高
-define('ICON_MAX_W', 140);//头像缩略图最大宽
-define('ICON_MAX_H', 220);//头像缩略图最大高
-define('EMLOG_VERSION','3.3.0');
+define('ICON_MAX_W', 	140);//头像缩略图最大宽
+define('ICON_MAX_H',	220);//头像缩略图最大高
+define('EMLOG_VERSION',	'3.3.0');
 //加载插件
 $active_plugins = unserialize($active_plugins);
 $emHooks = array();
