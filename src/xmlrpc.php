@@ -57,8 +57,8 @@ if (isset($_GET['rsd'])) {
 					<engineLink>http://emlog.net/</engineLink>
 					<homePageLink>' . $options_cache['blogurl'] . '</homePageLink>
 					<apis>
-						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="xmlrpc.php" />
-						<api name="Blogger" blogID="1" preferred="false" apiLink="xmlrpc.php" />
+						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="'. $options_cache['blogurl'] .'xmlrpc.php" />
+						<api name="Blogger" blogID="1" preferred="false" apiLink="'. $options_cache['blogurl'] .'xmlrpc.php" />
 					</apis>
 				</service>
 			</rsd>
@@ -306,7 +306,7 @@ function mw_getCategories($args) {
  * 读取日志信息
  */
 function mw_getPost($args) {
-	global $DB, $options_cache;
+	global $DB, $options_cache, $CACHE;
 	escape($args);
 
 	$post_ID = intval($args[0]);
@@ -319,13 +319,14 @@ function mw_getPost($args) {
 	define('UID', $user['uid']);
 	$post = $emBlog -> getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
-	$log_cache_tags = $options_cache['log_tags'];
+	$log_cache_tags = $CACHE -> readCache('log_tags');
 	$tags = '';
-	if (!empty($log_cache_tags[$post_ID])) {
-		foreach ($log_cache_tags[$post_ID] as $tag) {
-			$tags .= $value['tagname'] . ',';
-		} 
-	} 
+	if (!empty($log_cache_tags[$post['gid']])) {
+		foreach ($log_cache_tags[$post['gid']] as $tag) {
+			$tags[] = $tag['tagname'];
+		}
+		$tags = implode(',', $tags);
+	}
 	$emSort = new emSort($DB);
 	$sort_name = $emSort -> getSortName($post['sortid']);
 
@@ -341,6 +342,12 @@ function mw_getPost($args) {
 						</data>
 					</array>
 				</value>
+		</member>
+		<member>
+			<name>mt_keywords</name>
+			<value>
+				<string>$tags</string>
+			</value>
 		</member>
 		<member>
 			<name>dateCreated</name>
@@ -380,8 +387,9 @@ function mw_getPost($args) {
 } 
 
 function mw_getRecentPosts($args) {
-	global $DB;
+	global $DB, $CACHE;
 	escape($args);
+	
 	$username = $args[1];
 	$password = $args[2];
 	$num_posts = intval($args[3]);
@@ -394,11 +402,19 @@ function mw_getRecentPosts($args) {
 
 	$xml = '';
 	$recent_posts = array();
+	$log_cache_tags = $CACHE -> readCache('log_tags');
 	while ($post = $DB -> fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
 		$post['date'] = getIso($post['date']);
-
+		
+		$tags = '';
+		if (!empty($log_cache_tags[$post['gid']])) {
+			foreach ($log_cache_tags[$post['gid']] as $tag) {
+				$tags[] = $tag['tagname'];
+			}
+			$tags = implode(',', $tags);
+		} 
 		$xml .= "<value>
 				<struct>
 				<member>
@@ -448,6 +464,12 @@ function mw_getRecentPosts($args) {
 				<member>
 					<name>link</name>
 					<value><string>http://emlog.net/blog</string></value>
+				</member>
+				<member>
+					<name>mt_keywords</name> 
+						<value>
+							<string>$tags</string> 
+						</value>
 				</member>
 			</struct></value>";
 	} 
