@@ -53,7 +53,8 @@ if ($action == 'update')
 	}
 	if (!@fwrite($fp, $rw_rule))
 	{
-		header("Location: ./permalink.php?activated=error");
+		header("Location: ./permalink.php?error=true");
+		exit;
 	}
 	fclose($fp);
 

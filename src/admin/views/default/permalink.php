@@ -2,7 +2,9 @@
 <script>
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<div class=containertitle>
+<?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<?php if(isset($_GET['error'])):?><span class="error">保存失败：配置文件不可写</span><?php endif;?>
 <div class=containertitle><a href="./configure.php">基本设置</a> <a href="./permalink.php">固定连接</a></div>
 <div class=line></div>
 <form action="permalink.php?action=update" method="post">

@@ -312,7 +312,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
