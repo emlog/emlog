@@ -24,7 +24,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 
 	$emBlog = new emBlog($DB);
 
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$page = isset($_GET['page']) ? abs(intval($_GET['page'])) : 1;
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
 	$tag = isset($_GET['tag']) ? addslashes(strval(trim($_GET['tag']))) : '';
 	$sortid = isset($_GET['sort']) ? intval($_GET['sort']) : '';
@@ -58,13 +58,13 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page';
-	} elseif($sortid) {
+	} elseif(isset($sort_cache[$sortid])) {
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL."?sort=$sortid&page";
-	} elseif($author) {
+	} elseif(isset($user_cache[$author])) {
 		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
 		$sqlSegment = "and author=$author order by date desc";
 		$lognum = $user_cache[$author]['lognum'];
