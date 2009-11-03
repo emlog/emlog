@@ -251,7 +251,7 @@ function mw_editPost($args) {
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag($DB);
-		$emTag -> addTag($data['mt_keywords'], $id);
+		$emTag -> updateTag($data['mt_keywords'], $id);
 	} 
 	// 更新缓存
 	$CACHE -> mc_logtags();

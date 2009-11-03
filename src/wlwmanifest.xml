@@ -7,8 +7,6 @@
 	</options>
 	<weblog>
 		<serviceName>Emlog</serviceName>
-		<imageUrl>images/wlw/wp-icon.png</imageUrl>
-		<watermarkImageUrl>images/wlw/wp-watermark.png</watermarkImageUrl>
 		<homepageLinkText>查看网站</homepageLinkText>
 		<adminLinkText>后台管理</adminLinkText>
 		<adminUrl>
@@ -26,7 +24,6 @@
 	<button>
 		<id>0</id>
 		<text>编辑评论</text>
-		<imageUrl>images/wlw/wp-comments.png</imageUrl>
 		<clickUrl>
 			<![CDATA[ 
 				{blog-postapi-url}/../admin/comment.php
