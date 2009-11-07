@@ -110,3 +110,5 @@ textarea{font-size:12px}
 #adm_plugin_list img{cursor:pointer}
 #backup{display:none;margin:0px 0px 20px 20px;}
 .title_des{font-size:12px; color:#999999; margin-left:5px;}
+.des{margin:5px 10px; width:500px;background-color: #F5FEE7;padding:5px 10px; border:1px #CCCCCC solid}
+.permalink_url{color: #939393; letter-spacing:2px; padding:5px;}
