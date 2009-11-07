@@ -16,6 +16,9 @@ function getChecked(node) {
 }
 function em_confirm (id, property) {
 	switch (property){
+		case 'comment':
+		var urlreturn="comment.php?action=del&id="+id;
+		var msg = "你确定要删除该评论吗？";break;
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
 		var msg = "你确定要删除该链接吗？";break;

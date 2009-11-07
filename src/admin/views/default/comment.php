@@ -1,13 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script type='text/javascript'>
-$(document).ready(function(){
-	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
-});
-setTimeout(hideActived,2600);
-</script>
 <div class=containertitle><b>评论管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
@@ -38,8 +29,8 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   	<thead>
       <tr>
         <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="380"><b>内容</b></th>
-        <th width="120"><b>时间</b></th>
+        <th width="340"><b>内容</b></th>
+		<th width="300"><b>评论者</b></th>
         <th width="260"><b>所属日志</b></th>
       </tr>
     </thead>
@@ -48,8 +39,8 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
 	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
-	$ip = !empty($value['ip']) ? "({$value['ip']})" : '';
-	$mail = !empty($value['mail']) ? "<br />邮箱：{$value['mail']}" : '';
+	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
+	$ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
 	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
 	$value['content'] = subString(str_replace('<br>','',$value['content']),0,50);
 	$value['title'] = subString($value['title'],0,42);
@@ -57,10 +48,19 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	?>
      <tr>
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
-        <br />来自：<?php echo $poster;?> <?php echo $ip;?> <?php echo $mail;?> 
-        </td>
-        <td><?php echo $value['date']; ?></td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
+        <br /><?php echo $value['date']; ?>
+		<span style="display:none; margin-left:20px;">    
+		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
+		<?php if($value['hide'] == 'y'):?>
+		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
+		<?php else: ?>
+		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">屏蔽</a>
+		<?php endif;?>
+		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
+		</span>
+		</td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
         <td><a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach; ?>
@@ -76,6 +76,13 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     <div class="page">(有<?php echo $cmnum; ?>条评论)<?php echo $pageurl; ?></div> 
 </form>
 <script>
+$(document).ready(function(){
+	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_comment_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+});
+setTimeout(hideActived,2600);
 function commentact(act){
 	if (getChecked('ids') == false) {
 		alert('请选择要操作的评论');

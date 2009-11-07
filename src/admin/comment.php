@@ -11,7 +11,6 @@ require_once(EMLOG_ROOT.'/model/class.comment.php');
 
 $emComment = new emComment($DB);
 
-//加载评论管理页面
 if($action == '')
 {
 	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
@@ -32,7 +31,33 @@ if($action == '')
 	include getViews('footer');
 	cleanPage();
 }
-//操作评论
+if ($action== 'del')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->delComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./comment.php?active_del=true");
+}
+if($action=='hide')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->hideComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./comment.php?active_hide=true");
+}
+if($action=='show')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->showComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./comment.php?active_show=true");
+}
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -73,7 +98,6 @@ if($action== 'admin_all_coms')
 		header("Location: ./comment.php?active_show=true");
 	}
 }
-//回复评论
 if ($action== 'reply_comment')
 {
 	include getViews('header');
