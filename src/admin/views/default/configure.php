@@ -84,7 +84,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
           <option value="y" <?php echo $ex5; ?>>是</option>
           <option value="n" <?php echo $ex6; ?>>否</option>
         </select>
-		开启后评论需通过审核才能显示 </td>
+		</td>
       </tr>
 	  <tr>
         <td align="right">开启引用通告：<br /></td>
