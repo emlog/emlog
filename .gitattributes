@@ -226,6 +226,7 @@ src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
 src/lib/js/jquery/plugin-cookie.js -text
 src/lib/js/jquery/plugin-interface.js -text
+src/m/index.php -text
 src/m/view/comment.php -text
 src/m/view/footer.php -text
 src/m/view/header.php -text
