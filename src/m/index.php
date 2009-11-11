@@ -12,7 +12,7 @@ $isgzipenable = 'n';//手机浏览关闭gzip压缩
 $index_lognum = 5;
 $index_twnum = 5;
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/wap/view/');//wap模板路径
+define('TEMPLATE_PATH', EMLOG_ROOT.'/m/view/');//模板路径
 
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $blogname = $options_cache['blogname'];
