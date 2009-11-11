@@ -1,118 +1,108 @@
 <?php
 /**
- * 手机 wap
+ * mobile 版本
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.3.0
  * $Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
 require_once('../common.php');
-$isgzipenable = 'n';//wap浏览关闭gzip压缩
-$tem = time();
-if(!isset($action) || empty($action))
+
+$isgzipenable = 'n';//手机浏览关闭gzip压缩
+$index_lognum = 5;
+$index_twnum = 5;
+
+define('TEMPLATE_PATH', EMLOG_ROOT.'/wap/view/');//wap模板路径
+
+$logid = isset($_GET['post']) ? intval($_GET['post']) : '';
+$blogname = $options_cache['blogname'];
+$blogdes = $options_cache['bloginfo'];
+
+if (empty($action) && empty($logid))
 {
-	wap_header($options_cache['blogname']);
-	echo '<p>'.$options_cache['bloginfo'].'</p>';
-	echo "<p>\n";
-	echo "<a href=\"./?action=logs&amp;tem=$tem\">浏览日志</a><br />\n";
-	echo "<a href=\"./?action=twitter&amp;tem=$tem\">博主唠叨</a><br />\n";
-	echo "<a href=\"./?action=coms&amp;tem=$tem\">最新评论</a><br />\n";
-	echo "<br />\n";
-	if(ROLE == 'admin')
-	{
-		echo "欢迎你,你已登录<br />\n";
-		echo "<a href=\"./?action=addtw\">唠叨两句</a><br />\n";
-		echo "<a href=\"./?action=logout\">退出</a><br />\n";
-	}else {
-		echo "<a href=\"./?action=waplogin\">登录</a><br />\n";
-	}
-	echo "<br />\n";
-	echo "日志({$sta_cache['lognum']})评论({$sta_cache['comnum']})引用({$sta_cache['tbnum']})<br />今日访问({$viewcount_day})总访问量({$viewcount_all})<br />\n";
-	echo "</p>\n";
-	wap_footer();
-}
-//显示日志列表 blog list
-if ($action == 'logs')
-{
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-	if ($page)
-	{
-		$start_limit = ($page - 1) * $index_lognum;
-		$id = ($page-1) * $index_lognum;
-	}else{
-		$start_limit = 0;
-		$page = 1;
-		$id = 0;
-	}
-	$sql = " SELECT * FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog' ORDER BY top DESC ,date DESC LIMIT $start_limit, $index_lognum";
+	require_once(EMLOG_ROOT.'/model/class.blog.php');
+
+	$emBlog = new emBlog($DB);
+	$page = isset($_GET['page']) ? abs(intval($_GET['page'])) : 1;
+	$sqlSegment ="ORDER BY top DESC ,date DESC";
 	$lognum = $sta_cache['lognum'];
-	$pageurl = './?action=logs&amp;page';
-	$query = $DB->query($sql);
-	while($row = $DB->fetch_array($query))
-	{
-		$row['post_time'] = date('Y-n-j G:i l',$row['date']);
-		$row['log_title'] = htmlspecialchars(trim($row['title']));
-		$row['logid']	  = $row['gid'];
-		$log[] = $row;
-	}
+	$pageurl = '?page';
+	
+	$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
-	wap_header($options_cache['blogname']);
-	echo '<p>';
-	if(isset($log))
-	{
-		foreach ($log as $val)
-		{
-			echo '<a href="./?action=dis&amp;id='.$val['logid'].'">'.$val['log_title'].'</a>('.$val['views'].'/'.$val['comnum'].')<br />';
-		}
-	}else{
-		echo 'No logs yet!';
-	}
-	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">首页</a></p>";
-	wap_footer();
+
+	include getViews('header');
+	include getViews('log');
+	include getViews('footer');
+	
 }
 //显示日志
-if ($action == 'dis')
+if (!empty($logid))
 {
-	isset($_GET['id']) ? $logid = intval($_GET['id']) : emMsg('提交参数错误','./');
-	$show_log = @$DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."blog WHERE gid='$logid' AND hide='n' ")
-	OR emMsg('不存在该日志','./');
-	if(!empty($show_log['password']))
+	require_once(EMLOG_ROOT.'/model/class.blog.php');
+	require_once(EMLOG_ROOT.'/model/class.comment.php');
+
+	$emBlog = new emBlog($DB);
+	$emComment = new emComment($DB);
+
+	$logData = $emBlog->getOneLogForHome($logid);
+	if($logData === false)
 	{
-		$logpwd = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-		AuthPassword($show_log['password'], $logpwd, $show_log['gid']);
+		exit('不存在该条目');
 	}
-	$DB->query("UPDATE ".DB_PREFIX."blog SET views=views+1 WHERE gid='".$show_log['gid']."'");
+	extract($logData);
+	if(!empty($password))
+	{
+		$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
+		$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
+		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
+	}
+	$blogtitle = $log_title.' - '.$blogname;
+	//comments
+	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
+	$comments = $emComment->getComments(0, $logid, 'n');
 
-	$log_title  = htmlspecialchars($show_log['title']);
-	$log_author = $user_cache[$show_log['author']]['name'];
-	$post_time  = date('Y-n-j G:i l',$show_log['date']);
-	$logid	    = intval($show_log['gid']);
-	$log_content = rmBreak($show_log['content']);
-
-	wap_header($log_title);
-	echo "<p>发布时间：$post_time <br />作者：$log_author <br /></p>";
-	echo "<p>$log_content</p>";
-	echo "<p><a href=\"./?tem=$tem\">首页</a> <a href=\"./?action=logs\">返回日志列表</a></p>";
-
-	wap_footer();
+	$emBlog->updateViewCount($logid);
+	include getViews('header');
+	include getViews('single');
+	include getViews('footer');
 }
-if($action == 'coms')
+//发表评论
+if ($action == 'addcom')
 {
-	wap_header($options_cache['blogname']);
-	if(isset($com_cache) && !empty($com_cache))
+	require_once(EMLOG_ROOT.'/model/class.comment.php');
+	$emComment = new emComment($DB);
+
+	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
+	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
+	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+
+	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
+
+	if($ret === 0)
 	{
-		foreach($com_cache as $value)
-		{
-			echo "{$value['name']}<br />{$value['content']}<br />";
-		}
-	}else{
-		echo 'No comments yet!';
+		$CACHE->mc_sta();
+		$CACHE->mc_user();
+		$CACHE->mc_comment();
+		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);
+	}elseif ($ret === 1){
+		$CACHE->mc_sta();
+		$CACHE->mc_user();
+		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");
 	}
-	echo "<p><a href=\"./?tem=$tem\">首页</a></p>";
-	wap_footer();
 }
-//twitter list
-if ($action == 'twitter')
+//最新评论
+if($action == 'com')
+{
+	include getViews('header');
+	include getViews('comment');
+	include getViews('footer');
+}
+//twitter
+if ($action == 'tw')
 {
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	if ($page)
@@ -126,7 +116,7 @@ if ($action == 'twitter')
 	}
 	$sql =" SELECT * FROM ".DB_PREFIX."twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
 	$twnum = $sta_cache['twnum'];
-	$pageurl= './?action=twitter&amp;page';
+	$pageurl= './?action=tw&page';
 	$query = $DB->query($sql);
 	while($row = $DB->fetch_array($query))
 	{
@@ -136,20 +126,10 @@ if ($action == 'twitter')
 	}
 	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
 
-	wap_header($options_cache['blogname']);
-	echo '<p>';
-	if(isset($tws))
-	{
-		foreach ($tws as $val)
-		{
-			$doact = ROLE == 'admin' ? "<a href=\"./?action=del_tw&amp;id=".$val['id']."\">删除</a>" : '';
-			echo $val['content'].$doact.'('.$val['date'].')<br />';
-		}
-	}else{
-		echo 'No twitter yet!';
-	}
-	echo "</p><p>$page_url <br /><a href=\"./?tem=$tem\">首页</a></p>";
-	wap_footer();
+	include getViews('header');
+	include getViews('twitter');
+	include getViews('footer');
+	
 }
 if ($action == 'addtw')
 {
@@ -161,7 +141,7 @@ if ($action == 'addtw')
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"?tem=$temp\">返回主页</a></p>\n";
 	wap_footer();
 }
 //新增 twitter
@@ -197,7 +177,7 @@ if ($action == 'waplogin')
 	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
 	echo "</go></anchor>\n";
 	echo "</p>\n";
-	echo "<p><a href=\"?tem=$tem\">返回主页</a></p>\n";
+	echo "<p><a href=\"?tem=$temp\">返回主页</a></p>\n";
 	wap_footer();
 }
 //登录验证
@@ -210,9 +190,9 @@ if ($action == 'dowaplogin')
 	if (checkUser($username, $password, '', 'n') === true)
 	{
 		setAuthCookie($username, $ispersis);
-		header("Location: ?tem=$tem");
+		header("Location: ?tem=$temp");
 	}else{
-		header("Location: ?action=waplogin&amp;tem=$tem");
+		header("Location: ?action=waplogin&amp;tem=$temp");
 	}
 }
 //登出
@@ -222,24 +202,7 @@ if ($action == 'logout')
 	session_unset();
 	session_destroy();
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	header("Location: ?tem=$tem");
-}
-//WML 头
-function wap_header($title) {
-	header('Content-type: text/vnd.wap.wml; charset=utf-8');
-	echo "<?xml version=\"1.0\"?>\n";
-	echo "<!DOCTYPE wml PUBLIC \"-//WAPFORUM//DTD WML 1.1//EN\" \"http://www.wapforum.org/ DTD/wml_1.1.xml\">\n\n";
-	echo "<wml>\n";
-	echo "<head>\n";
-	echo "<meta http-equiv=\"cache-control\" content=\"max-age=180,private\" />\n";
-	echo "</head>\n";
-	echo "<card title=\"".$title."\">\n";
-}
-//WML 尾
-function wap_footer() {
-	echo "</card>\n";
-	echo "</wml>\n";
-	exit;
+	header("Location: ?tem=$temp");
 }
 //验证日志密码
 function authPassword($pwd, $pwd2, $blogid)
