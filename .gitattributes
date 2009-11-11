@@ -226,6 +226,13 @@ src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
 src/lib/js/jquery/plugin-cookie.js -text
 src/lib/js/jquery/plugin-interface.js -text
+src/m/view/comment.php -text
+src/m/view/footer.php -text
+src/m/view/header.php -text
+src/m/view/log.php -text
+src/m/view/single.php -text
+src/m/view/twitter.php -text
+src/m/view/write.php -text
 src/model/class.blog.php -text svn_keywords=Id
 src/model/class.comment.php -text svn_keywords=Id
 src/model/class.link.php -text svn_keywords=Id
@@ -238,14 +245,6 @@ src/robots.txt -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
 src/twitter.php -text svn_keywords=Id
-src/wap/index.php -text
-src/wap/view/comment.php -text
-src/wap/view/footer.php -text
-src/wap/view/header.php -text
-src/wap/view/log.php -text
-src/wap/view/single.php -text
-src/wap/view/twitter.php -text
-src/wap/view/write.php -text
 src/wlwmanifest.xml -text
 src/xmlrpc.php -text svn_keywords=Id
 update/old_version/up2.0.0to2.2.0.php -text
