@@ -67,6 +67,27 @@ if (!empty($logid))
         include getViews('single');
         include getViews('footer');
 }
+//写日志页
+if (ISLOGIN === true && $action == 'write')
+{
+	  include getViews('header');
+	  include getViews('write');
+      include getViews('footer');  
+}
+//保存日志
+if (ISLOGIN === true && $action == 'savelog')
+{
+      include getViews('header');
+      include getViews('write');
+      include getViews('footer');  
+}
+//删除日志
+if (ISLOGIN === true && $action == 'dellog')
+{
+      include getViews('header');
+      include getViews('write');
+      include getViews('footer');  
+}
 //发表评论
 if ($action == 'addcom')
 {
@@ -101,7 +122,35 @@ if($action == 'com')
         include getViews('comment');
         include getViews('footer');
 }
-//twitter
+//删除评论
+if($action == 'delcom')
+{
+        include getViews('header');
+        include getViews('comment');
+        include getViews('footer');
+}
+//审核评论
+if($action == 'showcom')
+{
+        include getViews('header');
+        include getViews('comment');
+        include getViews('footer');
+}
+//屏蔽评论
+if($action == 'hidecom')
+{
+        include getViews('header');
+        include getViews('comment');
+        include getViews('footer');
+}
+//回复评论
+if($action == 'replaycom')
+{
+        include getViews('header');
+        include getViews('comment');
+        include getViews('footer');
+}
+//显示碎语
 if ($action == 'tw')
 {
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -131,7 +180,8 @@ if ($action == 'tw')
         include getViews('footer');
        
 }
-if ($action == 'addtw')
+//写碎语页
+if ($action == 'writet')
 {
         wap_header('Twitter');
         echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
@@ -144,8 +194,8 @@ if ($action == 'addtw')
         echo "<p><a href=\"?tem=$temp\">返回主页</a></p>\n";
         wap_footer();
 }
-//新增 twitter
-if(ROLE == 'admin' && $action == 'add_tw')
+//新增碎语
+if ($action == 'writet')
 {
         $content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
         if(!empty($content))
@@ -156,7 +206,7 @@ if(ROLE == 'admin' && $action == 'add_tw')
                 header("Location: ?action=twitter&amp;tem=$time");
         }
 }
-//删除 twitter
+//删除碎语
 if(ROLE == 'admin' && $action == 'del_tw')
 {
         $twid = isset($_GET['id']) ? intval($_GET['id']) : '';
@@ -165,20 +215,12 @@ if(ROLE == 'admin' && $action == 'del_tw')
         $CACHE->mc_sta();
         header("Location: ?action=twitter");
 }
-if ($action == 'waplogin')
+//登录页面
+if ($action == 'login')
 {
-        wap_header('用户登录');
-        echo "<p>用户:<input name=\"user\" type=\"text\"  format=\"M*m\"/></p>\n";
-        echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
-        echo "<p><anchor title=\"submit\">登录\n";
-        echo "<go href=\"./?action=dowaplogin\" method=\"post\">\n";
-        echo "<postfield name=\"user\" value=\"$(user)\" />\n";
-        echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
-        echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
-        echo "</go></anchor>\n";
-        echo "</p>\n";
-        echo "<p><a href=\"?tem=$temp\">返回主页</a></p>\n";
-        wap_footer();
+        include getViews('header');
+        include getViews('login');
+        include getViews('footer');
 }
 //登录验证
 if ($action == 'dowaplogin')
@@ -195,14 +237,11 @@ if ($action == 'dowaplogin')
                 header("Location: ?action=waplogin&amp;tem=$temp");
         }
 }
-//登出
+//退出
 if ($action == 'logout')
 {
-        session_start();
-        session_unset();
-        session_destroy();
         setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-        header("Location: ?tem=$temp");
+        header("Location: ./");
 }
 //验证日志密码
 function authPassword($pwd, $pwd2, $blogid)
