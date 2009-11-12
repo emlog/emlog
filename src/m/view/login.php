@@ -1,18 +1,16 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./" id="active">日志</a> 
+<a href="./">日志</a> 
 <a href="./?action=tw">碎语</a> 
 <a href="./?action=com">评论</a> 
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=writet">写碎语</a> 
 <a href="./?action=logout">退出</a>
 <?php else:?>
-<a href="./?action=login">登录</a>
+<a href="./?action=login" id="active">登录</a>
 <?php endif;?>
 </div>
-<div id="login">
-	<form method="post" action="./?action=login">
+<div id="m">
+	<form method="post" action="./?action=auth">
 	<div class="login-main">
 	    <div class="login-input">
 	        <span>用户名</span>

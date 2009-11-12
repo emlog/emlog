@@ -4,14 +4,12 @@
 <a href="./?action=tw">碎语</a> 
 <a href="./?action=com">评论</a> 
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=writet">写碎语</a> 
 <a href="./?action=logout">退出</a>
 <?php else:?>
 <a href="./?action=login">登录</a>
 <?php endif;?>
 </div>
-<div id="post">
+<div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
 	<div class="postinfo"><?php echo date('Y-n-j G:i', $date); ?></div>
 	<div class="postcont"><?php echo $log_content; ?></div>
