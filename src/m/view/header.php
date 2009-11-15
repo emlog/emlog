@@ -18,26 +18,22 @@ a:link,a:visited,a:hover,a:active {text-decoration: none;color: #333;}
 #blogdes{ color:#FFFFFF; margin:5px 0px 0px 0px;}
 #navi{background:#B2D281; padding:3px 0px; text-align:right;}
 #active{font-weight:bold; font-size:16px;}
-
-.logtitle{ font-weight:bold; margin:10px 0px 5px 0px;}
-.logtitle a:link, a:active,a:visited,a:hover{color:#333360; text-decoration:none}
-.loginfo{ font-size:12px; border-bottom:#CCCCCC dotted 1px; text-align:right; color:#666666; margin:5px 0px; padding:5px;}
-
+.title{ font-weight:bold; margin:10px 0px 5px 0px;}
+.title a:link, a:active,a:visited,a:hover{color:#333360; text-decoration:none}
+.info{ font-size:12px;color:#999999;}
+.info2{ font-size:12px; border-bottom:#CCCCCC dotted 1px; text-align:right; color:#666666; margin:5px 0px; padding:5px;}
 .posttitle{ font-size:16px; color:#333; font-weight:bold;}
 .postinfo{ font-size:12px; color: #999999;}
 .postcont{ border-bottom:1px solid #DDDDDD; padding:12px 0px; margin-bottom:10px;}
 .t{font-size:16px; font-weight:bold;}
 .c{ padding:10px;}
 .l{border-bottom:1px solid #DDDDDD; padding:10px 0px;}
-
 .twcont{ color:#333; padding-top:12px;}
-.twinfo{text-align:right; color:#999999; border-bottom:1px solid #DDDDDD; padding:8px 0px;}
-
-.comcont{color:#333; padding-top:12px;}
-.cominfo{text-align:right; color:#999999; border-bottom:1px solid #DDDDDD; padding:8px 0px;}
-
+.twinfo{text-align:right; color:#999999; border-bottom:1px solid #DDDDDD; padding:8px 0px; font-size:12px;}
+.comcont{color:#333; padding:6px 0px;}
+.reply{ color:#FF3300; font-size:12px;}
+.cominfo{text-align:right; color:#999999; border-bottom:1px solid #DDDDDD; padding:8px 0px;font-size:12px;}
 .texts{ width:92%; height:200px;}
-
 </style>
 </head>
 <body>

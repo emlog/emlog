@@ -11,15 +11,11 @@
 </div>
 <div id="m">
 	<form method="post" action="./?action=auth">
-	<div class="login-main">
-	    <div class="login-input">
-	        <span>用户名</span>
-	        <div><input type="text" name="user" id="user" /></div>
-	        <span>密码</span>
-	        <div><input type="password" name="pw" id="pw" /></div>
-	        <?php echo $ckcode; ?>
-	    </div>
-	    <div class="button"><input type="submit" value=" 登 录" class="submit"></div>
-	</div>
+		用户名<br />
+	    <input type="text" name="user" id="user" /><br />
+	    密码<br />
+	    <input type="password" name="pw" id="pw" /><br />
+	    <?php echo $ckcode; ?>
+	    <br /><input type="submit" value=" 登 录" class="submit">
 	</form>
 </div>

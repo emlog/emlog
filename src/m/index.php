@@ -13,12 +13,14 @@ $index_lognum = 5;
 $index_twnum = 5;
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/'); //模板路径
+define ('ADMIN_PERPAGE_NUM', 5);
 
 
 $logid = isset ($_GET ['post']) ? intval ($_GET ['post']) : '';
 $blogname = $options_cache ['blogname'];
 $blogdes = $options_cache ['bloginfo'];
 
+//首页
 if (empty ($action) && empty ($logid)) {
 	require_once (EMLOG_ROOT . '/model/class.blog.php');
 	
@@ -34,7 +36,7 @@ if (empty ($action) && empty ($logid)) {
 	include getViews ('log');
 	include getViews ('footer');
 }
-//显示日志
+//日志
 if (! empty ($logid)) {
 	require_once (EMLOG_ROOT . '/model/class.blog.php');
 	require_once (EMLOG_ROOT . '/model/class.comment.php');
@@ -44,13 +46,13 @@ if (! empty ($logid)) {
 	
 	$logData = $emBlog->getOneLogForHome ($logid);
 	if ($logData === false) {
-		exit ('不存在该条目');
+		mMsg ('不存在该条目', './');
 	}
 	extract ($logData);
 	if (! empty ($password)) {
 		$postpwd = isset ($_POST ['logpwd']) ? addslashes (trim ($_POST ['logpwd'])) : '';
 		$cookiepwd = isset ($_COOKIE ['em_logpwd_' . $logid]) ? addslashes (trim ($_COOKIE ['em_logpwd_' . $logid])) : '';
-		$emBlog->AuthPassword ($postpwd, $cookiepwd, $password, $logid);
+		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	$blogtitle = $log_title . ' - ' . $blogname;
 	//comments
@@ -62,7 +64,6 @@ if (! empty ($logid)) {
 	include getViews ('single');
 	include getViews ('footer');
 }
-//写日志页
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
 	require_once(EMLOG_ROOT.'/model/class.sort.php');
@@ -95,7 +96,6 @@ if (ISLOGIN === true && $action == 'write') {
 	include getViews ('write');
 	include getViews ('footer');
 }
-//保存日志
 if (ISLOGIN === true && $action == 'savelog') {
 	require_once(EMLOG_ROOT.'/model/class.blog.php');
 	require_once(EMLOG_ROOT.'/model/class.tag.php');
@@ -144,13 +144,12 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$CACHE->mc_sta();
 	header ("Location: ./");
 }
-//删除日志
 if (ISLOGIN === true && $action == 'dellog') {
 	include getViews ('header');
 	include getViews ('write');
 	include getViews ('footer');
 }
-//发表评论
+//评论
 if ($action == 'addcom') {
 	require_once (EMLOG_ROOT . '/model/class.comment.php');
 	$emComment = new emComment ($DB);
@@ -168,44 +167,83 @@ if ($action == 'addcom') {
 		$CACHE->mc_sta ();
 		$CACHE->mc_user ();
 		$CACHE->mc_comment ();
-		emMsg ('评论发表成功', BLOG_URL . "?post=$gid#comment", true);
+		header("Location: ./?post=$gid");
 	} elseif ($ret === 1) {
 		$CACHE->mc_sta ();
 		$CACHE->mc_user ();
-		emMsg ('评论发表成功，请等待管理员审核', BLOG_URL . "?post=$gid");
+		mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
 	}
 }
-//最新评论
 if ($action == 'com') {
+	if(ISLOGIN === true)
+	{
+		$hide = '';
+		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	
+		require_once (EMLOG_ROOT . '/model/class.comment.php');
+		$emComment = new emComment ($DB);
+	
+		$comment = $emComment->getComments(1, null, $hide, $page);
+		$cmnum = $emComment->getCommentNum(null, $hide);
+		$pageurl =  pagination($cmnum, 5, $page, "./?action=com&page");
+	}else{
+		$comment = $com_cache;
+		$pageurl = '';
+	}
 	include getViews ('header');
 	include getViews ('comment');
 	include getViews ('footer');
 }
-//删除评论
-if ($action == 'delcom') {
-	include getViews ('header');
-	include getViews ('comment');
-	include getViews ('footer');
+if (ISLOGIN === true && $action == 'delcom') {
+	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	$emComment = new emComment ($DB);
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->delComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./?action=com");
 }
-//审核评论
-if ($action == 'showcom') {
-	include getViews ('header');
-	include getViews ('comment');
-	include getViews ('footer');
+if (ISLOGIN === true && $action == 'showcom') {
+	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	$emComment = new emComment ($DB);
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->showComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./?action=com");
 }
-//屏蔽评论
-if ($action == 'hidecom') {
-	include getViews ('header');
-	include getViews ('comment');
-	include getViews ('footer');
+if (ISLOGIN === true && $action == 'hidecom') {
+	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	$emComment = new emComment ($DB);
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->hideComment($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_comment();
+	header("Location: ./?action=com");
 }
-//回复评论
-if ($action == 'replaycom') {
-	include getViews ('header');
-	include getViews ('comment');
-	include getViews ('footer');
+if (ISLOGIN === true && $action == 'reply') {
+	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	$emComment = new emComment ($DB);
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$commentArray = $emComment->getOneComment($id);
+	extract($commentArray);
+	include getViews('header');
+	include getViews('reply');
+	include getViews('footer');
 }
-//显示碎语
+if (ISLOGIN === true && $action == 'dorep') {
+	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	$emComment = new emComment ($DB);
+	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
+	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
+	$emComment->replyComment($id, $reply);
+	$CACHE->mc_comment();
+	header("Location: ./?action=com");
+}
+//碎语
 if ($action == 'tw') {
 	$page = isset ($_GET ['page']) ? intval ($_GET ['page']) : 1;
 	if ($page) {
@@ -232,36 +270,23 @@ if ($action == 'tw') {
 	include getViews ('footer');
 
 }
-//写碎语页
-if ($action == 'writet') {
-	wap_header ('Twitter');
-	echo "<p>内容:<br /><input name=\"tw\" type=\"text\"  format=\"M*m\"/></p>\n";
-	echo "<p><anchor title=\"submit\">提交\n";
-	echo "<go href=\"./?action=add_tw\" method=\"post\">\n";
-	echo "<postfield name=\"tw\" value=\"$(tw)\" />\n";
-	echo "<postfield name=\"do\" value=\"dowaplogin\" />\n";
-	echo "</go></anchor>\n";
-	echo "</p>\n";
-	echo "<p><a href=\"?tem=$temp\">返回主页</a></p>\n";
-	wap_footer ();
-}
-//新增碎语
-if ($action == 'writet') {
-	$content = isset ($_POST ['tw']) ? addslashes ($_POST ['tw']) : '';
-	if (! empty ($content)) {
-		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,date) VALUES('$content','$localdate')");
+if (ISLOGIN === true && $action == 't') {
+	$t = isset ($_POST ['t']) ? addslashes ($_POST ['t']) : '';
+	if (! empty ($t)) {
+		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,date) VALUES('$t','$localdate')");
 		$CACHE->mc_twitter ();
 		$CACHE->mc_sta ();
-		header ("Location: ?action=twitter&amp;tem=$time");
+		header ("Location: ./?action=tw");
+	}else{
+		header ("Location: ./");
 	}
 }
-//删除碎语
-if (ROLE == 'admin' && $action == 'del_tw') {
-	$twid = isset ($_GET ['id']) ? intval ($_GET ['id']) : '';
-	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$twid");
+if (ISLOGIN === true && $action == 'delt') {
+	$id = isset ($_GET ['id']) ? intval ($_GET ['id']) : '';
+	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id");
 	$CACHE->mc_twitter ();
 	$CACHE->mc_sta ();
-	header ("Location: ?action=twitter");
+	header ("Location: ./?action=tw");
 }
 if ($action == 'login') {
 	$login_code == 'y' ? $ckcode = "<span>验证码</span>
@@ -288,20 +313,27 @@ if ($action == 'logout') {
 	setcookie (AUTH_COOKIE_NAME, ' ', time () - 31536000, '/');
 	header ("Location: ./");
 }
-//验证日志密码
-function authPassword($pwd, $pwd2, $blogid) {
-	if ($pwd !== $pwd2) {
-		wap_header ('输入日志访问密码');
-		echo "<p>密码:<input name=\"pw\" type=\"password\"  format=\"M*m\"/></p>\n";
-		echo "<p><anchor title=\"submit\">进入..\n";
-		echo "<go href=\"./?action=dis&amp;id=" . $blogid . "\" method=\"post\">\n";
-		echo "<postfield name=\"pw\" value=\"$(pw)\" />\n";
-		echo "<postfield name=\"do\" value=\"\" />\n";
-		echo "</go></anchor>\n";
-		echo "</p>\n";
-		echo "<p><a href=\"./?action=logs\">返回日志列表</a></p>\n";
-		wap_footer ();
-		exit ();
+function mMsg($msg, $url)
+{
+	global $blogname,$blogdes;
+	include getViews ('header');
+	include getViews ('msg');
+	include getViews ('footer');
+}
+function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+	global $blogname,$blogdes;
+	$pwd = $cookiePwd ? $cookiePwd : $postPwd;
+	if($pwd !== addslashes($logPwd)){
+		include getViews ('header');
+		include getViews ('logauth');
+		include getViews ('footer');
+		if($cookiePwd)
+		{
+			setcookie('em_logpwd_'.$logid, ' ', time() - 31536000);
+		}
+		exit;
+	}else {
+		setcookie('em_logpwd_'.$logid, $logPwd);
 	}
 }
 ?>

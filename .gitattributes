@@ -231,7 +231,10 @@ src/m/view/comment.php -text
 src/m/view/footer.php -text
 src/m/view/header.php -text
 src/m/view/log.php -text
+src/m/view/logauth.php -text
 src/m/view/login.php -text
+src/m/view/msg.php -text
+src/m/view/reply.php -text
 src/m/view/single.php -text
 src/m/view/twitter.php -text
 src/m/view/write.php -text

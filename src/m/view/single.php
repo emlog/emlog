@@ -22,21 +22,24 @@
 		?>
 			<div class="l">
 			<b><?php echo $value['poster']; ?> </b>
-			<div class="comdate"><?php echo $value['date']; ?></div>
-			<div class="comcont">
-			<?php echo $value['content']; ?>
-			</div>
+			<div class="info"><?php echo $value['date']; ?></div>
+			<div class="comcont"><?php echo $value['content']; ?></div>
+			<div class="reply"><?php echo $reply; ?></div>
 			</div>
 		<?php endforeach; ?>
 	</div>
 	<div class="t">发表评论：</div>
 	<div class="c">
 		<form method="post" action="./?action=addcom&gid=<?php echo $logid; ?>">
-		<div><input type="text" name="comname" value="" /> 昵称</div>
-		<div><input type="text" name="commail" value="" /> 邮件地址 (选填)</div>
-		<div><input type="text" name="comurl" value="" /> 个人主页 (选填)</div>
-		<div><textarea name="comment" id="comment" rows="10"></textarea></div>
-		<div><?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div>
+		昵称<br />
+		<input type="text" name="comname" value="" /><br />
+		邮件地址 (选填)<br />
+		<input type="text" name="commail" value="" /><br />
+		个人主页 (选填)<br />
+		<input type="text" name="comurl" value="" /><br />
+		内容<br />
+		<textarea name="comment" id="comment" rows="10"></textarea><br />
+		<?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" />
 		</form>
 	</div>
 </div>
