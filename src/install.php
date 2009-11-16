@@ -216,7 +216,7 @@ EOT;
 	'sort'=>'分类',
 	'archive'=>'存档',
 	'newcomm'=>'最新评论',
-	'twitter'=>'Twitter',
+	'twitter'=>'碎语',
 	'newlog'=>'最新日志',
 	'random_log'=>'随机日志',
 	'music'=>'音乐',

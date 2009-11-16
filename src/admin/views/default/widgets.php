@@ -92,14 +92,14 @@
 	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
-			<li class="widget-title">Twitter</li>
+			<li class="widget-title">碎语</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li>首页显示twitter数</li>
+			<li>首页显示碎语数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>

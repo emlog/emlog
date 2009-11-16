@@ -75,7 +75,7 @@ function widget_twitter($title){
 		$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
 		$value['date'] = smartyDate($value['date']);
 		?>
-		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><br><span><?php echo $value['date']; ?></span></li>
+		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><p><?php echo $value['date']; ?></p></li>
 		<?php endforeach;?>
 		<?php echo $morebt;?>
 		<?php endif;?>
@@ -83,7 +83,7 @@ function widget_twitter($title){
 	</li>
 		<?php if(ROLE == 'admin'): ?>
 		<ul>
-		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">我要唠叨</a></li>
+		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></li>
 		<li id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
 		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">发布</a>
