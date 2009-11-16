@@ -2,7 +2,7 @@
 /**
  * 基础函数库
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
+ * @version emlog-3.4.0
  * $Id$
  */
 

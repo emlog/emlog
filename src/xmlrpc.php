@@ -3,7 +3,7 @@
  * xmlrpc博客服务接口
  * 
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
+ * @version emlog-3.4.0
  * $Id$
  */
 define('EMLOG_ROOT', dirname(__FILE__));
