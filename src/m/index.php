@@ -304,14 +304,14 @@ if ($action == 'auth') {
 	$ispersis = true;
 	if (checkUser ($username, $password, $img_code, $login_code) === true) {
 		setAuthCookie ($username, $ispersis);
-		header ("Location: ./");
+		header ("Location: ?tem=".time());
 	} else {
 		header ("Location: ?action=login");
 	}
 }
 if ($action == 'logout') {
 	setcookie (AUTH_COOKIE_NAME, ' ', time () - 31536000, '/');
-	header ("Location: ./");
+	header ("Location: ?tem=".time());
 }
 function mMsg($msg, $url)
 {
