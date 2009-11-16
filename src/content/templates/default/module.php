@@ -118,14 +118,17 @@ function widget_newcomm($title){
 	<li>
 	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
 	<ul id="newcomment">
-	<?php foreach($com_cache as $value): ?>
+	<?php 
+	foreach($com_cache as $value): 
+	$url = BLOG_URL.'?post='.$value['gid'].'#'.$value['cid'];
+	?>
 	<li id="comment"><?php echo $value['name']; ?> 
 	<?php if($value['reply']): ?>
-	<a href="<?php echo $value['url']; ?>" title="博主回复：<?php echo $value['reply']; ?>">
+	<a href="<?php echo $url; ?>" title="博主回复：<?php echo $value['reply']; ?>">
 	<img src="<?php echo TEMPLATE_URL; ?>images/reply.gif" align="absmiddle"/>
 	</a>
 	<?php endif;?>
-	<br /><a href="<?php echo $value['url']; ?>"><?php echo $value['content']; ?></a></li>
+	<br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>

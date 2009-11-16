@@ -15,7 +15,7 @@ foreach($comment as $value):
 	$ishide = ISLOGIN === true && $value['hide']=='y'?'<font color="red" size="1">[待审]</font>':'';
 	$isrp = ISLOGIN === true && $value['reply']?'<font color="green" size="1">[已回复]</font>':'';
 ?>
-<div class="comcont"><a href="./"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?></div>
+<div class="comcont"><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?></div>
 <?php if(ISLOGIN === true): ?>
 <div class="info">所属日志：<?php echo $value['title']; ?></div>
 <?php endif;?>

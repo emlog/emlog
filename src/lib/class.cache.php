@@ -110,7 +110,8 @@ class mkcache {
 		while($show_com=$this->db->fetch_array($query))
 		{
 			$com_cache[] = array(
-			'url' => BLOG_URL."?post={$show_com['gid']}#{$show_com['cid']}",
+			'cid' => $show_com['cid'],
+			'gid' => $show_com['gid'],
 			'name' => htmlspecialchars($show_com['poster']),
 			'content' => htmlClean(subString($show_com['comment'],0,$comment_subnum), false),
 			'reply' => $show_com['reply']
