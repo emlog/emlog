@@ -1,3 +1,4 @@
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
 <a href="./">日志</a> 
 <a href="./?action=tw">碎语</a> 

@@ -12,6 +12,6 @@
 <div id="m">
 	<form method="post" action="./?action=dorep&id=<?php echo $id; ?>">
 	<textarea name="reply"><?php echo $reply; ?></textarea><br />
-	<input type="submit" value="回复评论" class="submit">
+	<input type="submit" value="回复评论" />
 	</form>
 </div>

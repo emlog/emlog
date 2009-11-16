@@ -1,3 +1,4 @@
+<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
 <a href="./">日志</a> 
 <a href="./?action=tw" id="active">碎语</a> 
@@ -11,7 +12,7 @@
 <div id="m">
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 <form method="post" action="./?action=t" >
-<input name="t" value=""  /> <input type="submit" value="发碎语" />
+<input name="t" value="" /> <input type="submit" value="发碎语" />
 </form>
 <?php endif;?>
 <?php foreach($tws as $value):?>

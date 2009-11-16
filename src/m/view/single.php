@@ -38,8 +38,8 @@
 		个人主页 (选填)<br />
 		<input type="text" name="comurl" value="" /><br />
 		内容<br />
-		<textarea name="comment" id="comment" rows="10"></textarea><br />
-		<?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" />
+		<textarea name="comment" rows="10"></textarea><br />
+		<?php echo $cheackimg; ?><input type="submit" value="发表评论" />
 		</form>
 	</div>
 </div>
