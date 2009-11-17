@@ -29,9 +29,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   	<thead>
       <tr>
         <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="340"><b>内容</b></th>
+        <th width="350"><b>内容</b></th>
 		<th width="300"><b>评论者</b></th>
-        <th width="260"><b>所属日志</b></th>
+        <th width="250"><b>所属日志</b></th>
       </tr>
     </thead>
     <tbody>
@@ -50,7 +50,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
         <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
         <br /><?php echo $value['date']; ?>
-		<span style="display:none; margin-left:20px;">    
+		<span style="display:none; margin-left:8px;">    
 		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
