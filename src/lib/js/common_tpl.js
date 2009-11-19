@@ -1,4 +1,3 @@
-/*前台模板共享js*/
 function focusEle(ele){
 	try {document.getElementById(ele).focus();}
 	catch(e){}
@@ -71,56 +70,70 @@ function isdel (id,type){
 		else {return;}
 	}
 }
-//ajax
-var xmlhttp = false;
-var node = '';
-function createxmlhttp() {
-	xmlhttp = false;
-	if(window.XMLHttpRequest) {
-		xmlhttp = new XMLHttpRequest();
-		if (xmlhttp.overrideMimeType) {
-			xmlhttp.overrideMimeType('text/xml');
+var XMLHttp = {  
+	_objPool: [],
+	_getInstance: function () {
+		for (var i = 0; i < this._objPool.length; i ++) {
+			if (this._objPool[i].readyState == 0 || this._objPool[i].readyState == 4) {
+				return this._objPool[i];
+			}
 		}
-	}
-	else if (window.ActiveXObject) {
-		try {
-			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (e) {
+		this._objPool[this._objPool.length] = this._createObj();
+		return this._objPool[this._objPool.length - 1];
+	},
+	_createObj: function(){
+		if (window.XMLHttpRequest){
+			var objXMLHttp = new XMLHttpRequest();
+		} else {
+			var MSXML = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
+			for(var n = 0; n < MSXML.length; n ++){
+				try{
+					var objXMLHttp = new ActiveXObject(MSXML[n]);
+					break;
+				}catch(e){}
+			}
+		}
+		if (objXMLHttp.readyState == null){
+			objXMLHttp.readyState = 0;
+			objXMLHttp.addEventListener('load',function(){
+				objXMLHttp.readyState = 4;
+				if (typeof objXMLHttp.onreadystatechange == "function") {  
+					objXMLHttp.onreadystatechange();
+				}
+			}, false);
+		}
+		return objXMLHttp;
+	},
+	sendReq: function(method, url, data, callback){
+		var objXMLHttp = this._getInstance();
+		with(objXMLHttp){
 			try {
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (e) {}
+				if (url.indexOf("?") > 0) {
+					url += "&randnum=" + Math.random();
+				} else {
+					url += "?randnum=" + Math.random();
+				}
+				open(method, url, true);
+				setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				send(data);
+				onreadystatechange = function () {  
+					if (objXMLHttp.readyState == 4 && (objXMLHttp.status == 200 || objXMLHttp.status == 304)) {  
+						callback(objXMLHttp);
+					}
+				}
+			} catch(e) {
+				alert('emria:error');
+			}
 		}
 	}
-	if (!xmlhttp) {
-		window.alert("不能创建XMLHttpRequest对象实例.");
-		return false;
-	}
-}
-function sendinfo(url,nodeid){
-	node = nodeid;
+};
+function sendinfo(url,node){
 	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>");
-	createxmlhttp();
-	var querystring = url+ "&timetmp=" + timestamp();
-	xmlhttp.open("GET", querystring, true);
-	xmlhttp.send(null);
-	xmlhttp.onreadystatechange = processRequest;
+	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
-function postinfo(url,post_id,show_id){
-	node = show_id;
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...请稍候!</span></div>");
-	createxmlhttp();
-	var url2 = url + "&timetmp=" + timestamp();
-	xmlhttp.open("POST", url2, true);
-	xmlhttp.onreadystatechange = processRequest;
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+function postinfo(url,post_id,node){
+	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...</span></div>");
 	var pdata = document.getElementById(post_id).value;
-	var querystring = post_id+"="+encodeURIComponent(pdata);
-	xmlhttp.send(querystring);
-}
-function processRequest(){
-	if (xmlhttp.readyState == 4) {
-		if (xmlhttp.status == 200) {
-			updateEle(node,xmlhttp.responseText);
-		}
-	}
+	var data = post_id+"="+encodeURIComponent(pdata);
+	XMLHttp.sendReq('POST',url,data,function(obj){updateEle(node,obj.responseText);});
 }
