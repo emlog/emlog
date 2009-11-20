@@ -388,22 +388,22 @@ PRIMARY KEY  (uid)
 )".$add."
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
-	$mysql_query = explode(";\n", $sql);
-	while (list(,$query) = each($mysql_query))
+	$array_sql = preg_split("/;[\r\n]/", $sql);
+	foreach($array_sql as $sql)
 	{
-		$query = trim($query);
-		if ($query)
+		$sql = trim($sql);
+		if ($sql)
 		{
-			if (strstr($query, 'CREATE TABLE'))
+			if (strstr($sql, 'CREATE TABLE'))
 			{
-				preg_match('/CREATE TABLE ([^ ]*)/', $query, $matches);
-				$ret = $DB->query($query);
+				preg_match('/CREATE TABLE ([^ ]*)/', $sql, $matches);
+				$ret = $DB->query($sql);
 				if ($ret)
 				{
 					$result .= '数据库表：'.$matches[1].' 创建成功<br />';
 				}
 			} else {
-				$ret = $DB->query($query);
+				$ret = $DB->query($sql);
 			}
 		}
 	}
