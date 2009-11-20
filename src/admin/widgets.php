@@ -92,7 +92,6 @@ if($action == 'setwg')
 		case 'twitter':
 			$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10;
 			$DB->query("update ".DB_PREFIX."options set option_value='$index_twnum' where option_name='index_twnum'");
-			$CACHE->mc_twitter();
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;

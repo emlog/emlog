@@ -221,27 +221,6 @@ class mkcache {
 		$this->cacheWrite($cacheData,'links');
 	}
 	/**
-	 * twitter缓存
-	 */
-	function mc_twitter()
-	{
-		$show_config=$this->db->fetch_array($this->db->query("SELECT option_value FROM ".$this->db_prefix."options where option_name='index_twnum'"));
-		$index_twnum = $show_config['option_value']+1;
-		$query = $this->db->query("SELECT * FROM ".$this->db_prefix."twitter ORDER BY id DESC LIMIT $index_twnum");
-		$tw_cache = array();
-		while($show_tw=$this->db->fetch_array($query))
-		{
-			$tw_cache[] = array(
-			'content' => htmlspecialchars($show_tw['content']),
-			'date' => $show_tw['date'],
-			'id' => $show_tw['id']
-			);
-		}
-		$cacheData = serialize($tw_cache);
-		$this->cacheWrite($cacheData,'twitter');
-	}
-
-	/**
 	 * 最新日志
 	 */
 	function mc_newlog()

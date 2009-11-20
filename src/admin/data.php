@@ -135,7 +135,6 @@ if ($action == 'renewdata')
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_sort();
-	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 	header("Location: ./data.php?active_import=true");
 }
@@ -168,7 +167,6 @@ if ($action == 'mkcache')
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_sort();
-	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 	header("Location: ./data.php?active_mc=true");
 }

@@ -22,7 +22,6 @@ if (ROLE == 'admin' && $action == 'add')
 	{
 		$twitter = '';
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
-		$CACHE->mc_twitter();
 		$CACHE->mc_sta();
 		$twitter.=getindextw();
 		echo $twitter;
@@ -34,7 +33,6 @@ if (ROLE == 'admin' && $action == 'del')
 	$twid = isset($_GET['twid']) ? intval($_GET['twid']) : '';
 	$twitter = '';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
-	$CACHE->mc_twitter();
 	$CACHE->mc_sta();
 	$twitter.=getindextw();
 	echo $twitter;
@@ -59,7 +57,7 @@ function getindextw()
 		$content = htmlspecialchars($content);
 		$date = smartyDate($date);
 		$delbt = ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>" : '';
-		$twitter .= "<li>$content $delbt<br /><span>$date</span></li>";
+		$twitter .= "<li>$content $delbt<p>$date</p></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);
 	$NextPage = $page < $pagenums ? $page+1 : $page;

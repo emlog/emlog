@@ -20,6 +20,5 @@ $link_cache = $CACHE->readCache('links');
 $user_cache = $CACHE->readCache('user');
 $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
-$tw_cache = $CACHE->readCache('twitter');
 
 ?>

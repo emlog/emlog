@@ -419,7 +419,6 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_sort();
-	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
 	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功<br /><span style=\"color:red;\"><b>请删除根目录下安装文件(install.php)</b></span> <a href=\"./\"> 进入emlog </a>";

@@ -128,11 +128,11 @@ var XMLHttp = {
 	}
 };
 function sendinfo(url,node){
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">加载中...</span></div>");
+	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">加载中...</span></div>");
 	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
 function postinfo(url,post_id,node){
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">处理中...</span></div>");
+	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">处理中...</span></div>");
 	var pdata = document.getElementById(post_id).value;
 	var data = post_id+"="+encodeURIComponent(pdata);
 	XMLHttp.sendReq('POST',url,data,function(obj){updateEle(node,obj.responseText);});

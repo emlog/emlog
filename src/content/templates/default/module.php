@@ -63,35 +63,22 @@ function widget_sort($title){
 <?php
 //widget：twitter
 function widget_twitter($title){
-	global $tw_cache,$index_twnum; ?>
-	<?php if($index_twnum>0): ?>
+	global $index_twnum; ?>
 	<li>
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
-		<ul id="twitter">
-		<?php
-		if(isset($tw_cache) && is_array($tw_cache)):
-		$morebt = count($tw_cache)>$index_twnum?"<li id=\"twdate\"><a href=\"javascript:void(0);\" onclick=\"sendinfo('./twitter.php?p=2','twitter')\">较早的&raquo;</a></li>":'';
-		foreach (array_slice($tw_cache,0,$index_twnum) as $value):
-		$delbt = ROLE == 'admin'?"<a href=\"javascript:void(0);\" onclick=\"isdel('{$value['id']}','twitter')\">删除</a>":'';
-		$value['date'] = smartyDate($value['date']);
-		?>
-		<li> <?php echo $value['content']; ?> <?php echo $delbt; ?><p><?php echo $value['date']; ?></p></li>
-		<?php endforeach;?>
-		<?php echo $morebt;?>
-		<?php endif;?>
-		</ul>
+        <ul id="twitter"></ul>
+        <script>sendinfo('<?php echo BLOG_URL; ?>twitter.php?p=1','twitter');</script>
 	</li>
 		<?php if(ROLE == 'admin'): ?>
 		<ul>
 		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></li>
 		<li id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
-		<a href="javascript:void(0);" onclick="postinfo('./twitter.php?action=add','tw','twitter');">发布</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">发布</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</li>
 		</ul>
 		<?php endif;?>
-	<?php endif;?>
 <?php } ?>
 <?php 
 //widget：音乐

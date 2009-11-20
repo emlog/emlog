@@ -8,14 +8,12 @@
 
 require_once ('../common.php');
 
-$isgzipenable = 'n'; //手机浏览关闭gzip压缩
-$index_lognum = 5;
-$index_twnum = 5;
-
-define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/'); //模板路径
+define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 define ('ADMIN_PERPAGE_NUM', 5);
 
-
+$isgzipenable = 'n';//手机浏览关闭gzip压缩
+$index_lognum = 5;
+$index_twnum = 5;
 $logid = isset ($_GET ['post']) ? intval ($_GET ['post']) : '';
 $blogname = $options_cache ['blogname'];
 $blogdes = $options_cache ['bloginfo'];
@@ -37,7 +35,7 @@ if (empty ($action) && empty ($logid)) {
 	include getViews ('footer');
 }
 //日志
-if (! empty ($logid)) {
+if (!empty ($logid)) {
 	require_once (EMLOG_ROOT . '/model/class.blog.php');
 	require_once (EMLOG_ROOT . '/model/class.comment.php');
 	
@@ -274,7 +272,6 @@ if (ISLOGIN === true && $action == 't') {
 	$t = isset ($_POST ['t']) ? addslashes ($_POST ['t']) : '';
 	if (! empty ($t)) {
 		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,date) VALUES('$t','$localdate')");
-		$CACHE->mc_twitter ();
 		$CACHE->mc_sta ();
 		header ("Location: ./?action=tw");
 	}else{
@@ -284,7 +281,6 @@ if (ISLOGIN === true && $action == 't') {
 if (ISLOGIN === true && $action == 'delt') {
 	$id = isset ($_GET ['id']) ? intval ($_GET ['id']) : '';
 	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id");
-	$CACHE->mc_twitter ();
 	$CACHE->mc_sta ();
 	header ("Location: ./?action=tw");
 }
