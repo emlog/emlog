@@ -57,8 +57,8 @@
 </div>
 <div class=line></div>
 <div style="margin:0px 0px 20px 0px;">
-	<p class="notice">缓存技术可以大幅度加快你博客首页的加载速度。<br>通常系统会自动更新缓存，但也有些特殊情况需要你手动更新，比如缓存文件被无意修改、你手动修改过数据库等。</p>
-	<p align="center"><input name="" type="button" onclick="window.location='data.php?action=mkcache';" value="更新缓存" class="submit" /></p>
+	<p class="des">缓存技术可以大幅度加快你博客首页的加载速度。通常系统会自动更新缓存，但也有些特殊情况需要你手动更新，比如缓存文件被无意修改、你手动修改过数据库等。</p>
+	<p style="margin-left:10px;"><input type="button" onclick="window.location='data.php?action=mkcache';" value="更新缓存" class="submit" /></p>
 </div>
 <script type='text/javascript'>
 setTimeout(hideActived,2600);
