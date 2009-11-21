@@ -126,31 +126,41 @@ if (!empty($logid))
 if ($action == 'addcom')
 {
 	require_once(EMLOG_ROOT.'/model/class.comment.php');
-
 	$emComment = new emComment($DB);
-	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
-	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
-	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+
+	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+	$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+	$url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 
 	doAction('comment_post');
-
-	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $comment_code, $ischkcomment, $localdate, $gid);
-
-	doAction('comment_saved');
-
-	if($ret === 0)
-	{
+	$ret = $emComment->addComment($name, $content, $mail, $url, $imgcode, $gid);
+	switch($ret){
+		case -1:
+		emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');break;
+		case -2:
+		emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');break;
+		case -3:
+		emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');break;
+		case -4:
+		emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');break;
+		case -5:
+		emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');break;
+		case -6:
+		emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');break;
+		case 0:
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
 		$CACHE->mc_comment();
-		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);
-	}elseif ($ret === 1){
+		doAction('comment_saved');
+		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);break;
+		case 1:
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");
+		doAction('comment_saved');
+		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;
 	}
 }
 //加载插件页面

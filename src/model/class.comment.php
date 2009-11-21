@@ -178,21 +178,9 @@ class emComment {
 		}
 	}
 
-	/**
-	 * 添加评论
-	 *
-	 * @param unknown_type $name
-	 * @param unknown_type $content
-	 * @param unknown_type $mail
-	 * @param unknown_type $url
-	 * @param unknown_type $imgcode
-	 * @param unknown_type $comment_code
-	 * @param unknown_type $ischkcomment
-	 * @param unknown_type $localdate
-	 * @param unknown_type $blogId
-	 */
-	function addComment($name, $content, $mail, $url, $imgcode, $comment_code, $ischkcomment, $localdate, $blogId)
+	function addComment($name, $content, $mail, $url, $imgcode, $blogId)
 	{
+		global $comment_code, $ischkcomment, $localdate;
 		if( $comment_code == 'y' )
 		{
 			session_start();
@@ -202,21 +190,18 @@ class emComment {
 			$url = 'http://'.$url;
 		}
 		$this->setCommentCookie($name,$mail,$url,$localdate);
-		if($this->isLogCanComment($blogId) === false)
-		{
-			emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
+		if($this->isLogCanComment($blogId) === false){
+			return -1;
 		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
-			emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
+			return -2;
 		}elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
-			emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');
+			return -3;
 		} elseif ($mail != '' && !checkMail($mail)) {
-			emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
+			return -4;
 		} elseif (strlen($content) == '' || strlen($content) > 2000) {
-			emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
-		} elseif ($imgcode == '' && $comment_code == 'y') {
-			emMsg('发表评论失败：验证码不能为空','javascript:history.back(-1);');
+			return -5;
 		} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
-			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
+			return -6;
 		} else {
 			$ipaddr = getIp();
 			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip) 
