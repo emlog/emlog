@@ -31,15 +31,11 @@
 	<div class="t">发表评论：</div>
 	<div class="c">
 		<form method="post" action="./?action=addcom&gid=<?php echo $logid; ?>">
-		昵称<br />
-		<input type="text" name="comname" value="" /><br />
-		邮件地址 (选填)<br />
-		<input type="text" name="commail" value="" /><br />
-		个人主页 (选填)<br />
-		<input type="text" name="comurl" value="" /><br />
-		内容<br />
-		<textarea name="comment" rows="10"></textarea><br />
-		<?php echo $cheackimg; ?><input type="submit" value="发表评论" />
+		昵称<br /><input type="text" name="comname" value="" /><br />
+		邮件地址 (选填)<br /><input type="text" name="commail" value="" /><br />
+		个人主页 (选填)<br /><input type="text" name="comurl" value="" /><br />
+		内容<br /><textarea name="comment" rows="10"></textarea><br />
+		<?php echo $cheackimg; ?><br /><input type="submit" value="发表评论" />
 		</form>
 	</div>
 </div>
