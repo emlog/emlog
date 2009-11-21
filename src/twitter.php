@@ -58,7 +58,7 @@ function getindextw()
 		$content = htmlspecialchars($content);
 		$date = smartyDate($date);
 		$by = $author != 1 ? 'by:'.$user_cache[$author]['name'] : '';
-		$delbt = ISLOGIN === true && $author == UID || ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>" : '';
+		$delbt = ISLOGIN === true && $author == UID || ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter','".BLOG_URL."')\">删除</a>" : '';
 		$twitter .= "<li>$content $delbt<p>$by $date</p></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);

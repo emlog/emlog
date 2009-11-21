@@ -63,10 +63,10 @@ function checkform(){
 		}
 	}
 }
-function isdel (id,type){
+function isdel (id,type,url){
 	if(type == 'twitter'){
 		var msg = "你确定要删除吗？";
-		if(confirm(msg)){sendinfo('twitter.php?action=del&twid='+id,'twitter')}
+		if(confirm(msg)){sendinfo(url+'twitter.php?action=del&twid='+id,'twitter')}
 		else {return;}
 	}
 }
