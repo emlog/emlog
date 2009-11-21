@@ -23,10 +23,9 @@
     <td class="vesion" width="20"><?php echo EMLOG_VERSION; ?></td>
     <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
-	你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php if (ROLE == 'admin'):?>
-    <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
