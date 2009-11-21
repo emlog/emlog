@@ -239,6 +239,7 @@ EOT;
 	preg_match("/^.*\//", $_SERVER['SCRIPT_NAME'], $matches);
 	$subdir = $matches[0];
 	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$subdir;
+	define('BLOG_URL', 		$blogurl);
 
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
