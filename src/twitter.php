@@ -64,7 +64,7 @@ function getindextw()
 	$pagenums = ceil($twnum / $index_twnum);
 	$NextPage = $page < $pagenums ? $page+1 : $page;
 	$UpPage = $page > 1 ? $page - 1 : $page ;
-	if($page>1){
+	if($pagenums > 1){
 		$twitter.= "
 			<p>
 			<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\" title=\"上一页\">&laquo;&laquo;</a>
