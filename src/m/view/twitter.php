@@ -15,10 +15,13 @@
 <input name="t" value="" /> <input type="submit" value="发碎语" />
 </form>
 <?php endif;?>
-<?php foreach($tws as $value):?>
+<?php 
+foreach($tws as $value):
+$by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
+?>
 <div class="twcont"><?php echo $value['content'];?></a></div>
-<div class="twinfo"><?php echo $value['date'];?>
-<?php if(ROLE == 'admin'): ?>
+<div class="twinfo"><?php echo $by.' '.$value['date'];?>
+<?php if(ISLOGIN === true && $value['author'] == UID || ROLE == 'admin'): ?>
  <a href="./?action=delt&id=<?php echo $value['id'];?>">删除</a>
 <?php endif;?>
 </div>

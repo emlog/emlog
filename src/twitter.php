@@ -15,24 +15,25 @@ if ($action == '')
 	echo $twitter;
 }
 //add twitter
-if (ROLE == 'admin' && $action == 'add')
+if (ISLOGIN === true && $action == 'add')
 {
 	$content = isset($_POST['tw']) ? addslashes($_POST['tw']) : '';
 	if (!empty($content))
 	{
 		$twitter = '';
-		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,date) VALUES('$content','$localdate')");
+		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,author,date) VALUES('$content',".UID.",'$localdate')");
 		$CACHE->mc_sta();
 		$twitter.=getindextw();
 		echo $twitter;
 	}
 }
 //del twitter
-if (ROLE == 'admin' && $action == 'del')
+if (ISLOGIN === true && $action == 'del')
 {
 	$twid = isset($_GET['twid']) ? intval($_GET['twid']) : '';
+	$author = ROLE == 'admin' ? '' : 'and author='.UID;
 	$twitter = '';
-	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid");
+	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid $author");
 	$CACHE->mc_sta();
 	$twitter.=getindextw();
 	echo $twitter;
@@ -40,7 +41,7 @@ if (ROLE == 'admin' && $action == 'del')
 //get twitter
 function getindextw()
 {
-	global $DB,$index_twnum;
+	global $DB,$user_cache,$index_twnum;
 
 	$page = isset($_GET['p']) ? intval($_GET['p']) : 1;
 	$start_limit = $page ? ($page - 1) * $index_twnum : 0;
@@ -56,21 +57,21 @@ function getindextw()
 		extract($rows);
 		$content = htmlspecialchars($content);
 		$date = smartyDate($date);
-		$delbt = ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>" : '';
-		$twitter .= "<li>$content $delbt<p>$date</p></li>";
+		$by = $author != 1 ? 'by:'.$user_cache[$author]['name'] : '';
+		$delbt = ISLOGIN === true && $author == UID || ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter')\">删除</a>" : '';
+		$twitter .= "<li>$content $delbt<p>$by $date</p></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);
 	$NextPage = $page < $pagenums ? $page+1 : $page;
 	$UpPage = $page > 1 ? $page - 1 : $page ;
-	if ($page != 1 && $page != $pagenums)
-	{
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a><small>$page/$pagenums</small><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\">较早的&raquo;</a></li>";
-	} elseif ($page == 1 && $pagenums > 1) {
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=2','twitter')\">较早的&raquo;</a></li>";
-	} elseif ($page == $pagenums && $pagenums > 1) {
-		$twitter.= "<li><a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\">&laquo;较近的</a></li>";
+	if($page>1){
+		$twitter.= "
+			<p>
+			<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\" title=\"上一页\">&laquo;&laquo;</a>
+			<small>$page/$pagenums</small>
+			<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\" title=\"下一页\">&raquo;&raquo;</a>
+			</p>";
 	}
 	return $twitter;
 }
-
 ?>

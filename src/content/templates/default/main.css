@@ -110,5 +110,5 @@ a:hover{color:#0079b7; text-decoration:underline}
 .calendartop{text-align:center; font-size:14px; margin-left:41px}
 .rss{ margin:20px 0px;}
 #twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
-#twitter li p {font-size: 10px;padding-left: 68px; text-align:right;}
+#twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
 #twitter li small {font-size: 10px;padding: 0px 10px;}

@@ -11,7 +11,7 @@
 </div>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo"><?php echo date('Y-n-j G:i', $date); ?></div>
+	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo date('Y-n-j G:i', $date); ?></div>
 	<div class="postcont"><?php echo $log_content; ?></div>
 
 	<div class="t">评论：</div>

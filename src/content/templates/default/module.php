@@ -68,17 +68,15 @@ function widget_twitter($title){
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
         <ul id="twitter"></ul>
         <script>sendinfo('<?php echo BLOG_URL; ?>twitter.php?p=1','twitter');</script>
-	</li>
-		<?php if(ROLE == 'admin'): ?>
-		<ul>
-		<li><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></li>
-		<li id='addtw' style="display: none;">
+		<?php if(ISLOGIN === true): ?>
+		<p><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></p>
+		<p id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
 		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">发布</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
-		</li>
-		</ul>
+		</p>
 		<?php endif;?>
+	</li>
 <?php } ?>
 <?php 
 //widget：音乐

@@ -370,6 +370,7 @@ DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT,
 content VARCHAR(255) NOT NULL,
+author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
 PRIMARY KEY (id)
 )".$add."

@@ -52,7 +52,6 @@ if (!empty ($logid)) {
 		$cookiepwd = isset ($_COOKIE ['em_logpwd_' . $logid]) ? addslashes (trim ($_COOKIE ['em_logpwd_' . $logid])) : '';
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
-	$blogtitle = $log_title . ' - ' . $blogname;
 	//comments
 	$cheackimg = $comment_code == 'y' ? "<img src=\"./lib/checkcode.php\" /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments (0, $logid, 'n');
@@ -89,6 +88,7 @@ if (ISLOGIN === true && $action == 'write') {
 		$tagStr = '';
 		$logid = -1;
 		$author = UID;
+		$date = '';
 	}
 	include getViews ('header');
 	include getViews ('write');
@@ -105,9 +105,10 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
-	$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;
+	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
+	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = $emBlog->postDate($timezone);
+	$postTime = empty($date) ? $emBlog->postDate($timezone) : $date;
 
 	$logData = array(
 		'title'=>$title,
@@ -271,7 +272,7 @@ if ($action == 'tw') {
 if (ISLOGIN === true && $action == 't') {
 	$t = isset ($_POST ['t']) ? addslashes ($_POST ['t']) : '';
 	if (! empty ($t)) {
-		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,date) VALUES('$t','$localdate')");
+		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t',".UID.",'$localdate')");
 		$CACHE->mc_sta ();
 		header ("Location: ./?action=tw");
 	}else{
@@ -280,7 +281,8 @@ if (ISLOGIN === true && $action == 't') {
 }
 if (ISLOGIN === true && $action == 'delt') {
 	$id = isset ($_GET ['id']) ? intval ($_GET ['id']) : '';
-	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id");
+	$author = ROLE == 'admin' ? '' : 'and author='.UID;
+	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id $author");
 	$CACHE->mc_sta ();
 	header ("Location: ./?action=tw");
 }
