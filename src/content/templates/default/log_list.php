@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="content">
+<?php doAction('index_loglist_top'); ?>
 <ul>
 <?php foreach($logs as $value): ?>
 	<li>

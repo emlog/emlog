@@ -3,6 +3,7 @@
 <ul>
 <?php 
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
+doAction('diff_side');
 foreach ($widgets as $val)
 {
 	$widget_title = @unserialize($options_cache['widget_title']);
