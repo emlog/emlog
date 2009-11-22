@@ -1,10 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>个人资料</b>
+<div class="containertitle2">
+<?php if (ROLE == 'admin'):?>
+<a class="navi1" href="./configure.php">基本设置</a><a class="navi4" href="./permalink.php">固定链接</a><a class="navi2" href="./blogger.php">个人资料</a>
+<?php else:?>
+<a class="navi1" href="./blogger.php">个人资料</a>
+<?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>
 </div>
-<div class=line></div>
+<div style="margin-left:20px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
 <div>
 	<li>昵称</li>
@@ -37,3 +42,4 @@
 	<li><input type="submit" value="确认修改" class="submit" /></li>
 </div>
 </form>
+</div>

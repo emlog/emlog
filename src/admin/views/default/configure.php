@@ -1,10 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>
-setTimeout(hideActived,2600);
-</script>
-<div class=containertitle><?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
-<div class=containertitle><a href="./configure.php">基本设置</a> <a href="./permalink.php">固定连接</a></div>
-<div class=line></div>
+<script>setTimeout(hideActived,2600);</script>
+<div class="containertitle2"><a class="navi3" href="./configure.php">基本设置</a><a class="navi4" href="./permalink.php">固定链接</a><a class="navi4" href="./blogger.php">个人资料</a>
+<?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
+</div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
     <tbody>
@@ -14,7 +12,7 @@ setTimeout(hideActived,2600);
       </tr>
       <tr nowrap="nowrap">
         <td align="right" valign="top">博客描述：</td>
-        <td><textarea name="bloginfo" cols="" rows="4" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
+        <td><textarea name="bloginfo" cols="" rows="3" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客地址：</td>
