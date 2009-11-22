@@ -173,7 +173,10 @@ function widget_archive($title){
 	<li>
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
 	<ul id="record">
-	<?php foreach($dang_cache as $value): ?>
+	<?php 
+	foreach($dang_cache as $value): 
+	$value['url'] = BLOG_URL.$value['url'];
+	?>
 	<li><a href="<?php echo $value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>		
 	</ul>
