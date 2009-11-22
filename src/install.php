@@ -212,11 +212,11 @@ EOT;
 	$widgets = array(
 	'blogger'=>'blogger',
 	'calendar'=>'日历',
+	'twitter'=>'碎语',
 	'tag'=>'标签',
 	'sort'=>'分类',
 	'archive'=>'存档',
 	'newcomm'=>'最新评论',
-	'twitter'=>'碎语',
 	'newlog'=>'最新日志',
 	'random_log'=>'随机日志',
 	'music'=>'音乐',
@@ -375,7 +375,7 @@ author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content, date) VALUES (1,'用简单的文字记录你的生活','1230508801');
+INSERT INTO {$db_prefix}twitter (id,content,author,date) VALUES (1,'用简单的文字记录你的生活',1,'1230508801');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,

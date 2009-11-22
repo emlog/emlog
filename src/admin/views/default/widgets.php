@@ -33,6 +33,21 @@
 		</div>
 	</div>
 	</form>
+	<form action="widgets.php?action=setwg&wg=twitter" method="post">
+	<div class="widget-line" id="twitter">
+		<div class="widget-top">
+			<li class="widget-title">碎语</li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
+		</div>
+		<div class="widget-control">
+			<li>标题</li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
+			<li>首页显示碎语数</li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
+		</div>
+	</div>
+	</form>
 	<form action="widgets.php?action=setwg&wg=tag" method="post">
 	<div class="widget-line" id="tag">
 		<div class="widget-top">
@@ -86,21 +101,6 @@
 			<li><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
 			<li>新近评论截取字节数</li>
 			<li><input maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
-		</div>
-	</div>
-	</form>
-	<form action="widgets.php?action=setwg&wg=twitter" method="post">
-	<div class="widget-line" id="twitter">
-		<div class="widget-top">
-			<li class="widget-title">碎语</li>
-			<li class="widget-act-add"></li>
-			<li class="widget-act-del"></li>
-		</div>
-		<div class="widget-control">
-			<li>标题</li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li>首页显示碎语数</li>
-			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
 	</form>
