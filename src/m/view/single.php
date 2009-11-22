@@ -11,21 +11,24 @@
 </div>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo date('Y-n-j G:i', $date); ?></div>
+	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo date('Y-n-j G:i', $date); ?>
+	<?php if(ROLE == 'admin' || $author == UID): ?>
+	<a href="./?action=dellog&gid=<?php echo $logid;?>">删除</a>
+	<?php endif;?>
+	</div>
 	<div class="postcont"><?php echo $log_content; ?></div>
-
 	<div class="t">评论：</div>
 	<div class="c">
 		<?php foreach($comments as $key=>$value):
 			$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 		?>
-			<div class="l">
-			<b><?php echo $value['poster']; ?> </b>
-			<div class="info"><?php echo $value['date']; ?></div>
-			<div class="comcont"><?php echo $value['content']; ?></div>
-			<div class="reply"><?php echo $reply; ?></div>
-			</div>
+		<div class="l">
+		<b><?php echo $value['poster']; ?> </b>
+		<div class="info"><?php echo $value['date']; ?></div>
+		<div class="comcont"><?php echo $value['content']; ?></div>
+		<div class="reply"><?php echo $reply; ?></div>
+		</div>
 		<?php endforeach; ?>
 	</div>
 	<div class="t">发表评论：</div>

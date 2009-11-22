@@ -144,9 +144,11 @@ if (ISLOGIN === true && $action == 'savelog') {
 	header ("Location: ./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
-	include getViews ('header');
-	include getViews ('write');
-	include getViews ('footer');
+	require_once(EMLOG_ROOT.'/model/class.blog.php');
+	$emBlog = new emBlog($DB);
+	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+	$emBlog->deleteLog($id);
+	header("Location: ./");
 }
 //评论
 if ($action == 'addcom') {
