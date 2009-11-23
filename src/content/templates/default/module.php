@@ -67,12 +67,12 @@ function widget_twitter($title){
 	<li>
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
         <ul id="twitter"></ul>
-        <script>sendinfo('<?php echo BLOG_URL; ?>twitter.php?p=1','twitter');</script>
+        <script>sendinfo('<?php echo DYNAMIC_BLOGURL; ?>twitter.php?p=1','twitter');</script>
 		<?php if(ISLOGIN === true): ?>
 		<p><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></p>
 		<p id='addtw' style="display: none;">
 		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
-		<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>twitter.php?action=add','tw','twitter');">发布</a>
+		<a href="javascript:void(0);" onclick="postinfo('<?php echo DYNAMIC_BLOGURL; ?>twitter.php?action=add','tw','twitter');">发布</a>
 		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
 		</p>
 		<?php endif;?>
@@ -333,7 +333,7 @@ function blog_comments(){
 			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
 			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
 			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
+			<a href="javascript:void(0);" onclick="postinfo('<?php echo DYNAMIC_BLOGURL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>

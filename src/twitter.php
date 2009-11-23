@@ -58,7 +58,7 @@ function getindextw()
 		$content = htmlspecialchars($content);
 		$date = smartyDate($date);
 		$by = $author != 1 ? 'by:'.$user_cache[$author]['name'] : '';
-		$delbt = ISLOGIN === true && $author == UID || ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter','".BLOG_URL."')\">删除</a>" : '';
+		$delbt = ISLOGIN === true && $author == UID || ROLE == 'admin' ? "<a href=\"javascript:void(0);\" onclick=\"isdel($id,'twitter','".DYNAMIC_BLOGURL."')\">删除</a>" : '';
 		$twitter .= "<li>$content $delbt<p>$by $date</p></li>";
 	}
 	$pagenums = ceil($twnum / $index_twnum);
@@ -67,9 +67,9 @@ function getindextw()
 	if($pagenums > 1){
 		$twitter.= "
 			<p>
-			<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$UpPage','twitter')\" title=\"上一页\">&laquo;&laquo;</a>
+			<a href=\"javascript:void(0);\" onclick=\"sendinfo('".DYNAMIC_BLOGURL."twitter.php?p=$UpPage','twitter')\" title=\"上一页\">&laquo;&laquo;</a>
 			<small>$page/$pagenums</small>
-			<a href=\"javascript:void(0);\" onclick=\"sendinfo('twitter.php?p=$NextPage','twitter')\" title=\"下一页\">&raquo;&raquo;</a>
+			<a href=\"javascript:void(0);\" onclick=\"sendinfo('".DYNAMIC_BLOGURL."twitter.php?p=$NextPage','twitter')\" title=\"下一页\">&raquo;&raquo;</a>
 			</p>";
 	}
 	return $twitter;

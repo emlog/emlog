@@ -102,6 +102,17 @@ function getIp()
 }
 
 /**
+ * 获取当前博客地址
+ *
+ * @return string
+ */
+function getBlogUrl()
+{
+    $phpSelf = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
+    return 'http://'.$_SERVER['HTTP_HOST'].dirname($phpSelf).'/';
+}
+
+/**
  * 访问统计
  *
  */

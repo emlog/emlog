@@ -236,10 +236,7 @@ EOT;
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
 
-	preg_match("/^.*\//", $_SERVER['SCRIPT_NAME'], $matches);
-	$subdir = $matches[0];
-	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$subdir;
-	define('BLOG_URL', 		$blogurl);
+	define('BLOG_URL', getBlogUrl());
 
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
@@ -300,7 +297,7 @@ PRIMARY KEY (option_id)
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','$blogUrl');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');

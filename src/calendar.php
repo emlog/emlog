@@ -50,10 +50,10 @@ if ( $m < 1)
 	$m = '12';
 	$year_down = $n_year - 1;
 }
-$url = BLOG_URL.'calendar.php?record=' . ($n_year - 1) . $n_month;//上一年份
-$url2 = BLOG_URL.'calendar.php?record=' . ($n_year + 1) . $n_month;//下一年份
-$url3 = BLOG_URL.'calendar.php?record=' . $year_down . $m;//上一月份
-$url4 = BLOG_URL.'calendar.php?record=' . $year_up . $mj;//下一月份
+$url = DYNAMIC_BLOGURL.'calendar.php?record=' . ($n_year - 1) . $n_month;//上一年份
+$url2 = DYNAMIC_BLOGURL.'calendar.php?record=' . ($n_year + 1) . $n_month;//下一年份
+$url3 = DYNAMIC_BLOGURL.'calendar.php?record=' . $year_down . $m;//上一月份
+$url4 = DYNAMIC_BLOGURL.'calendar.php?record=' . $year_up . $mj;//下一月份
 
 $calendar =
 "<table class=\"calendartop\" cellspacing=\"0\">
