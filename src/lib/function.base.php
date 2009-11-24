@@ -113,12 +113,13 @@ function getBlogUrl()
 		$phpself = $_SERVER['PHP_SELF'];
 	}elseif(isset($_SERVER['SCRIPT_NAME'])){
 		$phpself = $_SERVER['SCRIPT_NAME'];
+	}
+	if(preg_match("/^.*\//", $phpself, $matches))
+	{
+		return 'http://'.$_SERVER['HTTP_HOST'].$matches[0];
 	}else{
 		return BLOG_URL;
 	}
-	preg_match("/^.*\//", $phpself, $matches);
-	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$matches[0];
-	return $blogUrl;
 }
 
 /**
