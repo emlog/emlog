@@ -67,7 +67,7 @@ function loginPage()
 	$login_code == 'y' ?
 	$ckcode = "<span>验证码</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
-	<img src=\"".DYNAMIC_BLOGURL."lib/checkcode.php\" align=\"absmiddle\"></div>" :
+	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
 	require_once(getViews('login'));
 	cleanPage();

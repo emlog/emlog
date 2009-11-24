@@ -108,8 +108,17 @@ function getIp()
  */
 function getBlogUrl()
 {
-    $phpSelf = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
-    return 'http://'.$_SERVER['HTTP_HOST'].dirname($phpSelf).'/';
+	$phpself = '';
+	if(isset($_SERVER['PHP_SELF'])){
+		$phpself = $_SERVER['PHP_SELF'];
+	}elseif(isset($_SERVER['SCRIPT_NAME'])){
+		$phpself = $_SERVER['SCRIPT_NAME'];
+	}else{
+		return BLOG_URL;
+	}
+	preg_match("/^.*\//", $phpself, $matches);
+	$blogUrl = 'http://'.$_SERVER['HTTP_HOST'].$matches[0];
+	return $blogUrl;
 }
 
 /**
