@@ -53,7 +53,7 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	//comments
-	$cheackimg = $comment_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" /><input name=\"imgcode\" type=\"text\" />" : '';
+	$cheackimg = $comment_code == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments (0, $logid, 'n');
 	
 	$emBlog->updateViewCount ($logid);
@@ -304,7 +304,7 @@ if (ISLOGIN === true && $action == 'delt') {
 if ($action == 'login') {
 	$login_code == 'y' ? $ckcode = "<span>验证码</span>
     <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
-    <img src=\"".BLOG_URL."lib/checkcode.php\" /></div>" : $ckcode = '';
+    <img src=\"".DYNAMIC_BLOGURL."lib/checkcode.php\" /></div>" : $ckcode = '';
 	include getViews ('header');
 	include getViews ('login');
 	include getViews ('footer');
