@@ -13,10 +13,8 @@
  * @param string $ext 模板后缀名
  * @return string 模板路径
  */
-function getViews($template, $ext = '.php')
-{
-	if (!is_dir(TEMPLATE_PATH))
-	{
+function getViews($template, $ext = '.php'){
+	if (!is_dir(TEMPLATE_PATH)){
 		exit('The Template Path Error');
 	}
 	$path = TEMPLATE_PATH.$template.$ext;
@@ -27,10 +25,8 @@ function getViews($template, $ext = '.php')
  * 去除多余的转义字符
  *
  */
-function doStripslashes()
-{
-	if (get_magic_quotes_gpc())
-	{
+function doStripslashes(){
+	if (get_magic_quotes_gpc()){
 		$_GET = stripslashesDeep($_GET);
 		$_POST = stripslashesDeep($_POST);
 		$_COOKIE = stripslashesDeep($_COOKIE);
@@ -44,8 +40,7 @@ function doStripslashes()
  * @param unknown_type $value
  * @return unknown
  */
-function stripslashesDeep($value)
-{
+function stripslashesDeep($value){
 	$value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
 	return $value;
 }
@@ -57,11 +52,9 @@ function stripslashesDeep($value)
  * @param unknown_type $wrap 是否换行
  * @return unknown
  */
-function htmlClean($content, $wrap=true)
-{
+function htmlClean($content, $wrap=true){
 	$content = htmlspecialchars($content);
-	if($wrap)
-	{
+	if($wrap){
 		$content = str_replace("\n", '<br>', $content);
 	}
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
@@ -74,10 +67,8 @@ function htmlClean($content, $wrap=true)
  *
  * @return string
  */
-function getIp()
-{
-	if (isset($_SERVER))
-	{
+function getIp(){
+	if (isset($_SERVER)){
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
@@ -94,28 +85,20 @@ function getIp()
 			$ip = getenv('REMOTE_ADDR');
 		}
 	}
-	if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip))
-	{
+	if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)){
 		$ip = '';
 	}
 	return $ip;
 }
 
 /**
- * 获取当前博客地址
+ * 获取博客地址(仅限根目录脚本使用)
  *
  * @return string
  */
-function getBlogUrl()
-{
-	$phpself = '';
-	if(isset($_SERVER['PHP_SELF'])){
-		$phpself = $_SERVER['PHP_SELF'];
-	}elseif(isset($_SERVER['SCRIPT_NAME'])){
-		$phpself = $_SERVER['SCRIPT_NAME'];
-	}
-	if(preg_match("/^.*\//", $phpself, $matches))
-	{
+function getBlogUrl(){
+	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
+	if(preg_match("/^.*\//", $phpself, $matches)){
 		return 'http://'.$_SERVER['HTTP_HOST'].$matches[0];
 	}else{
 		return BLOG_URL;
@@ -126,19 +109,15 @@ function getBlogUrl()
  * 访问统计
  *
  */
-function viewCount()
-{
+function viewCount(){
 	global $CACHE,$viewcount_day,$viewcount_all,$viewcount_date,$DB,$localdate;
 	$userip = getIp();
 	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
-	if ($em_viewip != $userip)
-	{
+	if ($em_viewip != $userip){
 		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
-		if ($ret)
-		{
+		if ($ret){
 			$curtime = date('Y-m-d', $localdate);
-			if ($viewcount_date != $curtime)
-			{
+			if ($viewcount_date != $curtime){
 				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
 				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='1' where option_name='viewcount_day'");
 			} else {
@@ -156,10 +135,8 @@ function viewCount()
  * @param unknown_type $address
  * @return unknown
  */
-function checkMail($email)
-{
-	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60)
-	{
+function checkMail($email){
+	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60){
 		return true;
 	} else {
 		return false;
@@ -174,37 +151,29 @@ function checkMail($email)
  * @param int $length 截取长度
  * @return unknown
  */
-function subString($strings,$start,$length)
-{
+function subString($strings,$start,$length){
 	$str = substr($strings, $start, $length);
 	$char = 0;
-	for ($i = 0; $i < strlen($str); $i++)
-	{
+	for ($i = 0; $i < strlen($str); $i++){
 		if (ord($str[$i]) >= 128)
 		$char++;
 	}
 	$str2 = substr($strings, $start, $length+1);
 	$str3 = substr($strings, $start, $length+2);
-	if ($char % 3 == 1)
-	{
-		if ($length <= strlen($strings))
-		{
+	if ($char % 3 == 1){
+		if ($length <= strlen($strings)){
 			$str3 = $str3 .= '...';
 		}
 		return $str3;
 	}
-	if ($char%3 == 2)
-	{
-		if ($length <= strlen($strings))
-		{
+	if ($char%3 == 2){
+		if ($length <= strlen($strings)){
 			$str2 = $str2 .= '...';
 		}
 		return $str2;
 	}
-	if ($char%3 == 0)
-	{
-		if ($length <= strlen($strings))
-		{
+	if ($char%3 == 0){
+		if ($length <= strlen($strings)){
 			$str = $str .= '...';
 		}
 		return $str;
@@ -217,10 +186,8 @@ function subString($strings,$start,$length)
  * @param string $fileSize 文件大小 kb
  * @return unknown
  */
-function changeFileSize($fileSize)
-{
-	if($fileSize >= 1073741824)
-	{
+function changeFileSize($fileSize){
+	if($fileSize >= 1073741824){
 		$fileSize = round($fileSize / 1073741824  ,2) . 'GB';
 	} elseif($fileSize >= 1048576){
 		$fileSize = round($fileSize / 1048576 ,2) . 'MB';
@@ -241,16 +208,12 @@ function changeFileSize($fileSize)
  * @param string $url 页码的地址
  * @return unknown
  */
-function pagination($count,$perlogs,$page,$url)
-{
+function pagination($count,$perlogs,$page,$url){
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
-	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++)
-	{
-		if ($i > 0)
-		{
-			if ($i == $page)
-			{
+	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++){
+		if ($i > 0){
+			if ($i == $page){
 				$re .= " <span>$i</span> ";
 			} else {
 				$re .= " <a href=\"$url=$i\">$i</a> ";
@@ -270,11 +233,9 @@ function pagination($count,$perlogs,$page,$url)
  * @param string $actionFunc
  * @return boolearn
  */
-function addAction($hook, $actionFunc)
-{
+function addAction($hook, $actionFunc){
 	global $emHooks;
-	if (!@in_array($actionFunc, $emHooks[$hook]))
-	{
+	if (!@in_array($actionFunc, $emHooks[$hook])){
 		$emHooks[$hook][] = $actionFunc;
 	}
 	return true;
@@ -285,16 +246,11 @@ function addAction($hook, $actionFunc)
  *
  * @param string $hook
  */
-function doAction($hook)
-{
+function doAction($hook){
 	global $emHooks;
-
 	$args = array_slice(func_get_args(), 1);
-
-	if (isset($emHooks[$hook]))
-	{
-		foreach ($emHooks[$hook] as $function)
-		{
+	if (isset($emHooks[$hook])){
+		foreach ($emHooks[$hook] as $function){
 			$string = call_user_func_array($function, $args);
 		}
 	}
@@ -308,8 +264,7 @@ function doAction($hook)
  * @param int $max_h 最大缩放高
  * @return unknown
  */
-function chImageSize ($img,$max_w,$max_h)
-{
+function chImageSize ($img,$max_w,$max_h){
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
@@ -317,8 +272,7 @@ function chImageSize ($img,$max_w,$max_h)
 	@$w_ratio = $max_w / $w;
 	@$h_ratio =	$max_h / $h;
 	//决定处理后的图片宽和高
-	if( ($w <= $max_w) && ($h <= $max_h) )
-	{
+	if( ($w <= $max_w) && ($h <= $max_h) ){
 		$tn['w'] = $w;
 		$tn['h'] = $h;
 	} else if(($w_ratio * $h) < $max_h){
@@ -341,14 +295,12 @@ function chImageSize ($img,$max_w,$max_h)
  * @param int $height 新的高
  * @return unknown
  */
-function getAttachment($attstr,$width,$height)
-{
+function getAttachment($attstr,$width,$height){
 	$re = '';
 	if (!empty($attstr)) {
 		$att_array = explode("</a>",$attstr);
 		foreach ($att_array as $value) {
-			if (preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath))
-			{
+			if (preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath)){
 				$image = "./".$imgpath[1];
 				$size = chImageSize($image,$width,$height);
 				$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
@@ -366,14 +318,11 @@ function getAttachment($attstr,$width,$height)
  * 清除模板中的注释,并完成URL优化
  *
  */
-function cleanPage($beUrlRewrite = false)
-{
+function cleanPage($beUrlRewrite = false){
 	global $isurlrewrite,$isgzipenable,$searchlink,$replacelink;
 	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
-	if($beUrlRewrite)
-	{
-		switch ($isurlrewrite)
-		{
+	if($beUrlRewrite){
+		switch ($isurlrewrite){
 			case '1':
 				$searchlink = "/href\=\"(.*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
 				$replacelink = "href=\"$1/$3-$4.html$5\"";
@@ -387,8 +336,7 @@ function cleanPage($beUrlRewrite = false)
 		}
 	}
 	ob_end_clean();
-	if ($isgzipenable == 'y' && function_exists('ob_gzhandler'))
-	{
+	if ($isgzipenable == 'y' && function_exists('ob_gzhandler')){
 		ob_start('ob_gzhandler');
 	} else {
 		ob_start();
@@ -404,8 +352,7 @@ function cleanPage($beUrlRewrite = false)
  * @param int $lid 日志id
  * @return unknown
  */
-function breakLog($content,$lid)
-{
+function breakLog($content,$lid){
 	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
 	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
@@ -418,8 +365,7 @@ function breakLog($content,$lid)
  * @param string $content 日志内容
  * @return unknown
  */
-function rmBreak($content)
-{
+function rmBreak($content){
 	$content = str_replace('[break]','',$content);
 	return $content;
 }
@@ -430,8 +376,7 @@ function rmBreak($content)
  * @param 文件http地址 $url
  * @return unknown
  */
-function fopen_url($url)
-{
+function fopen_url($url){
 	if (function_exists('file_get_contents')) {
 		$file_content = @file_get_contents($url);
 	} elseif (ini_get('allow_url_fopen') && ($file = @fopen($url, 'rb'))){
@@ -462,8 +407,7 @@ function fopen_url($url)
  * @param $dstr
  * @return string
  */
-function smartyDate($datetemp,$dstr='Y-m-d H:i')
-{
+function smartyDate($datetemp,$dstr='Y-m-d H:i'){
 	global $localdate;
 	$op = '';
 	$sec = $localdate-$datetemp;
@@ -490,16 +434,13 @@ function smartyDate($datetemp,$dstr='Y-m-d H:i')
  * @param boolean $special_chars
  * @return string
  */
-function getRandStr($length = 12, $special_chars = true)
-{
+function getRandStr($length = 12, $special_chars = true){
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	if ( $special_chars )
-	{
+	if ( $special_chars ){
 		$chars .= '!@#$%^&*()';
 	}
 	$randStr = '';
-	for ( $i = 0; $i < $length; $i++ )
-	{
+	for ( $i = 0; $i < $length; $i++ ){
 		$randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
 	}
 	return $randStr;
@@ -512,8 +453,7 @@ function getRandStr($length = 12, $special_chars = true)
  * @param array $array2
  * @return array
  */
-function findArray($array1,$array2)
-{
+function findArray($array1,$array2){
     $r1 = array_diff($array1, $array2);
     $r2 = array_diff($array2, $array1);
     $r = array_merge($r1, $r2);
@@ -532,43 +472,34 @@ function findArray($array1,$array2)
  * @param boolean $isIcon 是否为上传头像
  * @return string 文件路径
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0)
-{
-	if ($errorNum == 1)
-	{
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0){
+	if ($errorNum == 1){
 		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
-	}elseif ($errorNum > 1)
-	{
+	}elseif ($errorNum > 1){
 		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
 	}
 	$extension  = strtolower(substr(strrchr($fileName, "."),1));
-	if (!in_array($extension, $type))
-	{
+	if (!in_array($extension, $type)){
 		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
-	if ($fileSize > UPLOADFILE_MAXSIZE)
-	{
+	if ($fileSize > UPLOADFILE_MAXSIZE){
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
 	$fname = md5($fileName) . date('YmdHis') .'.'. $extension;
 	$attachpath = $uppath . $fname;
-	if (!is_dir(UPLOADFILE_PATH))
-	{
+	if (!is_dir(UPLOADFILE_PATH)){
 		umask(0);
 		$ret = @mkdir(UPLOADFILE_PATH, 0777);
-		if ($ret === false)
-		{
+		if ($ret === false){
 			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
 		}
 	}
-	if (!is_dir($uppath))
-	{
+	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
-		if ($ret === false)
-		{
+		if ($ret === false){
 			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
 	}
@@ -576,17 +507,14 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	//resizeImage
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath.'thum-'. $fname;
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpFile,$fileType,$thum,$isIcon))
-	{
+	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpFile,$fileType,$thum,$isIcon)){
 		$attach = $thum;
 	} else{
 		$attach = $attachpath;
 	}
 
-	if (@is_uploaded_file($tmpFile))
-	{
-		if (@!move_uploaded_file($tmpFile ,$attachpath))
-		{
+	if (@is_uploaded_file($tmpFile)){
+		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
 			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
 		}
@@ -604,10 +532,8 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
  * @param boolean $isIcon 是否为上传头像
  * @return unknown
  */
-function resizeImage($img, $imgType, $thumPatch, $isIcon)
-{
-	if ($isIcon)
-	{
+function resizeImage($img, $imgType, $thumPatch, $isIcon){
+	if ($isIcon){
 		$max_w = ICON_MAX_W;
 		$max_h = ICON_MAX_H;
 	} else {
@@ -619,43 +545,35 @@ function resizeImage($img, $imgType, $thumPatch, $isIcon)
 	$newheight = $size['h'];
 	$w =$size['rc_w'];
 	$h = $size['rc_h'];
-	if ($w <= $max_w && $h <= $max_h)
-	{
+	if ($w <= $max_w && $h <= $max_h){
 		return false;
 	}
-	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')
-	{
-		if(function_exists('imagecreatefromjpeg'))
-		{
+	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg'){
+		if(function_exists('imagecreatefromjpeg')){
 			$img = imagecreatefromjpeg($img);
 		}else{
 			return false;
 		}
 	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
-		if (function_exists('imagecreatefrompng'))
-		{
+		if (function_exists('imagecreatefrompng')){
 			$img = imagecreatefrompng($img);
 		}else{
 			return false;
 		}
 	}
-	if (function_exists('imagecopyresampled'))
-	{
+	if (function_exists('imagecopyresampled')){
 		$newim = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	} else {
 		$newim = imagecreate($newwidth, $newheight);
 		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 	}
-	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')
-	{
-		if(!imagejpeg($newim,$thumPatch))
-		{
+	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg'){
+		if(!imagejpeg($newim,$thumPatch)){
 			return false;
 		}
 	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
-		if (!imagepng($newim,$thumPatch))
-		{
+		if (!imagepng($newim,$thumPatch)){
 			return false;
 		}
 	}
@@ -670,8 +588,7 @@ function resizeImage($img, $imgType, $thumPatch, $isIcon)
  * @param string $url
  * @param boolean $type
  */
-function formMsg($msg,$url,$type)
-{
+function formMsg($msg,$url,$type){
 	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
 	require_once(getViews('msg'));
 	cleanPage();
@@ -685,14 +602,12 @@ function formMsg($msg,$url,$type)
  * @param string $url 返回地址
  * @param boolean $isAutoGo 是否自动返回 true false
  */
-function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false)
-{
+function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false){
 	echo <<<EOT
 <html>
 <head>
 EOT;
-	if($isAutoGo)
-	{
+	if($isAutoGo){
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
 	}
 	echo <<<EOT
