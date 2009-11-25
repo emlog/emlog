@@ -38,6 +38,10 @@ $api_methods = array(
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 $CACHE = new mkcache($DB, DB_PREFIX);
 $options_cache = $CACHE -> readCache('options');
+if ($options_cache['isxmlrpcenable'] == 'n') {
+	error_message(500, '提示:博客XMLRPC服务未开启.');
+}
+
 // 有些基于浏览器的客户端会发送cookie，我们不需要它们
 $_COOKIE = array();
 // PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
@@ -67,8 +71,7 @@ if (isset($_GET['rsd'])) {
 } 
 
 if (!$HTTP_RAW_POST_DATA) {
-	header('Content-Type: text/plain');
-	die('XML-RPC server accepts POST requests only.');
+	error_message(500, '错误:XML-RPC服务器只能接受POST数据');
 } 
 $data = $HTTP_RAW_POST_DATA;
 
@@ -77,7 +80,7 @@ $array_structs_types = $array_structs = $current_struct_name_array = $params = a
 
 $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
-	die('Empty Request Content');
+	error_message(500, '错误:提交数据内容为空');
 } 
 $parser = xml_parser_create();
 xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
@@ -625,13 +628,6 @@ function getIso($timestamp) {
 function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
-	/**
-	 * 需要完善
-	 */
-	if (XML_RPC_ENABLE !== true) {
-		error_message(405, '本博客没有开启XML-RPC服务.请登陆后台博客开启');
-		return false;
-	} 
 	// 检查用户权限
 	if (!checkUser($username, $password , '' , '')) {
 		error_message(403, '用户名密码错误');

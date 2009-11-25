@@ -120,6 +120,15 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </select>
 		</td>
       </tr>
+	  <tr>
+        <td align="right">开启离线写作支持：<br /></td>
+        <td class="care">
+		<select name="isxmlrpcenable">
+          <option value="y" <?php echo $ex13; ?>>是</option>
+          <option value="n" <?php echo $ex14; ?>>否</option>
+        </select>
+		</td>
+      </tr>
       <tr>
         <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
       </tr>

@@ -50,6 +50,14 @@ if ($action == '')
 		$ex11="";
 		$ex12="selected=\"selected\"";
 	}
+	if($isxmlrpcenable=='y')
+	{
+		$ex13="selected=\"selected\"";
+		$ex14="";
+	} else {
+		$ex13="";
+		$ex14="selected=\"selected\"";
+	}
 
 	include getViews('header');
 	require_once(getViews('configure'));
@@ -72,7 +80,8 @@ if ($action == "mod_config")
 	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
+	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
+	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n'
 	);
 
 	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
