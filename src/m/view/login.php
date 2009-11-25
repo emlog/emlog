@@ -6,7 +6,7 @@
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 <a href="./?action=logout">退出</a>
 <?php else:?>
-<a href="./?action=login" id="active">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login" id="active">登录</a>
 <?php endif;?>
 </div>
 <div id="m">

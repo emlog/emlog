@@ -6,7 +6,7 @@
 <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
 <a href="./?action=logout">退出</a>
 <?php else:?>
-<a href="./?action=login">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
 <?php endif;?>
 </div>
 <div id="m">
@@ -15,7 +15,7 @@ foreach($comment as $value):
 	$ishide = ISLOGIN === true && $value['hide']=='y'?'<font color="red" size="1">[待审]</font>':'';
 	$isrp = ISLOGIN === true && $value['reply']?'<font color="green" size="1">[已回复]</font>':'';
 ?>
-<div class="comcont"><a href="./?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?> 
+<div class="comcont"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?> 
 <?php if(ISLOGIN === true): ?>
 <a href="./?action=delcom&id=<?php echo $value['cid'];?>"><font size="1">[删除]</font></a>
 <?php endif;?>
