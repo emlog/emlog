@@ -30,6 +30,13 @@ a:hover{color:#0079b7; text-decoration:underline}
 #menus .menus2 a:hover{background:url(images/button.png) no-repeat -74px -29px; color:#FFF; text-decoration:none}
 /*content*/
 #content{width:582px; float:left; padding:10px 33px 10px 55px; font-size:14px; color:#333; line-height:1.6; overflow:hidden}
+#content h1,#content h2,#content h3,#content h4,#content h5,#content h6{ font-weight:bold}
+#content h1{ font-size:22px}
+#content h2{ font-size:20px}
+#content h3{ font-size:18px}
+#content h4{ font-size:16px}
+#content h5{ font-size:14px}
+#content h6{ font-size:12px}
 #content p{margin-bottom:10px}
 #content img{max-width:540px}
 #content ul li{margin-bottom:20px}
