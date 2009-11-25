@@ -313,6 +313,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcommen
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','0');
