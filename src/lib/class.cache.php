@@ -333,40 +333,37 @@ class mkcache {
 	/**
 	 * 日志\页面附件缓存
 	 */
-	function mc_logatts()
-	{
+	function mc_logatts(){
 		$sql = "SELECT gid FROM ".$this->db_prefix."blog";
 		$query = $this->db->query($sql);
 		$log_cache_atts = array();
 		while($row = $this->db->fetch_array($query))
 		{
 			$gid = $row['gid'];
-			$attachment = '';
-			//attachment
+			$attachment = array();
 			$attQuery = $this->db->query("SELECT * FROM ".$this->db_prefix."attachment WHERE blogid=$gid ");
 			while($show_attach = $this->db->fetch_array($attQuery))
 			{
 				$att_path = $show_attach['filepath'];//eg: ../uploadfile/200710/b.jpg
 				$atturl = substr($att_path,3);//eg: uploadfile/200710/b.jpg
 				$postfix = strtolower(substr(strrchr($show_attach['filename'], "."),1));
-				if(!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png', 'bmp')))
-				{
-					$file_atturl = $atturl;
-					$attachment .= "<br /><a href=\"$file_atturl\" target=\"_blank\">{$show_attach['filename']}</a>\t".changeFileSize($show_attach['filesize']);
+				if(!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png', 'bmp'))){
+					$attachment['url'] = $atturl;
+					$attachment['filename'] = $show_attach['filename'];
+					$attachment['size'] = changeFileSize($show_attach['filesize']);
+					$log_cache_atts[$gid][] = $attachment;
 				}
 			}
-			$log_cache_atts[$gid] = $attachment;
-			unset($attachment);
 		}
 		$cacheData = serialize($log_cache_atts);
 		$this->cacheWrite($cacheData,'log_atts');
+		unset($log_cache_atts);
 	}
 
 	/**
 	 * 写入缓存
 	 */
-	function cacheWrite ($cacheDate,$cachefile)
-	{
+	function cacheWrite ($cacheDate,$cachefile){
 		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
 		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
 		@ $fw =	fwrite($fp,$cacheDate) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
@@ -376,11 +373,9 @@ class mkcache {
 	/**
 	 * 读取缓存文件
 	 */
-	function readCache($cachefile)
-	{
+	function readCache($cachefile){
 		$cachefile = EMLOG_ROOT.'/content/cache/'.$cachefile;
-		if(@$fp = fopen($cachefile, 'r'))
-		{
+		if(@$fp = fopen($cachefile, 'r')){
 			@$data = fread($fp,filesize($cachefile));
 			fclose($fp);
 		}

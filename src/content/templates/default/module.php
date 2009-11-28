@@ -247,8 +247,14 @@ function blog_sort($sort, $blogid){
 //blog：文件附件
 function blog_att($blogid){
 	global $log_cache_atts; 
-	$attachment = !empty($log_cache_atts[$blogid]) ? '文件附件：'.$log_cache_atts[$blogid] : '';
-	echo $attachment;
+	$att = '';
+	if(!empty($log_cache_atts[$blogid])){
+		$att .= '附件下载：';
+		foreach($log_cache_atts[$blogid] as $val){
+			$att .= '<br /><a href="'.BLOG_URL.$val['url'].'" target="_blank">'.$val['filename'].'</a> '.$val['size'];
+		}
+	}
+	echo $att;
 }
 ?>
 <?php
