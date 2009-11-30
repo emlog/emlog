@@ -132,6 +132,7 @@ ALTER TABLE {$db_prefix}twitter ADD author INT(10) NOT NULL DEFAULT '1' AFTER co
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 UPDATE {$db_prefix}options SET option_value='0' WHERE option_name='isurlrewrite' LIMIT 1;
 UPDATE {$db_prefix}options SET option_value='$widgets' WHERE option_name='widget_title' LIMIT 1;
+UPDATE {$db_prefix}options SET option_value='default' WHERE option_name='nonce_templet';
 ";
 
 	$mysql_query = explode(";\n",$sql);
