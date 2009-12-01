@@ -14,6 +14,7 @@ require_once (getViews('module'));
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="keywords" content="<?php echo $site_key; ?>" />
+<meta name="description" content="<?php echo $bloginfo; ?>" />
 <meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo BLOG_URL; ?>xmlrpc.php?rsd" />
