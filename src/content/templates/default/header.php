@@ -34,7 +34,6 @@ require_once (getViews('module'));
 		<ul id="menus">
 			<li class="menus1"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<?php 
-			$navibar = unserialize($navibar);
 			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
 			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}

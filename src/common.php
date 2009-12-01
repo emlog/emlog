@@ -21,4 +21,6 @@ $user_cache = $CACHE->readCache('user');
 $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 
+$navibar = unserialize($navibar);
+
 ?>
