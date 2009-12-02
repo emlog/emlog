@@ -324,12 +324,12 @@ function cleanPage($beUrlRewrite = false){
 	if($beUrlRewrite){
 		switch ($isurlrewrite){
 			case '1':
-				$searchlink = "/href\=\"(.*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
+				$searchlink = "/href\=\"([^\"]*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
 				$replacelink = "href=\"$1/$3-$4.html$5\"";
 				$output = preg_replace($searchlink, $replacelink, $output);
 				break;
 			case '2':
-				$searchlink = "/href\=\"(.*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
+				$searchlink = "/href\=\"([^\"]*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=(\d+|[%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
 				$replacelink = "href=\"$1/$3/$4$5\"";
 				$output = preg_replace($searchlink, $replacelink, $output);
 				break;

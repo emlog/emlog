@@ -371,6 +371,7 @@ class emBlog {
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid)
 	{
+		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if($pwd !== addslashes($logPwd))
 		{
@@ -381,23 +382,8 @@ class emBlog {
 <title>emlog message</title>
 <style type="text/css">
 <!--
-body {
-	background-color:#F7F7F7;
-	font-family: Arial;
-	font-size: 12px;
-	line-height:150%;
-}
-.main {
-	background-color:#FFFFFF;
-	margin-top:20px;
-	font-size: 12px;
-	color: #666666;
-	width:580px;
-	margin:10px 200px;
-	padding:10px;
-	list-style:none;
-	border:#DFDFDF 1px solid;
-}
+body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
+.main{background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 -->
 </style>
 </head>
@@ -406,7 +392,7 @@ body {
 <form action="" method="post">
 请输入该日志的访问密码<br>
 <input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="./">&laquo;返回首页</a>
+<br /><br /><a href="$url">&laquo;返回首页</a>
 </form>
 </div>
 </body>
@@ -417,10 +403,9 @@ EOT;
 				setcookie('em_logpwd_'.$logid, ' ', time() - 31536000);
 			}
 			exit;
-}else {
-	setcookie('em_logpwd_'.$logid, $logPwd);
-}
+        }else {
+        	setcookie('em_logpwd_'.$logid, $logPwd);
+        }
 	}
 }
-
 ?>
