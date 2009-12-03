@@ -11,9 +11,9 @@ define('ICON_MAX_W', 140);
 define('ICON_MAX_H', 220);
 
 require_once(EMLOG_ROOT.'/config.php');
-require_once(EMLOG_ROOT.'/lib/function.base.php');
-require_once(EMLOG_ROOT.'/lib/class.mysql.php');
-require_once(EMLOG_ROOT.'/lib/class.cache.php');
+require_once file_exists('lib/function.base.php') ? 'lib/function.base.php': 'lib/F_base.php';
+require_once file_exists('lib/class.cache.php') ? 'lib/class.cache.php' : 'lib/C_cache.php';
+require_once file_exists('lib/class.mysql.php') ? 'lib/class.mysql.php' : 'lib/C_mysql.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
@@ -182,7 +182,6 @@ UPDATE {$db_prefix}options SET option_value = 'default' WHERE option_name='nonce
 	$CACHE->mc_link();
 	$CACHE->mc_tags();
 	$CACHE->mc_sort();
-	$CACHE->mc_twitter();
 	$CACHE->mc_newlog();
 
 	emMsg("恭喜你！emlog已成功升级到3.2.1 <a href=\"./\"> 进入博客&raquo; </a>");
