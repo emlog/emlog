@@ -159,7 +159,6 @@ if ($action == 'addcom')
 		case 1:
 		$CACHE->mc_sta();
 		$CACHE->mc_user();
-		doAction('comment_saved');
 		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;
 	}
 }

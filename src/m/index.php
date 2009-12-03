@@ -85,6 +85,7 @@ if (ISLOGIN === true && $action == 'write') {
 		$title = '';
 		$sortid = -1;
 		$content = '';
+		$excerpt = '';
 		$tagStr = '';
 		$logid = -1;
 		$author = UID;
@@ -104,6 +105,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
@@ -113,7 +115,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$logData = array(
 		'title'=>$title,
 		'content'=>$content,
-		'excerpt'=>'',
+		'excerpt'=>$excerpt,
 		'author'=>$author,
 		'sortid'=>$sort,
 		'date'=>$postTime,

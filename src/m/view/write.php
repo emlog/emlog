@@ -25,6 +25,7 @@
 	      </select>
 <br />
 内容：<br /><textarea name="content" class="texts"><?php echo $content; ?></textarea><br />
+摘要：<br /><textarea name="excerpt" class="excerpt"><?php echo $excerpt; ?></textarea><br />
 标签：<br /><input type="text" name="tag" value="<?php echo $tagStr; ?>" /><br />
 <input type="hidden" name="gid" value=<?php echo $logid; ?> />
 <input type="hidden" name="author" value=<?php echo $author; ?> />
