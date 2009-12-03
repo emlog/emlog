@@ -305,8 +305,9 @@ if (ISLOGIN === true && $action == 'delt') {
 }
 if ($action == 'login') {
 	$login_code == 'y' ? $ckcode = "<span>验证码</span>
-    <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
-    <img src=\"../lib/checkcode.php\" /></div>" : $ckcode = '';
+    <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
+	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
+    </div>" : $ckcode = '';
 	include getViews ('header');
 	include getViews ('login');
 	include getViews ('footer');
