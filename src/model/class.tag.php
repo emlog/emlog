@@ -75,7 +75,7 @@ class emTag {
 	function addTag($tagStr, $blogId)
 	{
 		$tag = !empty($tagStr) ? explode(',', $tagStr) : array();
-		$tag = array_unique($tag);
+		$tag = array_filter(array_unique($tag));
 		foreach ($tag as $tagName)
 		{
 			$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
@@ -108,7 +108,7 @@ class emTag {
 		{
 			$old_tag = array('');
 		}
-		$dif_tag = findArray(array_unique($tag),$old_tag);
+		$dif_tag = findArray(array_filter(array_unique($tag)),$old_tag);
 		for($n = 0; $n < count($dif_tag); $n++)
 		{
 			$a = 0;
