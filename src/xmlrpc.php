@@ -1,7 +1,7 @@
 <?php
 /**
  * xmlrpc博客服务接口
- * 
+ *
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.4.0
  * $Id$
@@ -17,10 +17,6 @@ require_once EMLOG_ROOT . '/model/class.blog.php';
 require_once EMLOG_ROOT . '/model/class.sort.php';
 require_once EMLOG_ROOT . '/model/class.tag.php';
 
-/**
- * 需要完善
- */
-define('XML_RPC_ENABLE', true);
 define('UPLOADFILE_PATH', EMLOG_ROOT . '/content/uploadfile/'); //附件保存目录
 $api_methods = array(
 	// metaWeblog 接口
@@ -29,7 +25,7 @@ $api_methods = array(
 	'metaWeblog.getPost' => 'mw_getPost',
 	'metaWeblog.getRecentPosts' => 'mw_getRecentPosts',
 	'metaWeblog.getCategories' => 'mw_getCategories',
-	'metaWeblog.newMediaObject' => 'mw_newMediaObject', 
+	'metaWeblog.newMediaObject' => 'mw_newMediaObject',
 	// blogger 接口
 	'blogger.deletePost' => 'mw_deletePost',
 	'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
@@ -44,7 +40,7 @@ $_COOKIE = array();
 // PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
 if (!isset($HTTP_RAW_POST_DATA)) {
 	$HTTP_RAW_POST_DATA = file_get_contents('php://input');
-} 
+}
 // 修复mozBlog或其他个例不兼容xml标签不在第一行的情况
 if (isset($HTTP_RAW_POST_DATA))
 	$HTTP_RAW_POST_DATA = trim($HTTP_RAW_POST_DATA);
@@ -65,13 +61,13 @@ if (isset($_GET['rsd'])) {
 			</rsd>
 		 ';
 	exit;
-} 
+}
 if ($options_cache['isxmlrpcenable'] == 'n') {
 	error_message(500, '提示:博客XMLRPC服务未开启.');
 }
 if (!$HTTP_RAW_POST_DATA) {
 	error_message(500, '错误:XML-RPC服务器只能接受POST数据');
-} 
+}
 $data = $HTTP_RAW_POST_DATA;
 
 $current_tag_contents = $current_tag = $message_type = $method_name = null;
@@ -80,14 +76,20 @@ $array_structs_types = $array_structs = $current_struct_name_array = $params = a
 $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
 	error_message(500, '错误:提交数据内容为空');
-} 
+}
+
+// 兼容php libxml模块2.7.0-2.7.3版本解析xml丢失html标签括号的bug 
+if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
+	$data = str_replace(array('&lt;', '&gt;', '&amp;'), array('&#60;', '&#62;' , '&#38;'), $data);
+}
+
 $parser = xml_parser_create();
 xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, false);
 xml_set_element_handler($parser, 'tag_open', 'tag_close');
 xml_set_character_data_handler($parser, 'cdata');
 if (!xml_parse($parser, $data)) {
 	die;
-} 
+}
 xml_parser_free($parser);
 if (!array_key_exists($method_name, $api_methods)) die('unknow request');
 
@@ -126,7 +128,7 @@ function blogger_getUsersBlogs() {
 			</data>
 		</array>";
 	response($xml);
-} 
+}
 
 /**
  * 删除日志
@@ -150,7 +152,7 @@ function mw_deletePost($args) {
 	$CACHE -> mc_logsort();
 	$CACHE -> mc_sort();
 	response('<boolean>1</boolean>');
-} 
+}
 /**
  * 保存新日志
  */
@@ -170,7 +172,7 @@ function mw_newPost($args) {
 	$update_data['content'] = htmlspecialchars_decode($data['description']);
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
-	$update_data['excerpt'] = ''; 
+	$update_data['excerpt'] = '';
 	// 只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort($DB);
@@ -181,23 +183,23 @@ function mw_newPost($args) {
 		if ($sort_name == $sort['sortname']) {
 			$update_data['sortid'] = $sort['sid'];
 			break;
-		} 
-	} 
+		}
+	}
 	// 发布时间
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated'] -> hour, $data['dateCreated'] -> minute , $data['dateCreated'] -> second , $data['dateCreated'] -> month , $data['dateCreated'] -> day , $data['dateCreated'] -> year);
 	} else {
 		$update_data['date'] = time() - ($options_cache['timezone'] - 8) * 3600;
-	} 
+	}
 	// 更新数据
 	$emBlog = new emBlog($DB);
-	$new_id = $emBlog -> addlog($update_data); 
+	$new_id = $emBlog -> addlog($update_data);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag($DB);
 		$emTag -> addTag($data['mt_keywords'], $new_id);
 		unset($emTag);
-	} 
+	}
 	// 更新缓存
 	$CACHE -> mc_logtags();
 	$CACHE -> mc_logatts();
@@ -209,7 +211,7 @@ function mw_newPost($args) {
 	$CACHE -> mc_user();
 	$CACHE -> mc_sta();
 	response("<i4>$new_id</i4>");
-} 
+}
 /**
  * 更新日志
  */
@@ -219,7 +221,7 @@ function mw_editPost($args) {
 	$username = $args[1];
 	$password = $args[2];
 	$user = login($username, $password);
-	define('UID', $user['uid']); 
+	define('UID', $user['uid']);
 	// 接受参数
 	$id = intval($args[0]);
 	$username = $args[1];
@@ -230,7 +232,7 @@ function mw_editPost($args) {
 	$update_data['title'] = $data['title'];
 	$update_data['content'] = htmlspecialchars_decode($data['description']);
 	$update_data['author'] = UID;
-	$update_data['hide'] = $publish == 1 ? 'n' : 'y'; 
+	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	// 根据分类名称取分类id,注意只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort($DB);
@@ -241,20 +243,20 @@ function mw_editPost($args) {
 		if ($sort_name == $sort['sortname']) {
 			$update_data['sortid'] = $sort['sid'];
 			break;
-		} 
-	} 
+		}
+	}
 	// 发布时间
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated'] -> hour, $data['dateCreated'] -> minute , $data['dateCreated'] -> second , $data['dateCreated'] -> month , $data['dateCreated'] -> day , $data['dateCreated'] -> year);
-	} 
+	}
 	// 更新数据
 	$emBlog = new emBlog($DB);
-	$emBlog -> updateLog($update_data, $id); 
+	$emBlog -> updateLog($update_data, $id);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag($DB);
 		$emTag -> updateTag($data['mt_keywords'], $id);
-	} 
+	}
 	// 更新缓存
 	$CACHE -> mc_logtags();
 	$CACHE -> mc_logatts();
@@ -267,7 +269,7 @@ function mw_editPost($args) {
 	$CACHE -> mc_sta();
 
 	response('<boolean>1</boolean>');
-} 
+}
 
 /**
  * 取得博客分类
@@ -299,10 +301,10 @@ function mw_getCategories($args) {
 				</struct>
 			</value>
 		";
-	} 
+	}
 	$xml = "<array><data>$xml</data></array>";
 	response($xml);
-} 
+}
 
 /**
  * 读取日志信息
@@ -386,12 +388,12 @@ function mw_getPost($args) {
 	</struct>
 	";
 	response($xml);
-} 
+}
 
 function mw_getRecentPosts($args) {
 	global $DB, $CACHE;
 	escape($args);
-	
+
 	$username = $args[1];
 	$password = $args[2];
 	$num_posts = intval($args[3]);
@@ -409,14 +411,14 @@ function mw_getRecentPosts($args) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
 		$post['date'] = getIso($post['date']);
-		
+
 		$tags = '';
 		if (!empty($log_cache_tags[$post['gid']])) {
 			foreach ($log_cache_tags[$post['gid']] as $tag) {
 				$tags[] = $tag['tagname'];
 			}
 			$tags = implode(',', $tags);
-		} 
+		}
 		$xml .= "<value>
 				<struct>
 				<member>
@@ -468,20 +470,20 @@ function mw_getRecentPosts($args) {
 					<value><string>http://emlog.net/blog</string></value>
 				</member>
 				<member>
-					<name>mt_keywords</name> 
+					<name>mt_keywords</name>
 						<value>
-							<string>$tags</string> 
+							<string>$tags</string>
 						</value>
 				</member>
 			</struct></value>";
-	} 
+	}
 
 	if (empty($xml)) {
 		error_massage(404, '没有日志');
-	} 
+	}
 	$xml = "<array><data>$xml</data></array>";
 	response($xml);
-} 
+}
 
 function mw_newMediaObject($args) {
 	global $DB, $options_cache;
@@ -498,18 +500,18 @@ function mw_newMediaObject($args) {
 	$bits = $file['bits'];
 
 	if (!empty($data["overwrite"]) && ($data["overwrite"] == true)) {
-	} 
+	}
 
 	$att_type = array('rar', 'zip', 'gif', 'jpg', 'jpeg', 'png', 'bmp');
 
 	if (empty($filename))
 		error_message(500, '文件名错误');
 
-	$extension = strtolower(substr(strrchr($filename, "."), 1)); 
+	$extension = strtolower(substr(strrchr($filename, "."), 1));
 	// 文件类型检测
 	if (!in_array($extension, $att_type)) {
 		error_message(500, '文件类型错误');
-	} 
+	}
 	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
 	$fname = md5($fileName) . date('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
@@ -518,15 +520,15 @@ function mw_newMediaObject($args) {
 		$ret = @mkdir(UPLOADFILE_PATH, 0777);
 		if ($ret === false) {
 			error_message(500, '创建文件上传目录失败');
-		} 
-	} 
+		}
+	}
 	if (!is_dir($uppath)) {
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
 			error_message(500, '上传失败。文件上传目录(content/uploadfile)不可写');
-		} 
-	} 
+		}
+	}
 
 	$fp = @fopen($attachpath, 'wb');
 	if (!$fp)
@@ -534,7 +536,7 @@ function mw_newMediaObject($args) {
 	fwrite($fp, $bits);
 	fclose($fp);
 
-	doAction('xmlrpc_attach_upload', $attachpath); 
+	doAction('xmlrpc_attach_upload', $attachpath);
 	// resizeImage
 	$imtype = array('jpg', 'png', 'jpeg');
 	$thum = $uppath . 'thum-' . $fname;
@@ -550,21 +552,21 @@ function mw_newMediaObject($args) {
 		$h = $size['rc_h'];
 		if ($w <= $max_w && $h <= $max_h) {
 			$thum_created = false;
-		} 
+		}
 
 		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
 			if (function_exists('imagecreatefromjpeg')) {
 				$img = imagecreatefromjpeg($attachpath);
 			} else {
 				$thum_created = false;
-			} 
+			}
 		} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
 			if (function_exists('imagecreatefrompng')) {
 				$img = imagecreatefrompng($attachpath);
 			} else {
 				$thum_created = false;
-			} 
-		} 
+			}
+		}
 
 		if ($thum_created && function_exists('imagecopyresampled')) {
 			$newim = imagecreatetruecolor($newwidth, $newheight);
@@ -572,20 +574,20 @@ function mw_newMediaObject($args) {
 		} elseif ($thum_created) {
 			$newim = imagecreate($newwidth, $newheight);
 			imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
-		} 
+		}
 
 		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
 			if (!imagejpeg($newim, $thumPatch)) {
 				$thum_created = false;
-			} 
+			}
 		} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
 			if (!imagepng($newim, $thumPatch)) {
 				$thum_created = false;
-			} 
-		} 
+			}
+		}
 		if ($thum_created)
 			ImageDestroy($newim);
-	} 
+	}
 
 	$img_url = $options_cache['blogurl'] . 'content/uploadfile/' . date('Ym') . '/' . $fname;
 	$file_name = $thum_created ? 'thum-' . $fname : $fname;
@@ -594,25 +596,25 @@ function mw_newMediaObject($args) {
             <member>
                 <name>file</name>
                 <value>
-                    <string>$file_name</string> 
+                    <string>$file_name</string>
                 </value>
             </member>
             <member>
                 <name>url</name>
                 <value>
-                    <string>$img_url</string> 
+                    <string>$img_url</string>
                 </value>
             </member>
             <member>
                 <name>type</name>
                 <value>
-                    <string>$imgType</string> 
+                    <string>$imgType</string>
                 </value>
             </member>
         </struct>
     ";
 	response($xml);
-} 
+}
 
 function getIso($timestamp) {
 	$year = date('Y', $timestamp);
@@ -622,7 +624,7 @@ function getIso($timestamp) {
 	$minute = date('i', $timestamp);
 	$second = date('s', $timestamp);
 	return $year . $month . $day . 'T' . $hour . ':' . $minute . ':' . $second . $timezone;
-} 
+}
 
 function login($username, $password) {
 	$username = addslashes($username);
@@ -631,10 +633,10 @@ function login($username, $password) {
 	if (!checkUser($username, $password , '' , '')) {
 		error_message(403, '用户名密码错误');
 		return false;
-	} 
+	}
 	// 返回用户信息
 	return getUserDataByLogin($username);
-} 
+}
 
 function escape(&$array) {
 	if (!is_array($array)) {
@@ -647,10 +649,10 @@ function escape(&$array) {
 				// skip
 			} else {
 				$array[$k] = mysql_real_escape_string($v);
-			} 
-		} 
-	} 
-} 
+			}
+		}
+	}
+}
 
 function response($result_xml) {
 	$xml = "
@@ -665,7 +667,7 @@ function response($result_xml) {
 		</methodResponse>
 	";
 	output($xml);
-} 
+}
 
 function error_message($code, $message) {
 	$message = htmlspecialchars($message);
@@ -687,7 +689,7 @@ function error_message($code, $message) {
 			</methodResponse>
 	";
 	output($xml);
-} 
+}
 
 function output($xml) {
 	$xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n" . $xml;
@@ -698,12 +700,12 @@ function output($xml) {
 	header('Date: ' . date('r'));
 	echo $xml;
 	exit;
-} 
+}
 
 function cdata($parser, $cdata) {
 	global $current_tag_contents;
 	$current_tag_contents .= $cdata;
-} 
+}
 
 function tag_open($parser, $tag, $attr) {
 	global $current_tag_contents, $current_tag, $array_structs_types, $array_structs, $message_type, $params;
@@ -726,8 +728,8 @@ function tag_open($parser, $tag, $attr) {
 			$array_structs_types[] = 'struct';
 			$array_structs[] = array();
 			break;
-	} 
-} 
+	}
+}
 
 function tag_close($parser, $tag) {
 	global $current_tag_contents, $current_tag, $array_structs_types, $array_structs, $message_type, $current_struct_name_array, $method_name, $params;
@@ -747,16 +749,16 @@ function tag_close($parser, $tag) {
 			$valueFlag = true;
 			break;
 		case 'dateTime.iso8601':
-			$value = getiso(trim($current_tag_contents)); 
+			$value = getiso(trim($current_tag_contents));
 			// $value = $iso->getTimestamp();
 			$valueFlag = true;
 			break;
-		case 'value': 
+		case 'value':
 			// "If no type is indicated, the type is string."
 			if (trim($current_tag_contents) != '') {
 				$value = (string)$current_tag_contents;
 				$valueFlag = true;
-			} 
+			}
 			break;
 		case 'boolean':
 			$value = (boolean) trim($current_tag_contents);
@@ -784,7 +786,7 @@ function tag_close($parser, $tag) {
 		case 'methodName':
 			$method_name = trim($current_tag_contents);
 			break;
-	} 
+	}
 	if ($valueFlag) {
 		if (count($array_structs) > 0) {
 			// Add value to struct or array
@@ -794,11 +796,11 @@ function tag_close($parser, $tag) {
 			} else {
 				// Add to array
 				$array_structs[count($array_structs)-1][] = $value;
-			} 
+			}
 		} else {
 			// Just add as a paramater
 			$params[] = $value;
-		} 
-	} 
+		}
+	}
 	$current_tag_contents = '';
 }
