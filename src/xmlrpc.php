@@ -16,7 +16,8 @@ require_once EMLOG_ROOT . '/lib/function.login.php';
 require_once EMLOG_ROOT . '/model/class.blog.php';
 require_once EMLOG_ROOT . '/model/class.sort.php';
 require_once EMLOG_ROOT . '/model/class.tag.php';
-
+define('ICON_MAX_W', 	140);//头像缩略图最大宽
+define('ICON_MAX_H',	220);//头像缩略图最大高
 define('UPLOADFILE_PATH', EMLOG_ROOT . '/content/uploadfile/'); //附件保存目录
 $api_methods = array(
 	// metaWeblog 接口
