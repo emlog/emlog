@@ -14,7 +14,7 @@ define ('ADMIN_PERPAGE_NUM', 5);
 $isgzipenable = 'n';//手机浏览关闭gzip压缩
 $index_lognum = 5;
 $index_twnum = 5;
-$logid = isset ($_GET ['post']) ? intval ($_GET ['post']) : '';
+$logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $blogname = $options_cache ['blogname'];
 $blogdes = $options_cache ['bloginfo'];
 
@@ -23,7 +23,7 @@ if (empty ($action) && empty ($logid)) {
 	require_once (EMLOG_ROOT . '/model/class.blog.php');
 	
 	$emBlog = new emBlog ($DB);
-	$page = isset ($_GET ['page']) ? abs (intval ($_GET ['page'])) : 1;
+	$page = isset ($_GET['page']) ? abs (intval ($_GET['page'])) : 1;
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
 	$lognum = $sta_cache ['lognum'];
 	$pageurl = '?page';
@@ -48,7 +48,7 @@ if (!empty ($logid)) {
 	}
 	extract ($logData);
 	if (! empty ($password)) {
-		$postpwd = isset ($_POST ['logpwd']) ? addslashes (trim ($_POST ['logpwd'])) : '';
+		$postpwd = isset ($_POST['logpwd']) ? addslashes (trim ($_POST['logpwd'])) : '';
 		$cookiepwd = isset ($_COOKIE ['em_logpwd_' . $logid]) ? addslashes (trim ($_COOKIE ['em_logpwd_' . $logid])) : '';
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
@@ -261,7 +261,7 @@ if (ISLOGIN === true && $action == 'dorep') {
 }
 //碎语
 if ($action == 'tw') {
-	$page = isset ($_GET ['page']) ? intval ($_GET ['page']) : 1;
+	$page = isset ($_GET['page']) ? intval ($_GET['page']) : 1;
 	if ($page) {
 		$start_limit = ($page - 1) * $index_twnum;
 		$id = ($page - 1) * $index_twnum;
@@ -274,6 +274,7 @@ if ($action == 'tw') {
 	$twnum = $sta_cache ['twnum'];
 	$pageurl = './?action=tw&page';
 	$query = $DB->query ($sql);
+	$tws = array();
 	while ($row = $DB->fetch_array ($query)) {
 		$row ['date'] = smartyDate ($row ['date']);
 		$row ['content'] = htmlspecialchars (trim ($row ['content']));
@@ -287,7 +288,7 @@ if ($action == 'tw') {
 
 }
 if (ISLOGIN === true && $action == 't') {
-	$t = isset ($_POST ['t']) ? addslashes ($_POST ['t']) : '';
+	$t = isset ($_POST['t']) ? addslashes ($_POST['t']) : '';
 	if (! empty ($t)) {
 		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t',".UID.",'$localdate')");
 		$CACHE->mc_sta ();
@@ -297,7 +298,7 @@ if (ISLOGIN === true && $action == 't') {
 	}
 }
 if (ISLOGIN === true && $action == 'delt') {
-	$id = isset ($_GET ['id']) ? intval ($_GET ['id']) : '';
+	$id = isset ($_GET['id']) ? intval ($_GET['id']) : '';
 	$author = ROLE == 'admin' ? '' : 'and author='.UID;
 	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id $author");
 	$CACHE->mc_sta ();
@@ -314,9 +315,9 @@ if ($action == 'login') {
 }
 if ($action == 'auth') {
 	session_start ();
-	$username = addslashes(trim($_POST ['user']));
-	$password = addslashes(trim($_POST ['pw']));
-	$img_code = ($login_code == 'y' && isset ($_POST ['imgcode'])) ? addslashes (trim (strtoupper ($_POST ['imgcode']))) : '';
+	$username = addslashes(trim($_POST['user']));
+	$password = addslashes(trim($_POST['pw']));
+	$img_code = ($login_code == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
 	$ispersis = true;
 	if (checkUser ($username, $password, $img_code, $login_code) === true) {
 		setAuthCookie ($username, $ispersis);
