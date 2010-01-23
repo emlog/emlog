@@ -60,9 +60,9 @@ class mkcache {
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = array(
 			'photo' => $icon,
-			'name' =>htmlspecialchars($row['nickname']),
-			'mail'	=>htmlspecialchars($row['email']),
-			'des'=>$row['description'],
+			'name' => htmlspecialchars($row['nickname']),
+			'mail' => htmlspecialchars($row['email']),
+			'des' => htmlspecialchars($row['description']),
 			'lognum' => $logNum,
 			'draftnum' => $draftNum,
 			'commentnum' => $commentNum,
