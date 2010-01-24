@@ -6,7 +6,7 @@
  * $Id: configure.php 1448 2009-08-29 06:25:11Z emloog $
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if ($action == '')
 {
@@ -65,5 +65,3 @@ if ($action == 'update')
 	$CACHE->mc_options();
 	header("Location: ./permalink.php?activated=true");	
 }
-
-?>

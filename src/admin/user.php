@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.user.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.user.php';
 
 $emUser = new emUser($DB);
 
@@ -48,7 +48,7 @@ if($action== 'new')
 		exit;
 	}
 	
-	require_once(EMLOG_ROOT.'/lib/class.phpass.php');
+	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
@@ -116,5 +116,3 @@ if ($action== 'del')
 
 	header("Location: ./user.php?active_del=true");
 }
-
-?>

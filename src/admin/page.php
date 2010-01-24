@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.blog.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
 
 $navibar = unserialize($navibar);
 
@@ -178,5 +178,3 @@ if ($action == 'operate_page')
 			break;
 	}
 }
-
-?>

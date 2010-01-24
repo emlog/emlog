@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('common.php');
+require_once 'common.php';
 viewCount();
 
 define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//前台模板URL
@@ -20,7 +20,7 @@ $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 //日志列表
 if (empty($action) && empty($logid) && empty($plugin))
 {
-	require_once(EMLOG_ROOT.'/model/class.blog.php');
+	require_once EMLOG_ROOT.'/model/class.blog.php';
 
 	$emBlog = new emBlog($DB);
 
@@ -41,7 +41,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL."?record=$record&page";
 	} elseif ($tag) {
-		require_once(EMLOG_ROOT.'/model/class.tag.php');
+		require_once EMLOG_ROOT.'/model/class.tag.php';
 		$emTag = new emTag($DB);
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
@@ -83,9 +83,9 @@ if (empty($action) && empty($logid) && empty($plugin))
 //浏览日志、页面
 if (!empty($logid))
 {
-	require_once(EMLOG_ROOT.'/model/class.blog.php');
-	require_once(EMLOG_ROOT.'/model/class.comment.php');
-	require_once(EMLOG_ROOT.'/model/class.trackback.php');
+	require_once EMLOG_ROOT.'/model/class.blog.php';
+	require_once EMLOG_ROOT.'/model/class.comment.php';
+	require_once EMLOG_ROOT.'/model/class.trackback.php';
 
 	$emBlog = new emBlog($DB);
 	$emComment = new emComment($DB);
@@ -125,7 +125,7 @@ if (!empty($logid))
 //发表评论
 if ($action == 'addcom')
 {
-	require_once(EMLOG_ROOT.'/model/class.comment.php');
+	require_once EMLOG_ROOT.'/model/class.comment.php';
 	$emComment = new emComment($DB);
 
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
@@ -170,5 +170,3 @@ if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugi
 }
 
 cleanPage(true);
-
-?>

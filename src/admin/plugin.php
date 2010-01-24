@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.plugin.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.plugin.php';
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
@@ -44,7 +44,7 @@ if($action == 'inactive')
 if ($action == '' && $plugin)
 {
 	include getViews('header');
-	require_once("../content/plugins/{$plugin}/{$plugin}_setting.php");
+	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 	plugin_setting_view();
 	include getViews('footer');
 }
@@ -53,10 +53,8 @@ if ($action == 'setting')
 {
 	if(!empty($_POST))
 	{
-		require_once("../content/plugins/{$plugin}/{$plugin}_setting.php");
+		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 		plugin_setting();
 	}
 	header("Location: ./plugin.php?plugin={$plugin}&setting=true");
 }
-
-?>

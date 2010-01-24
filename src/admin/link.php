@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.link.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.link.php';
 
 $emLink = new emLink($DB);
 
@@ -93,5 +93,3 @@ if ($action== 'dellink')
 	$CACHE->mc_link();
 	header("Location: ./link.php?active_del=true");
 }
-
-?>

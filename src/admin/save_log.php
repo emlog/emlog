@@ -6,11 +6,11 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.blog.php');
-require_once(EMLOG_ROOT.'/model/class.tag.php');
-require_once(EMLOG_ROOT.'/model/class.sort.php');
-require_once(EMLOG_ROOT.'/model/class.trackback.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
+require_once EMLOG_ROOT.'/model/class.sort.php';
+require_once EMLOG_ROOT.'/model/class.trackback.php';
 
 
 $emBlog = new emBlog($DB);
@@ -93,5 +93,3 @@ switch ($action)
 		formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 		break;
 }
-
-?>

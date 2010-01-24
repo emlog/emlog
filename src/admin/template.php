@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if($action == '')
 {
@@ -61,5 +61,3 @@ if($action == 'usetpl')
 	$CACHE->mc_options();
 	header("Location: ./template.php?activated=true");
 }
-
-?>

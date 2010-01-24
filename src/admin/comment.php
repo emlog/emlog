@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.comment.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.comment.php';
 
 $emComment = new emComment($DB);
 
@@ -128,5 +128,3 @@ if($action=='doreply')
 		echo "<span>博主回复：$reply</span>";
 	}
 }
-
-?>

@@ -8,10 +8,10 @@
 
 define('EMLOG_ROOT', dirname(__FILE__));
 
-require_once(EMLOG_ROOT.'/lib/function.base.php');
-require_once(EMLOG_ROOT.'/lib/class.mysql.php');
-require_once(EMLOG_ROOT.'/lib/class.cache.php');
-require_once(EMLOG_ROOT.'/lib/class.phpass.php');
+require_once EMLOG_ROOT.'/lib/function.base.php';
+require_once EMLOG_ROOT.'/lib/class.mysql.php';
+require_once EMLOG_ROOT.'/lib/class.cache.php';
+require_once EMLOG_ROOT.'/lib/class.phpass.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
@@ -187,7 +187,7 @@ EOT;
 	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
 	."\n//cookie name\n"
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
-	."\n?>";
+	."\n";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);

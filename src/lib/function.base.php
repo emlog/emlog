@@ -649,5 +649,3 @@ body {
 EOT;
 	exit;
 }
-
-?>

@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if ($action == '')
 {
@@ -40,5 +40,3 @@ if ($action == 'phpinfo')
 {
 	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
 }
-
-?>

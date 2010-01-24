@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('init.php');
+require_once 'init.php';
 
 $blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 $sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
@@ -165,5 +165,3 @@ function iconv2utf($chs)
 	}
 	return $chs;
 }
-
-?>

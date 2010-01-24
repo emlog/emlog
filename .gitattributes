@@ -1,6 +1,7 @@
 * text=auto !eol
 /license.txt -text svn_keywords=Id
 /readme.html -text
+src/.htaccess -text
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/blogger.php -text svn_keywords=Id
@@ -247,6 +248,7 @@ src/model/class.sort.php -text svn_keywords=Id
 src/model/class.tag.php -text svn_keywords=Id
 src/model/class.trackback.php -text svn_keywords=Id
 src/model/class.user.php -text svn_keywords=Id
+src/options.php -text
 src/robots.txt -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id

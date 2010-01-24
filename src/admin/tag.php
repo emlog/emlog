@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.tag.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
 
 $emTag = new emTag($DB);
 
@@ -58,5 +58,3 @@ if($action== 'dell_all_tag')
 	$CACHE->mc_tags();
 	header("Location: ./tag.php?active_del=true");
 }
-
-?>

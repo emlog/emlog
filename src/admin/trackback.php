@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.trackback.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.trackback.php';
 
 $emTrackback = new emTrackback($DB);
 
@@ -40,5 +40,3 @@ if($action == 'dell')
 	$CACHE->mc_user();
 	header("Location: ./trackback.php?active_del=true");
 }
-
-?>

@@ -63,5 +63,3 @@ class emSort {
 		return $sortName;
 	}
 }
-
-?>

@@ -6,10 +6,10 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.blog.php');
-require_once(EMLOG_ROOT.'/model/class.tag.php');
-require_once(EMLOG_ROOT.'/model/class.user.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
+require_once EMLOG_ROOT.'/model/class.user.php';
 
 $emBlog = new emBlog($DB);
 
@@ -200,5 +200,3 @@ if($action == 'operate_log')
 			break;
 	}
 }
-
-?>

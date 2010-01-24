@@ -6,7 +6,7 @@
  * $Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
-require_once ('../common.php');
+require_once '../common.php';
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 define ('ADMIN_PERPAGE_NUM', 5);
@@ -20,7 +20,7 @@ $blogdes = $options_cache ['bloginfo'];
 
 //首页
 if (empty ($action) && empty ($logid)) {
-	require_once (EMLOG_ROOT . '/model/class.blog.php');
+	require_once EMLOG_ROOT . '/model/class.blog.php';
 	
 	$emBlog = new emBlog ($DB);
 	$page = isset ($_GET['page']) ? abs (intval ($_GET['page'])) : 1;
@@ -36,8 +36,8 @@ if (empty ($action) && empty ($logid)) {
 }
 //日志
 if (!empty ($logid)) {
-	require_once (EMLOG_ROOT . '/model/class.blog.php');
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.blog.php';
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	
 	$emBlog = new emBlog ($DB);
 	$emComment = new emComment ($DB);
@@ -63,13 +63,13 @@ if (!empty ($logid)) {
 }
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
-	require_once(EMLOG_ROOT.'/model/class.sort.php');
+	require_once EMLOG_ROOT.'/model/class.sort.php';
 	$emSort = new emSort($DB);
 	$sorts = $emSort->getSorts();
 	if($logid)
 	{
-		require_once(EMLOG_ROOT.'/model/class.blog.php');
-		require_once(EMLOG_ROOT.'/model/class.tag.php');
+		require_once EMLOG_ROOT.'/model/class.blog.php';
+		require_once EMLOG_ROOT.'/model/class.tag.php';
 		$emBlog = new emBlog($DB);
 		$emTag = new emTag($DB);
 	
@@ -96,8 +96,8 @@ if (ISLOGIN === true && $action == 'write') {
 	include getViews ('footer');
 }
 if (ISLOGIN === true && $action == 'savelog') {
-	require_once(EMLOG_ROOT.'/model/class.blog.php');
-	require_once(EMLOG_ROOT.'/model/class.tag.php');
+	require_once EMLOG_ROOT.'/model/class.blog.php';
+	require_once EMLOG_ROOT.'/model/class.tag.php';
 
 	$emBlog = new emBlog($DB);
 	$emTag = new emTag($DB);
@@ -146,7 +146,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	header ("Location: ./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
-	require_once(EMLOG_ROOT.'/model/class.blog.php');
+	require_once EMLOG_ROOT.'/model/class.blog.php';
 	$emBlog = new emBlog($DB);
 	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 	$emBlog->deleteLog($id);
@@ -154,7 +154,7 @@ if (ISLOGIN === true && $action == 'dellog') {
 }
 //评论
 if ($action == 'addcom') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 
 	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
@@ -196,7 +196,7 @@ if ($action == 'com') {
 		$hide = '';
 		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	
-		require_once (EMLOG_ROOT . '/model/class.comment.php');
+		require_once EMLOG_ROOT . '/model/class.comment.php';
 		$emComment = new emComment ($DB);
 	
 		$comment = $emComment->getComments(1, null, $hide, $page);
@@ -211,7 +211,7 @@ if ($action == 'com') {
 	include getViews ('footer');
 }
 if (ISLOGIN === true && $action == 'delcom') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->delComment($id);
@@ -221,7 +221,7 @@ if (ISLOGIN === true && $action == 'delcom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->showComment($id);
@@ -231,7 +231,7 @@ if (ISLOGIN === true && $action == 'showcom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->hideComment($id);
@@ -241,7 +241,7 @@ if (ISLOGIN === true && $action == 'hidecom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'reply') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$commentArray = $emComment->getOneComment($id);
@@ -251,7 +251,7 @@ if (ISLOGIN === true && $action == 'reply') {
 	include getViews('footer');
 }
 if (ISLOGIN === true && $action == 'dorep') {
-	require_once (EMLOG_ROOT . '/model/class.comment.php');
+	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment ($DB);
 	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
@@ -353,4 +353,3 @@ function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		setcookie('em_logpwd_'.$logid, $logPwd);
 	}
 }
-?>

@@ -6,7 +6,7 @@
  * $Id$
 */
 
-require_once('common.php');
+require_once 'common.php';
 
 if ($action == '')
 {
@@ -74,4 +74,3 @@ function getindextw()
 	}
 	return $twitter;
 }
-?>

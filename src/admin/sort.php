@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.sort.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.sort.php';
 
 $emSort = new emSort($DB);
 
@@ -70,5 +70,3 @@ if ($action == 'del')
 	$CACHE->mc_logsort();
 	header("Location: ./sort.php?active_del=true");
 }
-
-?>

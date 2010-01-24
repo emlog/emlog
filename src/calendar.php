@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('init.php');
+require_once 'init.php';
 
 //建立日志时间写入数组
 $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
@@ -147,5 +147,3 @@ for ($i = 1;$i <= 6;$i++)
 $calendar .= '</table>';
 
 echo $calendar;
-
-?>

@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('init.php');
+require_once 'init.php';
 
 //读取缓存
 $log_cache_tags = $CACHE->readCache('log_tags');
@@ -22,5 +22,3 @@ $dang_cache = $CACHE->readCache('records');
 $sta_cache = $CACHE->readCache('sta');
 
 $navibar = unserialize($navibar);
-
-?>

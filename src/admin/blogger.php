@@ -6,8 +6,8 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.user.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.user.php';
 
 if($action == '')
 {
@@ -73,7 +73,7 @@ if($action == 'delicon')
 
 if($action == 'update_pwd')
 {
-	require_once(EMLOG_ROOT.'/lib/class.phpass.php');
+	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 	
 	$emUser = new emUser($DB);
 	
@@ -114,5 +114,3 @@ if($action == 'update_pwd')
 		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);
 	}
 }
-
-?>

@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 //显示组件管理面板
 if($action == '')
@@ -208,5 +208,3 @@ if($action == 'compages')
 	$CACHE->mc_options();
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
-
-?>

@@ -137,7 +137,7 @@ function widget_random_log($title){
 	if (!isset($emBlog))
 	{
 		global $DB;
-		require_once(EMLOG_ROOT.'/model/class.blog.php');
+		require_once EMLOG_ROOT.'/model/class.blog.php';
 		$emBlog = new emBlog($DB);
 	}
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>

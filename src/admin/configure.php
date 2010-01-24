@@ -6,7 +6,7 @@
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if ($action == '')
 {
@@ -111,5 +111,3 @@ if ($action == "mod_config")
 	$CACHE->mc_record();
 	header("Location: ./configure.php?activated=true");
 }
-
-?>

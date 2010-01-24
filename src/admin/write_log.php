@@ -6,11 +6,11 @@
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/class.blog.php');
-require_once(EMLOG_ROOT.'/model/class.tag.php');
-require_once(EMLOG_ROOT.'/model/class.trackback.php');
-require_once(EMLOG_ROOT.'/model/class.sort.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
+require_once EMLOG_ROOT.'/model/class.trackback.php';
+require_once EMLOG_ROOT.'/model/class.sort.php';
 
 //显示撰写日志页面
 if($action == '')
@@ -71,7 +71,3 @@ if ($action == 'edit')
 	require_once(getViews('edit_log'));
 	include getViews('footer');cleanPage();
 }
-
-
-
-?>

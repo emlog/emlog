@@ -382,4 +382,3 @@ class mkcache {
 		return unserialize($data);
 	}
 }
-?>
