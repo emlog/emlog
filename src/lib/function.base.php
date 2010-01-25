@@ -68,23 +68,7 @@ function htmlClean($content, $wrap=true){
  * @return string
  */
 function getIp(){
-	if (isset($_SERVER)){
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		} else {
-			$ip = $_SERVER['REMOTE_ADDR'];
-		}
-	} else {
-		if (getenv('HTTP_X_FORWARDED_FOR')) {
-			$ip = getenv('HTTP_X_FORWARDED_FOR');
-		} elseif (getenv('HTTP_CLIENT_IP')) {
-			$ip = getenv('HTTP_CLIENT_IP');
-		} else {
-			$ip = getenv('REMOTE_ADDR');
-		}
-	}
+	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 	if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)){
 		$ip = '';
 	}
@@ -118,21 +102,32 @@ function viewCount(){
 		if ($ret){
 			$curtime = date('Y-m-d', $localdate);
 			if ($viewcount_date != $curtime){
-				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='$curtime' where option_name='viewcount_date'");
-				$DB->query('UPDATE '.DB_PREFIX."options SET option_value ='1' where option_name='viewcount_day'");
+				updateOption('viewcount_date', $curtime);
+				updateOption('viewcount_day', 1);
 			} else {
-				$DB->query('UPDATE '.DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_day'");
+				updateOption('viewcount_day', 'option_value+1', true);
 			}
-			$DB->query('UPDATE '.DB_PREFIX."options SET option_value =option_value+1 where option_name='viewcount_all'");
+			updateOption('viewcount_all', 'option_value+1', true);
 			$CACHE->mc_options();
 		}
 	}
 }
 
 /**
+ * 更新博客选项
+ *
+ */
+function updateOption($name, $value, $isSyntax = false)
+{
+	global $DB;
+	$value = $isSyntax ? $value : "'$value'";
+	$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
+}
+
+/**
  * 验证email地址格式
  *
- * @param unknown_type $address
+ * @param unknown_type $email
  * @return unknown
  */
 function checkMail($email){

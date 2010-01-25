@@ -61,7 +61,7 @@ if ($action == 'update')
 		fclose($fp);
 	}
 
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$permalink' where option_name='isurlrewrite'");
+	updateOption('isurlrewrite', $permalink);
 	$CACHE->mc_options();
 	header("Location: ./permalink.php?activated=true");	
 }

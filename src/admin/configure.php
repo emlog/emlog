@@ -103,7 +103,7 @@ if ($action == "mod_config")
 
 	foreach ($getData as $key => $val)
 	{
-		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$val' where option_name='$key'");
+		updateOption($key, $val);
 	}
 	$CACHE->mc_tags();
 	$CACHE->mc_comment();

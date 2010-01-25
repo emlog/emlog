@@ -111,7 +111,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 
 	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = addslashes(serialize($navibar));
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+	updateOption('navibar', $navibar);
 
 	$CACHE->mc_logatts();
 	$CACHE->mc_options();
@@ -147,7 +147,7 @@ if ($action == 'operate_page')
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
-			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+			updateOption('navibar', $navibar);
 
 			$CACHE->mc_logatts();
 			$CACHE->mc_options();
@@ -166,7 +166,7 @@ if ($action == 'operate_page')
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
-			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+			updateOption('navibar', $navibar);
 
 			$CACHE->mc_options();
 			$CACHE->mc_sta();

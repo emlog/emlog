@@ -31,7 +31,7 @@ class emPlugin {
 			$active_plugins[] = $this->plugin;
 		}
 		$active_plugins = serialize($active_plugins);
-		$this->db->query("update ".DB_PREFIX."options set option_value='$active_plugins' where option_name='active_plugins'");
+		updateOption('active_plugins', $active_plugins);
 	}
 	
 	/**
@@ -49,7 +49,7 @@ class emPlugin {
 			return;
 		}
 		$active_plugins = serialize($active_plugins);
-		$this->db->query("update ".DB_PREFIX."options set option_value='$active_plugins' where option_name='active_plugins'");
+		updateOption('active_plugins', $active_plugins);
 	}
 	
 	/**

@@ -56,8 +56,8 @@ if($action == 'usetpl')
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplName' where option_name='nonce_templet'");
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplSideNum' where option_name='tpl_sidenum'");
+	updateOption('nonce_templet', $tplName);
+	updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->mc_options();
 	header("Location: ./template.php?activated=true");
 }
