@@ -361,7 +361,7 @@ function blog_comments_post(){
 	<label for="url"><small>个人主页 (选填)</small></label>
 	</p>
 	<p><textarea name="comment" id="comment"  rows="10" tabindex="4"></textarea></p>
-	<p><div class="comment_yz"><?php echo $cheackimg; ?><input name="Submit" type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
+	<p><div class="comment_yz"><?php echo $cheackimg; ?><input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
 	</form>
 	</div>
 	<?php endif; ?>

@@ -86,8 +86,8 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </div>
 <div>
 <p class="foot">
-<input name="Submit" type="submit" class="submit" value="确 定">
-<input name="Submit2" type="reset" class="submit" value="重 置">
+<input type="submit" class="submit" value="确 定">
+<input type="reset" class="submit" value="重 置">
 </p>
 </div>
 <div><p class="foot">Powered by <a href="http://www.emlog.net">emlog</a></p></div>
@@ -99,22 +99,22 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 }
 if($act == 'install' || $act == 'reinstall')
 {
-	$db_host = addslashes(trim($_POST['hostname']));
-	$db_user = addslashes(trim($_POST['dbuser']));
-	$db_pw = addslashes(trim($_POST['password']));
-	$db_name = addslashes(trim($_POST['dbname']));
-	$db_prefix = addslashes(trim($_POST['dbprefix']));
-	$admin = addslashes(trim($_POST['admin']));
-	$adminpw = addslashes(trim($_POST['adminpw']));
-	$adminpw2 = addslashes(trim($_POST['adminpw2']));
+	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
+	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
+	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
+	$db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
+	$admin = isset($_POST['admin']) ? addslashes(trim($_POST['admin'])) : '';
+	$adminpw = isset($_POST['adminpw']) ? addslashes(trim($_POST['adminpw'])) : '';
+	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
 	$result = '';
 
-	if(empty($db_prefix))
+	if($db_prefix == '')
 	{
 		emMsg('数据库前缀不能为空!');
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
 		emMsg('数据库前缀格式错误!');
-	}elseif($admin=="" || $adminpw==""){
+	}elseif($admin == '' || $adminpw == ''){
 		emMsg('博主登录名和密码不能为空!');
 	}elseif(strlen($adminpw) < 6){
 		emMsg('博主登录密码不得小于6位');
@@ -153,7 +153,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
 你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？ 
-<input name="Submit" type="submit" value="继续&raquo;">
+<input type="submit" value="继续&raquo;">
 </p>
 <p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
 </div>
