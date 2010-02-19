@@ -157,7 +157,7 @@ function widget_search($title){ ?>
 	<h3><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php"><p>
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
 	</form>

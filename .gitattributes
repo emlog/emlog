@@ -6,10 +6,6 @@ src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/blogger.php -text svn_keywords=Id
 src/admin/ckeditor/ckeditor.js -text
-src/admin/ckeditor/ckeditor.pack -text
-src/admin/ckeditor/ckeditor_basic.js -text
-src/admin/ckeditor/ckeditor_basic_source.js -text
-src/admin/ckeditor/ckeditor_source.js -text
 src/admin/ckeditor/config.js -text
 src/admin/ckeditor/contents.css -text
 src/admin/ckeditor/images/spacer.gif -text

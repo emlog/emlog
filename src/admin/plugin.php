@@ -54,7 +54,13 @@ if ($action == 'setting')
 	if(!empty($_POST))
 	{
 		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
-		plugin_setting();
+		if(false === plugin_setting())
+		{
+		    header("Location: ./plugin.php?plugin={$plugin}&error=true");
+		}else{
+		    header("Location: ./plugin.php?plugin={$plugin}&setting=true");
+		}
+	}else{
+	    header("Location: ./plugin.php?plugin={$plugin}&error=true");
 	}
-	header("Location: ./plugin.php?plugin={$plugin}&setting=true");
 }
