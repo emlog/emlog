@@ -33,8 +33,7 @@ $api_methods = array(
 
 $DB = new MySql(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 $CACHE = new mkcache($DB, DB_PREFIX);
-$options_cache = $CACHE -> readCache('options');
-
+$options_cache = $CACHE->readCache('options');
 // 有些基于浏览器的客户端会发送cookie，我们不需要它们
 $_COOKIE = array();
 // PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
@@ -54,8 +53,8 @@ if (isset($_GET['rsd'])) {
 					<engineLink>http://emlog.net/</engineLink>
 					<homePageLink>' . $options_cache['blogurl'] . '</homePageLink>
 					<apis>
-						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="'. $options_cache['blogurl'] .'xmlrpc.php" />
-						<api name="Blogger" blogID="1" preferred="false" apiLink="'. $options_cache['blogurl'] .'xmlrpc.php" />
+						<api name="MetaWeblog" blogID="1" preferred="true" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php" />
+						<api name="Blogger" blogID="1" preferred="false" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php" />
 					</apis>
 				</service>
 			</rsd>
@@ -77,8 +76,7 @@ $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
 	error_message(500, '错误:提交数据内容为空');
 }
-
-// 兼容php libxml模块2.7.0-2.7.3版本解析xml丢失html标签括号的bug 
+// 兼容php libxml模块2.7.0-2.7.3版本解析xml丢失html标签括号的bug
 if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
 	$data = str_replace(array('&lt;', '&gt;', '&amp;'), array('&#60;', '&#62;' , '&#38;'), $data);
 }
@@ -140,17 +138,17 @@ function mw_deletePost($args) {
 	$user = login($args[2], $args[3]);
 	define('UID', $user['uid']);
 	$emBlog = new emBlog($DB);
-	$emBlog -> deleteLog($id);
-	$CACHE -> mc_sta();
-	$CACHE -> mc_user();
-	$CACHE -> mc_record();
-	$CACHE -> mc_comment();
-	$CACHE -> mc_logtags();
-	$CACHE -> mc_logatts();
-	$CACHE -> mc_tags();
-	$CACHE -> mc_newlog();
-	$CACHE -> mc_logsort();
-	$CACHE -> mc_sort();
+	$emBlog->deleteLog($id);
+	$CACHE->mc_sta();
+	$CACHE->mc_user();
+	$CACHE->mc_record();
+	$CACHE->mc_comment();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_tags();
+	$CACHE->mc_newlog();
+	$CACHE->mc_logsort();
+	$CACHE->mc_sort();
 	response('<boolean>1</boolean>');
 }
 /**
@@ -176,7 +174,7 @@ function mw_newPost($args) {
 	// 只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort($DB);
-	$sorts = $emSort -> getSorts();
+	$sorts = $emSort->getSorts();
 
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
@@ -187,36 +185,36 @@ function mw_newPost($args) {
 	}
 	// 发布时间
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
-		$update_data['date'] = @gmmktime($data['dateCreated'] -> hour, $data['dateCreated'] -> minute , $data['dateCreated'] -> second , $data['dateCreated'] -> month , $data['dateCreated'] -> day , $data['dateCreated'] -> year);
-	} else {
-		$update_data['date'] = time() - ($options_cache['timezone'] - 8) * 3600;
+		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
+	}else {
+		$update_data['date'] = time();
 	}
 	// 更新数据
 	$emBlog = new emBlog($DB);
-	$new_id = $emBlog -> addlog($update_data);
+	$new_id = $emBlog->addlog($update_data);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag($DB);
-		$emTag -> addTag($data['mt_keywords'], $new_id);
+		$emTag->addTag($data['mt_keywords'], $new_id);
 		unset($emTag);
 	}
 	// 更新缓存
-	$CACHE -> mc_logtags();
-	$CACHE -> mc_logatts();
-	$CACHE -> mc_logsort();
-	$CACHE -> mc_record();
-	$CACHE -> mc_newlog();
-	$CACHE -> mc_sort();
-	$CACHE -> mc_tags();
-	$CACHE -> mc_user();
-	$CACHE -> mc_sta();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_logsort();
+	$CACHE->mc_record();
+	$CACHE->mc_newlog();
+	$CACHE->mc_sort();
+	$CACHE->mc_tags();
+	$CACHE->mc_user();
+	$CACHE->mc_sta();
 	response("<i4>$new_id</i4>");
 }
 /**
  * 更新日志
  */
 function mw_editPost($args) {
-	global $DB, $CACHE;
+	global $DB, $CACHE, $options_cache;
 	escape($args);
 	$username = $args[1];
 	$password = $args[2];
@@ -236,7 +234,7 @@ function mw_editPost($args) {
 	// 根据分类名称取分类id,注意只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort($DB);
-	$sorts = $emSort -> getSorts();
+	$sorts = $emSort->getSorts();
 	unset($emSort);
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
@@ -247,26 +245,26 @@ function mw_editPost($args) {
 	}
 	// 发布时间
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
-		$update_data['date'] = @gmmktime($data['dateCreated'] -> hour, $data['dateCreated'] -> minute , $data['dateCreated'] -> second , $data['dateCreated'] -> month , $data['dateCreated'] -> day , $data['dateCreated'] -> year);
+		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
 	// 更新数据
 	$emBlog = new emBlog($DB);
-	$emBlog -> updateLog($update_data, $id);
+	$emBlog->updateLog($update_data, $id);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag($DB);
-		$emTag -> updateTag($data['mt_keywords'], $id);
+		$emTag->updateTag($data['mt_keywords'], $id);
 	}
 	// 更新缓存
-	$CACHE -> mc_logtags();
-	$CACHE -> mc_logatts();
-	$CACHE -> mc_logsort();
-	$CACHE -> mc_record();
-	$CACHE -> mc_newlog();
-	$CACHE -> mc_sort();
-	$CACHE -> mc_tags();
-	$CACHE -> mc_user();
-	$CACHE -> mc_sta();
+	$CACHE->mc_logtags();
+	$CACHE->mc_logatts();
+	$CACHE->mc_logsort();
+	$CACHE->mc_record();
+	$CACHE->mc_newlog();
+	$CACHE->mc_sort();
+	$CACHE->mc_tags();
+	$CACHE->mc_user();
+	$CACHE->mc_sta();
 
 	response('<boolean>1</boolean>');
 }
@@ -283,7 +281,7 @@ function mw_getCategories($args) {
 	login($username, $password);
 
 	$emSort = new emSort($DB);
-	$sorts = $emSort -> getSorts();
+	$sorts = $emSort->getSorts();
 	unset($emSort);
 	$xml = '';
 	foreach ($sorts as $sort) {
@@ -321,9 +319,9 @@ function mw_getPost($args) {
 
 	$emBlog = new emBlog($DB);
 	define('UID', $user['uid']);
-	$post = $emBlog -> getOneLogForAdmin($post_ID);
+	$post = $emBlog->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
-	$log_cache_tags = $CACHE -> readCache('log_tags');
+	$log_cache_tags = $CACHE->readCache('log_tags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
 		foreach ($log_cache_tags[$post['gid']] as $tag) {
@@ -332,7 +330,7 @@ function mw_getPost($args) {
 		$tags = implode(',', $tags);
 	}
 	$emSort = new emSort($DB);
-	$sort_name = $emSort -> getSortName($post['sortid']);
+	$sort_name = $emSort->getSortName($post['sortid']);
 
 	$post['date'] = getIso($post['date']);
 	$xml = "
@@ -402,12 +400,12 @@ function mw_getRecentPosts($args) {
 
 	$user = login($username, $password);
 
-	$query = $DB -> query('SELECT gid,title,date,content,author,sortid FROM ' . DB_PREFIX . 'blog ORDER BY date DESC LIMIT 0,' . $num_posts);
+	$query = $DB->query('SELECT gid,title,date,content,author,sortid FROM ' . DB_PREFIX . 'blog ORDER BY date DESC LIMIT 0,' . $num_posts);
 
 	$xml = '';
 	$recent_posts = array();
-	$log_cache_tags = $CACHE -> readCache('log_tags');
-	while ($post = $DB -> fetch_array($query)) {
+	$log_cache_tags = $CACHE->readCache('log_tags');
+	while ($post = $DB->fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
 		$post['date'] = getIso($post['date']);
@@ -512,8 +510,8 @@ function mw_newMediaObject($args) {
 	if (!in_array($extension, $att_type)) {
 		error_message(500, '文件类型错误');
 	}
-	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
-	$fname = md5($fileName) . date('YmdHis') . '.' . $extension;
+	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
+	$fname = md5($fileName) . gmdate('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(UPLOADFILE_PATH)) {
 		umask(0);
@@ -557,13 +555,13 @@ function mw_newMediaObject($args) {
 		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
 			if (function_exists('imagecreatefromjpeg')) {
 				$img = imagecreatefromjpeg($attachpath);
-			} else {
+			}else {
 				$thum_created = false;
 			}
-		} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
+		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
 			if (function_exists('imagecreatefrompng')) {
 				$img = imagecreatefrompng($attachpath);
-			} else {
+			}else {
 				$thum_created = false;
 			}
 		}
@@ -571,7 +569,7 @@ function mw_newMediaObject($args) {
 		if ($thum_created && function_exists('imagecopyresampled')) {
 			$newim = imagecreatetruecolor($newwidth, $newheight);
 			imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
-		} elseif ($thum_created) {
+		}elseif ($thum_created) {
 			$newim = imagecreate($newwidth, $newheight);
 			imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		}
@@ -580,7 +578,7 @@ function mw_newMediaObject($args) {
 			if (!imagejpeg($newim, $thumPatch)) {
 				$thum_created = false;
 			}
-		} elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
+		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
 			if (!imagepng($newim, $thumPatch)) {
 				$thum_created = false;
 			}
@@ -617,13 +615,15 @@ function mw_newMediaObject($args) {
 }
 
 function getIso($timestamp) {
-	$year = date('Y', $timestamp);
-	$month = date('m', $timestamp);
-	$day = date('d', $timestamp);
-	$hour = date('H', $timestamp);
-	$minute = date('i', $timestamp);
-	$second = date('s', $timestamp);
-	return $year . $month . $day . 'T' . $hour . ':' . $minute . ':' . $second . $timezone;
+	global $options_cache;
+	$timestamp += $options_cache['timezone'] * 3600;
+	$year = gmdate('Y', $timestamp);
+	$month = gmdate('m', $timestamp);
+	$day = gmdate('d', $timestamp);
+	$hour = gmdate('H', $timestamp);
+	$minute = gmdate('i', $timestamp);
+	$second = gmdate('s', $timestamp);
+	return $year . $month . $day . 'T' . $hour . ':' . $minute . ':' . $second;
 }
 
 function login($username, $password) {
@@ -641,13 +641,13 @@ function login($username, $password) {
 function escape(&$array) {
 	if (!is_array($array)) {
 		return(mysql_real_escape_string($array));
-	} else {
+	}else {
 		foreach ((array) $array as $k => $v) {
 			if (is_array($v)) {
 				escape($array[$k]);
-			} else if (is_object($v)) {
+			}else if (is_object($v)) {
 				// skip
-			} else {
+			}else {
 				$array[$k] = mysql_real_escape_string($v);
 			}
 		}
@@ -697,7 +697,7 @@ function output($xml) {
 	header('Connection: close');
 	header('Content-Length: ' . $length);
 	header('Content-Type: text/xml');
-	header('Date: ' . date('r'));
+	header('Date: ' . gmdate('r'));
 	echo $xml;
 	exit;
 }
@@ -793,11 +793,11 @@ function tag_close($parser, $tag) {
 			if ($array_structs_types[count($array_structs_types)-1] == 'struct') {
 				// Add to struct
 				$array_structs[count($array_structs)-1][$current_struct_name_array[count($current_struct_name_array) - 1]] = $value;
-			} else {
+			}else {
 				// Add to array
 				$array_structs[count($array_structs)-1][] = $value;
 			}
-		} else {
+		}else {
 			// Just add as a paramater
 			$params[] = $value;
 		}

@@ -106,7 +106,7 @@ class emTrackback {
 		{
 			$row['title'] = htmlspecialchars($row['title']);
 			$row['blog_name'] = htmlspecialchars($row['blog_name']);
-			$row['date'] = date("Y-m-d H:i",$row['date']);
+			$row['date'] = gmdate("Y-m-d H:i",$row['date']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
 
@@ -114,7 +114,7 @@ class emTrackback {
 		}
 		return $trackbacks;
 	}
-	
+
 	/**
 	 * 获取引用的数目
 	 *

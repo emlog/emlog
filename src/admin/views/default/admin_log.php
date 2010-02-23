@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $pid == 'draft' ? '&pid=draft' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
@@ -56,7 +56,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 		$$a = '';
 		$b = 'user_'.$uid;
 		$$b = "class=\"filter\"";
-		$val['name'] = $val['name']; 
+		$val['name'] = $val['name'];
 	?>
 	<span <?php echo $$a; ?>><a href="./admin_log.php?uid=<?php echo $key.$isdraft; ?>"><?php echo $val['name']; ?></a></span>
 	<?php endforeach;?>
@@ -80,25 +80,25 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       </tr>
 	</thead>
  	<tbody>
-	<?php 
+	<?php
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
 	$author = $user_cache[$value['author']]['name'];
-	$tags = $log_cache_tags[$value['gid']];
+	$tags = isset($log_cache_tags[$value['gid']]) ? $log_cache_tags[$value['gid']] : '' ;
 	$tagStr = '';
-	foreach ($tags as $val)
-	{
-		$tagStr .="<span class=logtag><a href=\"./admin_log.php?tagid={$val['tid']}$isdraft\">{$val['tagname']}</a></span>";
-	}
-	if($tagStr)
-	{
-		$tagStr = '<span class=logtags>'.$tagStr.'</span>';
+	if (is_array($tags) && !empty($tags)) {
+		foreach ($tags as $val) {
+			$tagStr .="<span class=logtag><a href=\"./admin_log.php?tagid={$val['tid']}$isdraft\">{$val['tagname']}</a></span>";
+		}
+		if ($tagStr) {
+			$tagStr = '<span class=logtags>'.$tagStr.'</span>';
+		}
 	}
 	?>
       <tr>
       <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td>
-      <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a> 
+      <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
       <?php echo $value['attnum']; ?>
       <?php echo $value['istop']; ?>
       <?php echo $tagStr; ?>
@@ -144,7 +144,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($users as $key => $val):
-	$val['name'] = $val['name']; 
+	$val['name'] = $val['name'];
 	?>
 	<option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
 	<?php endforeach;?>

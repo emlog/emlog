@@ -21,11 +21,11 @@ if($action == '')
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 
-	$localtime = time() - ($timezone - 8) * 3600;
-	$postDate = date('Y-m-d H:i:s', $localtime);
+	$localtime = time() + $timezone * 3600;
+	$postDate = gmdate('Y-m-d H:i:s', $localtime);
 
 	include getViews('header');
-	require_once(getViews('add_log'));
+	require_once getViews('add_log');
 	include getViews('footer');
 	cleanPage();
 }
@@ -68,6 +68,6 @@ if ($action == 'edit')
 	}
 
 	include getViews('header');
-	require_once(getViews('edit_log'));
+	require_once getViews('edit_log');
 	include getViews('footer');cleanPage();
 }

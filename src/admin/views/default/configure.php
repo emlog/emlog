@@ -32,7 +32,7 @@
         <td><input maxlength="5" size="10" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
 	  <tr>
-        <td valign="top" align="right">服务器时区：<br /></td>
+        <td valign="top" align="right">博客时区设置：<br /></td>
         <td>
 		<select name="timezone">
 <?php
@@ -71,8 +71,10 @@ foreach($tzlist as $key=>$value):
 $ex = $key==$timezone?"selected=\"selected\"":'';
 ?>
 		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
-<?php endforeach;?>	
-        </select>        
+<?php endforeach;?>
+        </select>
+        <br >
+        	请选择您所在的时区，设定后博客的所有时间将会以该时区的时间来显示
         </td>
       </tr>
       <tr>

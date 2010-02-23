@@ -25,7 +25,7 @@ $options_cache = $CACHE->readCache('options');
 extract($options_cache);
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-$localdate = time() - ($timezone - 8) * 3600;
+$localdate = time();
 
 $userData = array();
 define('ISLOGIN',	isLogin());

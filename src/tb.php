@@ -24,11 +24,11 @@ $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 {
-	if($sc != substr(md5(date('Ynd')),0,5))
+	if($sc != substr(md5(gmdate('Ynd')),0,5))
 	{
 		showXML('invalid trackback url');
 	}
-	
+
 	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
@@ -73,7 +73,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	{
 		$point -= 1;
 	}
-	
+
 	$visible = ($point < 2) ? false : true;
 
 	if ($visible === true)

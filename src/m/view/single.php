@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
 <?php if(ISLOGIN === true): ?><a href="./?action=write">写日志</a> <?php endif;?>
-<a href="./" id="active">日志</a> 
-<a href="./?action=tw">碎语</a> 
-<a href="./?action=com">评论</a> 
+<a href="./" id="active">日志</a>
+<a href="./?action=tw">碎语</a>
+<a href="./?action=com">评论</a>
 <?php if(ISLOGIN === true): ?>
 <a href="./?action=logout">退出</a>
 <?php else:?>
@@ -12,7 +12,7 @@
 </div>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo date('Y-n-j G:i', $date); ?>
+	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo gmdate('Y-n-j G:i', $date); ?>
 	<?php if(ROLE == 'admin' || $author == UID): ?>
 	<a href="./?action=dellog&gid=<?php echo $logid;?>">删除</a>
 	<?php endif;?>

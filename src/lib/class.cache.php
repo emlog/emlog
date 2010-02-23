@@ -252,7 +252,7 @@ class mkcache {
 		$dang_cache = array();
 		while($show_record = $this->db->fetch_array($query))
 		{
-			$f_record=date('Y_n',$show_record['date']);
+			$f_record=gmdate('Y_n',$show_record['date']);
 			if ($record!=$f_record){
 				$h = $p-1;
 				if($h!=-1)
@@ -260,8 +260,8 @@ class mkcache {
 					$dang_cache[$h]['lognum'] = $lognum;
 				}
 				$dang_cache[$p] = array(
-				'record'=>date("Y年n月",$show_record['date']),
-				'url'=>'?record='.date("Ym",$show_record['date'])
+				'record'=>gmdate("Y年n月",$show_record['date']),
+				'url'=>'?record='.gmdate("Ym",$show_record['date'])
 				);
 				$p++;
 				$lognum = 1;

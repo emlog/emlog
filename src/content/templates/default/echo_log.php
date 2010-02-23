@@ -6,7 +6,7 @@
 	<div class="act"><?php blog_sort($sortid, $logid); ?></div>
 	<div class="editor"><?php editflg($logid,$author); ?></div>
 	<div class="clear line"></div>
-    <div class="bloger">post by <?php blog_author($author); ?> / <?php echo date('Y-n-j G:i l', $date); ?></div>
+    <div class="bloger">post by <?php blog_author($author); ?> / <?php echo gmdate('Y-n-j G:i l', $date); ?></div>
 	<div class="post"><?php echo $log_content; ?></div>
 	<div class="fujian"><?php blog_att($logid); ?></div>
 	<div class="tag echo_tag"><?php blog_tag($logid); ?></div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
@@ -21,7 +21,7 @@ $isdraft = $hide == 'y' ? true : false;
 			<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
 			<?php endforeach; ?>
 			</select>
-	       <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo date('Y-m-d H:i:s', $date); ?>"/>
+	       <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
 	       <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
           </td>
         </tr>
@@ -32,7 +32,7 @@ $isdraft = $hide == 'y' ? true : false;
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
-		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script> 
+		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">
@@ -40,7 +40,7 @@ $isdraft = $hide == 'y' ? true : false;
           <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
           <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签&raquo;</a></div>
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
-          <?php 
+          <?php
           $tagStr = '';
           foreach ($tags as $val)
           {
@@ -60,7 +60,7 @@ $isdraft = $hide == 'y' ? true : false;
 		  <textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
 		  <script type="text/javascript">CKEDITOR.replace( 'excerpt',{resize_minHeight : 230,height : 230});</script>
 		  </td>
-        </tr>      
+        </tr>
         <tr nowrap="nowrap">
           <td>引用通告：(Trackback，通知你所引用的日志)<b><br /></b>
 			<textarea name="pingurl" id="pingurl" rows="3" cols="" style="width:715px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';" class="input">每行输入一个引用地址</textarea>
@@ -89,7 +89,7 @@ $isdraft = $hide == 'y' ? true : false;
           <td align="center" colspan="2"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" value=<?php echo $logid; ?> />
-		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />	  
+		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
 		  <input type="submit" value="保存并返回" onclick="return chekform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
 		  </td>

@@ -12,15 +12,15 @@ require_once 'init.php';
 $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
 while ($date = $DB->fetch_array($query))
 {
-	$logdate[] = date("Ymd",$date['date']);
+	$logdate[] = gmdate("Ymd",$date['date']);
 }
 //获取当前日期
-$n_year  = date("Y",$localdate);
-$n_year2 = date("Y",$localdate);
-$n_month = date("m",$localdate);
-$n_day   = date("d",$localdate);
-$time    = date("Ymd",$localdate);
-$year_month = date("Ym",$localdate);
+$n_year  = gmdate("Y",$localdate);
+$n_year2 = gmdate("Y",$localdate);
+$n_month = gmdate("m",$localdate);
+$n_day   = gmdate("d",$localdate);
+$time    = gmdate("Ymd",$localdate);
+$year_month = gmdate("Ym",$localdate);
 
 if (isset($_GET['record']))
 {
@@ -78,11 +78,11 @@ $calendar =
 </tr>";
 
 //获取给定年月的第一天是星期几
-$week = @date("w",mktime(0,0,0,$n_month,1,$n_year));
+$week = @gmdate("w",gmmktime(0,0,0,$n_month,1,$n_year));
 //获取给定年月的天数
-$lastday = @date("t",mktime(0,0,0,$n_month,1,$n_year));
+$lastday = @gmdate("t",gmmktime(0,0,0,$n_month,1,$n_year));
 //获取给定年月的最后一天是星期几
-$lastweek = @date("w",mktime(0,0,0,$n_month,$lastday,$n_year));
+$lastweek = @gmdate("w",gmmktime(0,0,0,$n_month,$lastday,$n_year));
 if ( $week == 0)
 {
 	$week = 7;

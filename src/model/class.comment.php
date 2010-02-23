@@ -61,13 +61,14 @@ class emComment {
 	}
 	function getOneComment($commentId)
 	{
+		global $timezone;
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
 		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
 		$commentArray['reply'] = htmlClean(trim($commentArray['reply']));
 		$commentArray['poster'] = trim($commentArray['poster']);
-		$commentArray['date'] = date("Y-m-d H:i",$commentArray['date']);
+		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;
 	}
 	/**
@@ -204,7 +205,7 @@ class emComment {
 			return -6;
 		} else {
 			$ipaddr = getIp();
-			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip) 
+			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
 					VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
 			if ($ischkcomment == 'n')

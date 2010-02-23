@@ -223,8 +223,8 @@ function pagination($count,$perlogs,$page,$url){
 
 /**
  * 该函数在插件中调用,挂载插件函数到预留的钩子上
- * 
- * @param string $hook 
+ *
+ * @param string $hook
  * @param string $actionFunc
  * @return boolearn
  */
@@ -396,14 +396,14 @@ function fopen_url($url){
 }
 /**
  * 时间转化函数
- * 
+ *
  * @param $now
  * @param $datetemp
  * @param $dstr
  * @return string
  */
 function smartyDate($datetemp,$dstr='Y-m-d H:i'){
-	global $localdate;
+	global $localdate, $timezone;
 	$op = '';
 	$sec = $localdate-$datetemp;
 	$hover = floor($sec/3600);
@@ -417,7 +417,7 @@ function smartyDate($datetemp,$dstr='Y-m-d H:i'){
 	} elseif ($hover < 24){
 		$op = "约 {$hover} 小时前";
 	} else {
-		$op = date($dstr,$datetemp);
+		$op = gmdate($dstr,$datetemp + $timezone * 3600);
 	}
 	return $op;
 }
@@ -481,8 +481,8 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
-	$uppath = UPLOADFILE_PATH . date('Ym') . '/';
-	$fname = md5($fileName) . date('YmdHis') .'.'. $extension;
+	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
+	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(UPLOADFILE_PATH)){
 		umask(0);

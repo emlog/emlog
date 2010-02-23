@@ -32,7 +32,7 @@ if($action == '')
 if ($action == 'new')
 {
 	$localtime = time() - ($timezone - 8) * 3600;
-	$postDate = date('Y-m-d H:i:s', $localtime);
+	$postDate = gmdate('Y-m-d H:i:s', $localtime);
 
 	include getViews('header');
 	require_once(getViews('add_page'));

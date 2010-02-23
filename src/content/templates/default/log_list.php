@@ -10,7 +10,7 @@
 	<div class="act"><?php blog_sort($value['sortid'], $value['logid']); ?></div>
 	<div class="editor"><?php editflg($value['logid'],$value['author']); ?></div>
 	<div class="clear line"></div>
-   	<div class="bloger">post by <?php blog_author($value['author']); ?> / <?php echo date('Y-n-j G:i l', $value['date']); ?></div>
+   	<div class="bloger">post by <?php blog_author($value['author']); ?> / <?php echo gmdate('Y-n-j G:i l', $value['date']); ?></div>
 	<div class="post"><?php echo $value['log_description']; ?></div>
 	<div class="fujian"><?php blog_att($value['logid']); ?></div>
 	<div class="under">
@@ -19,7 +19,7 @@
 	<div class="tag"><?php blog_tag($value['logid']); ?></div>
 	<div>
 	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a> 
+	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 	</div>
 	</div>
@@ -35,5 +35,5 @@
 <!--end content-->
 <?php
  include getViews('side');
- include getViews('footer'); 
+ include getViews('footer');
 ?>
