@@ -7,12 +7,15 @@
  */
 
 class emTag {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-
-	function emTag($dbhandle)
+	function __construct()
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 	}
 
 	/**
@@ -42,7 +45,7 @@ class emTag {
 		$tag['tagid'] = intval($row['tid']);
 		return $tag;
 	}
-	
+
 	function getTagByName($tagName)
 	{
 		$tag = array();
@@ -139,7 +142,7 @@ class emTag {
 		$sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
 		$this->db->query($sql);
 	}
-	
+
 	function deleteTag($tagId)
 	{
 		$this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");

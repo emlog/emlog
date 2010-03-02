@@ -18,9 +18,8 @@ require_once EMLOG_ROOT.'/lib/class.mysql.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD,DB_NAME);
-$CACHE = new mkcache($DB,DB_PREFIX);
-
+$DB = MySql::getInstance();
+$CACHE = mkcache::getInstance();
 $options_cache = $CACHE->readCache('options');
 extract($options_cache);
 

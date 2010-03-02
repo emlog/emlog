@@ -7,12 +7,15 @@
  */
 
 class emUser {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-
-	function emUser($dbhandle)
+	function __construct()
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 	}
 
 	/**
@@ -82,7 +85,7 @@ class emUser {
 		$sql="insert into ".DB_PREFIX."user (username,password,role) values('$login','$password','$role')";
 		$this->db->query($sql);
 	}
-	
+
 	/**
 	 * 删除用户
 	 *

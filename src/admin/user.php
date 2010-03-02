@@ -9,14 +9,14 @@
 require_once 'globals.php';
 require_once EMLOG_ROOT.'/model/class.user.php';
 
-$emUser = new emUser($DB);
+$emUser = new emUser();
 
 //加载用户管理页面
 if($action == '')
 {
 	$users = $emUser->getUsers();
 	include getViews('header');
-	require_once(getViews('user'));
+	require_once getViews('user');
 	include getViews('footer');
 	cleanPage();
 }
@@ -47,15 +47,15 @@ if($action== 'new')
 		header("Location: ./user.php?error_pwd2=true");
 		exit;
 	}
-	
+
 	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
 	$emUser->addUser($login, $password, $role);
 
-	$CACHE->mc_user();
-	
+//	$CACHE->mc_user();
+	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_add=true");
 }
 if ($action== 'edit')
@@ -66,7 +66,7 @@ if ($action== 'edit')
 	extract($data);
 
 	include getViews('header');
-	require_once(getViews('useredit'));
+	require_once getViews('useredit');
 	include getViews('footer');cleanPage();
 }
 if($action=='update')
@@ -98,12 +98,12 @@ if($action=='update')
 	{
 		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd2=true");
 		exit;
-	}	
-	
+	}
+
 	$emUser->updateUser(array('username'=>$login, 'nickname'=>$nickname, 'email'=>$email, 'description'=>$description), $uid);
 
-	$CACHE->mc_user();
-
+//	$CACHE->mc_user();
+	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_update=true");
 }
 if ($action== 'del')
@@ -112,7 +112,7 @@ if ($action== 'del')
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 	$emUser->deleteUser($uid);
 
-	$CACHE->mc_user();
-
+//	$CACHE->mc_user();
+	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_del=true");
 }

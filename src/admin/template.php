@@ -37,7 +37,7 @@ if($action == '')
 			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
 			$tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
 			$tplInfo['tplfile'] = $file;
-			
+
 			$tpls[] = $tplInfo;
 		}
 	}
@@ -59,5 +59,6 @@ if($action == 'usetpl')
 	updateOption('nonce_templet', $tplName);
 	updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->mc_options();
+	$CACHE->updateCache('options');
 	header("Location: ./template.php?activated=true");
 }

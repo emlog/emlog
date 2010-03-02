@@ -13,7 +13,7 @@ $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
 if($action == '' && !$plugin)
 {
-	$emPlugin = new emPlugin($DB);
+	$emPlugin = new emPlugin();
 
 	$plugins = $emPlugin->getPlugins();
 
@@ -25,19 +25,18 @@ if($action == '' && !$plugin)
 //激活
 if ($action == 'active')
 {
-	$emPlugin = new emPlugin($DB, $plugin);
+	$emPlugin = new emPlugin($plugin);
 	$emPlugin->active_plugin($active_plugins);
-	$CACHE->mc_options();
-
+//	$CACHE->mc_options();
+	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?active=true");
 }
 //禁用
 if($action == 'inactive')
 {
-	$emPlugin = new emPlugin($DB, $plugin);
+	$emPlugin = new emPlugin($plugin);
 	$emPlugin->inactive_plugin($active_plugins);
-	$CACHE->mc_options();
-	
+	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?inactive=true");
 }
 //加载插件配置页面

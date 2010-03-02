@@ -69,7 +69,7 @@ function loginPage()
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
 	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
-	require_once(getViews('login'));
+	require_once getViews('login');
 	cleanPage();
 	exit;
 }
@@ -137,7 +137,7 @@ function setAuthCookie($user_login, $ispersis = false)
 
 /**
  * 生成登录验证cookie
- * 
+ *
  * @param int $user_id user login
  * @param int $expiration Cookie expiration in seconds
  * @return string Authentication cookie contents
@@ -202,7 +202,7 @@ if( !function_exists('hash_hmac') )
 /**
  * 验证cookie
  * Validates authentication cookie.
- * 
+ *
  * @param string $cookie Optional. If used, will validate contents instead of cookie's
  * @return bool|int False if invalid cookie, User ID if valid.
  */
@@ -228,7 +228,7 @@ function validateAuthCookie($cookie = '')
 
 	$key = emHash($username . '|' . $expiration);
 	$hash = hash_hmac('md5', $username . '|' . $expiration, $key);
-	
+
 	if ( $hmac != $hash )
 	{
 		return false;

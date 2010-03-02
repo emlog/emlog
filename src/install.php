@@ -121,11 +121,17 @@ if($act == 'install' || $act == 'reinstall')
 	}elseif($adminpw!=$adminpw2)	 {
 		emMsg('两次输入的密码不一致');
 	}
-	
+
 	//初始化数据库类
-	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	$CACHE = new mkcache($DB, $db_prefix);
-	
+//	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
+//	$CACHE = new mkcache($DB, $db_prefix);
+	define('DB_HOST', $db_host);
+	define('DB_USER', $db_user);
+	define('DB_PASSWD', $db_pw);
+	define('DB_NAME', $db_name);
+	$DB = MySql::getInstance();
+	$CACHE = mkcache::getInstance();
+
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
 	{
 		echo <<<EOT
@@ -152,7 +158,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw" type="hidden" class="input" value="$adminpw">
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
-你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？ 
+你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？
 <input type="submit" value="继续&raquo;">
 </p>
 <p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
@@ -408,19 +414,19 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 		}
 	}
 	//重建缓存
-	$CACHE->mc_user();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_logsort();
-	$CACHE->mc_logatts();
-	$CACHE->mc_sta();
-	$CACHE->mc_link();
-	$CACHE->mc_tags();
-	$CACHE->mc_sort();
-	$CACHE->mc_newlog();
-
+//	$CACHE->mc_user();
+//	$CACHE->mc_options();
+//	$CACHE->mc_record();
+//	$CACHE->mc_comment();
+//	$CACHE->mc_logtags();
+//	$CACHE->mc_logsort();
+//	$CACHE->mc_logatts();
+//	$CACHE->mc_sta();
+//	$CACHE->mc_link();
+//	$CACHE->mc_tags();
+//	$CACHE->mc_sort();
+//	$CACHE->mc_newlog();
+	$CACHE->updateCache();
 	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功<br /><span style=\"color:red;\"><b>请删除根目录下安装文件(install.php)</b></span> <a href=\"./\"> 进入emlog </a>";
 	emMsg($result);
 }

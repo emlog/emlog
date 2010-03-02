@@ -74,7 +74,7 @@ if($action == 'bakstart')
 				}
 			}else{
 				emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
-			}			
+			}
 		}
 	}else{
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
@@ -96,11 +96,11 @@ if ($action == 'renewdata')
 		}
 		// 读取备份文件信息
 		$fp = @fopen($sqlfile, 'r');
-		if ($fp) 
+		if ($fp)
 		{
 			$dumpinfo = array();
 			$line = 0;
-			while (!feof($fp)) 
+			while (!feof($fp))
 			{
 				$dumpinfo[] = fgets($fp, 4096);
 				$line++;
@@ -122,20 +122,9 @@ if ($action == 'renewdata')
 			formMsg("导入失败! 备份文件无法读取!", 'javascript:history.go(-1);',0);
 		}
 	}
-	
+
 	bakindata($sqlfile);
-	$CACHE->mc_user();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_logsort();
-	$CACHE->mc_logatts();
-	$CACHE->mc_sta();
-	$CACHE->mc_link();
-	$CACHE->mc_tags();
-	$CACHE->mc_sort();
-	$CACHE->mc_newlog();
+	$CACHE->updateCache();
 	header("Location: ./data.php?active_import=true");
 }
 
@@ -156,18 +145,7 @@ if($action == 'dell_all_bak')
 //更新缓存
 if ($action == 'mkcache')
 {
-	$CACHE->mc_user();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_logsort();
-	$CACHE->mc_logatts();
-	$CACHE->mc_sta();
-	$CACHE->mc_link();
-	$CACHE->mc_tags();
-	$CACHE->mc_sort();
-	$CACHE->mc_newlog();
+	$CACHE->updateCache();
 	header("Location: ./data.php?active_mc=true");
 }
 

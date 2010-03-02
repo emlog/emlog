@@ -2,7 +2,7 @@
 <?php
 //widget：blogger
 function widget_blogger($title){
-	global $user_cache; 
+	global $user_cache;
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
 	<li>
 	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
@@ -77,7 +77,7 @@ function widget_twitter($title){?>
 		<?php endif;?>
 	</li>
 <?php } ?>
-<?php 
+<?php
 //widget：音乐
 function widget_music($title){
 	global $options_cache;
@@ -88,7 +88,7 @@ function widget_music($title){
 	$autoplay = $music['auto'] ? "&autoplay=1" : '';
 	?>
 	<li>
-	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>	
+	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>
 	<ul id="blogmusic">
 	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
 	</li>
@@ -102,11 +102,11 @@ function widget_newcomm($title){
 	<li>
 	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
 	<ul id="newcomment">
-	<?php 
-	foreach($com_cache as $value): 
+	<?php
+	foreach($com_cache as $value):
 	$url = BLOG_URL.'?post='.$value['gid'].'#'.$value['cid'];
 	?>
-	<li id="comment"><?php echo $value['name']; ?> 
+	<li id="comment"><?php echo $value['name']; ?>
 	<?php if($value['reply']): ?>
 	<a href="<?php echo $url; ?>" title="博主回复：<?php echo $value['reply']; ?>">
 	<img src="<?php echo TEMPLATE_URL; ?>images/reply.gif" align="absmiddle"/>
@@ -136,9 +136,8 @@ function widget_random_log($title){
 	global $index_randlognum, $emBlog;
 	if (!isset($emBlog))
 	{
-		global $DB;
 		require_once EMLOG_ROOT.'/model/class.blog.php';
-		$emBlog = new emBlog($DB);
+		$emBlog = new emBlog();
 	}
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	<li>
@@ -174,7 +173,7 @@ function widget_archive($title){
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
 	<li><a href="<?php echo BLOG_URL.$value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
-	<?php endforeach; ?>		
+	<?php endforeach; ?>
 	</ul>
 	</li>
 <?php } ?>
@@ -195,7 +194,7 @@ function widget_link($title){
 	<li>
 	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3>
 	<ul id="link">
-	<?php foreach($link_cache as $value): ?>     	
+	<?php foreach($link_cache as $value): ?>
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
@@ -219,7 +218,7 @@ function widget_bloginfo($title){
 <?php
 //blog：置顶
 function topflg($istop){
-	global $log_cache_sort; 
+	global $log_cache_sort;
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
 	echo $topflg;
 }
@@ -231,7 +230,7 @@ function editflg($logid,$author){
 	echo $editflg;
 }
 ?>
-<?php 
+<?php
 //blog：分类
 function blog_sort($sort, $blogid){
 	global $log_cache_sort; ?>
@@ -242,7 +241,7 @@ function blog_sort($sort, $blogid){
 <?php
 //blog：文件附件
 function blog_att($blogid){
-	global $log_cache_atts; 
+	global $log_cache_atts;
 	$att = '';
 	if(!empty($log_cache_atts[$blogid])){
 		$att .= '附件下载：';
@@ -256,7 +255,7 @@ function blog_att($blogid){
 <?php
 //blog：日志标签
 function blog_tag($blogid){
-	global $log_cache_tags; 
+	global $log_cache_tags;
 	if (!empty($log_cache_tags[$blogid]))
 	{
 		$tag = '标签:';
@@ -297,7 +296,7 @@ function neighbor_log(){
 //blog：引用通告
 function blog_trackback(){
 	global $allow_tb,$tbscode,$logid,$tb; ?>
-	<?php if($allow_tb == 'y'):?>	
+	<?php if($allow_tb == 'y'):?>
 	<div id="trackback_address">
 	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
 	<a name="tb"></a></p>
@@ -308,7 +307,7 @@ function blog_trackback(){
 		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
 		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
 		</ul>
-	<?php endforeach; ?>	
+	<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：博客评论列表
@@ -355,7 +354,7 @@ function blog_comments_post(){
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">
 	<label for="author"><small>昵称</small></label></p>
 	<p>
-	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2"> 
+	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
 	<label for="email"><small>邮件地址 (选填)</small></label></p>
 	<p><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
 	<label for="url"><small>个人主页 (选填)</small></label>

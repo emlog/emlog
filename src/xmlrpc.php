@@ -31,9 +31,8 @@ $api_methods = array(
 	'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
 	);
 
-$DB = new MySql(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
-$CACHE = new mkcache($DB, DB_PREFIX);
-$options_cache = $CACHE->readCache('options');
+$DB = MySql::getInstance();
+$options_cache = mkcache::getInstance()->readCache('options');
 // 有些基于浏览器的客户端会发送cookie，我们不需要它们
 $_COOKIE = array();
 // PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
@@ -132,30 +131,20 @@ function blogger_getUsersBlogs() {
  * 删除日志
  */
 function mw_deletePost($args) {
-	global $DB, $CACHE;
 	escape($args);
 	$id = intval($args[1]);
 	$user = login($args[2], $args[3]);
 	define('UID', $user['uid']);
-	$emBlog = new emBlog($DB);
+	$emBlog = new emBlog();
 	$emBlog->deleteLog($id);
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_logatts();
-	$CACHE->mc_tags();
-	$CACHE->mc_newlog();
-	$CACHE->mc_logsort();
-	$CACHE->mc_sort();
+	mkcache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 /**
  * 保存新日志
  */
 function mw_newPost($args) {
-	global $DB, $options_cache, $CACHE;
+	global $options_cache;
 	escape($args);
 
 	$user = login($args[1], $args[2]);
@@ -173,7 +162,7 @@ function mw_newPost($args) {
 	$update_data['excerpt'] = '';
 	// 只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort($DB);
+	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
 
 	$update_data['sortid'] = '-1';
@@ -190,31 +179,23 @@ function mw_newPost($args) {
 		$update_data['date'] = time();
 	}
 	// 更新数据
-	$emBlog = new emBlog($DB);
+	$emBlog = new emBlog();
 	$new_id = $emBlog->addlog($update_data);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag($DB);
+		$emTag = new emTag();
 		$emTag->addTag($data['mt_keywords'], $new_id);
 		unset($emTag);
 	}
 	// 更新缓存
-	$CACHE->mc_logtags();
-	$CACHE->mc_logatts();
-	$CACHE->mc_logsort();
-	$CACHE->mc_record();
-	$CACHE->mc_newlog();
-	$CACHE->mc_sort();
-	$CACHE->mc_tags();
-	$CACHE->mc_user();
-	$CACHE->mc_sta();
+	mkcache::getInstance()->updateCache();
 	response("<i4>$new_id</i4>");
 }
 /**
  * 更新日志
  */
 function mw_editPost($args) {
-	global $DB, $CACHE, $options_cache;
+	global $options_cache;
 	escape($args);
 	$username = $args[1];
 	$password = $args[2];
@@ -233,7 +214,7 @@ function mw_editPost($args) {
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	// 根据分类名称取分类id,注意只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort($DB);
+	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
 	unset($emSort);
 	$update_data['sortid'] = '-1';
@@ -248,24 +229,15 @@ function mw_editPost($args) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
 	// 更新数据
-	$emBlog = new emBlog($DB);
+	$emBlog = new emBlog();
 	$emBlog->updateLog($update_data, $id);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag($DB);
+		$emTag = new emTag();
 		$emTag->updateTag($data['mt_keywords'], $id);
 	}
 	// 更新缓存
-	$CACHE->mc_logtags();
-	$CACHE->mc_logatts();
-	$CACHE->mc_logsort();
-	$CACHE->mc_record();
-	$CACHE->mc_newlog();
-	$CACHE->mc_sort();
-	$CACHE->mc_tags();
-	$CACHE->mc_user();
-	$CACHE->mc_sta();
-
+	mkcache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 
@@ -273,14 +245,13 @@ function mw_editPost($args) {
  * 取得博客分类
  */
 function mw_getCategories($args) {
-	global $DB;
 	escape($args);
 	$username = $args[1];
 	$password = $args[2];
 
 	login($username, $password);
 
-	$emSort = new emSort($DB);
+	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
 	unset($emSort);
 	$xml = '';
@@ -308,7 +279,7 @@ function mw_getCategories($args) {
  * 读取日志信息
  */
 function mw_getPost($args) {
-	global $DB, $options_cache, $CACHE;
+	global $options_cache;
 	escape($args);
 
 	$post_ID = intval($args[0]);
@@ -317,11 +288,11 @@ function mw_getPost($args) {
 
 	$user = login($username, $password);
 
-	$emBlog = new emBlog($DB);
+	$emBlog = new emBlog();
 	define('UID', $user['uid']);
 	$post = $emBlog->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
-	$log_cache_tags = $CACHE->readCache('log_tags');
+	$log_cache_tags = mkcache::getInstance()->readCache('log_tags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
 		foreach ($log_cache_tags[$post['gid']] as $tag) {
@@ -329,7 +300,7 @@ function mw_getPost($args) {
 		}
 		$tags = implode(',', $tags);
 	}
-	$emSort = new emSort($DB);
+	$emSort = new emSort();
 	$sort_name = $emSort->getSortName($post['sortid']);
 
 	$post['date'] = getIso($post['date']);
@@ -389,9 +360,8 @@ function mw_getPost($args) {
 }
 
 function mw_getRecentPosts($args) {
-	global $DB, $CACHE;
 	escape($args);
-
+	$db = MySql::getInstance();
 	$username = $args[1];
 	$password = $args[2];
 	$num_posts = intval($args[3]);
@@ -400,12 +370,12 @@ function mw_getRecentPosts($args) {
 
 	$user = login($username, $password);
 
-	$query = $DB->query('SELECT gid,title,date,content,author,sortid FROM ' . DB_PREFIX . 'blog ORDER BY date DESC LIMIT 0,' . $num_posts);
+	$query = $db->query('SELECT gid,title,date,content,author,sortid FROM ' . DB_PREFIX . 'blog ORDER BY date DESC LIMIT 0,' . $num_posts);
 
 	$xml = '';
 	$recent_posts = array();
-	$log_cache_tags = $CACHE->readCache('log_tags');
-	while ($post = $DB->fetch_array($query)) {
+	$log_cache_tags = mkcache::getInstance()->readCache('log_tags');
+	while ($post = $db->fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
 		$post['date'] = getIso($post['date']);
@@ -484,7 +454,7 @@ function mw_getRecentPosts($args) {
 }
 
 function mw_newMediaObject($args) {
-	global $DB, $options_cache;
+	global $options_cache;
 	escape($args[1]);
 	escape($args[2]);
 	$username = $args[1];

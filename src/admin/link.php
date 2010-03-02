@@ -31,7 +31,7 @@ if ($action== 'link_taxis')
 			$key = intval($key);
 			$emLink->updateLink(array('taxis'=>$value), $key);
 		}
-		$CACHE->mc_link();
+		$CACHE->updateCache('link');
 		header("Location: ./link.php?active_taxis=true");
 	}else {
 		header("Location: ./link.php?error_b=true");
@@ -54,7 +54,7 @@ if($action== 'addlink')
 		$siteurl = 'http://'.$siteurl;
 	}
 	$emLink->addLink($sitename, $siteurl, $description);
-	$CACHE->mc_link();
+	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_add=true");
 }
 
@@ -83,13 +83,13 @@ if($action=='update_link')
 
 	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
-	$CACHE->mc_link();
+	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_edit=true");
 }
 if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$emLink->deleteLink($linkid);
-	$CACHE->mc_link();
+	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_del=true");
 }

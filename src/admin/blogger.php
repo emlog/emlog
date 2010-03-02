@@ -11,7 +11,7 @@ require_once EMLOG_ROOT.'/model/class.user.php';
 
 if($action == '')
 {
-	$emUser = new emUser($DB);
+	$emUser = new emUser();
 	$row = $emUser->getOneUser(UID);
 	extract($row);
 	$icon = '';
@@ -28,7 +28,7 @@ if($action == '')
 
 if($action == 'update')
 {
-	$emUser = new emUser($DB);
+	$emUser = new emUser();
 	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
@@ -41,7 +41,7 @@ if($action == 'update')
 		$usericon = $photo;
 	}
 	$emUser->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
-	$CACHE->mc_user();
+	$CACHE->updateCache('user');
 	header("Location: ./blogger.php?active_edit=true");
 }
 
@@ -67,21 +67,21 @@ if($action == 'delicon')
 		}
 	}
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
-	$CACHE->mc_user();
+	$CACHE->updateCache('user');
 	header("Location: ./blogger.php?active_del=true");
 }
 
 if($action == 'update_pwd')
 {
 	require_once EMLOG_ROOT.'/lib/class.phpass.php';
-	
-	$emUser = new emUser($DB);
-	
+
+	$emUser = new emUser();
+
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
 	$oldpass = isset($_POST['oldpass']) ? addslashes(trim($_POST['oldpass'])) : '';
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
-	
+
 	$PHPASS = new PasswordHash(8, true);
 	$ispass = checkPassword($oldpass, $userData['password']);
 

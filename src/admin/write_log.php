@@ -15,8 +15,8 @@ require_once EMLOG_ROOT.'/model/class.sort.php';
 //显示撰写日志页面
 if($action == '')
 {
-	$emTag = new emTag($DB);
-	$emSort = new emSort($DB);
+	$emTag = new emTag();
+	$emSort = new emSort();
 
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
@@ -33,9 +33,9 @@ if($action == '')
 //显示编辑日志页面
 if ($action == 'edit')
 {
-	$emBlog = new emBlog($DB);
-	$emTag = new emTag($DB);
-	$emSort = new emSort($DB);
+	$emBlog = new emBlog();
+	$emTag = new emTag();
+	$emSort = new emSort();
 
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$blogData = $emBlog->getOneLogForAdmin($logid);

@@ -60,7 +60,7 @@ if($action == '')
 	}
 
 	include getViews('header');
-	require_once(getViews('widgets'));
+	require_once getViews('widgets');
 	include getViews('footer');
 	cleanPage();
 }
@@ -87,7 +87,8 @@ if($action == 'setwg')
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
 			updateOption('index_comnum', $index_comnum);
 			updateOption('comment_subnum', $comment_subnum);
-			$CACHE->mc_comment();
+//			$CACHE->mc_comment();
+			$CACHE->updateCache('comment');
 			break;
 		case 'twitter':
 			$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10;
@@ -96,7 +97,8 @@ if($action == 'setwg')
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
 			updateOption('index_newlognum', $index_newlog);
-			$CACHE->mc_newlog();
+//			$CACHE->mc_newlog();
+			$CACHE->updateCache('newlog');
 			break;
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
@@ -195,7 +197,8 @@ if($action == 'setwg')
 			}
 			break;
 	}
-	$CACHE->mc_options();
+//	$CACHE->mc_options();
+	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true");
 }
 
@@ -205,6 +208,7 @@ if($action == 'compages')
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	updateOption("widgets{$wgNum}", $widgets);
-	$CACHE->mc_options();
+//	$CACHE->mc_options();
+	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }

@@ -13,9 +13,9 @@ require_once EMLOG_ROOT.'/model/class.sort.php';
 require_once EMLOG_ROOT.'/model/class.trackback.php';
 
 
-$emBlog = new emBlog($DB);
-$emTag = new emTag($DB);
-$emTb = new emTrackback($DB);
+$emBlog = new emBlog();
+$emTag = new emTag();
+$emTb = new emTrackback();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
@@ -35,16 +35,16 @@ $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '
 $postTime = $emBlog->postDate($timezone, $postDate, $date);
 
 $logData = array(
-'title'=>$title,
-'content'=>$content,
-'excerpt'=>$excerpt,
-'author'=>$author,
-'sortid'=>$sort,
-'date'=>$postTime,
-'allow_remark'=>$allow_remark,
-'allow_tb'=>$allow_tb,
-'hide'=>$ishide,
-'password'=>$password
+	'title'=>$title,
+	'content'=>$content,
+	'excerpt'=>$excerpt,
+	'author'=>$author,
+	'sortid'=>$sort,
+	'date'=>$postTime,
+	'allow_remark'=>$allow_remark,
+	'allow_tb'=>$allow_tb,
+	'hide'=>$ishide,
+	'password'=>$password
 );
 if($blogid > 0)//自动保存草稿后,添加变为更新
 {
@@ -59,15 +59,7 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 
 doAction('save_log', $blogid);
 
-$CACHE->mc_logtags();
-$CACHE->mc_logatts();
-$CACHE->mc_logsort();
-$CACHE->mc_record();
-$CACHE->mc_newlog();
-$CACHE->mc_sort();
-$CACHE->mc_tags();
-$CACHE->mc_user();
-$CACHE->mc_sta();
+$CACHE->updateCache();
 
 switch ($action)
 {

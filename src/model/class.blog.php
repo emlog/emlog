@@ -8,10 +8,14 @@ $Id$
  */
 
 class emBlog {
-	var $db;
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	function emBlog($dbhandle) {
-		$this->db = $dbhandle;
+	function __construct() {
+		$this->db = MySql::getInstance();
 	}
 
 	/**

@@ -7,13 +7,17 @@
  */
 
 class emPlugin {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-	var $plugin;
+	private $plugin;
 
-	function emPlugin($dbhandle, $plugin='')
+	function __construct($plugin = '')
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 		$this->plugin = $plugin;
 	}
 
@@ -33,7 +37,7 @@ class emPlugin {
 		$active_plugins = serialize($active_plugins);
 		updateOption('active_plugins', $active_plugins);
 	}
-	
+
 	/**
 	 * 禁用插件
 	 *
@@ -51,7 +55,7 @@ class emPlugin {
 		$active_plugins = serialize($active_plugins);
 		updateOption('active_plugins', $active_plugins);
 	}
-	
+
 	/**
 	 * 获取所有插件列表，未定义插件名称的插件将不予获取
 	 * 插件目录：content\plugins
@@ -142,7 +146,7 @@ class emPlugin {
 		return array(
 		'Name' => $plugin_name,
 		'Version' => $version,
-		'Description' => $description, 
+		'Description' => $description,
 		'Url' => $plugin_url,
 		'Author' => $author,
 		'Email' => $author_email,

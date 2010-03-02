@@ -7,12 +7,15 @@
  */
 
 class emLink {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-
-	function emLink($dbhandle)
+	function __construct()
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 	}
 
 	function getLinks()
@@ -62,7 +65,7 @@ class emLink {
 		}
 		return $linkData;
 	}
-	
+
 	function deleteLink($linkId)
 	{
 		$this->db->query("DELETE FROM ".DB_PREFIX."link where id=$linkId");

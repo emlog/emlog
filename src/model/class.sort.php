@@ -7,12 +7,15 @@
  */
 
 class emSort {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-
-	function emSort($dbhandle)
+	function __construct()
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 	}
 
 	function getSorts()
@@ -43,7 +46,7 @@ class emSort {
 		$sql="insert into ".DB_PREFIX."sort (sortname) values('$name')";
 		$this->db->query($sql);
 	}
-	
+
 	function deleteSort($sid)
 	{
 		$this->db->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");

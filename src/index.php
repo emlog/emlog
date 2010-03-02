@@ -22,7 +22,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 {
 	require_once EMLOG_ROOT.'/model/class.blog.php';
 
-	$emBlog = new emBlog($DB);
+	$emBlog = new emBlog();
 
 	$page = isset($_GET['page']) ? abs(intval($_GET['page'])) : 1;
 	$record = isset($_GET['record']) ? intval($_GET['record']) : '' ;
@@ -42,7 +42,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$pageurl .= BLOG_URL."?record=$record&page";
 	} elseif ($tag) {
 		require_once EMLOG_ROOT.'/model/class.tag.php';
-		$emTag = new emTag($DB);
+		$emTag = new emTag();
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
@@ -87,9 +87,9 @@ if (!empty($logid))
 	require_once EMLOG_ROOT.'/model/class.comment.php';
 	require_once EMLOG_ROOT.'/model/class.trackback.php';
 
-	$emBlog = new emBlog($DB);
-	$emComment = new emComment($DB);
-	$emTrackback = new emTrackback($DB);
+	$emBlog = new emBlog();
+	$emComment = new emComment();
+	$emTrackback = new emTrackback();
 
 	$logData = $emBlog->getOneLogForHome($logid);
 	if($logData === false)
@@ -126,7 +126,7 @@ if (!empty($logid))
 if ($action == 'addcom')
 {
 	require_once EMLOG_ROOT.'/model/class.comment.php';
-	$emComment = new emComment($DB);
+	$emComment = new emComment();
 
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
@@ -151,14 +151,16 @@ if ($action == 'addcom')
 		case -6:
 		emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');break;
 		case 0:
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		//$CACHE->mc_sta();
+		//$CACHE->mc_user();
+		//$CACHE->mc_comment();
+		$CACHE->updateCache(array('sta', 'user', 'comment'));
 		doAction('comment_saved');
 		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);break;
 		case 1:
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
+		//$CACHE->mc_sta();
+		//$CACHE->mc_user();
+		$CACHE->updateCache(array('sta', 'user'));
 		doAction('comment_saved');
 		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;
 	}

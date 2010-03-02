@@ -62,6 +62,7 @@ if ($action == 'update')
 	}
 
 	updateOption('isurlrewrite', $permalink);
-	$CACHE->mc_options();
-	header("Location: ./permalink.php?activated=true");	
+//	$CACHE->mc_options();
+	$CACHE->updateCache('options');
+	header("Location: ./permalink.php?activated=true");
 }

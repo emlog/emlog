@@ -7,12 +7,15 @@
  */
 
 class emComment {
+	/**
+	 * 内部数据对象
+	 * @var MySql
+	 */
+	private $db;
 
-	var $db;
-
-	function emComment($dbhandle)
+	function __construct()
 	{
-		$this->db = $dbhandle;
+		$this->db = MySql::getInstance();
 	}
 
 	/**

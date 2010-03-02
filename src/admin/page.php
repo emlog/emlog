@@ -14,7 +14,7 @@ $navibar = unserialize($navibar);
 //加载页面管理页面
 if($action == '')
 {
-	$emPage = new emBlog($DB);
+	$emPage = new emBlog();
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -42,7 +42,7 @@ if ($action == 'new')
 //显示编辑页面表单
 if ($action == 'mod')
 {
-	$emPage = new emBlog($DB);
+	$emPage = new emBlog();
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
@@ -75,7 +75,7 @@ if ($action == 'mod')
 //保存页面
 if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 {
-	$emPage = new emBlog($DB);
+	$emPage = new emBlog();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
@@ -103,7 +103,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
-	
+
 	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl))
 	{
 		$pageUrl = 'http://'.$pageUrl;
@@ -113,9 +113,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	$navibar = addslashes(serialize($navibar));
 	updateOption('navibar', $navibar);
 
-	$CACHE->mc_logatts();
-	$CACHE->mc_options();
-
+	$CACHE->updateCache(array('logatts', 'options'));
 	switch ($action)
 	{
 		case 'autosave':
@@ -135,8 +133,8 @@ if ($action == 'operate_page')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
-	
-	$emPage = new emBlog($DB);
+
+	$emPage = new emBlog();
 
 	switch ($operate)
 	{
@@ -149,11 +147,13 @@ if ($action == 'operate_page')
 			$navibar = addslashes(serialize($navibar));
 			updateOption('navibar', $navibar);
 
-			$CACHE->mc_logatts();
-			$CACHE->mc_options();
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_comment();
+//			$CACHE->mc_logatts();
+//			$CACHE->mc_options();
+//			$CACHE->mc_sta();
+//			$CACHE->mc_user();
+//			$CACHE->mc_comment();
+
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'user'));
 
 			header("Location: ./page.php?active_del=true");
 			break;
@@ -168,12 +168,13 @@ if ($action == 'operate_page')
 			$navibar = addslashes(serialize($navibar));
 			updateOption('navibar', $navibar);
 
-			$CACHE->mc_options();
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_logatts();
-			$CACHE->mc_comment();
+//			$CACHE->mc_options();
+//			$CACHE->mc_sta();
+//			$CACHE->mc_user();
+//			$CACHE->mc_logatts();
+//			$CACHE->mc_comment();
 
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'user'));
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;
 	}

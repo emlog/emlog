@@ -9,7 +9,7 @@
 require_once 'globals.php';
 require_once EMLOG_ROOT.'/model/class.comment.php';
 
-$emComment = new emComment($DB);
+$emComment = new emComment();
 
 if($action == '')
 {
@@ -35,27 +35,21 @@ if ($action== 'del')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->delComment($id);
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
-	$CACHE->mc_comment();
+	$CACHE->updateCache('sta', 'user', 'comment');
 	header("Location: ./comment.php?active_del=true");
 }
 if($action=='hide')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->hideComment($id);
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
-	$CACHE->mc_comment();
+	$CACHE->updateCache('sta', 'user', 'comment');
 	header("Location: ./comment.php?active_hide=true");
 }
 if($action=='show')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->showComment($id);
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
-	$CACHE->mc_comment();
+	$CACHE->updateCache('sta', 'user', 'comment');
 	header("Location: ./comment.php?active_show=true");
 }
 if($action== 'admin_all_coms')
@@ -76,25 +70,19 @@ if($action== 'admin_all_coms')
 	if($operate == 'del')
 	{
 		$emComment->batchComment('delcom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache('sta', 'user', 'comment');
 		header("Location: ./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
 		$emComment->batchComment('hidecom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache('sta', 'user', 'comment');
 		header("Location: ./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
 		$emComment->batchComment('showcom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache(array('sta', 'user', 'comment'));
 		header("Location: ./comment.php?active_show=true");
 	}
 }
@@ -118,13 +106,13 @@ if($action=='doreply')
 	{
 		$emComment->replyComment($commentId, $reply);
 		doAction('comment_reply', $commentId, $reply);
-		$CACHE->mc_comment();
+		$CACHE->updateCache('comment');
 		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
 		$emComment->replyComment($commentId, $reply);
 		doAction('comment_reply', $commentId, $reply);
-		$CACHE->mc_comment();
+		$CACHE->updateCache('comment');
 		echo "<span>博主回复：$reply</span>";
 	}
 }

@@ -105,9 +105,6 @@ if ($action == "mod_config")
 	{
 		updateOption($key, $val);
 	}
-	$CACHE->mc_tags();
-	$CACHE->mc_comment();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
+	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	header("Location: ./configure.php?activated=true");
 }

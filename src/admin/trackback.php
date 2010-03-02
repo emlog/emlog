@@ -9,7 +9,7 @@
 require_once 'globals.php';
 require_once EMLOG_ROOT.'/model/class.trackback.php';
 
-$emTrackback = new emTrackback($DB);
+$emTrackback = new emTrackback();
 
 if($action == '')
 {
@@ -20,7 +20,7 @@ if($action == '')
 	$pageurl =  pagination($tbnum, ADMIN_PERPAGE_NUM, $page, "./trackback.php?page");
 
 	include getViews('header');
-	require_once(getViews('trackback'));
+	require_once getViews('trackback');
 	include getViews('footer');cleanPage();
 }
 //删除引用
@@ -36,7 +36,6 @@ if($action == 'dell')
 	{
 		$emTrackback->deleteTrackback($value);
 	}
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
+	$CACHE->updateCache(array('sta', 'user'));
 	header("Location: ./trackback.php?active_del=true");
 }
