@@ -151,15 +151,10 @@ if ($action == 'addcom')
 		case -6:
 		emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');break;
 		case 0:
-		//$CACHE->mc_sta();
-		//$CACHE->mc_user();
-		//$CACHE->mc_comment();
 		$CACHE->updateCache(array('sta', 'user', 'comment'));
 		doAction('comment_saved');
 		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);break;
 		case 1:
-		//$CACHE->mc_sta();
-		//$CACHE->mc_user();
 		$CACHE->updateCache(array('sta', 'user'));
 		doAction('comment_saved');
 		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;

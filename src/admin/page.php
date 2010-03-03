@@ -146,13 +146,6 @@ if ($action == 'operate_page')
 			}
 			$navibar = addslashes(serialize($navibar));
 			updateOption('navibar', $navibar);
-
-//			$CACHE->mc_logatts();
-//			$CACHE->mc_options();
-//			$CACHE->mc_sta();
-//			$CACHE->mc_user();
-//			$CACHE->mc_comment();
-
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'user'));
 
 			header("Location: ./page.php?active_del=true");
@@ -167,13 +160,6 @@ if ($action == 'operate_page')
 			}
 			$navibar = addslashes(serialize($navibar));
 			updateOption('navibar', $navibar);
-
-//			$CACHE->mc_options();
-//			$CACHE->mc_sta();
-//			$CACHE->mc_user();
-//			$CACHE->mc_logatts();
-//			$CACHE->mc_comment();
-
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'user'));
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;

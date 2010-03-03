@@ -46,7 +46,7 @@ if($action == '')
 	$tplnums = count($tpls);
 
 	include getViews('header');
-	require_once(getViews('template'));
+	require_once getViews('template');
 	include getViews('footer');
 	cleanPage();
 }
@@ -58,7 +58,6 @@ if($action == 'usetpl')
 
 	updateOption('nonce_templet', $tplName);
 	updateOption('tpl_sidenum', $tplSideNum);
-	$CACHE->mc_options();
 	$CACHE->updateCache('options');
 	header("Location: ./template.php?activated=true");
 }

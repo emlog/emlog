@@ -27,7 +27,6 @@ if ($action == 'active')
 {
 	$emPlugin = new emPlugin($plugin);
 	$emPlugin->active_plugin($active_plugins);
-//	$CACHE->mc_options();
 	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?active=true");
 }

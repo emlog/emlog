@@ -81,8 +81,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
 		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
+		$CACHE->updateCache(array('sta', 'user'));
 		showXML('success', 0);
 	}else {
 		showXML('refuse trackback');

@@ -53,8 +53,6 @@ if($action== 'new')
 	$password = $PHPASS->HashPassword($password);
 
 	$emUser->addUser($login, $password, $role);
-
-//	$CACHE->mc_user();
 	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_add=true");
 }
@@ -102,7 +100,6 @@ if($action=='update')
 
 	$emUser->updateUser(array('username'=>$login, 'nickname'=>$nickname, 'email'=>$email, 'description'=>$description), $uid);
 
-//	$CACHE->mc_user();
 	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_update=true");
 }
@@ -111,8 +108,6 @@ if ($action== 'del')
 	$users = $emUser->getUsers();
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 	$emUser->deleteUser($uid);
-
-//	$CACHE->mc_user();
 	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_del=true");
 }

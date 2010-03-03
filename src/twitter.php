@@ -22,7 +22,7 @@ if (ISLOGIN === true && $action == 'add')
 	{
 		$twitter = '';
 		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,author,date) VALUES('$content',".UID.",'$localdate')");
-		$CACHE->mc_sta();
+		$CACHE->updateCache('sta');
 		$twitter.=getindextw();
 		echo $twitter;
 	}
@@ -34,7 +34,7 @@ if (ISLOGIN === true && $action == 'del')
 	$author = ROLE == 'admin' ? '' : 'and author='.UID;
 	$twitter = '';
 	$query = $DB->query("DELETE FROM ".DB_PREFIX."twitter WHERE id=$twid $author");
-	$CACHE->mc_sta();
+	$CACHE->updateCache('sta');
 	$twitter.=getindextw();
 	echo $twitter;
 }

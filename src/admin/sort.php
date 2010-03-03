@@ -31,7 +31,6 @@ if ($action == 'taxis')
 			$key = intval($key);
 			$emSort->updateSort(array('taxis'=>$value), $key);
 		}
-//		$CACHE->mc_sort();
 		$CACHE->updateCache('sort');
 		header("Location: ./sort.php?active_taxis=true");
 	}else{
@@ -48,7 +47,6 @@ if($action== 'add')
 		exit;
 	}
 	$emSort->addSort($sortname);
-//	$CACHE->mc_sort();
 	$CACHE->updateCache('sort');
 	header("Location: ./sort.php?active_add=true");
 }
@@ -59,8 +57,6 @@ if($action == 'update')
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 
 	$emSort->updateSort(array('sortname'=>$sortname), $sid);
-//	$CACHE->mc_sort();
-//	$CACHE->mc_logsort();
 	$CACHE->updateCache(array('sort', 'logsort'));
 	header("Location: ./sort.php?active_edit=true");
 }
@@ -69,8 +65,6 @@ if ($action == 'del')
 {
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$emSort->deleteSort($sid);
-//	$CACHE->mc_sort();
-//	$CACHE->mc_logsort();
 	$CACHE->updateCache(array('sort', 'logsort'));
 	header("Location: ./sort.php?active_del=true");
 }
