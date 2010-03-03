@@ -4,7 +4,7 @@
  *
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.4.0
-$Id$
+ * $Id$
  */
 
 class mkcache {
