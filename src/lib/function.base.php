@@ -108,7 +108,7 @@ function viewCount(){
 				updateOption('viewcount_day', 'option_value+1', true);
 			}
 			updateOption('viewcount_all', 'option_value+1', true);
-			$CACHE->mc_options();
+			$CACHE->updateCache('options');
 		}
 	}
 }
