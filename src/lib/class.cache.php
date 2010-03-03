@@ -165,7 +165,7 @@ class mkcache {
 				);
 		}
 		$cacheData = serialize($com_cache);
-		$this->cacheWrite($cacheData, 'comments');
+		$this->cacheWrite($cacheData, 'comment');
 	}
 	/**
 	 * 侧边栏标签缓存
@@ -250,7 +250,7 @@ class mkcache {
 				);
 		}
 		$cacheData = serialize($link_cache);
-		$this->cacheWrite($cacheData, 'links');
+		$this->cacheWrite($cacheData, 'link');
 	}
 	/**
 	 * 最新日志
@@ -267,7 +267,7 @@ class mkcache {
 			$logs[] = $row;
 		}
 		$cacheData = serialize($logs);
-		$this->cacheWrite($cacheData, 'newlogs');
+		$this->cacheWrite($cacheData, 'newlog');
 	}
 
 	/**
@@ -303,7 +303,7 @@ class mkcache {
 		}
 
 		$cacheData = serialize($dang_cache);
-		$this->cacheWrite($cacheData, 'records');
+		$this->cacheWrite($cacheData, 'record');
 	}
 	/**
 	 * 日志标签缓存
@@ -326,7 +326,7 @@ class mkcache {
 			unset($tags);
 		}
 		$cacheData = serialize($log_cache_tags);
-		$this->cacheWrite($cacheData, 'log_tags');
+		$this->cacheWrite($cacheData, 'logtags');
 	}
 	/**
 	 * 日志分类缓存
@@ -347,7 +347,7 @@ class mkcache {
 			unset($tag);
 		}
 		$cacheData = serialize($log_cache_sort);
-		$this->cacheWrite($cacheData, 'log_sort');
+		$this->cacheWrite($cacheData, 'logsort');
 	}
 	/**
 	 * 日志\页面附件缓存
@@ -373,7 +373,7 @@ class mkcache {
 			}
 		}
 		$cacheData = serialize($log_cache_atts);
-		$this->cacheWrite($cacheData, 'log_atts');
+		$this->cacheWrite($cacheData, 'logatts');
 		unset($log_cache_atts);
 	}
 
@@ -390,12 +390,18 @@ class mkcache {
 	/**
 	 * 读取缓存文件
 	 */
-	function readCache($cachefile) {
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cachefile;
-		if (@$fp = fopen($cachefile, 'r')) {
-			@$data = fread($fp, filesize($cachefile));
-			fclose($fp);
+	function readCache($cacheName) {
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
+		// 如果缓存文件不存在则自动生成缓存文件
+		if (!is_file($cachefile)) {
+			if (method_exists($this, 'mc_' . $cacheName)) {
+				call_user_func(array($this, 'mc_' . $cacheName));
+			}
 		}
-		return unserialize($data);
+		if ($fp = fopen($cachefile, 'r')) {
+			$data = fread($fp, filesize($cachefile));
+			fclose($fp);
+			return unserialize($data);
+		}
 	}
 }

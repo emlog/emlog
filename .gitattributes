@@ -170,18 +170,6 @@ src/admin/write_log.php -text svn_keywords=Id
 src/calendar.php -text svn_keywords=Id
 src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
-src/content/cache/comments -text svn_keywords=Id
-src/content/cache/links -text svn_keywords=Id
-src/content/cache/log_atts -text svn_keywords=Id
-src/content/cache/log_sort -text
-src/content/cache/log_tags -text svn_keywords=Id
-src/content/cache/newlogs -text
-src/content/cache/options -text svn_keywords=Id
-src/content/cache/records -text svn_keywords=Id
-src/content/cache/sort -text
-src/content/cache/sta -text svn_keywords=Id
-src/content/cache/tags -text svn_keywords=Id
-src/content/cache/user -text
 src/content/plugins/tips/icon_tips.gif -text
 src/content/plugins/tips/tips.php -text
 src/content/templates/default/echo_log.php -text

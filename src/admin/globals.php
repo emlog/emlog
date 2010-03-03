@@ -14,7 +14,7 @@ define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/');//后台当前
 $sta_cache = $CACHE->readCache('sta');
 $sort_cache = $CACHE->readCache('sort');
 $user_cache = $CACHE->readCache('user');
-$log_cache_tags = $CACHE->readCache('log_tags');
+$log_cache_tags = $CACHE->readCache('logtags');
 
 //登录验证
 if ($action == 'login')

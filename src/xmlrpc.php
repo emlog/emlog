@@ -292,7 +292,7 @@ function mw_getPost($args) {
 	define('UID', $user['uid']);
 	$post = $emBlog->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
-	$log_cache_tags = mkcache::getInstance()->readCache('log_tags');
+	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
 		foreach ($log_cache_tags[$post['gid']] as $tag) {
@@ -374,7 +374,7 @@ function mw_getRecentPosts($args) {
 
 	$xml = '';
 	$recent_posts = array();
-	$log_cache_tags = mkcache::getInstance()->readCache('log_tags');
+	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
 	while ($post = $db->fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
