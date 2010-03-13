@@ -10,7 +10,6 @@ $Id:  526 2008-07-05 15:21:03Z emloog $
 require_once '../common.php';
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
-define ('ADMIN_PERPAGE_NUM', 5);
 
 $isgzipenable = 'n'; //手机浏览关闭gzip压缩
 $index_lognum = 5;
