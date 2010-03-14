@@ -8,6 +8,8 @@
 
 require_once 'globals.php';
 
+$utctimestamp += $timezone * 3600;
+
 if($action == '')
 {
 	$retval = glob('../content/backup/*.sql');
@@ -42,7 +44,7 @@ if($action == 'bakstart')
 	if(trim($sqldump))
 	{
 		$dumpfile = '#version:emlog '. EMLOG_VERSION . "\n";
-		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $utctimestamp + $timezone * 3600) . "\n";
+		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $utctimestamp) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";

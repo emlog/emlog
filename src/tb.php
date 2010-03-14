@@ -61,7 +61,6 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		}
 	}
 	$interval = 3600 * 5;
-	$utctimestamp = time();
 	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");
 	if ($DB->num_rows($query))
 	{

@@ -87,6 +87,7 @@ class emTrackback {
 	 */
 	function getTrackbacks($page = null, $blogId = null, $spot = 0)
 	{
+	    global $timezone;
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$condition = '';
@@ -109,7 +110,7 @@ class emTrackback {
 		{
 			$row['title'] = htmlspecialchars($row['title']);
 			$row['blog_name'] = htmlspecialchars($row['blog_name']);
-			$row['date'] = gmdate("Y-m-d H:i",$row['date']);
+			$row['date'] = gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
 

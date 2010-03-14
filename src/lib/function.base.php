@@ -402,13 +402,13 @@ function fopen_url($url){
  * @param $dstr
  * @return string
  */
-function smartyDate($datetemp,$dstr='Y-m-d H:i'){
+function smartyDate($datetemp, $dstr='Y-m-d H:i'){
 	global $utctimestamp, $timezone;
 	$op = '';
-	$sec = $utctimestamp-$datetemp;
-	$hover = floor($sec/3600);
+	$sec = $utctimestamp - $datetemp;
+	$hover = floor($sec / 3600);
 	if ($hover == 0){
-		$min = floor($sec/60);
+		$min = floor($sec / 60);
 		if ( $min == 0) {
 			$op = $sec.' 秒前';
 		} else {
@@ -417,7 +417,7 @@ function smartyDate($datetemp,$dstr='Y-m-d H:i'){
 	} elseif ($hover < 24){
 		$op = "约 {$hover} 小时前";
 	} else {
-		$op = gmdate($dstr,$datetemp + $timezone * 3600);
+		$op = gmdate($dstr, $datetemp + $timezone * 3600);
 	}
 	return $op;
 }
