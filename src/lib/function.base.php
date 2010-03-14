@@ -100,7 +100,7 @@ function viewCount(){
 	if ($em_viewip != $userip){
 		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
 		if ($ret){
-			$curtime = date('Y-m-d', $localdate);
+			$curtime = gmdate('Y-m-d', $localdate + $timezone * 3600);
 			if ($viewcount_date != $curtime){
 				updateOption('viewcount_date', $curtime);
 				updateOption('viewcount_day', 1);

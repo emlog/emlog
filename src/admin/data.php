@@ -42,7 +42,7 @@ if($action == 'bakstart')
 	if(trim($sqldump))
 	{
 		$dumpfile = '#version:emlog '. EMLOG_VERSION . "\n";
-		$dumpfile .= '#date:' . date('Y-m-d H:i', $localdate) . "\n";
+		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $localdate + $timezone * 3600) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";
