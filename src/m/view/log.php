@@ -11,11 +11,6 @@
 <?php endif;?>
 </div>
 <div id="m">
-<?php if(ISLOGIN === true): ?>
-<form method="post" action="./?action=t" >
-<input name="t" value="" /><input type="submit" value="发碎语" />
-</form>
-<?php endif;?>
 <?php foreach($logs as $value): ?>
 <div class="title"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['logid'];?>"><?php echo $value['log_title']; ?></a></div>
 <div class="info"><?php echo gmdate('Y-n-j G:i', $value['date']); ?></div>

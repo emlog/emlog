@@ -144,14 +144,14 @@ if ($action == 'addcom') {
 	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 
-	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
-	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
-	$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
-	$url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
+	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 
-	$ret = $emComment->addComment($name, $content, $mail, $url, $imgcode, $gid);
+	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $gid);
 	switch ($ret) {
 		case -1:
 			mMsg('发表评论失败：该日志已关闭评论', "./?post=$gid");
@@ -173,6 +173,7 @@ if ($action == 'addcom') {
 			break;
 		case 0:
 			$CACHE->updateCache(array('sta','user','comment'));
+			doAction('comment_saved');
 			header("Location: ./?post=$gid");
 			break;
 		case 1:
