@@ -15,7 +15,6 @@ if ($action == '')
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
 	$safe_mode = ini_get('safe_mode');
-	$serverdate = gmdate('Y-n-d G:i:s',$utctimestamp);
 
 	if (function_exists("imagecreate"))
 	{

@@ -13,7 +13,6 @@
 	<li>PHP版本：<?php echo $php_ver; ?></li>
 	<li>MySQL版本：<?php echo $mysql_ver; ?></li>
 	<li>服务器环境：<?php echo $serverapp; ?></li>
-	<li>服务器时间：<?php echo $serverdate; ?></li>
 	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
 	<li>安全模式：<?php echo $safe_mode ? '开启' : '关闭'; ?></li>
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
