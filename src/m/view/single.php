@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<?php if(ISLOGIN === true): ?><a href="./?action=write">写日志</a> <?php endif;?>
-<a href="./" id="active">日志</a>
+<a href="./" id="active">首页</a>
 <a href="./?action=tw">碎语</a>
 <a href="./?action=com">评论</a>
 <?php if(ISLOGIN === true): ?>
+<a href="./?action=write">写日志</a> 
 <a href="./?action=logout">退出</a>
 <?php else:?>
 <a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
