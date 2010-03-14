@@ -584,15 +584,15 @@ function mw_newMediaObject($args) {
 	response($xml);
 }
 
-function getIso($timestamp) {
+function getIso($utctimestamp) {
 	global $options_cache;
-	$timestamp += $options_cache['timezone'] * 3600;
-	$year = gmdate('Y', $timestamp);
-	$month = gmdate('m', $timestamp);
-	$day = gmdate('d', $timestamp);
-	$hour = gmdate('H', $timestamp);
-	$minute = gmdate('i', $timestamp);
-	$second = gmdate('s', $timestamp);
+	$utctimestamp += $options_cache['timezone'] * 3600;
+	$year = gmdate('Y', $utctimestamp);
+	$month = gmdate('m', $utctimestamp);
+	$day = gmdate('d', $utctimestamp);
+	$hour = gmdate('H', $utctimestamp);
+	$minute = gmdate('i', $utctimestamp);
+	$second = gmdate('s', $utctimestamp);
 	return $year . $month . $day . 'T' . $hour . ':' . $minute . ':' . $second;
 }
 

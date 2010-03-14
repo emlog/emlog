@@ -7,7 +7,7 @@
  */
 
 require_once 'init.php';
-
+$utctimestamp += $timezone * 3600;
 //建立日志时间写入数组
 $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
 while ($date = $DB->fetch_array($query))
@@ -15,12 +15,12 @@ while ($date = $DB->fetch_array($query))
 	$logdate[] = gmdate("Ymd",$date['date']);
 }
 //获取当前日期
-$n_year  = gmdate("Y",$localdate);
-$n_year2 = gmdate("Y",$localdate);
-$n_month = gmdate("m",$localdate);
-$n_day   = gmdate("d",$localdate);
-$time    = gmdate("Ymd",$localdate);
-$year_month = gmdate("Ym",$localdate);
+$n_year  = gmdate("Y",$utctimestamp);
+$n_year2 = gmdate("Y",$utctimestamp);
+$n_month = gmdate("m",$utctimestamp);
+$n_day   = gmdate("d",$utctimestamp);
+$time    = gmdate("Ymd",$utctimestamp);
+$year_month = gmdate("Ym",$utctimestamp);
 
 if (isset($_GET['record']))
 {

@@ -13,7 +13,7 @@ if($action == '')
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
 	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','tag','trackback','twitter','user');
-	$defname = 'emlog_'. gmdate('Ymd', $localdate) . '_' . substr(md5(gmdate('YmdHis', $localdate)),0,18);
+	$defname = 'emlog_'. gmdate('Ymd', $utctimestamp) . '_' . substr(md5(gmdate('YmdHis', $utctimestamp)),0,18);
 	doAction('data_prebakup');
 
 	include getViews('header');
@@ -42,22 +42,22 @@ if($action == 'bakstart')
 	if(trim($sqldump))
 	{
 		$dumpfile = '#version:emlog '. EMLOG_VERSION . "\n";
-		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $localdate + $timezone * 3600) . "\n";
+		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $utctimestamp + $timezone * 3600) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";
 		if($bakplace == 'local')
 		{
 			header('Content-Type: text/x-sql');
-			header('Expires: '. gmdate('D, d M Y H:i:s', $localdate) . ' GMT');
-			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', $localdate).'.sql');
+			header('Expires: '. gmdate('D, d M Y H:i:s', $utctimestamp) . ' GMT');
+			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', $utctimestamp).'.sql');
 			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT']))
 			{
 				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				header('Pragma: public');
 			} else {
 				header('Pragma: no-cache');
-				header('Last-Modified: '. gmdate('D, d M Y H:i:s', $localdate) . ' GMT');
+				header('Last-Modified: '. gmdate('D, d M Y H:i:s', $utctimestamp) . ' GMT');
 			}
 			echo $dumpfile;
 		} else {

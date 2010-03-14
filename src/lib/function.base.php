@@ -94,13 +94,13 @@ function getBlogUrl(){
  *
  */
 function viewCount(){
-	global $CACHE,$viewcount_day,$viewcount_all,$viewcount_date,$DB,$localdate;
+	global $CACHE, $viewcount_day, $viewcount_all, $viewcount_date, $DB, $utctimestamp, $timezone;
 	$userip = getIp();
 	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
 	if ($em_viewip != $userip){
-		$ret = setcookie('em_viewip', getIp(), $localdate + (12*3600));
+		$ret = setcookie('em_viewip', getIp(), $utctimestamp + (12*3600));
 		if ($ret){
-			$curtime = gmdate('Y-m-d', $localdate + $timezone * 3600);
+			$curtime = gmdate('Y-m-d', $utctimestamp + $timezone * 3600);
 			if ($viewcount_date != $curtime){
 				updateOption('viewcount_date', $curtime);
 				updateOption('viewcount_day', 1);
@@ -403,9 +403,9 @@ function fopen_url($url){
  * @return string
  */
 function smartyDate($datetemp,$dstr='Y-m-d H:i'){
-	global $localdate, $timezone;
+	global $utctimestamp, $timezone;
 	$op = '';
-	$sec = $localdate-$datetemp;
+	$sec = $utctimestamp-$datetemp;
 	$hover = floor($sec/3600);
 	if ($hover == 0){
 		$min = floor($sec/60);

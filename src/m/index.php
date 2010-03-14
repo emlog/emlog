@@ -275,7 +275,7 @@ if ($action == 'tw') {
 if (ISLOGIN === true && $action == 't') {
 	$t = isset ($_POST['t']) ? addslashes ($_POST['t']) : '';
 	if (!empty($t)) {
-		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t'," . UID . ",'$localdate')");
+		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t'," . UID . ",'$utctimestamp')");
 		$CACHE->updateCache('sta');
 		header ("Location: ./?action=tw");
 	} else {

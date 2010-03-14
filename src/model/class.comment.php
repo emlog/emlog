@@ -184,7 +184,7 @@ class emComment {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId)
 	{
-		global $comment_code, $ischkcomment, $localdate;
+		global $comment_code, $ischkcomment, $utctimestamp;
 		if( $comment_code == 'y' )
 		{
 			session_start();
@@ -193,7 +193,7 @@ class emComment {
 		{
 			$url = 'http://'.$url;
 		}
-		$this->setCommentCookie($name,$mail,$url,$localdate);
+		$this->setCommentCookie($name,$mail,$url,$utctimestamp);
 		if($this->isLogCanComment($blogId) === false){
 			return -1;
 		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
@@ -209,7 +209,7 @@ class emComment {
 		} else {
 			$ipaddr = getIp();
 			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
-					VALUES ('$localdate','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
+					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
 			if ($ischkcomment == 'n')
 			{
@@ -245,9 +245,9 @@ class emComment {
 		}
 	}
 
-	function setCommentCookie($name,$mail,$url,$localdate)
+	function setCommentCookie($name,$mail,$url,$utctimestamp)
 	{
-		$cookietime = $localdate + 31536000;
+		$cookietime = $utctimestamp + 31536000;
 		setcookie('commentposter',$name,$cookietime);
 		setcookie('postermail',$mail,$cookietime);
 		setcookie('posterurl',$url,$cookietime);

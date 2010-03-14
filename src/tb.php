@@ -61,8 +61,8 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 		}
 	}
 	$interval = 3600 * 5;
-	$timestamp = time();
-	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
+	$utctimestamp = time();
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");
 	if ($DB->num_rows($query))
 	{
 		$point -= 2;
@@ -78,7 +78,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 
 	if ($visible === true)
 	{
-		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
+		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
 		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
 		$CACHE->updateCache(array('sta', 'user'));

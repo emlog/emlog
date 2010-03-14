@@ -32,7 +32,7 @@ foreach($blog as $value)
 {
 	$link = "http://".$URL."/?post=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
-	$pubdate =  date('r',$value['date']);
+	$pubdate =  gmdate('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
 	doAction('rss_display');
 	echo <<< END

@@ -21,7 +21,7 @@ if (ISLOGIN === true && $action == 'add')
 	if (!empty($content))
 	{
 		$twitter = '';
-		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,author,date) VALUES('$content',".UID.",'$localdate')");
+		$query = $DB->query("INSERT INTO ".DB_PREFIX."twitter (content,author,date) VALUES('$content',".UID.",'$utctimestamp')");
 		$CACHE->updateCache('sta');
 		$twitter.=getindextw();
 		echo $twitter;
