@@ -12,7 +12,7 @@
 	<li>
 	<input type="hidden" value="<?php echo $linkId; ?>" name="linkid" />
 	<input type="submit" value="保 存" class="submit" />
-	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();""/></li>
+	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
 <script>
