@@ -4,7 +4,8 @@ $isdraft = $hide == 'y' ? true : false;
 ?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
-<div class=containertitle><b>编辑日志</b><span id="msg_2"></span></div><div id="msg"></div>
+<div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?>
+    </b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
@@ -92,6 +93,9 @@ $isdraft = $hide == 'y' ? true : false;
 		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
 		  <input type="submit" value="保存并返回" onclick="return chekform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
+		  <?php if ($isdraft) :?>
+		  <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return chekform();" class="button" />
+		  <?php endif;?>
 		  </td>
         </tr>
     </table>

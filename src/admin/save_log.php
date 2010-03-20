@@ -29,7 +29,7 @@ $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//�
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
 $allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : 'y';
 $allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
-$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) ? addslashes($_POST['ishide']) : 'n';
+$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
 $postTime = $emBlog->postDate($timezone, $postDate, $date);
@@ -79,7 +79,7 @@ switch ($action)
 			{
 				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);
 			}
-			$ok_msg = $action == 'add' ? '日志发布成功！' : '日志保存成功！';
+			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? '日志发布成功！' : '日志保存成功！';
 			$ok_url = 'admin_log.php';
 		}
 		formMsg("$ok_msg\t$tbmsg",$ok_url,1);
