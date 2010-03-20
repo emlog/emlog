@@ -1,4 +1,9 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
+<?php 
+/*
+* 自建页面模板
+*/
+if(!defined('EMLOG_ROOT')) {exit('error!');} 
+?>
 <div id="content">
 <ul>
 <li>

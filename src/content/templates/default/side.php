@@ -1,4 +1,9 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
+<?php 
+/*
+* 侧边栏
+*/
+if(!defined('EMLOG_ROOT')) {exit('error!');} 
+?>
 <div id="sidebar">
 <ul>
 <?php 

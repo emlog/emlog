@@ -1,4 +1,9 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
+<?php 
+/*
+* 阅读日志页面
+*/
+if(!defined('EMLOG_ROOT')) {exit('error!');} 
+?>
 <div id="content">
 <ul>
 <li>
