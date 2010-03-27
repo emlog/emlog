@@ -164,7 +164,7 @@ if($action == 'operate_log')
 			{
 				$emBlog->updateLog(array('author'=>$author), $val);
 			}
-			$CACHE->updateCache('user');
+			$CACHE->updateCache('sta');
 			header("Location: ./admin_log.php?active_change_author=true");
 			break;
 	}

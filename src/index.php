@@ -67,7 +67,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 	} elseif(isset($user_cache[$author])) {
 		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
 		$sqlSegment = "and author=$author order by date desc";
-		$lognum = $user_cache[$author]['lognum'];
+		$lognum = $sta_cache[$author]['lognum'];
 		$pageurl .= BLOG_URL."?author=$author&page";
 	}else {
 		$sqlSegment ="ORDER BY top DESC ,date DESC";
@@ -151,11 +151,11 @@ if ($action == 'addcom')
 		case -6:
 		emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');break;
 		case 0:
-		$CACHE->updateCache(array('sta', 'user', 'comment'));
+		$CACHE->updateCache(array('sta', 'comment'));
 		doAction('comment_saved');
 		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);break;
 		case 1:
-		$CACHE->updateCache(array('sta', 'user'));
+		$CACHE->updateCache(array('sta'));
 		doAction('comment_saved');
 		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;
 	}

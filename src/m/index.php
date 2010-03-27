@@ -172,12 +172,12 @@ if ($action == 'addcom') {
 			mMsg('发表评论失败：验证码错误', "./?post=$gid");
 			break;
 		case 0:
-			$CACHE->updateCache(array('sta','user','comment'));
+			$CACHE->updateCache(array('sta','comment'));
 			doAction('comment_saved');
 			header("Location: ./?post=$gid");
 			break;
 		case 1:
-			$CACHE->updateCache(array('sta','user'));
+			$CACHE->updateCache(array('sta'));
 			doAction('comment_saved');
 			mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
 			break;
@@ -207,7 +207,7 @@ if (ISLOGIN === true && $action == 'delcom') {
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->delComment($id);
-	$CACHE->updateCache(array('sta','user','comment'));
+	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
@@ -215,7 +215,7 @@ if (ISLOGIN === true && $action == 'showcom') {
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->showComment($id);
-	$CACHE->updateCache(array('sta','user','comment'));
+	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
@@ -223,7 +223,7 @@ if (ISLOGIN === true && $action == 'hidecom') {
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->hideComment($id);
-	$CACHE->updateCache(array('sta','user','comment'));
+	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'reply') {

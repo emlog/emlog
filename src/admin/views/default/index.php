@@ -2,9 +2,9 @@
 <div id="admindex">
 <div id="admindex_main">
 你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a> 
-(你有<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['lognum'] : $user_cache[UID]['lognum']; ?></b></span>篇日志 ，
-<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['comnum_all'] : $user_cache[UID]['commentnum']; ?></b></span>条评论，
-<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['tbnum'] : $user_cache[UID]['tbnum']; ?></b></span>条引用通告)
+(你有<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum']; ?></b></span>篇日志 ，
+<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['comnum_all'] : $sta_cache[UID]['commentnum']; ?></b></span>条评论，
+<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['tbnum'] : $sta_cache[UID]['tbnum']; ?></b></span>条引用通告)
 </div>
 <div class="clear"></div>
 <div id="admindex_servinfo">

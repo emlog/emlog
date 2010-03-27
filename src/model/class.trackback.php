@@ -1,6 +1,6 @@
 <?php
 /**
- * 模型：撰写日志
+ * 模型：引用通告管理
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.4.0
  * $Id$

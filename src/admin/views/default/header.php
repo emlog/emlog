@@ -50,18 +50,19 @@
 			if (ROLE == 'admin'){
 				echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
 			}else{
-				echo $user_cache[UID]['draftnum'] == 0 ? '' : '('.$user_cache[UID]['draftnum'].')';
+				echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
 			}
 			?>
 			</span></a></div>
 			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">日志</a></div>
+			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">碎语</a></div>
 			<?php if (ROLE == 'admin'):?>
             <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></div>
             <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></div>
             <?php endif;?>
             <div class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </div>
             <?php
-			$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
+			$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 			if ($hidecmnum > 0):
 			$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 			?>

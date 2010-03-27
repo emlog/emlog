@@ -35,21 +35,21 @@ if ($action== 'del')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->delComment($id);
-	$CACHE->updateCache('sta', 'user', 'comment');
+	$CACHE->updateCache('sta', 'comment');
 	header("Location: ./comment.php?active_del=true");
 }
 if($action=='hide')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->hideComment($id);
-	$CACHE->updateCache('sta', 'user', 'comment');
+	$CACHE->updateCache('sta', 'comment');
 	header("Location: ./comment.php?active_hide=true");
 }
 if($action=='show')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->showComment($id);
-	$CACHE->updateCache('sta', 'user', 'comment');
+	$CACHE->updateCache('sta', 'comment');
 	header("Location: ./comment.php?active_show=true");
 }
 if($action== 'admin_all_coms')
@@ -70,19 +70,19 @@ if($action== 'admin_all_coms')
 	if($operate == 'del')
 	{
 		$emComment->batchComment('delcom', $comments);
-		$CACHE->updateCache('sta', 'user', 'comment');
+		$CACHE->updateCache('sta', 'comment');
 		header("Location: ./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
 		$emComment->batchComment('hidecom', $comments);
-		$CACHE->updateCache('sta', 'user', 'comment');
+		$CACHE->updateCache('sta', 'comment');
 		header("Location: ./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
 		$emComment->batchComment('showcom', $comments);
-		$CACHE->updateCache(array('sta', 'user', 'comment'));
+		$CACHE->updateCache(array('sta', 'comment'));
 		header("Location: ./comment.php?active_show=true");
 	}
 }

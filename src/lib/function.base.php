@@ -252,37 +252,6 @@ function doAction($hook){
 }
 
 /**
- * 按照比例改变图片大小(非生成缩略图)
- *
- * @param string $img 图片路径
- * @param int $max_w 最大缩放宽
- * @param int $max_h 最大缩放高
- * @return unknown
- */
-function chImageSize ($img,$max_w,$max_h){
-	$size = @getimagesize($img);
-	$w = $size[0];
-	$h = $size[1];
-	//计算缩放比例
-	@$w_ratio = $max_w / $w;
-	@$h_ratio =	$max_h / $h;
-	//决定处理后的图片宽和高
-	if( ($w <= $max_w) && ($h <= $max_h) ){
-		$tn['w'] = $w;
-		$tn['h'] = $h;
-	} else if(($w_ratio * $h) < $max_h){
-		$tn['h'] = ceil($w_ratio * $h);
-		$tn['w'] = $max_w;
-	} else {
-		$tn['w'] = ceil($h_ratio * $w);
-		$tn['h'] = $max_h;
-	}
-	$tn['rc_w'] = $w;
-	$tn['rc_h'] = $h;
-	return $tn ;
-}
-
-/**
  * 改变图片附件的比例，用于模板中
  *
  * @param string $attstr 缓存中的附件串
@@ -501,11 +470,20 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	doAction('attach_upload', $tmpFile);
 	//resizeImage
 	$imtype = array('jpg','png','jpeg');
-	$thum = $uppath.'thum-'. $fname;
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate') && resizeImage($tmpFile,$fileType,$thum,$isIcon)){
-		$attach = $thum;
-	} else{
-		$attach = $attachpath;
+	$thum = $uppath . 'thum-' . $fname;
+	$attach = $attachpath;
+	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')){
+	    if($isIcon)
+	    {
+	        if( resizeImage($tmpFile, $fileType, $thum, ICON_MAX_W, ICON_MAX_H)) 
+	        {
+	            $attach = $thum;
+	        }
+	        resizeImage($tmpFile, $fileType, $uppath.'thum52-'. $fname, 52, 52);
+	    }else{
+	        resizeImage($tmpFile, $fileType, $thum, IMG_ATT_MAX_W, IMG_ATT_MAX_H);
+	        $attach = $thum;
+	    }
 	}
 
 	if (@is_uploaded_file($tmpFile)){
@@ -524,19 +502,13 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
  * @param string $img 预缩略的图片
  * @param unknown_type $imgType 上传文件的类型 eg:image/jpeg
  * @param string $thumPatch 生成缩略图路径
- * @param boolean $isIcon 是否为上传头像
+ * @param int $max_w 缩略图最大宽度 px
+ * @param int $max_h 缩略图最大高度 px
  * @return unknown
  */
-function resizeImage($img, $imgType, $thumPatch, $isIcon){
-	if ($isIcon){
-		$max_w = ICON_MAX_W;
-		$max_h = ICON_MAX_H;
-	} else {
-		$max_w = IMG_ATT_MAX_W;
-		$max_h = IMG_ATT_MAX_H;
-	}
+function resizeImage($img, $imgType, $thumPatch, $max_w, $max_h){
 	$size = chImageSize($img,$max_w,$max_h);
-	$newwidth = $size['w'];
+    $newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w =$size['rc_w'];
 	$h = $size['rc_h'];
@@ -574,6 +546,37 @@ function resizeImage($img, $imgType, $thumPatch, $isIcon){
 	}
 	ImageDestroy ($newim);
 	return true;
+}
+
+/**
+ * 按照比例改变图片大小(非生成缩略图)
+ *
+ * @param string $img 图片路径
+ * @param int $max_w 最大缩放宽
+ * @param int $max_h 最大缩放高
+ * @return unknown
+ */
+function chImageSize ($img,$max_w,$max_h){
+	$size = @getimagesize($img);
+	$w = $size[0];
+	$h = $size[1];
+	//计算缩放比例
+	@$w_ratio = $max_w / $w;
+	@$h_ratio =	$max_h / $h;
+	//决定处理后的图片宽和高
+	if( ($w <= $max_w) && ($h <= $max_h) ){
+		$tn['w'] = $w;
+		$tn['h'] = $h;
+	} else if(($w_ratio * $h) < $max_h){
+		$tn['h'] = ceil($w_ratio * $h);
+		$tn['w'] = $max_w;
+	} else {
+		$tn['w'] = ceil($h_ratio * $w);
+		$tn['h'] = $max_h;
+	}
+	$tn['rc_w'] = $w;
+	$tn['rc_h'] = $h;
+	return $tn ;
 }
 
 /**

@@ -96,30 +96,25 @@ class mkcache {
 		$user_cache = array();
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
 		while ($row = $this->db->fetch_array($query)) {
-			$logNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
-			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
-			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$icon = array();
-			$row['photo'] = !empty($row['photo']) && file_exists(substr($row['photo'], 1)) ? substr($row['photo'], 1) : $row['photo'];
-			if (!empty($row['photo']) && file_exists($row['photo'])) {
-				$photosrc = preg_replace("/(\.+\/)(.+)/", '$2', $row['photo']);
+            $photo = array();
+            $avatar = '';
+			if(!empty($row['photo'])){
+				$photosrc = str_replace("../", '', $row['photo']);
 				$imgsize = chImageSize($row['photo'], ICON_MAX_W, ICON_MAX_H);
-				$icon['src'] = htmlspecialchars($photosrc);
-				$icon['width'] = $imgsize['w'];
-				$icon['height'] = $imgsize['h'];
+				$photo['src'] = htmlspecialchars($photosrc);
+				$photo['width'] = $imgsize['w'];
+				$photo['height'] = $imgsize['h'];
+
+				$avatar = strstr($photosrc, 'thum') ? str_reaplace('thum', 'thum52', $photosrc) : preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $photosrc);
+				$avatar = file_exists('../' . $avatar) ? $avatar : '';
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
-			$user_cache[$row['uid']] = array('photo' => $icon,
+			$user_cache[$row['uid']] = array(
+			    'photo' => $photo,
+			    'avatar' => $avatar,
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
-				'des' => htmlspecialchars($row['description']),
-				'lognum' => $logNum,
-				'draftnum' => $draftNum,
-				'commentnum' => $commentNum,
-				'hidecommentnum' => $hidecommentNum,
-				'tbnum' => $tbNum
+				'des' => htmlspecialchars($row['description'])
 				);
 		}
 		$cacheData = serialize($user_cache);
@@ -129,13 +124,16 @@ class mkcache {
 	 * 博客统计缓存
 	 */
 	private function mc_sta() {
+	    $sta_cache = array();
 		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
 		$hidecom = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "comment where hide='y' "));
 		$tbnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "trackback "));
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
-		$sta_cache = array('lognum' => $lognum,
+
+		$sta_cache = array(
+		    'lognum' => $lognum,
 			'draftnum' => $draftnum,
 			'comnum' => $comnum,
 			'comnum_all' => $comnum + $hidecom,
@@ -143,6 +141,26 @@ class mkcache {
 			'hidecomnum' => $hidecom,
 			'tbnum' => $tbnum
 			);
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
+		while ($row = $this->db->fetch_array($query)) {
+			$logNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
+			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
+			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
+			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
+            $twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
+
+			$sta_cache[$row['uid']] = array(
+				'lognum' => $logNum,
+				'draftnum' => $draftNum,
+				'commentnum' => $commentNum,
+				'hidecommentnum' => $hidecommentNum,
+				'tbnum' => $tbNum,
+				'twnum' => $twnum
+				);
+		}
+
 		$cacheData = serialize($sta_cache);
 		$this->cacheWrite($cacheData, 'sta');
 	}
