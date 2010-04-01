@@ -32,8 +32,8 @@ if($action == '')
 		if(file_exists(TPLS_PATH.$file.'/header.php'))
 		{
 			$tplData = implode('', @file(TPLS_PATH.$file.'/header.php'));
-			preg_match("/Template Name:(.*)/i", $tplData, $name);
-			preg_match("/Sidebar Amount:(.*)/i", $tplData, $sidebar);
+			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
+			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
 			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
 			$tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
 			$tplInfo['tplfile'] = $file;
