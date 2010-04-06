@@ -50,11 +50,9 @@
 	<div class="clear"></div>
     </li>
     <li id="r_<?php echo $val['id'];?>" class="r"></li>
-    <li id="rp_<?php echo $val['id'];?>" class="r">
-    <div class="huifu">
+    <li class="huifu" id="rp_<?php echo $val['id'];?>">
          <textarea name="reply"></textarea>
     	 <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
-    </div>
     </li>
     <?php endforeach;?>
     </ul>
@@ -67,23 +65,23 @@ $(document).ready(function(){
         tid = $(this).parent().attr('id');
         $.get("twitter.php?action=getreply&tid="+tid, function(data){
         $("#r_" + tid).html(data);
-        $("#rp_"+tid+" li").show();
+        $("#rp_"+tid).show();
       })},
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('');
-        $("#rp_"+tid+" li").hide();
+        $("#rp_"+tid).hide();
       });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
 function reply(tid, rp){
-    $("#rp_"+tid+" li textarea").val(rp);
-    $("#rp_"+tid+" li textarea").focus();
+    $("#rp_"+tid+" textarea").val(rp);
+    $("#rp_"+tid+" textarea").focus();
 }
 function doreply(tid){
-    var r = $("#rp_"+tid+" li textarea").val();
+    var r = $("#rp_"+tid+" textarea").val();
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
