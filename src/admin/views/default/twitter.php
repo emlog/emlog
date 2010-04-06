@@ -67,6 +67,7 @@ $(document).ready(function(){
         tid = $(this).parent().attr('id');
         $.get("twitter.php?action=getreply&tid="+tid, function(data){
         $("#r_" + tid).html(data);
+        $("#rp_"+tid+" dd").show();
       })},
       function () {
         tid = $(this).parent().attr('id');
@@ -78,7 +79,6 @@ $(document).ready(function(){
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
 function reply(tid, rp){
-    $("#rp_"+tid+" dd").show();
     $("#rp_"+tid+" dd textarea").val(rp);
     $("#rp_"+tid+" dd textarea").focus();
 }
