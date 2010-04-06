@@ -132,10 +132,11 @@ if($action == 'reply')
     $CACHE->updateCache('sta');
     
     $date = smartyDate($date);
-    $response = "<li id=\"reply_{$rid}\">
-         <p><span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
+    $response = "<li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
+         <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
+         <span><a href=\"javascript: hidereply({$rid});\">屏蔽</a></span> 
          <a href=\"javascript: delreply({$rid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '[回复:{$r}]:');\">回复</a></em></p>
+         <em><a href=\"javascript:reply({$tid}, '[回复:{$r}]:');\">回复</a></em>
          </li>";
     echo $response;
 }

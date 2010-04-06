@@ -54,10 +54,10 @@ class emReply {
 		$condition = '';
 		if($page)
 		{
-			$startId = ($page - 1) * ADMIN_PERPAGE_NUM;
-			$condition = "LIMIT $startId, ".ADMIN_PERPAGE_NUM;
+			$startId = ($page - 1) * 8;
+			$condition = "LIMIT $startId, 8";
 		}
-		$sql = "SELECT * FROM ".DB_PREFIX."reply where $andQuery ORDER BY id $condition";
+		$sql = "SELECT * FROM ".DB_PREFIX."reply where $andQuery ORDER BY id DESC $condition";
 
 		$ret = $this->db->query($sql);
 		$replys = array();

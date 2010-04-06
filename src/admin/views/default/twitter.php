@@ -50,13 +50,14 @@
 	<div class="clear"></div>
     </li>
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
+   	<div class="more"></div>
     <li class="huifu" id="rp_<?php echo $val['id'];?>">   
 	<textarea name="reply"></textarea>
     <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
     </li>
     <?php endforeach;?>
     </ul>
-    <div><?php echo $pageurl;?></div>
+    <div class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</div>
 </div>
 <script>
 $(document).ready(function(){
@@ -66,16 +67,31 @@ $(document).ready(function(){
         $.get("twitter.php?action=getreply&tid="+tid, function(data){
         $("#r_" + tid).html(data);
         $("#rp_"+tid).show();
+        var rnum = Number($("#"+tid+" span").text());
+        if(rnum>8){
+           $("#rp_"+tid).prev().html("<a id=\"more_"+tid+"\" href=\"javascript:getr("+tid+","+rnum+",2);\">加载更多回复》</a>");
+        }
       })},
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('');
         $("#rp_"+tid).hide();
-      });
+    });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
+function getr(tid, rnum, page){
+    $.get("twitter.php?action=getreply&tid="+tid+"&page="+page, function(data){
+       $("#r_" + tid).append(data);
+       if(rnum>page*8){
+           page++;
+           $("#more_"+tid).attr('href', "javascript:getr("+tid+","+rnum+","+page+");");
+       }else{
+           $("#more_"+tid).html('');
+       }
+    });
+}
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
     $("#rp_"+tid+" textarea").focus();
@@ -85,7 +101,7 @@ function doreply(tid){
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
-		$("#r_"+tid).append(data);
+		$("#r_"+tid).prepend(data);
 		var rnum = Number($("#"+tid+" span").text());
 		$("#"+tid+" span").html(rnum+1);
 	});
