@@ -90,8 +90,8 @@ if($action == 'setwg')
 			$CACHE->updateCache('comment');
 			break;
 		case 'twitter':
-			$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10;
-			updateOption('index_twnum', $index_twnum);
+			$index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
+			updateOption('index_newtwnum', $index_newtwnum);
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;

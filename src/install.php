@@ -307,6 +307,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','"
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
@@ -315,11 +316,13 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templ
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','0');
@@ -377,9 +380,21 @@ id INT NOT NULL AUTO_INCREMENT,
 content VARCHAR(255) NOT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
+replynum mediumint(8) unsigned NOT NULL default '0',
 PRIMARY KEY (id)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id,content,author,date) VALUES (1,'用简单的文字记录你的生活',1,'1230508801');
+DROP TABLE IF EXISTS {$db_prefix}reply;
+CREATE TABLE {$db_prefix}reply (
+  id mediumint(8) unsigned NOT NULL auto_increment,
+  tid mediumint(8) unsigned NOT NULL default '0',
+  date bigint(20) NOT NULL,
+  name varchar(20) NOT NULL default '',
+  content text NOT NULL,
+  hide enum('n','y') NOT NULL default 'n',
+  ip varchar(128) NOT NULL default '',
+  PRIMARY KEY  (id),
+  KEY gid (tid)
+)".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,

@@ -43,8 +43,8 @@
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li>首页显示碎语数</li>
-			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
+			<li>首页显示最新碎语数</li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_newtwnum; ?>" name="index_newtwnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
 	</form>

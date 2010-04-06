@@ -106,7 +106,7 @@ class mkcache {
 				$photo['height'] = $imgsize['h'];
 
 				$avatar = strstr($photosrc, 'thum') ? str_replace('thum', 'thum52', $photosrc) : preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $photosrc);
-				$avatar = file_exists('../' . $avatar) ? $avatar : '';
+				$avatar = file_exists('../' . $avatar) ? $avatar : $photosrc;
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = array(

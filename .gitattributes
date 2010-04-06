@@ -90,6 +90,7 @@ src/admin/sort.php -text svn_keywords=Id
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/trackback.php -text svn_keywords=Id
+src/admin/twitter.php -text
 src/admin/user.php -text svn_keywords=Id
 src/admin/views/default/add_log.php -text svn_keywords=Id
 src/admin/views/default/add_page.php -text
@@ -109,6 +110,7 @@ src/admin/views/default/edit_log.php -text svn_keywords=Id
 src/admin/views/default/edit_page.php -text
 src/admin/views/default/footer.php -text svn_keywords=Id
 src/admin/views/default/header.php -text svn_keywords=Id
+src/admin/views/default/images/123.gif -text
 src/admin/views/default/images/addblog.gif -text svn_keywords=Id
 src/admin/views/default/images/adm_menu_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/admindex_itembg.gif -text
@@ -148,6 +150,8 @@ src/admin/views/default/images/top_m.gif -text
 src/admin/views/default/images/top_mid.gif -text
 src/admin/views/default/images/top_right.png -text
 src/admin/views/default/images/vlog.gif -text
+src/admin/views/default/images/weibe_bl.gif -text
+src/admin/views/default/images/weibe_button.gif -text
 src/admin/views/default/images/yeka.gif -text
 src/admin/views/default/index.php -text svn_keywords=Id
 src/admin/views/default/linkedit.php -text svn_keywords=Id
@@ -161,6 +165,7 @@ src/admin/views/default/tag.php -text svn_keywords=Id
 src/admin/views/default/tagedit.php -text svn_keywords=Id
 src/admin/views/default/template.php -text svn_keywords=Id
 src/admin/views/default/trackback.php -text svn_keywords=Id
+src/admin/views/default/twitter.php -text
 src/admin/views/default/upload.php -text
 src/admin/views/default/user.php -text
 src/admin/views/default/useredit.php -text
@@ -228,9 +233,11 @@ src/model/class.blog.php -text svn_keywords=Id
 src/model/class.comment.php -text svn_keywords=Id
 src/model/class.link.php -text svn_keywords=Id
 src/model/class.plugin.php -text svn_keywords=Id
+src/model/class.reply.php -text
 src/model/class.sort.php -text svn_keywords=Id
 src/model/class.tag.php -text svn_keywords=Id
 src/model/class.trackback.php -text svn_keywords=Id
+src/model/class.twitter.php -text
 src/model/class.user.php -text svn_keywords=Id
 src/options.php -text
 src/robots.txt -text

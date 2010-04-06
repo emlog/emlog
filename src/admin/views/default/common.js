@@ -16,6 +16,9 @@ function getChecked(node) {
 }
 function em_confirm (id, property) {
 	switch (property){
+		case 'tw':
+		var urlreturn="twitter.php?action=del&id="+id;
+		var msg = "你确定要删除该条碎语吗？";break;
 		case 'comment':
 		var urlreturn="comment.php?action=del&id="+id;
 		var msg = "你确定要删除该评论吗？";break;

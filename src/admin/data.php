@@ -14,7 +14,7 @@ if($action == '')
 {
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
-	$tables = array('attachment', 'blog', 'comment', 'options', 'sort', 'link','tag','trackback','twitter','user');
+	$tables = array('attachment', 'blog', 'comment', 'options', 'reply', 'sort', 'link','tag','trackback','twitter','user');
 	$defname = 'emlog_'. gmdate('Ymd', $utctimestamp) . '_' . substr(md5(gmdate('YmdHis', $utctimestamp)),0,18);
 	doAction('data_prebakup');
 
