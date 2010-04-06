@@ -37,9 +37,9 @@
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
     ?> 
-    <li>
+    <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="40px" height="40px" /></div>
-    <p><?php echo $author; ?><br /><?php echo $val['t'];?></p>
+    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $val['id'];?>"><a href="javascript:void(0);">回复(<span><?php echo $val['replynum'];?></span>)</a></p>
@@ -49,10 +49,10 @@
     </div>
 	<div class="clear"></div>
     </li>
-    <li id="r_<?php echo $val['id'];?>" class="r"></li>
-    <li class="huifu" id="rp_<?php echo $val['id'];?>">
-         <textarea name="reply"></textarea>
-    	 <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
+   	<div id="r_<?php echo $val['id'];?>" class="r"></div>
+    <li class="huifu" id="rp_<?php echo $val['id'];?>">   
+	<textarea name="reply"></textarea>
+    <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
     </li>
     <?php endforeach;?>
     </ul>
