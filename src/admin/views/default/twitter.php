@@ -50,12 +50,12 @@
 	<div class="clear"></div>
     </li>
     <li id="r_<?php echo $val['id'];?>" class="r"></li>
-    <ul id="rp_<?php echo $val['id'];?>" class="r">
-    <li class="huifu">
+    <li id="rp_<?php echo $val['id'];?>" class="r">
+    <div class="huifu">
          <textarea name="reply"></textarea>
     	 <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
+    </div>
     </li>
-    </ul>
     <?php endforeach;?>
     </ul>
     <div><?php echo $pageurl;?></div>
