@@ -32,12 +32,12 @@
     </form>
     </div>
     <div class="clear"></div>
-    <dl>
+    <ul>
     <?php 
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
     ?> 
-    <dt>
+    <li>
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="40px" height="40px" /></div>
     <p><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
@@ -48,16 +48,16 @@
         </p>
     </div>
 	<div class="clear"></div>
-    </dt>
-    <div id="r_<?php echo $val['id'];?>" class="r"></div>
-    <div id="rp_<?php echo $val['id'];?>" class="r">
-    <dd class="huifu">
+    </li>
+    <li id="r_<?php echo $val['id'];?>" class="r"></li>
+    <ul id="rp_<?php echo $val['id'];?>" class="r">
+    <li class="huifu">
          <textarea name="reply"></textarea>
     	 <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
-    </dd>
-    </div>
+    </li>
+    </ul>
     <?php endforeach;?>
-    </dl>
+    </ul>
     <div><?php echo $pageurl;?></div>
 </div>
 <script>
@@ -67,23 +67,23 @@ $(document).ready(function(){
         tid = $(this).parent().attr('id');
         $.get("twitter.php?action=getreply&tid="+tid, function(data){
         $("#r_" + tid).html(data);
-        $("#rp_"+tid+" dd").show();
+        $("#rp_"+tid+" li").show();
       })},
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('');
-        $("#rp_"+tid+" dd").hide();
+        $("#rp_"+tid+" li").hide();
       });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
 function reply(tid, rp){
-    $("#rp_"+tid+" dd textarea").val(rp);
-    $("#rp_"+tid+" dd textarea").focus();
+    $("#rp_"+tid+" li textarea").val(rp);
+    $("#rp_"+tid+" li textarea").focus();
 }
 function doreply(tid){
-    var r = $("#rp_"+tid+" dd textarea").val();
+    var r = $("#rp_"+tid+" li textarea").val();
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);

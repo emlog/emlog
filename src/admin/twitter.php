@@ -93,11 +93,11 @@ if($action == 'getreply')
             $act = "<span><a href=\"javascript: pubreply({$val['id']});\">审核</a></span> ";
          }
          $response .= "
-         <dd id=\"reply_{$val['id']}\" style=\"{$style}\">
+         <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
          <a href=\"javascript: delreply({$val['id']});\">删除</a> 
          <em><a href=\"javascript:reply({$tid}, '[回复:{$val['content']}]:');\">回复</a></em>
-         </dd>";
+         </li>";
     }
     echo $response;
 }
@@ -132,11 +132,11 @@ if($action == 'reply')
     $CACHE->updateCache('sta');
     
     $date = smartyDate($date);
-    $response = "<dd id=\"reply_{$rid}\">
+    $response = "<li id=\"reply_{$rid}\">
          <p><span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
          <a href=\"javascript: delreply({$rid});\">删除</a> 
          <em><a href=\"javascript:reply({$tid}, '[回复:{$r}]:');\">回复</a></em></p>
-         </dd>";
+         </li>";
     echo $response;
 }
 if($action == 'delreply')
