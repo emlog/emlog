@@ -27,7 +27,7 @@
                 <option value="n" <?php echo $ex4; ?>>否</option>
             </select>
             <span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" />
-            <br /><input class="tbutton" type="submit" value="保存" />
+            <br /><input class="tbutton" type="submit" value="保存" /><input class="tbutton" type="submit" value="取消" />
         </div>
     </form>
     </div>
@@ -38,7 +38,7 @@
     $author = $user_cache[$val['author']]['name'];
     ?> 
     <li class="li">
-    <div class="main_img"><img src="<?php echo $avatar; ?>" width="40px" height="40px" /></div>
+    <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
     <div class="bttome">
@@ -56,8 +56,9 @@
     <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
     </li>
     <?php endforeach;?>
+	 <li class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
     </ul>
-    <div class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</div>
+   
 </div>
 <script>
 $(document).ready(function(){
@@ -82,7 +83,8 @@ $(document).ready(function(){
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
 function getr(tid, rnum, page){
-    $.get("twitter.php?action=getreply&tid="+tid+"&page="+page, function(data){
+    
+$.get("twitter.php?action=getreply&tid="+tid+"&page="+page, function(data){
        $("#r_" + tid).append(data);
        if(rnum>page*8){
            page++;
@@ -101,7 +103,8 @@ function doreply(tid){
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
-		$("#r_"+tid).prepend(data);
+		$("#r_"+tid).prepend(data);
+
 		var rnum = Number($("#"+tid+" span").text());
 		$("#"+tid+" span").html(rnum+1);
 	});
