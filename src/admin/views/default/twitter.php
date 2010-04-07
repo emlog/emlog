@@ -27,7 +27,7 @@
                 <option value="n" <?php echo $ex4; ?>>否</option>
             </select>
             <span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" />
-            <br /><input class="tbutton" type="submit" value="保存" /><input class="tbutton" type="submit" value="取消" />
+            <br /><input class="tbutton" type="submit" value="保存" /><input class="tbutton" type="submit" value="关闭" />
         </div>
     </form>
     </div>
