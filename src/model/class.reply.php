@@ -54,8 +54,8 @@ class emReply {
 		$condition = '';
 		if($page)
 		{
-			$startId = ($page - 1) * 8;
-			$condition = "LIMIT $startId, 8";
+			$startId = ($page - 1) * 10;
+			$condition = "LIMIT $startId, 10";
 		}
 		$sql = "SELECT * FROM ".DB_PREFIX."reply where $andQuery ORDER BY id DESC $condition";
 

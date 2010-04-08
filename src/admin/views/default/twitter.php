@@ -43,17 +43,15 @@
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $val['id'];?>"><a href="javascript:void(0);">回复(<span><?php echo $val['replynum'];?></span>)</a></p>
-        <p class="time"><?php echo $val['date'];?>
-            <a href="javascript: em_confirm(<?php echo $val['id'];?>, 'tw');">删除</a>
-        </p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $val['id'];?>, 'tw');">删除</a> </p>
     </div>
 	<div class="clear"></div>
-    </li>
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
    	<div class="more"></div>
-    <li class="huifu" id="rp_<?php echo $val['id'];?>">   
+    <div class="huifu" id="rp_<?php echo $val['id'];?>">   
 	<textarea name="reply"></textarea>
     <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
+    </div>
     </li>
     <?php endforeach;?>
 	 <li class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
@@ -65,12 +63,12 @@ $(document).ready(function(){
     $(".post a").toggle(
       function () {
         tid = $(this).parent().attr('id');
-        $.get("twitter.php?action=getreply&tid="+tid, function(data){
+        $.get("twitter.php?action=getreply&tid="+tid+"&page=1&stamp="+new Date().getTime(), function(data){
         $("#r_" + tid).html(data);
         $("#rp_"+tid).show();
         var rnum = Number($("#"+tid+" span").text());
-        if(rnum>8){
-           $("#rp_"+tid).prev().html("<a id=\"more_"+tid+"\" href=\"javascript:getr("+tid+","+rnum+",2);\">加载更多回复》</a>");
+        if(rnum>10){
+           $("#rp_"+tid).prev().html("<a id=\"more_"+tid+"\" href=\"javascript:getr("+tid+",2);\">加载更多回复》</a>");
         }
       })},
       function () {
@@ -82,13 +80,13 @@ $(document).ready(function(){
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
-function getr(tid, rnum, page){
-    
-$.get("twitter.php?action=getreply&tid="+tid+"&page="+page, function(data){
+function getr(tid, page){
+$.get("twitter.php?action=getreply&tid="+tid+"&page="+page+"&stamp="+new Date().getTime(), function(data){
        $("#r_" + tid).append(data);
-       if(rnum>page*8){
+	   var rnum = Number($("#"+tid+" span").text());
+       if(rnum>page*10){
            page++;
-           $("#more_"+tid).attr('href', "javascript:getr("+tid+","+rnum+","+page+");");
+           $("#more_"+tid).attr('href', "javascript:getr("+tid+","+page+");");
        }else{
            $("#more_"+tid).html('');
        }
@@ -104,6 +102,8 @@ function doreply(tid){
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
 		$("#r_"+tid).prepend(data);
+
+
 
 		var rnum = Number($("#"+tid+" span").text());
 		$("#"+tid+" span").html(rnum+1);

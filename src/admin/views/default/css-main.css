@@ -136,17 +136,17 @@ textarea{font-size:12px}
 #tw .sz_box span{ margin:0px 3px;}
 #tw .sz_box .tbutton{ width:60px;background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px; float:none}
 #tw ul{ margin:5px 0px 3px 65px; width:480px; line-height:1.8;padding:0px;}
-#tw ul .li{ margin:5px 0px;}
+#tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
 #tw ul li{margin:0px 0px; padding:0;}
 #tw ul li .main_img{ margin-top:5px;}
-#tw ul li .post1{ float:left;font-size:14px; padding:0px;margin:0; width:435px; padding:0px 0px 0px 8px;border-bottom: #F7F7F7 1px solid;}
+#tw ul li .post1{ float:left;font-size:14px; padding:0px;margin:0; width:430px; padding:0px 0px 0px 8px;}
 #tw ul li{ clear:both; padding:0px; margin:0px;}
 #tw ul li .bttome {margin:3px 0;vertical-align:middle}
 #tw ul li .bttome .time{ float:left;line-height:14px;margin:0;}
 #tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;}
 #tw .time{ font-size:12px; color:#999999; padding-left:43px}
 #tw ul .r{ margin:5px 0px 0px 44px;color:#666666; border:0; padding:0px;}
-#tw ul .r li{padding:5px 0 3px;border-bottom: #F7F7F7 1px solid;}
+#tw ul .r li{padding:5px 4px 3px;border-bottom: #F7F7F7 1px solid;}
 #tw ul .r .num{ font-size:16px; font-weight:bold; color:#0079b7;padding:0px 5px; float:left; width:20px;}
 #tw ul .r .time{ padding:0px 5px;}
 #tw ul .r .name{ padding:0px 0px 0px 0px; font-size:12px; color:#336699;}
@@ -158,4 +158,3 @@ textarea{font-size:12px}
 #tw ul .huifu .text{ width:60px;}
 #tw ul .button_p{background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
 #tw ul .more{margin:5px 0px 5px 43px;}
-#tw .page{ padding-left:43px; color: #999999;}
