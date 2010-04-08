@@ -46,18 +46,13 @@ class emReply {
 	 * @param int $page
 	 * @return array
 	 */
-	function getReplys($tid, $page = null, $hide = null)
+	function getReplys($tid, $hide = null)
 	{
 		$andQuery = '1=1';
 		$andQuery .= $tid ? " and tid=$tid" : '';
 		$andQuery .= $hide ? " and hide='$hide'" : '';
-		$condition = '';
-		if($page)
-		{
-			$startId = ($page - 1) * 10;
-			$condition = "LIMIT $startId, 10";
-		}
-		$sql = "SELECT * FROM ".DB_PREFIX."reply where $andQuery ORDER BY id DESC $condition";
+
+		$sql = "SELECT * FROM ".DB_PREFIX."reply where $andQuery ORDER BY id";
 
 		$ret = $this->db->query($sql);
 		$replys = array();

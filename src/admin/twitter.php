@@ -19,7 +19,7 @@ if($action == '')
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
 
-    $avatar = '../' . $user_cache[UID]['avatar'];
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
     //设置
     if($istwitter=='y')
@@ -76,10 +76,9 @@ if($action == 'getreply')
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
     $emReply = new emReply();
-    $replys = $emReply->getReplys($tid, $page);
+    $replys = $emReply->getReplys($tid);
     //$replyNums = $emTwitter->getReplyNum();
     
     $response = '';
@@ -96,7 +95,7 @@ if($action == 'getreply')
          <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
          <a href=\"javascript: delreply({$val['id']});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '[回复:{$val['content']}]:');\">回复</a></em>
+         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">回复</a></em>
          </li>";
     }
     echo $response;
@@ -114,9 +113,9 @@ if($action == 'reply')
         exit;
     }
 
-    $name = '管理员';
     $date = time();
-    
+    $name =  $user_cache[UID]['name'];
+
     $rdata = array(
             'tid' => $tid,
             'content' => $r,
@@ -132,11 +131,12 @@ if($action == 'reply')
     $CACHE->updateCache('sta');
     
     $date = smartyDate($date);
-    $response = "<li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
+    $response = "
+         <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
          <span><a href=\"javascript: hidereply({$rid});\">屏蔽</a></span> 
          <a href=\"javascript: delreply({$rid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '[回复:{$r}]:');\">回复</a></em>
+         <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">回复</a></em>
          </li>";
     echo $response;
 }

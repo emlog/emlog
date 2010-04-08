@@ -110,11 +110,11 @@ src/admin/views/default/edit_log.php -text svn_keywords=Id
 src/admin/views/default/edit_page.php -text
 src/admin/views/default/footer.php -text svn_keywords=Id
 src/admin/views/default/header.php -text svn_keywords=Id
-src/admin/views/default/images/123.gif -text
 src/admin/views/default/images/addblog.gif -text svn_keywords=Id
 src/admin/views/default/images/adm_menu_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/admindex_itembg.gif -text
 src/admin/views/default/images/advset.gif -text
+src/admin/views/default/images/avatar.jpg -text
 src/admin/views/default/images/coment_numbg.gif -text
 src/admin/views/default/images/fnone.gif -text svn_keywords=Id
 src/admin/views/default/images/icon_add.gif -text

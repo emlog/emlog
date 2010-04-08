@@ -7,7 +7,7 @@
 </div>
 <div class=line></div>
 <div id="tw">
-    <div class="main_img"><a href="#"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
+    <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
@@ -27,7 +27,7 @@
                 <option value="n" <?php echo $ex4; ?>>否</option>
             </select>
             <span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" />
-            <br /><input class="tbutton" type="submit" value="保存" /><input class="tbutton" type="submit" value="关闭" />
+            <br /><input class="tbutton" type="submit" value="保存" />
         </div>
     </form>
     </div>
@@ -47,7 +47,6 @@
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
-   	<div class="more"></div>
     <div class="huifu" id="rp_<?php echo $val['id'];?>">   
 	<textarea name="reply"></textarea>
     <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
@@ -63,13 +62,9 @@ $(document).ready(function(){
     $(".post a").toggle(
       function () {
         tid = $(this).parent().attr('id');
-        $.get("twitter.php?action=getreply&tid="+tid+"&page=1&stamp="+new Date().getTime(), function(data){
+        $.get("twitter.php?action=getreply&tid="+tid+"&stamp="+new Date().getTime(), function(data){
         $("#r_" + tid).html(data);
         $("#rp_"+tid).show();
-        var rnum = Number($("#"+tid+" span").text());
-        if(rnum>10){
-           $("#rp_"+tid).prev().html("<a id=\"more_"+tid+"\" href=\"javascript:getr("+tid+",2);\">加载更多回复》</a>");
-        }
       })},
       function () {
         tid = $(this).parent().attr('id');
@@ -80,18 +75,6 @@ $(document).ready(function(){
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
 });
-function getr(tid, page){
-$.get("twitter.php?action=getreply&tid="+tid+"&page="+page+"&stamp="+new Date().getTime(), function(data){
-       $("#r_" + tid).append(data);
-	   var rnum = Number($("#"+tid+" span").text());
-       if(rnum>page*10){
-           page++;
-           $("#more_"+tid).attr('href', "javascript:getr("+tid+","+page+");");
-       }else{
-           $("#more_"+tid).html('');
-       }
-    });
-}
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
     $("#rp_"+tid+" textarea").focus();
@@ -101,10 +84,7 @@ function doreply(tid){
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
-		$("#r_"+tid).prepend(data);
-
-
-
+		$("#r_"+tid).append(data);
 		var rnum = Number($("#"+tid+" span").text());
 		$("#"+tid+" span").html(rnum+1);
 	});
