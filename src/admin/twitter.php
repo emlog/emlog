@@ -44,12 +44,16 @@ if ($action == '') {
 // 发布碎语.
 if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes($_POST['t']) : '';
-    if (!$t)
-    {
+
+    if (!$t){
         header("Location: twitter.php?error_a=true");
         exit;
     }
     
+    //识别http网址
+    $t = htmlspecialchars(preg_replace("/[http]:\/\/[^\s]*/i", "[+@] href=\"\$0\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+    $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
+
     $tdata = array('content' => $t,
             'author' => UID,
             'date' => time(),
