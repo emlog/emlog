@@ -122,6 +122,7 @@ src/admin/views/default/images/icon_del.gif -text
 src/admin/views/default/images/icon_error.gif -text
 src/admin/views/default/images/icon_succ.gif -text
 src/admin/views/default/images/left_b.gif -text
+src/admin/views/default/images/loading.gif -text
 src/admin/views/default/images/login_back.gif -text
 src/admin/views/default/images/login_bottom.png -text
 src/admin/views/default/images/login_button.gif -text

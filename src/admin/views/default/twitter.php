@@ -55,13 +55,13 @@
     <?php endforeach;?>
 	 <li class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
     </ul>
-   
 </div>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(
       function () {
         tid = $(this).parent().attr('id');
+        $("#r_" + tid).html('<p class="loading"></p>');
         $.get("twitter.php?action=getreply&tid="+tid+"&stamp="+new Date().getTime(), function(data){
         $("#r_" + tid).html(data);
         $("#rp_"+tid).show();
@@ -95,7 +95,7 @@ function delreply(rid){
             var tid = Number(data);
             var rnum = Number($("#"+tid+" span").text());
             $("#"+tid+" span").text(rnum-1);
-            $("#reply_"+rid).hide("fast");
+            $("#reply_"+rid).hide("slow");
         })}else {return;}
 }
 function hidereply(rid){

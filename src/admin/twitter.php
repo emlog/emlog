@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语twitter
+ * 碎语
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.4.0
  * $Id: twitter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
@@ -11,18 +11,15 @@ require_once EMLOG_ROOT.'/model/class.twitter.php';
 
 $emTwitter = new emTwitter();
 
-if($action == '')
-{
+if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
     $tws = $emTwitter->getTwitters($page);
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
-
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    //设置
-    if($istwitter=='y')
+    if ($istwitter=='y')
 	{
 		$ex1="selected=\"selected\"";
 		$ex2="";
@@ -30,7 +27,7 @@ if($action == '')
 		$ex1="";
 		$ex2="selected=\"selected\"";
 	}
-    if($reply_code=='y')
+    if ($reply_code=='y')
 	{
 		$ex3="selected=\"selected\"";
 		$ex4="";
@@ -44,17 +41,16 @@ if($action == '')
     include getViews('footer');
     cleanPage();
 }
-if($action == 'post')
-{
+// 发布碎语.
+if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes($_POST['t']) : '';
-    if(!$t)
+    if (!$t)
     {
         header("Location: twitter.php?error_a=true");
         exit;
     }
     
-    $tdata = array(
-            'content' => $t,
+    $tdata = array('content' => $t,
             'author' => UID,
             'date' => time(),
     );
@@ -63,28 +59,26 @@ if($action == 'post')
     $CACHE->updateCache('sta');
     header("Location: twitter.php?active_t=true");
 }
-if($action == 'del')
-{
+// 删除碎语.
+if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 
 	$emTwitter->delTwitter($id);
 	$CACHE->updateCache('sta');
 	header("Location: twitter.php?active_del=true");
 }
-if($action == 'getreply')
-{
+// 获取回复.
+if ($action == 'getreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
     $emReply = new emReply();
     $replys = $emReply->getReplys($tid);
-    //$replyNums = $emTwitter->getReplyNum();
     
     $response = '';
-    foreach($replys as $val)
-    {
-         if($val['hide'] == 'n'){
+    foreach($replys as $val){
+         if ($val['hide'] == 'n'){
             $style = "background-color:#FFF";
             $act = "<span><a href=\"javascript: hidereply({$val['id']});\">屏蔽</a></span> ";
          } else {
@@ -100,15 +94,14 @@ if($action == 'getreply')
     }
     echo $response;
 }
-if($action == 'reply')
-{
+// 回复碎语.
+if ($action == 'reply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $r = isset($_POST['r']) ? addslashes($_POST['r']) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    if(!$r)
-    {
+    if (!$r){
         echo '碎语内容不能为空';
         exit;
     }
@@ -124,13 +117,12 @@ if($action == 'reply')
     );
 
     $emReply = new emReply();
-
     $rid = $emReply->addReply($rdata);
     $emTwitter->updateReplyNum($tid, '+1');
-
     $CACHE->updateCache('sta');
-    
+
     $date = smartyDate($date);
+    $r = htmlClean(stripslashes($r));
     $response = "
          <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
@@ -140,8 +132,8 @@ if($action == 'reply')
          </li>";
     echo $response;
 }
-if($action == 'delreply')
-{
+// 删除回复.
+if ($action == 'delreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
@@ -150,36 +142,34 @@ if($action == 'delreply')
     $emTwitter->updateReplyNum($tid, '-1');
     echo $tid;
 }
-if($action == 'hidereply')
-{
+// 隐藏回复.
+if ($action == 'hidereply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $emReply = new emReply();
     $emReply->hideReply($rid);
 }
-if($action == 'pubreply')
-{
+// 审核回复.
+if ($action == 'pubreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $emReply = new emReply();
     $emReply->pubReply($rid);
 }
-if($action == 'set')
-{
+// 碎语设置.
+if ($action == 'set') {
     $data = array(
         'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'y',
         'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
         'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
     );
-	foreach ($data as $key => $val)
-	{
+
+	foreach ($data as $key => $val){
 		updateOption($key, $val);
 	}
 
 	$CACHE->updateCache('options');
-
     header("Location: twitter.php?active_set=true");
-
 }

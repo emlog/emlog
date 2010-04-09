@@ -66,7 +66,7 @@ class emTwitter {
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
 		    $row['id'] = $row['id'];
-		    $row['t'] = $row['content'];
+		    $row['t'] = htmlClean($row['content']);
 			$row['date'] = smartyDate($row['date']);
 			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
