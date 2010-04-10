@@ -75,7 +75,7 @@ $(document).ready(function(){
     $(".box").keyup(function(){
        var t=$(this).val();
        var n = 140 - t.length;
-       if (n>0){
+       if (n>=0){
          $(".msg").html("你还可以输入"+n+"字");
        }else {
          $(".msg").html("<span style=\"color:#FF0000\">已超出"+Math.abs(n)+"字</span>");
