@@ -19,16 +19,14 @@ if ($action == '') {
     $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    if ($istwitter=='y')
-	{
+    if ($istwitter=='y'){
 		$ex1="selected=\"selected\"";
 		$ex2="";
 	}else{
 		$ex1="";
 		$ex2="selected=\"selected\"";
 	}
-    if ($reply_code=='y')
-	{
+    if ($reply_code=='y'){
 		$ex3="selected=\"selected\"";
 		$ex4="";
 	}else{
@@ -43,13 +41,13 @@ if ($action == '') {
 }
 // 发布碎语.
 if ($action == 'post') {
-    $t = isset($_POST['t']) ? addslashes($_POST['t']) : '';
+    $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
     if (!$t){
         header("Location: twitter.php?error_a=true");
         exit;
     }
-    
+
     //识别http网址
     $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%]*/i", "[+@] href=\"\$0\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
     $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
@@ -58,7 +56,7 @@ if ($action == 'post') {
             'author' => UID,
             'date' => time(),
     );
-    
+
     $emTwitter->addTwitter($tdata);
     $CACHE->updateCache('sta');
     header("Location: twitter.php?active_t=true");
@@ -79,7 +77,7 @@ if ($action == 'getreply') {
 
     $emReply = new emReply();
     $replys = $emReply->getReplys($tid);
-    
+
     $response = '';
     foreach($replys as $val){
          if ($val['hide'] == 'n'){
@@ -102,12 +100,11 @@ if ($action == 'getreply') {
 if ($action == 'reply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
-    $r = isset($_POST['r']) ? addslashes($_POST['r']) : '';
+    $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    if (!$r){
-        echo '碎语内容不能为空';
-        exit;
+    if (!$r || strlen($r) > 420){
+        exit('fail');
     }
 
     $date = time();

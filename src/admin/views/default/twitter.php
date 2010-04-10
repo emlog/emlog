@@ -50,7 +50,7 @@
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
     <div class="huifu" id="rp_<?php echo $val['id'];?>">   
 	<textarea name="reply"></textarea>
-    <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /></div>
+    <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /> <span style="color:#FF0000"></span></div>
     </div>
     </li>
     <?php endforeach;?>
@@ -94,9 +94,14 @@ function doreply(tid){
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
-		$("#r_"+tid).append(data);
-		var rnum = Number($("#"+tid+" span").text());
-		$("#"+tid+" span").html(rnum+1);
+		if (data == 'fail'){
+            $(".huifu span").text('回复长度需在140个字内')
+		}else{
+    		$("#r_"+tid).append(data);
+    		var rnum = Number($("#"+tid+" span").text());
+    		$("#"+tid+" span").html(rnum+1);
+    		$(".huifu span").text('')
+    	}
 	});
 }
 function delreply(rid){
