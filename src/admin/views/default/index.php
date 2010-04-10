@@ -1,10 +1,16 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="admindex">
 <div id="admindex_main">
-你好：<a href="blogger.php" title="点击修改个人资料"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a> 
-(你有<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum']; ?></b></span>篇日志 ，
-<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['comnum_all'] : $sta_cache[UID]['commentnum']; ?></b></span>条评论，
-<span class=care2><b><?php echo ROLE == 'admin' ? $sta_cache['tbnum'] : $sta_cache[UID]['tbnum']; ?></b></span>条引用通告)
+    <div id="tw">
+        <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
+        <div class="right">
+        <form method="post" action="twitter.php?action=post">
+        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (有<span class=care2><b><?php echo $sta_log;?></b></span>篇日志，<?php echo $sta_tw;?>篇碎语)</div>
+        <div class="box_1"><textarea class="box2" name="t">为今天写点什么吧 ……</textarea></div>
+        <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
+        </form>
+        </div>
+    </div>
 </div>
 <div class="clear"></div>
 <div id="admindex_servinfo">
@@ -28,6 +34,19 @@
 </div>
 <script>
 $(document).ready(function(){
+    $(".box2").focus(function(){
+        $(this).val('').css('height','50px').unbind('focus');
+        $(".tbutton").show();
+    });
+    $(".box2").keyup(function(){
+       var t=$(this).val();
+       var n = 140 - t.length;
+       if (n>=0){
+         $(".tbutton span").html("(你还可以输入"+n+"字)");
+       }else {
+         $(".tbutton span").html("<span style=\"color:#FF0000\">(已超出"+Math.abs(n)+"字)</span>");
+       }
+    });
 	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
 	$.getJSON("http://www.emlog.net/services/messenger.php?callback=?",
 	function(data){
@@ -41,4 +60,15 @@ $(document).ready(function(){
 		});
 	});
 });
+function closet(){
+    $(".tbutton").hide();
+    $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
+        $(this).val('').css('height','50px').unbind('focus');
+        $(".tbutton").show();});
+}
+function checkt(){
+    var t=$(".box2").val();
+    var n=140 - t.length;
+    if (n<0){return false;}
+}
 </script>

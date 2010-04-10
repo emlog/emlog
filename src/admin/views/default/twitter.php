@@ -10,7 +10,7 @@
     <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
-    <div class="msg">你还可以输入140个字</div>
+    <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/></div>
     </form>
@@ -37,6 +37,7 @@
     <?php 
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
+    $avatar = empty($user_cache[$val['author']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
     ?> 
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>

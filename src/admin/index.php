@@ -8,8 +8,13 @@
 
 require_once 'globals.php';
 
-if ($action == '')
-{
+if ($action == '') {
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $name =  $user_cache[UID]['name'];
+
+    $sta_log = ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum'];
+    $sta_tw = ROLE == 'admin' ? $sta_cache['twnum'] : $sta_cache[UID]['twnum'];
+
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
@@ -35,7 +40,6 @@ if ($action == '')
 	cleanPage();
 }
 //phpinfo()
-if ($action == 'phpinfo')
-{
+if ($action == 'phpinfo') {
 	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
 }
