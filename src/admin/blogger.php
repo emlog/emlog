@@ -9,8 +9,7 @@
 require_once 'globals.php';
 require_once EMLOG_ROOT.'/model/class.user.php';
 
-if($action == '')
-{
+if ($action == '') {
 	$emUser = new emUser();
 	$row = $emUser->getOneUser(UID);
 	extract($row);
@@ -26,8 +25,7 @@ if($action == '')
 	cleanPage();
 }
 
-if($action == 'update')
-{
+if ($action == 'update') {
 	$emUser = new emUser();
 	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
@@ -45,34 +43,27 @@ if($action == 'update')
 	header("Location: ./blogger.php?active_edit=true");
 }
 
-if($action == 'delicon')
-{
+if ($action == 'delicon') {
 	$query = $DB->query("select photo from ".DB_PREFIX."user");
 	$icon = $DB->fetch_array($query);
-	if(file_exists($icon['photo']))
-	{
-		$fpath = str_replace('thum-', '', $icon['photo']);
-		if($fpath != $icon['photo'])
-		{
-			$ret = unlink($fpath);
-			if(!$ret)
-			{
-				formMsg('头像删除失败','./blogger.php',0);
-			}
+	$icon_1 = $icon['photo'];
+	if(file_exists($icon_1)){
+		$icon_2 = str_replace('thum-', '', $icon_1);
+		if($icon_2 != $icon_1 && file_exists($icon_2)){
+			unlink($icon_2);
 		}
-		$ret = unlink($icon['photo']);
-		if(!$ret)
-		{
-			formMsg('头像删除失败','./blogger.php',0);
+		$icon_3 = preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $icon_2);
+		if($icon_3 != $icon_2 && file_exists($icon_3)){
+			unlink($icon_3);
 		}
+		unlink($icon_1);
 	}
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' ");
 	$CACHE->updateCache('user');
 	header("Location: ./blogger.php?active_del=true");
 }
 
-if($action == 'update_pwd')
-{
+if ($action == 'update_pwd') {
 	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 
 	$emUser = new emUser();
