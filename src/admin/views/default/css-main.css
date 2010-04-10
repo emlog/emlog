@@ -125,7 +125,7 @@ textarea{font-size:12px}
 #tw .main_img img{ border:1px #fff solid}
 #tw .box_1{ background:url(images/weibe_bl.gif) no-repeat; padding-left:7px;}
 #tw .box{ width:460px; border:1px #bcbcbc solid; border-left:0; padding:5px; height:46px; overflow:auto; line-height:1.4;}
-#tw .msg{ font-size:12px; color:#666;}
+#tw .msg{ font-size:12px; color:#666; text-align:right;}
 #tw .right{ float:left; margin:0px 5px;}
 #tw .tbutton{ margin:3px 0px 0px 5px; float:left;}
 #tw .tbutton input{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}

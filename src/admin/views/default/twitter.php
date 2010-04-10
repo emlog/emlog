@@ -10,8 +10,9 @@
     <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
+    <div class="msg">你还可以输入140个字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="发布" /></div>
+    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/></div>
     </form>
     <div class="op"><a href="javascript:displayToggle('sz_box', 2);">设置</a></div>
     <form method="post" action="twitter.php?action=set">
@@ -71,6 +72,15 @@ $(document).ready(function(){
         $("#r_" + tid).html('');
         $("#rp_"+tid).hide();
     });
+    $(".box").keyup(function(){
+       var t=$(this).val();
+       var n = 140 - t.length;
+       if (n>0){
+         $(".msg").html("你还可以输入"+n+"字");
+       }else {
+         $(".msg").html("<span style=\"color:#FF0000\">已超出"+Math.abs(n)+"字</span>");
+       }
+    });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
@@ -111,5 +121,10 @@ function pubreply(rid){
         $("#reply_"+rid+" span a").text('屏蔽');
         $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+")");
         });
+}
+function checkt(){
+    var t=$(".box").val();
+    var n=140 - t.length;
+    if (n<0){return false;}
 }
 </script>
