@@ -5,7 +5,7 @@
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
         <div class="right">
         <form method="post" action="twitter.php?action=post">
-        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (有<span class=care2><b><?php echo $sta_log;?></b></span>篇日志，<?php echo $sta_tw;?>篇碎语)</div>
+        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (有<span class=care2><b><?php echo $sta_log;?></b></span>篇日志，<span class=care2><b><?php echo $sta_tw;?></b></span>条碎语)</div>
         <div class="box_1"><textarea class="box2" name="t">为今天写点什么吧 ……</textarea></div>
         <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
         </form>
