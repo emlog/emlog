@@ -10,6 +10,7 @@
         <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
         </form>
         </div>
+		<div class="clear"></div>
     </div>
 </div>
 <div class="clear"></div>

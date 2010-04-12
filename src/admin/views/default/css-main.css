@@ -101,7 +101,7 @@ textarea{font-size:12px}
 #show_advset{margin:3px 0px 0px 0px; background:url(images/advset.gif) no-repeat 56px 4px; cursor:pointer}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px}
 #log_pass{display:none}
-#admindex_main{width:600px; margin:5px 5px 8px; padding:10px 0px 70px;}
+#admindex_main{width:600px; margin:5px 5px 8px; padding:10px 0px 5px;}
 #admindex_servinfo{float:left; width:400px; margin-right:10px}
 #admindex_msg{width:400px; float:left}
 #admindex_msg img{border:none}
