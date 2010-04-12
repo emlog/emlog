@@ -36,7 +36,7 @@
 	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
-			<li class="widget-title">碎语</li>
+			<li class="widget-title">最新碎语</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
