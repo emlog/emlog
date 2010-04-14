@@ -206,6 +206,7 @@ src/content/templates/default/module.php -text
 src/content/templates/default/page.php -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
+src/content/templates/default/t.php -text
 src/index.php -text svn_keywords=Id
 src/init.php -text
 src/install.php -text svn_keywords=Id
@@ -244,6 +245,7 @@ src/model/class.user.php -text svn_keywords=Id
 src/options.php -text
 src/robots.txt -text
 src/rss.php -text svn_keywords=Id
+src/t/index.php -text
 src/tb.php -text svn_keywords=Id
 src/wlwmanifest.xml -text
 src/xmlrpc.php -text svn_keywords=Id
