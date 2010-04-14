@@ -33,6 +33,9 @@ require_once (getViews('module'));
 		</ul>
 		<ul id="menus">
 			<li class="menus1"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+			<?php if($istwitter == 'y'):?>
+			<li class="menus2"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
+			<?php endif;?>
 			<?php 
 			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}

@@ -121,3 +121,33 @@ a:hover{color:#0079b7; text-decoration:underline}
 #twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
 #twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
 #twitter li small {font-size: 10px;padding: 0px 10px;}
+
+#tw .main_img{ border:1px #2772ae solid; float:left;}
+#tw .main_img img{ border:1px #fff solid}
+#tw .tbutton{ margin:3px 0px 0px 5px; float:left;}
+#tw .tbutton input{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
+#tw .tbutton input:active,#tw ul .button_p:active,#tw .sz_box .tbutton:active{ background:url(images/weibe_button.gif) no-repeat 1px 1px;}
+#tw .op{ float:left; height:18px;margin:6px 5px 3px;}
+#tw ul{ margin:5px 0px 3px 65px; width:480px; line-height:1.8;padding:0px;}
+#tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
+#tw ul li{margin:0px 0px; padding:0;}
+#tw ul li .main_img{ margin-top:5px;}
+#tw ul li .post1{ float:left;font-size:14px; padding:0px;margin:0; width:430px; padding:0px 0px 0px 8px;}
+#tw ul li{ clear:both; padding:0px; margin:0px;}
+#tw ul li .bttome {margin:3px 0;vertical-align:middle}
+#tw ul li .bttome .time{ float:left;line-height:14px;margin:0;}
+#tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;}
+#tw .time{ font-size:12px; color:#999999; padding-left:43px}
+#tw ul .r{ margin:5px 0px 0px 40px;color:#666666; border:0; padding:0px;}
+#tw ul .r li{padding:5px 3px 3px;border-bottom: #F7F7F7 1px solid;}
+#tw ul .r .num{ font-size:16px; font-weight:bold; color:#0079b7;padding:0px 5px; float:left; width:20px;}
+#tw ul .r .time{ padding:0px 5px;}
+#tw ul .r .name{ padding:0px 0px 0px 0px; font-size:12px; color:#336699;}
+#tw ul .r em a{ font-style:normal;}
+#tw ul .huifu{margin:5px 0px 0px 43px; background:#F5F5F5;border:#CCCCCC solid 1px;text-align:center;display:none;}
+#tw ul .huifu textarea{ margin:5px; width:410px; border:#CCCCCC solid 1px;overflow:auto;}
+#tw ul .huifu input{ margin:0px 5px;}
+#tw ul .huifu div{ text-align:left; padding:0px 5px;}
+#tw ul .huifu .text{ width:60px;}
+#tw ul .button_p{background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
+#tw .loading{background:url(images/loading.gif) no-repeat 200px 2px; height:20px;}

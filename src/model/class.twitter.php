@@ -44,7 +44,7 @@ class emTwitter {
 	 * @return int
 	 */
 	function getTwitterNum() {
-	    $author = ROLE == 'admin' ? '' : 'and author=' . UID;
+	    $author = ROLE == 'admin' || ROLE == 'visitor' ? '' : 'and author=' . UID;
 		$res = $this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		$twNum = $this->db->num_rows($res);
 		return $twNum;
@@ -59,7 +59,7 @@ class emTwitter {
 	function getTwitters($page = 1) {
 		global $timezone;
 		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == 'admin' || ROLE == 'visitor' ? '' : 'and author=' . UID;
 		$limit = "LIMIT $start_limit, " . ADMIN_PERPAGE_NUM;
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter WHERE 1=1 $author ORDER BY id DESC $limit";
 		$res = $this->db->query($sql);

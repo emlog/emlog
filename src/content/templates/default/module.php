@@ -71,15 +71,6 @@ function widget_twitter($title){?>
 	<li>
 		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
         <ul id="twitter"></ul>
-        <script>sendinfo('<?php echo DYNAMIC_BLOGURL; ?>twitter.php?p=1','twitter');</script>
-		<?php if(ISLOGIN === true): ?>
-		<p><a href="javascript:void(0);" onclick="showhidediv('addtw','tw')">写碎语</a></p>
-		<p id='addtw' style="display: none;">
-		<textarea name="tw" id="tw" style="overflow-y: hidden;width:180px;height:70px;" class="input"></textarea>
-		<a href="javascript:void(0);" onclick="postinfo('<?php echo DYNAMIC_BLOGURL; ?>twitter.php?action=add','tw','twitter');">发布</a>
-		<a href="javascript:void(0);" onclick="showhidediv('addtw')">取消</a>
-		</p>
-		<?php endif;?>
 	</li>
 <?php } ?>
 <?php

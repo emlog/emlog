@@ -245,7 +245,6 @@ src/options.php -text
 src/robots.txt -text
 src/rss.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
-src/twitter.php -text svn_keywords=Id
 src/wlwmanifest.xml -text
 src/xmlrpc.php -text svn_keywords=Id
 update/old_version/up2.0.0to2.2.0.php -text

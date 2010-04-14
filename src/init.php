@@ -33,7 +33,7 @@ define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
 define('BLOG_URL', 		$blogurl);//博客固定地址
 define('TPLS_URL', 		$blogurl.'content/templates/');//模板库地址
 define('TPLS_PATH', 	EMLOG_ROOT.'/content/templates/');//模板库路径
-define('DYNAMIC_BLOGURL', getBlogUrl());
+define('DYNAMIC_BLOGURL', getBlogUrl());//解决前台多域名ajax跨域
 
 $active_plugins = unserialize($active_plugins);
 $emHooks = array();
