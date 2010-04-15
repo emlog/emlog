@@ -74,7 +74,7 @@ function GetBlog($sort = null)
 {
 	global $DB,$URL;
 	$subsql = $sort ? "and sortid=$sort" : '';
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY gid DESC limit 0,10";
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0,10";
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
