@@ -5,8 +5,6 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="tw">
-    <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
-    <div class="clear"></div>
     <ul>
     <?php 
     foreach($tws as $val):
@@ -29,7 +27,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     </div>
     </li>
     <?php endforeach;?>
-	 <li class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
+	 <li id="pagenavi"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
     </ul>
 </div>
 <?php
