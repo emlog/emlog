@@ -5,6 +5,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="tw">
+ <div class="top"><a href="#">发布碎语</a> <a href="#">管理碎语</a></div>
     <ul>
     <?php 
     foreach($tws as $val):
@@ -17,7 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $val['id'];?>"><a href="javascript:void(0);">回复(<span><?php echo $val['replynum'];?></span>)</a></p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $val['id'];?>, 'tw');">删除</a> </p>
+        <p class="time"><?php echo $val['date'];?> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
