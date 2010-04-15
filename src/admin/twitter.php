@@ -2,7 +2,7 @@
 /**
  * 碎语
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id: twitter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
  */
 
@@ -40,7 +40,8 @@ if ($action == '') {
     cleanPage();
 }
 // 发布碎语.
-if ($action == 'post') {
+if ($action == 'post') 
+{
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
     if (!$t){

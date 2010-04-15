@@ -1,9 +1,9 @@
 <?php
 /**
- * 模型：日志、页面管理
+ * 日志、页面管理
  *
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
 $Id$
  */
 
@@ -302,24 +302,6 @@ class emBlog {
 			$neighborlog['prevLog']['title'] = htmlspecialchars($neighborlog['prevLog']['title']);
 		}
 		return $neighborlog;
-	}
-
-	/**
-	 * 获取指定数量最新日志
-	 *
-	 * @param int $num
-	 * @return array
-	 */
-	function getNewLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY gid DESC LIMIT 0, $num";
-		$res = $this->db->query($sql);
-		$logs = array();
-		while ($row = $this->db->fetch_array($res)) {
-			$row['gid'] = intval($row['gid']);
-			$row['title'] = htmlspecialchars($row['title']);
-			$logs[] = $row;
-		}
-		return $logs;
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * 登录验证函数库
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id$
  */
 

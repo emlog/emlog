@@ -2,7 +2,7 @@
 /**
  * 全局设置选项
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id$
  */
 
@@ -10,7 +10,7 @@
 define('EMLOG_ROOT', dirname(__FILE__));
 
 //版本编号
-define('EMLOG_VERSION', '3.4.0');
+define('EMLOG_VERSION', '3.5.0');
 
 //图片附件缩略图最大宽
 define('IMG_ATT_MAX_W',	420);

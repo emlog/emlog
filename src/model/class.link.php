@@ -1,8 +1,8 @@
 <?php
 /**
- * 模型：友情链接
+ * 友情链接
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id$
  */
 

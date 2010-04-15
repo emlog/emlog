@@ -3,7 +3,7 @@
  * 数据库操作类
  *
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id$
  */
 
@@ -78,6 +78,7 @@ class MySql {
 	 * @return boolean
 	 */
 	function query($sql) {
+	    error_log("$sql\n", 3, EMLOG_ROOT . "/sql.log");
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {

@@ -1,8 +1,8 @@
 <?php
 /**
- * 模型：碎语回复管理
+ * 碎语回复管理
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.4.0
+ * @version emlog-3.5.0
  * $Id: class.reply.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
  */
 
