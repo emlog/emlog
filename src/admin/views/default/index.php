@@ -63,6 +63,7 @@ $(document).ready(function(){
 });
 function closet(){
     $(".tbutton").hide();
+    $(".tbutton span").html("(你还可以输入140字)");
     $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
         $(this).val('').css('height','50px').unbind('focus');
         $(".tbutton").show();});
