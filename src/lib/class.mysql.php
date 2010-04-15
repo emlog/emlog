@@ -78,7 +78,6 @@ class MySql {
 	 * @return boolean
 	 */
 	function query($sql) {
-	    error_log("$sql\n", 3, EMLOG_ROOT . "/sql.log");
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {
