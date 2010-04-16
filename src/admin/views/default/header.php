@@ -44,7 +44,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
 			<div id="log_mg">
-            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0">写日志</a></div>
+            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php">写日志</a></div>
 			<div class="sidebarsubmenu" id="menu_draft"><a href="admin_log.php?pid=draft">草稿<span id="dfnum">
 			<?php 
 			if (ROLE == 'admin'){
