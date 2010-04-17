@@ -92,6 +92,7 @@ if($action == 'setwg')
 		case 'twitter':
 			$index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
 			updateOption('index_newtwnum', $index_newtwnum);
+			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;

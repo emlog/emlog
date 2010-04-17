@@ -69,7 +69,7 @@ if ($action == 'post')
     );
 
     $emTwitter->addTwitter($tdata);
-    $CACHE->updateCache('sta');
+    $CACHE->updateCache(array('sta','newtw'));
     header("Location: twitter.php?active_t=true");
 }
 // 删除碎语.
@@ -77,7 +77,7 @@ if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 
 	$emTwitter->delTwitter($id);
-	$CACHE->updateCache('sta');
+	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: twitter.php?active_del=true");
 }
 // 获取回复.
