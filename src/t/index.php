@@ -28,7 +28,7 @@ if ($action == '') {
     $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" />" : '';
 
     include getViews('header');
-    require_once getViews('twitter');
+    require_once getViews('t');
     cleanPage();
 }
 // 获取回复.
