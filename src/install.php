@@ -16,6 +16,7 @@ require_once EMLOG_ROOT.'/lib/class.phpass.php';
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
 define('EMLOG_VERSION', '3.5.0');
+define('DEL_INSTALLER', 0);
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
@@ -431,7 +432,11 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	}
 	//重建缓存
 	$CACHE->updateCache();
-	$result .= "博主:".$admin." 添加成功<br />恭喜你！emlog 安装成功<br /><span style=\"color:red;\"><b>请删除根目录下安装文件(install.php)</b></span> <a href=\"./\"> 进入emlog </a>";
+	$result .= "博主: {$admin} 添加成功<br />恭喜你！emlog 安装成功<br />";
+	if (DEL_INSTALLER === 1 && !@unlink('./instal2l.php')) {
+	    $result .= '<span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> ';
+	}
+	$result .= '<a href="./"> 进入emlog </a>';
 	emMsg($result);
 }
 ?>
