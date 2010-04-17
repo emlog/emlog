@@ -13,6 +13,7 @@ $log_cache_tags = $CACHE->readCache('logtags');
 $log_cache_sort = $CACHE->readCache('logsort');
 $log_cache_atts = $CACHE->readCache('logatts');
 $newLogs_cache = $CACHE->readCache('newlog');
+$newtws_cache = $CACHE->readCache('newtw');
 $tag_cache = $CACHE->readCache('tags');
 $sort_cache = $CACHE->readCache('sort');
 $com_cache = $CACHE->readCache('comment');
