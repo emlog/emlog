@@ -25,7 +25,7 @@ if ($action == '') {
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, $index_twnum, $page, './twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-    $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" />" : '';
+    $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php?mode=t\" />" : '';
 
     include getViews('header');
     require_once getViews('t');
@@ -62,9 +62,9 @@ if ($action == 'reply') {
 
     if (!$r || strlen($r) > 420){
         exit('err1');
-    } elseif (empty($rname)) {
+    } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');
-    }elseif ($reply_code == 'y' && session_start() && $rcode != $_SESSION['code']){
+    }elseif (ROLE == 'visitor' && $reply_code == 'y' && session_start() && $rcode != $_SESSION['code']){
         exit('err3');
     }
 
@@ -75,7 +75,7 @@ if ($action == 'reply') {
     }
 
     $date = time();
-    $name =  $rname;
+    $name =  ROLE == 'visitor' ? $rname : $user_cache[UID]['name'];;
 
     $rdata = array(
             'tid' => $tid,
