@@ -287,7 +287,26 @@ class mkcache {
 		$cacheData = serialize($logs);
 		$this->cacheWrite($cacheData, 'newlog');
 	}
+	/**
+	 * 最新碎语
+	 */
+	private function mc_newtw() {
+		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newtwnum'"));
+		$index_newtwnum = $row['option_value'];
+		$sql = "SELECT * FROM " . DB_PREFIX . "twitter ORDER BY id DESC LIMIT 0, $index_newtwnum";
+		$res = $this->db->query($sql);
+		$tws = array();
+		while ($row = $this->db->fetch_array($res)) {
+		    $row['id'] = $row['id'];
+		    $row['t'] = $row['content'];
+			$row['date'] = smartyDate($row['date']);
+			$row['replynum'] = $row['replynum'];
 
+			$tws[] = $row;
+		}
+		$cacheData = serialize($tws);
+		$this->cacheWrite($cacheData, 'newtw');
+	}
 	/**
 	 * 日志归档缓存
 	 */

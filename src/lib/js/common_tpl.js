@@ -146,7 +146,7 @@ function loadr(url,tid){
 		rp.style.display="none";
 	} else {
 		r.style.display="block";
-        r.innerHTML = '<p class="loading">加载中</p>';
+        r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">加载中...</span>';
         XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
 	}
 }
