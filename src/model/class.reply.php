@@ -83,9 +83,9 @@ class emReply {
 	function getReplyNum($tid = null, $hide = null)
 	{
 		$andQuery = '1=1';
-		$andQuery .= $blogId ? " and tid=$tid" : '';
+		$andQuery .= $tid ? " and tid=$tid" : '';
 		$andQuery .= $hide ? " and hide='$hide'" : '';
-	    $sql = "SELECT cid FROM ".DB_PREFIX."Reply where $andQuery";
+	    $sql = "SELECT id FROM ".DB_PREFIX."reply where $andQuery";
 		$res = $this->db->query($sql);
 		$replyNum = $this->db->num_rows($res);
 		return $replyNum;
@@ -99,10 +99,10 @@ class emReply {
 	 */
 	function delReply($replyId)
 	{
-		$row = $this->db->once_fetch_array("SELECT tid FROM ".DB_PREFIX."reply WHERE id=$replyId");
+		$row = $this->db->once_fetch_array("SELECT hide FROM ".DB_PREFIX."reply WHERE id=$replyId");
 		$this->db->query("DELETE FROM ".DB_PREFIX."reply where id=$replyId");
-		$tid = intval($row['tid']);
-		return $tid;
+		$hide = $row['hide'];
+		return $hide;
 	}
 	/**
 	 * 隐藏回复
@@ -137,12 +137,10 @@ class emReply {
 		}
 	}
 
-	function setReplyCookie($name,$mail,$url,$utctimestamp)
+	function setReplyCookie($name, $utctimestamp)
 	{
 		$cookietime = $utctimestamp + 31536000;
 		setcookie('replyposter',$name,$cookietime);
-		setcookie('postermail',$mail,$cookietime);
-		setcookie('posterurl',$url,$cookietime);
 	}
 
 }

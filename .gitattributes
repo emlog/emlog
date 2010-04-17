@@ -207,7 +207,7 @@ src/content/templates/default/module.php -text
 src/content/templates/default/page.php -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
-src/content/templates/default/t.php -text
+src/content/templates/default/twitter.php -text
 src/index.php -text svn_keywords=Id
 src/init.php -text
 src/install.php -text svn_keywords=Id

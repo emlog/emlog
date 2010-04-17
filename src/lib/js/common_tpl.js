@@ -164,6 +164,7 @@ function reply(url,tid){
         }else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
         }else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
         }else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
+        }else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
         }else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){

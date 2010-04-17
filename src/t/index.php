@@ -28,7 +28,7 @@ if ($action == '') {
     $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" />" : '';
 
     include getViews('header');
-    require_once getViews('t');
+    require_once getViews('twitter');
     cleanPage();
 }
 // 获取回复.
@@ -38,7 +38,7 @@ if ($action == 'getr') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
     $emReply = new emReply();
-    $replys = $emReply->getReplys($tid);
+    $replys = $emReply->getReplys($tid, 'n');
 
     $response = '';
     foreach($replys as $val){
@@ -82,6 +82,7 @@ if ($action == 'reply') {
             'content' => $r,
             'name' => $name,
             'date' => $date,
+            'hide' => $ischkreply
     );
 
     $emTwitter = new emTwitter();
@@ -91,7 +92,11 @@ if ($action == 'reply') {
     if ($rid === false){
         exit('err5');
     }
-    $emTwitter->updateReplyNum($tid, '+1');
+    if ($ischkreply == 'n'){
+        $emTwitter->updateReplyNum($tid, '+1');
+    }else{
+        exit('succ1');
+    }
     $CACHE->updateCache('sta');
 
     $date = smartyDate($date);

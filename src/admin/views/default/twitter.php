@@ -27,8 +27,13 @@
                 <option value="y" <?php echo $ex3; ?>>是</option>
                 <option value="n" <?php echo $ex4; ?>>否</option>
             </select>
-            <span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" />
-            <br /><input class="tbutton" type="submit" value="保存" />
+            <span>开启回复审核：</span>
+            <select name="ischkreply">
+                <option value="y" <?php echo $ex5; ?>>是</option>
+                <option value="n" <?php echo $ex6; ?>>否</option>
+            </select>
+            <br /><span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" /> 
+            <input class="tbutton" type="submit" value="保存" />
         </div>
     </form>
     </div>
@@ -38,20 +43,22 @@
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
     $avatar = empty($user_cache[$val['author']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
+    $tid = (int)$val['id'];
+    $replynum = $emReply->getReplyNum($tid);
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post" id="<?php echo $val['id'];?>"><a href="javascript:void(0);">回复(<span><?php echo $val['replynum'];?></span>)</a></p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $val['id'];?>, 'tw');">删除</a> </p>
+        <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复(<span><?php echo $replynum;?></span>)</a></p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');">删除</a> </p>
     </div>
 	<div class="clear"></div>
-   	<div id="r_<?php echo $val['id'];?>" class="r"></div>
-    <div class="huifu" id="rp_<?php echo $val['id'];?>">
+   	<div id="r_<?php echo $tid;?>" class="r"></div>
+    <div class="huifu" id="rp_<?php echo $tid;?>">
 	<textarea name="reply"></textarea>
-    <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /> <span style="color:#FF0000"></span></div>
+    <div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="回复" /> <span style="color:#FF0000"></span></div>
     </div>
     </li>
     <?php endforeach;?>
@@ -95,8 +102,10 @@ function doreply(tid){
     var post = "r="+encodeURIComponent(r);
 	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
 		data = $.trim(data);
-		if (data == 'fail'){
-            $(".huifu span").text('回复长度需在140个字内')
+		if (data == 'err1'){
+            $(".huifu span").text('回复长度需在140个字内');
+		}else if(data == 'err2'){
+		    $(".huifu span").text('该回复已经存在');
 		}else{
     		$("#r_"+tid).append(data);
     		var rnum = Number($("#"+tid+" span").text());
@@ -105,27 +114,27 @@ function doreply(tid){
     	}
 	});
 }
-function delreply(rid){
+function delreply(rid,tid){
     if(confirm('你确定要删除该条回复吗？')){
-        $.get("twitter.php?action=delreply&rid="+rid, function(data){
+        $.get("twitter.php?action=delreply&rid="+rid+"&tid="+tid, function(data){
             var tid = Number(data);
             var rnum = Number($("#"+tid+" span").text());
             $("#"+tid+" span").text(rnum-1);
             $("#reply_"+rid).hide("slow");
         })}else {return;}
 }
-function hidereply(rid){
-    $.get("twitter.php?action=hidereply&rid="+rid, function(){
+function hidereply(rid,tid){
+    $.get("twitter.php?action=hidereply&rid="+rid+"&tid="+tid, function(){
         $("#reply_"+rid).css('background-color','#FEE0E4');
         $("#reply_"+rid+" span a").text('审核');
-        $("#reply_"+rid+" span a").attr("href","javascript: pubreply("+rid+")");
+        $("#reply_"+rid+" span a").attr("href","javascript: pubreply("+rid+","+tid+")");
         });
 }
-function pubreply(rid){
-    $.get("twitter.php?action=pubreply&rid="+rid, function(){
+function pubreply(rid,tid){
+    $.get("twitter.php?action=pubreply&rid="+rid+"&tid="+tid, function(){
         $("#reply_"+rid).css('background-color','#FFF');
         $("#reply_"+rid+" span a").text('屏蔽');
-        $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+")");
+        $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+","+tid+")");
         });
 }
 function checkt(){

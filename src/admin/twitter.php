@@ -12,6 +12,9 @@ require_once EMLOG_ROOT.'/model/class.twitter.php';
 $emTwitter = new emTwitter();
 
 if ($action == '') {
+    require_once EMLOG_ROOT.'/model/class.reply.php';
+    $emReply = new emReply();
+
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
     $tws = $emTwitter->getTwitters($page);
@@ -32,6 +35,13 @@ if ($action == '') {
 	}else{
 		$ex3="";
 		$ex4="selected=\"selected\"";
+	}
+    if ($ischkreply=='y'){
+		$ex5="selected=\"selected\"";
+		$ex6="";
+	}else{
+		$ex5="";
+		$ex6="selected=\"selected\"";
 	}
 
     include getViews('header');
@@ -83,15 +93,15 @@ if ($action == 'getreply') {
     foreach($replys as $val){
          if ($val['hide'] == 'n'){
             $style = "background-color:#FFF";
-            $act = "<span><a href=\"javascript: hidereply({$val['id']});\">屏蔽</a></span> ";
+            $act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">屏蔽</a></span> ";
          } else {
             $style = "background-color:#FEE0E4";
-            $act = "<span><a href=\"javascript: pubreply({$val['id']});\">审核</a></span> ";
+            $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">审核</a></span> ";
          }
          $response .= "
          <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
-         <a href=\"javascript: delreply({$val['id']});\">删除</a> 
+         <a href=\"javascript: delreply({$val['id']},{$tid});\">删除</a> 
          <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">回复</a></em>
          </li>";
     }
@@ -105,7 +115,7 @@ if ($action == 'reply') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
     if (!$r || strlen($r) > 420){
-        exit('fail');
+        exit('err1');
     }
 
     $date = time();
@@ -120,6 +130,9 @@ if ($action == 'reply') {
 
     $emReply = new emReply();
     $rid = $emReply->addReply($rdata);
+    if ($rid === false){
+        exit('err2');
+    }
     $emTwitter->updateReplyNum($tid, '+1');
     $CACHE->updateCache('sta');
 
@@ -128,8 +141,8 @@ if ($action == 'reply') {
     $response = "
          <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-         <span><a href=\"javascript: hidereply({$rid});\">屏蔽</a></span> 
-         <a href=\"javascript: delreply({$rid});\">删除</a> 
+         <span><a href=\"javascript: hidereply({$rid},{$tid});\">屏蔽</a></span> 
+         <a href=\"javascript: delreply({$rid},{$tid});\">删除</a> 
          <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">回复</a></em>
          </li>";
     echo $response;
@@ -139,9 +152,11 @@ if ($action == 'delreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
+    $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
-    $tid = $emReply->delReply($rid);
-    $emTwitter->updateReplyNum($tid, '-1');
+    if( $emReply->delReply($rid) == 'n'){
+        $emTwitter->updateReplyNum($tid, '-1');
+    }
     echo $tid;
 }
 // 隐藏回复.
@@ -149,21 +164,26 @@ if ($action == 'hidereply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
+    $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
     $emReply->hideReply($rid);
+    $emTwitter->updateReplyNum($tid, '-1');
 }
 // 审核回复.
 if ($action == 'pubreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
+    $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
     $emReply->pubReply($rid);
+    $emTwitter->updateReplyNum($tid, '+1');
 }
 // 碎语设置.
 if ($action == 'set') {
     $data = array(
         'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'y',
+        'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
         'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
         'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
     );
