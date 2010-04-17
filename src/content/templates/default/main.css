@@ -126,7 +126,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 #tw .main_img img{ border:1px #fff solid}
 #tw .op{ float:left; height:18px;margin:6px 5px 3px;}
 #tw .top{ font-size:12px; text-align:right; border-bottom:1px #F7F7F7 solid; line-height:2;width:560px;}
-#tw .top a{ padding:0px 5px;}
+#tw .top a{ padding:0px 5px 0px 17px; background: url(images/t.gif) no-repeat}
 #tw ul{ margin:5px 0px 3px 25px; width:520px; line-height:1.8;padding:0px;}
 #tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
 #tw ul li{margin:0px 0px; padding:0;}
@@ -138,15 +138,20 @@ a:hover{color:#0079b7; text-decoration:underline}
 #tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;}
 #tw .time{ font-size:12px; color:#999999; padding-left:43px}
 #tw ul .r{ margin:5px 0px 0px 40px;color:#666666; border:0; padding:0px;}
-#tw ul .r li{padding:5px 3px 3px;border-bottom: #F7F7F7 1px solid;}
+#tw ul .r li{padding:5px 3px 3px;border-bottom: #F7F7F7 1px solid; width:475px}
 #tw ul .r .num{ font-size:16px; font-weight:bold; color:#0079b7;padding:0px 5px; float:left; width:20px;}
 #tw ul .r .time{ padding:0px 5px;}
 #tw ul .r .name{ padding:0px 0px 0px 0px; font-size:12px; color:#336699;}
 #tw ul .r em a{ font-style:normal;}
 #tw ul .huifu{margin:5px 0px 0px 43px; background:#F5F5F5;border:#CCCCCC solid 1px;text-align:center;display:none;}
-#tw ul .huifu textarea{ margin:5px; width:410px; border:#CCCCCC solid 1px;overflow:auto;}
+#tw ul .huifu textarea{ margin:5px; width:460px; border:#CCCCCC solid 1px;overflow:auto;}
 #tw ul .huifu input{ margin:0px 5px;}
-#tw ul .huifu div{ text-align:left; padding:0px 5px;}
+#tw ul .huifu div{ text-align:left; padding:0px 5px; text-align:center}
 #tw ul .huifu .text{ width:60px;}
 #tw ul .button_p{background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
+#tw .tbutton{ font-size:12px;float:none; margin-bottom:3px;}
 #tw .loading{background:url(images/loading.gif) no-repeat 200px 2px; height:20px;}
+#tw .tbutton input{ width:90px; border:#CCCCCC solid 1px; }
+#tw .tbutton .button_p{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:60px; height:25px;}
+#tw .tbutton .tinfo{ float:left; }
+#tw .msg{ clear:both}

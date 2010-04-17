@@ -67,12 +67,18 @@ function widget_sort($title){
 <?php }?>
 <?php
 //widget：twitter
-function widget_twitter($title){?>
+function widget_twitter($title){
+	global $newtws_cache; ?>
 	<li>
-		<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
-        <ul id="twitter"></ul>
+	<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
+	<ul id="twitter">
+	<?php foreach($newtws_cache as $value): ?>
+	<li><?php echo $value['t']; ?><p><?php echo $value['date']; ?> </p></li>
+	<?php endforeach; ?>
+	<li><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></li>
+	</ul>
 	</li>
-<?php } ?>
+<?php }?>
 <?php
 //widget：音乐
 function widget_music($title){
