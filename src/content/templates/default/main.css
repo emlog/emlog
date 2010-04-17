@@ -125,7 +125,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 #tw .main_img{ border:1px #2772ae solid; float:left;}
 #tw .main_img img{ border:1px #fff solid}
 #tw .op{ float:left; height:18px;margin:6px 5px 3px;}
-#tw .top{ font-size:12px; text-align:right; border-bottom:1px #CCCCCC solid; line-height:2}
+#tw .top{ font-size:12px; text-align:right; border-bottom:1px #F7F7F7 solid; line-height:2;width:560px;}
 #tw .top a{ padding:0px 5px;}
 #tw ul{ margin:5px 0px 3px 25px; width:520px; line-height:1.8;padding:0px;}
 #tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}

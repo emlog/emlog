@@ -185,10 +185,6 @@ class emComment {
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId)
 	{
 		global $comment_code, $ischkcomment, $utctimestamp;
-		if( $comment_code == 'y' )
-		{
-			session_start();
-		}
 		if ($url && strncasecmp($url,'http://',7))//0 if they are equal
 		{
 			$url = 'http://'.$url;
@@ -204,7 +200,7 @@ class emComment {
 			return -4;
 		} elseif (strlen($content) == '' || strlen($content) > 2000) {
 			return -5;
-		} elseif ($comment_code == 'y' && $imgcode != $_SESSION['code']) {
+		} elseif ($comment_code == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			return -6;
 		} else {
 			$ipaddr = getIp();

@@ -25,8 +25,81 @@ if ($action == '') {
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, $index_twnum, $page, './twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" />" : '';
 
     include getViews('header');
     require_once getViews('t');
     cleanPage();
+}
+// 获取回复.
+if ($action == 'getr') {
+    require_once EMLOG_ROOT.'/model/class.reply.php';
+
+    $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
+
+    $emReply = new emReply();
+    $replys = $emReply->getReplys($tid);
+
+    $response = '';
+    foreach($replys as $val){
+         $response .= "
+         <li>
+         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
+         <em><a href=\"javascript:re({$tid}, '@{$val['name']}:');\">回复</a></em>
+         </li>";
+    }
+    echo $response;
+}
+// 回复碎语.
+if ($action == 'reply') {
+    require_once EMLOG_ROOT.'/model/class.twitter.php';
+    require_once EMLOG_ROOT.'/model/class.reply.php';
+
+    $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
+    $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
+    $rcode = isset($_POST['rcode']) ? strtoupper(addslashes(trim($_POST['rcode']))) : '';
+    $tid = isset($_POST['tid']) ? intval(trim($_POST['tid'])) : '';
+
+    if (!$r || strlen($r) > 420){
+        exit('err1');
+    } elseif (empty($rname)) {
+        exit('err2');
+    }elseif ($reply_code == 'y' && session_start() && $rcode != $_SESSION['code']){
+        exit('err3');
+    }
+
+    foreach($user_cache as $val){
+        if(isset($val['name']) && $val['name'] == $rname){
+            exit('err4');
+        }
+    }
+
+    $date = time();
+    $name =  $rname;
+
+    $rdata = array(
+            'tid' => $tid,
+            'content' => $r,
+            'name' => $name,
+            'date' => $date,
+    );
+
+    $emTwitter = new emTwitter();
+    $emReply = new emReply();
+
+    $rid = $emReply->addReply($rdata);
+    if ($rid === false){
+        exit('err5');
+    }
+    $emTwitter->updateReplyNum($tid, '+1');
+    $CACHE->updateCache('sta');
+
+    $date = smartyDate($date);
+    $r = htmlClean(stripslashes($r));
+    $response = "
+         <li style=\"background-color:#FFEEAA\">
+         <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
+         <em><a href=\"javascript:re({$tid}, '@{$name}:');\">回复</a></em>
+         </li>";
+    echo $response;
 }

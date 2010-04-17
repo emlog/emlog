@@ -34,11 +34,11 @@
     </div>
     <div class="clear"></div>
     <ul>
-    <?php 
+    <?php
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
     $avatar = empty($user_cache[$val['author']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
-    ?> 
+    ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
@@ -49,7 +49,7 @@
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $val['id'];?>" class="r"></div>
-    <div class="huifu" id="rp_<?php echo $val['id'];?>">   
+    <div class="huifu" id="rp_<?php echo $val['id'];?>">
 	<textarea name="reply"></textarea>
     <div><input class="button_p" type="button" onclick="doreply(<?php echo $val['id'];?>);" value="回复" /> <span style="color:#FF0000"></span></div>
     </div>

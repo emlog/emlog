@@ -25,6 +25,9 @@ class emReply {
 	 * @return int
 	 */
 	function addReply($rData) {
+	    if (true === $this->isReplyExist($rData['tid'], $rData['name'], $rData['content'])){
+	        return false;
+	    }
 		$kItem = array();
 		$dItem = array();
 		foreach ($rData as $key => $data) {
@@ -125,10 +128,9 @@ class emReply {
 
 	function isReplyExist($tid, $name, $content)
 	{
-		$query = $this->db->query("SELECT id FROM ".DB_PREFIX."reply WHERE tid=$tid AND poster='$name' AND reply='$content'");
+		$query = $this->db->query("SELECT id FROM ".DB_PREFIX."reply WHERE tid=$tid AND name='$name' AND content='$content'");
 		$result = $this->db->num_rows($query);
-		if ($result > 0)
-		{
+		if ($result > 0){
 			return true;
 		}else {
 			return false;
