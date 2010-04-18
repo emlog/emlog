@@ -73,7 +73,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
 <?php endforeach;?>
         </select>
-        (本地时间：<?php echo gmdate('Y-d-n H:i:s', $utctimestamp + $timezone * 3600); ?>)
+        (本地时间：<?php echo gmdate('Y-m-d H:i:s', $utctimestamp + $timezone * 3600); ?>)
         </td>
       </tr>
       <tr>
