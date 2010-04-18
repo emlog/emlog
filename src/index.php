@@ -47,7 +47,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$blogIdStr = $emTag->getTagByName($tag);
 		if($blogIdStr === false)
 		{
-			emMsg('不存在该标签','./');
+			emMsg('不存在该标签',DYNAMIC_BLOGURL);
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -94,7 +94,7 @@ if (!empty($logid))
 	$logData = $emBlog->getOneLogForHome($logid);
 	if($logData === false)
 	{
-		emMsg('不存在该条目','./');
+		emMsg('不存在该条目',DYNAMIC_BLOGURL);
 	}
 	extract($logData);
 	if(!empty($password))
