@@ -266,11 +266,14 @@ class emBlog {
 			if ($unixPostDate === false) {
 				$unixPostDate = $logDate;
 			} else {
-				$serverTimeZone = ini_get('date.timezone');
-				if ($serverTimeZone == '' || $serverTimeZone == 'UTC')
+				if (phpversion() > '5.2')
+					$serverTimeZone = @date_default_timezone_get();
+				else
+					$serverTimeZone = ini_get('date.timezone');
+				if (empty($serverTimeZone) || $serverTimeZone == 'UTC')
 					$unixPostDate -= $timezone * 3600;
 			}
-		}else {
+		} else {
 			return $localtime;
 		}
 		return $unixPostDate;
