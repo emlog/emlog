@@ -73,7 +73,7 @@ function widget_twitter($title){
 	<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-	<li><?php echo $value['t']; ?><p><?php echo $value['date']; ?> </p></li>
+	<li><?php echo $value['t']; ?><p><?php echo smartDate($value['date']); ?> </p></li>
 	<?php endforeach; ?>
 	<p style="text-align:right"><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></p>
 	</ul>

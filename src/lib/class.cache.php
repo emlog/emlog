@@ -293,17 +293,14 @@ class mkcache {
 	private function mc_newtw() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newtwnum'"));
 		$index_newtwnum = $row['option_value'];
-		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='timezone'"));
-		$timezone = $row['option_value'];
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter ORDER BY id DESC LIMIT 0, $index_newtwnum";
 		$res = $this->db->query($sql);
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
 		    $row['id'] = $row['id'];
 		    $row['t'] = $row['content'];
-			$row['date'] = date('Y-m-d H:i:s', $row['date'] + $timezone * 3600);
+			$row['date'] = $row['date'];
 			$row['replynum'] = $row['replynum'];
-
 			$tws[] = $row;
 		}
 		$cacheData = serialize($tws);
