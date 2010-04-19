@@ -53,14 +53,16 @@ class emTwitter {
 	/**
 	 * 获取碎语列表
 	 *
+	 * @param int $spot 0:前台 1:后台
 	 * @param int $page
 	 * @return array
 	 */
-	function getTwitters($page = 1) {
-		global $timezone;
-		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
-		$author = ROLE == 'admin' || ROLE == 'visitor' ? '' : 'and author=' . UID;
-		$limit = "LIMIT $start_limit, " . ADMIN_PERPAGE_NUM;
+	function getTwitters($page = 1, $spot = 1) {
+		global $timezone,$index_twnum;
+		$perpage_num = $spot == 1 ? ADMIN_PERPAGE_NUM : $index_twnum;
+		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
+		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
+		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter WHERE 1=1 $author ORDER BY id DESC $limit";
 		$res = $this->db->query($sql);
 		$tws = array();
