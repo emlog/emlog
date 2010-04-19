@@ -175,7 +175,6 @@ src/admin/views/default/useredit.php -text
 src/admin/views/default/widgets.php -text
 src/admin/widgets.php -text svn_keywords=Id
 src/admin/write_log.php -text svn_keywords=Id
-src/calendar.php -text svn_keywords=Id
 src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
 src/content/plugins/tips/icon_tips.gif -text
@@ -215,6 +214,7 @@ src/init.php -text
 src/install.php -text svn_keywords=Id
 src/lib/checkcode.php -text svn_keywords=Id
 src/lib/class.cache.php -text svn_keywords=Id
+src/lib/class.calendar.php -text
 src/lib/class.mysql.php -text svn_keywords=Id
 src/lib/class.phpass.php -text
 src/lib/function.base.php -text svn_keywords=Id

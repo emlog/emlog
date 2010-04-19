@@ -23,3 +23,10 @@ $dang_cache = $CACHE->readCache('record');
 $sta_cache = $CACHE->readCache('sta');
 
 $navibar = unserialize($navibar);
+
+$calendar_url = isset($_GET['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($_GET['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
+if ($action == 'cal') {
+    require_once EMLOG_ROOT.'/lib/class.calendar.php';
+    $cal = new Calendar($timezone);
+    echo $cal->generate();
+}

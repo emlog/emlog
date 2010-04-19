@@ -13,7 +13,6 @@ define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//前台模板URL
 define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径
 
 $blogtitle = $blogname;
-$calendar_url = isset($_GET['record']) ? DYNAMIC_BLOGURL.'calendar.php?record='.intval($_GET['record']) : DYNAMIC_BLOGURL.'calendar.php?' ;
 $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 
