@@ -17,8 +17,8 @@ if ($action == '') {
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page);
-    $twnum = $emTwitter->getTwitterNum();
+    $tws = $emTwitter->getTwitters($page,1);
+    $twnum = $emTwitter->getTwitterNum(1);
     $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 

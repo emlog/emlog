@@ -41,10 +41,11 @@ class emTwitter {
 	/**
 	 * 获取指定条件的碎语条数
 	 *
+	 * @param int $spot 0:前台 1:后台
 	 * @return int
 	 */
-	function getTwitterNum() {
-	    $author = ROLE == 'admin' || ROLE == 'visitor' ? '' : 'and author=' . UID;
+	function getTwitterNum($spot = 0) {
+	    $author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
 		$res = $this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		$twNum = $this->db->num_rows($res);
 		return $twNum;
@@ -57,7 +58,7 @@ class emTwitter {
 	 * @param int $page
 	 * @return array
 	 */
-	function getTwitters($page = 1, $spot = 1) {
+	function getTwitters($page = 1, $spot = 0) {
 		global $timezone,$index_twnum;
 		$perpage_num = $spot == 1 ? ADMIN_PERPAGE_NUM : $index_twnum;
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;

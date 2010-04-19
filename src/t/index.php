@@ -21,9 +21,9 @@ if ($action == '') {
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page,0);
-    $twnum = $emTwitter->getTwitterNum();
-    $pageurl =  pagination($twnum, $index_twnum, $page, BLOG_URL.'?page');
+    $tws = $emTwitter->getTwitters($page);
+    $twnum = $emTwitter->getTwitterNum(0);
+    $pageurl =  pagination($twnum, $index_twnum, $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php?mode=t\" />" : '';
 
