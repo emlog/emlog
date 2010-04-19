@@ -63,7 +63,7 @@ class emReply {
 		{
 			$row['name'] = htmlspecialchars($row['name']);
 			$row['content'] = htmlClean($row['content']);
-			$row['date'] = smartyDate($row['date']);
+			$row['date'] = smartDate($row['date']);
 			//$row['id'];
 			//$row['hide'];
 			//$row['tid'];

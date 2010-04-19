@@ -136,7 +136,7 @@ if ($action == 'reply') {
     $emTwitter->updateReplyNum($tid, '+1');
     $CACHE->updateCache('sta');
 
-    $date = smartyDate($date);
+    $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
     $response = "
          <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">

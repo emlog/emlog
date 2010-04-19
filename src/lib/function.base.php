@@ -371,7 +371,7 @@ function fopen_url($url){
  * @param $dstr
  * @return string
  */
-function smartyDate($datetemp, $dstr='Y-m-d H:i'){
+function smartDate($datetemp, $dstr='Y-m-d H:i'){
 	global $utctimestamp, $timezone;
 	$op = '';
 	$sec = $utctimestamp - $datetemp;

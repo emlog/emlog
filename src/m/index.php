@@ -262,7 +262,7 @@ if ($action == 'tw') {
 	$query = $DB->query($sql);
 	$tws = array();
 	while ($row = $DB->fetch_array($query)) {
-		$row ['date'] = smartyDate($row ['date']);
+		$row ['date'] = smartDate($row ['date']);
 		$row ['content'] = htmlspecialchars(trim($row ['content']));
 		$tws [] = $row;
 	}

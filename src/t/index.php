@@ -99,7 +99,7 @@ if ($action == 'reply') {
     }
     $CACHE->updateCache('sta');
 
-    $date = smartyDate($date);
+    $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
     $response = "
          <li style=\"background-color:#FFEEAA\">

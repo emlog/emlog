@@ -53,7 +53,7 @@ class emComment {
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
-			$row['date'] = smartyDate($row['date']);
+			$row['date'] = smartDate($row['date']);
 			$row['reply'] = htmlClean($row['reply']);
 			//$row['hide'];
 			//$row['title'];
