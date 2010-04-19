@@ -37,6 +37,7 @@ if ($action == 'update')
 								RewriteCond %{REQUEST_FILENAME} !-f
 								RewriteCond %{REQUEST_FILENAME} !-d
 								RewriteBase '.$t['path'].'
+								RewriteRule ^t/page-([0-9]+)\.html$ t/index.php?page=$1
 								RewriteRule ^(post|record|sort|author|page)-([0-9]+)\.html$ index.php?$1=$2
 								RewriteRule ^tag-(.+)\.html$ index.php?tag=$1
 							</IfModule>';
@@ -48,6 +49,7 @@ if ($action == 'update')
 								RewriteCond %{REQUEST_FILENAME} !-f
 								RewriteCond %{REQUEST_FILENAME} !-d
 								RewriteBase '.$t['path'].'
+								RewriteRule ^t/page/([0-9]+)$ t/index.php?page=$1
 								RewriteRule ^(post|record|sort|author|page)/([0-9]+)$ index.php?$1=$2
 								RewriteRule ^tag/(.+)$ index.php?tag=$1
 							</IfModule>';

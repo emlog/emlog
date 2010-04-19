@@ -29,7 +29,7 @@ if ($action == '') {
 
     include getViews('header');
     require_once getViews('t');
-    cleanPage();
+    cleanPage(true);
 }
 // 获取回复.
 if ($action == 'getr') {

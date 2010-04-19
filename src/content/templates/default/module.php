@@ -66,7 +66,7 @@ function widget_sort($title){
 	</li>
 <?php }?>
 <?php
-//widget：twitter
+//widget：最新碎语
 function widget_twitter($title){
 	global $newtws_cache; ?>
 	<li>
@@ -75,7 +75,7 @@ function widget_twitter($title){
 	<?php foreach($newtws_cache as $value): ?>
 	<li><?php echo $value['t']; ?><p><?php echo $value['date']; ?> </p></li>
 	<?php endforeach; ?>
-	<li><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></li>
+	<p style="text-align:right"><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></p>
 	</ul>
 	</li>
 <?php }?>
