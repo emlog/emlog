@@ -18,8 +18,7 @@ $logid = isset($_GET['post']) ? intval($_GET['post']) : '';
 $plugin = isset($_GET['plugin']) ? addslashes($_GET['plugin']) : '';
 
 //日志列表
-if (empty($action) && empty($logid) && empty($plugin))
-{
+if (empty($action) && empty($logid) && empty($plugin)) {
 	require_once EMLOG_ROOT.'/model/class.blog.php';
 
 	$emBlog = new emBlog();
@@ -34,8 +33,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 	$start_limit = ($page - 1) * $index_lognum;
 	$pageurl = '';
 
-	if ($record)
-	{
+	if ($record) {
 		$blogtitle = $record.' - '.$blogname;
 		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -45,26 +43,25 @@ if (empty($action) && empty($logid) && empty($plugin))
 		$emTag = new emTag();
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
-		if($blogIdStr === false)
-		{
-			emMsg('不存在该标签',DYNAMIC_BLOGURL);
+		if ($blogIdStr === false) {
+			emMsg('不存在该标签', BLOG_URL);
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL.'?tag='.urlencode($tag).'&page';
-	} elseif($keyword) {
+	} elseif ($keyword) {
 		$keyword = str_replace('%','\%',$keyword);
 		$keyword = str_replace('_','\_',$keyword);
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page';
-	} elseif(isset($sort_cache[$sortid])) {
+	} elseif (isset($sort_cache[$sortid])) {
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL."?sort=$sortid&page";
-	} elseif(isset($user_cache[$author])) {
+	} elseif (isset($user_cache[$author])) {
 		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
 		$sqlSegment = "and author=$author order by date desc";
 		$lognum = $sta_cache[$author]['lognum'];
@@ -81,8 +78,7 @@ if (empty($action) && empty($logid) && empty($plugin))
 	include getViews('log_list');
 }
 //浏览日志、页面
-if (!empty($logid))
-{
+if (!empty($logid)) {
 	require_once EMLOG_ROOT.'/model/class.blog.php';
 	require_once EMLOG_ROOT.'/model/class.comment.php';
 	require_once EMLOG_ROOT.'/model/class.trackback.php';
@@ -92,13 +88,11 @@ if (!empty($logid))
 	$emTrackback = new emTrackback();
 
 	$logData = $emBlog->getOneLogForHome($logid);
-	if($logData === false)
-	{
-		emMsg('不存在该条目',DYNAMIC_BLOGURL);
+	if ($logData === false) {
+		emMsg('不存在该条目', BLOG_URL);
 	}
 	extract($logData);
-	if(!empty($password))
-	{
+	if (!empty($password)) {
 		$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
 		$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
 		$emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
@@ -111,20 +105,18 @@ if (!empty($logid))
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
 	include getViews('header');
-	if ($type == 'blog')
-	{
+	if ($type == 'blog') {
 		$emBlog->updateViewCount($logid);
 		$neighborLog = $emBlog->neighborLog($date);
 		extract($neighborLog);
 		$tb = $emTrackback->getTrackbacks(null, $logid, 0);
 		require_once getViews('echo_log');
-	}elseif ($type == 'page'){
+	}elseif ($type == 'page') {
 		include getViews('page');
 	}
 }
 //发表评论
-if ($action == 'addcom')
-{
+if ($action == 'addcom') {
 	require_once EMLOG_ROOT.'/model/class.comment.php';
 	$emComment = new emComment();
 
@@ -137,7 +129,7 @@ if ($action == 'addcom')
 
 	doAction('comment_post');
 	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $gid);
-	switch($ret){
+	switch($ret) {
 		case -1:
 		emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');break;
 		case -2:
@@ -161,8 +153,7 @@ if ($action == 'addcom')
 	}
 }
 //加载插件页面
-if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugins/{$plugin}/{$plugin}_show.php"))
-{
+if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugins/{$plugin}/{$plugin}_show.php")) {
 	include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
 }
 

@@ -54,12 +54,12 @@ class emTwitter {
 	/**
 	 * 获取碎语列表
 	 *
-	 * @param int $spot 0:前台 1:后台
 	 * @param int $page
+	 * @param int $spot 0:前台 1:后台
 	 * @return array
 	 */
 	function getTwitters($page = 1, $spot = 0) {
-		global $timezone,$index_twnum;
+		global $index_twnum;
 		$perpage_num = $spot == 1 ? ADMIN_PERPAGE_NUM : $index_twnum;
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;

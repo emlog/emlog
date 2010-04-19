@@ -69,6 +69,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 #pagenavi{text-align:center; font-size:14px}
 #pagenavi a{ padding:0px 4px;border:1px #fff solid; }
 #pagenavi a:hover{ border:1px #B9DDFB solid; background: #F5FAFE; text-decoration:none }
+#pagenavi span{font-size:12px; color:#999999;}
 #content .nextlog{text-align:center; margin:5px 0; font-size:12px}
 #trackback_address{font-size:12px; color:#999}
 #trackback_address input{border:#f1f1f1 solid 1px; background-color:#fffdf1; padding:2px 8px; color:#999; font-size:11px}
