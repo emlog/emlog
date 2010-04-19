@@ -40,6 +40,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     </div>
     </li>
     <?php endforeach;?>
+    <li id="pagenavi"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
     </ul>
 </div>
 <?php
