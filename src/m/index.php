@@ -263,7 +263,7 @@ if ($action == 'tw') {
 	$tws = array();
 	while ($row = $DB->fetch_array($query)) {
 		$row ['date'] = smartDate($row ['date']);
-		$row ['content'] = htmlspecialchars(trim($row ['content']));
+		//$row ['content'] = $row ['content'];
 		$tws [] = $row;
 	}
 	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
@@ -273,10 +273,14 @@ if ($action == 'tw') {
 	include getViews('footer');
 }
 if (ISLOGIN === true && $action == 't') {
-	$t = isset ($_POST['t']) ? addslashes ($_POST['t']) : '';
+	$t = isset ($_POST['t']) ? addslashes (trim($_POST['t'])) : '';
+    //识别http网址
+    $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+    $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
+
 	if (!empty($t)) {
 		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t'," . UID . ",'$utctimestamp')");
-		$CACHE->updateCache('sta');
+		$CACHE->updateCache(array('sta','newtw'));
 		header ("Location: ./?action=tw");
 	} else {
 		header ("Location: ./");
@@ -286,7 +290,10 @@ if (ISLOGIN === true && $action == 'delt') {
 	$id = isset ($_GET['id']) ? intval ($_GET['id']) : '';
 	$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id $author");
-	$CACHE->updateCache('sta');
+	if ($DB->affected_rows() >= 1) {
+	    $query = $DB->query ("DELETE FROM " . DB_PREFIX . "reply WHERE tid=$id");
+	}
+	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: ./?action=tw");
 }
 if ($action == 'login') {
