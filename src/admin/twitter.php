@@ -60,7 +60,7 @@ if ($action == 'post')
     }
 
     //识别http网址
-    $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+    $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
     $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
 
     $tdata = array('content' => $t,
