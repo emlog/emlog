@@ -1,6 +1,6 @@
 <?php
 /**
- * 升级程序3.3.0 to 3.4.0
+ * 升级程序3.4.0 to 3.5.0
  * @copyright (c) Emlog All Rights Reserved
  */
 require_once('init.php');
@@ -72,10 +72,10 @@ li{
 <?php
 if(!isset($_GET['action'])){
 ?>
-<form name="form1" method="post" action="up3.3.0to3.4.0.php?action=install">
+<form name="form1" method="post" action="up3.4.0to3.5.0.php?action=install">
 <div class="main">
 <div>
-<p><span class="title">emlog <span style="color: #0099FF">3.3.0</span> to <span style="color: #FF0000; font-size:26px">3.4.0</span></span><span> 升级程序</span></p>
+<p><span class="title">emlog <span style="color: #0099FF">3.4.0</span> to <span style="color: #FF0000; font-size:26px">3.5.0</span></span><span> 升级程序</span></p>
 <p style="color: #FF0000;">你当前处于升级步骤的第二步，请确保第一步覆盖代码的操作已完成，再进行本步操作。</p>
 <p>详细升级步骤见升级程序包内的：升级说明.html</p>
 </ul>
@@ -102,63 +102,64 @@ if(!isset($_GET['action'])){
 <?php
 }
 
-if(isset($_GET['action'])&&$_GET['action'] == "install")
-{
-	if(EMLOG_VERSION != '3.4.0')
-	{
+if (isset($_GET['action'])&&$_GET['action'] == "install") {
+	if (EMLOG_VERSION != '3.5.0') {
 		emMsg("错误操作：您必须完成升级步骤里的第一步才再进行本操作，详见安装说明");
 	}
 
-	$db_host = DB_HOST;
-	$db_user = DB_USER;
-	$db_pw   = trim($_POST['password']);
-	$db_name = DB_NAME;
-	$db_prefix = DB_PREFIX;
+	if (DB_PASSWD != trim($_POST['password'])){
+	    emMsg("输入的数据库密码错误,请重新输入");
+	}
 	
-	unset($DB);
-	unset($CACHE);
+	$dbcharset = 'utf8';
+	$type = 'MYISAM';
+	$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
+	$extra2 = "TYPE=".$type;
+	$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
 
-	$DB = new Mysql($db_host, $db_user, $db_pw,$db_name);
-	$CACHE = new mkcache($DB, $db_prefix);
-
-	$res = $DB->query("select option_value from {$db_prefix}options WHERE option_name='widget_title'");
-	$row = $DB->fetch_array($res);
-	$widgets = unserialize($row['option_value']);
-	$widgets['twitter'] = str_replace('Twitter', '碎语', $widgets['twitter']);
-	$widgets = serialize($widgets);
+	$res = $DB->query("select option_value from {$db_prefix}options WHERE option_name='timezone'");
+	$row = $DB->fetch_row($res);
+	$timezone = intval($row['option_value']);
+	$time_offset = ($timezone - 8) * 3600;
 
 $sql = "
-ALTER TABLE {$db_prefix}twitter ADD author INT(10) NOT NULL DEFAULT '1' AFTER content;
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
-UPDATE {$db_prefix}options SET option_value='0' WHERE option_name='isurlrewrite' LIMIT 1;
-UPDATE {$db_prefix}options SET option_value='$widgets' WHERE option_name='widget_title' LIMIT 1;
+UPDATE {$db_prefix}blog SET date=date+$time_offset;
+UPDATE {$db_prefix}comment SET date=date+$time_offset;
+UPDATE {$db_prefix}twitter SET date=date+$time_offset;
+UPDATE {$db_prefix}trackback SET date=date+$time_offset;
+ALTER TABLE {$db_prefix}twitter CHANGE content content TEXT NOT NULL;
+ALTER TABLE {$db_prefix}twitter ADD replynum MEDIUMINT(8) NOT NULL DEFAULT '0';
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 UPDATE {$db_prefix}options SET option_value='default' WHERE option_name='nonce_templet';
+UPDATE {$db_prefix}options SET option_value='$widgets' WHERE option_name='widget_title' LIMIT 1;
+DROP TABLE IF EXISTS {$db_prefix}reply;
+CREATE TABLE {$db_prefix}reply (
+  id mediumint(8) unsigned NOT NULL auto_increment,
+  tid mediumint(8) unsigned NOT NULL default '0',
+  date bigint(20) NOT NULL,
+  name varchar(20) NOT NULL default '',
+  content text NOT NULL,
+  hide enum('n','y') NOT NULL default 'n',
+  ip varchar(128) NOT NULL default '',
+  PRIMARY KEY  (id),
+  KEY gid (tid)
+)".$add."
 ";
 
 	$mysql_query = explode(";\n",$sql);
 	while (list(,$query) = each($mysql_query))
 	{
 		$query = trim($query);
-		if ($query)
-		{
+		if ($query) {
 			$DB->query($query);
 		}
 	}
-	
-	$CACHE->mc_user();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
-	$CACHE->mc_comment();
-	$CACHE->mc_logtags();
-	$CACHE->mc_logsort();
-	$CACHE->mc_logatts();
-	$CACHE->mc_sta();
-	$CACHE->mc_link();
-	$CACHE->mc_tags();
-	$CACHE->mc_sort();
-	$CACHE->mc_newlog();
-
-	emMsg("恭喜你！emlog已成功升级到3.4.0 <a href=\"./\"> 进入博客&raquo; </a>");
+	@unlink('./install.php');
+	@unlink('./up3.4.0to3.5.0.php');
+	emMsg("恭喜你！emlog已成功升级到3.5.0 <a href=\"./\"> 进入博客&raquo; </a>");
 }
 echo "</body>";
 echo "</html>";
