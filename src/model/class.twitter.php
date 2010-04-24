@@ -102,4 +102,15 @@ class emTwitter {
 	    $this->db->query("UPDATE ".DB_PREFIX."twitter SET replynum = replynum $do WHERE id='$tid'");
 	}
 
+	/**
+	 * 格式化碎语内容
+	 *
+	 * @param string $t
+	 */
+    function formatTwitter($t) {
+        //识别URL
+        $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+        $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
+        return $t;
+    }
 }

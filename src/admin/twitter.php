@@ -50,8 +50,7 @@ if ($action == '') {
     cleanPage();
 }
 // 发布碎语.
-if ($action == 'post') 
-{
+if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
     if (!$t){
@@ -59,11 +58,7 @@ if ($action == 'post')
         exit;
     }
 
-    //识别http网址
-    $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
-    $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
-
-    $tdata = array('content' => $t,
+    $tdata = array('content' => $emTwitter->formatTwitter($t),
             'author' => UID,
             'date' => time(),
     );
@@ -75,7 +70,6 @@ if ($action == 'post')
 // 删除碎语.
 if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
-
 	$emTwitter->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: twitter.php?active_del=true");

@@ -37,7 +37,6 @@ function isLogin()
 function checkUser($username,$password,$imgcode,$logincode)
 {
 	session_start();
-	global $DB;
 	if (trim($username) == '' || trim($password) == '')
 	{
 		return false;

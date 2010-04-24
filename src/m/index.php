@@ -247,52 +247,39 @@ if (ISLOGIN === true && $action == 'dorep') {
 }
 // 碎语
 if ($action == 'tw') {
-	$page = isset ($_GET['page']) ? intval ($_GET['page']) : 1;
-	if ($page) {
-		$start_limit = ($page - 1) * $index_twnum;
-		$id = ($page - 1) * $index_twnum;
-	} else {
-		$start_limit = 0;
-		$page = 1;
-		$id = 0;
-	}
-	$sql = " SELECT * FROM " . DB_PREFIX . "twitter ORDER BY id DESC  LIMIT $start_limit, $index_twnum";
-	$twnum = $sta_cache ['twnum'];
-	$pageurl = './?action=tw&page';
-	$query = $DB->query($sql);
-	$tws = array();
-	while ($row = $DB->fetch_array($query)) {
-		$row ['date'] = smartDate($row ['date']);
-		//$row ['content'] = $row ['content'];
-		$tws [] = $row;
-	}
-	$page_url = pagination($twnum, $index_twnum, $page, $pageurl);
+    require_once EMLOG_ROOT.'/model/class.twitter.php';
+    $emTwitter = new emTwitter();
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $tws = $emTwitter->getTwitters($page);
+    $twnum = $emTwitter->getTwitterNum();
+    $pageurl =  pagination($twnum, $index_twnum, $page, './?action=tw&page');
 
 	include getViews('header');
 	include getViews('twitter');
 	include getViews('footer');
 }
 if (ISLOGIN === true && $action == 't') {
-	$t = isset ($_POST['t']) ? addslashes (trim($_POST['t'])) : '';
-    //识别http网址
-    $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
-    $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
+    require_once EMLOG_ROOT.'/model/class.twitter.php';
+    $emTwitter = new emTwitter();
 
-	if (!empty($t)) {
-		$query = $DB->query ("INSERT INTO " . DB_PREFIX . "twitter (content,author,date) VALUES('$t'," . UID . ",'$utctimestamp')");
-		$CACHE->updateCache(array('sta','newtw'));
-		header ("Location: ./?action=tw");
-	} else {
-		header ("Location: ./");
-	}
+    $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
+    if (!$t){
+        header ("Location: ./?action=tw");
+        exit;
+    }
+    $tdata = array('content' => $emTwitter->formatTwitter($t),
+            'author' => UID,
+            'date' => time(),
+    );
+    $emTwitter->addTwitter($tdata);
+    $CACHE->updateCache(array('sta','newtw'));
+    header ("Location: ./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {
-	$id = isset ($_GET['id']) ? intval ($_GET['id']) : '';
-	$author = ROLE == 'admin' ? '' : 'and author=' . UID;
-	$query = $DB->query ("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$id $author");
-	if ($DB->affected_rows() >= 1) {
-	    $query = $DB->query ("DELETE FROM " . DB_PREFIX . "reply WHERE tid=$id");
-	}
+    require_once EMLOG_ROOT.'/model/class.twitter.php';
+    $emTwitter = new emTwitter();
+    $id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emTwitter->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: ./?action=tw");
 }

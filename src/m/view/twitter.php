@@ -27,5 +27,5 @@ $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 <?php endif;?>
 </div>
 <?php endforeach; ?>
-<div id="page"><?php echo $page_url;?></div>
+<div id="page"><?php echo $pageurl;?></div>
 </div>
