@@ -9,6 +9,7 @@ src/admin/ckeditor/ckeditor.js -text
 src/admin/ckeditor/config.js -text
 src/admin/ckeditor/contents.css -text
 src/admin/ckeditor/images/spacer.gif -text
+src/admin/ckeditor/index.htm -text
 src/admin/ckeditor/lang/zh-cn.js -text
 src/admin/ckeditor/plugins/flash/dialogs/flash.js -text
 src/admin/ckeditor/plugins/flash/images/placeholder.png -text
@@ -156,6 +157,7 @@ src/admin/views/default/images/vlog.gif -text
 src/admin/views/default/images/weibe_bl.gif -text
 src/admin/views/default/images/weibe_button.gif -text
 src/admin/views/default/images/yeka.gif -text
+src/admin/views/default/index.htm -text
 src/admin/views/default/index.php -text svn_keywords=Id
 src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
@@ -173,10 +175,15 @@ src/admin/views/default/upload.php -text
 src/admin/views/default/user.php -text
 src/admin/views/default/useredit.php -text
 src/admin/views/default/widgets.php -text
+src/admin/views/index.htm -text
 src/admin/widgets.php -text svn_keywords=Id
 src/admin/write_log.php -text svn_keywords=Id
 src/common.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
+src/content/backup/index.htm -text
+src/content/cache/index.htm -text
+src/content/index.htm -text
+src/content/plugins/index.htm -text
 src/content/plugins/tips/icon_tips.gif -text
 src/content/plugins/tips/tips.php -text
 src/content/templates/default/echo_log.php -text
@@ -209,6 +216,8 @@ src/content/templates/default/page.php -text
 src/content/templates/default/preview.jpg -text
 src/content/templates/default/side.php -text
 src/content/templates/default/t.php -text
+src/content/templates/index.htm -text
+src/content/uploadfile/index.htm -text
 src/index.php -text svn_keywords=Id
 src/init.php -text
 src/install.php -text svn_keywords=Id
@@ -219,6 +228,7 @@ src/lib/class.mysql.php -text svn_keywords=Id
 src/lib/class.phpass.php -text
 src/lib/function.base.php -text svn_keywords=Id
 src/lib/function.login.php -text svn_keywords=Id
+src/lib/index.htm -text
 src/lib/js/common_tpl.js -text svn_keywords=Id
 src/lib/js/jquery/jquery-1.2.6.js -text
 src/lib/js/jquery/plugin-cookie.js -text
@@ -227,6 +237,7 @@ src/m/index.php -text
 src/m/view/comment.php -text
 src/m/view/footer.php -text
 src/m/view/header.php -text
+src/m/view/index.htm -text
 src/m/view/log.php -text
 src/m/view/logauth.php -text
 src/m/view/login.php -text
@@ -245,6 +256,7 @@ src/model/class.tag.php -text svn_keywords=Id
 src/model/class.trackback.php -text svn_keywords=Id
 src/model/class.twitter.php -text
 src/model/class.user.php -text svn_keywords=Id
+src/model/index.htm -text
 src/options.php -text
 src/robots.txt -text
 src/rss.php -text svn_keywords=Id
