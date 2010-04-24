@@ -81,7 +81,7 @@ if ($action == 'reply') {
             'content' => $r,
             'name' => $name,
             'date' => $date,
-            'hide' => $ischkreply
+            'hide' => ROLE == 'visitor' ? $ischkreply : 'n'
     );
 
     $emTwitter = new emTwitter();
@@ -91,7 +91,7 @@ if ($action == 'reply') {
     if ($rid === false){
         exit('err5');
     }
-    if ($ischkreply == 'n'){
+    if ($ischkreply == 'n' || ROLE != 'visitor'){
         $emTwitter->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');
