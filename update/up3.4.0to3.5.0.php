@@ -103,6 +103,7 @@ if(!isset($_GET['action'])){
 }
 
 if (isset($_GET['action'])&&$_GET['action'] == "install") {
+    $db_prefix = DB_PREFIX;
 	if (EMLOG_VERSION != '3.5.0') {
 		emMsg("错误操作：您必须完成升级步骤里的第一步才再进行本操作，详见安装说明");
 	}
@@ -119,10 +120,16 @@ if (isset($_GET['action'])&&$_GET['action'] == "install") {
 	$type = 'MYISAM';
 	$extra = "ENGINE=".$type." DEFAULT CHARSET=".$dbcharset.";";
 	$extra2 = "TYPE=".$type;
-	$DB->version() > '4.1' ? $add = $extra:$add = $extra2.";";
+	$DB->getMysqlVersion() > '4.1' ? $add = $extra:$add = $extra2.";";
+
+	$res = $DB->query("select option_value from {$db_prefix}options WHERE option_name='widget_title'");
+	$row = $DB->fetch_array($res);
+	$widgets = unserialize($row['option_value']);
+	$widgets['twitter'] = str_replace('碎语', '最新碎语', $widgets['twitter']);
+	$widgets = serialize($widgets);
 
 	$res = $DB->query("select option_value from {$db_prefix}options WHERE option_name='timezone'");
-	$row = $DB->fetch_row($res);
+	$row = $DB->fetch_array($res);
 	$timezone = intval($row['option_value']);
 	$time_offset = ($timezone - 8) * 3600;
 

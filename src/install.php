@@ -309,7 +309,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','6');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
