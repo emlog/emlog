@@ -89,8 +89,8 @@ if(!isset($_GET['action'])){
 </div>
 <div>
 <p class="foot">
-<input name="Submit" type="submit" class="submit" value="确 定">
-<input name="Submit2" type="reset" class="submit" value="重 置">
+<input type="submit" class="submit" value="确 定">
+<input type="reset" class="submit" value="重 置">
 </p>
 </div>
 <p class="foot">
@@ -110,6 +110,10 @@ if (isset($_GET['action'])&&$_GET['action'] == "install") {
 	if (DB_PASSWD != trim($_POST['password'])){
 	    emMsg("输入的数据库密码错误,请重新输入");
 	}
+
+    if ($DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}reply'")) == 1) {
+        emMsg("数据库已升级完成，请勿重复运行升级脚本");
+    }
 	
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
