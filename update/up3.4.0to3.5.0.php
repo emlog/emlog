@@ -168,8 +168,11 @@ CREATE TABLE {$db_prefix}reply (
 			$DB->query($query);
 		}
 	}
+	$CACHE->updateCache();
 	@unlink('./install.php');
 	@unlink('./up3.4.0to3.5.0.php');
+	@unlink('./calendar.php');
+	@unlink('./twitter.php');
 	emMsg("恭喜你！emlog已成功升级到3.5.0 <a href=\"./\"> 进入博客&raquo; </a>");
 }
 echo "</body>";
