@@ -273,6 +273,7 @@ if (ISLOGIN === true && $action == 't') {
     );
     $emTwitter->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
+    doAction('post_twitter', $t);
     header ("Location: ./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {

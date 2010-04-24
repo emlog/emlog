@@ -65,6 +65,7 @@ if ($action == 'post') {
 
     $emTwitter->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
+    doAction('post_twitter', $t);
     header("Location: twitter.php?active_t=true");
 }
 // 删除碎语.

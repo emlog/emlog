@@ -98,6 +98,8 @@ if ($action == 'reply') {
     }
     $CACHE->updateCache('sta');
 
+    doAction('reply_twitter', $r, $name, $date, $tid);
+
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
     $response = "
