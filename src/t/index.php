@@ -1,9 +1,9 @@
 <?php
 /**
- * twitter
+ * 碎语
  * @copyright (c) Emlog All Rights Reserved
  * @version emlog-3.5.0
- * $Id: twitter.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
+ * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
 */
 
 require_once '../common.php';
@@ -26,6 +26,7 @@ if ($action == '') {
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php?mode=t\" />" : '';
 
+    $curpage = CURPAGE_TW;
     include getViews('header');
     require_once getViews('t');
     cleanPage(true);

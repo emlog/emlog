@@ -32,16 +32,16 @@ require_once (getViews('module'));
 			<li id="tagline"><?php echo $bloginfo; ?></li>
 		</ul>
 		<ul id="menus">
-			<li class="menus1"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+			<li class="menus<?php echo $curpage == CURPAGE_HOME ? 1 : 2;?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<?php if($istwitter == 'y'):?>
-			<li class="menus2"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
+			<li class="menus<?php echo $curpage == CURPAGE_TW ? 1 : 2;?>"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
 			<?php endif;?>
 			<?php 
 			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
 			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
 			?>
-			<li class="menus2"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+			<li class="menus<?php echo isset($logid) && $key == $logid ? 1 : 2;?>"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 			<?php endforeach;?>
 			<?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
 			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>

@@ -103,6 +103,8 @@ if (!empty($logid)) {
 	$ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	$ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
+
+	$curpage = CURPAGE_LOG;
 	include getViews('header');
 	if ($type == 'blog') {
 		$emBlog->updateViewCount($logid);
