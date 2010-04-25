@@ -145,6 +145,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 UPDATE {$db_prefix}options SET option_value='default' WHERE option_name='nonce_templet';
+UPDATE {$db_prefix}options SET option_value='8' WHERE option_name='timezone';
 UPDATE {$db_prefix}options SET option_value='$widgets' WHERE option_name='widget_title' LIMIT 1;
 DROP TABLE IF EXISTS {$db_prefix}reply;
 ALTER TABLE {$db_prefix}blog ADD INDEX date (date), ADD INDEX author (author), ADD INDEX sortid (sortid), ADD INDEX type (type), ADD INDEX hide (hide);
