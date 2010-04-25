@@ -13,6 +13,10 @@ define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径
 
 $blogtitle = $blogname;
 
+if ($istwitter == 'n') {
+    emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
+}
+
 if ($action == '') {
     require_once EMLOG_ROOT.'/model/class.twitter.php';
 
