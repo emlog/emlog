@@ -147,7 +147,8 @@ textarea{font-size:12px}
 #tw ul li{ clear:both; padding:0px; margin:0px;}
 #tw ul li .bttome {margin:3px 0;vertical-align:middle}
 #tw ul li .bttome .time{ float:left;line-height:14px;margin:0;}
-#tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;}
+#tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;color:#999999;}
+#tw ul li .bttome .post small{color:#FF0000;}
 #tw .time{ font-size:12px; color:#999999; padding-left:43px}
 #tw ul .r{ margin:5px 0px 0px 40px;color:#666666; border:0; padding:0px;}
 #tw ul .r li{padding:5px 3px 3px;border-bottom: #F7F7F7 1px solid;}

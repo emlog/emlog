@@ -45,13 +45,14 @@
     $avatar = empty($user_cache[$val['author']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
     $replynum = $emReply->getReplyNum($tid);
+    $hidenum = $replynum - $val['replynum'];
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复(<span><?php echo $replynum;?></span>)</a></p>
+        <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复</a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
         <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');">删除</a> </p>
     </div>
 	<div class="clear"></div>
@@ -120,6 +121,10 @@ function delreply(rid,tid){
             var tid = Number(data);
             var rnum = Number($("#"+tid+" span").text());
             $("#"+tid+" span").text(rnum-1);
+            if ($("#reply_"+rid+" span a").text() == '审核'){
+                var rnum = Number($("#"+tid+" small").text());
+                if(rnum == 1){$("#"+tid+" small").text('');}else{$("#"+tid+" small").text(rnum-1);}
+            }
             $("#reply_"+rid).hide("slow");
         })}else {return;}
 }
@@ -128,6 +133,8 @@ function hidereply(rid,tid){
         $("#reply_"+rid).css('background-color','#FEE0E4');
         $("#reply_"+rid+" span a").text('审核');
         $("#reply_"+rid+" span a").attr("href","javascript: pubreply("+rid+","+tid+")");
+        var rnum = Number($("#"+tid+" small").text());
+        $("#"+tid+" small").text(rnum+1);
         });
 }
 function pubreply(rid,tid){
@@ -135,6 +142,8 @@ function pubreply(rid,tid){
         $("#reply_"+rid).css('background-color','#FFF');
         $("#reply_"+rid+" span a").text('屏蔽');
         $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+","+tid+")");
+        var rnum = Number($("#"+tid+" small").text());
+        if(rnum == 1){$("#"+tid+" small").text('');}else{$("#"+tid+" small").text(rnum-1);}
         });
 }
 function checkt(){
