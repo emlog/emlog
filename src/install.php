@@ -265,7 +265,12 @@ CREATE TABLE {$db_prefix}blog (
   allow_remark enum('n','y') NOT NULL default 'y',
   allow_tb enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
-  PRIMARY KEY  (gid)
+  PRIMARY KEY  (gid),
+  KEY date (date),
+  KEY author (author),
+  KEY sortid (sortid),
+  KEY type (type),
+  KEY hide (hide)
 )".$add."
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, 'hi blogger', '1230508801', '欢迎使用emlog开始你的博客之旅。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
@@ -292,14 +297,16 @@ CREATE TABLE {$db_prefix}comment (
   ip varchar(128) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
-  KEY gid (gid)
+  KEY gid (gid),
+  KEY hide (hide)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
 option_name VARCHAR( 255 ) NOT NULL ,
 option_value LONGTEXT NOT NULL ,
-PRIMARY KEY (option_id)
+PRIMARY KEY (option_id),
+KEY option_name (option_name)
 )".$add."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
@@ -383,7 +390,8 @@ content text NOT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
 replynum mediumint(8) unsigned NOT NULL default '0',
-PRIMARY KEY (id)
+PRIMARY KEY (id),
+KEY author (author)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
@@ -395,7 +403,8 @@ CREATE TABLE {$db_prefix}reply (
   hide enum('n','y') NOT NULL default 'n',
   ip varchar(128) NOT NULL default '',
   PRIMARY KEY  (id),
-  KEY gid (tid)
+  KEY gid (tid),
+  KEY hide (hide)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
@@ -407,7 +416,8 @@ CREATE TABLE {$db_prefix}user (
   photo varchar(255) NOT NULL default '',
   email varchar(60) NOT NULL default '',
   description varchar(255) NOT NULL default '',
-PRIMARY KEY  (uid)
+PRIMARY KEY  (uid),
+KEY username (username)
 )".$add."
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 

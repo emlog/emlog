@@ -147,6 +147,11 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter',
 UPDATE {$db_prefix}options SET option_value='default' WHERE option_name='nonce_templet';
 UPDATE {$db_prefix}options SET option_value='$widgets' WHERE option_name='widget_title' LIMIT 1;
 DROP TABLE IF EXISTS {$db_prefix}reply;
+ALTER TABLE {$db_prefix}blog ADD INDEX date (date), ADD INDEX author (author), ADD INDEX sortid (sortid), ADD INDEX type (type), ADD INDEX hide (hide);
+ALTER TABLE {$db_prefix}user ADD INDEX username (username);
+ALTER TABLE {$db_prefix}twitter ADD INDEX author (author);
+ALTER TABLE {$db_prefix}options ADD INDEX option_name (option_name);
+ALTER TABLE {$db_prefix}comment ADD INDEX hide (hide);
 CREATE TABLE {$db_prefix}reply (
   id mediumint(8) unsigned NOT NULL auto_increment,
   tid mediumint(8) unsigned NOT NULL default '0',
@@ -156,7 +161,8 @@ CREATE TABLE {$db_prefix}reply (
   hide enum('n','y') NOT NULL default 'n',
   ip varchar(128) NOT NULL default '',
   PRIMARY KEY  (id),
-  KEY gid (tid)
+  KEY gid (tid),
+  KEY hide (hide)
 )".$add."
 ";
 
