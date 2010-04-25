@@ -118,6 +118,7 @@ class emBlog {
 		$row = $this->db->fetch_array($res);
 		if ($row) {
 			$logData = array('log_title' => htmlspecialchars($row['title']),
+				'timestamp' => $row['date'],
 				'date' => $row['date'] + $timezone * 3600,
 				'logid' => intval($row['gid']),
 				'sortid' => intval($row['sortid']),

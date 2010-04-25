@@ -108,7 +108,7 @@ if (!empty($logid)) {
 	include getViews('header');
 	if ($type == 'blog') {
 		$emBlog->updateViewCount($logid);
-		$neighborLog = $emBlog->neighborLog($date);
+		$neighborLog = $emBlog->neighborLog($timestamp);
 		extract($neighborLog);
 		$tb = $emTrackback->getTrackbacks(null, $logid, 0);
 		require_once getViews('echo_log');
