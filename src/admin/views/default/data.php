@@ -19,9 +19,9 @@
     </tr>
   </head>
   <tbody>
-	<?php 
+	<?php
 		foreach($bakfiles  as $value):
-		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
+		$modtime = smartDate(filemtime($value) + $timezone * 3600,'Y-m-d H:i:s');
 		$size =  changeFileSize(filesize($value));
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
@@ -43,7 +43,7 @@
 	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="11" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
-		<?php endforeach; ?>	  
+		<?php endforeach; ?>
       	</select></p>
 	<p>备份文件名：(由英文字母、数字、下划线组成) <br /><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
 	<p>备份文件保存在？
