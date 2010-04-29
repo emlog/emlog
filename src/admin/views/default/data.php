@@ -21,7 +21,7 @@
   <tbody>
 	<?php
 		foreach($bakfiles  as $value):
-		$modtime = smartDate(filemtime($value) + $timezone * 3600,'Y-m-d H:i:s');
+		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
 		$size =  changeFileSize(filesize($value));
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
