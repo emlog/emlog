@@ -7,32 +7,22 @@
  */
 
 class Calendar {
-
-	private $db;
-	private $timezone;
-	private $utctimestamp;
-
-	function __construct($timezone){
-		$this->db = MySql::getInstance();
-		$this->timezone = $timezone;
-		$this->utctimestamp = time();
-	}    
-
-    function generate() {
-        $this->utctimestamp += $this->timezone * 3600;
+    static function generate() {
+        global $DB, $timezone, $utctimestamp;
+        $utctimestamp += $timezone * 3600;
         
         //建立日志时间写入数组
-        $query = $this->db->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
-        while ($date = $this->db->fetch_array($query)){
+        $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
+        while ($date = $DB->fetch_array($query)){
         	$logdate[] = gmdate("Ymd",$date['date']);
         }
         //获取当前日期
-        $n_year  = gmdate("Y",$this->utctimestamp);
-        $n_year2 = gmdate("Y",$this->utctimestamp);
-        $n_month = gmdate("m",$this->utctimestamp);
-        $n_day   = gmdate("d",$this->utctimestamp);
-        $time    = gmdate("Ymd",$this->utctimestamp);
-        $year_month = gmdate("Ym",$this->utctimestamp);
+        $n_year  = gmdate("Y",$utctimestamp);
+        $n_year2 = gmdate("Y",$utctimestamp);
+        $n_month = gmdate("m",$utctimestamp);
+        $n_day   = gmdate("d",$utctimestamp);
+        $time    = gmdate("Ymd",$utctimestamp);
+        $year_month = gmdate("Ym",$utctimestamp);
         
         if (isset($_GET['record'])){
         	$n_year = substr(intval($_GET['record']),0,4);
@@ -40,7 +30,6 @@ class Calendar {
         	$n_month = substr(intval($_GET['record']),4,2);
         	$year_month = substr(intval($_GET['record']),0,6);
         }
-        
         //年月跳转连接
         $m  = $n_month - 1;
         $mj = $n_month + 1;
@@ -131,6 +120,6 @@ class Calendar {
         	$w += 7;
         }//外循环结束
         $calendar .= '</table>';
-        return $calendar;
+        echo $calendar;
     }
 }

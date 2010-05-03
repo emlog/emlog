@@ -28,7 +28,7 @@ if ($action == '') {
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, $index_twnum, $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-    $rcode = $reply_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php?mode=t\" />" : '';
+    $rcode = $reply_code == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
     include getViews('header');
@@ -113,4 +113,8 @@ if ($action == 'reply') {
          <em><a href=\"javascript:re({$tid}, '@{$name}:');\">回复</a></em>
          </li>";
     echo $response;
+}
+// 回复验证码.
+if ($action == 'ckcode') {
+    require_once EMLOG_ROOT.'/lib/checkcode.php';
 }

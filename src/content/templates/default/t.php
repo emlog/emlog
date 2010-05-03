@@ -22,7 +22,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post"><a href="javascript:loadr('<?php echo BLOG_URL; ?>t/?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');">回复(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
+        <p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');">回复(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
         <p class="time"><?php echo $val['date'];?> </p>
     </div>
 	<div class="clear"></div>
@@ -34,7 +34,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         昵称：<input type="text" id="rname_<?php echo $tid; ?>" value="" />
         <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>">验证码：<input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
         </div>
-        <input class="button_p" type="button" onclick="reply('<?php echo BLOG_URL; ?>t/?action=reply',<?php echo $tid;?>);" value="回复" /> 
+        <input class="button_p" type="button" onclick="reply('<?php echo DYNAMIC_BLOGURL; ?>?action=reply',<?php echo $tid;?>);" value="回复" /> 
         <div class="msg"><span id="rmsg_<?php echo $tid; ?>" style="color:#FF0000"></span></div>
     </div>
     </div>

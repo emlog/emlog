@@ -252,33 +252,6 @@ function doAction($hook){
 }
 
 /**
- * 改变图片附件的比例，用于模板中
- *
- * @param string $attstr 缓存中的附件串
- * @param int $width 新的宽
- * @param int $height 新的高
- * @return unknown
- */
-function getAttachment($attstr,$width,$height){
-	$re = '';
-	if (!empty($attstr)) {
-		$att_array = explode("</a>",$attstr);
-		foreach ($att_array as $value) {
-			if (preg_match("/.+src=\"(.+)\" width=.+/i",$value,$imgpath)){
-				$image = "./".$imgpath[1];
-				$size = chImageSize($image,$width,$height);
-				$attsize = "width=\"".$size['w']."\" height=\"".$size['h']."\"";
-				$t = preg_replace("/width=\"[0-9]{3}\" height=\"[0-9]{3}\"/",$attsize,$value);
-				$re .= $t .'</a>';
-			}
-		}
-		return $re;
-	} else {
-		return '';
-	}
-}
-
-/**
  * 清除模板中的注释,并完成URL优化
  *
  */
@@ -473,15 +446,10 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')){
-	    if($isIcon)
-	    {
-	        if( resizeImage($tmpFile, $fileType, $thum, ICON_MAX_W, ICON_MAX_H)) 
-	        {
-	            $attach = $thum;
-	        }
+	    if ($isIcon && resizeImage($tmpFile, $fileType, $thum, ICON_MAX_W, ICON_MAX_H)) {
+	        $attach = $thum;
 	        resizeImage($tmpFile, $fileType, $uppath.'thum52-'. $fname, 52, 52);
-	    }else{
-	        resizeImage($tmpFile, $fileType, $thum, IMG_ATT_MAX_W, IMG_ATT_MAX_H);
+	    } elseif (resizeImage($tmpFile, $fileType, $thum, IMG_ATT_MAX_W, IMG_ATT_MAX_H)){
 	        $attach = $thum;
 	    }
 	}
