@@ -32,24 +32,24 @@ require_once (getViews('module'));
 			<li id="tagline"><?php echo $bloginfo; ?></li>
 		</ul>
 		<ul id="menus">
-			<li class="menus<?php echo $curpage == CURPAGE_HOME ? 1 : 2;?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
+			<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<?php if($istwitter == 'y'):?>
-			<li class="menus<?php echo $curpage == CURPAGE_TW ? 1 : 2;?>"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
+			<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
 			<?php endif;?>
 			<?php 
 			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
 			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
 			?>
-			<li class="menus<?php echo isset($logid) && $key == $logid ? 1 : 2;?>"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
+			<li class="<?php echo isset($logid) && $key == $logid ? 'current' : 'common';?>"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 			<?php endforeach;?>
-			<?php doAction('navbar', '<li class="menus2">', '</li>'); ?>
+			<?php doAction('navbar', '<li class="common">', '</li>'); ?>
 			<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
-			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php else: ?>
-			<li class="menus2"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="clear"></div>

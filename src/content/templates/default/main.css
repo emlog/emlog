@@ -22,12 +22,12 @@ a:hover{color:#0079b7; text-decoration:underline}
 #menus{font-size:14px; float:right; margin:6px 12px 0px 0px; _margin:6px 12px 0px 0px; height:1%; zoom:1}
 #menus li{float:left; margin-right:2px}
 #menus li a{width:73px; padding:4px 0px 2px; display:block; text-align:center}
-#menus .menus1 a{background:url(images/button.png) no-repeat}
-#menus .menus1 a:visited{background:url(images/button.png) no-repeat; color:#FFF; text-decoration:none}
-#menus .menus1 a:hover{background:url(images/button.png) no-repeat 0px -29px; color:#FFF; text-decoration:none}
-#menus .menus2 a{background:url(images/button.png) no-repeat -74px 0px}
-#menus .menus2 a:visited{background:url(images/button.png) no-repeat -74px 0px; color:#FFF; text-decoration:none}
-#menus .menus2 a:hover{background:url(images/button.png) no-repeat -74px -29px; color:#FFF; text-decoration:none}
+#menus .current a{background:url(images/button.png) no-repeat}
+#menus .current a:visited{background:url(images/button.png) no-repeat; color:#FFF; text-decoration:none}
+#menus .current a:hover{background:url(images/button.png) no-repeat 0px -29px; color:#FFF; text-decoration:none}
+#menus .common a{background:url(images/button.png) no-repeat -74px 0px}
+#menus .common a:visited{background:url(images/button.png) no-repeat -74px 0px; color:#FFF; text-decoration:none}
+#menus .common a:hover{background:url(images/button.png) no-repeat -74px -29px; color:#FFF; text-decoration:none}
 /*content*/
 #content,#tw{width:582px; float:left; padding:10px 33px 10px 55px; font-size:14px; color:#333; line-height:1.6; overflow:hidden}
 #content h1,#content h2,#content h3,#content h4,#content h5,#content h6{ font-weight:bold}
