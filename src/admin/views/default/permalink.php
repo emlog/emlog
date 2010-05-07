@@ -3,7 +3,6 @@
 <div class="containertitle2">
 <a class="navi1" href="./configure.php">基本设置</a><a class="navi2" href="./permalink.php">固定链接</a><a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
-<?php if(isset($_GET['error'])):?><span class="error">保存失败：根目录下的配置文件(.htaccess)不可写</span><?php endif;?>
 </div>
 <div style="margin-left:10px;">
 <div class="des">你可以在这里修改日志链接的形式，以此提高链接的可读性和对搜索引擎的友好程度。<br />如果修改后日志无法访问，请修改回默认形式。</div>
