@@ -480,12 +480,13 @@ function mw_newMediaObject($args) {
 	if (!in_array($extension, $att_type)) {
 		error_message(500, '文件类型错误');
 	}
-	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
+	$uppath_root = substr(UPLOADFILE_PATH, 1);
+	$uppath = $uppath_root . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
-	if (!is_dir(UPLOADFILE_PATH)) {
+	if (!is_dir($uppath_root)) {
 		umask(0);
-		$ret = @mkdir(UPLOADFILE_PATH, 0777);
+		$ret = @mkdir($uppath_root, 0777);
 		if ($ret === false) {
 			error_message(500, '创建文件上传目录失败');
 		}
