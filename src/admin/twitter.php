@@ -97,7 +97,7 @@ if ($action == 'getreply') {
          <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
          <a href=\"javascript: delreply({$val['id']},{$tid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">回复</a></em>
+         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}：');\">回复</a></em>
          </li>";
     }
     echo $response;
@@ -138,7 +138,7 @@ if ($action == 'reply') {
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
          <span><a href=\"javascript: hidereply({$rid},{$tid});\">屏蔽</a></span> 
          <a href=\"javascript: delreply({$rid},{$tid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">回复</a></em>
+         <em><a href=\"javascript:reply({$tid}, '@{$name}：');\">回复</a></em>
          </li>";
     echo $response;
 }
