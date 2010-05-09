@@ -14,6 +14,9 @@ function getChecked(node) {
 	});
 	return re;
 }
+function timestamp(){
+	return new Date().getTime();
+}
 function em_confirm (id, property) {
 	switch (property){
 		case 'tw':

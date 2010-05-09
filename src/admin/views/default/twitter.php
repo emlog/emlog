@@ -74,7 +74,7 @@ $(document).ready(function(){
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('<p class="loading"></p>');
-        $.get("twitter.php?action=getreply&tid="+tid+"&stamp="+new Date().getTime(), function(data){
+        $.get("twitter.php?action=getreply&tid="+tid+"&stamp="+timestamp(), function(data){
         $("#r_" + tid).html(data);
         $("#rp_"+tid).show();
       })},
@@ -103,7 +103,7 @@ function reply(tid, rp){
 function doreply(tid){
     var r = $("#rp_"+tid+" textarea").val();
     var post = "r="+encodeURIComponent(r);
-	$.post('twitter.php?action=reply&tid='+tid, post, function(data){
+	$.post('twitter.php?action=reply&tid='+tid+"&stamp="+timestamp(), post, function(data){
 		data = $.trim(data);
 		if (data == 'err1'){
             $(".huifu span").text('回复长度需在140个字内');
@@ -119,7 +119,7 @@ function doreply(tid){
 }
 function delreply(rid,tid){
     if(confirm('你确定要删除该条回复吗？')){
-        $.get("twitter.php?action=delreply&rid="+rid+"&tid="+tid, function(data){
+        $.get("twitter.php?action=delreply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(data){
             var tid = Number(data);
             var rnum = Number($("#"+tid+" span").text());
             $("#"+tid+" span").text(rnum-1);
@@ -131,7 +131,7 @@ function delreply(rid,tid){
         })}else {return;}
 }
 function hidereply(rid,tid){
-    $.get("twitter.php?action=hidereply&rid="+rid+"&tid="+tid, function(){
+    $.get("twitter.php?action=hidereply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(){
         $("#reply_"+rid).css('background-color','#FEE0E4');
         $("#reply_"+rid+" span a").text('审核');
         $("#reply_"+rid+" span a").attr("href","javascript: pubreply("+rid+","+tid+")");
@@ -140,7 +140,7 @@ function hidereply(rid,tid){
         });
 }
 function pubreply(rid,tid){
-    $.get("twitter.php?action=pubreply&rid="+rid+"&tid="+tid, function(){
+    $.get("twitter.php?action=pubreply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(){
         $("#reply_"+rid).css('background-color','#FFF');
         $("#reply_"+rid+" span a").text('屏蔽');
         $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+","+tid+")");
