@@ -14,6 +14,7 @@
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/></div>
     </form>
+    <?php if (ROLE == 'admin'):?>
     <div class="op"><a href="javascript:displayToggle('sz_box', 2);">设置</a></div>
     <form method="post" action="twitter.php?action=set">
         <div class="sz_box" id="sz_box">
@@ -36,6 +37,7 @@
             <input class="tbutton" type="submit" value="保存" />
         </div>
     </form>
+    <?php endif;?>
     </div>
     <div class="clear"></div>
     <ul>
