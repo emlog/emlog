@@ -20,9 +20,9 @@ function step_one() {
 	<form method="get" action="">
 	<input type="hidden" name="step" value="two" />
 			<div>
-				<p><span class="title">升级步骤一</span></p>
-				<p>请确认将您下载的emlog3.5的源代码上传并覆盖</p>
-				<p>请注意上传代码时<font color="red"><b>不要覆盖config.php</b></font></p>
+				<p class="title">升级步骤一</p>
+				<p>请确认将您下载的emlog3.5的源代码上传并覆盖。</p>
+				<p>并注意<font color="red"><b>不要覆盖 config.php</b></font></p>
 				<p class="foot"><input type="submit" class="submit" value="我已经确认完成了这个步骤"></p>
 			</div>
 	</form>
@@ -31,14 +31,17 @@ function step_one() {
 }
 
 function step_two() {
+    if (EMLOG_VERSION != '3.5.0') {
+		em_error("您必须完成升级步骤里的第一步才再进行本操作，详见安装说明");
+	}
 	em_header();
 	?>
 	<form method="post" action="?step=three">
 		<div>
-			<p><span class="title">升级步骤二</span></p>
-			<p>我们在emlog3.5中新增加了一些新功能和特性，因此需要对您博客的数据库结构进行升级操作</p>
-			<p>请填写您博客数据库的密码以确认您的身份</p>
-			<p style="color:red">如果您忘记了数据库的密码，可以在config.php中的DB_PASSWD项目中找到它</p>
+			<p class="title">升级步骤二</p>
+			<p>我们在emlog3.5.0 中新增加了一些新功能和特性，因此需要对您博客的数据库结构进行升级操作。</p>
+			<p>请填写您博客数据库的密码以确认您的身份。</p>
+			<p style="color:red">如果您忘记了数据库的密码，可以在 config.php 中的 DB_PASSWD 项目中找到它。</p>
 		<div>
 		<div class="b">
 			<li>
@@ -65,7 +68,7 @@ function step_three() {
 	?>
 	<form method="get">
 		<div>
-			<p><span class="title">升级步骤三</span></p>
+			<p class="title">升级步骤三 </p>
 			<?php
 				if (!$conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
 					?>
@@ -193,20 +196,20 @@ function step_four() {
 	?>
 	<form method="post" action="?step=five" id="theform">
 		<div>
-			<p><span class="title">升级步骤四</span></p>
+			<p class="title">升级步骤四</p>
 			<p style="color:green;font-weight:bold">恭喜您，到这里Blog主要的升级工作已经完成了！</p>
-			<p>由于emlog3.4的模版和插件和新版本存在兼容性问题，您需要去emlog官方网站下载您正在使用的模版和插件的最近版本并更新，以免由于程序兼容问题导致您的博客出现故障。</p>
-			<p>同时，我们强烈建议您现在将博客的模板切换回emlog的默认模版和暂时禁用安装的所有插件。您可以在把它们更新到最新版本之后再启用.</p>
+			<p>由于emlog3.4的模版、插件和新版本存在兼容性问题，您需要去emlog官方网站下载您正在使用的模版和插件的最近版本并更新，以免由于程序兼容问题导致您的博客出现故障。我们将暂时把您的模板切换为默认模板</p>
+			<p>同时，我们强烈建议您现在暂时禁用安装的所有插件。您可以在把它们更新到最新版本之后再启用.</p>
 		<div>
 		<p class="foot">
 			<input type="hidden" name="close" value="1" id="close"/>
-			<input type="submit" class="submit" value="好的，禁用所有插件并将博客模版切换回默认模版" />
-			<input type="submit" onclick="return ask_to_confirm();"class="submit" value="不用，我会自行切换模版和禁用插件" />
+			<input type="submit" class="submit" value="好的，禁用所有插件" />
+			<input type="submit" onclick="return ask_to_confirm();"class="submit" value="不用，我会自行禁用插件" />
 		</p>
 		<script type="text/javascript">
 			function ask_to_confirm() {
 				if (confirm('确定不禁用插件和更换模板吗?')) {
-					document.getElementById('close').value = '0';
+					document.getElementById('close').value = '1';
 					return true;
 				} else {
 					return false;
@@ -221,15 +224,15 @@ function step_four() {
 function step_five() {
 	em_header();
 	$close = isset($_POST['close']) ? intval($_POST['close']) : 1;
+	$db = MySql::getInstance();
+	$db->query("UPDATE ". DB_PREFIX . "options SET option_value = 'default' WHERE option_name = 'nonce_templet'");
 	if ($close == 1) {
-		$db = MySql::getInstance();
-		$db->query("UPDATE ". DB_PREFIX . "options SET option_value = 'Paladin' WHERE option_name = 'nonce_templet'");
-		$db->query("UPDATE ". DB_PREFIX . "options SET option_value = '". serialize(array()) ."' WHERE option_name = 'active_plugins'");
+		$db->query("UPDATE ". DB_PREFIX . "options SET option_value = '". serialize(array('tips/tips.php')) ."' WHERE option_name = 'active_plugins'");
 	}
-
+    mkcache::getInstance()->updateCache('options');
 	?>
 		<div>
-			<p><span class="title">升级完成！</span></p>
+			<p class="title">升级完成！</p>
 			<p style="color:green;font-weight:bold">恭喜你，emlog3.5的升级步骤全部完成了！</p>
 			<p><a href="./">访问博客首页</a></p>
 			<p><a href="./admin/index.php">登陆博客后台</a></p>
@@ -245,9 +248,9 @@ function em_error($message) {
 	em_header();
 	?>
 		<div>
-			<p><span class="title">出现错误！</span></p>
+			<p class="title">出现错误！</p>
 			<p style="color:red;font-weight:bold"><?php echo $message?></p>
-			<p><a href="javascript:history(-1)">返回前一个页面</a></p>
+			<p><a href="javascript:history.back(-1);">返回前一个页面</a></p>
 		<div>
 	<?php
 	em_footer();
@@ -301,6 +304,7 @@ function em_header() {
 	.title{
 		font-size:20px;
 		font-weight:bold;
+		padding:20px 0px 5px 0px;
 	}
 	.care{
 		color:#0066CC;
