@@ -208,7 +208,7 @@ function step_four() {
 		</p>
 		<script type="text/javascript">
 			function ask_to_confirm() {
-				if (confirm('确定不禁用插件和更换模板吗?')) {
+				if (confirm('确定不禁用插件吗?')) {
 					document.getElementById('close').value = '1';
 					return true;
 				} else {
