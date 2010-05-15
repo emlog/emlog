@@ -177,7 +177,7 @@ if ($action == 'addcom') {
 			header("Location: ./?post=$gid");
 			break;
 		case 1:
-			$CACHE->updateCache(array('sta'));
+			$CACHE->updateCache('sta');
 			doAction('comment_saved');
 			mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
 			break;

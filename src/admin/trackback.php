@@ -36,6 +36,6 @@ if($action == 'dell')
 	{
 		$emTrackback->deleteTrackback($value);
 	}
-	$CACHE->updateCache(array('sta'));
+	$CACHE->updateCache('sta');
 	header("Location: ./trackback.php?active_del=true");
 }

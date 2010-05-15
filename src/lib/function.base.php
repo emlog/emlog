@@ -94,7 +94,7 @@ function getBlogUrl(){
  *
  */
 function viewCount(){
-	global $CACHE, $viewcount_day, $viewcount_all, $viewcount_date, $DB, $utctimestamp, $timezone;
+	global $CACHE, $viewcount_day, $viewcount_all, $viewcount_date, $utctimestamp, $timezone;
 	$userip = getIp();
 	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
 	if ($em_viewip != $userip){
@@ -117,8 +117,7 @@ function viewCount(){
  * 更新博客选项
  *
  */
-function updateOption($name, $value, $isSyntax = false)
-{
+function updateOption($name, $value, $isSyntax = false){
 	global $DB;
 	$value = $isSyntax ? $value : "'$value'";
 	$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");

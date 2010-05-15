@@ -148,7 +148,7 @@ if ($action == 'addcom') {
 		doAction('comment_saved');
 		emMsg('评论发表成功', BLOG_URL."?post=$gid#comment", true);break;
 		case 1:
-		$CACHE->updateCache(array('sta'));
+		$CACHE->updateCache('sta');
 		doAction('comment_saved');
 		emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$gid");break;
 	}

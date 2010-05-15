@@ -41,8 +41,8 @@ class mkcache {
 	}
 	/**
 	 * 更新缓存
-	 *
-	 * @param array $ /string $cacheName 需要更新的缓存，值为需要更新的缓存方法名称 数组方式 array('options', 'user') 字符串方式  'options'
+	 * 
+	 * @param array/string $cacheMethodName 需要更新的缓存，更新多个采用数组方式：array('options', 'user'),单个采用字符串方式：'options',全部则留空
 	 * @return unknown_type
 	 */
 	function updateCache($cacheMethodName = null) {
