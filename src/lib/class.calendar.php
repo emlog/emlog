@@ -14,7 +14,7 @@ class Calendar {
         //建立日志时间写入数组
         $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
         while ($date = $DB->fetch_array($query)){
-        	$logdate[] = gmdate("Ymd",$date['date']);
+        	$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
         }
         //获取当前日期
         $n_year  = gmdate("Y",$utctimestamp);

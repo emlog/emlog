@@ -12,8 +12,7 @@ require_once EMLOG_ROOT.'/model/class.blog.php';
 $navibar = unserialize($navibar);
 
 //加载页面管理页面
-if($action == '')
-{
+if ($action == '') {
 	$emPage = new emBlog();
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -29,19 +28,14 @@ if($action == '')
 	cleanPage();
 }
 //显示新建页面表单
-if ($action == 'new')
-{
-	$localtime = time() - ($timezone - 8) * 3600;
-	$postDate = gmdate('Y-m-d H:i:s', $localtime);
-
+if ($action == 'new') {
 	include getViews('header');
 	require_once(getViews('add_page'));
 	include getViews('footer');
 	cleanPage();
 }
 //显示编辑页面表单
-if ($action == 'mod')
-{
+if ($action == 'mod') {
 	$emPage = new emBlog();
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
@@ -73,8 +67,7 @@ if ($action == 'mod')
 	cleanPage();
 }
 //保存页面
-if ($action == 'add' || $action == 'edit' || $action == 'autosave')
-{
+if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$emPage = new emBlog();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
@@ -129,8 +122,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}
 }
 //操作页面
-if ($action == 'operate_page')
-{
+if ($action == 'operate_page') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
