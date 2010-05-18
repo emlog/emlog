@@ -9,7 +9,7 @@
 class Calendar {
     static function generate() {
         global $DB, $timezone, $utctimestamp;
-        $utctimestamp += $timezone * 3600;
+        $timestamp = $utctimestamp + $timezone * 3600;
         
         //建立日志时间写入数组
         $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
@@ -17,12 +17,12 @@ class Calendar {
         	$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
         }
         //获取当前日期
-        $n_year  = gmdate("Y",$utctimestamp);
-        $n_year2 = gmdate("Y",$utctimestamp);
-        $n_month = gmdate("m",$utctimestamp);
-        $n_day   = gmdate("d",$utctimestamp);
-        $time    = gmdate("Ymd",$utctimestamp);
-        $year_month = gmdate("Ym",$utctimestamp);
+        $n_year  = gmdate("Y", $timestamp);
+        $n_year2 = gmdate("Y", $timestamp);
+        $n_month = gmdate("m", $timestamp);
+        $n_day   = gmdate("d", $timestamp);
+        $time    = gmdate("Ymd", $timestamp);
+        $year_month = gmdate("Ym", $timestamp);
         
         if (isset($_GET['record'])){
         	$n_year = substr(intval($_GET['record']),0,4);
