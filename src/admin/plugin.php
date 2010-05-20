@@ -26,9 +26,12 @@ if($action == '' && !$plugin)
 if ($action == 'active')
 {
 	$emPlugin = new emPlugin($plugin);
-	$emPlugin->active_plugin($active_plugins);
-	$CACHE->updateCache('options');
-	header("Location: ./plugin.php?active=true");
+	if ($emPlugin->active_plugin($active_plugins) ){
+	    $CACHE->updateCache('options');
+	    header("Location: ./plugin.php?active=true");
+	} else {
+	    header("Location: ./plugin.php?active_error=true");
+	}
 }
 //禁用
 if($action == 'inactive')

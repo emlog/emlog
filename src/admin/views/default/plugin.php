@@ -1,6 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>插件管理</b><div id="msg"></div>
 <?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
+<?php if(isset($_GET['active_error'])):?><span class="error">插件激活失败</span><?php endif;?>
 <?php if(isset($_GET['inactive'])):?><span class="actived">插件禁用成功</span><?php endif;?>
 </div>
 <div class=line></div>

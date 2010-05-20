@@ -122,6 +122,18 @@ function updateOption($name, $value, $isSyntax = false){
 }
 
 /**
+ * 检查插件
+ *
+ */
+function checkPlugin($plugin) {
+    if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * 验证email地址格式
  *
  * @param unknown_type $email

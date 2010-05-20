@@ -7,16 +7,11 @@
  */
 
 class emPlugin {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
-	private $db;
 
+	private $db;
 	private $plugin;
 
-	function __construct($plugin = '')
-	{
+	function __construct($plugin = '') {
 		$this->db = MySql::getInstance();
 		$this->plugin = $plugin;
 	}
@@ -26,16 +21,17 @@ class emPlugin {
 	 *
 	 * @param array $active_plugins 当前已激活的全部插件
 	 */
-	function active_plugin($active_plugins)
-	{
-		if (in_array($this->plugin, $active_plugins))
-		{
-			return ;
-		} else {
+	function active_plugin($active_plugins) {
+		if (in_array($this->plugin, $active_plugins)){
+			return true;
+		} elseif(true === checkPlugin($this->plugin)) {
 			$active_plugins[] = $this->plugin;
+		    $active_plugins = serialize($active_plugins);
+		    updateOption('active_plugins', $active_plugins);
+		    return true;
+		} else {
+		    return false;
 		}
-		$active_plugins = serialize($active_plugins);
-		updateOption('active_plugins', $active_plugins);
 	}
 
 	/**
@@ -43,8 +39,7 @@ class emPlugin {
 	 *
 	 * @param string $active_plugins 当前已激活的全部插件
 	 */
-	function inactive_plugin($active_plugins)
-	{
+	function inactive_plugin($active_plugins) {
 		if (in_array($this->plugin, $active_plugins))
 		{
 			$key = array_search($this->plugin, $active_plugins);
@@ -62,8 +57,7 @@ class emPlugin {
 	 * 仅识别 插件目录/插件/插件.php 目录结构的插件
 	 * @return array
 	 */
-	function getPlugins()
-	{
+	function getPlugins() {
 		global $emPlugins;
 		if (isset($emPlugins))
 		{
@@ -124,8 +118,7 @@ class emPlugin {
 	 * @param string $pluginFile
 	 * @return array
 	 */
-	function getPluginData($pluginFile)
-	{
+	function getPluginData($pluginFile) {
 		$pluginData = implode('', file($pluginFile));
 		preg_match("/Plugin Name:(.*)/i", $pluginData, $plugin_name);
 		preg_match("/Version:(.*)/i", $pluginData, $version);

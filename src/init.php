@@ -39,7 +39,7 @@ $active_plugins = unserialize($active_plugins);
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
 	foreach($active_plugins as $plugin) {
-		if(preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+		if(true === checkPlugin($plugin)) {
 			include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
 		}
 	}
