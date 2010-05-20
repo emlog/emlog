@@ -12,18 +12,16 @@ header('Content-type: application/xml');
 
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
-$URL = GetURL();
-$site =  $options_cache;
+$URL = BLOG_URL;
 $blog = GetBlog($sort);
-$blognum = GetBlogNum();
 
 echo <<< END
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
-<title><![CDATA[{$site['blogname']}]]></title> 
-<description><![CDATA[{$site['bloginfo']}]]></description>
-<link>http://$URL</link>
+<title><![CDATA[{$blogname}]]></title> 
+<description><![CDATA[{$bloginfo}]]></description>
+<link>http://</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>
 
@@ -54,27 +52,14 @@ echo <<< END
 END;
 
 /**
- * 获取url地址
- *
- * @return unknown
- */
-function GetURL()
-{
-	$path = $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
-	$path = str_replace("/rss.php","",$path);
-	Return $path;
-}
-
-/**
  * 获取日志信息
  *
  * @return array
  */
-function GetBlog($sort = null)
-{
-	global $DB,$URL;
+function GetBlog($sort = null) {
+	global $DB;
 	$subsql = $sort ? "and sortid=$sort" : '';
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0,10";
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . RSS_OUTPUT_NUM;
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
@@ -89,7 +74,7 @@ function GetBlog($sort = null)
 		}else{
 			if(!empty($re['excerpt']))
 			{
-				$re['excerpt'] .= '<p><a href="http://'.$URL.'/?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
+				$re['excerpt'] .= '<p><a href="http://'.BLOG_URL.'/?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
 			}
 		}
 		$re['content'] = empty($re['excerpt']) ? $re['content'] : $re['excerpt'];
@@ -97,15 +82,4 @@ function GetBlog($sort = null)
 		$blog[] = $re;
 	}
 	return $blog;
-}
-
-/**
- * 获取日志数目
- *
- * @return unknown
- */
-function GetBlogNum()
-{
-	$blog_t =  GetBlog();
-	return count($blog_t);
 }
