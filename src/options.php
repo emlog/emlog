@@ -29,7 +29,7 @@ define('IS_THUMBNAIL', 1);
 //后台管理每页显示条目
 define('ADMIN_PERPAGE_NUM', 15);
 //RSS输出条目
-define('RSS_OUTPUT_NUM', 1);
+define('RSS_OUTPUT_NUM', 10);
 //后台模板名
 define('ADMIN_TPL', 'default');
 //当前页面
