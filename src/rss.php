@@ -21,14 +21,14 @@ echo <<< END
 <channel>
 <title><![CDATA[{$blogname}]]></title> 
 <description><![CDATA[{$bloginfo}]]></description>
-<link>http://</link>
+<link>{$URL}</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>
 
 END;
 foreach($blog as $value)
 {
-	$link = "http://".$URL."/?post=".$value['id'];
+	$link = $URL."?post=".$value['id'];
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  gmdate('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
