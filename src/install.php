@@ -159,7 +159,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw" type="hidden" class="input" value="$adminpw">
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
-你的emlog看起来已经安装过了。继续安装可能会覆盖掉原有的数据，你要继续吗？
+你的emlog看起来已经安装过了。继续安装将会丢失原有的日志数据，你真的要继续吗？
 <input type="submit" value="继续&raquo;">
 </p>
 <p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
