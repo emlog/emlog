@@ -429,7 +429,7 @@ class mkcache {
 	function readCache($cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
 		// 如果缓存文件不存在则自动生成缓存文件
-		if (!is_file($cachefile)) {
+		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
 			if (method_exists($this, 'mc_' . $cacheName)) {
 				call_user_func(array($this, 'mc_' . $cacheName));
 			}
