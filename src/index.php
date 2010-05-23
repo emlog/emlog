@@ -125,7 +125,7 @@ if ($action == 'addcom') {
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
+	$imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
 	$gid = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 
 	doAction('comment_post');
