@@ -590,6 +590,70 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
+ * 将字符串转换为时区无关的UNIX时间戳
+ *
+ */
+function emStrtotime($timeStr) {
+    global $timezone;
+    if ($timeStr) {
+	    $unixPostDate = @strtotime($timeStr);
+	    if ($unixPostDate === false) {
+	        return false;
+	    } else {
+            $serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
+            if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+                $unixPostDate -= $timezone * 3600;
+            } else {
+                if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
+            		/*
+            		* 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
+            	    * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
+            		* 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+            		*/
+            		$offset = getTimeZoneOffset($serverTimeZone);
+            		// 首先减去/加上本地时区配置的时差
+            		$unixPostDate -= $timezone * 3600;
+            		// 再减去/加上服务器时区与utc的时差，得到utc时间
+            		$unixPostDate -= $offset;
+        		}
+        	}
+        }
+        return $unixPostDate;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * 获取指定月份的天数
+ *
+ * @param string $month 月份
+ * @param string $year 年份
+ */
+function getMonthDayNum($month, $year) {
+    switch(intval($month)){
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            return 31;break;
+        case 2:
+            if ($year % 4 == 0) {
+                return 29;
+            } else {
+                return 28;
+            }
+            break;
+         default:
+            return 30;
+            break;
+    }
+}
+
+/**
  * 显示系统信息
  *
  * @param string $msg 信息

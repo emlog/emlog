@@ -32,9 +32,17 @@ if (empty($action) && empty($logid) && empty($plugin)) {
 	$start_limit = ($page - 1) * $index_lognum;
 	$pageurl = '';
 
-	if ($record) {
+	if (preg_match("/^[\d]{6,8}$/", $record)) {
 		$blogtitle = $record.' - '.$blogname;
-		$sqlSegment = "and from_unixtime(date, '%Y%m%d') LIKE '%".$record."%' order by top desc ,date desc";
+		if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
+		    $days = getMonthDayNum($match[2], $match[1]);
+		    $record_stime = emStrtotime($record . '01');
+		    $record_etime = $record_stime + 3600 * 24 * $days;
+		} else {
+		    $record_stime = emStrtotime($record);
+		    $record_etime = $record_stime + 3600 * 24;
+		}
+		$sqlSegment = "and date>=$record_stime and date<$record_etime order by top desc ,date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL."?record=$record&page";
 	} elseif ($tag) {
