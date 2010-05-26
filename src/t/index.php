@@ -96,14 +96,16 @@ if ($action == 'reply') {
     if ($rid === false){
         exit('err5');
     }
+
+    doAction('reply_twitter', $r, $name, $date, $tid);
+
     if ($ischkreply == 'n' || ROLE != 'visitor'){
         $emTwitter->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');
     }
-    $CACHE->updateCache('sta');
 
-    doAction('reply_twitter', $r, $name, $date, $tid);
+    $CACHE->updateCache('sta');
 
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
