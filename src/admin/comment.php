@@ -105,14 +105,14 @@ if($action=='doreply')
 	if(!$flg)
 	{
 		$emComment->replyComment($commentId, $reply);
-		doAction('comment_reply', $commentId, $reply);
 		$CACHE->updateCache('comment');
+		doAction('comment_reply', $commentId, $reply);
 		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
 		$emComment->replyComment($commentId, $reply);
-		doAction('comment_reply', $commentId, $reply);
 		$CACHE->updateCache('comment');
+		doAction('comment_reply', $commentId, $reply);
 		echo "<span>博主回复：$reply</span>";
 	}
 }
