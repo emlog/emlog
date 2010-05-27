@@ -149,29 +149,36 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
+	var isgid=/^-?\d+$/;
+	if(!isgid.test(logid) && act == 0){return;}
 	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
 	var btname = $("#savedf").val();
 	$("#savedf").val("正在保存");
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
-		if(data.substring(0,9) == "autosave_"){
+		var isrespone=/^autosave\_gid\:\d+\_df\:\d*\_$/;
+		if(isrespone.test(data)){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
 			var logid = getvar[1];
 			if (act != 3){
 				var dfnum = getvar[2];
 				if(dfnum > 0){$("#dfnum").html("("+dfnum+")")};
 			}
-		}
-		$("#"+nodeid).val(logid);
-		var digital = new Date();
-		var hours = digital.getHours();
-		var mins = digital.getMinutes();
-		var secs = digital.getSeconds();
-		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
-		$("#savedf").attr("disabled", "");
-		$("#savedf").val(btname);
-		$("#msg").html("");
+    		$("#"+nodeid).val(logid);
+    		var digital = new Date();
+    		var hours = digital.getHours();
+    		var mins = digital.getMinutes();
+    		var secs = digital.getSeconds();
+    		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
+    		$("#savedf").attr("disabled", "");
+    		$("#savedf").val(btname);
+    		$("#msg").html("");
+		}else if(act != 0){
+		    $("#msg").html("<span class=\"msg_autosave_do\">草稿保存失败...请妥善保存内容后重试</span>");
+	    }else{
+	        return;
+	    }
 	});
 	if(act == 0){
 		setTimeout("autosave(0)",60000);
