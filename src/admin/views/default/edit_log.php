@@ -22,7 +22,7 @@ $isdraft = $hide == 'y' ? true : false;
 			<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
 			<?php endforeach; ?>
 			</select>
-	       <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
+	       <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
 	       <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
           </td>
         </tr>

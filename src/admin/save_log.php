@@ -52,7 +52,10 @@ if($blogid > 0)//自动保存草稿后,添加变为更新
 	$emTag->updateTag($tagstring, $blogid);
 	$dftnum = '';
 }else{
-	$blogid = $emBlog->addlog($logData);
+    if (!$blogid = $emBlog->isRepeatPost($title, $postTime))
+    {
+        $blogid = $emBlog->addlog($logData);
+    }
 	$emTag->addTag($tagstring, $blogid);
 	$dftnum = $emBlog->getLogNum('y', '', 'blog', 1);
 }

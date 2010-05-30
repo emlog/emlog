@@ -20,6 +20,10 @@ define('DEL_INSTALLER', 0);
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
+if (PHP_VERSION < '5.0'){
+    emMsg('emlog从3.5开始不再支持您当前的 PHP'.PHP_VERSION.' 环境，请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。');
+}
+
 if(!$act){
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

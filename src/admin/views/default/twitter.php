@@ -95,6 +95,7 @@ $(document).ready(function(){
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
+    $(".box").focus();
 });
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);

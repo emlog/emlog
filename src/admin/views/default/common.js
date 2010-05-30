@@ -149,8 +149,6 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
-	var isgid=/^-?\d+$/;
-	if(!isgid.test(logid) && act == 0){return;}
 	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
 	var btname = $("#savedf").val();
 	$("#savedf").val("正在保存");
@@ -174,10 +172,10 @@ function autosave(act){
     		$("#savedf").attr("disabled", "");
     		$("#savedf").val(btname);
     		$("#msg").html("");
-		}else if(act != 0){
-		    $("#msg").html("<span class=\"msg_autosave_do\">草稿保存失败...请妥善保存内容后重试</span>");
-	    }else{
-	        return;
+		}else{
+		    $("#savedf").attr("disabled", "");
+		    $("#savedf").val(btname);
+		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
 	    }
 	});
 	if(act == 0){

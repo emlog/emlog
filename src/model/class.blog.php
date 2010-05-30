@@ -283,6 +283,16 @@ class emBlog {
 	}
 
 	/**
+	 * 判断是否重复发文
+	 */
+	function isRepeatPost($title, $time) {
+		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
+		$res = $this->db->query($sql);
+		$row = $this->db->fetch_array($res);
+		return isset($row['gid']) ? (int)$row['gid'] : false;
+	}
+
+	/**
 	 * 获取相邻日志
 	 *
 	 * @param int $date unix时间戳
