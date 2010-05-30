@@ -3,7 +3,7 @@
  * 生成文本缓存类
  *
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.0
+ * @version emlog-3.5.1
  * $Id$
  */
 

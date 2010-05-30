@@ -3,7 +3,7 @@
  * mobile 版本
  *
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.0
+ * @version emlog-3.5.1
 $Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
