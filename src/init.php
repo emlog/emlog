@@ -2,7 +2,6 @@
 /**
  * 全局项加载
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.1
  * $Id: init.php 966 2009-03-06 10:00:43Z emloog $
  */
 

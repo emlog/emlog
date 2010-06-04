@@ -2,7 +2,6 @@
 /**
  * 日志分类
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.1
  * $Id$
  */
 

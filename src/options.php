@@ -2,8 +2,6 @@
 /**
  * 全局设置选项
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.1
- * $Id$
  */
 
 //博客根目录

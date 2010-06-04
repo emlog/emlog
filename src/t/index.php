@@ -2,7 +2,6 @@
 /**
  * 碎语
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.1
  * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
 */
 

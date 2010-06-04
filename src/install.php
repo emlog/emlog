@@ -2,12 +2,12 @@
 /**
  * 安装程序
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.1
  * $Id$
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));
 
+require_once EMLOG_ROOT.'/options.php';
 require_once EMLOG_ROOT.'/lib/function.base.php';
 require_once EMLOG_ROOT.'/lib/class.mysql.php';
 require_once EMLOG_ROOT.'/lib/class.cache.php';
@@ -15,7 +15,6 @@ require_once EMLOG_ROOT.'/lib/class.phpass.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-define('EMLOG_VERSION', '3.5.0');
 define('DEL_INSTALLER', 0);
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
