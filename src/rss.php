@@ -73,7 +73,7 @@ function GetBlog($sort = null) {
 		}else{
 			if(!empty($re['excerpt']))
 			{
-				$re['excerpt'] .= '<p><a href="http://'.BLOG_URL.'/?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
+				$re['excerpt'] .= '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
 			}
 		}
 		$re['content'] = empty($re['excerpt']) ? $re['content'] : $re['excerpt'];
