@@ -5,9 +5,7 @@
  * $Id$
  */
 
-define('EMLOG_ROOT', dirname(__FILE__));
-
-require_once EMLOG_ROOT.'/options.php';
+require_once 'options.php';
 require_once EMLOG_ROOT.'/lib/function.base.php';
 require_once EMLOG_ROOT.'/lib/class.mysql.php';
 require_once EMLOG_ROOT.'/lib/class.cache.php';
