@@ -46,7 +46,7 @@
 <a href="javascript:pageact('hide');">隐藏</a> 
 <a href="javascript:pageact('pub');">发布</a>
 </div>
-<div class="page">(有<?php echo $pageNum; ?>个页面)<?php echo $pageurl; ?></div>
+<div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>个页面)</div>
 <div style="margin:20px 0px 0px 0px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="新建一个页面&raquo;" class="submit" /></div>
 <script>
 $(document).ready(function(){

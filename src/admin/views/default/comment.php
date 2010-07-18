@@ -73,7 +73,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	<a href="javascript:commentact('pub');">审核</a>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>
-    <div class="page">(有<?php echo $cmnum; ?>条评论)<?php echo $pageurl; ?></div> 
+    <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div> 
 </form>
 <script>
 $(document).ready(function(){

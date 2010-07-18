@@ -65,7 +65,7 @@
     </div>
     </li>
     <?php endforeach;?>
-	 <li class="page"><?php echo $pageurl;?>(有<?php echo $twnum; ?>条碎语)</li>
+	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条碎语)</li>
     </ul>
 </div>
 <script>
