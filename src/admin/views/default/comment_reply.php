@@ -10,6 +10,9 @@
 	<li>
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
 	<input type="submit" value="回复" class="submit" />
+	<?php if ($hide == 'y'): ?>
+	    <input type="submit" value="回复并审核" name="pub_it" class="submit" />
+	<?php endif; ?>
 	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();"/></li>
 </div>
 </form>

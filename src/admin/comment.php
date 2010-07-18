@@ -93,7 +93,8 @@ if ($action== 'reply_comment')
 	extract($commentArray);
 
 	require_once(getViews('comment_reply'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 if($action=='doreply')
 {
@@ -103,6 +104,10 @@ if($action=='doreply')
 
 	if(!$flg)
 	{
+	    if(isset($_POST['pub_it'])) {
+	        $emComment->showComment($commentId);
+	        $CACHE->updateCache('sta');
+	    }
 		$emComment->replyComment($commentId, $reply);
 		$CACHE->updateCache('comment');
 		doAction('comment_reply', $commentId, $reply);
