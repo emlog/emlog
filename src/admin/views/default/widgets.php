@@ -273,9 +273,9 @@ if($i == $wgNum):
 <?php endforeach;?>
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-<div style="margin:10px 40px;"><input type="submit" value="保存组件排序" class="submit" /></div>
-<div style="margin:20px 40px;"><a href="http://www.emlog.net/extend/widgets" target="_blank">获取更多有趣的组件&raquo;</a></div>
-<div style="margin:20px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');">恢复组件设置到初始安装状态&raquo;</a></div>
+<div style="margin:20px 40px;"><input type="submit" value="保存组件排序" class="submit" /></div>
+<div style="margin:10px 40px;"><a href="http://www.emlog.net/extend/widgets" target="_blank">获取更多有趣的组件&raquo;</a></div>
+<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');">恢复组件设置到初始安装状态&raquo;</a></div>
 </div>
 </form>
 </div>
