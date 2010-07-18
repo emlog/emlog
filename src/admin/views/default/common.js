@@ -46,6 +46,9 @@ function em_confirm (id, property) {
 		case 'user':
 		var urlreturn="user.php?action=del&uid="+id;
 		var msg = "你确定要删除该用户吗？";break;
+		case 'reset_widget':
+		var urlreturn="widgets.php?action=reset";
+		var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }

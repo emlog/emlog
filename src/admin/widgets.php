@@ -200,11 +200,41 @@ if($action == 'setwg')
 }
 
 //保存组件排序
-if($action == 'compages')
-{
+if($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	updateOption("widgets{$wgNum}", $widgets);
 	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
+}
+
+//恢复组件设置到初始安装状态
+if($action == 'reset') {
+	$widget_title = array(
+    	'blogger' => 'blogger',
+    	'calendar' => '日历',
+    	'twitter' => '最新碎语',
+    	'tag' => '标签',
+    	'sort' => '分类',
+    	'archive' => '存档',
+    	'newcomm' => '最新评论',
+    	'newlog' => '最新日志',
+    	'random_log' => '随机日志',
+    	'music' => '音乐',
+    	'link' => '链接',
+    	'search' => '搜索',
+    	'bloginfo' => '信息',
+    	'custom_text' => '自定义组件'
+	);
+	$default_widget = array('calendar','archive','newcomm','link','search','bloginfo');
+
+	$widget_title = serialize($widget_title);
+	$default_widget = serialize($default_widget);
+
+	updateOption("widget_title", $widget_title);
+	updateOption("custom_widget", 'a:0:{}');
+	updateOption("widgets1", $default_widget);
+
+	$CACHE->updateCache('options');
+	header("Location: ./widgets.php?activated=true");
 }
