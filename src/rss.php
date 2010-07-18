@@ -69,14 +69,10 @@ function GetBlog($sort = null) {
 		$re['content']	= $re['content'];
 		if(!empty($re['password']))
 		{
-			$re['excerpt'] = '<p>[该日志已设置加密]</p>';
-		}else{
-			if(!empty($re['excerpt']))
-			{
-				$re['excerpt'] .= '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
-			}
+			$re['content'] = '<p>[该日志已设置加密]</p>';
+		}elseif(!RSS_FULL_FEED && !empty($re['excerpt'])){
+		    $re['content'] = $re['excerpt'] . '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
 		}
-		$re['content'] = empty($re['excerpt']) ? $re['content'] : $re['excerpt'];
 
 		$blog[] = $re;
 	}

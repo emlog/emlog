@@ -28,6 +28,8 @@ define('IS_THUMBNAIL', 1);
 define('ADMIN_PERPAGE_NUM', 15);
 //RSS输出条目
 define('RSS_OUTPUT_NUM', 10);
+//RSS是否全文输出 1:是 0:否
+define('RSS_FULL_FEED', 0);
 //后台模板名
 define('ADMIN_TPL', 'default');
 //当前页面
