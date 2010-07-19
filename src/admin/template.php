@@ -10,11 +10,11 @@ require_once 'globals.php';
 if($action == '')
 {
 	//当前模板
-	$tplData = implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
-	preg_match("/Template Name:(.*)/i", $tplData, $tplName);
-	preg_match("/Author:(.*)/i", $tplData, $tplAuthor);
-	preg_match("/Description:(.*)/i", $tplData, $tplDes);
-	preg_match("/Author Url:(.*)/i", $tplData, $tplUrl);
+	$nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
+	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
+	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
+	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
+	preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
 	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
 	if(isset($tplAuthor[1]))

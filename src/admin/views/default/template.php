@@ -2,6 +2,9 @@
 <script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>当前模板</b><?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?></div>
 <div class=line></div>
+<?php if(!$nonceTplData): ?>
+<div class="error_msg">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div>
+<?php else:?>
 <table cellspacing="10" cellpadding="0" width="80%" border="0">
     <tr>
       <td width="27%">
@@ -13,6 +16,7 @@
 	  </td>
     </tr>
 </table>
+<?php endif;?>
 <div class=containertitle><b>可用模板</b></div>
 <div class=template_line>当前共有<?php echo $tplnums; ?>个可用模板 <a href="http://www.emlog.net/template/" target="_blank">获取更多模板&raquo;</a></div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">

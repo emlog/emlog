@@ -14,7 +14,7 @@
  */
 function getViews($template, $ext = '.php'){
 	if (!is_dir(TEMPLATE_PATH)){
-		exit('The Template Path Error');
+	    emMsg('当前使用的模板已被删除或损坏，请登录后台更换其他模板。', BLOG_URL . 'admin/template.php');
 	}
 	$path = TEMPLATE_PATH.$template.$ext;
 	return $path;

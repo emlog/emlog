@@ -79,6 +79,7 @@ textarea{font-size:12px}
 .adm_tpl_list img{border:#CCC 1px solid}
 .actived{margin:0px 200px; background:url(images/icon_succ.gif) no-repeat 10px #FDFFCE; font-size:12px; padding:5px 30px; border:1px #FFBA43 solid}
 .error{margin:0px 200px; background:url(images/icon_error.gif) no-repeat 10px #FDFFCE; font-size:12px; padding:5px 30px; border:1px #FFBA43 solid}
+.error_msg{margin:0px 200px; background:url(images/icon_error.gif) no-repeat 10px #FDFFCE; font-size:12px; padding:5px 30px; border:1px #FFBA43 solid}
 #msg{margin:0px 300px; font-size:12px; position:fixed; top:0px; left:200px; font-weight:bold}
 #msg_2{margin:0px 200px; font-size:12px}
 .msg_autosave_do{padding:10px; background-color:#FFF1A8}
