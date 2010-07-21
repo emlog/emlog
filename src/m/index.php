@@ -3,7 +3,8 @@
  * mobile 版本
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id:  526 2008-07-05 15:21:03Z emloog $
+ * @version emlog-3.5.0
+$Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
 require_once '../common.php';
@@ -106,7 +107,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = empty($date) ? $emBlog->postDate($timezone) : $date;
+	$postTime = $emBlog->postDate($timezone, $date);	
 
 	$logData = array('title' => $title,
 		'content' => $content,
@@ -176,7 +177,7 @@ if ($action == 'addcom') {
 			header("Location: ./?post=$gid");
 			break;
 		case 1:
-			$CACHE->updateCache('sta');
+			$CACHE->updateCache(array('sta'));
 			doAction('comment_saved');
 			mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
 			break;
