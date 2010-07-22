@@ -3,8 +3,7 @@
  * mobile 版本
  *
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.5.0
-$Id:  526 2008-07-05 15:21:03Z emloog $
+ * $Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
 require_once '../common.php';
