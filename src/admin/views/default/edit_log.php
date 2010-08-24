@@ -2,7 +2,6 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
-<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 <div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?>
     </b><span id="msg_2"></span></div><div id="msg"></div>
