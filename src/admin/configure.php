@@ -2,11 +2,10 @@
 /**
  * Blog settings
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if ($action == '')
 {
@@ -42,14 +41,6 @@ if ($action == '')
 		$ex7="";
 		$ex8="selected=\"selected\"";
 	}
-	if($isurlrewrite=='y')
-	{
-		$ex9="selected=\"selected\"";
-		$ex10="";
-	}else{
-		$ex9="";
-		$ex10="selected=\"selected\"";
-	}
 	if($isgzipenable=='y')
 	{
 		$ex11="selected=\"selected\"";
@@ -57,6 +48,14 @@ if ($action == '')
 	}else{
 		$ex11="";
 		$ex12="selected=\"selected\"";
+	}
+	if($isxmlrpcenable=='y')
+	{
+		$ex13="selected=\"selected\"";
+		$ex14="";
+	} else {
+		$ex13="";
+		$ex14="selected=\"selected\"";
 	}
 
 	include getViews('header');
@@ -79,9 +78,9 @@ if ($action == "mod_config")
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
-	'isurlrewrite' => isset($_POST['isurlrewrite']) ? addslashes($_POST['isurlrewrite']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
+	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
+	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n'
 	);
 
 	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
@@ -91,36 +90,6 @@ if ($action == "mod_config")
 	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
 	{
 		formMsg($lang['verification_code_not_supported'],"configure.php",0);
-	}
-	if($getData['isurlrewrite'] == 'y')
-	{
-		if(stristr($_SERVER['SERVER_SOFTWARE'], 'apache'))
-		{
-			if(function_exists('apache_get_modules'))
-			{
-				$apache_mods = @apache_get_modules();
-				if(!empty($apache_mods))
-				{
-					$f = false;
-					foreach($apache_mods as $val)
-					{
-						if(strtolower($val) == 'mod_rewrite')
-						{
-							$f = true;
-							break;
-						}
-					}
-					if(!$f)
-					{
-						formMsg($lang['url_rewrite_not_supported'],"configure.php",0);
-					}
-				}
-			}
-			if(!file_exists(EMLOG_ROOT.'/.htaccess'))
-			{
-				formMsg($lang['url_rewrite_no_htaccess'],"configure.php",0);
-			}
-		}
 	}
 	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
 	{
@@ -133,12 +102,8 @@ if ($action == "mod_config")
 
 	foreach ($getData as $key => $val)
 	{
-		$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$val' where option_name='$key'");
+		updateOption($key, $val);
 	}
-	$CACHE->mc_tags();
-	$CACHE->mc_comment();
-	$CACHE->mc_options();
-	$CACHE->mc_record();
-	$CACHE->mc_twitter();
+	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	header("Location: ./configure.php?activated=true");
 }

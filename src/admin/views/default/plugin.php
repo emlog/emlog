@@ -1,6 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b><? echo $lang['plugin_management'];?></b><div id="msg"></div>
 <?php if(isset($_GET['active'])):?><span class="actived"><? echo $lang['plugin_activated_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_error'])):?><span class="error"><? echo $lang['plugin_activate_failed']; ?></span><?php endif;?>
 <?php if(isset($_GET['inactive'])):?><span class="actived"><? echo $lang['plugin_deactivated_ok'];?></span><?php endif;?>
 </div>
 <div class=line></div>
@@ -8,7 +9,7 @@
   <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
       <tr>
-        <th width="100" class="tdcenter"><? echo $lang['plugin_name'];?></th>
+        <th width="100"><? echo $lang['plugin_name'];?></th>
         <th width="36" class="tdcenter"><b><? echo $lang['plugin_status'];?></b></th>
 		<th width="30" class="tdcenter"><b><? echo $lang['plugin_version'];?></b></th>
 		<th width="500" class="tdcenter"><b><? echo $lang['description'];?></b></th>
@@ -54,7 +55,10 @@
 	</tbody>
   </table>
 </form>
-<div style="margin:30px 0px 10px 3px;"><a href="http://www.emlog.net/extend/plugins" target="_blank"><? echo $lang['plugin_repository'];?> &raquo;</a></div>
+<div style="margin:30px 0px 10px 3px;">
+    <a href="http://www.emlog.net/extend/plugins" target="_blank"><? echo $lang['plugin_repository'];?> &raquo;</a></div>
+    <a href="javascript: em_confirm(0, 'reset_plugin');" style="margin-left:30px;"><? echo $lang['plugin_disable_all']; ?> &raquo;</a>
+</div>
 <script type='text/javascript'>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")

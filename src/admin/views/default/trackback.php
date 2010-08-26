@@ -37,7 +37,7 @@ setTimeout(hideActived,2600);
 	</tbody>
   </table>
 <div class="list_footer"><? echo $lang['with_selected_do'];?>: <a href="javascript:tbact('del');"><? echo $lang['remove'];?></a></div>
-<div class="page">(<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>) <?php echo $pageurl; ?></div> 
+<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>)</div> 
 </form>
 <script>
 function tbact(act){

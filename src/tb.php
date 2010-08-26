@@ -2,11 +2,10 @@
 /**
  * Trackbacks
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('init.php');
+require_once 'init.php';
 
 $blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 $sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
@@ -25,11 +24,11 @@ $ipaddr	   = getIp();
 
 if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 {
-	if($sc != substr(md5(date('Ynd')),0,5))
+	if($sc != substr(md5(gmdate('Ynd')),0,5))
 	{
 		showXML($lang['trackback_url_invalid']);
 	}
-	
+
 	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
 	if (empty($blog))
 	{
@@ -63,10 +62,9 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	}
 
 	$interval = 3600 * 5;
-	$timestamp = time();
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");
 
 	//Set time interval to prevent the same IP request every 5 hours
-	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$timestamp");
 	if ($DB->num_rows($query))
 	{
 		$point -= 2;
@@ -77,16 +75,15 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 	{
 		$point -= 1;
 	}
-	
+
 	$visible = ($point < 2) ? false : true;
 
 	if ($visible === true)
 	{
-		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$localdate', '$excerpt', '$url', '$blog_name','$ipaddr')";
+		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
 		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
+		$CACHE->updateCache('sta');
 		showXML($lang['trackback_successful'], 0);
 	}else {
 		showXML($lang['trackback_refused']);

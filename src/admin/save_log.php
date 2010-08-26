@@ -2,20 +2,19 @@
 /**
  * Save the post (add, modify)
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
-require_once(EMLOG_ROOT.'/model/C_sort.php');
-require_once(EMLOG_ROOT.'/model/C_trackback.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
+require_once EMLOG_ROOT.'/model/class.sort.php';
+require_once EMLOG_ROOT.'/model/class.trackback.php';
 
 
-$emBlog = new emBlog($DB);
-$emTag = new emTag($DB);
-$emTb = new emTrackback($DB);
+$emBlog = new emBlog();
+$emTag = new emTag();
+$emTb = new emTrackback();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
@@ -27,24 +26,24 @@ $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
-$allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : '';
-$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
+$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : 'y';
+$allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
+$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
 $postTime = $emBlog->postDate($timezone, $postDate, $date);
 
 $logData = array(
-'title'=>$title,
-'content'=>$content,
-'excerpt'=>$excerpt,
-'author'=>$author,
-'sortid'=>$sort,
-'date'=>$postTime,
-'allow_remark'=>$allow_remark,
-'allow_tb'=>$allow_tb,
-'hide'=>$ishide,
-'password'=>$password
+	'title'=>$title,
+	'content'=>$content,
+	'excerpt'=>$excerpt,
+	'author'=>$author,
+	'sortid'=>$sort,
+	'date'=>$postTime,
+	'allow_remark'=>$allow_remark,
+	'allow_tb'=>$allow_tb,
+	'hide'=>$ishide,
+	'password'=>$password
 );
 if($blogid > 0) //auto-save drafts, add into update
 {
@@ -52,22 +51,17 @@ if($blogid > 0) //auto-save drafts, add into update
 	$emTag->updateTag($tagstring, $blogid);
 	$dftnum = '';
 }else{
-	$blogid = $emBlog->addlog($logData);
+    if (!$blogid = $emBlog->isRepeatPost($title, $postTime))
+    {
+        $blogid = $emBlog->addlog($logData);
+    }
 	$emTag->addTag($tagstring, $blogid);
 	$dftnum = $emBlog->getLogNum('y', '', 'blog', 1);
 }
 
-doAction('save_log', $blogid);
+$CACHE->updateCache();
 
-$CACHE->mc_logtags();
-$CACHE->mc_logatts();
-$CACHE->mc_logsort();
-$CACHE->mc_record();
-$CACHE->mc_newlog();
-$CACHE->mc_sort();
-$CACHE->mc_tags();
-$CACHE->mc_user();
-$CACHE->mc_sta();
+doAction('save_log', $blogid);
 
 switch ($action)
 {
@@ -87,7 +81,7 @@ switch ($action)
 			{
 				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);
 			}
-			$ok_msg = $action == 'add' ? $lang['post_published_ok'] : $lang['post_saved_ok'];
+			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? $lang['post_published_ok'] : $lang['post_saved_ok'];
 			$ok_url = 'admin_log.php';
 		}
 		formMsg("$ok_msg\t$tbmsg",$ok_url,1);

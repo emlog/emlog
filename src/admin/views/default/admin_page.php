@@ -46,7 +46,7 @@
 <a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
 </div>
-<div class="page">(<? echo $lang['with'];?> <?php echo $pageNum; ?> <? echo $lang['pages'];?>) <?php echo $pageurl; ?></div>
+<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $pageNum; ?> <? echo $lang['pages'];?>)</div>
 <div style="margin:20px 0px 0px 0px;"><input name="" type="button" onclick="window.location='page.php?action=new';" value="<? echo $lang['page_add'];?> &raquo;" class="submit" /></div>
 <script>
 $(document).ready(function(){

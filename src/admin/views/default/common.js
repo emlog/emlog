@@ -14,8 +14,17 @@ function getChecked(node) {
 	});
 	return re;
 }
+function timestamp(){
+	return new Date().getTime();
+}
 function em_confirm (id, property) {
 	switch (property){
+		case 'tw':
+		var urlreturn="twitter.php?action=del&id="+id;
+		var msg = "你确定要删除该条碎语吗？";break;
+		case 'comment':
+		var urlreturn="comment.php?action=del&id="+id;
+		var msg = "你确定要删除该评论吗？";break;
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
 		var msg = l_sure_delete_link;break;
@@ -37,6 +46,12 @@ function em_confirm (id, property) {
 		case 'user':
 		var urlreturn="user.php?action=del&uid="+id;
 		var msg = l_sure_delete_user;break;
+		case 'reset_widget':
+		var urlreturn="widgets.php?action=reset";
+		var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+		case 'reset_plugin':
+		var urlreturn="plugin.php?action=reset";
+		var msg = "你确定要禁用所有插件吗？";break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -56,9 +71,9 @@ function chekform(){
 }
 //att
 function addhtml(content){
-	var oEditor = FCKeditorAPI.GetInstance('content');
-	if ( oEditor.EditMode == FCK_EDITMODE_WYSIWYG ) {
-		oEditor.InsertHtml(content) ;
+	var oEditor = CKEDITOR.instances.content;
+	if ( oEditor.mode == 'wysiwyg' ) {
+		oEditor.insertHtml(content) ;
 	} else {
 		alert(l_switch_wysiwyg) ;
 	}
@@ -83,8 +98,8 @@ function autosave(act){
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var logid = $("#as_logid").val();
-		var oEditor = FCKeditorAPI.GetInstance('content');
-		var content = oEditor.GetXHTML();
+		var oEditor = CKEDITOR.instances.content;
+		var content = oEditor.getData();
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $.trim($("table input[name=allow_remark][checked]").val());
 		var is_blank = $.trim($("table input[name=is_blank][checked]").val());
@@ -105,10 +120,10 @@ function autosave(act){
 		var date = $.trim($("#date").val());
 		var logid = $("#as_logid").val();
 		var author = $("#author").val();
-		var oEditor = FCKeditorAPI.GetInstance('content');
-		var content = oEditor.GetXHTML();
-		var oEditor = FCKeditorAPI.GetInstance('excerpt');
-		var excerpt = oEditor.GetXHTML();
+		var oEditor = CKEDITOR.instances.content;
+		var content = oEditor.getData();
+		var oEditor = CKEDITOR.instances.excerpt;
+		var excerpt = oEditor.getData();
 		var tag = $.trim($("#tag").val());
 		var allow_remark = $.trim($("#advset input[name=allow_remark][checked]").val());
 		var allow_tb = $.trim($("#advset input[name=allow_tb][checked]").val());
@@ -146,23 +161,28 @@ function autosave(act){
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
-		if(data.substring(0,9) == "autosave_"){
+		var isrespone=/^autosave\_gid\:\d+\_df\:\d*\_$/;
+		if(isrespone.test(data)){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
 			var logid = getvar[1];
 			if (act != 3){
 				var dfnum = getvar[2];
 				if(dfnum > 0){$("#dfnum").html("("+dfnum+")")};
 			}
-		}
-		$("#"+nodeid).val(logid);
-		var digital = new Date();
-		var hours = digital.getHours();
-		var mins = digital.getMinutes();
-		var secs = digital.getSeconds();
+    		$("#"+nodeid).val(logid);
+    		var digital = new Date();
+    		var hours = digital.getHours();
+    		var mins = digital.getMinutes();
+    		var secs = digital.getSeconds();
 		$("#msg_2").html("<span class=\"ajax_remind_1\">"+l_saved_at+hours+":"+mins+":"+secs+"</span>");
-		$("#savedf").attr("disabled", "");
-		$("#savedf").val(btname);
-		$("#msg").html("");
+    		$("#savedf").attr("disabled", "");
+    		$("#savedf").val(btname);
+    		$("#msg").html("");
+		}else{
+		    $("#savedf").attr("disabled", "");
+		    $("#savedf").val(btname);
+		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+	    }
 	});
 	if(act == 0){
 		setTimeout("autosave(0)",60000);

@@ -2,14 +2,13 @@
 /**
  * Comment Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_comment.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.comment.php';
 
-$emComment = new emComment($DB);
+$emComment = new emComment();
 
 //Load the comment management page
 if($action == '')
@@ -33,6 +32,27 @@ if($action == '')
 	cleanPage();
 }
 //Comments Operations
+if ($action== 'del')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->delComment($id);
+	$CACHE->updateCache(array('sta','comment'));
+	header("Location: ./comment.php?active_del=true");
+}
+if($action=='hide')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->hideComment($id);
+	$CACHE->updateCache(array('sta','comment'));
+	header("Location: ./comment.php?active_hide=true");
+}
+if($action=='show')
+{
+	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$emComment->showComment($id);
+	$CACHE->updateCache(array('sta','comment'));
+	header("Location: ./comment.php?active_show=true");
+}
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -51,25 +71,19 @@ if($action== 'admin_all_coms')
 	if($operate == 'del')
 	{
 		$emComment->batchComment('delcom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache(array('sta','comment'));
 		header("Location: ./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
 		$emComment->batchComment('hidecom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache(array('sta','comment'));
 		header("Location: ./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
 		$emComment->batchComment('showcom', $comments);
-		$CACHE->mc_sta();
-		$CACHE->mc_user();
-		$CACHE->mc_comment();
+		$CACHE->updateCache(array('sta', 'comment'));
 		header("Location: ./comment.php?active_show=true");
 	}
 }
@@ -83,7 +97,8 @@ if ($action== 'reply_comment')
 	extract($commentArray);
 
 	require_once(getViews('comment_reply'));
-	include getViews('footer');cleanPage();
+	include getViews('footer');
+	cleanPage();
 }
 if($action=='doreply')
 {
@@ -93,15 +108,19 @@ if($action=='doreply')
 
 	if(!$flg)
 	{
+	    if(isset($_POST['pub_it'])) {
+	        $emComment->showComment($commentId);
+	        $CACHE->updateCache('sta');
+	    }
 		$emComment->replyComment($commentId, $reply);
+		$CACHE->updateCache('comment');
 		doAction('comment_reply', $commentId, $reply);
-		$CACHE->mc_comment();
 		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
 		$emComment->replyComment($commentId, $reply);
+		$CACHE->updateCache('comment');
 		doAction('comment_reply', $commentId, $reply);
-		$CACHE->mc_comment();
-		echo "<span><b>".$lang['blog_reply']."</b>: $reply</span>";
+		echo "<span>".$lang['blog_reply'].": $reply</span>";
 	}
 }

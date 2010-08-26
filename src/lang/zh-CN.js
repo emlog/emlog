@@ -1,6 +1,6 @@
 //emlog Simplified Chinese JS language file
 
-var l_keyword_empty	='关键字不能为空';//'Keyword should not be empty';
+var l_keyword_empty	='请输入要搜索的关键字';//'Keyword should not be empty';
 var l_keyword_short	='关键字太短';//'Keyword is too short';
 var l_keyword_long	='关键字太长';//'Keyword is too long';
 var l_name_empty	='名字不能为空';//'Names should not be empty';
@@ -8,7 +8,7 @@ var l_key_too_long	='名字太长';//'The name is too long';
 var l_comment_empty	='评论内容不能为空';//'Your Comment can not be empty';
 var l_comment_too_long	='评论内容太长';//'Your Comment is too long (max 2000 chars)';
 var l_email_long	='邮件地址长度超出系统接受范围';//'E-mail is too long (max 60 chars)';
-var l_email_invalid	='邮件地址格式不正确！';//'E-mail address format is not valid!';
+var l_email_invalid	='邮件地址格式错误！';//'E-mail address format is not valid!';
 var l_not_supported	='不能创建XMLHttpRequest对象实例.';//'Can not create XMLHttpRequest object instance.';
 var l_loading		='加载中';//'Loading';
 var l_processing	='处理中...请稍候!';//'Processing... Please wait!';

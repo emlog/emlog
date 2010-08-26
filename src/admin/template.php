@@ -2,21 +2,19 @@
 /**
  * Template Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 if($action == '')
 {
 	//Current template 
-	$template_path = '../'.TEMPLATE_PATH;
-	$tplData = implode('', @file($template_path.$nonce_templet.'/header.php'));
-	preg_match("/Template Name:(.*)/i", $tplData, $tplName);
-	preg_match("/Author:(.*)/i", $tplData, $tplAuthor);
-	preg_match("/Description:(.*)/i", $tplData, $tplDes);
-	preg_match("/Author Url:(.*)/i", $tplData, $tplUrl);
+	$nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
+	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
+	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
+	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
+	preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
 	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
 	if(isset($tplAuthor[1]))
@@ -26,19 +24,19 @@ if($action == '')
 		$tplAuthor = '';
 	}
 	//Template List
-	$handle = @opendir($template_path) OR die('emlog template path error!');
+	$handle = @opendir(TPLS_PATH) OR die('emlog template path error!');
 	$tpls = array();
 	while ($file = @readdir($handle))
 	{
-		if(file_exists($template_path.$file.'/header.php'))
+		if(file_exists(TPLS_PATH.$file.'/header.php'))
 		{
-			$tplData = implode('', @file($template_path.$file.'/header.php'));
-			preg_match("/Template Name:(.*)/i", $tplData, $name);
-			preg_match("/Sidebar Amount:(.*)/i", $tplData, $sidebar);
+			$tplData = implode('', @file(TPLS_PATH.$file.'/header.php'));
+			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
+			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
 			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
 			$tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
 			$tplInfo['tplfile'] = $file;
-			
+
 			$tpls[] = $tplInfo;
 		}
 	}
@@ -47,7 +45,7 @@ if($action == '')
 	$tplnums = count($tpls);
 
 	include getViews('header');
-	require_once(getViews('template'));
+	require_once getViews('template');
 	include getViews('footer');
 	cleanPage();
 }
@@ -57,8 +55,8 @@ if($action == 'usetpl')
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplName' where option_name='nonce_templet'");
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$tplSideNum' where option_name='tpl_sidenum'");
-	$CACHE->mc_options();
+	updateOption('nonce_templet', $tplName);
+	updateOption('tpl_sidenum', $tplSideNum);
+	$CACHE->updateCache('options');
 	header("Location: ./template.php?activated=true");
 }

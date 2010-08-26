@@ -2,20 +2,23 @@
 /**
  * Admin Center
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
-if ($action == '')
-{
+if ($action == '') {
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $name =  $user_cache[UID]['name'];
+
+    $sta_log = ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum'];
+    $sta_tw = ROLE == 'admin' ? $sta_cache['twnum'] : $sta_cache[UID]['twnum'];
+
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
 	$safe_mode = ini_get('safe_mode');
-	$serverdate = date('Y-n-d G:i:s',time());
 
 	if (function_exists("imagecreate"))
 	{
@@ -36,7 +39,6 @@ if ($action == '')
 	cleanPage();
 }
 //phpinfo()
-if ($action == 'phpinfo')
-{
+if ($action == 'phpinfo') {
 	@phpinfo() OR formMsg($lang['phpinfo_disabled'], "javascript:history.go(-1);", 0);
 }

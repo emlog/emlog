@@ -1,9 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>
-setTimeout(hideActived,2600);
-</script>
-<div class=containertitle><b><? echo $lang['settings'];?></b><?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok'];?></span><?php endif;?></div>
-<div class=line></div>
+<script>setTimeout(hideActived,2600);</script>
+<div class="containertitle2"><a class="navi3" href="./configure.php"><? echo $lang['base_settings']; ?></a>
+<a class="navi4" href="./permalink.php"><? echo $lang['permalink']; ?></a>
+<a class="navi4" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
+<?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?>
+</div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
     <tbody>
@@ -13,7 +14,7 @@ setTimeout(hideActived,2600);
       </tr>
       <tr nowrap="nowrap">
         <td align="right" valign="top"><? echo $lang['blog_description'];?>:</td>
-        <td><textarea name="bloginfo" cols="" rows="4" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
+        <td><textarea name="bloginfo" cols="" rows="3" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right"><? echo $lang['blog_url'];?>:</td>
@@ -22,7 +23,7 @@ setTimeout(hideActived,2600);
       <tr nowrap="nowrap">
         <td align="right"><? echo $lang['blog_keywords'];?>:</td>
         <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
-        <? echo $lang['separate_keywords'];?></td>
+        (<? echo $lang['separate_keywords'];?>)</td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right"><? echo $lang['registration_number'];?>:</td>
@@ -73,8 +74,9 @@ foreach($tzlist as $key=>$value):
 $ex = $key==$timezone?"selected=\"selected\"":'';
 ?>
 		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
-<?php endforeach;?>	
-        </select>        
+<?php endforeach;?>
+        </select>
+        (<? echo $lang['time_local']; ?>: <?php echo gmdate('Y-m-d H:i:s', $utctimestamp + $timezone * 3600); ?>)
         </td>
       </tr>
       <tr>
@@ -84,7 +86,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
           <option value="y" <?php echo $ex5; ?>><? echo $lang['yes'];?></option>
           <option value="n" <?php echo $ex6; ?>><? echo $lang['no'];?></option>
         </select>
-		<? echo $lang['comments_require_approving_info'];?> </td>
+		</td>
       </tr>
 	  <tr>
         <td align="right"><? echo $lang['trackback_settings_enable'];?>:<br /></td>
@@ -113,20 +115,21 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </select>
         </td>
       </tr>
-	  <tr>
-        <td align="right"><? echo $lang['url_rewrite_enable'];?>:<br /></td>
-        <td class="care">
-		<select name="isurlrewrite">
-          <option value="y" <?php echo $ex9; ?>><? echo $lang['yes'];?></option>
-          <option value="n" <?php echo $ex10; ?>><? echo $lang['no'];?></option>
-        </select> <? echo $lang['url_rewrite_info'];?></td>
-      </tr>
       <tr>
         <td align="right"><? echo $lang['gzip_enable'];?>:<br /></td>
         <td class="care">
 		<select name="isgzipenable">
           <option value="y" <?php echo $ex11; ?>><? echo $lang['yes'];?></option>
           <option value="n" <?php echo $ex12; ?>><? echo $lang['no'];?></option>
+        </select>
+		</td>
+      </tr>
+	  <tr>
+        <td align="right">开启离线写作支持：<br /></td>
+        <td class="care">
+		<select name="isxmlrpcenable">
+          <option value="y" <?php echo $ex13; ?>>是</option>
+          <option value="n" <?php echo $ex14; ?>>否</option>
         </select>
 		</td>
       </tr>

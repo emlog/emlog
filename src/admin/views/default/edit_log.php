@@ -1,9 +1,10 @@
-<?php 
+<?php
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
-<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
-<div class=containertitle><b><? echo $lang['post_edit'];?></b><span id="msg_2"></span></div><div id="msg"></div>
+<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+<div class=containertitle><b><?php if ($isdraft) :?><? echo $lang['draft_edit']; ?><?php else:?><? echo $lang['post_edit']; ?><?php endif;?>
+    </b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
@@ -23,7 +24,7 @@ $isdraft = $hide == 'y' ? true : false;
 			<?php endforeach; ?>
 			</select>
 		<? echo $lang['time'];?>:
-	       <input maxlength="200" style="width:125px;" name="postdate" id="postdate" value="<?php echo date('Y-m-d H:i:s', $date); ?>"/>
+	       <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
 	       <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
           </td>
         </tr>
@@ -33,17 +34,16 @@ $isdraft = $hide == 'y' ? true : false;
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
-          <input type="hidden" id="content" name="content" value="<?php echo $content; ?>" style="display:none" />
-          <input type="hidden" id="content___Config" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-          <iframe src="fckeditor/editor/fckeditor.html?InstanceName=content&amp;Toolbar=Default" width="720" height="460" frameborder="0" scrolling="no"></iframe>
-          </td>
+		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
+		  </td>
         </tr>
         <tr nowrap="nowrap">
           <td><b><? echo $lang['tags'];?>:</b> (<? echo $lang['tag_separate'];?>)<br />
           <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
           <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tag_select'];?> &raquo;</a></div>
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
-          <?php 
+          <?php
           $tagStr = '';
           foreach ($tags as $val)
           {
@@ -60,11 +60,10 @@ $isdraft = $hide == 'y' ? true : false;
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
           <td><? echo $lang['post_abstract'];?>:<br />
-			<input type="hidden" id="excerpt" name="excerpt" value="<?php echo $excerpt; ?>" style="display:none" />
-			<input type="hidden" value="CustomConfigurationsPath=fckeditor/fckconfig.js" style="display:none" />
-			<iframe src="fckeditor/editor/fckeditor.html?InstanceName=excerpt&amp;Toolbar=Basic" width="720" height="260" frameborder="0" scrolling="no"></iframe>
-          </td>
-        </tr>      
+		  <textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
+		  <script type="text/javascript">CKEDITOR.replace( 'excerpt',{resize_minHeight : 230,height : 230});</script>
+		  </td>
+        </tr>
         <tr nowrap="nowrap">
           <td><? echo $lang['trackback_notes'];?>: (<? echo $lang['trackback_notes'];?>)<b><br /></b>
 			<textarea name="pingurl" id="pingurl" rows="3" cols="" style="width:715px;" onclick="if (this.value=='<? echo $lang['trackback_enter'];?>') this.value='';" class="input"><? echo $lang['trackback_enter'];?></textarea>
@@ -93,9 +92,12 @@ $isdraft = $hide == 'y' ? true : false;
           <td align="center" colspan="2"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" value=<?php echo $logid; ?> />
-		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />	  
+		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
 		  <input type="submit" value="<? echo $lang['post_save_and_return'];?>" onclick="return chekform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
+		  <?php if ($isdraft) :?>
+		  <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return chekform();" class="button" />
+		  <?php endif;?>
 		  </td>
         </tr>
     </table>

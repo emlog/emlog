@@ -1,7 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../lib/js/jquery/plugin-interface.js"></script>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b><? echo $lang['widgets'];?></b><?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['widgets_saved_ok'];?></span><?php endif;?></div>
+<div class=containertitle><b><? echo $lang['widgets'];?></b> <span class="title_des">(<? echo $lang['sidebar_widgets']; ?>)</span>
+<?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">
 <div id="adm_widget_list">
@@ -29,6 +30,21 @@
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+		</div>
+	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=twitter" method="post">
+	<div class="widget-line" id="twitter">
+		<div class="widget-top">
+			<li class="widget-title">最新碎语</li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
+		</div>
+		<div class="widget-control">
+			<li>标题</li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
+			<li>首页显示最新碎语数</li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_newtwnum; ?>" name="index_newtwnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -85,21 +101,6 @@
 			<li><input maxlength="5" size="10" value="<?php echo $index_comnum; ?>" name="index_comnum" /></li>
 			<li><? echo $lang['comments_trim_length'];?></li>
 			<li><input maxlength="5" size="10" value="<?php echo $comment_subnum; ?>" name="comment_subnum" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
-		</div>
-	</div>
-	</form>
-	<form action="widgets.php?action=setwg&wg=twitter" method="post">
-	<div class="widget-line" id="twitter">
-		<div class="widget-top">
-			<li class="widget-title"><? echo $lang['twitter'];?></li>
-			<li class="widget-act-add"></li>
-			<li class="widget-act-del"></li>
-		</div>
-		<div class="widget-control">
-			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li><? echo $lang['twitters_number'];?></li>
-			<li><input maxlength="5" size="10" value="<?php echo $index_twnum; ?>" name="index_twnum" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -215,7 +216,7 @@
 			<input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
 			<input type="text" name="title" style="width:345px;" value="<?php echo $val['title']; ?>" />
 			</li>
-			<li><textarea name="content" rows="8" wrap="off" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
+			<li><textarea name="content" rows="8" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
 			<li><input type="submit" name="" value="<? echo $lang['widget_change'];?>" />
 			<span style="margin-left:235px;"><a href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><? echo $lang['widget_delete'];?></a></span></li>
 		</div>
@@ -226,11 +227,10 @@
 	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);"><? echo $lang['widget_new'];?> &raquo;</a></div>
 	<div id="custom_text_new">
 		<li><? echo $lang['widget_name'];?></li>
-		<li><input type="text" name="new_title" style="width:350px;" value="" /></li>
+		<li><input type="text" name="new_title" style="width:380px;" value="" /></li>
 		<li><? echo $lang['widget_content'];?></li>
-		<li><textarea name="new_content" rows="8" wrap="off" style="width:350px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" rows="10" style="width:380px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="<? echo $lang['widget_add'];?>"  />
-		<span style="margin-left:158px;"><a href="http://www.emlog.net/extend/widgets" target="_blank"><? echo $lang['widget_repository'];?> &raquo;</a></span></li>
 	</div>
 	</form>
 </div>
@@ -274,6 +274,8 @@ if($i == $wgNum):
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 <div style="margin:10px 40px;"><input type="submit" value="<? echo $lang['widgets_order_save'];?>" class="submit" /></div>
+<div style="margin:10px 40px;"><a href="http://www.emlog.net/extend/widgets" target="_blank"><? echo $lang['widget_repository']; ?>&raquo;</a></div>
+<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');"><? echo $lang['plugin_reset']; ?>&raquo;</a></div>
 </div>
 </form>
 </div>

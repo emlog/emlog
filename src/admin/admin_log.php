@@ -2,22 +2,21 @@
 /**
  * Posts Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
-require_once(EMLOG_ROOT.'/model/C_user.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
+require_once EMLOG_ROOT.'/model/class.user.php';
 
-$emBlog = new emBlog($DB);
+$emBlog = new emBlog();
 
 //Published/Drafts posts management page
 if($action == '')
 {
-	$emTag = new emTag($DB);
-	$emUser = new emUser($DB);
+	$emTag = new emTag();
+	$emUser = new emUser();
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
@@ -77,7 +76,7 @@ if($action == '')
 	$pageurl =  pagination($logNum, ADMIN_PERPAGE_NUM, $page, "admin_log.php?{$subPage}&page");
 
 	include getViews('header');
-	require_once(getViews('admin_log'));
+	require_once getViews('admin_log');
 	include getViews('footer');cleanPage();
 }
 
@@ -109,16 +108,7 @@ if($action == 'operate_log')
 				$emBlog->deleteLog($val);
 				doAction('del_log', $val);
 			}
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_record();
-			$CACHE->mc_comment();
-			$CACHE->mc_logtags();
-			$CACHE->mc_logatts();
-			$CACHE->mc_tags();
-			$CACHE->mc_newlog();
-			$CACHE->mc_logsort();
-			$CACHE->mc_sort();
+			$CACHE->updateCache();
 			if($pid == 'draft')
 			{
 				header("Location: ./admin_log.php?pid=draft&active_del=true");
@@ -145,17 +135,7 @@ if($action == 'operate_log')
 			{
 				$emBlog->hideSwitch($val, 'y');
 			}
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_record();
-			$CACHE->mc_logtags();
-			$CACHE->mc_logatts();
-			$CACHE->mc_newlog();
-			$CACHE->mc_logsort();
-			$CACHE->mc_sort();
-			$CACHE->mc_tags();
-			$CACHE->mc_comment();
-
+			$CACHE->updateCache();
 			header("Location: ./admin_log.php?active_hide=true");
 			break;
 		case 'pub':
@@ -163,18 +143,7 @@ if($action == 'operate_log')
 			{
 				$emBlog->hideSwitch($val, 'n');
 			}
-
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_record();
-			$CACHE->mc_logtags();
-			$CACHE->mc_logatts();
-			$CACHE->mc_newlog();
-			$CACHE->mc_logsort();
-			$CACHE->mc_sort();
-			$CACHE->mc_tags();
-			$CACHE->mc_comment();
-
+			$CACHE->updateCache();
 			header("Location: ./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
@@ -182,8 +151,7 @@ if($action == 'operate_log')
 			{
 				$emBlog->updateLog(array('sortid'=>$sort), $val);
 			}
-			$CACHE->mc_sort();
-			$CACHE->mc_logsort();
+			$CACHE->updateCache(array('sort', 'logsort'));
 			header("Location: ./admin_log.php?active_move=true");
 			break;
 		case 'change_author':
@@ -195,7 +163,7 @@ if($action == 'operate_log')
 			{
 				$emBlog->updateLog(array('author'=>$author), $val);
 			}
-			$CACHE->mc_user();
+			$CACHE->updateCache('sta');
 			header("Location: ./admin_log.php?active_change_author=true");
 			break;
 	}

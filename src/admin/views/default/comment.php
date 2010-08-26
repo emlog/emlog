@@ -1,13 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script type='text/javascript'>
-$(document).ready(function(){
-	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
-});
-setTimeout(hideActived,2600);
-</script>
 <div class=containertitle><b><? echo $lang['comments_management'];?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['comments_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived"><? echo $lang['comments_approved_ok'];?></span><?php endif;?>
@@ -24,13 +15,13 @@ $$a = "class=\"filter\"";
 ?>
 <div class="filters">
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>"><? echo $lang['all'];?></a></span>
-<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>"><? echo $lang['comments_unapproved'];?>
+<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
 <?php
-$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $user_cache[UID]['hidecommentnum'];
+$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
-<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>"><? echo $lang['comments_approved'];?></a></span>
+<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></span>
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
@@ -38,9 +29,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   	<thead>
       <tr>
         <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="380"><b><? echo $lang['content'];?></b></th>
-        <th width="120"><b><? echo $lang['time'];?></b></th>
-        <th width="260"><b><? echo $lang['comment_author'];?></b></th>
+        <th width="350"><b><? echo $lang['content'];?></b></th>
+        <th width="300"><b><? echo $lang['time'];?></b></th>
+        <th width="250"><b><? echo $lang['comment_author'];?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -48,19 +39,29 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">['.$lang['comments_unapproved'].']</font>':'';
 	$isrp = $value['reply']?'<font color="green">['.$lang['comments_replied'].']</font>':'';
-	$ip = !empty($value['ip']) ? "({$value['ip']})" : '';
-	$mail = !empty($value['mail']) ? "<br />".$lang['mail'].": {$value['mail']}" : '';
+	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
+	$ip = !empty($value['ip']) ? "<br />{$lang['ip']}: {$value['ip']}" : '';
 	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
-	$value['content'] = subString(str_replace('<br>','',$value['content']),0,50);
-	$value['title'] = subString($value['title'],0,42);
+	$value['content'] = str_replace('<br>',' ',$value['content']);
+	$sub_content = subString($value['content'], 0, 50);
+	$value['title'] = subString($value['title'], 0, 42);
 	doAction('adm_comment_display');
 	?>
      <tr>
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>&amp;hide=<?php echo $value['hide']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
-        <br /><? echo $lang['from'];?>:<?php echo $poster;?> <?php echo $ip;?> <?php echo $mail;?> 
-        </td>
-        <td><?php echo $value['date']; ?></td>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
+        <br /><?php echo $value['date']; ?>
+		<span style="display:none; margin-left:8px;">    
+		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');"><? echo $lang['remove']; ?></a>
+		<?php if($value['hide'] == 'y'):?>
+		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_approve']; ?></a>
+		<?php else: ?>
+		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_hide']; ?></a>
+		<?php endif;?>
+		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['reply']; ?></a>
+		</span>
+		</td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
         <td><a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach; ?>
@@ -73,9 +74,16 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	<a href="javascript:commentact('pub');"><? echo $lang['comments_approve'];?></a>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>
-    <div class="page">(<? echo $lang['with'];?> <?php echo $cmnum; ?> <? echo $lang['comments'];?>)<?php echo $pageurl; ?></div> 
+    <div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $cmnum; ?> <? echo $lang['comments'];?>)</div> 
 </form>
 <script>
+$(document).ready(function(){
+	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
+	$("#adm_comment_list tbody tr")
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+});
+setTimeout(hideActived,2600);
 function commentact(act){
 	if (getChecked('ids') == false) {
 		alert('<? echo $lang['comments_select'];?>');

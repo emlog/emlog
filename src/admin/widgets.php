@@ -2,11 +2,10 @@
 /**
  * Widget Sidebar Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
+require_once 'globals.php';
 
 //Display widget management panel
 if($action == '')
@@ -60,7 +59,7 @@ if($action == '')
 	}
 
 	include getViews('header');
-	require_once(getViews('widgets'));
+	require_once getViews('widgets');
 	include getViews('footer');
 	cleanPage();
 }
@@ -78,30 +77,30 @@ if($action == 'setwg')
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
 	$widgetTitle = addslashes(serialize($widgetTitle));
 
-	$DB->query("update ".DB_PREFIX."options set option_value='$widgetTitle' where option_name='widget_title'");
+	updateOption('widget_title', $widgetTitle);
 
 	switch ($widget)
 	{
 		case 'newcomm':
 			$index_comnum = isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : 10;
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
-			$DB->query("update ".DB_PREFIX."options set option_value='$index_comnum' where option_name='index_comnum'");
-			$DB->query("update ".DB_PREFIX."options set option_value='$comment_subnum' where option_name='comment_subnum'");
-			$CACHE->mc_comment();
+			updateOption('index_comnum', $index_comnum);
+			updateOption('comment_subnum', $comment_subnum);
+			$CACHE->updateCache('comment');
 			break;
 		case 'twitter':
-			$index_twnum = isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10;
-			$DB->query("update ".DB_PREFIX."options set option_value='$index_twnum' where option_name='index_twnum'");
-			$CACHE->mc_twitter();
+			$index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
+			updateOption('index_newtwnum', $index_newtwnum);
+			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
-			$DB->query("update ".DB_PREFIX."options set option_value='$index_newlog' where option_name='index_newlognum'");
-			$CACHE->mc_newlog();
+			updateOption('index_newlognum', $index_newlog);
+			$CACHE->updateCache('newlog');
 			break;
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
-			$DB->query("update ".DB_PREFIX."options set option_value='$index_randlognum' where option_name='index_randlognum'");
+			updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'music':
 			$links = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
@@ -135,7 +134,7 @@ if($action == 'setwg')
 				}
 			}
 			$musicData = serialize($music);
-			$DB->query("update ".DB_PREFIX."options set option_value='$musicData' where option_name='music'");
+			updateOption('music', $musicData);
 			break;
 		case 'custom_text':
 			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
@@ -169,11 +168,11 @@ if($action == 'setwg')
 				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+				updateOption('custom_widget', $custom_widget_str);
 			}elseif ($content){
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+				updateOption('custom_widget', $custom_widget_str);
 			}elseif ($rmwg){
 				for($i=1; $i<5; $i++)
 				{
@@ -188,25 +187,55 @@ if($action == 'setwg')
 							}
 						}
 						$widgets_str = addslashes(serialize($widgets));
-						$DB->query("update ".DB_PREFIX."options set option_value='$widgets_str' where option_name='widgets$i'");
+						updateOption("widgets$i", $widgets_str);
 					}
 				}
 				unset($custom_widget[$rmwg]);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				$DB->query("update ".DB_PREFIX."options set option_value='$custom_widget_str' where option_name='custom_widget'");
+				updateOption('custom_widget', $custom_widget_str);
 			}
 			break;
 	}
-	$CACHE->mc_options();
+	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true");
 }
 
 //Save widget sorting
-if($action == 'compages')
-{
+if($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3...
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
-	$DB->query("update ".DB_PREFIX."options set option_value='$widgets' where option_name='widgets{$wgNum}'");
-	$CACHE->mc_options();
+	updateOption("widgets{$wgNum}", $widgets);
+	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
+}
+
+//Reset widget settings
+if($action == 'reset') {
+	$widget_title = array(
+    	'blogger' => 'blogger',
+    	'calendar' => $lang['calendar'],
+    	'twitter' => $lang['twitters_last'],
+    	'tag' => $lang['tags'],
+    	'sort' => $lang['categories'],
+    	'archive' => $lang['archive'],
+    	'newcomm' => $lang['latest_comments'],
+    	'newlog' => $lang['latest_posts'],
+    	'random_log' => $lang['random_posts'],
+    	'music' => $lang['music'],
+    	'link' => $lang['links'],
+    	'search' => $lang['search'],
+    	'bloginfo' => $lang['blog_statistics'],
+    	'custom_text' => $lang['widget_custom'],
+	);
+	$default_widget = array('calendar','archive','newcomm','link','search','bloginfo');
+
+	$widget_title = serialize($widget_title);
+	$default_widget = serialize($default_widget);
+
+	updateOption("widget_title", $widget_title);
+	updateOption("custom_widget", 'a:0:{}');
+	updateOption("widgets1", $default_widget);
+
+	$CACHE->updateCache('options');
+	header("Location: ./widgets.php?activated=true");
 }

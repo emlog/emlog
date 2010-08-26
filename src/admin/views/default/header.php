@@ -24,10 +24,9 @@
     <td class="vesion" width="20"><?php echo EMLOG_VERSION; ?></td>
     <td  class="home" align="left"><a href="../" target="_blank" title="<? echo $lang['blog_view_in_new_window'];?>"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
-	<? echo $lang['you_are'];?>: <a href="blogger.php" title="<? echo $lang['click_to_edit_personal_data'];?>"><?php if($userData['nickname']):echo $userData['nickname'];else:echo $userData['username'];endif;?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php if (ROLE == 'admin'):?>
-    <a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> <? echo $lang['templates'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="configure.php"><? echo $lang['settings'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> <? echo $lang['templates'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./"><? echo $lang['admin_center'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./?action=logout"><? echo $lang['logout'];?></a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
@@ -46,23 +45,31 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);"><? echo $lang['publications'];?></div>
 			<div id="log_mg">
-            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/addblog.gif" align="absbottom" border="0"><? echo $lang['post_add'];?></a></div>
+            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><? echo $lang['post_add'];?></a></div>
 			<div class="sidebarsubmenu" id="menu_draft"><a href="admin_log.php?pid=draft"><? echo $lang['drafts'];?><span id="dfnum">
 			<?php 
 			if (ROLE == 'admin'){
 				echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
 			}else{
-				echo $user_cache[UID]['draftnum'] == 0 ? '' : '('.$user_cache[UID]['draftnum'].')';
+				echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
 			}
 			?>
 			</span></a></div>
 			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><? echo $lang['posts'];?></a></div>
+			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">碎语</a></div>
 			<?php if (ROLE == 'admin'):?>
             <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></div>
             <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></div>
             <?php endif;?>
             <div class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a></div>
-            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php"><? echo $lang['trackbacks'];?></a></div>
+            <?php
+			$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+			if ($hidecmnum > 0):
+			$n = $hidecmnum > 999 ? '...' : $hidecmnum;
+			?>
+			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
+			<?php endif; ?>
+            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
 			</div>
 			</div>
        	    </td>

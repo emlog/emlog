@@ -1,10 +1,14 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-
+<?php 
+/*
+* Sidebar
+*/
+if(!defined('EMLOG_ROOT')) {exit('error!');} 
+?>
 <div id="sidebar">
 <ul>
 <?php 
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
-
+doAction('diff_side');
 foreach ($widgets as $val)
 {
 	$widget_title = @unserialize($options_cache['widget_title']);
@@ -29,7 +33,7 @@ foreach ($widgets as $val)
 ?>
 </ul>
 <div class="rss">
-<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo TPL_PATH; ?>images/rss.gif" alt="<? echo $lang['rss_feed'];?>"/></a>
+<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo TEMPLATE_URL; ?>images/rss.gif" alt="<? echo $lang['rss_feed'];?>"/></a>
 </div>
 </div>
 <!--end sidebar-->

@@ -2,20 +2,19 @@
 /**
  * Tags Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_tag.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.tag.php';
 
-$emTag = new emTag($DB);
+$emTag = new emTag();
 
 if($action == '')
 {
 	$tags = $emTag->getTag();
 	include getViews('header');
-	require_once(getViews('tag'));
+	require_once getViews('tag');
 	include getViews('footer');
 	cleanPage();
 }
@@ -26,7 +25,7 @@ if ($action== "mod_tag")
 	$tag = $emTag->getOneTag($tagId);
 	extract($tag);
 	include getViews('header');
-	require_once(getViews('tagedit'));
+	require_once getViews('tagedit');
 	include getViews('footer');cleanPage();
 }
 
@@ -36,8 +35,7 @@ if($action=='update_tag')
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$emTag->updateTagName($tagId, $tagName);
-	$CACHE->mc_logtags();
-	$CACHE->mc_tags();
+	$CACHE->updateCache(array('tags', 'logtags'));
 	header("Location: ./tag.php?active_edit=true");
 }
 
@@ -54,7 +52,6 @@ if($action== 'dell_all_tag')
 	{
 		$emTag->deleteTag($key);
 	}
-	$CACHE->mc_logtags();
-	$CACHE->mc_tags();
+	$CACHE->updateCache(array('tags', 'logtags'));
 	header("Location: ./tag.php?active_del=true");
 }

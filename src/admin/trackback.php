@@ -2,14 +2,13 @@
 /**
  * Trackbacks Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_trackback.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.trackback.php';
 
-$emTrackback = new emTrackback($DB);
+$emTrackback = new emTrackback();
 
 if($action == '')
 {
@@ -20,7 +19,7 @@ if($action == '')
 	$pageurl =  pagination($tbnum, ADMIN_PERPAGE_NUM, $page, "./trackback.php?page");
 
 	include getViews('header');
-	require_once(getViews('trackback'));
+	require_once getViews('trackback');
 	include getViews('footer');cleanPage();
 }
 
@@ -37,7 +36,6 @@ if($action == 'dell')
 	{
 		$emTrackback->deleteTrackback($value);
 	}
-	$CACHE->mc_sta();
-	$CACHE->mc_user();
+	$CACHE->updateCache('sta');
 	header("Location: ./trackback.php?active_del=true");
 }

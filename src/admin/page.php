@@ -2,19 +2,17 @@
 /**
  * Page Management
  * @copyright (c) Emlog All Rights Reserved
- * @version emlog-3.3.0
  * $Id$
  */
 
-require_once('globals.php');
-require_once(EMLOG_ROOT.'/model/C_blog.php');
+require_once 'globals.php';
+require_once EMLOG_ROOT.'/model/class.blog.php';
 
 $navibar = unserialize($navibar);
 
 //Page Management page
-if($action == '')
-{
-	$emPage = new emBlog($DB);
+if ($action == '') {
+	$emPage = new emBlog();
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -29,20 +27,15 @@ if($action == '')
 	cleanPage();
 }
 //Display a new page form
-if ($action == 'new')
-{
-	$localtime = time() - ($timezone - 8) * 3600;
-	$postDate = date('Y-m-d H:i:s', $localtime);
-
+if ($action == 'new') {
 	include getViews('header');
 	require_once(getViews('add_page'));
 	include getViews('footer');
 	cleanPage();
 }
 //Show edit page form
-if ($action == 'mod')
-{
-	$emPage = new emBlog($DB);
+if ($action == 'mod') {
+	$emPage = new emBlog();
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
@@ -73,9 +66,8 @@ if ($action == 'mod')
 	cleanPage();
 }
 //Save Page
-if ($action == 'add' || $action == 'edit' || $action == 'autosave')
-{
-	$emPage = new emBlog($DB);
+if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
+	$emPage = new emBlog();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
@@ -103,7 +95,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
-	
+
 	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl))
 	{
 		$pageUrl = 'http://'.$pageUrl;
@@ -111,11 +103,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 
 	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = addslashes(serialize($navibar));
-	$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
+	updateOption('navibar', $navibar);
 
-	$CACHE->mc_logatts();
-	$CACHE->mc_options();
-
+	$CACHE->updateCache(array('logatts', 'options'));
 	switch ($action)
 	{
 		case 'autosave':
@@ -131,12 +121,11 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave')
 	}
 }
 //Page Operations
-if ($action == 'operate_page')
-{
+if ($action == 'operate_page') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
-	
-	$emPage = new emBlog($DB);
+
+	$emPage = new emBlog();
 
 	switch ($operate)
 	{
@@ -147,13 +136,8 @@ if ($action == 'operate_page')
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
-			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
-
-			$CACHE->mc_logatts();
-			$CACHE->mc_options();
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_comment();
+			updateOption('navibar', $navibar);
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 
 			header("Location: ./page.php?active_del=true");
 			break;
@@ -166,14 +150,8 @@ if ($action == 'operate_page')
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
-			$DB->query("UPDATE ".DB_PREFIX."options SET option_value='$navibar' where option_name='navibar'");
-
-			$CACHE->mc_options();
-			$CACHE->mc_sta();
-			$CACHE->mc_user();
-			$CACHE->mc_logatts();
-			$CACHE->mc_comment();
-
+			updateOption('navibar', $navibar);
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;
 	}

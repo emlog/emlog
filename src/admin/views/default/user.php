@@ -30,7 +30,7 @@
 		<td><?php echo $val['name']; ?></td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
-		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $user_cache[$val['uid']]['lognum']; ?></a></td>
+		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
 		<td><a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');"><? echo $lang['remove'];?></a></td>
      </tr>
 	<?php endforeach; ?>

@@ -1,4 +1,3 @@
-/*Foreground template js*/
 function focusEle(ele){
 	try {document.getElementById(ele).focus();}
 	catch(e){}
@@ -30,23 +29,11 @@ function keyw(){
 		document.keyform.keyword.focus();
 		return false;
 	}
-	if (document.keyform.keyword.value.length<3){
-		alert(l_keyword_short);
-		document.keyform.keyword.focus();
-		return false;
-	}
-	if (document.keyform.keyword.value.length>31){
-		alert(l_keyword_long);
-		document.keyform.keyword.focus();
-		return false;
-	}
 }
 function checkEmail (str){
 	isEmail1=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
-	isEmail2=/^.*@[^_]*$/;
-	return (isEmail1.test(str)&&isEmail2.test(str));
+	return (isEmail1.test(str));
 }
-
 function checkform(){
 	if (document.commentform.comname.value==""){
 		alert(l_name_empty);
@@ -69,11 +56,6 @@ function checkform(){
 		return false;
 	}
 	if(document.commentform.commail.value!=""){
-		if(document.commentform.commail.value.length>60){
-			alert(l_email_long);
-			document.commentform.commail.focus();
-			return false;
-		}
 		if(!checkEmail(document.commentform.commail.value)){
 			alert(l_email_invalid);
 			document.commentform.commail.focus();
@@ -81,64 +63,111 @@ function checkform(){
 		}
 	}
 }
-function isdel (id,type){
+function isdel (id,type,url){
 	if(type == 'twitter'){
 		var msg = l_sure_delete;
-		if(confirm(msg)){sendinfo('twitter.php?action=del&twid='+id,'twitter')}
+		if(confirm(msg)){sendinfo(url+'twitter.php?action=del&twid='+id,'twitter')}
 		else {return;}
 	}
 }
-
-//ajax
-var xmlhttp = false;
-var node = '';
-function createxmlhttp() {
-	xmlhttp = false;
-	if(window.XMLHttpRequest) {
-		xmlhttp = new XMLHttpRequest();
-		if (xmlhttp.overrideMimeType) {
-			xmlhttp.overrideMimeType('text/xml');
+var XMLHttp = {  
+	_objPool: [],
+	_getInstance: function () {
+		for (var i = 0; i < this._objPool.length; i ++) {
+			if (this._objPool[i].readyState == 0 || this._objPool[i].readyState == 4) {
+				return this._objPool[i];
+			}
 		}
-	}
-	else if (window.ActiveXObject) {
-		try {
-			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (e) {
+		this._objPool[this._objPool.length] = this._createObj();
+		return this._objPool[this._objPool.length - 1];
+	},
+	_createObj: function(){
+		if (window.XMLHttpRequest){
+			var objXMLHttp = new XMLHttpRequest();
+		} else {
+			var MSXML = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
+			for(var n = 0; n < MSXML.length; n ++){
+				try{
+					var objXMLHttp = new ActiveXObject(MSXML[n]);
+					break;
+				}catch(e){}
+			}
+		}
+		if (objXMLHttp.readyState == null){
+			objXMLHttp.readyState = 0;
+			objXMLHttp.addEventListener('load',function(){
+				objXMLHttp.readyState = 4;
+				if (typeof objXMLHttp.onreadystatechange == "function") {  
+					objXMLHttp.onreadystatechange();
+				}
+			}, false);
+		}
+		return objXMLHttp;
+	},
+	sendReq: function(method, url, data, callback){
+		var objXMLHttp = this._getInstance();
+		with(objXMLHttp){
 			try {
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (e) {}
+				if (url.indexOf("?") > 0) {
+					url += "&randnum=" + Math.random();
+				} else {
+					url += "?randnum=" + Math.random();
+				}
+				open(method, url, true);
+				setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				send(data);
+				onreadystatechange = function () {  
+					if (objXMLHttp.readyState == 4 && (objXMLHttp.status == 200 || objXMLHttp.status == 304)) {  
+						callback(objXMLHttp);
+					}
+				}
+			} catch(e) {
+				alert('emria:error');
+			}
 		}
 	}
-	if (!xmlhttp) {
-		window.alert(l_not_supported);
-		return false;
-	}
+};
+function sendinfo(url,node){
+	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">"+l_loading+"...</span></div>");
+	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
-function sendinfo(url,nodeid){
-	node = nodeid;
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">"+l_loading+"...</span></div>");
-	createxmlhttp();
-	var querystring = url+ "&timetmp=" + timestamp();
-	xmlhttp.open("GET", querystring, true);
-	xmlhttp.send(null);
-	xmlhttp.onreadystatechange = processRequest;
-}
-function postinfo(url,post_id,show_id){
-	node = show_id;
-	updateEle(node,"<div><span style=\"background-color:#FF8000; color:#FFFFFF;\">"+l_processing+"</span></div>");
-	createxmlhttp();
-	var url2 = url + "&timetmp=" + timestamp();
-	xmlhttp.open("POST", url2, true);
-	xmlhttp.onreadystatechange = processRequest;
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+function postinfo(url,post_id,node){
+	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">"+l_processing+"...</span></div>");
 	var pdata = document.getElementById(post_id).value;
-	var querystring = post_id+"="+encodeURIComponent(pdata);
-	xmlhttp.send(querystring);
+	var data = post_id+"="+encodeURIComponent(pdata);
+	XMLHttp.sendReq('POST',url,data,function(obj){updateEle(node,obj.responseText);});
 }
-function processRequest(){
-	if (xmlhttp.readyState == 4) {
-		if (xmlhttp.status == 200) {
-			updateEle(node,xmlhttp.responseText);
-		}
+function loadr(url,tid){
+    url = url+"&stamp="+timestamp();
+	var r=document.getElementById("r_"+tid);
+	var rp=document.getElementById("rp_"+tid);
+	if (r.style.display=="block"){
+		r.style.display="none";
+		rp.style.display="none";
+	} else {
+		r.style.display="block";
+        r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">'+l_loading+'...</span>';
+        XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
 	}
+}
+function reply(url,tid){
+    var rtext=document.getElementById("rtext_"+tid).value;
+    var rname=document.getElementById("rname_"+tid).value;
+    var rcode=document.getElementById("rcode_"+tid).value;
+    var rmsg=document.getElementById("rmsg_"+tid);
+    var rn=document.getElementById("rn_"+tid);
+    var r=document.getElementById("r_"+tid);
+    var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+    XMLHttp.sendReq('POST',url,data,function(obj){
+        if(obj.responseText == 'err1'){rmsg.innerHTML = l_comment_length_max_140;
+        }else if(obj.responseText == 'err2'){rmsg.innerHTML = l_username_empty;
+        }else if(obj.responseText == 'err3'){rmsg.innerHTML = l_captcha_invalid;
+        }else if(obj.responseText == 'err4'){rmsg.innerHTML = l_nickname_disabled;
+        }else if(obj.responseText == 'err5'){rmsg.innerHTML = l_comment_exists;
+        }else if(obj.responseText == 'succ1'){rmsg.innerHTML = l_comment_ok_premod;
+        }else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
+}
+function re(tid, rp){
+    var rtext=document.getElementById("rtext_"+tid).value = rp;
+    focusEle("rtext_"+tid);
 }

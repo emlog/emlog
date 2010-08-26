@@ -19,9 +19,9 @@
     </tr>
   </head>
   <tbody>
-	<?php 
+	<?php
 		foreach($bakfiles  as $value):
-		$modtime = smartyDate(filemtime($value),'Y-m-d H:i:s');
+		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
 		$size =  changeFileSize(filesize($value));
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
@@ -43,7 +43,7 @@
 	<p><? echo $lang['backup_choose_database'];?>:<br /><select multiple="multiple" size="11" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
-		<?php endforeach; ?>	  
+		<?php endforeach; ?>
       	</select></p>
 	<p><? echo $lang['backup_filename'];?>: (<? echo $lang['backup_filename_info'];?>) <br /><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
 	<p><? echo $lang['backup_place'];?>?
@@ -57,8 +57,8 @@
 </div>
 <div class=line></div>
 <div style="margin:0px 0px 20px 0px;">
-	<p class="notice"><? echo $lang['cache_info'];?></p>
-	<p align="center"><input name="" type="button" onclick="window.location='data.php?action=mkcache';" value="<? echo $lang['cache_rebuild'];?>" class="submit" /></p>
+	<p class="des"><? echo $lang['cache_info'];?></p>
+	<p style="margin-left:10px;"><input type="button" onclick="window.location='data.php?action=mkcache';" value="<? echo $lang['cache_rebuild'];?>" class="submit" /></p>
 </div>
 <script type='text/javascript'>
 setTimeout(hideActived,2600);
