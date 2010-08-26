@@ -16,7 +16,12 @@ $lang['install_continue']  = '继续';//'Continue';
 $lang['install_post_body'] = '欢迎使用emlog开始你的博客之旅。';//'Welcome to emlog! Start your blog journey now.';
 $lang['install_slogan'] = '美好的生活需要用心记录';//'A happy life need to be carefullly recored.';
 $lang['install_twitter'] = '用简单的文字记录你的生活';//'With a simple written records of your life';
-$lang['install_ok']	= ' 添加成功<br />恭喜你！emlog 安装成功<br /><span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> <a href="./"> 进入emlog </a>';//' added successfully.<br />Congratulations! emlog installed successfully.<br /><span style="color:red;"><b>Please delete the installation file (install.php) from the root directory!</b></span><br /><br /><a href="./"> Enter the emlog </a>';
+$lang['install_admin_added']	= ' 添加成功';//' added successfully.';
+$lang['install_ok']	= '恭喜你！emlog 安装成功<br /><span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> <a href="./"> 进入emlog </a>';//' added successfully.<br />Congratulations! emlog installed successfully.<br /><span style="color:red;"><b>Please delete the installation file (install.php) from the root directory!</b></span><br /><br /><a href="./"> Enter the emlog </a>';
+$lang['install_delete']		= '请删除根目录下安装文件(install.php)';//'Please delete the installation file (install.php)';
+$lang['install_php_old']	= 'emlog从3.5开始不再支持您当前的 PHP ';//'Starting from version 3.5 emlog no longer supports your current PHP ';
+$lang['install_php_update']	= ' 请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。';//' Choose a host that supports PHP5, or download and install emlog v.3.4.';
+$lang['go_to_emlog']		= '进入emlog';//'Go to Emlog';
 $lang['mysql_not_supported'] = '服务器PHP不支持MySql数据库';//'Your PHP does not support MySql database.';
 $lang['mysql_settings']	= '数据库设置 （MySQL数据库）';//'Database settings (MySql database)';
 $lang['db_hostname']	= '数据库地址';//'Database Hostname';
@@ -55,14 +60,16 @@ $lang['plugin_active'] = '已激活';//'Active';
 $lang['plugin_inactive'] = '未激活';//'Inactive';
 $lang['plugin_page'] = '插件主页';//'Plugin page';
 $lang['plugin_repository'] = '获取更多插件';//'Emlog Plugin Repository';
-
+$lang['plugin_activate_failed'] = '获取更多插件';//'Plug-in activation failed';
+$lang['plugin_disable_all'] = '禁用所有插件';//'Disable all plugins';
+$lang['plugin_reset'] = '恢复组件设置到初始安装状态';//'Reset plugin settings';
+$lang['sidebar_widgets'] = '侧边栏组件管理';//'Manage sidebar widgets';
 $lang['return_to_admin_center'] = '返回管理首页';//'Return to Admin Center';
 $lang['blog_view_in_new_window'] = '在新窗口浏览我的blog';//'Show the Blog in a New Window';
 
 
-
 $lang['posts'] = '日志';//'Posts';
-$lang['blog_posts'] = '篇日志';//'Blog posts';
+$lang['posted_blogs'] = '篇日志';//'blogs posted';
 $lang['post_deleted_ok'] = '删除日志成功';//'Post deleted successfully';
 $lang['post_recommended_ok'] = '日志置顶成功';//'Post recommended successfully';
 $lang['post_unrecommended_ok'] = '取消置顶成功';//'Post removed from recommended successfully';
@@ -113,8 +120,6 @@ $lang['enter'] = '进入';//'Enter';
 
 $lang['parameter_invalid'] = '提交参数错误';//'Submitted parameters error';
 $lang['calendar'] = '日历';//'Calendar';
-
-$lang['sort'] = 'Sort';
 $lang['archive'] = '归档';//'存档';//'Archive';
 $lang['submit'] = '确 定';//'提交';//'Submit';
 $lang['reset'] = '重 置';//'Reset';
@@ -128,7 +133,7 @@ $lang['blog_view'] = '浏览日志';//'View Blog';
 $lang['blog_view_link'] = '查看该日志';//'View the Blog';
 $lang['blog_delete'] = 'Delete Blog';
 $lang['blog_enter_password'] = '//输入日志访问密码';//'请输入该日志的访问密码';//'Please enter a Password to Access the Blog';
-$lang['blog_password_protected'] = 'The blog is password protected';
+$lang['blog_password_protected'] = '该日志已设置加密';//'The blog is password protected';
 $lang['blog_password_protected_info'] = '该日志已设置加密，请点击标题输入密码访问';//The blog is password protected. Click on the title to enter a password to access.';
 $lang['blog_tags'] = '日志标签';//'Blog tags';
 
@@ -233,7 +238,10 @@ $lang['back_home'] = '返回主页';//'返回 首页';//'Back to Homepage';
 $lang['time'] = '时间';//'Time';
 $lang['back_to_list'] = '返回日志列表';//'Back to blog list';
 
-$lang['twitter'] = '博主唠叨';//'Twitter';
+$lang['twitter'] = '碎语';//'Twitter';
+$lang['twitters']	= '碎语';//'Twitters';
+$lang['twitters_last'] = '最新碎语';//'Latest Twitters';
+$lang['blogger_twitter'] = '博主唠叨';//'Blogger Twitter';
 $lang['twitter_first_text'] = 'Simple language Record your life';
 $lang['no_twitter_yet'] = 'No twitter yet!';
 $lang['twitters_number'] = '首页显示twitter数';//'Number of twitters to show';
@@ -374,7 +382,9 @@ $lang['backup_create_file_error'] = '创建备份文件失败。备份目录(con
 $lang['backup_empty'] = '数据表没有任何内容';//'Nothing to backup. Database tables have no any content.';
 $lang['backup_extension_invalid'] = '读取数据库文件失败, 只能恢复 *.sql 文件';//'Database Backup File Extension is invalid. Can only restore *.sql file.';
 $lang['backup_format_invalid'] = '导入失败! 该备份文件不是 emlog ';//'Import failed! The backup file does not correspond emlog version ';
+$lang['backup_bad_format']	= '导入失败! 该备份文件不是 emlog 的备份文件!';//'Import failed! The backup file is not a emlog backup file! ';
 $lang['backup_prefix_invalid'] = '导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配';//'Import failed! Database Backup file prefix does not match the configured Database Prefix.';
+$lang['backup_not_readable']	= '导入失败! 备份文件无法读取!';//'Import failed! Can not read backup file! ';
 $lang['backup_filename'] = '备份文件名';//'Backup File name';
 $lang['backup_filename_info'] = '由英文字母、数字、下划线组成';//'Backup File name can consist only latin alphabet characters, numbers, defis and underscores.';
 $lang['backup_filename_invalid'] = '错误的备份文件名';//'Error! Wrong backup file name.';
@@ -489,6 +499,7 @@ $lang['tags_edited_ok'] = '修改标签成功';//'Tag edited successfully.';
 $lang['tag_select_for_delete'] = '请选择要删除的标签';//'Please select the Tag for delete.';
 $lang['tags_delete_selected'] = '删除所选标签';//'Delete Selected Tags';
 $lang['tag_edit'] = '标签修改';//'Edit Tag';
+$lang['tag_blogs_used'] = '篇日志';//'Used in posts (times)';
 
 $lang['templates'] = '换模板';//'Templates';
 $lang['template_admin_not_found'] = 'the Admin-Center template not found!';
@@ -588,9 +599,12 @@ $lang['comment_posted_ok'] = 'Comment published successfully!';
 $lang['comment_posted_premod'] = 'Your comment saved successfully! Please wait for the administrator review and approve this!';
 $lang['comments_no_yet'] = 'No comments yet!';
 $lang['comment_reply'] = '回复评论';//'Comment reply';
-$lang['comments_disabled'] = 'Add Comment Failed. Comments for this Blog disabled.';
-$lang['comment_allready_exists'] = 'Error. A Comment with the same content already exists.';
-$lang['comment_invalid'] = 'Error! Comment text entered is invalid.';
+$lang['comments_disabled'] = '发表评论失败：该日志已关闭评论';//'Add Comment Failed. Comments for this Blog disabled.';
+$lang['comment_allready_exists'] = '发表评论失败：已存在相同内容评论';//'Failed to post a comment: A Comment with the same content already exists.';
+$lang['comment_name_invalid'] = '发表评论失败：姓名不符合规范';//'Failed to post a comment: the name does not meet the specifications';
+$lang['comment_email_invalid'] = '发表评论失败：邮件地址不符合规范';//'Failed to post a comment: the email address does not meet the specifications';
+$lang['comment_invalid'] = '发表评论失败：内容不符合规范';//'Failed to post a comment: the content does not meet the specifications';
+$lang['comment_captcha_invalid'] = '发表评论失败：验证码错误';//'Failed to post a comment: verification code error';
 
 $lang['comments_enable'] = '接受评论？是';//'Accept Comments';
 $lang['comments_approve'] = '审核';//'Approve';
@@ -608,6 +622,7 @@ $lang['comments_select_operation'] = '请选择要执行的操作';//'Please sel
 $lang['comment_replied_ok'] = '回复评论成功';//'Comment replied successfully.';
 $lang['comment_author'] = '所属日志';//'评论人';//'From';
 $lang['from'] = '来自';//'From';
+$lang['ip'] = 'IP';
 
 $lang['comments_with_selected'] = 'With seclected comments';
 $lang['comments_per_page'] = '/ 15 per page';
@@ -675,3 +690,27 @@ $lang['tz+09:30'] = '(标准时+9:30) 阿德莱德、达尔文';//'[+09:30] Adel
 $lang['tz+10:00'] = '(标准时+10:00) 悉尼、关岛';//'[+10:00] Sydney, Guam';
 $lang['tz+11:00'] = '(标准时+11:00) 马加丹、索罗门群岛';//'[+11:00] Magadan, Solomon Islands';
 $lang['tz+12:00'] = '(标准时+12:00) 奥克兰、惠灵顿、堪察加半岛';//'[+12:00] Auckland, Wellington, Kamchatka';
+
+$lang['can_yet_enter']	= '你还可以输入';//'You can add';
+$lang['twitter_reply_delete_sure']	= '你确定要删除该条回复吗？';//'Are you sure you want to delete the reply?';
+$lang['twitter_reply_exists']		= '该回复已经存在';//'This reply already exists';
+$lang['length_exceed']		= '已超出';//'Exceed the limit:';
+$lang['characters']		= '字';//'characters';
+$lang['twitter_captcha']	= '开启回复验证码';//'Enable captcha';
+$lang['twitter_trial']		= '开启回复审枧';//'Enable reply review';
+$lang['twitter_premoderate']	= 开启回复审核';//'Enable twitter premoderation';
+$lang['twitters_per_page']	= '前台每页显示条数';//'Number of twitters per page';
+$lang['save']			= '保存';//'Save';
+$lang['reply_approve']	= '回复并审核';//'Approve the reply';
+$lang['base_settings']	= '基本设置';//'Basic Settings';
+$lang['permalink']	= '固定链接';//'Permalink';
+$lang['time_local']	= '本地时间';//'Local Time';
+$lang['enable_offline_writing']	= '开启离线写作支持';//'Enable Offline Writing Support';
+$lang['draft_edit']	= '编辑草稿';//'Edit draft';
+$lang['comments_pending']	= '条待审';//'Pending comments';
+$lang['twitter_number']	= '条碎语';//'Twitters';
+$lang['twitter_length_max']	= '你还可以输入140字';//'You can enter max 140 characters';
+//$lang['twitter_length_max_info']	= '回复长度需在140个字内';//'The length for store must be 140 characters or less';//
+$lang['twitter_not_guest']	= '抱歉，碎语未开启前台访问！';//'Sorry, twitter is not enabled for guests!';
+$lang['twitter_show_front']	= '前台是否显示';//'Whether to display at the front';
+$lang['write_something'] = '为今天写点什么吧……';//'Write something for today...';

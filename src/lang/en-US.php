@@ -16,12 +16,12 @@ $lang['install_continue']  = 'Continue';//继续
 $lang['install_post_body'] = 'Welcome to emlog! Start your blog journey now.';//欢迎使用emlog开始你的博客之旅。
 $lang['install_slogan'] = 'A happy life need to be carefullly recored.';//美好的生活需要用心记录
 $lang['install_twitter'] = 'With a simple written records of your life';//用简单的文字记录你的生活
-$lang['install_admin_added']	= 'added successfully.';//
-$lang['install_ok']		= 'Congratulations! emlog installed successfully.';//
+$lang['install_admin_added']	= 'added successfully.';//' 添加成功';
+$lang['install_ok']		= 'Congratulations! emlog installed successfully.';//'恭喜你！emlog 安装成功';
 $lang['install_delete']		= 'Please delete the installation file (install.php)';//'请删除根目录下安装文件(install.php)';
 $lang['install_php_old']	= 'Starting from version 3.5 emlog no longer supports your current PHP ';//'emlog从3.5开始不再支持您当前的 PHP ';
 $lang['install_php_update']	= ' Choose a host that supports PHP5, or download and install emlog v.3.4.';//' 请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。';
-$lang['go_to_emlog']		= 'Go to emlog';//'进入emlog';
+$lang['go_to_emlog']		= 'Go to Emlog';//'进入emlog';
 $lang['mysql_not_supported'] = 'Your PHP does not support MySql database.';//服务器PHP不支持MySql数据库
 $lang['mysql_settings']	= 'Database settings (MySql database)';
 $lang['db_hostname']	= 'Database Hostname';//数据库地址
@@ -59,8 +59,8 @@ $lang['plugin_status'] = 'Status';//状态
 $lang['plugin_active'] = 'Active';//已激活
 $lang['plugin_inactive'] = 'Inactive';//未激活
 $lang['plugin_page'] = 'Plugin page';//插件主页
-$lang['plugin_repository'] = 'Emlog Plugin Repository';//获取更多插件
-$lang['plugin_activate_failed'] = 'Plug-in activation failed';//'获取更多插件'
+$lang['plugin_repository'] = 'Emlog Plugin Repository';//'获取更多插件';
+$lang['plugin_activate_failed'] = 'Plug-in activation failed';//'获取更多插件';
 $lang['plugin_disable_all'] = 'Disable all plugins';//'禁用所有插件';
 $lang['plugin_reset'] = 'Reset plugin settings';//'恢复组件设置到初始安装状态';
 $lang['sidebar_widgets'] = 'Manage sidebar widgets';//'侧边栏组件管理';
@@ -97,7 +97,6 @@ $lang['post_abstract'] = 'Abstract';//日志摘要
 $lang['post_edit'] = 'Edit Post';//编辑日志
 $lang['posted_by'] = 'Posted by';
 
-
 $lang['publish'] = 'Publish';//'发布';
 $lang['unpublish'] = 'Make Draft';//转入草稿箱
 
@@ -129,7 +128,7 @@ $lang['reset'] = 'Reset';//重 置
 
 
 $lang['blog'] = 'Blog';
-$lang['no_blogs_yet'] = 'No logs yet!';
+$lang['no_blogs_yet'] = 'No blogs yet!';
 $lang['blog_view'] = 'View Blog';//浏览日志
 $lang['blog_view_link'] = 'View the Blog';//'查看该日志';
 $lang['blog_delete'] = 'Delete Blog';
@@ -164,7 +163,7 @@ $lang['do_search'] = 'Go';//搜索
 $lang['information'] = 'Information';
 $lang['welcome_hello'] = 'Hello Blogger';
 $lang['welcome_text'] = 'Thank you for use the emlog! This is the default blog, you can delete it!';
-$lang['emlog_homepage'] = 'emlog Official Home Page';//emlog官方主页
+$lang['emlog_homepage'] = 'Emlog Official Home Page';//emlog官方主页
 $lang['emlog_welcome'] = 'Welcome to emlog!';
 $lang['db_table'] = 'Database table';//数据库表
 $lang['db_table_created'] = 'created successfully';//创建成功
@@ -234,20 +233,19 @@ $lang['login'] = 'Login';//登录
 $lang['remember_me'] = 'Remember Me';//记住我
 
 
-$lang['home'] = 'Home';//首页 //返回 首页
-$lang['back_home'] = 'Back to Homepage';//返回主页
-$lang['time'] = 'Time';//时间
-$lang['back_to_list'] = 'Back to blog list';//返回日志列表
+$lang['home'] = 'Home';//'首页';
+$lang['back_home'] = 'Back to Homepage';//'返回主页';//'返回 首页';
+$lang['time'] = 'Time';//'时间';
+$lang['back_to_list'] = 'Back to blog list';//'返回日志列表';
 
 $lang['twitter']	= 'Twitter';//'碎语';
 $lang['twitters']	= 'Twitters';//'碎语';
-$lang['twitters_last'] = 'Latest Twitters';//最新碎语
-$lang['blogger_twitter'] = 'Blogger Twitter';//博主唠叨
+$lang['twitters_last'] = 'Latest Twitters';//'最新碎语';
+$lang['blogger_twitter'] = 'Blogger Twitter';//'博主唠叨';
 $lang['twitter_first_text'] = 'Simple language Record your life';
 $lang['no_twitter_yet'] = 'No twitter yet!';
 $lang['twitters_number'] = 'Number of twitters to show';//首页显示twitter数
 $lang['twitter_add'] = 'Add twitter';//'发布碎语' //唠叨两句 //我要唠叨
-                                       
 $lang['content'] = 'Content';//内容
 
 $lang['user_name'] = 'User Name';//用户 //用户名
@@ -409,7 +407,7 @@ $lang['backup_select_file'] = 'Please select the backup files to operate with.';
 
 $lang['enter_modifications'] = 'Please enter the modifications in the project parameters';
 $lang['verification_code_not_supported'] = 'Open Verification Code failure! Server does not support this feature.';//"开启登录验证码失败!服务器不支持该功能"
-$lang['phpinfo_disabled'] = 'phpinfo function is disabled!';//"phpinfo函数被禁用!"
+$lang['phpinfo_disabled'] = 'phpinfo function is disabled!';//'phpinfo函数被禁用!';
 $lang['logout_ok'] = 'Log out success!';//'退出成功！'
 $lang['supported'] = 'Supported';//'支持'
 $lang['not_supported'] = 'NOT supported';//'不支持'
@@ -606,7 +604,7 @@ $lang['comment_allready_exists'] = 'Failed to post a comment: A Comment with the
 $lang['comment_name_invalid'] = 'Failed to post a comment: the name does not meet the specifications';//'发表评论失败：姓名不符合规范';
 $lang['comment_email_invalid'] = 'Failed to post a comment: the email address does not meet the specifications';//'发表评论失败：邮件地址不符合规范';
 $lang['comment_invalid'] = 'Failed to post a comment: the content does not meet the specifications';//'发表评论失败：内容不符合规范';
-$lang['comment_captcha_invalid'] = 'Failed to post a comment: verification code error'; //'发表评论失败：验证码错误';
+$lang['comment_captcha_invalid'] = 'Failed to post a comment: verification code error';//'发表评论失败：验证码错误';
 
 $lang['comments_enable'] = 'Accept Comments';//接受评论？是
 $lang['comments_approve'] = 'Approve';//审核
@@ -695,11 +693,11 @@ $lang['tz+12:00'] = '[+12:00] Auckland, Wellington, Kamchatka';//'(标准时+12:
 
 $lang['can_yet_enter']	= 'You can add';//'你还可以输入';
 $lang['twitter_reply_delete_sure']	= 'Are you sure you want to delete the reply?';//'你确定要删除该条回复吗？';
-$lang['twitter_reply_exists']		= 'The reply already exists';//'该回复已经存在';
+$lang['twitter_reply_exists']		= 'This reply already exists';//'该回复已经存在';
 $lang['length_exceed']		= 'Exceed the limit:';//'已超出';
 $lang['characters']		= 'characters';//'字';
 $lang['twitter_captcha']	= 'Enable captcha';//'开启回复验证码';
-$lang['twitter_trial']		= 'Enable twitter trial soap';//'开启回复审枧';
+$lang['twitter_trial']		= 'Enable reply review';//'开启回复审枧';
 $lang['twitter_premoderate']	= 'Enable twitter premoderation';//开启回复审核';
 $lang['twitters_per_page']	= 'Number of twitters per page';//'前台每页显示条数';
 $lang['save']			= 'Save';//'保存';
