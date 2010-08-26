@@ -25,7 +25,7 @@
 	<li><? echo $lang['attachment_max_size'];?>: <?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo"><? echo $lang['php_info'];?> &raquo;</a></li>
 </ul>
-<p id="m"><a title="用手机访问你的博客"><?php echo BLOG_URL.'m'; ?></a></p>
+<p id="m"><a title="<? echo $lang['use_mobile']; ?>"><?php echo BLOG_URL.'m'; ?></a></p>
 </div>
 <div id="admindex_msg">
 <h3><? echo $lang['official_info'];?></h3>

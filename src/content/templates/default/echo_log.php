@@ -1,6 +1,6 @@
 <?php 
 /*
-* 阅读日志页面
+* Read the blog page
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>

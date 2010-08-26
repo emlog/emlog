@@ -1,27 +1,27 @@
 <?php
 /**
- * 基础函数库
+ * Basic function library
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 /**
- * 加载模板文件
+ * Load template file
  *
- * @param string $template 模板名
- * @param string $ext 模板后缀名
- * @return string 模板路径
+ * @param string $template Template name
+ * @param string $ext Template suffix
+ * @return string Template path
  */
 function getViews($template, $ext = '.php'){
 	if (!is_dir(TEMPLATE_PATH)){
-	    emMsg('当前使用的模板已被删除或损坏，请登录后台更换其他模板。', BLOG_URL . 'admin/template.php');
+	    emMsg($lang['template_damaged'], BLOG_URL . 'admin/template.php');
 	}
 	$path = TEMPLATE_PATH.$template.$ext;
 	return $path;
 }
 
 /**
- * 去除多余的转义字符
+ * Remove redundant escape characters
  *
  */
 function doStripslashes(){
@@ -34,7 +34,7 @@ function doStripslashes(){
 }
 
 /**
- * 递归去除转义字符
+ * Recursively remove escape characters
  *
  * @param unknown_type $value
  * @return unknown
@@ -45,10 +45,10 @@ function stripslashesDeep($value){
 }
 
 /**
- * 转换HTML代码函数
+ * Convert HTML code function
  *
  * @param unknown_type $content
- * @param unknown_type $wrap 是否换行
+ * @param unknown_type $wrap Whether to wrap
  * @return unknown
  */
 function htmlClean($content, $wrap=true){
@@ -62,7 +62,7 @@ function htmlClean($content, $wrap=true){
 }
 
 /**
- * 获取用户ip地址
+ * Get user ip address
  *
  * @return string
  */
@@ -75,7 +75,7 @@ function getIp(){
 }
 
 /**
- * 获取博客地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
+ * Get the blog address (only for the root directory script, currently only used for homepage ajax requests)
  *
  * @return string
  */
@@ -89,7 +89,7 @@ function getBlogUrl(){
 }
 
 /**
- * 访问统计
+ * Statistics
  *
  */
 function viewCount() {
@@ -111,7 +111,7 @@ function viewCount() {
 }
 
 /**
- * 更新博客选项
+ * Update blog options
  *
  */
 function updateOption($name, $value, $isSyntax = false){
@@ -121,7 +121,7 @@ function updateOption($name, $value, $isSyntax = false){
 }
 
 /**
- * 检查插件
+ * Check the plugin
  *
  */
 function checkPlugin($plugin) {
@@ -133,7 +133,7 @@ function checkPlugin($plugin) {
 }
 
 /**
- * 验证email地址格式
+ * Verify email address format
  *
  * @param unknown_type $email
  * @return unknown
@@ -147,11 +147,11 @@ function checkMail($email){
 }
 
 /**
- * 截取编码为utf8的字符串
+ * Get a substring encoded as utf8
  *
- * @param string $strings 预处理字符串
- * @param int $start 开始处 eg:0
- * @param int $length 截取长度
+ * @param string $strings Original string
+ * @param int $start Start position eg:0
+ * @param int $length Substring length
  * @return unknown
  */
 function subString($strings,$start,$length){
@@ -184,9 +184,9 @@ function subString($strings,$start,$length){
 }
 
 /**
- * 转换附件大小单位
+ * Convert attachment size unit
  *
- * @param string $fileSize 文件大小 kb
+ * @param string $fileSize File size, kb
  * @return unknown
  */
 function changeFileSize($fileSize){
@@ -203,12 +203,12 @@ function changeFileSize($fileSize){
 }
 
 /**
- * 分页函数
+ * Paging function
  *
- * @param int $count 条目总数
- * @param int $perlogs 每页显示条数目
- * @param int $page 当前页码
- * @param string $url 页码的地址
+ * @param int $count Total number of entries
+ * @param int $perlogs Number of items displayed per page
+ * @param int $page Current page number
+ * @param string $url Page URL
  * @return unknown
  */
 function pagination($count,$perlogs,$page,$url){
@@ -223,14 +223,14 @@ function pagination($count,$perlogs,$page,$url){
 			}
 		}
 	}
-	if ($page > 6) $re = "<a href=\"$url=1\" title=\"首页\">&laquo;</a><em>...</em>$re";
-	if ($page + 5 < $pnums) $re .= "<em>...</em> <a href=\"$url=$pnums\" title=\"尾页\">&raquo;</a>";
+	if ($page > 6) $re = "<a href=\"$url=1\" title=\"{$lang['first_page']}\">&laquo;</a><em>...</em>$re";
+	if ($page + 5 < $pnums) $re .= "<em>...</em> <a href=\"$url=$pnums\" title=\"{$lang['last_page']}\">&raquo;</a>";
 	if ($pnums <= 1) $re = '';
 	return $re;
 }
 
 /**
- * 该函数在插件中调用,挂载插件函数到预留的钩子上
+ * This function is called in the plug-in, and the plug-in function is mounted to the reserved hook
  *
  * @param string $hook
  * @param string $actionFunc
@@ -245,7 +245,7 @@ function addAction($hook, $actionFunc){
 }
 
 /**
- * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
+ * Execute the function hung on the hook, support multiple parameters eg:doAction('post_comment', $author, $email, $url, $comment);
  *
  * @param string $hook
  */
@@ -260,7 +260,7 @@ function doAction($hook){
 }
 
 /**
- * 清除模板中的注释,并完成URL优化
+ * Clear the comments in the template and complete URL optimization
  *
  */
 function cleanPage($beUrlRewrite = false){
@@ -291,23 +291,23 @@ function cleanPage($beUrlRewrite = false){
 }
 
 /**
- * 日志分割
+ * Split blog post
  *
- * @param string $content 日志内容
- * @param int $lid 日志id
+ * @param string $content Post content
+ * @param int $lid Post id
  * @return unknown
  */
 function breakLog($content,$lid){
 	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
-	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">阅读全文&gt;&gt;</a></p>';
+	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">'.$lang['read_more'].'&gt;&gt;</a></p>';
 	return $a[0];
 }
 
 /**
- * 删除[break]标签
+ * Remove the [break] tag
  *
- * @param string $content 日志内容
+ * @param string $content Post content
  * @return unknown
  */
 function rmBreak($content){
@@ -316,9 +316,9 @@ function rmBreak($content){
 }
 
 /**
- * 获取远程文件内容
+ * Get remote file content
  *
- * @param 文件http地址 $url
+ * @param $url File http address
  * @return unknown
  */
 function fopen_url($url){
@@ -345,7 +345,7 @@ function fopen_url($url){
 	return $file_content;
 }
 /**
- * 时间转化函数
+ * Time conversion function
  *
  * @param $now
  * @param $datetemp
@@ -360,12 +360,12 @@ function smartDate($datetemp, $dstr='Y-m-d H:i'){
 	if ($hover == 0){
 		$min = floor($sec / 60);
 		if ( $min == 0) {
-			$op = $sec.' 秒前';
+			$op = $sec.$lang['seconds_ago'];
 		} else {
-			$op = "$min 分钟前";
+			$op = $min.$lang['minutes_ago'];
 		}
 	} elseif ($hover < 24){
-		$op = "约 {$hover} 小时前";
+		$op = $lang['approximately'].$hover.$lang['hours_ago'];
 	} else {
 		$op = gmdate($dstr, $datetemp + $timezone * 3600);
 	}
@@ -373,7 +373,7 @@ function smartDate($datetemp, $dstr='Y-m-d H:i'){
 }
 
 /**
- * 生成一个随机的字符串
+ * Generate a random string
  *
  * @param int $length
  * @param boolean $special_chars
@@ -392,7 +392,7 @@ function getRandStr($length = 12, $special_chars = true){
 }
 
 /**
- * 寻找两数组所有不同元素
+ * Find all the different elements of the two arrays
  *
  * @param array $array1
  * @param array $array2
@@ -406,30 +406,30 @@ function findArray($array1,$array2){
 }
 
 /**
- * 附件上传
+ * Update file
  *
- * @param string $fileName 文件名
- * @param string $errorNum 错误码：$_FILES['error']
- * @param string $tmpFile 上传后的临时文件
- * @param string $fileSize 文件大小 KB
- * @param string $fileType 上传文件的类型 eg:image/jpeg
- * @param array $type 允许上传的文件类型
- * @param boolean $isIcon 是否为上传头像
- * @return string 文件路径
+ * @param string $fileName File name
+ * @param string $errorNum Error code: $_FILES['error']
+ * @param string $tmpFile Temporary file after upload
+ * @param string $fileSize File size KB
+ * @param string $fileType Type of uploaded file eg:image/jpeg
+ * @param array $type File types allowed to upload
+ * @param boolean $isIcon Whether to upload an avatar
+ * @return string File path
  */
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0){
 	if ($errorNum == 1){
-		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+		formMsg($lang['attachment_exceed_system_limit'].ini_get('upload_max_filesize'), 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1){
-		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
+		formMsg($lang['upload_failed_code'].$errorNum, 'javascript:history.go(-1);', 0);
 	}
 	$extension  = strtolower(substr(strrchr($fileName, "."),1));
 	if (!in_array($extension, $type)){
-		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
+		formMsg($lang['wrong_file_type'],"javascript:history.go(-1);",0);
 	}
 	if ($fileSize > UPLOADFILE_MAXSIZE){
 		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
-		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+		formMsg($lang['file_size_exceeded'].$ret.$lang['restrictions'],"javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
@@ -438,14 +438,14 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 		umask(0);
 		$ret = @mkdir(UPLOADFILE_PATH, 0777);
 		if ($ret === false){
-			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
+			formMsg($lang['attachment_create_failed'], "javascript:history.go(-1);", 0);
 		}
 	}
 	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false){
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			formMsg($lang['uploads_not_written'],"javascript:history.go(-1);",0);
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -465,7 +465,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	if (@is_uploaded_file($tmpFile)){
 		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			formMsg($lang['uploads_not_written'],"javascript:history.go(-1);",0);
 		}
 		chmod($attachpath, 0777);
 	}
@@ -473,13 +473,13 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 }
 
 /**
- * 图片生成缩略图
+ * Generate image thumbnail
  *
- * @param string $img 预缩略的图片
- * @param unknown_type $imgType 上传文件的类型 eg:image/jpeg
- * @param string $thumPatch 生成缩略图路径
- * @param int $max_w 缩略图最大宽度 px
- * @param int $max_h 缩略图最大高度 px
+ * @param string $img Original image
+ * @param unknown_type $imgType Type of uploaded file eg:image/jpeg
+ * @param string $thumPatch Generate thumbnail path
+ * @param int $max_w Maximum thumbnail width px
+ * @param int $max_h Maximum thumbnail height px
  * @return unknown
  */
 function resizeImage($img, $imgType, $thumPatch, $max_w, $max_h){
@@ -525,21 +525,21 @@ function resizeImage($img, $imgType, $thumPatch, $max_w, $max_h){
 }
 
 /**
- * 按照比例改变图片大小(非生成缩略图)
+ * Change the picture size according to the proportion (not generating thumbnails)
  *
- * @param string $img 图片路径
- * @param int $max_w 最大缩放宽
- * @param int $max_h 最大缩放高
+ * @param string $img Image path
+ * @param int $max_w Max thumb width
+ * @param int $max_h Max thumb height
  * @return unknown
  */
 function chImageSize ($img,$max_w,$max_h){
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
-	//计算缩放比例
+	//Calculate the ratio
 	@$w_ratio = $max_w / $w;
 	@$h_ratio =	$max_h / $h;
-	//决定处理后的图片宽和高
+	//Calculate the width and height of the processed image
 	if( ($w <= $max_w) && ($h <= $max_h) ){
 		$tn['w'] = $w;
 		$tn['h'] = $h;
@@ -556,7 +556,7 @@ function chImageSize ($img,$max_w,$max_h){
 }
 
 /**
- * 后台操作返回信息
+ * Background operation return information
  *
  * @param string $msg
  * @param string $url
@@ -569,9 +569,9 @@ function formMsg($msg,$url,$type){
 	exit;
 }
 /**
- * 计算时区的时差
- * @param string $remote_tz 远程时区
- * @param string $origin_tz 标准时区
+ * Calculate the time difference of the time zone
+ * @param string $remote_tz Remote time zone
+ * @param string $origin_tz Standard time zone
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
@@ -589,7 +589,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
- * 将字符串转换为时区无关的UNIX时间戳
+ * Convert string to UNIX timestamp independent of time zone
  *
  */
 function emStrtotime($timeStr) {
@@ -605,14 +605,14 @@ function emStrtotime($timeStr) {
             } else {
                 if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
             		/*
-            		* 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
-            	    * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
-            		* 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+            		* If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
+            	    * But the time we passed in is actually the local time in the time zone configured by the blog, not the local time in the server time zone
+            		* Therefore, we need to remove the time obtained by strtotime / add the time difference between the two time zones to get the UTC time
             		*/
             		$offset = getTimeZoneOffset($serverTimeZone);
-            		// 首先减去/加上本地时区配置的时差
+            		// First subtract/add the time difference of the local time zone configuration
             		$unixPostDate -= $timezone * 3600;
-            		// 再减去/加上服务器时区与utc的时差，得到utc时间
+            		// Subtract/add the time difference between the server time zone and utc to get the utc time
             		$unixPostDate -= $offset;
         		}
         	}
@@ -624,10 +624,10 @@ function emStrtotime($timeStr) {
 }
 
 /**
- * 获取指定月份的天数
+ * Get the number of days in a specified month
  *
- * @param string $month 月份
- * @param string $year 年份
+ * @param string $month Month
+ * @param string $year Year
  */
 function getMonthDayNum($month, $year) {
     switch(intval($month)){
@@ -653,11 +653,11 @@ function getMonthDayNum($month, $year) {
 }
 
 /**
- * 显示系统信息
+ * Display system message
  *
- * @param string $msg 信息
- * @param string $url 返回地址
- * @param boolean $isAutoGo 是否自动返回 true false
+ * @param string $msg Message
+ * @param string $url Return URL
+ * @param boolean $isAutoGo Whether to return automatically, true/false
  */
 function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false){
 	echo <<<EOT
@@ -699,7 +699,7 @@ body {
 <body>
 <div class="main">
 <p>$msg</p>
-<p><a href="$url">&laquo;点击返回</a></p>
+<p><a href="$url">&laquo;{$lang['return_back']}</a></p>
 </div>
 </body>
 </html>

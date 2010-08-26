@@ -96,7 +96,7 @@ $isdraft = $hide == 'y' ? true : false;
 		  <input type="submit" value="<? echo $lang['post_save_and_return'];?>" onclick="return chekform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
 		  <?php if ($isdraft) :?>
-		  <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return chekform();" class="button" />
+		  <input type="submit" name="pubdf" id="pubdf" value="<? echo $lang['publish']; ?>" onclick="return chekform();" class="button" />
 		  <?php endif;?>
 		  </td>
         </tr>

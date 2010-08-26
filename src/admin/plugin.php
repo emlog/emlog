@@ -64,7 +64,7 @@ if ($action == 'setting')
 	    header("Location: ./plugin.php?plugin={$plugin}&error=true");
 	}
 }
-//禁用所有插件
+//Disable all plugins
 if($action == 'reset'){
     updateOption('active_plugins', 'a:0:{}');
 	$CACHE->updateCache('options');

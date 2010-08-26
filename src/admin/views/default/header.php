@@ -25,7 +25,7 @@
     <td  class="home" align="left"><a href="../" target="_blank" title="<? echo $lang['blog_view_in_new_window'];?>"><?php echo $blogname; ?></a></td>
     <td align=right nowrap class="headtext">
 	<?php if (ROLE == 'admin'):?>
-    <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['blog_settings']?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> <? echo $lang['templates'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./"><? echo $lang['admin_center'];?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -56,7 +56,7 @@
 			?>
 			</span></a></div>
 			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><? echo $lang['posts'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">碎语</a></div>
+			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><? echo $lang['twitters'];?></a></div>
 			<?php if (ROLE == 'admin'):?>
             <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></div>
             <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></div>
@@ -67,9 +67,9 @@
 			if ($hidecmnum > 0):
 			$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 			?>
-			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
+			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?> <? echo $lang['comments_pending'];?>"> <?php echo $n; ?></a></div>
 			<?php endif; ?>
-            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
+            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php"><? echo $lang['trackbacks'];?></a></div>
 			</div>
 			</div>
        	    </td>

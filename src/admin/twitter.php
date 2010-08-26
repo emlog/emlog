@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语
+ * Twitters
  * @copyright (c) Emlog All Rights Reserved
  * $Id: twitter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
  */
@@ -48,7 +48,7 @@ if ($action == '') {
     include getViews('footer');
     cleanPage();
 }
-// 发布碎语.
+// Post twit
 if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
@@ -67,14 +67,14 @@ if ($action == 'post') {
     doAction('post_twitter', $t);
     header("Location: twitter.php?active_t=true");
 }
-// 删除碎语.
+// Delete twit
 if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emTwitter->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: twitter.php?active_del=true");
 }
-// 获取回复.
+// Get reply
 if ($action == 'getreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -87,21 +87,21 @@ if ($action == 'getreply') {
     foreach($replys as $val){
          if ($val['hide'] == 'n'){
             $style = "background-color:#FFF";
-            $act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">屏蔽</a></span> ";
+            $act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">{$lang['comments_hide']}</a></span> ";
          } else {
             $style = "background-color:#FEE0E4";
-            $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">审核</a></span> ";
+            $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">{$lang['comments_approve']}</a></span> ";
          }
          $response .= "
          <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
-         <a href=\"javascript: delreply({$val['id']},{$tid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}：');\">回复</a></em>
+         <a href=\"javascript: delreply({$val['id']},{$tid});\">{$lang['remove']}</a> 
+         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}：');\">{$lang['reply']}</a></em>
          </li>";
     }
     echo $response;
 }
-// 回复碎语.
+// Reply the twit
 if ($action == 'reply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -135,13 +135,13 @@ if ($action == 'reply') {
     $response = "
          <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-         <span><a href=\"javascript: hidereply({$rid},{$tid});\">屏蔽</a></span> 
-         <a href=\"javascript: delreply({$rid},{$tid});\">删除</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$name}：');\">回复</a></em>
+         <span><a href=\"javascript: hidereply({$rid},{$tid});\">{$lang['comments_hide']}</a></span> 
+         <a href=\"javascript: delreply({$rid},{$tid});\">{$lang['remove']}</a> 
+         <em><a href=\"javascript:reply({$tid}, '@{$name}：');\">{$lang['reply']}</a></em>
          </li>";
     echo $response;
 }
-// 删除回复.
+// Delete reply
 if ($action == 'delreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -153,7 +153,7 @@ if ($action == 'delreply') {
     }
     echo $tid;
 }
-// 隐藏回复.
+// Hide reply
 if ($action == 'hidereply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -163,7 +163,7 @@ if ($action == 'hidereply') {
     $emReply->hideReply($rid);
     $emTwitter->updateReplyNum($tid, '-1');
 }
-// 审核回复.
+// Publish reply
 if ($action == 'pubreply') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -173,7 +173,7 @@ if ($action == 'pubreply') {
     $emReply->pubReply($rid);
     $emTwitter->updateReplyNum($tid, '+1');
 }
-// 碎语设置.
+// Twitter settings
 if ($action == 'set') {
     $data = array(
         'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'y',

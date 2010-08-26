@@ -3,7 +3,7 @@
 <div class=containertitle><b><? echo $lang['template_current'];?></b><?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['template_changed_successfully'];?></span><?php endif;?></div>
 <div class=line></div>
 <?php if(!$nonceTplData): ?>
-<div class="error_msg">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div>
+<div class="error_msg"><? echo $lang['template_current']; ?><?php echo $nonce_templet; ?><? echo $lang['template_not_found']; ?></div>
 <?php else:?>
 <table cellspacing="10" cellpadding="0" width="80%" border="0">
     <tr>

@@ -6,7 +6,7 @@
 <a class="navi4" href="./permalink.php"><? echo $lang['permalink']; ?></a>
 <a class="navi2" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
 <?php else:?>
-<a class="navi1" href="./blogger.php">个人资料</a>
+<a class="navi1" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
 <?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['personal_data_saved_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['photo_deleted_ok'];?></span><?php endif;?>

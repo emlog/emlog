@@ -1,6 +1,6 @@
 <?php 
 /*
-* 首页日志列表部分
+* Blog post list
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>

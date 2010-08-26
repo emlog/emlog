@@ -36,15 +36,15 @@
 	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
-			<li class="widget-title">最新碎语</li>
+			<li class="widget-title"><? echo $lang['twitters_last']; ?></li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
-			<li>标题</li>
+			<li><? echo $lang['title']; ?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li>首页显示最新碎语数</li>
-			<li><input maxlength="5" size="10" value="<?php echo $index_newtwnum; ?>" name="index_newtwnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
+			<li><? echo $lang['twitters_last_info']; ?></li>
+			<li><input maxlength="5" size="10" value="<?php echo $index_newtwnum; ?>" name="index_newtwnum" /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -252,8 +252,8 @@ if($i == $wgNum):
 <ul>
 <?php 
 	foreach ($widgets as $widget):
-	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//Whether the widget is a custom component  //是否为自定义组件
-	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom component title //获取自定义组件标题
+	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//Whether the widget is a custom widget
+	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
 	if($flg && empty($title))
 	{
 		preg_match("/^custom_wg_(\d+)/", $widget, $matches);

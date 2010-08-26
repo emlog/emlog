@@ -1,6 +1,6 @@
 <?php 
 /*
-* 底部信息
+* Bottom information
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>

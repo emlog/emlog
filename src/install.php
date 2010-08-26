@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
 define('DEL_INSTALLER', 0);
 
-//blog language //vot
+//Blog language //vot
 //define('EMLOG_LANGUAGE','zh-CN');
 define('EMLOG_LANGUAGE','en-US');
 //define('EMLOG_LANGUAGE','ru-RU');
@@ -24,7 +24,7 @@ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');//vot
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if (PHP_VERSION < '5.0'){
-    emMsg('emlog从3.5开始不再支持您当前的 PHP'.PHP_VERSION.' 环境，请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。');
+    emMsg($lang['install_php_old'].PHP_VERSION.$lang['install_php_update']);
 }
 
 if(!$act){

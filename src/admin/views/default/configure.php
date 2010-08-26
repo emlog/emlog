@@ -125,11 +125,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
 	  <tr>
-        <td align="right">开启离线写作支持：<br /></td>
+        <td align="right"><? echo $lang['enable_offline_writing']; ?>：<br /></td>
         <td class="care">
 		<select name="isxmlrpcenable">
-          <option value="y" <?php echo $ex13; ?>>是</option>
-          <option value="n" <?php echo $ex14; ?>>否</option>
+          <option value="y" <?php echo $ex13; ?>><? echo $lang['yes']; ?></option>
+          <option value="n" <?php echo $ex14; ?>><? echo $lang['no']; ?></option>
         </select>
 		</td>
       </tr>

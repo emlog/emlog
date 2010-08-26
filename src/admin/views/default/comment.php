@@ -15,13 +15,13 @@ $$a = "class=\"filter\"";
 ?>
 <div class="filters">
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>"><? echo $lang['all'];?></a></span>
-<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
+<span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>"><? echo $lang['pending'];?>
 <?php
 $hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
-<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></span>
+<span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>"><? echo $lang['approved']; ?></a></span>
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">

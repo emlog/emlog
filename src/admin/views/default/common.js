@@ -21,10 +21,10 @@ function em_confirm (id, property) {
 	switch (property){
 		case 'tw':
 		var urlreturn="twitter.php?action=del&id="+id;
-		var msg = "你确定要删除该条碎语吗？";break;
+		var msg = l_sure_del_twitter;break;
 		case 'comment':
 		var urlreturn="comment.php?action=del&id="+id;
-		var msg = "你确定要删除该评论吗？";break;
+		var msg = l_sure_del_comment;break;
 		case 'link':
 		var urlreturn="link.php?action=dellink&linkid="+id;
 		var msg = l_sure_delete_link;break;
@@ -48,10 +48,10 @@ function em_confirm (id, property) {
 		var msg = l_sure_delete_user;break;
 		case 'reset_widget':
 		var urlreturn="widgets.php?action=reset";
-		var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+		var msg = l_sure_reset_plugin;break;
 		case 'reset_plugin':
 		var urlreturn="plugin.php?action=reset";
-		var msg = "你确定要禁用所有插件吗？";break;
+		var msg = l_sure_disable_all_plugins;break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -181,7 +181,7 @@ function autosave(act){
 		}else{
 		    $("#savedf").attr("disabled", "");
 		    $("#savedf").val(btname);
-		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+		    $("#msg").html("<span class=\"msg_autosave_error\">"+l_network_error+"</span>");
 	    }
 	});
 	if(act == 0){

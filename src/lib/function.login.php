@@ -1,12 +1,12 @@
 <?php
 /**
- * 登录验证函数库
+ * Login verification function library
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 /**
- * 验证用户是否处于登陆状态
+ * Verify that the user is logged in
  *
  * @return boolean
  */
@@ -26,7 +26,7 @@ function isLogin()
 }
 
 /**
- * 验证密码/用户
+ * Verify password/username
  *
  * @param string $username
  * @param string $password
@@ -56,7 +56,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 }
 
 /**
- * 登录页面
+ * Log in page
  *
  */
 function loginPage()
@@ -73,7 +73,7 @@ function loginPage()
 }
 
 /**
- * 通过登录名查询管理员信息
+ * Get user information by login name
  *
  * @param string $userLogin User's username
  * @return bool|object False on failure, User DB row object
@@ -96,7 +96,7 @@ function getUserDataByLogin($userLogin)
 }
 
 /**
- * 将明文密码和数据库加密后的密码进行验证
+ * Verify the plaintext password and the encrypted password of the database
  *
  * @param string $password Plaintext user's password
  * @param string $hash Hash of the user's password to check against.
@@ -115,7 +115,7 @@ function checkPassword($password, $hash)
 }
 
 /**
- * 写用于登录验证cookie
+ * Set login authentication cookie
  *
  * @param int $user_id User ID
  * @param bool $remember Whether to remember the user or not
@@ -134,7 +134,7 @@ function setAuthCookie($user_login, $ispersis = false)
 }
 
 /**
- * 生成登录验证cookie
+ * Generate login authentication cookie
  *
  * @param int $user_id user login
  * @param int $expiration Cookie expiration in seconds
@@ -163,10 +163,10 @@ function emHash($data)
 }
 
 /**
- * hmac 加密
+ * hmac encryption
  *
- * @param unknown_type $algo hash算法 md5
- * @param unknown_type $data 用户名和到期时间
+ * @param unknown_type $algo Hash algorithm md5
+ * @param unknown_type $data Username and expiration time
  * @param unknown_type $key
  * @return unknown
  */
@@ -198,7 +198,7 @@ if( !function_exists('hash_hmac') )
 }
 
 /**
- * 验证cookie
+ * Authentication cookie
  * Validates authentication cookie.
  *
  * @param string $cookie Optional. If used, will validate contents instead of cookie's

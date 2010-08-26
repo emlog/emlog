@@ -76,7 +76,7 @@ switch ($action)
 			$ok_msg = $lang['post_saved_draft_ok'];
 			$ok_url = 'admin_log.php?pid=draft';
 		}else{
-			//发送Trackback
+			//Send Trackback
 			if(!empty($pingurl))
 			{
 				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);

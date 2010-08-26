@@ -1,6 +1,6 @@
 <?php 
 /*
-* 侧边栏组件、页面模块
+* Sidebar widgets
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -36,8 +36,8 @@ function widget_calendar($title){
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
 	</li>
 <?php }?>
-<?php
 
+<?php
 //widget: Tags
 function widget_tag($title){
 	global $lang; 
@@ -85,13 +85,13 @@ function widget_twitter($title){
 	<li><?php echo $value['t']; ?><p><?php echo smartDate($value['date']); ?> </p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
-	<p style="text-align:right"><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></p>
+	<p style="text-align:right"><a href="<?php echo BLOG_URL . 't/'; ?>"><? echo $lang['more']; ?> &raquo;</a></p>
 	<?php endif;?>
 	</ul>
 	</li>
 <?php }?>
-<?php
 
+<?php
 //widget: Music
 function widget_music($title){
 	global $lang; 
@@ -110,8 +110,8 @@ function widget_music($title){
 	</ul>
 	</li>
 <?php }?>
-<?php
 
+<?php
 //widget: Latest comments
 function widget_newcomm($title){
 	global $lang; 
