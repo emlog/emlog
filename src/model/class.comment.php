@@ -1,13 +1,13 @@
 <?php
 /**
- * 评论管理
+ * Comment management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class emComment {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -18,9 +18,9 @@ class emComment {
 	}
 
 	/**
-	 * 获取评论
+	 * Get comments
 	 *
-	 * @param int $spot 0：前台 1：后台
+	 * @param int $spot 0: Frontend, 1: Backsend
 	 * @param int $blogId
 	 * @param string $hide
 	 * @param int $page
@@ -74,7 +74,7 @@ class emComment {
 		return $commentArray;
 	}
 	/**
-	 * 获取查询评论的数目
+	 * Get the number of comments
 	 *
 	 * @param int $blogId
 	 * @return int $comNum
@@ -96,7 +96,7 @@ class emComment {
 		return $comNum;
 	}
 	/**
-	 * 删除评论
+	 * Delete comment
 	 *
 	 * @param int $commentId
 	 */
@@ -111,7 +111,7 @@ class emComment {
 		}
 	}
 	/**
-	 * 显示/隐藏评论
+	 * Show/hide comment
 	 *
 	 * @param int $commentId
 	 */
@@ -139,7 +139,7 @@ class emComment {
 	}
 
 	/**
-	 * 回复评论
+	 * Reply the comment
 	 *
 	 * @param int $commentId
 	 * @param string $reply
@@ -151,7 +151,7 @@ class emComment {
 	}
 
 	/**
-	 * 批量处理评论
+	 * Batch processing of comments
 	 *
 	 * @param string $action
 	 * @param array $comments

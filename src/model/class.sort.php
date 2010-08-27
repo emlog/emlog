@@ -1,13 +1,13 @@
 <?php
 /**
- * 日志分类
+ * Category management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class emSort {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;

@@ -1,6 +1,6 @@
 <?php
 /**
- * 日志、页面管理
+ * Blog page management
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -8,7 +8,7 @@
 
 class emBlog {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -18,7 +18,7 @@ class emBlog {
 	}
 
 	/**
-	 * 添加日志、页面
+	 * Add blog post
 	 *
 	 * @param array $logData
 	 * @return int
@@ -38,7 +38,7 @@ class emBlog {
 	}
 
 	/**
-	 * 更新日志内容
+	 * Update blog post
 	 *
 	 * @param array $logData
 	 * @param int $blogId
@@ -54,9 +54,9 @@ class emBlog {
 	}
 
 	/**
-	 * 获取指定条件的日志条数
+	 * Get a number of posts with specified conditions
 	 *
-	 * @param int $spot 0:前台 1:后台
+	 * @param int $spot 0: foreground, 1: background
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -77,7 +77,7 @@ class emBlog {
 	}
 
 	/**
-	 * 后台获取单条日志
+	 * Get a single post in the background
 	 *
 	 * @param int $blogId
 	 * @return array
@@ -105,7 +105,7 @@ class emBlog {
 	}
 
 	/**
-	 * 前台获取单条日志
+	 * Get a single post for the frontend
 	 *
 	 * @param int $blogId
 	 * @return array
@@ -141,7 +141,7 @@ class emBlog {
 	}
 
 	/**
-	 * 后台获取日志列表
+	 * Get a post list for the background
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -171,7 +171,7 @@ class emBlog {
 	}
 
 	/**
-	 * 前台获取日志列表
+	 * Get a post list for the frontend
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -206,7 +206,7 @@ class emBlog {
 	}
 
 	/**
-	 * 删除日志
+	 * Delete Post
 	 *
 	 * @param int $blogId
 	 */
@@ -216,14 +216,14 @@ class emBlog {
 		if ($this->db->affected_rows() < 1) {
 			formMsg($lang['access_disabled'], './', 0);
 		}
-		// 评论
+		// Comments
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// 引用
+		// Trackbacks
 		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
-		// 标签
+		// Tags
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-		// 附件
+		// Attachments
 		$query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
 		while ($attach = $this->db->fetch_array($query)) {
 			if (file_exists($attach['filepath'])) {
@@ -238,7 +238,7 @@ class emBlog {
 	}
 
 	/**
-	 * 隐藏/显示日志
+	 * Hide/show the post
 	 *
 	 * @param int $blogId
 	 * @param string $hideState
@@ -249,7 +249,7 @@ class emBlog {
 	}
 
 	/**
-	 * 获取日志发布时间
+	 * Get the post release time
 	 *
 	 * @param int $timezone
 	 * @param string $postDate
@@ -273,7 +273,7 @@ class emBlog {
 	}
 
 	/**
-	 * 增加阅读次数
+	 * Update the number of views
 	 *
 	 * @param int $blogId
 	 */
@@ -282,7 +282,7 @@ class emBlog {
 	}
 
 	/**
-	 * 判断是否重复发文
+	 * Determine whether the post is repeated
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -292,9 +292,9 @@ class emBlog {
 	}
 
 	/**
-	 * 获取相邻日志
+	 * Get neighbor posts
 	 *
-	 * @param int $date unix时间戳
+	 * @param int $date unix Timestamp
 	 * @return array
 	 */
 	function neighborLog($date) {
@@ -311,7 +311,7 @@ class emBlog {
 	}
 
 	/**
-	 * 随机获取指定数量日志
+	 * Randomly get a specified number of posts
 	 *
 	 * @param int $num
 	 * @return array
@@ -329,7 +329,7 @@ class emBlog {
 	}
 
 	/**
-	 * 加密日志访问验证
+	 * Verify access to the encrypted post
 	 *
 	 * @param string $pwd
 	 * @param string $pwd2

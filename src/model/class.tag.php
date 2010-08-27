@@ -1,13 +1,13 @@
 <?php
 /**
- * 标签管理
+ * Tag management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class emTag {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -18,7 +18,7 @@ class emTag {
 	}
 
 	/**
-	 * 获取标签
+	 * Get Tags
 	 *
 	 * @param int $gid
 	 * @return array
@@ -70,7 +70,7 @@ class emTag {
 	}
 
 	/**
-	 * 添加标签
+	 * Add tag
 	 *
 	 * @param string $tagStr
 	 */
@@ -92,7 +92,7 @@ class emTag {
 	}
 
 	/**
-	 * 更新标签
+	 * Update tags
 	 *
 	 * @param string $tagStr
 	 * @param int $blogId

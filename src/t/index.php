@@ -1,14 +1,14 @@
 <?php
 /**
- * 碎语
+ * Twitter
  * @copyright (c) Emlog All Rights Reserved
  * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
 */
 
 require_once '../common.php';
 
-define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//前台模板URL
-define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径
+define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//Foreground template URL
+define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//Foreground template path
 
 $blogtitle = $blogname;
 
@@ -34,7 +34,7 @@ if ($action == '') {
     require_once getViews('t');
     cleanPage(true);
 }
-// 获取回复.
+// Get a reply
 if ($action == 'getr') {
     require_once EMLOG_ROOT.'/model/class.reply.php';
 
@@ -53,7 +53,7 @@ if ($action == 'getr') {
     }
     echo $response;
 }
-// 回复碎语.
+// Reply the twit.
 if ($action == 'reply') {
     require_once EMLOG_ROOT.'/model/class.twitter.php';
     require_once EMLOG_ROOT.'/model/class.reply.php';
@@ -115,7 +115,7 @@ if ($action == 'reply') {
          </li>";
     echo $response;
 }
-// 回复验证码.
+// Verification code for the reply
 if ($action == 'ckcode') {
     require_once EMLOG_ROOT.'/lib/checkcode.php';
 }

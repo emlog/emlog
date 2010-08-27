@@ -1,6 +1,6 @@
 <?php
 /**
- * 引用通告管理
+ * Trackback Management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -8,7 +8,7 @@
 
 class emTrackback {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -19,7 +19,7 @@ class emTrackback {
 	}
 
 	/**
-	 * 发送trackback
+	 * Post trackback
 	 *
 	 * @param string $blogurl
 	 * @param string $pingUrl
@@ -78,7 +78,7 @@ class emTrackback {
 	}
 
 	/**
-	 * 获取trackbak
+	 * Get trackbak
 	 *
 	 * @param unknown_type $page
 	 * @param unknown_type $blogId
@@ -119,7 +119,7 @@ class emTrackback {
 	}
 
 	/**
-	 * 获取引用的数目
+	 * Get the number of trackbacks
 	 *
 	 * @return int $tbNum
 	 */

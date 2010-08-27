@@ -1,13 +1,13 @@
 <?php
 /**
- * 碎语回复管理
+ * Reply management
  * @copyright (c) Emlog All Rights Reserved
  * $Id: class.reply.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
  */
 
 class emReply {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -18,7 +18,7 @@ class emReply {
 	}
 
 	/**
-	 * 回复
+	 * Add reply
 	 *
 	 * @param array $tData
 	 * @return int
@@ -41,7 +41,7 @@ class emReply {
 	}
 
 	/**
-	 * 获取回复
+	 * Get replies
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -73,7 +73,7 @@ class emReply {
 	}
 
 	/**
-	 * 查询回复的数目
+	 * Get a number of replies
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -91,10 +91,10 @@ class emReply {
 	}
 
 	/**
-	 * 删除回复
+	 * Delete reply
 	 *
 	 * @param int $replyId
-	 * @return 受影响的twitter id
+	 * @return int Affected twitter id
 	 */
 	function delReply($replyId)
 	{
@@ -104,7 +104,7 @@ class emReply {
 		return $hide;
 	}
 	/**
-	 * 隐藏回复
+	 * Hide reply
 	 *
 	 * @param int $replyId
 	 */
@@ -113,7 +113,7 @@ class emReply {
 		$this->db->query("UPDATE ".DB_PREFIX."reply SET hide='y' WHERE id=$replyId");
 	}
 	/**
-	 * 显示回复
+	 * Show reply
 	 *
 	 * @param int $replyId
 	 */

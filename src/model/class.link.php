@@ -1,13 +1,13 @@
 <?php
 /**
- * 友情链接
+ * Links
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class emLink {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;

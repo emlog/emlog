@@ -1,6 +1,6 @@
 <?php
 /**
- * mobile 版本
+ * Mobile Version
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id:  526 2008-07-05 15:21:03Z emloog $
@@ -10,13 +10,13 @@ require_once '../common.php';
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
-$isgzipenable = 'n'; //手机浏览关闭gzip压缩
+$isgzipenable = 'n'; //Turn off gzip compression for mobile browsing
 $index_lognum = 5;
 $index_twnum = 5;
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $blogname = $options_cache ['blogname'];
 $blogdes = $options_cache ['bloginfo'];
-// 首页
+// Front page
 if (empty ($action) && empty ($logid)) {
 	require_once EMLOG_ROOT . '/model/class.blog.php';
 
@@ -32,7 +32,7 @@ if (empty ($action) && empty ($logid)) {
 	include getViews('log');
 	include getViews('footer');
 }
-// 日志
+// Blog
 if (!empty ($logid)) {
 	require_once EMLOG_ROOT . '/model/class.blog.php';
 	require_once EMLOG_ROOT . '/model/class.comment.php';
@@ -138,7 +138,7 @@ if (ISLOGIN === true && $action == 'dellog') {
 	$CACHE->updateCache();
 	header("Location: ./");
 }
-// 评论
+// Comment
 if ($action == 'addcom') {
 	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
@@ -244,7 +244,7 @@ if (ISLOGIN === true && $action == 'dorep') {
 	$CACHE->updateCache('comment');
 	header("Location: ./?action=com");
 }
-// 碎语
+// Twitters
 if ($action == 'tw') {
     require_once EMLOG_ROOT.'/model/class.twitter.php';
     $emTwitter = new emTwitter();

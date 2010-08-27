@@ -1,13 +1,13 @@
 <?php
 /**
- * 用户管理
+ * User Management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class emUser {
 	/**
-	 * 内部数据对象
+	 * Internal data object
 	 * @var MySql
 	 */
 	private $db;
@@ -18,9 +18,9 @@ class emUser {
 	}
 
 	/**
-	 * 获取用户列表
+	 * Get user list
 	 *
-	 * @param 用户组 $role
+	 * @param $role User role
 	 * @return array
 	 */
 	function getUsers($role = 'writer')
@@ -56,7 +56,7 @@ class emUser {
 	}
 
 	/**
-	 * 更新用户信息
+	 * Update user information
 	 *
 	 * @param array $userData
 	 * @param int $uid
@@ -73,7 +73,7 @@ class emUser {
 	}
 
 	/**
-	 * 添加用户
+	 * Add user
 	 *
 	 * @param string $login
 	 * @param string $password
@@ -86,7 +86,7 @@ class emUser {
 	}
 
 	/**
-	 * 删除用户
+	 * Delete user
 	 *
 	 * @param int $uid
 	 */
@@ -98,10 +98,10 @@ class emUser {
 	}
 
 	/**
-	 * 判断用户名是否存在
+	 * Determine whether the user name exists
 	 *
 	 * @param string $login
-	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @param int $uid Compatible with the fact that the user name has not changed when the author's information is updated
 	 * @return boolean
 	 */
 	function isUserExist($login, $uid = '')
