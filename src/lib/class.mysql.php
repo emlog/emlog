@@ -80,7 +80,7 @@ class MySql {
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {
-			emMsg($lang['sql_statement_error'] . "： $sql <br />" . $this->geterror());
+			emMsg($lang['sql_statement_error'] . ": $sql <br />" . $this->geterror());
 		}else {
 			return $this->result;
 		}

@@ -1,19 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./">首页</a> 
-<a href="./?action=tw" id="active">碎语</a> 
-<a href="./?action=com">评论</a> 
+<a href="./"><? echo $lang['home']; ?></a> 
+<a href="./?action=tw" id="active"><? echo $lang['twitters']; ?></a> 
+<a href="./?action=com"><? echo $lang['comments']; ?></a> 
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=logout">退出</a>
+<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
+<a href="./?action=logout"><? echo $lang['logout']; ?></a>
 <?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login"><? echo $lang['login']; ?></a>
 <?php endif;?>
 </div>
 <div id="m">
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./?action=t" >
-<input name="t" value="" /> <input type="submit" value="发碎语" />
+<input name="t" value="" /> <input type="submit" value="<? echo $lang['twitter_send']; ?>" />
 </form>
 <?php endif;?>
 <?php 
@@ -23,7 +23,7 @@ $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 <div class="twcont"><?php echo $value['content'];?></a></div>
 <div class="twinfo"><?php echo $by.' '.$value['date'];?>
 <?php if(ISLOGIN === true && $value['author'] == UID || ROLE == 'admin'): ?>
- <a href="./?action=delt&id=<?php echo $value['id'];?>">删除</a>
+ <a href="./?action=delt&id=<?php echo $value['id'];?>"><? echo $lang['remove']; ?></a>
 <?php endif;?>
 </div>
 <?php endforeach; ?>

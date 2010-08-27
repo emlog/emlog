@@ -1,6 +1,6 @@
 <?php
 /**
- * xmlrpc博客服务接口
+ * xmlrpc Blog service interface
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -18,30 +18,30 @@ require_once EMLOG_ROOT . '/model/class.sort.php';
 require_once EMLOG_ROOT . '/model/class.tag.php';
 
 $api_methods = array(
-	// metaWeblog 接口
+	// metaWeblog interface
 	'metaWeblog.newPost' => 'mw_newPost',
 	'metaWeblog.editPost' => 'mw_editPost',
 	'metaWeblog.getPost' => 'mw_getPost',
 	'metaWeblog.getRecentPosts' => 'mw_getRecentPosts',
 	'metaWeblog.getCategories' => 'mw_getCategories',
 	'metaWeblog.newMediaObject' => 'mw_newMediaObject',
-	// blogger 接口
+	// blogger interface
 	'blogger.deletePost' => 'mw_deletePost',
 	'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
 	);
 
 $DB = MySql::getInstance();
 $options_cache = mkcache::getInstance()->readCache('options');
-// 有些基于浏览器的客户端会发送cookie，我们不需要它们
+// Some browser-based clients will send cookies, we don't need them
 $_COOKIE = array();
-// PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
+// PHP 5.2.2 version has the next bug: The system will not automatically generate the constant $HTTP_RAW_POST_DATA
 if (!isset($HTTP_RAW_POST_DATA)) {
 	$HTTP_RAW_POST_DATA = file_get_contents('php://input');
 }
-// 修复mozBlog或其他个例不兼容xml标签不在第一行的情况
+// Fix mozBlog or other cases where the incompatible xml tag is not in the first line
 if (isset($HTTP_RAW_POST_DATA))
 	$HTTP_RAW_POST_DATA = trim($HTTP_RAW_POST_DATA);
-// 向客户端发送api支持信息
+// Send api support information to the client
 if (isset($_GET['rsd'])) {
 	header('Content-Type: text/xml; charset=utf-8', true);
 	echo '<?xml version="1.0" encoding="utf-8"?>
@@ -60,10 +60,10 @@ if (isset($_GET['rsd'])) {
 	exit;
 }
 if ($options_cache['isxmlrpcenable'] == 'n') {
-	error_message(500, '提示:博客XMLRPC服务未开启.');
+	error_message(500, $lang['xmlrpc_disabled']);
 }
 if (!$HTTP_RAW_POST_DATA) {
-	error_message(500, '错误:XML-RPC服务器只能接受POST数据');
+	error_message(500, $lang['xmlrpc_error_post']);
 }
 $data = $HTTP_RAW_POST_DATA;
 
@@ -72,9 +72,9 @@ $array_structs_types = $array_structs = $current_struct_name_array = $params = a
 
 $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
-	error_message(500, '错误:提交数据内容为空');
+	error_message(500, $lang['xmlrpc_empty']);
 }
-// 兼容php libxml模块2.7.0-2.7.3版本解析xml丢失html标签括号的bug
+// Compatible with php libxml module 2.7.0-2.7.3 version parsing xml missing html tag bracket bug
 if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
 	$data = str_replace(array('&lt;', '&gt;', '&amp;'), array('&#60;', '&#62;' , '&#38;'), $data);
 }
@@ -92,7 +92,7 @@ if (!array_key_exists($method_name, $api_methods)) die('unknow request');
 call_user_func($api_methods[$method_name], $params);
 
 /**
- * 读取博客信息
+ * Read blog information
  */
 function blogger_getUsersBlogs() {
 	global $options_cache;
@@ -127,7 +127,7 @@ function blogger_getUsersBlogs() {
 }
 
 /**
- * 删除日志
+ * Delete blog post
  */
 function mw_deletePost($args) {
 	escape($args);
@@ -140,7 +140,7 @@ function mw_deletePost($args) {
 	response('<boolean>1</boolean>');
 }
 /**
- * 保存新日志
+ * Save new blog post
  */
 function mw_newPost($args) {
 	global $options_cache;
@@ -159,7 +159,7 @@ function mw_newPost($args) {
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	$update_data['excerpt'] = '';
-	// 只取第一个分类
+	// Get only the first category
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
@@ -171,27 +171,27 @@ function mw_newPost($args) {
 			break;
 		}
 	}
-	// 发布时间
+	// Publish time
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}else {
 		$update_data['date'] = time();
 	}
-	// 更新数据
+	// Update data
 	$emBlog = new emBlog();
 	$new_id = $emBlog->addlog($update_data);
-	// 更新标签
+	// Update tags
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag();
 		$emTag->addTag($data['mt_keywords'], $new_id);
 		unset($emTag);
 	}
-	// 更新缓存
+	// Rrefresh cache
 	mkcache::getInstance()->updateCache();
 	response("<i4>$new_id</i4>");
 }
 /**
- * 更新日志
+ * Edit post
  */
 function mw_editPost($args) {
 	global $options_cache;
@@ -200,7 +200,7 @@ function mw_editPost($args) {
 	$password = $args[2];
 	$user = login($username, $password);
 	define('UID', $user['uid']);
-	// 接受参数
+	// Accept parameters
 	$id = intval($args[0]);
 	$username = $args[1];
 	$password = $args[2];
@@ -211,7 +211,7 @@ function mw_editPost($args) {
 	$update_data['content'] = htmlspecialchars_decode($data['description']);
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
-	// 根据分类名称取分类id,注意只取第一个分类
+	// Take the category id according to the category name, note that only the first category is taken
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
@@ -223,25 +223,25 @@ function mw_editPost($args) {
 			break;
 		}
 	}
-	// 发布时间
+	// Create time
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
-	// 更新数据
+	// Update data
 	$emBlog = new emBlog();
 	$emBlog->updateLog($update_data, $id);
-	// 更新标签
+	// Update tags
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$emTag = new emTag();
 		$emTag->updateTag($data['mt_keywords'], $id);
 	}
-	// 更新缓存
+	// Refresh cache
 	mkcache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 
 /**
- * 取得博客分类
+ * Get blog categories
  */
 function mw_getCategories($args) {
 	escape($args);
@@ -275,7 +275,7 @@ function mw_getCategories($args) {
 }
 
 /**
- * 读取日志信息
+ * Read post information
  */
 function mw_getPost($args) {
 	global $options_cache;
@@ -290,7 +290,7 @@ function mw_getPost($args) {
 	$emBlog = new emBlog();
 	define('UID', $user['uid']);
 	$post = $emBlog->getOneLogForAdmin($post_ID);
-	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
+	if (empty($post)) return error_message(404, $lang['post_not_exists']);
 	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
@@ -446,7 +446,7 @@ function mw_getRecentPosts($args) {
 	}
 
 	if (empty($xml)) {
-		error_massage(404, '没有日志');
+		error_massage(404, $lang['post_not_found']);
 	}
 	$xml = "<array><data>$xml</data></array>";
 	response($xml);
@@ -461,7 +461,7 @@ function mw_newMediaObject($args) {
 	$user = login($username, $password);
 	$file = $args[3];
 	if (!preg_match('/([^\/\:\*\?<>\|]+\.\w{2,6})|(\\{2}[^\/\:\*\?<>\|]+\.\w{2,6})/', $file['name'], $matches))
-		error_message(500, '文件错误');
+		error_message(500, $lang['file_error']);
 	$filename = $matches[0];
 
 	$bits = $file['bits'];
@@ -472,12 +472,12 @@ function mw_newMediaObject($args) {
 	$att_type = array('rar', 'zip', 'gif', 'jpg', 'jpeg', 'png', 'bmp');
 
 	if (empty($filename))
-		error_message(500, '文件名错误');
+		error_message(500, $lang['file_name_error']);
 
 	$extension = strtolower(substr(strrchr($filename, "."), 1));
-	// 文件类型检测
+	// File type detection
 	if (!in_array($extension, $att_type)) {
-		error_message(500, '文件类型错误');
+		error_message(500, $lang['file_type_error']);
 	}
 	$uppath_root = substr(UPLOADFILE_PATH, 1);
 	$uppath = $uppath_root . gmdate('Ym') . '/';
@@ -487,20 +487,20 @@ function mw_newMediaObject($args) {
 		umask(0);
 		$ret = @mkdir($uppath_root, 0777);
 		if ($ret === false) {
-			error_message(500, '创建文件上传目录失败');
+			error_message(500, $lang['attachment_create_failed']);
 		}
 	}
 	if (!is_dir($uppath)) {
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
-			error_message(500, '上传失败。文件上传目录(content/uploadfile)不可写');
+			error_message(500, $lang['uploads_not_written']);
 		}
 	}
 
 	$fp = @fopen($attachpath, 'wb');
 	if (!$fp)
-		error_message(500, '文件无法写入');
+		error_message(500, $lang['file_write_error']);
 	fwrite($fp, $bits);
 	fclose($fp);
 
@@ -599,12 +599,12 @@ function getIso($utctimestamp) {
 function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
-	// 检查用户权限
+	// Check user permissions
 	if (!checkUser($username, $password , '' , '')) {
-		error_message(403, '用户名密码错误');
+		error_message(403, $lang['user_name_pass_wrong']);
 		return false;
 	}
-	// 返回用户信息
+	// Return user information
 	return getUserDataByLogin($username);
 }
 

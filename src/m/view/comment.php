@@ -1,37 +1,37 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./">首页</a> 
-<a href="./?action=tw">碎语</a> 
-<a href="./?action=com" id="active">评论</a> 
+<a href="./"><? echo $lang['home']; ?></a> 
+<a href="./?action=tw"><? echo $lang['twitter']; ?></a> 
+<a href="./?action=com" id="active"><? echo $lang['comments']; ?></a> 
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=logout">退出</a>
+<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
+<a href="./?action=logout"><? echo $lang['logout']; ?></a>
 <?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login"><? echo $lang['login']; ?></a>
 <?php endif;?>
 </div>
 <div id="m">
 <?php 
 foreach($comment as $value):
-	$ishide = ISLOGIN === true && $value['hide']=='y'?'<font color="red" size="1">[待审]</font>':'';
-	$isrp = ISLOGIN === true && $value['reply']?'<font color="green" size="1">[已回复]</font>':'';
+	$ishide = ISLOGIN === true && $value['hide']=='y'?'<font color="red" size="1">['.$lang['pending'].']</font>':'';
+	$isrp = ISLOGIN === true && $value['reply']?'<font color="green" size="1">['.$lang['comments_replied'].']</font>':'';
 ?>
 <div class="comcont"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?> 
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=delcom&id=<?php echo $value['cid'];?>"><font size="1">[删除]</font></a>
+<a href="./?action=delcom&id=<?php echo $value['cid'];?>"><font size="1">[<? echo $lang['remove']; ?>]</font></a>
 <?php endif;?>
 </div>
 <?php if(ISLOGIN === true): ?>
-<div class="info">所属日志：<?php echo $value['title']; ?></div>
+<div class="info"><? echo $lang['comment_author']; ?>: <?php echo $value['title']; ?></div>
 <?php endif;?>
 <div class="cominfo">
 <?php if(ISLOGIN === true && $value['hide'] == 'n'): ?>
-<a href="./?action=hidecom&id=<?php echo $value['cid'];?>">屏蔽</a>
+<a href="./?action=hidecom&id=<?php echo $value['cid'];?>"><? echo $lang['comments_hide']; ?></a>
 <?php elseif(ISLOGIN === true && $value['hide'] == 'y'):?>
-<a href="./?action=showcom&id=<?php echo $value['cid'];?>">审核</a>
+<a href="./?action=showcom&id=<?php echo $value['cid'];?>"><? echo $lang['approve']; ?></a>
 <?php endif;?>
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=reply&id=<?php echo $value['cid'];?>">回复</a>
+<a href="./?action=reply&id=<?php echo $value['cid'];?>"><? echo $lang['reply']; ?></a>
 <?php endif;?>
 <br />
 <?php if(ISLOGIN === true): ?>

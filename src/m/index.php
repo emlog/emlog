@@ -42,7 +42,7 @@ if (!empty ($logid)) {
 
 	$logData = $emBlog->getOneLogForHome($logid);
 	if ($logData === false) {
-		mMsg ('不存在该条目', './');
+		mMsg ($lang['entry_not_exists'], './');
 	}
 	extract($logData);
 	if (!empty($password)) {
@@ -153,22 +153,22 @@ if ($action == 'addcom') {
 	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $gid);
 	switch ($ret) {
 		case -1:
-			mMsg('发表评论失败：该日志已关闭评论', "./?post=$gid");
+			mMsg($lang['comments_disabled'], "./?post=$gid");
 			break;
 		case -2:
-			mMsg('发表评论失败：已存在相同内容评论', "./?post=$gid");
+			mMsg($lang['comment_allready_exists'], "./?post=$gid");
 			break;
 		case -3:
-			mMsg('发表评论失败：姓名不符合规范', "./?post=$gid");
+			mMsg($lang['comment_name_invalid'], "./?post=$gid");
 			break;
 		case -4:
-			mMsg('发表评论失败：邮件地址不符合规范', "./?post=$gid");
+			mMsg($lang['comment_email_invalid'], "./?post=$gid");
 			break;
 		case -5:
-			mMsg('发表评论失败：内容不符合规范', "./?post=$gid");
+			mMsg($lang['comment_invalid'], "./?post=$gid");
 			break;
 		case -6:
-			mMsg('发表评论失败：验证码错误', "./?post=$gid");
+			mMsg($lang['comment_captcha_invalid'], "./?post=$gid");
 			break;
 		case 0:
 			$CACHE->updateCache(array('sta','comment'));
@@ -178,7 +178,7 @@ if ($action == 'addcom') {
 		case 1:
 			$CACHE->updateCache(array('sta'));
 			doAction('comment_saved');
-			mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
+			mMsg ($lang['comment_posted_premod'], "./?post=$gid");
 			break;
 	}
 }
@@ -284,7 +284,7 @@ if (ISLOGIN === true && $action == 'delt') {
 	header("Location: ./?action=tw");
 }
 if ($action == 'login') {
-	$login_code == 'y' ? $ckcode = "<span>验证码</span>
+	$login_code == 'y' ? $ckcode = "<span>{$lang['verification_code']}</span>
     <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';

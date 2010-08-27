@@ -39,9 +39,9 @@ class emTrackback {
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
 				$result = strtolower($this->sendPacket($host, $data));
 				if (strstr($result, "<error>0</error>") === false) {
-					$tbmsg .= "(引用{$key}:发送失败)";
+					$tbmsg .= "({$lang['trackback']} {$key}: {$lang['trackback_send_error']})";
 				} else {
-					$tbmsg .= "(引用{$key}:发送成功)";
+					$tbmsg .= "({$lang['trackback']} {$key}: {$lang['trackback_send_ok']})";
 				}
 			}
 		}

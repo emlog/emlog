@@ -85,7 +85,7 @@ class emTwitter {
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
-			formMsg('权限不足！', './', 0);
+			formMsg($lang['access_disabled'], './', 0);
 		}
 		// delete reply
 		$this->db->query("DELETE FROM " . DB_PREFIX . "reply where tid=$tid");

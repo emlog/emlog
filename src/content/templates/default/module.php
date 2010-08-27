@@ -398,7 +398,7 @@ function blog_comments_post(){
 	global $lang;
 	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
 	<?php if($allow_remark == 'y'): ?>
-	<p class="comment"><b><? echo $lang['comment'];?>:</b><a name="comment"></a></p>
+	<p class="comment"><b><? echo $lang['comment_add'];?>:</b><a name="comment"></a></p>
 	<div class="comment_post">
 	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 	<p>

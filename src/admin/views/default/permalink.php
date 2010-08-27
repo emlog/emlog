@@ -16,10 +16,10 @@
         <td><input type="radio" name="permalink" value="0" <?php echo $ex0; ?>><? echo $lang['default_format']; ?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></td>
       </tr>
 	  <tr>
-        <td><input type="radio" name="permalink" value="1" <?php echo $ex1; ?>><? echo $lang['file_format']; ?>： <span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></td>
+        <td><input type="radio" name="permalink" value="1" <?php echo $ex1; ?>><? echo $lang['file_format']; ?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></td>
       </tr>
 	  <tr>
-        <td><input type="radio" name="permalink" value="2" <?php echo $ex2; ?>><? echo $lang['directory_format']; ?>： <span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></td>
+        <td><input type="radio" name="permalink" value="2" <?php echo $ex2; ?>><? echo $lang['directory_format']; ?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></td>
       </tr>
       <tr>
         <td rowspan="2"><input type="submit" value="<? echo $lang['save_settings']; ?>" class="button" /></td>

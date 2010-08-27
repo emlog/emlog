@@ -31,8 +31,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
         <div class="tinfo" style="display:<?php if(ROLE == 'admin' || ROLE == 'writer'){echo 'none';}?>">
-        <? echo $lang['nickname']; ?>： <input type="text" id="rname_<?php echo $tid; ?>" value="" />
-        <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>"><? echo $lang['verification_code']; ?>： <input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
+        <? echo $lang['nickname']; ?>: <input type="text" id="rname_<?php echo $tid; ?>" value="" />
+        <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>"><? echo $lang['verification_code']; ?>: <input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
         </div>
         <input class="button_p" type="button" onclick="reply('<?php echo DYNAMIC_BLOGURL; ?>?action=reply',<?php echo $tid;?>);" value="<? echo $lang['reply']; ?>" /> 
         <div class="msg"><span id="rmsg_<?php echo $tid; ?>" style="color:#FF0000"></span></div>

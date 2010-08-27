@@ -125,7 +125,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
 	  <tr>
-        <td align="right"><? echo $lang['enable_offline_writing']; ?>：<br /></td>
+        <td align="right"><? echo $lang['enable_offline_writing']; ?>:<br /></td>
         <td class="care">
 		<select name="isxmlrpcenable">
           <option value="y" <?php echo $ex13; ?>><? echo $lang['yes']; ?></option>

@@ -197,7 +197,7 @@ function changeFileSize($fileSize){
 	} elseif($fileSize >= 1024){
 		$fileSize = round($fileSize / 1024, 2) . 'KB';
 	} else{
-		$fileSize = $fileSize . '字节';
+		$fileSize = $fileSize . $lang['bytes'];
 	}
 	return $fileSize;
 }

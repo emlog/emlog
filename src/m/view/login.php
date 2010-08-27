@@ -1,22 +1,22 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./">首页</a> 
-<a href="./?action=tw">碎语</a> 
-<a href="./?action=com">评论</a> 
+<a href="./"><? echo $lang['home']; ?></a> 
+<a href="./?action=tw"><? echo $lang['twitters']; ?></a> 
+<a href="./?action=com"><? echo $lang['comments']; ?></a> 
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=logout">退出</a>
+<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
+<a href="./?action=logout"><? echo $lang['logout']; ?></a>
 <?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login" id="active">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login" id="active"><? echo $lang['login']; ?></a>
 <?php endif;?>
 </div>
 <div id="m">
 	<form method="post" action="./?action=auth">
-		用户名<br />
+		<? echo ; ?><? echo $lang['user_name']; ?><br />
 	    <input type="text" name="user" /><br />
-	    密码<br />
+	    <? echo ; ?><? echo $lang['password']; ?><br />
 	    <input type="password" name="pw" /><br />
 	    <?php echo $ckcode; ?>
-	    <br /><input type="submit" value=" 登 录" />
+	    <br /><input type="submit" value="<? echo $lang['log_in']; ?>" />
 	</form>
 </div>

@@ -60,7 +60,7 @@ class emSort {
 			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		}else {
-			$sortName = '未分类';
+			$sortName = $lang['unclassified'];
 		}
 		return $sortName;
 	}

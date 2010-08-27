@@ -18,22 +18,22 @@
     <div class="op"><a href="javascript:displayToggle('sz_box', 2);"><? echo $lang['settings']; ?></a></div>
     <form method="post" action="twitter.php?action=set">
         <div class="sz_box" id="sz_box">
-            <span><? echo $lang['twitter_show_front']; ?>：</span>
+            <span><? echo $lang['twitter_show_front']; ?>:</span>
             <select name="istwitter">
                 <option value="y" <?php echo $ex1; ?>><? echo $lang['yes']; ?></option>
                 <option value="n" <?php echo $ex2; ?>><? echo $lang['no']; ?></option>
             </select>
-            <span><? echo $lang['twitter_captcha']; ?>：</span>
+            <span><? echo $lang['twitter_captcha']; ?>:</span>
             <select name="reply_code">
                 <option value="y" <?php echo $ex3; ?>><? echo $lang['yes']; ?></option>
                 <option value="n" <?php echo $ex4; ?>><? echo $lang['no']; ?></option>
             </select>
-            <span><? echo $lang['twitter_premoderate']; ?>：</span>
+            <span><? echo $lang['twitter_premoderate']; ?>:</span>
             <select name="ischkreply">
                 <option value="y" <?php echo $ex5; ?>><? echo $lang['yes']; ?></option>
                 <option value="n" <?php echo $ex6; ?>><? echo $lang['no']; ?></option>
             </select>
-            <br /><span><? echo $lang['twitters_per_page']; ?>：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" /> 
+            <br /><span><? echo $lang['twitters_per_page']; ?>:</span> <input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" /> 
             <input class="tbutton" type="submit" value="<? echo $lang['save']; ?>" />
         </div>
     </form>

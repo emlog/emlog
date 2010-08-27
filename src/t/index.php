@@ -13,7 +13,7 @@ define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径
 $blogtitle = $blogname;
 
 if ($istwitter == 'n') {
-    emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
+    emMsg($lang['twitter_not_guest'], BLOG_URL);
 }
 
 if ($action == '') {
@@ -48,7 +48,7 @@ if ($action == 'getr') {
          $response .= "
          <li>
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
-         <em><a href=\"javascript:re({$tid}, '@{$val['name']}：');\">回复</a></em>
+         <em><a href=\"javascript:re({$tid}, '@{$val['name']}:');\">{$lang['reply']}</a></em>
          </li>";
     }
     echo $response;
@@ -111,7 +111,7 @@ if ($action == 'reply') {
     $response = "
          <li style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-         <em><a href=\"javascript:re({$tid}, '@{$name}：');\">回复</a></em>
+         <em><a href=\"javascript:re({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
          </li>";
     echo $response;
 }

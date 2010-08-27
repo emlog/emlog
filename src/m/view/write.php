@@ -1,22 +1,22 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./"  id="active">首页</a> 
-<a href="./?action=tw">碎语</a> 
-<a href="./?action=com">评论</a> 
+<a href="./"  id="active"><? echo $lang['home']; ?></a> 
+<a href="./?action=tw"><? echo $lang['twitters']; ?></a> 
+<a href="./?action=com"><? echo $lang['comments']; ?></a> 
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=logout">退出</a>
+<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
+<a href="./?action=logout"><? echo $lang['logout']; ?></a>
 <?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
+<a href="<?php echo BLOG_URL; ?>m/?action=login"><? echo $lang['login']; ?></a>
 <?php endif;?>
 </div>
 <div id="m">
 <form action="./?action=savelog" method="post">
-标题：<br /><input type="text" name="title" value="<?php echo $title; ?>" /><br />
-分类：<br />
+<? echo $lang['title']; ?>:<br /><input type="text" name="title" value="<?php echo $title; ?>" /><br />
+<? echo $lang['category']; ?>:<br />
 	      <select name="sort" id="sort">
 			<?php
-			$sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
+			$sorts[] = array('sid'=>-1, 'sortname'=>$lang['$lang['choose_category']']);
 			foreach($sorts as $val):
 			$flg = $val['sid'] == $sortid ? 'selected' : '';
 			?>
@@ -24,12 +24,12 @@
 			<?php endforeach; ?>
 	      </select>
 <br />
-内容：<br /><textarea name="content" class="texts"><?php echo $content; ?></textarea><br />
-摘要：<br /><textarea name="excerpt" class="excerpt"><?php echo $excerpt; ?></textarea><br />
-标签：<br /><input type="text" name="tag" value="<?php echo $tagStr; ?>" /><br />
+<? echo $lang['content']; ?>:<br /><textarea name="content" class="texts"><?php echo $content; ?></textarea><br />
+<? echo $lang['summary']; ?>:<br /><textarea name="excerpt" class="excerpt"><?php echo $excerpt; ?></textarea><br />
+<? echo $lang['tags']; ?>:<br /><input type="text" name="tag" value="<?php echo $tagStr; ?>" /><br />
 <input type="hidden" name="gid" value=<?php echo $logid; ?> />
 <input type="hidden" name="author" value=<?php echo $author; ?> />
 <input name="date" type="hidden" value="<?php print !empty($date) ? gmdate('Y-m-d H:i:s', $date) : ''; ?>" />
-<input type="submit" value="发布日志" />
+<input type="submit" value="<? echo $lang['post_publish']; ?>" />
 </form>
 </div>

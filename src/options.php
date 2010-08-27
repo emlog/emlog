@@ -1,38 +1,38 @@
 <?php
 /**
- * 全局设置选项
+ * Global setting options
  * @copyright (c) Emlog All Rights Reserved
  */
 
-//博客根目录
+//Blog root directory
 define('EMLOG_ROOT', dirname(__FILE__));
-//版本编号
+//Version number
 define('EMLOG_VERSION', '3.5.2');
-//图片附件缩略图最大宽
+//Maximum width of image thumbnail
 define('IMG_ATT_MAX_W',	420);
-//图片附件缩略图最大高
+//Maximum height of image thumbnail
 define('IMG_ATT_MAX_H',	460);
-//头像缩略图最大宽
+//Maximum width of avatar thumbnail
 define('ICON_MAX_W', 	140);
-//头像缩略图最大高
+//Maximum height of avatar thumbnail
 define('ICON_MAX_H',	220);
-//附件大小上限 （单位：字节，默认20M）
+//Maximum attachment size (unit: byte, default 20M)
 define('UPLOADFILE_MAXSIZE', 20971520);
-//文件上传目录, 相对路径且必须以'../'开头
+//File upload directory, relative path and must start with '../'
 define('UPLOADFILE_PATH',  '../content/uploadfile/');
-//允许上传的附件类型
+//Allowed attachment types
 $att_type = array('rar','zip','gif', 'jpg', 'jpeg', 'png', 'bmp');
-//上传图片是否生成缩略图 1:是 0:否
+//Whether the generate thumbnails for uploaded images, 1: Yes, 0: No
 define('IS_THUMBNAIL', 1);
-//后台管理每页显示条目
+//Display number of items per page at background
 define('ADMIN_PERPAGE_NUM', 15);
-//RSS输出条目
+//RSS output entries
 define('RSS_OUTPUT_NUM', 10);
-//RSS是否全文输出 1:是 0:否
+//Whether RSS is output in full text, 1: Yes, 0: No
 define('RSS_FULL_FEED', 0);
-//后台模板名
+//Admin panel template name
 define('ADMIN_TPL', 'default');
-//当前页面
+//The current page names
 define('CURPAGE_HOME',  'home');
 define('CURPAGE_TW',    'twitter');
 define('CURPAGE_LOG',   'echo_log');
