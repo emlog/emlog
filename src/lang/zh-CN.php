@@ -20,7 +20,7 @@ $lang['install_admin_added']	= ' 添加成功';//' added successfully.';
 $lang['install_ok']	= '恭喜你！emlog 安装成功<br /><span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> <a href="./"> 进入emlog </a>';//' added successfully.<br />Congratulations! emlog installed successfully.<br /><span style="color:red;"><b>Please delete the installation file (install.php) from the root directory!</b></span><br /><br /><a href="./"> Enter the emlog </a>';
 $lang['install_delete']		= '请删除根目录下安装文件(install.php)';//'Please delete the installation file (install.php)';
 $lang['install_php_old']	= 'emlog从3.5开始不再支持您当前的 PHP ';//'Starting from version 3.5 emlog no longer supports your current PHP ';
-$lang['install_php_update']	= ' 请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。';//' Choose a host that supports PHP5, or download and install emlog v.3.4.';
+$lang['install_php_update']	= ' 环境，请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。';//', please choose a host that supports PHP5, or download emlog3.4 and install it.';
 $lang['go_to_emlog']		= '进入emlog';//'Go to Emlog';
 $lang['mysql_not_supported'] = '服务器PHP不支持MySql数据库';//'Your PHP does not support MySql database.';
 $lang['mysql_settings']	= '数据库设置 （MySQL数据库）';//'Database settings (MySql database)';
@@ -78,7 +78,7 @@ $lang['post_what_to_do'] = '请选择要执行的操作';//'Please select what t
 $lang['post_moved_ok'] = '移动日志成功';//'Post moved successfully';
 $lang['post_draft_ok'] = '转入草稿箱成功';//'Post marked as Draft successfully';
 $lang['post_save_and_return'] = '保存并返回';//'Save and return';
-$lang['post_save_draft'] = '保存草稿';//'Save as Draft';//'保存';
+$lang['post_save_draft'] = '保存草稿';//'Save as Draft';
 $lang['save'] = '保存';//'Save';
 $lang['post_saved_draft_ok'] = '草稿保存成功!';//'转入草稿箱成功';//'The post saved as Draft successfully!';
 $lang['post_publish'] = '发布日志';//'Publish the Post';
@@ -104,7 +104,7 @@ $lang['unpublish'] = '转入草稿箱';//'Make Draft';
 
 
 
-$lang['yes'] = '否';//'Yes';
+$lang['yes'] = '是';//'Yes';
 $lang['no'] = '否';//'No';
 
 $lang['mail_to'] = '发邮件给';//'Mail to';
@@ -112,8 +112,8 @@ $lang['go_to'] = '访问';//'Go to';
 $lang['homepage'] = '的主页';//'homepage';
 $lang['author_homepage'] = '作者主页';//'Author homepage';
 $lang['rss_feed'] = '订阅Rss';//'RSS Feed';
-$lang['bytes'] = '字节';//'bytes';
-$lang['access_disabled'] = '权限不足!';//'Insufficient privileges!';
+$lang['bytes'] = '字节';//' bytes';
+$lang['access_disabled'] = '权限不足！';//'Insufficient privileges!';//'Access disabled';
 $lang['enter'] = '进入';//'Enter';
 
 
@@ -135,6 +135,7 @@ $lang['blog_delete'] = 'Delete Blog';
 $lang['blog_enter_password'] = '//输入日志访问密码';//'请输入该日志的访问密码';//'Please enter a Password to Access the Blog';
 $lang['blog_password_protected'] = '该日志已设置加密';//'The blog is password protected';
 $lang['blog_password_protected_info'] = '该日志已设置加密，请点击标题输入密码访问';//The blog is password protected. Click on the title to enter a password to access.';
+$lang['blog_password_required'] = '该日志需要密码才能访问，请输入密码';//'The post requires a password to access, please enter the password';
 $lang['blog_tags'] = '日志标签';//'Blog tags';
 
 $lang['management'] = '博客管理';//'Manage';
@@ -184,12 +185,12 @@ $lang['cache_write_error'] = '写入缓存失败，缓存目录 (content/cache) 
 
 $lang['read_more'] = '阅读全文';//'Read more';
 $lang['about'] = 'About';
-$lang['seconds_ago'] = '秒前';//' second ago';
-$lang['minutes_ago'] = '分钟前';//' minutes ago';
-$lang['hours_ago'] = '小时前';//' hours ago';
+$lang['seconds_ago'] = ' 秒前';//' second ago';
+$lang['minutes_ago'] = ' 分钟前';//' minutes ago';
+$lang['hours_ago'] = ' 小时前';//' hours ago';
 $lang['wrong_file_type'] = '错误的文件类型';//'Wrong file type';
-$lang['file_size_exceeded'] = '文件大小超出';//'File size exceeded';
-$lang['restrictions'] = '的限制';//'Restrictions';
+$lang['file_size_exceeded'] = '文件大小超出';//'File size exceeded ';
+$lang['restrictions'] = '的限制';//' limit';
 
 
 $lang['return_back'] = '点击返回';//'Click to return back';
@@ -234,13 +235,14 @@ $lang['remember_me'] = '记住我';//'Remember Me';
 
 
 $lang['home'] = '首页';//'Home';
-$lang['back_home'] = '返回主页';//'返回 首页';//'Back to Homepage';
+$lang['back_home'] = '返回主页';//'返回 首页';//'返回首页';//'Back to Homepage';
 $lang['time'] = '时间';//'Time';
 $lang['back_to_list'] = '返回日志列表';//'Back to blog list';
 
-$lang['twitter'] = '碎语';//'Twitter';
+$lang['twitter']	= '碎语';//'Twitter';
 $lang['twitters']	= '碎语';//'Twitters';
 $lang['twitters_last'] = '最新碎语';//'Latest Twitters';
+$lang['twitters_last_info'] = '首页显示最新碎语数';//'Show the latest twits at the homepage';
 $lang['blogger_twitter'] = '博主唠叨';//'Blogger Twitter';
 $lang['twitter_first_text'] = 'Simple language Record your life';
 $lang['no_twitter_yet'] = 'No twitter yet!';
@@ -248,8 +250,10 @@ $lang['twitters_number'] = '首页显示twitter数';//'Number of twitters to sho
 $lang['twitter_add'] = '唠叨两句';//'我要唠叨';//'Add twitter';
 $lang['content'] = '内容';//'Content';
 
-$lang['user_name'] = '用户';//'用户名';//'User Name';
-$lang['users'] = '作者';//'Users';
+$lang['user'] = '用户';//'User';
+$lang['users'] = '用户';//'Users';
+$lang['user_name'] = '用户名';//'User Name';
+$lang['author'] = '作者';//'Author';
 $lang['user_management'] = '作者管理';//'User Management';
 $lang['user_deleted_ok'] = '删除作者成功';//'Users deleted successfully';
 $lang['user_edited_ok'] = '修改作者资料成功';//'User edited successfully';
@@ -344,7 +348,7 @@ $lang['total_articles'] = 'Total articles';
 $lang['articles_per_page'] = '/ 15 per page';
 $lang['filters'] = 'Filters';
 
-$lang['settings'] = '博客设置';//'Settings';
+$lang['blog_settings'] = '博客设置';//'Blog Settings';
 $lang['save_settings'] = '保存设置';//'Save Settings';
 $lang['settings_saved_ok'] = '设置保存成功';//'Settings saved successfully.';
 
@@ -440,8 +444,8 @@ $lang['password_leave_empty'] = '不修改请留空';//'Leave Password empty if 
 
 $lang['unapproved'] = '未审核';//'Unapproved';
 $lang['unapprove'] = '未审核';//'Unapprove';
-$lang['approved'] = 'Approved';
-$lang['approve'] = 'Approve';
+$lang['approved'] = '审核';//'Approved';
+$lang['approve'] = '审核';//'Approve';
 $lang['author'] = '作者';//'Author';
 
 $lang['blog_name'] = '博客名称';//'Blog name';
@@ -514,17 +518,17 @@ $lang['template_path_error'] = 'The Template Path Error';
 
 $lang['upload'] = '上传';//'Start Upload!';
 $lang['uploads'] = 'Uploads';
-$lang['upload_failed_code'] = '上传文件失败,错误码';//'Upload failed. Error code';
+$lang['upload_failed_code'] = '上传文件失败,错误码:';//'Upload failed. Error code: ';
 $lang['uploads_not_written'] = '上传失败。文件上传目录(content/uploadfile)不可写';//'Upload failed. File Upload Directory (content/uploadfile) can not be written';
 
 $lang['attachment_manager'] = '附件管理';//'Attachment Manager';
 $lang['attachment_create_failed'] = '创建文件上传目录失败';//'Create file upload directory failed';
-$lang['attachment'] = 'Attachment';
-$lang['attachments'] = '文件 附件';//'Attachments';
+$lang['attachment'] = '附件';//'Attachment';
+$lang['attachments'] = '附件';//'文件 附件';//'Attachments';
 $lang['attachment_upload'] = '上传附件';//'Upload attachment';
 $lang['attachment_library'] = '附件库';//'Attachment gallery';
 $lang['attachment_no'] = '该日志没有附件';//'No attachment here';
-$lang['attachment_exceed_system_limit'] = '附件大小超过系统';//'Attachment size exceeds the system Restriction';
+$lang['attachment_exceed_system_limit'] = '附件大小超过系统限制';//'Attachment size exceeds the system limit ';
 $lang['attachment_delete_error'] = '删除附件失败!';//'Attachment Delete failure';
 $lang['attachment_increase'] = '增加附件';//'Increase attachment fields';
 $lang['attachment_decrease'] = '减少附件';//'Decrease attachment fields';
@@ -535,7 +539,7 @@ $lang['attachment_type_archive'] = '压缩包';//'Archive';
 $lang['compressed_package'] = 'Compressed package';
 $lang['attachment_embed'] = '嵌入';//'Embed';
 
-$lang['widgets'] = 'Widgets';
+$lang['widgets'] = '组件';//'Widgets';
 $lang['widgets_custom'] = '自定义组件';//'Custom Widgets';
 $lang['widget_custom'] = '未命名组件';//'Custom widget';
 $lang['widgets_list'] = 'Widget List';
@@ -562,14 +566,15 @@ $lang['change_my_status'] = '修改我的状态';//'Change my status';
 $lang['twitter_previous'] = '较近的';//'Previous';
 $lang['twitter_next'] = '较早的';//'Next';
 $lang['blog_statistics'] = '信息';//'Statistics';
-$lang['number_of_posts'] = '日志数量';//'日志';//'Posts';
-$lang['number_of_comments'] = '评论数量';//'评论';//'Comments';
-$lang['number_of_trackbacks'] = '引用数量';//'引用';//'Trackbacks';
+$lang['number_of_posts'] = '日志数量';//'Posts';
+$lang['number_of_comments'] = '评论数量';//'Comments';
+$lang['number_of_trackbacks'] = '引用数量';//'Trackbacks';
 $lang['visits_today'] = '今日访问';//'Today Visits';
 $lang['visits_total'] = '总访问量';//'Total Visits';
 
 
-$lang['trackbacks'] = '引用通告';//'引用';//'Trackbacks';
+$lang['trackbacks'] = '引用';//'Trackbacks';
+$lang['trackback'] = '引用';//'Trackback';
 $lang['trackback_address'] = '引用地址';//'Reference Address';
 $lang['trackback_source'] = '来源';//'Source';
 $lang['trackback_url_invalid'] = 'Invalid trackback URL';
@@ -590,13 +595,14 @@ $lang['trackback_deleted_ok'] = '删除引用成功';//'Trackback deleted succes
 $lang['trackback_select'] = '请选择要执行操作的引用';//'Please select the trackback to operate with.';
 $lang['trackbacks_per_page'] = '/ 15 per page';
 $lang['trackbacks_articles'] = '条引用';//'Citations / trackbacks';
+$lang['trackback_number'] = '引用通告';//'Trackbacks';
 
 
 $lang['comments'] = '评论';//'条评论';//'Comments';
-$lang['comment'] = '发表评论';//'Post a comment';
-$lang['comment_add'] = 'Add a Comment';
+$lang['comment'] = '评论';//'Comment';
+$lang['comment_add'] = '发表评论';//'Add a Comment';
 $lang['comment_posted_ok'] = 'Comment published successfully!';
-$lang['comment_posted_premod'] = 'Your comment saved successfully! Please wait for the administrator review and approve this!';
+$lang['comment_posted_premod'] = '评论发表成功，请等待管理员审核';//'Your comment saved successfully! Please wait for the administrator review and approve this!';
 $lang['comments_no_yet'] = 'No comments yet!';
 $lang['comment_reply'] = '回复评论';//'Comment reply';
 $lang['comments_disabled'] = '发表评论失败：该日志已关闭评论';//'Add Comment Failed. Comments for this Blog disabled.';
@@ -623,6 +629,7 @@ $lang['comment_replied_ok'] = '回复评论成功';//'Comment replied successful
 $lang['comment_author'] = '所属日志';//'评论人';//'From';
 $lang['from'] = '来自';//'From';
 $lang['ip'] = 'IP';
+$lang['hide'] = '屏蔽';//'Hide';
 
 $lang['comments_with_selected'] = 'With seclected comments';
 $lang['comments_per_page'] = '/ 15 per page';
@@ -694,23 +701,64 @@ $lang['tz+12:00'] = '(标准时+12:00) 奥克兰、惠灵顿、堪察加半岛';
 $lang['can_yet_enter']	= '你还可以输入';//'You can add';
 $lang['twitter_reply_delete_sure']	= '你确定要删除该条回复吗？';//'Are you sure you want to delete the reply?';
 $lang['twitter_reply_exists']		= '该回复已经存在';//'This reply already exists';
-$lang['length_exceed']		= '已超出';//'Exceed the limit:';
+$lang['length_exceed']		= '已超出';//'Exceed the limit: ';
 $lang['characters']		= '字';//'characters';
 $lang['twitter_captcha']	= '开启回复验证码';//'Enable captcha';
 $lang['twitter_trial']		= '开启回复审枧';//'Enable reply review';
-$lang['twitter_premoderate']	= 开启回复审核';//'Enable twitter premoderation';
+$lang['twitter_premoderate']	= '开启回复审核';//'Enable twitter premoderation';
 $lang['twitters_per_page']	= '前台每页显示条数';//'Number of twitters per page';
-$lang['save']			= '保存';//'Save';
+$lang['save']		= '保存';//'Save';
 $lang['reply_approve']	= '回复并审核';//'Approve the reply';
 $lang['base_settings']	= '基本设置';//'Basic Settings';
 $lang['permalink']	= '固定链接';//'Permalink';
 $lang['time_local']	= '本地时间';//'Local Time';
 $lang['enable_offline_writing']	= '开启离线写作支持';//'Enable Offline Writing Support';
-$lang['draft_edit']	= '编辑草稿';//'Edit draft';
+$lang['draft_edit']		= '编辑草稿';//'Edit draft';
+$lang['pending']		= '待审';//'Pending';
+$lang['approved']		= '已审';//'Approved';//'Reviewed';
 $lang['comments_pending']	= '条待审';//'Pending comments';
-$lang['twitter_number']	= '条碎语';//'Twitters';
+$lang['twitter_number']		= '条碎语';//' twitters';
 $lang['twitter_length_max']	= '你还可以输入140字';//'You can enter max 140 characters';
 //$lang['twitter_length_max_info']	= '回复长度需在140个字内';//'The length for store must be 140 characters or less';//
 $lang['twitter_not_guest']	= '抱歉，碎语未开启前台访问！';//'Sorry, twitter is not enabled for guests!';
 $lang['twitter_show_front']	= '前台是否显示';//'Whether to display at the front';
-$lang['write_something'] = '为今天写点什么吧……';//'Write something for today...';
+$lang['write_something'] 	= '为今天写点什么吧……';//'Write something for today...';
+
+$lang['use_mobile']		 = '用手机访问你的博客';//'Use your mobile phone to visit your blog';
+
+$lang['error_htaccess']		= '保存失败：根目录下的.htaccess不可写';//'Failed to save: .htaccess in the root directory is not writable';
+$lang['permalink_info']		= '你可以在这里修改日志链接的形式，以此提高链接的可读性和对搜索引擎的友好程度。<br />如果修改后日志无法访问，请修改回默认形式。';//'You can modify the form of the blog links here to improve the link readability and the friendliness of the search engine.<br />If the blog cannot be accessed after modification, please modify it back to the default format.';
+$lang['default_format']		= '默认形式';//'Default format';
+$lang['file_format']		= '文件形式';//'File format';
+$lang['directory_format']	= '目录形式';//'Directory format';
+$lang['template_current']	= '当前使用的模板(';//'The currently used template (';
+$lang['template_not_found']	= ')已被删除或损坏，请选择其他模板。';//') has been deleted or damaged, please select another template.';
+$lang['template_damaged']	= '当前使用的模板已被删除或损坏，请登录后台更换其他模板。';//'The currently used template has been deleted or damaged, please log in to the background to replace other templates.';
+
+$lang['posted_ok']	= '发布成功';//'Published successfully';
+$lang['twitter_del_ok']	= '碎语删除成功';//'Twit deleted successfully';
+$lang['twitter_empty']	= '碎语内容不能为空';//'Twit content cannot be empty';
+$lang['settings'] 	= '设置';//'Settings';
+$lang['change'] = '更改';//'Change';
+$lang['more'] = '更多',//'More';
+$lang['twit_post'] = '发布碎语';//'Post a twit';
+$lang['approximately'] = '约 ';//'approximately ';
+$lang['entry_not_exists']	= '不存在该条目';//'The entry does not exist';
+$lang['sure']			= '确定';//'Sure';
+$lang['log_in']			= ' 登 录 ';//' Log in ';
+$lang['return']			= '返回';//'Return';
+$lang['email_optional']		= '邮件地址 (选填)';//'Email address (optional)';
+$lang['homepage_optional']	= '个人主页 (选填)';//'Personal homepage (optional)';
+$lang['twitter_send']		= '发碎语';//'Send the twit';
+$lang['summary']		= '摘要';//'Summary';
+
+$lang['xmlrpc_disabled']	= '提示:博客XMLRPC服务未开启.';//'Tip: The blog XMLRPC service is not enabled.';
+$lang['xmlrpc_error_post']	= '错误:XML-RPC服务器只能接受POST数据';//'Error: XML-RPC server can only accept POST data';
+$lang['xmlrpc_empty']		= '错误:提交数据内容为空';//'Error: The submitted data content is empty';
+$lang['post_not_exists']	= '对不起,您访问日志不存在';//'Sorry, the blog you tried to access does not exist';
+$lang['post_not_found']		= '没有日志';//'Post not found';
+$lang['file_error']		= '文件错误';//'File error';
+$lang['file_name_error']	= '文件名错误';//'File name error';
+$lang['file_type_error']	= '文件类型错误';//'File type error';
+$lang['file_write_error']	= '文件无法写入';//'File cannot be written';
+$lang['user_name_pass_wrong']	= '用户名密码错误';//'Username or password is wrong';
