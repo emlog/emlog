@@ -83,6 +83,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getOneLogForAdmin($blogId) {
+		global $lang;
 		global $timezone;
 		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
@@ -150,6 +151,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
+		global $lang;
 		global $timezone;
 		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
@@ -179,6 +181,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getLogsForHome($condition = '', $page = 1, $prePageNum) {
+		global $lang;
 		global $timezone;
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
 		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
@@ -211,6 +214,7 @@ class emBlog {
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
@@ -335,6 +339,7 @@ class emBlog {
 	 * @param string $pwd2
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+		global $lang;
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if ($pwd !== addslashes($logPwd)) {

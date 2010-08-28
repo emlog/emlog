@@ -197,7 +197,7 @@ function widget_archive($title){
 	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL.$value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+<?php
 //2008年12月, 2008-12
 $sep = mb_substr($value['record'],4,1);
 $da = explode($sep,$value['record']);

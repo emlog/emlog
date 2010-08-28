@@ -7,6 +7,7 @@
 
 class Calendar {
     static function generate() {
+		global $lang;
         global $DB, $timezone, $utctimestamp;
         $timestamp = $utctimestamp + $timezone * 3600;
         

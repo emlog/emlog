@@ -61,6 +61,7 @@ function checkUser($username,$password,$imgcode,$logincode)
  */
 function loginPage()
 {
+	global $lang;
 	global $login_code;
 	$login_code == 'y' ?
 	$ckcode = "<span>{$lang['verification_code']}</span>

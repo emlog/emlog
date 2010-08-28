@@ -12,6 +12,7 @@ ob_start();
 
 require_once 'options.php';
 require_once EMLOG_ROOT.'/config.php';
+/*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
 require_once EMLOG_ROOT.'/lib/function.base.php';
 require_once EMLOG_ROOT.'/lib/function.login.php';
 require_once EMLOG_ROOT.'/lib/class.cache.php';
@@ -42,7 +43,6 @@ define('TPLS_URL', 		$blogurl.'content/templates/');//Template gallery URL
 define('TPLS_PATH', 	EMLOG_ROOT.'/content/templates/');//Template gallery path
 define('DYNAMIC_BLOGURL', getBlogUrl());//Solve the frontend multi-domain ajax queries
 
-define('ICON_MAX_H', 220);//Icon image Maximum height          
 //Load plug-ins
 $active_plugins = unserialize($active_plugins);
 $emHooks = array();

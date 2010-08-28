@@ -50,7 +50,7 @@ if (empty($action) && empty($logid) && empty($plugin)) {
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$blogIdStr = $emTag->getTagByName($tag);
 		if ($blogIdStr === false) {
-			emMsg(lang['tag_not_exists'], BLOG_URL);
+			emMsg($lang['tag_not_exists'], BLOG_URL);
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $emBlog->getLogNum('n', $sqlSegment);
@@ -96,7 +96,7 @@ if (!empty($logid)) {
 
 	$logData = $emBlog->getOneLogForHome($logid);
 	if ($logData === false) {
-		emMsg(lang['post_not_exists'], BLOG_URL);
+		emMsg($lang['post_not_exists'], BLOG_URL);
 	}
 	extract($logData);
 	if (!empty($password)) {

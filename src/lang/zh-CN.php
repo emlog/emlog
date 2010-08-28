@@ -455,7 +455,7 @@ $lang['blog_url'] = '博客地址';//'Blog URL';
 $lang['blog_keywords'] = '博客关键字';//'Blog Keywords';
 
 
-$lang['separate_keywords'] = '关键字之间用半角逗号","隔开';//'(Separate multiple keywords with a comma &quot;,&quot;)';
+$lang['separate_keywords'] = '(关键字之间用半角逗号)","隔开';//'(Separate multiple keywords with a comma &quot;,&quot;)';
 $lang['registration_number'] = 'ICP备案号';//'Registration Code';
 $lang['posts_per_page'] = '每页日志数';//'Posts per page';
 $lang['server_tz'] = '服务器时区';//'The server time zone';

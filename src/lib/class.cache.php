@@ -321,7 +321,8 @@ class mkcache {
 				if ($h != -1) {
 					$dang_cache[$h]['lognum'] = $lognum;
 				}
-/*vot*/			$dang_cache[$p] = array('record' => gmdate("Y-m", $show_record['date']),
+/*vot*/				$dang_cache[$p] = array(
+					'record' => gmdate("Y-m", $show_record['date']),
 					'url' => '?record=' . gmdate("Ym", $show_record['date'])
 					);
 				$p++;

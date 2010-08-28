@@ -82,6 +82,7 @@ class emTwitter {
 	 * @param int $tid
 	 */
 	function delTwitter($tid) {
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {

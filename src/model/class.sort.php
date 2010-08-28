@@ -54,6 +54,7 @@ class emSort {
 
 	function getSortName($sid)
 	{
+		global $lang;
 		if($sid > 0)
 		{
 			$res = $this->db->query("SELECT sortname FROM ". DB_PREFIX ."sort WHERE sid = $sid");

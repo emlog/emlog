@@ -23,7 +23,7 @@
       <tr nowrap="nowrap">
         <td align="right"><? echo $lang['blog_keywords'];?>:</td>
         <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
-        (<? echo $lang['separate_keywords'];?>)</td>
+        <? echo $lang['separate_keywords'];?></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right"><? echo $lang['registration_number'];?>:</td>

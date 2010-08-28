@@ -13,6 +13,7 @@
  * @return string Template path
  */
 function getViews($template, $ext = '.php'){
+	global $lang;
 	if (!is_dir(TEMPLATE_PATH)){
 	    emMsg($lang['template_damaged'], BLOG_URL . 'admin/template.php');
 	}
@@ -190,6 +191,7 @@ function subString($strings,$start,$length){
  * @return unknown
  */
 function changeFileSize($fileSize){
+    global $lang;
 	if($fileSize >= 1073741824){
 		$fileSize = round($fileSize / 1073741824  ,2) . 'GB';
 	} elseif($fileSize >= 1048576){
@@ -212,6 +214,7 @@ function changeFileSize($fileSize){
  * @return unknown
  */
 function pagination($count,$perlogs,$page,$url){
+    global $lang;
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++){
@@ -298,6 +301,7 @@ function cleanPage($beUrlRewrite = false){
  * @return unknown
  */
 function breakLog($content,$lid){
+    global $lang;
 	$a = explode('[break]',$content,2);
 	if(!empty($a[1]))
 	$a[0].='<p><a href="'.BLOG_URL.'?post='.$lid.'">'.$lang['read_more'].'&gt;&gt;</a></p>';
@@ -353,6 +357,7 @@ function fopen_url($url){
  * @return string
  */
 function smartDate($datetemp, $dstr='Y-m-d H:i'){
+    global $lang;
 	global $utctimestamp, $timezone;
 	$op = '';
 	$sec = $utctimestamp - $datetemp;
@@ -418,6 +423,7 @@ function findArray($array1,$array2){
  * @return string File path
  */
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0){
+    global $lang;
 	if ($errorNum == 1){
 		formMsg($lang['attachment_exceed_system_limit'].ini_get('upload_max_filesize'), 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1){
@@ -563,6 +569,7 @@ function chImageSize ($img,$max_w,$max_h){
  * @param boolean $type
  */
 function formMsg($msg,$url,$type){
+	global $lang;
 	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
 	require_once(getViews('msg'));
 	cleanPage();
@@ -660,6 +667,7 @@ function getMonthDayNum($month, $year) {
  * @param boolean $isAutoGo Whether to return automatically, true/false
  */
 function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false){
+    global $lang;
 	echo <<<EOT
 <html>
 <head>

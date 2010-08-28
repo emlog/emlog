@@ -28,6 +28,7 @@ class emTrackback {
 	 */
 	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{
+		global $lang;
 		$url = $blogurl."?post=".$blogId;
 		$hosts = explode("\n", $pingUrl);
 		$tbmsg = '';

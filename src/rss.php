@@ -12,6 +12,8 @@ header('Content-type: application/xml');
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = BLOG_URL;
+$EMLOG_LANGUAGE = EMLOG_LANGUAGE;
+
 $blog = GetBlog($sort);
 
 echo <<< END
@@ -21,7 +23,7 @@ echo <<< END
 <title><![CDATA[{$blogname}]]></title> 
 <description><![CDATA[{$bloginfo}]]></description>
 <link>{$URL}</link>
-<language>{EMLOG_LANGUAGE}</language>
+<language>{$EMLOG_LANGUAGE}</language>
 <generator>www.emlog.net</generator>
 
 END;

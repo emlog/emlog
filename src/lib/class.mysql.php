@@ -37,6 +37,7 @@ class MySql {
 	 *
 	 */
     private function __construct() {
+        global $lang;
     	if (!function_exists('mysql_connect')) {
 			emMsg($lang['mysql_not_supported']);
 		}
@@ -77,6 +78,7 @@ class MySql {
 	 * @return boolean
 	 */
 	function query($sql) {
+        global $lang;
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {

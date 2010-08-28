@@ -8,6 +8,10 @@
 require_once 'globals.php';
 require_once EMLOG_ROOT.'/model/class.blog.php';
 
+//Navigation bar
+if(empty($navibar)) {
+	$navibar = 'a:0:{}';
+}
 $navibar = unserialize($navibar);
 
 //Page Management page

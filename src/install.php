@@ -230,11 +230,11 @@ EOT;
 	$widgets = array(
 	'blogger'=>$lang['widget_blogger'],
 	'calendar'=>$lang['calendar'],
+	'twitter'=>$lang['twitter'],
 	'tag'=>$lang['tags'],
 	'sort'=>$lang['categories'],
 	'archive'=>$lang['archive'],
 	'newcomm'=>$lang['latest_comments'],
-	'twitter'=>$lang['twitter'],
 	'newlog'=>$lang['latest_posts'],
 	'random_log'=>$lang['random_posts'],
 	'music'=>$lang['music'],
