@@ -16,7 +16,6 @@
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改" class="submit" /></li>
-			<li><a href="blogger.php">修改个人资料...</a></li>
 		</div>
 	</div>
 	</form>
@@ -134,31 +133,6 @@
 		</div>
 	</div>
 	</form>
-	<form action="widgets.php?action=setwg&wg=music" method="post">
-	<div class="widget-line" id="music">
-		<div class="widget-top">
-			<li class="widget-title">音乐</li>
-			<li class="widget-act-add"> </li>
-			<li class="widget-act-del"></li>
-		</div>
-		<div class="widget-control">
-			<li>标题</li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['music']; ?>"  /></li>
-			<li>音乐链接：(每行一条，仅支持mp3格式)</li>
-			<li>(如：http://www.emlog.net/a.mp3 音乐介绍)</li>
-			<li><textarea name="mlinks" rows="6" wrap="off" style="width:350px;overflow:auto;"><?php echo $content; ?></textarea></li>
-			<li>启用随机播放：
-		      <input type="radio" value="1" name="randplay" <?php echo $randplay1; ?>/>是
-			  <input type="radio" value="0" name="randplay" <?php echo $randplay2; ?>/>否
-			</li>
-			<li>启用自动播放：
-		      <input type="radio" value="1" name="auto" <?php echo $auto1; ?>/>是
-			  <input type="radio" value="0" name="auto" <?php echo $auto2; ?>/>否
-			</li>
-			<li><input type="submit" value="确 定" class="submit" /></li>
-		</div>
-	</div>
-	</form>
 	<form action="widgets.php?action=setwg&wg=link" method="post">
 	<div class="widget-line" id="link">
 		<div class="widget-top">
@@ -185,20 +159,7 @@
 		</div>
 	</div>
 	</form>
-	<form action="widgets.php?action=setwg&wg=bloginfo" method="post">
-	<div class="widget-line" id="bloginfo">
-		<div class="widget-top">
-			<li class="widget-title">信息</li>
-			<li class="widget-act-add"></li>
-			<li class="widget-act-del"></li>
-		</div>
-		<div class="widget-control">
-			<li>标题</li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['bloginfo']; ?>"  /> <input type="submit" name="" value="更改" class="submit" /></li>
-		</div>
-	</div>
 	<div class="wg_line">自定义组件</div>
-	</form>
 	<?php
 	foreach ($custom_widget as $key=>$val): 
 	preg_match("/^custom_wg_(\d+)/", $key, $matches);

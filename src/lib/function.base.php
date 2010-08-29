@@ -89,28 +89,6 @@ function getBlogUrl(){
 }
 
 /**
- * 访问统计
- *
- */
-function viewCount() {
-	global $CACHE, $viewcount_day, $viewcount_all, $viewcount_date, $utctimestamp, $timezone;
-	$userip = getIp();
-	$em_viewip = isset($_COOKIE['em_viewip']) ? $_COOKIE['em_viewip'] : '';
-	if ($em_viewip != $userip){
-		$ret = setcookie('em_viewip', getIp(), $utctimestamp + (12*3600));
-		$curtime = gmdate('Y-m-d', $utctimestamp + $timezone * 3600);
-		if ($viewcount_date != $curtime){
-			updateOption('viewcount_date', $curtime);
-			updateOption('viewcount_day', 1);
-		} else {
-			updateOption('viewcount_day', 'option_value+1', true);
-		}
-		updateOption('viewcount_all', 'option_value+1', true);
-		$CACHE->updateCache('options');
-	}
-}
-
-/**
  * 更新博客选项
  *
  */

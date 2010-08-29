@@ -82,24 +82,6 @@ function widget_twitter($title){
 	</li>
 <?php }?>
 <?php
-//widget：音乐
-function widget_music($title){
-	global $options_cache;
-	$music = @unserialize($options_cache['music']);
-	$key = $music['randplay'] ? mt_rand(0,count($music['mlinks']) - 1) : 0 ;
-	$musicurl = $music['mlinks'] ? $music['mlinks'][$key] : '';
-	$musicdes = !empty($music['mdes'][$key]) ? $music['mdes'][$key] .'<br>' : '';
-	$autoplay = $music['auto'] ? "&autoplay=1" : '';
-	?>
-	<li>
-	<h3><span onclick="showhidediv('blogmusic')"><?php echo $title; ?></span></h3>
-	<ul id="blogmusic">
-	<li><?php echo $musicdes; ?><object type="application/x-shockwave-flash" data="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" width="180" height="20"><param name="movie" value="<?php echo TEMPLATE_URL; ?>images/player.swf?son=<?php echo $musicurl; ?><?php echo $autoplay; ?>&autoreplay=1" /></object>
-	</li>
-	</ul>
-	</li>
-<?php }?>
-<?php
 //widget：最新评论
 function widget_newcomm($title){
 	global $com_cache; ?>
@@ -201,21 +183,6 @@ function widget_link($title){
 	<?php foreach($link_cache as $value): ?>
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 	<?php endforeach; ?>
-	</ul>
-	</li>
-<?php }?>
-<?php
-//widget：博客信息
-function widget_bloginfo($title){
-	global $sta_cache,$viewcount_day,$viewcount_all; ?>
-	<li>
-	<h3><span onclick="showhidediv('bloginfo')"><?php echo $title; ?></span></h3>
-	<ul id="bloginfo">
-	<li>日志数量：<?php echo $sta_cache['lognum']; ?></li>
-	<li>评论数量：<?php echo $sta_cache['comnum']; ?></li>
-	<li>引用数量：<?php echo $sta_cache['tbnum']; ?></li>
-	<li>今日访问：<?php echo $viewcount_day; ?></li>
-	<li>总访问量：<?php echo $viewcount_all; ?></li>
 	</ul>
 	</li>
 <?php }?>

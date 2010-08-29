@@ -6,7 +6,6 @@
  */
 
 require_once 'common.php';
-viewCount();
 
 define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//前台模板URL
 define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径

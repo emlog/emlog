@@ -31,33 +31,6 @@ if($action == '')
 		}
 	}
 
-	//music
-	$music = @unserialize($options_cache['music']);
-	if(isset($music['auto']) && $music['auto'])
-	{
-		$auto1 = "checked=\"checked\"";
-		$auto2 = '';
-	}else{
-		$auto2 = "checked=\"checked\"";
-		$auto1 = '';
-	}
-	if(isset($music['randplay']) && $music['randplay'])
-	{
-		$randplay1 = "checked=\"checked\"";
-		$randplay2 = '';
-	}else{
-		$randplay2 = "checked=\"checked\"";
-		$randplay1 = '';
-	}
-	$content = '';
-	if(isset($music['mlinks']) && $music['mlinks'])
-	{
-		foreach($music['mlinks'] as $key=>$val)
-		{
-			$content .= urldecode($val)."\t".$music['mdes'][$key]."\n";
-		}
-	}
-
 	include getViews('header');
 	require_once getViews('widgets');
 	include getViews('footer');
@@ -101,40 +74,6 @@ if($action == 'setwg')
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
 			updateOption('index_randlognum', $index_randlognum);
-			break;
-		case 'music':
-			$links = isset($_POST['mlinks']) ? htmlspecialchars(trim($_POST['mlinks'])) : '';
-			$randplay = isset($_POST['randplay']) ? intval($_POST['randplay']) : 0;
-			$auto = isset($_POST['auto']) ? intval($_POST['auto']) : 0;
-			$music = array(
-			'mlinks'=>array(),
-			'mdes'=>array(),
-			'auto'=>$auto,
-			'randplay'=>$randplay
-			);
-			if($links)
-			{
-				$links = explode("\n",$links);
-				foreach($links as $val)
-				{
-					$val = str_replace(array("\r","\n"),array('',''),$val);
-					if(preg_match("/^(http:\/\/).+/i",$val)>0)
-					{
-						$mstr = preg_split ("/[\s,]+/", $val,2);
-						$music['mlinks'][] = urlencode($mstr[0]);
-						if(count($mstr) == 2)
-						{
-							$music['mdes'][] = $mstr[1];
-						}else {
-							$music['mdes'][] = '';
-						}
-					}else{
-						formMsg('有错误的音乐链接格式','javascript: window.history.back()',0);
-					}
-				}
-			}
-			$musicData = serialize($music);
-			updateOption('music', $musicData);
 			break;
 		case 'custom_text':
 			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
@@ -220,10 +159,8 @@ if($action == 'reset') {
     	'newcomm' => '最新评论',
     	'newlog' => '最新日志',
     	'random_log' => '随机日志',
-    	'music' => '音乐',
     	'link' => '链接',
     	'search' => '搜索',
-    	'bloginfo' => '信息',
     	'custom_text' => '自定义组件'
 	);
 	$default_widget = array('calendar','archive','newcomm','link','search','bloginfo');

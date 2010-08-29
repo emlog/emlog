@@ -227,10 +227,8 @@ EOT;
 	'newcomm'=>'最新评论',
 	'newlog'=>'最新日志',
 	'random_log'=>'随机日志',
-	'music'=>'音乐',
 	'link'=>'链接',
 	'search'=>'搜索',
-	'bloginfo'=>'信息',
 	'custom_text'=>'自定义组件'
 	);
 	$sider_wg = array(
@@ -238,8 +236,7 @@ EOT;
 	'archive',
 	'newcomm',
 	'link',
-	'search',
-	'bloginfo'
+	'search'
 	);
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
@@ -334,10 +331,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_all','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
