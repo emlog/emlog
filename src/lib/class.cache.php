@@ -190,21 +190,20 @@ class mkcache {
 	private function mc_tags() {
 		$tag_cache = array();
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "tag");
-		$i = 0;
-		$j = 0;
 		$tagnum = 0;
 		$maxuse = 0;
 		$minuse = 0;
 		while ($row = $this->db->fetch_array($query)) {
 			$usenum = substr_count($row['gid'], ',') - 1;
-			if ($usenum > $i) {
-				$maxuse = $usenum;
-				$i = $usenum;
+			if ($maxuse == 0) {
+				$maxuse = $minuse = $usenum;
 			}
-			if ($usenum < $j) {
+			if ($usenum > $maxuse) {
+				$maxuse = $usenum;
+			}
+			if ($usenum < $minuse) {
 				$minuse = $usenum;
 			}
-			$j = $usenum;
 			$tagnum++;
 		}
 		$spread = ($tagnum > 12?12:$tagnum);
