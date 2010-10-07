@@ -30,14 +30,14 @@ function showattlib()
 <?php else:
 foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));
-	$atturl = $blogurl.substr(str_replace('thum-','',$value['filepath']),3);
+	$atturl = BLOG_URL.substr(str_replace('thum-','',$value['filepath']),3);
 	$emImageType = array('gif', 'jpg', 'jpeg', 'png', 'bmp');//支持的图片类型
 	if($extension == 'zip' || $extension == 'rar'){
 		$imgpath = "./views/".ADMIN_TPL."/images/tar.gif";
 		$embedlink = '压缩包';
 	}elseif (in_array($extension, $emImageType)) {
 		$imgpath = $value['filepath'];
-		$ed_imgpath = $blogurl.substr($imgpath,3);
+		$ed_imgpath = BLOG_URL.substr($imgpath,3);
 		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">嵌入 </a>";
 	}else {
 		$imgpath = "./views/".ADMIN_TPL."/images/fnone.gif";

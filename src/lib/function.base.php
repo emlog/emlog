@@ -5,19 +5,15 @@
  * $Id$
  */
 
-/**
- * 加载模板文件
- *
- * @param string $template 模板名
- * @param string $ext 模板后缀名
- * @return string 模板路径
- */
-function getViews($template, $ext = '.php'){
-	if (!is_dir(TEMPLATE_PATH)){
-	    emMsg('当前使用的模板已被删除或损坏，请登录后台更换其他模板。', BLOG_URL . 'admin/template.php');
-	}
-	$path = TEMPLATE_PATH.$template.$ext;
-	return $path;
+function __autoload($class) {
+	$class = preg_replace('/^(em)([\w]+)$/', '\\2', strtolower($class));
+    if (file_exists(EMLOG_ROOT . '/model/class.'. $class . '.php')) {
+    	require_once(EMLOG_ROOT . '/model/class.'. $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/lib/class.'. $class . '.php')) {
+        require_once(EMLOG_ROOT . '/lib/class.'. $class . '.php');
+    }else{
+    	emMsg($class.'加载失败。', BLOG_URL);
+    }
 }
 
 /**
@@ -238,37 +234,6 @@ function doAction($hook){
 }
 
 /**
- * 清除模板中的注释,并完成URL优化
- *
- */
-function cleanPage($beUrlRewrite = false){
-	global $isurlrewrite,$isgzipenable,$searchlink,$replacelink;
-	$output = str_replace(array('?>','<?php',"<?php\r\n?>"),array('','',''),ob_get_contents());
-	if($beUrlRewrite){
-		switch ($isurlrewrite){
-			case '1':
-				$searchlink = "/href\=\"([^\"]*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=([%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
-				$replacelink = "href=\"$1/$3-$4.html$5\"";
-				$output = preg_replace($searchlink, $replacelink, $output);
-				break;
-			case '2':
-				$searchlink = "/href\=\"([^\"]*)(\/index\.php|\/)\?(post|record|sort|author|page|tag)=([%+-_A-Za-z0-9]+)(#*[\w]*)\"/i";
-				$replacelink = "href=\"$1/$3/$4$5\"";
-				$output = preg_replace($searchlink, $replacelink, $output);
-				break;
-		}
-	}
-	ob_end_clean();
-	if ($isgzipenable == 'y' && function_exists('ob_gzhandler')){
-		ob_start('ob_gzhandler');
-	} else {
-		ob_start();
-	}
-	echo $output;
-	exit;
-}
-
-/**
  * 日志分割
  *
  * @param string $content 日志内容
@@ -405,8 +370,8 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	if (!in_array($extension, $type)){
 		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
-	if ($fileSize > UPLOADFILE_MAXSIZE){
-		$ret = changeFileSize(UPLOADFILE_MAXSIZE);
+	if ($fileSize > Options::UPLOADFILE_MAXSIZE){
+		$ret = changeFileSize(Options::UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
 	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
@@ -542,8 +507,8 @@ function chImageSize ($img,$max_w,$max_h){
  */
 function formMsg($msg,$url,$type){
 	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
-	require_once(getViews('msg'));
-	cleanPage();
+	require_once(View::getView('msg'));
+	View::output();
 	exit;
 }
 /**

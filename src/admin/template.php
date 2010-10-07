@@ -7,10 +7,9 @@
 
 require_once 'globals.php';
 
-if($action == '')
-{
-	//当前模板
-	$nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
+if($action == '') {
+	$nonce_templet = Options::get('nonce_templet');
+	$nonceTplData = implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
 	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
 	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
@@ -44,10 +43,10 @@ if($action == '')
 
 	$tplnums = count($tpls);
 
-	include getViews('header');
-	require_once getViews('template');
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once View::getView('template');
+	include View::getView('footer');
+	View::output();
 }
 //使用模板
 if($action == 'usetpl')

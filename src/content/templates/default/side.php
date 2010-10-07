@@ -18,7 +18,7 @@ foreach ($widgets as $val)
 		$callback = 'widget_custom_text';
 		if(function_exists($callback))
 		{
-			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content'], $val);
+			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content']);
 		}
 	}else{
 		$callback = 'widget_'.$val;

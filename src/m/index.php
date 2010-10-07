@@ -6,37 +6,34 @@
  * $Id:  526 2008-07-05 15:21:03Z emloog $
  */
 
-require_once '../common.php';
+require_once '../init.php';
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
 $isgzipenable = 'n'; //手机浏览关闭gzip压缩
 $index_lognum = 5;
 $index_twnum = 5;
+
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
-$blogname = $options_cache ['blogname'];
-$blogdes = $options_cache ['bloginfo'];
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+
 // 首页
 if (empty ($action) && empty ($logid)) {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-
 	$emBlog = new emBlog();
 	$page = isset($_GET['page']) ? abs(intval ($_GET['page'])) : 1;
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
+	$sta_cache = $CACHE->readCache('sta');
 	$lognum = $sta_cache['lognum'];
 	$pageurl = '?page';
 	$logs = $emBlog->getLogsForHome ($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
-	include getViews('header');
-	include getViews('log');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('log');
+	include View::getView('footer');
 }
 // 日志
 if (!empty ($logid)) {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-
 	$emBlog = new emBlog();
 	$emComment = new emComment();
 
@@ -55,18 +52,15 @@ if (!empty ($logid)) {
 	$comments = $emComment->getComments(0, $logid, 'n');
 
 	$emBlog->updateViewCount($logid);
-	include getViews('header');
-	include getViews('single');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('single');
+	include View::getView('footer');
 }
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
-	require_once EMLOG_ROOT . '/model/class.sort.php';
 	$emSort = new emSort();
 	$sorts = $emSort->getSorts();
 	if ($logid) {
-		require_once EMLOG_ROOT . '/model/class.blog.php';
-		require_once EMLOG_ROOT . '/model/class.tag.php';
 		$emBlog = new emBlog();
 		$emTag = new emTag();
 
@@ -87,14 +81,11 @@ if (ISLOGIN === true && $action == 'write') {
 		$author = UID;
 		$date = '';
 	}
-	include getViews('header');
-	include getViews('write');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('write');
+	include View::getView('footer');
 }
 if (ISLOGIN === true && $action == 'savelog') {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-	require_once EMLOG_ROOT . '/model/class.tag.php';
-
 	$emBlog = new emBlog();
 	$emTag = new emTag();
 
@@ -131,7 +122,6 @@ if (ISLOGIN === true && $action == 'savelog') {
 	header ("Location: ./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
 	$emBlog = new emBlog();
 	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 	$emBlog->deleteLog($id);
@@ -140,7 +130,6 @@ if (ISLOGIN === true && $action == 'dellog') {
 }
 // 评论
 if ($action == 'addcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
@@ -187,7 +176,6 @@ if ($action == 'com') {
 		$hide = '';
 		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-		require_once EMLOG_ROOT . '/model/class.comment.php';
 		$emComment = new emComment();
 
 		$comment = $emComment->getComments(1, null, $hide, $page);
@@ -197,12 +185,11 @@ if ($action == 'com') {
 		$comment = $com_cache;
 		$pageurl = '';
 	}
-	include getViews('header');
-	include getViews('comment');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('comment');
+	include View::getView('footer');
 }
 if (ISLOGIN === true && $action == 'delcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->delComment($id);
@@ -210,7 +197,6 @@ if (ISLOGIN === true && $action == 'delcom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->showComment($id);
@@ -218,7 +204,6 @@ if (ISLOGIN === true && $action == 'showcom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emComment->hideComment($id);
@@ -226,17 +211,15 @@ if (ISLOGIN === true && $action == 'hidecom') {
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'reply') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$commentArray = $emComment->getOneComment($id);
 	extract($commentArray);
-	include getViews('header');
-	include getViews('reply');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('reply');
+	include View::getView('footer');
 }
 if (ISLOGIN === true && $action == 'dorep') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
 	$emComment = new emComment();
 	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
@@ -246,19 +229,17 @@ if (ISLOGIN === true && $action == 'dorep') {
 }
 // 碎语
 if ($action == 'tw') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
     $emTwitter = new emTwitter();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $tws = $emTwitter->getTwitters($page);
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, $index_twnum, $page, './?action=tw&page');
 
-	include getViews('header');
-	include getViews('twitter');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('twitter');
+	include View::getView('footer');
 }
 if (ISLOGIN === true && $action == 't') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
     $emTwitter = new emTwitter();
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
@@ -276,7 +257,6 @@ if (ISLOGIN === true && $action == 't') {
     header ("Location: ./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
     $emTwitter = new emTwitter();
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$emTwitter->delTwitter($id);
@@ -288,9 +268,9 @@ if ($action == 'login') {
     <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
-	include getViews('header');
-	include getViews('login');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('login');
+	include View::getView('footer');
 }
 if ($action == 'auth') {
 	session_start();
@@ -310,19 +290,17 @@ if ($action == 'logout') {
 	header("Location: ?tem=" . time());
 }
 function mMsg($msg, $url) {
-	global $blogname, $blogdes;
-	include getViews('header');
-	include getViews('msg');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('msg');
+	include View::getView('footer');
 	exit;
 }
 function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
-	global $blogname, $blogdes;
 	$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 	if ($pwd !== addslashes($logPwd)) {
-		include getViews('header');
-		include getViews('logauth');
-		include getViews('footer');
+		include View::getView('header');
+		include View::getView('logauth');
+		include View::getView('footer');
 		if ($cookiePwd) {
 			setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 		}

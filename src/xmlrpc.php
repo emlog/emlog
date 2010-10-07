@@ -9,13 +9,8 @@
 ob_start();
 require_once 'options.php';
 require_once EMLOG_ROOT . '/config.php';
-require_once EMLOG_ROOT . '/lib/class.cache.php';
-require_once EMLOG_ROOT . '/lib/class.mysql.php';
 require_once EMLOG_ROOT . '/lib/function.base.php';
 require_once EMLOG_ROOT . '/lib/function.login.php';
-require_once EMLOG_ROOT . '/model/class.blog.php';
-require_once EMLOG_ROOT . '/model/class.sort.php';
-require_once EMLOG_ROOT . '/model/class.tag.php';
 
 $api_methods = array(
 	// metaWeblog 接口
@@ -31,7 +26,7 @@ $api_methods = array(
 	);
 
 $DB = MySql::getInstance();
-$options_cache = mkcache::getInstance()->readCache('options');
+$options_cache = Cache::getInstance()->readCache('options');
 // 有些基于浏览器的客户端会发送cookie，我们不需要它们
 $_COOKIE = array();
 // PHP 5.2.2 以下版本有一个bug, 常量 $HTTP_RAW_POST_DATA 系统不会自动生成
@@ -136,7 +131,7 @@ function mw_deletePost($args) {
 	define('UID', $user['uid']);
 	$emBlog = new emBlog();
 	$emBlog->deleteLog($id);
-	mkcache::getInstance()->updateCache();
+	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 /**
@@ -187,7 +182,7 @@ function mw_newPost($args) {
 		unset($emTag);
 	}
 	// 更新缓存
-	mkcache::getInstance()->updateCache();
+	Cache::getInstance()->updateCache();
 	response("<i4>$new_id</i4>");
 }
 /**
@@ -236,7 +231,7 @@ function mw_editPost($args) {
 		$emTag->updateTag($data['mt_keywords'], $id);
 	}
 	// 更新缓存
-	mkcache::getInstance()->updateCache();
+	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 
@@ -291,7 +286,7 @@ function mw_getPost($args) {
 	define('UID', $user['uid']);
 	$post = $emBlog->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
-	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
+	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
 		foreach ($log_cache_tags[$post['gid']] as $tag) {
@@ -373,7 +368,7 @@ function mw_getRecentPosts($args) {
 
 	$xml = '';
 	$recent_posts = array();
-	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
+	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	while ($post = $db->fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
@@ -469,7 +464,7 @@ function mw_newMediaObject($args) {
 	if (!empty($data["overwrite"]) && ($data["overwrite"] == true)) {
 	}
 
-	$att_type = array('rar', 'zip', 'gif', 'jpg', 'jpeg', 'png', 'bmp');
+	$att_type = Options::getAttType();
 
 	if (empty($filename))
 		error_message(500, '文件名错误');

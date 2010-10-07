@@ -67,8 +67,8 @@ function loginPage()
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
 	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
-	require_once getViews('login');
-	cleanPage();
+	require_once View::getView('login');
+	View::output();
 	exit;
 }
 
@@ -107,7 +107,6 @@ function checkPassword($password, $hash)
 	global $em_hasher;
 	if ( empty($em_hasher) )
 	{
-		require_once EMLOG_ROOT.'/lib/class.phpass.php';
 		$em_hasher = new PasswordHash(8, true);
 	}
 	$check = $em_hasher->CheckPassword($password, $hash);

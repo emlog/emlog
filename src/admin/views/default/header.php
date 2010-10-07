@@ -11,7 +11,7 @@
 <script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 <?php doAction('adm_head');?>
-<title><?php echo $blogname; ?> - 管理中心</title>
+<title><?php echo Options::get('blogname'); ?> - 管理中心</title>
 </head>
 <body>
 <div class="center">
@@ -20,8 +20,8 @@
   <tr>
     <td width="9" id="headerleft"></td>
     <td width="125"  class="logo" align="left"><a href="./" title="返回管理首页">emlog</a></td>
-    <td class="vesion" width="20"><?php echo EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo $blogname; ?></a></td>
+    <td class="vesion" width="20"><?php echo Options::EMLOG_VERSION; ?></td>
+    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo Options::get('blogname'); ?></a></td>
     <td align=right nowrap class="headtext">
 	<?php if (ROLE == 'admin'):?>
     <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;

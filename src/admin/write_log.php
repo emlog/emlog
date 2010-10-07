@@ -6,10 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
-require_once EMLOG_ROOT.'/model/class.tag.php';
-require_once EMLOG_ROOT.'/model/class.trackback.php';
-require_once EMLOG_ROOT.'/model/class.sort.php';
 
 //显示撰写日志页面
 if($action == '')
@@ -20,13 +16,13 @@ if($action == '')
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 
-	$localtime = time() + $timezone * 3600;
+	$localtime = time() + Options::get('timezone') * 3600;
 	$postDate = gmdate('Y-m-d H:i:s', $localtime);
 
-	include getViews('header');
-	require_once getViews('add_log');
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once View::getView('add_log');
+	include View::getView('footer');
+	View::output();
 }
 
 //显示编辑日志页面
@@ -66,7 +62,7 @@ if ($action == 'edit')
 		$add2="checked=\"checked\"";
 	}
 
-	include getViews('header');
-	require_once getViews('edit_log');
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once View::getView('edit_log');
+	include View::getView('footer');View::output();
 }

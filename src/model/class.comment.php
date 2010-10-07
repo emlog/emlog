@@ -34,8 +34,9 @@ class emComment {
 		$condition = '';
 		if($page)
 		{
-			$startId = ($page - 1) *ADMIN_PERPAGE_NUM;
-			$condition = "LIMIT $startId, ".ADMIN_PERPAGE_NUM;
+			$perpage_num = Options::get('admin_perpage_num');
+			$startId = ($page - 1) * $perpage_num;
+			$condition = "LIMIT $startId, ".$perpage_num;
 		}
 		if($spot == 0)
 		{
@@ -181,37 +182,49 @@ class emComment {
 		}
 	}
 
-	function addComment($name, $content, $mail, $url, $imgcode, $blogId)
-	{
-		global $comment_code, $ischkcomment, $utctimestamp;
-		if ($url && strncasecmp($url,'http://',7))//0 if they are equal
-		{
+	function addComment() {
+		$comment_code = Options::get('comment_code');
+		$ischkcomment = Options::get('ischkcomment');
+        $utctimestamp = time();
+
+    	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+    	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+    	$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+    	$url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
+    	$imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
+    	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
+		
+		if ($url && strncasecmp($url,'http://',7)) {
 			$url = 'http://'.$url;
 		}
 		$this->setCommentCookie($name,$mail,$url,$utctimestamp);
 		if($this->isLogCanComment($blogId) === false){
-			return -1;
+			emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
 		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
-			return -2;
+			emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
 		}elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
-			return -3;
+			emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');;
 		} elseif ($mail != '' && !checkMail($mail)) {
-			return -4;
+			emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
 		} elseif (strlen($content) == '' || strlen($content) > 2000) {
-			return -5;
+			emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
 		} elseif ($comment_code == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-			return -6;
+			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
 		} else {
 			$ipaddr = getIp();
-			$sql = "INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
+			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
 					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
-			if ($ischkcomment == 'n')
-			{
-				$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
-				return 0;
+			$CACHE = Cache::getInstance();
+			if ($ischkcomment == 'n') {
+				$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+				$CACHE->updateCache(array('sta', 'comment'));
+                doAction('comment_saved');
+                emMsg('评论发表成功', BLOG_URL."?post=$blogId#comment", true);
 			} else {
-				return 1;
+		        $CACHE->updateCache('sta');
+		        doAction('comment_saved');
+		        emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$blogId");
 			}
 		}
 	}

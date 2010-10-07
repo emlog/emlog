@@ -16,15 +16,15 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="fujian"><?php blog_att($logid); ?></div>
 	<div class="tag echo_tag"><?php blog_tag($logid); ?></div>
 	<?php doAction('log_related'); ?>
-	<div class="nextlog"><?php neighbor_log(); ?></div>
-	<?php blog_trackback(); ?>
-	<?php blog_comments(); ?>
-	<?php if ($allow_remark == 'y'){blog_comments_post();}?>
+	<div class="nextlog"><?php neighbor_log($neighborLog); ?></div>
+	<?php blog_trackback($tb, $tb_url, $allow_tb); ?>
+	<?php blog_comments($comments); ?>
+	<?php blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark); ?>
 </li>
 </ul>
 </div>
 <!--end content-->
 <?php 
-include getViews('side');
-include getViews('footer'); 
+include View::getView('side');
+include View::getView('footer'); 
 ?>

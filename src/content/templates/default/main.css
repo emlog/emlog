@@ -91,7 +91,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 /*sidebar*/
 #sidebar{float:right; width:185px; font-size:12px; color:#858585; margin-right:30px; display:inline; overflow:hidden}
 #sidebar img{max-width:540px}
-#sidebar h3{font-size:14px; font-weight:300; color:#333; border-bottom:1px #e1e1e1 solid; margin-bottom:5px; cursor:pointer; _cursor:hand}
+#sidebar h3{font-size:14px; font-weight:300; color:#333; border-bottom:1px #e1e1e1 solid; margin-bottom:5px}
 #sidebar ul li ul{margin:10px 0}
 #sidebar #bloggerinfo li{background:0; text-align:center}
 #sidebar #bloggerinfo div{text-align:center}
@@ -121,6 +121,7 @@ a:hover{color:#0079b7; text-decoration:underline}
 .rss{ margin:20px 0px;}
 #twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
 #twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
+#twitter p {font-size: 12px;text-align:right;}
 #twitter li small {font-size: 10px;padding: 0px 10px;}
 
 #tw .main_img{ border:1px #2772ae solid; float:left;}

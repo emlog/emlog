@@ -18,6 +18,135 @@ class emBlog {
 	}
 
 	/**
+	 * 前台日志列表页面输出
+	 */
+	function displayBlog($params) {
+		$CACHE = Cache::getInstance();
+		$options_cache = $CACHE->readCache('options');
+		extract($options_cache);
+	    $navibar = unserialize($navibar);
+        $curpage = CURPAGE_HOME;
+        $blogtitle = $blogname;
+
+    	$page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1 ;
+    	$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
+    	$sortid = isset($params[1]) && $params[1] == 'sort' ? intval($params[2]) : '' ;
+    	$author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '' ;
+    	$tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
+    	$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';
+
+    	$start_limit = ($page - 1) * $index_lognum;
+    	$pageurl = '';
+
+    	if ($record) {
+    		$blogtitle = $record.' - '.$blogname;
+    		if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
+    		    $days = getMonthDayNum($match[2], $match[1]);
+    		    $record_stime = emStrtotime($record . '01');
+    		    $record_etime = $record_stime + 3600 * 24 * $days;
+    		} else {
+    		    $record_stime = emStrtotime($record);
+    		    $record_etime = $record_stime + 3600 * 24;
+    		}
+    		$sqlSegment = "and date>=$record_stime and date<$record_etime order by top desc ,date desc";
+    		$lognum = $this->getLogNum('n', $sqlSegment);
+    		$pageurl .= BLOG_URL."?record=$record&page";
+    	} elseif ($tag) {
+    		$emTag = new emTag();
+    		$blogtitle = stripslashes($tag).' - '.$blogname;
+    		$blogIdStr = $emTag->getTagByName($tag);
+    		if ($blogIdStr === false) {
+    			emMsg('不存在该标签', BLOG_URL);
+    		}
+    		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
+    		$lognum = $this->getLogNum('n', $sqlSegment);
+    		$pageurl .= BLOG_URL.'?tag='.urlencode($tag).'&page';
+    	} elseif ($keyword) {
+            $keyword = str_replace('%','\%',$keyword);
+            $keyword = str_replace('_','\_',$keyword);
+    		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
+    		$lognum = $this->getLogNum('n', $sqlSegment);
+    		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page';
+    	} elseif ($sortid) {
+    		$sort_cache = $CACHE->readCache('sort');
+    	    if (!isset($sort_cache[$sortid])) {
+                emMsg('不存在该分类', BLOG_URL);
+            }
+    		$sortName = $sort_cache[$sortid]['sortname'];
+    		$blogtitle = $sortName.' - '.$blogname;
+    		$sqlSegment = "and sortid=$sortid order by date desc";
+    		$lognum = $this->getLogNum('n', $sqlSegment);
+    		$pageurl .= BLOG_URL."?sort=$sortid&page";
+    	} elseif ($author) {
+    		$user_cache = $CACHE->readCache('user');
+    	    if (!isset($user_cache[$author])) {
+                emMsg('不存在该作者', BLOG_URL);
+            }
+    		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
+    		$sqlSegment = "and author=$author order by date desc";
+    		$sta_cache = $CACHE->readCache('sta');
+    		$lognum = $sta_cache[$author]['lognum'];
+    		$pageurl .= BLOG_URL."?author=$author&page";
+    	}else {
+    		$sqlSegment ='ORDER BY top DESC ,date DESC';
+    		$sta_cache = $CACHE->readCache('sta');
+    		$lognum = $sta_cache['lognum'];
+    		$pageurl .= BLOG_URL.'?page';
+    	}
+    	$logs = $this->getLogsForHome($sqlSegment, $page, $index_lognum);
+    	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
+
+        include View::getView('header');
+    	include View::getView('log_list');
+	}
+
+	/**
+	 * 前台日志内容页面输出
+	 */
+	function displayContent($params) {
+        $CACHE = Cache::getInstance();
+        $options_cache = $CACHE->readCache('options');
+        extract($options_cache);
+        $navibar = unserialize($navibar);
+
+	    $logid = isset($params[1]) && $params[1] == 'post' ? intval($params[2]) : '' ;
+    
+    	$emComment = new emComment();
+    	$emTrackback = new emTrackback();
+    
+    	$logData = $this->getOneLogForHome($logid);
+    	if ($logData === false) {
+    		emMsg('不存在该条目', BLOG_URL);
+    	}
+    	extract($logData);
+  
+    	if (!empty($password)) {
+    		$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
+    		$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
+    		$this->AuthPassword($postpwd, $cookiepwd, $password, $logid);
+    	}
+    	$blogtitle = $log_title.' - '.$blogname;
+	    //comments
+	    $cheackimg = $comment_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
+	    $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
+	    $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
+	    $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
+	    $comments = $emComment->getComments(0, $logid, 'n');
+
+    	$curpage = CURPAGE_LOG;
+    	include View::getView('header');
+    	if ($type == 'blog') {
+    		$this->updateViewCount($logid);
+    		$neighborLog = $this->neighborLog($timestamp);
+    		$tb = $emTrackback->getTrackbacks(null, $logid, 0);
+    		$tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
+    		require_once View::getView('echo_log');
+    	}elseif ($type == 'page') {
+    		include View::getView('page');
+    	}
+	}
+
+	/**
 	 * 添加日志、页面
 	 *
 	 * @param array $logData
@@ -151,10 +280,11 @@ class emBlog {
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
 		global $timezone;
-		$start_limit = !empty($page) ? ($page - 1) * ADMIN_PERPAGE_NUM : 0;
+		$perpage_num = Options::get('admin_perpage_num');
+		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
-		$limit = "LIMIT $start_limit, " . ADMIN_PERPAGE_NUM;
+		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();

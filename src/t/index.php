@@ -5,19 +5,26 @@
  * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
 */
 
-require_once '../common.php';
+require_once '../init.php';
 
-define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//前台模板URL
-define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//前台模板路径
+define('TEMPLATE_URL', 	TPLS_URL.Options::get('nonce_templet').'/');//前台模板URL
+define('TEMPLATE_PATH', TPLS_PATH.Options::get('nonce_templet').'/');//前台模板路径
+define('CURPAGE_TW',    'twitter');
 
-$blogtitle = $blogname;
+$blogtitle = Options::get('blogname');
 
-if ($istwitter == 'n') {
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+
+if (Options::get('istwitter') == 'n') {
     emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
 }
 
 if ($action == '') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
+	$user_cache = $CACHE->readCache('user');
+    $options_cache = $CACHE->readCache('options');
+    extract($options_cache);
+    
+    $navibar = unserialize($navibar);
 
     $emTwitter = new emTwitter();
 
@@ -25,19 +32,17 @@ if ($action == '') {
 
     $tws = $emTwitter->getTwitters($page);
     $twnum = $emTwitter->getTwitterNum();
-    $pageurl =  pagination($twnum, $index_twnum, $page, BLOG_URL.'t/?page');
+    $pageurl =  pagination($twnum, Options::get('index_twnum'), $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = $reply_code == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
-    include getViews('header');
-    require_once getViews('t');
-    cleanPage(true);
+    include View::getView('header');
+    require_once View::getView('t');
+    View::output();
 }
 // 获取回复.
 if ($action == 'getr') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
     $emReply = new emReply();
@@ -55,9 +60,6 @@ if ($action == 'getr') {
 }
 // 回复碎语.
 if ($action == 'reply') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
     $rcode = isset($_POST['rcode']) ? strtoupper(addslashes(trim($_POST['rcode']))) : '';

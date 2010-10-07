@@ -92,8 +92,9 @@ class emTrackback {
 		$condition = '';
 		if($page)
 		{
-			$startId = ($page - 1) * ADMIN_PERPAGE_NUM;
-			$condition = "LIMIT $startId, ".ADMIN_PERPAGE_NUM;
+			$perpage_num = Options::get('admin_perpage_num');
+			$startId = ($page - 1) * $perpage_num;
+			$condition = "LIMIT $startId, ".$perpage_num;
 		}
 		if($spot == 0)
 		{

@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.sort.php';
 
 $emSort = new emSort();
 
 if($action == '')
 {
-	$sorts = $sort_cache;
-	include getViews('header');
-	require_once getViews('sort');
-	include getViews('footer');
-	cleanPage();
+	$sorts = $CACHE->readCache('sort');
+	include View::getView('header');
+	require_once View::getView('sort');
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action == 'taxis')

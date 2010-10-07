@@ -5,7 +5,7 @@
  * $Id$
  */
 
-require_once 'common.php';
+require_once './init.php';
 
 header('Content-type: application/xml');
 
@@ -14,17 +14,15 @@ $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 $URL = BLOG_URL;
 $blog = GetBlog($sort);
 
-echo <<< END
-<?xml version="1.0" encoding="utf-8"?>
+echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
-<title><![CDATA[{$blogname}]]></title> 
-<description><![CDATA[{$bloginfo}]]></description>
+<title><![CDATA['.Options::get('blogname').']]></title> 
+<description><![CDATA['.Options::get('bloginfo').']]></description>
 <link>{$URL}</link>
 <language>zh-cn</language>
-<generator>www.emlog.net</generator>
+<generator>www.emlog.net</generator>';
 
-END;
 foreach($blog as $value)
 {
 	$link = $URL."?post=".$value['id'];
@@ -58,7 +56,7 @@ END;
 function GetBlog($sort = null) {
 	global $DB;
 	$subsql = $sort ? "and sortid=$sort" : '';
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . RSS_OUTPUT_NUM;
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Options::get('rss_output_num');
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
@@ -70,7 +68,7 @@ function GetBlog($sort = null) {
 		if(!empty($re['password']))
 		{
 			$re['content'] = '<p>[该日志已设置加密]</p>';
-		}elseif(!RSS_FULL_FEED && !empty($re['excerpt'])){
+		}elseif(!Options::get('rss_output_fulltext') && !empty($re['excerpt'])){
 		    $re['content'] = $re['excerpt'] . '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
 		}
 

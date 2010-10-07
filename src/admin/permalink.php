@@ -9,13 +9,13 @@ require_once 'globals.php';
 
 if ($action == '') {
 	$ex0 = $ex1 = $ex2 = '';
-	$t = 'ex'.$isurlrewrite;
+	$t = 'ex'.Options::get('isurlrewrite');
 	$$t = 'checked="checked"';
 
-	include getViews('header');
-	require_once(getViews('permalink'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('permalink'));
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action == 'update') {

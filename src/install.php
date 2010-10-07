@@ -5,12 +5,8 @@
  * $Id$
  */
 
-require_once 'options.php';
+define('EMLOG_ROOT', dirname(__FILE__));
 require_once EMLOG_ROOT.'/lib/function.base.php';
-require_once EMLOG_ROOT.'/lib/class.mysql.php';
-require_once EMLOG_ROOT.'/lib/class.cache.php';
-require_once EMLOG_ROOT.'/lib/class.phpass.php';
-
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
 define('DEL_INSTALLER', 0);
@@ -46,7 +42,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div id="top-title">
-<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
+<p><span class="title">emlog <?php echo Options::EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
 </div>
 <div class="b">
 <p class="title2">1、数据库设置 （MySQL数据库）</p>
@@ -132,7 +128,7 @@ if($act == 'install' || $act == 'reinstall')
 	define('DB_PREFIX', $db_prefix);
 
 	$DB = MySql::getInstance();
-	$CACHE = mkcache::getInstance();
+	$CACHE = Cache::getInstance();
 
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
 	{
@@ -206,7 +202,6 @@ EOT;
 		$result.="配置文件修改成功<br />";
 	}
 	fclose($fp);
-
 
 	//密码加密存储
 	$PHPASS = new PasswordHash(8, true);
@@ -311,6 +306,11 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
+
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
+
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');

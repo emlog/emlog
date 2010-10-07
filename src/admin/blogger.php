@@ -6,7 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.user.php';
 
 if ($action == '') {
 	$emUser = new emUser();
@@ -18,10 +17,10 @@ if ($action == '') {
 		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>";
 	}
-	include getViews('header');
-	require_once(getViews('blogger'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('blogger'));
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action == 'update') {
@@ -63,7 +62,6 @@ if ($action == 'delicon') {
 }
 
 if ($action == 'update_pwd') {
-	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 
 	$emUser = new emUser();
 

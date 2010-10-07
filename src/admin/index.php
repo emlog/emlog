@@ -8,6 +8,7 @@
 require_once 'globals.php';
 
 if ($action == '') {
+	$user_cache = $CACHE->readCache('user');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $name =  $user_cache[UID]['name'];
 
@@ -33,10 +34,10 @@ if ($action == '') {
 		$gd_ver = '不支持';
 	}
 
-	include getViews('header');
-	require_once(getViews('index'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('index'));
+	include View::getView('footer');
+	View::output();
 }
 //phpinfo()
 if ($action == 'phpinfo') {

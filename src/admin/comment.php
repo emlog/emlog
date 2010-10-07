@@ -6,7 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.comment.php';
 
 $emComment = new emComment();
 
@@ -23,12 +22,12 @@ if($action == '')
 	$comment = $emComment->getComments(1, $blogId, $hide, $page);
 	$cmnum = $emComment->getCommentNum($blogId, $hide);
 	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
-	$pageurl =  pagination($cmnum, ADMIN_PERPAGE_NUM, $page, "comment.php?{$addUrl}page");
+	$pageurl =  pagination($cmnum, Options::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page");
 
-	include getViews('header');
-	require_once(getViews('comment'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('comment'));
+	include View::getView('footer');
+	View::output();
 }
 if ($action== 'del')
 {
@@ -87,14 +86,14 @@ if($action== 'admin_all_coms')
 }
 if ($action== 'reply_comment')
 {
-	include getViews('header');
+	include View::getView('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$commentArray = $emComment->getOneComment($commentId);
 	extract($commentArray);
 
-	require_once(getViews('comment_reply'));
-	include getViews('footer');
-	cleanPage();
+	require_once(View::getView('comment_reply'));
+	include View::getView('footer');
+	View::output();
 }
 if($action=='doreply')
 {

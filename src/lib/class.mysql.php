@@ -169,7 +169,7 @@ class MySql {
 	/**
 	 * 取得数据库查询次数
 	 *
-	 * @return string
+	 * @return int
 	 */
 	function getQueryCount() {
 		return $this->queryCount;

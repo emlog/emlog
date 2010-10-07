@@ -82,8 +82,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
  	<tbody>
 	<?php
 	foreach($logs as $key=>$value):
-	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sort_cache) ? '未分类' : $sort_cache[$value['sortid']]['sortname'];
-	$author = $user_cache[$value['author']]['name'];
+	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
+	$author = $users[$value['author']]['name'];
 	$tags = isset($log_cache_tags[$value['gid']]) ? $log_cache_tags[$value['gid']] : '' ;
 	$tagStr = '';
 	if (is_array($tags) && !empty($tags)) {

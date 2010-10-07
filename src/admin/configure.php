@@ -7,66 +7,66 @@
 
 require_once 'globals.php';
 
-if ($action == '')
-{
-	if($login_code=='y')
-	{
-		$ex1="selected=\"selected\"";
-		$ex2="";
+if ($action == '') {
+	 $options_cache = $CACHE->readCache('options');
+     extract($options_cache);
+	
+	if($login_code == 'y') {
+		$ex1 = 'selected="selected"';
+		$ex2 = '';
 	}else{
-		$ex1="";
-		$ex2="selected=\"selected\"";
-	}
-	if($comment_code=='y')
-	{
-		$ex3="selected=\"selected\"";
-		$ex4="";
-	}else{
-		$ex3="";
-		$ex4="selected=\"selected\"";
-	}
-	if($ischkcomment=='y')
-	{
-		$ex5="selected=\"selected\"";
-		$ex6="";
-	}else{
-		$ex5="";
-		$ex6="selected=\"selected\"";
-	}
-	if($istrackback=='y')
-	{
-		$ex7="selected=\"selected\"";
-		$ex8="";
-	}else{
-		$ex7="";
-		$ex8="selected=\"selected\"";
-	}
-	if($isgzipenable=='y')
-	{
-		$ex11="selected=\"selected\"";
-		$ex12="";
-	}else{
-		$ex11="";
-		$ex12="selected=\"selected\"";
-	}
-	if($isxmlrpcenable=='y')
-	{
-		$ex13="selected=\"selected\"";
-		$ex14="";
-	} else {
-		$ex13="";
-		$ex14="selected=\"selected\"";
+		$ex1 = '';
+		$ex2 = 'selected="selected"';
 	}
 
-	include getViews('header');
-	require_once(getViews('configure'));
-	include getViews('footer');
-	cleanPage();
+	if($comment_code == 'y') {
+		$ex3 = 'selected="selected"';
+		$ex4 = '';
+	}else{
+		$ex3 = '';
+		$ex4 = 'selected="selected"';
+	}
+
+	if($ischkcomment == 'y'){
+		$ex5 = 'selected="selected"';
+		$ex6 = '';
+	}else{
+		$ex5 = '';
+		$ex6 = 'selected="selected"';
+	}
+
+	if($istrackback == 'y'){
+		$ex7 = 'selected="selected"';
+		$ex8 = '';
+	}else{
+		$ex7 = '';
+		$ex8 = 'selected="selected"';
+	}
+
+	if($isgzipenable == 'y'){
+		$ex11 = 'selected="selected"';
+		$ex12 = '';
+	}else{
+		$ex11 = '';
+		$ex12 = 'selected="selected"';
+	}
+
+	if($isxmlrpcenable == 'y'){
+		$ex13 = 'selected="selected"';
+		$ex14 = '';
+	} else {
+		$ex13 = '';
+		$ex14 = 'selected="selected"';
+	}
+
+	include View::getView('header');
+	require_once(View::getView('configure'));
+	include View::getView('footer');
+	View::output();
 }
 
 //update config
-if ($action == "mod_config")
-{
+if ($action == 'mod_config') {
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
@@ -83,25 +83,20 @@ if ($action == "mod_config")
 	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n'
 	);
 
-	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
-	{
+	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
 		formMsg("开启登录验证码失败!服务器不支持该功能","configure.php",0);
 	}
-	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
-	{
+	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
 		formMsg("开启评论验证码失败!服务器不支持该功能","configure.php",0);
 	}
-	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
-	{
+	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/'){
 		$getData['blogurl'] .= '/';
 	}
-	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7))//0 if they are equal
-	{
+	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)){
 		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 
-	foreach ($getData as $key => $val)
-	{
+	foreach ($getData as $key => $val) {
 		updateOption($key, $val);
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));

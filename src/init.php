@@ -8,33 +8,37 @@
 error_reporting(E_ALL);
 ob_start();
 
-require_once 'options.php';
+define('EMLOG_ROOT', dirname(__FILE__));
+
 require_once EMLOG_ROOT.'/config.php';
 require_once EMLOG_ROOT.'/lib/function.base.php';
 require_once EMLOG_ROOT.'/lib/function.login.php';
-require_once EMLOG_ROOT.'/lib/class.cache.php';
-require_once EMLOG_ROOT.'/lib/class.mysql.php';
 
-header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
+
 $DB = MySql::getInstance();
-$CACHE = mkcache::getInstance();
-$options_cache = $CACHE->readCache('options');
-extract($options_cache);
+$CACHE = Cache::getInstance();
 
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $utctimestamp = time();
-
 $userData = array();
-define('ISLOGIN',	isLogin());
-define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//用户组: admin管理员, writer联合撰写人, visitor访客
-define('UID', ISLOGIN === true ? $userData['uid'] : '');//用户ID
-define('BLOG_URL', 		$blogurl);//博客固定地址
-define('TPLS_URL', 		$blogurl.'content/templates/');//模板库地址
-define('TPLS_PATH', 	EMLOG_ROOT.'/content/templates/');//模板库路径
-define('DYNAMIC_BLOGURL', getBlogUrl());//解决前台多域名ajax跨域
 
-$active_plugins = unserialize($active_plugins);
+define('ISLOGIN',	isLogin());
+//用户组: admin管理员, writer联合撰写人, visitor访客
+define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
+//用户ID
+define('UID', ISLOGIN === true ? $userData['uid'] : '');
+//博客固定地址
+define('BLOG_URL', Options::get('blogurl'));
+//模板库地址
+define('TPLS_URL', BLOG_URL.'content/templates/');
+//模板库路径
+define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
+//解决前台多域名ajax跨域
+define('DYNAMIC_BLOGURL', getBlogUrl());
+//后台模板
+define('ADMIN_TPL', Options::ADMIN_TPL);
+
+$active_plugins = unserialize(Options::get('active_plugins'));
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
 	foreach($active_plugins as $plugin) {

@@ -6,9 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
-require_once EMLOG_ROOT.'/model/class.tag.php';
-require_once EMLOG_ROOT.'/model/class.user.php';
 
 $emBlog = new emBlog();
 
@@ -64,8 +61,9 @@ if($action == '')
 
 	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, 'blog', 1);
 	$logs = $emBlog->getLogsForAdmin($sqlSegment, $hide_state, $page);
-	$sorts = $sort_cache;
-	$users = $user_cache;
+	$sorts = $CACHE->readCache('sort');
+	$users = $CACHE->readCache('user');
+	$log_cache_tags = $CACHE->readCache('logtags');
 	$tags = $emTag->getTag();
 
 	$subPage = '';
@@ -73,11 +71,11 @@ if($action == '')
 	{
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl =  pagination($logNum, ADMIN_PERPAGE_NUM, $page, "admin_log.php?{$subPage}&page");
+	$pageurl =  pagination($logNum, Options::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page");
 
-	include getViews('header');
-	require_once getViews('admin_log');
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once View::getView('admin_log');
+	include View::getView('footer');View::output();
 }
 
 //操作日志

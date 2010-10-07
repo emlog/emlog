@@ -6,11 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
-require_once EMLOG_ROOT.'/model/class.tag.php';
-require_once EMLOG_ROOT.'/model/class.sort.php';
-require_once EMLOG_ROOT.'/model/class.trackback.php';
-
 
 $emBlog = new emBlog();
 $emTag = new emTag();
@@ -31,7 +26,7 @@ $allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
-$postTime = $emBlog->postDate($timezone, $postDate, $date);
+$postTime = $emBlog->postDate(Options::get('timezone'), $postDate, $date);
 
 $logData = array(
 	'title'=>$title,
@@ -63,23 +58,20 @@ $CACHE->updateCache();
 
 doAction('save_log', $blogid);
 
-switch ($action)
-{
+switch ($action) {
 	case 'autosave':
 		echo "autosave_gid:{$blogid}_df:{$dftnum}_";
 		break;
 	case 'add':
 	case 'edit':
 		$tbmsg = '';
-		if($ishide == 'y')
-		{
+		if($ishide == 'y') {
 			$ok_msg = '草稿保存成功！';
 			$ok_url = 'admin_log.php?pid=draft';
-		}else{
+		} else {
 			//发送Trackback
-			if(!empty($pingurl))
-			{
-				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);
+			if(!empty($pingurl)) {
+				$tbmsg = $emTb->postTrackback(Options::get('blogurl'), $pingurl, $blogid, $title, Options::get('blogname'), $content);
 			}
 			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? '日志发布成功！' : '日志保存成功！';
 			$ok_url = 'admin_log.php';

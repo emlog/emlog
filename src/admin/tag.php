@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.tag.php';
 
 $emTag = new emTag();
 
 if($action == '')
 {
 	$tags = $emTag->getTag();
-	include getViews('header');
-	require_once getViews('tag');
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once View::getView('tag');
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action== "mod_tag")
@@ -24,9 +23,9 @@ if ($action== "mod_tag")
 	$tagId = isset($_GET['tid']) ? intval($_GET['tid']) : '';
 	$tag = $emTag->getOneTag($tagId);
 	extract($tag);
-	include getViews('header');
-	require_once getViews('tagedit');
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once View::getView('tagedit');
+	include View::getView('footer');View::output();
 }
 
 //标签修改

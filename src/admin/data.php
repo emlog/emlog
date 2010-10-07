@@ -10,14 +10,15 @@ require_once 'globals.php';
 if($action == ''){
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
+	$timezone = Options::get('timezone');
 	$tables = array('attachment', 'blog', 'comment', 'options', 'reply', 'sort', 'link','tag','trackback','twitter','user');
 	$defname = 'emlog_'. gmdate('Ymd', $utctimestamp + $timezone * 3600) . '_' . substr(md5(gmdate('YmdHis', $utctimestamp + $timezone * 3600)),0,18);
 	doAction('data_prebakup');
 
-	include getViews('header');
-	require_once(getViews('data'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('data'));
+	include View::getView('footer');
+	View::output();
 }
 if($action == 'bakstart'){
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
@@ -36,7 +37,7 @@ if($action == 'bakstart'){
 	}
 	if(trim($sqldump))
 	{
-		$dumpfile = '#version:emlog '. EMLOG_VERSION . "\n";
+		$dumpfile = '#version:emlog '. Options::EMLOG_VERSION . "\n";
 		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $utctimestamp + $timezone * 3600) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
@@ -96,8 +97,8 @@ if ($action == 'renewdata'){
 			fclose($fp);
 			if (!empty($dumpinfo)){
 				// 验证版本
-				if (preg_match('/#version:emlog '. EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-					formMsg("导入失败! 该备份文件不是 emlog ".EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
+				if (preg_match('/#version:emlog '. Options::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
+					formMsg("导入失败! 该备份文件不是 emlog ".Options::EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
 				}
 				// 验证表前缀
 				if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
@@ -126,7 +127,7 @@ if($action == 'dell_all_bak'){
 	}
 }
 //更新缓存
-if ($action == 'mkcache'){
+if ($action == 'Cache'){
 	$CACHE->updateCache();
 	header("Location: ./data.php?active_mc=true");
 }

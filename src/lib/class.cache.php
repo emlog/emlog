@@ -6,19 +6,24 @@
  * $Id$
  */
 
-class mkcache {
-	/**
-	 * 内部数据对象
-	 *
-	 * @var MySql
-	 */
+class Cache {
+
 	private $db;
-	/**
-	 * 内部实例对象
-	 *
-	 * @var object MySql
-	 */
 	private static $instance = null;
+	
+	private $options_cache;
+	private $logtags_cache;
+    private $logsort_cache;
+    private $logatts_cache;
+    private $newlog_cache;
+    private $newtw_cache;
+    private $tags_cache;
+    private $sort_cache;
+    private $comment_cache;
+    private $link_cache;
+    private $user_cache;
+    private $record_cache;
+    private $sta_cache;
 
 	/**
 	 * 构造函数
@@ -30,11 +35,11 @@ class mkcache {
 	/**
 	 * 静态方法，返回数据库连接实例
 	 *
-	 * @return mkcache
+	 * @return Cache
 	 */
 	public static function getInstance() {
 		if (self::$instance == null) {
-			self::$instance = new mkcache();
+			self::$instance = new Cache();
 		}
 		return self::$instance;
 	}
@@ -425,17 +430,22 @@ class mkcache {
 	 * 读取缓存文件
 	 */
 	function readCache($cacheName) {
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
-		// 如果缓存文件不存在则自动生成缓存文件
-		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
-			if (method_exists($this, 'mc_' . $cacheName)) {
-				call_user_func(array($this, 'mc_' . $cacheName));
+		if ($this->{$cacheName.'_cache'} != null) {
+			return $this->{$cacheName.'_cache'};
+		} else {
+			$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
+			// 如果缓存文件不存在则自动生成缓存文件
+			if (!is_file($cachefile) || filesize($cachefile) <= 0) {
+				if (method_exists($this, 'mc_' . $cacheName)) {
+					call_user_func(array($this, 'mc_' . $cacheName));
+				}
 			}
-		}
-		if ($fp = fopen($cachefile, 'r')) {
-			$data = fread($fp, filesize($cachefile));
-			fclose($fp);
-			return unserialize($data);
+			if ($fp = fopen($cachefile, 'r')) {
+				$data = fread($fp, filesize($cachefile));
+				fclose($fp);
+				$this->{$cacheName.'_cache'} = unserialize($data);
+				return $this->{$cacheName.'_cache'};
+			}
 		}
 	}
 }

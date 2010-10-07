@@ -6,9 +6,8 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
 
-$navibar = unserialize($navibar);
+$navibar = unserialize(Options::get('navibar'));
 
 //加载页面管理页面
 if ($action == '') {
@@ -19,19 +18,19 @@ if ($action == '') {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('','','page', 1);
 
-	$pageurl =  pagination($pageNum, ADMIN_PERPAGE_NUM, $page, "./page.php?page");
+	$pageurl =  pagination($pageNum, Options::get('admin_perpage_num'), $page, "./page.php?page");
 
-	include getViews('header');
-	require_once(getViews('admin_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('admin_page'));
+	include View::getView('footer');
+	View::output();
 }
 //显示新建页面表单
 if ($action == 'new') {
-	include getViews('header');
-	require_once(getViews('add_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('add_page'));
+	include View::getView('footer');
+	View::output();
 }
 //显示编辑页面表单
 if ($action == 'mod') {
@@ -60,10 +59,10 @@ if ($action == 'mod') {
 		$ex4 = "checked=\"checked\"";
 	}
 
-	include getViews('header');
-	require_once(getViews('edit_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('edit_page'));
+	include View::getView('footer');
+	View::output();
 }
 //保存页面
 if ($action == 'add' || $action == 'edit' || $action == 'autosave') {

@@ -7,11 +7,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php
 //widget：blogger
 function widget_blogger($title){
-	global $user_cache;
+	global $CACHE;
+	$user_cache = $CACHE->readCache('user');
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
 	<li>
-	<h3><span onclick="showhidediv('bloggerinfo')"><?php echo $title; ?></span></h3>
-	<ul style="text-align:center" id="bloggerinfo">
+	<h3><span><?php echo $title; ?></span></h3>
+	<ul id="bloggerinfo">
 	<div id="bloggerinfoimg">
 	<?php if (!empty($user_cache[1]['photo']['src'])): ?>
 	<img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
@@ -27,7 +28,7 @@ function widget_blogger($title){
 function widget_calendar($title){
 	global $calendar_url; ?>
 	<li>
-	<h3><span onclick="showhidediv('calendar')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<div id="calendar">
 	</div>
 	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
@@ -36,9 +37,11 @@ function widget_calendar($title){
 <?php
 //widget：标签
 function widget_tag($title){
-	global $tag_cache; ?>
+	global $CACHE;
+	$tag_cache = $CACHE->readCache('tags');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('blogtags')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="blogtags">
 	<li>
 	<?php foreach($tag_cache as $value): ?>
@@ -52,9 +55,10 @@ function widget_tag($title){
 <?php
 //widget：分类
 function widget_sort($title){
-	global $sort_cache; ?>
+	global $CACHE;
+	$sort_cache = $CACHE->readCache('sort'); ?>
 	<li>
-	<h3><span onclick="showhidediv('blogsort')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
@@ -68,15 +72,18 @@ function widget_sort($title){
 <?php
 //widget：最新碎语
 function widget_twitter($title){
-	global $newtws_cache,$istwitter; ?>
+	global $CACHE; 
+	$newtws_cache = $CACHE->readCache('newtw');
+	$istwitter = Options::get('istwitter');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('twitter')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
 	<li><?php echo $value['t']; ?><p><?php echo smartDate($value['date']); ?> </p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
-	<p style="text-align:right"><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></p>
+	<p><a href="<?php echo BLOG_URL . 't/'; ?>">更多&raquo;</a></p>
 	<?php endif;?>
 	</ul>
 	</li>
@@ -84,9 +91,11 @@ function widget_twitter($title){
 <?php
 //widget：最新评论
 function widget_newcomm($title){
-	global $com_cache; ?>
+	global $CACHE; 
+	$com_cache = $CACHE->readCache('comment');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('newcomment')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="newcomment">
 	<?php
 	foreach($com_cache as $value):
@@ -106,9 +115,11 @@ function widget_newcomm($title){
 <?php
 //widget：最新日志
 function widget_newlog($title){
-	global $newLogs_cache; ?>
+	global $CACHE; 
+	$newLogs_cache = $CACHE->readCache('newlog');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('newlog')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
 	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
@@ -119,15 +130,11 @@ function widget_newlog($title){
 <?php
 //widget：随机日志
 function widget_random_log($title){
-	global $index_randlognum, $emBlog;
-	if (!isset($emBlog))
-	{
-		require_once EMLOG_ROOT.'/model/class.blog.php';
-		$emBlog = new emBlog();
-	}
+	$index_randlognum = Options::get('index_randlognum');
+	$emBlog = new emBlog();
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	<li>
-	<h3><span onclick="showhidediv('randlog')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
 	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
@@ -139,7 +146,7 @@ function widget_random_log($title){
 //widget：搜索
 function widget_search($title){ ?>
 	<li>
-	<h3><span onclick="showhidediv('logserch')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<li>
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
@@ -153,9 +160,11 @@ function widget_search($title){ ?>
 <?php
 //widget：归档
 function widget_archive($title){
-	global $dang_cache; ?>
+	global $CACHE; 
+	$dang_cache = $CACHE->readCache('record');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('record')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($dang_cache as $value): ?>
 	<li><a href="<?php echo BLOG_URL.$value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
@@ -165,10 +174,10 @@ function widget_archive($title){
 <?php } ?>
 <?php
 //widget：自定义组件
-function widget_custom_text($title, $content, $id){ ?>
+function widget_custom_text($title, $content){ ?>
 	<li>
-	<h3><span onclick="showhidediv('<?php echo $id; ?>')"><?php echo $title; ?></span></h3>
-	<ul id="<?php echo $id; ?>">
+	<h3><span><?php echo $title; ?></span></h3>
+	<ul>
 	<li><?php echo $content; ?></li>
 	</ul>
 	</li>
@@ -176,9 +185,11 @@ function widget_custom_text($title, $content, $id){ ?>
 <?php
 //widget：链接
 function widget_link($title){
-	global $link_cache; ?>
+	global $CACHE; 
+	$link_cache = $CACHE->readCache('link');
+	?>
 	<li>
-	<h3><span onclick="showhidediv('link')"><?php echo $title; ?></span></h3>
+	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="link">
 	<?php foreach($link_cache as $value): ?>
 	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
@@ -189,7 +200,8 @@ function widget_link($title){
 <?php
 //blog：置顶
 function topflg($istop){
-	global $log_cache_sort;
+	global $CACHE;
+	$log_cache_sort = $CACHE->readCache('logsort');
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
 	echo $topflg;
 }
@@ -204,7 +216,9 @@ function editflg($logid,$author){
 <?php
 //blog：分类
 function blog_sort($sort, $blogid){
-	global $log_cache_sort; ?>
+	global $CACHE; 
+	$log_cache_sort = $CACHE->readCache('logsort');
+	?>
 	<?php if($log_cache_sort[$blogid]): ?>
 	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
@@ -212,7 +226,8 @@ function blog_sort($sort, $blogid){
 <?php
 //blog：文件附件
 function blog_att($blogid){
-	global $log_cache_atts;
+	global $CACHE;
+	$log_cache_atts = $CACHE->readCache('logatts');
 	$att = '';
 	if(!empty($log_cache_atts[$blogid])){
 		$att .= '附件下载：';
@@ -226,7 +241,8 @@ function blog_att($blogid){
 <?php
 //blog：日志标签
 function blog_tag($blogid){
-	global $log_cache_tags;
+	global $CACHE;
+	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid]))
 	{
 		$tag = '标签:';
@@ -241,7 +257,8 @@ function blog_tag($blogid){
 <?php
 //blog：日志作者
 function blog_author($uid){
-	global $user_cache,$DB;
+	global $CACHE;
+	$user_cache = $CACHE->readCache('user');
 	$author = $user_cache[$uid]['name'];
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
@@ -251,8 +268,8 @@ function blog_author($uid){
 ?>
 <?php
 //blog：相邻日志
-function neighbor_log(){
-	global $prevLog,$nextLog; ?>
+function neighbor_log($neighborLog){
+	extract($neighborLog);?>
 	<?php if($prevLog):?>
 	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
@@ -265,11 +282,10 @@ function neighbor_log(){
 <?php }?>
 <?php
 //blog：引用通告
-function blog_trackback(){
-	global $allow_tb,$tbscode,$logid,$tb; ?>
-	<?php if($allow_tb == 'y'):?>
+function blog_trackback($tb, $tb_url, $allow_tb){
+    if($allow_tb == 'y'):?>
 	<div id="trackback_address">
-	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo BLOG_URL;?>tb.php?sc=<?php echo $tbscode; ?>&amp;id=<?php echo $logid; ?>">
+	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo $tb_url; ?>">
 	<a name="tb"></a></p>
 	</div>
 	<?php endif; ?>
@@ -282,9 +298,8 @@ function blog_trackback(){
 <?php }?>
 <?php
 //blog：博客评论列表
-function blog_comments(){
-	global $comments; ?>
-	<?php if($comments): ?>
+function blog_comments($comments){
+    if($comments): ?>
 	<p class="comment"><b>评论：</b><a name="comment"></a></p>
 	<?php endif; ?>
 	<?php
@@ -314,9 +329,8 @@ function blog_comments(){
 <?php }?>
 <?php
 //blog：发表评论表单
-function blog_comments_post(){
-	global $logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark; ?>
-	<?php if($allow_remark == 'y'): ?>
+function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark){
+	if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
 	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">

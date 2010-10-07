@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.link.php';
 
 $emLink = new emLink();
 
 if($action == '')
 {
 	$links = $emLink->getLinks();
-	include getViews('header');
-	require_once(getViews('links'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('links'));
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action== 'link_taxis')
@@ -64,9 +63,9 @@ if ($action== 'mod_link')
 	$linkData = $emLink->getOneLink($linkId);
 	extract($linkData);
 
-	include getViews('header');
-	require_once(getViews('linkedit'));
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once(View::getView('linkedit'));
+	include View::getView('footer');View::output();
 }
 if($action=='update_link')
 {

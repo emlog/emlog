@@ -6,7 +6,6 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.plugin.php';
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
@@ -16,10 +15,10 @@ if($action == '' && !$plugin)
 
 	$plugins = $emPlugin->getPlugins();
 
-	include getViews('header');
-	require_once(getViews('plugin'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('plugin'));
+	include View::getView('footer');
+	View::output();
 }
 //激活
 if ($action == 'active')
@@ -43,10 +42,10 @@ if($action == 'inactive')
 //加载插件配置页面
 if ($action == '' && $plugin)
 {
-	include getViews('header');
+	include View::getView('header');
 	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 	plugin_setting_view();
-	include getViews('footer');
+	include View::getView('footer');
 }
 //保存插件设置
 if ($action == 'setting')

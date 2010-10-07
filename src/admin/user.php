@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.user.php';
 
 $emUser = new emUser();
 
 //加载用户管理页面
 if ($action == '') {
 	$users = $emUser->getUsers();
-	include getViews('header');
-	require_once getViews('user');
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once View::getView('user');
+	include View::getView('footer');
+	View::output();
 }
 if ($action== 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
@@ -41,7 +40,6 @@ if ($action== 'new') {
 		exit;
 	}
 
-	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
@@ -55,9 +53,9 @@ if ($action== 'edit') {
 	$data = $emUser->getOneUser($uid);
 	extract($data);
 
-	include getViews('header');
-	require_once getViews('useredit');
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once View::getView('useredit');
+	include View::getView('footer');View::output();
 }
 if ($action=='update') {
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
@@ -92,7 +90,6 @@ if ($action=='update') {
                         );
 
     if (!empty($password)) {
-    	require_once EMLOG_ROOT.'/lib/class.phpass.php';
     	$PHPASS = new PasswordHash(8, true);
     	$password = $PHPASS->HashPassword($password);
         $userData['password'] = $password;

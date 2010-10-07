@@ -11,10 +11,12 @@ require_once 'globals.php';
 if($action == '')
 {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
-	$widgets = $options_cache['widgets'.$wgNum] ? @unserialize($options_cache['widgets'.$wgNum]) : array();
-	$widgetTitle = $options_cache['widget_title'] ? @unserialize($options_cache['widget_title']) : array();
-	$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
+	$widgets = Options::get('widgets'.$wgNum) ? @unserialize(Options::get('widgets'.$wgNum)) : array();
+	$widgetTitle = Options::get('widget_title') ? @unserialize(Options::get('widget_title')) : array();
+	$custom_widget = Options::get('custom_widget') ? @unserialize(Options::get('custom_widget')) : array();
 	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
+	$tpl_sidenum = Options::get('$tpl_sidenum');
+
 	foreach ($custom_widget as $key => $val)
 	{
 		$custom_widget[$key] = array_map('htmlspecialchars', $val);
@@ -31,10 +33,10 @@ if($action == '')
 		}
 	}
 
-	include getViews('header');
-	require_once getViews('widgets');
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once View::getView('widgets');
+	include View::getView('footer');
+	View::output();
 }
 
 //修改组件设置

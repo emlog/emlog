@@ -6,36 +6,35 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.twitter.php';
 
 $emTwitter = new emTwitter();
 
 if ($action == '') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
+    $user_cache = $CACHE->readCache('user');
     $emReply = new emReply();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
     $tws = $emTwitter->getTwitters($page,1);
     $twnum = $emTwitter->getTwitterNum(1);
-    $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
+    $pageurl =  pagination($twnum, Options::get('admin_perpage_num'), $page, 'twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    if ($istwitter=='y'){
+    if (Options::get('istwitter') == 'y'){
 		$ex1="selected=\"selected\"";
 		$ex2="";
 	}else{
 		$ex1="";
 		$ex2="selected=\"selected\"";
 	}
-    if ($reply_code=='y'){
+    if (Options::get('reply_code') == 'y'){
 		$ex3="selected=\"selected\"";
 		$ex4="";
 	}else{
 		$ex3="";
 		$ex4="selected=\"selected\"";
 	}
-    if ($ischkreply=='y'){
+    if (Options::get('ischkreply') == 'y'){
 		$ex5="selected=\"selected\"";
 		$ex6="";
 	}else{
@@ -43,10 +42,10 @@ if ($action == '') {
 		$ex6="selected=\"selected\"";
 	}
 
-    include getViews('header');
-    require_once getViews('twitter');
-    include getViews('footer');
-    cleanPage();
+    include View::getView('header');
+    require_once View::getView('twitter');
+    include View::getView('footer');
+    View::output();
 }
 // 发布碎语.
 if ($action == 'post') {
@@ -76,8 +75,6 @@ if ($action == 'del') {
 }
 // 获取回复.
 if ($action == 'getreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
     $emReply = new emReply();
@@ -103,7 +100,7 @@ if ($action == 'getreply') {
 }
 // 回复碎语.
 if ($action == 'reply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
+    $user_cache = $CACHE->readCache('user');
 
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -143,8 +140,6 @@ if ($action == 'reply') {
 }
 // 删除回复.
 if ($action == 'delreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
@@ -155,8 +150,6 @@ if ($action == 'delreply') {
 }
 // 隐藏回复.
 if ($action == 'hidereply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
@@ -165,8 +158,6 @@ if ($action == 'hidereply') {
 }
 // 审核回复.
 if ($action == 'pubreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
     $emReply = new emReply();
