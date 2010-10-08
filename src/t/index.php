@@ -19,6 +19,10 @@ if (Options::get('istwitter') == 'n') {
     emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
 }
 
+if ($action == 'cal') {
+    Calendar::generate();
+}
+
 if ($action == '') {
 	$user_cache = $CACHE->readCache('user');
     $options_cache = $CACHE->readCache('options');

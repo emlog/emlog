@@ -6,9 +6,22 @@
  */
 
 class Calendar {
+	
+	/**
+	 * 日历调用地址
+	 */
+	static function url() {
+	   $calendarUrl = isset($_GET['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($_GET['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
+	   return $calendarUrl;
+	}
+	
+	/**
+	 * 生成日历
+	 */
     static function generate() {
-        global $DB, $timezone, $utctimestamp;
-        $timestamp = $utctimestamp + $timezone * 3600;
+        global $DB;
+        $timezone = Options::get('timezone');
+        $timestamp = time() + $timezone * 3600;
         
         //建立日志时间写入数组
         $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");

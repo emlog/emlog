@@ -25,13 +25,12 @@ function widget_blogger($title){
 <?php }?>
 <?php
 //widget：日历
-function widget_calendar($title){
-	global $calendar_url; ?>
+function widget_calendar($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<div id="calendar">
 	</div>
-	<script>sendinfo('<?php echo $calendar_url; ?>','calendar');</script>
+	<script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
 	</li>
 <?php }?>
 <?php

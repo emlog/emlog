@@ -46,7 +46,7 @@ class Options {
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(record)=([\d]{6})$|',
+                            'reg'=>'|^/\?(record)=([\d]{6,8})$|',
                             ),
                     array(
                             'model'=>'emBlog',
@@ -77,6 +77,11 @@ class Options {
                             'model'=>'emComment',
                             'method' =>'addComment',
                             'reg'=>'|^/index\.php\?(action)=(addcom)$|',
+                            ),
+                    array(
+                            'model'=>'calendar',
+                            'method' =>'generate',
+                            'reg'=>'|^/\?action=cal|',
                             ),
                 
                 );
