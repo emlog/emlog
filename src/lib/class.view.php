@@ -15,16 +15,16 @@ class View {
 	}
 
     public static function output() {
-    	global $isgzipenable;
         $content = ob_get_clean();
         header('Content-Type: text/html; charset=UTF-8');
-	    if ($isgzipenable == 'y' && function_exists('ob_gzhandler')){
+	    if (Options::get('isgzipenable') == 'y' && function_exists('ob_gzhandler')){
 	        ob_start('ob_gzhandler');
 	    } else {
 	        ob_start();
 	    }
         echo $content;
         ob_end_flush();
+        exit;
     }
 
 }

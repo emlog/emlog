@@ -38,7 +38,7 @@ if ($action == '') {
     $twnum = $emTwitter->getTwitterNum();
     $pageurl =  pagination($twnum, Options::get('index_twnum'), $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-    $rcode = $reply_code == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
+    $rcode = Options::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
     include View::getView('header');
@@ -68,12 +68,14 @@ if ($action == 'reply') {
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
     $rcode = isset($_POST['rcode']) ? strtoupper(addslashes(trim($_POST['rcode']))) : '';
     $tid = isset($_POST['tid']) ? intval(trim($_POST['tid'])) : '';
+    
+    $user_cache = $CACHE->readCache('user');
 
     if (!$r || strlen($r) > 420){
         exit('err1');
     } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');
-    }elseif (ROLE == 'visitor' && $reply_code == 'y' && session_start() && $rcode != $_SESSION['code']){
+    }elseif (ROLE == 'visitor' && Options::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
         exit('err3');
     }
 
@@ -91,7 +93,7 @@ if ($action == 'reply') {
             'content' => $r,
             'name' => $name,
             'date' => $date,
-            'hide' => ROLE == 'visitor' ? $ischkreply : 'n'
+            'hide' => ROLE == 'visitor' ? Options::get('ischkreply') : 'n'
     );
 
     $emTwitter = new emTwitter();
@@ -104,7 +106,7 @@ if ($action == 'reply') {
 
     doAction('reply_twitter', $r, $name, $date, $tid);
 
-    if ($ischkreply == 'n' || ROLE != 'visitor'){
+    if (Options::get('ischkreply') == 'n' || ROLE != 'visitor'){
         $emTwitter->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');

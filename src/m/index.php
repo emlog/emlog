@@ -31,6 +31,7 @@ if (empty ($action) && empty ($logid)) {
 	include View::getView('header');
 	include View::getView('log');
 	include View::getView('footer');
+	View::output();
 }
 // 日志
 if (!empty ($logid)) {
@@ -48,13 +49,16 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$cheackimg = $comment_code == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$cheackimg = Options::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
+
+	$user_cache = $CACHE->readCache('user');
 
 	$emBlog->updateViewCount($logid);
 	include View::getView('header');
 	include View::getView('single');
 	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
@@ -84,6 +88,7 @@ if (ISLOGIN === true && $action == 'write') {
 	include View::getView('header');
 	include View::getView('write');
 	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'savelog') {
 	$emBlog = new emBlog();
@@ -188,6 +193,7 @@ if ($action == 'com') {
 	include View::getView('header');
 	include View::getView('comment');
 	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'delcom') {
 	$emComment = new emComment();
@@ -218,6 +224,7 @@ if (ISLOGIN === true && $action == 'reply') {
 	include View::getView('header');
 	include View::getView('reply');
 	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'dorep') {
 	$emComment = new emComment();
@@ -238,6 +245,7 @@ if ($action == 'tw') {
 	include View::getView('header');
 	include View::getView('twitter');
 	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 't') {
     $emTwitter = new emTwitter();
@@ -264,21 +272,22 @@ if (ISLOGIN === true && $action == 'delt') {
 	header("Location: ./?action=tw");
 }
 if ($action == 'login') {
-	$login_code == 'y' ? $ckcode = "<span>验证码</span>
+	Options::get('login_code') == 'y' ? $ckcode = "<span>验证码</span>
     <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
 	include View::getView('header');
 	include View::getView('login');
 	include View::getView('footer');
+	View::output();
 }
 if ($action == 'auth') {
 	session_start();
 	$username = addslashes(trim($_POST['user']));
 	$password = addslashes(trim($_POST['pw']));
-	$img_code = ($login_code == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
+	$img_code = (Options::get('login_code') == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
 	$ispersis = true;
-	if (checkUser($username, $password, $img_code, $login_code) === true) {
+	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);
 		header("Location: ?tem=" . time());
 	}else {
@@ -293,7 +302,7 @@ function mMsg($msg, $url) {
 	include View::getView('header');
 	include View::getView('msg');
 	include View::getView('footer');
-	exit;
+	View::output();
 }
 function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 	$pwd = $cookiePwd ? $cookiePwd : $postPwd;
@@ -304,7 +313,7 @@ function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		if ($cookiePwd) {
 			setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 		}
-		exit;
+		View::output();
 	}else {
 		setcookie('em_logpwd_' . $logid, $logPwd);
 	}

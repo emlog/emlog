@@ -20,7 +20,7 @@ $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
 $blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name'])))) : '';
 $ipaddr	   = getIp();
 
-if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name){
+if (Options::get('istrackback') == 'y' && $blogid && $title && $excerpt && $url && $blog_name){
 	if($sc != substr(md5(gmdate('Ynd')),0,5)){
 		showXML('invalid trackback url');
 	}

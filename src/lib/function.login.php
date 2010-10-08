@@ -33,7 +33,7 @@ function isLogin()
  * @param string $imgcode
  * @param string $logincode
  */
-function checkUser($username,$password,$imgcode,$logincode)
+function checkUser($username,$password,$imgcode)
 {
 	session_start();
 	if (trim($username) == '' || trim($password) == '')
@@ -41,7 +41,7 @@ function checkUser($username,$password,$imgcode,$logincode)
 		return false;
 	} else {
 		$sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
-		if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
+		if (Options::get('login_code') == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
 		{
 			return false;
 		}
@@ -61,15 +61,13 @@ function checkUser($username,$password,$imgcode,$logincode)
  */
 function loginPage()
 {
-	global $login_code;
-	$login_code == 'y' ?
+	Options::get('login_code') == 'y' ?
 	$ckcode = "<span>验证码</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
 	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
 	require_once View::getView('login');
 	View::output();
-	exit;
 }
 
 /**

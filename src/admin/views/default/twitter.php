@@ -33,7 +33,7 @@
                 <option value="y" <?php echo $ex5; ?>>是</option>
                 <option value="n" <?php echo $ex6; ?>>否</option>
             </select>
-            <br /><span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo $index_twnum; ?>" /> 
+            <br /><span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo Options::get('index_twnum'); ?>" /> 
             <input class="tbutton" type="submit" value="保存" />
         </div>
     </form>

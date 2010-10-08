@@ -15,7 +15,7 @@ if($action == '')
 	$widgetTitle = Options::get('widget_title') ? @unserialize(Options::get('widget_title')) : array();
 	$custom_widget = Options::get('custom_widget') ? @unserialize(Options::get('custom_widget')) : array();
 	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
-	$tpl_sidenum = Options::get('$tpl_sidenum');
+	$tpl_sidenum = Options::get('tpl_sidenum');
 
 	foreach ($custom_widget as $key => $val)
 	{

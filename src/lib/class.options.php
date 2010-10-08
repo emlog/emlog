@@ -61,6 +61,11 @@ class Options {
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
+                            'reg'=>'|^/\?(page)=(.+)$|',
+                            ),
+                    array(
+                            'model'=>'emBlog',
+                            'method' =>'displayBlog',
                             'reg'=>'|^/\?(author)=([\d]+)$|',
                             ),
                     array(
