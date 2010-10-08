@@ -16,6 +16,7 @@ if ($action == '') {
     $sta_tw = ROLE == 'admin' ? $sta_cache['twnum'] : $sta_cache[UID]['twnum'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
+	$DB = MySql::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
