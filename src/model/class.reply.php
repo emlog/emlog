@@ -136,9 +136,9 @@ class emReply {
 		}
 	}
 
-	function setReplyCookie($name, $utctimestamp)
+	function setReplyCookie($name)
 	{
-		$cookietime = $utctimestamp + 31536000;
+		$cookietime = time() + 31536000;
 		setcookie('replyposter',$name,$cookietime);
 	}
 

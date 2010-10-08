@@ -97,7 +97,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = $emBlog->postDate($timezone, $date);	
+	$postTime = $emBlog->postDate(Options::get('timezone'), $date);	
 
 	$logData = array('title' => $title,
 		'content' => $content,

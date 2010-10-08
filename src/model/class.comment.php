@@ -64,7 +64,7 @@ class emComment {
 	}
 	function getOneComment($commentId)
 	{
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
 		$commentArray = $this->db->fetch_array($res);
@@ -185,7 +185,6 @@ class emComment {
 	function addComment() {
 		$comment_code = Options::get('comment_code');
 		$ischkcomment = Options::get('ischkcomment');
-        $utctimestamp = time();
 
     	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
     	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
@@ -197,7 +196,7 @@ class emComment {
 		if ($url && strncasecmp($url,'http://',7)) {
 			$url = 'http://'.$url;
 		}
-		$this->setCommentCookie($name,$mail,$url,$utctimestamp);
+		$this->setCommentCookie($name,$mail,$url);
 		if($this->isLogCanComment($blogId) === false){
 			emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
 		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
@@ -212,6 +211,7 @@ class emComment {
 			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
 		} else {
 			$ipaddr = getIp();
+			$utctimestamp = time();
 			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
 					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
@@ -253,9 +253,9 @@ class emComment {
 		}
 	}
 
-	function setCommentCookie($name,$mail,$url,$utctimestamp)
+	function setCommentCookie($name,$mail,$url)
 	{
-		$cookietime = $utctimestamp + 31536000;
+		$cookietime = time() + 31536000;
 		setcookie('commentposter',$name,$cookietime);
 		setcookie('postermail',$mail,$cookietime);
 		setcookie('posterurl',$url,$cookietime);

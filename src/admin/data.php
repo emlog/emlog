@@ -12,7 +12,7 @@ if($action == ''){
 	$bakfiles = $retval ? $retval : array();
 	$timezone = Options::get('timezone');
 	$tables = array('attachment', 'blog', 'comment', 'options', 'reply', 'sort', 'link','tag','trackback','twitter','user');
-	$defname = 'emlog_'. gmdate('Ymd', $utctimestamp + $timezone * 3600) . '_' . substr(md5(gmdate('YmdHis', $utctimestamp + $timezone * 3600)),0,18);
+	$defname = 'emlog_'. gmdate('Ymd', time() + $timezone * 3600) . '_' . substr(md5(gmdate('YmdHis', time() + $timezone * 3600)),0,18);
 	doAction('data_prebakup');
 
 	include View::getView('header');
@@ -25,6 +25,8 @@ if($action == 'bakstart'){
 	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
 	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
 
+	$timezone = Options::get('timezone');
+
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname)){
 		header("Location: ./data.php?error_b=true");
 		exit;
@@ -35,23 +37,22 @@ if($action == 'bakstart'){
 	foreach($table_box as $table){
 		$sqldump .= dataBak($table);
 	}
-	if(trim($sqldump))
-	{
+	if(trim($sqldump)){
 		$dumpfile = '#version:emlog '. Options::EMLOG_VERSION . "\n";
-		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', $utctimestamp + $timezone * 3600) . "\n";
+		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', time() + $timezone * 3600) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";
 		if($bakplace == 'local'){
 			header('Content-Type: text/x-sql');
-			header('Expires: '. gmdate('D, d M Y H:i:s', $utctimestamp + $timezone * 3600) . ' GMT');
-			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', $utctimestamp + $timezone * 3600).'.sql');
+			header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
+			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', time() + $timezone * 3600).'.sql');
 			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])){
 				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				header('Pragma: public');
 			} else {
 				header('Pragma: no-cache');
-				header('Last-Modified: '. gmdate('D, d M Y H:i:s', $utctimestamp + $timezone * 3600) . ' GMT');
+				header('Last-Modified: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
 			}
 			echo $dumpfile;
 		} else {
@@ -138,7 +139,8 @@ if ($action == 'Cache'){
  * @param string $filename
  */
 function bakindata($filename){
-	global $db,$DB;
+	global $db;
+	$DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
 	if(isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
@@ -170,7 +172,7 @@ function bakindata($filename){
  * @return string
  */
 function dataBak($table){
-	global $DB;
+	$DB = MySql::getInstance();
 	$sql = "DROP TABLE IF EXISTS $table;\n";
 	$createtable = $DB->query("SHOW CREATE TABLE $table");
 	$create = $DB->fetch_row($createtable);

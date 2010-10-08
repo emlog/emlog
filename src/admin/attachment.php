@@ -7,6 +7,8 @@
 
 require_once 'globals.php';
 
+$DB = MySql::getInstance();
+
 //上传表单显示
 if ($action == 'selectFile') {
 	$attachnum = 0;

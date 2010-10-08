@@ -580,8 +580,7 @@ function mw_newMediaObject($args) {
 }
 
 function getIso($utctimestamp) {
-	global $options_cache;
-	$utctimestamp += $options_cache['timezone'] * 3600;
+	$utctimestamp += Options::get('timezone') * 3600;
 	$year = gmdate('Y', $utctimestamp);
 	$month = gmdate('m', $utctimestamp);
 	$day = gmdate('d', $utctimestamp);

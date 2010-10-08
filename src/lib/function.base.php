@@ -89,7 +89,7 @@ function getBlogUrl(){
  *
  */
 function updateOption($name, $value, $isSyntax = false){
-	global $DB;
+	$DB = MySql::getInstance();
 	$value = $isSyntax ? $value : "'$value'";
 	$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
 }
@@ -296,9 +296,9 @@ function fopen_url($url){
  * @return string
  */
 function smartDate($datetemp, $dstr='Y-m-d H:i'){
-	global $utctimestamp, $timezone;
+	$timezone = Options::get('timezone');
 	$op = '';
-	$sec = $utctimestamp - $datetemp;
+	$sec = time() - $datetemp;
 	$hover = floor($sec / 3600);
 	if ($hover == 0){
 		$min = floor($sec / 60);
@@ -536,7 +536,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
  *
  */
 function emStrtotime($timeStr) {
-    global $timezone;
+    $timezone = Options::get('timezone');
     if ($timeStr) {
 	    $unixPostDate = @strtotime($timeStr);
 	    if ($unixPostDate === false) {

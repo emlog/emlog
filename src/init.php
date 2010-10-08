@@ -16,10 +16,8 @@ require_once EMLOG_ROOT.'/lib/function.login.php';
 
 doStripslashes();
 
-$DB = MySql::getInstance();
 $CACHE = Cache::getInstance();
 
-$utctimestamp = time();
 $userData = array();
 
 define('ISLOGIN',	isLogin());

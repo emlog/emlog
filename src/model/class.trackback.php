@@ -86,7 +86,7 @@ class emTrackback {
 	 */
 	function getTrackbacks($page = null, $blogId = null, $spot = 0)
 	{
-	    global $timezone;
+	    $timezone = Options::get('timezone');
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$condition = '';

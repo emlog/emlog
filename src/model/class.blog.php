@@ -212,7 +212,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getOneLogForAdmin($blogId) {
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
@@ -240,7 +240,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getOneLogForHome($blogId) {
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
@@ -279,7 +279,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$perpage_num = Options::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
@@ -309,7 +309,7 @@ class emBlog {
 	 * @return array
 	 */
 	function getLogsForHome($condition = '', $page = 1, $prePageNum) {
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
 		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition $limit";
@@ -387,7 +387,7 @@ class emBlog {
 	 * @return date
 	 */
 	function postDate($timezone = 8, $postDate = null, $oldDate = null) {
-		global $timezone;
+		$timezone = Options::get('timezone');
 		$localtime = time();
 		$logDate = $oldDate ? $oldDate : $localtime;
 		$unixPostDate = '';

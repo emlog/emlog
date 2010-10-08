@@ -76,7 +76,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 
-	$postTime = $emPage->postDate($timezone);
+	$postTime = $emPage->postDate(Options::get('timezone'));
 
 	$logData = array(
 	'title'=>$title,

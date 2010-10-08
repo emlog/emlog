@@ -80,7 +80,7 @@ function loginPage()
  */
 function getUserDataByLogin($userLogin)
 {
-	global $DB;
+	$DB = MySql::getInstance();
 	if ( empty( $userLogin ) )
 	{
 		return false;

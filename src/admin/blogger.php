@@ -42,6 +42,7 @@ if ($action == 'update') {
 }
 
 if ($action == 'delicon') {
+	$DB = MySql::getInstance();
 	$query = $DB->query("select photo from ".DB_PREFIX."user");
 	$icon = $DB->fetch_array($query);
 	$icon_1 = $icon['photo'];
