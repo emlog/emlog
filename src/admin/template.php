@@ -54,8 +54,8 @@ if($action == 'usetpl')
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
-	updateOption('nonce_templet', $tplName);
-	updateOption('tpl_sidenum', $tplSideNum);
+	Options::updateOption('nonce_templet', $tplName);
+	Options::updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->updateCache('options');
 	header("Location: ./template.php?activated=true");
 }

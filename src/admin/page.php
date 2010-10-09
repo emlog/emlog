@@ -102,7 +102,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
 	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = addslashes(serialize($navibar));
-	updateOption('navibar', $navibar);
+	Options::updateOption('navibar', $navibar);
 
 	$CACHE->updateCache(array('logatts', 'options'));
 	switch ($action)
@@ -135,7 +135,7 @@ if ($action == 'operate_page') {
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
-			updateOption('navibar', $navibar);
+			Options::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 
 			header("Location: ./page.php?active_del=true");
@@ -149,7 +149,7 @@ if ($action == 'operate_page') {
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
-			updateOption('navibar', $navibar);
+			Options::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;

@@ -65,7 +65,7 @@ if ($action == 'setting')
 }
 //禁用所有插件
 if($action == 'reset'){
-    updateOption('active_plugins', 'a:0:{}');
+    Options::updateOption('active_plugins', 'a:0:{}');
 	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?inactive=true");
 }

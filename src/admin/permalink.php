@@ -57,7 +57,7 @@ if ($action == 'update') {
 		fclose($fp);
 	}
 
-	updateOption('isurlrewrite', $permalink);
+	Options::updateOption('isurlrewrite', $permalink);
 	$CACHE->updateCache('options');
 	header("Location: ./permalink.php?activated=true");
 }

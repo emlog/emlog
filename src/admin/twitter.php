@@ -174,7 +174,7 @@ if ($action == 'set') {
     );
 
 	foreach ($data as $key => $val){
-		updateOption($key, $val);
+		Options::updateOption($key, $val);
 	}
 
 	$CACHE->updateCache('options');

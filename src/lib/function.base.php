@@ -85,16 +85,6 @@ function getBlogUrl(){
 }
 
 /**
- * 更新博客选项
- *
- */
-function updateOption($name, $value, $isSyntax = false){
-	$DB = MySql::getInstance();
-	$value = $isSyntax ? $value : "'$value'";
-	$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
-}
-
-/**
  * 检查插件
  *
  */

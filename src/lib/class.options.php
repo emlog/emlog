@@ -92,11 +92,17 @@ class Options {
                 );
          return $routingtable;
     }
-    
+
+    /**
+     * 获取允许上传的附件类型
+     */
     static function getAttType() {
     	return explode(',', self::ATTACHMENT_TYPE);
     }
 
+    /**
+     * 获取widget组件标题
+     */
     static function getWidgetTitle() {
 	    $widget_title = array(
 	        'blogger' => 'blogger',
@@ -115,8 +121,23 @@ class Options {
 	    return $widget_title;
     }
 
+    /**
+     * 获取初始安装时的widget列表
+     */
     static function getDefWidget() {
         $default_widget = array('calendar','archive','newcomm','link','search');
         return $default_widget;
     }
+
+    /**
+     * 更新配置选项
+     * @param $name
+     * @param $value
+     * @param $isSyntax 更新值是否为一个表达式
+     */
+	static function updateOption($name, $value, $isSyntax = false){
+	    $DB = MySql::getInstance();
+	    $value = $isSyntax ? $value : "'$value'";
+	    $DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
+	}
 }

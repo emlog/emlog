@@ -47,29 +47,29 @@ if($action == 'setwg') {
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
 	$widgetTitle = addslashes(serialize($widgetTitle));
 
-	updateOption('widget_title', $widgetTitle);
+	Options::updateOption('widget_title', $widgetTitle);
 
 	switch ($widget) {
 		case 'newcomm':
 			$index_comnum = isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : 10;
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
-			updateOption('index_comnum', $index_comnum);
-			updateOption('comment_subnum', $comment_subnum);
+			Options::updateOption('index_comnum', $index_comnum);
+			Options::updateOption('comment_subnum', $comment_subnum);
 			$CACHE->updateCache('comment');
 			break;
 		case 'twitter':
 			$index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
-			updateOption('index_newtwnum', $index_newtwnum);
+			Options::updateOption('index_newtwnum', $index_newtwnum);
 			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
-			updateOption('index_newlognum', $index_newlog);
+			Options::updateOption('index_newlognum', $index_newlog);
 			$CACHE->updateCache('newlog');
 			break;
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
-			updateOption('index_randlognum', $index_randlognum);
+			Options::updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'custom_text':
 			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
@@ -98,11 +98,11 @@ if($action == 'setwg') {
 				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				updateOption('custom_widget', $custom_widget_str);
+				Options::updateOption('custom_widget', $custom_widget_str);
 			}elseif ($content){
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				updateOption('custom_widget', $custom_widget_str);
+				Options::updateOption('custom_widget', $custom_widget_str);
 			}elseif ($rmwg){
 				for($i=1; $i<5; $i++) {
 					$widgets = $options_cache['widgets'.$i] ? @unserialize($options_cache['widgets'.$i]) : array();
@@ -113,12 +113,12 @@ if($action == 'setwg') {
 							}
 						}
 						$widgets_str = addslashes(serialize($widgets));
-						updateOption("widgets$i", $widgets_str);
+						Options::updateOption("widgets$i", $widgets_str);
 					}
 				}
 				unset($custom_widget[$rmwg]);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				updateOption('custom_widget', $custom_widget_str);
+				Options::updateOption('custom_widget', $custom_widget_str);
 			}
 			break;
 	}
@@ -130,7 +130,7 @@ if($action == 'setwg') {
 if($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
-	updateOption("widgets{$wgNum}", $widgets);
+	Options::updateOption("widgets{$wgNum}", $widgets);
 	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
@@ -140,9 +140,9 @@ if($action == 'reset') {
 	$widget_title = serialize(Options::getWidgetTitle());
 	$default_widget = serialize(Options::getDefWidget());
 
-	updateOption("widget_title", $widget_title);
-	updateOption("custom_widget", 'a:0:{}');
-	updateOption("widgets1", $default_widget);
+	Options::updateOption("widget_title", $widget_title);
+	Options::updateOption("custom_widget", 'a:0:{}');
+	Options::updateOption("widgets1", $default_widget);
 
 	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true");
