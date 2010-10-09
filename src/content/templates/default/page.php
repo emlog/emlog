@@ -13,8 +13,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div><?php blog_att($logid); ?></div>
 	<?php 
 	if ($allow_remark == 'y'){
-		blog_comments();
-		blog_comments_post();
+		blog_comments($comments);
+		blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark);
 	}
 	?>
 </li>

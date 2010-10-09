@@ -214,27 +214,9 @@ EOT;
 	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 
-	$widgets = array(
-	'blogger'=>'blogger',
-	'calendar'=>'日历',
-	'twitter'=>'最新碎语',
-	'tag'=>'标签',
-	'sort'=>'分类',
-	'archive'=>'存档',
-	'newcomm'=>'最新评论',
-	'newlog'=>'最新日志',
-	'random_log'=>'随机日志',
-	'link'=>'链接',
-	'search'=>'搜索',
-	'custom_text'=>'自定义组件'
-	);
-	$sider_wg = array(
-	'calendar',
-	'archive',
-	'newcomm',
-	'link',
-	'search'
-	);
+	$widgets = Options::getWidgetTitle();
+    $sider_wg = Options::getDefWidget();
+
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
 

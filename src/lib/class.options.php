@@ -97,4 +97,26 @@ class Options {
     	return explode(',', self::ATTACHMENT_TYPE);
     }
 
+    static function getWidgetTitle() {
+	    $widget_title = array(
+	        'blogger' => 'blogger',
+	        'calendar' => '日历',
+	        'twitter' => '最新碎语',
+	        'tag' => '标签',
+	        'sort' => '分类',
+	        'archive' => '存档',
+	        'newcomm' => '最新评论',
+	        'newlog' => '最新日志',
+	        'random_log' => '随机日志',
+	        'link' => '链接',
+	        'search' => '搜索',
+	        'custom_text' => '自定义组件'
+	    );
+	    return $widget_title;
+    }
+
+    static function getDefWidget() {
+        $default_widget = array('calendar','archive','newcomm','link','search');
+        return $default_widget;
+    }
 }

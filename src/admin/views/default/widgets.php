@@ -215,8 +215,7 @@ if($i == $wgNum):
 	foreach ($widgets as $widget):
 	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//是否为自定义组件
 	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';	//获取自定义组件标题
-	if($flg && empty($title))
-	{
+	if($flg && empty($title)){
 		preg_match("/^custom_wg_(\d+)/", $widget, $matches);
 		$title = '未命名组件('.$matches[1].')';
 	}	
@@ -224,8 +223,7 @@ if($i == $wgNum):
 	<li class="sortableitem" id="<?php echo $widget; ?>">
 	<input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
 	<?php 
-	if ($flg)
-	{
+	if ($flg){
 		echo $title;
 	}else{
 		echo $widgetTitle[$widget];

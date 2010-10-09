@@ -8,8 +8,7 @@
 require_once 'globals.php';
 
 //显示组件管理面板
-if($action == '')
-{
+if($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
 	$widgets = Options::get('widgets'.$wgNum) ? @unserialize(Options::get('widgets'.$wgNum)) : array();
 	$widgetTitle = Options::get('widget_title') ? @unserialize(Options::get('widget_title')) : array();
@@ -17,16 +16,13 @@ if($action == '')
 	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
 	$tpl_sidenum = Options::get('tpl_sidenum');
 
-	foreach ($custom_widget as $key => $val)
-	{
+	foreach ($custom_widget as $key => $val) {
 		$custom_widget[$key] = array_map('htmlspecialchars', $val);
 	}
 
 	$customWgTitle = array();
-	foreach ($widgetTitle as $key => $val)
-	{
-		if(preg_match("/^.*\s\((.*)\)/", $val, $matchs))
-		{
+	foreach ($widgetTitle as $key => $val) {
+		if(preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
 			$customWgTitle[$key] = $matchs[1];
 		}else{
 			$customWgTitle[$key] = $val;
@@ -40,9 +36,8 @@ if($action == '')
 }
 
 //修改组件设置
-if($action == 'setwg')
-{
-	$widgetTitle = @unserialize($options_cache['widget_title']);//当前所有组件标题
+if($action == 'setwg') {
+	$widgetTitle = unserialize(Options::get('widget_title')); //当前所有组件标题
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
@@ -54,8 +49,7 @@ if($action == 'setwg')
 
 	updateOption('widget_title', $widgetTitle);
 
-	switch ($widget)
-	{
+	switch ($widget) {
 		case 'newcomm':
 			$index_comnum = isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : 10;
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
@@ -86,19 +80,15 @@ if($action == 'setwg')
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
 			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//要删除的组件id
 			//添加新自定义组件
-			if($new_content)
-			{
+			if($new_content) {
 				//确定组件索引
 				$i = 0;
 				$maxKey = 0;
-				if(is_array($custom_widget))
-				{
-					foreach ($custom_widget as $key => $val)
-					{
+				if(is_array($custom_widget)) {
+					foreach ($custom_widget as $key => $val) {
 						preg_match("/^custom_wg_(\d+)/", $key, $matches);
 						$k = $matches[1];
-						if($k > $i)
-						{
+						if($k > $i) {
 							$maxKey = $k;
 						}
 						$i = $k;
@@ -114,15 +104,11 @@ if($action == 'setwg')
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				updateOption('custom_widget', $custom_widget_str);
 			}elseif ($rmwg){
-				for($i=1; $i<5; $i++)
-				{
+				for($i=1; $i<5; $i++) {
 					$widgets = $options_cache['widgets'.$i] ? @unserialize($options_cache['widgets'.$i]) : array();
-					if(is_array($widgets) && !empty($widgets))
-					{
-						foreach ($widgets as $key => $val)
-						{
-							if($val == $rmwg)
-							{
+					if(is_array($widgets) && !empty($widgets)) {
+						foreach ($widgets as $key => $val) {
+							if($val == $rmwg) {
 								unset($widgets[$key]);
 							}
 						}
@@ -151,24 +137,8 @@ if($action == 'compages') {
 
 //恢复组件设置到初始安装状态
 if($action == 'reset') {
-	$widget_title = array(
-    	'blogger' => 'blogger',
-    	'calendar' => '日历',
-    	'twitter' => '最新碎语',
-    	'tag' => '标签',
-    	'sort' => '分类',
-    	'archive' => '存档',
-    	'newcomm' => '最新评论',
-    	'newlog' => '最新日志',
-    	'random_log' => '随机日志',
-    	'link' => '链接',
-    	'search' => '搜索',
-    	'custom_text' => '自定义组件'
-	);
-	$default_widget = array('calendar','archive','newcomm','link','search','bloginfo');
-
-	$widget_title = serialize($widget_title);
-	$default_widget = serialize($default_widget);
+	$widget_title = serialize(Options::getWidgetTitle());
+	$default_widget = serialize(Options::getDefWidget());
 
 	updateOption("widget_title", $widget_title);
 	updateOption("custom_widget", 'a:0:{}');
