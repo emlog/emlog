@@ -6,68 +6,73 @@
  */
 
 class Controller {
-	
+
 	static $_instance;
+	
+	/**
+	 * 请求模块
+	 */
 	private $_model;
+
+	/**
+	 * 请求模块方法
+	 */
 	private $_method;
+
+	/**
+	 * 请求参数
+	 */
 	private $_params;
-    
+
 	/**
 	 * 路由表
-	 * @var array
 	 */
-    private $_routingTable = array();
+	private $_routingTable;
 
 	/**
 	 * 访问路径
-	 * @var int
 	 */
-    private $_path = NULL;
+	private $_path = NULL;
 
-    public static function getInstance() {
-    	if(self::$_instance == null) {
-    		self::$_instance = new Controller();
-    		return self::$_instance;
-    	} else {
-    		return $_instance;
-    	}
-    }
-    
-    private function __construct(){
-
-        $this->_path = $this->setPath();
-        $this->_routingTable = Options::getRoutingTable();
-
-        foreach ($this->_routingTable as $route) {
-            if (preg_match($route['reg'], $this->_path, $matches)) {
-            	$this->_model = $route['model'];
-            	$this->_method = $route['method'];
-            	$this->_params = $matches;
-            }
-        }
+	public static function getInstance() {
+		if(self::$_instance == null) {
+			self::$_instance = new Controller();
+			return self::$_instance;
+		} else {
+			return $_instance;
+		}
     }
 
-    public function route(){
-        $module = new $this->_model();
-        $method = $this->_method;
-        $module->$method($this->_params);
-    }
+	private function __construct(){
+		$this->_path = $this->setPath();
+		$this->_routingTable = Options::getRoutingTable();
 
-    /**
-     * 初始化路由
-     */
-    public static function initRouter($routingTable, $path=null) {
-        self::setPath();
-        self::$_routingTable = $routingTable;
-    }
+		foreach ($this->_routingTable as $route) {
+			if (preg_match($route['reg'], $this->_path, $matches)) {
+				$this->_model = $route['model'];
+				$this->_method = $route['method'];
+				$this->_params = $matches;
+			}
+		}
+	}
 
+	public function route(){
+		$module = new $this->_model();
+		$method = $this->_method;
+		$module->$method($this->_params);
+	}
 
-    /**
-     * 设置路径
-     */
-    public static function setPath(){
-        return $_SERVER['REQUEST_URI'];
-        //print self::$_path;
-    }
-
+	public static function setPath(){
+        $path = '';
+		if (isset($_SERVER['REQUEST_URI'])){
+			$path = $_SERVER['REQUEST_URI'];
+		} else {
+			if (isset($_SERVER['argv'])) {
+				$path = $_SERVER['PHP_SELF'] .'?'. $_SERVER['argv'][0];
+			} else {
+				$path = $_SERVER['PHP_SELF'] .'?'. $_SERVER['QUERY_STRING'];
+			}
+		}
+		return $path;
+	}
 }
