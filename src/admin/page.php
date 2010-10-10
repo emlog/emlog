@@ -7,7 +7,7 @@
 
 require_once 'globals.php';
 
-$navibar = unserialize(Options::get('navibar'));
+$navibar = unserialize(Option::get('navibar'));
 
 //加载页面管理页面
 if ($action == '') {
@@ -18,7 +18,7 @@ if ($action == '') {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('','','page', 1);
 
-	$pageurl =  pagination($pageNum, Options::get('admin_perpage_num'), $page, "./page.php?page");
+	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page");
 
 	include View::getView('header');
 	require_once(View::getView('admin_page'));
@@ -76,7 +76,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 
-	$postTime = $emPage->postDate(Options::get('timezone'));
+	$postTime = $emPage->postDate(Option::get('timezone'));
 
 	$logData = array(
 	'title'=>$title,
@@ -102,7 +102,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
 	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
 	$navibar = addslashes(serialize($navibar));
-	Options::updateOption('navibar', $navibar);
+	Option::updateOption('navibar', $navibar);
 
 	$CACHE->updateCache(array('logatts', 'options'));
 	switch ($action)
@@ -135,7 +135,7 @@ if ($action == 'operate_page') {
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
-			Options::updateOption('navibar', $navibar);
+			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 
 			header("Location: ./page.php?active_del=true");
@@ -149,7 +149,7 @@ if ($action == 'operate_page') {
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
-			Options::updateOption('navibar', $navibar);
+			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
 			header("Location: ./page.php?active_hide_".$ishide."=true");
 			break;

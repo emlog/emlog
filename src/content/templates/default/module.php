@@ -73,7 +73,7 @@ function widget_sort($title){
 function widget_twitter($title){
 	global $CACHE; 
 	$newtws_cache = $CACHE->readCache('newtw');
-	$istwitter = Options::get('istwitter');
+	$istwitter = Option::get('istwitter');
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -129,7 +129,7 @@ function widget_newlog($title){
 <?php
 //widget：随机日志
 function widget_random_log($title){
-	$index_randlognum = Options::get('index_randlognum');
+	$index_randlognum = Option::get('index_randlognum');
 	$emBlog = new emBlog();
 	$randLogs = $emBlog->getRandLog($index_randlognum);?>
 	<li>

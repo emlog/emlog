@@ -464,7 +464,7 @@ function mw_newMediaObject($args) {
 	if (!empty($data["overwrite"]) && ($data["overwrite"] == true)) {
 	}
 
-	$att_type = Options::getAttType();
+	$att_type = Option::getAttType();
 
 	if (empty($filename))
 		error_message(500, '文件名错误');
@@ -474,7 +474,7 @@ function mw_newMediaObject($args) {
 	if (!in_array($extension, $att_type)) {
 		error_message(500, '文件类型错误');
 	}
-	$uppath_root = substr(UPLOADFILE_PATH, 1);
+	$uppath_root = substr(Option::UPLOADFILE_PATH, 1);
 	$uppath = $uppath_root . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
@@ -505,9 +505,9 @@ function mw_newMediaObject($args) {
 	$thum = $uppath . 'thum-' . $fname;
 	$thum_created = true;
 
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
-		$max_w = IMG_ATT_MAX_W;
-		$max_h = IMG_ATT_MAX_H;
+	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
+		$max_w = Option::IMG_MAX_W;
+		$max_h = Option::IMG_MAX_H;
 		$size = chImageSize($img, $max_w, $max_h);
 		$newwidth = $size['w'];
 		$newheight = $size['h'];
@@ -580,7 +580,7 @@ function mw_newMediaObject($args) {
 }
 
 function getIso($utctimestamp) {
-	$utctimestamp += Options::get('timezone') * 3600;
+	$utctimestamp += Option::get('timezone') * 3600;
 	$year = gmdate('Y', $utctimestamp);
 	$month = gmdate('m', $utctimestamp);
 	$day = gmdate('d', $utctimestamp);

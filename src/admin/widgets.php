@@ -10,11 +10,11 @@ require_once 'globals.php';
 //显示组件管理面板
 if($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
-	$widgets = Options::get('widgets'.$wgNum) ? @unserialize(Options::get('widgets'.$wgNum)) : array();
-	$widgetTitle = Options::get('widget_title') ? @unserialize(Options::get('widget_title')) : array();
-	$custom_widget = Options::get('custom_widget') ? @unserialize(Options::get('custom_widget')) : array();
+	$widgets = Option::get('widgets'.$wgNum) ? @unserialize(Option::get('widgets'.$wgNum)) : array();
+	$widgetTitle = Option::get('widget_title') ? @unserialize(Option::get('widget_title')) : array();
+	$custom_widget = Option::get('custom_widget') ? @unserialize(Option::get('custom_widget')) : array();
 	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
-	$tpl_sidenum = Options::get('tpl_sidenum');
+	$tpl_sidenum = Option::get('tpl_sidenum');
 
 	foreach ($custom_widget as $key => $val) {
 		$custom_widget[$key] = array_map('htmlspecialchars', $val);
@@ -37,7 +37,7 @@ if($action == '') {
 
 //修改组件设置
 if($action == 'setwg') {
-	$widgetTitle = unserialize(Options::get('widget_title')); //当前所有组件标题
+	$widgetTitle = unserialize(Option::get('widget_title')); //当前所有组件标题
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
@@ -47,29 +47,29 @@ if($action == 'setwg') {
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
 	$widgetTitle = addslashes(serialize($widgetTitle));
 
-	Options::updateOption('widget_title', $widgetTitle);
+	Option::updateOption('widget_title', $widgetTitle);
 
 	switch ($widget) {
 		case 'newcomm':
 			$index_comnum = isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : 10;
 			$comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
-			Options::updateOption('index_comnum', $index_comnum);
-			Options::updateOption('comment_subnum', $comment_subnum);
+			Option::updateOption('index_comnum', $index_comnum);
+			Option::updateOption('comment_subnum', $comment_subnum);
 			$CACHE->updateCache('comment');
 			break;
 		case 'twitter':
 			$index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
-			Options::updateOption('index_newtwnum', $index_newtwnum);
+			Option::updateOption('index_newtwnum', $index_newtwnum);
 			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
 			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
-			Options::updateOption('index_newlognum', $index_newlog);
+			Option::updateOption('index_newlognum', $index_newlog);
 			$CACHE->updateCache('newlog');
 			break;
 		case 'random_log':
 			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
-			Options::updateOption('index_randlognum', $index_randlognum);
+			Option::updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'custom_text':
 			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
@@ -98,11 +98,11 @@ if($action == 'setwg') {
 				$custom_wg_index = 'custom_wg_'.$custom_wg_index;
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				Options::updateOption('custom_widget', $custom_widget_str);
+				Option::updateOption('custom_widget', $custom_widget_str);
 			}elseif ($content){
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				Options::updateOption('custom_widget', $custom_widget_str);
+				Option::updateOption('custom_widget', $custom_widget_str);
 			}elseif ($rmwg){
 				for($i=1; $i<5; $i++) {
 					$widgets = $options_cache['widgets'.$i] ? @unserialize($options_cache['widgets'.$i]) : array();
@@ -113,12 +113,12 @@ if($action == 'setwg') {
 							}
 						}
 						$widgets_str = addslashes(serialize($widgets));
-						Options::updateOption("widgets$i", $widgets_str);
+						Option::updateOption("widgets$i", $widgets_str);
 					}
 				}
 				unset($custom_widget[$rmwg]);
 				$custom_widget_str = addslashes(serialize($custom_widget));
-				Options::updateOption('custom_widget', $custom_widget_str);
+				Option::updateOption('custom_widget', $custom_widget_str);
 			}
 			break;
 	}
@@ -130,19 +130,19 @@ if($action == 'setwg') {
 if($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
-	Options::updateOption("widgets{$wgNum}", $widgets);
+	Option::updateOption("widgets{$wgNum}", $widgets);
 	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true&wg=$wgNum");
 }
 
 //恢复组件设置到初始安装状态
 if($action == 'reset') {
-	$widget_title = serialize(Options::getWidgetTitle());
-	$default_widget = serialize(Options::getDefWidget());
+	$widget_title = serialize(Option::getWidgetTitle());
+	$default_widget = serialize(Option::getDefWidget());
 
-	Options::updateOption("widget_title", $widget_title);
-	Options::updateOption("custom_widget", 'a:0:{}');
-	Options::updateOption("widgets1", $default_widget);
+	Option::updateOption("widget_title", $widget_title);
+	Option::updateOption("custom_widget", 'a:0:{}');
+	Option::updateOption("widgets1", $default_widget);
 
 	$CACHE->updateCache('options');
 	header("Location: ./widgets.php?activated=true");

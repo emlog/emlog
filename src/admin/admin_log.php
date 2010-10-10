@@ -71,7 +71,7 @@ if($action == '')
 	{
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl =  pagination($logNum, Options::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page");
+	$pageurl =  pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page");
 
 	include View::getView('header');
 	require_once View::getView('admin_log');

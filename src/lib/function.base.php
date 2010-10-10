@@ -286,7 +286,7 @@ function fopen_url($url){
  * @return string
  */
 function smartDate($datetemp, $dstr='Y-m-d H:i'){
-	$timezone = Options::get('timezone');
+	$timezone = Option::get('timezone');
 	$op = '';
 	$sec = time() - $datetemp;
 	$hover = floor($sec / 3600);
@@ -360,16 +360,16 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	if (!in_array($extension, $type)){
 		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
-	if ($fileSize > Options::UPLOADFILE_MAXSIZE){
-		$ret = changeFileSize(Options::UPLOADFILE_MAXSIZE);
+	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
+		$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
 		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
 	}
-	$uppath = UPLOADFILE_PATH . gmdate('Ym') . '/';
+	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
 	$attachpath = $uppath . $fname;
-	if (!is_dir(UPLOADFILE_PATH)){
+	if (!is_dir(Option::UPLOADFILE_PATH)){
 		umask(0);
-		$ret = @mkdir(UPLOADFILE_PATH, 0777);
+		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false){
 			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
 		}
@@ -386,11 +386,11 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')){
-	    if ($isIcon && resizeImage($tmpFile, $fileType, $thum, ICON_MAX_W, ICON_MAX_H)) {
+	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')){
+	    if ($isIcon && resizeImage($tmpFile, $fileType, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 	        $attach = $thum;
 	        resizeImage($tmpFile, $fileType, $uppath.'thum52-'. $fname, 52, 52);
-	    } elseif (resizeImage($tmpFile, $fileType, $thum, IMG_ATT_MAX_W, IMG_ATT_MAX_H)){
+	    } elseif (resizeImage($tmpFile, $fileType, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
 	        $attach = $thum;
 	    }
 	}
@@ -526,7 +526,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
  *
  */
 function emStrtotime($timeStr) {
-    $timezone = Options::get('timezone');
+    $timezone = Option::get('timezone');
     if ($timeStr) {
 	    $unixPostDate = @strtotime($timeStr);
 	    if ($unixPostDate === false) {

@@ -49,7 +49,7 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$cheackimg = Options::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$cheackimg = Option::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
 
 	$user_cache = $CACHE->readCache('user');
@@ -102,7 +102,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = $emBlog->postDate(Options::get('timezone'), $date);	
+	$postTime = $emBlog->postDate(Option::get('timezone'), $date);	
 
 	$logData = array('title' => $title,
 		'content' => $content,
@@ -272,7 +272,7 @@ if (ISLOGIN === true && $action == 'delt') {
 	header("Location: ./?action=tw");
 }
 if ($action == 'login') {
-	Options::get('login_code') == 'y' ? $ckcode = "<span>验证码</span>
+	Option::get('login_code') == 'y' ? $ckcode = "<span>验证码</span>
     <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
@@ -285,7 +285,7 @@ if ($action == 'auth') {
 	session_start();
 	$username = addslashes(trim($_POST['user']));
 	$password = addslashes(trim($_POST['pw']));
-	$img_code = (Options::get('login_code') == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
+	$img_code = (Option::get('login_code') == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
 	$ispersis = true;
 	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);

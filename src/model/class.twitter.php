@@ -58,7 +58,7 @@ class emTwitter {
 	 * @return array
 	 */
 	function getTwitters($page = 1, $spot = 0) {
-		$perpage_num = $spot == 1 ? Options::get('admin_perpage_num') : Options::get('index_twnum');
+		$perpage_num = $spot == 1 ? Option::get('admin_perpage_num') : Option::get('index_twnum');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
 		$limit = "LIMIT $start_limit, " . $perpage_num;

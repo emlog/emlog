@@ -17,8 +17,8 @@ $blog = GetBlog($sort);
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
-<title><![CDATA['.Options::get('blogname').']]></title> 
-<description><![CDATA['.Options::get('bloginfo').']]></description>
+<title><![CDATA['.Option::get('blogname').']]></title> 
+<description><![CDATA['.Option::get('bloginfo').']]></description>
 <link>{$URL}</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
@@ -56,7 +56,7 @@ END;
 function GetBlog($sort = null) {
 	$DB = MySql::getInstance();
 	$subsql = $sort ? "and sortid=$sort" : '';
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Options::get('rss_output_num');
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
@@ -68,7 +68,7 @@ function GetBlog($sort = null) {
 		if(!empty($re['password']))
 		{
 			$re['content'] = '<p>[该日志已设置加密]</p>';
-		}elseif(!Options::get('rss_output_fulltext') && !empty($re['excerpt'])){
+		}elseif(!Option::get('rss_output_fulltext') && !empty($re['excerpt'])){
 		    $re['content'] = $re['excerpt'] . '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
 		}
 

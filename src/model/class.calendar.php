@@ -20,7 +20,7 @@ class Calendar {
 	 */
     static function generate() {
         $DB = MySql::getInstance();
-        $timezone = Options::get('timezone');
+        $timezone = Option::get('timezone');
         $timestamp = time() + $timezone * 3600;
         
         //建立日志时间写入数组

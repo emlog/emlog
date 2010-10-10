@@ -18,10 +18,10 @@ if ($action == 'selectFile') {
 		$query=$DB->query($sql);
 		$attachnum = $DB->num_rows($query);
 	}
-	$maxsize = changeFileSize(Options::UPLOADFILE_MAXSIZE);
+	$maxsize = changeFileSize(Option::UPLOADFILE_MAXSIZE);
 	//允许附件类型
 	$att_type_str = '';
-	foreach (Options::getAttType() as $val) {
+	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val";
 	}
 	require_once(View::getView('upload'));
@@ -34,7 +34,7 @@ if ($action == 'upload') {
 	if ($attach) {
 		for ($i = 0; $i < count($attach['name']); $i++) {
 			if ($attach['error'][$i] != 4) {
-				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], $attach['type'][$i], Options::getAttType());
+				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], $attach['type'][$i], Option::getAttType());
 				//写入附件信息
 				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);

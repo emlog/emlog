@@ -7,15 +7,15 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_URL', 	TPLS_URL.Options::get('nonce_templet').'/');//前台模板URL
-define('TEMPLATE_PATH', TPLS_PATH.Options::get('nonce_templet').'/');//前台模板路径
+define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');//前台模板URL
+define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//前台模板路径
 define('CURPAGE_TW',    'twitter');
 
-$blogtitle = Options::get('blogname');
+$blogtitle = Option::get('blogname');
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
-if (Options::get('istwitter') == 'n') {
+if (Option::get('istwitter') == 'n') {
     emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
 }
 
@@ -36,9 +36,9 @@ if ($action == '') {
 
     $tws = $emTwitter->getTwitters($page);
     $twnum = $emTwitter->getTwitterNum();
-    $pageurl =  pagination($twnum, Options::get('index_twnum'), $page, BLOG_URL.'t/?page');
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-    $rcode = Options::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
+    $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
     include View::getView('header');
@@ -75,7 +75,7 @@ if ($action == 'reply') {
         exit('err1');
     } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');
-    }elseif (ROLE == 'visitor' && Options::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
+    }elseif (ROLE == 'visitor' && Option::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
         exit('err3');
     }
 
@@ -93,7 +93,7 @@ if ($action == 'reply') {
             'content' => $r,
             'name' => $name,
             'date' => $date,
-            'hide' => ROLE == 'visitor' ? Options::get('ischkreply') : 'n'
+            'hide' => ROLE == 'visitor' ? Option::get('ischkreply') : 'n'
     );
 
     $emTwitter = new emTwitter();
@@ -106,7 +106,7 @@ if ($action == 'reply') {
 
     doAction('reply_twitter', $r, $name, $date, $tid);
 
-    if (Options::get('ischkreply') == 'n' || ROLE != 'visitor'){
+    if (Option::get('ischkreply') == 'n' || ROLE != 'visitor'){
         $emTwitter->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');

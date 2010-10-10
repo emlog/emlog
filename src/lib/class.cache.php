@@ -10,7 +10,6 @@ class Cache {
 
 	private $db;
 	private static $instance = null;
-	
 	private $options_cache;
 	private $logtags_cache;
     private $logsort_cache;
@@ -104,7 +103,7 @@ class Cache {
             $avatar = '';
 			if(!empty($row['photo'])){
 				$photosrc = str_replace("../", '', $row['photo']);
-				$imgsize = chImageSize($row['photo'], ICON_MAX_W, ICON_MAX_H);
+				$imgsize = chImageSize($row['photo'], Option::ICON_MAX_W, Option::ICON_MAX_H);
 				$photo['src'] = htmlspecialchars($photosrc);
 				$photo['width'] = $imgsize['w'];
 				$photo['height'] = $imgsize['h'];

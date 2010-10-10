@@ -41,7 +41,7 @@ function checkUser($username,$password,$imgcode)
 		return false;
 	} else {
 		$sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
-		if (Options::get('login_code') == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
+		if (Option::get('login_code') == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
 		{
 			return false;
 		}
@@ -61,7 +61,7 @@ function checkUser($username,$password,$imgcode)
  */
 function loginPage()
 {
-	Options::get('login_code') == 'y' ?
+	Option::get('login_code') == 'y' ?
 	$ckcode = "<span>验证码</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
 	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :

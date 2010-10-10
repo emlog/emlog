@@ -16,7 +16,7 @@ if($action == '')
 	$sorts = $emSort->getSorts();
 	$tags = $emTag->getTag();
 
-	$localtime = time() + Options::get('timezone') * 3600;
+	$localtime = time() + Option::get('timezone') * 3600;
 	$postDate = gmdate('Y-m-d H:i:s', $localtime);
 
 	include View::getView('header');

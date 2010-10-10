@@ -5,25 +5,24 @@
  * $Id$
  */
 
-class Options {
-
+class Option {
 	//版本编号
     const EMLOG_VERSION = '4.0.0';
     //后台模板
     const ADMIN_TPL = 'default';
 	//图片附件缩略图最大宽
-	const IMG_ATT_MAX_W = 420;
+	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高
-	const IMG_ATT_MAX_H = 460;
+	const IMG_MAX_H = 460;
 	//头像缩略图最大宽
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
+    //上传图片是否生成缩略图 1:是 0:否
+    const IS_THUMBNAIL = 1;
     //附件大小上限 （单位：字节，默认20M）
     const UPLOADFILE_MAXSIZE = 20971520;
-    // 上传图片是否生成缩略图 1:是 0:否
-    const IS_THUMBNAIL = 1;
-
+    //附件上传路径
     const UPLOADFILE_PATH = '../content/uploadfile/';
     //允许上传的附件类型
     const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,bmp';

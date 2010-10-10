@@ -17,7 +17,7 @@ if ($action == 'login') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
-	$img_code = Options::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
+	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
 	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);

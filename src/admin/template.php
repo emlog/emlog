@@ -8,7 +8,7 @@
 require_once 'globals.php';
 
 if($action == '') {
-	$nonce_templet = Options::get('nonce_templet');
+	$nonce_templet = Option::get('nonce_templet');
 	$nonceTplData = implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
 	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
@@ -54,8 +54,8 @@ if($action == 'usetpl')
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
-	Options::updateOption('nonce_templet', $tplName);
-	Options::updateOption('tpl_sidenum', $tplSideNum);
+	Option::updateOption('nonce_templet', $tplName);
+	Option::updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->updateCache('options');
 	header("Location: ./template.php?activated=true");
 }

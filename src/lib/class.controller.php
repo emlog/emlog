@@ -45,7 +45,7 @@ class Controller {
 
 	private function __construct(){
 		$this->_path = $this->setPath();
-		$this->_routingTable = Options::getRoutingTable();
+		$this->_routingTable = Option::getRoutingTable();
 
 		foreach ($this->_routingTable as $route) {
 			if (preg_match($route['reg'], $this->_path, $matches)) {

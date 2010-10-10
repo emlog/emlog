@@ -34,7 +34,7 @@ class emComment {
 		$condition = '';
 		if($page)
 		{
-			$perpage_num = Options::get('admin_perpage_num');
+			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}
@@ -64,7 +64,7 @@ class emComment {
 	}
 	function getOneComment($commentId)
 	{
-		$timezone = Options::get('timezone');
+		$timezone = Option::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
 		$commentArray = $this->db->fetch_array($res);
@@ -183,8 +183,8 @@ class emComment {
 	}
 
 	function addComment() {
-		$comment_code = Options::get('comment_code');
-		$ischkcomment = Options::get('ischkcomment');
+		$comment_code = Option::get('comment_code');
+		$ischkcomment = Option::get('ischkcomment');
 
     	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
     	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';

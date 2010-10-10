@@ -12,9 +12,8 @@ if ($action == '') {
 	$row = $emUser->getOneUser(UID);
 	extract($row);
 	$icon = '';
-	if ($photo && file_exists($photo))
-	{
-		$imgsize = chImageSize($photo,ICON_MAX_W,ICON_MAX_H);
+	if ($photo && file_exists($photo)){
+		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[删除头像]</a>";
 	}
 	include View::getView('header');

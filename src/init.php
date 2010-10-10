@@ -26,7 +26,7 @@ define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
 //用户ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //博客固定地址
-define('BLOG_URL', Options::get('blogurl'));
+define('BLOG_URL', Option::get('blogurl'));
 //模板库地址
 define('TPLS_URL', BLOG_URL.'content/templates/');
 //模板库路径
@@ -34,9 +34,9 @@ define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 //解决前台多域名ajax跨域
 define('DYNAMIC_BLOGURL', getBlogUrl());
 //后台模板
-define('ADMIN_TPL', Options::ADMIN_TPL);
+define('ADMIN_TPL', Option::ADMIN_TPL);
 
-$active_plugins = unserialize(Options::get('active_plugins'));
+$active_plugins = unserialize(Option::get('active_plugins'));
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
 	foreach($active_plugins as $plugin) {

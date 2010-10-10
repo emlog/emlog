@@ -11,7 +11,7 @@
 <div class="login-main">
 	<div class="login-top"></div>
 	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
-	<small><?php echo Options::EMLOG_VERSION; ?></small>
+	<small><?php echo Option::EMLOG_VERSION; ?></small>
 	<div class="login-input">
 		<span>用户名</span>
 		<div><input type="text" name="user" id="user" /></div>

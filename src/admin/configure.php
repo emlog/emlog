@@ -97,7 +97,7 @@ if ($action == 'mod_config') {
 	}
 
 	foreach ($getData as $key => $val) {
-		Options::updateOption($key, $val);
+		Option::updateOption($key, $val);
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	header("Location: ./configure.php?activated=true");

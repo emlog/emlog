@@ -44,7 +44,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <div id="top-title">
-<p><span class="title">emlog <?php echo Options::EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
+<p><span class="title">emlog <?php echo Option::EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
 </div>
 <div class="b">
 <p class="title2">1、数据库设置 （MySQL数据库）</p>
@@ -214,8 +214,8 @@ EOT;
 	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 
-	$widgets = Options::getWidgetTitle();
-    $sider_wg = Options::getDefWidget();
+	$widgets = Option::getWidgetTitle();
+    $sider_wg = Option::getDefWidget();
 
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);

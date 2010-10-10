@@ -217,7 +217,6 @@ src/lib/checkcode.php -text svn_keywords=Id
 src/lib/class.cache.php -text svn_keywords=Id
 src/lib/class.controller.php -text
 src/lib/class.mysql.php -text svn_keywords=Id
-src/lib/class.options.php -text
 src/lib/class.passwordhash.php -text
 src/lib/class.view.php -text
 src/lib/function.base.php -text svn_keywords=Id
@@ -242,6 +241,7 @@ src/model/class.blog.php -text svn_keywords=Id
 src/model/class.calendar.php -text
 src/model/class.comment.php -text svn_keywords=Id
 src/model/class.link.php -text svn_keywords=Id
+src/model/class.option.php -text
 src/model/class.plugin.php -text svn_keywords=Id
 src/model/class.reply.php -text
 src/model/class.sort.php -text svn_keywords=Id

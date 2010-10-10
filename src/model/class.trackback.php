@@ -86,13 +86,13 @@ class emTrackback {
 	 */
 	function getTrackbacks($page = null, $blogId = null, $spot = 0)
 	{
-	    $timezone = Options::get('timezone');
+	    $timezone = Option::get('timezone');
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$condition = '';
 		if($page)
 		{
-			$perpage_num = Options::get('admin_perpage_num');
+			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}

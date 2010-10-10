@@ -26,7 +26,7 @@ class emPlugin {
 		} elseif(true === checkPlugin($this->plugin)) {
 			$active_plugins[] = $this->plugin;
 		    $active_plugins = serialize($active_plugins);
-		    Options::updateOption('active_plugins', $active_plugins);
+		    Option::updateOption('active_plugins', $active_plugins);
 		    return true;
 		} else {
 		    return false;
@@ -47,7 +47,7 @@ class emPlugin {
 			return;
 		}
 		$active_plugins = serialize($active_plugins);
-		Options::updateOption('active_plugins', $active_plugins);
+		Option::updateOption('active_plugins', $active_plugins);
 	}
 
 	/**

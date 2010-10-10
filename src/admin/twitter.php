@@ -17,24 +17,24 @@ if ($action == '') {
 
     $tws = $emTwitter->getTwitters($page,1);
     $twnum = $emTwitter->getTwitterNum(1);
-    $pageurl =  pagination($twnum, Options::get('admin_perpage_num'), $page, 'twitter.php?page');
+    $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    if (Options::get('istwitter') == 'y'){
+    if (Option::get('istwitter') == 'y'){
 		$ex1="selected=\"selected\"";
 		$ex2="";
 	}else{
 		$ex1="";
 		$ex2="selected=\"selected\"";
 	}
-    if (Options::get('reply_code') == 'y'){
+    if (Option::get('reply_code') == 'y'){
 		$ex3="selected=\"selected\"";
 		$ex4="";
 	}else{
 		$ex3="";
 		$ex4="selected=\"selected\"";
 	}
-    if (Options::get('ischkreply') == 'y'){
+    if (Option::get('ischkreply') == 'y'){
 		$ex5="selected=\"selected\"";
 		$ex6="";
 	}else{
@@ -174,7 +174,7 @@ if ($action == 'set') {
     );
 
 	foreach ($data as $key => $val){
-		Options::updateOption($key, $val);
+		Option::updateOption($key, $val);
 	}
 
 	$CACHE->updateCache('options');

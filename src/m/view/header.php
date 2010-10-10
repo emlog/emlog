@@ -5,7 +5,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><?php echo Options::get('blogname'); ?></title>
+<title><?php echo Option::get('blogname'); ?></title>
 <style type="text/css" id="internalStyle">
 body{background-color:#FFFFFF; font-size:14px; margin: 0; padding:0;font-family: Helvetica, Arial, sans-serif;-webkit-text-size-adjust: none;}
 a:link,a:visited,a:hover,a:active {text-decoration: none;color:#333;}
@@ -26,5 +26,5 @@ a:link,a:visited,a:hover,a:active {text-decoration: none;color:#333;}
 </head>
 <body>
 <div id="top">
-<div id="blogname"><?php echo Options::get('blogname'); ?></div>
+<div id="blogname"><?php echo Option::get('blogname'); ?></div>
 </div>
