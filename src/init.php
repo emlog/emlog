@@ -36,7 +36,7 @@ define('DYNAMIC_BLOGURL', getBlogUrl());
 //后台模板
 define('ADMIN_TPL', Option::ADMIN_TPL);
 
-$active_plugins = unserialize(Option::get('active_plugins'));
+$active_plugins = Option::get('active_plugins');
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
 	foreach($active_plugins as $plugin) {

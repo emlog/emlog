@@ -10,9 +10,9 @@ require_once 'globals.php';
 //显示组件管理面板
 if($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
-	$widgets = Option::get('widgets'.$wgNum) ? @unserialize(Option::get('widgets'.$wgNum)) : array();
-	$widgetTitle = Option::get('widget_title') ? @unserialize(Option::get('widget_title')) : array();
-	$custom_widget = Option::get('custom_widget') ? @unserialize(Option::get('custom_widget')) : array();
+	$widgets = Option::get('widgets'.$wgNum);
+	$widgetTitle = Option::get('widget_title');
+	$custom_widget = Option::get('custom_widget');
 	$widgetTitle = array_map('htmlspecialchars', $widgetTitle);
 	$tpl_sidenum = Option::get('tpl_sidenum');
 
@@ -37,7 +37,7 @@ if($action == '') {
 
 //修改组件设置
 if($action == 'setwg') {
-	$widgetTitle = unserialize(Option::get('widget_title')); //当前所有组件标题
+	$widgetTitle = Option::get('widget_title'); //当前所有组件标题
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
 
@@ -72,7 +72,7 @@ if($action == 'setwg') {
 			Option::updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'custom_text':
-			$custom_widget = $options_cache['custom_widget'] ? @unserialize($options_cache['custom_widget']) : array();
+			$custom_widget = Option::get('custom_widget');
 			$title = isset($_POST['title']) ? $_POST['title'] : '';
 			$content = isset($_POST['content']) ? $_POST['content'] : '';
 			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//要修改的组件id
@@ -105,7 +105,7 @@ if($action == 'setwg') {
 				Option::updateOption('custom_widget', $custom_widget_str);
 			}elseif ($rmwg){
 				for($i=1; $i<5; $i++) {
-					$widgets = $options_cache['widgets'.$i] ? @unserialize($options_cache['widgets'.$i]) : array();
+					$widgets = Option::get('widgets'.$i);
 					if(is_array($widgets) && !empty($widgets)) {
 						foreach ($widgets as $key => $val) {
 							if($val == $rmwg) {

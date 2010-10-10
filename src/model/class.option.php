@@ -31,7 +31,24 @@ class Option {
         $CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		if (isset($options_cache[$option])) {
-			return $options_cache[$option];
+			switch($option){
+				case 'navibar':
+				case 'widget_title':
+			    case 'custom_widget':
+			    case 'widgets1':
+			    case 'widgets2':
+			    case 'widgets3':
+			    case 'widgets4':
+			    	if (!empty($options_cache[$option])) {
+					   return @unserialize($options_cache[$option]);
+			    	} else{
+			    		return array();
+			    	}
+					break;
+				default:
+					return $options_cache[$option];
+					break;
+			}
 		}
     }
 

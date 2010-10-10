@@ -7,7 +7,7 @@
 
 require_once 'globals.php';
 
-$navibar = unserialize(Option::get('navibar'));
+$navibar = Option::get('navibar');
 
 //加载页面管理页面
 if ($action == '') {
