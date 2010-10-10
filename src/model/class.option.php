@@ -32,6 +32,7 @@ class Option {
 		$options_cache = $CACHE->readCache('options');
 		if (isset($options_cache[$option])) {
 			switch($option){
+				case 'active_plugins':
 				case 'navibar':
 				case 'widget_title':
 			    case 'custom_widget':
