@@ -10,21 +10,19 @@ class emPlugin {
 	private $db;
 	private $plugin;
 
-	function __construct($plugin = '') {
+	function __construct() {
 		$this->db = MySql::getInstance();
-		$this->plugin = $plugin;
 	}
 
 	/**
 	 * 激活插件
-	 *
-	 * @param array $active_plugins 当前已激活的全部插件
 	 */
-	function active_plugin($active_plugins) {
-		if (in_array($this->plugin, $active_plugins)){
+	function activePlugin($plugin) {
+		$active_plugins = Option::get('active_plugins');
+		if (in_array($plugin, $active_plugins)){
 			return true;
-		} elseif(true === checkPlugin($this->plugin)) {
-			$active_plugins[] = $this->plugin;
+		} elseif(true === checkPlugin($plugin)) {
+			$active_plugins[] = $plugin;
 		    $active_plugins = serialize($active_plugins);
 		    Option::updateOption('active_plugins', $active_plugins);
 		    return true;
@@ -35,13 +33,11 @@ class emPlugin {
 
 	/**
 	 * 禁用插件
-	 *
-	 * @param string $active_plugins 当前已激活的全部插件
 	 */
-	function inactive_plugin($active_plugins) {
-		if (in_array($this->plugin, $active_plugins))
-		{
-			$key = array_search($this->plugin, $active_plugins);
+	function inactivePlugin($plugin) {
+		$active_plugins = Option::get('active_plugins');
+		if (in_array($plugin, $active_plugins)){
+			$key = array_search($plugin, $active_plugins);
 			unset($active_plugins[$key]);
 		} else {
 			return;
@@ -58,35 +54,26 @@ class emPlugin {
 	 */
 	function getPlugins() {
 		global $emPlugins;
-		if (isset($emPlugins))
-		{
+		if (isset($emPlugins)){
 			return $emPlugins;
 		}
 		$emPlugins = array();
 		$pluginFiles = array();
 		$pluginPath = EMLOG_ROOT . '/content/plugins';
 		$pluginDir = @ dir($pluginPath);
-		if ($pluginDir)
-		{
-			while(($file = $pluginDir->read()) !== false)
-			{
-				if (preg_match('|^\.+$|', $file))
-				{
+		if ($pluginDir){
+			while(($file = $pluginDir->read()) !== false){
+				if (preg_match('|^\.+$|', $file)){
 					continue;
 				}
-				if (is_dir($pluginPath . '/' . $file))
-				{
+				if (is_dir($pluginPath . '/' . $file)){
 					$pluginsSubDir = @ dir($pluginPath . '/' . $file);
-					if ($pluginsSubDir)
-					{
-						while(($subFile = $pluginsSubDir->read()) !== false)
-						{
-							if (preg_match('|^\.+$|', $subFile))
-							{
+					if ($pluginsSubDir){
+						while(($subFile = $pluginsSubDir->read()) !== false){
+							if (preg_match('|^\.+$|', $subFile)){
 								continue;
 							}
-							if ($subFile == $file.'.php')
-							{
+							if ($subFile == $file.'.php'){
 								$pluginFiles[] = "$file/$subFile";
 							}
 						}
@@ -94,16 +81,13 @@ class emPlugin {
 				}
 			}
 		}
-		if (!$pluginDir || !$pluginFiles)
-		{
+		if (!$pluginDir || !$pluginFiles){
 			return $emPlugins;
 		}
 		sort($pluginFiles);
-		foreach($pluginFiles as $pluginFile)
-		{
+		foreach($pluginFiles as $pluginFile){
 			$pluginData = $this->getPluginData("$pluginPath/$pluginFile");
-			if (empty($pluginData['Name']))
-			{
+			if (empty($pluginData['Name'])){
 				continue;
 			}
 			$emPlugins[$pluginFile] = $pluginData;
@@ -144,5 +128,15 @@ class emPlugin {
 		'Email' => $author_email,
 		'AuthorUrl' => $author_url,
 		);
+	}
+
+	/**
+	 * 前台加载插件页面
+	 */
+	function loadPluginShow($params) {
+		$plugin = isset($params[1]) && $params[1] == 'plugin' ? addslashes($params[2]) : '' ;
+		if (preg_match("/^[\w\-]+$/", $plugin) && file_exists(EMLOG_ROOT."/content/plugins/{$plugin}/{$plugin}_show.php")) {
+            include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
+        }
 	}
 }

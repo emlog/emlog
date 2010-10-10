@@ -86,6 +86,11 @@ class Option {
                             'reg'=>'|^.*/\?(author)=([\d]+)$|',
                             ),
                     array(
+                            'model'=>'emPlugin',
+                            'method' =>'loadPluginShow',
+                            'reg'=>'|^.*/\?(plugin)=([\w\-]+)$|',
+                            ),
+                    array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
                             'reg'=>'|^.*/index\.php\?(keyword)=([^/]+)$|',

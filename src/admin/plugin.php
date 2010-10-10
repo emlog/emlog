@@ -20,8 +20,8 @@ if($action == '' && !$plugin) {
 }
 //激活
 if ($action == 'active') {
-	$emPlugin = new emPlugin($plugin);
-	if ($emPlugin->active_plugin($active_plugins) ){
+	$emPlugin = new emPlugin();
+	if ($emPlugin->activePlugin($plugin) ){
 	    $CACHE->updateCache('options');
 	    header("Location: ./plugin.php?active=true");
 	} else {
@@ -30,8 +30,8 @@ if ($action == 'active') {
 }
 //禁用
 if($action == 'inactive') {
-	$emPlugin = new emPlugin($plugin);
-	$emPlugin->inactive_plugin($active_plugins);
+	$emPlugin = new emPlugin();
+	$emPlugin->inactivePlugin($plugin);
 	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?inactive=true");
 }
