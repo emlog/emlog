@@ -13,7 +13,5 @@ define('CURPAGE_HOME',  'home');
 define('CURPAGE_LOG',   'echo_log');
 
 $emController = Controller::getInstance();
-
 $emController->route();
-
 View::output();
