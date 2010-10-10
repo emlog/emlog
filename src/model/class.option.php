@@ -40,52 +40,52 @@ class Option {
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^[/]?$|'
+                            'reg'=>'|^.*[/]?$|'
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(record)=([\d]{6,8})$|',
+                            'reg'=>'|^.*/\?(record)=([\d]{6,8})$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(sort)=([\d]+)$|',
+                            'reg'=>'|^.*/\?(sort)=([\d]+)$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(tag)=(.+)$|',
+                            'reg'=>'|^.*/\?(tag)=(.+)$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(page)=(.+)$|',
+                            'reg'=>'|^.*/\?(page)=(.+)$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/\?(author)=([\d]+)$|',
+                            'reg'=>'|^.*/\?(author)=([\d]+)$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^/index\.php\?(keyword)=([^/]+)$|',
+                            'reg'=>'|^.*/index\.php\?(keyword)=([^/]+)$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayContent',
-                            'reg'=>'|^/\?(post)=([\d]+)$|'
+                            'reg'=>'|^.*/\?(post)=([\d]+)$|'
                             ),
                     array(
                             'model'=>'emComment',
                             'method' =>'addComment',
-                            'reg'=>'|^/index\.php\?(action)=(addcom)$|',
+                            'reg'=>'|^.*/index\.php\?(action)=(addcom)$|',
                             ),
                     array(
                             'model'=>'calendar',
                             'method' =>'generate',
-                            'reg'=>'|^/\?action=cal|',
+                            'reg'=>'|^.*/\?action=cal|',
                             ),
                 
                 );
