@@ -220,11 +220,11 @@ class emComment {
 				$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 				$CACHE->updateCache(array('sta', 'comment'));
                 doAction('comment_saved');
-                emMsg('评论发表成功', BLOG_URL."?post=$blogId#comment", true);
+                emMsg('评论发表成功', Url::log($blogId).'#comment', true);
 			} else {
 		        $CACHE->updateCache('sta');
 		        doAction('comment_saved');
-		        emMsg('评论发表成功，请等待管理员审核', BLOG_URL."?post=$blogId");
+		        emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
 			}
 		}
 	}

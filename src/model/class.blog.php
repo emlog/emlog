@@ -245,7 +245,8 @@ class emBlog {
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		if ($row) {
-			$logData = array('log_title' => htmlspecialchars($row['title']),
+			$logData = array(
+			    'log_title' => htmlspecialchars($row['title']),
 				'timestamp' => $row['date'],
 				'date' => $row['date'] + $timezone * 3600,
 				'logid' => intval($row['gid']),
@@ -318,18 +319,19 @@ class emBlog {
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] += $timezone * 3600;
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
+			$row['log_url'] = Url::log($row['gid']);
 			$row['logid'] = $row['gid'];
-			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
-			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-				$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
-			}else {
-				if (!empty($row['excerpt'])) {
-					$row['excerpt'] .= '<p><a href="' . BLOG_URL . '?post=' . $row['logid'] . '">阅读全文&gt;&gt;</a></p>';
-				}
-			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
+		    $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
+            if (!empty($row['password']) && $cookiePassword != $row['password']) {
+                $row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+            }else {
+                if (!empty($row['excerpt'])) {
+                    $row['excerpt'] .= '<p><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
+                }
+            }
 			$logs[] = $row;
 		}
 		return $logs;

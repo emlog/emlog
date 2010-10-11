@@ -23,9 +23,8 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
 
-foreach($blog as $value)
-{
-	$link = $URL."?post=".$value['id'];
+foreach($blog as $value){
+	$link = Url::log($value['id']);
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  gmdate('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
@@ -69,7 +68,7 @@ function GetBlog($sort = null) {
 		{
 			$re['content'] = '<p>[该日志已设置加密]</p>';
 		}elseif(!Option::get('rss_output_fulltext') && !empty($re['excerpt'])){
-		    $re['content'] = $re['excerpt'] . '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">阅读全文&gt;&gt;</a></p>';
+		    $re['content'] = $re['excerpt'] . '<p><a href="'.Url::log($re['id']).'">阅读全文&gt;&gt;</a></p>';
 		}
 
 		$blog[] = $re;

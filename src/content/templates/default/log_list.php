@@ -10,7 +10,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php foreach($logs as $value): ?>
 	<li>
 	<h2 class="content_h2">
-	<?php topflg($value['top']); ?><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>"><?php echo $value['log_title']; ?></a>
+	<?php topflg($value['top']); ?><a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a>
 	</h2>
 	<div class="act"><?php blog_sort($value['sortid'], $value['logid']); ?></div>
 	<div class="editor"><?php editflg($value['logid'],$value['author']); ?></div>
@@ -23,9 +23,9 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="under_p">
 	<div class="tag"><?php blog_tag($value['logid']); ?></div>
 	<div>
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['logid']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+	<a href="<?php echo $value['log_url']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
+	<a href="<?php echo $value['log_url']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
+	<a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 	</div>
 	</div>
 	<div class="bottom"></div>

@@ -39,7 +39,7 @@ require_once View::getView('module');
 			<?php 
 			foreach ($navibar as $key => $val):
 			if ($val['hide'] == 'y'){continue;}
-			if (empty($val['url'])){$val['url'] = BLOG_URL.'?post='.$key;}
+			if (empty($val['url'])){$val['url'] = Url::log($key);}
 			?>
 			<li class="<?php echo isset($logid) && $key == $logid ? 'current' : 'common';?>"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
 			<?php endforeach;?>

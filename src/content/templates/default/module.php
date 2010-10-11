@@ -37,15 +37,14 @@ function widget_calendar($title){ ?>
 //widget：标签
 function widget_tag($title){
 	global $CACHE;
-	$tag_cache = $CACHE->readCache('tags');
-	?>
+	$tag_cache = $CACHE->readCache('tags');?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="blogtags">
 	<li>
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
-		<a href="<?php echo BLOG_URL; ?>?tag=<?php echo $value['tagurl']; ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</li>
 	</ul>
@@ -61,7 +60,7 @@ function widget_sort($title){
 	<ul id="blogsort">
 	<?php foreach($sort_cache as $value): ?>
 	<li>
-	<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo TEMPLATE_URL; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
@@ -98,7 +97,7 @@ function widget_newcomm($title){
 	<ul id="newcomment">
 	<?php
 	foreach($com_cache as $value):
-	$url = BLOG_URL.'?post='.$value['gid'].'#'.$value['cid'];
+	$url = Url::log($value['gid']).'#'.$value['cid'];
 	?>
 	<li id="comment"><?php echo $value['name']; ?>
 	<?php if($value['reply']): ?>
@@ -121,7 +120,7 @@ function widget_newlog($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="newlog">
 	<?php foreach($newLogs_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -136,7 +135,7 @@ function widget_random_log($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="randlog">
 	<?php foreach($randLogs as $value): ?>
-	<li><a href="<?php echo BLOG_URL; ?>?post=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a></li>
+	<li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -160,13 +159,13 @@ function widget_search($title){ ?>
 //widget：归档
 function widget_archive($title){
 	global $CACHE; 
-	$dang_cache = $CACHE->readCache('record');
+	$record_cache = $CACHE->readCache('record');
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="record">
-	<?php foreach($dang_cache as $value): ?>
-	<li><a href="<?php echo BLOG_URL.$value['url']; ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+	<?php foreach($record_cache as $value): ?>
+	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -219,7 +218,7 @@ function blog_sort($sort, $blogid){
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo BLOG_URL; ?>?sort=<?php echo $sort; ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	[<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
 <?php
@@ -247,7 +246,7 @@ function blog_tag($blogid){
 		$tag = '标签:';
 		foreach ($log_cache_tags[$blogid] as $value)
 		{
-			$tag .= "	<a href=\"".BLOG_URL."?tag=".$value['tagurl']."\">".$value['tagname'].'</a>';
+			$tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
 		}
 		echo $tag;
 	}
@@ -262,7 +261,7 @@ function blog_author($uid){
 	$mail = $user_cache[$uid]['mail'];
 	$des = $user_cache[$uid]['des'];
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
-	echo "<a href=\"".BLOG_URL."?author=$uid\" $title>$author</a>";
+	echo '<a href="'.Url::author($uid)."\" $title>$author</a>";
 }
 ?>
 <?php
@@ -270,13 +269,13 @@ function blog_author($uid){
 function neighbor_log($neighborLog){
 	extract($neighborLog);?>
 	<?php if($prevLog):?>
-	&laquo; <a href="<?php echo BLOG_URL; ?>?post=<?php echo $prevLog['gid']; ?>"><?php echo $prevLog['title'];?></a>
+	&laquo; <a href="<?php echo Url::log($prevLog['gid']) ?>"><?php echo $prevLog['title'];?></a>
 	<?php endif;?>
 	<?php if($nextLog && $prevLog):?>
 		|
 	<?php endif;?>
 	<?php if($nextLog):?>
-		 <a href="<?php echo BLOG_URL; ?>?post=<?php echo $nextLog['gid']; ?>"><?php echo $nextLog['title'];?></a>&raquo;
+		 <a href="<?php echo Url::log($nextLog['gid']) ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
 <?php }?>
 <?php

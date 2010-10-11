@@ -14,7 +14,7 @@ class Calendar {
 	   $calendarUrl = isset($_GET['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($_GET['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
 	   return $calendarUrl;
 	}
-	
+
 	/**
 	 * 生成日历
 	 */
@@ -100,9 +100,9 @@ class Calendar {
         			$n_time = $n_year . $n_month . '0' . $r;
         			//有日志且为当天
         			if (@in_array($n_time,$logdate) && $n_time == $time){
-        				$calendar .= '<td class="day"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $r .'</a></td>';
+        				$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $r .'</a></td>';
         			} elseif (@in_array($n_time,$logdate)) {
-        				$calendar .= '<td class="day2"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $r .'</a></td>';
+        				$calendar .= '<td class="day2"><a href="'.Url::record($n_time).'">'. $r .'</a></td>';
         			} elseif ($n_time == $time){
         				$calendar .= '<td class="day">'. $r .'</td>';
         			} else {
@@ -117,9 +117,9 @@ class Calendar {
         				//如果该日有日志就显示url样式
         				$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
         				if (@in_array($n_time,$logdate) && $n_time == $time){
-        					$calendar .= '<td class="day"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $t .'</a></td>';
+        					$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $t .'</a></td>';
         				} elseif(@in_array($n_time,$logdate)){
-        					$calendar .= '<td class="day2"><a href="'.BLOG_URL.'?record='.$n_time.'">'. $t .'</a></td>';
+        					$calendar .= '<td class="day2"><a href="'.Url::record($n_time).'">'. $t .'</a></td>';
         				} elseif($n_time == $time) {
         					$calendar .= '<td class="day">'. $t .'</td>';
         				} else {

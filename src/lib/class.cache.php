@@ -178,7 +178,8 @@ class Cache {
 		$query = $this->db->query("SELECT cid,gid,comment,date,poster,reply FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
 		while ($show_com = $this->db->fetch_array($query)) {
-			$com_cache[] = array('cid' => $show_com['cid'],
+			$com_cache[] = array(
+			    'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
@@ -231,11 +232,12 @@ class Cache {
 			}
 			$usenum = substr_count($show_tag['gid'], ',') - 1;
 			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
-			$tag_cache[] = array('tagurl' => urlencode($show_tag['tagname']),
-				'tagname' => htmlspecialchars($show_tag['tagname']),
-				'fontsize' => $fontsize,
-				'usenum' => $usenum
-				);
+			$tag_cache[] = array(
+			         'tagurl' => urlencode($show_tag['tagname']),
+			         'tagname' => htmlspecialchars($show_tag['tagname']),
+			         'fontsize' => $fontsize,
+			         'usenum' => $usenum
+			         );
 		}
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData, 'tags');
@@ -248,11 +250,12 @@ class Cache {
 		$query = $this->db->query("SELECT sid,sortname,taxis FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
-			$sort_cache[$row['sid']] = array('lognum' => $logNum,
-				'sortname' => htmlspecialchars($row['sortname']),
-				'sid' => intval($row['sid']),
-				'taxis' => intval($row['taxis'])
-				);
+			$sort_cache[$row['sid']] = array(
+				     'lognum' => $logNum,
+				     'sortname' => htmlspecialchars($row['sortname']),
+				     'sid' => intval($row['sid']),
+				     'taxis' => intval($row['taxis'])
+				    );
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData, 'sort');
@@ -264,7 +267,8 @@ class Cache {
 		$link_cache = array();
 		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
-			$link_cache[] = array('link' => htmlspecialchars($show_link['sitename']),
+			$link_cache[] = array(
+			    'link' => htmlspecialchars($show_link['sitename']),
 				'url' => htmlspecialchars($show_link['siteurl']),
 				'des' => htmlspecialchars($show_link['description'])
 				);
@@ -312,20 +316,21 @@ class Cache {
 	 * 日志归档缓存
 	 */
 	private function mc_record() {
-		$query = $this->db->query("select date from " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
+		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
-		$dang_cache = array();
+		$record_cache = array();
 		while ($show_record = $this->db->fetch_array($query)) {
 			$f_record = gmdate('Y_n', $show_record['date']);
 			if ($record != $f_record) {
 				$h = $p-1;
 				if ($h != -1) {
-					$dang_cache[$h]['lognum'] = $lognum;
+					$record_cache[$h]['lognum'] = $lognum;
 				}
-				$dang_cache[$p] = array('record' => gmdate("Y年n月", $show_record['date']),
-					'url' => '?record=' . gmdate("Ym", $show_record['date'])
+				$record_cache[$p] = array(
+				    'record' => gmdate('Y年n月', $show_record['date']),
+					'date' => gmdate('Ym', $show_record['date'])
 					);
 				$p++;
 				$lognum = 1;
@@ -337,10 +342,10 @@ class Cache {
 		}
 		$j = $p-1;
 		if ($j >= 0) {
-			$dang_cache[$j]['lognum'] = $lognum;
+			$record_cache[$j]['lognum'] = $lognum;
 		}
 
-		$cacheData = serialize($dang_cache);
+		$cacheData = serialize($record_cache);
 		$this->cacheWrite($cacheData, 'record');
 	}
 	/**

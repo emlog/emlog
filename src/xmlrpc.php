@@ -7,7 +7,7 @@
  */
 
 ob_start();
-require_once 'options.php';
+//require_once 'options.php';
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/lib/function.base.php';
 require_once EMLOG_ROOT . '/lib/function.login.php';
