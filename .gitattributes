@@ -248,6 +248,7 @@ src/model/class.sort.php -text svn_keywords=Id
 src/model/class.tag.php -text svn_keywords=Id
 src/model/class.trackback.php -text svn_keywords=Id
 src/model/class.twitter.php -text
+src/model/class.url.php -text
 src/model/class.user.php -text svn_keywords=Id
 src/robots.txt -text
 src/rss.php -text svn_keywords=Id
