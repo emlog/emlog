@@ -50,7 +50,7 @@ class emBlog {
     		}
     		$sqlSegment = "and date>=$record_stime and date<$record_etime order by top desc ,date desc";
     		$lognum = $this->getLogNum('n', $sqlSegment);
-    		$pageurl .= BLOG_URL."?record=$record&page";
+    		$pageurl .= Url::record($record, 'page');
     	} elseif ($tag) {
     		$emTag = new emTag();
     		$blogtitle = stripslashes($tag).' - '.$blogname;
@@ -60,7 +60,7 @@ class emBlog {
     		}
     		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
     		$lognum = $this->getLogNum('n', $sqlSegment);
-    		$pageurl .= BLOG_URL.'?tag='.urlencode($tag).'&page';
+    		$pageurl .= Url::tag(urlencode($tag), 'page');
     	} elseif ($keyword) {
             $keyword = str_replace('%','\%',$keyword);
             $keyword = str_replace('_','\_',$keyword);
@@ -76,7 +76,7 @@ class emBlog {
     		$blogtitle = $sortName.' - '.$blogname;
     		$sqlSegment = "and sortid=$sortid order by date desc";
     		$lognum = $this->getLogNum('n', $sqlSegment);
-    		$pageurl .= BLOG_URL."?sort=$sortid&page";
+    		$pageurl .= Url::sort($sortid, 'page');
     	} elseif ($author) {
     		$user_cache = $CACHE->readCache('user');
     	    if (!isset($user_cache[$author])) {
@@ -86,12 +86,12 @@ class emBlog {
     		$sqlSegment = "and author=$author order by date desc";
     		$sta_cache = $CACHE->readCache('sta');
     		$lognum = $sta_cache[$author]['lognum'];
-    		$pageurl .= BLOG_URL."?author=$author&page";
+    		$pageurl .= Url::author($author, 'page');
     	}else {
     		$sqlSegment ='ORDER BY top DESC ,date DESC';
     		$sta_cache = $CACHE->readCache('sta');
     		$lognum = $sta_cache['lognum'];
-    		$pageurl .= BLOG_URL.'?page';
+    		$pageurl .= Url::logPage();
     	}
     	$logs = $this->getLogsForHome($sqlSegment, $page, $index_lognum);
     	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);

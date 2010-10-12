@@ -27,8 +27,8 @@ if ($action == 'update') {
 					   RewriteEngine on
 					   RewriteCond %{REQUEST_FILENAME} !-f
 					   RewriteCond %{REQUEST_FILENAME} !-d
-					   RewriteBase '.$t['path'].'
-					   RewriteRule ^(.*)$ /index.php/$1 [L]
+					   RewriteBase ' . $t['path'] . '
+					   RewriteRule . ' . $t['path'] . 'index.php [L]
 					</IfModule>';
 		if (!@fwrite($fp, $rw_rule)){
 			header('Location: ./permalink.php?error=true');

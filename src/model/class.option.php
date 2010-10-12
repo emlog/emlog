@@ -110,6 +110,13 @@ class Option {
                             'method' =>'generate',
                             'reg'=>'|^.*/\?action=cal|',
                             ),
+
+                    //===================================================
+                    array(
+                            'model'=>'emBlog',
+                            'method' =>'displayBlog',
+                            'reg'=>'|^.*/(sort)-([\d]+)\.html$|',
+                            ),
                 
                 );
          return $routingtable;
