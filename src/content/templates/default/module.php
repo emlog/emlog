@@ -327,7 +327,7 @@ function blog_comments($comments){
 <?php }?>
 <?php
 //blog：发表评论表单
-function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark){
+function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark){
 	if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
@@ -343,7 +343,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_rema
 	<label for="url"><small>个人主页 (选填)</small></label>
 	</p>
 	<p><textarea name="comment" id="comment"  rows="10" tabindex="4"></textarea></p>
-	<p><div class="comment_yz"><?php echo $cheackimg; ?><input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
+	<p><div class="comment_yz"><?php echo $verifyCode; ?><input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
 	</form>
 	</div>
 	<?php endif; ?>

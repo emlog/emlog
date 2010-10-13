@@ -41,7 +41,7 @@
           <td align="center" colspan="2"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" value=<?php echo $pageId; ?> />
-		  <input type="submit" value="保存并返回" onclick="return chekform();" class="button" />
+		  <input type="submit" value="保存并返回" onclick="return checkform();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="button" />
 		  </td>
         </tr>

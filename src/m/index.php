@@ -49,7 +49,7 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$cheackimg = Option::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
 
 	$user_cache = $CACHE->readCache('user');

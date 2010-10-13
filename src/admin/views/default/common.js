@@ -65,7 +65,7 @@ function displayToggle(id, keep){
 	if (keep == 1){$.cookie('em_'+id,$("#"+id).css('display'),{expires:365});}
 	if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
-function chekform(){
+function checkform(){
 	var t = $.trim($("#title").val());
 	if (t==""){alert("标题不能为空");$("#title").focus();return false;}else return true;
 }

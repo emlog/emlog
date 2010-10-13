@@ -41,7 +41,7 @@
 		<tr>
           <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
-          <input type="submit" value="发布页面" onclick="return chekform();" class="button" />
+          <input type="submit" value="发布页面" onclick="return checkform();" class="button" />
           <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="button" />
 		  </td>
         </tr>

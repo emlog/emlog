@@ -14,7 +14,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php 
 	if ($allow_remark == 'y'){
 		blog_comments($comments);
-		blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark);
+		blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark);
 	}
 	?>
 </li>

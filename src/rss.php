@@ -12,7 +12,7 @@ header('Content-type: application/xml');
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = BLOG_URL;
-$blog = GetBlog($sort);
+$blog = getBlog($sort);
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
@@ -52,7 +52,7 @@ END;
  *
  * @return array
  */
-function GetBlog($sort = null) {
+function getBlog($sort = null) {
 	$DB = MySql::getInstance();
 	$subsql = $sort ? "and sortid=$sort" : '';
 	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');

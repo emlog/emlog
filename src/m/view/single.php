@@ -39,7 +39,7 @@
 		邮件地址 (选填)<br /><input type="text" name="commail" value="" /><br />
 		个人主页 (选填)<br /><input type="text" name="comurl" value="" /><br />
 		内容<br /><textarea name="comment" rows="10"></textarea><br />
-		<?php echo $cheackimg; ?><br /><input type="submit" value="发表评论" />
+		<?php echo $verifyCode; ?><br /><input type="submit" value="发表评论" />
 		</form>
 	</div>
 </div>

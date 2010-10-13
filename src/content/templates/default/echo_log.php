@@ -19,7 +19,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<div class="nextlog"><?php neighbor_log($neighborLog); ?></div>
 	<?php blog_trackback($tb, $tb_url, $allow_tb); ?>
 	<?php blog_comments($comments); ?>
-	<?php blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_remark); ?>
+	<?php blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark); ?>
 </li>
 </ul>
 </div>
