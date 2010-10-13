@@ -56,34 +56,56 @@ class Option {
     static function getRoutingTable(){
     	$routingtable = array(
                     array(
-                            'model'=>'emBlog',
-                            'method' =>'displayBlog',
-                            'reg'=>'|^.*[/]?$|'
+                            'model'=>'calendar',
+                            'method' =>'generate',
+                            'reg'=>'|^.*/\?action=cal|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^.*/\?(record)=([\d]{6,8})$|',
+                            'reg'=>'|^.*[/]?$|',
+                            ),
+                    array(
+                            'model'=>'emBlog',
+                            'method' =>'displayContent',
+                            'reg_0'=>'|^.*/\?(post)=([\d]+)$|',
+                            'reg_1' => '|^.*/(post)-([\d]+)\.html$|',
+                            'reg_2' => '|^.*/(post)/([\d]+)[/]?$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^.*/\?(sort)=([\d]+)$|',
+                            'reg_0'=>'|^.*/\?(record)=([\d]{6,8})$|',
+                            'reg_1' => '|^.*/(record)-([\d]{6,8})\.html$|',
+                            'reg_2' => '|^.*/(record)/([\d]{6,8})[/]?$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^.*/\?(tag)=(.+)$|',
+                            'reg_0'=>'|^.*/\?(sort)=([\d]+)$|',
+                            'reg_1' => '|^.*/(sort)-([\d]+)\.html$|',
+                            'reg_2' => '|^.*/(sort)/([\d]+)[/]?$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^.*/\?(page)=(.+)$|',
+                            'reg_0'=>'|^.*/\?(tag)=(.+)$|',
+                            'reg_1' => '|^.*/(tag)-(.+)\.html$|',
+                            'reg_2' => '|^.*/(tag)/(.+)[/]?$|',
                             ),
                     array(
                             'model'=>'emBlog',
                             'method' =>'displayBlog',
-                            'reg'=>'|^.*/\?(author)=([\d]+)$|',
+                            'reg_0'=>'|^.*/\?(page)=([\d]+)$|',
+                            'reg_1' => '|^.*/(page)-([\d]+)\.html$|',
+                            'reg_2' => '|^.*/(page)/([\d]+)[/]?$|',
+                            ),
+                    array(
+                            'model'=>'emBlog',
+                            'method' =>'displayBlog',
+                            'reg_0'=>'|^.*/\?(author)=([\d]+)$|',
+                            'reg_1' => '|^.*/(author)-([\d]+)\.html$|',
+                            'reg_2' => '|^.*/(author)/([\d]+)[/]?$|',
                             ),
                     array(
                             'model'=>'emPlugin',
@@ -96,11 +118,6 @@ class Option {
                             'reg'=>'|^.*/index\.php\?(keyword)=([^/]+)$|',
                             ),
                     array(
-                            'model'=>'emBlog',
-                            'method' =>'displayContent',
-                            'reg'=>'|^.*/\?(post)=([\d]+)$|'
-                            ),
-                    array(
                             'model'=>'emComment',
                             'method' =>'addComment',
                             'reg'=>'|^.*/index\.php\?(action)=(addcom)$|',
@@ -110,14 +127,6 @@ class Option {
                             'method' =>'generate',
                             'reg'=>'|^.*/\?action=cal|',
                             ),
-
-                    //===================================================
-                    array(
-                            'model'=>'emBlog',
-                            'method' =>'displayBlog',
-                            'reg'=>'|^.*/(sort)-([\d]+)\.html$|',
-                            ),
-                
                 );
          return $routingtable;
     }

@@ -48,7 +48,10 @@ class Controller {
 		$this->_routingTable = Option::getRoutingTable();
 
 		foreach ($this->_routingTable as $route) {
-			if (preg_match($route['reg'], $this->_path, $matches)) {
+			$reg = isset($route['reg_'.Option::get('isurlrewrite')]) ? 
+			         $route['reg_'.Option::get('isurlrewrite')] : 
+			         $route['reg'];
+			if (preg_match($reg, $this->_path, $matches)) {
 				$this->_model = $route['model'];
 				$this->_method = $route['method'];
 				$this->_params = $matches;
