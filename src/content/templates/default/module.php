@@ -147,7 +147,7 @@ function widget_search($title){ ?>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<li>
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
 	</form>
@@ -331,7 +331,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$cheackimg,$allow_rema
 	if($allow_remark == 'y'): ?>
 	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
 	<div class="comment_post">
-	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 	<p>
 	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
 	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">

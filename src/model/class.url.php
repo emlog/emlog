@@ -136,14 +136,10 @@ class Url {
      */
     static function page($url, $pageId){
         $pageUrl = '';
-        switch (Option::get('isurlrewrite')) {
-            case '0':
-                $pageUrl = $url . '=' . $pageId;
-                break;
-            case '1':
-            case '2':
-                $pageUrl = $url . '/' . $pageId . '/';
-                break;
+        if (preg_match("/^.*[?&]page$/", $url)) {
+        	$pageUrl = $url . '=' . $pageId;
+        } else {
+        	$pageUrl = $url . '/' . $pageId . '/';
         }
         return $pageUrl;
     }

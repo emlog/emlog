@@ -55,6 +55,10 @@ class Controller {
 				$this->_model = $route['model'];
 				$this->_method = $route['method'];
 				$this->_params = $matches;
+				break;
+			} else {
+				$this->_model = 'emBlog';
+                $this->_method = 'displayBlog';
 			}
 		}
 	}
