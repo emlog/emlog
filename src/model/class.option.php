@@ -91,7 +91,7 @@ class Option {
                             'method' =>'displayBlog',
                             'reg_0'=>'|^.*/\?(tag)=(.+)$|',
                             'reg_1' => '|^.*/(tag)-(.+)\.html$|',
-                            'reg_2' => '|^.*/(tag)/(.+)[/]?$|',
+                            'reg_2' => '|^.*/(tag)/([^/]+)[/]?$|',
                             ),
                     array(
                             'model'=>'emBlog',
