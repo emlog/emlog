@@ -20,7 +20,7 @@ class emTag {
 	/**
 	 * 获取标签
 	 *
-	 * @param int $gid
+	 * @param int $blogId
 	 * @return array
 	 */
 	function getTag($blogId = '')

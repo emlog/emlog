@@ -355,9 +355,9 @@ class Cache {
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where type='blog'");
 		$log_cache_tags = array();
 		while ($row = $this->db->fetch_array($query)) {
-			$gid = $row['gid'];
+			$logid = $row['gid'];
 			$tags = array();
-			$tquery = "SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE gid LIKE '%,$gid,%' " ;
+			$tquery = "SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE gid LIKE '%,$logid,%' " ;
 			$result = $this->db->query($tquery);
 			while ($trow = $this->db->fetch_array($result)) {
 				$trow['tagurl'] = urlencode($trow['tagname']);
@@ -365,7 +365,7 @@ class Cache {
 				$trow['tid'] = intval($trow['tid']);
 				$tags[] = $trow;
 			}
-			$log_cache_tags[$gid] = $tags;
+			$log_cache_tags[$logid] = $tags;
 			unset($tags);
 		}
 		$cacheData = serialize($log_cache_tags);
@@ -400,9 +400,9 @@ class Cache {
 		$query = $this->db->query($sql);
 		$log_cache_atts = array();
 		while ($row = $this->db->fetch_array($query)) {
-			$gid = $row['gid'];
+			$logid = $row['gid'];
 			$attachment = array();
-			$attQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid=$gid ");
+			$attQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid=$logid ");
 			while ($show_attach = $this->db->fetch_array($attQuery)) {
 				$att_path = $show_attach['filepath']; //eg: ../uploadfile/200710/b.jpg
 				$atturl = substr($att_path, 3); //eg: uploadfile/200710/b.jpg
@@ -411,7 +411,7 @@ class Cache {
 					$attachment['url'] = $atturl;
 					$attachment['filename'] = $show_attach['filename'];
 					$attachment['size'] = changeFileSize($show_attach['filesize']);
-					$log_cache_atts[$gid][] = $attachment;
+					$log_cache_atts[$logid][] = $attachment;
 				}
 			}
 		}

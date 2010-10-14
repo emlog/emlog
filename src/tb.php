@@ -7,7 +7,7 @@
 
 require_once 'init.php';
 
-$blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
+$logid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 $sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
 $encode = 'utf-8';
 $charset = isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? strtolower($_SERVER['HTTP_ACCEPT_CHARSET']) : '';
@@ -20,14 +20,14 @@ $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
 $blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name'])))) : '';
 $ipaddr	   = getIp();
 
-if (Option::get('istrackback') == 'y' && $blogid && $title && $excerpt && $url && $blog_name){
+if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url && $blog_name){
 	if($sc != substr(md5(gmdate('Ynd')),0,5)){
 		showXML('invalid trackback url');
 	}
 
 	$DB = MySql::getInstance();
 
-	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
+	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$logid."'");
 	if (empty($blog)){
 		showXML('log not exist');
 	}elseif ($blog['allow_tb'] == 'n'){
@@ -68,9 +68,9 @@ if (Option::get('istrackback') == 'y' && $blogid && $title && $excerpt && $url &
 	$visible = ($point < 2) ? false : true;
 
 	if ($visible === true){
-		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
+		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($logid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
-		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
+		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($logid)."'");
 		$CACHE->updateCache('sta');
 		showXML('success', 0);
 	}else {

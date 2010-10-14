@@ -142,37 +142,37 @@ if ($action == 'addcom') {
 	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
-	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 
-	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $gid);
+	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $logid);
 	switch ($ret) {
 		case -1:
-			mMsg('发表评论失败：该日志已关闭评论', "./?post=$gid");
+			mMsg('发表评论失败：该日志已关闭评论', "./?post=$logid");
 			break;
 		case -2:
-			mMsg('发表评论失败：已存在相同内容评论', "./?post=$gid");
+			mMsg('发表评论失败：已存在相同内容评论', "./?post=$logid");
 			break;
 		case -3:
-			mMsg('发表评论失败：姓名不符合规范', "./?post=$gid");
+			mMsg('发表评论失败：姓名不符合规范', "./?post=$logid");
 			break;
 		case -4:
-			mMsg('发表评论失败：邮件地址不符合规范', "./?post=$gid");
+			mMsg('发表评论失败：邮件地址不符合规范', "./?post=$logid");
 			break;
 		case -5:
-			mMsg('发表评论失败：内容不符合规范', "./?post=$gid");
+			mMsg('发表评论失败：内容不符合规范', "./?post=$logid");
 			break;
 		case -6:
-			mMsg('发表评论失败：验证码错误', "./?post=$gid");
+			mMsg('发表评论失败：验证码错误', "./?post=$logid");
 			break;
 		case 0:
 			$CACHE->updateCache(array('sta','comment'));
 			doAction('comment_saved');
-			header("Location: ./?post=$gid");
+			header("Location: ./?post=$logid");
 			break;
 		case 1:
 			$CACHE->updateCache(array('sta'));
 			doAction('comment_saved');
-			mMsg ('评论发表成功，请等待管理员审核', "./?post=$gid");
+			mMsg ('评论发表成功，请等待管理员审核', "./?post=$logid");
 			break;
 	}
 }
