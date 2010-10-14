@@ -35,7 +35,7 @@ class emBlog {
     	} else{
     		$page = 1;
     	}
-    	
+
     	$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
     	$sortid = isset($params[1]) && $params[1] == 'sort' ? intval($params[2]) : '' ;
     	$author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '' ;
