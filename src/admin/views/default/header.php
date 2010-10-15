@@ -7,8 +7,8 @@
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <link href="./views/<?php echo ADMIN_TPL; ?>/css-main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="../lib/js/jquery/jquery-1.2.6.js"></script>
-<script type="text/javascript" src="../lib/js/jquery/plugin-cookie.js"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
 <?php doAction('adm_head');?>
 <title><?php echo Option::get('blogname'); ?> - 管理中心</title>

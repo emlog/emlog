@@ -125,5 +125,5 @@ if ($action == 'reply') {
 }
 // 回复验证码.
 if ($action == 'ckcode') {
-    require_once EMLOG_ROOT.'/lib/checkcode.php';
+    require_once EMLOG_ROOT.'/include/lib/checkcode.php';
 }

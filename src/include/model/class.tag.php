@@ -2,7 +2,7 @@
 /**
  * 标签管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: class.tag.php 1779 2010-10-14 08:20:24Z emloog $
  */
 
 class emTag {

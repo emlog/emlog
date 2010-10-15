@@ -8,7 +8,7 @@
 define('EMLOG_ROOT', dirname(__FILE__));
 define('DEL_INSTALLER', 0);
 
-require_once EMLOG_ROOT.'/lib/function.base.php';
+require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();

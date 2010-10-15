@@ -2,7 +2,7 @@
 /**
  * 登录验证函数库
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: function.login.php 1766 2010-10-10 01:23:37Z emloog $
  */
 
 /**
@@ -64,7 +64,7 @@ function loginPage()
 	Option::get('login_code') == 'y' ?
 	$ckcode = "<span>验证码</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
-	<img src=\"../lib/checkcode.php\" align=\"absmiddle\"></div>" :
+	<img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
 	$ckcode = '';
 	require_once View::getView('login');
 	View::output();

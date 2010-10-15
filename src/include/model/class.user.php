@@ -2,7 +2,7 @@
 /**
  * 用户管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: class.user.php 1732 2010-06-04 15:37:57Z emloog@gmail.com $
  */
 
 class emUser {

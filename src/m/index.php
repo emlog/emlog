@@ -49,7 +49,7 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $emComment->getComments(0, $logid, 'n');
 
 	$user_cache = $CACHE->readCache('user');
@@ -273,7 +273,7 @@ if (ISLOGIN === true && $action == 'delt') {
 }
 if ($action == 'login') {
 	Option::get('login_code') == 'y' ? $ckcode = "<span>验证码</span>
-    <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
+    <div class=\"val\"><img src=\"../include/lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
 	include View::getView('header');

@@ -3,7 +3,7 @@
  * 日志、页面管理
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: class.blog.php 1781 2010-10-14 09:04:55Z emloog $
  */
 
 class emBlog {
@@ -134,7 +134,7 @@ class emBlog {
     	}
     	$blogtitle = $log_title.' - '.$blogname;
 	    //comments
-	    $verifyCode = $comment_code == 'y' ? "<img src=\"".BLOG_URL."lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
+	    $verifyCode = $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
 	    $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 	    $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
 	    $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';

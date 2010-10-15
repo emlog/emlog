@@ -4,7 +4,5 @@
 
 User-agent: *
 Disallow: /admin/
-Disallow: /content/
-Disallow: /lib/
-Disallow: /model/
+Disallow: /include/
 Disallow: /config.php

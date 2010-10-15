@@ -11,8 +11,8 @@ ob_start();
 define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once EMLOG_ROOT.'/config.php';
-require_once EMLOG_ROOT.'/lib/function.base.php';
-require_once EMLOG_ROOT.'/lib/function.login.php';
+require_once EMLOG_ROOT.'/include/lib/function.base.php';
+require_once EMLOG_ROOT.'/include/lib/function.login.php';
 
 doStripslashes();
 
