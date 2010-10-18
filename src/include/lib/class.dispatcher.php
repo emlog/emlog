@@ -12,12 +12,12 @@ class Dispatcher {
     /**
      * 请求模块
      */
-    private $_model;
+    private $_model = 'LogController';
 
     /**
      * 请求模块方法
      */
-    private $_method;
+    private $_method = 'display';
 
     /**
      * 请求参数
@@ -50,15 +50,17 @@ class Dispatcher {
         foreach ($this->_routingTable as $route) {
             $reg = isset($route['reg_'.Option::get('isurlrewrite')]) ? 
                      $route['reg_'.Option::get('isurlrewrite')] : 
-                     $route['reg'];
+                     $route['reg_0'];
             if (preg_match($reg, $this->_path, $matches)) {
                 $this->_model = $route['model'];
                 $this->_method = $route['method'];
                 $this->_params = $matches;
                 break;
-            } else {
-                $this->_model = 'LogController';
-                $this->_method = 'display';
+            } elseif (preg_match($route['reg_0'], $this->_path, $matches)) {
+                $this->_model = $route['model'];
+                $this->_method = $route['method'];
+                $this->_params = $matches;
+                break;
             }
         }
     }
