@@ -182,36 +182,11 @@ class emComment {
 		}
 	}
 
-	function addComment() {
-		$comment_code = Option::get('comment_code');
-		$ischkcomment = Option::get('ischkcomment');
-
-    	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
-    	$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
-    	$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
-    	$url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-    	$imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
-    	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
-		
-		if ($url && strncasecmp($url,'http://',7)) {
-			$url = 'http://'.$url;
-		}
-		$this->setCommentCookie($name,$mail,$url);
-		if($this->isLogCanComment($blogId) === false){
-			emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
-		}elseif ($this->isCommentExist($blogId, $name, $content) === true){
-			emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
-		}elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
-			emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');;
-		} elseif ($mail != '' && !checkMail($mail)) {
-			emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
-		} elseif (strlen($content) == '' || strlen($content) > 2000) {
-			emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
-		} elseif ($comment_code == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-			emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
-		} else {
+	function addComment($name, $content, $mail, $url, $imgcode, $blogId) 
+	{
 			$ipaddr = getIp();
 			$utctimestamp = time();
+			$ischkcomment = Option::get('ischkcomment');
 			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
 					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
 			$ret = $this->db->query($sql);
@@ -226,7 +201,6 @@ class emComment {
 		        doAction('comment_saved');
 		        emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
 			}
-		}
 	}
 
 	function isCommentExist($blogId, $name, $content)

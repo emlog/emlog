@@ -11,7 +11,9 @@ function __autoload($class) {
     	require_once(EMLOG_ROOT . '/include/model/class.'. $class . '.php');
     } elseif (file_exists(EMLOG_ROOT . '/include/lib/class.'. $class . '.php')) {
         require_once(EMLOG_ROOT . '/include/lib/class.'. $class . '.php');
-    }else{
+    } elseif (file_exists(EMLOG_ROOT . '/include/controller/class.'. $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/controller/class.'. $class . '.php');
+    } else{
     	emMsg($class.'加载失败。', BLOG_URL);
     }
 }

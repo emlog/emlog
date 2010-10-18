@@ -12,6 +12,6 @@ define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//前台模�
 define('CURPAGE_HOME',  'home');
 define('CURPAGE_LOG',   'echo_log');
 
-$emController = Controller::getInstance();
-$emController->route();
+$emDispatcher = Dispatcher::getInstance();
+$emDispatcher->dispatch();
 View::output();
