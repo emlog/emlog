@@ -13,6 +13,7 @@ $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = BLOG_URL;
 $blog = getBlog($sort);
+$user_cache = $CACHE->readCache('user');
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
