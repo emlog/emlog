@@ -1,23 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<script>
-KE.show({
-id : 'content',
-resizeMode : 1,
-allowUpload : false,
-items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize','removeformat','wordpaste',
-         'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
-         'link','unlink','image','flash','advtable','emoticons','source','|','about']
-});
-KE.show({
-	id : 'excerpt',
-	resizeMode : 1,
-	allowUpload : false,
-	items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize','removeformat','wordpaste',
-	         'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
-	         'link','unlink','image','flash','advtable','emoticons','source','|','about']
-	});
-</script>
 <div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -41,7 +23,9 @@ KE.show({
           <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);autosave(1);" class="thickbox">附件管理</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
+          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
 		  <textarea id="content" name="content" cols="100" rows="8" style="width:719px; height:460px;"></textarea>
+          <script>loadEditor('content');</script>
           </td>
         </tr>
         <tr nowrap="nowrap">
@@ -51,8 +35,7 @@ KE.show({
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
           <?php 
           $tagStr = '';
-          foreach ($tags as $val)
-          {
+          foreach ($tags as $val){
           	$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
           }
           echo $tagStr;
@@ -67,6 +50,7 @@ KE.show({
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
 			<textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea>
+            <script>loadEditor('excerpt');</script>
           </td>
         </tr>      
         <tr nowrap="nowrap">

@@ -69,17 +69,12 @@ function checkform(){
 	var t = $.trim($("#title").val());
 	if (t==""){alert("标题不能为空");$("#title").focus();return false;}else return true;
 }
-//att
-function addhtml(content){
-	if (KE.g['content'].wyswygMode == false)
-	{
+function addattach(imgurl,imgsrc,aid){
+	if (KE.g['content'].wyswygMode == false){
 		alert('请先切换到所见所得模式');
 	}else {
-		KE.insertHtml('content',content);
+		KE.insertHtml('content','<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 	}
-}
-function addattach(imgurl,imgsrc,aid){
-	addhtml('<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 }
 function insertTag (tag, boxId){
 	var targetinput = $("#"+boxId).val();

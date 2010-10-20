@@ -166,3 +166,14 @@ i.focus();return false}if(!k.match(/^\d*$/)){alert(f.lang.invalidPadding);l.focu
 if(r!=="")b.style.backgroundColor=r;else if(b.style.backgroundColor)b.style.backgroundColor="";b.bgColor!==d&&b.removeAttribute("bgColor");if(k!=="")b.cellPadding=k;else b.removeAttribute("cellPadding");if(x!=="")b.cellSpacing=x;else b.removeAttribute("cellSpacing");if(p!=="")b.align=p;else b.removeAttribute("align");w===""||w==="0"?f.addClass(b,"ke-zeroborder"):f.removeClass(b,"ke-zeroborder");w!==""?b.setAttribute("border",w):b.removeAttribute("border");q!==""?b.setAttribute("borderColor",q):b.removeAttribute("borderColor");
 f.util.execOnchangeHandler(a)}else{c="";if(n!=="")c+="width:"+n+j+";";if(v!=="")c+="height:"+v+t+";";if(r!=="")c+="background-color:"+r+";";n="<table";if(c!=="")n+=' style="'+c+'"';if(k!=="")n+=' cellpadding="'+k+'"';if(x!=="")n+=' cellspacing="'+x+'"';if(p!=="")n+=' align="'+p+'"';if(w===""||w==="0")n+=' class="ke-zeroborder"';if(w!=="")n+=' border="'+w+'"';if(q!=="")n+=' bordercolor="'+q+'"';n+=">";for(v=0;v<b;v++){n+="<tr>";for(c=0;c<u;c++)n+="<td>&nbsp;</td>";n+="</tr>"}n+="</table>";f.util.insertHtml(a,
 n)}this.dialog.hide();f.util.focus(a)}}})(KindEditor);
+function loadEditor(id){
+	KE.show({
+		id : id,
+		resizeMode : 1,
+		allowUpload : false,
+		items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize',
+				'removeformat','wordpaste',
+				'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
+				'link','unlink','image','flash','advtable','emoticons','source','|','about']
+		});
+}

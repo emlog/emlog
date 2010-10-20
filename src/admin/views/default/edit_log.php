@@ -3,16 +3,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<script>
-KE.show({
-id : 'content',
-resizeMode : 1,
-allowUpload : false,
-items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize','removeformat','wordpaste',
-         'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
-         'link','unlink','image','flash','advtable','emoticons','source','|','about']
-});
-</script>
 <div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?>
     </b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
@@ -42,6 +32,7 @@ items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','font
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+          <script>loadEditor('content');</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">
@@ -51,8 +42,7 @@ items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','font
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
           <?php
           $tagStr = '';
-          foreach ($tags as $val)
-          {
+          foreach ($tags as $val){
           	$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
           }
           echo $tagStr;
@@ -67,7 +57,7 @@ items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','font
         <tr nowrap="nowrap">
           <td>日志摘要：<br />
 		  <textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
-		  <script type="text/javascript">CKEDITOR.replace( 'excerpt',{resize_minHeight : 230,height : 230});</script>
+		  <script>loadEditor('excerpt');</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">
