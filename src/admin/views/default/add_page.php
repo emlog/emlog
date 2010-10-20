@@ -1,4 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<script charset="utf-8" src="./editor/kindeditor.js"></script>
+<script>
+KE.show({
+id : 'content',
+resizeMode : 1,
+allowUpload : false,
+items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize','removeformat','wordpaste',
+         'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
+         'link','unlink','image','flash','advtable','emoticons','source','|','about']
+});
+</script>
 <div class=containertitle><b>新建页面</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -16,9 +27,7 @@
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
-          <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"></textarea>
-		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">

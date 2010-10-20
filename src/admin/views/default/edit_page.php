@@ -1,4 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<script charset="utf-8" src="./editor/kindeditor.js"></script>
+<script>
+KE.show({
+id : 'content',
+resizeMode : 1,
+allowUpload : false,
+items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize','removeformat','wordpaste',
+         'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
+         'link','unlink','image','flash','advtable','emoticons','source','|','about']
+});
+</script>
 <div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div><div id="msg"></div>
 <div class=line></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
@@ -14,10 +25,8 @@
           <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>"></span><br />
-          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe></div> 
-          <script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe></div>          
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
-		  <script type="text/javascript">CKEDITOR.replace( 'content',{resize_minHeight : 460,height : 460});</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">
