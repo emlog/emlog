@@ -171,6 +171,7 @@ function loadEditor(id){
 		id : id,
 		resizeMode : 1,
 		allowUpload : false,
+		urlType : 'absolute',
 		items : ['bold','italic','underline','strikethrough','textcolor','bgcolor','fontname','fontsize',
 				'removeformat','wordpaste',
 				'insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright',
