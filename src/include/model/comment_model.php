@@ -2,7 +2,7 @@
 /**
  * 评论管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.comment.php 1772 2010-10-11 15:22:55Z emloog $
+ * $Id$
  */
 
 class Comment_Model {

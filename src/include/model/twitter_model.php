@@ -3,7 +3,7 @@
  * 碎语twitter
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.twittter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
+ * $Id$
  */
 
 class Twitter_Model {

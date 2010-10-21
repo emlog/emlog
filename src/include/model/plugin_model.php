@@ -2,7 +2,7 @@
 /**
  * 插件
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.plugin.php 1770 2010-10-10 15:30:30Z emloog $
+ * $Id$
  */
 
 class Plugin_Model {

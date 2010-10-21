@@ -2,7 +2,7 @@
 /**
  * 引用通告管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.trackback.php 1766 2010-10-10 01:23:37Z emloog $
+ * $Id$
  */
 
 

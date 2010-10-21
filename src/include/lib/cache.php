@@ -3,7 +3,7 @@
  * 生成文本缓存类
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.cache.php 1779 2010-10-14 08:20:24Z emloog $
+ * $Id$
  */
 
 class Cache {

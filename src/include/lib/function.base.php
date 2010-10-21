@@ -2,11 +2,11 @@
 /**
  * 基础函数库
  * @copyright (c) Emlog All Rights Reserved
- * $Id: function.base.php 1773 2010-10-12 02:21:58Z emloog $
+ * $Id$
  */
 
 function __autoload($class) {
-	$class = preg_replace('/^(em)([\w]+)$/', '\\2', strtolower($class));
+	$class = strtolower($class);
     if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
     	require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
     } elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {

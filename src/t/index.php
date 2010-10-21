@@ -2,7 +2,7 @@
 /**
  * 碎语
  * @copyright (c) Emlog All Rights Reserved
- * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
+ * $Id$
 */
 
 require_once '../init.php';

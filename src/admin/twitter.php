@@ -2,7 +2,7 @@
 /**
  * 碎语
  * @copyright (c) Emlog All Rights Reserved
- * $Id: twitter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
+ * $Id$
  */
 
 require_once 'globals.php';

@@ -2,7 +2,7 @@
 /**
  * 友情链接
  * @copyright (c) Emlog All Rights Reserved
- * $Id: class.link.php 1732 2010-06-04 15:37:57Z emloog@gmail.com $
+ * $Id$
  */
 
 class Link_Model {

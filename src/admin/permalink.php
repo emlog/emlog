@@ -2,7 +2,7 @@
 /**
  * 固定连接
  * @copyright (c) Emlog All Rights Reserved
- * $Id: configure.php 1448 2009-08-29 06:25:11Z emloog $
+ * $Id$
  */
 
 require_once 'globals.php';

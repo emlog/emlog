@@ -8,249 +8,249 @@ src/admin/blogger.php -text svn_keywords=Id
 src/admin/comment.php -text svn_keywords=Id
 src/admin/configure.php -text svn_keywords=Id
 src/admin/data.php -text svn_keywords=Id
-src/admin/editor/kindeditor.js -text
-src/admin/editor/plugins/about.html -text
-src/admin/editor/plugins/advtable/advtable.html -text
-src/admin/editor/plugins/emoticons/0.gif -text
-src/admin/editor/plugins/emoticons/1.gif -text
-src/admin/editor/plugins/emoticons/10.gif -text
-src/admin/editor/plugins/emoticons/11.gif -text
-src/admin/editor/plugins/emoticons/12.gif -text
-src/admin/editor/plugins/emoticons/13.gif -text
-src/admin/editor/plugins/emoticons/14.gif -text
-src/admin/editor/plugins/emoticons/15.gif -text
-src/admin/editor/plugins/emoticons/16.gif -text
-src/admin/editor/plugins/emoticons/17.gif -text
-src/admin/editor/plugins/emoticons/18.gif -text
-src/admin/editor/plugins/emoticons/19.gif -text
-src/admin/editor/plugins/emoticons/2.gif -text
-src/admin/editor/plugins/emoticons/20.gif -text
-src/admin/editor/plugins/emoticons/21.gif -text
-src/admin/editor/plugins/emoticons/22.gif -text
-src/admin/editor/plugins/emoticons/23.gif -text
-src/admin/editor/plugins/emoticons/24.gif -text
-src/admin/editor/plugins/emoticons/25.gif -text
-src/admin/editor/plugins/emoticons/26.gif -text
-src/admin/editor/plugins/emoticons/27.gif -text
-src/admin/editor/plugins/emoticons/28.gif -text
-src/admin/editor/plugins/emoticons/29.gif -text
-src/admin/editor/plugins/emoticons/3.gif -text
-src/admin/editor/plugins/emoticons/30.gif -text
-src/admin/editor/plugins/emoticons/31.gif -text
-src/admin/editor/plugins/emoticons/32.gif -text
-src/admin/editor/plugins/emoticons/33.gif -text
-src/admin/editor/plugins/emoticons/34.gif -text
-src/admin/editor/plugins/emoticons/35.gif -text
-src/admin/editor/plugins/emoticons/36.gif -text
-src/admin/editor/plugins/emoticons/37.gif -text
-src/admin/editor/plugins/emoticons/4.gif -text
-src/admin/editor/plugins/emoticons/5.gif -text
-src/admin/editor/plugins/emoticons/6.gif -text
-src/admin/editor/plugins/emoticons/7.gif -text
-src/admin/editor/plugins/emoticons/8.gif -text
-src/admin/editor/plugins/emoticons/9.gif -text
-src/admin/editor/plugins/emoticons/qq.gif -text
-src/admin/editor/plugins/flash.html -text
-src/admin/editor/plugins/image/image.html -text
-src/admin/editor/plugins/image/images/align_left.gif -text
-src/admin/editor/plugins/image/images/align_right.gif -text
-src/admin/editor/plugins/image/images/align_top.gif -text
-src/admin/editor/plugins/image/images/refresh.gif -text
-src/admin/editor/plugins/link/link.html -text
-src/admin/editor/plugins/media.html -text
-src/admin/editor/plugins/plainpaste.html -text
-src/admin/editor/plugins/wordpaste.html -text
-src/admin/editor/skins/common/blank.gif -text
-src/admin/editor/skins/common/editor.css -text
-src/admin/editor/skins/common/flash.gif -text
-src/admin/editor/skins/common/loading.gif -text
-src/admin/editor/skins/common/media.gif -text
-src/admin/editor/skins/common/rm.gif -text
-src/admin/editor/skins/default.css -text
-src/admin/editor/skins/default/default.gif -text
-src/admin/editor/skins/default/toolbar.space.gif -text
+src/admin/editor/kindeditor.js -text svn_keywords=Id
+src/admin/editor/plugins/about.html -text svn_keywords=Id
+src/admin/editor/plugins/advtable/advtable.html -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/0.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/1.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/10.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/11.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/12.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/13.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/14.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/15.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/16.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/17.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/18.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/19.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/2.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/20.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/21.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/22.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/23.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/24.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/25.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/26.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/27.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/28.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/29.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/3.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/30.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/31.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/32.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/33.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/34.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/35.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/36.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/37.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/4.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/5.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/6.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/7.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/8.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/9.gif -text svn_keywords=Id
+src/admin/editor/plugins/emoticons/qq.gif -text svn_keywords=Id
+src/admin/editor/plugins/flash.html -text svn_keywords=Id
+src/admin/editor/plugins/image/image.html -text svn_keywords=Id
+src/admin/editor/plugins/image/images/align_left.gif -text svn_keywords=Id
+src/admin/editor/plugins/image/images/align_right.gif -text svn_keywords=Id
+src/admin/editor/plugins/image/images/align_top.gif -text svn_keywords=Id
+src/admin/editor/plugins/image/images/refresh.gif -text svn_keywords=Id
+src/admin/editor/plugins/link/link.html -text svn_keywords=Id
+src/admin/editor/plugins/media.html -text svn_keywords=Id
+src/admin/editor/plugins/plainpaste.html -text svn_keywords=Id
+src/admin/editor/plugins/wordpaste.html -text svn_keywords=Id
+src/admin/editor/skins/common/blank.gif -text svn_keywords=Id
+src/admin/editor/skins/common/editor.css -text svn_keywords=Id
+src/admin/editor/skins/common/flash.gif -text svn_keywords=Id
+src/admin/editor/skins/common/loading.gif -text svn_keywords=Id
+src/admin/editor/skins/common/media.gif -text svn_keywords=Id
+src/admin/editor/skins/common/rm.gif -text svn_keywords=Id
+src/admin/editor/skins/default.css -text svn_keywords=Id
+src/admin/editor/skins/default/default.gif -text svn_keywords=Id
+src/admin/editor/skins/default/toolbar.space.gif -text svn_keywords=Id
 src/admin/globals.php -text svn_keywords=Id
 src/admin/index.php -text svn_keywords=Id
 src/admin/link.php -text svn_keywords=Id
 src/admin/page.php -text svn_keywords=Id
-src/admin/permalink.php -text
+src/admin/permalink.php -text svn_keywords=Id
 src/admin/plugin.php -text svn_keywords=Id
 src/admin/save_log.php -text svn_keywords=Id
 src/admin/sort.php -text svn_keywords=Id
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/trackback.php -text svn_keywords=Id
-src/admin/twitter.php -text
+src/admin/twitter.php -text svn_keywords=Id
 src/admin/user.php -text svn_keywords=Id
 src/admin/views/default/add_log.php -text svn_keywords=Id
-src/admin/views/default/add_page.php -text
+src/admin/views/default/add_page.php -text svn_keywords=Id
 src/admin/views/default/admin_log.php -text svn_keywords=Id
-src/admin/views/default/admin_page.php -text
-src/admin/views/default/attlib.php -text
+src/admin/views/default/admin_page.php -text svn_keywords=Id
+src/admin/views/default/attlib.php -text svn_keywords=Id
 src/admin/views/default/blogger.php -text svn_keywords=Id
 src/admin/views/default/comment.php -text svn_keywords=Id
 src/admin/views/default/comment_reply.php -text svn_keywords=Id
-src/admin/views/default/common.js -text
+src/admin/views/default/common.js -text svn_keywords=Id
 src/admin/views/default/configure.php -text svn_keywords=Id
-src/admin/views/default/css-att.css -text
-src/admin/views/default/css-login.css -text
+src/admin/views/default/css-att.css -text svn_keywords=Id
+src/admin/views/default/css-login.css -text svn_keywords=Id
 src/admin/views/default/css-main.css -text svn_keywords=Id
 src/admin/views/default/data.php -text svn_keywords=Id
 src/admin/views/default/edit_log.php -text svn_keywords=Id
-src/admin/views/default/edit_page.php -text
+src/admin/views/default/edit_page.php -text svn_keywords=Id
 src/admin/views/default/footer.php -text svn_keywords=Id
 src/admin/views/default/header.php -text svn_keywords=Id
 src/admin/views/default/images/addblog.gif -text svn_keywords=Id
 src/admin/views/default/images/adm_menu_bg.gif -text svn_keywords=Id
-src/admin/views/default/images/admindex_itembg.gif -text
-src/admin/views/default/images/advset.gif -text
-src/admin/views/default/images/avatar.jpg -text
-src/admin/views/default/images/coment_numbg.gif -text
+src/admin/views/default/images/admindex_itembg.gif -text svn_keywords=Id
+src/admin/views/default/images/advset.gif -text svn_keywords=Id
+src/admin/views/default/images/avatar.jpg -text svn_keywords=Id
+src/admin/views/default/images/coment_numbg.gif -text svn_keywords=Id
 src/admin/views/default/images/fnone.gif -text svn_keywords=Id
-src/admin/views/default/images/icon_add.gif -text
-src/admin/views/default/images/icon_del.gif -text
-src/admin/views/default/images/icon_error.gif -text
-src/admin/views/default/images/icon_succ.gif -text
-src/admin/views/default/images/left_b.gif -text
-src/admin/views/default/images/loading.gif -text
-src/admin/views/default/images/login_back.gif -text
-src/admin/views/default/images/login_bottom.png -text
-src/admin/views/default/images/login_button.gif -text
-src/admin/views/default/images/login_input-back.gif -text
-src/admin/views/default/images/login_logo.png -text
-src/admin/views/default/images/login_top.png -text
-src/admin/views/default/images/logo.gif -text
-src/admin/views/default/images/logo.png -text
-src/admin/views/default/images/m.gif -text
+src/admin/views/default/images/icon_add.gif -text svn_keywords=Id
+src/admin/views/default/images/icon_del.gif -text svn_keywords=Id
+src/admin/views/default/images/icon_error.gif -text svn_keywords=Id
+src/admin/views/default/images/icon_succ.gif -text svn_keywords=Id
+src/admin/views/default/images/left_b.gif -text svn_keywords=Id
+src/admin/views/default/images/loading.gif -text svn_keywords=Id
+src/admin/views/default/images/login_back.gif -text svn_keywords=Id
+src/admin/views/default/images/login_bottom.png -text svn_keywords=Id
+src/admin/views/default/images/login_button.gif -text svn_keywords=Id
+src/admin/views/default/images/login_input-back.gif -text svn_keywords=Id
+src/admin/views/default/images/login_logo.png -text svn_keywords=Id
+src/admin/views/default/images/login_top.png -text svn_keywords=Id
+src/admin/views/default/images/logo.gif -text svn_keywords=Id
+src/admin/views/default/images/logo.png -text svn_keywords=Id
+src/admin/views/default/images/m.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_bg1.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_no.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_ok.gif -text svn_keywords=Id
-src/admin/views/default/images/plugin.gif -text
-src/admin/views/default/images/plugin_active.gif -text
-src/admin/views/default/images/plugin_inactive.gif -text
-src/admin/views/default/images/setting.gif -text
+src/admin/views/default/images/plugin.gif -text svn_keywords=Id
+src/admin/views/default/images/plugin_active.gif -text svn_keywords=Id
+src/admin/views/default/images/plugin_inactive.gif -text svn_keywords=Id
+src/admin/views/default/images/setting.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_b.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_bg_t.gif -text svn_keywords=Id
 src/admin/views/default/images/sidebar_smenu_bg.gif -text svn_keywords=Id
-src/admin/views/default/images/skin.gif -text
-src/admin/views/default/images/t.gif -text
-src/admin/views/default/images/t.png -text
+src/admin/views/default/images/skin.gif -text svn_keywords=Id
+src/admin/views/default/images/t.gif -text svn_keywords=Id
+src/admin/views/default/images/t.png -text svn_keywords=Id
 src/admin/views/default/images/tar.gif -text svn_keywords=Id
-src/admin/views/default/images/top_left.png -text
-src/admin/views/default/images/top_line1.png -text
-src/admin/views/default/images/top_m.gif -text
-src/admin/views/default/images/top_mid.gif -text
-src/admin/views/default/images/top_right.png -text
-src/admin/views/default/images/vlog.gif -text
-src/admin/views/default/images/weibe_bl.gif -text
-src/admin/views/default/images/weibe_button.gif -text
-src/admin/views/default/images/yeka.gif -text
+src/admin/views/default/images/top_left.png -text svn_keywords=Id
+src/admin/views/default/images/top_line1.png -text svn_keywords=Id
+src/admin/views/default/images/top_m.gif -text svn_keywords=Id
+src/admin/views/default/images/top_mid.gif -text svn_keywords=Id
+src/admin/views/default/images/top_right.png -text svn_keywords=Id
+src/admin/views/default/images/vlog.gif -text svn_keywords=Id
+src/admin/views/default/images/weibe_bl.gif -text svn_keywords=Id
+src/admin/views/default/images/weibe_button.gif -text svn_keywords=Id
+src/admin/views/default/images/yeka.gif -text svn_keywords=Id
 src/admin/views/default/index.php -text svn_keywords=Id
 src/admin/views/default/linkedit.php -text svn_keywords=Id
 src/admin/views/default/links.php -text svn_keywords=Id
 src/admin/views/default/login.php -text svn_keywords=Id
 src/admin/views/default/msg.php -text svn_keywords=Id
-src/admin/views/default/permalink.php -text
-src/admin/views/default/plugin.php -text
-src/admin/views/default/sort.php -text
+src/admin/views/default/permalink.php -text svn_keywords=Id
+src/admin/views/default/plugin.php -text svn_keywords=Id
+src/admin/views/default/sort.php -text svn_keywords=Id
 src/admin/views/default/tag.php -text svn_keywords=Id
 src/admin/views/default/tagedit.php -text svn_keywords=Id
 src/admin/views/default/template.php -text svn_keywords=Id
 src/admin/views/default/trackback.php -text svn_keywords=Id
-src/admin/views/default/twitter.php -text
-src/admin/views/default/upload.php -text
-src/admin/views/default/user.php -text
-src/admin/views/default/useredit.php -text
-src/admin/views/default/widgets.php -text
+src/admin/views/default/twitter.php -text svn_keywords=Id
+src/admin/views/default/upload.php -text svn_keywords=Id
+src/admin/views/default/user.php -text svn_keywords=Id
+src/admin/views/default/useredit.php -text svn_keywords=Id
+src/admin/views/default/widgets.php -text svn_keywords=Id
 src/admin/widgets.php -text svn_keywords=Id
 src/admin/write_log.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
-src/content/backup/index.htm -text
-src/content/plugins/index.htm -text
-src/content/plugins/tips/icon_tips.gif -text
-src/content/plugins/tips/tips.php -text
-src/content/templates/default/echo_log.php -text
-src/content/templates/default/footer.php -text
-src/content/templates/default/header.php -text
-src/content/templates/default/images/bg_cal_today.gif -text
-src/content/templates/default/images/bottom.png -text
-src/content/templates/default/images/button.png -text
-src/content/templates/default/images/c_bottom.gif -text
-src/content/templates/default/images/c_m.gif -text
-src/content/templates/default/images/c_top.gif -text
-src/content/templates/default/images/comment_back.gif -text
-src/content/templates/default/images/ecoh_tag.gif -text
-src/content/templates/default/images/em_button.gif -text
-src/content/templates/default/images/em_input-back.gif -text
-src/content/templates/default/images/icon_rss.gif -text
-src/content/templates/default/images/import.gif -text
-src/content/templates/default/images/logserch_logserch.gif -text
-src/content/templates/default/images/reply.gif -text
-src/content/templates/default/images/rss.gif -text
-src/content/templates/default/images/sidebar_list.gif -text
-src/content/templates/default/images/t.gif -text
-src/content/templates/default/images/top_back.png -text
-src/content/templates/default/images/weibe_button.gif -text
-src/content/templates/default/log_list.php -text
-src/content/templates/default/main.css -text
-src/content/templates/default/module.php -text
-src/content/templates/default/page.php -text
-src/content/templates/default/preview.jpg -text
-src/content/templates/default/side.php -text
-src/content/templates/default/t.php -text
-src/content/uploadfile/index.htm -text
-src/include/controller/author_controller.php -text
-src/include/controller/comment_controller.php -text
-src/include/controller/log_controller.php -text
-src/include/controller/plugin_controller.php -text
-src/include/controller/record_controller.php -text
-src/include/controller/search_controller.php -text
-src/include/controller/sort_controller.php -text
-src/include/controller/tag_controller.php -text
-src/include/lib/cache.php -text
-src/include/lib/calendar.php -text
-src/include/lib/checkcode.php -text
-src/include/lib/dispatcher.php -text
-src/include/lib/function.base.php -text
-src/include/lib/function.login.php -text
-src/include/lib/js/common_tpl.js -text
-src/include/lib/js/jquery/jquery-1.2.6.js -text
-src/include/lib/js/jquery/plugin-cookie.js -text
-src/include/lib/js/jquery/plugin-interface.js -text
-src/include/lib/mysql.php -text
-src/include/lib/option.php -text
-src/include/lib/passwordhash.php -text
-src/include/lib/url.php -text
-src/include/lib/view.php -text
-src/include/model/comment_model.php -text
-src/include/model/link_model.php -text
-src/include/model/log_model.php -text
-src/include/model/plugin_model.php -text
-src/include/model/reply_model.php -text
-src/include/model/sort_model.php -text
-src/include/model/tag_model.php -text
-src/include/model/trackback_model.php -text
-src/include/model/twitter_model.php -text
-src/include/model/user_model.php -text
+src/content/backup/index.htm -text svn_keywords=Id
+src/content/plugins/index.htm -text svn_keywords=Id
+src/content/plugins/tips/icon_tips.gif -text svn_keywords=Id
+src/content/plugins/tips/tips.php -text svn_keywords=Id
+src/content/templates/default/echo_log.php -text svn_keywords=Id
+src/content/templates/default/footer.php -text svn_keywords=Id
+src/content/templates/default/header.php -text svn_keywords=Id
+src/content/templates/default/images/bg_cal_today.gif -text svn_keywords=Id
+src/content/templates/default/images/bottom.png -text svn_keywords=Id
+src/content/templates/default/images/button.png -text svn_keywords=Id
+src/content/templates/default/images/c_bottom.gif -text svn_keywords=Id
+src/content/templates/default/images/c_m.gif -text svn_keywords=Id
+src/content/templates/default/images/c_top.gif -text svn_keywords=Id
+src/content/templates/default/images/comment_back.gif -text svn_keywords=Id
+src/content/templates/default/images/ecoh_tag.gif -text svn_keywords=Id
+src/content/templates/default/images/em_button.gif -text svn_keywords=Id
+src/content/templates/default/images/em_input-back.gif -text svn_keywords=Id
+src/content/templates/default/images/icon_rss.gif -text svn_keywords=Id
+src/content/templates/default/images/import.gif -text svn_keywords=Id
+src/content/templates/default/images/logserch_logserch.gif -text svn_keywords=Id
+src/content/templates/default/images/reply.gif -text svn_keywords=Id
+src/content/templates/default/images/rss.gif -text svn_keywords=Id
+src/content/templates/default/images/sidebar_list.gif -text svn_keywords=Id
+src/content/templates/default/images/t.gif -text svn_keywords=Id
+src/content/templates/default/images/top_back.png -text svn_keywords=Id
+src/content/templates/default/images/weibe_button.gif -text svn_keywords=Id
+src/content/templates/default/log_list.php -text svn_keywords=Id
+src/content/templates/default/main.css -text svn_keywords=Id
+src/content/templates/default/module.php -text svn_keywords=Id
+src/content/templates/default/page.php -text svn_keywords=Id
+src/content/templates/default/preview.jpg -text svn_keywords=Id
+src/content/templates/default/side.php -text svn_keywords=Id
+src/content/templates/default/t.php -text svn_keywords=Id
+src/content/uploadfile/index.htm -text svn_keywords=Id
+src/include/controller/author_controller.php -text svn_keywords=Id
+src/include/controller/comment_controller.php -text svn_keywords=Id
+src/include/controller/log_controller.php -text svn_keywords=Id
+src/include/controller/plugin_controller.php -text svn_keywords=Id
+src/include/controller/record_controller.php -text svn_keywords=Id
+src/include/controller/search_controller.php -text svn_keywords=Id
+src/include/controller/sort_controller.php -text svn_keywords=Id
+src/include/controller/tag_controller.php -text svn_keywords=Id
+src/include/lib/cache.php -text svn_keywords=Id
+src/include/lib/calendar.php -text svn_keywords=Id
+src/include/lib/checkcode.php -text svn_keywords=Id
+src/include/lib/dispatcher.php -text svn_keywords=Id
+src/include/lib/function.base.php -text svn_keywords=Id
+src/include/lib/function.login.php -text svn_keywords=Id
+src/include/lib/js/common_tpl.js -text svn_keywords=Id
+src/include/lib/js/jquery/jquery-1.2.6.js -text svn_keywords=Id
+src/include/lib/js/jquery/plugin-cookie.js -text svn_keywords=Id
+src/include/lib/js/jquery/plugin-interface.js -text svn_keywords=Id
+src/include/lib/mysql.php -text svn_keywords=Id
+src/include/lib/option.php -text svn_keywords=Id
+src/include/lib/passwordhash.php -text svn_keywords=Id
+src/include/lib/url.php -text svn_keywords=Id
+src/include/lib/view.php -text svn_keywords=Id
+src/include/model/comment_model.php -text svn_keywords=Id
+src/include/model/link_model.php -text svn_keywords=Id
+src/include/model/log_model.php -text svn_keywords=Id
+src/include/model/plugin_model.php -text svn_keywords=Id
+src/include/model/reply_model.php -text svn_keywords=Id
+src/include/model/sort_model.php -text svn_keywords=Id
+src/include/model/tag_model.php -text svn_keywords=Id
+src/include/model/trackback_model.php -text svn_keywords=Id
+src/include/model/twitter_model.php -text svn_keywords=Id
+src/include/model/user_model.php -text svn_keywords=Id
 src/index.php -text svn_keywords=Id
-src/init.php -text
+src/init.php -text svn_keywords=Id
 src/install.php -text svn_keywords=Id
-src/m/index.php -text
-src/m/view/comment.php -text
-src/m/view/footer.php -text
-src/m/view/header.php -text
-src/m/view/log.php -text
-src/m/view/logauth.php -text
-src/m/view/login.php -text
-src/m/view/msg.php -text
-src/m/view/reply.php -text
-src/m/view/single.php -text
-src/m/view/twitter.php -text
-src/m/view/write.php -text
-src/robots.txt -text
+src/m/index.php -text svn_keywords=Id
+src/m/view/comment.php -text svn_keywords=Id
+src/m/view/footer.php -text svn_keywords=Id
+src/m/view/header.php -text svn_keywords=Id
+src/m/view/log.php -text svn_keywords=Id
+src/m/view/logauth.php -text svn_keywords=Id
+src/m/view/login.php -text svn_keywords=Id
+src/m/view/msg.php -text svn_keywords=Id
+src/m/view/reply.php -text svn_keywords=Id
+src/m/view/single.php -text svn_keywords=Id
+src/m/view/twitter.php -text svn_keywords=Id
+src/m/view/write.php -text svn_keywords=Id
+src/robots.txt -text svn_keywords=Id
 src/rss.php -text svn_keywords=Id
-src/t/index.php -text
+src/t/index.php -text svn_keywords=Id
 src/tb.php -text svn_keywords=Id
-src/wlwmanifest.xml -text
+src/wlwmanifest.xml -text svn_keywords=Id
 src/xmlrpc.php -text svn_keywords=Id
