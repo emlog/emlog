@@ -19,13 +19,13 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 // 首页
 if (empty ($action) && empty ($logid)) {
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	$page = isset($_GET['page']) ? abs(intval ($_GET['page'])) : 1;
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
 	$sta_cache = $CACHE->readCache('sta');
 	$lognum = $sta_cache['lognum'];
 	$pageurl = '?page';
-	$logs = $emBlog->getLogsForHome ($sqlSegment, $page, $index_lognum);
+	$logs = $Log_Model->getLogsForHome ($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 	include View::getView('header');
@@ -35,10 +35,10 @@ if (empty ($action) && empty ($logid)) {
 }
 // 日志
 if (!empty ($logid)) {
-	$emBlog = new emBlog();
-	$emComment = new emComment();
+	$Log_Model = new Log_Model();
+	$Comment_Model = new Comment_Model();
 
-	$logData = $emBlog->getOneLogForHome($logid);
+	$logData = $Log_Model->getOneLogForHome($logid);
 	if ($logData === false) {
 		mMsg ('不存在该条目', './');
 	}
@@ -50,11 +50,11 @@ if (!empty ($logid)) {
 	}
 	// comments
 	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
-	$comments = $emComment->getComments(0, $logid, 'n');
+	$comments = $Comment_Model->getComments(0, $logid, 'n');
 
 	$user_cache = $CACHE->readCache('user');
 
-	$emBlog->updateViewCount($logid);
+	$Log_Model->updateViewCount($logid);
 	include View::getView('header');
 	include View::getView('single');
 	include View::getView('footer');
@@ -62,16 +62,16 @@ if (!empty ($logid)) {
 }
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
 	if ($logid) {
-		$emBlog = new emBlog();
-		$emTag = new emTag();
+		$Log_Model = new Log_Model();
+		$Tag_Model = new Tag_Model();
 
-		$blogData = $emBlog->getOneLogForAdmin($logid);
+		$blogData = $Log_Model->getOneLogForAdmin($logid);
 		extract($blogData);
 		$tags = array();
-		foreach ($emTag->getTag($logid) as $val) {
+		foreach ($Tag_Model->getTag($logid) as $val) {
 			$tags[] = $val['tagname'];
 		}
 		$tagStr = implode(',', $tags);
@@ -91,8 +91,8 @@ if (ISLOGIN === true && $action == 'write') {
 	View::output();
 }
 if (ISLOGIN === true && $action == 'savelog') {
-	$emBlog = new emBlog();
-	$emTag = new emTag();
+	$Log_Model = new Log_Model();
+	$Tag_Model = new Tag_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
@@ -102,7 +102,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = $emBlog->postDate(Option::get('timezone'), $date);	
+	$postTime = $Log_Model->postDate(Option::get('timezone'), $date);	
 
 	$logData = array('title' => $title,
 		'content' => $content,
@@ -117,25 +117,25 @@ if (ISLOGIN === true && $action == 'savelog') {
 		);
 
 	if ($blogid > 0) {
-		$emBlog->updateLog($logData, $blogid);
-		$emTag->updateTag($tagstring, $blogid);
+		$Log_Model->updateLog($logData, $blogid);
+		$Tag_Model->updateTag($tagstring, $blogid);
 	}else {
-		$blogid = $emBlog->addlog($logData);
-		$emTag->addTag($tagstring, $blogid);
+		$blogid = $Log_Model->addlog($logData);
+		$Tag_Model->addTag($tagstring, $blogid);
 	}
 	$CACHE->updateCache();
 	header ("Location: ./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
-	$emBlog->deleteLog($id);
+	$Log_Model->deleteLog($id);
 	$CACHE->updateCache();
 	header("Location: ./");
 }
 // 评论
 if ($action == 'addcom') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 
 	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
@@ -144,7 +144,7 @@ if ($action == 'addcom') {
 	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 
-	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $logid);
+	$ret = $Comment_Model->addComment($comname, $comment, $commail, $comurl, $imgcode, $logid);
 	switch ($ret) {
 		case -1:
 			mMsg('发表评论失败：该日志已关闭评论', "./?post=$logid");
@@ -181,10 +181,10 @@ if ($action == 'com') {
 		$hide = '';
 		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-		$emComment = new emComment();
+		$Comment_Model = new Comment_Model();
 
-		$comment = $emComment->getComments(1, null, $hide, $page);
-		$cmnum = $emComment->getCommentNum(null, $hide);
+		$comment = $Comment_Model->getComments(1, null, $hide, $page);
+		$cmnum = $Comment_Model->getCommentNum(null, $hide);
 		$pageurl = pagination($cmnum, 5, $page, "./?action=com&page");
 	}else {
 		$comment = $com_cache;
@@ -196,30 +196,30 @@ if ($action == 'com') {
 	View::output();
 }
 if (ISLOGIN === true && $action == 'delcom') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->delComment($id);
+	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->showComment($id);
+	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->hideComment($id);
+	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
 if (ISLOGIN === true && $action == 'reply') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$commentArray = $emComment->getOneComment($id);
+	$commentArray = $Comment_Model->getOneComment($id);
 	extract($commentArray);
 	include View::getView('header');
 	include View::getView('reply');
@@ -227,19 +227,19 @@ if (ISLOGIN === true && $action == 'reply') {
 	View::output();
 }
 if (ISLOGIN === true && $action == 'dorep') {
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
 	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
-	$emComment->replyComment($id, $reply);
+	$Comment_Model->replyComment($id, $reply);
 	$CACHE->updateCache('comment');
 	header("Location: ./?action=com");
 }
 // 碎语
 if ($action == 'tw') {
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-    $tws = $emTwitter->getTwitters($page);
-    $twnum = $emTwitter->getTwitterNum();
+    $tws = $Twitter_Model->getTwitters($page);
+    $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, $index_twnum, $page, './?action=tw&page');
 
 	include View::getView('header');
@@ -248,26 +248,26 @@ if ($action == 'tw') {
 	View::output();
 }
 if (ISLOGIN === true && $action == 't') {
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
     if (!$t){
         header ("Location: ./?action=tw");
         exit;
     }
-    $tdata = array('content' => $emTwitter->formatTwitter($t),
+    $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
     );
-    $emTwitter->addTwitter($tdata);
+    $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
     header ("Location: ./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emTwitter->delTwitter($id);
+	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: ./?action=tw");
 }

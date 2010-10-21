@@ -6,7 +6,7 @@
  */
 
 
-class emTrackback {
+class Trackback_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

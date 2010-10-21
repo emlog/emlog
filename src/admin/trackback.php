@@ -7,14 +7,14 @@
 
 require_once 'globals.php';
 
-$emTrackback = new emTrackback();
+$Trackback_Model = new Trackback_Model();
 
 if($action == '')
 {
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$trackback = $emTrackback->getTrackbacks($page, null, 1);
-	$tbnum = $emTrackback->getTbNum();
+	$trackback = $Trackback_Model->getTrackbacks($page, null, 1);
+	$tbnum = $Trackback_Model->getTbNum();
 	$pageurl =  pagination($tbnum, Option::get('admin_perpage_num'), $page, "./trackback.php?page");
 
 	include View::getView('header');
@@ -32,7 +32,7 @@ if($action == 'dell')
 	}
 	foreach($tbs as $value)
 	{
-		$emTrackback->deleteTrackback($value);
+		$Trackback_Model->deleteTrackback($value);
 	}
 	$CACHE->updateCache('sta');
 	header("Location: ./trackback.php?active_del=true");

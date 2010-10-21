@@ -6,7 +6,7 @@
  * $Id$
  */
 
-class CommentController {
+class Comment_Controller {
 
     /**
      * 增加评论
@@ -22,11 +22,11 @@ class CommentController {
         if ($url && strncasecmp($url,'http://',7)) {
             $url = 'http://'.$url;
         }
-        $emComment = new emComment();
-        $emComment->setCommentCookie($name,$mail,$url);
-        if($emComment->isLogCanComment($blogId) === false){
+        $Comment_Model = new Comment_Model();
+        $Comment_Model->setCommentCookie($name,$mail,$url);
+        if($Comment_Model->isLogCanComment($blogId) === false){
             emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
-        }elseif ($emComment->isCommentExist($blogId, $name, $content) === true){
+        }elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
             emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
         }elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
             emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');;
@@ -37,7 +37,7 @@ class CommentController {
         } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
             emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
         } else {
-            $emComment->addComment($name, $content, $mail, $url, $imgcode, $blogId);
+            $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId);
         }
     }
 }

@@ -7,13 +7,13 @@
 
 require_once 'globals.php';
 
-$emBlog = new emBlog();
+$Log_Model = new Log_Model();
 
 //显示日志(草稿)管理页面
 if($action == '')
 {
-	$emTag = new emTag();
-	$emUser = new emUser();
+	$Tag_Model = new Tag_Model();
+	$User_Model = new User_Model();
 
 	$pid = isset($_GET['pid']) ? $_GET['pid'] : '';
 	$tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
@@ -28,7 +28,7 @@ if($action == '')
 	$sqlSegment = '';
 	if($tagId)
 	{
-		$blogIdStr = $emTag->getTagById($tagId);
+		$blogIdStr = $Tag_Model->getTagById($tagId);
 		$sqlSegment = "and gid IN ($blogIdStr)";
 	}elseif ($sid){
 		$sqlSegment = "and sortid=$sid";
@@ -59,12 +59,12 @@ if($action == '')
 		$pwd = '日志管理';
 	}
 
-	$logNum = $emBlog->getLogNum($hide_state, $sqlSegment, 'blog', 1);
-	$logs = $emBlog->getLogsForAdmin($sqlSegment, $hide_state, $page);
+	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
+	$logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
 	$sorts = $CACHE->readCache('sort');
 	$users = $CACHE->readCache('user');
 	$log_cache_tags = $CACHE->readCache('logtags');
-	$tags = $emTag->getTag();
+	$tags = $Tag_Model->getTag();
 
 	$subPage = '';
 	foreach ($_GET as $key=>$val)
@@ -103,7 +103,7 @@ if($action == 'operate_log')
 		case 'del':
 			foreach($logs as $val)
 			{
-				$emBlog->deleteLog($val);
+				$Log_Model->deleteLog($val);
 				doAction('del_log', $val);
 			}
 			$CACHE->updateCache();
@@ -117,21 +117,21 @@ if($action == 'operate_log')
 		case 'top':
 			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('top'=>'y'), $val);
+				$Log_Model->updateLog(array('top'=>'y'), $val);
 			}
 			header("Location: ./admin_log.php?active_up=true");
 			break;
 		case 'notop':
 			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('top'=>'n'), $val);
+				$Log_Model->updateLog(array('top'=>'n'), $val);
 			}
 			header("Location: ./admin_log.php?active_down=true");
 			break;
 		case 'hide':
 			foreach($logs as $val)
 			{
-				$emBlog->hideSwitch($val, 'y');
+				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
 			header("Location: ./admin_log.php?active_hide=true");
@@ -139,7 +139,7 @@ if($action == 'operate_log')
 		case 'pub':
 			foreach($logs as $val)
 			{
-				$emBlog->hideSwitch($val, 'n');
+				$Log_Model->hideSwitch($val, 'n');
 			}
 			$CACHE->updateCache();
 			header("Location: ./admin_log.php?pid=draft&active_post=true");
@@ -147,7 +147,7 @@ if($action == 'operate_log')
 		case 'move':
 			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('sortid'=>$sort), $val);
+				$Log_Model->updateLog(array('sortid'=>$sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
 			header("Location: ./admin_log.php?active_move=true");
@@ -159,7 +159,7 @@ if($action == 'operate_log')
 			}
 			foreach($logs as $val)
 			{
-				$emBlog->updateLog(array('author'=>$author), $val);
+				$Log_Model->updateLog(array('author'=>$author), $val);
 			}
 			$CACHE->updateCache('sta');
 			header("Location: ./admin_log.php?active_change_author=true");

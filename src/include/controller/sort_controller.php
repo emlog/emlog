@@ -6,13 +6,13 @@
  * $Id$
  */
 
-class SortController {
+class Sort_Controller {
 
 	/**
 	 * 前台分类日志列表页面输出
 	 */
 	function display($params) {
-		$emBlog = new emBlog();
+		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
@@ -33,10 +33,10 @@ class SortController {
 		$sortName = $sort_cache[$sortid]['sortname'];
 		$blogtitle = $sortName.' - '.$blogname;
 		$sqlSegment = "and sortid=$sortid order by date desc";
-		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::sort($sortid, 'page');
 
-		$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
+		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');

@@ -129,8 +129,8 @@ function widget_newlog($title){
 //widget：随机日志
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');
-	$emBlog = new emBlog();
-	$randLogs = $emBlog->getRandLog($index_randlognum);?>
+	$Log_Model = new Log_Model();
+	$randLogs = $Log_Model->getRandLog($index_randlognum);?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="randlog">

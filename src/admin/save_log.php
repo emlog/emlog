@@ -7,9 +7,9 @@
 
 require_once 'globals.php';
 
-$emBlog = new emBlog();
-$emTag = new emTag();
-$emTb = new emTrackback();
+$Log_Model = new Log_Model();
+$Tag_Model = new Tag_Model();
+$Trackback_Model = new Trackback_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
@@ -26,7 +26,7 @@ $allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
-$postTime = $emBlog->postDate(Option::get('timezone'), $postDate, $date);
+$postTime = $Log_Model->postDate(Option::get('timezone'), $postDate, $date);
 
 $logData = array(
 	'title'=>$title,
@@ -42,16 +42,16 @@ $logData = array(
 );
 if($blogid > 0)//自动保存草稿后,添加变为更新
 {
-	$emBlog->updateLog($logData, $blogid);
-	$emTag->updateTag($tagstring, $blogid);
+	$Log_Model->updateLog($logData, $blogid);
+	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
 }else{
-    if (!$blogid = $emBlog->isRepeatPost($title, $postTime))
+    if (!$blogid = $Log_Model->isRepeatPost($title, $postTime))
     {
-        $blogid = $emBlog->addlog($logData);
+        $blogid = $Log_Model->addlog($logData);
     }
-	$emTag->addTag($tagstring, $blogid);
-	$dftnum = $emBlog->getLogNum('y', '', 'blog', 1);
+	$Tag_Model->addTag($tagstring, $blogid);
+	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
 $CACHE->updateCache();
@@ -71,7 +71,7 @@ switch ($action) {
 		} else {
 			//发送Trackback
 			if(!empty($pingurl)) {
-				$tbmsg = $emTb->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
+				$tbmsg = $Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
 			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? '日志发布成功！' : '日志保存成功！';
 			$ok_url = 'admin_log.php';

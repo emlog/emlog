@@ -6,13 +6,13 @@
  * $Id$
  */
 
-class AuthorController {
+class Author_Controller {
 
 	/**
 	 * 前台作者日志列表页面输出
 	 */
 	function display($params) {
-		$emBlog = new emBlog();
+		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
@@ -35,8 +35,8 @@ class AuthorController {
 		$lognum = $sta_cache[$author]['lognum'];
 		$pageurl .= Url::author($author, 'page');
         
-        $emBlog = new emBlog();
-        $logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $Log_Model = new Log_Model();
+        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');

@@ -7,11 +7,11 @@
 
 require_once 'globals.php';
 
-$emLink = new emLink();
+$Link_Model = new Link_Model();
 
 if($action == '')
 {
-	$links = $emLink->getLinks();
+	$links = $Link_Model->getLinks();
 	include View::getView('header');
 	require_once(View::getView('links'));
 	include View::getView('footer');
@@ -27,7 +27,7 @@ if ($action== 'link_taxis')
 		{
 			$value = intval($value);
 			$key = intval($key);
-			$emLink->updateLink(array('taxis'=>$value), $key);
+			$Link_Model->updateLink(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('link');
 		header("Location: ./link.php?active_taxis=true");
@@ -51,7 +51,7 @@ if($action== 'addlink')
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
-	$emLink->addLink($sitename, $siteurl, $description);
+	$Link_Model->addLink($sitename, $siteurl, $description);
 	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_add=true");
 }
@@ -60,7 +60,7 @@ if ($action== 'mod_link')
 {
 	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 
-	$linkData = $emLink->getOneLink($linkId);
+	$linkData = $Link_Model->getOneLink($linkId);
 	extract($linkData);
 
 	include View::getView('header');
@@ -79,7 +79,7 @@ if($action=='update_link')
 		$siteurl = 'http://'.$siteurl;
 	}
 
-	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
+	$Link_Model->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
 	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_edit=true");
@@ -87,7 +87,7 @@ if($action=='update_link')
 if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
-	$emLink->deleteLink($linkid);
+	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_del=true");
 }

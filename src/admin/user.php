@@ -7,11 +7,11 @@
 
 require_once 'globals.php';
 
-$emUser = new emUser();
+$User_Model = new User_Model();
 
 //加载用户管理页面
 if ($action == '') {
-	$users = $emUser->getUsers();
+	$users = $User_Model->getUsers();
 	include View::getView('header');
 	require_once View::getView('user');
 	include View::getView('footer');
@@ -27,7 +27,7 @@ if ($action== 'new') {
 		header("Location: ./user.php?error_login=true");
 		exit;
 	}
-	if ($emUser->isUserExist($login)) {
+	if ($User_Model->isUserExist($login)) {
 		header("Location: ./user.php?error_exist=true");
 		exit;
 	}
@@ -43,14 +43,14 @@ if ($action== 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$emUser->addUser($login, $password, $role);
+	$User_Model->addUser($login, $password, $role);
 	$CACHE->updateCache(array('sta','user'));
 	header("Location: ./user.php?active_add=true");
 }
 if ($action== 'edit') {
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 
-	$data = $emUser->getOneUser($uid);
+	$data = $User_Model->getOneUser($uid);
 	extract($data);
 
 	include View::getView('header');
@@ -70,7 +70,7 @@ if ($action=='update') {
 		header("Location: ./user.php?action=edit&uid={$uid}&error_login=true");
 		exit;
 	}
-	if ($emUser->isUserExist($login, $uid)) {
+	if ($User_Model->isUserExist($login, $uid)) {
 		header("Location: ./user.php?action=edit&uid={$uid}&error_exist=true");
 		exit;
 	}
@@ -95,14 +95,14 @@ if ($action=='update') {
         $userData['password'] = $password;
     }
 
-	$emUser->updateUser($userData, $uid);
+	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');
 	header("Location: ./user.php?active_update=true");
 }
 if ($action== 'del') {
-	$users = $emUser->getUsers();
+	$users = $User_Model->getUsers();
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
-	$emUser->deleteUser($uid);
+	$User_Model->deleteUser($uid);
 	$CACHE->updateCache(array('sta','user'));
 	header("Location: ./user.php?active_del=true");
 }

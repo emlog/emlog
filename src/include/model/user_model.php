@@ -5,7 +5,7 @@
  * $Id: class.user.php 1732 2010-06-04 15:37:57Z emloog@gmail.com $
  */
 
-class emUser {
+class User_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

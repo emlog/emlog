@@ -6,7 +6,7 @@
  * $Id: class.twittter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
  */
 
-class emTwitter {
+class Twitter_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

@@ -7,12 +7,12 @@
 
 function __autoload($class) {
 	$class = preg_replace('/^(em)([\w]+)$/', '\\2', strtolower($class));
-    if (file_exists(EMLOG_ROOT . '/include/model/class.'. $class . '.php')) {
-    	require_once(EMLOG_ROOT . '/include/model/class.'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/lib/class.'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/lib/class.'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/controller/class.'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/controller/class.'. $class . '.php');
+    if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
+    	require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
     } else{
     	emMsg($class.'加载失败。', BLOG_URL);
     }

@@ -131,8 +131,8 @@ function mw_deletePost($args) {
 	$id = intval($args[1]);
 	$user = login($args[2], $args[3]);
 	define('UID', $user['uid']);
-	$emBlog = new emBlog();
-	$emBlog->deleteLog($id);
+	$Log_Model = new Log_Model();
+	$Log_Model->deleteLog($id);
 	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
@@ -158,8 +158,8 @@ function mw_newPost($args) {
 	$update_data['excerpt'] = '';
 	// 只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
 
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
@@ -175,13 +175,13 @@ function mw_newPost($args) {
 		$update_data['date'] = time();
 	}
 	// 更新数据
-	$emBlog = new emBlog();
-	$new_id = $emBlog->addlog($update_data);
+	$Log_Model = new Log_Model();
+	$new_id = $Log_Model->addlog($update_data);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag();
-		$emTag->addTag($data['mt_keywords'], $new_id);
-		unset($emTag);
+		$Tag_Model = new Tag_Model();
+		$Tag_Model->addTag($data['mt_keywords'], $new_id);
+		unset($Tag_Model);
 	}
 	// 更新缓存
 	Cache::getInstance()->updateCache();
@@ -210,9 +210,9 @@ function mw_editPost($args) {
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	// 根据分类名称取分类id,注意只取第一个分类
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
-	unset($emSort);
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
+	unset($Sort_Model);
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
 		if ($sort_name == $sort['sortname']) {
@@ -225,12 +225,12 @@ function mw_editPost($args) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
 	// 更新数据
-	$emBlog = new emBlog();
-	$emBlog->updateLog($update_data, $id);
+	$Log_Model = new Log_Model();
+	$Log_Model->updateLog($update_data, $id);
 	// 更新标签
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag();
-		$emTag->updateTag($data['mt_keywords'], $id);
+		$Tag_Model = new Tag_Model();
+		$Tag_Model->updateTag($data['mt_keywords'], $id);
 	}
 	// 更新缓存
 	Cache::getInstance()->updateCache();
@@ -247,9 +247,9 @@ function mw_getCategories($args) {
 
 	login($username, $password);
 
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
-	unset($emSort);
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
+	unset($Sort_Model);
 	$xml = '';
 	foreach ($sorts as $sort) {
 		$xml .= "
@@ -284,9 +284,9 @@ function mw_getPost($args) {
 
 	$user = login($username, $password);
 
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	define('UID', $user['uid']);
-	$post = $emBlog->getOneLogForAdmin($post_ID);
+	$post = $Log_Model->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
 	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	$tags = '';
@@ -296,8 +296,8 @@ function mw_getPost($args) {
 		}
 		$tags = implode(',', $tags);
 	}
-	$emSort = new emSort();
-	$sort_name = $emSort->getSortName($post['sortid']);
+	$Sort_Model = new Sort_Model();
+	$sort_name = $Sort_Model->getSortName($post['sortid']);
 
 	$post['date'] = getIso($post['date']);
 	$xml = "

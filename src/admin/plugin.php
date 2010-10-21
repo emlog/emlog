@@ -10,8 +10,8 @@ require_once 'globals.php';
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
 if($action == '' && !$plugin) {
-	$emPlugin = new emPlugin();
-	$plugins = $emPlugin->getPlugins();
+	$Plugin_Model = new Plugin_Model();
+	$plugins = $Plugin_Model->getPlugins();
 
 	include View::getView('header');
 	require_once(View::getView('plugin'));
@@ -20,8 +20,8 @@ if($action == '' && !$plugin) {
 }
 //激活
 if ($action == 'active') {
-	$emPlugin = new emPlugin();
-	if ($emPlugin->activePlugin($plugin) ){
+	$Plugin_Model = new Plugin_Model();
+	if ($Plugin_Model->activePlugin($plugin) ){
 	    $CACHE->updateCache('options');
 	    header("Location: ./plugin.php?active=true");
 	} else {
@@ -30,8 +30,8 @@ if ($action == 'active') {
 }
 //禁用
 if($action == 'inactive') {
-	$emPlugin = new emPlugin();
-	$emPlugin->inactivePlugin($plugin);
+	$Plugin_Model = new Plugin_Model();
+	$Plugin_Model->inactivePlugin($plugin);
 	$CACHE->updateCache('options');
 	header("Location: ./plugin.php?inactive=true");
 }

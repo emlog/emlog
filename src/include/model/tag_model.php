@@ -5,7 +5,7 @@
  * $Id: class.tag.php 1779 2010-10-14 08:20:24Z emloog $
  */
 
-class emTag {
+class Tag_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

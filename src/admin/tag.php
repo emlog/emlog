@@ -7,11 +7,11 @@
 
 require_once 'globals.php';
 
-$emTag = new emTag();
+$Tag_Model = new Tag_Model();
 
 if($action == '')
 {
-	$tags = $emTag->getTag();
+	$tags = $Tag_Model->getTag();
 	include View::getView('header');
 	require_once View::getView('tag');
 	include View::getView('footer');
@@ -21,7 +21,7 @@ if($action == '')
 if ($action== "mod_tag")
 {
 	$tagId = isset($_GET['tid']) ? intval($_GET['tid']) : '';
-	$tag = $emTag->getOneTag($tagId);
+	$tag = $Tag_Model->getOneTag($tagId);
 	extract($tag);
 	include View::getView('header');
 	require_once View::getView('tagedit');
@@ -33,7 +33,7 @@ if($action=='update_tag')
 {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
-	$emTag->updateTagName($tagId, $tagName);
+	$Tag_Model->updateTagName($tagId, $tagName);
 	$CACHE->updateCache(array('tags', 'logtags'));
 	header("Location: ./tag.php?active_edit=true");
 }
@@ -49,7 +49,7 @@ if($action== 'dell_all_tag')
 	}
 	foreach($tags as $key=>$value)
 	{
-		$emTag->deleteTag($key);
+		$Tag_Model->deleteTag($key);
 	}
 	$CACHE->updateCache(array('tags', 'logtags'));
 	header("Location: ./tag.php?active_del=true");

@@ -7,16 +7,16 @@
 
 require_once 'globals.php';
 
-$emTwitter = new emTwitter();
+$Twitter_Model = new Twitter_Model();
 
 if ($action == '') {
     $user_cache = $CACHE->readCache('user');
-    $emReply = new emReply();
+    $Reply_Model = new Reply_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page,1);
-    $twnum = $emTwitter->getTwitterNum(1);
+    $tws = $Twitter_Model->getTwitters($page,1);
+    $twnum = $Twitter_Model->getTwitterNum(1);
     $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
@@ -56,12 +56,12 @@ if ($action == 'post') {
         exit;
     }
 
-    $tdata = array('content' => $emTwitter->formatTwitter($t),
+    $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
     );
 
-    $emTwitter->addTwitter($tdata);
+    $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
     header("Location: twitter.php?active_t=true");
@@ -69,7 +69,7 @@ if ($action == 'post') {
 // 删除碎语.
 if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emTwitter->delTwitter($id);
+	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
 	header("Location: twitter.php?active_del=true");
 }
@@ -77,8 +77,8 @@ if ($action == 'del') {
 if ($action == 'getreply') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    $emReply = new emReply();
-    $replys = $emReply->getReplys($tid);
+    $Reply_Model = new Reply_Model();
+    $replys = $Reply_Model->getReplys($tid);
 
     $response = '';
     foreach($replys as $val){
@@ -119,12 +119,12 @@ if ($action == 'reply') {
             'date' => $date,
     );
 
-    $emReply = new emReply();
-    $rid = $emReply->addReply($rdata);
+    $Reply_Model = new Reply_Model();
+    $rid = $Reply_Model->addReply($rdata);
     if ($rid === false){
         exit('err2');
     }
-    $emTwitter->updateReplyNum($tid, '+1');
+    $Twitter_Model->updateReplyNum($tid, '+1');
     $CACHE->updateCache('sta');
 
     $date = smartDate($date);
@@ -142,9 +142,9 @@ if ($action == 'reply') {
 if ($action == 'delreply') {
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    if( $emReply->delReply($rid) == 'n'){
-        $emTwitter->updateReplyNum($tid, '-1');
+    $Reply_Model = new Reply_Model();
+    if( $Reply_Model->delReply($rid) == 'n'){
+        $Twitter_Model->updateReplyNum($tid, '-1');
     }
     echo $tid;
 }
@@ -152,17 +152,17 @@ if ($action == 'delreply') {
 if ($action == 'hidereply') {
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    $emReply->hideReply($rid);
-    $emTwitter->updateReplyNum($tid, '-1');
+    $Reply_Model = new Reply_Model();
+    $Reply_Model->hideReply($rid);
+    $Twitter_Model->updateReplyNum($tid, '-1');
 }
 // 审核回复.
 if ($action == 'pubreply') {
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    $emReply->pubReply($rid);
-    $emTwitter->updateReplyNum($tid, '+1');
+    $Reply_Model = new Reply_Model();
+    $Reply_Model->pubReply($rid);
+    $Twitter_Model->updateReplyNum($tid, '+1');
 }
 // 碎语设置.
 if ($action == 'set') {

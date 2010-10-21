@@ -5,7 +5,7 @@
  * $Id: class.reply.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
  */
 
-class emReply {
+class Reply_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

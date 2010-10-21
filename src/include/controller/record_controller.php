@@ -6,13 +6,13 @@
  * $Id$
  */
 
-class RecordController {
+class Record_Controller {
 
 	/**
 	 * 前台归档日志列表页面输出
 	 */
 	function display($params) {
-		$emBlog = new emBlog();
+		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
@@ -36,10 +36,10 @@ class RecordController {
 			$record_etime = $record_stime + 3600 * 24;
 		}
 		$sqlSegment = "and date>=$record_stime and date<$record_etime order by top desc ,date desc";
-		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::record($record, 'page');
 
-		$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
+		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');

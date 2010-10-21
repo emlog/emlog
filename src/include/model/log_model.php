@@ -6,7 +6,7 @@
  * $Id: class.blog.php 1781 2010-10-14 09:04:55Z emloog $
  */
 
-class emBlog {
+class Log_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

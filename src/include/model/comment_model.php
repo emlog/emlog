@@ -5,7 +5,7 @@
  * $Id: class.comment.php 1772 2010-10-11 15:22:55Z emloog $
  */
 
-class emComment {
+class Comment_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

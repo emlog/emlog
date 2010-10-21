@@ -6,7 +6,7 @@
  * $Id$
  */
 
-class PluginController {
+class Plugin_Controller {
 
     /**
      * 前台加载插件页面

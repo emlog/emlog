@@ -11,7 +11,7 @@ $navibar = Option::get('navibar');
 
 //加载页面管理页面
 if ($action == '') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -34,7 +34,7 @@ if ($action == 'new') {
 }
 //显示编辑页面表单
 if ($action == 'mod') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
@@ -66,7 +66,7 @@ if ($action == 'mod') {
 }
 //保存页面
 if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
@@ -124,7 +124,7 @@ if ($action == 'operate_page') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	switch ($operate)
 	{

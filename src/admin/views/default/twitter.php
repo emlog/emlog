@@ -46,7 +46,7 @@
     $author = $user_cache[$val['author']]['name'];
     $avatar = empty($user_cache[$val['author']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
-    $replynum = $emReply->getReplyNum($tid);
+    $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
     ?>
     <li class="li">

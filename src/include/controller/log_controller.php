@@ -6,13 +6,13 @@
  * $Id$
  */
 
-class LogController {
+class Log_Controller {
 
     /**
      * 前台日志列表页面输出
      */
     function display($params) {
-        $emBlog = new emBlog();
+        $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         extract($options_cache);
@@ -29,7 +29,7 @@ class LogController {
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache['lognum'];
         $pageurl .= Url::logPage();
-        $logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');
@@ -40,7 +40,7 @@ class LogController {
      * 前台日志内容页面输出
      */
     function displayContent($params) {
-    	$emBlog = new emBlog();
+    	$Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         extract($options_cache);
@@ -48,10 +48,10 @@ class LogController {
 
         $logid = isset($params[1]) && $params[1] == 'post' ? intval($params[2]) : '' ;
 
-        $emComment = new emComment();
-        $emTrackback = new emTrackback();
+        $Comment_Model = new Comment_Model();
+        $Trackback_Model = new Trackback_Model();
 
-        $logData = $emBlog->getOneLogForHome($logid);
+        $logData = $Log_Model->getOneLogForHome($logid);
         if ($logData === false) {
             emMsg('不存在该条目', BLOG_URL);
         }
@@ -60,7 +60,7 @@ class LogController {
         if (!empty($password)) {
             $postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
             $cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
-            $emBlog->AuthPassword($postpwd, $cookiepwd, $password, $logid);
+            $Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
         }
         $blogtitle = $log_title.' - '.$blogname;
         //comments
@@ -68,14 +68,14 @@ class LogController {
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
         $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-        $comments = $emComment->getComments(0, $logid, 'n');
+        $comments = $Comment_Model->getComments(0, $logid, 'n');
 
         $curpage = CURPAGE_LOG;
         include View::getView('header');
         if ($type == 'blog') {
-            $emBlog->updateViewCount($logid);
-            $neighborLog = $emBlog->neighborLog($timestamp);
-            $tb = $emTrackback->getTrackbacks(null, $logid, 0);
+            $Log_Model->updateViewCount($logid);
+            $neighborLog = $Log_Model->neighborLog($timestamp);
+            $tb = $Trackback_Model->getTrackbacks(null, $logid, 0);
             $tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
             require_once View::getView('echo_log');
         }elseif ($type == 'page') {

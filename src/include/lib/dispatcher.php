@@ -12,7 +12,7 @@ class Dispatcher {
     /**
      * 请求模块
      */
-    private $_model = 'LogController';
+    private $_model = 'Log_Controller';
 
     /**
      * 请求模块方法

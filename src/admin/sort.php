@@ -7,7 +7,7 @@
 
 require_once 'globals.php';
 
-$emSort = new emSort();
+$Sort_Model = new Sort_Model();
 
 if($action == '')
 {
@@ -27,7 +27,7 @@ if ($action == 'taxis')
 		{
 			$value = intval($value);
 			$key = intval($key);
-			$emSort->updateSort(array('taxis'=>$value), $key);
+			$Sort_Model->updateSort(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('sort');
 		header("Location: ./sort.php?active_taxis=true");
@@ -44,7 +44,7 @@ if($action== 'add')
 		header("Location: ./sort.php?error_a=true");
 		exit;
 	}
-	$emSort->addSort($sortname);
+	$Sort_Model->addSort($sortname);
 	$CACHE->updateCache('sort');
 	header("Location: ./sort.php?active_add=true");
 }
@@ -54,7 +54,7 @@ if($action == 'update')
 	$sortname = isset($_GET['name']) ? addslashes(trim($_GET['name'])) : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 
-	$emSort->updateSort(array('sortname'=>$sortname), $sid);
+	$Sort_Model->updateSort(array('sortname'=>$sortname), $sid);
 	$CACHE->updateCache(array('sort', 'logsort'));
 	header("Location: ./sort.php?active_edit=true");
 }
@@ -62,7 +62,7 @@ if($action == 'update')
 if ($action == 'del')
 {
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
-	$emSort->deleteSort($sid);
+	$Sort_Model->deleteSort($sid);
 	$CACHE->updateCache(array('sort', 'logsort'));
 	header("Location: ./sort.php?active_del=true");
 }

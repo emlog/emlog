@@ -30,12 +30,12 @@ if ($action == '') {
     
     $navibar = unserialize($navibar);
 
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page);
-    $twnum = $emTwitter->getTwitterNum();
+    $tws = $Twitter_Model->getTwitters($page);
+    $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
@@ -49,8 +49,8 @@ if ($action == '') {
 if ($action == 'getr') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    $emReply = new emReply();
-    $replys = $emReply->getReplys($tid, 'n');
+    $Reply_Model = new Reply_Model();
+    $replys = $Reply_Model->getReplys($tid, 'n');
 
     $response = '';
     foreach($replys as $val){
@@ -96,10 +96,10 @@ if ($action == 'reply') {
             'hide' => ROLE == 'visitor' ? Option::get('ischkreply') : 'n'
     );
 
-    $emTwitter = new emTwitter();
-    $emReply = new emReply();
+    $Twitter_Model = new Twitter_Model();
+    $Reply_Model = new Reply_Model();
 
-    $rid = $emReply->addReply($rdata);
+    $rid = $Reply_Model->addReply($rdata);
     if ($rid === false){
         exit('err5');
     }
@@ -107,7 +107,7 @@ if ($action == 'reply') {
     doAction('reply_twitter', $r, $name, $date, $tid);
 
     if (Option::get('ischkreply') == 'n' || ROLE != 'visitor'){
-        $emTwitter->updateReplyNum($tid, '+1');
+        $Twitter_Model->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');
     }

@@ -5,7 +5,7 @@
  * $Id: class.sort.php 1732 2010-06-04 15:37:57Z emloog@gmail.com $
  */
 
-class emSort {
+class Sort_Model {
 	/**
 	 * 内部数据对象
 	 * @var MySql

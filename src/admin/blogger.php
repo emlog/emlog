@@ -8,8 +8,8 @@
 require_once 'globals.php';
 
 if ($action == '') {
-	$emUser = new emUser();
-	$row = $emUser->getOneUser(UID);
+	$User_Model = new User_Model();
+	$row = $User_Model->getOneUser(UID);
 	extract($row);
 	$icon = '';
 	if ($photo && file_exists($photo)){
@@ -23,7 +23,7 @@ if ($action == '') {
 }
 
 if ($action == 'update') {
-	$emUser = new emUser();
+	$User_Model = new User_Model();
 	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
@@ -35,7 +35,7 @@ if ($action == 'update') {
 	}else{
 		$usericon = $photo;
 	}
-	$emUser->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
+	$User_Model->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
 	$CACHE->updateCache('user');
 	header("Location: ./blogger.php?active_edit=true");
 }
@@ -63,7 +63,7 @@ if ($action == 'delicon') {
 
 if ($action == 'update_pwd') {
 
-	$emUser = new emUser();
+	$User_Model = new User_Model();
 
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
@@ -76,7 +76,7 @@ if ($action == 'update_pwd') {
 	if(!$ispass)
 	{
 		formMsg('错误的当前密码','javascript:history.go(-1);',0);
-	}elseif(!empty($login) && $emUser->isUserExist($login, UID)){
+	}elseif(!empty($login) && $User_Model->isUserExist($login, UID)){
 		formMsg('用户名已存在','javascript:history.go(-1);',0);
 	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
 		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
@@ -87,16 +87,16 @@ if ($action == 'update_pwd') {
 	if(!empty($newpass) && empty($login))//只修改密码
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
-		$emUser->updateUser(array('password'=>$newpass), UID);
+		$User_Model->updateUser(array('password'=>$newpass), UID);
 		formMsg('密码修改成功!','./',1);
 	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
-		$emUser->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
+		$User_Model->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
 		formMsg('密码和后台登录名修改成功!请重新登录','./',1);
 	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
 	{
-		$emUser->updateUser(array('username'=>$login), UID);
+		$User_Model->updateUser(array('username'=>$login), UID);
 		formMsg('后台登录名修改成功!请重新登录','./',1);
 	}else{
 		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);

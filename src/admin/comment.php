@@ -7,7 +7,7 @@
 
 require_once 'globals.php';
 
-$emComment = new emComment();
+$Comment_Model = new Comment_Model();
 
 if($action == '')
 {
@@ -19,9 +19,9 @@ if($action == '')
 	$addUrl_2 = $hide ? "hide=$hide&" : '';
 	$addUrl = $addUrl_1.$addUrl_2;
 
-	$comment = $emComment->getComments(1, $blogId, $hide, $page);
-	$cmnum = $emComment->getCommentNum($blogId, $hide);
-	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
+	$comment = $Comment_Model->getComments(1, $blogId, $hide, $page);
+	$cmnum = $Comment_Model->getCommentNum($blogId, $hide);
+	$hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
 	$pageurl =  pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page");
 
 	include View::getView('header');
@@ -32,21 +32,21 @@ if($action == '')
 if ($action== 'del')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->delComment($id);
+	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./comment.php?active_del=true");
 }
 if($action=='hide')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->hideComment($id);
+	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./comment.php?active_hide=true");
 }
 if($action=='show')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->showComment($id);
+	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./comment.php?active_show=true");
 }
@@ -67,19 +67,19 @@ if($action== 'admin_all_coms')
 	}
 	if($operate == 'del')
 	{
-		$emComment->batchComment('delcom', $comments);
+		$Comment_Model->batchComment('delcom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
 		header("Location: ./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
-		$emComment->batchComment('hidecom', $comments);
+		$Comment_Model->batchComment('hidecom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
 		header("Location: ./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
-		$emComment->batchComment('showcom', $comments);
+		$Comment_Model->batchComment('showcom', $comments);
 		$CACHE->updateCache(array('sta', 'comment'));
 		header("Location: ./comment.php?active_show=true");
 	}
@@ -88,7 +88,7 @@ if ($action== 'reply_comment')
 {
 	include View::getView('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $emComment->getOneComment($commentId);
+	$commentArray = $Comment_Model->getOneComment($commentId);
 	extract($commentArray);
 
 	require_once(View::getView('comment_reply'));
@@ -104,16 +104,16 @@ if($action=='doreply')
 	if(!$flg)
 	{
 	    if(isset($_POST['pub_it'])) {
-	        $emComment->showComment($commentId);
+	        $Comment_Model->showComment($commentId);
 	        $CACHE->updateCache('sta');
 	    }
-		$emComment->replyComment($commentId, $reply);
+		$Comment_Model->replyComment($commentId, $reply);
 		$CACHE->updateCache('comment');
 		doAction('comment_reply', $commentId, $reply);
 		header("Location: ./comment.php?active_rep=true");
 	}else{
 		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
-		$emComment->replyComment($commentId, $reply);
+		$Comment_Model->replyComment($commentId, $reply);
 		$CACHE->updateCache('comment');
 		doAction('comment_reply', $commentId, $reply);
 		echo "<span>博主回复：$reply</span>";

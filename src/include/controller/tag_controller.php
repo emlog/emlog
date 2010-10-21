@@ -6,13 +6,13 @@
  * $Id$
  */
 
-class TagController {
+class Tag_Controller {
 
 	/**
 	 * 前台标签日志列表页面输出
 	 */
 	function display($params) {
-		$emBlog = new emBlog();
+		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
@@ -26,17 +26,17 @@ class TagController {
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
 
-		$emTag = new emTag();
+		$Tag_Model = new Tag_Model();
 		$blogtitle = stripslashes($tag).' - '.$blogname;
-		$blogIdStr = $emTag->getTagByName($tag);
+		$blogIdStr = $Tag_Model->getTagByName($tag);
 		if ($blogIdStr === false) {
 			emMsg('不存在该标签', BLOG_URL);
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
-		$lognum = $emBlog->getLogNum('n', $sqlSegment);
+		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::tag(urlencode($tag), 'page');
 
-		$logs = $emBlog->getLogsForHome($sqlSegment, $page, $index_lognum);
+		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');

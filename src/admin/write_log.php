@@ -10,11 +10,11 @@ require_once 'globals.php';
 //显示撰写日志页面
 if($action == '')
 {
-	$emTag = new emTag();
-	$emSort = new emSort();
+	$Tag_Model = new Tag_Model();
+	$Sort_Model = new Sort_Model();
 
-	$sorts = $emSort->getSorts();
-	$tags = $emTag->getTag();
+	$sorts = $Sort_Model->getSorts();
+	$tags = $Tag_Model->getTag();
 
 	$localtime = time() + Option::get('timezone') * 3600;
 	$postDate = gmdate('Y-m-d H:i:s', $localtime);
@@ -28,23 +28,23 @@ if($action == '')
 //显示编辑日志页面
 if ($action == 'edit')
 {
-	$emBlog = new emBlog();
-	$emTag = new emTag();
-	$emSort = new emSort();
+	$Log_Model = new Log_Model();
+	$Tag_Model = new Tag_Model();
+	$Sort_Model = new Sort_Model();
 
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
-	$blogData = $emBlog->getOneLogForAdmin($logid);
+	$blogData = $Log_Model->getOneLogForAdmin($logid);
 	extract($blogData);
-	$sorts = $emSort->getSorts();
+	$sorts = $Sort_Model->getSorts();
 	//log tag
 	$tags = array();
-	foreach ($emTag->getTag($logid) as $val)
+	foreach ($Tag_Model->getTag($logid) as $val)
 	{
 		$tags[] = $val['tagname'];
 	}
 	$tagStr = implode(',', $tags);
 	//old tag
-	$tags = $emTag->getTag();
+	$tags = $Tag_Model->getTag();
 
 	if($allow_remark=='y')
 	{
