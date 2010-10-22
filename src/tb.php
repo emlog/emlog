@@ -21,7 +21,7 @@ $blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim
 $ipaddr	   = getIp();
 
 if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url && $blog_name){
-	if($sc != substr(md5(gmdate('Ynd')),0,5)){
+	if($sc != substr(md5(gmdate('YndG')), 0, 6)){
 		showXML('invalid trackback url');
 	}
 
@@ -34,40 +34,22 @@ if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url &&
 		showXML('trackback closed');
 	}
 
-	$visible = false;
-	$point = 0;
-	$source_content = '';
-	$source_content = fopen_url($url);
-	$this_server = str_replace(array('www.', 'http://'), '', $_SERVER['HTTP_HOST']);
+	$point = 3;
 
-	if (empty($source_content)){
-		$point -= 1;
-	}else {
-		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE){
-			$point += 1;
-		}
-		if (strpos(strtolower($source_content), strtolower($title)) !== FALSE){
-			$point += 1;
-		}
-		if (strpos(strtolower($source_content), strtolower($excerpt)) !== FALSE){
-			$point += 1;
-		}
-	}
+	//5小时内同一ip、博客只能引用一次
 	$interval = 3600 * 5;
 	$utctimestamp = time();
 	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");
 	if ($DB->num_rows($query)){
-		$point -= 2;
+		$point -= 1;
 	}
 
-	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."' AND date+$interval>=$utctimestamp");
 	if ($DB->num_rows($query)){
 		$point -= 1;
 	}
 
-	$visible = ($point < 2) ? false : true;
-
-	if ($visible === true){
+	if ($point == 3){
 		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($logid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
 		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($logid)."'");

@@ -124,7 +124,7 @@ class Log_Model {
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
 				'author' => $row['author'],
-				'tbscode' => substr(md5(gmdate('Ynd')), 0, 5),
+				'tbscode' => substr(md5(gmdate('YndG')), 0, 6),
 				'log_content' => rmBreak($row['content']),
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
