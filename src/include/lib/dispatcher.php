@@ -82,6 +82,8 @@ class Dispatcher {
                 $path = $_SERVER['PHP_SELF'] .'?'. $_SERVER['QUERY_STRING'];
             }
         }
+        //for iis6
+        $path = str_replace('index.php', '', $path);
         return $path;
     }
 }
