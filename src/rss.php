@@ -20,7 +20,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <channel>
 <title><![CDATA['.Option::get('blogname').']]></title> 
 <description><![CDATA['.Option::get('bloginfo').']]></description>
-<link>{$URL}</link>
+<link>'.$URL.'</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
 
