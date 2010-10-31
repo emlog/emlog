@@ -21,8 +21,9 @@ $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : 'y';
-$allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
+$top = !empty($_POST['top']) ? 'y' : 'n';
+$allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
+$allow_tb = !empty($_POST['allow_tb']) ? 'y' : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
@@ -35,19 +36,19 @@ $logData = array(
 	'author'=>$author,
 	'sortid'=>$sort,
 	'date'=>$postTime,
+    'top'=>$top,
 	'allow_remark'=>$allow_remark,
 	'allow_tb'=>$allow_tb,
 	'hide'=>$ishide,
 	'password'=>$password
 );
-if($blogid > 0)//自动保存草稿后,添加变为更新
-{
+
+if($blogid > 0) {//自动保存草稿后,添加变为更新
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
 }else{
-    if (!$blogid = $Log_Model->isRepeatPost($title, $postTime))
-    {
+    if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
         $blogid = $Log_Model->addlog($logData);
     }
 	$Tag_Model->addTag($tagstring, $blogid);

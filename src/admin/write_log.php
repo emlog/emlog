@@ -8,8 +8,7 @@
 require_once 'globals.php';
 
 //显示撰写日志页面
-if($action == '')
-{
+if($action == '') {
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
 
@@ -26,8 +25,7 @@ if($action == '')
 }
 
 //显示编辑日志页面
-if ($action == 'edit')
-{
+if ($action == 'edit') {
 	$Log_Model = new Log_Model();
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
@@ -38,29 +36,16 @@ if ($action == 'edit')
 	$sorts = $Sort_Model->getSorts();
 	//log tag
 	$tags = array();
-	foreach ($Tag_Model->getTag($logid) as $val)
-	{
+	foreach ($Tag_Model->getTag($logid) as $val) {
 		$tags[] = $val['tagname'];
 	}
 	$tagStr = implode(',', $tags);
 	//old tag
 	$tags = $Tag_Model->getTag();
 
-	if($allow_remark=='y')
-	{
-		$ex="checked=\"checked\"";
-		$ex2="";
-	}else{
-		$ex="";
-		$ex2="checked=\"checked\"";
-	}
-	if($allow_tb=='y'){
-		$add="checked=\"checked\"";
-		$add2="";
-	}else{
-		$add="";
-		$add2="checked=\"checked\"";
-	}
+	$is_top = $top == 'y' ? 'checked="checked"' : '';
+    $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+    $is_allow_tb = $allow_tb == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once View::getView('edit_log');

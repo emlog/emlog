@@ -48,31 +48,27 @@
 	<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
-          <td>日志摘要：<br />
+          <td><b>日志摘要：</b><br />
 			<textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea>
             <script>loadEditor('excerpt');</script>
           </td>
         </tr>      
         <tr nowrap="nowrap">
-          <td>引用通告：(Trackback，通知你所引用的日志)<b><br /></b>
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br /></b>
 			<textarea name="pingurl" id="pingurl" rows="3" cols="" style="width:715px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';" class="input">每行输入一个引用地址</textarea>
           </td>
         </tr>
         <tr>
-          <td>接受评论？是
-          <input type="radio" checked="checked" value="y" name="allow_remark" id="allow_remark" />否
-          <input type="radio" value="n" name="allow_remark" id="allow_remark" />
-          </td>
-        </tr>
-        <tr>
-          <td>接受引用？是
-          <input type="radio" checked="checked" value="y" name="allow_tb" id="allow_tb" />否
-          <input type="radio" value="n" name="allow_tb" id="allow_tb" />
-		  </td>
-        </tr>
-        <tr>
-          <td>日志访问密码：
-          <input type="text" value="" name="password" id="password" class="input" /> (留空则不加访问密码)
+          <td><b>日志访问密码：</b>
+          <input type="text" value="" name="password" id="password" style="width:80px;" /> (留空则不加访问码密)
+          <span id="post_options">
+          <input type="checkbox" value="y" name="top" id="top">
+          <label for="top">日志置顶</label>
+          <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked">
+          <label for="allow_remark">允许评论</label>
+          <input type="checkbox" value="y" id="allow_tb" name="allow_tb" checked="checked">
+          <label for="allow_tb">允许引用</label>
+          </span>
 		  </td>
         </tr>
 	</table>

@@ -117,8 +117,9 @@ function autosave(act){
 		var content = KE.html('content');
 		var excerpt = KE.html('excerpt');
 		var tag = $.trim($("#tag").val());
-		var allow_remark = $.trim($("#advset input[name=allow_remark][checked]").val());
-		var allow_tb = $.trim($("#advset input[name=allow_tb][checked]").val());
+		var top = $.trim($("#post_options input[name=top][checked]").val());
+		var allow_remark = $.trim($("#post_options input[name=allow_remark][checked]").val());
+		var allow_tb = $.trim($("#post_options input[name=allow_tb][checked]").val());
 		var password = $.trim($("#password").val());
 		var ishide = $.trim($("#ishide").val());
 		var ishide = ishide == "" ? "y" : ishide;
@@ -130,6 +131,7 @@ function autosave(act){
 					+"&postdate="+postdate
 					+"&date="+date
 					+"&tag="+encodeURIComponent(tag)
+					+"&top="+top
 					+"&allow_remark="+allow_remark
 					+"&allow_tb="+allow_tb
 					+"&password="+password
