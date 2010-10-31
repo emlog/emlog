@@ -13,10 +13,10 @@ require_once View::getView('module');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="keywords" content="<?php echo $site_key; ?>" />
-<meta name="description" content="<?php echo $bloginfo; ?>" />
-<meta name="generator" content="emlog" />
 <title><?php echo $blogtitle; ?></title>
+<meta name="keywords" content="<?php echo $site_key; ?>" />
+<meta name="description" content="<?php echo $description; ?>" />
+<meta name="generator" content="emlog" />
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo BLOG_URL; ?>xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="<?php echo BLOG_URL; ?>wlwmanifest.xml" />
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />

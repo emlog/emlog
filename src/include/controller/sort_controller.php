@@ -18,7 +18,6 @@ class Sort_Controller {
 		extract($options_cache);
 		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
-		$blogtitle = $blogname;
 
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$sortid = isset($params[1]) && $params[1] == 'sort' ? intval($params[2]) : '' ;
@@ -31,7 +30,11 @@ class Sort_Controller {
 			emMsg('不存在该分类', BLOG_URL);
 		}
 		$sortName = $sort_cache[$sortid]['sortname'];
+        //page meta
 		$blogtitle = $sortName.' - '.$blogname;
+        $description = $bloginfo;
+        $site_key = $sortName;
+
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::sort($sortid, 'page');

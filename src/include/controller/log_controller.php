@@ -18,7 +18,10 @@ class Log_Controller {
         extract($options_cache);
         $navibar = unserialize($navibar);
         $curpage = CURPAGE_HOME;
+        
+        //page meta
         $blogtitle = $blogname;
+        $description = $bloginfo;
 
         $page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
 
@@ -56,13 +59,21 @@ class Log_Controller {
             emMsg('不存在该条目', BLOG_URL);
         }
         extract($logData);
-  
+
         if (!empty($password)) {
             $postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
             $cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
             $Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
         }
+        //page meta
         $blogtitle = $log_title.' - '.$blogname;
+        $description = subString(strip_tags($log_content), 0, 300);
+        $log_cache_tags = $CACHE->readCache('logtags');
+        if (!empty($log_cache_tags[$logid])){
+	        foreach ($log_cache_tags[$logid] as $value){
+	            $site_key .= ','.$value['tagname'];
+	        }
+        }
         //comments
         $verifyCode = $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\"  type=\"text\" class=\"input\" size=\"5\">" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';

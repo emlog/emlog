@@ -28,16 +28,22 @@ class Author_Controller {
 		$user_cache = $CACHE->readCache('user');
 		if (!isset($user_cache[$author])) {
 			emMsg('不存在该作者', BLOG_URL);
-        }
-		$blogtitle = $user_cache[$author]['name'].' - '.$blogname;
+		}
+
+		$author_name = $user_cache[$author]['name'];
+		//page meta
+		$blogtitle = $author_name . ' - ' . $blogname;
+		$description = $bloginfo;
+		$site_key = $author_name;
+
 		$sqlSegment = "and author=$author order by date desc";
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache[$author]['lognum'];
 		$pageurl .= Url::author($author, 'page');
-        
-        $Log_Model = new Log_Model();
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
+
+		$Log_Model = new Log_Model();
+		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');
 		include View::getView('log_list');

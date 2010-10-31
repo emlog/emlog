@@ -18,7 +18,6 @@ class Tag_Controller {
 		extract($options_cache);
 		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
-		$blogtitle = $blogname;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
@@ -26,9 +25,14 @@ class Tag_Controller {
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
 
-		$Tag_Model = new Tag_Model();
+		//page meta
 		$blogtitle = stripslashes($tag).' - '.$blogname;
+		$description = $bloginfo;
+		$site_key = $tag;
+
+		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);
+
 		if ($blogIdStr === false) {
 			emMsg('不存在该标签', BLOG_URL);
 		}

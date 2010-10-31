@@ -241,11 +241,9 @@ function blog_att($blogid){
 function blog_tag($blogid){
 	global $CACHE;
 	$log_cache_tags = $CACHE->readCache('logtags');
-	if (!empty($log_cache_tags[$blogid]))
-	{
+	if (!empty($log_cache_tags[$blogid])){
 		$tag = '标签:';
-		foreach ($log_cache_tags[$blogid] as $value)
-		{
+		foreach ($log_cache_tags[$blogid] as $value){
 			$tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
 		}
 		echo $tag;

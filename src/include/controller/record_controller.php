@@ -19,14 +19,16 @@ class Record_Controller {
 		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
-
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
 
-        $start_limit = ($page - 1) * $index_lognum;
+		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
 
+		//page meta
 		$blogtitle = $record.' - '.$blogname;
+        $description = $bloginfo;
+
 		if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
 			$days = getMonthDayNum($match[2], $match[1]);
 			$record_stime = emStrtotime($record . '01');
