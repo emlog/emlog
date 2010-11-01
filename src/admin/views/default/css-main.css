@@ -103,9 +103,12 @@ textarea{font-size:12px}
 #f_user{border: #C1FBB7 solid 1px; background-color: #E1FDE2; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #show_advset{margin:3px 0px 0px 0px; background:url(images/advset.gif) no-repeat 56px 4px; cursor:pointer}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px; padding:5px 3px 10px 3px}
-#post_options{float:right}
+#post_options{ float:right}
 #post_options label{vertical-align:middle; cursor:pointer}
-#post_options input{vertical-align:middle; margin:3px 3px 3px 15px}
+#post_options input{vertical-align:middle; margin:3px 0px 3px 15px}
+#page_options{ float:left;}
+#page_options label{vertical-align:middle; cursor:pointer;}
+#page_options input{vertical-align:middle; margin:3px 15px 3px 0px}
 #log_pass{display:none}
 #admindex_main{width:600px; margin:5px 5px 8px; padding:10px 0px 5px;}
 #admindex_servinfo{float:left; width:400px; margin-right:10px}

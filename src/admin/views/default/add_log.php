@@ -54,19 +54,19 @@
           </td>
         </tr>      
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br /></b>
-			<textarea name="pingurl" id="pingurl" rows="3" cols="" style="width:715px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';" class="input">每行输入一个引用地址</textarea>
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志，每行输入一条引用地址)<b><br /></b>
+			<textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea>
           </td>
         </tr>
         <tr>
           <td><b>日志访问密码：</b>
           <input type="text" value="" name="password" id="password" style="width:80px;" /> (留空则不加访问码密)
           <span id="post_options">
-          <input type="checkbox" value="y" name="top" id="top">
+          <input type="checkbox" value="y" name="top" id="top" />
           <label for="top">日志置顶</label>
-          <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked">
+          <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
           <label for="allow_remark">允许评论</label>
-          <input type="checkbox" value="y" id="allow_tb" name="allow_tb" checked="checked">
+          <input type="checkbox" value="y" id="allow_tb" name="allow_tb" checked="checked" />
           <label for="allow_tb">允许引用</label>
           </span>
 		  </td>

@@ -41,23 +41,10 @@ if ($action == 'mod') {
 	extract($pageData);
 
 	$pageUrl = isset($navibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
-	$is_blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
+	$blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
 
-	if($allow_remark == 'y')
-	{
-		$ex = "checked=\"checked\"";
-		$ex2 = '';
-	}else{
-		$ex = '';
-		$ex2 = "checked=\"checked\"";
-	}
-	if($is_blank == '_blank'){
-		$ex3 = "checked=\"checked\"";
-		$ex4 = '';
-	}else{
-		$ex3 = '';
-		$ex4 = "checked=\"checked\"";
-	}
+	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+	$is_blank = $blank == '_blank' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once(View::getView('edit_page'));
@@ -72,9 +59,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
-	$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
-	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
+    $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
+    $is_blank = !empty($_POST['is_blank']) ? 'y' : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
@@ -88,25 +75,27 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'type'=>'page'
 	);
 
-	if($pageId > 0)//自动保存后,添加变为更新
-	{
+	if($pageId > 0){//自动保存后,添加变为更新
 		$emPage->updateLog($logData, $pageId);
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
 
-	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl))
-	{
+	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl)){
 		$pageUrl = 'http://'.$pageUrl;
 	}
 
-	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
+	$navibar[$pageId] = array(
+	       'title' => stripslashes($title),
+	       'url' => stripslashes($pageUrl),
+	       'is_blank' => $is_blank == 'y' ? '_blank' : '',
+	       'hide' => $ishide
+	       );
 	$navibar = addslashes(serialize($navibar));
 	Option::updateOption('navibar', $navibar);
 
 	$CACHE->updateCache(array('logatts', 'options'));
-	switch ($action)
-	{
+	switch ($action){
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";
 			break;
@@ -126,11 +115,9 @@ if ($action == 'operate_page') {
 
 	$emPage = new Log_Model();
 
-	switch ($operate)
-	{
+	switch ($operate){
 		case 'del':
-			foreach($pages as $value)
-			{
+			foreach($pages as $value){
 				$emPage->deleteLog($value);
 				unset($navibar[$value]);
 			}
@@ -143,8 +130,7 @@ if ($action == 'operate_page') {
 		case 'hide':
 		case 'pub':
 			$ishide = $operate == 'hide' ? 'y' : 'n';
-			foreach($pages as $value)
-			{
+			foreach($pages as $value){
 				$emPage->hideSwitch($value, $ishide);
 				$navibar[$value]['hide'] = $ishide;
 			}

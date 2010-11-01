@@ -61,8 +61,8 @@ $isdraft = $hide == 'y' ? true : false;
 		  </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback，通知你所引用的日志)<b><br /></b>
-			<textarea name="pingurl" id="pingurl" rows="3" cols="" style="width:715px;" onclick="if (this.value=='每行输入一个引用地址') this.value='';" class="input">每行输入一个引用地址</textarea>
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志，每行输入一条引用地址)<b><br /></b>
+            <textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea>
           </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@ $isdraft = $hide == 'y' ? true : false;
 	<table cellspacing="1" cellpadding="4" width="720" align="center" border="0">
         <tr>
           <td align="center" colspan="2"><br>
-          <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
+          <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
 		  <input type="hidden" name="gid" value=<?php echo $logid; ?> />
 		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
 		  <input type="submit" value="保存并返回" onclick="return checkform();" class="button" />

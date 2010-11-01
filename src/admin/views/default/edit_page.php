@@ -26,15 +26,13 @@
           </td>
         </tr>
         <tr>
-        <td>页面是否接受评论？是
-          	<input type="radio" checked="checked" value="y" name="allow_remark" <?php echo $ex; ?>/>否
-          	<input type="radio" value="n" name="allow_remark" <?php echo $ex2; ?> />
-        </td>
-        </tr>
-        <tr>
-        <td>在新窗口打开页面？是
-          	<input type="radio" checked="checked" value="_blank" name="is_blank" <?php echo $ex3; ?>/>否
-          	<input type="radio" value="_parent" name="is_blank" <?php echo $ex4; ?> />
+        <td>
+          <span id="page_options">
+          <label for="allow_remark">页面接受评论</label>
+          <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
+          <label for="allow_tb">在新窗口打开</label>
+          <input type="checkbox" value="y" id="is_blank" name="is_blank" <?php echo $is_blank; ?> />
+          </span>
         </td>
         </tr>
         <tr>
