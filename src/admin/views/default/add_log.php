@@ -52,9 +52,14 @@
 			<textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea>
             <script>loadEditor('excerpt');</script>
           </td>
-        </tr>      
+        </tr>
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback，通知你所引用的日志，每行输入一条引用地址)<b><br /></b>
+          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址)<span id="alias_msg_hook"></span><br />
+			<input name="alias" id="alias" style="width:711px;" />
+          </td>
+        </tr>   
+        <tr nowrap="nowrap">
+          <td><b>引用通告：</b>(Trackback，通知你所引用的日志，每行输入一条引用地址)<br />
 			<textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea>
           </td>
         </tr>
@@ -88,5 +93,6 @@
 $("#title").focus();
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
+$("#alias").keyup(function(){checkalias();});
 setTimeout("autosave(0)",60000);
 </script>

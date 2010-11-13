@@ -49,7 +49,20 @@ class Log_Controller {
         extract($options_cache);
         $navibar = unserialize($navibar);
 
-        $logid = isset($params[1]) && $params[1] == 'post' ? intval($params[2]) : '' ;
+        $logid = '' ;
+        if (isset($params[1]) && $params[1] == 'post'){
+        	$logid = intval($params[2]);
+        } elseif(isset($params[1])) {
+        	$logalias_cache = $CACHE->readCache('logalias');
+        	if (!empty($logalias_cache)) {
+        		$alias = addslashes(urldecode(trim($params[1])));
+        		foreach($logalias_cache as $key=>$val){
+        			if($val == $alias){
+        				$logid = $key;
+        			}
+        		}
+        	}
+        }
 
         $Comment_Model = new Comment_Model();
         $Trackback_Model = new Trackback_Model();

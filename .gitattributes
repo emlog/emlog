@@ -125,6 +125,7 @@ src/admin/views/default/images/m.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_bg1.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_no.gif -text svn_keywords=Id
 src/admin/views/default/images/mc_ok.gif -text svn_keywords=Id
+src/admin/views/default/images/no.png -text
 src/admin/views/default/images/plugin.gif -text svn_keywords=Id
 src/admin/views/default/images/plugin_active.gif -text svn_keywords=Id
 src/admin/views/default/images/plugin_inactive.gif -text svn_keywords=Id

@@ -58,6 +58,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
@@ -72,6 +73,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'date'=>$postTime,
 	'allow_remark'=>$allow_remark,
 	'hide'=>$ishide,
+	'alias'=>$alias,
 	'type'=>'page'
 	);
 

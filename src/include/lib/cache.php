@@ -13,6 +13,7 @@ class Cache {
 	private $options_cache;
 	private $logtags_cache;
     private $logsort_cache;
+    private $logalias_cache;
     private $logatts_cache;
     private $newlog_cache;
     private $newtw_cache;
@@ -392,6 +393,19 @@ class Cache {
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');
 	}
+    /**
+     * 日志别名缓存
+     */
+    private function mc_logalias() {
+        $sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
+        $query = $this->db->query($sql);
+        $log_cache_alias = array();
+        while ($row = $this->db->fetch_array($query)) {
+            $log_cache_alias[$row['gid']] = $row['alias'];
+        }
+        $cacheData = serialize($log_cache_alias);
+        $this->cacheWrite($cacheData, 'logalias');
+    }
 	/**
 	 * 日志\页面附件缓存
 	 */

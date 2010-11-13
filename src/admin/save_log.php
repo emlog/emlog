@@ -21,6 +21,7 @@ $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
+$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = !empty($_POST['top']) ? 'y' : 'n';
 $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
 $allow_tb = !empty($_POST['allow_tb']) ? 'y' : 'n';
@@ -31,6 +32,7 @@ $postTime = $Log_Model->postDate(Option::get('timezone'), $postDate, $date);
 
 $logData = array(
 	'title'=>$title,
+    'alias'=>$alias,
 	'content'=>$content,
 	'excerpt'=>$excerpt,
 	'author'=>$author,

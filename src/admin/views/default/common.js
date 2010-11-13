@@ -65,9 +65,32 @@ function displayToggle(id, keep){
 	if (keep == 1){$.cookie('em_'+id,$("#"+id).css('display'),{expires:365});}
 	if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
+function isalias(a){
+	alias=/^[\u4e00-\u9fa5\w-]*$/;
+	return alias.test(a);
+}
 function checkform(){
+	var a = $.trim($("#alias").val());
 	var t = $.trim($("#title").val());
-	if (t==""){alert("标题不能为空");$("#title").focus();return false;}else return true;
+	if (t==""){
+		alert("标题不能为空");
+		$("#title").focus();
+		return false;
+	}else if(isalias(a)){
+		return true;
+	}else {
+		alert("链接别名格式错误");
+		$("#alias").focus();
+		return false
+	};
+}
+function checkalias(){
+	var a = $.trim($("#alias").val());
+	if (!isalias(a)){
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，只能由英文字母、数字、下划线、短横线、汉字构成</span>');
+	}else {
+		$("#alias_msg_hook").html('');
+	}
 }
 function addattach(imgurl,imgsrc,aid){
 	if (KE.g['content'].wyswygMode == false){
@@ -92,6 +115,7 @@ function autosave(act){
 	if (act == 3 || act == 4){
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
+		var alias = $.trim($("#alias").val());
 		var logid = $("#as_logid").val();
 		var content = KE.html('content');
 		var pageurl = $.trim($("#url").val());
@@ -101,6 +125,7 @@ function autosave(act){
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
 					+"&title="+encodeURIComponent(title)
+					+"&alias="+encodeURIComponent(alias)
 					+"&allow_remark="+allow_remark
 					+"&is_blank="+is_blank
 					+"&url="+pageurl
@@ -109,6 +134,7 @@ function autosave(act){
 	}else{
 		var url = "save_log.php?action=autosave";
 		var title = $.trim($("#title").val());
+		var alias = $.trim($("#alias").val());
 		var sort = $.trim($("#sort").val());
 		var postdate = $.trim($("#postdate").val());
 		var date = $.trim($("#date").val());
@@ -126,6 +152,7 @@ function autosave(act){
 		var querystr = "content="+encodeURIComponent(content)
 					+"&excerpt="+encodeURIComponent(excerpt)
 					+"&title="+encodeURIComponent(title)
+					+"&alias="+encodeURIComponent(alias)
 					+"&author="+author
 					+"&sort="+sort
 					+"&postdate="+postdate

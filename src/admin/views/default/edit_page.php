@@ -21,6 +21,11 @@
 		  </td>
         </tr>
         <tr nowrap="nowrap">
+          <td><b>链接别名：</b>(用于自定义该页面的链接地址)<span id="alias_msg_hook"></span><br />
+			<input name="alias" id="alias" style="width:711px;" value="<?php echo $alias; ?>" />
+          </td>
+        </tr> 
+        <tr nowrap="nowrap">
           <td><b>转向地址：</b>(如果填写，页面标题将指向该地址)<br />
           <input name="url" id="url" maxlength="200" style="width:715px;" value="<?php echo $pageUrl; ?>" /><br />
           </td>
@@ -47,4 +52,8 @@
 	</table>
   </form>
 <div class=line></div>
-<script>$("#menu_page").addClass('sidebarsubmenu1');</script>
+<script>
+checkalias();
+$("#alias").keyup(function(){checkalias();});
+$("#menu_page").addClass('sidebarsubmenu1');
+</script>

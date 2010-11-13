@@ -68,6 +68,11 @@ class Option {
                             'reg_2' => '|^.*/(post)/(\d+)/?$|',
                             ),
                     array(
+                            'model' => 'Log_Controller',
+                            'method' => 'displayContent',
+                            'reg_0' => '|^.*/([^/\.]+)$|',
+                            ),
+                    array(
                             'model' => 'Record_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(record)=(\d{6,8})$|',

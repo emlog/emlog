@@ -31,8 +31,8 @@ function keyw(){
 	}
 }
 function checkEmail (str){
-	isEmail1=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
-	return (isEmail1.test(str));
+	isEmail=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
+	return (isEmail.test(str));
 }
 function checkform(){
 	if (document.commentform.comname.value==""){
