@@ -52,7 +52,7 @@
 	</table>
   </form>
 <div class=line></div>
-<script type="text/javascript">
+<script>
 $("#title").focus();
 $("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});

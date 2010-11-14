@@ -100,7 +100,7 @@ $isdraft = $hide == 'y' ? true : false;
     </table>
   </form>
 <div class=line></div>
-<script type="text/javascript">
+<script>
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');

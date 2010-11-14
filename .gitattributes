@@ -167,8 +167,9 @@ src/admin/views/default/widgets.php -text svn_keywords=Id
 src/admin/widgets.php -text svn_keywords=Id
 src/admin/write_log.php -text svn_keywords=Id
 src/config.php -text svn_keywords=Id
-src/content/backup/index.htm -text svn_keywords=Id
-src/content/plugins/index.htm -text svn_keywords=Id
+src/content/backup/index.php -text
+src/content/cache/index.php -text
+src/content/plugins/index.php -text
 src/content/plugins/tips/icon_tips.gif -text svn_keywords=Id
 src/content/plugins/tips/tips.php -text svn_keywords=Id
 src/content/templates/default/echo_log.php -text svn_keywords=Id
@@ -200,7 +201,8 @@ src/content/templates/default/page.php -text svn_keywords=Id
 src/content/templates/default/preview.jpg -text svn_keywords=Id
 src/content/templates/default/side.php -text svn_keywords=Id
 src/content/templates/default/t.php -text svn_keywords=Id
-src/content/uploadfile/index.htm -text svn_keywords=Id
+src/content/templates/index.php -text
+src/content/uploadfile/index.php -text
 src/include/controller/author_controller.php -text svn_keywords=Id
 src/include/controller/comment_controller.php -text svn_keywords=Id
 src/include/controller/log_controller.php -text svn_keywords=Id

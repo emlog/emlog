@@ -114,7 +114,7 @@
 </td>
 <td id=container valign=top align=left>
 <?php doAction('adm_main_top'); ?>
-<script type="text/javascript">
+<script>
 $("#blog_mg").css('display', $.cookie('em_blog_mg') ? $.cookie('em_blog_mg') : '');
 $("#log_mg").css('display', $.cookie('em_log_mg') ? $.cookie('em_log_mg') : '');
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
