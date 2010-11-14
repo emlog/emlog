@@ -96,7 +96,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$navibar = addslashes(serialize($navibar));
 	Option::updateOption('navibar', $navibar);
 
-	$CACHE->updateCache(array('logatts', 'options'));
+	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
 	switch ($action){
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";

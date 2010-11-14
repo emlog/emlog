@@ -56,11 +56,7 @@ class Log_Controller {
         	$logalias_cache = $CACHE->readCache('logalias');
         	if (!empty($logalias_cache)) {
         		$alias = addslashes(urldecode(trim($params[1])));
-        		foreach($logalias_cache as $key=>$val){
-        			if($val == $alias){
-        				$logid = $key;
-        			}
-        		}
+        		$logid = array_search($alias, $logalias_cache);
         	}
         }
 
