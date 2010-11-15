@@ -57,6 +57,9 @@ class Log_Controller {
         	if (!empty($logalias_cache)) {
         		$alias = addslashes(urldecode(trim($params[1])));
         		$logid = array_search($alias, $logalias_cache);
+        		if (!$logid) {
+        			emMsg('不存在该条目', BLOG_URL);
+        		}
         	}
         }
 

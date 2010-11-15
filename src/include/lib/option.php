@@ -70,7 +70,7 @@ class Option {
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'displayContent',
-                            'reg_0' => '|^.*/([^/\.]+)/?$|',
+                            'reg_0' => '|^.*/([^/\.=\?]+)/?$|',
                             ),
                     array(
                             'model' => 'Record_Controller',
