@@ -119,6 +119,9 @@ if ($action == 'renewdata'){
 //导入本地备份文件
 if ($action == 'import'){
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
+	if (!$sqlfile) {
+		formMsg('非法提交的信息', 'javascript:history.go(-1);',0);
+	}
 	if ($sqlfile['type'] != 'text/x-sql') {
 		formMsg('只能导入 *.sql 文件', 'javascript:history.go(-1);',0);
 	}
