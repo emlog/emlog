@@ -37,8 +37,8 @@
 </table>
 <div class="list_footer">选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
+<div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);">备份数据&raquo;</a>　<a href="javascript:$('#backup').hide();displayToggle('import', 0);">导入本地备份文件&raquo;</a></div>
 <form action="data.php?action=bakstart" method="post">
-<div style="margin:20px 0px 20px 0px;"><a href="javascript:displayToggle('backup', 0);">备份数据&raquo;</a></div>
 <div id="backup">
 	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="11" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
@@ -50,6 +50,12 @@
 	本地<input type="radio" checked="checked" value="local" name="bakplace" id="bakup_place" />
 	服务器<input type="radio" value="server" name="bakplace" id="bakup_place" /></p>
 	<p><input type="submit" value="开始备份" class="submit" /></p>
+</div>
+</form>
+<form action="data.php?action=import" enctype="multipart/form-data" method="post">
+<div id="import">
+	<p><input type="file" name="sqlfile" /></p>
+	<p><input type="submit" value="导入" class="submit" /></p>
 </div>
 </form>
 <div class=containertitle><b>数据缓存</b>

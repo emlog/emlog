@@ -116,6 +116,47 @@ if ($action == 'renewdata'){
 	$CACHE->updateCache();
 	header("Location: ./data.php?active_import=true");
 }
+//导入本地备份文件
+if ($action == 'import'){
+	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
+	if ($sqlfile['type'] != 'text/x-sql') {
+		formMsg('只能导入 *.sql 文件', 'javascript:history.go(-1);',0);
+	}
+	if ($sqlfile['error'] == 1){
+		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+	}elseif ($sqlfile['error'] > 1){
+		formMsg('上传文件失败,错误码：'.$sqlfile['error'], 'javascript:history.go(-1);', 0);
+	}
+	// 读取备份文件信息
+	$fp = @fopen($sqlfile['tmp_name'], 'r');
+	if ($fp){
+		$dumpinfo = array();
+		$line = 0;
+		while (!feof($fp)){
+			$dumpinfo[] = fgets($fp, 4096);
+			$line++;
+			if ($line == 3) break;
+		}
+		fclose($fp);
+		if (!empty($dumpinfo)){
+			// 验证版本
+			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
+				formMsg("导入失败! 该备份文件不是 emlog ".Option::EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
+			}
+			// 验证表前缀
+			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
+				formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配".$dumpinfo[2], 'javascript:history.go(-1);',0);
+			}
+		} else {
+			formMsg("导入失败! 该备份文件不是 emlog 的备份文件!", 'javascript:history.go(-1);',0);
+		}
+	} else {
+		formMsg("导入失败! 读取缓存文件夹".dirname($sqlfile['tmp_name'])."失败", 'javascript:history.go(-1);',0);
+	}
+	bakindata($sqlfile['tmp_name']);
+	$CACHE->updateCache();
+	header("Location: ./data.php?active_import=true");
+}
 //批量删除备份文件
 if($action == 'dell_all_bak'){
 	if(!isset($_POST['bak'])){
