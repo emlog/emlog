@@ -230,6 +230,7 @@ CREATE TABLE {$db_prefix}blog (
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
   excerpt longtext NOT NULL,
+  alias VARCHAR(200) NOT NULL DEFAULT '',
   author int(10) NOT NULL default '1',
   sortid tinyint(3) NOT NULL default '-1',
   type varchar(20) NOT NULL default 'blog',
