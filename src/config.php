@@ -1,4 +1,5 @@
 <?php
+header("location: ./install.php");
 //mysql database address
 define('DB_HOST','localhost');
 //mysql database user
