@@ -84,6 +84,9 @@ class Dispatcher {
         }
         //for iis6
         $path = str_replace('index.php', '', $path);
+        //for subdirectory
+        $t = parse_url(BLOG_URL);
+        $path = str_replace($t['path'], '/', $path);
         return $path;
     }
 }

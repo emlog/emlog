@@ -1,7 +1,6 @@
 * text=auto !eol
 /license.txt -text svn_keywords=Id
 /readme.html -text
-src/.htaccess -text
 src/admin/admin_log.php -text svn_keywords=Id
 src/admin/attachment.php -text svn_keywords=Id
 src/admin/blogger.php -text svn_keywords=Id

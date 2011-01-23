@@ -23,7 +23,7 @@
 	<?php foreach($links as $key=>$value):?>  
       <tr>
 		<td><input class="num_input" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
-		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?php echo $value['sitename']; ?></a></td>
+		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
 		<td class="tdcenter">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
 	  	<img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
@@ -40,11 +40,11 @@
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);">添加链接&raquo;</a></div>
 <div id="link_new">
 	<li>名称</li>
-	<li><input maxlength="200" size="35" name="sitename" /></li>
+	<li><input maxlength="200" style="width:228px;" name="sitename" /></li>
 	<li>地址</li>
-	<li><input maxlength="200" size="35" name="siteurl" /></li>
+	<li><input maxlength="200" style="width:228px;" name="siteurl" /></li>
 	<li>描述</li>
-	<li><textarea name="description" rows="5" cols="40" type="text"></textarea></li>
+	<li><textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" name="" value="添加链接"  /></li>
 </div>
 </form>
