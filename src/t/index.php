@@ -57,7 +57,7 @@ if ($action == 'getr') {
          $response .= "
          <li>
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
-         <em><a href=\"javascript:re({$tid}, '@{$val['name']}：');\">回复</a></em>
+         <em><a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a></em>
          </li>";
     }
     echo $response;
@@ -86,7 +86,7 @@ if ($action == 'reply') {
     }
 
     $date = time();
-    $name =  ROLE == 'visitor' ? $rname : $user_cache[UID]['name'];;
+    $name =  ROLE == 'visitor' ? $rname : addslashes($user_cache[UID]['name']);
 
     $rdata = array(
             'tid' => $tid,
@@ -118,7 +118,7 @@ if ($action == 'reply') {
     $r = htmlClean(stripslashes($r));
     $response = "
          <li style=\"background-color:#FFEEAA\">
-         <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
+         <span class=\"name\">".stripslashes($name)."</span> {$r}<span class=\"time\">{$date}</span>
          <em><a href=\"javascript:re({$tid}, '@{$name}：');\">回复</a></em>
          </li>";
     echo $response;
