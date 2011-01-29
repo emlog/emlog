@@ -13,8 +13,8 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="90"><b>用户名</b></th>
-        <th width="100"><b>昵称</b></th>
+        <th width="40"></th>
+        <th width="100"><b>作者</b></th>
         <th width="260"><b>个人描述</b></th>
         <th width="80"><b>电子邮件</b></th>
 		<th width="30" class="tdcenter"><b>日志</b></th>
@@ -23,11 +23,13 @@
     </thead>
     <tbody>
 	<?php
+	$user_cache = $CACHE->readCache('user');
 	foreach($users as $key => $val):
+		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
-        <td><a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?php echo $val['login']; ?></a></td>
-		<td><?php echo $val['name']; ?></td>
+        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
+		<td><a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a></td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
 		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>

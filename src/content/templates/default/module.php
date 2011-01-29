@@ -279,7 +279,7 @@ function neighbor_log($neighborLog){
 <?php
 //blog：引用通告
 function blog_trackback($tb, $tb_url, $allow_tb){
-    if($allow_tb == 'y'):?>
+    if($allow_tb == 'y' && Option::get('istrackback') == 'y'):?>
 	<div id="trackback_address">
 	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo $tb_url; ?>">
 	<a name="tb"></a></p>
