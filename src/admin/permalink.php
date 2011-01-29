@@ -12,6 +12,8 @@ if ($action == '') {
 	$t = 'ex'.Option::get('isurlrewrite');
 	$$t = 'checked="checked"';
 
+	$isalias = Option::get('isalias') == 'y' ? 'checked="checked"' : '';
+
 	include View::getView('header');
 	require_once(View::getView('permalink'));
 	include View::getView('footer');
@@ -20,7 +22,9 @@ if ($action == '') {
 
 if ($action == 'update') {
 	$permalink = isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0';
-	if($permalink != '0'){
+	$isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
+
+	if($permalink != '0' || $isalias == 'y'){
 		$fp = @fopen(EMLOG_ROOT.'/.htaccess', 'w');
 		$t = parse_url(BLOG_URL);
 		$rw_rule = '<IfModule mod_rewrite.c>
@@ -38,6 +42,7 @@ if ($action == 'update') {
 	}
 
 	Option::updateOption('isurlrewrite', $permalink);
+	Option::updateOption('isalias', $isalias);
 	$CACHE->updateCache('options');
 	header('Location: ./permalink.php?activated=true');
 }

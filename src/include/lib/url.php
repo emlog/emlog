@@ -13,11 +13,13 @@ class Url {
     static function log($blogId){
         $logUrl = '';
         //get log alias
-        $CACHE = Cache::getInstance();
-        $logalias_cache = $CACHE->readCache('logalias');
-        if (!empty($logalias_cache[$blogId])) {
-        	$logUrl = BLOG_URL . $logalias_cache[$blogId];
-        	return $logUrl;
+        if (Option::get('isalias') == 'y') {
+	        $CACHE = Cache::getInstance();
+	        $logalias_cache = $CACHE->readCache('logalias');
+	        if (!empty($logalias_cache[$blogId])) {
+	        	$logUrl = BLOG_URL . $logalias_cache[$blogId];
+	        	return $logUrl;
+	        }
         }
         switch (Option::get('isurlrewrite')) {
             case '0':

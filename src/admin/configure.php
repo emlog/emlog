@@ -8,56 +8,15 @@
 require_once 'globals.php';
 
 if ($action == '') {
-	 $options_cache = $CACHE->readCache('options');
-     extract($options_cache);
-	
-	if($login_code == 'y') {
-		$ex1 = 'selected="selected"';
-		$ex2 = '';
-	}else{
-		$ex1 = '';
-		$ex2 = 'selected="selected"';
-	}
+	$options_cache = $CACHE->readCache('options');
+	extract($options_cache);
 
-	if($comment_code == 'y') {
-		$ex3 = 'selected="selected"';
-		$ex4 = '';
-	}else{
-		$ex3 = '';
-		$ex4 = 'selected="selected"';
-	}
-
-	if($ischkcomment == 'y'){
-		$ex5 = 'selected="selected"';
-		$ex6 = '';
-	}else{
-		$ex5 = '';
-		$ex6 = 'selected="selected"';
-	}
-
-	if($istrackback == 'y'){
-		$ex7 = 'selected="selected"';
-		$ex8 = '';
-	}else{
-		$ex7 = '';
-		$ex8 = 'selected="selected"';
-	}
-
-	if($isgzipenable == 'y'){
-		$ex11 = 'selected="selected"';
-		$ex12 = '';
-	}else{
-		$ex11 = '';
-		$ex12 = 'selected="selected"';
-	}
-
-	if($isxmlrpcenable == 'y'){
-		$ex13 = 'selected="selected"';
-		$ex14 = '';
-	} else {
-		$ex13 = '';
-		$ex14 = 'selected="selected"';
-	}
+	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
+	$conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
+	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
+	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
+	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
+	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once(View::getView('configure'));

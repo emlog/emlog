@@ -77,58 +77,28 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right">开启评论审核：<br /></td>
-        <td>
-		<select name="ischkcomment">
-          <option value="y" <?php echo $ex5; ?>>是</option>
-          <option value="n" <?php echo $ex6; ?>>否</option>
-        </select>
-		</td>
+        <td align="right">评论审核：<br /></td>
+        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /></td>
       </tr>
 	  <tr>
-        <td align="right">开启引用通告：<br /></td>
-        <td>
-		<select name="istrackback">
-          <option value="y" <?php echo $ex7; ?>>是</option>
-          <option value="n" <?php echo $ex8; ?>>否</option>
-        </select>
-		</td>
+        <td align="right">引用通告：<br /></td>
+        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /></td>
       </tr>
       <tr>
-        <td align="right">开启登录验证码：<br /></td>
-        <td class="care">
-        <select name="login_code">
-          <option value="y" <?php echo $ex1; ?>>是</option>
-          <option value="n" <?php echo $ex2; ?>>否</option>
-        </select>
-        </td>
+        <td align="right">登录验证码：<br /></td>
+        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /></td>
       </tr>
       <tr>
-        <td align="right">开启评论验证码：<br /></td>
-        <td>
-        <select name="comment_code">
-          <option value="y" <?php echo $ex3; ?>>是</option>
-          <option value="n" <?php echo $ex4; ?>>否</option>
-        </select>
-        </td>
+        <td align="right">评论验证码：<br /></td>
+        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /></td>
       </tr>
       <tr>
-        <td align="right">开启页面Gzip压缩：<br /></td>
-        <td class="care">
-		<select name="isgzipenable">
-          <option value="y" <?php echo $ex11; ?>>是</option>
-          <option value="n" <?php echo $ex12; ?>>否</option>
-        </select>
-		</td>
+        <td align="right">页面Gzip压缩：<br /></td>
+        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>
       </tr>
 	  <tr>
-        <td align="right">开启离线写作支持：<br /></td>
-        <td class="care">
-		<select name="isxmlrpcenable">
-          <option value="y" <?php echo $ex13; ?>>是</option>
-          <option value="n" <?php echo $ex14; ?>>否</option>
-        </select>
-		</td>
+        <td align="right">离线写作支持：<br /></td>
+        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
       </tr>
       <tr>
         <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
