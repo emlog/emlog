@@ -34,7 +34,7 @@ require_once View::getView('module');
 		<ul id="menus">
 			<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
 			<?php if($istwitter == 'y'):?>
-			<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/">碎语</a></li>
+			<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/"><?php echo Option::get('twnavi');?></a></li>
 			<?php endif;?>
 			<?php 
 			foreach ($navibar as $key => $val):

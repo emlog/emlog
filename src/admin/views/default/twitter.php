@@ -18,22 +18,11 @@
     <div class="op"><a href="javascript:displayToggle('sz_box', 2);">设置</a></div>
     <form method="post" action="twitter.php?action=set">
         <div class="sz_box" id="sz_box">
-            <span>前台是否显示：</span>
-            <select name="istwitter">
-                <option value="y" <?php echo $ex1; ?>>是</option>
-                <option value="n" <?php echo $ex2; ?>>否</option>
-            </select>
-            <span>开启回复验证码：</span>
-            <select name="reply_code">
-                <option value="y" <?php echo $ex3; ?>>是</option>
-                <option value="n" <?php echo $ex4; ?>>否</option>
-            </select>
-            <span>开启回复审核：</span>
-            <select name="ischkreply">
-                <option value="y" <?php echo $ex5; ?>>是</option>
-                <option value="n" <?php echo $ex6; ?>>否</option>
-            </select>
-            <br /><span>前台每页显示条数：</span><input type="text" name="index_twnum" value="<?php echo Option::get('index_twnum'); ?>" /> 
+            <span>在前台显示：<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /></span>
+            <span>回复验证码：<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /></span>
+            <span>回复审核：<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /></span>
+           	<span>前台每页显示条数：<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" /></span>
+           	<span>首页导航文字：<input type="text" name="twnavi" maxlength="3" value="<?php echo Option::get('twnavi'); ?>" style="width:60px;" /></span>
             <input class="tbutton" type="submit" value="保存" />
         </div>
     </form>

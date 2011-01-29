@@ -152,10 +152,11 @@ textarea{font-size:12px}
 #tw .tbutton input{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
 #tw .tbutton input:active,#tw ul .button_p:active,#tw .sz_box .tbutton:active{ background:url(images/weibe_button.gif) no-repeat 1px 1px;}
 #tw .op{ float:left; height:18px;margin:6px 5px 3px;}
+
 #tw .sz_box{ margin:36px 0px 0px 5px; background:#eff8ff; border:1px #bad0e0 solid; clear:both; padding:5px 3px; width:464px; height:50px; display:none; text-align:center}
-#tw .sz_box input,#tw .sz_box select{ width:40px; border:#CCC solid 1px;}
-#tw .sz_box span{ margin:0px 3px;}
+#tw .sz_box span{ margin:0px 6px;}
 #tw .sz_box .tbutton{ width:60px;background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px; float:none}
+
 #tw ul{ margin:5px 0px 3px 65px; width:480px; line-height:1.8;padding:0px;}
 #tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
 #tw ul li{margin:0px 0px; padding:0;}

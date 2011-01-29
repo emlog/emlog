@@ -5,9 +5,6 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="tw">
-    <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-    <div class="top"><a href="<?php echo BLOG_URL . 'admin/twitter.php' ?>">发布碎语</a></div>
-    <?php endif; ?>
     <ul>
     <?php 
     foreach($tws as $val):
@@ -40,7 +37,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     </div>
     </li>
     <?php endforeach;?>
-    <li id="pagenavi"><?php echo $pageurl;?><span>(有<?php echo $twnum; ?>条碎语)</span></li>
     </ul>
 </div>
 <?php

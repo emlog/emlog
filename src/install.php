@@ -314,6 +314,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenabl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','碎语');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
