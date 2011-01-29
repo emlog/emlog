@@ -38,7 +38,7 @@
   </table>
 </form>
 <form action="user.php?action=new" method="post">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加作者(联合撰写人)&raquo;</a></div>
+<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加作者+</a></div>
 <div id="user_new">
 	<li>用户名</li>
 	<li><input name="login" type="text" id="login" value="" style="width:180px;" /></li>

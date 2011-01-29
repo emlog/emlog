@@ -38,6 +38,7 @@ if ($action== 'link_taxis')
 
 if($action== 'addlink')
 {
+	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
@@ -51,7 +52,7 @@ if($action== 'addlink')
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
-	$Link_Model->addLink($sitename, $siteurl, $description);
+	$Link_Model->addLink($sitename, $siteurl, $description, $taxis);
 	$CACHE->updateCache('link');
 	header("Location: ./link.php?active_add=true");
 }
