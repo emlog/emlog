@@ -37,8 +37,10 @@ $isdraft = $hide == 'y' ? true : false;
         </tr>
         <tr nowrap="nowrap">
           <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-          <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" /><br />
-          <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签&raquo;</a></div>
+          <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" />
+          <?php if (!empty($tags)):?>
+          <br /><div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>
+          <?php endif; ?>
           <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
           <?php
           $tagStr = '';
