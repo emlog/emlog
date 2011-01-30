@@ -54,7 +54,7 @@
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，需要<a href="./permalink.php" target="_blank">启用日志链接别名</a>)<span id="alias_msg_hook"></span><br />
+          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
 			<input name="alias" id="alias" style="width:711px;" />
           </td>
         </tr>   
