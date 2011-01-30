@@ -15,6 +15,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if(isset($_GET['active_move'])):?><span class="actived">移动日志成功</span><?php endif;?>
 <?php if(isset($_GET['active_change_author'])):?><span class="actived">更改作者成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">转入草稿箱成功</span><?php endif;?>
+<?php if(isset($_GET['active_savedraft'])):?><span class="actived">草稿保存成功</span><?php endif;?>
+<?php if(isset($_GET['active_savelog'])):?><span class="actived">日志保存成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <div class="filters">

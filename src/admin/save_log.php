@@ -69,16 +69,17 @@ switch ($action) {
 	case 'edit':
 		$tbmsg = '';
 		if($ishide == 'y') {
-			$ok_msg = '草稿保存成功！';
-			$ok_url = 'admin_log.php?pid=draft';
+			header("Location: ./admin_log.php?pid=draft&active_savedraft=true");
 		} else {
 			//发送Trackback
 			if(!empty($pingurl)) {
-				$tbmsg = $Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
+				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
-			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? '日志发布成功！' : '日志保存成功！';
-			$ok_url = 'admin_log.php';
+			if ($action == 'add' || isset($_POST['pubdf'])) {
+				header("Location: ./admin_log.php?active_post=true");//日志发布成功
+			} else {
+				header("Location: ./admin_log.php?active_savelog=true");//日志保存成功
+			}
 		}
-		formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 		break;
 }

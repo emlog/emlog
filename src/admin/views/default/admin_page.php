@@ -3,6 +3,7 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除页面成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide_n'])):?><span class="actived">发布页面成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide_y'])):?><span class="actived">禁用页面成功</span><?php endif;?>
+<?php if(isset($_GET['active_pubpage'])):?><span class="actived">页面保存成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">

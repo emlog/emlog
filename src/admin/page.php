@@ -103,10 +103,11 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 			break;
 		case 'add':
 		case 'edit':
-			$tbmsg = '';
-			$ok_msg = $action == 'add' ? '页面发布成功！' : '页面保存成功！';
-			$ok_url = 'page.php';
-			formMsg($ok_msg,$ok_url, 1);
+			if($action == 'add') {
+				header("Location: ./page.php?active_hide_n=true");//页面发布成功
+			} else {
+				header("Location: ./page.php?active_savepage=true");//页面保存成功
+			}
 			break;
 	}
 }

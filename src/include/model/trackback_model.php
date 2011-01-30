@@ -24,7 +24,7 @@ class Trackback_Model {
 	 * @param string $blogurl
 	 * @param string $pingUrl
 	 * @param int $blogId
-	 * @return msg
+	 * @return no ret
 	 */
 	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{
@@ -37,15 +37,9 @@ class Trackback_Model {
 			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
 			{
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
-				$result = strtolower($this->sendPacket($host, $data));
-				if (strstr($result, "<error>0</error>") === false) {
-					$tbmsg .= "(引用{$key}:发送失败)";
-				} else {
-					$tbmsg .= "(引用{$key}:发送成功)";
-				}
+				$this->sendPacket($host, $data);
 			}
 		}
-		return $tbmsg;
 	}
 
 	function sendPacket($url, $data)
