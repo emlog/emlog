@@ -111,7 +111,7 @@ textarea{font-size:12px}
 #page_options input{vertical-align:middle; margin:3px 15px 3px 0px}
 #input_error{
 	color:#CC0000;
-	margin-left:10px; 
+	margin-left:0px; 
 	padding:1px 3px 1px 18px;
 	font-weight:bold;
 	background:url("images/no.png") no-repeat scroll left center transparent;
