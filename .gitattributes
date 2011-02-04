@@ -89,11 +89,10 @@ src/admin/views/attlib.php -text
 src/admin/views/blogger.php -text
 src/admin/views/comment.php -text
 src/admin/views/comment_reply.php -text
-src/admin/views/common.js -text
 src/admin/views/configure.php -text
-src/admin/views/css-att.css -text
-src/admin/views/css-login.css -text
-src/admin/views/css-main.css -text
+src/admin/views/css/css-att.css -text
+src/admin/views/css/css-login.css -text
+src/admin/views/css/css-main.css -text
 src/admin/views/data.php -text
 src/admin/views/edit_log.php -text
 src/admin/views/edit_page.php -text
@@ -147,6 +146,7 @@ src/admin/views/images/weibe_bl.gif -text
 src/admin/views/images/weibe_button.gif -text
 src/admin/views/images/yeka.gif -text
 src/admin/views/index.php -text
+src/admin/views/js/common.js -text
 src/admin/views/linkedit.php -text
 src/admin/views/links.php -text
 src/admin/views/login.php -text
