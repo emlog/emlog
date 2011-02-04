@@ -12,7 +12,7 @@
       </tr>
       <tr nowrap="nowrap">
         <td align="right" valign="top">博客描述：</td>
-        <td><textarea name="bloginfo" cols="" rows="3" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
+        <td><textarea name="bloginfo" cols="" rows="2" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr nowrap="nowrap">
         <td align="right">博客地址：</td>
