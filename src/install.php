@@ -302,6 +302,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlo
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','blue_classic');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');

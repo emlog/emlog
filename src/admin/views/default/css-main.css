@@ -181,3 +181,6 @@ textarea{font-size:12px}
 #tw ul .huifu .text{ width:60px;}
 #tw ul .button_p{background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
 #tw .loading{background:url(images/loading.gif) no-repeat 200px 2px; height:20px;}
+
+#admin_style{ margin:10px 10px 10px 10px;}
+#admin_style div{ float:left; margin:10px;}
