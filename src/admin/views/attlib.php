@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/<?php echo ADMIN_TPL; ?>/css-att.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
+<link href="./views/css/css-att.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/js/common.js"></script>
 </head>
 <script>
 function showupload()
@@ -33,14 +33,14 @@ foreach($attach as $key=>$value):
 	$atturl = BLOG_URL.substr(str_replace('thum-','',$value['filepath']),3);
 	$emImageType = array('gif', 'jpg', 'jpeg', 'png', 'bmp');//支持的图片类型
 	if($extension == 'zip' || $extension == 'rar'){
-		$imgpath = "./views/".ADMIN_TPL."/images/tar.gif";
+		$imgpath = "./views/images/tar.gif";
 		$embedlink = '';
 	}elseif (in_array($extension, $emImageType)) {
 		$imgpath = $value['filepath'];
 		$ed_imgpath = BLOG_URL.substr($imgpath,3);
 		$embedlink = "<a href=\"javascript: parent.addattach('$atturl','$ed_imgpath',{$value['aid']});\">嵌入 </a>";
 	}else {
-		$imgpath = "./views/".ADMIN_TPL."/images/fnone.gif";
+		$imgpath = "./views/images/fnone.gif";
 		$embedlink = '';
 	}
 ?>

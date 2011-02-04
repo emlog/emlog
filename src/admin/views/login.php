@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="./views/<?php echo ADMIN_TPL; ?>/css-login.css" type="text/css" media="screen" /> 
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
+<link rel="stylesheet" href="./views/css/css-login.css" type="text/css" media="screen" /> 
+<script type="text/javascript" src="./views/js/common.js"></script>
 <title>登录</title>
 </head>
 <body>
 <form name="f" method="post" action="./index.php?action=login">
 <div class="login-main">
 	<div class="login-top"></div>
-	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/<?php echo ADMIN_TPL; ?>/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
+	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
 	<small><?php echo Option::EMLOG_VERSION; ?></small>
 	<div class="login-input">
 		<span>用户名</span>

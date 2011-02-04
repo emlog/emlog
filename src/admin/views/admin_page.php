@@ -25,7 +25,7 @@
 	}
 	$isHide = $value['hide'] == 'y' ? 
 	'<font color="red">[隐藏]</font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/'.ADMIN_TPL.'/images/vlog.gif" align="absbottom" border="0" /></a>';
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>

@@ -76,6 +76,7 @@ src/admin/permalink.php -text svn_keywords=Id
 src/admin/plugin.php -text svn_keywords=Id
 src/admin/save_log.php -text svn_keywords=Id
 src/admin/sort.php -text svn_keywords=Id
+src/admin/style.php -text
 src/admin/tag.php -text svn_keywords=Id
 src/admin/template.php -text svn_keywords=Id
 src/admin/trackback.php -text svn_keywords=Id

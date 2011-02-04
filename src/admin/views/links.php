@@ -26,7 +26,7 @@
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
 		<td class="tdcenter">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
-	  	<img src="./views/<?php echo ADMIN_TPL; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
+	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['description']; ?></td>
         <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>

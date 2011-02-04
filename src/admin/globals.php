@@ -7,7 +7,7 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TPL.'/');//后台当前模板路径
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//后台当前模板路径
 
 $sta_cache = $CACHE->readCache('sta');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';

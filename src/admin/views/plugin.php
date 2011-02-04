@@ -33,7 +33,7 @@
       <tr>
         <td class="tdcenter"><?php echo $val['Name']; ?></td>
 		<td class="tdcenter" id="plugin_<?php echo $i;?>">
-		<a href="./plugin.php?action=<?php echo $plug_action;?>&plugin=<?php echo $key;?>"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
+		<a href="./plugin.php?action=<?php echo $plug_action;?>&plugin=<?php echo $key;?>"><img src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
 		</td>
         <td class="tdcenter"><?php echo $val['Version']; ?></td>
         <td>

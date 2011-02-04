@@ -18,7 +18,7 @@ if ($action == '') {
     $tws = $Twitter_Model->getTwitters($page,1);
     $twnum = $Twitter_Model->getTwitterNum(1);
     $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page');
-    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
     $conf_istwitter = Option::get('istwitter') == 'y' ? 'checked="checked"' : '';
     $conf_reply_code = Option::get('reply_code') == 'y' ? 'checked="checked"' : '';

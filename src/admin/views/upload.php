@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/<?php echo ADMIN_TPL; ?>/css-att.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
+<link href="./views/css/css-att.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/js/common.js"></script>
 <script>
 function uploadfile()
 {

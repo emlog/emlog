@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
-<link href="./views/<?php echo ADMIN_TPL; ?>/css-main.css" type=text/css rel=stylesheet>
+<link href="./views/css/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
-<script type="text/javascript" src="./views/<?php echo ADMIN_TPL; ?>/common.js"></script>
+<script type="text/javascript" src="./views/js/common.js"></script>
 <?php doAction('adm_head');?>
 <title><?php echo Option::get('blogname'); ?> - 管理中心</title>
 </head>
@@ -24,8 +24,8 @@
     <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo Option::get('blogname'); ?></a></td>
     <td align=right nowrap class="headtext">
 	<?php if (ROLE == 'admin'):?>
-    <a href="configure.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="template.php" ><img src="./views/<?php echo ADMIN_TPL; ?>/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
@@ -101,7 +101,7 @@
             <div id=sidebar>
             <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">功能扩展</div>
 			<div id="extend_mg">
-            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/<?php echo ADMIN_TPL; ?>/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
+            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
             <?php doAction('adm_sidebar_ext'); ?>
 			</div>
 			</div>
