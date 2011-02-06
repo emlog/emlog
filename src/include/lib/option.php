@@ -8,8 +8,6 @@
 class Option {
 	//版本编号
     const EMLOG_VERSION = '4.0.0';
-    //后台模板
-    const ADMIN_TPL = 'default';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高

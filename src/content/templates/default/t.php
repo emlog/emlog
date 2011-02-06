@@ -10,7 +10,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     foreach($tws as $val):
     $author = $user_cache[$val['author']]['name'];
     $avatar = empty($user_cache[$val['author']]['avatar']) ? 
-                BLOG_URL . 'admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : 
+                BLOG_URL . 'admin/views/images/avatar.jpg' : 
                 BLOG_URL . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
     ?> 
