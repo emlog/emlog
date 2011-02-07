@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
-<link href="./views/style/default/style.css" type=text/css rel=stylesheet>
+<link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>

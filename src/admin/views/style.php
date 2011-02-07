@@ -9,10 +9,11 @@
 </div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
 <div id="admin_style">
-	<div><img src="http://localhost/blogs/wordpress/wp-content/themes/twentyten/images/headers/cherryblossoms-thumbnail.jpg" alt="樱花" title="樱花" /></div>
-    <div><img src="http://localhost/blogs/wordpress/wp-content/themes/twentyten/images/headers/cherryblossoms-thumbnail.jpg" alt="樱花" title="樱花" /></div>
-    <div><img src="http://localhost/blogs/wordpress/wp-content/themes/twentyten/images/headers/cherryblossoms-thumbnail.jpg" alt="樱花" title="樱花" /></div>
-    <div><img src="http://localhost/blogs/wordpress/wp-content/themes/twentyten/images/headers/cherryblossoms-thumbnail.jpg" alt="樱花" title="樱花" /></div>
-    <div><img src="http://localhost/blogs/wordpress/wp-content/themes/twentyten/images/headers/cherryblossoms-thumbnail.jpg" alt="樱花" title="樱花" /></div>
+	<?php 
+	foreach ($styles as $key=>$value): 
+	$style = $value['style_file'];
+	?>
+	<div><a href="./style.php?action=usestyle&style=<?php echo $style; ?>"><img src="<?php echo $style_path.$style; ?>/preview.jpg" alt="" title="" /></a></div>
+	<?php endforeach;?>
 </div>
 </form>
