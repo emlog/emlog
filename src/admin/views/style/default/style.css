@@ -1,7 +1,7 @@
 /*
-Style Name:Ä¬ÈÏ·ç¸ñ
-Description:ÕâÊÇemlogµÄÄ¬ÈÏºóÌ¨·ç¸ñ
-Author:emlog¿ª·¢Ğ¡×é
+Style Name:é»˜è®¤é£æ ¼
+Description:è¿™æ˜¯emlogçš„é»˜è®¤åå°é£æ ¼
+Author:emlogå¼€å‘å°ç»„
 Author Url:http://www.emlog.net
 */
 a{color:#2A9DDB; text-decoration:none;}
@@ -13,7 +13,7 @@ a:hover{color:#333; text-decoration:none}
 #header a:hover{color:#CCC; text-decoration:none}
 #header .logo a{ text-indent:-9999px; height:40px; width:120px; background:url(./images/logo.png) no-repeat; display:block; outline: none;}
 #header .vesion{font-size:10px; padding:10px 10px 0 5px; color: #CEE7FF;}
-#header .home{ background:url(./images/top_line1.png) no-repeat; font-size:15px; padding-left:15px;}
+#header .home{font-size:15px; padding-left:15px;}
 #sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif);width:114px; background-repeat:repeat-y; text-align:center}
 #sidebar a{color:#333; text-decoration:none; display:block;}
 #sidebar a:hover{color:#2A9DDB; text-decoration:none;}
