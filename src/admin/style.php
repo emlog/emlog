@@ -17,8 +17,19 @@ if ($action == '') {
 		{
 			$styleData = implode('', @file($style_path.$file.'/style.css'));
 			preg_match("/Style Name:([^\r\n]+)/i", $styleData, $name);
+			preg_match("/Author:(.*)/i", $styleData, $author);
+			preg_match("/Url:(.*)/i", $styleData, $url);
+
 			$styleInfo['style_name'] = !empty($name[1]) ? trim($name[1]) : $file;
 			$styleInfo['style_file'] = $file;
+
+			if (!empty($author[1]) && !empty($url[1])) {
+				$styleInfo['style_author'] = '(作者：<a href="'.$url[1].'" target="_blank">'.$author[1].'</a>)';
+			} elseif (!empty($author[1])){
+				$styleInfo['style_author'] = '(作者：'.$author[1].')';
+			} else {
+				$styleInfo['style_author'] = '';
+			}
 
 			$styles[] = $styleInfo;
 		}

@@ -164,3 +164,7 @@ textarea{font-size:12px}
 
 #admin_style{ margin:10px 10px 10px 10px;}
 #admin_style div{ float:left; margin:10px;}
+#admin_style div img {border: 1px solid #CCCCCC; padding:1px;}
+#admin_style div li{ text-align:center;}
+#admin_style div li a{ color:#999999}
+#admin_style div span{ font-size:11px; color: #999999}
