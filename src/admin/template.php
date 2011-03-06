@@ -125,7 +125,7 @@ if ($action == 'upload_top') {
 	{
 		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $_FILES['topimg']['type'], $photo_type, false, false);
 	}else{
-		exit('upload error');
+		header("Location: ./template.php?action=custom-top");
 	}
 
 	include View::getView('header');

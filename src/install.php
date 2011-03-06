@@ -30,7 +30,7 @@ if(!$act){
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 .main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
-#top-title{background:url(admin/views/default/images/logo.gif) no-repeat right;padding:5px 0px;margin:20px 0px 60px 0px;}
+#top-title{background:url(admin/views/images/logo.gif) no-repeat right;padding:5px 0px;margin:20px 0px 60px 0px;}
 .input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:5px 25px;}
 .submit{background-color:#FFFFFF;border: 3px double #999;border-left-color: #ccc;border-top-color: #ccc;color: #333;padding: 0.25em;cursor:hand;}
 .title{font-size:24px;font-weight:bold;}
@@ -316,7 +316,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','碎语');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/banner.jpg');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
