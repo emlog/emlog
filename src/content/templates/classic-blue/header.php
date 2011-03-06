@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name:默认模板
-Description:这是emlog的默认模板，简洁明快 ……
+Template Name:蓝色经典
+Description:它曾是emlog的默认模板。
 Author:emlog开发小组
 Author Url:http://www.emlog.net
 Sidebar Amount:1
