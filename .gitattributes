@@ -173,6 +173,8 @@ src/admin/views/style/green/style.css -text
 src/admin/views/tag.php -text
 src/admin/views/tagedit.php -text
 src/admin/views/template.php -text
+src/admin/views/template_crop.php -text
+src/admin/views/template_top.php -text
 src/admin/views/trackback.php -text
 src/admin/views/twitter.php -text
 src/admin/views/upload.php -text
@@ -216,6 +218,20 @@ src/content/templates/classic-blue/page.php -text svn_keywords=Id
 src/content/templates/classic-blue/preview.jpg -text svn_keywords=Id
 src/content/templates/classic-blue/side.php -text svn_keywords=Id
 src/content/templates/classic-blue/t.php -text svn_keywords=Id
+src/content/templates/default/echo_log.php -text
+src/content/templates/default/footer.php -text
+src/content/templates/default/header.php -text
+src/content/templates/default/images/bullet.png -text
+src/content/templates/default/images/rss.png -text
+src/content/templates/default/images/top/top-default.jpg -text
+src/content/templates/default/images/top/top-default_mini.jpg -text
+src/content/templates/default/log_list.php -text
+src/content/templates/default/main.css -text
+src/content/templates/default/module.php -text
+src/content/templates/default/page.php -text
+src/content/templates/default/preview.jpg -text
+src/content/templates/default/side.php -text
+src/content/templates/default/t.php -text
 src/content/templates/index.php -text
 src/content/uploadfile/index.php -text
 src/include/controller/author_controller.php -text svn_keywords=Id
@@ -233,6 +249,10 @@ src/include/lib/dispatcher.php -text svn_keywords=Id
 src/include/lib/function.base.php -text svn_keywords=Id
 src/include/lib/function.login.php -text svn_keywords=Id
 src/include/lib/js/common_tpl.js -text svn_keywords=Id
+src/include/lib/js/imgareaselect/border-anim-h.gif -text
+src/include/lib/js/imgareaselect/border-anim-v.gif -text
+src/include/lib/js/imgareaselect/imgareaselect.css -text
+src/include/lib/js/imgareaselect/jquery.imgareaselect.js -text
 src/include/lib/js/jquery/jquery-1.2.6.js -text svn_keywords=Id
 src/include/lib/js/jquery/plugin-cookie.js -text svn_keywords=Id
 src/include/lib/js/jquery/plugin-interface.js -text svn_keywords=Id

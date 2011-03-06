@@ -169,6 +169,14 @@ function changeFileSize($fileSize){
 }
 
 /**
+ * 获取文件后缀
+ * @param string $fileName
+ */
+function getFileSuffix($fileName) { 
+	return strtolower(substr(strrchr($fileName, "."),1));
+}
+
+/**
  * 分页函数
  *
  * @param int $count 条目总数
@@ -321,9 +329,10 @@ function findArray($array1,$array2){
  * @param string $fileType 上传文件的类型 eg:image/jpeg
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
+ * @param boolean $is_thumbnail 是否生成缩略图
  * @return string 文件路径
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon = 0){
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
 	if ($errorNum == 1){
 		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1){
@@ -359,7 +368,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
-	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')){
+	if ($is_thumbnail && in_array($extension, $imtype) && function_exists('ImageCreate')){
 	    if ($isIcon && resizeImage($tmpFile, $fileType, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 	        $attach = $thum;
 	        resizeImage($tmpFile, $fileType, $uppath.'thum52-'. $fname, 52, 52);
@@ -474,6 +483,7 @@ function formMsg($msg,$url,$type){
 	View::output();
 	exit;
 }
+
 /**
  * 计算时区的时差
  * @param string $remote_tz 远程时区

@@ -13,6 +13,9 @@
 	  <?php echo $tplName; ?><br>
 	  <?php echo $tplAuthor; ?><br>
 	  <?php echo $tplDes; ?><br>
+	  <?php if ('default' == $nonce_templet): ?>
+	  <div><a href="./template.php?action=custom-top">自定义顶部图片</a></div>
+	  <?php endif; ?>
 	  </td>
     </tr>
 </table>

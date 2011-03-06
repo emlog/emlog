@@ -38,6 +38,7 @@ class Option {
 			    case 'widgets2':
 			    case 'widgets3':
 			    case 'widgets4':
+			    case 'custom_topimgs':
 			    	if (!empty($options_cache[$option])) {
 					   return @unserialize($options_cache[$option]);
 			    	} else{
