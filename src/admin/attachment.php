@@ -34,7 +34,7 @@ if ($action == 'upload') {
 	if ($attach) {
 		for ($i = 0; $i < count($attach['name']); $i++) {
 			if ($attach['error'][$i] != 4) {
-				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], $attach['type'][$i], Option::getAttType());
+				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType());
 				//写入附件信息
 				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);

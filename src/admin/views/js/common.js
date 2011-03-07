@@ -58,7 +58,7 @@ function em_confirm (id, property) {
 function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
 	$(".actived").hide();
-	$(".error").hide();
+	//$(".error").hide();
 }
 function displayToggle(id, keep){
 	$("#"+id).toggle();

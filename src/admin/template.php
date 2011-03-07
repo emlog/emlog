@@ -119,11 +119,11 @@ if($action == 'del_top')
 
 //上传顶部图片
 if ($action == 'upload_top') {
-	$photo_type = array('jpg', 'jpeg');
+	$photo_type = array('jpg', 'jpeg', 'png');
 	$topimg = '';
 	if($_FILES['topimg']['size'] > 0)
 	{
-		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $_FILES['topimg']['type'], $photo_type, false, false);
+		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
 	}else{
 		header("Location: ./template.php?action=custom-top");
 	}
@@ -142,31 +142,23 @@ if ($action == 'crop') {
 	$height = isset($_POST['height']) ? intval($_POST['height']) : 134;
 	$top_img = isset($_POST['img']) ? $_POST['img'] : '';
 
-	$src_img = imagecreatefromjpeg($top_img);
 	$time = time();
 
 	//create topimg
-	if (function_exists('imagecopyresampled')){
-		$new_img = imagecreatetruecolor($width, $height);
-		imagecopyresampled($new_img, $src_img, 0, 0, $x1, $y1, $width, $height, $width, $height);
-	} else {
-		$new_img = imagecreate($width, $height);
-		imagecopyresized($new_img, $src_img, 0, 0, $x1, $y1, $width, $height, $width, $height);
-	}
 	$topimg_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '.jpg';
-	imagejpeg($new_img, $topimg_path);
+	$ret = imageCropAndResize($top_img, $topimg_path, 0, 0, $x1, $y1, $width, $height, $width, $height);
+	if (false === $ret) {
+		header("Location: ./template.php?action=custom-top&error_a=true");
+		exit;
+	}
 
 	//create mini topimg
-	$src_img = imagecreatefromjpeg($topimg_path);
-	if (function_exists('imagecopyresampled')){
-		$new_img = imagecreatetruecolor(230, 48);
-		imagecopyresampled($new_img, $src_img, 0, 0, 0, 0, 230, 48, $width, $height);
-	} else {
-		$new_img = imagecreate(230, 48);
-		imagecopyresized($new_img, $src_img, 0, 0, 0, 0, 230, 48, $width, $height);
-	}
 	$topimg_mini_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '_mini.jpg';
-	imagejpeg($new_img, $topimg_mini_path);
+	$ret = imageCropAndResize($topimg_path, $topimg_mini_path, 0, 0, 0, 0, 230, 48, $width, $height);
+	if (false === $ret) {
+		header("Location: ./template.php?action=custom-top&error_a=true");
+		exit;
+	}
 
 	@unlink($top_img);
 

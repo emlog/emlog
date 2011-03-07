@@ -3,6 +3,7 @@
 <div class=containertitle><b>自定义顶部图片</b>
 <?php if(isset($_GET['activated'])):?><span class="actived">顶部图片更换成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">服务器不支持GD图形处理，无法裁剪图片</span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if(!file_exists('../' . $topimg)): ?>
@@ -44,7 +45,7 @@
 	<li></li>
 	<li>
 	<input name="topimg" type="file" />
-	<input type="submit" value="上传" class="submit" /> (上传一张你喜欢的顶部图片，仅支持JPG格式图片)
+	<input type="submit" value="上传" class="submit" /> (上传一张你喜欢的顶部图片，支持JPG、PNG格式图片)
 	</li>
 </div>
 </form>

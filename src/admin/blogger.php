@@ -31,7 +31,7 @@ if ($action == 'update') {
 	$photo_type = array('gif', 'jpg', 'jpeg','png');
 	if($_FILES['photo']['size'] > 0)
 	{
-		$usericon = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $_FILES['photo']['type'], $photo_type, true);
+		$usericon = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $photo_type, true);
 	}else{
 		$usericon = $photo;
 	}

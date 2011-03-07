@@ -326,19 +326,18 @@ function findArray($array1,$array2){
  * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpFile 上传后的临时文件
  * @param string $fileSize 文件大小 KB
- * @param string $fileType 上传文件的类型 eg:image/jpeg
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return string 文件路径
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
 	if ($errorNum == 1){
 		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1){
 		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
 	}
-	$extension  = strtolower(substr(strrchr($fileName, "."),1));
+	$extension  = getFileSuffix($fileName);
 	if (!in_array($extension, $type)){
 		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
 	}
@@ -364,15 +363,16 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
 		}
 	}
 	doAction('attach_upload', $tmpFile);
+
 	//resizeImage
 	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if ($is_thumbnail && in_array($extension, $imtype) && function_exists('ImageCreate')){
-	    if ($isIcon && resizeImage($tmpFile, $fileType, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
+	    if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 	        $attach = $thum;
-	        resizeImage($tmpFile, $fileType, $uppath.'thum52-'. $fname, 52, 52);
-	    } elseif (resizeImage($tmpFile, $fileType, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
+	        resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
+	    } elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
 	        $attach = $thum;
 	    }
 	}
@@ -397,46 +397,69 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $fileType, $type,
  * @param int $max_h 缩略图最大高度 px
  * @return unknown
  */
-function resizeImage($img, $imgType, $thumPatch, $max_w, $max_h){
+function resizeImage($img, $thumPatch, $max_w, $max_h){
 	$size = chImageSize($img,$max_w,$max_h);
     $newwidth = $size['w'];
 	$newheight = $size['h'];
-	$w =$size['rc_w'];
+	$w = $size['rc_w'];
 	$h = $size['rc_h'];
 	if ($w <= $max_w && $h <= $max_h){
 		return false;
 	}
-	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg'){
-		if(function_exists('imagecreatefromjpeg')){
-			$img = imagecreatefromjpeg($img);
-		}else{
-			return false;
-		}
-	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
-		if (function_exists('imagecreatefrompng')){
-			$img = imagecreatefrompng($img);
-		}else{
-			return false;
-		}
-	}
-	if (function_exists('imagecopyresampled')){
-		$newim = imagecreatetruecolor($newwidth, $newheight);
-		imagecopyresampled($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+	return imageCropAndResize($img, $thumPatch, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+}
+
+/**
+ * 裁剪、缩放图片
+ *
+ * @param string $src_image 原始图
+ * @param string $dst_path 裁剪后的图片保存路径
+ * @param int $dst_x 新图坐标x
+ * @param int $dst_y 新图坐标y
+ * @param int $src_x 原图坐标x
+ * @param int $src_y 原图坐标y
+ * @param int $dst_w 新图宽度
+ * @param int $dst_h 新图高度
+ * @param int $src_w 原图宽度
+ * @param int $src_h 原图高度
+ */
+function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
+	if (function_exists('imagecreatefromstring')){
+		$src_img = imagecreatefromstring(file_get_contents($src_image));
 	} else {
-		$newim = imagecreate($newwidth, $newheight);
-		imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+		return false;
 	}
-	if ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg'){
-		if(!imagejpeg($newim,$thumPatch)){
-			return false;
-		}
-	} elseif ($imgType == 'image/x-png' || $imgType == 'image/png') {
-		if (!imagepng($newim,$thumPatch)){
-			return false;
-		}
+
+	if (function_exists('imagecopyresampled')){
+		$new_img = imagecreatetruecolor($dst_w, $dst_h);
+		imagecopyresampled($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+	} elseif(function_exists('imagecopyresized')) {
+		$new_img = imagecreate($dst_w, $dst_h);
+		imagecopyresized($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+	} else {
+		return false;
 	}
-	ImageDestroy ($newim);
-	return true;
+
+	switch (getFileSuffix($dst_path))
+	{
+		case 'png':
+			if(function_exists('imagepng') && imagepng($new_img, $dst_path)){
+				ImageDestroy ($newim);
+				return true;
+			} else {
+				return false;
+			}
+			break;
+		case 'jpg':
+		default:
+			if(function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)){
+				ImageDestroy ($newim);
+				return true;
+			} else {
+				return false;
+			}
+			break;
+	}
 }
 
 /**
