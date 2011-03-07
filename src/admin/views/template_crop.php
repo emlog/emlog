@@ -4,6 +4,19 @@
 <div class=line></div>
 <link href="../include/lib/js/imgareaselect/imgareaselect.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/imgareaselect/jquery.imgareaselect.js"></script>
+<form method="post" action="./template.php?action=crop">
+<p class="submit">
+	<input type="hidden" name="x1" id="x1" value="0"/>
+	<input type="hidden" name="y1" id="y1" value="0"/>
+	<input type="hidden" name="width" id="width" value="960"/>
+	<input type="hidden" name="height" id="height" value="705"/>
+	<input type="hidden" name="img" id="img" value="<?php echo $topimg; ?>"/>
+	<input type="submit" value="剪裁并保存" /> <span style="margin-left:20px;"><a href="./template.php?action=custom-top" >取消返回</a></span>
+</p>
+<div id="crop_image" style="position: relative">
+	<img src="<?php echo $topimg; ?>" id="upload" />
+</div>
+</form>
 <script type="text/javascript">
 	function onEndCrop( coords ) {
 		jQuery( '#x1' ).val(coords.x);
@@ -53,18 +66,3 @@
 		});
 	});
 </script>
-<form method="post" action="./template.php?action=crop">
-<p class="submit">
-	<input type="hidden" name="x1" id="x1" value="0"/>
-	<input type="hidden" name="y1" id="y1" value="0"/>
-	<input type="hidden" name="width" id="width" value="960"/>
-	<input type="hidden" name="height" id="height" value="705"/>
-	<input type="hidden" name="img" id="img" value="<?php echo $topimg; ?>"/>
-	<input type="submit" value="剪裁并保存" />
-</p>
-<div id="crop_image" style="position: relative">
-	<img src="<?php echo $topimg; ?>" id="upload" />
-</div>
-</form>
-
-
