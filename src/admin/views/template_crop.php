@@ -11,7 +11,7 @@
 	<input type="hidden" name="width" id="width" value="960"/>
 	<input type="hidden" name="height" id="height" value="705"/>
 	<input type="hidden" name="img" id="img" value="<?php echo $topimg; ?>"/>
-	<input type="submit" value="剪裁并保存" /> <span style="margin-left:20px;"><a href="./template.php?action=custom-top" >取消返回</a></span>
+	<input type="submit" value="剪裁并保存" /> <span style="margin-left:20px;">(页面加载完毕后，未出现选择区域时请按下鼠标左键手动拖曳选取 <a href="./template.php?action=custom-top" >取消返回</a></span>
 </p>
 <div id="crop_image" style="position: relative">
 	<img src="<?php echo $topimg; ?>" id="upload" />
