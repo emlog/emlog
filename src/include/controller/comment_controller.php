@@ -18,7 +18,7 @@ class Comment_Controller {
         $url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
         $imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
         $blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
-        
+
         if ($url && strncasecmp($url,'http://',7)) {
             $url = 'http://'.$url;
         }

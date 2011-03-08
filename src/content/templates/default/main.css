@@ -1,5 +1,6 @@
 body {background: #FFFFFF; color: #323232; text-align:center; font:13px/18px Arial,Helvetica,sans-serif; margin: 0px auto 0px; padding: 0px;}
 #wrap {background: #FFFFFF; width: 960px; text-align:left; margin: 0px auto 0px; padding: 0px;}
+img{ border:none;}
 
 /******************** HYPERLINKS ********************/
 a:link, a:active, a:visited {color:#886353; text-decoration:none;}
@@ -31,20 +32,13 @@ a:hover {color:#886353; text-decoration:underline;}
 #content h2 a:visited {color:#1F1F1F; text-decoration:none;}
 #content h2 a:hover {color:#1F1F1F; text-decoration:underline;}
 #content h2.widgettitle {color: #444444; font-size: 12px; font-weight: bold; margin: 25px 0px 0px 0px; padding: 10px 0px 10px 0px;}
-#content h3 {color: #444444; font-size: 12px; font-weight: bold; margin: 25px 0px 0px 0px; padding: 10px 0px 10px 0px;}
+#content h3 {color: #444444; font-size: 12px; font-weight: bold; margin: 15px 0px 0px 0px; padding: 8px 0px 8px 0px;}
 #contentleft {float: left; width: 678px; margin: 0px 0px 0px 0px; padding: 0px 20px 20px 20px; border-left: 1px solid #E2DDDE; border-right: 1px solid #E2DDDE;}
-#contentleft ol {margin: 0px 0px 0px 20px; padding: 0px 0px 10px 0px;}
-#contentleft ol li {margin: 0px 0px 0px 20px; padding: 0px 0px 0px 0px;}
-#contentleft ul {list-style-type:none; margin: 0px 0px 0px 20px; padding: 0px 0px 10px 0px;}
-#contentleft ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
-#contentleft ul li ul li{background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
-#contentleft .single {margin: 42px 0px 15px 0px; padding: 20px 0px 0px 0px;}
 blockquote {margin: 0px 20px 20px 20px; padding: 25px 20px 25px 20px; background: #EFEFEF; border-left: 5px solid #696969; border-right: 5px solid #696969;}
-.date {color:#A97965; font-size:12px;}
-.att { background-color:#CCCCCC; color:#A97965; font-size:12px;}
-.postmetadata {margin: 0px 20px 10px 20px; padding: 15px 20px 15px 20px; background: #EFEFEF; border-left: 5px solid #696969; border-right: 5px solid #696969;}
-.post-meta-key {text-decoration: none; font-weight: bold;}
-.post-meta {font-weight: normal;}
+#contentleft .date {color:#A97965; font-size:12px;}
+#contentleft .att {color:#A97965; font-size:12px; margin:5px 0px 0px 0px;}
+#contentleft .tag {color:#A97965; font-size:12px; margin:0px 0px 0px 0px;}
+#contentleft .count { text-align:right;}
 
 /******************** IMAGES ********************/
 img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
@@ -62,37 +56,31 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
-#feed ul li {background:transparent url("images/rss.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 
 /******************** FOOTER ********************/
 #footerbar a:link, a:active, a:visited {color:#886353; text-decoration:none;}
 #footerbar a:hover {color:#886353; text-decoration:underline;}
-#footerbar {margin: 40px auto 68px; padding: 10px 0px; width: 960px; text-align: left; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
+#footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: left; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
 .footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 	
-/******************** COMMENTS ********************/	
-#commentblock {margin: 0px 20px 10px 20px; padding: 25px 20px 10px 20px; background: #EFEFEF; border-left: 5px solid #696969; border-right: 5px solid #696969;}
-#commentlist {margin: 20px 20px 20px 20px; padding: 10px 10px 10px 10px; background: #F9F9F9; border-left: 2px solid #696969; border-right: 2px solid #696969; font-style:normal;}
-#commentlist li {list-style-type: none; list-style-image: none; margin: 10px 0px 0px 0px; padding: 10px 10px 10px 10px;}
-#commentlist li.bypostauthor {margin: 10px 0px 10px 0px; padding: 10px 10px 10px 10px; background: #B3B3B3; border: 1px solid #696969;}
-#commentlist li.pingback {margin: 10px 0px 10px 0px; padding: 10px 10px 10px 10px; background: #F9F9F9; border: 1px solid #696969;}
-#commentlist li ul li {list-style-image: none; list-style-type: none; background: none; margin: 10px 0px 0px 0px; padding: 10px 10px 10px 10px;}
-#commentlist li ul li ul li {list-style-image: none; list-style-type: none; background: none; margin: 10px 0px 0px 0px; padding: 10px 10px 10px 10px;}
-#commentlist li.comment ul.children li.bypostauthor {margin: 10px 0px 10px 0px; padding: 10px 10px 10px 10px; background: #B3B3B3; border: 1px solid #696969;}
-#commentlist li.comment {margin: 10px 0px 10px 0px; padding: 10px 10px 10px 10px; background: #E3E3E3; border: 1px solid #696969;}
-#commentlist li.comment div.comment-author {text-transform: uppercase;}
-#commentlist li.comment div.vcard cite.fn {text-transform: uppercase; font-style: italic; font-weight: bold; padding: 0px 0px 0px 10px;}
-#commentlist li div.vcard img.avatar {float:left; border: 1px solid #696969;}
-#commentlist li.comment div.vcard span.says {text-transform: lowercase; font-style: italic;}
-#commentlist li.comment div.commentmetadata {color: #1F1F1F; font-size: 10px; font-style:italic; margin: 0px 0px 30px 70px;}
-#comments, #respond {font-size: 14px; font-weight:normal;}
-
-/******************** WORDPRESS CAPTIONS ********************/
-.wp-caption {border: 1px solid #ddd; text-align: center; background-color: #f3f3f3; padding-top: 4px; margin: 10px; -moz-border-radius: 3px; -khtml-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
-.wp-caption img {margin: 0; padding: 0; border: 0 none;}
-.wp-caption p.wp-caption-text {font-size: 11px; line-height: 17px; padding: 0 4px 5px; margin: 0;}
+#contentleft .nextlog{text-align:center; margin:5px 0; font-size:12px}
+#trackback_address{font-size:12px; color:#999}
+#trackback_address input{border:#f1f1f1 solid 1px; background-color:#fffdf1; padding:2px 8px; color:#999; font-size:11px}
+#trackback{font-size:12px; color:#333; line-height:16px; overflow:hidden; margin:5px 0; padding:0px 0px 3px 0px; border-bottom:1px #f5f5f5 solid}
+#contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
+#contentleft .comment{margin:15px 0px 5px 0px}
+#com_line{margin:10px 0; padding:0px 0px 3px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
+#contentleft  .comment_post p{margin:5px 0px}
+#contentleft  .comment_post small{font-size:12px; color:#999}
+#contentleft  .comment_post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:270px}
+#contentleft .comment_post #comment{ width:500px; border:1px #b6b6b6 solid; font-size:12px; color:#333}
+#contentleft .comment_post #comment_submit{background:url(images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
+#contentleft .comment_post .input{width:100px}
+.com_date{color: #666666; font-size:12px; margin:4px 0;}
+#com_line span{color:#ff7a15;}
+#com_line .time{color:#999999; display:inline}
 
 .calendar{margin-bottom:10px}
 .calendar td{font-size:11px; text-align:center; padding:1px 6px; line-height:1.6;}
@@ -119,7 +107,8 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
 #tw ul li{margin:0px 0px; padding:0;}
 #tw ul li .main_img{ margin-top:5px;}
-#tw ul li .post1{ float:left;font-size:14px; padding:0px;margin:0; width:470px; padding:0px 0px 0px 8px;}
+#tw ul li .post1{ float:left;font-size:13px; padding:0px;margin:0; width:470px; padding:0px 0px 0px 8px;}
+#tw ul li .post1 span{color:#886353; font-weight:bold;}
 #tw ul li{ clear:both; padding:0px; margin:0px;}
 #tw ul li .bttome {margin:3px 0;vertical-align:middle}
 #tw ul li .bttome .time{ float:left;line-height:14px;margin:0;}
@@ -143,5 +132,20 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw .tbutton .button_p{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:60px; height:25px;}
 #tw .tbutton .tinfo{ float:left; }
 #tw .msg{ clear:both}
+#tw li{list-style:none;}
+#tw #pagenavi{text-align:center; font-size:14px}
+#tw #pagenavi a{ padding:0px 4px;}
+#tw #pagenavi a:hover{ border:1px #B9DDFB solid; background: #F5FAFE; text-decoration:none }
+#tw #pagenavi span{font-size:12px; color:#999999;}
+
+#tw ul .huifu textarea{background-color:#FFFFFF;}
+#tw ul .huifu input{background-color:#FFFFFF;}
 #tw ul li ul{ line-height:0;font-size:0;}
 #tw ul li ul li{ font-size:12px; line-height:22px;}
+#tw .top{width:660px;}
+#tw ul li .post1{ width:570px;}
+#tw ul{ width:620px;}
+#tw ul .r li{width:575px}
+#tw ul .huifu textarea{width:560px;}
+#tw ul li .bttome .post{ font-size:12px;line-height:14px;margin:0; text-align:right; float:none;clear:both; width:620px; background:0; border:0;}
+#tw ul li .bttome .time{ float:none; margin-top:-25px;}

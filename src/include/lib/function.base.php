@@ -390,14 +390,14 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
  * 图片生成缩略图
  *
  * @param string $img 预缩略的图片
- * @param string $thum_patch 生成缩略图路径
+ * @param string $thum_path 生成缩略图路径
  * @param int $max_w 缩略图最大宽度 px
  * @param int $max_h 缩略图最大高度 px
  * @return unknown
  */
-function resizeImage($img, $thum_patch, $max_w, $max_h) {
+function resizeImage($img, $thum_path, $max_w, $max_h) {
 	//仅支持PNG,JPG图片的缩略
-	if (!in_array(getFileSuffix($thum_patch), array('jpg','png','jpeg'))) {
+	if (!in_array(getFileSuffix($thum_path), array('jpg','png','jpeg'))) {
 		return false;
 	}
 	//是否支持GD
@@ -413,7 +413,7 @@ function resizeImage($img, $thum_patch, $max_w, $max_h) {
 	if ($w <= $max_w && $h <= $max_h){
 		return false;
 	}
-	return imageCropAndResize($img, $thum_patch, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+	return imageCropAndResize($img, $thum_path, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 }
 
 /**

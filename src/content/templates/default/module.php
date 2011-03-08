@@ -18,8 +18,8 @@ function widget_blogger($title){
 	<img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
 	<?php endif;?>
 	</div>
-	<li><b><?php echo $name; ?></b></li>
-	<li><?php echo $user_cache[1]['des']; ?></li>
+	<p><b><?php echo $name; ?></b>
+	<?php echo $user_cache[1]['des']; ?></p>
 	</ul>
 	</li>
 <?php }?>
@@ -61,7 +61,7 @@ function widget_sort($title){
 	<?php foreach($sort_cache as $value): ?>
 	<li>
 	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img align="absmiddle" src="<?php echo TEMPLATE_URL; ?>images/icon_rss.gif" alt="订阅该分类"/></a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="订阅该分类"/></a>
 	</li>
 	<?php endforeach; ?>
 	</ul>
@@ -146,12 +146,10 @@ function widget_search($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logserch">
-	<li>
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
 	</form>
-	</li>
 	</ul>
 	</li>
 <?php } ?>
@@ -200,7 +198,7 @@ function widget_link($title){
 function topflg($istop){
 	global $CACHE;
 	$log_cache_sort = $CACHE->readCache('logsort');
-	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" align=\"absmiddle\"  title=\"置顶日志\" /> " : '';
+	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶日志\" /> " : '';
 	echo $topflg;
 }
 ?>
@@ -218,7 +216,7 @@ function blog_sort($sort, $blogid){
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	[<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	分类：<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
 	<?php endif;?>
 <?php }?>
 <?php
@@ -331,8 +329,8 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	<div class="comment_post">
 	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 	<p>
-	<input type="hidden" name="gid" value="<?php echo $logid; ?>"  size="22" tabindex="1"/>
-	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>"  size="22" tabindex="1">
+	<input type="hidden" name="gid" value="<?php echo $logid; ?>" size="22" tabindex="1"/>
+	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
 	<label for="author"><small>昵称</small></label></p>
 	<p>
 	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
@@ -340,8 +338,8 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	<p><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
 	<label for="url"><small>个人主页 (选填)</small></label>
 	</p>
-	<p><textarea name="comment" id="comment"  rows="10" tabindex="4"></textarea></p>
-	<p><div class="comment_yz"><?php echo $verifyCode; ?><input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></div></p>
+	<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
+	<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></p>
 	</form>
 	</div>
 	<?php endif; ?>

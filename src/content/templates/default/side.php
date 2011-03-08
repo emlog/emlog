@@ -31,5 +31,3 @@ foreach ($widgets as $val)
 }
 ?>
 </ul>
-
-<!--end sidebar-->

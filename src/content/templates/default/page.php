@@ -5,23 +5,16 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">
-<ul>
-<li>
-	<h2 class="content_h2"><?php echo $log_title; ?></h2>
-	<div class="clear"></div>
-	<div class="post"><?php echo $log_content; ?></div>
-	<div><?php blog_att($logid); ?></div>
-	<?php 
-	if ($allow_remark == 'y'){
-		blog_comments($comments);
-		blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark);
-	}
-	?>
-</li>
-</ul>
+<div id="contentleft">
+	<h2><?php echo $log_title; ?></h2>
+	<?php echo $log_content; ?>
+	<p class="att"><?php blog_att($logid); ?></p>
+	<?php blog_comments($comments); ?>
+	<?php blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark); ?>
+	<div style="clear:both;"></div>
 </div>
 <!--end content-->
-<?php 
-include View::getView('side');
-include View::getView('footer');
+<?php
+ include View::getView('side');
+ include View::getView('footer');
 ?>

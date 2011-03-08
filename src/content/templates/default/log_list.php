@@ -9,7 +9,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php doAction('index_loglist_top'); ?>
 <?php foreach($logs as $value): ?>
 	<h2><?php topflg($value['top']); ?><a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a></h2>
-	<p class="date">作者：<?php blog_author($value['author']); ?> 发布于：<?php echo gmdate('Y-n-j G:i l', $value['date']); ?>
+	<p class="date">作者：<?php blog_author($value['author']); ?> 发布于：<?php echo gmdate('Y-n-j G:i l', $value['date']); ?> 
 	<?php blog_sort($value['sortid'], $value['logid']); ?>
 	</p>
 	<?php echo $value['log_description']; ?>
