@@ -365,10 +365,9 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	doAction('attach_upload', $tmpFile);
 
 	//resizeImage
-	$imtype = array('jpg','png','jpeg');
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
-	if ($is_thumbnail && in_array($extension, $imtype) && function_exists('ImageCreate')){
+	if ($is_thumbnail) {
 	    if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 	        $attach = $thum;
 	        resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
@@ -391,14 +390,22 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
  * 图片生成缩略图
  *
  * @param string $img 预缩略的图片
- * @param unknown_type $imgType 上传文件的类型 eg:image/jpeg
- * @param string $thumPatch 生成缩略图路径
+ * @param string $thum_patch 生成缩略图路径
  * @param int $max_w 缩略图最大宽度 px
  * @param int $max_h 缩略图最大高度 px
  * @return unknown
  */
-function resizeImage($img, $thumPatch, $max_w, $max_h){
-	$size = chImageSize($img,$max_w,$max_h);
+function resizeImage($img, $thum_patch, $max_w, $max_h) {
+	//仅支持PNG,JPG图片的缩略
+	if (!in_array(getFileSuffix($thum_patch), array('jpg','png','jpeg'))) {
+		return false;
+	}
+	//是否支持GD
+	if (!function_exists('ImageCreate')) {
+		return false;
+	}
+
+	$size = chImageSize($img, $max_w, $max_h);
     $newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w = $size['rc_w'];
@@ -406,7 +413,7 @@ function resizeImage($img, $thumPatch, $max_w, $max_h){
 	if ($w <= $max_w && $h <= $max_h){
 		return false;
 	}
-	return imageCropAndResize($img, $thumPatch, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+	return imageCropAndResize($img, $thum_patch, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 }
 
 /**
@@ -463,14 +470,14 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 }
 
 /**
- * 按照比例改变图片大小(非生成缩略图)
+ * 按比例计算图片缩放尺寸
  *
  * @param string $img 图片路径
  * @param int $max_w 最大缩放宽
  * @param int $max_h 最大缩放高
- * @return unknown
+ * @return array
  */
-function chImageSize ($img,$max_w,$max_h){
+function chImageSize ($img, $max_w, $max_h){
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
