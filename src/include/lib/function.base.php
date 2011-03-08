@@ -320,7 +320,7 @@ function findArray($array1,$array2){
 }
 
 /**
- * 附件上传
+ * 文件上传
  *
  * @param string $fileName 文件名
  * @param string $errorNum 错误码：$_FILES['error']

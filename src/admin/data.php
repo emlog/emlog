@@ -20,6 +20,7 @@ if($action == ''){
 	include View::getView('footer');
 	View::output();
 }
+
 if($action == 'bakstart'){
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
 	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
@@ -75,47 +76,23 @@ if($action == 'bakstart'){
 		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
 	}
 }
-//导入数据
+
+//导入服务器备份文件
 if ($action == 'renewdata'){
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile)){
 		formMsg('文件不存在', 'javascript:history.go(-1);',0);
-	}else{
-		$extension = strtolower(substr(strrchr($sqlfile,'.'),1));
-		if ($extension !== 'sql'){
-			formMsg('读取数据库文件失败, 只能恢复 *.sql 文件', 'javascript:history.go(-1);',0);
-		}
-		// 读取备份文件信息
-		$fp = @fopen($sqlfile, 'r');
-		if ($fp){
-			$dumpinfo = array();
-			$line = 0;
-			while (!feof($fp)){
-				$dumpinfo[] = fgets($fp, 4096);
-				$line++;
-				if ($line == 3) break;
-			}
-			fclose($fp);
-			if (!empty($dumpinfo)){
-				// 验证版本
-				if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-					formMsg("导入失败! 该备份文件不是 emlog ".Option::EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
-				}
-				// 验证表前缀
-				if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-					formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配".$dumpinfo[2], 'javascript:history.go(-1);',0);
-				}
-			} else {
-				formMsg("导入失败! 该备份文件不是 emlog 的备份文件!", 'javascript:history.go(-1);',0);
-			}
-		} else {
-			formMsg("导入失败! 备份文件无法读取!", 'javascript:history.go(-1);',0);
-		}
 	}
+
+	if (getFileSuffix($sqlfile) !== 'sql'){
+		formMsg('只能导入emlog备份的SQL文件', 'javascript:history.go(-1);',0);
+	}
+	checkSqlFileInfo($sqlfile);
 	bakindata($sqlfile);
 	$CACHE->updateCache();
 	header("Location: ./data.php?active_import=true");
 }
+
 //导入本地备份文件
 if ($action == 'import'){
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
@@ -123,15 +100,45 @@ if ($action == 'import'){
 		formMsg('非法提交的信息', 'javascript:history.go(-1);',0);
 	}
 	if ($sqlfile['type'] != 'text/x-sql') {
-		formMsg('只能导入 *.sql 文件', 'javascript:history.go(-1);',0);
+		formMsg('只能导入emlog备份的SQL文件', 'javascript:history.go(-1);',0);
 	}
 	if ($sqlfile['error'] == 1){
 		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
 	}elseif ($sqlfile['error'] > 1){
 		formMsg('上传文件失败,错误码：'.$sqlfile['error'], 'javascript:history.go(-1);', 0);
 	}
+	checkSqlFileInfo($sqlfile['tmp_name']);
+	bakindata($sqlfile['tmp_name']);
+	$CACHE->updateCache();
+	header("Location: ./data.php?active_import=true");
+}
+
+//批量删除备份文件
+if($action == 'dell_all_bak'){
+	if(!isset($_POST['bak'])){
+		header("Location: ./data.php?error_a=true");
+	}else{
+		foreach($_POST['bak'] as $val){
+			unlink($val);
+		}
+		header("Location: ./data.php?active_del=true");
+	}
+}
+
+//更新缓存
+if ($action == 'Cache'){
+	$CACHE->updateCache();
+	header("Location: ./data.php?active_mc=true");
+}
+
+/**
+ * 读取备份文件头信息
+ * 
+ * @param file $sqlfile
+ */
+function checkSqlFileInfo($sqlfile) {
 	// 读取备份文件信息
-	$fp = @fopen($sqlfile['tmp_name'], 'r');
+	$fp = @fopen($sqlfile, 'r');
 	if ($fp){
 		$dumpinfo = array();
 		$line = 0;
@@ -144,45 +151,26 @@ if ($action == 'import'){
 		if (!empty($dumpinfo)){
 			// 验证版本
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-				formMsg("导入失败! 该备份文件不是 emlog ".Option::EMLOG_VERSION."的备份文件!", 'javascript:history.go(-1);',0);
+				formMsg("导入失败! 该备份文件不是 emlog " . Option::EMLOG_VERSION . "的备份文件!", 'javascript:history.go(-1);',0);
 			}
 			// 验证表前缀
 			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-				formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配".$dumpinfo[2], 'javascript:history.go(-1);',0);
+				formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配" . $dumpinfo[2], 'javascript:history.go(-1);',0);
 			}
 		} else {
-			formMsg("导入失败! 该备份文件不是 emlog 的备份文件!", 'javascript:history.go(-1);',0);
+			formMsg("导入失败! 该备份文件不是 emlog的备份文件!", 'javascript:history.go(-1);',0);
 		}
 	} else {
-		formMsg("导入失败! 读取缓存文件夹".dirname($sqlfile['tmp_name'])."失败", 'javascript:history.go(-1);',0);
+		formMsg("导入失败! 读取文件失败", 'javascript:history.go(-1);',0);
 	}
-	bakindata($sqlfile['tmp_name']);
-	$CACHE->updateCache();
-	header("Location: ./data.php?active_import=true");
-}
-//批量删除备份文件
-if($action == 'dell_all_bak'){
-	if(!isset($_POST['bak'])){
-		header("Location: ./data.php?error_a=true");
-	}else{
-		foreach($_POST['bak'] as $val){
-			unlink($val);
-		}
-		header("Location: ./data.php?active_del=true");
-	}
-}
-//更新缓存
-if ($action == 'Cache'){
-	$CACHE->updateCache();
-	header("Location: ./data.php?active_mc=true");
 }
 
 /**
- * 导入备份文件
+ * 执行备份文件的SQL语句
  *
  * @param string $filename
  */
-function bakindata($filename){
+function bakindata($filename) {
 	global $db;
 	$DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE {$db} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
@@ -209,6 +197,7 @@ function bakindata($filename){
 		}
 	}
 }
+
 /**
  * 备份数据库结构和所有数据
  *
@@ -237,6 +226,7 @@ function dataBak($table){
 	$sql .= "\n";
 	return $sql;
 }
+
 /**
  * 检查文件是否包含BOM(byte-order mark)
  */
