@@ -216,7 +216,7 @@ function blog_sort($sort, $blogid){
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if($log_cache_sort[$blogid]): ?>
-	分类：<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>]
+	分类：<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php
