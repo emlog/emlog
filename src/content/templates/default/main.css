@@ -2,11 +2,9 @@ body {background: #FFFFFF; color: #323232; text-align:center; font:13px/18px Ari
 #wrap {background: #FFFFFF; width: 960px; text-align:left; margin: 0px auto 0px; padding: 0px;}
 img{ border:none;}
 
-/******************** HYPERLINKS ********************/
 a:link, a:active, a:visited {color:#886353; text-decoration:none;}
 a:hover {color:#886353; text-decoration:underline;}
 
-/******************** HEADER ********************/
 #header h1 {color: #1F1F1F; font-size: 30px; font-weight: normal; letter-spacing: 0px; margin: 10px 0px 3px 0px; padding: 20px 0px 0px 0px; font-family: Georgia, "Times New Roman", Times, serif;}
 #header h1 a:link {color: #1F1F1F; text-decoration: none;}
 #header h1 a:active {color: #1F1F1F; text-decoration: none;}
@@ -22,7 +20,6 @@ a:hover {color:#886353; text-decoration:underline;}
 #nav a:hover {color:#1F1F1F; text-decoration:underline;}
 #banner {height:134px;}
 
-/******************** CONTENT ********************/
 #content {width: 960px; margin: 0px auto 0px; padding: 0px;}
 #content p {padding: 0px 0px 15px 0px; margin: 0px; line-height: 20px;}
 #content h1 {display:none;}
@@ -40,7 +37,6 @@ blockquote {margin: 0px 20px 20px 20px; padding: 25px 20px 25px 20px; background
 #contentleft .tag {color:#A97965; font-size:12px; margin:0px 0px 0px 0px;}
 #contentleft .count { text-align:right;}
 
-/******************** IMAGES ********************/
 img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
 img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
@@ -48,7 +44,6 @@ a img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 a img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
 a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 
-/******************** SIDEBAR ********************/
 #sidebar a:link, a:active, a:visited {color:#886353; text-decoration:none;}
 #sidebar a:hover {color:#886353; text-decoration:underline;}
 #sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #E2DDDE; font:11px/18px Verdana, Arial, Helvetica, sans-serif;}
@@ -57,14 +52,13 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
 
-/******************** FOOTER ********************/
 #footerbar a:link, a:active, a:visited {color:#886353; text-decoration:none;}
 #footerbar a:hover {color:#886353; text-decoration:underline;}
 #footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: left; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
 .footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
-	
+
 #contentleft .nextlog{text-align:center; margin:5px 0; font-size:12px}
 #trackback_address{font-size:12px; color:#999}
 #trackback_address input{border:#f1f1f1 solid 1px; background-color:#fffdf1; padding:2px 8px; color:#999; font-size:11px}

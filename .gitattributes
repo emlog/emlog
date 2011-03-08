@@ -189,35 +189,6 @@ src/content/cache/index.php -text
 src/content/plugins/index.php -text
 src/content/plugins/tips/icon_tips.gif -text svn_keywords=Id
 src/content/plugins/tips/tips.php -text svn_keywords=Id
-src/content/templates/classic-blue/echo_log.php -text svn_keywords=Id
-src/content/templates/classic-blue/footer.php -text svn_keywords=Id
-src/content/templates/classic-blue/header.php -text svn_keywords=Id
-src/content/templates/classic-blue/images/bg_cal_today.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/bottom.png -text svn_keywords=Id
-src/content/templates/classic-blue/images/button.png -text svn_keywords=Id
-src/content/templates/classic-blue/images/c_bottom.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/c_m.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/c_top.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/comment_back.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/ecoh_tag.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/em_button.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/em_input-back.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/icon_rss.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/import.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/logserch_logserch.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/reply.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/rss.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/sidebar_list.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/t.gif -text svn_keywords=Id
-src/content/templates/classic-blue/images/top_back.png -text svn_keywords=Id
-src/content/templates/classic-blue/images/weibe_button.gif -text svn_keywords=Id
-src/content/templates/classic-blue/log_list.php -text svn_keywords=Id
-src/content/templates/classic-blue/main.css -text svn_keywords=Id
-src/content/templates/classic-blue/module.php -text svn_keywords=Id
-src/content/templates/classic-blue/page.php -text svn_keywords=Id
-src/content/templates/classic-blue/preview.jpg -text svn_keywords=Id
-src/content/templates/classic-blue/side.php -text svn_keywords=Id
-src/content/templates/classic-blue/t.php -text svn_keywords=Id
 src/content/templates/default/echo_log.php -text
 src/content/templates/default/footer.php -text
 src/content/templates/default/header.php -text
