@@ -132,7 +132,7 @@ if ($action == 'Cache'){
 }
 
 /**
- * 读取备份文件头信息
+ * 检查备份文件头信息
  * 
  * @param file $sqlfile
  */
