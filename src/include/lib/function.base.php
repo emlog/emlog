@@ -515,6 +515,20 @@ function formMsg($msg,$url,$type){
 }
 
 /**
+ * 获取Gravatar头像
+ * http://en.gravatar.com/site/implement/images/
+ * @param $email
+ * @param $s size
+ * @param $d default avatar
+ * @param $g
+ */
+function getGravatar($email, $s=40, $d='mm', $g='G') {
+	$hash = md5($email);
+	$avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
+	return $avatar;
+}
+
+/**
  * 计算时区的时差
  * @param string $remote_tz 远程时区
  * @param string $origin_tz 标准时区

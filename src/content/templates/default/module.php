@@ -300,14 +300,14 @@ function blog_comments($comments){
 	foreach($comments as $key=>$value):
 	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 	$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
+	$avatar = getGravatar($value['mail']);
 	?>
 	<div id="com_line">
 		<a name="<?php echo $value['cid']; ?>"></a>
-		<b><?php echo $value['poster']; ?> </b>
-		<div class="time"><?php echo $value['date']; ?></div>
-		<div class="com_date">
-		<?php echo $value['content']; ?>
-		</div>
+		<div class="avatar"><img src="<?php echo $avatar; ?>" /></div>
+		<div class="com_info">
+		<b><?php echo $value['poster']; ?> </b><br /><span class="time"><?php echo $value['date']; ?></span>
+		<div class="content"><?php echo $value['content']; ?></div>
 		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
 		<?php if(ROLE == 'admin'): ?>
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
@@ -318,6 +318,7 @@ function blog_comments($comments){
 			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
 			</div>
 		<?php endif; ?>
+		</div>
 	</div>
 	<?php endforeach; ?>
 <?php }?>

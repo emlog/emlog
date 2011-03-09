@@ -65,7 +65,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #trackback{font-size:12px; color:#333; line-height:16px; overflow:hidden; margin:5px 0; padding:0px 0px 3px 0px; border-bottom:1px #f5f5f5 solid}
 #contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
 #contentleft .comment{margin:15px 0px 5px 0px}
-#com_line{margin:10px 0; padding:0px 0px 3px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
+#com_line{margin:10px 0; padding:10px 0px 10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
 #contentleft  .comment_post p{margin:5px 0px}
 #contentleft  .comment_post small{font-size:12px; color:#999}
 #contentleft  .comment_post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:270px}
@@ -74,7 +74,10 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment_post .input{width:100px}
 .com_date{color: #666666; font-size:12px; margin:4px 0;}
 #com_line span{color:#ff7a15;}
-#com_line .time{color:#999999; display:inline}
+#com_line .time{color:#999999; display:inline; font-size:10px;}
+#com_line .avatar{float:left; position:absolute;}
+#com_line .com_info{margin:0px 0px 0px 50px;}
+#com_line .content{margin:8px 0px 0px 0px;}
 
 .calendar{margin-bottom:10px}
 .calendar td{font-size:11px; text-align:center; padding:1px 6px; line-height:1.6;}
