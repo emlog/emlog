@@ -189,13 +189,13 @@ class Comment_Model {
 		}
 	}
 
-	function addComment($name, $content, $mail, $url, $imgcode, $blogId) 
+	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
 			$ipaddr = getIp();
 			$utctimestamp = time();
 			$ischkcomment = Option::get('ischkcomment');
-			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip)
-					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr')";
+			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip,pid)
+					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr','$pid')";
 			$ret = $this->db->query($sql);
 			$CACHE = Cache::getInstance();
 			if ($ischkcomment == 'n') {
