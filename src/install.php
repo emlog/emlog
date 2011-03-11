@@ -266,6 +266,7 @@ DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
+  pid mediumint(8) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
