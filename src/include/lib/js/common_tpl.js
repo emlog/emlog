@@ -171,3 +171,15 @@ function re(tid, rp){
     var rtext=document.getElementById("rtext_"+tid).value = rp;
     focusEle("rtext_"+tid);
 }
+function commentReply(pid,c){
+	var response = document.getElementById('comment-post');
+	document.getElementById('comment-pid').value = pid;
+	document.getElementById('cancel-reply').style.display = '';
+	c.parentNode.parentNode.appendChild(response);
+}
+function cancelReply(){
+	var commentPlace = document.getElementById('comment-place'),response = document.getElementById('comment-post');
+	document.getElementById('comment-pid').value = 0;
+	document.getElementById('cancel-reply').style.display = 'none';
+	commentPlace.appendChild(response);
+}

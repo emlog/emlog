@@ -18,6 +18,7 @@ class Comment_Controller {
         $url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
         $imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
         $blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
+        $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
 
         if ($url && strncasecmp($url,'http://',7)) {
             $url = 'http://'.$url;
@@ -37,7 +38,7 @@ class Comment_Controller {
         } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
             emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
         } else {
-            $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId);
+            $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
         }
     }
 }

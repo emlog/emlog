@@ -55,10 +55,17 @@ class Comment_Model {
 			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = smartDate($row['date']);
 			$row['reply'] = htmlClean($row['reply']);
+			$row['children'] = array();
 			//$row['hide'];
 			//$row['title'];
 			//$row['gid'];
-			$comments[] = $row;
+			$comments[$row['cid']] = $row;
+		}
+		foreach($comments as $cid => $comment) {
+			$pid = $comment['pid'];
+			if($pid != 0 && isset($comments[$pid])) {
+				$comments[$pid]['children'][] = $cid;
+			}
 		}
 		return $comments;
 	}

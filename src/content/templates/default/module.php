@@ -294,54 +294,81 @@ function blog_trackback($tb, $tb_url, $allow_tb){
 //blog：博客评论列表
 function blog_comments($comments){
     if($comments): ?>
-	<p class="comment"><b>评论：</b><a name="comment"></a></p>
+	<p class="comment-header"><b>评论：</b><a name="comment"></a></p>
 	<?php endif; ?>
 	<?php
 	foreach($comments as $key=>$value):
+	if($value['pid'] != 0) continue;
 	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 	$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 	$avatar = getGravatar($value['mail']);
 	?>
-	<div id="com_line">
+	<div class="comment" id="comment-<?php echo $value['cid']; ?>">
 		<a name="<?php echo $value['cid']; ?>"></a>
 		<div class="avatar"><img src="<?php echo $avatar; ?>" /></div>
-		<div class="com_info">
-		<b><?php echo $value['poster']; ?> </b><br /><span class="time"><?php echo $value['date']; ?></span>
-		<div class="content"><?php echo $value['content']; ?></div>
-		<div id="replycomm<?php echo $value['cid']; ?>"><?php echo $reply; ?></div>
-		<?php if(ROLE == 'admin'): ?>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>','reply<?php echo $value['cid']; ?>')">回复</a>
-			<div id='replybox<?php echo $value['cid']; ?>' style="display:none;">
-			<textarea name="reply<?php echo $value['cid']; ?>" class="input" id="reply<?php echo $value['cid']; ?>" style="overflow-y: hidden;width:360px;height:50px;"><?php echo $value['reply']; ?></textarea>
-			<br />
-			<a href="javascript:void(0);" onclick="postinfo('<?php echo BLOG_URL; ?>admin/comment.php?action=doreply&cid=<?php echo $value['cid']; ?>&flg=1','reply<?php echo $value['cid']; ?>','replycomm<?php echo $value['cid']; ?>');">提交</a>
-			<a href="javascript:void(0);" onclick="showhidediv('replybox<?php echo $value['cid']; ?>')">取消</a>
-			</div>
-		<?php endif; ?>
+		<div class="comment-info">
+			<b><?php echo $value['poster']; ?> </b><br /><span class="comment-time"><?php echo $value['date']; ?></span>
+			<div class="comment-content"><?php echo $value['content']; ?></div>
+			<div class="comment-reply"><a href="#comment-<?php echo $value['cid']; ?>" onclick="commentReply(<?php echo $value['cid']; ?>,this)">回复</a></div>
 		</div>
+		<?php blog_comments_children($comments, $value['children'], 1); ?>
 	</div>
 	<?php endforeach; ?>
+<?php }?>
+<?php
+//blog：博客子评论列表
+function blog_comments_children($comments, $children, $depth){
+	foreach($children as $child):
+	$comment = $comments[$child];
+	$reply = $comment['reply']?"<span>博主回复：{$comment['reply']}</span>":'';
+	$comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
+	$avatar = getGravatar($comment['mail']);
+	?>
+	<div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
+		<a name="<?php echo $comment['cid']; ?>"></a>
+		<div class="avatar"><img src="<?php echo $avatar; ?>" /></div>
+		<div class="comment-info">
+			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
+			<div class="comment-content"><?php echo $comment['content']; ?></div>
+			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
+		</div>
+	<?php
+		if($depth < 5):
+		blog_comments_children($comments, $comment['children'], $depth + 1);
+	?>
+	</div>
+	<?php else: ?>
+	</div>
+	<?php blog_comments_children($comments, $comment['children'], $depth + 1); ?>
+	<?php endif;endforeach; ?>
 <?php }?>
 <?php
 //blog：发表评论表单
 function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark){
 	if($allow_remark == 'y'): ?>
-	<p class="comment"><b>发表评论：</b><a name="comment"></a></p>
-	<div class="comment_post">
-	<form method="post"  name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
-	<p>
-	<input type="hidden" name="gid" value="<?php echo $logid; ?>" size="22" tabindex="1"/>
-	<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-	<label for="author"><small>昵称</small></label></p>
-	<p>
-	<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
-	<label for="email"><small>邮件地址 (选填)</small></label></p>
-	<p><input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-	<label for="url"><small>个人主页 (选填)</small></label>
-	</p>
-	<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-	<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></p>
-	</form>
+	<div id="comment-place">
+	<div class="comment-post" id="comment-post">
+		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="#comment-post" onclick="cancelReply()">取消回复</a></div>
+		<p class="comment-header"><b>发表评论：</b><a name="comment"></a></p>
+		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
+			<p>
+				<input type="hidden" name="gid" value="<?php echo $logid; ?>" size="22" tabindex="1"/>
+				<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
+				<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
+				<label for="author"><small>昵称</small></label>
+			</p>
+			<p>
+				<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
+				<label for="email"><small>邮件地址 (选填)</small></label>
+			</p>
+			<p>
+				<input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
+				<label for="url"><small>个人主页 (选填)</small></label>
+			</p>
+			<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
+			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></p>
+		</form>
+	</div>
 	</div>
 	<?php endif; ?>
 <?php }?>
