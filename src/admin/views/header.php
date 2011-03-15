@@ -25,7 +25,7 @@
     <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo Option::get('blogname'); ?></a></td>
     <td align=right nowrap class="headtext">
 	<?php if (ROLE == 'admin'):?>
-    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 博客设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;

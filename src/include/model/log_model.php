@@ -192,9 +192,6 @@ class Log_Model {
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
 			$row['log_url'] = Url::log($row['gid']);
 			$row['logid'] = $row['gid'];
-			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
-			$row['attachment'] = '';
-			$row['tag'] = '';
 		    $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
             if (!empty($row['password']) && $cookiePassword != $row['password']) {
                 $row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
@@ -203,6 +200,9 @@ class Log_Model {
                     $row['excerpt'] .= '<p><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
                 }
             }
+			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
+			$row['attachment'] = '';
+			$row['tag'] = '';
 			$logs[] = $row;
 		}
 		return $logs;

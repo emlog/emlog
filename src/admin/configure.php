@@ -17,6 +17,14 @@ if ($action == '') {
 	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
 	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
 	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
+	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
+
+	$ex1 = $ex2 = '';
+	if ($rss_output_fulltext == 'y') {
+		$ex1 = 'selected="selected"';
+	} else {
+	 	$ex2 = 'selected="selected"';
+	}
 
 	include View::getView('header');
 	require_once(View::getView('configure'));
@@ -39,7 +47,10 @@ if ($action == 'mod_config') {
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
 	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n'
+	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
+	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
+	'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
+	'isgravatar' => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){

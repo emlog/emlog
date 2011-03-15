@@ -33,7 +33,7 @@
       </tr>
       <tr nowrap="nowrap">
         <td align="right">每页日志数：</td>
-        <td><input maxlength="5" size="10" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
+        <td><input maxlength="5" size="8" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
 	  <tr>
         <td valign="top" align="right">你所在时区：<br /></td>
@@ -81,28 +81,51 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right">评论审核：<br /></td>
-        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /></td>
-      </tr>
-	  <tr>
-        <td align="right">引用通告：<br /></td>
-        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /></td>
-      </tr>
-      <tr>
         <td align="right">登录验证码：<br /></td>
         <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /></td>
+      </tr>
+      <tr>
+        <td align="right">Gzip压缩：<br /></td>
+        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>
+      </tr>
+	  <tr>
+        <td align="right">离线写作支持：<br /></td>
+        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+    <tbody>
+      <tr>
+        <td align="right" width="18%">rss输出日志数：<br /></td>
+        <td width="82%"><input maxlength="5" size="8" value="<?php echo $rss_output_num; ?>" name="rss_output_num" /></td>
+      </tr>
+      <tr>
+        <td align="right">rss输出：<br /></td>
+        <td>
+		<select name="rss_output_fulltext">
+		<option value="y" <?php echo $ex1; ?>>全文</option>
+		<option value="n" <?php echo $ex2; ?>>摘要</option>
+        </select>
+		</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+    <tbody>
+      <tr>
+        <td align="right" width="18%">评论审核：<br /></td>
+        <td width="82%"><input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /></td>
       </tr>
       <tr>
         <td align="right">评论验证码：<br /></td>
         <td><input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /></td>
       </tr>
       <tr>
-        <td align="right">页面Gzip压缩：<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>
-      </tr>
-	  <tr>
-        <td align="right">离线写作支持：<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
+        <td align="right">评论人头像：<br /></td>
+        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /></td>
       </tr>
       <tr>
         <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
