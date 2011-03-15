@@ -67,7 +67,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment-header{margin:15px 0px 5px 0px}
 #contentleft .comment{margin:10px 0; padding:10px 0px 10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
 #contentleft .comment-post p{margin:5px 0px}
-#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
+#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;margin-right:10%}
 #contentleft .comment-post .cancel-reply:hover{text-decoration:underline}
 #contentleft .comment-post small{font-size:12px; color:#999}
 #contentleft .comment-post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:40%}
