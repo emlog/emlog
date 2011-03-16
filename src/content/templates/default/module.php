@@ -297,6 +297,7 @@ function blog_comments($comments){
 	<p class="comment-header"><b>评论：</b><a name="comment"></a></p>
 	<?php endif; ?>
 	<?php
+	$isGravatar = Option::get('isgravatar');
 	foreach($comments as $key=>$value):
 	if($value['pid'] != 0) continue;
 	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
@@ -305,7 +306,7 @@ function blog_comments($comments){
 	?>
 	<div class="comment" id="comment-<?php echo $value['cid']; ?>">
 		<a name="<?php echo $value['cid']; ?>"></a>
-		<div class="avatar"><img src="<?php echo $avatar; ?>" /></div>
+		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo $avatar; ?>" /></div><?php endif; ?>
 		<div class="comment-info">
 			<b><?php echo $value['poster']; ?> </b><br /><span class="comment-time"><?php echo $value['date']; ?></span>
 			<div class="comment-content"><?php echo $value['content']; ?></div>
@@ -318,6 +319,7 @@ function blog_comments($comments){
 <?php
 //blog：博客子评论列表
 function blog_comments_children($comments, $children, $depth){
+	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
 	$comment = $comments[$child];
 	$reply = $comment['reply']?"<span>博主回复：{$comment['reply']}</span>":'';
@@ -326,7 +328,7 @@ function blog_comments_children($comments, $children, $depth){
 	?>
 	<div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
 		<a name="<?php echo $comment['cid']; ?>"></a>
-		<div class="avatar"><img src="<?php echo $avatar; ?>" /></div>
+		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo $avatar; ?>" /></div><?php endif; ?>
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>

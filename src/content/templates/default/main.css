@@ -66,8 +66,9 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
 #contentleft .comment-header{margin:15px 0px 5px 0px}
 #contentleft .comment{margin:10px 0; padding:10px 0px 10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
+#contentleft .comment-post {clear:both}
 #contentleft .comment-post p{margin:5px 0px}
-#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;margin-right:10%}
+#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;padding-right:10%}
 #contentleft .comment-post .cancel-reply:hover{text-decoration:underline}
 #contentleft .comment-post small{font-size:12px; color:#999}
 #contentleft .comment-post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:40%}
@@ -77,8 +78,8 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 .com_date{color: #666666; font-size:12px; margin:4px 0;}
 #contentleft .comment span{color:#ff7a15;}
 #contentleft .comment .comment-time{color:#999999; display:inline; font-size:10px;}
-#contentleft .comment .avatar{float:left; position:absolute;}
-#contentleft .comment .comment-info{margin:0px 0px 0px 50px;}
+#contentleft .comment .avatar{float:left;margin:5px}
+#contentleft .comment .comment-info{float:left;width:90%}
 #contentleft .comment .commnet-content{margin:8px 0px 0px 0px;}
 #contentleft .comment .comment-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
 #contentleft .comment .comment-reply:hover{text-decoration:underline}
