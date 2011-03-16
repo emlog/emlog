@@ -19,16 +19,31 @@ class Plugin_Model {
 	 */
 	function activePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
+
+		$ret = false;
+
 		if (in_array($plugin, $active_plugins)){
-			return true;
+			$ret = true;
 		} elseif(true === checkPlugin($plugin)) {
 			$active_plugins[] = $plugin;
 		    $active_plugins = serialize($active_plugins);
 		    Option::updateOption('active_plugins', $active_plugins);
-		    return true;
+		    $ret = true;
 		} else {
-		    return false;
+		    $ret = false;
 		}
+
+		//run init callback functions
+		$r = explode('/', $plugin, 2);
+		$plugin = $r[0];
+		$callback_file = "../content/plugins/$plugin/{$plugin}_callback.php";
+		if (true === $ret && file_exists($callback_file)) {
+			require_once $callback_file;
+			if (function_exists('callback_init')) {
+				callback_init();
+			}
+		}
+		return $ret;
 	}
 
 	/**
@@ -44,6 +59,17 @@ class Plugin_Model {
 		}
 		$active_plugins = serialize($active_plugins);
 		Option::updateOption('active_plugins', $active_plugins);
+
+		//run remove callback functions
+		$r = explode('/', $plugin, 2);
+		$plugin = $r[0];
+		$callback_file = "../content/plugins/$plugin/{$plugin}_callback.php";
+		if (file_exists($callback_file)) {
+			require_once $callback_file;
+			if (function_exists('callback_rm')) {
+				callback_rm();
+			}
+		}
 	}
 
 	/**
