@@ -300,49 +300,39 @@ function blog_comments($comments){
 	$isGravatar = Option::get('isgravatar');
 	foreach($comments as $key=>$value):
 	if($value['pid'] != 0) continue;
-	$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 	$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
-	$avatar = getGravatar($value['mail']);
 	?>
 	<div class="comment" id="comment-<?php echo $value['cid']; ?>">
 		<a name="<?php echo $value['cid']; ?>"></a>
-		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo $avatar; ?>" /></div><?php endif; ?>
+		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo getGravatar($value['mail']); ?>" /></div><?php endif; ?>
 		<div class="comment-info">
 			<b><?php echo $value['poster']; ?> </b><br /><span class="comment-time"><?php echo $value['date']; ?></span>
 			<div class="comment-content"><?php echo $value['content']; ?></div>
 			<div class="comment-reply"><a href="#comment-<?php echo $value['cid']; ?>" onclick="commentReply(<?php echo $value['cid']; ?>,this)">回复</a></div>
 		</div>
-		<?php blog_comments_children($comments, $value['children'], 1); ?>
+		<?php blog_comments_children($comments, $value['children']); ?>
 	</div>
 	<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：博客子评论列表
-function blog_comments_children($comments, $children, $depth){
+function blog_comments_children($comments, $children){
 	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
 	$comment = $comments[$child];
-	$reply = $comment['reply']?"<span>博主回复：{$comment['reply']}</span>":'';
 	$comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
-	$avatar = getGravatar($comment['mail']);
 	?>
 	<div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
 		<a name="<?php echo $comment['cid']; ?>"></a>
-		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo $avatar; ?>" /></div><?php endif; ?>
+		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>" /></div><?php endif; ?>
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
 			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
 		</div>
-	<?php
-		if($depth < 5):
-		blog_comments_children($comments, $comment['children'], $depth + 1);
-	?>
+		<?php blog_comments_children($comments, $comment['children']);?>
 	</div>
-	<?php else: ?>
-	</div>
-	<?php blog_comments_children($comments, $comment['children'], $depth + 1); ?>
-	<?php endif;endforeach; ?>
+	<?php endforeach; ?>
 <?php }?>
 <?php
 //blog：发表评论表单

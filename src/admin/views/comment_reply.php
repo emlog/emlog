@@ -9,6 +9,8 @@
 	<li><textarea name="reply" rows="5" cols="60"><?php echo $reply; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
+	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />
+	<input type="hidden" value="<?php echo $hide; ?>" name="hide" />
 	<input type="submit" value="回复" class="submit" />
 	<?php if ($hide == 'y'): ?>
 	    <input type="submit" value="回复并审核" name="pub_it" class="submit" />

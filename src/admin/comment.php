@@ -97,25 +97,17 @@ if ($action== 'reply_comment')
 }
 if($action=='doreply')
 {
-	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
 	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
-	$commentId = isset($_REQUEST['cid']) ? intval($_REQUEST['cid']) : '';
-
-	if(!$flg)
-	{
-	    if(isset($_POST['pub_it'])) {
-	        $Comment_Model->showComment($commentId);
-	        $CACHE->updateCache('sta');
-	    }
-		$Comment_Model->replyComment($commentId, $reply);
-		$CACHE->updateCache('comment');
-		doAction('comment_reply', $commentId, $reply);
-		header("Location: ./comment.php?active_rep=true");
-	}else{
-		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
-		$Comment_Model->replyComment($commentId, $reply);
-		$CACHE->updateCache('comment');
-		doAction('comment_reply', $commentId, $reply);
-		echo "<span>博主回复：$reply</span>";
-	}
+	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
+	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
+	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
+    if(isset($_POST['pub_it'])) {
+        $Comment_Model->showComment($commentId);
+        $hide = 'n';
+    }
+	$Comment_Model->replyComment($blogId, $commentId, $reply, $hide);
+	$CACHE->updateCache('comment');
+    $CACHE->updateCache('sta');
+	doAction('comment_reply', $commentId, $reply);
+	header("Location: ./comment.php?active_rep=true");
 }

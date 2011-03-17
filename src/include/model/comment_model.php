@@ -40,7 +40,7 @@ class Comment_Model {
 		}
 		if($spot == 0)
 		{
-			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid DESC $condition";
+			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.cid ASC $condition";
 		}else{
 			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
 			$sql = "SELECT *,a.hide,a.date FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.cid DESC $condition";
@@ -56,16 +56,24 @@ class Comment_Model {
 			$row['date'] = smartDate($row['date']);
 			$row['reply'] = htmlClean($row['reply']);
 			$row['children'] = array();
+			if($spot == 0) $row['level'] = isset($comments[$row['pid']]) ? $comments[$row['pid']]['level'] + 1 : 0;
 			//$row['hide'];
 			//$row['title'];
 			//$row['gid'];
 			$comments[$row['cid']] = $row;
 		}
-		foreach($comments as $cid => $comment) {
-			$pid = $comment['pid'];
-			if($pid != 0 && isset($comments[$pid])) {
-				$comments[$pid]['children'][] = $cid;
+		if($spot == 0) {
+			foreach($comments as $cid => $comment) {
+				$pid = $comment['pid'];
+				if($pid != 0 && isset($comments[$pid])) {
+					if($comments[$cid]['level'] > 4) {
+						$comments[$cid]['pid'] = $pid = $comments[$pid]['pid'];
+					}
+					$comments[$pid]['children'][] = $cid;
+				}
 			}
+			$comments = array_reverse($comments, true);
+			$comments = array_map('array_reverse', $comments);
 		}
 		return $comments;
 	}
@@ -95,12 +103,12 @@ class Comment_Model {
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
 		if (ROLE == 'admin')
 		{
-			$sql = "SELECT a.cid FROM ".DB_PREFIX."comment as a where $andQuery";
+			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a where $andQuery";
 		}else {
-			$sql = "SELECT a.cid FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
+			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
 		}
-		$res = $this->db->query($sql);
-		$comNum = $this->db->num_rows($res);
+		$res = $this->db->once_fetch_array($sql);
+		$comNum = $res['count(*)'];
 		return $comNum;
 	}
 	/**
@@ -110,52 +118,82 @@ class Comment_Model {
 	 */
 	function delComment($commentId)
 	{
-		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
-		$this->db->query("DELETE FROM ".DB_PREFIX."comment where cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
-		if($row['hide'] == 'n')
-		{
-			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+		$commentIds = array($commentId);
+		/* 获取子评论ID */
+		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
+		while($row = $this->db->fetch_array($query)) {
+			if(in_array($row['pid'],$commentIds)) {
+				$commentIds[] = $row['cid'];
+			}
 		}
+		$commentIds = implode(',',$commentIds);
+		$this->db->query("DELETE FROM ".DB_PREFIX."comment WHERE cid IN ($commentIds)");
+		$this->updateCommentNum($blogId);
 	}
 	/**
-	 * 显示/隐藏评论
+	 * 隐藏评论
 	 *
 	 * @param int $commentId
 	 */
 	function hideComment($commentId)
 	{
-		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
-		$isHide = $row['hide'];
-		if($isHide == 'n')
-		{
-			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum-1 WHERE gid=$blogId");
+		$commentIds = array($commentId);
+		/* 获取子评论ID */
+		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
+		while($row = $this->db->fetch_array($query)) {
+			if(in_array($row['pid'],$commentIds)) {
+				$commentIds[] = $row['cid'];
+			}
 		}
-		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid=$commentId");
+		$commentIds = implode(',',$commentIds);
+		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid IN ($commentIds)");
+		$this->updateCommentNum($blogId);
 	}
+	/**
+	 * 显示评论
+	 *
+	 * @param int $commentId
+	 */
 	function showComment($commentId)
 	{
-		$row = $this->db->once_fetch_array("SELECT gid,hide FROM ".DB_PREFIX."comment WHERE cid=$commentId");
+		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
-		$isHide = $row['hide'];
-		if($isHide == 'y')
-		{
-			$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=comnum+1 WHERE gid=$blogId");
+		$commentIds = array($commentId);
+		/* 获取父评论ID */
+		while($row['pid'] != 0) {
+			$commentId = intval($row['pid']);
+			$commentIds[] = $commentId;
+			$row = $this->db->once_fetch_array("SELECT pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		}
-		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE cid=$commentId");
+		$commentIds = implode(',',$commentIds);
+		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE cid IN ($commentIds)");
+		$this->updateCommentNum($blogId);
 	}
-
 	/**
 	 * 回复评论
 	 *
+	 * @param int $blogId
 	 * @param int $commentId
 	 * @param string $reply
 	 */
-	function replyComment($commentId, $reply)
+	function replyComment($blogId, $pid, $content, $hide)
 	{
-		$sql="UPDATE ".DB_PREFIX."comment SET reply='$reply' where cid=$commentId ";
-		$this->db->query($sql);
+		$CACHE = Cache::getInstance();
+		$user_cache = $CACHE->readCache('user');
+		if(isset($user_cache[UID])) {
+			$name = $user_cache[UID]['name'];
+			$mail = $user_cache[UID]['mail'];
+			$url = BLOG_URL;
+			$ipaddr = getIp();
+			$utctimestamp = time();
+			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
+					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
+			$this->updateCommentNum($blogId);
+		}
 	}
 
 	/**
@@ -187,6 +225,19 @@ class Comment_Model {
 				}
 				break;
 		}
+	}
+	/**
+	 * 更新日志评论数目
+	 *
+	 * @param int $blogId
+	 */
+	function updateCommentNum($blogId)
+	{
+		$sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
+		$res = $this->db->once_fetch_array($sql);
+		$comNum = $res['count(*)'];
+		$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=$comNum WHERE gid=$blogId");
+		return $comNum;
 	}
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 

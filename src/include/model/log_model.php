@@ -249,6 +249,8 @@ class Log_Model {
 	function hideSwitch($blogId, $hideState) {
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$hideState' WHERE gid=$blogId");
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$hideState' WHERE gid=$blogId");
+		$Comment_Model = new Comment_Model();
+		$Comment_Model->updateCommentNum($blogId);
 	}
 
 	/**
