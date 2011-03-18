@@ -54,7 +54,6 @@ class Comment_Model {
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = smartDate($row['date']);
-			$row['reply'] = htmlClean($row['reply']);
 			$row['children'] = array();
 			if($spot == 0) $row['level'] = isset($comments[$row['pid']]) ? $comments[$row['pid']]['level'] + 1 : 0;
 			//$row['hide'];
@@ -63,6 +62,7 @@ class Comment_Model {
 			$comments[$row['cid']] = $row;
 		}
 		if($spot == 0) {
+			$comments = array_reverse($comments, true);
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
 				if($pid != 0 && isset($comments[$pid])) {
@@ -72,8 +72,6 @@ class Comment_Model {
 					$comments[$pid]['children'][] = $cid;
 				}
 			}
-			$comments = array_reverse($comments, true);
-			$comments = array_map('array_reverse', $comments);
 		}
 		return $comments;
 	}
@@ -84,7 +82,6 @@ class Comment_Model {
 		$res = $this->db->query($sql);
 		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
-		$commentArray['reply'] = htmlClean(trim($commentArray['reply']));
 		$commentArray['poster'] = trim($commentArray['poster']);
 		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;
@@ -178,7 +175,8 @@ class Comment_Model {
 	 *
 	 * @param int $blogId
 	 * @param int $commentId
-	 * @param string $reply
+	 * @param string $content
+	 * @param string $hide
 	 */
 	function replyComment($blogId, $pid, $content, $hide)
 	{
@@ -245,8 +243,8 @@ class Comment_Model {
 			$ipaddr = getIp();
 			$utctimestamp = time();
 			$ischkcomment = Option::get('ischkcomment');
-			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,reply,mail,url,hide,ip,pid)
-					VALUES ('$utctimestamp','$name','$blogId','$content','','$mail','$url','$ischkcomment','$ipaddr','$pid')";
+			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
+					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
 			$ret = $this->db->query($sql);
 			$CACHE = Cache::getInstance();
 			if ($ischkcomment == 'n') {

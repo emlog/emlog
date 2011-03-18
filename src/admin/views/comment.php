@@ -38,7 +38,6 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	<?php
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
-	$isrp = $value['reply']?'<font color="green">[已回复]</font>':'';
 	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
 	$ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
 	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
@@ -49,7 +48,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	?>
      <tr>
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?> <?php echo $isrp; ?>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
 		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>

@@ -6,7 +6,7 @@
 	<li>评论人：<?php echo $poster; ?></li>
 	<li>时间：<?php echo $date; ?></li>
 	<li>内容：<?php echo $comment; ?></li>
-	<li><textarea name="reply" rows="5" cols="60"><?php echo $reply; ?></textarea></li>
+	<li><textarea name="reply" rows="5" cols="60"></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
 	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />

@@ -270,7 +270,6 @@ CREATE TABLE {$db_prefix}comment (
   date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
-  reply text NOT NULL,
   mail varchar(60) NOT NULL default '',
   url varchar(75) NOT NULL default '',
   ip varchar(128) NOT NULL default '',
