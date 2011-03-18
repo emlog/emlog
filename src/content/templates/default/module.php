@@ -100,11 +100,6 @@ function widget_newcomm($title){
 	$url = Url::log($value['gid']).'#'.$value['cid'];
 	?>
 	<li id="comment"><?php echo $value['name']; ?>
-	<?php if($value['reply']): ?>
-	<a href="<?php echo $url; ?>" title="博主回复：<?php echo $value['reply']; ?>">
-	<img src="<?php echo TEMPLATE_URL; ?>images/reply.gif" align="absmiddle"/>
-	</a>
-	<?php endif;?>
 	<br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>

@@ -176,7 +176,7 @@ class Cache {
 		$index_comnum = $show_config['option_value'];
 		$show_config = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='comment_subnum'"));
 		$comment_subnum = $show_config['option_value'];
-		$query = $this->db->query("SELECT cid,gid,comment,date,poster,reply FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comnum");
+		$query = $this->db->query("SELECT cid,gid,comment,date,poster FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY cid DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
 		while ($show_com = $this->db->fetch_array($query)) {
 			$com_cache[] = array(
@@ -184,7 +184,6 @@ class Cache {
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
-				'reply' => $show_com['reply']
 				);
 		}
 		$cacheData = serialize($com_cache);
