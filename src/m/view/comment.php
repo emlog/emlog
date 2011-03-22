@@ -14,9 +14,8 @@
 <?php 
 foreach($comment as $value):
 	$ishide = ISLOGIN === true && $value['hide']=='y'?'<font color="red" size="1">[待审]</font>':'';
-	$isrp = ISLOGIN === true && $value['reply']?'<font color="green" size="1">[已回复]</font>':'';
 ?>
-<div class="comcont"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a> <?php echo $ishide.$isrp; ?> 
+<div class="comcont"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['gid']; ?>"><?php echo $value['content']; ?></a>
 <?php if(ISLOGIN === true): ?>
 <a href="./?action=delcom&id=<?php echo $value['cid'];?>"><font size="1">[删除]</font></a>
 <?php endif;?>
@@ -30,9 +29,7 @@ foreach($comment as $value):
 <?php elseif(ISLOGIN === true && $value['hide'] == 'y'):?>
 <a href="./?action=showcom&id=<?php echo $value['cid'];?>">审核</a>
 <?php endif;?>
-<?php if(ISLOGIN === true): ?>
-<a href="./?action=reply&id=<?php echo $value['cid'];?>">回复</a>
-<?php endif;?>
+<a href="./?action=reply&gid=<?php echo $value['gid']; ?>&cid=<?php echo $value['cid'];?>">回复</a>
 <br />
 <?php if(ISLOGIN === true): ?>
 <?php echo $value['date']; ?> by:<?php echo $value['cname']; ?>

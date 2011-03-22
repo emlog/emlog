@@ -27,12 +27,14 @@ class Comment_Controller {
         $Comment_Model->setCommentCookie($name,$mail,$url);
         if($Comment_Model->isLogCanComment($blogId) === false){
             emMsg('发表评论失败：该日志已关闭评论','javascript:history.back(-1);');
-        }elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
+        } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
             emMsg('发表评论失败：已存在相同内容评论','javascript:history.back(-1);');
-        }elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
+        } elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
             emMsg('发表评论失败：姓名不符合规范','javascript:history.back(-1);');;
         } elseif ($mail != '' && !checkMail($mail)) {
             emMsg('发表评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
+        } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
+            emMsg('发表评论失败：禁止使用管理员昵称或邮箱评论','javascript:history.back(-1);');
         } elseif (strlen($content) == '' || strlen($content) > 2000) {
             emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
         } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {

@@ -21,14 +21,12 @@
 	<div class="t">评论：</div>
 	<div class="c">
 		<?php foreach($comments as $key=>$value):
-			$reply = $value['reply']?"<span>博主回复：{$value['reply']}</span>":'';
 			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 		?>
 		<div class="l">
-		<b><?php echo $value['poster']; ?> </b>
+		<b><?php echo $value['poster']; ?></b> <a href="./?action=reply&gid=<?php echo $value['gid']; ?>&cid=<?php echo $value['cid'];?>">回复</a>
 		<div class="info"><?php echo $value['date']; ?></div>
-		<div class="comcont"><?php echo $value['content']; ?></div>
-		<div class="reply"><?php echo $reply; ?></div>
+		<div class="comcont"><?php if(isset($comments[$value['pid']])): ?>回复<b><?php echo $comments[$value['pid']]['poster']; ?></b>：<?php endif; ?><?php echo $value['content']; ?></div>
 		</div>
 		<?php endforeach; ?>
 	</div>

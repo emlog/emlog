@@ -137,44 +137,48 @@ if (ISLOGIN === true && $action == 'dellog') {
 if ($action == 'addcom') {
 	$Comment_Model = new Comment_Model();
 
-	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
-	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
-	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
-	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
-	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+    $content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+    $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+    $url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
+    $imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
+	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+	$pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 
-	$ret = $Comment_Model->addComment($comname, $comment, $commail, $comurl, $imgcode, $logid);
-	switch ($ret) {
-		case -1:
-			mMsg('发表评论失败：该日志已关闭评论', "./?post=$logid");
-			break;
-		case -2:
-			mMsg('发表评论失败：已存在相同内容评论', "./?post=$logid");
-			break;
-		case -3:
-			mMsg('发表评论失败：姓名不符合规范', "./?post=$logid");
-			break;
-		case -4:
-			mMsg('发表评论失败：邮件地址不符合规范', "./?post=$logid");
-			break;
-		case -5:
-			mMsg('发表评论失败：内容不符合规范', "./?post=$logid");
-			break;
-		case -6:
-			mMsg('发表评论失败：验证码错误', "./?post=$logid");
-			break;
-		case 0:
-			$CACHE->updateCache(array('sta','comment'));
-			doAction('comment_saved');
-			header("Location: ./?post=$logid");
-			break;
-		case 1:
-			$CACHE->updateCache(array('sta'));
-			doAction('comment_saved');
-			mMsg ('评论发表成功，请等待管理员审核', "./?post=$logid");
-			break;
-	}
+	if($Comment_Model->isLogCanComment($blogId) === false){
+        mMsg('发表评论失败：该日志已关闭评论','./?post=' . $blogId);
+    } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
+        mMsg('发表评论失败：已存在相同内容评论','./?post=' . $blogId);
+    } elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
+        mMsg('发表评论失败：姓名不符合规范','./?post=' . $blogId);;
+    } elseif ($mail != '' && !checkMail($mail)) {
+        mMsg('发表评论失败：邮件地址不符合规范', './?post=' . $blogId);
+    } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
+        mMsg('发表评论失败：禁止使用管理员昵称或邮箱评论','./?post=' . $blogId);
+    } elseif (strlen($content) == '' || strlen($content) > 2000) {
+        mMsg('发表评论失败：内容不符合规范','./?post=' . $blogId);
+    } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        mMsg('发表评论失败：验证码错误','./?post=' . $blogId);
+    } else {
+		$DB = MySql::getInstance();
+        $ipaddr = getIp();
+		$utctimestamp = time();
+		$ischkcomment = Option::get('ischkcomment');
+		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
+				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
+		$ret = $DB->query($sql);
+		$CACHE = Cache::getInstance();
+		if ($ischkcomment == 'n') {
+			$DB->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+			$CACHE->updateCache(array('sta', 'comment'));
+            doAction('comment_saved');
+            header("Location: ".'./?post=' . $blogId);
+		} else {
+		    $CACHE->updateCache('sta');
+		    doAction('comment_saved');
+		    mMsg('评论发表成功，请等待管理员审核', './?post=' . $blogId);
+		}
+    }
 }
 if ($action == 'com') {
 	if (ISLOGIN === true) {
@@ -185,9 +189,9 @@ if ($action == 'com') {
 
 		$comment = $Comment_Model->getComments(1, null, $hide, $page);
 		$cmnum = $Comment_Model->getCommentNum(null, $hide);
-		$pageurl = pagination($cmnum, 5, $page, "./?action=com&page");
+		$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "./?action=com&page");
 	}else {
-		$comment = $com_cache;
+		$comment = $CACHE->readCache('comment');
 		$pageurl = '';
 	}
 	include View::getView('header');
@@ -216,23 +220,19 @@ if (ISLOGIN === true && $action == 'hidecom') {
 	$CACHE->updateCache(array('sta','comment'));
 	header("Location: ./?action=com");
 }
-if (ISLOGIN === true && $action == 'reply') {
+if ($action == 'reply') {
 	$Comment_Model = new Comment_Model();
-	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$commentArray = $Comment_Model->getOneComment($id);
+	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
+	$commentArray = $Comment_Model->getOneComment($cid);
+	if(!$commentArray) {
+		mMsg('参数错误', './');
+	}
 	extract($commentArray);
+	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	include View::getView('header');
 	include View::getView('reply');
 	include View::getView('footer');
 	View::output();
-}
-if (ISLOGIN === true && $action == 'dorep') {
-	$Comment_Model = new Comment_Model();
-	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
-	$Comment_Model->replyComment($id, $reply);
-	$CACHE->updateCache('comment');
-	header("Location: ./?action=com");
 }
 // 碎语
 if ($action == 'tw') {

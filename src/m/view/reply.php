@@ -11,8 +11,12 @@
 <?php endif;?>
 </div>
 <div id="m">
-	<form method="post" action="./?action=dorep&id=<?php echo $id; ?>">
-	<textarea name="reply"><?php echo $reply; ?></textarea><br />
-	<input type="submit" value="回复评论" />
+	<div class="comcont">回复<b><?php echo $poster; ?></b>：<?php echo $comment; ?></div>
+	<form method="post" action="./?action=addcom&gid=<?php echo $gid; ?>&pid=<?php echo $cid; ?>">
+	昵称<br /><input type="text" name="comname" value="" /><br />
+	邮件地址 (选填)<br /><input type="text" name="commail" value="" /><br />
+	个人主页 (选填)<br /><input type="text" name="comurl" value="" /><br />
+	内容<br /><textarea name="comment" rows="10"></textarea><br />
+	<?php echo $verifyCode; ?><br /><input type="submit" value="发表评论" />
 	</form>
 </div>

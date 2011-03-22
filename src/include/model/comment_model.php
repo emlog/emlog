@@ -240,23 +240,23 @@ class Comment_Model {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
-			$ipaddr = getIp();
-			$utctimestamp = time();
-			$ischkcomment = Option::get('ischkcomment');
-			$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
-					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
-			$ret = $this->db->query($sql);
-			$CACHE = Cache::getInstance();
-			if ($ischkcomment == 'n') {
-				$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
-				$CACHE->updateCache(array('sta', 'comment'));
-                doAction('comment_saved');
-                emMsg('评论发表成功', Url::log($blogId).'#comment', true);
-			} else {
-		        $CACHE->updateCache('sta');
-		        doAction('comment_saved');
-		        emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
-			}
+		$ipaddr = getIp();
+		$utctimestamp = time();
+		$ischkcomment = Option::get('ischkcomment');
+		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
+				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
+		$ret = $this->db->query($sql);
+		$CACHE = Cache::getInstance();
+		if ($ischkcomment == 'n') {
+			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+			$CACHE->updateCache(array('sta', 'comment'));
+            doAction('comment_saved');
+            emMsg('评论发表成功', Url::log($blogId).'#comment', true);
+		} else {
+		    $CACHE->updateCache('sta');
+		    doAction('comment_saved');
+		    emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
+		}
 	}
 
 	function isCommentExist($blogId, $name, $content)
@@ -271,6 +271,17 @@ class Comment_Model {
 		}
 	}
 
+	function isNameAndMailValid($name, $mail)
+	{
+		$CACHE = Cache::getInstance();
+		$user_cache = $CACHE->readCache('user');
+		foreach($user_cache as $user) {
+			if($user['name'] == $name || ($mail != '' && $user['mail'] == $mail)) {
+				return false;
+			}
+		}
+		return true;
+	}
 	function isLogCanComment($blogId)
 	{
 		$query = $this->db->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
