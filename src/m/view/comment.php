@@ -29,7 +29,7 @@ foreach($comment as $value):
 <?php elseif(ISLOGIN === true && $value['hide'] == 'y'):?>
 <a href="./?action=showcom&id=<?php echo $value['cid'];?>">审核</a>
 <?php endif;?>
-<a href="./?action=reply&gid=<?php echo $value['gid']; ?>&cid=<?php echo $value['cid'];?>">回复</a>
+<a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a>
 <br />
 <?php if(ISLOGIN === true): ?>
 <?php echo $value['date']; ?> by:<?php echo $value['cname']; ?>

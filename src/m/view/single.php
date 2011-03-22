@@ -24,7 +24,7 @@
 			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 		?>
 		<div class="l">
-		<b><?php echo $value['poster']; ?></b> <a href="./?action=reply&gid=<?php echo $value['gid']; ?>&cid=<?php echo $value['cid'];?>">回复</a>
+		<b><?php echo $value['poster']; ?></b> <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a>
 		<div class="info"><?php echo $value['date']; ?></div>
 		<div class="comcont"><?php if(isset($comments[$value['pid']])): ?>回复<b><?php echo $comments[$value['pid']]['poster']; ?></b>：<?php endif; ?><?php echo $value['content']; ?></div>
 		</div>
@@ -33,9 +33,20 @@
 	<div class="t">发表评论：</div>
 	<div class="c">
 		<form method="post" action="./?action=addcom&gid=<?php echo $logid; ?>">
+		<?php
+			if(ISLOGIN == true):
+			$CACHE = Cache::getInstance();
+			$user_cache = $CACHE->readCache('user');
+		?>
+		当前已登录为<b><?php echo $user_cache[UID]['name']; ?></b><br />
+		<input type="hidden" name="comname" value="<?php echo $user_cache[UID]['name']; ?>" />
+		<input type="hidden" name="commail" value="<?php echo $user_cache[UID]['mail']; ?>" />
+		<input type="hidden" name="comurl" value="<?php echo BLOG_URL; ?>" />
+		<?php else: ?>
 		昵称<br /><input type="text" name="comname" value="" /><br />
 		邮件地址 (选填)<br /><input type="text" name="commail" value="" /><br />
 		个人主页 (选填)<br /><input type="text" name="comurl" value="" /><br />
+		<?php endif; ?>
 		内容<br /><textarea name="comment" rows="10"></textarea><br />
 		<?php echo $verifyCode; ?><br /><input type="submit" value="发表评论" />
 		</form>
