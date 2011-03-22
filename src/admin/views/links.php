@@ -50,7 +50,7 @@
 	<li><input type="submit" name="" value="添加链接"  /></li>
 </div>
 </form>
-<script type='text/javascript'>
+<script>
 $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
 $(document).ready(function(){
 	$("#adm_link_list tbody tr:odd").addClass("tralt_b");

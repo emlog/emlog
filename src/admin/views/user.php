@@ -53,7 +53,7 @@
 </div>
 </div>
 </form>
-<script type='text/javascript'>
+<script>
 $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");

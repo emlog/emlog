@@ -40,9 +40,9 @@ class Sort_Model {
 		$this->db->query("update ".DB_PREFIX."sort set $upStr where sid=$sid");
 	}
 
-	function addSort($name)
+	function addSort($name, $alias, $taxis)
 	{
-		$sql="insert into ".DB_PREFIX."sort (sortname) values('$name')";
+		$sql="insert into ".DB_PREFIX."sort (sortname,alias,taxis) values('$name','$alias',$taxis)";
 		$this->db->query($sql);
 	}
 

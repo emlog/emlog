@@ -59,7 +59,7 @@
     <a href="http://www.emlog.net/extend/plugins" target="_blank">获取更多插件&raquo;</a>
     <a href="javascript: em_confirm(0, 'reset_plugin');" style="margin-left:30px;">禁用所有插件&raquo;</a>
 </div>
-<script type='text/javascript'>
+<script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")
 	.mouseover(function(){$(this).addClass("trover")})

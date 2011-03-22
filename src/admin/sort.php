@@ -38,23 +38,40 @@ if ($action == 'taxis')
 
 if($action== 'add')
 {
+	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
-	if(empty($sortname))
-	{
+	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
+
+	if(empty($sortname)){
 		header("Location: ./sort.php?error_a=true");
 		exit;
+	}elseif (!empty($alias) && !preg_match("|^[^/\.=\?]+$|", $alias)) {
+		header("Location: ./sort.php?error_c=true");
+		exit;
 	}
-	$Sort_Model->addSort($sortname);
+
+	$Sort_Model->addSort($sortname, $alias, $taxis);
 	$CACHE->updateCache('sort');
 	header("Location: ./sort.php?active_add=true");
 }
 
 if($action == 'update')
 {
-	$sortname = isset($_GET['name']) ? addslashes(trim($_GET['name'])) : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 
-	$Sort_Model->updateSort(array('sortname'=>$sortname), $sid);
+	$sort_data = array();
+	if (isset($_GET['name'])) {
+		$sort_data['sortname'] = addslashes(trim($_GET['name']));
+	}
+	if (isset($_GET['alias'])) {
+		$sort_data['alias'] = addslashes(trim($_GET['alias']));
+		if (!empty($_GET['alias']) && !preg_match("|^[^/\.=\?]+$|", $_GET['alias'])) {
+			header("Location: ./sort.php?error_c=true");
+			exit;
+		}
+	}
+
+	$Sort_Model->updateSort($sort_data, $sid);
 	$CACHE->updateCache(array('sort', 'logsort'));
 	header("Location: ./sort.php?active_edit=true");
 }

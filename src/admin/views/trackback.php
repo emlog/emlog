@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script type='text/javascript'>
+<script>
 $(document).ready(function(){
 	$("#adm_tb_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_tb_list tbody tr")

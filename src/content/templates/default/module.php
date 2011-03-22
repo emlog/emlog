@@ -191,8 +191,6 @@ function widget_link($title){
 <?php
 //blog：置顶
 function topflg($istop){
-	global $CACHE;
-	$log_cache_sort = $CACHE->readCache('logsort');
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶日志\" /> " : '';
 	echo $topflg;
 }
@@ -206,12 +204,12 @@ function editflg($logid,$author){
 ?>
 <?php
 //blog：分类
-function blog_sort($sort, $blogid){
+function blog_sort($blogid){
 	global $CACHE; 
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
-	<?php if($log_cache_sort[$blogid]): ?>
-	分类：<a href="<?php echo Url::sort($sort); ?>"><?php echo $log_cache_sort[$blogid]; ?></a>
+	<?php if(!empty($log_cache_sort[$blogid])): ?>
+	分类：<a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php endif;?>
 <?php }?>
 <?php

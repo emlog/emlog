@@ -179,3 +179,5 @@ textarea{font-size:12px}
 #topimg_custom {margin:10px 10px 10px 22px;}
 
 .setting_line{width:665px; padding:5px 0px 0px 0px; margin:0px 0px 5px 30px; border-bottom:1px solid #F7F7F7}
+.custom_top_button{ margin-top:10px;}
+.custom_top_button a{ background:url(../images/custom_top.gif) no-repeat; width:90px; height:24px; display:block; padding-left:20px; color:#000000;}

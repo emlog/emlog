@@ -247,12 +247,13 @@ class Cache {
 	 */
 	private function mc_sort() {
 		$sort_cache = array();
-		$query = $this->db->query("SELECT sid,sortname,taxis FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT sid,sortname,alias,taxis FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
 			$sort_cache[$row['sid']] = array(
 				     'lognum' => $logNum,
 				     'sortname' => htmlspecialchars($row['sortname']),
+					 'alias' =>$row['alias'],
 				     'sid' => intval($row['sid']),
 				     'taxis' => intval($row['taxis'])
 				    );
@@ -380,14 +381,14 @@ class Cache {
 		$log_cache_sort = array();
 		while ($row = $this->db->fetch_array($query)) {
 			if ($row['sortid'] > 0) {
-				$res = $this->db->query("SELECT sortname FROM " . DB_PREFIX . "sort where sid=" . $row['sortid']);
+				$res = $this->db->query("SELECT sid,sortname,alias FROM " . DB_PREFIX . "sort where sid=" . $row['sortid']);
 				$srow = $this->db->fetch_array($res);
-				$sortName = htmlspecialchars($srow['sortname']);
-			}else {
-				$sortName = '';
+				$log_cache_sort[$row['gid']] = array(
+					'name' => htmlspecialchars($srow['sortname']),
+					'id' => htmlspecialchars($srow['sid']),
+					'alias' => htmlspecialchars($srow['alias']),
+				);
 			}
-			$log_cache_sort[$row['gid']] = $sortName;
-			unset($tag);
 		}
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');

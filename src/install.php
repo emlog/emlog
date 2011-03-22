@@ -286,7 +286,7 @@ option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )".$add."
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','点滴记忆');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
@@ -312,6 +312,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcommen
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
@@ -350,6 +351,7 @@ DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid tinyint(3) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
+  alias VARCHAR(200) NOT NULL DEFAULT '',
   taxis tinyint(3) NOT NULL default '0',
   PRIMARY KEY  (sid)
 )".$add."

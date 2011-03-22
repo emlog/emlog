@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="contentleft">
 	<h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
 	<p class="date">作者：<?php blog_author($author); ?> 发布于：<?php echo gmdate('Y-n-j G:i l', $date); ?> 
-	<?php blog_sort($sortid, $logid); ?> <?php editflg($logid,$author); ?>
+	<?php blog_sort($logid); ?> <?php editflg($logid,$author); ?>
 	</p>
 	<?php echo $log_content; ?>
 	<p class="att"><?php blog_att($logid); ?></p>

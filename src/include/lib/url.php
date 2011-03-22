@@ -5,31 +5,60 @@
  * $Id$
  */
 
-class Url {
-
+class Url
+{
     /**
      * 获取日志链接
      */
-    static function log($blogId){
+    static function log ($blogId)
+    {
+    	$urlMode = Option::get('isurlrewrite');
         $logUrl = '';
-        //get log alias
+        $CACHE = Cache::getInstance();
+
+        //开启日志别名
         if (Option::get('isalias') == 'y') {
-	        $CACHE = Cache::getInstance();
-	        $logalias_cache = $CACHE->readCache('logalias');
-	        if (!empty($logalias_cache[$blogId])) {
-	        	$logUrl = BLOG_URL . $logalias_cache[$blogId];
-	        	return $logUrl;
-	        }
+            $CACHE = Cache::getInstance();
+            $logalias_cache = $CACHE->readCache('logalias');
+            if (!empty($logalias_cache[$blogId])) {
+            	$logsort_cache = $CACHE->readCache('logsort');
+            	$category = '';
+            	//分类模式下的url
+            	if (3 == $urlMode && isset($logsort_cache[$blogId])) {
+            		$category = !empty($logsort_cache[$blogId]['alias']) ? 
+            			$logsort_cache[$blogId]['alias'] : 
+            			$logsort_cache[$blogId]['name'];
+            		$category .= '/';
+            	}
+                $logUrl = BLOG_URL . $category . $logalias_cache[$blogId];
+                //开启别名html后缀
+                if (Option::get('isalias_html') == 'y') {
+                	$logUrl .= '.html';
+                }
+                return $logUrl;
+            }
         }
-        switch (Option::get('isurlrewrite')) {
-            case '0':
+
+        switch ($urlMode) {
+            case '0'://默认：动态
                 $logUrl = BLOG_URL . '?post=' . $blogId;
                 break;
-            case '1':
+            case '1'://静态
                 $logUrl = BLOG_URL . 'post-' . $blogId . '.html';
                 break;
-            case '2':
+            case '2'://目录
                 $logUrl = BLOG_URL . 'post/' . $blogId;
+                break;
+            case '3'://分类
+            	$log_sort = $CACHE->readCache('logsort');
+            	if (!empty($log_sort[$blogId]['alias'])) {
+            		$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
+            	} elseif(!empty($log_sort[$blogId]['name'])) {
+            		$logUrl = BLOG_URL . $log_sort[$blogId]['name'] . '/' . $blogId;
+            	} else {
+            		$logUrl = BLOG_URL . $blogId;
+            	}
+            	$logUrl .= '.html';
                 break;
         }
         return $logUrl;
@@ -38,42 +67,43 @@ class Url {
     /**
      * 获取归档链接
      */
-	static function record($record, $page=null){
+    static function record ($record, $page = null)
+    {
         $recordUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $recordUrl = BLOG_URL . '?record=' . $record;
-                if ($page) $recordUrl .= '&page';
+                if ($page)
+                    $recordUrl .= '&page';
                 break;
-            case '1':
-                $recordUrl = BLOG_URL . 'record-' . $record . '.html';
-                if ($page) $recordUrl = BLOG_URL . 'record/' . $record . '/page';
-                break;
-            case '2':
+            default:
                 $recordUrl = BLOG_URL . 'record/' . $record;
-                if ($page) $recordUrl = BLOG_URL . 'record/' . $record . '/page';
+                if ($page)
+                    $recordUrl = BLOG_URL . 'record/' . $record . '/page';
                 break;
         }
         return $recordUrl;
-	}
+    }
 
     /**
      * 获取分类链接
-     */	
-    static function sort($sortId, $page=null){
-         $sortUrl = '';
+     */
+    static function sort ($sortId, $page = null)
+    {
+        $CACHE = Cache::getInstance();
+        $sort_cache = $CACHE->readCache('sort');
+        $sort_index = !empty($sort_cache[$sortId]['alias']) ? $sort_cache[$sortId]['alias'] : $sortId;
+        $sortUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
-                $sortUrl = BLOG_URL . '?sort=' . $sortId;
-                if ($page) $sortUrl .= '&page';
+                $sortUrl = BLOG_URL . '?category=' . $sortId;
+                if ($page)
+                    $sortUrl .= '&page';
                 break;
-            case '1':
-                $sortUrl = BLOG_URL . 'sort-' . $sortId . '.html';
-                if ($page) $sortUrl = BLOG_URL . 'sort/' . $sortId . '/page';
-                break;
-            case '2':
-                $sortUrl = BLOG_URL . 'sort/' . $sortId;
-                if ($page) $sortUrl = BLOG_URL . 'sort/' . $sortId . '/page';
+			default:
+                $sortUrl = BLOG_URL . 'category/' . $sort_index;
+                if ($page)
+                    $sortUrl = BLOG_URL . 'category/' . $sort_index . '/page';
                 break;
         }
         return $sortUrl;
@@ -82,20 +112,19 @@ class Url {
     /**
      * 获取作者链接
      */
-    static function author($authorId, $page=null){
+    static function author ($authorId, $page = null)
+    {
         $authorUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $authorUrl = BLOG_URL . '?author=' . $authorId;
-                if ($page) $authorUrl .= '&page';
+                if ($page)
+                    $authorUrl .= '&page';
                 break;
-            case '1':
-                $authorUrl = BLOG_URL . 'author-' . $authorId . '.html';
-                if ($page) $authorUrl = BLOG_URL . 'author/' . $authorId . '/page';
-                break;
-            case '2':
+            default:
                 $authorUrl = BLOG_URL . 'author/' . $authorId;
-                if ($page) $authorUrl = BLOG_URL . 'author/' . $authorId . '/page';
+                if ($page)
+                    $authorUrl = BLOG_URL . 'author/' . $authorId . '/page';
                 break;
         }
         return $authorUrl;
@@ -104,20 +133,19 @@ class Url {
     /**
      * 获取标签链接
      */
-    static function tag($tag, $page=null){
+    static function tag ($tag, $page = null)
+    {
         $tagUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $tagUrl = BLOG_URL . '?tag=' . $tag;
-                if ($page) $tagUrl .= '&page';
+                if ($page)
+                    $tagUrl .= '&page';
                 break;
-            case '1':
-                $tagUrl = BLOG_URL . 'tag-' . $tag . '.html';
-                if ($page) $tagUrl = BLOG_URL . 'tag/' . $tag . '/page';
-                break;
-            case '2':
+            default:
                 $tagUrl = BLOG_URL . 'tag/' . $tag;
-                if ($page) $tagUrl = BLOG_URL . 'tag/' . $tag . '/page';
+                if ($page)
+                    $tagUrl = BLOG_URL . 'tag/' . $tag . '/page';
                 break;
         }
         return $tagUrl;
@@ -126,14 +154,14 @@ class Url {
     /**
      * 获取首页日志分页链接
      */
-    static function logPage(){
+    static function logPage ()
+    {
         $logPageUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $logPageUrl = BLOG_URL . '?page';
                 break;
-            case '1':
-            case '2':
+            default:
                 $logPageUrl = BLOG_URL . 'page';
                 break;
         }
@@ -143,12 +171,13 @@ class Url {
     /**
      * 获取分页链接
      */
-    static function page($url, $pageId){
+    static function page ($url, $pageId)
+    {
         $pageUrl = '';
         if (preg_match("/^.*[?&]page$/", $url)) {
-        	$pageUrl = $url . '=' . $pageId;
+            $pageUrl = $url . '=' . $pageId;
         } else {
-        	$pageUrl = $url . '/' . $pageId . '/';
+            $pageUrl = $url . '/' . $pageId . '/';
         }
         return $pageUrl;
     }

@@ -3,7 +3,7 @@
 <div class="containertitle2">
 <a class="navi1" href="./configure.php">基本设置</a>
 <a class="navi4" href="./style.php">后台风格</a>
-<a class="navi2" href="./permalink.php">固定链接</a>
+<a class="navi2" href="./permalink.php">日志链接</a>
 <a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 <?php if(isset($_GET['error'])):?><span class="error">保存失败：根目录下的.htaccess不可写</span><?php endif;?>
@@ -17,9 +17,11 @@
 	<li><input type="radio" name="permalink" value="0" <?php echo $ex0; ?>>默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></li>
     <li><input type="radio" name="permalink" value="1" <?php echo $ex1; ?>>文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></li>
     <li><input type="radio" name="permalink" value="2" <?php echo $ex2; ?>>目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></li>
-    <p style="border-top:1px solid #cccccc; width:521px; padding:10px 5px; margin-top:20px;">启用链接别名：
-	<input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />
-	</p>
+	<li><input type="radio" name="permalink" value="3" <?php echo $ex3; ?>>分类形式：<span class="permalink_url"><?php echo BLOG_URL; ?>cotegory/1.html</span></li>
+    <div style="border-top:1px solid #F7F7F7; width:521px; padding:10px 5px; margin-top:20px;">
+	<li>启用链接别名：<input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> /></li>
+	<li>启用链接别名html后缀：<input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> /></li>
+	</div>
     <p><input type="submit" value="保存设置" class="button" /></p>
 </div>
 </form>
