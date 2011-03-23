@@ -43,14 +43,18 @@ class Dispatcher {
         }
     }
 
-    private function __construct(){
+    private function __construct() {
         $this->_path = $this->setPath();
         $this->_routingTable = Option::getRoutingTable();
 
+        $urlMode = Option::get('isurlrewrite');
+
         foreach ($this->_routingTable as $route) {
-            $reg = isset($route['reg_'.Option::get('isurlrewrite')]) ? 
-                     $route['reg_'.Option::get('isurlrewrite')] : 
-                     $route['reg_0'];
+            if (!isset($route['reg_' . $urlMode])) {
+            	$reg = isset($route['reg']) ? $route['reg'] :$route['reg_0'];
+            } else {
+            	$reg = $route['reg_' . $urlMode];
+            }
             if (preg_match($reg, $this->_path, $matches)) {
                 $this->_model = $route['model'];
                 $this->_method = $route['method'];

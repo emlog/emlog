@@ -65,46 +65,37 @@ class Option {
                             'reg_0' => '|^.*/\?(post)=(\d+)$|',
                             'reg_1' => '|^.*/(post)-(\d+)\.html$|',
                             'reg_2' => '|^.*/(post)/(\d+)/?$|',
-                            ),
-                    array(
-                            'model' => 'Log_Controller',
-                            'method' => 'displayContent',
-                            'reg_0' => '|^.*/([^/\.=\?]+)/?$|',
+                    		'reg_3' => '|^.*/([^\./]+)(\.html)?/?$|',
                             ),
                     array(
                             'model' => 'Record_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(record)=(\d{6,8})$|',
-                            'reg_1' => '|^.*/(record)-(\d{6,8})\.html$|',
-                            'reg_2' => '|^.*/(record)/(\d{6,8})/?((page)/(\d+))?/?$|',
+                            'reg' => '|^.*/(record)/(\d{6,8})/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Sort_Controller',
                             'method' => 'display',
-                            'reg_0' => '|^.*/\?(sort)=(\d+)$|',
-                            'reg_1' => '|^.*/(sort)-(\d+)\.html$|',
-                            'reg_2' => '|^.*/(sort)/(\d+)/?((page)/(\d+))?/?$|',
+                            'reg_0' => '|^.*/\?(category)=(\d+)$|',
+                            'reg_2' => '|^.*/(category)/([^\./]+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Tag_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(tag)=(.+)$|',
-                            'reg_1' => '|^.*/(tag)-(.+)\.html$|',
-                            'reg_2' => '|^.*/(tag)/([^/]+)/?((page)/(\d+))?/?$|',
+                            'reg' => '|^.*/(tag)/([^/]+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Author_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(author)=(\d+)$|',
-                            'reg_1' => '|^.*/(author)-(\d+)\.html$|',
-                            'reg_2' => '|^.*/(author)/(\d+)/?((page)/(\d+))?/?$|',
+                            'reg' => '|^.*/(author)/(\d+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(page)=(\d+)$|',
-                            'reg_1' => '|^.*/(page)-(\d+)\.html$|',
-                            'reg_2' => '|^.*/(page)/(\d+)/?$|',
+                            'reg' => '|^.*/(page)/(\d+)/?$|',
                             ),
                     array(
                             'model' => 'Search_Controller',
@@ -121,6 +112,12 @@ class Option {
                             'method' => 'loadPluginShow',
                             'reg_0' => '|^.*/\?(plugin)=([\w\-]+)$|',
                             ),
+                    array(
+                            'model' => 'Log_Controller',
+                            'method' => 'displayContent',
+                            'reg_0' => '|^.*/([^/\.=\?]+)(\.html)?/?$|',
+                            ),
+                            
                 );
          return $routingtable;
     }

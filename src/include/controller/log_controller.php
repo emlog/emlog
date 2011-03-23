@@ -50,16 +50,21 @@ class Log_Controller {
         $navibar = unserialize($navibar);
 
         $logid = '' ;
-        if (isset($params[1]) && $params[1] == 'post'){
-        	$logid = intval($params[2]);
-        } elseif(isset($params[1])) {
-        	$logalias_cache = $CACHE->readCache('logalias');
-        	if (!empty($logalias_cache)) {
-        		$alias = addslashes(urldecode(trim($params[1])));
-        		$logid = array_search($alias, $logalias_cache);
-        		if (!$logid) {
-        			emMsg('不存在该条目', BLOG_URL);
-        		}
+
+        if (isset($params[1])) {
+        	if ($params[1] == 'post') {
+        		$logid = isset($params[2]) ? intval($params[2]) : '';
+        	} elseif (is_numeric($params[1])) {
+        		$logid = intval($params[1]);
+        	} else {
+        		$logalias_cache = $CACHE->readCache('logalias');
+	        	if (!empty($logalias_cache)) {
+	        		$alias = addslashes(urldecode(trim($params[1])));
+	        		$logid = array_search($alias, $logalias_cache);
+	        		if (!$logid) {
+	        			emMsg('不存在该条目', BLOG_URL);
+	        		}
+	        	}
         	}
         }
 

@@ -20,7 +20,22 @@ class Sort_Controller {
 		$curpage = CURPAGE_HOME;
 
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
-		$sortid = isset($params[1]) && $params[1] == 'sort' ? intval($params[2]) : '' ;
+
+		$sortid = '';
+		if (!empty($params[2])) {
+			if (is_numeric($params[2])) {
+				$sortid = intval($params[2]);
+			} else {
+				$sort_cache = $CACHE->readCache('sort');
+				foreach ($sort_cache as $key => $value) {
+	        		$alias = addslashes(urldecode(trim($params[2])));
+	        		if (array_search($alias, $value)){
+	        			$sortid = $key;
+	        			break;
+	        		}
+				}
+			}
+		}
 
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
