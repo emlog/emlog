@@ -318,7 +318,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','碎语');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/terrace.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');

@@ -29,7 +29,7 @@ class Sort_Controller {
 				$sort_cache = $CACHE->readCache('sort');
 				foreach ($sort_cache as $key => $value) {
 	        		$alias = addslashes(urldecode(trim($params[2])));
-	        		if (array_search($alias, $value)){
+	        		if (array_search($alias, $value, true)){
 	        			$sortid = $key;
 	        			break;
 	        		}

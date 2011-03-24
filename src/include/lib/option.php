@@ -65,7 +65,7 @@ class Option {
                             'reg_0' => '|^.*/\?(post)=(\d+)$|',
                             'reg_1' => '|^.*/(post)-(\d+)\.html$|',
                             'reg_2' => '|^.*/(post)/(\d+)/?$|',
-                    		'reg_3' => '|^.*/([^\./]+)(\.html)?/?$|',
+                    		'reg_3' => '|^/([^\./]+)(\.html)?/?$|',
                             ),
                     array(
                             'model' => 'Record_Controller',
@@ -77,7 +77,7 @@ class Option {
                             'model' => 'Sort_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(category)=(\d+)$|',
-                            'reg_2' => '|^.*/(category)/([^\./]+)/?((page)/(\d+))?/?$|',
+                            'reg' => '|^.*/(category)/([^\./]+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Tag_Controller',
