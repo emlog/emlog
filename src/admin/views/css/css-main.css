@@ -67,7 +67,8 @@ textarea{font-size:12px}
 .ajax_remind_1{padding:3px 5px; background-color:#FDFFCE}
 #user, #pw{height:28px;  width:210px}
 #imgcode{height:28px; width:80px}
-.sortname{cursor:pointer; color:#2A9DDB}
+.sortname{cursor:pointer;}
+.alias{cursor:pointer;}
 .logtags{margin-left:5px}
 .logtags a{color:#FFF}
 .logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px}
