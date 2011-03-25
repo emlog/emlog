@@ -84,6 +84,10 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right">登录验证码：<br /></td>
         <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /></td>
       </tr>
+	  <tr>
+        <td align="right">引用通告：<br /></td>
+		<td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /></td>
+      </tr>
       <tr>
         <td align="right">Gzip压缩：<br /></td>
         <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>

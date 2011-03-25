@@ -61,7 +61,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
-        <td><a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
+        <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach; ?>
 	</tbody>

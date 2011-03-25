@@ -22,15 +22,15 @@ class Url
             $logalias_cache = $CACHE->readCache('logalias');
             if (!empty($logalias_cache[$blogId])) {
             	$logsort_cache = $CACHE->readCache('logsort');
-            	$category = '';
+            	$sort = '';
             	//分类模式下的url
             	if (3 == $urlMode && isset($logsort_cache[$blogId])) {
-            		$category = !empty($logsort_cache[$blogId]['alias']) ? 
+            		$sort = !empty($logsort_cache[$blogId]['alias']) ? 
             			$logsort_cache[$blogId]['alias'] : 
             			$logsort_cache[$blogId]['name'];
-            		$category .= '/';
+            		$sort .= '/';
             	}
-                $logUrl = BLOG_URL . $category . $logalias_cache[$blogId];
+                $logUrl = BLOG_URL . $sort . $logalias_cache[$blogId];
                 //开启别名html后缀
                 if (Option::get('isalias_html') == 'y') {
                 	$logUrl .= '.html';
@@ -96,14 +96,14 @@ class Url
         $sortUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
-                $sortUrl = BLOG_URL . '?category=' . $sortId;
+                $sortUrl = BLOG_URL . '?sort=' . $sortId;
                 if ($page)
                     $sortUrl .= '&page';
                 break;
 			default:
-                $sortUrl = BLOG_URL . 'category/' . $sort_index;
+                $sortUrl = BLOG_URL . 'sort/' . $sort_index;
                 if ($page)
-                    $sortUrl = BLOG_URL . 'category/' . $sort_index . '/page';
+                    $sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page';
                 break;
         }
         return $sortUrl;

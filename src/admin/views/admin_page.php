@@ -21,7 +21,7 @@
 	foreach($pages as $key => $value):
 	if (empty($navibar[$value['gid']]['url']))
 	{
-		$navibar[$value['gid']]['url'] = '../?post='.$value['gid'];
+		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 	}
 	$isHide = $value['hide'] == 'y' ? 
 	'<font color="red">[隐藏]</font>' : 

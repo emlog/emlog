@@ -107,7 +107,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td class="tdcenter">
-	  <a href="../?post=<?php echo $value['gid']; ?>" target="_blank" title="在新窗口查看">
+	  <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="在新窗口查看">
 	  <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  </td>
 	  <?php endif; ?>
