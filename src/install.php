@@ -29,13 +29,14 @@ if(!$act){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
-#top-title{background:url(admin/views/images/logo.gif) no-repeat right;padding:5px 0px;margin:20px 0px 60px 0px;}
-.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:5px 25px;}
-.submit{background-color:#FFFFFF;border: 3px double #999;border-left-color: #ccc;border-top-color: #ccc;color: #333;padding: 0.25em;cursor:hand;}
-.title{font-size:24px;font-weight:bold;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
+.title{text-align:center;}
+.title span{font-size:24px;font-weight:bold;}
+.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:10px 0px 10px 25px;}
+.submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
-.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid;}
+.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid; margin:20px 0px;}
 .foot{text-align:center;}
 -->
 </style>
@@ -43,14 +44,14 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <body>
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
-<div id="top-title">
-<p><span class="title">emlog <?php echo Option::EMLOG_VERSION ?></span><span> 安装程序<br></span></p>
-</div>
+<p class="logo"></p>
+<p class="title"><span>emlog<?php echo Option::EMLOG_VERSION ?></span> 安装程序</p>
 <div class="b">
 <p class="title2">1、数据库设置 （MySQL数据库）</p>
 <li>
-	数据库地址：<span class="care">(通常为 localhost 不必修改)</span> <br />
+	数据库地址： <br />
     <input name="hostname" type="text" class="input" value="localhost">
+	<span class="care">(通常为 localhost， 不必修改)</span>
 </li>
 <li>
     数据库用户名：<br /><input name="dbuser" type="text" class="input" value="">
@@ -59,14 +60,14 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     数据库密码：<br /><input name="password" type="password" class="input">
 </li>
 <li>
-    数据库名：
-	  <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span><br />
+    数据库名：<br />
       <input name="dbname" type="text" class="input" value="">
+	  <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
 </li>
 <li>
-    数据库前缀：
-  <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span><br />
+    数据库前缀：<br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
+  <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span>
 </li>
 </div>
 <div class="c">
@@ -76,8 +77,9 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <input name="admin" type="text" class="input">
 </li>
 <li>
-博主登录密码：<span class="care">(不小于6位)</span><br />
+博主登录密码：<br />
 <input name="adminpw" type="password" class="input">
+<span class="care">(不小于6位)</span>
 </li>
 <li>
 再次输入博主登录密码：<br />
