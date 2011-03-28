@@ -196,6 +196,7 @@ src/content/templates/default/header.php -text
 src/content/templates/default/images/bullet.png -text
 src/content/templates/default/images/em_button.gif -text
 src/content/templates/default/images/import.gif -text
+src/content/templates/default/images/rss.gif -text
 src/content/templates/default/images/rss.png -text
 src/content/templates/default/images/top/banger.jpg -text
 src/content/templates/default/images/top/banger_mini.jpg -text
