@@ -144,7 +144,7 @@ if($act == 'install' || $act == 'reinstall')
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 .main p {line-height: 18px;margin: 5px 20px;}
 -->
 </style>

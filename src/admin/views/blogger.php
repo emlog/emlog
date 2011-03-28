@@ -24,9 +24,9 @@
 	<li>个人描述</li>
 	<li><textarea name="description" rows="2" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
 	<li><input type="submit" value="保存资料" class="submit" /></li>
+	<li style="margin-top:30px;"><a href="javascript:displayToggle('chpwd', 2);">修改密码/登录名+</a></li>
 </div>
 </form>
-<div style="margin:10px 0px 10px 0px;"><a href="javascript:displayToggle('chpwd', 2);">修改密码/登录名+</a></div>
 <form action="blogger.php?action=update_pwd" method="post" name="blooger" id="blooger">
 <div id="chpwd">
 	<li>当前密码</li>

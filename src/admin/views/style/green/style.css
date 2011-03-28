@@ -15,7 +15,7 @@ a:hover{color:#333; text-decoration:none}
 #header .home{font-size:15px; padding-left:15px;}
 #sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif);width:114px; background-repeat:repeat-y; text-align:center}
 #sidebar a{color:#333; text-decoration:none; display:block;}
-#sidebar a:hover{color:#2A9DDB; text-decoration:none;}
+#sidebar a:hover{color:#6bb044; text-decoration:none;}
 #sidebar a:active{ text-decoration:none; padding:1px 0px 0px 1px}
 #sidebartop{background:url(./images/sidebar_bg_t.gif) no-repeat; width:114px; font-size:4px; height:4px}
 #sidebarBottom{font-size:5px; background:url(./images/sidebar_bg_b.gif) no-repeat bottom; width:114px;height:5px}

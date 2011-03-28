@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Language" content="zh-CN" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>

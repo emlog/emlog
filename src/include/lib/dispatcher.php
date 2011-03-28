@@ -55,7 +55,9 @@ class Dispatcher {
             } else {
             	$reg = $route['reg_' . $urlMode];
             }
+            //echo $reg.'<br>';
             if (preg_match($reg, $this->_path, $matches)) {
+            	//print_r($matches);
                 $this->_model = $route['model'];
                 $this->_method = $route['method'];
                 $this->_params = $matches;
