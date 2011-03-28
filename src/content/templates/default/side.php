@@ -1,6 +1,6 @@
 <?php 
 /*
-* ²à±ßÀ¸
+* ä¾§è¾¹æ 
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -30,4 +30,7 @@ foreach ($widgets as $val)
 	}
 }
 ?>
+<div class="rss">
+<a href="<?php echo BLOG_URL; ?>rss.php" title="RSSè®¢é˜…"><img src="<?php echo TEMPLATE_URL; ?>images/rss.gif" alt="è®¢é˜…Rss"/></a>
+</div>
 </ul>

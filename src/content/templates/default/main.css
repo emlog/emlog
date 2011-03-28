@@ -86,8 +86,9 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment-children{width:95%;margin:auto;clear:both}
 #contentleft .comment .comment-post{width:90%;margin:15px auto}
 
+.calendartop{text-align:center; font-size:12px; margin-left:30px}
 .calendar{margin-bottom:10px}
-.calendar td{font-size:11px; text-align:center; padding:1px 6px; line-height:1.6;}
+.calendar td{font-size:11px; text-align:center; padding:1px 5px; line-height:1.6;}
 .calendar a:visited{color:#F30; text-decoration:none}
 .calendar td a:link{color:#F30; text-decoration:none}
 .calendar td a:hover{color:#F30; text-decoration:none}
@@ -95,7 +96,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 .day2{font-weight:bold}
 .sun{color:#333; font-weight:bold}
 .week{color:#333}
-.calendartop{text-align:center; font-size:14px; margin-left:41px}
 .rss{ margin:20px 0px;}
 #twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
 #twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}

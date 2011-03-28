@@ -1,6 +1,6 @@
 <?php 
 /*
-* µ×²¿ÐÅÏ¢
+* åº•éƒ¨ä¿¡æ¯
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
