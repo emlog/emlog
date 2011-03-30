@@ -7,11 +7,13 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');//前台模板URL
 define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//前台模板路径
+define('CURPAGE_HOME',  'home');
+define('CURPAGE_LOG',   'echo_log');
 define('CURPAGE_TW',    'twitter');
 
 $blogtitle = Option::get('blogname');
+$description = Option::get('bloginfo');
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
