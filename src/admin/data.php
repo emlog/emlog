@@ -99,7 +99,7 @@ if ($action == 'import'){
 	if (!$sqlfile) {
 		formMsg('非法提交的信息', 'javascript:history.go(-1);',0);
 	}
-	if ($sqlfile['type'] != 'text/x-sql') {
+	if (getFileSuffix($sqlfile['name']) != 'sql') {
 		formMsg('只能导入emlog备份的SQL文件', 'javascript:history.go(-1);',0);
 	}
 	if ($sqlfile['error'] == 1){
