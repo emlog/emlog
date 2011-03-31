@@ -1,5 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>回复评论</b></div>
+<div class=containertitle><b>回复评论</b>
+<?php if(isset($_GET['error_a'])):?><span class="error">回复内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">回复内容过长</span><?php endif;?>
+</div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">
 <div>
