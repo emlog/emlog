@@ -97,10 +97,16 @@ if ($action== 'reply_comment')
 }
 if($action=='doreply')
 {
-	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
+	$reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
 	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
 	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
+	if($reply == '') {
+		formMsg('回复内容不能为空','javascript:history.back(-1);', 0);
+	}
+	if(strlen($reply) > 2000) {
+		formMsg('回复内容太长','javascript:history.back(-1);', 0);
+	}
     if(isset($_POST['pub_it'])) {
         $Comment_Model->showComment($commentId);
         $hide = 'n';
