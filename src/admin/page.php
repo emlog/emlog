@@ -66,6 +66,14 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
+	//check alias
+	if (!empty($alias)) {
+		$logalias_cache = $CACHE->readCache('logalias');
+	    if (false !== array_search($alias, $logalias_cache)) {
+	    	$alias .= '-'.time();
+	    }
+	}
+
 	$logData = array(
 	'title'=>$title,
 	'content'=>$content,

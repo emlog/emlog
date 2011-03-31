@@ -8,6 +8,8 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">分类名称不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的分类</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">别名格式错误</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">别名不能重复</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">别名不得包含系统保留关键字</span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">

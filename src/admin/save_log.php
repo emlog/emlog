@@ -30,6 +30,14 @@ $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '
 
 $postTime = $Log_Model->postDate(Option::get('timezone'), $postDate, $date);
 
+//check alias
+if (!empty($alias)) {
+	$logalias_cache = $CACHE->readCache('logalias');
+    if (false !== array_search($alias, $logalias_cache)) {
+    	$alias .= '-'.time();
+    }
+}
+
 $logData = array(
 	'title'=>$title,
     'alias'=>$alias,

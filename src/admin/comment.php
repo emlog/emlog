@@ -102,11 +102,11 @@ if($action=='doreply')
 	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
 	if($reply == '') {
-		header("Location: ./comment.php?action=reply_comment&cid={$commentId}&error_a=true");
+		header("Location: ./comment.php?error_c=true");
 		exit;
 	}
 	if(strlen($reply) > 2000) {
-		header("Location: ./comment.php?action=reply_comment&cid={$commentId}&error_b=true");
+		header("Location: ./comment.php?error_d=true");
 		exit;
 	}
     if(isset($_POST['pub_it'])) {

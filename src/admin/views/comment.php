@@ -3,9 +3,11 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">屏蔽评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的评论</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
-<?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">回复内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">回复内容过长</span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
