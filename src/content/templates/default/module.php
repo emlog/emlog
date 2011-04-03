@@ -291,19 +291,19 @@ function blog_comments($comments){
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
-	foreach($comments as $key=>$value):
-	if($value['pid'] != 0) continue;
-	$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
+	foreach($comments as $key=>$comment):
+	if($comment['pid'] != 0) continue;
+	$comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
 	?>
-	<div class="comment" id="comment-<?php echo $value['cid']; ?>">
-		<a name="<?php echo $value['cid']; ?>"></a>
-		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo getGravatar($value['mail']); ?>" /></div><?php endif; ?>
+	<div class="comment" id="comment-<?php echo $comment['cid']; ?>">
+		<a name="<?php echo $comment['cid']; ?>"></a>
+		<?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>" /></div><?php endif; ?>
 		<div class="comment-info">
-			<b><?php echo $value['poster']; ?> </b><br /><span class="comment-time"><?php echo $value['date']; ?></span>
-			<div class="comment-content"><?php echo $value['content']; ?></div>
-			<div class="comment-reply"><a href="#comment-<?php echo $value['cid']; ?>" onclick="commentReply(<?php echo $value['cid']; ?>,this)">回复</a></div>
+			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
+			<div class="comment-content"><?php echo $comment['content']; ?></div>
+			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
 		</div>
-		<?php blog_comments_children($comments, $value['children']); ?>
+		<?php blog_comments_children($comments, $comment['children']); ?>
 	</div>
 	<?php endforeach; ?>
 <?php }?>
@@ -321,7 +321,7 @@ function blog_comments_children($comments, $children){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
+			<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div><?php endif; ?>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']);?>
 	</div>

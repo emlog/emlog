@@ -62,7 +62,6 @@ class Comment_Model {
 			$comments[$row['cid']] = $row;
 		}
 		if($spot == 0) {
-			$comments = array_reverse($comments, true);
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
 				if($pid != 0 && isset($comments[$pid])) {
@@ -72,6 +71,7 @@ class Comment_Model {
 					$comments[$pid]['children'][] = $cid;
 				}
 			}
+			$comments = array_reverse($comments, true);
 		}
 		return $comments;
 	}
@@ -251,7 +251,7 @@ class Comment_Model {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved');
-            emMsg('评论发表成功', Url::log($blogId).'#comment', true);
+            header('Location: ' . Url::log($blogId).'#comment');
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved');
