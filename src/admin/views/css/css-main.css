@@ -90,14 +90,13 @@ textarea{font-size:12px}
 #page_options{ float:left;}
 #page_options label{vertical-align:middle; cursor:pointer;}
 #page_options input{vertical-align:middle; margin:3px 15px 3px 0px}
-#input_error{
-	color:#CC0000;
-	margin-left:0px; 
-	padding:1px 3px 1px 18px;
-	font-weight:bold;
-	background:url(../images/no.png) no-repeat scroll left center transparent;
-	white-space:nowrap;
-	}
+#savelog_msg_hook span{
+	margin:0px 5px; 
+	background:url(../images/icon_error.gif) no-repeat 10px #ffeaea;
+	font-size:12px; 
+	padding:6px 28px;
+	border:1px #e5c3c4 solid;
+}
 #log_pass{display:none}
 #admindex_main{width:600px; margin:5px 5px 8px; padding:10px 0px 5px;}
 #admindex_servinfo{float:left; width:400px; margin-right:10px}

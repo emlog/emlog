@@ -65,32 +65,38 @@ function displayToggle(id, keep){
 	if (keep == 1){$.cookie('em_'+id,$("#"+id).css('display'),{expires:365});}
 	if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
-function isalias(a){
-	alias=/^[\u4e00-\u9fa5\w-]*$/;
-	return alias.test(a);
-}
-function checkform(){
+function savelog(){
 	var a = $.trim($("#alias").val());
 	var t = $.trim($("#title").val());
+	var gid = $.trim($("#gid").val());
+	var alias_flg = $.trim($("#alias_flg").val());
+	var m = '';
 	if (t==""){
-		alert("标题不能为空");
-		$("#title").focus();
-		return false;
-	}else if(isalias(a)){
-		return true;
-	}else {
-		alert("链接别名格式错误");
-		$("#alias").focus();
-		return false
-	};
+		$("#savelog_msg_hook").html("<span>标题不能为空</span>");
+	}else if(a!=""){
+		if(alias_flg == '1'){
+			$("#savelog_msg_hook").html("<span>链接别名格式错误</span>");
+		}else if(alias_flg == '2') {
+			$("#savelog_msg_hook").html("<span>链接别名已存在</span>");
+		}else {
+			$("#addlog").submit();
+		}
+	}else{
+		$("#addlog").submit();
+	}
 }
 function checkalias(){
 	var a = $.trim($("#alias").val());
-	if (!isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，只能由英文字母、数字、下划线、短横线、汉字构成</span>');
-	}else {
-		$("#alias_msg_hook").html('');
-	}
+	var gid = $.trim($("#gid").val());
+	$.get("xhrchk.php?action=chk_alias&alias="+encodeURIComponent(a)+"&gid="+gid+"&stamp="+timestamp(), function(data){
+		if(data == '001'){
+			$("#alias_flg").val("1");
+		}else if(data == '002') {
+			$("#alias_flg").val("2");
+		}else {
+			$("#alias_flg").val("0");
+		}
+	});
 }
 function addattach(imgurl,imgsrc,aid){
 	if (KE.g['content'].wyswygMode == false){
@@ -109,7 +115,7 @@ function insertTag (tag, boxId){
 	}
 	$("#"+boxId).val(targetinput);
 }
-//act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
+//act:0 auto save,1 click attupload,2 click savedf button, 3 click save page, 4 click page attupload
 function autosave(act){
 	var nodeid = "as_logid";
 	if (act == 3 || act == 4){
@@ -165,6 +171,26 @@ function autosave(act){
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}
+
+	if(alias != ""){
+		var alias_flg = $.trim($("#alias_flg").val());
+		if(alias_flg == '1'){
+			if(act==2 || act==3){
+				$("#savelog_msg_hook").html("<span>链接别名格式错误</span>");
+			}else{
+				$("#msg").html("<span class=\"msg_autosave_error\">链接别名格式错误</span>");
+			}
+			return;
+		}else if(alias_flg == '2') {
+			if(act==2 || act==3) {
+				$("#savelog_msg_hook").html("<span>链接别名已存在</span>");
+			}else {
+				$("#msg").html("<span class=\"msg_autosave_error\">链接别名已存在</span>");
+			}
+			return;
+		}
+	}
+
 	if(act == 0){
 		if(ishide == 'n'){return;}
 		if (content == ""){
@@ -177,6 +203,7 @@ function autosave(act){
 		if (gid != -1){return;}
 	}
 	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
+	$("#savelog_msg_hook").html("");
 	var btname = $("#savedf").val();
 	$("#savedf").val("正在保存");
 	$("#savedf").attr("disabled", "disabled");

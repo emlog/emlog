@@ -56,7 +56,7 @@
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
+          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，由英文字母、数字、下划线组成，需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
 			<input name="alias" id="alias" style="width:711px;" />
           </td>
         </tr>   
@@ -83,9 +83,11 @@
 		<tr>
           <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
-          <input type="submit" value="发布日志" onclick="return checkform();" class="button" />
+		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
+          <input type="button" value="发布日志" onclick="savelog();" class="button" />
           <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
           <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="button" />
+          <span id="savelog_msg_hook"></span>
 		  </td>
         </tr>
     </table>
