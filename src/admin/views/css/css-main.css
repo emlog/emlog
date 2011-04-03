@@ -71,7 +71,7 @@ textarea{font-size:12px}
 .alias{cursor:pointer;}
 .logtags{margin-left:5px}
 .logtags a{color:#FFF}
-.logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px}
+.logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px; border-radius: 3px 3px 3px 3px;}
 .filters{margin:5px 4px}
 .filter{background-color:#0CF; padding:1px; margin:1px}
 .filter a{color:#FFF}
