@@ -13,7 +13,11 @@ if ($action == 'chk_alias') {
 	$logid = isset($_GET['gid']) ? intval(trim($_GET['gid'])) : '';
 
     if (!empty($alias)) {
-    	if (!preg_match("|^[^/\.=\?]+$|", $alias)) {
+        if (preg_match("/^[0-9]+$/", $alias)) {
+    		exit('001');//别名格式错误,不能是纯数字
+    	}
+
+    	if (!preg_match("/^[^/\.=\?]+$/", $alias)) {
     		exit('001');//别名格式错误
     	}
 

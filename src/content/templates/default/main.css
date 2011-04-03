@@ -35,7 +35,7 @@ blockquote {margin: 0px 20px 20px 20px; padding: 25px 20px 25px 20px; background
 #contentleft .date {color:#A97965; font-size:12px;}
 #contentleft .att {color:#A97965; font-size:12px; margin:5px 0px 0px 0px;}
 #contentleft .tag {color:#A97965; font-size:12px; margin:0px 0px 0px 0px;}
-#contentleft .count { text-align:right;}
+#contentleft .count { text-align:right; font-size:12px;}
 
 img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
@@ -92,7 +92,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 .calendar a:visited{color:#F30; text-decoration:none}
 .calendar td a:link{color:#F30; text-decoration:none}
 .calendar td a:hover{color:#F30; text-decoration:none}
-.day{background:url(images/bg_cal_today.gif)  no-repeat 4px 2px}
+.day{background:url(images/bg_cal_today.gif)  no-repeat 2px 1px}
 .day2{font-weight:bold}
 .sun{color:#333; font-weight:bold}
 .week{color:#333}

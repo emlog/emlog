@@ -45,12 +45,15 @@ if($action== 'add')
 	if(empty($sortname)){
 		header("Location: ./sort.php?error_a=true");
 		exit;
-	}elseif (!empty($alias) && !preg_match("|^[^/\.=\?]+$|", $alias)) {
-		header("Location: ./sort.php?error_c=true");
-		exit;
-	}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
-		header("Location: ./sort.php?error_e=true");
-		exit;
+	}
+	if (!empty($alias)) {
+		if (!preg_match("|^[^/\.=\?]+$|", $alias) || preg_match("|^[0-9]+$|", $alias)) {
+			header("Location: ./sort.php?error_c=true");
+			exit;
+		}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
+			header("Location: ./sort.php?error_e=true");
+			exit;
+		}
 	}
 
     $sort_cache = $CACHE->readCache('sort');
@@ -76,13 +79,14 @@ if($action == 'update')
 	}
 	if (isset($_GET['alias'])) {
 		$sort_data['alias'] = addslashes(trim($_GET['alias']));
-		if (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {
-			header("Location: ./sort.php?error_e=true");
-			exit;
-		}
-		if (!empty($_GET['alias']) && !preg_match("|^[^/\.=\?]+$|", $_GET['alias'])) {
-			header("Location: ./sort.php?error_c=true");
-            exit();
+		if (!empty($sort_data['alias'])) {
+			if (!preg_match("|^[^/\.=\?]+$|", $sort_data['alias']) || preg_match("|^[0-9]+$|", $sort_data['alias'])) {
+				header("Location: ./sort.php?error_c=true");
+				exit;
+			} elseif (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {
+				header("Location: ./sort.php?error_e=true");
+				exit;
+			}
         }
         $sort_cache = $CACHE->readCache('sort');
         foreach ($sort_cache as $key => $value) {
