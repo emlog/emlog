@@ -12,7 +12,6 @@ define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
 $isgzipenable = 'n'; //手机浏览关闭gzip压缩
 $index_lognum = 5;
-$index_twnum = 5;
 
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
@@ -238,9 +237,10 @@ if ($action == 'reply') {
 if ($action == 'tw') {
     $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $user_cache = $CACHE->readCache('user');
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
-    $pageurl =  pagination($twnum, $index_twnum, $page, './?action=tw&page');
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page');
 
 	include View::getView('header');
 	include View::getView('twitter');
