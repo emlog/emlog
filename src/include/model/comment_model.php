@@ -246,12 +246,13 @@ class Comment_Model {
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
 		$ret = $this->db->query($sql);
+		$cid = $this->db->insert_id();
 		$CACHE = Cache::getInstance();
 		if ($ischkcomment == 'n') {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved');
-            header('Location: ' . Url::log($blogId).'#comment');
+            header('Location: ' . Url::log($blogId).'#'.$cid);
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved');

@@ -16,7 +16,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<p class="att"><?php blog_att($value['logid']); ?></p>
 	<p class="tag"><?php blog_tag($value['logid']); ?></p>
 	<p class="count">
-	<a href="<?php echo $value['log_url']; ?>#comment">评论(<?php echo $value['comnum']; ?>)</a>
+	<a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
 	<a href="<?php echo $value['log_url']; ?>#tb">引用(<?php echo $value['tbcount']; ?>)</a>
 	<a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
 	</p>

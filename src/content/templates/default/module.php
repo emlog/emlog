@@ -287,7 +287,7 @@ function blog_trackback($tb, $tb_url, $allow_tb){
 //blog：博客评论列表
 function blog_comments($comments){
     if($comments): ?>
-	<p class="comment-header"><b>评论：</b><a name="comment"></a></p>
+	<p class="comment-header"><b>评论：</b><a name="comments"></a></p>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
@@ -334,7 +334,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	<div id="comment-place">
 	<div class="comment-post" id="comment-post">
 		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="#comment-post" onclick="cancelReply()">取消回复</a></div>
-		<p class="comment-header"><b>发表评论：</b><a name="comment"></a></p>
+		<p class="comment-header"><b>发表评论：</b><a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>?action=addcom" id="commentform">
 			<?php if(ROLE == 'visitor'): ?>
 			<p>
