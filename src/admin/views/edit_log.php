@@ -88,25 +88,25 @@ $isdraft = $hide == 'y' ? true : false;
 	</table>
 	<table cellspacing="1" cellpadding="4" width="720" align="center" border="0">
         <tr>
-          <td align="center" colspan="2"><br>
+          <td width="420" align="right"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
 		  <input type="hidden" name="gid" id="gid" value=<?php echo $logid; ?> />
 		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
 		  <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
-		  <input type="button" value="保存并返回" onclick="savelog();" class="button" />
+		  <input type="button" name="savelg" id="savelg" value="保存并返回" onclick="savelog();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
 		  <?php if ($isdraft) :?>
 		  <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="button" />
 		  <?php endif;?>
-		  <span id="savelog_msg_hook"></span>
 		  </td>
+		  <td style="padding:20px 0px 0px 0px"><span id="savelog_msg_hook"></span></td>
         </tr>
     </table>
   </form>
 <div class=line></div>
 <script>
 checkalias();
-$("#alias").keyup(function(){checkalias();});
+$("#alias").blur(function(){checkalias();});
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 setTimeout("autosave(0)",60000);
 <?php if ($isdraft) :?>

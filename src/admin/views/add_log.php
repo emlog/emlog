@@ -81,14 +81,14 @@
 	</table>
 	<table cellspacing="1" cellpadding="4" width="720" border="0">
 		<tr>
-          <td align="center"><br>
+          <td width="420" align="right"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
 		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
-          <input type="button" value="发布日志" onclick="savelog();" class="button" />
-          <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
+          <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />
+		  <input type="button" name="savelg" id="savelg" value="发布日志" onclick="savelog();" class="button" />
           <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="button" />
-          <span id="savelog_msg_hook"></span>
 		  </td>
+		  <td style="padding:20px 0px 0px 0px"><span id="savelog_msg_hook"></span></td>
         </tr>
     </table>
   </form>
@@ -97,6 +97,6 @@
 $("#title").focus();
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
-$("#alias").keyup(function(){checkalias();});
+$("#alias").blur(function(){checkalias();});
 setTimeout("autosave(0)",60000);
 </script>

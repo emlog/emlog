@@ -88,14 +88,24 @@ function savelog(){
 function checkalias(){
 	var a = $.trim($("#alias").val());
 	var gid = $.trim($("#gid").val());
+	$("#savelog_msg_hook").html("<em>正在检查链接别名...</em>");
+	$("#savedf").attr("disabled", "disabled");
+	$("#savelg").attr("disabled", "disabled");
+	$("#pubdf").attr("disabled", "disabled");
 	$.get("xhrchk.php?action=chk_alias&alias="+encodeURIComponent(a)+"&gid="+gid+"&stamp="+timestamp(), function(data){
 		if(data == '001'){
 			$("#alias_flg").val("1");
 		}else if(data == '002') {
 			$("#alias_flg").val("2");
 		}else {
+			$("#savelog_msg_hook").html("");
+			$("#msg").html("");
 			$("#alias_flg").val("0");
 		}
+		$("#savelog_msg_hook").html("");
+		$("#savedf").attr("disabled", "");
+		$("#savelg").attr("disabled", "");
+		$("#pubdf").attr("disabled", "");
 	});
 }
 function addattach(imgurl,imgsrc,aid){

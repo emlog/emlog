@@ -4,7 +4,6 @@
 <div class=line></div>
   <form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
-      <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><br />
           <input maxlength="200" style="width:380px;" name="title" id="title"/>
@@ -41,16 +40,17 @@
           </span>
           </td>
         </tr>
-		<tr>
-          <td align="center"><br>
-          <input type="hidden" name="ishide" id="ishide" value="">
-		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
-          <input type="button" value="发布页面" onclick="savelog();" class="button" />
-          <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="button" />
-		  <span id="savelog_msg_hook"></span>
-		  </td>
-        </tr>
-	</tbody>
+	</table>
+	<table cellspacing="1" cellpadding="4" width="720" border="0">
+      <tr>
+	   <td width="420" align="right"><br>
+        <input type="hidden" name="ishide" id="ishide" value="">
+		<input type="hidden" name="alias_flg" id="alias_flg" value="0">
+        <input type="button" name="savelg" id="savelg" value="发布页面" onclick="savelog();" class="button" />
+        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="button" />
+		</td>
+		<td style="padding:20px 0px 0px 0px"><span id="savelog_msg_hook"></span></td>
+      </tr>
 	</table>
   </form>
 <div class=line></div>

@@ -4,7 +4,6 @@
 <div class=line></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
-      <tbody>
         <tr nowrap="nowrap">
           <td><b>标题：</b><span id="auto_msg"></span><br />
           <input maxlength="200" style="width:380px;" name="title" id="title" value="<?php echo $title; ?>"/>
@@ -40,22 +39,23 @@
           </span>
         </td>
         </tr>
-        <tr>
-          <td align="center" colspan="2"><br>
+	</table>
+	<table cellspacing="1" cellpadding="4" width="720" border="0">
+      <tr>
+          <td width="420" align="right"><br>
           <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
 		  <input type="hidden" name="gid" id="gid" value=<?php echo $pageId; ?> />
 		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
-		  <input type="button" value="保存并返回" onclick="savelog();" class="button" />
+		  <input type="button" name="savelg" id="savelg" value="保存并返回" onclick="savelog();" class="button" />
 		  <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="button" />
-		  <span id="savelog_msg_hook"></span>
 		  </td>
+		  <td style="padding:20px 0px 0px 0px"><span id="savelog_msg_hook"></span></td>
         </tr>
-	</tbody>
 	</table>
   </form>
 <div class=line></div>
 <script>
 checkalias();
-$("#alias").keyup(function(){checkalias();});
+$("#alias").blur(function(){checkalias();});
 $("#menu_page").addClass('sidebarsubmenu1');
 </script>

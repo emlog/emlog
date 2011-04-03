@@ -22,7 +22,7 @@
 	<li>头像 (推荐上传大小为 120X120 的jpg或png图片)</li>
 	<li><input name="photo" type="file" style="width:245px;" /></li>
 	<li>个人描述</li>
-	<li><textarea name="description" rows="2" cols="" style="width:300px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
+	<li><textarea name="description" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
 	<li><input type="submit" value="保存资料" class="submit" /></li>
 	<li style="margin-top:30px;"><a href="javascript:displayToggle('chpwd', 2);">修改密码/登录名+</a></li>
 </div>
