@@ -119,7 +119,7 @@ if ($action == 'reply') {
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
     $response = "
-         <li style=\"background-color:#FFEEAA\">
+         <li>
          <span class=\"name\">".stripslashes($name)."</span> {$r}<span class=\"time\">{$date}</span>
          <em><a href=\"javascript:re({$tid}, '@{$name}：');\">回复</a></em>
          </li>";

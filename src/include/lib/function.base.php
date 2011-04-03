@@ -52,7 +52,7 @@ function stripslashesDeep($value){
 function htmlClean($content, $wrap=true){
 	$content = htmlspecialchars($content);
 	if($wrap){
-		$content = str_replace("\n", '<br>', $content);
+		$content = str_replace("\n", '<br />', $content);
 	}
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
 	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);

@@ -84,7 +84,7 @@ class Log_Controller {
         }
         //page meta
         $blogtitle = $log_title.' - '.$blogname;
-        $description = subString(str_replace(array("\r\n","\n"), ' ', strip_tags($log_content)), 0, 300);
+        $description = $Log_Model->formatLogDes($log_content);
         $log_cache_tags = $CACHE->readCache('logtags');
         if (!empty($log_cache_tags[$logid])){
 	        foreach ($log_cache_tags[$logid] as $value){
