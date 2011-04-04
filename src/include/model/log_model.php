@@ -358,6 +358,28 @@ class Log_Model {
 	}
 
 	/**
+	 * 处理日志别名，防止别名重复
+	 *
+	 * @param string $alias
+	 * @param array $logalias_cache
+	 * @param int $logid
+	 */
+    function checkAlias($alias, $logalias_cache, $logid) {
+    	static $i=2;
+    	$key = array_search($alias, $logalias_cache);
+        if (false !== $key && $key != $logid) {
+        	if($i == 2) {
+        		$alias .= '-'.$i;
+        	}else{
+        		$alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
+        	}
+    		$i++;
+    		return $this->checkAlias($alias, $logalias_cache, $logid);
+   		}
+   		return $alias;
+    }
+
+	/**
 	 * 加密日志访问验证
 	 *
 	 * @param string $pwd

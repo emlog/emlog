@@ -71,7 +71,7 @@ textarea{font-size:12px}
 .alias{cursor:pointer;}
 .logtags{margin-left:5px}
 .logtags a{color:#FFF}
-.logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px; border-radius: 3px 3px 3px 3px;}
+.logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px}
 .filters{margin:5px 4px}
 .filter{background-color:#0CF; padding:1px; margin:1px}
 .filter a{color:#FFF}
@@ -90,20 +90,14 @@ textarea{font-size:12px}
 #page_options{ float:left;}
 #page_options label{vertical-align:middle; cursor:pointer;}
 #page_options input{vertical-align:middle; margin:3px 15px 3px 0px}
-#savelog_msg_hook span{
-	margin:0px 5px; 
-	background:url(../images/icon_error.gif) no-repeat 5px #ffeaea;
-	font-size:12px; 
-	padding:6px 5px 6px 22px;
-	border:1px #e5c3c4 solid;
-}
-#savelog_msg_hook em{
-	margin:0px 5px; 
-	background:url(../images/loading.gif) no-repeat 5px #f9f9f9;
-	font-size:12px; 
-	padding:6px 2px 6px 22px;
-	border:1px #e7e7e7 solid;
-}
+#input_error{
+	color:#CC0000;
+	margin-left:0px; 
+	padding:1px 3px 1px 18px;
+	font-weight:bold;
+	background:url(../images/no.png) no-repeat scroll left center transparent;
+	white-space:nowrap;
+	}
 #log_pass{display:none}
 #admindex_main{width:600px; margin:5px 5px 8px; padding:10px 0px 5px;}
 #admindex_servinfo{float:left; width:400px; margin-right:10px}

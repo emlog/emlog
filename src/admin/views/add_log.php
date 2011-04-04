@@ -56,7 +56,7 @@
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，由英文字母、数字、下划线组成，且不能为纯数字。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
+          <td><b>链接别名：</b>(用于自定义该篇日志的链接地址，需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
 			<input name="alias" id="alias" style="width:711px;" />
           </td>
         </tr>   
@@ -81,14 +81,12 @@
 	</table>
 	<table cellspacing="1" cellpadding="4" width="720" border="0">
 		<tr>
-          <td width="420" align="right"><br>
+          <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
-		  <input type="hidden" name="alias_flg" id="alias_flg" value="0">
-          <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />
-		  <input type="button" name="savelg" id="savelg" value="发布日志" onclick="savelog();" class="button" />
+          <input type="submit" value="发布日志" onclick="return checkform();" class="button" />
+          <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
           <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="button" />
 		  </td>
-		  <td style="padding:20px 0px 0px 0px"><span id="savelog_msg_hook"></span></td>
         </tr>
     </table>
   </form>
@@ -97,6 +95,6 @@
 $("#title").focus();
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
-$("#alias").blur(function(){checkalias();});
+$("#alias").keyup(function(){checkalias();});
 setTimeout("autosave(0)",60000);
 </script>

@@ -184,7 +184,6 @@ src/admin/views/useredit.php -text
 src/admin/views/widgets.php -text
 src/admin/widgets.php -text svn_keywords=Id
 src/admin/write_log.php -text svn_keywords=Id
-src/admin/xhrchk.php -text
 src/config.php -text svn_keywords=Id
 src/content/backup/index.php -text
 src/content/cache/index.php -text

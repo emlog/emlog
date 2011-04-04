@@ -66,6 +66,12 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
+	//check alias
+	if (!empty($alias)) {
+		$logalias_cache = $CACHE->readCache('logalias');
+	    $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
+	}
+
 	$logData = array(
 	'title'=>$title,
 	'content'=>$content,
@@ -126,7 +132,7 @@ if ($action == 'operate_page') {
 			}
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'logalias'));
 
 			header("Location: ./page.php?active_del=true");
 			break;
