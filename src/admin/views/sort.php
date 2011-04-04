@@ -47,7 +47,7 @@
 	<li>名称</li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
 	<li>别名 <span id="alias_msg_hook"></span></li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示，通常由英文字母构成)</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示，由英文字母、数字、下划线组成，且不能是纯数字)</li>
 	<li><input type="submit" value="添加新分类" onclick="return checksortform();" class="submit"/></li>
 </div>
 </form>

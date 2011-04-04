@@ -354,7 +354,7 @@ CREATE TABLE {$db_prefix}sort (
   sid tinyint(3) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis tinyint(3) NOT NULL default '0',
+  taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;

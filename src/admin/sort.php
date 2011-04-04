@@ -43,26 +43,26 @@ if($action== 'add')
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 
 	if(empty($sortname)){
-		header("Location: ./sort.php?error_a=true");
+		header("Location: ./sort.php?error_a=true");//分类名称不能为空
 		exit;
 	}
 	if (!empty($alias)) {
 		if (!preg_match("|^[^/\.=\?]+$|", $alias) || preg_match("|^[0-9]+$|", $alias)) {
-			header("Location: ./sort.php?error_c=true");
+			header("Location: ./sort.php?error_c=true");//别名格式错误
 			exit;
 		}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
-			header("Location: ./sort.php?error_e=true");
+			header("Location: ./sort.php?error_e=true");//别名不得包含系统保留关键字
 			exit;
+		}else {
+		    $sort_cache = $CACHE->readCache('sort');
+		    foreach ($sort_cache as $key => $value) {
+		        if (false !== array_search($alias, $value, true)) {
+					header("Location: ./sort.php?error_d=true");//别名不能重复
+					exit;
+		        }
+		    }
 		}
 	}
-
-    $sort_cache = $CACHE->readCache('sort');
-    foreach ($sort_cache as $key => $value) {
-        if (false !== array_search($alias, $value, true)) {
-			header("Location: ./sort.php?error_d=true");
-			exit;
-        }
-    }
 
 	$Sort_Model->addSort($sortname, $alias, $taxis);
 	$CACHE->updateCache('sort');
@@ -86,14 +86,15 @@ if($action == 'update')
 			} elseif (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {
 				header("Location: ./sort.php?error_e=true");
 				exit;
+			} else{
+			    $sort_cache = $CACHE->readCache('sort');
+			    foreach ($sort_cache as $key => $value) {
+			    	if (false !== array_search($sort_data['alias'], $value, true)) {
+			    		header("Location: ./sort.php?error_d=true");
+			    		exit();
+			    	}
+			    }
 			}
-        }
-        $sort_cache = $CACHE->readCache('sort');
-        foreach ($sort_cache as $key => $value) {
-            if (false !== array_search($sort_data['alias'], $value, true)) {
-                header("Location: ./sort.php?error_d=true");
-                exit();
-            }
         }
     }
 
