@@ -21,7 +21,7 @@
 		  </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>链接别名：</b>(用于自定义该页面的链接地址，需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
+          <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义该页面的链接地址，由英文字母、数字、下划线组成，且不能为纯数字。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
 			<input name="alias" id="alias" style="width:711px;" value="<?php echo $alias; ?>" />
           </td>
         </tr> 

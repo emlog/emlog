@@ -66,8 +66,13 @@ function displayToggle(id, keep){
 	if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
 function isalias(a){
-	alias=/^[\u4e00-\u9fa5\w-]*$/;
-	return alias.test(a);
+	var reg1=/^[\u4e00-\u9fa5\w-]*$/;
+	var reg2=/^[\d]+$/;
+	if (reg1.test(a) && !reg2.test(a)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 function checkform(){
 	var a = $.trim($("#alias").val());
@@ -87,9 +92,10 @@ function checkform(){
 function checkalias(){
 	var a = $.trim($("#alias").val());
 	if (!isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，只能由英文字母、数字、下划线、短横线、汉字构成</span>');
+		$("#alias_msg_hook").html('<span id="input_error">别名格式错误</span>');
 	}else {
 		$("#alias_msg_hook").html('');
+		$("#msg").html('');
 	}
 }
 function addattach(imgurl,imgsrc,aid){
@@ -165,6 +171,18 @@ function autosave(act){
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}
+
+	//check alias
+	if(alias != '') {
+		if (!isalias(alias)){
+			$("#msg").html("<span class=\"msg_autosave_error\">链接别名格式错误，自动保存失败</span>");
+			if(act == 0){
+				setTimeout("autosave(0)",60000);
+			}
+			return;
+		}
+	}
+
 	if(act == 0){
 		if(ishide == 'n'){return;}
 		if (content == ""){
