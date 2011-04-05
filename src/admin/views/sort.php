@@ -46,28 +46,43 @@
 	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
 	<li>名称</li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
-	<li>别名 <span id="alias_msg_hook"></span></li>
+	<li>别名</li>
 	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示，由英文字母、数字、下划线组成，且不能是纯数字)</li>
-	<li><input type="submit" value="添加新分类" onclick="return checksortform();" class="submit"/></li>
+	<li><input type="submit" id="addsort" value="添加新分类" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
 <script>
 $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
-$("#alias").keyup(function(){checkalias();});
-function checksortform(){
+$("#alias").keyup(function(){checksortalias();});
+function issortalias(a){
+	var reg1=/^[\u4e00-\u9fa5\w-]*$/;
+	var reg2=/^[\d]+$/;
+	if(!reg1.test(a)) {
+		return 1;
+	}else if(reg2.test(a)){
+		return 2;
+	}else if(a=='post' || a=='record' || a=='sort' || a=='tag' || a=='author' || a=='page'){
+		return 3;
+	} else {
+		return 0;
+	}
+}
+function checksortalias(){
 	var a = $.trim($("#alias").val());
-	var n = $.trim($("#sortname").val());
-	if (n==""){
-		alert("分类名称不能为空");
-		$("#sortname").focus();
-		return false;
-	}else if(isalias(a)){
-		return true;
+	if (1 == issortalias(a)){
+		$("#addsort").attr("disabled", "disabled");
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+	}else if (2 == issortalias(a)){
+		$("#addsort").attr("disabled", "disabled");
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+	}else if (3 == issortalias(a)){
+		$("#addsort").attr("disabled", "disabled");
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
 	}else {
-		alert("链接别名格式错误");
-		$("#alias").focus();
-		return false
-	};
+		$("#alias_msg_hook").html('');
+		$("#msg").html('');
+		$("#addsort").attr("disabled", '');
+	}
 }
 $(document).ready(function(){
 	$("#adm_sort_list tbody tr:odd").addClass("tralt_b");
