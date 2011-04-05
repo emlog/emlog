@@ -34,7 +34,7 @@ class Author_Controller {
 		//page meta
 		$blogtitle = $author_name . ' - ' . $blogname;
 		$description = $bloginfo;
-		$site_key =  .= ','.$author_name;
+		$site_key .= ','.$author_name;
 
 		$sqlSegment = "and author=$author order by date desc";
 		$sta_cache = $CACHE->readCache('sta');
