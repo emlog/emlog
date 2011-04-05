@@ -28,7 +28,7 @@ class Tag_Controller {
 		//page meta
 		$blogtitle = stripslashes($tag).' - '.$blogname;
 		$description = $bloginfo;
-		$site_key = $tag;
+		$site_key .= ','.$tag;
 
 		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);

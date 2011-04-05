@@ -48,7 +48,7 @@ class Sort_Controller {
         //page meta
 		$blogtitle = $sortName.' - '.$blogname;
         $description = $bloginfo;
-        $site_key = $sortName;
+        $site_key .= ','.$sortName;
 
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
