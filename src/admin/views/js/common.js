@@ -68,10 +68,15 @@ function displayToggle(id, keep){
 function isalias(a){
 	var reg1=/^[\u4e00-\u9fa5\w-]*$/;
 	var reg2=/^[\d]+$/;
-	if (reg1.test(a) && !reg2.test(a)) {
-		return true;
+	var reg3=/^post(-\d+)?$/;
+	if(!reg1.test(a)) {
+		return 1;
+	}else if(reg2.test(a)){
+		return 2;
+	}else if(reg3.test(a)){
+		return 3;
 	} else {
-		return false;
+		return 0;
 	}
 }
 function checkform(){
@@ -81,18 +86,22 @@ function checkform(){
 		alert("标题不能为空");
 		$("#title").focus();
 		return false;
-	}else if(isalias(a)){
+	}else if(0 == isalias(a)){
 		return true;
 	}else {
-		alert("链接别名格式错误");
+		alert("链接别名错误");
 		$("#alias").focus();
 		return false
 	};
 }
 function checkalias(){
 	var a = $.trim($("#alias").val());
-	if (!isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名格式错误</span>');
+	if (1 == isalias(a)){
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+	}else if (2 == isalias(a)){
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+	}else if (3 == isalias(a)){
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突，不能为\'post\'或\'post-数字\'</span>');
 	}else {
 		$("#alias_msg_hook").html('');
 		$("#msg").html('');
@@ -174,8 +183,8 @@ function autosave(act){
 
 	//check alias
 	if(alias != '') {
-		if (!isalias(alias)){
-			$("#msg").html("<span class=\"msg_autosave_error\">链接别名格式错误，自动保存失败</span>");
+		if (0 != isalias(alias)){
+			$("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失败</span>");
 			if(act == 0){
 				setTimeout("autosave(0)",60000);
 			}
