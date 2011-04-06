@@ -118,7 +118,7 @@ class Cache {
 			    'avatar' => $avatar,
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
-				'des' => htmlspecialchars($row['description'])
+				'des' => htmlClean($row['description'])
 				);
 		}
 		$cacheData = serialize($user_cache);
