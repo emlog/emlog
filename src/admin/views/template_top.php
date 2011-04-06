@@ -45,7 +45,7 @@
 	<li></li>
 	<li>
 	<input name="topimg" type="file" />
-	<input type="submit" value="上传" class="submit" /> (上传一张你喜欢的顶部图片，支持JPG、PNG格式图片)
+	<input type="submit" value="上传" class="submit" /> (上传一张你喜欢的顶部图片，支持JPG、PNG格式)
 	</li>
 </div>
 </form>
