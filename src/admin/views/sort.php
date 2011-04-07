@@ -47,7 +47,7 @@
 	<li>名称</li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
 	<li>别名</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示，由英文字母、数字、下划线组成，且不能是纯数字)</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示，由字母、数字、下划线、短横线组成)</li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
@@ -55,7 +55,7 @@
 $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
 $("#alias").keyup(function(){checksortalias();});
 function issortalias(a){
-	var reg1=/^[\u4e00-\u9fa5\w-]*$/;
+	var reg1=/^[\w-]+$/;
 	var reg2=/^[\d]+$/;
 	if(!reg1.test(a)) {
 		return 1;

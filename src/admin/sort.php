@@ -47,7 +47,7 @@ if($action== 'add')
 		exit;
 	}
 	if (!empty($alias)) {
-		if (!preg_match("|^[^/\.=\?]+$|", $alias) || preg_match("|^[0-9]+$|", $alias)) {
+		if (!preg_match("|^[\w-]+$|", $alias) || preg_match("|^[0-9]+$|", $alias)) {
 			header("Location: ./sort.php?error_c=true");//别名格式错误
 			exit;
 		}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
@@ -80,7 +80,7 @@ if($action == 'update')
 	if (isset($_GET['alias'])) {
 		$sort_data['alias'] = addslashes(trim($_GET['alias']));
 		if (!empty($sort_data['alias'])) {
-			if (!preg_match("|^[^/\.=\?]+$|", $sort_data['alias']) || preg_match("|^[0-9]+$|", $sort_data['alias'])) {
+			if (!preg_match("|^[\w-]+$|", $sort_data['alias']) || preg_match("|^[0-9]+$|", $sort_data['alias'])) {
 				header("Location: ./sort.php?error_c=true");
 				exit;
 			} elseif (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {

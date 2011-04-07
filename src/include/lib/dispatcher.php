@@ -85,6 +85,9 @@ class Dispatcher {
                 $path = $_SERVER['PHP_SELF'] .'?'. $_SERVER['QUERY_STRING'];
             }
         }
+        //for ie6 header location
+        $r = explode('#', $path, 2);
+        $path = $r[0];
         //for iis6
         $path = str_replace('index.php', '', $path);
         //for subdirectory
