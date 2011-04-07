@@ -43,21 +43,24 @@ if($action== 'add')
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 
 	if(empty($sortname)){
-		header("Location: ./sort.php?error_a=true");//分类名称不能为空
+		header("Location: ./sort.php?error_a=true");
 		exit;
 	}
 	if (!empty($alias)) {
-		if (!preg_match("|^[\w-]+$|", $alias) || preg_match("|^[0-9]+$|", $alias)) {
-			header("Location: ./sort.php?error_c=true");//别名格式错误
+		if (!preg_match("|^[\w-]+$|", $alias)) {
+			header("Location: ./sort.php?error_c=true");
 			exit;
+		}elseif(preg_match("|^[0-9]+$|", $alias)){
+			header("Location: ./sort.php?error_f=true");
+			exit;			
 		}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
-			header("Location: ./sort.php?error_e=true");//别名不得包含系统保留关键字
+			header("Location: ./sort.php?error_e=true");
 			exit;
 		}else {
 		    $sort_cache = $CACHE->readCache('sort');
 		    foreach ($sort_cache as $key => $value) {
 		        if (false !== array_search($alias, $value, true)) {
-					header("Location: ./sort.php?error_d=true");//别名不能重复
+					header("Location: ./sort.php?error_d=true");
 					exit;
 		        }
 		    }
@@ -80,9 +83,12 @@ if($action == 'update')
 	if (isset($_GET['alias'])) {
 		$sort_data['alias'] = addslashes(trim($_GET['alias']));
 		if (!empty($sort_data['alias'])) {
-			if (!preg_match("|^[\w-]+$|", $sort_data['alias']) || preg_match("|^[0-9]+$|", $sort_data['alias'])) {
+			if (!preg_match("|^[\w-]+$|", $sort_data['alias'])) {
 				header("Location: ./sort.php?error_c=true");
 				exit;
+			} elseif(preg_match("|^[0-9]+$|", $sort_data['alias'])){
+				header("Location: ./sort.php?error_f=true");
+				exit;			
 			} elseif (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {
 				header("Location: ./sort.php?error_e=true");
 				exit;
@@ -91,7 +97,7 @@ if($action == 'update')
 			    foreach ($sort_cache as $key => $value) {
 			    	if (false !== array_search($sort_data['alias'], $value, true)) {
 			    		header("Location: ./sort.php?error_d=true");
-			    		exit();
+			    		exit;
 			    	}
 			    }
 			}
