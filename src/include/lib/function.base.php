@@ -451,7 +451,7 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 	{
 		case 'png':
 			if(function_exists('imagepng') && imagepng($new_img, $dst_path)){
-				ImageDestroy ($newim);
+				ImageDestroy ($new_img);
 				return true;
 			} else {
 				return false;
@@ -460,7 +460,7 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 		case 'jpg':
 		default:
 			if(function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)){
-				ImageDestroy ($newim);
+				ImageDestroy ($new_img);
 				return true;
 			} else {
 				return false;

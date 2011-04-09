@@ -478,7 +478,7 @@ function mw_newMediaObject($args) {
 	}
 	$uppath_root = substr(Option::UPLOADFILE_PATH, 1);
 	$uppath = $uppath_root . gmdate('Ym') . '/';
-	$fname = md5($fileName) . gmdate('YmdHis') . '.' . $extension;
+	$fname = md5($filename) . gmdate('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir($uppath_root)) {
 		umask(0);
@@ -510,7 +510,7 @@ function mw_newMediaObject($args) {
 	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
 		$max_w = Option::IMG_MAX_W;
 		$max_h = Option::IMG_MAX_H;
-		$size = chImageSize($img, $max_w, $max_h);
+		$size = chImageSize($attachpath, $max_w, $max_h);
 		$newwidth = $size['w'];
 		$newheight = $size['h'];
 		$w = $size['rc_w'];
@@ -519,13 +519,13 @@ function mw_newMediaObject($args) {
 			$thum_created = false;
 		}
 
-		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
+		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
 			if (function_exists('imagecreatefromjpeg')) {
 				$img = imagecreatefromjpeg($attachpath);
 			}else {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
+		}elseif ($thum_created && $imtype == 'png') {
 			if (function_exists('imagecreatefrompng')) {
 				$img = imagecreatefrompng($attachpath);
 			}else {
@@ -541,12 +541,12 @@ function mw_newMediaObject($args) {
 			imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		}
 
-		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
-			if (!imagejpeg($newim, $thumPatch)) {
+		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
+			if (!imagejpeg($newim, $attachpath)) {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
-			if (!imagepng($newim, $thumPatch)) {
+		}elseif ($thum_created && ($imtype == 'png')) {
+			if (!imagepng($newim, $attachpath)) {
 				$thum_created = false;
 			}
 		}
@@ -555,13 +555,13 @@ function mw_newMediaObject($args) {
 	}
 
 	$img_url = $options_cache['blogurl'] . 'content/uploadfile/' . date('Ym') . '/' . $fname;
-	$file_name = $thum_created ? 'thum-' . $fname : $fname;
+
 	$xml = "
         <struct>
             <member>
                 <name>file</name>
                 <value>
-                    <string>$file_name</string>
+                    <string>$fname</string>
                 </value>
             </member>
             <member>
