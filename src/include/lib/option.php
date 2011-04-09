@@ -110,7 +110,7 @@ class Option {
                     array(
                             'model' => 'Plugin_Controller',
                             'method' => 'loadPluginShow',
-                            'reg_0' => '|^.*/\?(plugin)=([\w\-]+)$|',
+                            'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*$|',
                             ),
                     array(
                             'model' => 'Log_Controller',
