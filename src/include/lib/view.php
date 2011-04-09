@@ -16,7 +16,6 @@ class View {
 
     public static function output() {
         $content = ob_get_clean();
-        header('Content-Type: text/html; charset=UTF-8');
 	    if (Option::get('isgzipenable') == 'y' && function_exists('ob_gzhandler')){
 	        ob_start('ob_gzhandler');
 	    } else {

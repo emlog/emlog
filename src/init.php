@@ -7,6 +7,7 @@
 
 error_reporting(E_ALL);
 ob_start();
+header('Content-Type: text/html; charset=UTF-8');
 
 define('EMLOG_ROOT', dirname(__FILE__));
 
