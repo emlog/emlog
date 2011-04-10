@@ -27,7 +27,7 @@ class Author_Controller {
 
 		$user_cache = $CACHE->readCache('user');
 		if (!isset($user_cache[$author])) {
-			emMsg('不存在该作者', BLOG_URL);
+			emMsg('404 请求页面不存在！', BLOG_URL);
 		}
 
 		$author_name = $user_cache[$author]['name'];

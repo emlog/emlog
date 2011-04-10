@@ -18,7 +18,7 @@ class Log_Controller {
         extract($options_cache);
         $navibar = unserialize($navibar);
         $curpage = CURPAGE_HOME;
-        
+
         //page meta
         $blogtitle = $blogname;
         $description = $bloginfo;
@@ -49,7 +49,7 @@ class Log_Controller {
         extract($options_cache);
         $navibar = unserialize($navibar);
 
-        $logid = '' ;
+        $logid = 0 ;
 
         if (isset($params[1])) {
         	if ($params[1] == 'post') {
@@ -62,7 +62,7 @@ class Log_Controller {
 	        		$alias = addslashes(urldecode(trim($params[1])));
 	        		$logid = array_search($alias, $logalias_cache);
 	        		if (!$logid) {
-	        			emMsg('不存在该条目', BLOG_URL);
+	        			emMsg('404 请求页面不存在！', BLOG_URL);
 	        		}
 	        	}
         	}
@@ -73,7 +73,7 @@ class Log_Controller {
 
         $logData = $Log_Model->getOneLogForHome($logid);
         if ($logData === false) {
-            emMsg('不存在该条目', BLOG_URL);
+            emMsg('404 请求页面不存在！', BLOG_URL);
         }
         extract($logData);
 

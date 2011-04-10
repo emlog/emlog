@@ -34,7 +34,7 @@ class Tag_Controller {
 		$blogIdStr = $Tag_Model->getTagByName($tag);
 
 		if ($blogIdStr === false) {
-			emMsg('不存在该标签', BLOG_URL);
+			emMsg('404 请求页面不存在！', BLOG_URL);
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
