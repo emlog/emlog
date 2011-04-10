@@ -44,16 +44,12 @@ a img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 a img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
 a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 
-#sidebar a:link, a:active, a:visited {color:#886353; text-decoration:none;}
-#sidebar a:hover {color:#886353; text-decoration:underline;}
 #sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #E2DDDE; font:11px/18px Verdana, Arial, Helvetica, sans-serif;}
 #sidebar ul {list-style-type: none; margin: 0px; padding: 0px;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
 
-#footerbar a:link, a:active, a:visited {color:#886353; text-decoration:none;}
-#footerbar a:hover {color:#886353; text-decoration:underline;}
 #footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: left; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
@@ -87,11 +83,10 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment .comment-post{width:90%;margin:15px auto}
 
 .calendartop{text-align:center; font-size:12px; margin-left:30px}
-.calendar{margin-bottom:10px}
+.calendar{margin-bottom:10px;}
 .calendar td{font-size:11px; text-align:center; padding:1px 5px; line-height:1.6;}
-.calendar a:visited{color:#F30; text-decoration:none}
-.calendar td a:link{color:#F30; text-decoration:none}
-.calendar td a:hover{color:#F30; text-decoration:none}
+.calendar td a:link{color:#886353; text-decoration:none;}
+.calendar td a:hover{color:#886353; text-decoration:none}
 .day{background:url(images/bg_cal_today.gif)  no-repeat 2px 1px}
 .day2{font-weight:bold}
 .sun{color:#333; font-weight:bold}
