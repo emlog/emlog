@@ -22,6 +22,8 @@ class Record_Controller {
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
 
+		$GLOBALS['record'] = $record;//for sidebar calendar
+
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
 

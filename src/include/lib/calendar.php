@@ -6,12 +6,12 @@
  */
 
 class Calendar {
-	
+
 	/**
 	 * 日历调用地址
 	 */
 	static function url() {
-	   $calendarUrl = isset($_GET['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($_GET['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
+	   $calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($GLOBALS['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
 	   return $calendarUrl;
 	}
 
@@ -22,7 +22,7 @@ class Calendar {
         $DB = MySql::getInstance();
         $timezone = Option::get('timezone');
         $timestamp = time() + $timezone * 3600;
-        
+
         //建立日志时间写入数组
         $query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
         while ($date = $DB->fetch_array($query)){
@@ -35,23 +35,24 @@ class Calendar {
         $n_day   = gmdate("d", $timestamp);
         $time    = gmdate("Ymd", $timestamp);
         $year_month = gmdate("Ym", $timestamp);
-        
+
         if (isset($_GET['record'])){
         	$n_year = substr(intval($_GET['record']),0,4);
         	$n_year2 = substr(intval($_GET['record']),0,4);
         	$n_month = substr(intval($_GET['record']),4,2);
         	$year_month = substr(intval($_GET['record']),0,6);
         }
+
         //年月跳转连接
         $m  = $n_month - 1;
         $mj = $n_month + 1;
-        
+
         $m  = ($m < 10) ? '0' . $m : $m;
         $mj = ($mj < 10) ? '0' . $mj : $mj;
-        
+
         $year_up = $n_year;
         $year_down = $n_year;
-        
+
         if ($mj > 12){
         	$mj = '01';
         	$year_up = $n_year + 1;
@@ -64,14 +65,14 @@ class Calendar {
         $url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//下一年份
         $url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//上一月份
         $url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//下一月份
-        
+
         $calendar ="<table class=\"calendartop\" cellspacing=\"0\"><tr>
         <td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
         <td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
         </tr></table>
         <table class=\"calendar\" cellspacing=\"0\">
         <tr><td class=\"week\">一</td><td class=\"week\">二</td><td class=\"week\">三</td><td class=\"week\">四</td><td class=\"week\">五</td><td class=\"week\">六</td><td class=\"sun\">日</td></tr>";
-        
+
         //获取给定年月的第一天是星期几
         $week = @gmdate("w",gmmktime(0,0,0,$n_month,1,$n_year));
         //获取给定年月的天数
