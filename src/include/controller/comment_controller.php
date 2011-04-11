@@ -37,7 +37,7 @@ class Comment_Controller {
             emMsg('发表评论失败：禁止使用管理员昵称或邮箱评论','javascript:history.back(-1);');
         } elseif (strlen($content) == '' || strlen($content) > 2000) {
             emMsg('发表评论失败：内容不符合规范','javascript:history.back(-1);');
-        } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
             emMsg('发表评论失败：验证码错误','javascript:history.back(-1);');
         } else {
             $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);

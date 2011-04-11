@@ -61,6 +61,7 @@ class Log_Controller {
 	        	if (!empty($logalias_cache)) {
 	        		$alias = addslashes(urldecode(trim($params[1])));
 	        		$logid = array_search($alias, $logalias_cache);
+	        		var_dump($logid);
 	        		if (!$logid) {
 	        			emMsg('404 请求页面不存在！', BLOG_URL);
 	        		}
@@ -92,7 +93,7 @@ class Log_Controller {
 	        }
         }
         //comments
-        $verifyCode = $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" />" : '';
+        $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" />" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
         $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
