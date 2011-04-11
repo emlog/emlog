@@ -61,7 +61,6 @@ class Log_Controller {
 	        	if (!empty($logalias_cache)) {
 	        		$alias = addslashes(urldecode(trim($params[1])));
 	        		$logid = array_search($alias, $logalias_cache);
-	        		var_dump($logid);
 	        		if (!$logid) {
 	        			emMsg('404 请求页面不存在！', BLOG_URL);
 	        		}
