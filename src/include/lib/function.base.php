@@ -619,7 +619,11 @@ function getMonthDayNum($month, $year) {
  * @param string $url 返回地址
  * @param boolean $isAutoGo 是否自动返回 true false
  */
-function emMsg($msg,$url='javascript:history.back(-1);', $isAutoGo=false){
+function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
+	if ($msg == '404') {
+		header("HTTP/1.1 404 Not Found");
+		$msg = '404 请求页面不存在！';
+	}
 	echo <<<EOT
 <html>
 <head>

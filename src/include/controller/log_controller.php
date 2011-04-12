@@ -62,7 +62,7 @@ class Log_Controller {
 	        		$alias = addslashes(urldecode(trim($params[1])));
 	        		$logid = array_search($alias, $logalias_cache);
 	        		if (!$logid) {
-	        			emMsg('404 请求页面不存在！', BLOG_URL);
+	        			emMsg('404', BLOG_URL);
 	        		}
 	        	}
         	}
@@ -73,7 +73,7 @@ class Log_Controller {
 
         $logData = $Log_Model->getOneLogForHome($logid);
         if ($logData === false) {
-            emMsg('404 请求页面不存在！', BLOG_URL);
+            emMsg('404', BLOG_URL);
         }
         extract($logData);
 

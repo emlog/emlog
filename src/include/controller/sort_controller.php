@@ -42,7 +42,7 @@ class Sort_Controller {
 
 		$sort_cache = $CACHE->readCache('sort');
 		if (!isset($sort_cache[$sortid])) {
-			emMsg('404 请求页面不存在！', BLOG_URL);
+			emMsg('404', BLOG_URL);
 		}
 		$sortName = $sort_cache[$sortid]['sortname'];
         //page meta
