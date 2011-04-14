@@ -30,7 +30,7 @@ class Url
             			$logsort_cache[$blogId]['name'];
             		$sort .= '/';
             	}
-                $logUrl = BLOG_URL . $sort . $logalias_cache[$blogId];
+                $logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
                 //开启别名html后缀
                 if (Option::get('isalias_html') == 'y') {
                 	$logUrl .= '.html';
