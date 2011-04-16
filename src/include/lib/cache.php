@@ -10,20 +10,21 @@ class Cache {
 
 	private $db;
 	private static $instance = null;
+
 	private $options_cache;
-	private $logtags_cache;
+	private $user_cache;
+	private $sta_cache;
+	private $comment_cache;
+    private $tags_cache;
+    private $sort_cache;
+    private $link_cache;
+    private $newlog_cache;
+    private $newtw_cache;
+	private $record_cache;
+    private $logtags_cache;
     private $logsort_cache;
     private $logalias_cache;
     private $logatts_cache;
-    private $newlog_cache;
-    private $newtw_cache;
-    private $tags_cache;
-    private $sort_cache;
-    private $comment_cache;
-    private $link_cache;
-    private $user_cache;
-    private $record_cache;
-    private $sta_cache;
 
 	/**
 	 * 构造函数
