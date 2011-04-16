@@ -437,10 +437,11 @@ class Cache {
 	/**
 	 * 写入缓存
 	 */
-	function cacheWrite ($cacheDate, $cachefile) {
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cachefile;
+	function cacheWrite ($cacheDate, $cacheName) {
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
 		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
 		@ $fw = fwrite($fp, $cacheDate) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+		$this->{$cacheName.'_cache'} = null;
 		fclose($fp);
 	}
 
