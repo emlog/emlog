@@ -20,6 +20,14 @@ class Comment_Controller {
         $blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
         $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
 
+        if (ISLOGIN === true) {
+        	$CACHE = Cache::getInstance();
+        	$user_cache = $CACHE->readCache('user');
+        	$name = $user_cache[UID]['name'];
+        	$mail = $user_cache[UID]['mail'];
+        	$url = BLOG_URL;
+        }
+
         if ($url && strncasecmp($url,'http://',7)) {
             $url = 'http://'.$url;
         }
