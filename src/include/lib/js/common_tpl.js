@@ -2,73 +2,11 @@ function focusEle(ele){
 	try {document.getElementById(ele).focus();}
 	catch(e){}
 }
-function displayToggle(ele) {
-	var ele = document.getElementById(ele);
-	ele.style.display = ele.style.display == 'none' ? '' : 'none' ;
-}
-function hideEle(ele) {
-	document.getElementById(ele).style.display == 'none';
-}
-function showEle(ele){
-	document.getElementById(ele).style.display == '';
-}
 function updateEle(ele,content){
 	document.getElementById(ele).innerHTML = content;
 }
 function timestamp(){
 	return new Date().getTime();
-}
-function showhidediv(id){
-	displayToggle(id);
-	var input_id=arguments[1];
-	if(input_id){focusEle(input_id);}
-}
-function keyw(){
-	if (document.keyform.keyword.value==""){
-		alert("请输入要搜索的关键字");
-		document.keyform.keyword.focus();
-		return false;
-	}
-}
-function checkEmail (str){
-	isEmail=/^\w+([\.\-]\w+)*\@\w+([\.\-]\w+)*\.\w+$/;
-	return (isEmail.test(str));
-}
-function checkform(){
-	if (document.commentform.comname.value==""){
-		alert("名字不能为空");
-		document.commentform.comname.focus();
-		return false;
-	}
-	if(document.commentform.comname.value.length>16){
-		alert("名字太长");
-		document.commentform.comname.focus();
-		return false;
-	}
-	if(document.commentform.comment.value.length==""){
-		alert("评论内容不能为空");
-		document.commentform.comment.focus();
-		return false;
-	}
-	if(document.commentform.comment.value.length>2000){
-		alert("评论内容太长");
-		document.commentform.comment.focus();
-		return false;
-	}
-	if(document.commentform.commail.value!=""){
-		if(!checkEmail(document.commentform.commail.value)){
-			alert("邮件地址格式错误！");
-			document.commentform.commail.focus();
-			return false;
-		}
-	}
-}
-function isdel (id,type,url){
-	if(type == 'twitter'){
-		var msg = "你确定要删除吗？";
-		if(confirm(msg)){sendinfo(url+'twitter.php?action=del&twid='+id,'twitter')}
-		else {return;}
-	}
 }
 var XMLHttp = {  
 	_objPool: [],
@@ -130,12 +68,6 @@ var XMLHttp = {
 function sendinfo(url,node){
 	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">加载中...</span></div>");
 	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
-}
-function postinfo(url,post_id,node){
-	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">处理中...</span></div>");
-	var pdata = document.getElementById(post_id).value;
-	var data = post_id+"="+encodeURIComponent(pdata);
-	XMLHttp.sendReq('POST',url,data,function(obj){updateEle(node,obj.responseText);});
 }
 function loadr(url,tid){
     url = url+"&stamp="+timestamp();

@@ -143,7 +143,7 @@ function widget_search($title){ ?>
 	<ul id="logserch">
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
-	<input type="submit" id="logserch_logserch" value="搜索" onclick="return keyw()" />
+	<input type="submit" id="logserch_logserch" value="搜索" />
 	</form>
 	</ul>
 	</li>
@@ -352,7 +352,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 			</p>
 			<?php endif; ?>
 			<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" onclick="return checkform()" /></p>
+			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" /></p>
 			<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
 		</form>
 	</div>
