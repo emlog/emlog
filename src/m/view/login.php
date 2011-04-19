@@ -11,7 +11,7 @@
 <?php endif;?>
 </div>
 <div id="m">
-	<form method="post" action="./?action=auth">
+	<form method="post" action="./index.php?action=auth">
 		用户名<br />
 	    <input type="text" name="user" /><br />
 	    密码<br />

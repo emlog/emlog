@@ -11,7 +11,7 @@
 <?php endif;?>
 </div>
 <div id="m">
-<form action="./?action=savelog" method="post">
+<form action="./index.php?action=savelog" method="post">
 标题：<br /><input type="text" name="title" value="<?php echo $title; ?>" /><br />
 分类：<br />
 	      <select name="sort" id="sort">

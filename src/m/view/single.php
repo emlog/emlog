@@ -32,7 +32,7 @@
 	</div>
 	<div class="t">发表评论：</div>
 	<div class="c">
-		<form method="post" action="./?action=addcom&gid=<?php echo $logid; ?>">
+		<form method="post" action="./index.php?action=addcom&gid=<?php echo $logid; ?>">
 		<?php
 			if(ISLOGIN == true):
 			$CACHE = Cache::getInstance();

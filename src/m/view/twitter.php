@@ -12,7 +12,7 @@
 </div>
 <div id="m">
 <?php if(ISLOGIN === true): ?>
-<form method="post" action="./?action=t" >
+<form method="post" action="./index.php?action=t" >
 <input name="t" value="" /> <input type="submit" value="发碎语" />
 </form>
 <?php endif;?>
