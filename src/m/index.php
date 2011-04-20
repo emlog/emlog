@@ -162,6 +162,10 @@ if ($action == 'addcom') {
 		$DB = MySql::getInstance();
         $ipaddr = getIp();
 		$utctimestamp = time();
+		if($pid != 0) {
+			$comment = $Comment_Model->getOneComment($pid);
+			$content = '@' . $comment['poster'] . '：' . $content;
+		}
 		$ischkcomment = Option::get('ischkcomment');
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";

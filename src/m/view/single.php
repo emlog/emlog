@@ -26,7 +26,7 @@
 		<div class="l">
 		<b><?php echo $value['poster']; ?></b> <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a>
 		<div class="info"><?php echo $value['date']; ?></div>
-		<div class="comcont"><?php if(isset($comments[$value['pid']])): ?>回复<b><?php echo $comments[$value['pid']]['poster']; ?></b>：<?php endif; ?><?php echo $value['content']; ?></div>
+		<div class="comcont"><?php echo $value['content']; ?></div>
 		</div>
 		<?php endforeach; ?>
 	</div>
