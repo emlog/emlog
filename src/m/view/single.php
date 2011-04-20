@@ -24,8 +24,8 @@
 			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 		?>
 		<div class="l">
-		<b><?php echo $value['poster']; ?></b> <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a>
-		<div class="info"><?php echo $value['date']; ?></div>
+		<b><?php echo $value['poster']; ?></b>
+		<div class="info"><?php echo $value['date']; ?> <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a></div>
 		<div class="comcont"><?php echo $value['content']; ?></div>
 		</div>
 		<?php endforeach; ?>
