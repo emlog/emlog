@@ -73,12 +73,9 @@ textarea{font-size:12px}
 .logtags a{color:#FFF}
 .logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px; border-radius: 3px;}
 .filters{margin:5px 4px}
-.filter{background-color:#0CF; padding:1px; margin:1px}
+.filter{background-color:#6edffb; padding:1px; margin:1px}
 .filter a{color:#FFF}
 .list_footer{ margin:5px 0px;}
-.page{text-align:center; margin:10px 0px}
-.page span{background-color: #CC3300; color:#FFF; padding:3px 6px}
-.page a{background-color: #68aee1; color:#FFF; padding:1px 5px}
 #f_sort{border:#FFF5CE solid 1px; background-color:#FFF7D7; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #f_tag{border:#FDF1E3 solid 1px; background-color:#FEF8F1; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #f_user{border: #C1FBB7 solid 1px; background-color: #E1FDE2; width:500px; padding:10px; margin:10px 0px 5px 32px}

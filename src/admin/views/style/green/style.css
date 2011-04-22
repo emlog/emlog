@@ -24,3 +24,6 @@ a:hover{color:#333; text-decoration:none}
 .sidebarmenu{background:url(./images/sidebar_bg_a.gif) center no-repeat; width:114px; padding-top:4px; letter-spacing:0.2em; height:24px; color:#FFF; cursor:pointer; font-weight:bold}
 .sidebarsubmenu{ background:url(./images/sidebar_menubg.gif) repeat-x; width:104px; padding-top:3px;height:22px;margin:auto;}
 .sidebarsubmenu1{background: url(./images/sidebar_current_menubg.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}
+.page{text-align:center; margin:10px 0px}
+.page span{background-color: #CC3300; color:#FFF; padding:3px 6px; border-radius: 4px;}
+.page a{background-color: #9cc866; color:#FFF; padding:1px 5px;border-radius: 4px;}
