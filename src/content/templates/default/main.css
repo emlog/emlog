@@ -61,7 +61,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #trackback{font-size:12px; color:#333; line-height:16px; overflow:hidden; margin:5px 0; padding:0px 0px 3px 0px; border-bottom:1px #f5f5f5 solid}
 #contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
 #contentleft .comment-header{margin:15px 0px 5px 0px}
-#contentleft .comment{margin:10px 0; padding:10px 0px 10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333}
 #contentleft .comment-post {clear:both}
 #contentleft .comment-post p{margin:5px 0px}
 #contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;padding-right:10%}
@@ -71,7 +70,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment-post #comment{ width:90%; border:1px #b6b6b6 solid; font-size:12px; color:#333}
 #contentleft .comment-post #comment_submit{background:url(images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
 #contentleft .comment-post .input{width:100px}
-.com_date{color: #666666; font-size:12px; margin:4px 0;}
+#contentleft .comment{margin:10px 0; padding:10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333; height:100%; zoom:1}
 #contentleft .comment span{color:#ff7a15;}
 #contentleft .comment .comment-time{color:#999999; display:inline; font-size:10px;}
 #contentleft .comment .avatar{float:left;margin:5px}
@@ -79,7 +78,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment .commnet-content{margin:8px 0px 0px 0px;}
 #contentleft .comment .comment-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
 #contentleft .comment .comment-reply:hover{text-decoration:underline}
-#contentleft .comment-children{width:95%;margin:auto;clear:both}
+#contentleft .comment-children{width:95%;margin:auto;clear:both;border:none;padding:0}
 #contentleft .comment .comment-post{width:90%;margin:15px auto}
 
 .calendartop{text-align:center; font-size:12px; margin-left:30px}
