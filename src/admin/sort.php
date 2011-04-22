@@ -59,7 +59,7 @@ if($action== 'add')
 		}else {
 		    $sort_cache = $CACHE->readCache('sort');
 		    foreach ($sort_cache as $key => $value) {
-		        if ($sort_data['alias'] == $value['alias']) {
+		        if ($alias == $value['alias']) {
 					header("Location: ./sort.php?error_d=true");
 					exit;
 		        }
