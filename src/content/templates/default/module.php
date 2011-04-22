@@ -169,7 +169,7 @@ function widget_custom_text($title, $content){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul>
-	<p><?php echo $content; ?></p>
+	<?php echo $content; ?>
 	</ul>
 	</li>
 <?php } ?>
