@@ -333,7 +333,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	if($allow_remark == 'y'): ?>
 	<div id="comment-place">
 	<div class="comment-post" id="comment-post">
-		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="#comment-post" onclick="cancelReply()">取消回复</a></div>
+		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
 		<p class="comment-header"><b>发表评论：</b><a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
