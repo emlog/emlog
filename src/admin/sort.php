@@ -59,7 +59,7 @@ if($action== 'add')
 		}else {
 		    $sort_cache = $CACHE->readCache('sort');
 		    foreach ($sort_cache as $key => $value) {
-		        if (false !== array_search($alias, $value, true)) {
+		        if ($sort_data['alias'] == $value['alias']) {
 					header("Location: ./sort.php?error_d=true");
 					exit;
 		        }
@@ -95,7 +95,7 @@ if($action == 'update')
 			} else{
 			    $sort_cache = $CACHE->readCache('sort');
 			    foreach ($sort_cache as $key => $value) {
-			    	if (false !== array_search($sort_data['alias'], $value, true)) {
+			    	if ($sort_data['alias'] == $value['alias']) {
 			    		header("Location: ./sort.php?error_d=true");
 			    		exit;
 			    	}
