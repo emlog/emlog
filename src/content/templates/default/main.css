@@ -44,7 +44,7 @@ a img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 a img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
 a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 
-#sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #E2DDDE; font:11px/18px Verdana, Arial, Helvetica, sans-serif;}
+#sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #E2DDDE; font:12px/18px Verdana, Arial, Helvetica, sans-serif;}
 #sidebar ul {list-style-type: none; margin: 0px; padding: 0px;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
