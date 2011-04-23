@@ -27,5 +27,5 @@ a:hover{color:#333; text-decoration:none}
 .sidebarsubmenu1{background: url(./images/sidebar_current_menubg.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}
 /*分页*/
 .page{text-align:center; margin:10px 0px}
-.page span{background-color: #CC3300; color:#FFF; padding:3px 6px}
-.page a{background-color: #68aee1; color:#FFF; padding:1px 5px}
+.page span{background-color: #CC3300; color:#FFF; padding:3px 6px; border-radius: 4px;}
+.page a{background-color: #68aee1; color:#FFF; padding:1px 5px; border-radius: 4px;}
