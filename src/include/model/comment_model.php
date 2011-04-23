@@ -250,13 +250,17 @@ class Comment_Model {
 			$comment = $this->getOneComment($pid);
 			$content = '@' . $comment['poster'] . '：' . $content;
 		}
+
 		$ischkcomment = Option::get('ischkcomment');
+		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
-				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
+				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
 		$ret = $this->db->query($sql);
 		$cid = $this->db->insert_id();
 		$CACHE = Cache::getInstance();
-		if ($ischkcomment == 'n') {
+
+		if ($hide == 'n') {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved');
