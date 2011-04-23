@@ -23,7 +23,15 @@
     <td width="9" id="headerleft"></td>
     <td width="125"  class="logo" align="left"><a href="./" title="返回管理首页">emlog</a></td>
     <td class="vesion" width="20"><?php echo Option::EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog"><?php echo Option::get('blogname'); ?></a></td>
+    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog">
+    <?php 
+    	$blog_name = Option::get('blogname');
+    	if (empty($blog_name)) {
+    		$blog_name = '查看博客';
+    	}
+    	echo $blog_name;
+    ?>
+    </a></td>
     <td align=right nowrap class="headtext">
 	<?php if (ROLE == 'admin'):?>
     <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;

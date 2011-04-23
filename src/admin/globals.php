@@ -26,10 +26,11 @@ if ($action == 'login') {
 		loginPage();
 	}
 }
-//登出
+//退出
 if ($action == 'logout'){
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	formMsg('退出成功！','../',1);
+	header("Location: ../");
+	exit;
 }
 
 if(ISLOGIN === false){
