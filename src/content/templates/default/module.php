@@ -42,7 +42,7 @@ function widget_tag($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="blogtags">
 	<?php foreach($tag_cache as $value): ?>
-		<span style="font-size:<?php echo $value['fontsize']; ?>pt; height:30px;">
+		<span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
 		<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</ul>
