@@ -333,7 +333,7 @@ function findArray($array1,$array2){
  */
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
 	if ($errorNum == 1){
-		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+		formMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
 	}elseif ($errorNum > 1){
 		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
 	}

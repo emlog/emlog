@@ -121,7 +121,7 @@ if($action == 'del_top')
 if ($action == 'upload_top') {
 	$photo_type = array('jpg', 'jpeg', 'png');
 	$topimg = '';
-	if($_FILES['topimg']['size'] > 0)
+	if($_FILES['topimg']['size'] != 4)
 	{
 		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
 	}else{
