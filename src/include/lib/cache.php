@@ -177,13 +177,14 @@ class Cache {
 		$index_comnum = $show_config['option_value'];
 		$show_config = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='comment_subnum'"));
 		$comment_subnum = $show_config['option_value'];
-		$query = $this->db->query("SELECT cid,gid,comment,date,poster FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
 		while ($show_com = $this->db->fetch_array($query)) {
 			$com_cache[] = array(
 			    'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
+				'mail' => $show_com['mail'],
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
 				);
 		}
