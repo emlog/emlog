@@ -117,6 +117,7 @@ class Cache {
 			$user_cache[$row['uid']] = array(
 			    'photo' => $photo,
 			    'avatar' => $avatar,
+				'name_orig' => $row['nickname'],
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
 				'des' => htmlClean($row['description'])

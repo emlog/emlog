@@ -28,6 +28,15 @@ if ($action == 'update') {
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+
+	if(strlen($nickname) > 20) {
+		header("Location: ./blogger.php?error_a=true");
+		exit;
+	}else if($email != '' && !checkMail($email)) {
+		header("Location: ./blogger.php?error_b=true");
+		exit;
+	}
+
 	$photo_type = array('gif', 'jpg', 'jpeg','png');
 	if($_FILES['photo']['size'] > 0)
 	{

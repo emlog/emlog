@@ -10,6 +10,8 @@
 <?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">昵称不能太长</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">电子邮件格式错误</span><?php endif;?>
 </div>
 <div style="margin-left:20px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">

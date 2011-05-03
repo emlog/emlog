@@ -23,14 +23,15 @@ class Comment_Controller {
         if (ISLOGIN === true) {
         	$CACHE = Cache::getInstance();
         	$user_cache = $CACHE->readCache('user');
-        	$name = $user_cache[UID]['name'];
-        	$mail = $user_cache[UID]['mail'];
-        	$url = BLOG_URL;
+        	$name = addslashes($user_cache[UID]['name_orig']);
+        	$mail = addslashes($user_cache[UID]['mail']);
+        	$url = addslashes(BLOG_URL);
         }
 
         if ($url && strncasecmp($url,'http://',7)) {
             $url = 'http://'.$url;
         }
+
         $Comment_Model = new Comment_Model();
         $Comment_Model->setCommentCookie($name,$mail,$url);
         if($Comment_Model->isLogCanComment($blogId) === false){
@@ -38,9 +39,9 @@ class Comment_Controller {
         } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
             emMsg('评论失败：已存在相同内容评论','javascript:history.back(-1);');
         } elseif (empty($name)){
-            emMsg('评论失败：请填写姓名','javascript:history.back(-1);');;
-        } elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20){
-            emMsg('评论失败：姓名不符合规范','javascript:history.back(-1);');;
+            emMsg('评论失败：请填写姓名','javascript:history.back(-1);');
+        } elseif (strlen($name) > 20){
+            emMsg('评论失败：姓名不符合规范','javascript:history.back(-1);');
         } elseif ($mail != '' && !checkMail($mail)) {
             emMsg('评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
         } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){

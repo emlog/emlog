@@ -49,7 +49,7 @@ class Comment_Model {
 		$comments = array();
 		while($row = $this->db->fetch_array($ret))
 		{
-			$row['cname'] = htmlspecialchars($row['poster']);
+			$row['poster'] = htmlspecialchars($row['poster']);
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
@@ -183,14 +183,14 @@ class Comment_Model {
 		$CACHE = Cache::getInstance();
 		$user_cache = $CACHE->readCache('user');
 		if(isset($user_cache[UID])) {
-			$name = $user_cache[UID]['name'];
-			$mail = $user_cache[UID]['mail'];
-			$url = BLOG_URL;
+			$name = addslashes($user_cache[UID]['name_orig']);
+			$mail = addslashes($user_cache[UID]['mail']);
+			$url = addslashes(BLOG_URL);
 			$ipaddr = getIp();
 			$utctimestamp = time();
 			if($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . $comment['poster'] . '：' . $content;
+				$content = '@' . addslashes($comment['poster']) . '：' . $content;
 			}
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -248,7 +248,7 @@ class Comment_Model {
 		$utctimestamp = time();
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . $comment['poster'] . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . '：' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');

@@ -29,7 +29,7 @@ li{list-style:none;}
 .num_input{border:1px dotted #EFEFEF; overflow-y:hidden; width:43px; height:16px;}
 .submit{font-size:12px;cursor:pointer; _cursor:hand;}
 .button{font-size:12px; cursor:pointer; padding:4px 10px}
-.notice{padding:10px 5px; ; font-size:14px; color:#F30}
+.notice{padding:10px 5px;font-size:14px; color:#F30}
 .care{color:#F30}
 .care2{color:#093}
 .attlist img{border:1px solid #ccc; padding:3px}

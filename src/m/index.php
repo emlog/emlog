@@ -48,7 +48,7 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $Comment_Model->getComments(0, $logid, 'n');
 
 	$user_cache = $CACHE->readCache('user');
@@ -141,30 +141,38 @@ if ($action == 'addcom') {
     $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
     $url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
     $imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
-	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
-	$pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
+    $blogId = isset($_GET['gid']) ? intval($_GET['gid']) : - 1;
+    $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 
+    if (ISLOGIN === true) {
+        $CACHE = Cache::getInstance();
+        $user_cache = $CACHE->readCache('user');
+		$name = addslashes($user_cache[UID]['name_orig']);
+       	$mail = addslashes($user_cache[UID]['mail']);
+        $url = addslashes(BLOG_URL);
+    }
+	
 	if($Comment_Model->isLogCanComment($blogId) === false){
-        mMsg('发表评论失败：该日志已关闭评论','./?post=' . $blogId);
+        mMsg('评论失败：该日志已关闭评论','./?post=' . $blogId);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
-        mMsg('发表评论失败：已存在相同内容评论','./?post=' . $blogId);
-    } elseif (preg_match("/['<>,#|;\/\$\\&\r\t()%@+?^]/",$name) || strlen($name) > 20 || strlen($name) == 0){
-        mMsg('发表评论失败：姓名不符合规范','./?post=' . $blogId);;
+        mMsg('评论失败：已存在相同内容评论','./?post=' . $blogId);
+    } elseif (strlen($name) > 20 || strlen($name) == 0){
+        mMsg('评论失败：姓名不符合规范','./?post=' . $blogId);
     } elseif ($mail != '' && !checkMail($mail)) {
-        mMsg('发表评论失败：邮件地址不符合规范', './?post=' . $blogId);
+        mMsg('评论失败：邮件地址不符合规范', './?post=' . $blogId);
     } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
-        mMsg('发表评论失败：禁止使用管理员昵称或邮箱评论','./?post=' . $blogId);
+        mMsg('评论失败：禁止使用管理员昵称或邮箱评论','./?post=' . $blogId);
     } elseif (strlen($content) == '' || strlen($content) > 2000) {
-        mMsg('发表评论失败：内容不符合规范','./?post=' . $blogId);
-    } elseif (Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-        mMsg('发表评论失败：验证码错误','./?post=' . $blogId);
+        mMsg('评论失败：内容不符合规范','./?post=' . $blogId);
+    } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        mMsg('评论失败：验证码错误','./?post=' . $blogId);
     } else {
 		$DB = MySql::getInstance();
         $ipaddr = getIp();
 		$utctimestamp = time();
 		if($pid != 0) {
 			$comment = $Comment_Model->getOneComment($pid);
-			$content = '@' . $comment['poster'] . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . '：' . $content;
 		}
 		$ischkcomment = Option::get('ischkcomment');
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
@@ -231,7 +239,7 @@ if ($action == 'reply') {
 		mMsg('参数错误', './');
 	}
 	extract($commentArray);
-	$verifyCode = Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	include View::getView('header');
 	include View::getView('reply');
 	include View::getView('footer');

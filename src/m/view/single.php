@@ -33,15 +33,8 @@
 	<div class="t">发表评论：</div>
 	<div class="c">
 		<form method="post" action="./index.php?action=addcom&gid=<?php echo $logid; ?>">
-		<?php
-			if(ISLOGIN == true):
-			$CACHE = Cache::getInstance();
-			$user_cache = $CACHE->readCache('user');
-		?>
-		当前已登录为<b><?php echo $user_cache[UID]['name']; ?></b><br />
-		<input type="hidden" name="comname" value="<?php echo $user_cache[UID]['name']; ?>" />
-		<input type="hidden" name="commail" value="<?php echo $user_cache[UID]['mail']; ?>" />
-		<input type="hidden" name="comurl" value="<?php echo BLOG_URL; ?>" />
+		<?php if(ISLOGIN == true):?>
+		当前已登录为：<b><?php echo $user_cache[UID]['name']; ?></b><br />
 		<?php else: ?>
 		昵称<br /><input type="text" name="comname" value="" /><br />
 		邮件地址 (选填)<br /><input type="text" name="commail" value="" /><br />

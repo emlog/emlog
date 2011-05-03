@@ -32,7 +32,7 @@ foreach($comment as $value):
 <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a>
 <br />
 <?php if(ISLOGIN === true): ?>
-<?php echo $value['date']; ?> by:<?php echo $value['cname']; ?>
+<?php echo $value['date']; ?> by:<?php echo $value['poster']; ?>
 <?php else:?>
 by:<?php echo $value['name']; ?>
 <?php endif;?>
