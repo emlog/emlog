@@ -70,25 +70,25 @@ class Option {
                     array(
                             'model' => 'Record_Controller',
                             'method' => 'display',
-                            'reg_0' => '|^.*/\?(record)=(\d{6,8})$|',
+                            'reg_0' => '|^.*/\?(record)=(\d{6,8})(&(page)=(\d+))?$|',
                             'reg' => '|^.*/(record)/(\d{6,8})/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Sort_Controller',
                             'method' => 'display',
-                            'reg_0' => '|^.*/\?(sort)=(\d+)$|',
+                            'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?$|',
                             'reg' => '|^.*/(sort)/([^\./]+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Tag_Controller',
                             'method' => 'display',
-                            'reg_0' => '|^.*/\?(tag)=(.+)$|',
+                            'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?$|',
                             'reg' => '|^.*/(tag)/([^/]+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Author_Controller',
                             'method' => 'display',
-                            'reg_0' => '|^.*/\?(author)=(\d+)$|',
+                            'reg_0' => '|^.*/\?(author)=(\d+)(&(page)=(\d+))?$|',
                             'reg' => '|^.*/(author)/(\d+)/?((page)/(\d+))?/?$|',
                             ),
                     array(
