@@ -89,7 +89,7 @@ class Dispatcher {
         $r = explode('#', $path, 2);
         $path = $r[0];
         //for iis6
-        $path = str_replace('index.php', '', $path);
+        $path = str_ireplace('index.php', '', $path);
         //for subdirectory
         $t = parse_url(BLOG_URL);
         $path = str_replace($t['path'], '/', $path);
