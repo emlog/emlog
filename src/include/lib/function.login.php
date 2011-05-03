@@ -33,7 +33,7 @@ function isLogin()
  * @param string $imgcode
  * @param string $logincode
  */
-function checkUser($username,$password,$imgcode)
+function checkUser($username, $password, $imgcode, $logincode = false)
 {
 	session_start();
 	if (trim($username) == '' || trim($password) == '')
@@ -41,7 +41,8 @@ function checkUser($username,$password,$imgcode)
 		return false;
 	} else {
 		$sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
-		if (Option::get('login_code') == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
+		$logincode = false === $logincode ? Option::get('login_code') : $logincode;
+		if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
 		{
 			return false;
 		}
