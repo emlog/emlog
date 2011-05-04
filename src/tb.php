@@ -19,12 +19,14 @@ $excerpt   = isset($_REQUEST['excerpt']) ? trimmed_title(iconv2utf(html2text(add
 $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
 $blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name'])))) : '';
 $ipaddr	   = getIp();
-
+$fp = fopen("tb.txt","w");
+fwrite($fp,serialize($_REQUEST));
 if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url && $blog_name){
 	if($sc != substr(md5(gmdate('YndG')), 0, 6)){
 		showXML('invalid trackback url');
 	}
 
+	fwrite($fp,1);
 	$DB = MySql::getInstance();
 
 	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$logid."'");
@@ -34,6 +36,7 @@ if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url &&
 		showXML('trackback closed');
 	}
 
+	fwrite($fp,2);
 	$point = 3;
 
 	//5小时内同一ip、博客只能引用一次
