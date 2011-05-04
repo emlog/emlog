@@ -94,7 +94,6 @@ class Dispatcher {
         		$path = @iconv('GBK', 'UTF-8', @iconv('UTF-8', 'GBK', $path)) == $path ? $path : @iconv('GBK', 'UTF-8', $path);
         	}
         }
-        $path = mb_convert_encoding($path, 'UTF-8', 'GBK');
         //for ie6 header location
         $r = explode('#', $path, 2);
         $path = $r[0];
