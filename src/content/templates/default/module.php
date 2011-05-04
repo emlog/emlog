@@ -350,7 +350,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 			</p>
 			<?php endif; ?>
 			<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" /></p>
+			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" tabindex="6" /></p>
 			<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
 		</form>
 	</div>
