@@ -27,7 +27,7 @@ if($action == '') {
 	$tpls = array();
 	while ($file = @readdir($handle))
 	{
-		if(file_exists(TPLS_PATH.$file.'/header.php'))
+		if(@file_exists(TPLS_PATH.$file.'/header.php'))
 		{
 			$tplData = implode('', @file(TPLS_PATH.$file.'/header.php'));
 			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
