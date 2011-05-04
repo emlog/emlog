@@ -68,8 +68,15 @@ function getBlog($sort = null) {
 		if(!empty($re['password']))
 		{
 			$re['content'] = '<p>[该日志已设置加密]</p>';
-		}elseif(Option::get('rss_output_fulltext') == 'n' && !empty($re['excerpt'])){
-		    $re['content'] = $re['excerpt'] . '<p><a href="'.Url::log($re['id']).'">阅读全文&gt;&gt;</a></p>';
+		}
+		elseif(Option::get('rss_output_fulltext') == 'n')
+		{
+			if (!empty($re['excerpt'])) {
+				$re['content'] = $re['excerpt'];
+			}else {
+				$re['content'] = extractHtmlData($re['content'], 330);
+			}
+			$re['content'] .= ' <a href="'.Url::log($re['id']).'">阅读全文&gt;&gt;</a>';
 		}
 
 		$blog[] = $re;

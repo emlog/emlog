@@ -150,6 +150,31 @@ function subString($strings,$start,$length){
 }
 
 /**
+ * 从可能包含html标记的内容中萃取纯文本摘要
+ *
+ * @param string $data
+ * @param int $len
+ */
+function extractHtmlData($data, $len) {
+	$data = strip_tags(subString($data, 0, $len + 30));
+	$search = array ("/([\r\n])[\s]+/",	// 去掉空白字符
+		             "/&(quot|#34);/i",	// 替换 HTML 实体
+		             "/&(amp|#38);/i",
+		             "/&(lt|#60);/i",
+		             "/&(gt|#62);/i",
+		             "/&(nbsp|#160);/i",
+					 "/&(iexcl|#161);/i",
+					 "/&(cent|#162);/i",
+		             "/&(pound|#163);/i",
+		             "/&(copy|#169);/i",
+		             "/\"/i",
+					);
+	$replace = array (" ","\"","&"," "," ","",chr(161),chr(162),chr(163),chr(169), "");
+	$data = subString(preg_replace($search, $replace, $data), 0, $len);
+	return $data;
+}
+
+/**
  * 转换附件大小单位
  *
  * @param string $fileSize 文件大小 kb

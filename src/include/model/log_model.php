@@ -334,30 +334,6 @@ class Log_Model {
 	}
 
 	/**
-	 * 格式化日志meta信息：description
-	 *
-	 * @param string $description
-	 */
-	function formatLogDes($description) {
-		$description = strip_tags(subString($description,0, 360));
-		$search = array ("/([\r\n])[\s]+/",	// 去掉空白字符
-		                 "/&(quot|#34);/i",	// 替换 HTML 实体
-		                 "/&(amp|#38);/i",
-		                 "/&(lt|#60);/i",
-		                 "/&(gt|#62);/i",
-		                 "/&(nbsp|#160);/i",
-		                 "/&(iexcl|#161);/i",
-		                 "/&(cent|#162);/i",
-		                 "/&(pound|#163);/i",
-		                 "/&(copy|#169);/i",
-		                 "/\"/i",
-						);
-		$replace = array (" ","\"","&"," "," ","",chr(161),chr(162),chr(163),chr(169), "");
-		$description = subString(preg_replace($search, $replace, $description), 0, 330);
-		return $description;
-	}
-
-	/**
 	 * 处理日志别名，防止别名重复
 	 *
 	 * @param string $alias
