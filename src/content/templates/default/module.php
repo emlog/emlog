@@ -139,7 +139,7 @@ function widget_search($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logserch">
-	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>">
+	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 	<input name="keyword"  type="text" value="" style="width:120px;"/>
 	<input type="submit" id="logserch_logserch" value="搜索" />
 	</form>
