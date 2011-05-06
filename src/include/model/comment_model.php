@@ -263,11 +263,11 @@ class Comment_Model {
 		if ($hide == 'n') {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
-            doAction('comment_saved');
+            doAction('comment_saved', $cid);
             header('Location: ' . Url::log($blogId).'#'.$cid);
 		} else {
 		    $CACHE->updateCache('sta');
-		    doAction('comment_saved');
+		    doAction('comment_saved', $cid);
 		    emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
 		}
 	}

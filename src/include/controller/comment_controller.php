@@ -32,6 +32,8 @@ class Comment_Controller {
             $url = 'http://'.$url;
         }
 
+        doAction('comment_post');
+
         $Comment_Model = new Comment_Model();
         $Comment_Model->setCommentCookie($name,$mail,$url);
         if($Comment_Model->isLogCanComment($blogId) === false){

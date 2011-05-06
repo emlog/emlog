@@ -151,7 +151,9 @@ if ($action == 'addcom') {
        	$mail = addslashes($user_cache[UID]['mail']);
         $url = addslashes(BLOG_URL);
     }
-	
+
+    doAction('comment_post');
+
 	if($Comment_Model->isLogCanComment($blogId) === false){
         mMsg('评论失败：该日志已关闭评论','./?post=' . $blogId);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
@@ -170,23 +172,29 @@ if ($action == 'addcom') {
 		$DB = MySql::getInstance();
         $ipaddr = getIp();
 		$utctimestamp = time();
+
 		if($pid != 0) {
 			$comment = $Comment_Model->getOneComment($pid);
 			$content = '@' . addslashes($comment['poster']) . '：' . $content;
 		}
+
 		$ischkcomment = Option::get('ischkcomment');
+		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
-				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$ischkcomment','$ipaddr','$pid')";
+				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
 		$ret = $DB->query($sql);
+		$cid = $DB->insert_id();
 		$CACHE = Cache::getInstance();
-		if ($ischkcomment == 'n') {
+
+		if ($hide == 'n') {
 			$DB->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
-            doAction('comment_saved');
+            doAction('comment_saved', $cid);
             header("Location: ".'./?post=' . $blogId);
 		} else {
 		    $CACHE->updateCache('sta');
-		    doAction('comment_saved');
+		    doAction('comment_saved', $cid);
 		    mMsg('评论发表成功，请等待管理员审核', './?post=' . $blogId);
 		}
     }

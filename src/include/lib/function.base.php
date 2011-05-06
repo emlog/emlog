@@ -547,7 +547,7 @@ function formMsg($msg,$url,$type){
  * @param $d default avatar
  * @param $g
  */
-function getGravatar($email, $s=40, $d='mm', $g='G') {
+function getGravatar($email, $s=40, $d='mm', $g='g') {
 	$hash = md5($email);
 	$avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
 	return $avatar;
