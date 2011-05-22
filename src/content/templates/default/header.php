@@ -30,7 +30,7 @@ require_once View::getView('module');
     <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
     <h3><?php echo $bloginfo; ?></h3>
   </div>
-  <div id="banner"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></div>
+  <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
   <div id="nav">
     <ul>
 	<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
