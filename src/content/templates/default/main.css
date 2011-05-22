@@ -20,6 +20,11 @@ a:hover {color:#886353; text-decoration:underline;}
 #nav a:hover {color:#1F1F1F; text-decoration:underline;}
 #banner {height:134px;}
 
+#pagenavi{text-align:center; font-size:14px}
+#pagenavi a{ padding:0px 3px;}
+#pagenavi a:hover{text-decoration:overline }
+#pagenavi span{font-size:16px; color:#999999;}
+
 #content {width: 960px; margin: 0px auto 0px; padding: 0px;}
 #content p {padding: 0px 0px 15px 0px; margin: 0px; line-height: 20px;}
 #content h1 {display:none;}
@@ -50,7 +55,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
 
-#footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: left; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
+#footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: center; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
 .footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
@@ -131,10 +136,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw .tbutton .tinfo{ float:left; }
 #tw .msg{ clear:both}
 #tw li{list-style:none;}
-#tw #pagenavi{text-align:center; font-size:14px}
-#tw #pagenavi a{ padding:0px 4px;}
-#tw #pagenavi a:hover{ border:1px #B9DDFB solid; background: #F5FAFE; text-decoration:none }
-#tw #pagenavi span{font-size:12px; color:#999999;}
 
 #tw ul .huifu textarea{background-color:#FFFFFF;}
 #tw ul .huifu input{background-color:#FFFFFF;}
