@@ -49,7 +49,7 @@ $(document).ready(function(){
        }
     });
 	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON("http://www.emlog.net/services/messenger.php?callback=?",
+	$.getJSON("http://www.emlog.net/services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
 	function(data){
 		$("#admindex_msg ul").html("");
 		$.each(data.items, function(i,item){
