@@ -102,13 +102,9 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
     <tbody>
       <tr>
-        <td align="right" width="18%">rss输出日志数：<br /></td>
-        <td width="82%"><input maxlength="5" size="8" value="<?php echo $rss_output_num; ?>" name="rss_output_num" /></td>
-      </tr>
-      <tr>
-        <td align="right">rss输出：<br /></td>
-        <td>
-		<select name="rss_output_fulltext">
+        <td align="right" width="18%">RSS：<br /></td>
+        <td width="82%">
+		输出<input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" name="rss_output_num" />篇日志，且输出<select name="rss_output_fulltext">
 		<option value="y" <?php echo $ex1; ?>>全文</option>
 		<option value="n" <?php echo $ex2; ?>>摘要</option>
         </select>
@@ -120,17 +116,21 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
     <tbody>
       <tr>
-        <td align="right" width="18%">评论审核：<br /></td>
-        <td width="82%"><input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /></td>
-      </tr>
-      <tr>
-        <td align="right">评论验证码：<br /></td>
-        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /></td>
-      </tr>
-      <tr>
-        <td align="right">评论人头像：<br /></td>
-        <td><input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /></td>
-      </tr>
+        <td align="right" width="18%" valign="top">日志评论：<br /></td>
+        <td width="82%">
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> />审核<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> />验证码<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> />评论人头像<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />评论分页<br />
+		每页显示<input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />条评论，
+		<select name="comment_order"><option value="newer" <?php echo $ex3; ?>>较新的</option><option value="older" <?php echo $ex4; ?>>较旧的</option></select>排在前面<br />
+		</td>
+      </tr
+    </tbody>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+    <tbody>
       <tr>
         <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
       </tr>

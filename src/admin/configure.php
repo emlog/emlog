@@ -18,12 +18,18 @@ if ($action == '') {
 	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
 	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
+	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
 
-	$ex1 = $ex2 = '';
+	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
 		$ex1 = 'selected="selected"';
 	} else {
 	 	$ex2 = 'selected="selected"';
+	}
+	if ($comment_order == 'newer') {
+		$ex3 = 'selected="selected"';
+	} else {
+	 	$ex4 = 'selected="selected"';
 	}
 
 	include View::getView('header');
@@ -31,7 +37,6 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-
 //update config
 if ($action == 'mod_config') {
 	$getData = array(
@@ -51,6 +56,9 @@ if ($action == 'mod_config') {
 	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
 	'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
 	'isgravatar' => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',
+	'comment_paging' => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
+	'comment_pnum' => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
+	'comment_order' => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
