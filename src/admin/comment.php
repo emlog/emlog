@@ -34,21 +34,21 @@ if ($action== 'del')
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_del=true");
+	emDirect("./comment.php?active_del=true");
 }
 if($action=='hide')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_hide=true");
+	emDirect("./comment.php?active_hide=true");
 }
 if($action=='show')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_show=true");
+	emDirect("./comment.php?active_show=true");
 }
 if($action== 'admin_all_coms')
 {
@@ -57,31 +57,29 @@ if($action== 'admin_all_coms')
 
 	if($operate == '')
 	{
-		header("Location: ./comment.php?error_b=true");
-		exit;
+		emDirect("./comment.php?error_b=true");
 	}
 	if($comments == '')
 	{
-		header("Location: ./comment.php?error_a=true");
-		exit;
+		emDirect("./comment.php?error_a=true");
 	}
 	if($operate == 'del')
 	{
 		$Comment_Model->batchComment('delcom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
-		header("Location: ./comment.php?active_del=true");
+		emDirect("./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
 		$Comment_Model->batchComment('hidecom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
-		header("Location: ./comment.php?active_hide=true");
+		emDirect("./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
 		$Comment_Model->batchComment('showcom', $comments);
 		$CACHE->updateCache(array('sta', 'comment'));
-		header("Location: ./comment.php?active_show=true");
+		emDirect("./comment.php?active_show=true");
 	}
 }
 if ($action== 'reply_comment')
@@ -102,12 +100,10 @@ if($action=='doreply')
 	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
 	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
 	if($reply == '') {
-		header("Location: ./comment.php?error_c=true");
-		exit;
+		emDirect("./comment.php?error_c=true");
 	}
 	if(strlen($reply) > 2000) {
-		header("Location: ./comment.php?error_d=true");
-		exit;
+		emDirect("./comment.php?error_d=true");
 	}
     if(isset($_POST['pub_it'])) {
         $Comment_Model->showComment($commentId);
@@ -117,5 +113,5 @@ if($action=='doreply')
 	$CACHE->updateCache('comment');
     $CACHE->updateCache('sta');
 	doAction('comment_reply', $commentId, $reply);
-	header("Location: ./comment.php?active_rep=true");
+	emDirect("./comment.php?active_rep=true");
 }

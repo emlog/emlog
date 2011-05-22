@@ -34,8 +34,7 @@ if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
     if (!$t){
-        header("Location: twitter.php?error_a=true");
-        exit;
+        emDirect("twitter.php?error_a=true");
     }
 
     $tdata = array('content' => $Twitter_Model->formatTwitter($t),
@@ -46,14 +45,14 @@ if ($action == 'post') {
     $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
-    header("Location: twitter.php?active_t=true");
+    emDirect("twitter.php?active_t=true");
 }
 // 删除碎语.
 if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
-	header("Location: twitter.php?active_del=true");
+	emDirect("twitter.php?active_del=true");
 }
 // 获取回复.
 if ($action == 'getreply') {
@@ -161,5 +160,5 @@ if ($action == 'set') {
 	}
 
 	$CACHE->updateCache('options');
-    header("Location: twitter.php?active_set=true");
+    emDirect("twitter.php?active_set=true");
 }

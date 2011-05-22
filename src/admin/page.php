@@ -110,9 +110,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		case 'add':
 		case 'edit':
 			if($action == 'add') {
-				header("Location: ./page.php?active_hide_n=true");//页面发布成功
+				emDirect("./page.php?active_hide_n=true");//页面发布成功
 			} else {
-				header("Location: ./page.php?active_savepage=true");//页面保存成功
+				emDirect("./page.php?active_savepage=true");//页面保存成功
 			}
 			break;
 	}
@@ -134,7 +134,7 @@ if ($action == 'operate_page') {
 			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'logalias'));
 
-			header("Location: ./page.php?active_del=true");
+			emDirect("./page.php?active_del=true");
 			break;
 		case 'hide':
 		case 'pub':
@@ -146,7 +146,7 @@ if ($action == 'operate_page') {
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
-			header("Location: ./page.php?active_hide_".$ishide."=true");
+			emDirect("./page.php?active_hide_".$ishide."=true");
 			break;
 	}
 }

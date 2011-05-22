@@ -20,7 +20,6 @@ function __autoload($class) {
 
 /**
  * 去除多余的转义字符
- *
  */
 function doStripslashes(){
 	if (get_magic_quotes_gpc()){
@@ -33,9 +32,6 @@ function doStripslashes(){
 
 /**
  * 递归去除转义字符
- *
- * @param unknown_type $value
- * @return unknown
  */
 function stripslashesDeep($value){
 	$value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
@@ -47,7 +43,6 @@ function stripslashesDeep($value){
  *
  * @param unknown_type $content
  * @param unknown_type $wrap 是否换行
- * @return unknown
  */
 function htmlClean($content, $wrap=true){
 	$content = htmlspecialchars($content);
@@ -61,8 +56,6 @@ function htmlClean($content, $wrap=true){
 
 /**
  * 获取用户ip地址
- *
- * @return string
  */
 function getIp(){
 	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
@@ -74,8 +67,6 @@ function getIp(){
 
 /**
  * 获取博客地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
- *
- * @return string
  */
 function getBlogUrl(){
 	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
@@ -88,7 +79,6 @@ function getBlogUrl(){
 
 /**
  * 检查插件
- *
  */
 function checkPlugin($plugin) {
     if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
@@ -100,9 +90,6 @@ function checkPlugin($plugin) {
 
 /**
  * 验证email地址格式
- *
- * @param unknown_type $email
- * @return unknown
  */
 function checkMail($email){
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60){
@@ -118,7 +105,6 @@ function checkMail($email){
  * @param string $strings 预处理字符串
  * @param int $start 开始处 eg:0
  * @param int $length 截取长度
- * @return unknown
  */
 function subString($strings,$start,$length){
 	$str = substr($strings, $start, $length);
@@ -178,7 +164,6 @@ function extractHtmlData($data, $len) {
  * 转换附件大小单位
  *
  * @param string $fileSize 文件大小 kb
- * @return unknown
  */
 function changeFileSize($fileSize){
 	if($fileSize >= 1073741824){
@@ -208,7 +193,6 @@ function getFileSuffix($fileName) {
  * @param int $perlogs 每页显示条数目
  * @param int $page 当前页码
  * @param string $url 页码的地址
- * @return unknown
  */
 function pagination($count,$perlogs,$page,$url){
 	$pnums = @ceil($count / $perlogs);
@@ -263,7 +247,6 @@ function doAction($hook){
  *
  * @param string $content 日志内容
  * @param int $lid 日志id
- * @return unknown
  */
 function breakLog($content,$lid){
 	$a = explode('[break]',$content,2);
@@ -276,7 +259,6 @@ function breakLog($content,$lid){
  * 删除[break]标签
  *
  * @param string $content 日志内容
- * @return unknown
  */
 function rmBreak($content){
 	$content = str_replace('[break]','',$content);
@@ -526,20 +508,6 @@ function chImageSize ($img, $max_w, $max_h){
 }
 
 /**
- * 后台操作返回信息
- *
- * @param string $msg
- * @param string $url
- * @param boolean $type
- */
-function formMsg($msg,$url,$type){
-	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
-	require_once(View::getView('msg'));
-	View::output();
-	exit;
-}
-
-/**
  * 获取Gravatar头像
  * http://en.gravatar.com/site/implement/images/
  * @param $email
@@ -575,7 +543,6 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 
 /**
  * 将字符串转换为时区无关的UNIX时间戳
- *
  */
 function emStrtotime($timeStr) {
     $timezone = Option::get('timezone');
@@ -635,6 +602,28 @@ function getMonthDayNum($month, $year) {
             return 30;
             break;
     }
+}
+
+/**
+ * 页面跳转
+ */
+function emDirect($directUrl) {
+	header("Location: $directUrl");
+	exit;
+}
+
+/**
+ * 后台操作返回信息
+ *
+ * @param string $msg
+ * @param string $url
+ * @param boolean $type
+ */
+function formMsg($msg,$url,$type){
+	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
+	require_once(View::getView('msg'));
+	View::output();
+	exit;
 }
 
 /**

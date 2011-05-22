@@ -57,7 +57,7 @@ if($action == 'usetpl')
 	Option::updateOption('nonce_templet', $tplName);
 	Option::updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->updateCache('options');
-	header("Location: ./template.php?activated=true");
+	emDirect("./template.php?activated=true");
 }
 
 
@@ -93,7 +93,7 @@ if($action == 'update_top')
 
 	Option::updateOption('topimg', $top);
 	$CACHE->updateCache('options');
-	header("Location: ./template.php?action=custom-top&activated=true");
+	emDirect("./template.php?action=custom-top&activated=true");
 }
 
 //删除自定义顶部图片
@@ -114,7 +114,7 @@ if($action == 'del_top')
 	Option::updateOption('custom_topimgs', serialize($custom_topimgs));
 
 	$CACHE->updateCache('options');
-	header("Location: ./template.php?action=custom-top&active_del=true");
+	emDirect("./template.php?action=custom-top&active_del=true");
 }
 
 //上传顶部图片
@@ -126,8 +126,7 @@ if ($action == 'upload_top') {
 	{
 		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
 	}else{
-		header("Location: ./template.php?action=custom-top");
-		exit;
+		emDirect("./template.php?action=custom-top");
 	}
 
 	include View::getView('header');
@@ -150,16 +149,14 @@ if ($action == 'crop') {
 	$topimg_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '.jpg';
 	$ret = imageCropAndResize($top_img, $topimg_path, 0, 0, $x1, $y1, $width, $height, $width, $height);
 	if (false === $ret) {
-		header("Location: ./template.php?action=custom-top&error_a=true");
-		exit;
+		emDirect("./template.php?action=custom-top&error_a=true");
 	}
 
 	//create mini topimg
 	$topimg_mini_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '_mini.jpg';
 	$ret = imageCropAndResize($topimg_path, $topimg_mini_path, 0, 0, 0, 0, 230, 48, $width, $height);
 	if (false === $ret) {
-		header("Location: ./template.php?action=custom-top&error_a=true");
-		exit;
+		emDirect("./template.php?action=custom-top&error_a=true");
 	}
 
 	@unlink($top_img);
@@ -170,5 +167,5 @@ if ($action == 'crop') {
 	Option::updateOption('topimg', substr($topimg_path, 3));
 	Option::updateOption('custom_topimgs', serialize($custom_topimgs));
 	$CACHE->updateCache('options');
-	header("Location: ./template.php?action=custom-top&activated=true");
+	emDirect("./template.php?action=custom-top&activated=true");
 }

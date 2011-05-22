@@ -43,7 +43,7 @@ if ($action == 'upload') {
 		}
 	}
 	$CACHE->updateCache('logatts');
-	header("Location: attachment.php?action=attlib&logid=$logid");
+	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 //附件库
 if ($action == 'attlib') {
@@ -83,5 +83,5 @@ if ($action == 'del_attach') {
 	$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum-1 WHERE gid={$row['blogid']}");
 	$DB->query("DELETE FROM ".DB_PREFIX."attachment where aid=$aid ");
 	$CACHE->updateCache('logatts');
-	header("Location: attachment.php?action=attlib&logid=$logid");
+	emDirect("attachment.php?action=attlib&logid=$logid");
 }

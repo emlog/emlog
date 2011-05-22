@@ -29,8 +29,7 @@ if($action == 'bakstart'){
 	$timezone = Option::get('timezone');
 
 	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname)){
-		header("Location: ./data.php?error_b=true");
-		exit;
+		emDirect("./data.php?error_b=true");
 	}
 	$filename = '../content/backup/'.$bakfname.'.sql';
 
@@ -66,7 +65,7 @@ if($action == 'bakstart'){
 					@fclose($fp);
 					emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
 				}else{
-					header("Location: ./data.php?active_backup=true");
+					emDirect("./data.php?active_backup=true");
 				}
 			}else{
 				emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
@@ -90,7 +89,7 @@ if ($action == 'renewdata'){
 	checkSqlFileInfo($sqlfile);
 	bakindata($sqlfile);
 	$CACHE->updateCache();
-	header("Location: ./data.php?active_import=true");
+	emDirect("./data.php?active_import=true");
 }
 
 //导入本地备份文件
@@ -110,25 +109,25 @@ if ($action == 'import'){
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
 	$CACHE->updateCache();
-	header("Location: ./data.php?active_import=true");
+	emDirect("./data.php?active_import=true");
 }
 
 //批量删除备份文件
 if($action == 'dell_all_bak'){
 	if(!isset($_POST['bak'])){
-		header("Location: ./data.php?error_a=true");
+		emDirect("./data.php?error_a=true");
 	}else{
 		foreach($_POST['bak'] as $val){
 			unlink($val);
 		}
-		header("Location: ./data.php?active_del=true");
+		emDirect("./data.php?active_del=true");
 	}
 }
 
 //更新缓存
 if ($action == 'Cache'){
 	$CACHE->updateCache();
-	header("Location: ./data.php?active_mc=true");
+	emDirect("./data.php?active_mc=true");
 }
 
 /**

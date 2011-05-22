@@ -123,7 +123,7 @@ if($action == 'setwg') {
 			break;
 	}
 	$CACHE->updateCache('options');
-	header("Location: ./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=true");
 }
 
 //保存组件排序
@@ -132,7 +132,7 @@ if($action == 'compages') {
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	Option::updateOption("widgets{$wgNum}", $widgets);
 	$CACHE->updateCache('options');
-	header("Location: ./widgets.php?activated=true&wg=$wgNum");
+	emDirect("./widgets.php?activated=true&wg=$wgNum");
 }
 
 //恢复组件设置到初始安装状态
@@ -145,5 +145,5 @@ if($action == 'reset') {
 	Option::updateOption("widgets1", $default_widget);
 
 	$CACHE->updateCache('options');
-	header("Location: ./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=true");
 }

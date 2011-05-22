@@ -50,5 +50,5 @@ if($action == 'usestyle')
 
 	Option::updateOption('admin_style', $styleName);
 	$CACHE->updateCache('options');
-	header("Location: ./style.php?activated=true");
+	emDirect("./style.php?activated=true");
 }

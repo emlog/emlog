@@ -27,13 +27,12 @@ if($action == 'dell')
 	$tbs = isset($_POST['tb']) ? array_map('intval', $_POST['tb']) : array();
 	if(!$tbs)
 	{
-		header("Location: ./trackback.php?error_a=true");
-		exit;
+		emDirect("./trackback.php?error_a=true");
 	}
 	foreach($tbs as $value)
 	{
 		$Trackback_Model->deleteTrackback($value);
 	}
 	$CACHE->updateCache('sta');
-	header("Location: ./trackback.php?active_del=true");
+	emDirect("./trackback.php?active_del=true");
 }

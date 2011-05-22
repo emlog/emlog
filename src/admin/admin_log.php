@@ -89,13 +89,11 @@ if($action == 'operate_log')
 
 	if($operate == '')
 	{
-		header("Location: ./admin_log.php?pid=$pid&error_b=true");
-		exit;
+		emDirect("./admin_log.php?pid=$pid&error_b=true");
 	}
 	if(empty($logs))
 	{
-		header("Location: ./admin_log.php?pid=$pid&error_a=true");
-		exit;
+		emDirect("./admin_log.php?pid=$pid&error_a=true");
 	}
 
 	switch ($operate)
@@ -109,9 +107,9 @@ if($action == 'operate_log')
 			$CACHE->updateCache();
 			if($pid == 'draft')
 			{
-				header("Location: ./admin_log.php?pid=draft&active_del=true");
+				emDirect("./admin_log.php?pid=draft&active_del=true");
 			}else{
-				header("Location: ./admin_log.php?active_del=true");
+				emDirect("./admin_log.php?active_del=true");
 			}
 			break;
 		case 'top':
@@ -119,14 +117,14 @@ if($action == 'operate_log')
 			{
 				$Log_Model->updateLog(array('top'=>'y'), $val);
 			}
-			header("Location: ./admin_log.php?active_up=true");
+			emDirect("./admin_log.php?active_up=true");
 			break;
 		case 'notop':
 			foreach($logs as $val)
 			{
 				$Log_Model->updateLog(array('top'=>'n'), $val);
 			}
-			header("Location: ./admin_log.php?active_down=true");
+			emDirect("./admin_log.php?active_down=true");
 			break;
 		case 'hide':
 			foreach($logs as $val)
@@ -134,7 +132,7 @@ if($action == 'operate_log')
 				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
-			header("Location: ./admin_log.php?active_hide=true");
+			emDirect("./admin_log.php?active_hide=true");
 			break;
 		case 'pub':
 			foreach($logs as $val)
@@ -142,7 +140,7 @@ if($action == 'operate_log')
 				$Log_Model->hideSwitch($val, 'n');
 			}
 			$CACHE->updateCache();
-			header("Location: ./admin_log.php?pid=draft&active_post=true");
+			emDirect("./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
 			foreach($logs as $val)
@@ -150,7 +148,7 @@ if($action == 'operate_log')
 				$Log_Model->updateLog(array('sortid'=>$sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
-			header("Location: ./admin_log.php?active_move=true");
+			emDirect("./admin_log.php?active_move=true");
 			break;
 		case 'change_author':
 			if (ROLE != 'admin')
@@ -162,7 +160,7 @@ if($action == 'operate_log')
 				$Log_Model->updateLog(array('author'=>$author), $val);
 			}
 			$CACHE->updateCache('sta');
-			header("Location: ./admin_log.php?active_change_author=true");
+			emDirect("./admin_log.php?active_change_author=true");
 			break;
 	}
 }

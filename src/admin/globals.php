@@ -21,7 +21,7 @@ if ($action == 'login') {
 
 	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);
-		header("Location: ./");
+		emDirect("./");
 	}else{
 		loginPage();
 	}
@@ -29,8 +29,7 @@ if ($action == 'login') {
 //退出
 if ($action == 'logout'){
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	header("Location: ../");
-	exit;
+	emDirect("../");
 }
 
 if(ISLOGIN === false){

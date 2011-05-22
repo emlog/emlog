@@ -30,9 +30,9 @@ if ($action == 'taxis')
 			$Sort_Model->updateSort(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('sort');
-		header("Location: ./sort.php?active_taxis=true");
+		emDirect("./sort.php?active_taxis=true");
 	}else{
-		header("Location: ./sort.php?error_b=true");
+		emDirect("./sort.php?error_b=true");
 	}
 }
 
@@ -43,25 +43,20 @@ if($action== 'add')
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 
 	if(empty($sortname)){
-		header("Location: ./sort.php?error_a=true");
-		exit;
+		emDirect("./sort.php?error_a=true");
 	}
 	if (!empty($alias)) {
 		if (!preg_match("|^[\w-]+$|", $alias)) {
-			header("Location: ./sort.php?error_c=true");
-			exit;
+			emDirect("./sort.php?error_c=true");
 		}elseif(preg_match("|^[0-9]+$|", $alias)){
-			header("Location: ./sort.php?error_f=true");
-			exit;			
+			emDirect("./sort.php?error_f=true");
 		}elseif (in_array($alias, array('post','record','sort','tag','author','page'))) {
-			header("Location: ./sort.php?error_e=true");
-			exit;
+			emDirect("./sort.php?error_e=true");
 		}else {
 		    $sort_cache = $CACHE->readCache('sort');
 		    foreach ($sort_cache as $key => $value) {
 		        if ($alias == $value['alias']) {
-					header("Location: ./sort.php?error_d=true");
-					exit;
+					emDirect("./sort.php?error_d=true");
 		        }
 		    }
 		}
@@ -69,7 +64,7 @@ if($action== 'add')
 
 	$Sort_Model->addSort($sortname, $alias, $taxis);
 	$CACHE->updateCache('sort');
-	header("Location: ./sort.php?active_add=true");
+	emDirect("./sort.php?active_add=true");
 }
 
 if($action == 'update')
@@ -84,20 +79,16 @@ if($action == 'update')
 		$sort_data['alias'] = addslashes(trim($_GET['alias']));
 		if (!empty($sort_data['alias'])) {
 			if (!preg_match("|^[\w-]+$|", $sort_data['alias'])) {
-				header("Location: ./sort.php?error_c=true");
-				exit;
+				emDirect("./sort.php?error_c=true");
 			} elseif(preg_match("|^[0-9]+$|", $sort_data['alias'])){
-				header("Location: ./sort.php?error_f=true");
-				exit;			
+				emDirect("./sort.php?error_f=true");
 			} elseif (in_array($sort_data['alias'], array('post','record','sort','tag','author','page'))) {
-				header("Location: ./sort.php?error_e=true");
-				exit;
+				emDirect("./sort.php?error_e=true");
 			} else{
 			    $sort_cache = $CACHE->readCache('sort');
 			    foreach ($sort_cache as $key => $value) {
 			    	if ($sort_data['alias'] == $value['alias']) {
-			    		header("Location: ./sort.php?error_d=true");
-			    		exit;
+			    		emDirect("./sort.php?error_d=true");
 			    	}
 			    }
 			}
@@ -106,7 +97,7 @@ if($action == 'update')
 
 	$Sort_Model->updateSort($sort_data, $sid);
 	$CACHE->updateCache(array('sort', 'logsort'));
-	header("Location: ./sort.php?active_edit=true");
+	emDirect("./sort.php?active_edit=true");
 }
 
 if ($action == 'del')
@@ -114,5 +105,5 @@ if ($action == 'del')
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$Sort_Model->deleteSort($sid);
 	$CACHE->updateCache(array('sort', 'logsort'));
-	header("Location: ./sort.php?active_del=true");
+	emDirect("./sort.php?active_del=true");
 }

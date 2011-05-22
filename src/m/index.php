@@ -123,14 +123,14 @@ if (ISLOGIN === true && $action == 'savelog') {
 		$Tag_Model->addTag($tagstring, $blogid);
 	}
 	$CACHE->updateCache();
-	header ("Location: ./");
+	emDirect("./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
 	$Log_Model = new Log_Model();
 	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
 	$Log_Model->deleteLog($id);
 	$CACHE->updateCache();
-	header("Location: ./");
+	emDirect("./");
 }
 // 评论
 if ($action == 'addcom') {
@@ -191,7 +191,7 @@ if ($action == 'addcom') {
 			$DB->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved', $cid);
-            header("Location: ".'./?post=' . $blogId);
+            emDirect('./?post=' . $blogId);
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved', $cid);
@@ -223,21 +223,21 @@ if (ISLOGIN === true && $action == 'delcom') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
 	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
 	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
 if ($action == 'reply') {
 	$Comment_Model = new Comment_Model();
@@ -272,8 +272,7 @@ if (ISLOGIN === true && $action == 't') {
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
     if (!$t){
-        header ("Location: ./?action=tw");
-        exit;
+        emDirect("./?action=tw");
     }
     $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
@@ -282,14 +281,14 @@ if (ISLOGIN === true && $action == 't') {
     $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
-    header ("Location: ./?action=tw");
+    emDirect("./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {
     $Twitter_Model = new Twitter_Model();
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
-	header("Location: ./?action=tw");
+	emDirect("./?action=tw");
 }
 if ($action == 'login') {
 	Option::get('login_code') == 'y' ? $ckcode = "<span>验证码</span>
@@ -309,14 +308,14 @@ if ($action == 'auth') {
 	$ispersis = true;
 	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);
-		header("Location: ?tem=" . time());
+		emDirect('?tem=' . time());
 	}else {
-		header("Location: ?action=login");
+		emDirect("?action=login");
 	}
 }
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time () - 31536000, '/');
-	header("Location: ?tem=" . time());
+	emDirect('?tem=' . time());
 }
 function mMsg($msg, $url) {
 	include View::getView('header');

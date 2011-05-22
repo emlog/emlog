@@ -24,20 +24,16 @@ if ($action== 'new') {
 	$role = 'writer';//用户组：联合撰写人
 
 	if ($login == '') {
-		header("Location: ./user.php?error_login=true");
-		exit;
+		emDirect("./user.php?error_login=true");
 	}
 	if ($User_Model->isUserExist($login)) {
-		header("Location: ./user.php?error_exist=true");
-		exit;
+		emDirect("./user.php?error_exist=true");
 	}
 	if (strlen($password) < 6) {
-		header("Location: ./user.php?error_pwd_len=true");
-		exit;
+		emDirect("./user.php?error_pwd_len=true");
 	}
 	if ($password != $password2) {
-		header("Location: ./user.php?error_pwd2=true");
-		exit;
+		emDirect("./user.php?error_pwd2=true");
 	}
 
 	$PHPASS = new PasswordHash(8, true);
@@ -45,7 +41,7 @@ if ($action== 'new') {
 
 	$User_Model->addUser($login, $password, $role);
 	$CACHE->updateCache(array('sta','user'));
-	header("Location: ./user.php?active_add=true");
+	emDirect("./user.php?active_add=true");
 }
 if ($action== 'edit') {
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
@@ -67,20 +63,16 @@ if ($action=='update') {
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
 	if ($login == '') {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_login=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_login=true");
 	}
 	if ($User_Model->isUserExist($login, $uid)) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_exist=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist=true");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd_len=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=true");
 	}
 	if ($password != $password2) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd2=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
 	}
 
     $userData = array('username'=>$login, 
@@ -97,12 +89,12 @@ if ($action=='update') {
 
 	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');
-	header("Location: ./user.php?active_update=true");
+	emDirect("./user.php?active_update=true");
 }
 if ($action== 'del') {
 	$users = $User_Model->getUsers();
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 	$User_Model->deleteUser($uid);
 	$CACHE->updateCache(array('sta','user'));
-	header("Location: ./user.php?active_del=true");
+	emDirect("./user.php?active_del=true");
 }

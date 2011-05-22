@@ -35,7 +35,7 @@ if($action=='update_tag')
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$Tag_Model->updateTagName($tagId, $tagName);
 	$CACHE->updateCache(array('tags', 'logtags'));
-	header("Location: ./tag.php?active_edit=true");
+	emDirect("./tag.php?active_edit=true");
 }
 
 //批量删除标签
@@ -44,13 +44,12 @@ if($action== 'dell_all_tag')
 	$tags = isset($_POST['tag']) ? $_POST['tag'] : '';
 	if(!$tags)
 	{
-		header("Location: ./tag.php?error_a=true");
-		exit;
+		emDirect("./tag.php?error_a=true");
 	}
 	foreach($tags as $key=>$value)
 	{
 		$Tag_Model->deleteTag($key);
 	}
 	$CACHE->updateCache(array('tags', 'logtags'));
-	header("Location: ./tag.php?active_del=true");
+	emDirect("./tag.php?active_del=true");
 }
