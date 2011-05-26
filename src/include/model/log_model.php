@@ -177,13 +177,13 @@ class Log_Model {
 	 *
 	 * @param string $condition
 	 * @param int $page
-	 * @param int $prePageNum
+	 * @param int $perPageNum
 	 * @return array
 	 */
-	function getLogsForHome($condition = '', $page = 1, $prePageNum) {
+	function getLogsForHome($condition = '', $page = 1, $perPageNum) {
 		$timezone = Option::get('timezone');
-		$start_limit = !empty($page) ? ($page - 1) * $prePageNum : 0;
-		$limit = $prePageNum ? "LIMIT $start_limit, $prePageNum" : '';
+		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
+		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();
