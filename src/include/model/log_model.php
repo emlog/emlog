@@ -262,10 +262,7 @@ class Log_Model {
 	 * @return date
 	 */
 	function postDate($timezone = 8, $postDate = null, $oldDate = null) {
-		
 		$timezone = Option::get('timezone');
-		$oldDate -= $timezone * 3600;
-		echo '++'.$oldDate.'++';
 		$localtime = time();
 		$logDate = $oldDate ? $oldDate : $localtime;
 		$unixPostDate = '';
@@ -277,7 +274,6 @@ class Log_Model {
 		} else {
 			return $localtime;
 		}
-		echo '++'.$unixPostDate;
 		return $unixPostDate;
 	}
 

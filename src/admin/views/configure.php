@@ -125,7 +125,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		每页显示<input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />条评论，
 		<select name="comment_order"><option value="newer" <?php echo $ex3; ?>>较新的</option><option value="older" <?php echo $ex4; ?>>较旧的</option></select>排在前面<br />
 		</td>
-      </tr
+      </tr>
     </tbody>
   </table>
   <div class="setting_line"></div>
