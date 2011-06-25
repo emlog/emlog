@@ -178,4 +178,9 @@ textarea{font-size:12px}
 
 .setting_line{width:665px; padding:5px 0px 0px 0px; margin:0px 0px 5px 30px; border-bottom:1px solid #F7F7F7}
 .custom_top_button{ margin-top:10px;}
-.custom_top_button a{ background:url(../images/custom_top.gif) no-repeat; width:90px; height:24px; display:block; padding-left:20px; color:#000000;}
+.custom_top_button a{ background:url(../images/custom_top.gif) no-repeat; width:90px; height:24px; display:block; padding:2px 0px 0px 20px; color:#000000;}
+.custom_top_button a:active{ text-decoration:none; padding:2px 0px 0px 21px}
+
+.add_plugin {margin:16px 0px;}
+.add_plugin a{ background:url(../images/add_bg.gif) no-repeat; width:90px; height:24px; display:block; padding:4px 0px 0px 25px ; color:#000000;}
+.add_plugin a:active{ text-decoration:none; padding:4px 0px 0px 26px}

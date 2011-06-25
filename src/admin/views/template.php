@@ -1,11 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>当前模板</b><?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?></div>
-<div class=line></div>
+<div class="containertitle2">
+<a class="navi3" href="./template.php">当前模板</a>
+<a class="navi4" href="./template.php">安装模板</a>
+<?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?>
+</div>
 <?php if(!$nonceTplData): ?>
 <div class="error_msg">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div>
 <?php else:?>
-<table cellspacing="10" cellpadding="0" width="80%" border="0">
+<table cellspacing="20" cellpadding="0" width="80%" border="0">
     <tr>
       <td width="27%">
 	  <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="300" height="225"  border="1" />	  </td>
@@ -20,8 +23,9 @@
     </tr>
 </table>
 <?php endif;?>
-<div class=containertitle><b>可用模板</b></div>
-<div class=template_line>当前共有<?php echo $tplnums; ?>个可用模板 <a href="http://www.emlog.net/template/" target="_blank">获取更多模板&raquo;</a></div>
+<div class="containertitle2">
+<span class="navi3">模板库 (<?php echo $tplnums; ?>)</span>
+</div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
 <?php 
 $i = 0;
