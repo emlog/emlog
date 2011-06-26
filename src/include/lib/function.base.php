@@ -598,10 +598,30 @@ function getMonthDayNum($month, $year) {
                 return 28;
             }
             break;
-         default:
+        default:
             return 30;
             break;
     }
+}
+/**
+ * 解压zip
+ */
+function emUnZip ($zipfile, $path) {
+	if(class_exists('ZipArchive')) {
+	    $zip = new ZipArchive();
+	    if ($zip->open($zipfile) === TRUE) {
+	    	if (true === $zip->extractTo($path)) {
+	    		$zip->close();
+	    		return 'succ';
+	    	} else {
+	    		return 0;
+	    	}
+		} else {
+		    return 1;
+		}
+	} else {
+		return 2;
+	}
 }
 
 /**

@@ -2,7 +2,7 @@
 <script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi3" href="./template.php">当前模板</a>
-<a class="navi4" href="./template.php">安装模板</a>
+<a class="navi4" href="./template.php?action=install">安装模板</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?>
 </div>
 <?php if(!$nonceTplData): ?>
@@ -25,6 +25,8 @@
 <?php endif;?>
 <div class="containertitle2">
 <span class="navi3">模板库 (<?php echo $tplnums; ?>)</span>
+<a name="tpllib"></a>
+<?php if(isset($_GET['activate_install'])):?><span class="actived">模板上传成功</span><?php endif;?>
 </div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
 <?php 

@@ -99,6 +99,7 @@ src/admin/views/edit_log.php -text
 src/admin/views/edit_page.php -text
 src/admin/views/footer.php -text
 src/admin/views/header.php -text
+src/admin/views/images/add_bg.gif -text
 src/admin/views/images/addblog.gif -text
 src/admin/views/images/adm_menu_bg.gif -text
 src/admin/views/images/admindex_itembg.gif -text
@@ -161,6 +162,7 @@ src/admin/views/tag.php -text
 src/admin/views/tagedit.php -text
 src/admin/views/template.php -text
 src/admin/views/template_crop.php -text
+src/admin/views/template_install.php -text
 src/admin/views/template_top.php -text
 src/admin/views/trackback.php -text
 src/admin/views/twitter.php -text

@@ -48,6 +48,7 @@ if($action == '') {
 	include View::getView('footer');
 	View::output();
 }
+
 //使用模板
 if($action == 'usetpl')
 {
@@ -59,7 +60,6 @@ if($action == 'usetpl')
 	$CACHE->updateCache('options');
 	emDirect("./template.php?activated=true");
 }
-
 
 //自定义顶部图片页面
 if($action == 'custom-top')
@@ -168,4 +168,42 @@ if ($action == 'crop') {
 	Option::updateOption('custom_topimgs', serialize($custom_topimgs));
 	$CACHE->updateCache('options');
 	emDirect("./template.php?action=custom-top&activated=true");
+}
+
+//安装模板
+if($action == 'install')
+{
+	include View::getView('header');
+	require_once View::getView('template_install');
+	include View::getView('footer');
+	View::output();
+}
+
+//上传zip模板
+if ($action == 'upload_zip') {
+	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
+
+	if ($zipfile['error'] == 4){
+		emDirect("./template.php?action=install&error_d=1");
+	}
+	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
+		formMsg('模板文件上传失败', 'javascript:history.go(-1);', 0);
+	}
+	if (getFileSuffix($zipfile['name']) != 'zip') {
+		emDirect("./template.php?action=install&error_a=1");
+	}
+
+	$ret = emUnZip($zipfile['tmp_name'], '../content/templates/');
+	switch ($ret) {
+		case 'succ':
+			emDirect("./template.php?activate_install=1#tpllib");
+			break;
+		case 0:
+		case 1:
+			emDirect("./template.php?action=install&error_b=1");
+			break;
+		case 2:
+			emDirect("./template.php?action=install&error_c=1");
+			break;
+	}
 }
