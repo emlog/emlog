@@ -61,6 +61,18 @@ if($action == 'usetpl')
 	emDirect("./template.php?activated=true");
 }
 
+//删除模板
+if($action == 'del')
+{
+	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
+
+	if (true === emDeleteFile(TPLS_PATH . $tplName)) {
+		emDirect("./template.php?activate_del=1#tpllib");
+	} else {
+		emDirect("./template.php?error_a=1#tpllib");
+	}
+}
+
 //自定义顶部图片页面
 if($action == 'custom-top')
 {

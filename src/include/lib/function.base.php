@@ -625,6 +625,31 @@ function emUnZip ($zipfile, $path) {
 }
 
 /**
+ * 删除文件或目录
+ */
+function emDeleteFile ($file){
+    if (empty($file))
+    	return false;
+    if (@is_file($file))
+        return @unlink($file);
+   	$ret = true;
+   	if ($handle = @opendir($file)) {
+		while ($filename = @readdir($handle)){
+			if ($filename == '.' || $filename == '..')
+				continue;
+			if (!emDeleteFile($file . '/' . $filename))
+				$ret = false;
+		}
+   	} else {
+   		$ret = false;
+   	}
+	if ( file_exists($file) && !rmdir($file) && !emDeleteFile($file)){
+		$ret = false;
+	}
+   	return $ret;
+}
+
+/**
  * 页面跳转
  */
 function emDirect($directUrl) {

@@ -20,38 +20,41 @@ function timestamp(){
 function em_confirm (id, property) {
 	switch (property){
 		case 'tw':
-		var urlreturn="twitter.php?action=del&id="+id;
-		var msg = "你确定要删除该条碎语吗？";break;
+			var urlreturn="twitter.php?action=del&id="+id;
+			var msg = "你确定要删除该条碎语吗？";break;
 		case 'comment':
-		var urlreturn="comment.php?action=del&id="+id;
-		var msg = "你确定要删除该评论吗？";break;
+			var urlreturn="comment.php?action=del&id="+id;
+			var msg = "你确定要删除该评论吗？";break;
 		case 'link':
-		var urlreturn="link.php?action=dellink&linkid="+id;
-		var msg = "你确定要删除该链接吗？";break;
+			var urlreturn="link.php?action=dellink&linkid="+id;
+			var msg = "你确定要删除该链接吗？";break;
 		case 'backup':
-		var urlreturn="data.php?action=renewdata&sqlfile="+id;
-		var msg = "你确定要导入该备份文件吗？";break;
+			var urlreturn="data.php?action=renewdata&sqlfile="+id;
+			var msg = "你确定要导入该备份文件吗？";break;
 		case 'attachment':
-		var urlreturn="attachment.php?action=del_attach&aid="+id;
-		var msg = "你确定要删除该附件吗？";break;
+			var urlreturn="attachment.php?action=del_attach&aid="+id;
+			var msg = "你确定要删除该附件吗？";break;
 		case 'avatar':
-		var urlreturn="blogger.php?action=delicon";
-		var msg = "你确定要删除头像吗？";break;
+			var urlreturn="blogger.php?action=delicon";
+			var msg = "你确定要删除头像吗？";break;
 		case 'sort':
-		var urlreturn="sort.php?action=del&sid="+id;
-		var msg = "你确定要删除该分类吗？";break;
+			var urlreturn="sort.php?action=del&sid="+id;
+			var msg = "你确定要删除该分类吗？";break;
 		case 'page':
-		var urlreturn="page.php?action=del&gid="+id;
-		var msg = "你确定要删除该页面吗？";break;
+			var urlreturn="page.php?action=del&gid="+id;
+			var msg = "你确定要删除该页面吗？";break;
 		case 'user':
-		var urlreturn="user.php?action=del&uid="+id;
-		var msg = "你确定要删除该用户吗？";break;
+			var urlreturn="user.php?action=del&uid="+id;
+			var msg = "你确定要删除该用户吗？";break;
+		case 'tpl':
+			var urlreturn="template.php?action=del&tpl="+id;
+			var msg = "你确定要删除该模板吗？";break;
 		case 'reset_widget':
-		var urlreturn="widgets.php?action=reset";
-		var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+			var urlreturn="widgets.php?action=reset";
+			var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
 		case 'reset_plugin':
-		var urlreturn="plugin.php?action=reset";
-		var msg = "你确定要禁用所有插件吗？";break;
+			var urlreturn="plugin.php?action=reset";
+			var msg = "你确定要禁用所有插件吗？";break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }

@@ -27,6 +27,8 @@
 <span class="navi3">模板库 (<?php echo $tplnums; ?>)</span>
 <a name="tpllib"></a>
 <?php if(isset($_GET['activate_install'])):?><span class="actived">模板上传成功</span><?php endif;?>
+<?php if(isset($_GET['activate_del'])):?><span class="actived">删除模板成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">删除模板失败，请检查模板文件权限</span><?php endif;?>
 </div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
 <?php 
@@ -39,7 +41,8 @@ $i++;
 	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>">
 	  <img alt="点击使用该模板" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
 	  </a><br />
-      <b><a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>" title="点击使用该模板"><?php echo $value['tplname']; ?></a></b><br />
+      <?php echo $value['tplname']; ?>
+      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl');">删除</a></span>
       </td>
 <?php 
 if($i > 0 && $i % 3 == 0){echo "</tr>";}
