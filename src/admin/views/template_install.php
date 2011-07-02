@@ -8,6 +8,7 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">上传失败，请确保模板目录可写</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">空间不支持zip模块，请按照如下提示手动安装模板</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">请选择一个zip模板安装包</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">安装失败，模板安装包不符合标准</span><?php endif;?>
 </div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 10px;">

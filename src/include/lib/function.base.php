@@ -606,11 +606,25 @@ function getMonthDayNum($month, $year) {
 /**
  * 解压zip
  */
-function emUnZip ($zipfile, $path) {
+function emUnZip ($zipfile, $path, $type = 'tpl') {
 	if(class_exists('ZipArchive')) {
 	    $zip = new ZipArchive();
 	    if (@$zip->open($zipfile) === TRUE) {
 	    	if (true === @$zip->extractTo($path)) {
+	    		$dir = $zip->getNameIndex(0);
+	    		switch ($type) {
+	    			case 'tpl':
+	    				$re = $zip->getFromName($dir.'header.php');
+	    				if (false === $re)
+	    					return -2;
+	    				break;
+	    			case 'plugin':
+	    				$plugin_name = substr($dir, 0 -1);
+	    				$re = $zip->getFromName($dir.$plugin_name.'.php');
+	    				if (false === $re)
+	    					return -1;
+	    				break;
+	    		}
 	    		$zip->close();
 	    		return 0;
 	    	} else {
