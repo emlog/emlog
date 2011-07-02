@@ -207,14 +207,14 @@ if ($action == 'upload_zip') {
 
 	$ret = emUnZip($zipfile['tmp_name'], '../content/templates/');
 	switch ($ret) {
-		case 'succ':
+		case 0:
 			emDirect("./template.php?activate_install=1#tpllib");
 			break;
-		case 0:
 		case 1:
+		case 2:
 			emDirect("./template.php?action=install&error_b=1");
 			break;
-		case 2:
+		case 3:
 			emDirect("./template.php?action=install&error_c=1");
 			break;
 	}

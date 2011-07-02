@@ -609,18 +609,18 @@ function getMonthDayNum($month, $year) {
 function emUnZip ($zipfile, $path) {
 	if(class_exists('ZipArchive')) {
 	    $zip = new ZipArchive();
-	    if ($zip->open($zipfile) === TRUE) {
-	    	if (true === $zip->extractTo($path)) {
+	    if (@$zip->open($zipfile) === TRUE) {
+	    	if (true === @$zip->extractTo($path)) {
 	    		$zip->close();
-	    		return 'succ';
-	    	} else {
 	    		return 0;
+	    	} else {
+	    		return 1;
 	    	}
 		} else {
-		    return 1;
+		    return 2;
 		}
 	} else {
-		return 2;
+		return 3;
 	}
 }
 
@@ -643,7 +643,8 @@ function emDeleteFile ($file){
    	} else {
    		$ret = false;
    	}
-	if ( file_exists($file) && !rmdir($file) && !emDeleteFile($file)){
+   	@closedir($handle);
+	if ( file_exists($file) && !rmdir($file) ){
 		$ret = false;
 	}
    	return $ret;
