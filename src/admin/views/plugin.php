@@ -1,8 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b>插件管理</b><div id="msg"></div>
+<?php if(isset($_GET['activate_install'])):?><span class="actived">插件上传成功，请激活使用</span><?php endif;?>
 <?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
+<?php if(isset($_GET['activate_del'])):?><span class="actived">删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_error'])):?><span class="error">插件激活失败</span><?php endif;?>
 <?php if(isset($_GET['inactive'])):?><span class="actived">插件禁用成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
@@ -13,6 +16,7 @@
         <th width="36" class="tdcenter"><b>状态</b></th>
 		<th width="30" class="tdcenter"><b>版本</b></th>
 		<th width="500" class="tdcenter"><b>描述</b></th>
+		<th width="30" class="tdcenter"></th>
       </tr>
   </thead>
   <tbody>
@@ -50,16 +54,13 @@
 		<?php endif;?>
 		<?php if ($val['AuthorUrl'] != ''):?>，<a href="<?php echo $val['AuthorUrl'];?>" target="_blank">作者主页&raquo;</a><?php endif;?>
 		</td>
+		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');">删除</a></td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>
   </table>
 </form>
 <div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
-<!--<div style="margin:30px 0px 10px 3px;">
-    <a href="http://www.emlog.net/extend/plugins" target="_blank">获取更多插件&raquo;</a>
-    <a href="javascript: em_confirm(0, 'reset_plugin');" style="margin-left:30px;">禁用所有插件&raquo;</a>
-</div>-->
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")

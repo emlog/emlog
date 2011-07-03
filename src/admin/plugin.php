@@ -68,6 +68,19 @@ if ($action == 'install') {
 	View::output();
 }
 
+//删除插件
+if($action == 'del')
+{
+	$Plugin_Model = new Plugin_Model();
+	$Plugin_Model->inactivePlugin($plugin);
+	$pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
+	if (true === emDeleteFile('../content/plugins/' . $pludir)) {
+		emDirect("./plugin.php?activate_del=1");
+	} else {
+		emDirect("./plugin.php?error_a=1");
+	}
+}
+
 //上传zip插件
 if ($action == 'upload_zip') {
 	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
@@ -98,11 +111,4 @@ if ($action == 'upload_zip') {
 			emDirect("./plugin.php?action=install&error_c=1");
 			break;
 	}
-}
-
-//禁用所有插件
-if($action == 'reset') {
-    Option::updateOption('active_plugins', 'a:0:{}');
-	$CACHE->updateCache('options');
-	emDirect("./plugin.php?inactive=true");
 }

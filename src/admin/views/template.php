@@ -29,7 +29,7 @@
 <a name="tpllib"></a>
 <?php if(isset($_GET['activate_install'])):?><span class="actived">模板上传成功</span><?php endif;?>
 <?php if(isset($_GET['activate_del'])):?><span class="actived">删除模板成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">删除模板失败，请检查模板文件权限</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查模板文件权限</span><?php endif;?>
 </div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
 <?php 

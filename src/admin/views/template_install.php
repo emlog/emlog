@@ -3,7 +3,6 @@
 <div class="containertitle2">
 <a class="navi1" href="./template.php">当前模板</a>
 <a class="navi2" href="./template.php?action=install">安装模板</a>
-<?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">只支持zip压缩格式的模板包</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">上传失败，请确保模板目录可写</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">空间不支持zip模块，请按照如下提示手动安装模板</span><?php endif;?>

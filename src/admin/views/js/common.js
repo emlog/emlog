@@ -52,9 +52,9 @@ function em_confirm (id, property) {
 		case 'reset_widget':
 			var urlreturn="widgets.php?action=reset";
 			var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
-		case 'reset_plugin':
-			var urlreturn="plugin.php?action=reset";
-			var msg = "你确定要禁用所有插件吗？";break;
+		case 'plu':
+			var urlreturn="plugin.php?action=del&plugin="+id;
+			var msg = "你确定要删除该插件吗？";break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
