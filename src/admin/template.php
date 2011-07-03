@@ -204,7 +204,7 @@ if ($action == 'upload_zip') {
 		emDirect("./template.php?action=install&error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
-		formMsg('模板文件上传失败', 'javascript:history.go(-1);', 0);
+		formMsg('模板上传失败', 'javascript:history.go(-1);', 0);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?action=install&error_a=1");

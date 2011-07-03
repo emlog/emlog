@@ -618,7 +618,7 @@ function emUnZip ($zipfile, $path, $type = 'tpl') {
 	    			return -2;
 	    			break;
 	    		case 'plugin':
-	    			$plugin_name = substr($dir, 0 -1);
+	    			$plugin_name = substr($dir, 0, -1);
 	    			$re = $zip->getFromName($dir.$plugin_name.'.php');
 	    			if (false === $re)
 	    				return -1;

@@ -143,6 +143,7 @@ src/admin/views/login.php -text
 src/admin/views/msg.php -text
 src/admin/views/permalink.php -text
 src/admin/views/plugin.php -text
+src/admin/views/plugin_install.php -text
 src/admin/views/sort.php -text
 src/admin/views/style.php -text
 src/admin/views/style/default/images/coment_numbg.gif -text

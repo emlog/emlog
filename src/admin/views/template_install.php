@@ -20,7 +20,7 @@
 </div>
 <?php endif; ?>
 <div style="margin:20px 10px;">
-<div class="des">请上传一个zip压缩格式的模板安装包。<a href="http://www.emlog.net/template/" target="_blank">获取更多模板&raquo;</a></div>
+<div class="des">请上传一个zip压缩格式的模板安装包。<a href="http://www.emlog.net/plugins/" target="_blank">获取更多模板&raquo;</a></div>
 </div>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div id="topimg_custom">

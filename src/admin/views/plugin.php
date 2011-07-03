@@ -55,7 +55,7 @@
 	</tbody>
   </table>
 </form>
-<div class="add_plugin"><a href="./plugin.php">安装插件</a></div>
+<div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
 <!--<div style="margin:30px 0px 10px 3px;">
     <a href="http://www.emlog.net/extend/plugins" target="_blank">获取更多插件&raquo;</a>
     <a href="javascript: em_confirm(0, 'reset_plugin');" style="margin-left:30px;">禁用所有插件&raquo;</a>
