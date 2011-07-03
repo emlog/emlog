@@ -28,8 +28,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php echo $page_url;?>
 </div>
 
-</div>
-<!--end content-->
+</div><!-- end #contentleft-->
 <?php
  include View::getView('side');
  include View::getView('footer');

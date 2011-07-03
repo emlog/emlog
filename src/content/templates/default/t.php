@@ -44,9 +44,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <?php endforeach;?>
 	<li id="pagenavi"><?php echo $pageurl;?><span></span></li>
     </ul>
-</div>
-</div>
-<!--end content-->
+</div><!--end #tw-->
+</div><!--end #contentleft-->
 <?php
  include View::getView('side');
  include View::getView('footer');
