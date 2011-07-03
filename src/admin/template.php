@@ -11,11 +11,16 @@ if($action == '') {
 	$nonce_templet = Option::get('nonce_templet');
 	$nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
+	preg_match("/Version:(.*)/i", $nonceTplData, $tplVersion);
 	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
 	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
 	preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
+	preg_match("/ForEmlog:(.*)/i", $nonceTplData, $tplForEmlog);
 	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
+	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
+	$tplForEm = !empty($tplForEmlog[1]) ? '适用于emlog：' . $tplForEmlog[1] : '';
+
 	if(isset($tplAuthor[1]))
 	{
 		$tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
