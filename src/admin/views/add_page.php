@@ -6,14 +6,15 @@
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题：</b><br />
-          <input maxlength="200" style="width:380px;" name="title" id="title"/>
+          <td>
+          <label for="title" id="title_label">输入页面标题</label>
+          <input type="text" maxlength="200" style="width:710px;" name="title" id="title"/>
 	      <input name="date" id="date" type="hidden" value="" >
         </td>
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);autosave(4);" class="thickbox">附件管理</a><span id="asmsg">
+          <a href="javascript: displayToggle('FrameUpload', 0);autosave(4);" class="thickbox">附件管理</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=selectFile"></iframe></div>
@@ -53,7 +54,10 @@
   </form>
 <div class=line></div>
 <script>
-$("#title").focus();
 $("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});
+
+$("#title").focus(function(){$("#title_label").hide();});
+$("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});
+
 </script>

@@ -6,13 +6,14 @@
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题：</b><span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:380px;" name="title" id="title" value="<?php echo $title; ?>"/>
+          <td><span id="auto_msg"></span>
+		  <label for="title" id="title_label">输入页面标题</label>
+		  <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
           </td>
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a><span id="asmsg">
+          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe></div>          
@@ -56,4 +57,8 @@
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#menu_page").addClass('sidebarsubmenu1');
+
+$("#title").focus(function(){$("#title_label").hide();});
+$("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});
+if ($("#title").val() != '')$("#title_label").hide();
 </script>

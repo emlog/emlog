@@ -130,6 +130,8 @@ function insertTag (tag, boxId){
 		targetinput += n;
 	}
 	$("#"+boxId).val(targetinput);
+	if (boxId == "tag")
+		$("#tag_label").hide();
 }
 //act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
 function autosave(act){

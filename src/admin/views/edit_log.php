@@ -10,24 +10,14 @@ $isdraft = $hide == 'y' ? true : false;
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><b>标题：</b><span id="auto_msg"></span><br />
-          <input maxlength="200" style="width:380px;" name="title" id="title" value="<?php echo $title; ?>"/>
-			<select name="sort" id="sort">
-			<?php
-			$sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
-			foreach($sorts as $val):
-			$flg = $val['sid'] == $sortid ? 'selected' : '';
-			?>
-			<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
-			<?php endforeach; ?>
-			</select>
-	       <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
-	       <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
+          <td><span id="auto_msg"></span><br />
+		  <label for="title" id="title_label">输入日志标题</label>
+          <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
           </td>
         </tr>
         <tr>
           <td>
-          <b>内容：</b> <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a><span id="asmsg">
+          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">附件管理</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
           <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
@@ -36,20 +26,35 @@ $isdraft = $hide == 'y' ? true : false;
 		  </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>标签：</b>(Tag，日志的关键字，半角逗号&quot;,&quot;分隔多个标签)<br />
-          <input name="tag" id="tag" maxlength="200" style="width:715px;" value="<?php echo $tagStr; ?>" />
-          <?php if (!empty($tags)):?>
-          <br /><div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>
-          <?php endif; ?>
-          <div id="tagbox" style="width:688px;margin-left:30px;display:none;">
-          <?php
-          $tagStr = '';
-          foreach ($tags as $val){
-          	$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-          }
-          echo $tagStr;
-          ?>
-          </div>
+          <td>
+			  <div style="margin:10px 0px 5px 0px;">
+			  <label for="tag" id="tag_label">输入日志标签，半角逗号分隔</label>
+			  <input name="tag" id="tag" maxlength="200" style="width:462px;" value="<?php echo $tagStr; ?>" />
+
+			  <select name="sort" id="sort">
+				<?php
+				$sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
+				foreach($sorts as $val):
+				$flg = $val['sid'] == $sortid ? 'selected' : '';
+				?>
+				<option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
+				<?php endforeach; ?>
+			   </select>
+
+			  <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
+			  <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
+			  </div>
+			  <?php if (!empty($tags)):?>
+			  <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>
+			  <?php endif; ?>
+			  <div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
+			  <?php 
+			  $tagStr = '';
+			  foreach ($tags as $val){
+				$tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+			  }
+			  echo $tagStr;?>
+			  </div>
             </td>
         </tr>
 	</tbody>
@@ -106,6 +111,14 @@ $isdraft = $hide == 'y' ? true : false;
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
+
+$("#title").focus(function(){$("#title_label").hide();});
+$("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});
+$("#tag").focus(function(){$("#tag_label").hide();});
+$("#tag").blur(function(){if($("#tag").val() == '') {$("#tag_label").show();}});
+if ($("#title").val() != '')$("#title_label").hide();
+if ($("#tag").val() != '')$("#tag_label").hide();
+
 setTimeout("autosave(0)",60000);
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('sidebarsubmenu1');
