@@ -28,7 +28,7 @@ $isdraft = $hide == 'y' ? true : false;
         <tr nowrap="nowrap">
           <td>
 			  <div style="margin:10px 0px 5px 0px;">
-			  <label for="tag" id="tag_label">输入日志标签，半角逗号分隔</label>
+			  <label for="tag" id="tag_label">日志标签，半角逗号分隔</label>
 			  <input name="tag" id="tag" maxlength="200" style="width:462px;" value="<?php echo $tagStr; ?>" />
 
 			  <select name="sort" id="sort">
@@ -73,13 +73,13 @@ $isdraft = $hide == 'y' ? true : false;
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><b>引用通告：</b>(Trackback，通知你所引用的日志，每行输入一条引用地址)<br />
+          <td><b>引用通告：</b>(每行一条引用地址)<br />
             <textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea>
           </td>
         </tr>
         <tr>
           <td><b>日志访问密码：</b>
-          <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" /> (留空则不加访问密码)
+          <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
           <span id="post_options">
           <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
           <label for="top">日志置顶</label>
