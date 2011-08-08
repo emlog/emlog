@@ -74,12 +74,12 @@ class Url
             case '0':
                 $recordUrl = BLOG_URL . '?record=' . $record;
                 if ($page)
-                    $recordUrl .= '&page';
+                    $recordUrl .= '&page=';
                 break;
             default:
                 $recordUrl = BLOG_URL . 'record/' . $record;
                 if ($page)
-                    $recordUrl = BLOG_URL . 'record/' . $record . '/page';
+                    $recordUrl = BLOG_URL . 'record/' . $record . '/page/';
                 break;
         }
         return $recordUrl;
@@ -98,12 +98,12 @@ class Url
             case '0':
                 $sortUrl = BLOG_URL . '?sort=' . $sortId;
                 if ($page)
-                    $sortUrl .= '&page';
+                    $sortUrl .= '&page=';
                 break;
 			default:
                 $sortUrl = BLOG_URL . 'sort/' . $sort_index;
                 if ($page)
-                    $sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page';
+                    $sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page/';
                 break;
         }
         return $sortUrl;
@@ -119,12 +119,12 @@ class Url
             case '0':
                 $authorUrl = BLOG_URL . '?author=' . $authorId;
                 if ($page)
-                    $authorUrl .= '&page';
+                    $authorUrl .= '&page=';
                 break;
             default:
                 $authorUrl = BLOG_URL . 'author/' . $authorId;
                 if ($page)
-                    $authorUrl = BLOG_URL . 'author/' . $authorId . '/page';
+                    $authorUrl = BLOG_URL . 'author/' . $authorId . '/page/';
                 break;
         }
         return $authorUrl;
@@ -140,12 +140,12 @@ class Url
             case '0':
                 $tagUrl = BLOG_URL . '?tag=' . $tag;
                 if ($page)
-                    $tagUrl .= '&page';
+                    $tagUrl .= '&page=';
                 break;
             default:
                 $tagUrl = BLOG_URL . 'tag/' . $tag;
                 if ($page)
-                    $tagUrl = BLOG_URL . 'tag/' . $tag . '/page';
+                    $tagUrl = BLOG_URL . 'tag/' . $tag . '/page/';
                 break;
         }
         return $tagUrl;
@@ -159,10 +159,10 @@ class Url
         $logPageUrl = '';
         switch (Option::get('isurlrewrite')) {
             case '0':
-                $logPageUrl = BLOG_URL . '?page';
+                $logPageUrl = BLOG_URL . '?page=';
                 break;
             default:
-                $logPageUrl = BLOG_URL . 'page';
+                $logPageUrl = BLOG_URL . 'page/';
                 break;
         }
         return $logPageUrl;
@@ -173,12 +173,6 @@ class Url
      */
     static function page ($url, $pageId)
     {
-        $pageUrl = '';
-        if (preg_match("/^.*[?&]page$/", $url)) {
-            $pageUrl = $url . '=' . $pageId;
-        } else {
-            $pageUrl = $url . '/' . $pageId . '/';
-        }
-        return $pageUrl;
+        return $url . $pageId;
     }
 }

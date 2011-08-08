@@ -284,13 +284,14 @@ function blog_trackback($tb, $tb_url, $allow_tb){
 <?php
 //blog：博客评论列表
 function blog_comments($comments){
-    if($comments): ?>
+    extract($comments);
+    if($commentStacks): ?>
 	<p class="comment-header"><b>评论：</b><a name="comments"></a></p>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
-	foreach($comments as $key=>$comment):
-	if($comment['pid'] != 0) continue;
+	foreach($commentStacks as $cid):
+    $comment = $comments[$cid];
 	$comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
 	?>
 	<div class="comment" id="comment-<?php echo $comment['cid']; ?>">
@@ -304,6 +305,9 @@ function blog_comments($comments){
 		<?php blog_comments_children($comments, $comment['children']); ?>
 	</div>
 	<?php endforeach; ?>
+    <div id="pagenavi">
+	    <?php echo $commentPageUrl;?>
+    </div>
 <?php }?>
 <?php
 //blog：博客子评论列表

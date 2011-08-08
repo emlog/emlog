@@ -43,6 +43,7 @@ class Log_Controller {
      * 前台日志内容页面输出
      */
     function displayContent($params) {
+        $comment_page = isset($params[4]) ? intval($params[4]) : 1;
     	$Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
@@ -96,7 +97,7 @@ class Log_Controller {
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
         $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
-        $comments = $Comment_Model->getComments(0, $logid, 'n');
+        $comments = $Comment_Model->getComments(0, $logid, 'n', $comment_page);
 
         $curpage = CURPAGE_LOG;
         include View::getView('header');

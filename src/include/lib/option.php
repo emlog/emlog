@@ -62,10 +62,10 @@ class Option {
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'displayContent',
-                            'reg_0' => '|^.*/\?(post)=(\d+)$|',
-                            'reg_1' => '|^.*/(post)-(\d+)\.html$|',
-                            'reg_2' => '|^.*/(post)/(\d+)/?$|',
-                    		'reg_3' => '|^/([^\./\?=]+)(\.html)?/?$|',
+                            'reg_0' => '|^.*/\?(post)=(\d+)(&comment-page=(\d+))?$|',
+                            'reg_1' => '|^.*/(post)-(\d+)\.html(/comment-page-(\d+))?/?$|',
+                            'reg_2' => '|^.*/(post)/(\d+)(/comment-page-(\d+))?/?$|',
+                    		'reg_3' => '|^/([^\./\?=]+)(\.html)?(/comment-page-(\d+))?/?$|',
                             ),
                     array(
                             'model' => 'Record_Controller',
@@ -115,7 +115,7 @@ class Option {
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'displayContent',
-                            'reg_0' => '|^.*/([^/\.=\?]+)(\.html)?/?$|',
+                            'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/comment-page-(\d+))?/?$|',
                             ),
                             
                 );

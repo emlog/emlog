@@ -32,7 +32,7 @@ class Comment_Model {
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
 		$condition = '';
-		if($page)
+		if($page && $spot == 1)
 		{
 			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
@@ -62,8 +62,10 @@ class Comment_Model {
 			$comments[$row['cid']] = $row;
 		}
 		if($spot == 0) {
+            $commentStacks = array();
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
+                if($pid == 0) $commentStacks[] = $cid;
 				if($pid != 0 && isset($comments[$pid])) {
 					if($comments[$cid]['level'] > 4) {
 						$comments[$cid]['pid'] = $pid = $comments[$pid]['pid'];
@@ -71,7 +73,21 @@ class Comment_Model {
 					$comments[$pid]['children'][] = $cid;
 				}
 			}
-			$comments = array_reverse($comments, true);
+            if(Option::get('comment_order') == 'older') {
+			    $comments = array_reverse($comments, true);
+			    $commentStacks = array_reverse($commentStacks);
+            }
+            if(Option::get('comment_paging') == 'y') {
+                $pageurl = Url::log($blogId);
+                if(Option::get('isurlrewrite') == 0 && strpos('=',$pageurl) === false) {
+                    $pageurl .= '&comment-page=';
+                } else {
+                    $pageurl .= '/comment-page-';
+                }
+                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
+                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+            }
+            $comments = compact('comments','commentStacks','commentPageUrl');
 		}
 		return $comments;
 	}
