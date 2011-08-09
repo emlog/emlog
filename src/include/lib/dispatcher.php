@@ -12,12 +12,12 @@ class Dispatcher {
     /**
      * 请求模块
      */
-    private $_model = 'Log_Controller';
+    private $_model = '';
 
     /**
      * 请求模块方法
      */
-    private $_method = 'display';
+    private $_method = '';
 
     /**
      * 请求参数
@@ -50,7 +50,7 @@ class Dispatcher {
         $urlMode = Option::get('isurlrewrite');
         foreach ($this->_routingTable as $route) {
             if (!isset($route['reg_' . $urlMode])) {
-            	$reg = isset($route['reg']) ? $route['reg'] :$route['reg_0'];
+            	$reg = isset($route['reg']) ? $route['reg'] : $route['reg_0'];
             } else {
             	$reg = $route['reg_' . $urlMode];
             }
@@ -65,6 +65,10 @@ class Dispatcher {
                 $this->_params = $matches;
                 break;
             }
+        }
+
+        if (empty($this->_model)) {
+        	emMsg('404', BLOG_URL);
         }
     }
 

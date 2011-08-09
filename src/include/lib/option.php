@@ -55,6 +55,11 @@ class Option {
     static function getRoutingTable(){
     	$routingtable = array(
                     array(
+                            'model' => 'Log_Controller',
+                            'method' => 'display',
+                            'reg_0' => '|^/?$|',
+                            ),
+                    array(
                             'model' => 'calendar',
                             'method' => 'generate',
                             'reg_0' => '|^.*/\?action=cal|',
