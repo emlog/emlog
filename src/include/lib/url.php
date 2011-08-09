@@ -175,4 +175,22 @@ class Url
     {
         return $url . $pageId;
     }
+
+    /**
+     * 获取评论链接
+     */
+    static function comment ($blogId, $pageId, $cid)
+    {
+    	$commentUrl = Url::log($blogId);
+    	if($pageId > 1) {
+    		if(Option::get('isurlrewrite') == 0 && strpos('=',$commentUrl) === false) {
+	    		$commentUrl .= '&comment-page=';
+    		} else {
+	    		$commentUrl .= '/comment-page-';
+    		}
+    		$commentUrl .= $pageId;
+    	}
+    	$commentUrl .= '#' . $cid;
+        return $commentUrl;
+    }
 }

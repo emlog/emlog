@@ -63,6 +63,7 @@ class Comment_Model {
 		}
 		if($spot == 0) {
             $commentStacks = array();
+            $commentPageUrl = '';
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
                 if($pid == 0) $commentStacks[] = $cid;
@@ -73,7 +74,7 @@ class Comment_Model {
 					$comments[$pid]['children'][] = $cid;
 				}
 			}
-            if(Option::get('comment_order') == 'older') {
+            if(Option::get('comment_order') == 'newer') {
 			    $comments = array_reverse($comments, true);
 			    $commentStacks = array_reverse($commentStacks);
             }

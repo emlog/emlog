@@ -174,23 +174,44 @@ class Cache {
 	 * 最新评论缓存
 	 */
 	private function mc_comment() {
-		$show_config = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_comnum'"));
-		$index_comnum = $show_config['option_value'];
-		$show_config = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='comment_subnum'"));
-		$comment_subnum = $show_config['option_value'];
+		$query = $this->db->query("SELECT option_value,option_name FROM " . DB_PREFIX . "options WHERE option_name IN('index_comnum','comment_subnum','comment_paging','comment_pnum','comment_order')");
+		while($row = $this->db->fetch_array($query)) {
+			$$row['option_name'] = $row['option_value'];
+		}
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
 		while ($show_com = $this->db->fetch_array($query)) {
+			$com_page = '';
+			if($comment_paging == 'y') {
+				$pid = $show_com['pid'];
+				$cid = $show_com['cid'];
+				$order = $comment_order == 'newer' ? 'DESC' : '';
+				while($pid != 0) {
+					$show_pid = $this->db->once_fetch_array("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE cid=$pid");
+					$pid = $show_pid['pid'];
+					$cid = $show_pid['cid'];
+				}
+				if(!isset($com_cids[$show_com['gid']])) {
+					$com_cids[$show_com['gid']] = array();
+					$query2 = $this->db->query("SELECT SQL_NO_CACHE cid FROM " . DB_PREFIX . "comment WHERE gid=" . $show_com['gid'] . " AND pid=0 AND hide='n' ORDER BY date $order");
+					while($show_cid = $this->db->fetch_array($query2)) {
+						$com_cids[$show_com['gid']][] = $show_cid['cid'];
+					}
+				}
+				$com_page = intval(floor(array_search($cid, $com_cids[$show_com['gid']]) / $comment_pnum)) + 1;
+			}
 			$com_cache[] = array(
 			    'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
+				'page' => $com_page,
 				'mail' => $show_com['mail'],
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
 				);
 		}
 		$cacheData = serialize($com_cache);
 		$this->cacheWrite($cacheData, 'comment');
+		list($a,$b) = explode(" ",microtime());
 	}
 	/**
 	 * 侧边栏标签缓存

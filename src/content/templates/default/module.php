@@ -95,7 +95,7 @@ function widget_newcomm($title){
 	<ul id="newcomment">
 	<?php
 	foreach($com_cache as $value):
-	$url = Url::log($value['gid']).'#'.$value['cid'];
+	$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 	?>
 	<li id="comment"><?php echo $value['name']; ?>
 	<br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
