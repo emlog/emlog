@@ -80,7 +80,7 @@ class Comment_Model {
             }
             if(Option::get('comment_paging') == 'y') {
                 $pageurl = Url::log($blogId);
-                if(Option::get('isurlrewrite') == 0 && strpos('=',$pageurl) === false) {
+                if(Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
                     $pageurl .= '&comment-page=';
                 } else {
                     $pageurl .= '/comment-page-';

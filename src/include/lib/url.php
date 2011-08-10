@@ -183,7 +183,7 @@ class Url
     {
     	$commentUrl = Url::log($blogId);
     	if($pageId > 1) {
-    		if(Option::get('isurlrewrite') == 0 && strpos('=',$commentUrl) === false) {
+    		if(Option::get('isurlrewrite') == 0 && strpos($commentUrl,'=') !== false) {
 	    		$commentUrl .= '&comment-page=';
     		} else {
 	    		$commentUrl .= '/comment-page-';
