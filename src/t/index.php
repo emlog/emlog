@@ -38,7 +38,7 @@ if ($action == '') {
 
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
-    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page');
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page=');
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
