@@ -169,14 +169,6 @@ class Url
     }
 
     /**
-     * 获取分页链接
-     */
-    static function page ($url, $pageId)
-    {
-        return $url . $pageId;
-    }
-
-    /**
      * 获取评论链接
      */
     static function comment ($blogId, $pageId, $cid)

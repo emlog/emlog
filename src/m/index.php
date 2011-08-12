@@ -23,7 +23,7 @@ if (empty ($action) && empty ($logid)) {
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
 	$sta_cache = $CACHE->readCache('sta');
 	$lognum = $sta_cache['lognum'];
-	$pageurl = '?page';
+	$pageurl = '?page=';
 	$logs = $Log_Model->getLogsForHome ($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
@@ -208,7 +208,7 @@ if ($action == 'com') {
 
 		$comment = $Comment_Model->getComments(1, null, $hide, $page);
 		$cmnum = $Comment_Model->getCommentNum(null, $hide);
-		$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "./?action=com&page");
+		$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "./?action=com&page=");
 	}else {
 		$comment = $CACHE->readCache('comment');
 		$pageurl = '';
@@ -260,7 +260,7 @@ if ($action == 'tw') {
     $user_cache = $CACHE->readCache('user');
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
-    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page');
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page=');
 
 	include View::getView('header');
 	include View::getView('twitter');

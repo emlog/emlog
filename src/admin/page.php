@@ -18,7 +18,7 @@ if ($action == '') {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('','','page', 1);
 
-	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page");
+	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
 	include View::getView('header');
 	require_once(View::getView('admin_page'));

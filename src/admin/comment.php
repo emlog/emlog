@@ -22,7 +22,7 @@ if($action == '')
 	$comment = $Comment_Model->getComments(1, $blogId, $hide, $page);
 	$cmnum = $Comment_Model->getCommentNum($blogId, $hide);
 	$hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
-	$pageurl =  pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page");
+	$pageurl =  pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
 
 	include View::getView('header');
 	require_once(View::getView('comment'));
