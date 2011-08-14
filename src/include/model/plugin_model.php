@@ -133,8 +133,8 @@ class Plugin_Model {
 		preg_match("/Version:(.*)/i", $pluginData, $version);
 		preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
 		preg_match("/Description:(.*)/i", $pluginData, $description);
+		preg_match("/ForEmlog:(.*)/i", $pluginData, $foremlog);
 		preg_match("/Author:(.*)/i", $pluginData, $author_name);
-		preg_match("/Author Email:(.*)/i", $pluginData, $author_email);
 		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
 		$plugin_name = isset($plugin_name[1]) ? trim($plugin_name[1]) : '';
@@ -142,7 +142,7 @@ class Plugin_Model {
 		$description = isset($description[1]) ? $description[1] : '';
 		$plugin_url = isset($plugin_url[1]) ? trim($plugin_url[1]) : '';
 		$author = isset($author_name[1]) ? trim($author_name[1]) : '';
-		$author_email = isset($author_email[1]) ? trim($author_email[1]) : '';
+		$foremlog = isset($foremlog[1]) ? trim($foremlog[1]) : '';
 		$author_url = isset($author_url[1]) ? trim($author_url[1]) : '';
 
 		return array(
@@ -151,7 +151,7 @@ class Plugin_Model {
 		'Description' => $description,
 		'Url' => $plugin_url,
 		'Author' => $author,
-		'Email' => $author_email,
+		'ForEmlog' => $foremlog,
 		'AuthorUrl' => $author_url,
 		);
 	}

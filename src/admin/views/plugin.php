@@ -42,17 +42,17 @@
         <td class="tdcenter"><?php echo $val['Version']; ?></td>
         <td>
 		<?php echo $val['Description']; ?>
-		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank">插件主页&raquo;</a><?php endif;?>
-		<br />
+		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank">更多信息&raquo;</a><?php endif;?>
+		<div style="margin-top:5px;">
+		<?php if ($val['ForEmlog'] != ''):?>适用于emlog：<?php echo $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
 		<?php if ($val['Author'] != ''):?>
-		作者：
-			<?php if ($val['Email'] != ''):?>
-			<a href="mailto:<?php echo $val['Email'];?>"><?php echo $val['Author'];?></a>
+		作者：<?php if ($val['AuthorUrl'] != ''):?>
+			<a href="<?php echo $val['AuthorUrl'];?>" titile="访问作者主页"><?php echo $val['Author'];?></a>
 			<?php else:?>
 			<?php echo $val['Author'];?>
 			<?php endif;?>
 		<?php endif;?>
-		<?php if ($val['AuthorUrl'] != ''):?>，<a href="<?php echo $val['AuthorUrl'];?>" target="_blank">作者主页&raquo;</a><?php endif;?>
+		</div>
 		</td>
 		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');">删除</a></td>
       </tr>
