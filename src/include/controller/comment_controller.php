@@ -37,23 +37,23 @@ class Comment_Controller {
         $Comment_Model = new Comment_Model();
         $Comment_Model->setCommentCookie($name,$mail,$url);
         if($Comment_Model->isLogCanComment($blogId) === false){
-            emMsg('评论失败：该日志已关闭评论','javascript:history.back(-1);');
+            emMsg('评论失败：该日志已关闭评论');
         } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
-            emMsg('评论失败：已存在相同内容评论','javascript:history.back(-1);');
+            emMsg('评论失败：已存在相同内容评论');
         } elseif (empty($name)){
-            emMsg('评论失败：请填写姓名','javascript:history.back(-1);');
+            emMsg('评论失败：请填写姓名');
         } elseif (strlen($name) > 20){
-            emMsg('评论失败：姓名不符合规范','javascript:history.back(-1);');
+            emMsg('评论失败：姓名不符合规范');
         } elseif ($mail != '' && !checkMail($mail)) {
-            emMsg('评论失败：邮件地址不符合规范', 'javascript:history.back(-1);');
+            emMsg('评论失败：邮件地址不符合规范');
         } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
-            emMsg('评论失败：禁止使用管理员昵称或邮箱评论','javascript:history.back(-1);');
+            emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
         } elseif (empty($content)) {
-            emMsg('评论失败：请填写评论内容','javascript:history.back(-1);');
+            emMsg('评论失败：请填写评论内容');
         } elseif (strlen($content) > 8000) {
-            emMsg('评论失败：内容不符合规范','javascript:history.back(-1);');
+            emMsg('评论失败：内容不符合规范');
         } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-            emMsg('评论失败：验证码错误','javascript:history.back(-1);');
+            emMsg('评论失败：验证码错误');
         } else {
             $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
         }

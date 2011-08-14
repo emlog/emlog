@@ -42,5 +42,5 @@ if ($action == '') {
 }
 //phpinfo()
 if ($action == 'phpinfo') {
-	@phpinfo() OR formMsg("phpinfo函数被禁用!", "javascript:history.go(-1);", 0);
+	@phpinfo() OR emMsg("phpinfo函数被禁用!");
 }

@@ -75,9 +75,9 @@ if ($action == 'del_attach') {
 	if (file_exists($attach['filepath'])) {
 		$fpath = str_replace('thum-', '', $attach['filepath']);
 		if ($fpath != $attach['filepath']) {
-			@unlink($fpath) or formMsg("删除附件失败!", "javascript:history.go(-1);", 0);
+			@unlink($fpath) or emMsg("删除附件失败!");
 		}
-		@unlink($attach['filepath']) or formMsg("删除附件失败!", "javascript:history.go(-1);", 0);
+		@unlink($attach['filepath']) or emMsg("删除附件失败!");
 	}
 	$row = $DB->once_fetch_array("SELECT blogid FROM ".DB_PREFIX."attachment where aid=$aid");
 	$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum-1 WHERE gid={$row['blogid']}");

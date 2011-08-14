@@ -82,30 +82,30 @@ if ($action == 'update_pwd') {
 
 	if(!$ispass)
 	{
-		formMsg('错误的当前密码','javascript:history.go(-1);',0);
+		emMsg('错误的当前密码');
 	}elseif(!empty($login) && $User_Model->isUserExist($login, UID)){
-		formMsg('用户名已存在','javascript:history.go(-1);',0);
+		emMsg('用户名已存在');
 	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
-		formMsg('密码长度不得小于6位','javascript:history.go(-1);',0);
+		emMsg('密码长度不得小于6位');
 	}elseif(!empty($newpass) && $newpass != $repeatpass){
-		formMsg('两次输入的密码不一致','javascript:history.go(-1);',0);
+		emMsg('两次输入的密码不一致');
 	}
 
 	if(!empty($newpass) && empty($login))//只修改密码
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$User_Model->updateUser(array('password'=>$newpass), UID);
-		formMsg('密码修改成功!','./',1);
+		emMsg('密码修改成功!','./');
 	}elseif(!empty($newpass) && !empty($login))//修改密码及用户
 	{
 		$newpass = $PHPASS->HashPassword($newpass);
 		$User_Model->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
-		formMsg('密码和后台登录名修改成功!请重新登录','./',1);
+		emMsg('密码和后台登录名修改成功!请重新登录','./');
 	}elseif(empty($newpass) && !empty($login))//只修改后台登录名
 	{
 		$User_Model->updateUser(array('username'=>$login), UID);
-		formMsg('后台登录名修改成功!请重新登录','./',1);
+		emMsg('后台登录名修改成功!请重新登录','./');
 	}else{
-		formMsg('请输入要修改的项目','javascript:history.go(-1);',0);
+		emMsg('请输入要修改的项目');
 	}
 }

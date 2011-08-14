@@ -63,16 +63,16 @@ if($action == 'bakstart'){
 				if(@!fwrite($fp, $dumpfile))
 				{
 					@fclose($fp);
-					emMsg('备份失败。备份目录(content/backup)不可写','javascript:history.go(-1);',0);
+					emMsg('备份失败。备份目录(content/backup)不可写');
 				}else{
 					emDirect("./data.php?active_backup=true");
 				}
 			}else{
-				emMsg('创建备份文件失败。备份目录(content/backup)不可写','javascript:history.go(-1);');
+				emMsg('创建备份文件失败。备份目录(content/backup)不可写');
 			}
 		}
 	}else{
-		formMsg('数据表没有任何内容','javascript:history.go(-1);',0);
+		emMsg('数据表没有任何内容');
 	}
 }
 
@@ -80,11 +80,11 @@ if($action == 'bakstart'){
 if ($action == 'renewdata'){
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile)){
-		formMsg('文件不存在', 'javascript:history.go(-1);',0);
+		emMsg('文件不存在');
 	}
 
 	if (getFileSuffix($sqlfile) !== 'sql'){
-		formMsg('只能导入emlog备份的SQL文件', 'javascript:history.go(-1);',0);
+		emMsg('只能导入emlog备份的SQL文件');
 	}
 	checkSqlFileInfo($sqlfile);
 	bakindata($sqlfile);
@@ -96,15 +96,15 @@ if ($action == 'renewdata'){
 if ($action == 'import'){
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
-		formMsg('非法提交的信息', 'javascript:history.go(-1);',0);
+		emMsg('非法提交的信息');
 	}
 	if (getFileSuffix($sqlfile['name']) != 'sql') {
-		formMsg('只能导入emlog备份的SQL文件', 'javascript:history.go(-1);',0);
+		emMsg('只能导入emlog备份的SQL文件');
 	}
 	if ($sqlfile['error'] == 1){
-		formMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+		emMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制');
 	}elseif ($sqlfile['error'] > 1){
-		formMsg('上传文件失败,错误码：'.$sqlfile['error'], 'javascript:history.go(-1);', 0);
+		emMsg('上传文件失败,错误码：'.$sqlfile['error']);
 	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
@@ -150,17 +150,17 @@ function checkSqlFileInfo($sqlfile) {
 		if (!empty($dumpinfo)){
 			// 验证版本
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-				formMsg("导入失败! 该备份文件不是 emlog " . Option::EMLOG_VERSION . "的备份文件!", 'javascript:history.go(-1);',0);
+				emMsg("导入失败! 该备份文件不是 emlog " . Option::EMLOG_VERSION . "的备份文件!");
 			}
 			// 验证表前缀
 			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-				formMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配" . $dumpinfo[2], 'javascript:history.go(-1);',0);
+				emMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配" . $dumpinfo[2]);
 			}
 		} else {
-			formMsg("导入失败! 该备份文件不是 emlog的备份文件!", 'javascript:history.go(-1);',0);
+			emMsg("导入失败! 该备份文件不是 emlog的备份文件!");
 		}
 	} else {
-		formMsg("导入失败! 读取文件失败", 'javascript:history.go(-1);',0);
+		emMsg("导入失败! 读取文件失败");
 	}
 }
 

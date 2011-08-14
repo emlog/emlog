@@ -340,17 +340,17 @@ function findArray($array1,$array2){
  */
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
 	if ($errorNum == 1){
-		formMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制', 'javascript:history.go(-1);', 0);
+		emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
 	}elseif ($errorNum > 1){
-		formMsg('上传文件失败,错误码：'.$errorNum, 'javascript:history.go(-1);', 0);
+		emMsg('上传文件失败,错误码：'.$errorNum);
 	}
 	$extension  = getFileSuffix($fileName);
 	if (!in_array($extension, $type)){
-		formMsg('错误的文件类型',"javascript:history.go(-1);",0);
+		emMsg('错误的文件类型');
 	}
 	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
 		$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
-		formMsg("文件大小超出{$ret}的限制","javascript:history.go(-1);",0);
+		emMsg("文件大小超出{$ret}的限制");
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
@@ -359,14 +359,14 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 		umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false){
-			formMsg('创建文件上传目录失败', "javascript:history.go(-1);", 0);
+			emMsg('创建文件上传目录失败');
 		}
 	}
 	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false){
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -386,7 +386,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	if (@is_uploaded_file($tmpFile)){
 		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
-			formMsg('上传失败。文件上传目录(content/uploadfile)不可写',"javascript:history.go(-1);",0);
+			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
 		}
 		chmod($attachpath, 0777);
 	}
@@ -673,20 +673,6 @@ function emDirect($directUrl) {
 }
 
 /**
- * 后台操作返回信息
- *
- * @param string $msg
- * @param string $url
- * @param boolean $type
- */
-function formMsg($msg,$url,$type){
-	$typeimg = $type ? 'mc_ok.gif' : 'mc_no.gif';
-	require_once(View::getView('msg'));
-	View::output();
-	exit;
-}
-
-/**
  * 显示系统信息
  *
  * @param string $msg 信息
@@ -699,7 +685,8 @@ function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
 		$msg = '404 请求页面不存在！';
 	}
 	echo <<<EOT
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 EOT;
 	if($isAutoGo){
@@ -718,12 +705,12 @@ body {
 }
 .main {
 	background-color:#FFFFFF;
-	margin-top:20px;
 	font-size: 12px;
 	color: #666666;
-	width:580px;
-	margin:10px 200px;
-	padding:10px;
+	width:750px;
+	margin:100px auto;
+	border-radius: 10px;
+	padding:30px 10px;
 	list-style:none;
 	border:#DFDFDF 1px solid;
 }

@@ -88,7 +88,7 @@ class Log_Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-			formMsg('权限不足！', './', 0);
+			emMsg('权限不足！', './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -217,7 +217,7 @@ class Log_Model {
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-			formMsg('权限不足！', './', 0);
+			emMsg('权限不足！', './');
 		}
 		// 评论
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");

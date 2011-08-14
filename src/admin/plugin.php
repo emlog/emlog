@@ -89,7 +89,7 @@ if ($action == 'upload_zip') {
 		emDirect("./plugin.php?action=install&error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
-		formMsg('插件上传失败', 'javascript:history.go(-1);', 0);
+		emMsg('插件上传失败');
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./plugin.php?action=install&error_a=1");

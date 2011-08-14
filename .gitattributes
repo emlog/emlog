@@ -120,8 +120,6 @@ src/admin/views/images/login_logo.png -text
 src/admin/views/images/login_top.png -text
 src/admin/views/images/logo.gif -text
 src/admin/views/images/m.gif -text
-src/admin/views/images/mc_no.gif -text
-src/admin/views/images/mc_ok.gif -text
 src/admin/views/images/no.png -text
 src/admin/views/images/onsel.gif -text
 src/admin/views/images/plugin.gif -text
@@ -140,7 +138,6 @@ src/admin/views/js/common.js -text
 src/admin/views/linkedit.php -text
 src/admin/views/links.php -text
 src/admin/views/login.php -text
-src/admin/views/msg.php -text
 src/admin/views/permalink.php -text
 src/admin/views/plugin.php -text
 src/admin/views/plugin_install.php -text
