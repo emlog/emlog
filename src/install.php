@@ -293,6 +293,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');

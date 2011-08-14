@@ -9,29 +9,24 @@
 </div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
-    <tbody>
-      <tr nowrap="nowrap">
+      <tr>
         <td width="18%" align="right">博客名称：</td>
         <td width="82%"><input maxlength="200" size="35" value="<?php echo $blogname; ?>" name="blogname" /></td>
       </tr>
-      <tr nowrap="nowrap">
+      <tr>
         <td align="right" valign="top">博客描述：</td>
         <td><textarea name="bloginfo" cols="" rows="2" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
-      <tr nowrap="nowrap">
+      <tr>
         <td align="right">博客地址：</td>
         <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
-      <tr nowrap="nowrap">
+      <tr>
         <td align="right">博客关键字：</td>
         <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
         (关键字之间用半角逗号","隔开)</td>
       </tr>
-      <tr nowrap="nowrap">
-        <td align="right">ICP备案号：</td>
-        <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
-      </tr>
-      <tr nowrap="nowrap">
+      <tr>
         <td align="right">每页日志数：</td>
         <td><input maxlength="5" size="8" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
       </tr>
@@ -96,11 +91,9 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right">离线写作支持：<br /></td>
         <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
       </tr>
-    </tbody>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
-    <tbody>
       <tr>
         <td align="right" width="18%">RSS：<br /></td>
         <td width="82%">
@@ -110,13 +103,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </select>
 		</td>
       </tr>
-    </tbody>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
-    <tbody>
       <tr>
-        <td align="right" width="18%" valign="top">日志评论：<br /></td>
+        <td align="right" width="18%" valign="top">评论：<br /></td>
         <td width="82%">
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> />审核<br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> />验证码<br />
@@ -126,14 +117,25 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<select name="comment_order"><option value="newer" <?php echo $ex3; ?>>较新的</option><option value="older" <?php echo $ex4; ?>>较旧的</option></select>排在前面<br />
 		</td>
       </tr>
-    </tbody>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
-    <tbody>
+      <tr>
+        <td align="right">ICP备案号：</td>
+        <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
+      </tr>
+      <tr>
+        <td align="right" width="18%" valign="top">底部信息(支持html)：<br /></td>
+        <td width="82%">
+		<textarea name="footer_info" cols="" rows="3" style="width:300px;"><?php echo $footer_info; ?></textarea><br />
+		(可用于添加流量统计代码)
+		</td>
+      </tr>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
         <td align="center" colspan="2"><input type="submit" value="保存设置" class="button" /></td>
       </tr>
-    </tbody>
   </table>
 </form>

@@ -45,6 +45,7 @@ if ($action == 'mod_config') {
 	'blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
 	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
 	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
+	'footer_info' => isset($_POST['footer_info']) ? addslashes($_POST['footer_info']):'',
 	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
