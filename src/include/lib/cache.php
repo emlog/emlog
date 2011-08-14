@@ -205,6 +205,7 @@ class Cache {
 			    'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
+				'date' => $show_com['date'],
 				'page' => $com_page,
 				'mail' => $show_com['mail'],
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
