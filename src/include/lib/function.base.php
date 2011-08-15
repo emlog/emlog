@@ -682,7 +682,7 @@ function emDirect($directUrl) {
 function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
 	if ($msg == '404') {
 		header("HTTP/1.1 404 Not Found");
-		$msg = '404 请求页面不存在！';
+		$msg = '抱歉，你所请求的页面不存在！';
 	}
 	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
