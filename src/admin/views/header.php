@@ -33,9 +33,11 @@
     ?>
     </a></td>
     <td align=right nowrap class="headtext">
-	<?php if (ROLE == 'admin'):?>
+    <?php if (ROLE == 'admin'):?>
     <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<?php else:?>
+	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
