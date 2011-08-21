@@ -42,7 +42,7 @@ $isdraft = $hide == 'y' ? true : false;
 			   </select>
 
 			  <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
-			  <input name="date" id="date" type="hidden" value="<?php echo $date; ?>" >
+			  <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 			  </div>
 			  <?php if (!empty($tags)):?>
 			  <div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>

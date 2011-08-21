@@ -33,6 +33,8 @@ if ($action == 'edit') {
 	$logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 	$blogData = $Log_Model->getOneLogForAdmin($logid);
 	extract($blogData);
+
+	$orig_date = $date - Option::get('timezone') * 3600;
 	$sorts = $Sort_Model->getSorts();
 	//log tag
 	$tags = array();
