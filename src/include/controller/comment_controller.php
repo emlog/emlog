@@ -48,6 +48,8 @@ class Comment_Controller {
             emMsg('评论失败：邮件地址不符合规范');
         } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
             emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
+        } elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
+            emMsg('评论失败：主页地址不符合规范','javascript:history.back(-1);');
         } elseif (empty($content)) {
             emMsg('评论失败：请填写评论内容');
         } elseif (strlen($content) > 8000) {

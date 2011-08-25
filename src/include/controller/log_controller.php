@@ -95,8 +95,8 @@ class Log_Controller {
         //comments
         $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
-        $ckmail = isset($_COOKIE['postermail']) ? $_COOKIE['postermail'] : '';
-        $ckurl = isset($_COOKIE['posterurl']) ? $_COOKIE['posterurl'] : '';
+        $ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
+        $ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
         $comments = $Comment_Model->getComments(0, $logid, 'n', $comment_page);
 
         $curpage = CURPAGE_LOG;
