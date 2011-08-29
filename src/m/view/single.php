@@ -20,7 +20,7 @@
 	<div class="postcont"><?php echo $log_content; ?></div>
 	<div class="t">评论：</div>
 	<div class="c">
-		<?php foreach($comments as $key=>$value):
+		<?php foreach($commentStacks as $key=>$value):
 			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
 		?>
 		<div class="l">
@@ -29,6 +29,7 @@
 		<div class="comcont"><?php echo $value['content']; ?></div>
 		</div>
 		<?php endforeach; ?>
+		<div id="page"><?php echo $commentPageUrl;?></div>
 	</div>
 	<div class="t">发表评论：</div>
 	<div class="c">

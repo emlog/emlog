@@ -43,7 +43,6 @@ class Log_Controller {
      * 前台日志内容页面输出
      */
     function displayContent($params) {
-        $comment_page = isset($params[4]) ? intval($params[4]) : 1;
     	$Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
@@ -93,11 +92,24 @@ class Log_Controller {
 	        }
         }
         //comments
+        $commentPage = isset($params[4]) ? intval($params[4]) : 1;
         $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" align=\"absmiddle\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
         $ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
-        $comments = $Comment_Model->getComments(0, $logid, 'n', $comment_page);
+        $comments = $Comment_Model->getComments(0, $logid, 'n');
+        $comments['commentPageUrl'] = '';
+        if(Option::get('comment_paging') == 'y') {
+            $pageurl = Url::log($logid);
+            if(Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
+                $pageurl .= '&comment-page=';
+            } else {
+                $pageurl .= '/comment-page-';
+            }
+            $commentPageUrl = pagination(count($comments['commentStacks']), Option::get('comment_pnum'), $commentPage, $pageurl);
+            $comments['commentPageUrl'] = $commentPageUrl;
+            $comments['commentStacks'] = array_slice($comments['commentStacks'], ($commentPage - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+        }
 
         $curpage = CURPAGE_LOG;
         include View::getView('header');

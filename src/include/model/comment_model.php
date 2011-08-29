@@ -63,7 +63,6 @@ class Comment_Model {
 		}
 		if($spot == 0) {
             $commentStacks = array();
-            $commentPageUrl = '';
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
                 if($pid == 0) $commentStacks[] = $cid;
@@ -78,17 +77,7 @@ class Comment_Model {
 			    $comments = array_reverse($comments, true);
 			    $commentStacks = array_reverse($commentStacks);
             }
-            if(Option::get('comment_paging') == 'y') {
-                $pageurl = Url::log($blogId);
-                if(Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
-                    $pageurl .= '&comment-page=';
-                } else {
-                    $pageurl .= '/comment-page-';
-                }
-                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
-                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
-            }
-            $comments = compact('comments','commentStacks','commentPageUrl');
+            $comments = array('comments'=>$comments, 'commentStacks'=>$commentStacks);
 		}
 		return $comments;
 	}

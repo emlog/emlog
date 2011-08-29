@@ -48,8 +48,18 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
+	$commentPage = isset($_GET['comment-page']) ? intval($_GET['comment-page']) : 1;
 	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $Comment_Model->getComments(0, $logid, 'n');
+	extract($comments);
+	$commentPageUrl = '';
+	$commentStacks = $comments;
+	if(Option::get('comment_paging') == 'y') {
+		$pageurl = './?post=' . $logid . '&comment-page=';
+		$commentPageUrl = pagination(count($comments), Option::get('comment_pnum'), $commentPage, $pageurl);
+		$comments['commentPageUrl'] = $commentPageUrl;
+		$commentStacks = array_slice($comments, ($commentPage - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+	}
 
 	$user_cache = $CACHE->readCache('user');
 
