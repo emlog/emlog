@@ -7,10 +7,7 @@
  */
 
 class Twitter_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct() {
@@ -75,11 +72,6 @@ class Twitter_Model {
 		return $tws;
 	}
 
-	/**
-	 * 删除碎语
-	 *
-	 * @param int $tid
-	 */
 	function delTwitter($tid) {
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
@@ -100,11 +92,6 @@ class Twitter_Model {
 	    $this->db->query("UPDATE ".DB_PREFIX."twitter SET replynum = replynum $do WHERE id='$tid'");
 	}
 
-	/**
-	 * 格式化碎语内容
-	 *
-	 * @param string $t
-	 */
     function formatTwitter($t) {
         //识别URL
         $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);

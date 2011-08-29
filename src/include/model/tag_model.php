@@ -6,10 +6,7 @@
  */
 
 class Tag_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
@@ -36,6 +33,7 @@ class Tag_Model {
 		}
 		return $tags;
 	}
+
 	function getOneTag($tagId)
 	{
 		$tag = array();

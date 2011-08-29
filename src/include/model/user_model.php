@@ -6,10 +6,7 @@
  */
 
 class User_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
@@ -17,12 +14,6 @@ class User_Model {
 		$this->db = MySql::getInstance();
 	}
 
-	/**
-	 * 获取用户列表
-	 *
-	 * @param 用户组 $role
-	 * @return array
-	 */
 	function getUsers($role = 'writer')
 	{
 		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user where role='writer'");
@@ -55,12 +46,6 @@ class User_Model {
 		return $userData;
 	}
 
-	/**
-	 * 更新用户信息
-	 *
-	 * @param array $userData
-	 * @param int $uid
-	 */
 	function updateUser($userData, $uid)
 	{
 		$Item = array();
@@ -72,24 +57,12 @@ class User_Model {
 		$this->db->query("update ".DB_PREFIX."user set $upStr where uid=$uid");
 	}
 
-	/**
-	 * 添加用户
-	 *
-	 * @param string $login
-	 * @param string $password
-	 * @param string $role
-	 */
 	function addUser($login, $password,  $role)
 	{
 		$sql="insert into ".DB_PREFIX."user (username,password,role) values('$login','$password','$role')";
 		$this->db->query($sql);
 	}
 
-	/**
-	 * 删除用户
-	 *
-	 * @param int $uid
-	 */
 	function deleteUser($uid)
 	{
 		$this->db->query("update ".DB_PREFIX."blog set author=1 where author=$uid");

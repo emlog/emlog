@@ -7,10 +7,7 @@
  */
 
 class Log_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct() {
@@ -78,9 +75,6 @@ class Log_Model {
 
 	/**
 	 * 后台获取单条日志
-	 *
-	 * @param int $blogId
-	 * @return array
 	 */
 	function getOneLogForAdmin($blogId) {
 		$timezone = Option::get('timezone');
@@ -106,9 +100,6 @@ class Log_Model {
 
 	/**
 	 * 前台获取单条日志
-	 *
-	 * @param int $blogId
-	 * @return array
 	 */
 	function getOneLogForHome($blogId) {
 		$timezone = Option::get('timezone');

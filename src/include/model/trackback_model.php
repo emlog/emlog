@@ -7,10 +7,7 @@
 
 
 class Trackback_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
@@ -20,11 +17,6 @@ class Trackback_Model {
 
 	/**
 	 * 发送trackback
-	 *
-	 * @param string $blogurl
-	 * @param string $pingUrl
-	 * @param int $blogId
-	 * @return no ret
 	 */
 	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{

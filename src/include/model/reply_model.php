@@ -6,10 +6,7 @@
  */
 
 class Reply_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
@@ -103,6 +100,7 @@ class Reply_Model {
 		$hide = $row['hide'];
 		return $hide;
 	}
+
 	/**
 	 * 隐藏回复
 	 *

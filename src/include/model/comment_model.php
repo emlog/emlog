@@ -6,10 +6,7 @@
  */
 
 class Comment_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
@@ -105,6 +102,7 @@ class Comment_Model {
 		}
 		return $comments;
 	}
+
 	function getOneComment($commentId)
 	{
 		$timezone = Option::get('timezone');
@@ -116,12 +114,7 @@ class Comment_Model {
 		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;
 	}
-	/**
-	 * 获取查询评论的数目
-	 *
-	 * @param int $blogId
-	 * @return int $comNum
-	 */
+
 	function getCommentNum($blogId = null, $hide = null)
 	{
 		$comNum = '';
@@ -138,11 +131,7 @@ class Comment_Model {
 		$comNum = $res['count(*)'];
 		return $comNum;
 	}
-	/**
-	 * 删除评论
-	 *
-	 * @param int $commentId
-	 */
+
 	function delComment($commentId)
 	{
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -159,11 +148,7 @@ class Comment_Model {
 		$this->db->query("DELETE FROM ".DB_PREFIX."comment WHERE cid IN ($commentIds)");
 		$this->updateCommentNum($blogId);
 	}
-	/**
-	 * 隐藏评论
-	 *
-	 * @param int $commentId
-	 */
+
 	function hideComment($commentId)
 	{
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -180,11 +165,7 @@ class Comment_Model {
 		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='y' WHERE cid IN ($commentIds)");
 		$this->updateCommentNum($blogId);
 	}
-	/**
-	 * 显示评论
-	 *
-	 * @param int $commentId
-	 */
+
 	function showComment($commentId)
 	{
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -200,14 +181,7 @@ class Comment_Model {
 		$this->db->query("UPDATE ".DB_PREFIX."comment SET hide='n' WHERE cid IN ($commentIds)");
 		$this->updateCommentNum($blogId);
 	}
-	/**
-	 * 回复评论
-	 *
-	 * @param int $blogId
-	 * @param int $commentId
-	 * @param string $content
-	 * @param string $hide
-	 */
+
 	function replyComment($blogId, $pid, $content, $hide)
 	{
 		$CACHE = Cache::getInstance();
@@ -230,9 +204,6 @@ class Comment_Model {
 
 	/**
 	 * 批量处理评论
-	 *
-	 * @param string $action
-	 * @param array $comments
 	 */
 	function batchComment($action, $comments)
 	{
@@ -258,11 +229,7 @@ class Comment_Model {
 				break;
 		}
 	}
-	/**
-	 * 更新日志评论数目
-	 *
-	 * @param int $blogId
-	 */
+
 	function updateCommentNum($blogId)
 	{
 		$sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
@@ -344,5 +311,4 @@ class Comment_Model {
 		setcookie('postermail',$mail,$cookietime);
 		setcookie('posterurl',$url,$cookietime);
 	}
-
 }

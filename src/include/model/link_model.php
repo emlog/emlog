@@ -6,10 +6,7 @@
  */
 
 class Link_Model {
-	/**
-	 * 内部数据对象
-	 * @var MySql
-	 */
+
 	private $db;
 
 	function __construct()
