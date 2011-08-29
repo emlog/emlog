@@ -18,7 +18,6 @@ class Url
 
         //开启日志别名
         if (Option::get('isalias') == 'y') {
-            $CACHE = Cache::getInstance();
             $logalias_cache = $CACHE->readCache('logalias');
             if (!empty($logalias_cache[$blogId])) {
             	$logsort_cache = $CACHE->readCache('logsort');
