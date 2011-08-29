@@ -20,7 +20,7 @@ class Comment_Model {
 	/**
 	 * 获取评论
 	 *
-	 * @param int $spot 0：前台 1：后台
+	 * @param int $spot 0：前台 1：后台 2: 手机
 	 * @param int $blogId
 	 * @param string $hide
 	 * @param int $page
@@ -38,7 +38,7 @@ class Comment_Model {
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}
-		if($spot == 0)
+		if($spot == 0 || $spot == 2)
 		{
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.date ASC $condition";
 		}else{
@@ -63,6 +63,7 @@ class Comment_Model {
 		}
 		if($spot == 0) {
             $commentStacks = array();
+            $commentPageUrl = '';
 			foreach($comments as $cid => $comment) {
 				$pid = $comment['pid'];
                 if($pid == 0) $commentStacks[] = $cid;
@@ -77,7 +78,30 @@ class Comment_Model {
 			    $comments = array_reverse($comments, true);
 			    $commentStacks = array_reverse($commentStacks);
             }
-            $comments = array('comments'=>$comments, 'commentStacks'=>$commentStacks);
+            if(Option::get('comment_paging') == 'y') {
+                $pageurl = Url::log($blogId);
+                if(Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
+                    $pageurl .= '&comment-page=';
+                } else {
+                    $pageurl .= '/comment-page-';
+                }
+                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
+                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+            }
+            $comments = compact('comments','commentStacks','commentPageUrl');
+		} elseif($spot == 2) {
+            $commentStacks = array_keys($comments);
+            $commentPageUrl = '';
+			if(Option::get('comment_order') == 'newer') {
+			    $comments = array_reverse($comments, true);
+			    $commentStacks = array_reverse($commentStacks);
+            }
+            if(Option::get('comment_paging') == 'y') {
+                $pageurl = './?post=' . $blogId . '&comment-page=';
+                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
+                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+            }
+            $comments = compact('comments','commentStacks','commentPageUrl');
 		}
 		return $comments;
 	}

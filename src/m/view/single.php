@@ -20,13 +20,14 @@
 	<div class="postcont"><?php echo $log_content; ?></div>
 	<div class="t">评论：</div>
 	<div class="c">
-		<?php foreach($commentStacks as $key=>$value):
-			$value['poster'] = $value['url'] ? '<a href="'.$value['url'].'" target="_blank">'.$value['poster'].'</a>' : $value['poster'];
+		<?php foreach($commentStacks as $cid):
+			$comment = $comments[$cid];
+			$comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
 		?>
 		<div class="l">
-		<b><?php echo $value['poster']; ?></b>
-		<div class="info"><?php echo $value['date']; ?> <a href="./?action=reply&cid=<?php echo $value['cid'];?>">回复</a></div>
-		<div class="comcont"><?php echo $value['content']; ?></div>
+		<b><?php echo $comment['poster']; ?></b>
+		<div class="info"><?php echo $comment['date']; ?> <a href="./?action=reply&cid=<?php echo $comment['cid'];?>">回复</a></div>
+		<div class="comcont"><?php echo $comment['content']; ?></div>
 		</div>
 		<?php endforeach; ?>
 		<div id="page"><?php echo $commentPageUrl;?></div>
