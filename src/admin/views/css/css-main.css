@@ -188,6 +188,6 @@ textarea{font-size:12px}
 .add_plugin a{ background:url(../images/add_bg.gif) no-repeat; width:90px; height:24px; display:block; padding:4px 0px 0px 25px ; color:#000000;}
 .add_plugin a:active{ text-decoration:none; padding:4px 0px 0px 26px}
 
-#title {border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;border-color: #CCCCCC;font-size: 1.7em;line-height: 100%;outline: medium none;padding: 3px 4px;width: 100%;margin:0px 0px 10px 0px;}
+#title {border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;border-color: #CCCCCC;font-size: 1.5em;line-height: 100%;outline: medium none;padding: 3px 4px;width: 100%;margin:0px 0px 10px 0px;}
 #title_label {vertical-align: middle;color: #BBBBBB;font-size:14px;padding: 3px;position: absolute;cursor:text;}
 #tag_label {vertical-align: middle;color: #BBBBBB;font-size:12px;padding: 3px;position: absolute;cursor:text;}
