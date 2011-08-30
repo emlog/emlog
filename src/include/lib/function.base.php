@@ -610,7 +610,8 @@ function emUnZip ($zipfile, $path, $type = 'tpl') {
 	if(class_exists('ZipArchive')) {
 	    $zip = new ZipArchive();
 	    if (@$zip->open($zipfile) === TRUE) {
-	    	$dir = $zip->getNameIndex(0);
+	    	$r = explode('/', $zip->getNameIndex(0), 2);
+	    	$dir = isset($r[0]) ? $r[0].'/' : '';
 	    	switch ($type) {
 	    		case 'tpl':
 	    			$re = $zip->getFromName($dir.'header.php');
