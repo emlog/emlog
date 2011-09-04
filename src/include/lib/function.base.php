@@ -607,7 +607,7 @@ function getMonthDayNum($month, $year) {
  * 解压zip
  */
 function emUnZip ($zipfile, $path, $type = 'tpl') {
-	if(class_exists('ZipArchive')) {
+	if(class_exists('ZipArchive', FALSE)) {
 	    $zip = new ZipArchive();
 	    if (@$zip->open($zipfile) === TRUE) {
 	    	$r = explode('/', $zip->getNameIndex(0), 2);

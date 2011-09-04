@@ -125,10 +125,10 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
       </tr>
       <tr>
-        <td align="right" width="18%" valign="top">底部信息(支持html)：<br /></td>
+        <td align="right" width="18%" valign="top">首页底部信息：<br /></td>
         <td width="82%">
 		<textarea name="footer_info" cols="" rows="3" style="width:300px;"><?php echo $footer_info; ?></textarea><br />
-		(可用于添加流量统计代码)
+		(支持html, 可用于添加流量统计代码)
 		</td>
       </tr>
   </table>
