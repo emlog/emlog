@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b>写日志</b><span id="msg_2"></span></div><div id="msg"></div>
-<div class=line></div>
+<div class=containertitle><b>写日志</b><span id="msg_2"></span></div>
+<div id="msg"></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
@@ -25,9 +25,9 @@
           <td>
 		  <div style="margin:10px 0px 5px 0px;">
 		  <label for="tag" id="tag_label">日志标签，半角逗号分隔</label>
-          <input name="tag" id="tag" maxlength="200" style="width:462px;" />
+          <input name="tag" id="tag" maxlength="200" style="width:432px;" />
 
-          <select name="sort" id="sort">
+          <select name="sort" id="sort" style="width:130px;">
 	        <option value="-1">选择分类...</option>
 			<?php foreach($sorts as $val):?>
 			<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>

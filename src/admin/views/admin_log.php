@@ -134,7 +134,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <a href="javascript:logact('notop');">取消置顶</a>
     <?php endif;?>
 
-	<select name="sort" id="sort" onChange="changeSort(this);">
+	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">
 	<option value="" selected="selected">移动到分类...</option>
 	<?php foreach($sorts as $val):?>
 	<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>

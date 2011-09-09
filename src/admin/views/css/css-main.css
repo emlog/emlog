@@ -9,7 +9,7 @@ li{list-style:none;}
 #container{padding-left:30px;}
 #menu_wt a{background: url(../images/addblog.gif) no-repeat 18px 1px;}
 #menu_tw a{background: url(../images/t.gif) no-repeat 20px 1px;}
-.containertitle{background-position:left 3px; font-size:14px; margin:0px 0px; color: #666666 }
+.containertitle{background-position:left 3px; font-size:14px; margin:5px 0px 15px 0px; color: #666666 }
 .containertitle2{background-position:left 3px; font-size:18px; height:30px; background:url(../images/yeka.gif) 10px -82px no-repeat; padding:0 0 0 20px; margin:20px 0px 10px;}
 .containertitle2 .navi1,.containertitle2 .navi2,.containertitle2 .navi3,.containertitle2 .navi4{font-size:13px;display:block;width:86px;float:left;text-align:center;height:25px;line-height:24px;}
 .containertitle2 .navi1{background:url(../images/yeka.gif) no-repeat;color:#999;}

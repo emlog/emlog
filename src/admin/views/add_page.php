@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b>新建页面</b><span id="msg_2"></span></div><div id="msg"></div>
-<div class=line></div>
+<div class=containertitle><b>新建页面</b><span id="msg_2"></span></div>
+<div id="msg"></div>
   <form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>

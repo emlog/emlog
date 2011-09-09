@@ -3,14 +3,12 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?>
-    </b><span id="msg_2"></span></div><div id="msg"></div>
-<div class=line></div>
+<div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><span id="auto_msg"></span><br />
+          <td>
 		  <label for="title" id="title_label">输入日志标题</label>
           <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
           </td>
@@ -29,9 +27,9 @@ $isdraft = $hide == 'y' ? true : false;
           <td>
 			  <div style="margin:10px 0px 5px 0px;">
 			  <label for="tag" id="tag_label">日志标签，半角逗号分隔</label>
-			  <input name="tag" id="tag" maxlength="200" style="width:462px;" value="<?php echo $tagStr; ?>" />
+			  <input name="tag" id="tag" maxlength="200" style="width:432px;" value="<?php echo $tagStr; ?>" />
 
-			  <select name="sort" id="sort">
+			  <select name="sort" id="sort" style="width:130px;">
 				<?php
 				$sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
 				foreach($sorts as $val):

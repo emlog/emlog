@@ -1,12 +1,12 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div><div id="msg"></div>
-<div class=line></div>
+<div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div>
+<div id="msg"></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
-          <td><span id="auto_msg"></span>
+          <td>
 		  <label for="title" id="title_label">输入页面标题</label>
 		  <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
           </td>
