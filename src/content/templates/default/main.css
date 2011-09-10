@@ -80,7 +80,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #contentleft .comment .comment-time{color:#999999; display:inline; font-size:10px;}
 #contentleft .comment .avatar{float:left;margin:5px}
 #contentleft .comment .comment-info{float:left;width:90%}
-#contentleft .comment .commnet-content{margin:8px 0px 0px 0px;}
+#contentleft .comment .comment-content{margin:8px 0px 0px 0px;}
 #contentleft .comment .comment-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
 #contentleft .comment .comment-reply:hover{text-decoration:underline}
 #contentleft .comment-children{width:95%;margin:auto;clear:both;border:none;padding:0}

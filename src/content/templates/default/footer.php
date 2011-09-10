@@ -11,5 +11,6 @@ Powered by <a href="http://www.emlog.net" title="emlog <?php echo Option::EMLOG_
 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
 <?php doAction('index_footer'); ?>
 </div><!--end #footerbar-->
+</div><!--end #wrap-->
 </body>
 </html>
