@@ -29,15 +29,16 @@ if(!$act){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 6px;}
 .logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
 .title{text-align:center;}
 .title span{font-size:24px;font-weight:bold;}
-.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:10px 0px 10px 25px;}
+.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 .submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
 .title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid; margin:20px 0px;}
 .foot{text-align:center;}
+.main li{ margin:20px 0px;}
 -->
 </style>
 </head>
