@@ -82,7 +82,7 @@ class Comment_Model {
                 } else {
                     $pageurl .= '/comment-page-';
                 }
-                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
+                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl, '#comments');
                 $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
             }
             $comments = compact('comments','commentStacks','commentPageUrl');

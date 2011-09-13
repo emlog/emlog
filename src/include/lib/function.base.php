@@ -194,20 +194,23 @@ function getFileSuffix($fileName) {
  * @param int $page 当前页码
  * @param string $url 页码的地址
  */
-function pagination($count,$perlogs,$page,$url){
+function pagination($count,$perlogs,$page,$url,$anchor=''){
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
+	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|","",$url);
 	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++){
 		if ($i > 0){
 			if ($i == $page){
 				$re .= " <span>$i</span> ";
+			} elseif($i == 1) {
+				$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
 			} else {
-				$re .= " <a href=\"$url$i\">$i</a> ";
+				$re .= " <a href=\"$url$i$anchor\">$i</a> ";
 			}
 		}
 	}
-	if ($page > 6) $re = "<a href=\"{$url}1\" title=\"首页\">&laquo;</a><em>...</em>$re";
-	if ($page + 5 < $pnums) $re .= "<em>...</em> <a href=\"$url$pnums\" title=\"尾页\">&raquo;</a>";
+	if ($page > 6) $re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em>...</em>$re";
+	if ($page + 5 < $pnums) $re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
 	if ($pnums <= 1) $re = '';
 	return $re;
 }
