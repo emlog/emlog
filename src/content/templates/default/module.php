@@ -286,7 +286,8 @@ function blog_trackback($tb, $tb_url, $allow_tb){
 function blog_comments($comments){
     extract($comments);
     if($commentStacks): ?>
-	<p class="comment-header"><b>评论：</b><a name="comments"></a></p>
+	<a name="comments"></a>
+	<p class="comment-header"><b>评论：</b></p>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
