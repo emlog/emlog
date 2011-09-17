@@ -1,11 +1,11 @@
 <?php
-header("location: ./install.php");
+header("location: ./install.php");exit;
 //mysql database address
 define('DB_HOST','localhost');
 //mysql database user
 define('DB_USER','root');
 //database password
-define('DB_PASSWD','123');
+define('DB_PASSWD','');
 //database name
 define('DB_NAME','emlog');
 //database prefix
