@@ -23,7 +23,7 @@ if (empty ($action) && empty ($logid)) {
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
 	$sta_cache = $CACHE->readCache('sta');
 	$lognum = $sta_cache['lognum'];
-	$pageurl = '?page=';
+	$pageurl = './?page=';
 	$logs = $Log_Model->getLogsForHome ($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 

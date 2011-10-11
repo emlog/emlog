@@ -30,7 +30,7 @@ class Search_Controller {
 		$keyword = str_replace('_','\_',$keyword);
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
-		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page';
+		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page=';
 
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
