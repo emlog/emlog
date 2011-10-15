@@ -62,10 +62,10 @@ class Option {
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'displayContent',
-                            'reg_0' => '|^.*/\?(post)=(\d+)(&comment-page=(\d+))?([\?&].*)?$|',
-                            'reg_1' => '|^.*/(post)-(\d+)\.html(/comment-page-(\d+))?/?([\?&].*)?$|',
-                            'reg_2' => '|^.*/(post)/(\d+)(/comment-page-(\d+))?/?$|',
-                    		'reg_3' => '|^/([^\./\?=]+)(\.html)?(/comment-page-(\d+))?/?([\?&].*)?$|',
+                            'reg_0' => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
+                            'reg_1' => '|^.*/(post)-(\d+)\.html(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+                            'reg_2' => '|^.*/(post)/(\d+)(/(comment-page)-(\d+))?/?$|',
+                    		'reg_3' => '|^/([^\./\?=]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
                             ),
                     array(
                             'model' => 'Record_Controller',
@@ -77,13 +77,13 @@ class Option {
                             'model' => 'Sort_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
-                            'reg' => '|^.*/(sort)/([^\./]+)/?((page)/(\d+))?/?([\?&].*)?$|',
+                            'reg' => '|^.*/(sort)/([^\./\?=]+)/?((page)/(\d+))?/?([\?&].*)?$|',
                             ),
                     array(
                             'model' => 'Tag_Controller',
                             'method' => 'display',
                             'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?([\?&].*)?$|',
-                            'reg' => '|^.*/(tag)/([^/]+)/?((page)/(\d+))?/?([\?&].*)?$|',
+                            'reg' => '|^.*/(tag)/([^/?]+)/?((page)/(\d+))?/?([\?&].*)?$|',
                             ),
                     array(
                             'model' => 'Author_Controller',
@@ -115,7 +115,7 @@ class Option {
                     array(
                             'model' => 'Log_Controller',
                             'method' => 'displayContent',
-                            'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/comment-page-(\d+))?/?([\?&].*)?$|',
+                            'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
                             ),
                     array(
                             'model' => 'Log_Controller',

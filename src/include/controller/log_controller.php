@@ -43,7 +43,7 @@ class Log_Controller {
      * 前台日志内容页面输出
      */
     function displayContent($params) {
-        $comment_page = isset($params[4]) ? intval($params[4]) : 1;
+        $comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
     	$Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');

@@ -171,7 +171,7 @@ function checkSqlFileInfo($sqlfile) {
  */
 function bakindata($filename) {
 	$DB = MySql::getInstance();
-	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE " . DB_NAME . " DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
+	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
 	if(isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
 	    $sql[0] = substr($sql[0], 3);
