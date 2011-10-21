@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.user.php';
 
-$emUser = new emUser();
+$User_Model = new User_Model();
 
 //User Management page
 if ($action == '') {
-	$users = $emUser->getUsers();
-	include getViews('header');
-	require_once getViews('user');
-	include getViews('footer');
-	cleanPage();
+	$users = $User_Model->getUsers();
+	include View::getView('header');
+	require_once View::getView('user');
+	include View::getView('footer');
+	View::output();
 }
 if ($action== 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
@@ -25,39 +24,34 @@ if ($action== 'new') {
 	$role = 'writer';//User Group: Co-author
 
 	if ($login == '') {
-		header("Location: ./user.php?error_login=true");
-		exit;
+		emDirect("./user.php?error_login=true");
 	}
-	if ($emUser->isUserExist($login)) {
-		header("Location: ./user.php?error_exist=true");
-		exit;
+	if ($User_Model->isUserExist($login)) {
+		emDirect("./user.php?error_exist=true");
 	}
 	if (strlen($password) < 6) {
-		header("Location: ./user.php?error_pwd_len=true");
-		exit;
+		emDirect("./user.php?error_pwd_len=true");
 	}
 	if ($password != $password2) {
-		header("Location: ./user.php?error_pwd2=true");
-		exit;
+		emDirect("./user.php?error_pwd2=true");
 	}
 
-	require_once EMLOG_ROOT.'/lib/class.phpass.php';
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$emUser->addUser($login, $password, $role);
+	$User_Model->addUser($login, $password, $role);
 	$CACHE->updateCache(array('sta','user'));
-	header("Location: ./user.php?active_add=true");
+	emDirect("./user.php?active_add=true");
 }
 if ($action== 'edit') {
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 
-	$data = $emUser->getOneUser($uid);
+	$data = $User_Model->getOneUser($uid);
 	extract($data);
 
-	include getViews('header');
-	require_once getViews('useredit');
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once View::getView('useredit');
+	include View::getView('footer');View::output();
 }
 if ($action=='update') {
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
@@ -69,20 +63,16 @@ if ($action=='update') {
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
 	if ($login == '') {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_login=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_login=true");
 	}
-	if ($emUser->isUserExist($login, $uid)) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_exist=true");
-		exit;
+	if ($User_Model->isUserExist($login, $uid)) {
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist=true");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd_len=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=true");
 	}
 	if ($password != $password2) {
-		header("Location: ./user.php?action=edit&uid={$uid}&error_pwd2=true");
-		exit;
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
 	}
 
     $userData = array('username'=>$login, 
@@ -92,20 +82,19 @@ if ($action=='update') {
                         );
 
     if (!empty($password)) {
-    	require_once EMLOG_ROOT.'/lib/class.phpass.php';
     	$PHPASS = new PasswordHash(8, true);
     	$password = $PHPASS->HashPassword($password);
         $userData['password'] = $password;
     }
 
-	$emUser->updateUser($userData, $uid);
+	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');
-	header("Location: ./user.php?active_update=true");
+	emDirect("./user.php?active_update=true");
 }
 if ($action== 'del') {
-	$users = $emUser->getUsers();
+	$users = $User_Model->getUsers();
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
-	$emUser->deleteUser($uid);
+	$User_Model->deleteUser($uid);
 	$CACHE->updateCache(array('sta','user'));
-	header("Location: ./user.php?active_del=true");
+	emDirect("./user.php?active_del=true");
 }

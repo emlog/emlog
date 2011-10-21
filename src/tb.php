@@ -7,12 +7,11 @@
 
 require_once 'init.php';
 
-$blogid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
+$logid = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 $sc = isset($_REQUEST['sc']) ? $_REQUEST['sc'] : '';
 $encode = 'utf-8';
 $charset = isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? strtolower($_SERVER['HTTP_ACCEPT_CHARSET']) : '';
-if ($charset && !strstr($charset, 'utf-8'))
-{
+if ($charset && !strstr($charset, 'utf-8')){
 	$encode = $charset;
 }
 
@@ -22,67 +21,39 @@ $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
 $blog_name = isset($_REQUEST['blog_name']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['blog_name'])))) : '';
 $ipaddr	   = getIp();
 
-if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
-{
-	if($sc != substr(md5(gmdate('Ynd')),0,5))
-	{
+if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url && $blog_name){
+	if($sc != substr(md5(gmdate('YndG')), 0, 6)){
 		showXML($lang['trackback_url_invalid']);
 	}
 
-	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$blogid."'");
-	if (empty($blog))
-	{
+	$DB = MySql::getInstance();
+
+	$blog = $DB->once_fetch_array('SELECT allow_tb FROM '.DB_PREFIX."blog WHERE gid='".$logid."'");
+	if (empty($blog)){
 		showXML($lang['post_not_exist']);
 	}elseif ($blog['allow_tb'] == 'n'){
 		showXML($lang['trackback_disabled']);
 	}
 
-	$visible = false;
-	$point = 0;
-	$source_content = '';
-	$source_content = fopen_url($url);
-	$this_server = str_replace(array('www.', 'http://'), '', $_SERVER['HTTP_HOST']);
+	$point = 3;
 
-	if (empty($source_content))
-	{
-		$point -= 1;
-	}else {
-		if (strpos(strtolower($source_content), strtolower($this_server)) !== FALSE)
-		{
-			$point += 1;
-		}
-		if (strpos(strtolower($source_content), strtolower($title)) !== FALSE)
-		{
-			$point += 1;
-		}
-		if (strpos(strtolower($source_content), strtolower($excerpt)) !== FALSE)
-		{
-			$point += 1;
-		}
-	}
-
+	//5小时内同一ip、博客只能引用一次
 	$interval = 3600 * 5;
+	$utctimestamp = time();
 	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");
-
-	//Set time interval to prevent the same IP request every 5 hours
-	if ($DB->num_rows($query))
-	{
-		$point -= 2;
-	}
-
-	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."'");
-	if ($DB->num_rows($query))
-	{
+	if ($DB->num_rows($query)){
 		$point -= 1;
 	}
 
-	$visible = ($point < 2) ? false : true;
+	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE REPLACE(LCASE(url),'www.','')='".str_replace('www.','',strtolower($url))."' AND date+$interval>=$utctimestamp");
+	if ($DB->num_rows($query)){
+		$point -= 1;
+	}
 
-	if ($visible === true)
-	{
-		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($blogid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
+	if ($point == 3){
+		$query = 'INSERT INTO '.DB_PREFIX."trackback (gid, title, date, excerpt, url, blog_name,ip) VALUES($logid, '$title', '$utctimestamp', '$excerpt', '$url', '$blog_name','$ipaddr')";
 		$DB->query($query);
-		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($blogid)."'");
+		$DB->query('UPDATE '.DB_PREFIX."blog SET tbcount=tbcount+1 WHERE gid='".intval($logid)."'");
 		$CACHE->updateCache('sta');
 		showXML($lang['trackback_successful'], 0);
 	}else {
@@ -93,8 +64,7 @@ if ($istrackback=='y' && $blogid && $title && $excerpt && $url && $blog_name)
 }
 
 //Send Message Page
-function showXML($message, $error = 1)
-{
+function showXML($message, $error = 1){
 	header('Content-type: text/xml');
 	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 	echo "<response>\n";
@@ -105,8 +75,7 @@ function showXML($message, $error = 1)
 }
 
 // Convert HTML to plain text
-function html2text($content)
-{
+function html2text($content){
 	$content = preg_replace("/<style .*?<\/style>/is", "", $content);
 	$content = preg_replace("/<script .*?<\/script>/is", "", $content);
 	$content = preg_replace("/<br\s*\/?>/i", "\n", $content);
@@ -121,13 +90,11 @@ function html2text($content)
 }
 
 //Format title, trim the too long title, convert to utf8
-function trimmed_title($text, $limit=12)
-{
+function trimmed_title($text, $limit=12){
 	$val = csubstr($text, 0, $limit);
 	return $val[1] ? $val[0]."..." : $val[0];
 }
-function csubstr($text, $start=0, $limit=12)
-{
+function csubstr($text, $start=0, $limit=12){
 	if (function_exists('mb_substr')){
 		$more = (mb_strlen($text) > $limit) ? TRUE : FALSE;
 		$text = mb_substr($text, 0, $limit, 'UTF-8');
@@ -138,10 +105,8 @@ function csubstr($text, $start=0, $limit=12)
 		return array($text, $more);
 	} else {
 		preg_match_all("/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/", $text, $ar);
-		if(func_num_args() >= 3)
-		{
-			if (count($ar[0])>$limit)
-			{
+		if(func_num_args() >= 3){
+			if (count($ar[0])>$limit){
 				$more = TRUE;
 				$text = join('', array_slice($ar[0],0,$limit))."...";
 			}
@@ -156,13 +121,10 @@ function csubstr($text, $start=0, $limit=12)
 }
 
 //Convert encoding to UTF-8
-function iconv2utf($chs)
-{
+function iconv2utf($chs){
 	global $encode;
-	if ($encode != 'utf-8')
-	{
-		if (function_exists('mb_convert_encoding'))
-		{
+	if ($encode != 'utf-8'){
+		if (function_exists('mb_convert_encoding')){
 			$chs = mb_convert_encoding($chs, 'UTF-8', $encode);
 		} elseif (function_exists('iconv')){
 			$chs = iconv($encode, 'UTF-8', $chs);

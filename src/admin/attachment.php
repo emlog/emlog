@@ -7,24 +7,27 @@
 
 require_once 'globals.php';
 
+$DB = MySql::getInstance();
+
 //Show Upload Form
+
 if ($action == 'selectFile') {
 	$attachnum = 0;
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	if ($logid) {
-		$sql="SELECT * FROM ".DB_PREFIX."attachment where blogid=$logid";
+		$sql = 'SELECT * FROM '.DB_PREFIX."attachment where blogid=$logid";
 		$query=$DB->query($sql);
 		$attachnum = $DB->num_rows($query);
 	}
-	$maxsize = changeFileSize(UPLOADFILE_MAXSIZE);
+	$maxsize = changeFileSize(Option::UPLOADFILE_MAXSIZE);
 
 	//Allowed attachment type
 	$att_type_str = '';
-	foreach ($att_type as $val) {
+	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val";
 	}
-	require_once(getViews('upload'));
-	cleanPage();
+	require_once(View::getView('upload'));
+	View::output();
 }
 //Upload attachment
 if ($action == 'upload') {
@@ -33,7 +36,7 @@ if ($action == 'upload') {
 	if ($attach) {
 		for ($i = 0; $i < count($attach['name']); $i++) {
 			if ($attach['error'][$i] != 4) {
-				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], $attach['type'][$i], $att_type);
+				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType());
 				//Save Attachment Information
 				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);
@@ -42,7 +45,7 @@ if ($action == 'upload') {
 		}
 	}
 	$CACHE->updateCache('logatts');
-	header("Location: attachment.php?action=attlib&logid=$logid");
+	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 //Attachment Gallery
 if ($action == 'attlib') {
@@ -62,8 +65,8 @@ if ($action == 'attlib') {
 		'filename'=>$filename
 		);
 	}
-	require_once(getViews('attlib'));
-	cleanPage();
+	require_once(View::getView('attlib'));
+	View::output();
 }
 //Delete attachment
 if ($action == 'del_attach') {
@@ -74,13 +77,13 @@ if ($action == 'del_attach') {
 	if (file_exists($attach['filepath'])) {
 		$fpath = str_replace('thum-', '', $attach['filepath']);
 		if ($fpath != $attach['filepath']) {
-			@unlink($fpath) or formMsg($lang['attachment_delete_error'], "javascript:history.go(-1);", 0);
+			@unlink($fpath) or emMsg($lang['attachment_delete_error']);
 		}
-		@unlink($attach['filepath']) or formMsg($lang['attachment_delete_error'], "javascript:history.go(-1);", 0);
+		@unlink($attach['filepath']) or emMsg($lang['attachment_delete_error']);
 	}
 	$row = $DB->once_fetch_array("SELECT blogid FROM ".DB_PREFIX."attachment where aid=$aid");
 	$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum-1 WHERE gid={$row['blogid']}");
 	$DB->query("DELETE FROM ".DB_PREFIX."attachment where aid=$aid ");
 	$CACHE->updateCache('logatts');
-	header("Location: attachment.php?action=attlib&logid=$logid");
+	emDirect("attachment.php?action=attlib&logid=$logid");
 }

@@ -5,31 +5,27 @@
  * $Id$
  */
 
-require_once 'common.php';
+require_once './init.php';
 
 header('Content-type: application/xml');
 
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = BLOG_URL;
-$EMLOG_LANGUAGE = EMLOG_LANGUAGE;
+$blog = getBlog($sort);
+$user_cache = $CACHE->readCache('user');
 
-$blog = GetBlog($sort);
-
-echo <<< END
-<?xml version="1.0" encoding="utf-8"?>
+echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
-<title><![CDATA[{$blogname}]]></title> 
-<description><![CDATA[{$bloginfo}]]></description>
-<link>{$URL}</link>
-<language>{$EMLOG_LANGUAGE}</language>
-<generator>www.emlog.net</generator>
+<title><![CDATA['.Option::get('blogname').']]></title> 
+<description><![CDATA['.Option::get('bloginfo').']]></description>
+<link>'.$URL.'</link>
+<language>'.EMLOG_LANGUAGE.'</language>
+<generator>www.emlog.net</generator>';
 
-END;
-foreach($blog as $value)
-{
-	$link = $URL."?post=".$value['id'];
+foreach($blog as $value){
+	$link = Url::log($value['id']);
 	$abstract = str_replace('[break]','',$value['content']);
 	$pubdate =  gmdate('r',$value['date']);
 	$author = $user_cache[$value['author']]['name'];
@@ -57,11 +53,12 @@ END;
  *
  * @return array
  */
-function GetBlog($sort = null) {
-	global $DB;
+function getBlog($sort = null) {
+	global $lang;
+	$DB = MySql::getInstance();
 	global $lang;
 	$subsql = $sort ? "and sortid=$sort" : '';
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . RSS_OUTPUT_NUM;
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
@@ -73,8 +70,15 @@ function GetBlog($sort = null) {
 		if(!empty($re['password']))
 		{
 			$re['content'] = '<p>['.$lang['blog_password_protected'].']</p>';
-		}elseif(!RSS_FULL_FEED && !empty($re['excerpt'])){
-		    $re['content'] = $re['excerpt'] . '<p><a href="'.BLOG_URL.'?post='.$re['id'].'">'.$lang['read_more'].' &gt;&gt;</a></p>';
+		}
+		elseif(Option::get('rss_output_fulltext') == 'n')
+		{
+			if (!empty($re['excerpt'])) {
+				$re['content'] = $re['excerpt'];
+			}else {
+				$re['content'] = extractHtmlData($re['content'], 330);
+			}
+			$re['content'] .= ' <a href="'.Url::log($re['id']).'">'.$lang['read_more'].'&gt;&gt;</a>';
 		}
 
 		$blog[] = $re;

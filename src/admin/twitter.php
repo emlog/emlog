@@ -2,86 +2,64 @@
 /**
  * Twitters
  * @copyright (c) Emlog All Rights Reserved
- * $Id: twitter.php 1596 2010-03-02 12:09:48Z Colt.hawkins $
+ * $Id$
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.twitter.php';
 
-$emTwitter = new emTwitter();
+$Twitter_Model = new Twitter_Model();
 
 if ($action == '') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-    $emReply = new emReply();
+    $user_cache = $CACHE->readCache('user');
+    $Reply_Model = new Reply_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page,1);
-    $twnum = $emTwitter->getTwitterNum(1);
-    $pageurl =  pagination($twnum, ADMIN_PERPAGE_NUM, $page, 'twitter.php?page');
-    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $tws = $Twitter_Model->getTwitters($page,1);
+    $twnum = $Twitter_Model->getTwitterNum(1);
+    $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page=');
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    if ($istwitter=='y'){
-		$ex1="selected=\"selected\"";
-		$ex2="";
-	}else{
-		$ex1="";
-		$ex2="selected=\"selected\"";
-	}
-    if ($reply_code=='y'){
-		$ex3="selected=\"selected\"";
-		$ex4="";
-	}else{
-		$ex3="";
-		$ex4="selected=\"selected\"";
-	}
-    if ($ischkreply=='y'){
-		$ex5="selected=\"selected\"";
-		$ex6="";
-	}else{
-		$ex5="";
-		$ex6="selected=\"selected\"";
-	}
+    $conf_istwitter = Option::get('istwitter') == 'y' ? 'checked="checked"' : '';
+    $conf_reply_code = Option::get('reply_code') == 'y' ? 'checked="checked"' : '';
+    $conf_ischkreply = Option::get('ischkreply') == 'y' ? 'checked="checked"' : '';
 
-    include getViews('header');
-    require_once getViews('twitter');
-    include getViews('footer');
-    cleanPage();
+    include View::getView('header');
+    require_once View::getView('twitter');
+    include View::getView('footer');
+    View::output();
 }
 // Post twit
 if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 
     if (!$t){
-        header("Location: twitter.php?error_a=true");
-        exit;
+        emDirect("twitter.php?error_a=true");
     }
 
-    $tdata = array('content' => $emTwitter->formatTwitter($t),
+    $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
     );
 
-    $emTwitter->addTwitter($tdata);
+    $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
-    header("Location: twitter.php?active_t=true");
+    emDirect("twitter.php?active_t=true");
 }
 // Delete twit
 if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emTwitter->delTwitter($id);
+	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
-	header("Location: twitter.php?active_del=true");
+	emDirect("twitter.php?active_del=true");
 }
 // Get reply
 if ($action == 'getreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    $emReply = new emReply();
-    $replys = $emReply->getReplys($tid);
+    $Reply_Model = new Reply_Model();
+    $replys = $Reply_Model->getReplys($tid);
 
     $response = '';
     foreach($replys as $val){
@@ -103,7 +81,7 @@ if ($action == 'getreply') {
 }
 // Reply the twit
 if ($action == 'reply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
+    $user_cache = $CACHE->readCache('user');
 
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -122,12 +100,12 @@ if ($action == 'reply') {
             'date' => $date,
     );
 
-    $emReply = new emReply();
-    $rid = $emReply->addReply($rdata);
+    $Reply_Model = new Reply_Model();
+    $rid = $Reply_Model->addReply($rdata);
     if ($rid === false){
         exit('err2');
     }
-    $emTwitter->updateReplyNum($tid, '+1');
+    $Twitter_Model->updateReplyNum($tid, '+1');
     $CACHE->updateCache('sta');
 
     $date = smartDate($date);
@@ -143,49 +121,44 @@ if ($action == 'reply') {
 }
 // Delete reply
 if ($action == 'delreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    if( $emReply->delReply($rid) == 'n'){
-        $emTwitter->updateReplyNum($tid, '-1');
+    $Reply_Model = new Reply_Model();
+    if( $Reply_Model->delReply($rid) == 'n'){
+        $Twitter_Model->updateReplyNum($tid, '-1');
     }
     echo $tid;
 }
 // Hide reply
 if ($action == 'hidereply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    $emReply->hideReply($rid);
-    $emTwitter->updateReplyNum($tid, '-1');
+    $Reply_Model = new Reply_Model();
+    $Reply_Model->hideReply($rid);
+    $Twitter_Model->updateReplyNum($tid, '-1');
 }
 // Publish reply
 if ($action == 'pubreply') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
-    $emReply = new emReply();
-    $emReply->pubReply($rid);
-    $emTwitter->updateReplyNum($tid, '+1');
+    $Reply_Model = new Reply_Model();
+    $Reply_Model->pubReply($rid);
+    $Twitter_Model->updateReplyNum($tid, '+1');
 }
 // Twitter settings
 if ($action == 'set') {
     $data = array(
-        'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'y',
+        'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
         'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
         'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
         'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
+    	'twnavi' => isset($_POST['twnavi']) ? addslashes($_POST['twnavi']) : '',
     );
 
 	foreach ($data as $key => $val){
-		updateOption($key, $val);
+		Option::updateOption($key, $val);
 	}
 
 	$CACHE->updateCache('options');
-    header("Location: twitter.php?active_set=true");
+    emDirect("twitter.php?active_set=true");
 }

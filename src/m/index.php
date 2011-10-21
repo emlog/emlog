@@ -3,44 +3,41 @@
  * Mobile Version
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id:  526 2008-07-05 15:21:03Z emloog $
+ * $Id$
  */
 
-require_once '../common.php';
+require_once '../init.php';
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
 $isgzipenable = 'n'; //Turn off gzip compression for mobile browsing
 $index_lognum = 5;
-$index_twnum = 5;
+
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
-$blogname = $options_cache ['blogname'];
-$blogdes = $options_cache ['bloginfo'];
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+
 // Front page
 if (empty ($action) && empty ($logid)) {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	$page = isset($_GET['page']) ? abs(intval ($_GET['page'])) : 1;
 	$sqlSegment = "ORDER BY top DESC ,date DESC";
+	$sta_cache = $CACHE->readCache('sta');
 	$lognum = $sta_cache['lognum'];
-	$pageurl = '?page';
-	$logs = $emBlog->getLogsForHome ($sqlSegment, $page, $index_lognum);
+	$pageurl = './?page=';
+	$logs = $Log_Model->getLogsForHome ($sqlSegment, $page, $index_lognum);
 	$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
-	include getViews('header');
-	include getViews('log');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('log');
+	include View::getView('footer');
+	View::output();
 }
 // Blog
 if (!empty ($logid)) {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-	require_once EMLOG_ROOT . '/model/class.comment.php';
+	$Log_Model = new Log_Model();
+	$Comment_Model = new Comment_Model();
 
-	$emBlog = new emBlog();
-	$emComment = new emComment();
-
-	$logData = $emBlog->getOneLogForHome($logid);
+	$logData = $Log_Model->getOneLogForHome($logid);
 	if ($logData === false) {
 		mMsg ($lang['entry_not_exists'], './');
 	}
@@ -51,29 +48,30 @@ if (!empty ($logid)) {
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
 	}
 	// comments
-	$cheackimg = $comment_code == 'y' ? "<img src=\"../lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
-	$comments = $emComment->getComments(0, $logid, 'n');
+	$commentPage = isset($_GET['comment-page']) ? intval($_GET['comment-page']) : 1;
+	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	$comments = $Comment_Model->getComments(2, $logid, 'n', $commentPage);
+	extract($comments);
+	$user_cache = $CACHE->readCache('user');
 
-	$emBlog->updateViewCount($logid);
-	include getViews('header');
-	include getViews('single');
-	include getViews('footer');
+	$Log_Model->updateViewCount($logid);
+	include View::getView('header');
+	include View::getView('single');
+	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'write') {
 	$logid = isset($_GET['id']) ? intval($_GET['id']) : '';
-	require_once EMLOG_ROOT . '/model/class.sort.php';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
 	if ($logid) {
-		require_once EMLOG_ROOT . '/model/class.blog.php';
-		require_once EMLOG_ROOT . '/model/class.tag.php';
-		$emBlog = new emBlog();
-		$emTag = new emTag();
+		$Log_Model = new Log_Model();
+		$Tag_Model = new Tag_Model();
 
-		$blogData = $emBlog->getOneLogForAdmin($logid);
+		$blogData = $Log_Model->getOneLogForAdmin($logid);
 		extract($blogData);
 		$tags = array();
-		foreach ($emTag->getTag($logid) as $val) {
+		foreach ($Tag_Model->getTag($logid) as $val) {
 			$tags[] = $val['tagname'];
 		}
 		$tagStr = implode(',', $tags);
@@ -87,16 +85,14 @@ if (ISLOGIN === true && $action == 'write') {
 		$author = UID;
 		$date = '';
 	}
-	include getViews('header');
-	include getViews('write');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('write');
+	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'savelog') {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-	require_once EMLOG_ROOT . '/model/class.tag.php';
-
-	$emBlog = new emBlog();
-	$emTag = new emTag();
+	$Log_Model = new Log_Model();
+	$Tag_Model = new Tag_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
@@ -106,7 +102,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
 	$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
-	$postTime = $emBlog->postDate($timezone, $date);	
+	$postTime = $Log_Model->postDate(Option::get('timezone'), $date);	
 
 	$logData = array('title' => $title,
 		'content' => $content,
@@ -121,212 +117,223 @@ if (ISLOGIN === true && $action == 'savelog') {
 		);
 
 	if ($blogid > 0) {
-		$emBlog->updateLog($logData, $blogid);
-		$emTag->updateTag($tagstring, $blogid);
+		$Log_Model->updateLog($logData, $blogid);
+		$Tag_Model->updateTag($tagstring, $blogid);
 	}else {
-		$blogid = $emBlog->addlog($logData);
-		$emTag->addTag($tagstring, $blogid);
+		$blogid = $Log_Model->addlog($logData);
+		$Tag_Model->addTag($tagstring, $blogid);
 	}
 	$CACHE->updateCache();
-	header ("Location: ./");
+	emDirect("./");
 }
 if (ISLOGIN === true && $action == 'dellog') {
-	require_once EMLOG_ROOT . '/model/class.blog.php';
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
-	$emBlog->deleteLog($id);
+	$Log_Model->deleteLog($id);
 	$CACHE->updateCache();
-	header("Location: ./");
+	emDirect("./");
 }
 // Comment
 if ($action == 'addcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 
-	$comname = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
-	$comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
-	$commail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
-	$comurl = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-	$imgcode = strtoupper(trim(isset($_POST['imgcode']) ? $_POST['imgcode'] : ''));
-	$gid = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
+	$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
+    $content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+    $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
+    $url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
+    $imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
+    $blogId = isset($_GET['gid']) ? intval($_GET['gid']) : - 1;
+    $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 
-	$ret = $emComment->addComment($comname, $comment, $commail, $comurl, $imgcode, $gid);
-	switch ($ret) {
-		case -1:
-			mMsg($lang['comments_disabled'], "./?post=$gid");
-			break;
-		case -2:
-			mMsg($lang['comment_allready_exists'], "./?post=$gid");
-			break;
-		case -3:
-			mMsg($lang['comment_name_invalid'], "./?post=$gid");
-			break;
-		case -4:
-			mMsg($lang['comment_email_invalid'], "./?post=$gid");
-			break;
-		case -5:
-			mMsg($lang['comment_invalid'], "./?post=$gid");
-			break;
-		case -6:
-			mMsg($lang['comment_captcha_invalid'], "./?post=$gid");
-			break;
-		case 0:
-			$CACHE->updateCache(array('sta','comment'));
-			doAction('comment_saved');
-			header("Location: ./?post=$gid");
-			break;
-		case 1:
-			$CACHE->updateCache(array('sta'));
-			doAction('comment_saved');
-			mMsg ($lang['comment_posted_premod'], "./?post=$gid");
-			break;
-	}
+    if (ISLOGIN === true) {
+        $CACHE = Cache::getInstance();
+        $user_cache = $CACHE->readCache('user');
+		$name = addslashes($user_cache[UID]['name_orig']);
+       	$mail = addslashes($user_cache[UID]['mail']);
+        $url = addslashes(BLOG_URL);
+    }
+
+    doAction('comment_post');
+
+	if($Comment_Model->isLogCanComment($blogId) === false){
+        mMsg($lang['comments_disabled'],'./?post=' . $blogId);
+    } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
+        mMsg($lang['comment_allready_exists'],'./?post=' . $blogId);
+    } elseif (strlen($name) > 20 || strlen($name) == 0){
+        mMsg($lang['comment_name_invalid'],'./?post=' . $blogId);
+    } elseif ($mail != '' && !checkMail($mail)) {
+        mMsg($lang['comment_email_invalid'], './?post=' . $blogId);
+    } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
+        mMsg($lang['comment_admin_restricted'],'./?post=' . $blogId);
+    } elseif (strlen($content) == '' || strlen($content) > 2000) {
+        mMsg($lang['comment_invalid'],'./?post=' . $blogId);
+    } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        mMsg($lang['comment_captcha_invalid'],'./?post=' . $blogId);
+    } else {
+		$DB = MySql::getInstance();
+        $ipaddr = getIp();
+		$utctimestamp = time();
+
+		if($pid != 0) {
+			$comment = $Comment_Model->getOneComment($pid);
+			$content = '@' . addslashes($comment['poster']) . '：' . $content;
+		}
+
+		$ischkcomment = Option::get('ischkcomment');
+		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+
+		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
+				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
+		$ret = $DB->query($sql);
+		$cid = $DB->insert_id();
+		$CACHE = Cache::getInstance();
+
+		if ($hide == 'n') {
+			$DB->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+			$CACHE->updateCache(array('sta', 'comment'));
+            doAction('comment_saved', $cid);
+            emDirect('./?post=' . $blogId);
+		} else {
+		    $CACHE->updateCache('sta');
+		    doAction('comment_saved', $cid);
+		    mMsg($lang['comment_posted_premod'], './?post=' . $blogId);
+		}
+    }
 }
 if ($action == 'com') {
 	if (ISLOGIN === true) {
 		$hide = '';
 		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-		require_once EMLOG_ROOT . '/model/class.comment.php';
-		$emComment = new emComment();
+		$Comment_Model = new Comment_Model();
 
-		$comment = $emComment->getComments(1, null, $hide, $page);
-		$cmnum = $emComment->getCommentNum(null, $hide);
-		$pageurl = pagination($cmnum, 5, $page, "./?action=com&page");
+		$comment = $Comment_Model->getComments(1, null, $hide, $page);
+		$cmnum = $Comment_Model->getCommentNum(null, $hide);
+		$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "./?action=com&page=");
 	}else {
-		$comment = $com_cache;
+		$comment = $CACHE->readCache('comment');
 		$pageurl = '';
 	}
-	include getViews('header');
-	include getViews('comment');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('comment');
+	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 'delcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->delComment($id);
+	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
 if (ISLOGIN === true && $action == 'showcom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->showComment($id);
+	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
 if (ISLOGIN === true && $action == 'hidecom') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
+	$Comment_Model = new Comment_Model();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->hideComment($id);
+	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./?action=com");
+	emDirect("./?action=com");
 }
-if (ISLOGIN === true && $action == 'reply') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
-	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$commentArray = $emComment->getOneComment($id);
+if ($action == 'reply') {
+	$Comment_Model = new Comment_Model();
+	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
+	$commentArray = $Comment_Model->getOneComment($cid);
+	if(!$commentArray) {
+		mMsg($lang['parameter_error'], './');
+	}
 	extract($commentArray);
-	include getViews('header');
-	include getViews('reply');
-	include getViews('footer');
-}
-if (ISLOGIN === true && $action == 'dorep') {
-	require_once EMLOG_ROOT . '/model/class.comment.php';
-	$emComment = new emComment();
-	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
-	$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
-	$emComment->replyComment($id, $reply);
-	$CACHE->updateCache('comment');
-	header("Location: ./?action=com");
+	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
+	include View::getView('header');
+	include View::getView('reply');
+	include View::getView('footer');
+	View::output();
 }
 // Twitters
 if ($action == 'tw') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-    $tws = $emTwitter->getTwitters($page);
-    $twnum = $emTwitter->getTwitterNum();
-    $pageurl =  pagination($twnum, $index_twnum, $page, './?action=tw&page');
+    $user_cache = $CACHE->readCache('user');
+    $tws = $Twitter_Model->getTwitters($page);
+    $twnum = $Twitter_Model->getTwitterNum();
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page=');
 
-	include getViews('header');
-	include getViews('twitter');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('twitter');
+	include View::getView('footer');
+	View::output();
 }
 if (ISLOGIN === true && $action == 't') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
     if (!$t){
-        header ("Location: ./?action=tw");
-        exit;
+        emDirect("./?action=tw");
     }
-    $tdata = array('content' => $emTwitter->formatTwitter($t),
+    $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
     );
-    $emTwitter->addTwitter($tdata);
+    $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
-    header ("Location: ./?action=tw");
+    emDirect("./?action=tw");
 }
 if (ISLOGIN === true && $action == 'delt') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
-    $emTwitter = new emTwitter();
+    $Twitter_Model = new Twitter_Model();
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emTwitter->delTwitter($id);
+	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
-	header("Location: ./?action=tw");
+	emDirect("./?action=tw");
 }
 if ($action == 'login') {
-	$login_code == 'y' ? $ckcode = "<span>{$lang['verification_code']}</span>
-    <div class=\"val\"><img src=\"../lib/checkcode.php\" /><br />
+	Option::get('login_code') == 'y' ? $ckcode = "<span>{$lang['verification_code']}</span>
+    <div class=\"val\"><img src=\"../include/lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
-	include getViews('header');
-	include getViews('login');
-	include getViews('footer');
+	include View::getView('header');
+	include View::getView('login');
+	include View::getView('footer');
+	View::output();
 }
 if ($action == 'auth') {
 	session_start();
 	$username = addslashes(trim($_POST['user']));
 	$password = addslashes(trim($_POST['pw']));
-	$img_code = ($login_code == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
+	$img_code = (Option::get('login_code') == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
 	$ispersis = true;
-	if (checkUser($username, $password, $img_code, $login_code) === true) {
+	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);
-		header("Location: ?tem=" . time());
+		emDirect('?tem=' . time());
 	}else {
-		header("Location: ?action=login");
+		emDirect("?action=login");
 	}
 }
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time () - 31536000, '/');
-	header("Location: ?tem=" . time());
+	emDirect('?tem=' . time());
 }
 function mMsg($msg, $url) {
-	global $blogname, $blogdes;
-	include getViews('header');
-	include getViews('msg');
-	include getViews('footer');
-	exit;
+	include View::getView('header');
+	include View::getView('msg');
+	include View::getView('footer');
+	View::output();
 }
 function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
-	global $blogname, $blogdes;
 	$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 	if ($pwd !== addslashes($logPwd)) {
-		include getViews('header');
-		include getViews('logauth');
-		include getViews('footer');
+		include View::getView('header');
+		include View::getView('logauth');
+		include View::getView('footer');
 		if ($cookiePwd) {
 			setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 		}
-		exit;
+		View::output();
 	}else {
 		setcookie('em_logpwd_' . $logid, $logPwd);
 	}

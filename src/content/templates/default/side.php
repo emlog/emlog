@@ -4,8 +4,7 @@
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
-<div id="sidebar">
-<ul>
+<ul id="sidebar">
 <?php 
 $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 doAction('diff_side');
@@ -18,7 +17,7 @@ foreach ($widgets as $val)
 		$callback = 'widget_custom_text';
 		if(function_exists($callback))
 		{
-			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content'], $val);
+			call_user_func($callback, htmlspecialchars($custom_widget[$val]['title']), $custom_widget[$val]['content']);
 		}
 	}else{
 		$callback = 'widget_'.$val;
@@ -31,9 +30,7 @@ foreach ($widgets as $val)
 	}
 }
 ?>
-</ul>
 <div class="rss">
-<a href="<?php echo BLOG_URL; ?>rss.php"><img src="<?php echo TEMPLATE_URL; ?>images/rss.gif" alt="<? echo $lang['rss_feed'];?>"/></a>
+<a href="<?php echo BLOG_URL; ?>rss.php" title="<? echo $lang['rss_feed'];?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.gif" alt="<? echo $lang['rss_feed'];?>"/></a>
 </div>
-</div>
-<!--end sidebar-->
+</ul><!--end #siderbar-->

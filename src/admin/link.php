@@ -6,17 +6,16 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.link.php';
 
-$emLink = new emLink();
+$Link_Model = new Link_Model();
 
 if($action == '')
 {
-	$links = $emLink->getLinks();
-	include getViews('header');
-	require_once(getViews('links'));
-	include getViews('footer');
-	cleanPage();
+	$links = $Link_Model->getLinks();
+	include View::getView('header');
+	require_once(View::getView('links'));
+	include View::getView('footer');
+	View::output();
 }
 
 if ($action== 'link_taxis')
@@ -28,45 +27,45 @@ if ($action== 'link_taxis')
 		{
 			$value = intval($value);
 			$key = intval($key);
-			$emLink->updateLink(array('taxis'=>$value), $key);
+			$Link_Model->updateLink(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('link');
-		header("Location: ./link.php?active_taxis=true");
+		emDirect("./link.php?active_taxis=true");
 	}else {
-		header("Location: ./link.php?error_b=true");
+		emDirect("./link.php?error_b=true");
 	}
 }
 
 if($action== 'addlink')
 {
+	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	if($sitename =='' || $siteurl =='')
 	{
-		header("Location: ./link.php?error_a=true");
-		exit;
+		emDirect("./link.php?error_a=true");
 	}
 	if(!preg_match("/^http|ftp.+$/i", $siteurl))
 	{
 		$siteurl = 'http://'.$siteurl;
 	}
-	$emLink->addLink($sitename, $siteurl, $description);
+	$Link_Model->addLink($sitename, $siteurl, $description, $taxis);
 	$CACHE->updateCache('link');
-	header("Location: ./link.php?active_add=true");
+	emDirect("./link.php?active_add=true");
 }
 
 if ($action== 'mod_link')
 {
 	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 
-	$linkData = $emLink->getOneLink($linkId);
+	$linkData = $Link_Model->getOneLink($linkId);
 	extract($linkData);
 
-	include getViews('header');
-	require_once(getViews('linkedit'));
-	include getViews('footer');cleanPage();
+	include View::getView('header');
+	require_once(View::getView('linkedit'));
+	include View::getView('footer');View::output();
 }
 if($action=='update_link')
 {
@@ -80,15 +79,15 @@ if($action=='update_link')
 		$siteurl = 'http://'.$siteurl;
 	}
 
-	$emLink->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
+	$Link_Model->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
 	$CACHE->updateCache('link');
-	header("Location: ./link.php?active_edit=true");
+	emDirect("./link.php?active_edit=true");
 }
 if ($action== 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
-	$emLink->deleteLink($linkid);
+	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');
-	header("Location: ./link.php?active_del=true");
+	emDirect("./link.php?active_del=true");
 }

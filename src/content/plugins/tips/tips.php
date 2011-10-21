@@ -4,8 +4,8 @@ Plugin Name: tips
 Version: 1.0
 Plugin URL:
 Description: This is the first emlog plug-in, it will send a page of your management tips and warm.
-Author: dawei
-Author Email: emloog@gmail.com
+ForEmlog:4.1.0
+Author: emlog
 Author URL: http://www.emlog.net/blog/
 */
 

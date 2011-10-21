@@ -5,15 +5,13 @@
  * $Id$
  */
 
-require_once 'options.php';
-require_once EMLOG_ROOT.'/lib/function.base.php';
-require_once EMLOG_ROOT.'/lib/class.mysql.php';
-require_once EMLOG_ROOT.'/lib/class.cache.php';
-require_once EMLOG_ROOT.'/lib/class.phpass.php';
+define('EMLOG_ROOT', dirname(__FILE__));
+define('DEL_INSTALLER', 0);
+
+require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-define('DEL_INSTALLER', 0);
 
 //Blog language //vot
 //define('EMLOG_LANGUAGE','zh-CN');
@@ -37,28 +35,30 @@ if(!$act){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
-#top-title{background:url(admin/views/default/images/logo.gif) no-repeat right;padding:5px 0px;margin:20px 0px 60px 0px;}
-.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:5px 25px;}
-.submit{background-color:#FFFFFF;border: 3px double #999;border-left-color: #ccc;border-top-color: #ccc;color: #333;padding: 0.25em;cursor:hand;}
-.title{font-size:24px;font-weight:bold;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 6px;}
+.logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
+.title{text-align:center;}
+.title span{font-size:24px;font-weight:bold;}
+.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
+.submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
-.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid;}
+.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid; margin:20px 0px;}
 .foot{text-align:center;}
+.main li{ margin:20px 0px;}
 -->
 </style>
 </head>
 <body>
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
-<div id="top-title">
-<p><span class="title">emlog <?php echo EMLOG_VERSION ?></span><span> <? echo $lang['install'];?><br></span></p>
-</div>
+<p class="logo"></p>
+<p class="title"><span>emlog<?php echo Option::EMLOG_VERSION ?></span> <? echo $lang['install'];?></p>
 <div class="b">
 <p class="title2"><? echo $lang['install_step1'];?></p>
 <li>
-	<? echo $lang['db_hostname'];?>: <span class="care">(<? echo $lang['db_hostname_info'];?>)</span> <br />
+	<? echo $lang['db_hostname'];?>: <br />
     <input name="hostname" type="text" class="input" value="localhost">
+	<span class="care">(<? echo $lang['db_hostname_info'];?>)</span>
 </li>
 <li>
     <? echo $lang['db_username'];?>:<br />
@@ -69,14 +69,14 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
   <input name="password" type="password" class="input">
 </li>
 <li>
-    <? echo $lang['db_name'];?>:
-	  <span class="care">(<? echo $lang['db_name_info'];?>)</span><br />
+    <? echo $lang['db_name'];?>:<br />
       <input name="dbname" type="text" class="input" value="">
+          <span class="care">(<? echo $lang['db_name_info'];?>)</span>
 </li>
 <li>
-    <? echo $lang['db_prefix'];?>:
-    <span class="care"> (<? echo $lang['db_prefix_info'];?>)</span><br />
+    <? echo $lang['db_prefix'];?>:<br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
+  <span class="care"> (<? echo $lang['db_prefix_info'];?>)</span>
 </li>
 </div>
 <div class="c">
@@ -88,6 +88,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <li>
 <? echo $lang['admin_password'];?>:<span class="care">(<? echo $lang['password_length'];?>)</span><br />
 <input name="adminpw" type="password" class="input">
+<span class="care">(不小于6位)</span>
 </li>
 <li>
 <? echo $lang['admin_password_repeat'];?>:<br />
@@ -140,7 +141,7 @@ if($act == 'install' || $act == 'reinstall')
 	define('DB_PREFIX', $db_prefix);
 
 	$DB = MySql::getInstance();
-	$CACHE = mkcache::getInstance();
+	$CACHE = Cache::getInstance();
 
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
 	{
@@ -152,7 +153,7 @@ if($act == 'install' || $act == 'reinstall')
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 .main p {line-height: 18px;margin: 5px 20px;}
 -->
 </style>
@@ -217,7 +218,6 @@ EOT;
 	}
 	fclose($fp);
 
-
 	//Encrypt the Password
 	$PHPASS = new PasswordHash(8, true);
 	$adminpw = $PHPASS->HashPassword($adminpw);
@@ -227,30 +227,9 @@ EOT;
 	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 
-	$widgets = array(
-	'blogger'=>$lang['widget_blogger'],
-	'calendar'=>$lang['calendar'],
-	'twitter'=>$lang['twitter'],
-	'tag'=>$lang['tags'],
-	'sort'=>$lang['categories'],
-	'archive'=>$lang['archive'],
-	'newcomm'=>$lang['latest_comments'],
-	'newlog'=>$lang['latest_posts'],
-	'random_log'=>$lang['random_posts'],
-	'music'=>$lang['music'],
-	'link'=>$lang['links'],
-	'search'=>$lang['search'],
-	'bloginfo'=>$lang['statistics'],
-	'custom_text'=>$lang['widget_custom']
-	);
-	$sider_wg = array(
-	'calendar',
-	'archive',
-	'newcomm',
-	'link',
-	'search',
-	'bloginfo'
-	);
+	$widgets = Option::getWidgetTitle();
+    $sider_wg = Option::getDefWidget();
+
 	$widget_title = serialize($widgets);
 	$widgets = serialize($sider_wg);
 
@@ -264,6 +243,7 @@ CREATE TABLE {$db_prefix}blog (
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
   excerpt longtext NOT NULL,
+  alias VARCHAR(200) NOT NULL DEFAULT '',
   author int(10) NOT NULL default '1',
   sortid tinyint(3) NOT NULL default '-1',
   type varchar(20) NOT NULL default 'blog',
@@ -283,8 +263,8 @@ CREATE TABLE {$db_prefix}blog (
   KEY type (type),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES 
-(1, 'hi blogger', '1230508801', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES
+(1, '{$lang['install_post_title']}', '1230508801', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -300,10 +280,10 @@ DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid mediumint(8) unsigned NOT NULL auto_increment,
   gid mediumint(8) unsigned NOT NULL default '0',
+  pid mediumint(8) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
-  reply text NOT NULL,
   mail varchar(60) NOT NULL default '',
   url varchar(75) NOT NULL default '',
   ip varchar(128) NOT NULL default '',
@@ -325,6 +305,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
@@ -333,22 +317,28 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlo
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','20');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','{$lang['twitter']}');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('music','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_day','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_all','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('viewcount_date','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
@@ -380,7 +370,8 @@ DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid tinyint(3) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
-  taxis tinyint(3) NOT NULL default '0',
+  alias VARCHAR(200) NOT NULL DEFAULT '',
+  taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;

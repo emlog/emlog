@@ -11,7 +11,7 @@
 <?php endif;?>
 </div>
 <div id="m">
-<form action="./?action=savelog" method="post">
+<form action="./index.php?action=savelog" method="post">
 <? echo $lang['title']; ?>:<br /><input type="text" name="title" value="<?php echo $title; ?>" /><br />
 <? echo $lang['category']; ?>:<br />
 	      <select name="sort" id="sort">

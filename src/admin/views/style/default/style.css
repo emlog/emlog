@@ -1,0 +1,31 @@
+/*
+Style Name:默认风格
+Author:emlog开发小组
+Url:http://www.emlog.net
+*/
+a{color:#2A9DDB; text-decoration:none;}
+a:hover{color:#333; text-decoration:none}
+#header{ background:url(./images/top_mid.gif) repeat-x; color:#FFFFFF; height:40px; margin-bottom:10px;}
+#headerleft{ background: url(./images/top_left.png) no-repeat;}
+#headerright{background: url(./images/top_right.png) no-repeat right top;}
+#header a{color:#FFF; text-decoration:none}
+#header a:hover{color:#CCC; text-decoration:none}
+#header .logo a{ text-indent:-9999px; height:40px; width:120px; background:url(./images/logo.png) no-repeat; display:block; outline: none;}
+#header .vesion{font-size:10px; padding:10px 10px 0 5px; color: #FFFFFF;}
+#header .home{font-size:15px; padding-left:15px;}
+/*侧边栏*/
+#sidebar{background-position:left top; background-image:url(./images/sidebar_bg.gif);width:114px; background-repeat:repeat-y; text-align:center}
+#sidebar a{color:#333; text-decoration:none; display:block;}
+#sidebar a:hover{color:#2A9DDB; text-decoration:none;}
+#sidebar a:active{ text-decoration:none; padding:1px 0px 0px 1px}
+#sidebartop{background:url(./images/sidebar_bg_t.gif) no-repeat; width:114px; font-size:4px; height:4px}
+#sidebarBottom{font-size:5px; background:url(./images/sidebar_bg_b.gif) no-repeat bottom; width:114px;height:5px}
+#sidebar .coment_number{background: url(./images/coment_numbg.gif) no-repeat 1px 1px;font-size:9px;position: relative; margin-top:-32px; height:30px; width:20px; float:right; margin-right:20px;_margin-right:10px;}
+#sidebar .coment_number a ,#sidebar .coment_number a:hover{ color:#FFFFFF; height:20px;font-weight:bold}
+.sidebarmenu{background:url(./images/sidebar_bg_a.gif) center no-repeat; width:114px; padding-top:4px; letter-spacing:0.2em; height:24px; color:#FFF; cursor:pointer; font-weight:bold}
+.sidebarsubmenu{ background:url(./images/sidebar_menubg.gif) repeat-x; width:104px; padding-top:3px;height:22px;margin:auto;}
+.sidebarsubmenu1{background: url(./images/sidebar_current_menubg.gif) repeat-x; width:103px; padding-top:3px; height:22px; margin:auto;}
+/*分页*/
+.page{text-align:center; margin:10px 0px}
+.page span{background-color: #CC3300; color:#FFF; padding:3px 6px; border-radius: 4px;}
+.page a{background-color: #68aee1; color:#FFF; padding:1px 5px; border-radius: 4px;}

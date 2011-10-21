@@ -2,49 +2,46 @@
 /**
  * Load Global Items
  * @copyright (c) Emlog All Rights Reserved
- * $Id: init.php 966 2009-03-06 10:00:43Z emloog $
+ * $Id$
  */
 
 error_reporting(E_ALL);
 ob_start();
+header('Content-Type: text/html; charset=UTF-8');
+
+define('EMLOG_ROOT', dirname(__FILE__));
 
 /*vot*/mb_internal_encoding('UTF-8');
 
-require_once 'options.php';
 require_once EMLOG_ROOT.'/config.php';
 /*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
-require_once EMLOG_ROOT.'/lib/function.base.php';
-require_once EMLOG_ROOT.'/lib/function.login.php';
-require_once EMLOG_ROOT.'/lib/class.cache.php';
-require_once EMLOG_ROOT.'/lib/class.mysql.php';
+require_once EMLOG_ROOT.'/include/lib/function.base.php';
+require_once EMLOG_ROOT.'/include/lib/function.login.php';
 
-header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();
-$DB = MySql::getInstance();
-$CACHE = mkcache::getInstance();
-//Read Configuration
-$options_cache = $CACHE->readCache('options');
-extract($options_cache);
 
-//Get Action
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-$utctimestamp = time();
+$CACHE = Cache::getInstance();
 
-
-//Login Authentication
 $userData = array();
-define('ISLOGIN',	isLogin());
-define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');//User Group: admin=administrator, writer=co-writer, visitor=visitors
-define('UID', ISLOGIN === true ? $userData['uid'] : '');//User ID
 
-//Global Configuration
-define('BLOG_URL', $blogurl);//Blog URL
-define('TPLS_URL', 		$blogurl.'content/templates/');//Template gallery URL
-define('TPLS_PATH', 	EMLOG_ROOT.'/content/templates/');//Template gallery path
-define('DYNAMIC_BLOGURL', getBlogUrl());//Solve the frontend multi-domain ajax queries
+define('ISLOGIN',	isLogin());
+//User role: admin = administrator, writer = co-author, visitor = guest
+define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
+//User ID
+define('UID', ISLOGIN === true ? $userData['uid'] : '');
+//Blog URL
+define('BLOG_URL', Option::get('blogurl'));
+//Template folder URL
+define('TPLS_URL', BLOG_URL.'content/templates/');
+//Template folder path
+define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
+//Solve the frontend multi-domain ajax queries
+define('DYNAMIC_BLOGURL', getBlogUrl());
+//Front-end template URL
+define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
 
 //Load plug-ins
-$active_plugins = unserialize($active_plugins);
+$active_plugins = Option::get('active_plugins');
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
 	foreach($active_plugins as $plugin) {

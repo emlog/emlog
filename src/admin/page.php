@@ -6,82 +6,75 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
 
 //Navigation bar
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-$navibar = unserialize($navibar);
+$navibar = Option::get('navibar');
 
 //Page Management page
 if ($action == '') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('','','page', 1);
 
-	$pageurl =  pagination($pageNum, ADMIN_PERPAGE_NUM, $page, "./page.php?page");
+	$pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
-	include getViews('header');
-	require_once(getViews('admin_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('admin_page'));
+	include View::getView('footer');
+	View::output();
 }
 //Display a new page form
 if ($action == 'new') {
-	include getViews('header');
-	require_once(getViews('add_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('add_page'));
+	include View::getView('footer');
+	View::output();
 }
 //Show edit page form
 if ($action == 'mod') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
 	extract($pageData);
 
 	$pageUrl = isset($navibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
-	$is_blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
+	$blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
 
-	if($allow_remark == 'y')
-	{
-		$ex = "checked=\"checked\"";
-		$ex2 = '';
-	}else{
-		$ex = '';
-		$ex2 = "checked=\"checked\"";
-	}
-	if($is_blank == '_blank'){
-		$ex3 = "checked=\"checked\"";
-		$ex4 = '';
-	}else{
-		$ex3 = '';
-		$ex4 = "checked=\"checked\"";
-	}
+	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+	$is_blank = $blank == '_blank' ? 'checked="checked"' : '';
 
-	include getViews('header');
-	require_once(getViews('edit_page'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('edit_page'));
+	include View::getView('footer');
+	View::output();
 }
 //Save Page
 if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
-	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft, there blog id number
-	$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : '';
-	$is_blank = isset($_POST['is_blank']) ? addslashes($_POST['is_blank']) : '';
+	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
+	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
+    $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
+    $is_blank = !empty($_POST['is_blank']) ? 'y' : 'n';
 
-	$postTime = $emPage->postDate($timezone);
+	$postTime = $emPage->postDate(Option::get('timezone'));
+
+	//check alias
+	if (!empty($alias)) {
+		$logalias_cache = $CACHE->readCache('logalias');
+	    $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
+	}
 
 	$logData = array(
 	'title'=>$title,
@@ -90,37 +83,41 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'date'=>$postTime,
 	'allow_remark'=>$allow_remark,
 	'hide'=>$ishide,
+	'alias'=>$alias,
 	'type'=>'page'
 	);
 
-	if($pageId > 0)//auto-save, add into update
-	{
+	if($pageId > 0){//auto-save, add into update
 		$emPage->updateLog($logData, $pageId);
 	}else{
 		$pageId = $emPage->addlog($logData);
 	}
 
-	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl))
-	{
+	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl)){
 		$pageUrl = 'http://'.$pageUrl;
 	}
 
-	$navibar[$pageId] = array('title' => stripslashes($title), 'url' => stripslashes($pageUrl), 'is_blank' => $is_blank, 'hide' => $ishide);
+	$navibar[$pageId] = array(
+	       'title' => stripslashes($title),
+	       'url' => stripslashes($pageUrl),
+	       'is_blank' => $is_blank == 'y' ? '_blank' : '',
+	       'hide' => $ishide
+	       );
 	$navibar = addslashes(serialize($navibar));
-	updateOption('navibar', $navibar);
+	Option::updateOption('navibar', $navibar);
 
-	$CACHE->updateCache(array('logatts', 'options'));
-	switch ($action)
-	{
+	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
+	switch ($action){
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";
 			break;
 		case 'add':
 		case 'edit':
-			$tbmsg = '';
-			$ok_msg = $action == 'add' ? $lang['page_published_ok'] : $lang['page_saved_ok'];
-			$ok_url = 'page.php';
-			formMsg($ok_msg,$ok_url, 1);
+			if($action == 'add') {
+				emDirect("./page.php?active_hide_n=true");//The page is published successfully
+			} else {
+				emDirect("./page.php?active_savepage=true");//The page is saved successfully
+			}
 			break;
 	}
 }
@@ -129,34 +126,31 @@ if ($action == 'operate_page') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
-	$emPage = new emBlog();
+	$emPage = new Log_Model();
 
-	switch ($operate)
-	{
+	switch ($operate){
 		case 'del':
-			foreach($pages as $value)
-			{
+			foreach($pages as $value){
 				$emPage->deleteLog($value);
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
-			updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
+			Option::updateOption('navibar', $navibar);
+			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'logalias'));
 
-			header("Location: ./page.php?active_del=true");
+			emDirect("./page.php?active_del=true");
 			break;
 		case 'hide':
 		case 'pub':
 			$ishide = $operate == 'hide' ? 'y' : 'n';
-			foreach($pages as $value)
-			{
+			foreach($pages as $value){
 				$emPage->hideSwitch($value, $ishide);
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
-			updateOption('navibar', $navibar);
+			Option::updateOption('navibar', $navibar);
 			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
-			header("Location: ./page.php?active_hide_".$ishide."=true");
+			emDirect("./page.php?active_hide_".$ishide."=true");
 			break;
 	}
 }

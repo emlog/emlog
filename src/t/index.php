@@ -2,72 +2,82 @@
 /**
  * Twitter
  * @copyright (c) Emlog All Rights Reserved
- * $Id: index.php 1608 2010-03-14 04:58:10Z colt.hawkins@gmail.com $
+ * $Id$
 */
 
-require_once '../common.php';
+require_once '../init.php';
 
-define('TEMPLATE_URL', 	TPLS_URL.$nonce_templet.'/');//Foreground template URL
-define('TEMPLATE_PATH', TPLS_PATH.$nonce_templet.'/');//Foreground template path
+define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Foreground template path
+define('CURPAGE_HOME',  'home');
+define('CURPAGE_LOG',   'echo_log');
+define('CURPAGE_TW',    'twitter');
 
-$blogtitle = $blogname;
+$blogtitle = Option::get('twnavi') . ' - ' . Option::get('blogname');
+$description = Option::get('bloginfo');
 
-if ($istwitter == 'n') {
+$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+
+if (Option::get('istwitter') == 'n') {
     emMsg($lang['twitter_not_guest'], BLOG_URL);
 }
 
-if ($action == '') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
+if ($action == 'cal') {
+    Calendar::generate();
+}
 
-    $emTwitter = new emTwitter();
+if ($action == '') {
+	$user_cache = $CACHE->readCache('user');
+    $options_cache = $CACHE->readCache('options');
+    extract($options_cache);
+    
+    $navibar = unserialize($navibar);
+
+    $Twitter_Model = new Twitter_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-    $tws = $emTwitter->getTwitters($page);
-    $twnum = $emTwitter->getTwitterNum();
-    $pageurl =  pagination($twnum, $index_twnum, $page, BLOG_URL.'t/?page');
-    $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-    $rcode = $reply_code == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
+    $tws = $Twitter_Model->getTwitters($page);
+    $twnum = $Twitter_Model->getTwitterNum();
+    $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page=');
+    $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+    $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
-    include getViews('header');
-    require_once getViews('t');
-    cleanPage(true);
+    include View::getView('header');
+    require_once View::getView('t');
+    View::output();
 }
 // Get a reply
 if ($action == 'getr') {
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-    $emReply = new emReply();
-    $replys = $emReply->getReplys($tid, 'n');
+    $Reply_Model = new Reply_Model();
+    $replys = $Reply_Model->getReplys($tid, 'n');
 
     $response = '';
     foreach($replys as $val){
          $response .= "
          <li>
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
-         <em><a href=\"javascript:re({$tid}, '@{$val['name']}:');\">{$lang['reply']}</a></em>
+         <em><a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">{$lang['reply']}</a></em>
          </li>";
     }
     echo $response;
 }
 // Reply the twit.
 if ($action == 'reply') {
-    require_once EMLOG_ROOT.'/model/class.twitter.php';
-    require_once EMLOG_ROOT.'/model/class.reply.php';
-
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
     $rcode = isset($_POST['rcode']) ? strtoupper(addslashes(trim($_POST['rcode']))) : '';
     $tid = isset($_POST['tid']) ? intval(trim($_POST['tid'])) : '';
+    
+    $user_cache = $CACHE->readCache('user');
 
     if (!$r || strlen($r) > 420){
         exit('err1');
     } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');
-    }elseif (ROLE == 'visitor' && $reply_code == 'y' && session_start() && $rcode != $_SESSION['code']){
+    }elseif (ROLE == 'visitor' && Option::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
         exit('err3');
     }
 
@@ -78,28 +88,28 @@ if ($action == 'reply') {
     }
 
     $date = time();
-    $name =  ROLE == 'visitor' ? $rname : $user_cache[UID]['name'];;
+    $name =  subString(ROLE == 'visitor' ? $rname : addslashes($user_cache[UID]['name']), 0, 16);
 
     $rdata = array(
             'tid' => $tid,
             'content' => $r,
             'name' => $name,
             'date' => $date,
-            'hide' => ROLE == 'visitor' ? $ischkreply : 'n'
+            'hide' => ROLE == 'visitor' ? Option::get('ischkreply') : 'n'
     );
 
-    $emTwitter = new emTwitter();
-    $emReply = new emReply();
+    $Twitter_Model = new Twitter_Model();
+    $Reply_Model = new Reply_Model();
 
-    $rid = $emReply->addReply($rdata);
+    $rid = $Reply_Model->addReply($rdata);
     if ($rid === false){
         exit('err5');
     }
 
     doAction('reply_twitter', $r, $name, $date, $tid);
 
-    if ($ischkreply == 'n' || ROLE != 'visitor'){
-        $emTwitter->updateReplyNum($tid, '+1');
+    if (Option::get('ischkreply') == 'n' || ROLE != 'visitor'){
+        $Twitter_Model->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');
     }
@@ -109,13 +119,13 @@ if ($action == 'reply') {
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
     $response = "
-         <li style=\"background-color:#FFEEAA\">
-         <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
+         <li>
+         <span class=\"name\">".stripslashes(htmlspecialchars($name))."</span> {$r}<span class=\"time\">{$date}</span>
          <em><a href=\"javascript:re({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
          </li>";
     echo $response;
 }
 // Verification code for the reply
 if ($action == 'ckcode') {
-    require_once EMLOG_ROOT.'/lib/checkcode.php';
+    require_once EMLOG_ROOT.'/include/lib/checkcode.php';
 }

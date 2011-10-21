@@ -7,15 +7,12 @@
  */
 
 ob_start();
-require_once 'options.php';
+
+define('EMLOG_ROOT', dirname(__FILE__));
+
 require_once EMLOG_ROOT . '/config.php';
-require_once EMLOG_ROOT . '/lib/class.cache.php';
-require_once EMLOG_ROOT . '/lib/class.mysql.php';
-require_once EMLOG_ROOT . '/lib/function.base.php';
-require_once EMLOG_ROOT . '/lib/function.login.php';
-require_once EMLOG_ROOT . '/model/class.blog.php';
-require_once EMLOG_ROOT . '/model/class.sort.php';
-require_once EMLOG_ROOT . '/model/class.tag.php';
+require_once EMLOG_ROOT . '/include/lib/function.base.php';
+require_once EMLOG_ROOT . '/include/lib/function.login.php';
 
 $api_methods = array(
 	// metaWeblog interface
@@ -31,7 +28,7 @@ $api_methods = array(
 	);
 
 $DB = MySql::getInstance();
-$options_cache = mkcache::getInstance()->readCache('options');
+$options_cache = Cache::getInstance()->readCache('options');
 // Some browser-based clients will send cookies, we don't need them
 $_COOKIE = array();
 // PHP 5.2.2 version has the next bug: The system will not automatically generate the constant $HTTP_RAW_POST_DATA
@@ -134,9 +131,9 @@ function mw_deletePost($args) {
 	$id = intval($args[1]);
 	$user = login($args[2], $args[3]);
 	define('UID', $user['uid']);
-	$emBlog = new emBlog();
-	$emBlog->deleteLog($id);
-	mkcache::getInstance()->updateCache();
+	$Log_Model = new Log_Model();
+	$Log_Model->deleteLog($id);
+	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 /**
@@ -161,8 +158,8 @@ function mw_newPost($args) {
 	$update_data['excerpt'] = '';
 	// Get only the first category
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
 
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
@@ -178,16 +175,16 @@ function mw_newPost($args) {
 		$update_data['date'] = time();
 	}
 	// Update data
-	$emBlog = new emBlog();
-	$new_id = $emBlog->addlog($update_data);
+	$Log_Model = new Log_Model();
+	$new_id = $Log_Model->addlog($update_data);
 	// Update tags
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag();
-		$emTag->addTag($data['mt_keywords'], $new_id);
-		unset($emTag);
+		$Tag_Model = new Tag_Model();
+		$Tag_Model->addTag($data['mt_keywords'], $new_id);
+		unset($Tag_Model);
 	}
 	// Rrefresh cache
-	mkcache::getInstance()->updateCache();
+	Cache::getInstance()->updateCache();
 	response("<i4>$new_id</i4>");
 }
 /**
@@ -213,9 +210,9 @@ function mw_editPost($args) {
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	// Take the category id according to the category name, note that only the first category is taken
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
-	unset($emSort);
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
+	unset($Sort_Model);
 	$update_data['sortid'] = '-1';
 	foreach ($sorts as $sort) {
 		if ($sort_name == $sort['sortname']) {
@@ -228,15 +225,15 @@ function mw_editPost($args) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
 	// Update data
-	$emBlog = new emBlog();
-	$emBlog->updateLog($update_data, $id);
+	$Log_Model = new Log_Model();
+	$Log_Model->updateLog($update_data, $id);
 	// Update tags
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
-		$emTag = new emTag();
-		$emTag->updateTag($data['mt_keywords'], $id);
+		$Tag_Model = new Tag_Model();
+		$Tag_Model->updateTag($data['mt_keywords'], $id);
 	}
 	// Refresh cache
-	mkcache::getInstance()->updateCache();
+	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 
@@ -250,9 +247,9 @@ function mw_getCategories($args) {
 
 	login($username, $password);
 
-	$emSort = new emSort();
-	$sorts = $emSort->getSorts();
-	unset($emSort);
+	$Sort_Model = new Sort_Model();
+	$sorts = $Sort_Model->getSorts();
+	unset($Sort_Model);
 	$xml = '';
 	foreach ($sorts as $sort) {
 		$xml .= "
@@ -287,11 +284,11 @@ function mw_getPost($args) {
 
 	$user = login($username, $password);
 
-	$emBlog = new emBlog();
+	$Log_Model = new Log_Model();
 	define('UID', $user['uid']);
-	$post = $emBlog->getOneLogForAdmin($post_ID);
+	$post = $Log_Model->getOneLogForAdmin($post_ID);
 	if (empty($post)) return error_message(404, $lang['post_not_exists']);
-	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
+	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
 		foreach ($log_cache_tags[$post['gid']] as $tag) {
@@ -299,8 +296,8 @@ function mw_getPost($args) {
 		}
 		$tags = implode(',', $tags);
 	}
-	$emSort = new emSort();
-	$sort_name = $emSort->getSortName($post['sortid']);
+	$Sort_Model = new Sort_Model();
+	$sort_name = $Sort_Model->getSortName($post['sortid']);
 
 	$post['date'] = getIso($post['date']);
 	$xml = "
@@ -373,7 +370,7 @@ function mw_getRecentPosts($args) {
 
 	$xml = '';
 	$recent_posts = array();
-	$log_cache_tags = mkcache::getInstance()->readCache('logtags');
+	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	while ($post = $db->fetch_array($query)) {
 		$post['title'] = htmlspecialchars($post['title']);
 		$post['content'] = htmlspecialchars($post['content']);
@@ -469,7 +466,7 @@ function mw_newMediaObject($args) {
 	if (!empty($data["overwrite"]) && ($data["overwrite"] == true)) {
 	}
 
-	$att_type = array('rar', 'zip', 'gif', 'jpg', 'jpeg', 'png', 'bmp');
+	$att_type = Option::getAttType();
 
 	if (empty($filename))
 		error_message(500, $lang['file_name_error']);
@@ -479,9 +476,9 @@ function mw_newMediaObject($args) {
 	if (!in_array($extension, $att_type)) {
 		error_message(500, $lang['file_type_error']);
 	}
-	$uppath_root = substr(UPLOADFILE_PATH, 1);
+	$uppath_root = substr(Option::UPLOADFILE_PATH, 1);
 	$uppath = $uppath_root . gmdate('Ym') . '/';
-	$fname = md5($fileName) . gmdate('YmdHis') . '.' . $extension;
+	$fname = md5($filename) . gmdate('YmdHis') . '.' . $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir($uppath_root)) {
 		umask(0);
@@ -510,10 +507,10 @@ function mw_newMediaObject($args) {
 	$thum = $uppath . 'thum-' . $fname;
 	$thum_created = true;
 
-	if (IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
-		$max_w = IMG_ATT_MAX_W;
-		$max_h = IMG_ATT_MAX_H;
-		$size = chImageSize($img, $max_w, $max_h);
+	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
+		$max_w = Option::IMG_MAX_W;
+		$max_h = Option::IMG_MAX_H;
+		$size = chImageSize($attachpath, $max_w, $max_h);
 		$newwidth = $size['w'];
 		$newheight = $size['h'];
 		$w = $size['rc_w'];
@@ -522,13 +519,13 @@ function mw_newMediaObject($args) {
 			$thum_created = false;
 		}
 
-		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
+		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
 			if (function_exists('imagecreatefromjpeg')) {
 				$img = imagecreatefromjpeg($attachpath);
 			}else {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
+		}elseif ($thum_created && $imtype == 'png') {
 			if (function_exists('imagecreatefrompng')) {
 				$img = imagecreatefrompng($attachpath);
 			}else {
@@ -544,12 +541,12 @@ function mw_newMediaObject($args) {
 			imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		}
 
-		if ($thum_created && ($imgType == 'image/pjpeg' || $imgType == 'image/jpeg')) {
-			if (!imagejpeg($newim, $thumPatch)) {
+		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
+			if (!imagejpeg($newim, $attachpath)) {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && ($imgType == 'image/x-png' || $imgType == 'image/png')) {
-			if (!imagepng($newim, $thumPatch)) {
+		}elseif ($thum_created && ($imtype == 'png')) {
+			if (!imagepng($newim, $attachpath)) {
 				$thum_created = false;
 			}
 		}
@@ -558,13 +555,13 @@ function mw_newMediaObject($args) {
 	}
 
 	$img_url = $options_cache['blogurl'] . 'content/uploadfile/' . date('Ym') . '/' . $fname;
-	$file_name = $thum_created ? 'thum-' . $fname : $fname;
+
 	$xml = "
         <struct>
             <member>
                 <name>file</name>
                 <value>
-                    <string>$file_name</string>
+                    <string>$fname</string>
                 </value>
             </member>
             <member>
@@ -585,8 +582,7 @@ function mw_newMediaObject($args) {
 }
 
 function getIso($utctimestamp) {
-	global $options_cache;
-	$utctimestamp += $options_cache['timezone'] * 3600;
+	$utctimestamp += Option::get('timezone') * 3600;
 	$year = gmdate('Y', $utctimestamp);
 	$month = gmdate('m', $utctimestamp);
 	$day = gmdate('d', $utctimestamp);
@@ -600,7 +596,7 @@ function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// Check user permissions
-	if (!checkUser($username, $password , '' , '')) {
+	if (!checkUser($username, $password , '', 'n')) {
 		error_message(403, $lang['user_name_pass_wrong']);
 		return false;
 	}

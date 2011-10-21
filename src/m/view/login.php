@@ -11,7 +11,7 @@
 <?php endif;?>
 </div>
 <div id="m">
-	<form method="post" action="./?action=auth">
+	<form method="post" action="./index.php?action=auth">
 		<? echo ; ?><? echo $lang['user_name']; ?><br />
 	    <input type="text" name="user" /><br />
 	    <? echo ; ?><? echo $lang['password']; ?><br />

@@ -6,15 +6,10 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.blog.php';
-require_once EMLOG_ROOT.'/model/class.tag.php';
-require_once EMLOG_ROOT.'/model/class.sort.php';
-require_once EMLOG_ROOT.'/model/class.trackback.php';
 
-
-$emBlog = new emBlog();
-$emTag = new emTag();
-$emTb = new emTrackback();
+$Log_Model = new Log_Model();
+$Tag_Model = new Tag_Model();
+$Trackback_Model = new Trackback_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
@@ -26,64 +21,71 @@ $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes($_POST['allow_remark']) : 'y';
-$allow_tb = isset($_POST['allow_tb']) ? addslashes($_POST['allow_tb']) : 'y';
+$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
+$top = !empty($_POST['top']) ? 'y' : 'n';
+$allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
+$allow_tb = !empty($_POST['allow_tb']) ? 'y' : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
-$postTime = $emBlog->postDate($timezone, $postDate, $date);
+$postTime = $Log_Model->postDate(Option::get('timezone'), $postDate, $date);
+
+//check alias
+if (!empty($alias)) {
+	$logalias_cache = $CACHE->readCache('logalias');
+    $alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
+}
 
 $logData = array(
 	'title'=>$title,
+    'alias'=>$alias,
 	'content'=>$content,
 	'excerpt'=>$excerpt,
 	'author'=>$author,
 	'sortid'=>$sort,
 	'date'=>$postTime,
+    'top'=>$top,
 	'allow_remark'=>$allow_remark,
 	'allow_tb'=>$allow_tb,
 	'hide'=>$ishide,
 	'password'=>$password
 );
-if($blogid > 0) //auto-save drafts, add into update
-{
-	$emBlog->updateLog($logData, $blogid);
-	$emTag->updateTag($tagstring, $blogid);
+
+if($blogid > 0) {//auto-save drafts, add into update
+	$Log_Model->updateLog($logData, $blogid);
+	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
 }else{
-    if (!$blogid = $emBlog->isRepeatPost($title, $postTime))
-    {
-        $blogid = $emBlog->addlog($logData);
+    if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
+        $blogid = $Log_Model->addlog($logData);
     }
-	$emTag->addTag($tagstring, $blogid);
-	$dftnum = $emBlog->getLogNum('y', '', 'blog', 1);
+	$Tag_Model->addTag($tagstring, $blogid);
+	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
 $CACHE->updateCache();
 
 doAction('save_log', $blogid);
 
-switch ($action)
-{
+switch ($action) {
 	case 'autosave':
 		echo "autosave_gid:{$blogid}_df:{$dftnum}_";
 		break;
 	case 'add':
 	case 'edit':
 		$tbmsg = '';
-		if($ishide == 'y')
-		{
-			$ok_msg = $lang['post_saved_draft_ok'];
-			$ok_url = 'admin_log.php?pid=draft';
-		}else{
+		if($ishide == 'y') {
+			emDirect("./admin_log.php?pid=draft&active_savedraft=true");
+		} else {
 			//Send Trackback
-			if(!empty($pingurl))
-			{
-				$tbmsg = $emTb->postTrackback($blogurl, $pingurl, $blogid, $title, $blogname, $content);
+			if(!empty($pingurl)) {
+				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
-			$ok_msg = $action == 'add' || isset($_POST['pubdf']) ? $lang['post_published_ok'] : $lang['post_saved_ok'];
-			$ok_url = 'admin_log.php';
+			if ($action == 'add' || isset($_POST['pubdf'])) {
+				emDirect("./admin_log.php?active_post=true");//Published successfully
+			} else {
+				emDirect("./admin_log.php?active_savelog=true");//Saved successfully
+			}
 		}
-		formMsg("$ok_msg\t$tbmsg",$ok_url,1);
 		break;
 }

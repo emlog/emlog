@@ -8,13 +8,15 @@
 require_once 'globals.php';
 
 if ($action == '') {
-    $avatar = empty($user_cache[UID]['avatar']) ? './views/' . ADMIN_TPL . '/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+	$user_cache = $CACHE->readCache('user');
+    $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $name =  $user_cache[UID]['name'];
 
     $sta_log = ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum'];
     $sta_tw = ROLE == 'admin' ? $sta_cache['twnum'] : $sta_cache[UID]['twnum'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
+	$DB = MySql::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
@@ -33,12 +35,12 @@ if ($action == '') {
 		$gd_ver = $lang['not_supported'];
 	}
 
-	include getViews('header');
-	require_once(getViews('index'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('index'));
+	include View::getView('footer');
+	View::output();
 }
 //phpinfo()
 if ($action == 'phpinfo') {
-	@phpinfo() OR formMsg($lang['phpinfo_disabled'], "javascript:history.go(-1);", 0);
+	@phpinfo() OR emMsg($lang['phpinfo_disabled']);
 }
