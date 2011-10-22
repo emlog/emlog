@@ -37,7 +37,7 @@ if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url &&
 
 	$point = 3;
 
-	//5小时内同一ip、博客只能引用一次
+	//The same ip or blog can add a trackback once within 5 hours
 	$interval = 3600 * 5;
 	$utctimestamp = time();
 	$query = $DB->query('SELECT tbid FROM '.DB_PREFIX."trackback WHERE ip='$ipaddr' AND date+$interval>=$utctimestamp");

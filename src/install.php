@@ -88,7 +88,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <li>
 <? echo $lang['admin_password'];?>:<span class="care">(<? echo $lang['password_length'];?>)</span><br />
 <input name="adminpw" type="password" class="input">
-<span class="care">(不小于6位)</span>
+<span class="care"><? echo $lang['admin_password_len']; ?></span>
 </li>
 <li>
 <? echo $lang['admin_password_repeat'];?>:<br />
@@ -447,7 +447,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	}
 	//Rebuild the cache
 	$CACHE->updateCache();
-	$result .= $lang['admin_name'].": {$admin} ".$lang['admin_name_added'].'<br />' $lang['install_ok']."<br />";
+	$result .= $lang['admin_name'].": {$admin} ".$lang['admin_name_added'].'<br />'.$lang['install_ok']."<br />";
 	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
 	    $result .= '<span style="color:red;"><b>'.$lang['install_delete'].'</b></span> ';
 	}

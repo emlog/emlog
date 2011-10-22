@@ -1,5 +1,5 @@
 <?php
-header("location: ./install.php");exit;
+//header("location: ./install.php");exit;
 //mysql database address
 define('DB_HOST','localhost');
 //mysql database user

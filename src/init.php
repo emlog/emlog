@@ -13,6 +13,7 @@ define('EMLOG_ROOT', dirname(__FILE__));
 
 /*vot*/mb_internal_encoding('UTF-8');
 
+require_once EMLOG_ROOT.'/my_func.php';
 require_once EMLOG_ROOT.'/config.php';
 /*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
