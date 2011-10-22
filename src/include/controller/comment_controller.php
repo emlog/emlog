@@ -1,6 +1,6 @@
 <?php
 /**
- * 发表评论
+ * Post a comment
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,9 +9,10 @@
 class Comment_Controller {
 
     /**
-     * 增加评论
+     * Add comment
      */
     function addComment($params) {
+		global $lang;
         $name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
         $content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
         $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
@@ -37,25 +38,25 @@ class Comment_Controller {
         $Comment_Model = new Comment_Model();
         $Comment_Model->setCommentCookie($name,$mail,$url);
         if($Comment_Model->isLogCanComment($blogId) === false){
-            emMsg('评论失败：该日志已关闭评论');
+            emMsg($lang['comments_disabled']);
         } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
-            emMsg('评论失败：已存在相同内容评论');
+            emMsg($lang['comment_allready_exists']);
         } elseif (empty($name)){
-            emMsg('评论失败：请填写姓名');
+            emMsg($lang['comment_name_empty']);
         } elseif (strlen($name) > 20){
-            emMsg('评论失败：姓名不符合规范');
+            emMsg($lang['comment_name_invalid']);
         } elseif ($mail != '' && !checkMail($mail)) {
-            emMsg('评论失败：邮件地址不符合规范');
+            emMsg($lang['comment_email_invalid']);
         } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
-            emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
+            emMsg($lang['comment_admin_restricted']);
         } elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
-            emMsg('评论失败：主页地址不符合规范','javascript:history.back(-1);');
+            emMsg($lang['comment_error_homepage'],'javascript:history.back(-1);');
         } elseif (empty($content)) {
-            emMsg('评论失败：请填写评论内容');
+            emMsg($lang['comment_error_empty']);
         } elseif (strlen($content) > 8000) {
-            emMsg('评论失败：内容不符合规范');
+            emMsg($lang['comment_invalid']);
         } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-            emMsg('评论失败：验证码错误');
+            emMsg($lang['comment_captcha_invalid']);
         } else {
             $Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
         }

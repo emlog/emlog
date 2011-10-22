@@ -1,6 +1,6 @@
 <?php
 /**
- * 前台加载插件页面
+ * Load the plugin page in the foreground
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Plugin_Controller {
 
     /**
-     * 前台加载插件页面
+     * Load the plugin page in the foreground
      */
     function loadPluginShow($params) {
         $plugin = isset($params[1]) && $params[1] == 'plugin' ? addslashes($params[2]) : '' ;

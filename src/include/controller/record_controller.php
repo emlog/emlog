@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看归档日志
+ * View blog archive
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Record_Controller {
 
 	/**
-	 * 前台归档日志列表页面输出
+	 * Frontend archive post list
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();

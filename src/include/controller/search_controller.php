@@ -1,6 +1,6 @@
 <?php
 /**
- * 查询日志
+ * Blog search
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Search_Controller {
 
 	/**
-	 * 前台查询日志列表页面输出
+	 * Frontend blog search
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();

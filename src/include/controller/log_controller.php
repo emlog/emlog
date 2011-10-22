@@ -1,6 +1,6 @@
 <?php
 /**
- * 显示博客首页、博客内容
+ * Show blog homepage, blog content
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,13 +9,17 @@
 class Log_Controller {
 
     /**
-     * 前台日志列表页面输出
+     * Frontend  post list
      */
     function display($params) {
+        global $lang;
         $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         extract($options_cache);
+        if(empty($navibar)) {
+	        $navibar = 'a:0:{}';
+        }
         $navibar = unserialize($navibar);
         $curpage = CURPAGE_HOME;
 
@@ -40,7 +44,7 @@ class Log_Controller {
     }
 
     /**
-     * 前台日志内容页面输出
+     * Frontend blog content
      */
     function displayContent($params) {
         $comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;

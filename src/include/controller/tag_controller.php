@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看标签日志
+ * Blog tags
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Tag_Controller {
 
 	/**
-	 * 前台标签日志列表页面输出
+	 * Front-end tag list
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();

@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看分类日志
+ * Blog categories
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Sort_Controller {
 
 	/**
-	 * 前台分类日志列表页面输出
+	 * Frontend category list
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();

@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看作者日志
+ * View author posts
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -9,7 +9,7 @@
 class Author_Controller {
 
 	/**
-	 * 前台作者日志列表页面输出
+	 * Output of front-end author post list
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
