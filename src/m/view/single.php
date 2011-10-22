@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="navi">
-<a href="./" id="active"><? echo ; ?>$lang['home']</a>
+<a href="./" id="active"><? echo $lang['home']; ?></a>
 <a href="./?action=tw"><? echo $lang['twitters']; ?></a>
 <a href="./?action=com"><? echo $lang['comments']; ?></a>
 <?php if(ISLOGIN === true): ?>
@@ -26,7 +26,7 @@
 		?>
 		<div class="l">
 		<b><?php echo $comment['poster']; ?></b>
-		<div class="info"><?php echo $comment['date']; ?> <a href="./?action=reply&cid=<?php echo $comment['cid'];?>">回复</a></div>
+		<div class="info"><?php echo $comment['date']; ?> <a href="./?action=reply&cid=<?php echo $comment['cid'];?>"><? echo $lang['reply']; ?></a></div>
 		<div class="comcont"><?php echo $comment['content']; ?></div>
 		</div>
 		<?php endforeach; ?>

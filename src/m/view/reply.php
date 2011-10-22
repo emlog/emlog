@@ -11,7 +11,7 @@
 <?php endif;?>
 </div>
 <div id="m">
-	<div class="comcont"><? echo $lang['reply']; ?><b><?php echo $poster; ?></b>：<?php echo $comment; ?></div>
+	<div class="comcont"><? echo $lang['reply']; ?> <b><?php echo $poster; ?></b>: <?php echo $comment; ?></div>
 	<form method="post" action="./index.php?action=addcom&gid=<?php echo $gid; ?>&pid=<?php echo $cid; ?>">
 	<?php
 		if(ISLOGIN == true):

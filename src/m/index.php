@@ -176,7 +176,7 @@ if ($action == 'addcom') {
 
 		if($pid != 0) {
 			$comment = $Comment_Model->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . ':' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
