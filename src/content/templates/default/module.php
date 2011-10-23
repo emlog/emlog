@@ -27,8 +27,8 @@ function widget_blogger($title){
 
 <?php
 //widget: Calendar
-function widget_calendar($title){ ?>
-	global $lang; 
+function widget_calendar($title){
+	global $lang; ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<div id="calendar">
@@ -106,6 +106,9 @@ function widget_newcomm($title){
 	<ul id="newcomment">
 	<?php
 	foreach($com_cache as $value):
+	if(empty($value['page'])) {
+		$value['page'] = '';
+	}
 	$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 	?>
 	<li id="comment"><?php echo $value['name']; ?>
@@ -175,6 +178,7 @@ function widget_archive($title){
 	<ul id="record">
 	<?php foreach($record_cache as $value): ?>
 	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?> (<?php echo $value['lognum']; ?>)</a></li>
+<?php
 //2008年12月, 2008-12
 $sep = mb_substr($value['record'],4,1);
 $da = explode($sep,$value['record']);
@@ -226,7 +230,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -342,7 +346,7 @@ function blog_comments($comments){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
+			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['reply']; ?></a></div>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']); ?>
 	</div>
@@ -352,7 +356,7 @@ function blog_comments($comments){
     </div>
 <?php }?>
 <?php
-//blog：博客子评论列表
+//blog: sub-comment list
 function blog_comments_children($comments, $children){
 	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
@@ -365,7 +369,7 @@ function blog_comments_children($comments, $children){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div><?php endif; ?>
+			<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['reply']; ?></a></div><?php endif; ?>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']);?>
 	</div>

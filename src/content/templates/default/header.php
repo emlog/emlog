@@ -37,7 +37,7 @@ require_once View::getView('module');
 
   <div id="nav">
     <ul>
-			<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>"><? echo $lang['home']; ?></a></li>
+	<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>"><? echo $lang['home']; ?></a></li>
 	<?php if($istwitter == 'y'):?>
 //vot	<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/"><? echo $lang['twitters']; ?></a></li>
 	<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/"><?php echo Option::get('twnavi');?></a></li>
