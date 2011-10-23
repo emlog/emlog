@@ -21,7 +21,6 @@ if($action == '')
 	require_once View::getView('trackback');
 	include View::getView('footer');View::output();
 }
-
 //Delete Trackback
 if($action == 'dell')
 {

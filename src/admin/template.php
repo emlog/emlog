@@ -19,7 +19,7 @@ if($action == '') {
 	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
 	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-	$tplForEm = !empty($tplForEmlog[1]) ? '适用于emlog：' . $tplForEmlog[1] : '';
+	$tplForEm = !empty($tplForEmlog[1]) ? $lang['applicable_for_emlog'] . $tplForEmlog[1] : '';
 
 	if(isset($tplAuthor[1]))
 	{
@@ -54,6 +54,7 @@ if($action == '') {
 	View::output();
 }
 
+//Use template
 if($action == 'usetpl')
 {
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
@@ -77,7 +78,7 @@ if($action == 'del')
 	}
 }
 
-//自定义顶部图片页面
+//Customize the top image page
 if($action == 'custom-top')
 {
 	$topimg = Option::get('topimg');
@@ -102,7 +103,7 @@ if($action == 'custom-top')
 	View::output();
 }
 
-//使用顶部图片
+//Use top image
 if($action == 'update_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
@@ -112,7 +113,7 @@ if($action == 'update_top')
 	emDirect("./template.php?action=custom-top&activated=true");
 }
 
-//删除自定义顶部图片
+//Delete custom top image
 if($action == 'del_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
@@ -133,7 +134,7 @@ if($action == 'del_top')
 	emDirect("./template.php?action=custom-top&active_del=true");
 }
 
-//上传顶部图片
+//Upload top image
 if ($action == 'upload_top') {
 	$photo_type = array('jpg', 'jpeg', 'png');
 	$topimg = '';
@@ -151,7 +152,7 @@ if ($action == 'upload_top') {
 	View::output();
 }
 
-//裁剪图片
+//Crop image
 if ($action == 'crop') {
 	$x1 = isset($_POST['x1']) ? intval($_POST['x1']) : 0;
 	$y1 = isset($_POST['y1']) ? intval($_POST['y1']) : 140;
@@ -186,7 +187,7 @@ if ($action == 'crop') {
 	emDirect("./template.php?action=custom-top&activated=true");
 }
 
-//安装模板
+//Install template
 if($action == 'install')
 {
 	include View::getView('header');
@@ -195,7 +196,7 @@ if($action == 'install')
 	View::output();
 }
 
-//上传zip模板
+//Upload zip template
 if ($action == 'upload_zip') {
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
@@ -203,7 +204,7 @@ if ($action == 'upload_zip') {
 		emDirect("./template.php?action=install&error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
-		emMsg('模板上传失败');
+		emMsg($lang['template_upload_failed']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?action=install&error_a=1");

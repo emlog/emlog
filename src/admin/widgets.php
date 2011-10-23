@@ -37,7 +37,7 @@ if($action == '') {
 
 //Modify the widget settings
 if($action == 'setwg') {
-	$widgetTitle = Option::get('widget_title'); //当前所有组件标题
+	$widgetTitle = Option::get('widget_title'); //The current title of all the widgets
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';	        //The widget to modify
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';   //New widget name
 

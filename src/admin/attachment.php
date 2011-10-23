@@ -10,7 +10,6 @@ require_once 'globals.php';
 $DB = MySql::getInstance();
 
 //Show Upload Form
-
 if ($action == 'selectFile') {
 	$attachnum = 0;
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -29,6 +28,7 @@ if ($action == 'selectFile') {
 	require_once(View::getView('upload'));
 	View::output();
 }
+
 //Upload attachment
 if ($action == 'upload') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -47,6 +47,7 @@ if ($action == 'upload') {
 	$CACHE->updateCache('logatts');
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
+
 //Attachment Gallery
 if ($action == 'attlib') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -68,6 +69,7 @@ if ($action == 'attlib') {
 	require_once(View::getView('attlib'));
 	View::output();
 }
+
 //Delete attachment
 if ($action == 'del_attach') {
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';

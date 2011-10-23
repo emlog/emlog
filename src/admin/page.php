@@ -63,7 +63,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
     $is_blank = !empty($_POST['is_blank']) ? 'y' : 'n';

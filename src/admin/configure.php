@@ -7,72 +7,45 @@
 
 require_once 'globals.php';
 
-if ($action == '')
-{
-	if($login_code=='y')
-	{
-		$ex1="selected=\"selected\"";
-		$ex2="";
-	}else{
-		$ex1="";
-		$ex2="selected=\"selected\"";
-	}
-	if($comment_code=='y')
-	{
-		$ex3="selected=\"selected\"";
-		$ex4="";
-	}else{
-		$ex3="";
-		$ex4="selected=\"selected\"";
-	}
-	if($ischkcomment=='y')
-	{
-		$ex5="selected=\"selected\"";
-		$ex6="";
-	}else{
-		$ex5="";
-		$ex6="selected=\"selected\"";
-	}
-	if($istrackback=='y')
-	{
-		$ex7="selected=\"selected\"";
-		$ex8="";
-	}else{
-		$ex7="";
-		$ex8="selected=\"selected\"";
-	}
-	if($isgzipenable=='y')
-	{
-		$ex11="selected=\"selected\"";
-		$ex12="";
-	}else{
-		$ex11="";
-		$ex12="selected=\"selected\"";
-	}
-	if($isxmlrpcenable=='y')
-	{
-		$ex13="selected=\"selected\"";
-		$ex14="";
+if ($action == '') {
+	$options_cache = $CACHE->readCache('options');
+	extract($options_cache);
+
+	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
+	$conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
+	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
+	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
+	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
+	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
+	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
+	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
+
+	$ex1 = $ex2 = $ex3 = $ex4 = '';
+	if ($rss_output_fulltext == 'y') {
+		$ex1 = 'selected="selected"';
 	} else {
-		$ex13="";
-		$ex14="selected=\"selected\"";
+	 	$ex2 = 'selected="selected"';
+	}
+	if ($comment_order == 'newer') {
+		$ex3 = 'selected="selected"';
+	} else {
+	 	$ex4 = 'selected="selected"';
 	}
 
-	include getViews('header');
-	require_once(getViews('configure'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('configure'));
+	include View::getView('footer');
+	View::output();
 }
-
 //update config
-if ($action == "mod_config")
-{
+if ($action == 'mod_config') {
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
 	'blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
 	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
 	'icp' => isset($_POST['icp']) ? addslashes($_POST['icp']):'',
+	'footer_info' => isset($_POST['footer_info']) ? addslashes($_POST['footer_info']):'',
 	'index_lognum' => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
@@ -80,30 +53,31 @@ if ($action == "mod_config")
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
 	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n'
+	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
+	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
+	'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
+	'isgravatar' => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',
+	'comment_paging' => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
+	'comment_pnum' => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
+	'comment_order' => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
 	);
 
-	if ($getData['login_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
-	{
-		formMsg($lang['verification_code_not_supported'],"configure.php",0);
+	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
+		emMsg($lang['verification_code_not_supported'],"configure.php");
 	}
-	if ($getData['comment_code']=='y' && !function_exists("imagecreate") && !function_exists('imagepng'))
-	{
-		formMsg($lang['verification_code_not_supported'],"configure.php",0);
+	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
+		emMsg($lang['verification_code_not_supported'],"configure.php");
 	}
-	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/')
-	{
+	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/'){
 		$getData['blogurl'] .= '/';
 	}
-	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7))//0 if they are equal
-	{
+	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)){
 		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 
-	foreach ($getData as $key => $val)
-	{
-		updateOption($key, $val);
+	foreach ($getData as $key => $val) {
+		Option::updateOption($key, $val);
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
-	header("Location: ./configure.php?activated=true");
+	emDirect("./configure.php?activated=true");
 }

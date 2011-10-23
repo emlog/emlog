@@ -6,11 +6,9 @@
  */
 
 require_once 'globals.php';
-require_once EMLOG_ROOT.'/model/class.comment.php';
 
-$emComment = new emComment();
+$Comment_Model = new Comment_Model();
 
-//Load the comment management page
 if($action == '')
 {
 	$blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;
@@ -21,38 +19,41 @@ if($action == '')
 	$addUrl_2 = $hide ? "hide=$hide&" : '';
 	$addUrl = $addUrl_1.$addUrl_2;
 
-	$comment = $emComment->getComments(1, $blogId, $hide, $page);
-	$cmnum = $emComment->getCommentNum($blogId, $hide);
-	$hideCommNum = $emComment->getCommentNum($blogId, 'y');
-	$pageurl =  pagination($cmnum, ADMIN_PERPAGE_NUM, $page, "comment.php?{$addUrl}page");
+	$comment = $Comment_Model->getComments(1, $blogId, $hide, $page);
+	$cmnum = $Comment_Model->getCommentNum($blogId, $hide);
+	$hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
+	$pageurl =  pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
 
-	include getViews('header');
-	require_once(getViews('comment'));
-	include getViews('footer');
-	cleanPage();
+	include View::getView('header');
+	require_once(View::getView('comment'));
+	include View::getView('footer');
+	View::output();
 }
-//Comments Operations
+
 if ($action== 'del')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->delComment($id);
+	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_del=true");
+	emDirect("./comment.php?active_del=true");
 }
+
 if($action=='hide')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->hideComment($id);
+	$Comment_Model->hideComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_hide=true");
+	emDirect("./comment.php?active_hide=true");
 }
+
 if($action=='show')
 {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$emComment->showComment($id);
+	$Comment_Model->showComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	header("Location: ./comment.php?active_show=true");
+	emDirect("./comment.php?active_show=true");
 }
+
 if($action== 'admin_all_coms')
 {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
@@ -60,67 +61,63 @@ if($action== 'admin_all_coms')
 
 	if($operate == '')
 	{
-		header("Location: ./comment.php?error_b=true");
-		exit;
+		emDirect("./comment.php?error_b=true");
 	}
 	if($comments == '')
 	{
-		header("Location: ./comment.php?error_a=true");
-		exit;
+		emDirect("./comment.php?error_a=true");
 	}
 	if($operate == 'del')
 	{
-		$emComment->batchComment('delcom', $comments);
+		$Comment_Model->batchComment('delcom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
-		header("Location: ./comment.php?active_del=true");
+		emDirect("./comment.php?active_del=true");
 	}
 	if($operate == 'hide')
 	{
-		$emComment->batchComment('hidecom', $comments);
+		$Comment_Model->batchComment('hidecom', $comments);
 		$CACHE->updateCache(array('sta','comment'));
-		header("Location: ./comment.php?active_hide=true");
+		emDirect("./comment.php?active_hide=true");
 	}
 	if($operate == 'pub')
 	{
-		$emComment->batchComment('showcom', $comments);
+		$Comment_Model->batchComment('showcom', $comments);
 		$CACHE->updateCache(array('sta', 'comment'));
-		header("Location: ./comment.php?active_show=true");
+		emDirect("./comment.php?active_show=true");
 	}
 }
 
-//Reply Operations
 if ($action== 'reply_comment')
 {
-	include getViews('header');
+	include View::getView('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $emComment->getOneComment($commentId);
+	$commentArray = $Comment_Model->getOneComment($commentId);
 	extract($commentArray);
 
-	require_once(getViews('comment_reply'));
-	include getViews('footer');
-	cleanPage();
+	require_once(View::getView('comment_reply'));
+	include View::getView('footer');
+	View::output();
 }
+
 if($action=='doreply')
 {
-	$flg = isset($_GET['flg']) ? intval($_GET['flg']) : 0;
-	$reply = isset($_POST['reply']) ? addslashes($_POST['reply']) : '';
-	$commentId = isset($_REQUEST['cid']) ? intval($_REQUEST['cid']) : '';
-
-	if(!$flg)
-	{
-	    if(isset($_POST['pub_it'])) {
-	        $emComment->showComment($commentId);
-	        $CACHE->updateCache('sta');
-	    }
-		$emComment->replyComment($commentId, $reply);
-		$CACHE->updateCache('comment');
-		doAction('comment_reply', $commentId, $reply);
-		header("Location: ./comment.php?active_rep=true");
-	}else{
-		$reply = isset($_POST["reply$commentId"]) ? addslashes($_POST["reply$commentId"]) : '';
-		$emComment->replyComment($commentId, $reply);
-		$CACHE->updateCache('comment');
-		doAction('comment_reply', $commentId, $reply);
-		echo "<span>".$lang['blog_reply'].": $reply</span>";
+	$reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
+	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
+	$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
+	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
+	if($reply == '') {
+		emDirect("./comment.php?error_c=true");
 	}
+	if(strlen($reply) > 2000) {
+		emDirect("./comment.php?error_d=true");
+	}
+    if(isset($_POST['pub_it'])) {
+        $Comment_Model->showComment($commentId);
+        $hide = 'n';
+    }
+	$Comment_Model->replyComment($blogId, $commentId, $reply, $hide);
+	$CACHE->updateCache('comment');
+    $CACHE->updateCache('sta');
+	doAction('comment_reply', $commentId, $reply);
+	emDirect("./comment.php?active_rep=true");
 }

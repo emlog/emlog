@@ -27,6 +27,7 @@ if ($action == 'login') {
 		loginPage();
 	}
 }
+
 //Logout
 if ($action == 'logout'){
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
