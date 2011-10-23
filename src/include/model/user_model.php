@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户管理
+ * User Management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -71,10 +71,10 @@ class User_Model {
 	}
 
 	/**
-	 * 判断用户名是否存在
+	 * Determine whether the user name exists
 	 *
 	 * @param string $login
-	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @param int $uid Compatible with the fact that the user name has not changed when the author's information is updated
 	 * @return boolean
 	 */
 	function isUserExist($login, $uid = '')

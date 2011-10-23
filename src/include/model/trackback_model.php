@@ -1,6 +1,6 @@
 <?php
 /**
- * 引用通告管理
+ * Trackback Management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -16,10 +16,11 @@ class Trackback_Model {
 	}
 
 	/**
-	 * 发送trackback
+	 * Post trackback
 	 */
 	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
 	{
+		global $lang;
 		$url = $blogurl."?post=".$blogId;
 		$hosts = explode("\n", $pingUrl);
 		$tbmsg = '';
@@ -64,7 +65,7 @@ class Trackback_Model {
 	}
 
 	/**
-	 * 获取trackbak
+	 * Get trackbak
 	 *
 	 * @param unknown_type $page
 	 * @param unknown_type $blogId
@@ -106,7 +107,7 @@ class Trackback_Model {
 	}
 
 	/**
-	 * 获取引用的数目
+	 * Get the number of trackbacks
 	 *
 	 * @return int $tbNum
 	 */

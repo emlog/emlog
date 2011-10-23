@@ -1,6 +1,6 @@
 <?php
 /**
- * 日志分类
+ * Category management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -51,13 +51,14 @@ class Sort_Model {
 
 	function getSortName($sid)
 	{
+		global $lang;
 		if($sid > 0)
 		{
 			$res = $this->db->query("SELECT sortname FROM ". DB_PREFIX ."sort WHERE sid = $sid");
 			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		}else {
-			$sortName = '未分类';
+			$sortName = $lang['unclassified'];
 		}
 		return $sortName;
 	}

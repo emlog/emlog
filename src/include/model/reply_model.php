@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语回复管理
+ * Reply management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -15,7 +15,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * 回复
+	 * Add reply
 	 *
 	 * @param array $tData
 	 * @return int
@@ -38,7 +38,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * 获取回复
+	 * Get replies
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -70,7 +70,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * 查询回复的数目
+	 * Get a number of replies
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -88,10 +88,10 @@ class Reply_Model {
 	}
 
 	/**
-	 * 删除回复
+	 * Delete reply
 	 *
 	 * @param int $replyId
-	 * @return 受影响的twitter id
+	 * @return int Affected twitter id
 	 */
 	function delReply($replyId)
 	{
@@ -102,7 +102,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * 隐藏回复
+	 * Hide reply
 	 *
 	 * @param int $replyId
 	 */
@@ -111,7 +111,7 @@ class Reply_Model {
 		$this->db->query("UPDATE ".DB_PREFIX."reply SET hide='y' WHERE id=$replyId");
 	}
 	/**
-	 * 显示回复
+	 * Show reply
 	 *
 	 * @param int $replyId
 	 */

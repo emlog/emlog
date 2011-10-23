@@ -1,6 +1,6 @@
 <?php
 /**
- * 友情链接
+ * Links
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语twitter
+ * Twitter
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -15,7 +15,7 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 写入碎语
+	 * Add a twit
 	 *
 	 * @param array $tData
 	 * @return int
@@ -35,9 +35,9 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 获取指定条件的碎语条数
+	 * Get the number of twits with specified conditions
 	 *
-	 * @param int $spot 0:前台 1:后台
+	 * @param int $spot 0: foreground, 1: background
 	 * @return int
 	 */
 	function getTwitterNum($spot = 0) {
@@ -48,10 +48,10 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 获取碎语列表
+	 * Get a list of twits
 	 *
 	 * @param int $page
-	 * @param int $spot 0:前台 1:后台
+	 * @param int $spot 0: foreground, 1: background
 	 * @return array
 	 */
 	function getTwitters($page = 1, $spot = 0) {
@@ -73,17 +73,18 @@ class Twitter_Model {
 	}
 
 	function delTwitter($tid) {
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg($lang['access_disabled'], './');
 		}
 		// delete reply
 		$this->db->query("DELETE FROM " . DB_PREFIX . "reply where tid=$tid");
 	}
 	
 	/**
-	 * 更新碎语回复数目
+	 * Update the number of replies
 	 *
 	 * @param int $tid
 	 * @param string $do '+1' or '-1'
@@ -93,8 +94,8 @@ class Twitter_Model {
 	}
 
     function formatTwitter($t) {
-        //识别URL
-        $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+        //Identify URL
+        $t = htmlspecialchars(preg_replace("/https?:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
         $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
         return $t;
     }

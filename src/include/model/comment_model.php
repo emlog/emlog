@@ -1,6 +1,6 @@
 <?php
 /**
- * 评论管理
+ * Comment management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -15,9 +15,9 @@ class Comment_Model {
 	}
 
 	/**
-	 * 获取评论
+	 * Get comments
 	 *
-	 * @param int $spot 0：前台 1：后台 2: 手机
+	 * @param int $spot 0: Frontend, 1: Backsend
 	 * @param int $blogId
 	 * @param string $hide
 	 * @param int $page
@@ -137,7 +137,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* 获取子评论ID */
+		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
 		while($row = $this->db->fetch_array($query)) {
 			if(in_array($row['pid'],$commentIds)) {
@@ -154,7 +154,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* 获取子评论ID */
+		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
 		while($row = $this->db->fetch_array($query)) {
 			if(in_array($row['pid'],$commentIds)) {
@@ -171,7 +171,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* 获取父评论ID */
+		/* Get parent comment ID */
 		while($row['pid'] != 0) {
 			$commentId = intval($row['pid']);
 			$commentIds[] = $commentId;
@@ -194,7 +194,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . addslashes($comment['poster']) . '：' . $content;
+				$content = '@' . addslashes($comment['poster']) . ':' . $content;
 			}
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -203,7 +203,7 @@ class Comment_Model {
 	}
 
 	/**
-	 * 批量处理评论
+	 * Batch processing of comments
 	 */
 	function batchComment($action, $comments)
 	{
@@ -241,11 +241,12 @@ class Comment_Model {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
+        global $lang;
 		$ipaddr = getIp();
 		$utctimestamp = time();
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . ':' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
@@ -265,7 +266,7 @@ class Comment_Model {
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved', $cid);
-		    emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
+		    emMsg($lang['comment_posted_premod'], Url::log($blogId));
 		}
 	}
 

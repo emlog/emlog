@@ -1,6 +1,6 @@
 <?php
 /**
- * 标签管理
+ * Tag management
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -15,7 +15,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * 获取标签
+	 * Get Tags
 	 *
 	 * @param int $blogId
 	 * @return array
@@ -68,7 +68,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * 添加标签
+	 * Add tag
 	 *
 	 * @param string $tagStr
 	 */
@@ -90,7 +90,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * 更新标签
+	 * Update tags
 	 *
 	 * @param string $tagStr
 	 * @param int $blogId

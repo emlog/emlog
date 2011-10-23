@@ -1,6 +1,6 @@
 <?php
 /**
- * 日志、页面管理
+ * Blog page management
  *
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
@@ -15,7 +15,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 添加日志、页面
+	 * Add blog post
 	 *
 	 * @param array $logData
 	 * @return int
@@ -35,7 +35,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 更新日志内容
+	 * Update blog post
 	 *
 	 * @param array $logData
 	 * @param int $blogId
@@ -51,9 +51,9 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取指定条件的日志条数
+	 * Get a number of posts with specified conditions
 	 *
-	 * @param int $spot 0:前台 1:后台
+	 * @param int $spot 0: foreground, 1: background
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -74,7 +74,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 后台获取单条日志
+	 * Get a single post in the background
 	 */
 	function getOneLogForAdmin($blogId) {
 		$timezone = Option::get('timezone');
@@ -82,7 +82,7 @@ class Log_Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg($lang['access_disabled'], './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -99,7 +99,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 前台获取单条日志
+	 * Get a single post for the frontend
 	 */
 	function getOneLogForHome($blogId) {
 		$timezone = Option::get('timezone');
@@ -133,7 +133,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 后台获取日志列表
+	 * Get a post list for the background
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -142,6 +142,7 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
+        global $lang;
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
@@ -156,15 +157,15 @@ class Log_Model {
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
 			$row['gid'] = $row['gid'];
 			$row['comnum'] = $row['comnum'];
-			$row['istop'] = $row['top'] == 'y' ? "<font color=\"red\">[置顶]</font>" : '';
-			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:" . $row['attnum'] . "]</font>" : '';
+			$row['istop'] = $row['top'] == 'y' ? "<font color=\"red\">[{$lang['recommended']}]</font>" : '';
+			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[{$lang['attachments']}: " . $row['attnum'] . "]</font>" : '';
 			$logs[] = $row;
 		}
 		return $logs;
 	}
 
 	/**
-	 * 前台获取日志列表
+	 * Get a post list for the frontend
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -172,6 +173,7 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForHome($condition = '', $page = 1, $perPageNum) {
+		global $lang;
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
@@ -185,10 +187,10 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 		    $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
             if (!empty($row['password']) && $cookiePassword != $row['password']) {
-                $row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+                $row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
             }else {
                 if (!empty($row['excerpt'])) {
-                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
+                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
                 }
             }
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
@@ -200,7 +202,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 删除日志
+	 * Delete Post
 	 *
 	 * @param int $blogId
 	 */
@@ -208,16 +210,16 @@ class Log_Model {
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg($lang['access_disabled'], './');
 		}
-		// 评论
+		// Comments
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// 引用
+		// Trackbacks
 		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
-		// 标签
+		// Tags
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-		// 附件
+		// Attachments
 		$query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
 		while ($attach = $this->db->fetch_array($query)) {
 			if (file_exists($attach['filepath'])) {
@@ -232,7 +234,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 隐藏/显示日志
+	 * Hide/show the post
 	 *
 	 * @param int $blogId
 	 * @param string $hideState
@@ -245,7 +247,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取日志发布时间
+	 * Get the post release time
 	 *
 	 * @param int $timezone
 	 * @param string $postDate
@@ -269,7 +271,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 增加阅读次数
+	 * Update the number of views
 	 *
 	 * @param int $blogId
 	 */
@@ -278,7 +280,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 判断是否重复发文
+	 * Determine whether the post is repeated
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -288,9 +290,9 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取相邻日志
+	 * Get neighbor posts
 	 *
-	 * @param int $date unix时间戳
+	 * @param int $date unix Timestamp
 	 * @return array
 	 */
 	function neighborLog($date) {
@@ -307,7 +309,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 随机获取指定数量日志
+	 * Randomly get a specified number of posts
 	 *
 	 * @param int $num
 	 * @return array
@@ -325,7 +327,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 处理日志别名，防止别名重复
+	 * Handling post aliases to prevent duplicate aliases
 	 *
 	 * @param string $alias
 	 * @param array $logalias_cache
@@ -347,12 +349,13 @@ class Log_Model {
     }
 
 	/**
-	 * 加密日志访问验证
+	 * Verify access to the encrypted post
 	 *
 	 * @param string $pwd
 	 * @param string $pwd2
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+		global $lang;
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
@@ -371,9 +374,9 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <body>
 <div class="main">
 <form action="" method="post">
-请输入该日志的访问密码<br>
-<input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="$url">&laquo;返回首页</a>
+{$lang['blog_enter_password']}<br>
+<input type="password" name="logpwd" /><input type="submit" value="{$lang['enter']}.." />
+<br /><br /><a href="$url">&laquo;{$lang['back_home']}</a>
 </form>
 </div>
 </body>
