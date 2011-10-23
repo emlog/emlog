@@ -1,6 +1,6 @@
 <?php
 /**
- * 图片验证码生成
+ * Generate verification code image
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * URL处理
+ * URL processing
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -8,7 +8,7 @@
 class Url
 {
     /**
-     * 获取日志链接
+     * Get post link
      */
     static function log ($blogId)
     {
@@ -16,13 +16,13 @@ class Url
         $logUrl = '';
         $CACHE = Cache::getInstance();
 
-        //开启日志别名
+        //Turn on post url  alias
         if (Option::get('isalias') == 'y') {
             $logalias_cache = $CACHE->readCache('logalias');
             if (!empty($logalias_cache[$blogId])) {
             	$logsort_cache = $CACHE->readCache('logsort');
             	$sort = '';
-            	//分类模式下的url
+            	//Url in category mode
             	if (3 == $urlMode && isset($logsort_cache[$blogId])) {
             		$sort = !empty($logsort_cache[$blogId]['alias']) ? 
             			$logsort_cache[$blogId]['alias'] : 
@@ -30,7 +30,8 @@ class Url
             		$sort .= '/';
             	}
                 $logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-                //开启别名html后缀
+            	//Url in html mode
+                //Add html suffix to the alias
                 if (Option::get('isalias_html') == 'y') {
                 	$logUrl .= '.html';
                 }
@@ -39,16 +40,16 @@ class Url
         }
 
         switch ($urlMode) {
-            case '0'://默认：动态
+            case '0'://Default: dynamic
                 $logUrl = BLOG_URL . '?post=' . $blogId;
                 break;
-            case '1'://静态
+            case '1'://Static
                 $logUrl = BLOG_URL . 'post-' . $blogId . '.html';
                 break;
-            case '2'://目录
+            case '2'://Directory
                 $logUrl = BLOG_URL . 'post/' . $blogId;
                 break;
-            case '3'://分类
+            case '3'://Category
             	$log_sort = $CACHE->readCache('logsort');
             	if (!empty($log_sort[$blogId]['alias'])) {
             		$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
@@ -64,7 +65,7 @@ class Url
     }
 
     /**
-     * 获取归档链接
+     * Get archive link
      */
     static function record ($record, $page = null)
     {
@@ -85,7 +86,7 @@ class Url
     }
 
     /**
-     * 获取分类链接
+     * Get category link
      */
     static function sort ($sortId, $page = null)
     {
@@ -109,7 +110,7 @@ class Url
     }
 
     /**
-     * 获取作者链接
+     * Get author link
      */
     static function author ($authorId, $page = null)
     {
@@ -130,7 +131,7 @@ class Url
     }
 
     /**
-     * 获取标签链接
+     * Get tag link
      */
     static function tag ($tag, $page = null)
     {
@@ -151,7 +152,7 @@ class Url
     }
 
     /**
-     * 获取首页日志分页链接
+     * Get the page link
      */
     static function logPage ()
     {
@@ -168,7 +169,7 @@ class Url
     }
 
     /**
-     * 获取评论链接
+     * Get comment link
      */
     static function comment ($blogId, $pageId, $cid)
     {

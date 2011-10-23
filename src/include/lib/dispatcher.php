@@ -1,6 +1,6 @@
 <?php
 /**
- * 路由分发器
+ * Route dispatcher
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
@@ -10,27 +10,27 @@ class Dispatcher {
     static $_instance;
     
     /**
-     * 请求模块
+     * Request module
      */
     private $_model = '';
 
     /**
-     * 请求模块方法
+     * Request module method
      */
     private $_method = '';
 
     /**
-     * 请求参数
+     * Request parameters
      */
     private $_params;
 
     /**
-     * 路由表
+     * Routing table
      */
     private $_routingTable;
 
     /**
-     * 访问路径
+     * Access path
      */
     private $_path = NULL;
 

@@ -1,28 +1,28 @@
 <?php
 /**
- * 前端控制
+ * Frontend control options
  * @copyright (c) Emlog All Rights Reserved
  * $Id$
  */
 
 class Option {
-	//版本编号
+	//Version number
     const EMLOG_VERSION = '4.1.1';
-	//图片附件缩略图最大宽
+	//Maximum width of image attachment thumbnail
 	const IMG_MAX_W = 420;
-	//图片附件缩略图最大高
+	//Maximum height of image attachment thumbnail
 	const IMG_MAX_H = 460;
-	//头像缩略图最大宽
+	//Maximum width of avatar thumbnail
 	const ICON_MAX_W = 140;
-	//头像缩略图最大高
+	//Maximum height of avatar thumbnail
 	const ICON_MAX_H = 220;
-    //上传图片是否生成缩略图 1:是 0:否
+    //Whether the uploaded image generates a thumbnail. 1: Yes, 0: No
     const IS_THUMBNAIL = 1;
-    //附件大小上限 （单位：字节，默认20M）
+    //Maximum attachment size (unit: byte, default 20M)
     const UPLOADFILE_MAXSIZE = 20971520;
-    //附件上传路径
+    //Attachment upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
-    //允许上传的附件类型
+    //Attachment types allowed to upload
     const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,bmp';
 
     static function get($option){
@@ -128,35 +128,35 @@ class Option {
     }
 
     /**
-     * 获取允许上传的附件类型
+     * Get the types of attachments allowed to upload
      */
     static function getAttType() {
     	return explode(',', self::ATTACHMENT_TYPE);
     }
 
     /**
-     * 获取widget组件标题
+     * Get the widget titles
      */
     static function getWidgetTitle() {
 	    $widget_title = array(
-	        'blogger' => 'blogger',
-	        'calendar' => '日历',
-	        'twitter' => '最新碎语',
-	        'tag' => '标签',
-	        'sort' => '分类',
-	        'archive' => '存档',
-	        'newcomm' => '最新评论',
-	        'newlog' => '最新日志',
-	        'random_log' => '随机日志',
-	        'link' => '链接',
-	        'search' => '搜索',
-	        'custom_text' => '自定义组件'
+	        'blogger' => $lang['widget_blogger'],
+	        'calendar' => $lang['calendar'],
+	        'twitter' => $lang['twitter'],
+	        'tag' => $lang['tags'],
+	        'sort' => $lang['categories'],
+	        'archive' => $lang['archive'],
+	        'newcomm' => $lang['latest_comments'],
+	        'newlog' => $lang['latest_posts'],
+	        'random_log' => $lang['random_posts'],
+	        'link' => $lang['links'],
+	        'search' => $lang['search'],
+	        'custom_text' => $lang['widget_custom']
 	    );
 	    return $widget_title;
     }
 
     /**
-     * 获取初始安装时的widget列表
+     * Get a list of widgets during initial installation
      */
     static function getDefWidget() {
         $default_widget = array('calendar','archive','newcomm','link','search');
@@ -164,10 +164,10 @@ class Option {
     }
 
     /**
-     * 更新配置选项
+     * Update configuration options
      * @param $name
      * @param $value
-     * @param $isSyntax 更新值是否为一个表达式
+     * @param $isSyntax Whether the update value is an expression
      */
 	static function updateOption($name, $value, $isSyntax = false){
 	    $DB = MySql::getInstance();
