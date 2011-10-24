@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>插件管理</b><div id="msg"></div>
-<?php if(isset($_GET['activate_install'])):?><span class="actived">插件上传成功，请激活使用</span><?php endif;?>
-<?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
-<?php if(isset($_GET['activate_del'])):?><span class="actived">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_error'])):?><span class="error">插件激活失败</span><?php endif;?>
-<?php if(isset($_GET['inactive'])):?><span class="actived">插件禁用成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
+<div class=containertitle><b><? echo $lang['plugin_management'];?></b><div id="msg"></div>
+<?php if(isset($_GET['activate_install'])):?><span class="actived"><? echo $lang['plugin_upload_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['active'])):?><span class="actived"><? echo $lang['plugin_activated_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['activate_del'])):?><span class="actived"><? echo $lang['plugin_del_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['active_error'])):?><span class="error"><? echo $lang['plugin_activate_failed']; ?></span><?php endif;?>
+<?php if(isset($_GET['inactive'])):?><span class="actived"><? echo $lang['plugin_deactivated_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['plugin_del_failed']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell_all_tb" method="post">
@@ -13,9 +13,9 @@
   <thead>
       <tr>
         <th width="100"></th>
-        <th width="36" class="tdcenter"><b>状态</b></th>
-		<th width="30" class="tdcenter"><b>版本</b></th>
-		<th width="500" class="tdcenter"><b>描述</b></th>
+        <th width="36" class="tdcenter"><b><? echo $lang['plugin_status'];?></b></th>
+		<th width="30" class="tdcenter"><b><? echo $lang['plugin_version'];?></b></th>
+		<th width="500" class="tdcenter"><b><? echo $lang['description'];?></b></th>
 		<th width="30" class="tdcenter"></th>
       </tr>
   </thead>
@@ -25,12 +25,12 @@
 	foreach($plugins as $key=>$val):
 		$plug_state = 'inactive';
 		$plug_action = 'active';
-		$plug_state_des = '未激活';
+		$plug_state_des = $lang['plugin_inactive'];
 		if (in_array($key, $active_plugins))
 		{
 			$plug_state = 'active';
 			$plug_action = 'inactive';
-			$plug_state_des = '已激活';
+			$plug_state_des = $lang['plugin_active'];
 		}
 		$i++;
 	?>	
@@ -42,25 +42,25 @@
         <td class="tdcenter"><?php echo $val['Version']; ?></td>
         <td>
 		<?php echo $val['Description']; ?>
-		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank">更多信息&raquo;</a><?php endif;?>
+		<?php if ($val['Url'] != ''):?><a href="<?php echo $val['Url'];?>" target="_blank"><? echo $lang['plugin_page'];?> &raquo;</a><?php endif;?>
 		<div style="margin-top:5px;">
-		<?php if ($val['ForEmlog'] != ''):?>适用于emlog：<?php echo $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
+		<?php if ($val['ForEmlog'] != ''):?><? echo $lang['applicable_for_emlog']; ?><?php echo $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
 		<?php if ($val['Author'] != ''):?>
-		作者：<?php if ($val['AuthorUrl'] != ''):?>
-			<a href="<?php echo $val['AuthorUrl'];?>" titile="访问作者主页"><?php echo $val['Author'];?></a>
+		<? echo $lang['author'];?>: <?php if ($val['AuthorUrl'] != ''):?>
+			<a href="<?php echo $val['AuthorUrl'];?>" title="<? echo $lang['author_homepage']; ?>"><?php echo $val['Author'];?></a>
 			<?php else:?>
 			<?php echo $val['Author'];?>
 			<?php endif;?>
 		<?php endif;?>
 		</div>
 		</td>
-		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');">删除</a></td>
+		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');"><? echo $lang['remove']; ?></a></td>
       </tr>
 	<?php endforeach; ?>
 	</tbody>
   </table>
 </form>
-<div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
+<div class="add_plugin"><a href="./plugin.php?action=install"><? echo $lang['plugin_install']; ?></a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")

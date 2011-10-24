@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>裁剪图片</b><?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?></div>
+<div class=containertitle><b><? echo $lang['image_crop']; ?></b> <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['template_changed_successfully']; ?></span><?php endif;?></div>
 <div class=line></div>
 <link href="../include/lib/js/imgareaselect/imgareaselect.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/imgareaselect/jquery.imgareaselect.js"></script>
@@ -11,7 +11,7 @@
 	<input type="hidden" name="width" id="width" value="960"/>
 	<input type="hidden" name="height" id="height" value="705"/>
 	<input type="hidden" name="img" id="img" value="<?php echo $topimg; ?>"/>
-	<input type="submit" value="剪裁并保存" /><span style="margin-left:15px;"><a href="./template.php?action=custom-top" >取消裁剪</a> (页面加载完毕后，未出现选择区域时请按下鼠标左键手动拖曳选取)</span>
+	<input type="submit" value="<? echo $lang['cut']; ?><? echo $lang['image_cut']; ?>" /><span style="margin-left:15px;"><a href="./template.php?action=custom-top" ><? echo $lang['cancel_crop']; ?></a> <? echo $lang['crop_prompt']; ?></span>
 </p>
 <div id="crop_image" style="position: relative">
 	<img src="<?php echo $topimg; ?>" id="upload" />

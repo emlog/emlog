@@ -21,40 +21,40 @@ function em_confirm (id, property) {
 	switch (property){
 		case 'tw':
 			var urlreturn="twitter.php?action=del&id="+id;
-			var msg = "你确定要删除该条碎语吗？";break;
+			var msg = l_sure_del_twitter;break;
 		case 'comment':
 			var urlreturn="comment.php?action=del&id="+id;
-			var msg = "你确定要删除该评论吗？";break;
+			var msg = l_sure_del_comment;break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
-			var msg = "你确定要删除该链接吗？";break;
+			var msg = l_sure_delete_link;break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
-			var msg = "你确定要导入该备份文件吗？";break;
+			var msg = l_sure_import;break;
 		case 'attachment':
 			var urlreturn="attachment.php?action=del_attach&aid="+id;
-			var msg = "你确定要删除该附件吗？";break;
+			var msg = l_sure_delete_attach;break;
 		case 'avatar':
 			var urlreturn="blogger.php?action=delicon";
-			var msg = "你确定要删除头像吗？";break;
+			var msg = l_sure_delete_image;break;
 		case 'sort':
 			var urlreturn="sort.php?action=del&sid="+id;
-			var msg = "你确定要删除该分类吗？";break;
+			var msg = l_sure_delete_category;break;
 		case 'page':
 			var urlreturn="page.php?action=del&gid="+id;
-			var msg = "你确定要删除该页面吗？";break;
+			var msg = l_sure_delete_page;break;
 		case 'user':
 			var urlreturn="user.php?action=del&uid="+id;
-			var msg = "你确定要删除该用户吗？";break;
+			var msg = l_sure_delete_user;break;
 		case 'tpl':
 			var urlreturn="template.php?action=del&tpl="+id;
-			var msg = "你确定要删除该模板吗？";break;
+			var msg = l_sure_del_template;break;
 		case 'reset_widget':
 			var urlreturn="widgets.php?action=reset";
-			var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+			var msg = l_sure_reset_plugin;break;
 		case 'plu':
 			var urlreturn="plugin.php?action=del&plugin="+id;
-			var msg = "你确定要删除该插件吗？";break;
+			var msg = l_sure_del_plugin;break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -88,13 +88,13 @@ function checkform(){
 	var a = $.trim($("#alias").val());
 	var t = $.trim($("#title").val());
 	if (t==""){
-		alert("标题不能为空");
+		alert(l_title_empty);
 		$("#title").focus();
 		return false;
 	}else if(0 == isalias(a)){
 		return true;
 	}else {
-		alert("链接别名错误");
+		alert(l_alias_error);
 		$("#alias").focus();
 		return false
 	};
@@ -102,13 +102,13 @@ function checkform(){
 function checkalias(){
 	var a = $.trim($("#alias").val());
 	if (1 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_invalid+'</span>');
 	}else if (2 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_numeric+'</span>');
 	}else if (3 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
+		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_not_post+'</span>');
 	}else if (4 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_not_system+'</span>');
 	}else {
 		$("#alias_msg_hook").html('');
 		$("#msg").html('');
@@ -116,9 +116,9 @@ function checkalias(){
 }
 function addattach(imgurl,imgsrc,aid){
 	if (KE.g['content'].wyswygMode == false){
-		alert('请先切换到所见所得模式');
+		alert(l_wysiwyg_first);
 	}else {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+		KE.insertHtml('content','<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+l_show_orig_img+'\" border=\"0\"></a>');
 	}
 }
 function insertTag (tag, boxId){
@@ -192,7 +192,7 @@ function autosave(act){
 	//check alias
 	if(alias != '') {
 		if (0 != isalias(alias)){
-			$("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失败</span>");
+			$("#msg").html("<span class=\"msg_autosave_error\">'+l_alias_failed+'</span>");
 			if(act == 0){setTimeout("autosave(0)",60000);}
 			return;
 		}
@@ -208,9 +208,9 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
-	$("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
+	$("#msg").html("<span class=\"msg_autosave_do\">"+l_saving+"...</span>");
 	var btname = $("#savedf").val();
-	$("#savedf").val("正在保存");
+	$("#savedf").val(l_saving);
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
@@ -227,14 +227,14 @@ function autosave(act){
     		var hours = digital.getHours();
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
-    		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
+		$("#msg_2").html("<span class=\"ajax_remind_1\">"+l_saved_at+hours+":"+mins+":"+secs+"</span>");
     		$("#savedf").attr("disabled", "");
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
 		    $("#savedf").attr("disabled", "");
 		    $("#savedf").val(btname);
-		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+		    $("#msg").html("<span class=\"msg_autosave_error\">"+l_network_error+"</span>");
 	    }
 	});
 	if(act == 0){

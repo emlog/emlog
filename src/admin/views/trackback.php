@@ -8,9 +8,9 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>引用管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除引用成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的引用</span><?php endif;?>
+<div class=containertitle><b><? echo $lang['trackback_management'];?></b>
+<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['trackback_deleted_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['trackback_select'];?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="trackback.php?action=dell" method="post" name="form_tb" id="form_tb">
@@ -18,10 +18,10 @@ setTimeout(hideActived,2600);
   <thead>
       <tr>
         <th width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="270"><b>标题</b></th>
-        <th width="300"><b>来源</b></th>
+        <th width="270"><b><? echo $lang['title'];?></b></th>
+        <th width="300"><b><? echo $lang['trackback_source'];?></b></th>
 		<th width="80"><b>IP</b></th>
-        <th width="120"><b>时间</b></th>
+        <th width="120"><b><? echo $lang['time'];?></b></th>
       </tr>
   </thead>
   <tbody>
@@ -36,16 +36,16 @@ setTimeout(hideActived,2600);
 	<?php endforeach; ?>
 	</tbody>
   </table>
-<div class="list_footer">选中项：<a href="javascript:tbact('del');">删除</a></div>
-<div class="page"><?php echo $pageurl; ?> (有<?php echo $tbnum; ?>条引用)</div> 
+<div class="list_footer"><? echo $lang['with_selected_do'];?>: <a href="javascript:tbact('del');"><? echo $lang['remove'];?></a></div>
+<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>)</div> 
 </form>
 <script>
 function tbact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的引用');
+		alert('<? echo $lang['trackback_select'];?>');
 		return;
 	}
-	if(act == 'del' && !confirm('你确定要删除所选引用吗？')){return;}
+	if(act == 'del' && !confirm('<? echo $lang['trackback_delete_sure'];?>')){return;}
 	$("#operate").val(act);
 	$("#form_tb").submit();
 }

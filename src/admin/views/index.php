@@ -5,9 +5,9 @@
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
         <div class="right">
         <form method="post" action="twitter.php?action=post">
-        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (有<span class=care2><b><?php echo $sta_log;?></b></span>篇日志，<span class=care2><b><?php echo $sta_tw;?></b></span>条碎语)</div>
-        <div class="box_1"><textarea class="box2" name="t">为今天写点什么吧 ……</textarea></div>
-        <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
+        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (<? echo $lang['with']; ?> <span class=care2><b><?php echo $sta_log;?></b></span><? echo $lang['posted_blogs']; ?>, <span class=care2><b><?php echo $sta_tw;?></b></span> <? echo $lang['twitter_number']; ?>)</div>
+        <div class="box_1"><textarea class="box2" name="t"><? echo $lang['write_something']; ?></textarea></div>
+        <div class="tbutton" style="display:none;"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
         </form>
         </div>
 		<div class="clear"></div>
@@ -16,27 +16,27 @@
 <div class="clear"></div>
 <?php if (ROLE == 'admin'):?>
 <div id="admindex_servinfo">
-<h3>服务器信息</h3>
+<h3><? echo $lang['server_info'];?></h3>
 <ul>
-	<li>PHP版本：<?php echo $php_ver; ?></li>
-	<li>MySQL版本：<?php echo $mysql_ver; ?></li>
-	<li>服务器环境：<?php echo $serverapp; ?></li>
-	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
-	<li>安全模式：<?php echo $safe_mode ? '开启' : '关闭'; ?></li>
-	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
-	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
+	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
+	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
+	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>
+	<li><? echo $lang['gd_library'];?>: <?php echo $gd_ver; ?></li>
+	<li><? echo $lang['safe_mode'];?>: <?php echo $safe_mode ? $lang['enabled'] : $lang['disabled']; ?></li>
+	<li><? echo $lang['attachment_max_size'];?>: <?php echo $uploadfile_maxsize; ?></li>
+	<li><a href="index.php?action=phpinfo"><? echo $lang['php_info'];?> &raquo;</a></li>
 </ul>
-<p id="m"><a title="用手机访问你的博客"><?php echo BLOG_URL.'m'; ?></a></p>
+<p id="m"><a title="<? echo $lang['use_mobile']; ?>"><?php echo BLOG_URL.'m'; ?></a></p>
 </div>
 <div id="admindex_msg">
-<h3>官方消息</h3>
+<h3><? echo $lang['official_info'];?></h3>
 <ul></ul>
 </div>
 <div class="clear"></div>
 </div>
 <script>
 $(document).ready(function(){
-	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><? echo $lang['loading']; ?></span>");
 	$.getJSON("http://www.emlog.net/services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
 	function(data){
 		$("#admindex_msg ul").html("");
@@ -61,16 +61,16 @@ $(document).ready(function(){
        var t=$(this).val();
        var n = 140 - t.length;
        if (n>=0){
-         $(".tbutton span").html("(你还可以输入"+n+"字)");
+         $(".tbutton span").html("(<? echo $lang['can_yet_enter']; ?>"+n+"<? echo $lang['characters']; ?>)");
        }else {
-         $(".tbutton span").html("<span style=\"color:#FF0000\">(已超出"+Math.abs(n)+"字)</span>");
+         $(".tbutton span").html("<span style=\"color:#FF0000\">(<? echo $lang['length_exceed']; ?>"+Math.abs(n)+"<? echo $lang['characters']; ?>)</span>");
        }
     });
 });
 function closet(){
     $(".tbutton").hide();
-    $(".tbutton span").html("(你还可以输入140字)");
-    $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
+    $(".tbutton span").html("(<? echo $lang['twitter_length_max']; ?>)");
+    $(".box2").val('<? echo $lang['write_something']; ?>').css('height','17px').bind('focus',function(){
         $(this).val('').css('height','50px').unbind('focus');
         $(".tbutton").show();});
 }
