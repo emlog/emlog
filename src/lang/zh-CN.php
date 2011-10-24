@@ -70,7 +70,7 @@ $lang['blog_view_in_new_window'] = '在新窗口浏览我的blog';//'Show the Bl
 
 
 $lang['posts'] = '日志';//'Posts';
-$lang['posted_blogs'] = '篇日志';//'blogs posted';
+$lang['posted_blogs'] = '篇日志';//' blogs posted';
 $lang['post_deleted_ok'] = '删除日志成功';//'Post deleted successfully';
 $lang['post_recommended_ok'] = '日志置顶成功';//'Post recommended successfully';
 $lang['post_unrecommended_ok'] = '取消置顶成功';//'Post removed from recommended successfully';
@@ -139,7 +139,7 @@ $lang['blog_password_protected_info'] = '该日志已设置加密，请点击标
 $lang['blog_password_required'] = '该日志需要密码才能访问，请输入密码';//'The post requires a password to access, please enter the password';
 $lang['blog_tags'] = '日志标签';//'Blog tags';
 
-$lang['management'] = '博客管理';//'Blog Management';
+$lang['management'] = '博客管理';//'Management';
 $lang['blog_author'] = '日志作者';//'Blog Author';
 
 
@@ -261,7 +261,7 @@ $lang['user_edited_ok'] = '修改作者资料成功';//'User edited successfully
 $lang['user_added_ok'] = '添加作者成功';//'User added successfully';
 $lang['user_name_empty'] = '用户名不能为空';//'User name should not be empty';
 $lang['user_allready_exists'] = '该用户名已存在';//'This username allready exists';
-$lang['user_add_info'] = '添加作者(联合撰写人)';//'Add the user (co-writer)';
+$lang['user_add_info'] = '添加作者(联合撰写人)';//'Add a user (co-writer)';
 $lang['user_add'] = '添加作者';//'Add user';
 $lang['login_modified_ok'] = '后台登录名修改成功!请重新登录';//'Login modified successfully! Please Log in.';
 $lang['login_and_password_modified_ok'] = '密码和后台登录名修改成功!请重新登录';//'Login and Password modified successfully! Please Log in.';
@@ -516,7 +516,7 @@ $lang['template_current'] = '当前模板';//'Current template';
 $lang['template_changed_successfully'] = 模板更换成功;//'Template changed successfully';
 $lang['templates_are_available'] = '可用模板';//'Available templates';
 $lang['templates_available'] = '当前共有 个可用模板';//'Total templates available';
-$lang['templates_more'] = '获取更多模板';//'More templates (Templates Repository)';
+$lang['templates_more'] = '获取更多模板';//'More templates (Template Repository)';
 $lang['template_click'] = '点击使用该模板';//'Click to use the template';
 $lang['template_path_error'] = 'The Template Path Error';
 
@@ -554,7 +554,7 @@ $lang['widget_delete'] = '删除该组件';//'Delete the Widget';
 $lang['widget_name'] = '组件名';//'Widget Name';
 $lang['widget_content'] = '内容 （支持html）';//'Widget Content (html supported)';
 $lang['widget_new'] = '自定义一个新的组件';//'New Custom Widget';
-$lang['widget_repository'] = '获取更多有趣的组件';//'Wiget Repository';
+$lang['widget_repository'] = '获取更多有趣的组件';//'Widget Repository';
 $lang['widget_add'] = '添加组件';//'Add New Widget';
 $lang['widgets_saved_ok'] = '设置保存成功';//'Widgets Settings saved successfuly';
 $lang['widget_blogger'] = 'Blogger';//blogger
@@ -656,7 +656,8 @@ $lang['comment_error_invalid_code']	= '发表评论失败:验证码错误';//'Er
 $lang['comment_error_homepage']		= '评论失败：主页地址不符合规范';//'Comment failed: Homepage address does not meet specifications';
 $lang['comment_error_empty']		= '评论失败：请填写评论内容';//'Comment failed: Please fill in the comment content';
 
-$lang['pages']			= '个页面';//' pages';// number of!
+$lang['pages']			= '页面';//'Pages';
+$lang['_pages']			= '个页面';//' pages';// number of!
 $lang['page_add']		= '新建一个页面';//'Add new page';
 $lang['page_management']	= '页面管理';//'Page Management';
 $lang['page_url']		= '转向地址';//'External page URL';
@@ -742,8 +743,8 @@ $lang['file_format']		= '文件形式';//'File format';
 $lang['directory_format']	= '目录形式';//'Directory format';
 $lang['category_format']	= '分类形式';//'Category format';
 
-$lang['template_current']	= '当前使用的模板';//'The currently used template (';
-$lang['template_not_found']	= '已被删除或损坏，请选择其他模板。';//') has been deleted or damaged, please select another template.';
+//$lang['template_current']	= '当前使用的模板';//'Current template';
+$lang['template_not_found']	= '已被删除或损坏，请选择其他模板。';//'has been deleted or damaged, please select another template.';
 $lang['template_damaged']	= '当前使用的模板已被删除或损坏，请登录后台更换其他模板。';//'The currently used template has been deleted or damaged, please log in to the background to replace other templates.';
 
 $lang['posted_ok']	= '发布成功';//'Published successfully';
@@ -800,7 +801,7 @@ $lang['email_format_invalid']	= '电子邮件格式错误';//'Email format error
 $lang['reply_empty']		= '回复内容不能为空';//'Reply content cannot be empty';
 $lang['reply_is_long']		= '回复内容过长';//'The reply is too long';
 $lang['output']			= '输出';//'Output';
-$lang['posts_and_output']	= '篇日志，且输出';//' posts, and output ';
+$lang['posts_and_output']	= '篇日志，且输出';//' posts, and show as ';
 $lang['full text']		= '全文';//'Full text';
 $lang['author_avatar']		= '评论人头像';//'Commenter Avatar';
 $lang['comment_pagination']	= '评论分页';//'Comment pagination';
