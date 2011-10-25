@@ -29,7 +29,7 @@ $isdraft = $hide == 'y' ? true : false;
 			  <label for="tag" id="tag_label"><? echo $lang['tags_by_comma']; ?></label>
 			  <input name="tag" id="tag" maxlength="200" style="width:432px;" value="<?php echo $tagStr; ?>" />
 
-			  <select name="sort" id="sort" style="width:130px;">
+			  <select name="sort" id="sort" style="width:200px;">
 				<?php
 				$sorts[] = array('sid'=>-1, 'sortname'=>$lang['choose_category'].'...');
 				foreach($sorts as $val):

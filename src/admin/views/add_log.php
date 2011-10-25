@@ -27,7 +27,7 @@
 		  <label for="tag" id="tag_label"><? echo $lang['tags_by_comma']; ?></label>
           <input name="tag" id="tag" maxlength="200" style="width:432px;" />
 
-          <select name="sort" id="sort" style="width:130px;">
+          <select name="sort" id="sort" style="width:200px;">
 	        <option value="-1"><? echo $lang['choose_category']; ?></option>
 			<?php foreach($sorts as $val):?>
 			<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>

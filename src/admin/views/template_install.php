@@ -17,7 +17,7 @@
 </div>
 <?php endif; ?>
 <div style="margin:20px 10px;">
-<div class="des"><? echo $lang['template_upload_zip']; ?><a href="http://www.emlog.net/template/" target="_blank"><? echo $lang['templates_more']; ?> &raquo;</a></div>
+<div class="des"><? echo $lang['template_upload_zip']; ?><a href="http://www.emlog.net/template/" target="_blank"> <? echo $lang['templates_more']; ?> &raquo;</a></div>
 </div>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div id="topimg_custom">

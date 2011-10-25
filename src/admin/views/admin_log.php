@@ -134,7 +134,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <a href="javascript:logact('notop');"><? echo $lang['unrecommend'];?></a>
     <?php endif;?>
 
-	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">
+	<select name="sort" id="sort" onChange="changeSort(this);" style="width:200px;">
 	<option value="" selected="selected"><? echo $lang['move_to_category'];?>...</option>
 	<?php foreach($sorts as $val):?>
 	<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>

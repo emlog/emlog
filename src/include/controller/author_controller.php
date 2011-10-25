@@ -17,6 +17,10 @@ class Author_Controller {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
+//Navigation bar
+if(empty($navibar)) {
+	$navibar = 'a:0:{}';
+}
 		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 

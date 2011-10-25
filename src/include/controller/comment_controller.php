@@ -24,7 +24,7 @@ class Comment_Controller {
         if (ISLOGIN === true) {
         	$CACHE = Cache::getInstance();
         	$user_cache = $CACHE->readCache('user');
-        	$name = addslashes($user_cache[UID]['name_orig']);
+        	$name = addslashes(@$user_cache[UID]['name_orig']);
         	$mail = addslashes($user_cache[UID]['mail']);
         	$url = addslashes(BLOG_URL);
         }
