@@ -12,6 +12,7 @@ class Record_Controller {
 	 * Frontend archive post list
 	 */
 	function display($params) {
+		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');

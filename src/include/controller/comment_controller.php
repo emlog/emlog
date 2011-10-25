@@ -12,7 +12,7 @@ class Comment_Controller {
      * Add comment
      */
     function addComment($params) {
-		global $lang;
+	global $lang;
         $name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
         $content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
         $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';

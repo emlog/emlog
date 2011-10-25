@@ -12,6 +12,7 @@ class Tag_Controller {
 	 * Front-end tag list
 	 */
 	function display($params) {
+		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');

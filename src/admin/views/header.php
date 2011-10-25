@@ -35,10 +35,10 @@
     </a></td>
     <td align=right nowrap class="headtext">
     <?php if (ROLE == 'admin'):?>
-    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo '$lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> <? echo $lang['templates']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php else:?>
-	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo '$lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
 	<a href="./"><? echo $lang['admin_center']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="./?action=logout"><? echo $lang['logout']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
@@ -94,20 +94,20 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
-			<div id="blog_mg">
-            <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
+                <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
+		<div id="blog_mg">
+                        <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php"><? echo $lang['pages'];?></a></div>
 			<div class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" ><? echo $lang['users'];?></a></div>
+			<div class="sidebarsubmenu" id="menu_user"><a href="user.php"><? echo $lang['users'];?></a></div>
 			<div class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['backup'];?></a></div>
-			</div>
-			</div>
-			</td>
-		  </tr>
-		</tbody>
-	</table>
-	<table cellspacing=0 cellpadding=0 width="100%" border=0>
+		</div>
+	    </div>
+          </td>
+	</tr>
+	</tbody>
+      </table>
+      <table cellspacing=0 cellpadding=0 width="100%" border=0>
       <tbody>
         <tr>
           <td valign=top align=left width=114>

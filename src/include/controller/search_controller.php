@@ -12,6 +12,7 @@ class Search_Controller {
 	 * Frontend blog search
 	 */
 	function display($params) {
+		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
@@ -20,7 +21,7 @@ class Search_Controller {
 		$curpage = CURPAGE_HOME;
 		$blogtitle = $blogname;
 
-        $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
+		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';
 
 		$start_limit = ($page - 1) * $index_lognum;

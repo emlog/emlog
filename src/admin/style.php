@@ -26,7 +26,7 @@ if ($action == '') {
 			if (!empty($author[1]) && !empty($url[1])) {
 				$styleInfo['style_author'] = '('.$lang['author'].': <a href="'.$url[1].'" target="_blank">'.$author[1].'</a>)';
 			} elseif (!empty($author[1])){
-				$styleInfo['style_author'] = '.$lang['author'].': '.$author[1].')';
+				$styleInfo['style_author'] = '('.$lang['author'].': '.$author[1].')';
 			} else {
 				$styleInfo['style_author'] = '';
 			}

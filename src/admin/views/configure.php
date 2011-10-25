@@ -98,7 +98,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%">RSS:<br /></td>
         <td width="82%">
-		$lang['output'] <input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" name="rss_output_num" /><? echo $lang['posts_and_output']; ?> <select name="rss_output_fulltext">
+		<? echo $lang['output']; ?> <input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" name="rss_output_num" /><? echo $lang['posts_and_output']; ?> <select name="rss_output_fulltext">
 		<option value="y" <?php echo $ex1; ?>><? echo $lang['full text']; ?></option>
 		<option value="n" <?php echo $ex2; ?>><? echo $lang['summary']; ?></option>
         </select>
@@ -115,7 +115,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><? echo $lang['author_avatar']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
 		<? echo $lang['comments_number_per_page']; ?>: <input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />,
-        <? echo $lang['show first']; ?>:
+		<? echo $lang['show_first']; ?>:
 		<select name="comment_order">
 			<option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option>
 			<option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option>

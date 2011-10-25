@@ -63,7 +63,7 @@
 <div class=line></div>
 <div style="margin:0px 0px 20px 0px;">
 	<p class="des"><? echo $lang['cache_info'];?></p>
-	<p style="margin-left:10px;"><input type="button" onclick="window.location='data.php?action=Cache';" value="<? echo <? echo $lang['cache_rebuild'];?>"; ?>" class="submit" /></p>
+	<p style="margin-left:10px;"><input type="button" onclick="window.location='data.php?action=Cache';" value="<? echo $lang['cache_rebuild'];?>" class="submit" /></p>
 </div>
 <script>
 setTimeout(hideActived,2600);

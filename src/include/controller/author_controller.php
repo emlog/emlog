@@ -12,6 +12,7 @@ class Author_Controller {
 	 * Output of front-end author post list
 	 */
 	function display($params) {
+		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
