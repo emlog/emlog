@@ -72,7 +72,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
         <th width="490"><b><? echo $lang['title'];?></b></th>
 		<?php if ($pid != 'draft'): ?>
-		<th width="40" class="tdcenter"><b><? echo $lang['views'];?></b></th>
+		<th width="40" class="tdcenter"><b><? echo $lang['view'];?></b></th>
 		<?php endif; ?>
 		<th width="100"><b><? echo $lang['author'];?></b></th>
         <th width="146"><b><? echo $lang['category'];?></b></th>

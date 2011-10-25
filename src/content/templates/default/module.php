@@ -177,14 +177,13 @@ function widget_archive($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($record_cache as $value): ?>
-	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?> (<?php echo $value['lognum']; ?>)</a></li>
 <?php
 //2008年12月, 2008-12
 $sep = mb_substr($value['record'],4,1);
 $da = explode($sep,$value['record']);
 $m = $lang['month_'.intval($da[1])].' '.$da[0];
 ?>
-	<li><a href="./<?php echo $value['url']; ?>"><?php echo $m; ?> ( <?php echo $value['lognum']; ?> )</a></li>
+	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $m; ?> (<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -332,7 +331,7 @@ function blog_comments($comments){
     extract($comments);
     if($commentStacks): ?>
 	<a name="comments"></a>
-	<p class="comment-header"><b>? echo $lang['comments'];?></b></p>
+	<p class="comment-header"><b><? echo $lang['comments'];?></b></p>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
@@ -358,6 +357,7 @@ function blog_comments($comments){
 <?php
 //blog: sub-comment list
 function blog_comments_children($comments, $children){
+	global $lang;
 	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
 	$comment = $comments[$child];

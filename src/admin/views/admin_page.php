@@ -48,7 +48,7 @@
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
 </div>
 <div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new"><? echo $lang['page_add']; ?>+</a></div>
-<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $pageNum; ?><? echo $lang['pages']; ?>)</div>
+<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $pageNum; ?><? echo $lang['_pages']; ?>)</div>
 <script>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
