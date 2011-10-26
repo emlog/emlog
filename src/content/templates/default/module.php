@@ -383,7 +383,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	if($allow_remark == 'y'): ?>
 	<div id="comment-place">
 	<div class="comment-post" id="comment-post">
-		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><? echo $lang[''];?><? echo $lang['cancel_reply']; ?></a></div>
+		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><? echo $lang['cancel_reply']; ?></a></div>
 		<p class="comment-header"><b><? echo $lang['comment_add']; ?>: </b><a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
