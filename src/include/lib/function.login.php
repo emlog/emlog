@@ -182,10 +182,10 @@ if( !function_exists('hash_hmac') )
 
 		$pack = $packs[$algo];
 
-		if (strlen($key) > 64)
+		if (mb_strlen($key) > 64)
 		{
 			$key = pack($pack, $algo($key));
-		}else if (strlen($key) < 64){
+		}else if (mb_strlen($key) < 64){
 			$key = str_pad($key, 64, chr(0));
 		}
 

@@ -659,7 +659,7 @@ function error_message($code, $message) {
 
 function output($xml) {
 	$xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n" . $xml;
-	$length = strlen($xml);
+	$length = mb_strlen($xml);
 	header('Connection: close');
 	header('Content-Length: ' . $length);
 	header('Content-Type: text/xml');

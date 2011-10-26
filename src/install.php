@@ -127,7 +127,7 @@ if($act == 'install' || $act == 'reinstall')
 		emMsg($lang['db_prefix_invalid']);
 	}elseif($admin == '' || $adminpw == ''){
 		emMsg($lang['admin_password_empty']);
-	}elseif(strlen($adminpw) < 5){
+	}elseif(mb_strlen($adminpw) < 5){
 		emMsg($lang['password_short']);
 	}elseif($adminpw!=$adminpw2)	 {
 		emMsg($lang['password_not_equal']);

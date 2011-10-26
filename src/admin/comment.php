@@ -108,7 +108,7 @@ if($action=='doreply')
 	if($reply == '') {
 		emDirect("./comment.php?error_c=true");
 	}
-	if(strlen($reply) > 2000) {
+	if(mb_strlen($reply) > 2000) {
 		emDirect("./comment.php?error_d=true");
 	}
     if(isset($_POST['pub_it'])) {

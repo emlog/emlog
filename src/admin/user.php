@@ -29,7 +29,7 @@ if ($action== 'new') {
 	if ($User_Model->isUserExist($login)) {
 		emDirect("./user.php?error_exist=true");
 	}
-	if (strlen($password) < 6) {
+	if (mb_strlen($password) < 6) {
 		emDirect("./user.php?error_pwd_len=true");
 	}
 	if ($password != $password2) {
@@ -68,7 +68,7 @@ if ($action=='update') {
 	if ($User_Model->isUserExist($login, $uid)) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_exist=true");
 	}
-	if (strlen($password) > 0 && strlen($password) < 6) {
+	if (mb_strlen($password) > 0 && mb_strlen($password) < 6) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=true");
 	}
 	if ($password != $password2) {

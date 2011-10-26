@@ -50,7 +50,7 @@ class Trackback_Model {
 		$out = "POST ".$uinfo['path']." HTTP/1.1\r\n";
 		$out.= "Host: ".$uinfo['host']."\r\n";
 		$out.= "Content-type: application/x-www-form-urlencoded\r\n";
-		$out.= "Content-length: ".strlen($data)."\r\n";
+		$out.= "Content-length: ".mb_strlen($data)."\r\n";
 		$out.= "Connection: close\r\n\r\n";
 		$out.= $data;
 		fwrite($fp, $out);

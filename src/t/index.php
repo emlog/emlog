@@ -73,7 +73,7 @@ if ($action == 'reply') {
     
     $user_cache = $CACHE->readCache('user');
 
-    if (!$r || strlen($r) > 420){
+    if (!$r || mb_strlen($r) > 420){
         exit('err1');
     } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');

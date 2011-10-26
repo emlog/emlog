@@ -159,13 +159,13 @@ if ($action == 'addcom') {
         mMsg($lang['comments_disabled'],'./?post=' . $blogId);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
         mMsg($lang['comment_allready_exists'],'./?post=' . $blogId);
-    } elseif (strlen($name) > 20 || strlen($name) == 0){
+    } elseif (mb_strlen($name) > 20 || mb_strlen($name) == 0){
         mMsg($lang['comment_name_invalid'],'./?post=' . $blogId);
     } elseif ($mail != '' && !checkMail($mail)) {
         mMsg($lang['comment_email_invalid'], './?post=' . $blogId);
     } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
         mMsg($lang['comment_admin_restricted'],'./?post=' . $blogId);
-    } elseif (strlen($content) == '' || strlen($content) > 2000) {
+    } elseif (mb_strlen($content) == '' || mb_strlen($content) > 2000) {
         mMsg($lang['comment_invalid'],'./?post=' . $blogId);
     } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg($lang['comment_captcha_invalid'],'./?post=' . $blogId);

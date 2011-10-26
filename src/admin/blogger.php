@@ -29,7 +29,7 @@ if ($action == 'update') {
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
-	if(strlen($nickname) > 20) {
+	if(mb_strlen($nickname) > 20) {
 		emDirect("./blogger.php?error_a=true");
 	}else if($email != '' && !checkMail($email)) {
 		emDirect("./blogger.php?error_b=true");
@@ -85,7 +85,7 @@ if ($action == 'update_pwd') {
 		emMsg($lang['wrong_current_password']);
 	}elseif(!empty($login) && $User_Model->isUserExist($login, UID)){
 		emMsg($lang['username_allready_exists']);
-	}elseif(strlen($newpass)>0 && strlen($newpass) < 6){
+	}elseif(mb_strlen($newpass)>0 && mb_strlen($newpass) < 6){
 		emMsg($lang['password_short']);
 	}elseif(!empty($newpass) && $newpass != $repeatpass){
 		emMsg($lang['password_not_equal']);
