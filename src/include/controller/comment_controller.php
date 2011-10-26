@@ -43,7 +43,7 @@ class Comment_Controller {
             emMsg($lang['comment_allready_exists']);
         } elseif (empty($name)){
             emMsg($lang['comment_name_empty']);
-        } elseif (strlen($name) > 20){
+        } elseif (mb_strlen($name) > 20){
             emMsg($lang['comment_name_invalid']);
         } elseif ($mail != '' && !checkMail($mail)) {
             emMsg($lang['comment_email_invalid']);
@@ -53,7 +53,7 @@ class Comment_Controller {
             emMsg($lang['comment_error_homepage'],'javascript:history.back(-1);');
         } elseif (empty($content)) {
             emMsg($lang['comment_error_empty']);
-        } elseif (strlen($content) > 8000) {
+        } elseif (mb_strlen($content) > 8000) {
             emMsg($lang['comment_invalid']);
         } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
             emMsg($lang['comment_captcha_invalid']);
