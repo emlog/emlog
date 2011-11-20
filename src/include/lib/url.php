@@ -2,7 +2,7 @@
 /**
  * URL处理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: url.php 2019 2011-08-29 16:07:42Z qiyuuu@gmail.com $
  */
 
 class Url

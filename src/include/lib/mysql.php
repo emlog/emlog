@@ -3,7 +3,7 @@
  * 数据库操作类
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: mysql.php 1796 2010-10-31 04:26:06Z emloog $
  */
 
 /**

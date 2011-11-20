@@ -2,7 +2,7 @@
 /**
  * 登录验证函数库
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: function.login.php 1955 2011-05-03 15:01:41Z emloog $
  */
 
 /**

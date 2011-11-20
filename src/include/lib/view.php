@@ -2,7 +2,7 @@
 /**
  * 视图控制
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: view.php 1907 2011-04-09 11:11:06Z emloog $
  */
 
 class View {

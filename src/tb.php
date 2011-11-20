@@ -2,7 +2,7 @@
 /**
  * 引用通告接收
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: tb.php 1959 2011-05-04 01:47:56Z qiyuuu $
  */
 
 require_once 'init.php';

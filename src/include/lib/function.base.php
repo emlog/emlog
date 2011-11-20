@@ -2,7 +2,7 @@
 /**
  * 基础函数库
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: function.base.php 2030 2011-09-13 15:49:40Z qiyuuu@gmail.com $
  */
 
 function __autoload($class) {

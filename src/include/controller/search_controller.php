@@ -3,7 +3,7 @@
  * 查询日志
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: search_controller.php 2039 2011-10-11 15:43:39Z emloog $
  */
 
 class Search_Controller {

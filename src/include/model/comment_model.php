@@ -2,7 +2,7 @@
 /**
  * 评论管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: comment_model.php 2030 2011-09-13 15:49:40Z qiyuuu@gmail.com $
  */
 
 class Comment_Model {

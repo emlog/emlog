@@ -2,7 +2,7 @@
 /**
  * 图片验证码生成
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: checkcode.php 1792 2010-10-21 14:50:08Z emloog $
  */
 
 session_start();

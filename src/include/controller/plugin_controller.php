@@ -3,7 +3,7 @@
  * 前台加载插件页面
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: plugin_controller.php 1792 2010-10-21 14:50:08Z emloog $
  */
 
 class Plugin_Controller {

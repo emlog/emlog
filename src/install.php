@@ -2,7 +2,7 @@
 /**
  * 安装程序
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: install.php 2029 2011-09-11 01:35:16Z emloog $
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));

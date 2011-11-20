@@ -2,7 +2,7 @@
 /**
  * 路由分发器
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: dispatcher.php 1996 2011-08-09 14:52:46Z emloog $
  */
 
 class Dispatcher {

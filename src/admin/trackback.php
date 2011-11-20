@@ -2,7 +2,7 @@
 /**
  * 引用通告管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: trackback.php 2002 2011-08-12 08:56:48Z emloog $
  */
 
 require_once 'globals.php';

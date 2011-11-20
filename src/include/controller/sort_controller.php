@@ -3,7 +3,7 @@
  * 查看分类日志
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: sort_controller.php 1915 2011-04-12 15:53:22Z emloog $
  */
 
 class Sort_Controller {

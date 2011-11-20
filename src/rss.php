@@ -2,7 +2,7 @@
 /**
  * RSS输出
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: rss.php 1961 2011-05-04 08:48:49Z emloog $
  */
 
 require_once './init.php';

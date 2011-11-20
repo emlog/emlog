@@ -2,7 +2,7 @@
 /**
  * 日志分类
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: sort_model.php 2018 2011-08-29 16:02:06Z emloog $
  */
 
 class Sort_Model {

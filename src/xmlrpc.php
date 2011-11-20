@@ -3,7 +3,7 @@
  * xmlrpc博客服务接口
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: xmlrpc.php 1955 2011-05-03 15:01:41Z emloog $
  */
 
 ob_start();

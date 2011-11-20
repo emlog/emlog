@@ -2,7 +2,7 @@
 /**
  * 前端控制
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: option.php 2041 2011-10-18 15:17:39Z emloog $
  */
 
 class Option {

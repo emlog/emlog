@@ -2,7 +2,7 @@
 /**
  * 数据备份
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: data.php 2040 2011-10-15 16:52:21Z qiyuuu@gmail.com $
  */
 
 require_once 'globals.php';

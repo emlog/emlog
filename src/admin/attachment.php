@@ -2,7 +2,7 @@
 /**
  * 附件处理
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: attachment.php 2003 2011-08-14 08:57:16Z emloog $
  */
 
 require_once 'globals.php';

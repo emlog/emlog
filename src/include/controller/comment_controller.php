@@ -3,7 +3,7 @@
  * 发表评论
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
+ * $Id: comment_controller.php 2014 2011-08-25 16:24:12Z emloog $
  */
 
 class Comment_Controller {
