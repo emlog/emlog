@@ -3,7 +3,7 @@
  * 日志、页面管理
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: log_model.php 2018 2011-08-29 16:02:06Z emloog $
+ * $Id: log_model.php 2043 2011-12-24 06:35:48Z emloog $
  */
 
 class Log_Model {
@@ -152,12 +152,12 @@ class Log_Model {
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
-			$row['date'] = gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
-			$row['gid'] = $row['gid'];
-			$row['comnum'] = $row['comnum'];
-			$row['istop'] = $row['top'] == 'y' ? "<font color=\"red\">[置顶]</font>" : '';
-			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[附件:" . $row['attnum'] . "]</font>" : '';
+			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			//$row['gid'] 	= $row['gid'];
+			//$row['comnum'] 	= $row['comnum'];
+			//$row['top'] 	= $row['top'];
+			//$row['attnum'] 	= $row['attnum'];
 			$logs[] = $row;
 		}
 		return $logs;

@@ -76,9 +76,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 		<?php endif; ?>
 		<th width="100"><b>作者</b></th>
         <th width="146"><b>分类</b></th>
-        <th width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></th>
-		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
-		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
+        <th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></th>
+		<th width="39" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
+		<th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
       </tr>
 	</thead>
  	<tbody>
@@ -86,24 +86,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
 	$author = $users[$value['author']]['name'];
-	$tags = isset($log_cache_tags[$value['gid']]) ? $log_cache_tags[$value['gid']] : '' ;
-	$tagStr = '';
-	if (is_array($tags) && !empty($tags)) {
-		foreach ($tags as $val) {
-			$tagStr .="<span class=logtag><a href=\"./admin_log.php?tagid={$val['tid']}$isdraft\">{$val['tagname']}</a></span>";
-		}
-		if ($tagStr) {
-			$tagStr = '<span class=logtags>'.$tagStr.'</span>';
-		}
-	}
 	?>
       <tr>
       <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td>
       <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-      <?php echo $value['attnum']; ?>
-      <?php echo $value['istop']; ?>
-      <?php echo $tagStr; ?>
+      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
+	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td class="tdcenter">
@@ -122,16 +111,16 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
-	选中项：
-    <a href="javascript:logact('del');">删除</a>
+	<a href="javascript:CheckAll(this.form);">全选</a> 选中项：
+    <a href="javascript:logact('del');">删除</a> | 
 	<?php if($pid == 'draft'): ?>
-	<a href="javascript:logact('pub');">发布</a>
+	<a href="javascript:logact('pub');">发布</a> | 
 	<?php else: ?>
-	<a href="javascript:logact('hide');">转入草稿箱</a>
+	<a href="javascript:logact('hide');">转入草稿箱</a> | 
 
 	<?php if (ROLE == 'admin'):?>
-	<a href="javascript:logact('top');">置顶</a>
-    <a href="javascript:logact('notop');">取消置顶</a>
+	<a href="javascript:logact('top');">置顶</a> | 
+    <a href="javascript:logact('notop');">取消置顶</a> | 
     <?php endif;?>
 
 	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">

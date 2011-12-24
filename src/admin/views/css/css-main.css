@@ -23,7 +23,7 @@ li{list-style:none;}
 .template_line{border-top:#CCC 1px solid; margin:5px 0px 15px; width:100%; font-size:12px; height:1%; padding:0px;}
 .item_list{border:1px solid #f0f0f0; color:#808080;border-collapse:collapse; border-spacing:0;}
 .item_list th{ height:23px; line-height:23px; background: url(../images/admindex_itembg.gif) repeat-x bottom; border:1px solid #dfdfdf; padding-left:5px; color:#666; border-top:none; }
-.item_list td{ height:24px; padding-left:5px; vertical-align: middle; }
+.item_list td{ height:24px; padding:5px 0px 5px 5px; vertical-align: middle; }
 .tdcenter{text-align:center; padding-left:0; }
 .input{border:1px solid #CCC; overflow-y:hidden}
 .num_input{border:1px dotted #EFEFEF; overflow-y:hidden; width:43px; height:16px;}

@@ -2,7 +2,7 @@
 /**
  * 安装程序
  * @copyright (c) Emlog All Rights Reserved
- * $Id: install.php 2029 2011-09-11 01:35:16Z emloog $
+ * $Id: install.php 2043 2011-12-24 06:35:48Z emloog $
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));
@@ -29,14 +29,14 @@ if(!$act){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 6px;}
+.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 11px;}
 .logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
 .title{text-align:center;}
-.title span{font-size:24px;font-weight:bold;}
+.title span{font-size:24px; color:#666666;}
 .input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 .submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
-.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid; margin:20px 0px;}
+.title2{font-size:18px;color:#666666;border-bottom: #CCCCCC 1px solid; margin:40px 0px 20px 0px;padding:10px 0px;}
 .foot{text-align:center;}
 .main li{ margin:20px 0px;}
 -->
@@ -48,7 +48,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <p class="logo"></p>
 <p class="title"><span>emlog<?php echo Option::EMLOG_VERSION ?></span> 安装程序</p>
 <div class="b">
-<p class="title2">1、数据库设置 （MySQL数据库）</p>
+<p class="title2">数据库设置</p>
 <li>
 	数据库地址： <br />
     <input name="hostname" type="text" class="input" value="localhost">
@@ -72,7 +72,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </li>
 </div>
 <div class="c">
-<p class="title2">2、博主设置 （用于安装成功后登录博客）</p>
+<p class="title2">博主设置</p>
 <li>
 博主登录名：<br />
 <input name="admin" type="text" class="input">
@@ -89,11 +89,9 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </div>
 <div>
 <p class="foot">
-<input type="submit" class="submit" value="确 定">
-<input type="reset" class="submit" value="重 置">
+<input type="submit" class="submit" value="开始安装emlog">
 </p>
 </div>
-<div><p class="foot">Powered by <a href="http://www.emlog.net">emlog</a></p></div>
 </div>
 </form>
 </body>
