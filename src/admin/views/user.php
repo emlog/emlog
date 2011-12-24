@@ -23,7 +23,6 @@
     </thead>
     <tbody>
 	<?php
-	$user_cache = $CACHE->readCache('user');
 	foreach($users as $key => $val):
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>

@@ -35,7 +35,8 @@
 	<?php endforeach; ?>
 	</tbody>
 </table>
-<div class="list_footer">选中项：<a href="javascript:bakact('del');">删除</a></div>
+<div class="list_footer">
+<a href="#">全选</a> 选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
 <div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);">备份数据+</a>　<a href="javascript:$('#backup').hide();displayToggle('import', 0);">导入本地备份文件+</a></div>
 <form action="data.php?action=bakstart" method="post">

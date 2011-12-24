@@ -10,7 +10,6 @@ require_once 'globals.php';
 $Twitter_Model = new Twitter_Model();
 
 if ($action == '') {
-    $user_cache = $CACHE->readCache('user');
     $Reply_Model = new Reply_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -81,8 +80,6 @@ if ($action == 'getreply') {
 }
 // 回复碎语.
 if ($action == 'reply') {
-    $user_cache = $CACHE->readCache('user');
-
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 

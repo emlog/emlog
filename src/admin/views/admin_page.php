@@ -42,7 +42,8 @@
   </table>
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
-<div class="list_footer">选中项：
+<div class="list_footer">
+<a href="#">全选</a> 选中项：
 <a href="javascript:pageact('del');">删除</a> 
 <a href="javascript:pageact('hide');">隐藏</a> 
 <a href="javascript:pageact('pub');">发布</a>

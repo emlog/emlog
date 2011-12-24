@@ -50,7 +50,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div id="f_user" <?php echo $isDisplayUser ?>>
 	作者：
-	<?php foreach($users as $key => $val):
+	<?php foreach($user_cache as $key => $val):
 		if (ROLE != 'admin' && $key != UID){
 			continue;
 		}
@@ -85,7 +85,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
-	$author = $users[$value['author']]['name'];
+	$author = $user_cache[$value['author']]['name'];
 	?>
       <tr>
       <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
@@ -111,10 +111,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
-	<a href="javascript:CheckAll(this.form);">全选</a> 选中项：
+	<a href="#">全选</a> 选中项：
     <a href="javascript:logact('del');">删除</a> | 
 	<?php if($pid == 'draft'): ?>
-	<a href="javascript:logact('pub');">发布</a> | 
+	<a href="javascript:logact('pub');">发布</a>
 	<?php else: ?>
 	<a href="javascript:logact('hide');">转入草稿箱</a> | 
 
@@ -131,10 +131,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<option value="-1">未分类</option>
 	</select>
 
-	<?php if (ROLE == 'admin' && count($users) > 1):?>
+	<?php if (ROLE == 'admin' && count($user_cache) > 1):?>
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected">更改作者为...</option>
-	<?php foreach($users as $key => $val):
+	<?php foreach($user_cache as $key => $val):
 	$val['name'] = $val['name'];
 	?>
 	<option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>

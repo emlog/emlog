@@ -16,13 +16,13 @@
 <div style="margin-left:20px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
 <div>
+	<li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
+	<li>头像 (120X120 的jpg或png图片)</li>
+	<li><input name="photo" type="file" style="width:245px;" /></li>
 	<li>昵称</li>
 	<li><input maxlength="50" style="width:210px;" value="<?php echo $nickname; ?>" name="name" /></li>
 	<li>电子邮件</li>
 	<li><input name="email" value="<?php echo $email; ?>" style="width:210px;" maxlength="200" /></li>
-	<li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
-	<li>头像 (推荐上传大小为 120X120 的jpg或png图片)</li>
-	<li><input name="photo" type="file" style="width:245px;" /></li>
 	<li>个人描述</li>
 	<li><textarea name="description" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
 	<li><input type="submit" value="保存资料" class="submit" /></li>

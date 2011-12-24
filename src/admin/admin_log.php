@@ -62,7 +62,6 @@ if($action == '')
 	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
 	$logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
 	$sorts = $CACHE->readCache('sort');
-	$users = $CACHE->readCache('user');
 	$log_cache_tags = $CACHE->readCache('logtags');
 	$tags = $Tag_Model->getTag();
 

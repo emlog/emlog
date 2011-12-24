@@ -10,6 +10,7 @@ require_once '../init.php';
 define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//后台当前模板路径
 
 $sta_cache = $CACHE->readCache('sta');
+$user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 //登录验证

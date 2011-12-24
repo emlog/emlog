@@ -36,7 +36,7 @@ setTimeout(hideActived,2600);
 	<?php endforeach; ?>
 	</tbody>
   </table>
-<div class="list_footer">选中项：<a href="javascript:tbact('del');">删除</a></div>
+<div class="list_footer"><a href="#">全选</a> 选中项：<a href="javascript:tbact('del');">删除</a></div>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $tbnum; ?>条引用)</div> 
 </form>
 <script>

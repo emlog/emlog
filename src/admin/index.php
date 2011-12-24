@@ -8,7 +8,6 @@
 require_once 'globals.php';
 
 if ($action == '') {
-	$user_cache = $CACHE->readCache('user');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $name =  $user_cache[UID]['name'];
 

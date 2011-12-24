@@ -69,7 +69,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	</tbody>
   </table>
 	<div class="list_footer">
-	选中项：
+	<a href="#">全选</a> 选中项：
     <a href="javascript:commentact('del');">删除</a>
 	<a href="javascript:commentact('hide');">屏蔽</a>
 	<a href="javascript:commentact('pub');">审核</a>

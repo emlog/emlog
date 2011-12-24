@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./views/js/common.js"></script>
 <?php doAction('adm_head');?>
@@ -34,13 +34,17 @@
     </a></td>
     <td align=right nowrap class="headtext">
     <?php if (ROLE == 'admin'):?>
+	你好，<a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?>
+	<img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" 
+	align="top" height="20" width="20" style="border:1px #FFFFFF solid;" />
+	</a>&nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php else:?>
 	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
-	<a href="./">管理首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="./?action=logout">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
+	<a href="./?action=logout">退出</a>
+	</td>
     <td width="9" id="headerright" ></td>
 	</tbody>
 </table>
