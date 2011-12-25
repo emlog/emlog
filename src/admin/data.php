@@ -135,7 +135,6 @@ if ($action == 'Cache'){
  * @param file $sqlfile
  */
 function checkSqlFileInfo($sqlfile) {
-	// 读取备份文件信息
 	$fp = @fopen($sqlfile, 'r');
 	if ($fp){
 		$dumpinfo = array();
@@ -147,19 +146,17 @@ function checkSqlFileInfo($sqlfile) {
 		}
 		fclose($fp);
 		if (!empty($dumpinfo)){
-			// 验证版本
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-				emMsg("导入失败! 该备份文件不是 emlog " . Option::EMLOG_VERSION . "的备份文件!");
+				emMsg('导入失败！该备份文件只能导入到' . Option::EMLOG_VERSION . '版本的emlog博客!');
 			}
-			// 验证表前缀
 			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-				emMsg("导入失败! 备份文件中的数据库前缀与当前系统数据库前缀不匹配" . $dumpinfo[2]);
+				emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);
 			}
 		} else {
-			emMsg("导入失败! 该备份文件不是 emlog的备份文件!");
+			emMsg('导入失败！该备份文件不是 emlog的备份文件!');
 		}
 	} else {
-		emMsg("导入失败! 读取文件失败");
+		emMsg('导入失败！读取文件失败');
 	}
 }
 
