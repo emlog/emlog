@@ -75,13 +75,14 @@ textarea{font-size:12px}
 .logtags{margin-left:5px}
 .logtags a{color:#FFF}
 .logtag{background-color:#F2B699; padding:0px 3px; margin:1px 2px; border-radius: 3px;}
-.filters{margin:5px 4px}
+.filters{margin:0px 0px 8px 4px;}
 .filter{background-color:#6edffb; padding:1px; margin:1px}
 .filter a{color:#FFF}
 .list_footer{ margin:5px 0px;}
 #f_sort{border:#FFF5CE solid 1px; background-color:#FFF7D7; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #f_tag{border:#FDF1E3 solid 1px; background-color:#FEF8F1; width:500px; padding:10px; margin:10px 0px 5px 32px}
 #f_user{border: #C1FBB7 solid 1px; background-color: #E1FDE2; width:500px; padding:10px; margin:10px 0px 5px 32px}
+#f_search{float:right; margin-bottom:10px;}
 #show_advset{margin:3px 0px 0px 0px; background:url(../images/advset.gif) no-repeat 56px 4px; cursor:pointer}
 #advset{display:none; background-color:#F5F5F5; border-top:#ECECEC solid 1px; padding:5px 3px 10px 3px}
 #post_options{ float:right}
@@ -191,3 +192,12 @@ textarea{font-size:12px}
 #title {border-radius: 3px 3px 3px 3px;border-style: solid;border-width: 1px;border-color: #CCCCCC;font-size: 1.5em;line-height: 100%;outline: medium none;padding: 3px 4px;width: 100%;margin:0px 0px 10px 0px;}
 #title_label {vertical-align: middle;color: #BBBBBB;font-size:14px;padding: 3px;position: absolute;cursor:text;}
 #tag_label {vertical-align: middle;color: #BBBBBB;font-size:12px;padding: 3px;position: absolute;cursor:text;}
+
+#input_s {
+    background: url("../images/search.png") no-repeat scroll 5px 3px transparent;
+    border-radius:3px;
+	border:1px solid #CCC;
+    font-size: 12px;
+    line-height: 1.2em;
+    padding: 4px 10px 4px 28px;
+}
