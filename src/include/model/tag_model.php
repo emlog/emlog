@@ -2,7 +2,6 @@
 /**
  * 标签管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: tag_model.php 2018 2011-08-29 16:02:06Z emloog $
  */
 
 class Tag_Model {

@@ -2,12 +2,11 @@
 /**
  * 前端控制
  * @copyright (c) Emlog All Rights Reserved
- * $Id: option.php 2041 2011-10-18 15:17:39Z emloog $
  */
 
 class Option {
 	//版本编号
-    const EMLOG_VERSION = '4.1.1';
+    const EMLOG_VERSION = '4.2';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高

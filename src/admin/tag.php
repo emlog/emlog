@@ -2,7 +2,6 @@
 /**
  * 标签管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: tag.php 1971 2011-05-22 04:07:56Z emloog $
  */
 
 require_once 'globals.php';

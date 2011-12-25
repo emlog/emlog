@@ -2,7 +2,6 @@
 /**
  * 保存日志（增加、修改）
  * @copyright (c) Emlog All Rights Reserved
- * $Id: save_log.php 1971 2011-05-22 04:07:56Z emloog $
  */
 
 require_once 'globals.php';

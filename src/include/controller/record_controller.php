@@ -3,7 +3,6 @@
  * 查看归档日志
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: record_controller.php 1909 2011-04-10 02:11:42Z emloog $
  */
 
 class Record_Controller {

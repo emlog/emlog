@@ -3,7 +3,6 @@
  * 碎语twitter
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: twitter_model.php 2018 2011-08-29 16:02:06Z emloog $
  */
 
 class Twitter_Model {

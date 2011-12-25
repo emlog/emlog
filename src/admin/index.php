@@ -2,7 +2,6 @@
 /**
  * 管理中心
  * @copyright (c) Emlog All Rights Reserved
- * $Id: index.php 2003 2011-08-14 08:57:16Z emloog $
  */
 
 require_once 'globals.php';

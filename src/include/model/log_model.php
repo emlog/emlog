@@ -3,7 +3,6 @@
  * 日志、页面管理
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: log_model.php 2043 2011-12-24 06:35:48Z emloog $
  */
 
 class Log_Model {

@@ -2,7 +2,6 @@
 /**
  * 日历
  * @copyright (c) Emlog All Rights Reserved
- * $Id: calendar.php 1909 2011-04-10 02:11:42Z emloog $
  */
 
 class Calendar {

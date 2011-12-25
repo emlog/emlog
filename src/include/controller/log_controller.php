@@ -3,7 +3,6 @@
  * 显示博客首页、博客内容
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: log_controller.php 2040 2011-10-15 16:52:21Z qiyuuu@gmail.com $
  */
 
 class Log_Controller {

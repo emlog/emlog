@@ -3,7 +3,6 @@
  * 查看作者日志
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id: author_controller.php 1915 2011-04-12 15:53:22Z emloog $
  */
 
 class Author_Controller {

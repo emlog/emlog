@@ -2,7 +2,6 @@
 /**
  * 全局项加载
  * @copyright (c) Emlog All Rights Reserved
- * $Id: init.php 1907 2011-04-09 11:11:06Z emloog $
  */
 
 error_reporting(E_ALL);

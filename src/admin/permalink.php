@@ -2,7 +2,6 @@
 /**
  * 固定连接
  * @copyright (c) Emlog All Rights Reserved
- * $Id: permalink.php 1863 2011-03-22 12:02:08Z emloog $
  */
 
 require_once 'globals.php';

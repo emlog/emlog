@@ -2,7 +2,6 @@
 /**
  * 页面管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: page.php 2002 2011-08-12 08:56:48Z emloog $
  */
 
 require_once 'globals.php';

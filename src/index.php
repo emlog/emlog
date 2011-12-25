@@ -2,7 +2,6 @@
 /**
  * 前端页面加载
  * @copyright (c) Emlog All Rights Reserved
- * $Id: index.php 1877 2011-03-30 15:21:08Z emloog $
  */
 
 require_once 'init.php';

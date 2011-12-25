@@ -2,7 +2,6 @@
 /**
  * 引用通告管理
  * @copyright (c) Emlog All Rights Reserved
- * $Id: trackback_model.php 2018 2011-08-29 16:02:06Z emloog $
  */
 
 

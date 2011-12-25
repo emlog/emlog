@@ -2,7 +2,6 @@
 /**
  * 碎语
  * @copyright (c) Emlog All Rights Reserved
- * $Id: index.php 2014 2011-08-25 16:24:12Z emloog $
 */
 
 require_once '../init.php';

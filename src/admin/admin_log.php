@@ -2,7 +2,6 @@
 /**
  * 管理日志
  * @copyright (c) Emlog All Rights Reserved
- * $Id: admin_log.php 2003 2011-08-14 08:57:16Z emloog $
  */
 
 require_once 'globals.php';
