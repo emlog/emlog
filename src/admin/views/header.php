@@ -29,7 +29,7 @@
     	if (empty($blog_name)) {
     		$blog_name = '查看博客';
     	}
-    	echo $blog_name;
+    	echo subString($blog_name, 0, 60);
     ?>
     </a></td>
     <td align=right nowrap class="headtext">

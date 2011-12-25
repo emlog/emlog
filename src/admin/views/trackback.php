@@ -25,7 +25,9 @@ setTimeout(hideActived,2600);
       </tr>
   </thead>
   <tbody>
-	<?php foreach($trackback as $key=>$value):?>	
+	<?php 
+	if($trackback):
+	foreach($trackback as $key=>$value):?>	
       <tr>
         <td><input type="checkbox" name="tb[]" value="<?php echo $value['tbid']; ?>" class="ids" ></td>
         <td><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['title']; ?></a></td>
@@ -33,7 +35,9 @@ setTimeout(hideActived,2600);
         <td><?php echo $value['ip']; ?></td>
         <td><?php echo $value['date']; ?></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="5">还没有收到引用</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
 <div class="list_footer"><a href="#">全选</a> 选中项：<a href="javascript:tbact('del');">删除</a></div>

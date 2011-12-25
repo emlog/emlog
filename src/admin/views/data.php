@@ -20,6 +20,7 @@
   </head>
   <tbody>
 	<?php
+		if($bakfiles):
 		foreach($bakfiles  as $value):
 		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
 		$size =  changeFileSize(filesize($value));
@@ -32,7 +33,9 @@
       <td><?php echo $size; ?></td>
       <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');">导入</a></td>
     </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
+	<?php endif;?>
 	</tbody>
 </table>
 <div class="list_footer">

@@ -83,6 +83,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</thead>
  	<tbody>
 	<?php
+	if($logs):
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
 	$author = $user_cache[$value['author']]['name'];
@@ -106,7 +107,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	  <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="8">还没有日志</td></tr>
+	<?php endif;?>
 	</tbody>
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />

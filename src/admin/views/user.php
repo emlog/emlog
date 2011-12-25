@@ -23,6 +23,7 @@
     </thead>
     <tbody>
 	<?php
+	if($users):
 	foreach($users as $key => $val):
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
@@ -34,7 +35,9 @@
 		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
 		<td><a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="6">还没有添加作者</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
 </form>

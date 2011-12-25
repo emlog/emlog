@@ -38,6 +38,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     </thead>
     <tbody>
 	<?php
+	if($comment):
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
 	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
@@ -50,7 +51,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	?>
      <tr>
         <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?>
+        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
 		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
@@ -65,7 +66,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该日志"><?php echo $value['title']; ?></a></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="4">还没有收到评论</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
 	<div class="list_footer">

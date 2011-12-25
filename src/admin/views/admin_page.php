@@ -18,6 +18,7 @@
     </thead>
     <tbody>
 	<?php
+	if($pages):
 	foreach($pages as $key => $value):
 	if (empty($navibar[$value['gid']]['url']))
 	{
@@ -37,7 +38,9 @@
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="4">还没有页面</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
   <input name="operate" id="operate" value="" type="hidden" />

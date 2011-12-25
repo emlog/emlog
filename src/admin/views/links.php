@@ -20,7 +20,9 @@
       </tr>
     </thead>
     <tbody>
-	<?php foreach($links as $key=>$value):?>  
+	<?php 
+	if($links):
+	foreach($links as $key=>$value):?>  
       <tr>
 		<td><input class="num_input" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
@@ -31,7 +33,9 @@
         <td><?php echo $value['description']; ?></td>
         <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="4">还没有添加链接</td></tr>
+	<?php endif;?>
     </tbody>
   </table>
   <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>

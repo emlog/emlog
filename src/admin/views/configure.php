@@ -76,21 +76,15 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right">登录验证码：<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /></td>
-      </tr>
-	  <tr>
-        <td align="right">引用通告：<br /></td>
-		<td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /></td>
-      </tr>
+        <td align="right" width="18%" valign="top">功能开关：<br /></td>
+        <td width="82%">
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> />登录验证码<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> />引用通告<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> />图片缩略图<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作
+      	</td>
       <tr>
-        <td align="right">Gzip压缩：<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>
-      </tr>
-	  <tr>
-        <td align="right">离线写作支持：<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
-      </tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
