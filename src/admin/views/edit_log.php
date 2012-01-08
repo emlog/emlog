@@ -26,7 +26,7 @@ $isdraft = $hide == 'y' ? true : false;
         <tr nowrap="nowrap">
           <td>
 			  <div style="margin:10px 0px 5px 0px;">
-			  <label for="tag" id="tag_label">日志标签，半角逗号分隔</label>
+			  <label for="tag" id="tag_label">日志标签，逗号或空格分隔</label>
 			  <input name="tag" id="tag" maxlength="200" style="width:432px;" value="<?php echo $tagStr; ?>" />
 
 			  <select name="sort" id="sort" style="width:130px;">
