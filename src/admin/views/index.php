@@ -26,7 +26,7 @@
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
-<p id="m"><a title="用手机访问你的博客"><?php echo BLOG_URL.'m'; ?></a></p>
+<p id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></p>
 </div>
 <div id="admindex_msg">
 <h3>官方消息</h3>

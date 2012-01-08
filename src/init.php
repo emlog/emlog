@@ -25,7 +25,7 @@ define('ISLOGIN',	isLogin());
 define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
 //用户ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
-//博客固定地址
+//站点固定地址
 define('BLOG_URL', Option::get('blogurl'));
 //模板库地址
 define('TPLS_URL', BLOG_URL.'content/templates/');

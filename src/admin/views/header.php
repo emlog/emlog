@@ -23,11 +23,11 @@
     <td width="9" id="headerleft"></td>
     <td width="125"  class="logo" align="left"><a href="./" title="返回管理首页">emlog</a></td>
     <td class="vesion" width="20"><?php echo Option::EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏览我的blog">
+    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏站点">
     <?php 
     	$blog_name = Option::get('blogname');
     	if (empty($blog_name)) {
-    		$blog_name = '查看博客';
+    		$blog_name = '查看站点';
     	}
     	echo subString($blog_name, 0, 60);
     ?>
@@ -97,7 +97,7 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">博客管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">站点管理</div>
 			<div id="blog_mg">
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>

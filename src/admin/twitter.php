@@ -18,10 +18,6 @@ if ($action == '') {
     $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page=');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-    $conf_istwitter = Option::get('istwitter') == 'y' ? 'checked="checked"' : '';
-    $conf_reply_code = Option::get('reply_code') == 'y' ? 'checked="checked"' : '';
-    $conf_ischkreply = Option::get('ischkreply') == 'y' ? 'checked="checked"' : '';
-
     include View::getView('header');
     require_once View::getView('twitter');
     include View::getView('footer');
@@ -140,21 +136,4 @@ if ($action == 'pubreply') {
     $Reply_Model = new Reply_Model();
     $Reply_Model->pubReply($rid);
     $Twitter_Model->updateReplyNum($tid, '+1');
-}
-// 碎语设置.
-if ($action == 'set') {
-    $data = array(
-        'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
-        'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
-        'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
-        'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
-    	'twnavi' => isset($_POST['twnavi']) ? addslashes($_POST['twnavi']) : '',
-    );
-
-	foreach ($data as $key => $val){
-		Option::updateOption($key, $val);
-	}
-
-	$CACHE->updateCache('options');
-    emDirect("twitter.php?active_set=true");
 }

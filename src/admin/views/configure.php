@@ -10,19 +10,19 @@
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td width="18%" align="right">博客名称：</td>
+        <td width="18%" align="right">站点名称：</td>
         <td width="82%"><input maxlength="200" size="35" value="<?php echo $blogname; ?>" name="blogname" /></td>
       </tr>
       <tr>
-        <td align="right" valign="top">博客描述：</td>
+        <td align="right" valign="top">站点描述：</td>
         <td><textarea name="bloginfo" cols="" rows="2" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr>
-        <td align="right">博客地址：</td>
+        <td align="right">站点地址：</td>
         <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
-        <td align="right">博客关键字：</td>
+        <td align="right">站点关键字：</td>
         <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
         (关键字之间用半角逗号","隔开)</td>
       </tr>
@@ -85,6 +85,20 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作
       	</td>
       <tr>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
+        <td align="right" width="18%" valign="top">碎语：<br /></td>
+        <td width="82%">
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条，
+		首页导航文字：<input type="text" name="twnavi" value="<?php echo Option::get('twnavi'); ?>" style="width:66px;" />
+
+		</td>
+      </tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">

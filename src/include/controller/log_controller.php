@@ -1,6 +1,6 @@
 <?php
 /**
- * 显示博客首页、博客内容
+ * 显示首页、内容
  *
  * @copyright (c) Emlog All Rights Reserved
  */

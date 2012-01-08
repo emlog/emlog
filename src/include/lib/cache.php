@@ -126,7 +126,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'user');
 	}
 	/**
-	 * 博客统计缓存
+	 * 站点统计缓存
 	 */
 	private function mc_sta() {
 	    $sta_cache = array();

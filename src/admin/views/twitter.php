@@ -14,19 +14,6 @@
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/></div>
     </form>
-    <?php if (ROLE == 'admin'):?>
-    <div class="op"><a href="javascript:displayToggle('sz_box', 2);">设置</a></div>
-    <form method="post" action="twitter.php?action=set">
-        <div class="sz_box" id="sz_box">
-            <span>在前台显示：<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /></span>
-            <span>回复验证码：<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /></span>
-            <span>回复审核：<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /></span>
-           	<span>前台每页显示条数：<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" /></span>
-           	<span>首页导航文字：<input type="text" name="twnavi" value="<?php echo Option::get('twnavi'); ?>" style="width:66px;" /></span>
-            <input class="tbutton" type="submit" value="保存" />
-        </div>
-    </form>
-    <?php endif;?>
     </div>
     <div class="clear"></div>
     <ul>

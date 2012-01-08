@@ -147,7 +147,7 @@ function checkSqlFileInfo($sqlfile) {
 		fclose($fp);
 		if (!empty($dumpinfo)){
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-				emMsg('导入失败！该备份文件只能导入到' . Option::EMLOG_VERSION . '版本的emlog博客!');
+				emMsg('导入失败！该备份文件只能导入到' . Option::EMLOG_VERSION . '版本的emlog站点!');
 			}
 			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
 				emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);

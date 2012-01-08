@@ -65,7 +65,7 @@ function getIp(){
 }
 
 /**
- * 获取博客地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
+ * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */
 function getBlogUrl(){
 	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';

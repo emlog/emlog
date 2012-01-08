@@ -1,6 +1,6 @@
 <?php
 /**
- * xmlrpc博客服务接口
+ * xmlrpc服务接口
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -56,7 +56,7 @@ if (isset($_GET['rsd'])) {
 	exit;
 }
 if ($options_cache['isxmlrpcenable'] == 'n') {
-	error_message(500, '提示:博客XMLRPC服务未开启.');
+	error_message(500, '提示:站点XMLRPC服务未开启.');
 }
 if (!$HTTP_RAW_POST_DATA) {
 	error_message(500, '错误:XML-RPC服务器只能接受POST数据');
@@ -88,7 +88,7 @@ if (!array_key_exists($method_name, $api_methods)) die('unknow request');
 call_user_func($api_methods[$method_name], $params);
 
 /**
- * 读取博客信息
+ * 读取站点信息
  */
 function blogger_getUsersBlogs() {
 	global $options_cache;
@@ -237,7 +237,7 @@ function mw_editPost($args) {
 }
 
 /**
- * 取得博客分类
+ * 取得站点分类
  */
 function mw_getCategories($args) {
 	escape($args);

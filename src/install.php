@@ -71,18 +71,18 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </li>
 </div>
 <div class="c">
-<p class="title2">博主设置</p>
+<p class="title2">管理员设置</p>
 <li>
-博主登录名：<br />
+登录名：<br />
 <input name="admin" type="text" class="input">
 </li>
 <li>
-博主登录密码：<br />
+登录密码：<br />
 <input name="adminpw" type="password" class="input">
 <span class="care">(不小于6位)</span>
 </li>
 <li>
-再次输入博主登录密码：<br />
+再次输入登录密码：<br />
 <input name="adminpw2" type="password" class="input">
 </li>
 </div>
@@ -115,9 +115,9 @@ if($act == 'install' || $act == 'reinstall')
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
 		emMsg('数据库前缀格式错误!');
 	}elseif($admin == '' || $adminpw == ''){
-		emMsg('博主登录名和密码不能为空!');
+		emMsg('登录名和密码不能为空!');
 	}elseif(strlen($adminpw) < 6){
-		emMsg('博主登录密码不得小于6位');
+		emMsg('登录密码不得小于6位');
 	}elseif($adminpw!=$adminpw2)	 {
 		emMsg('两次输入的密码不一致');
 	}
@@ -431,7 +431,7 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	}
 	//重建缓存
 	$CACHE->updateCache();
-	$result .= "博主: {$admin} 添加成功<br />恭喜你！emlog 安装成功<br />";
+	$result .= "管理员: {$admin} 添加成功<br />恭喜你！emlog 安装成功<br />";
 	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
 	    $result .= '<span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> ';
 	}

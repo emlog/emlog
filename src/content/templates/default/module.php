@@ -282,7 +282,7 @@ function blog_trackback($tb, $tb_url, $allow_tb){
 	<?php endforeach; ?>
 <?php }?>
 <?php
-//blog：博客评论列表
+//blog：评论列表
 function blog_comments($comments){
     extract($comments);
     if($commentStacks): ?>
@@ -311,7 +311,7 @@ function blog_comments($comments){
     </div>
 <?php }?>
 <?php
-//blog：博客子评论列表
+//blog：子评论列表
 function blog_comments_children($comments, $children){
 	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
