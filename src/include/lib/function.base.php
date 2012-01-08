@@ -106,6 +106,9 @@ function checkMail($email){
  * @param int $length 截取长度
  */
 function subString($strings,$start,$length){
+	if (function_exists('mb_substr')) {
+		return mb_substr($strings, $start, $length);
+	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
 	for ($i = 0; $i < strlen($str); $i++){

@@ -307,6 +307,9 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscommenter_url','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
