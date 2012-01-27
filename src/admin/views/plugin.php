@@ -48,7 +48,7 @@
 		<?php if ($val['ForEmlog'] != ''):?>适用于emlog：<?php echo $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
 		<?php if ($val['Author'] != ''):?>
 		作者：<?php if ($val['AuthorUrl'] != ''):?>
-			<a href="<?php echo $val['AuthorUrl'];?>" titile="访问作者主页"><?php echo $val['Author'];?></a>
+			<a href="<?php echo $val['AuthorUrl'];?>" target="_blank"><?php echo $val['Author'];?></a>
 			<?php else:?>
 			<?php echo $val['Author'];?>
 			<?php endif;?>

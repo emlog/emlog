@@ -343,7 +343,7 @@ function findArray($array1,$array2){
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return string 文件路径
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
 	if ($errorNum == 1){
 		emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
 	}elseif ($errorNum > 1){

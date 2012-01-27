@@ -15,8 +15,6 @@ class Option {
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
-    //上传图片是否生成缩略图 1:是 0:否
-    const IS_THUMBNAIL = 1;
     //附件大小上限 （单位：字节，默认20M）
     const UPLOADFILE_MAXSIZE = 20971520;
     //附件上传路径
