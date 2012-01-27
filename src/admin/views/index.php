@@ -5,7 +5,7 @@
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
         <div class="right">
         <form method="post" action="twitter.php?action=post">
-        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (有<span class=care2><b><?php echo $sta_log;?></b></span>篇日志，<span class=care2><b><?php echo $sta_tw;?></b></span>条碎语)</div>
+        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
         <div class="box_1"><textarea class="box2" name="t">为今天写点什么吧 ……</textarea></div>
         <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
         </form>
@@ -16,13 +16,13 @@
 <div class="clear"></div>
 <?php if (ROLE == 'admin'):?>
 <div id="admindex_servinfo">
-<h3>服务器信息</h3>
+<h3>站点信息</h3>
 <ul>
+	<li>有<b><?php echo $sta_cache['lognum'];?></b>篇日志，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条碎语</li>
 	<li>PHP版本：<?php echo $php_ver; ?></li>
 	<li>MySQL版本：<?php echo $mysql_ver; ?></li>
 	<li>服务器环境：<?php echo $serverapp; ?></li>
 	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
-	<li>安全模式：<?php echo $safe_mode ? '开启' : '关闭'; ?></li>
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
