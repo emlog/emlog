@@ -77,8 +77,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
   <table width="100%" id="adm_log_list" class="item_list">
   <thead>
       <tr>
-        <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="490"><b>标题</b></th>
+        <th width="511" colspan="2"><b>标题</b></th>
 		<?php if ($pid != 'draft'): ?>
 		<th width="40" class="tdcenter"><b>查看</b></th>
 		<?php endif; ?>
@@ -97,9 +96,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	$author = $user_cache[$value['author']]['name'];
 	?>
       <tr>
-      <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-      <td>
-      <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+      <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+      <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
       <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
 	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
       </td>
@@ -122,7 +120,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
-	<a href="#">全选</a> 选中项：
+	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:logact('del');">删除</a> | 
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');">发布</a>
@@ -166,6 +164,7 @@ $(document).ready(function(){
 	$("#f_t_sort").click(function(){$("#f_sort").toggle();$("#f_tag").hide();$("#f_user").hide();});
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
 	$("#f_t_user").click(function(){$("#f_user").toggle();$("#f_sort").hide();$("#f_tag").hide();});
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function logact(act){

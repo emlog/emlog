@@ -10,8 +10,7 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-      	<th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="460"><b>标题</b></th>
+        <th width="481" colspan="2"><b>标题</b></th>
         <th width="30" class="tdcenter"><b>评论</b></th>
         <th width="280"><b>时间</b></th>
       </tr>
@@ -29,8 +28,8 @@
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
-     	<td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-        <td>
+     	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+        <td width="460">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
         <?php echo $value['attnum']; ?>
         <?php echo $isHide; ?>
@@ -46,7 +45,7 @@
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">
-<a href="#">全选</a> 选中项：
+<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
 <a href="javascript:pageact('del');">删除</a> 
 <a href="javascript:pageact('hide');">隐藏</a> 
 <a href="javascript:pageact('pub');">发布</a>
@@ -58,7 +57,8 @@ $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")});
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function pageact(act){
