@@ -54,7 +54,17 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
-
+#sidebar #newcomment li{
+	margin:5px 0px;
+}
+#sidebar #newcomment img{
+    border: 1px solid #CCCCCC;
+    float: left;
+    height: 28px;
+    margin-right: 5px;
+    padding: 1px;
+    width: 28px;
+}
 #footerbar {margin: 40px auto 58px; padding: 10px 0px; width: 960px; text-align: center; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}

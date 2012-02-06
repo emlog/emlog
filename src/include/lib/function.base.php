@@ -107,7 +107,7 @@ function checkMail($email){
  */
 function subString($strings,$start,$length){
 	if (function_exists('mb_substr')) {
-		return mb_substr($strings, $start, $length);
+		return mb_substr($strings, $start, $length, 'utf8');
 	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
