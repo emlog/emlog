@@ -13,9 +13,9 @@ class User_Model {
 		$this->db = MySql::getInstance();
 	}
 
-	function getUsers($role = 'writer')
+	function getUsers()
 	{
-		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user where role='writer'");
+		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user");
 		$users = array();
 		while($row = $this->db->fetch_array($res))
 		{

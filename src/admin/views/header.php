@@ -102,7 +102,7 @@
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
 			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
-			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >作者</a></div>
+			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></div>
 			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
 			</div>
 			</div>

@@ -48,12 +48,9 @@ foreach($sorts as $key=>$value): ?>
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加新分类+</a></div>
 <div id="sort_new">
-	<li>序号</li>
-	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
-	<li>名称</li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
-	<li>别名</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (用于URL的友好显示)</li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
+	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (用于URL的友好显示)</li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>

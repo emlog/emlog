@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>作者管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除作者成功</span><?php endif;?>
-<?php if(isset($_GET['active_update'])):?><span class="actived">修改作者资料成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="actived">添加作者成功</span><?php endif;?>
+<div class=containertitle><b>用户管理</b>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
+<?php if(isset($_GET['active_update'])):?><span class="actived">修改用户资料成功</span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived">添加用户成功</span><?php endif;?>
 <?php if(isset($_GET['error_login'])):?><span class="error">用户名不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_exist'])):?><span class="error">该用户名已存在</span><?php endif;?>
 <?php if(isset($_GET['error_pwd_len'])):?><span class="error">密码长度不得小于6位</span><?php endif;?>
@@ -14,11 +14,10 @@
   	<thead>
       <tr>
         <th width="40"></th>
-        <th width="100"><b>作者</b></th>
-        <th width="260"><b>个人描述</b></th>
-        <th width="80"><b>电子邮件</b></th>
+        <th width="100"><b>用户</b></th>
+        <th width="260"><b>描述</b></th>
+        <th width="210"><b>电子邮件</b></th>
 		<th width="30" class="tdcenter"><b>日志</b></th>
-		<th width="130"></th>
       </tr>
     </thead>
     <tbody>
@@ -29,11 +28,21 @@
 	?>
      <tr>
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
-		<td><a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a></td>
+		<td>
+		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
+		<br /><?php echo $val['role'] == 'admin' ? '管理员' : '作者'; ?>
+		<span style="display:none; margin-left:8px;">
+		<?php if (UID != $val['uid']): ?>
+		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a>
+		<?php else:?>
+		<a href="blogger.php">编辑</a>
+		<?php endif;?>
+		</span>
+		</td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
 		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
-		<td><a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a></td>
      </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6">还没有添加作者</td></tr>
@@ -42,16 +51,18 @@
   </table>
 </form>
 <form action="user.php?action=new" method="post">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加作者+</a></div>
+<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加用户+</a></div>
 <div id="user_new">
-	<li>用户名</li>
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" /></li>
-	<li>密码</li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" /></li>
-	<li>重复密码</li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /></li>
-	<li><br></li>
-	<li><input type="submit" name="" value="添加作者"  /></li>
+	<li><input name="login" type="text" id="login" value="" style="width:180px;" /> 用户名</li>
+	<li><input name="password" type="password" id="password" value="" style="width:180px;" /> 密码 (大于6位)</li>
+	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /> 重复密码</li>
+	<li>
+	<select name="role">
+		<option value="writer">作者</option>
+		<option value="admin">管理员</option>
+	</select>
+	</li>
+	<li><input type="submit" name="" value="添加用户"  /></li>
 </div>
 </div>
 </form>
@@ -60,8 +71,8 @@ $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') 
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
 });
 setTimeout(hideActived,2600);
 $("#menu_user").addClass('sidebarsubmenu1');
