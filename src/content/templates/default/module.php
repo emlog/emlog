@@ -97,10 +97,8 @@ function widget_newcomm($title){
 	foreach($com_cache as $value):
 	$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 	?>
-	<li>
-	<img src="<?php echo getGravatar($value['mail'], 28); ?>" />
-	<?php echo $value['name']; ?><br />
-	<a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
+	<li id="comment"><?php echo $value['name']; ?>
+	<br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
