@@ -122,6 +122,8 @@ textarea{font-size:12px}
 .des{margin:5px 10px; width:500px;background-color: #FFFFE5;padding:5px 10px; border:1px #CCCCCC solid; clear:both; border-radius: 4px;}
 .permalink_url{color: #939393; letter-spacing:2px; padding:5px;}
 #m a{color: #999999;background:url(../images/m.gif) no-repeat 2px 1px;font-weight:bold;letter-spacing:1px; padding:8px 0px 8px 23px;}
+
+#tw{ float:left; width:560px;}
 #tw .main_img{ border:1px #2772ae solid; float:left;}
 #tw .main_img img{ border:1px #fff solid}
 #tw .box_1{ background:url(../images/weibe_bl.gif) no-repeat; padding-left:7px;}
@@ -157,6 +159,23 @@ textarea{font-size:12px}
 #tw ul .huifu .text{ width:60px;}
 #tw ul .button_p{background:url(../images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
 #tw .loading{background:url(../images/loading.gif) no-repeat 200px 2px; height:20px;}
+
+#tw_line {
+	margin:0px 0px 0px 20px;
+	padding-right:10px;
+	float:left;
+	width:245px;
+}
+#tw_line ul{
+	padding:1px;
+	width:245px;
+	height:280px;
+	overflow:hidden;
+}
+#tw_line li{margin:0px 0px 20px;}
+#tw_line img{width:28px; height:28px; border:1px solid #EFEFEF;}
+#tw_line .tw_date{ color:#CCCCCC; float:right;}
+#tw_line .tw_footer{ border-top:solid 1px #EFEFEF;color:#CCCCCC;}
 
 #admin_style { margin:10px 10px 10px 10px;}
 #admin_style div{ float:left; margin:12px; width:235px; height:120px;}
