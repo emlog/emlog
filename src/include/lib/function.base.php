@@ -6,15 +6,15 @@
 
 function __autoload($class) {
 	$class = strtolower($class);
-    if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
-    	require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
-    } else{
-    	emMsg($class.'加载失败。', BLOG_URL);
-    }
+	if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
+	} else{
+		emMsg($class.'加载失败。', BLOG_URL);
+	}
 }
 
 /**
@@ -80,11 +80,29 @@ function getBlogUrl(){
  * 检查插件
  */
 function checkPlugin($plugin) {
-    if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
-        return true;
-    } else {
-        return false;
-    }
+	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * 加载jQuery
+ */
+function emLoadJQuery() {
+	static $isJQueryLoaded = false;
+	if(!$isJQueryLoaded) {
+		global $emHooks;
+		if(!isset($emHooks['index_head'])) {
+			$emHooks['index_head'] = array();
+		}
+		array_unshift($emHooks['index_head'], 'loadJQuery');
+		$isJQueryLoaded = true;
+		function loadJQuery() {
+			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.js" type="text/javascript"></script>';
+		}
+	}
 }
 
 /**
@@ -146,16 +164,16 @@ function subString($strings,$start,$length){
 function extractHtmlData($data, $len) {
 	$data = strip_tags(subString($data, 0, $len + 30));
 	$search = array ("/([\r\n])[\s]+/",	// 去掉空白字符
-		             "/&(quot|#34);/i",	// 替换 HTML 实体
-		             "/&(amp|#38);/i",
-		             "/&(lt|#60);/i",
-		             "/&(gt|#62);/i",
-		             "/&(nbsp|#160);/i",
+					 "/&(quot|#34);/i",	// 替换 HTML 实体
+					 "/&(amp|#38);/i",
+					 "/&(lt|#60);/i",
+					 "/&(gt|#62);/i",
+					 "/&(nbsp|#160);/i",
 					 "/&(iexcl|#161);/i",
 					 "/&(cent|#162);/i",
-		             "/&(pound|#163);/i",
-		             "/&(copy|#169);/i",
-		             "/\"/i",
+					 "/&(pound|#163);/i",
+					 "/&(copy|#169);/i",
+					 "/\"/i",
 					);
 	$replace = array (" ","\"","&"," "," ","",chr(161),chr(162),chr(163),chr(169), "");
 	$data = subString(preg_replace($search, $replace, $data), 0, $len);
@@ -325,10 +343,10 @@ function getRandStr($length = 12, $special_chars = true){
  * @return array
  */
 function findArray($array1,$array2){
-    $r1 = array_diff($array1, $array2);
-    $r2 = array_diff($array2, $array1);
-    $r = array_merge($r1, $r2);
-    return $r;
+	$r1 = array_diff($array1, $array2);
+	$r2 = array_diff($array2, $array1);
+	$r = array_merge($r1, $r2);
+	return $r;
 }
 
 /**
@@ -380,12 +398,12 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if ($is_thumbnail) {
-	    if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
-	        $attach = $thum;
-	        resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
-	    } elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
-	        $attach = $thum;
-	    }
+		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
+			$attach = $thum;
+			resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
+			$attach = $thum;
+		}
 	}
 
 	if (@is_uploaded_file($tmpFile)){
@@ -418,7 +436,7 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
 	}
 
 	$size = chImageSize($img, $max_w, $max_h);
-    $newwidth = $size['w'];
+	$newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w = $size['rc_w'];
 	$h = $size['rc_h'];
@@ -533,51 +551,51 @@ function getGravatar($email, $s=40, $d='mm', $g='g') {
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-    if($origin_tz === null) {
-        if(!is_string($origin_tz = date_default_timezone_get())) {
-            return false; // A UTC timestamp was returned -- bail out!
-        }
-    }
-    $origin_dtz = new DateTimeZone($origin_tz);
-    $remote_dtz = new DateTimeZone($remote_tz);
-    $origin_dt = new DateTime('now', $origin_dtz);
-    $remote_dt = new DateTime('now', $remote_dtz);
-    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-    return $offset;
+	if($origin_tz === null) {
+		if(!is_string($origin_tz = date_default_timezone_get())) {
+			return false; // A UTC timestamp was returned -- bail out!
+		}
+	}
+	$origin_dtz = new DateTimeZone($origin_tz);
+	$remote_dtz = new DateTimeZone($remote_tz);
+	$origin_dt = new DateTime('now', $origin_dtz);
+	$remote_dt = new DateTime('now', $remote_dtz);
+	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+	return $offset;
 }
 
 /**
  * 将字符串转换为时区无关的UNIX时间戳
  */
 function emStrtotime($timeStr) {
-    $timezone = Option::get('timezone');
-    if ($timeStr) {
-	    $unixPostDate = @strtotime($timeStr);
-	    if ($unixPostDate === false) {
-	        return false;
-	    } else {
-            $serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
-            if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
-                $unixPostDate -= $timezone * 3600;
-            } else {
-                if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
-            		/*
-            		* 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
-            	    * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
-            		* 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
-            		*/
-            		$offset = getTimeZoneOffset($serverTimeZone);
-            		// 首先减去/加上本地时区配置的时差
-            		$unixPostDate -= $timezone * 3600;
-            		// 再减去/加上服务器时区与utc的时差，得到utc时间
-            		$unixPostDate -= $offset;
-        		}
-        	}
-        }
-        return $unixPostDate;
-    } else {
-        return false;
-    }
+	$timezone = Option::get('timezone');
+	if ($timeStr) {
+		$unixPostDate = @strtotime($timeStr);
+		if ($unixPostDate === false) {
+			return false;
+		} else {
+			$serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
+			if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+				$unixPostDate -= $timezone * 3600;
+			} else {
+				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
+					/*
+					* 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
+					* 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
+					* 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+					*/
+					$offset = getTimeZoneOffset($serverTimeZone);
+					// 首先减去/加上本地时区配置的时差
+					$unixPostDate -= $timezone * 3600;
+					// 再减去/加上服务器时区与utc的时差，得到utc时间
+					$unixPostDate -= $offset;
+				}
+			}
+		}
+		return $unixPostDate;
+	} else {
+		return false;
+	}
 }
 
 /**
@@ -587,57 +605,57 @@ function emStrtotime($timeStr) {
  * @param string $year 年份
  */
 function getMonthDayNum($month, $year) {
-    switch(intval($month)){
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            return 31;break;
-        case 2:
-            if ($year % 4 == 0) {
-                return 29;
-            } else {
-                return 28;
-            }
-            break;
-        default:
-            return 30;
-            break;
-    }
+	switch(intval($month)){
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			return 31;break;
+		case 2:
+			if ($year % 4 == 0) {
+				return 29;
+			} else {
+				return 28;
+			}
+			break;
+		default:
+			return 30;
+			break;
+	}
 }
 /**
  * 解压zip
  */
 function emUnZip ($zipfile, $path, $type = 'tpl') {
 	if(class_exists('ZipArchive', FALSE)) {
-	    $zip = new ZipArchive();
-	    if (@$zip->open($zipfile) === TRUE) {
-	    	$r = explode('/', $zip->getNameIndex(0), 2);
-	    	$dir = isset($r[0]) ? $r[0].'/' : '';
-	    	switch ($type) {
-	    		case 'tpl':
-	    			$re = $zip->getFromName($dir.'header.php');
-	    			if (false === $re)
-	    			return -2;
-	    			break;
-	    		case 'plugin':
-	    			$plugin_name = substr($dir, 0, -1);
-	    			$re = $zip->getFromName($dir.$plugin_name.'.php');
-	    			if (false === $re)
-	    				return -1;
-	    			break;
-	    	}
-	    	if (true === @$zip->extractTo($path)) {
-	    		$zip->close();
-	    		return 0;
-	    	} else {
-	    		return 1;
-	    	}
+		$zip = new ZipArchive();
+		if (@$zip->open($zipfile) === TRUE) {
+			$r = explode('/', $zip->getNameIndex(0), 2);
+			$dir = isset($r[0]) ? $r[0].'/' : '';
+			switch ($type) {
+				case 'tpl':
+					$re = $zip->getFromName($dir.'header.php');
+					if (false === $re)
+					return -2;
+					break;
+				case 'plugin':
+					$plugin_name = substr($dir, 0, -1);
+					$re = $zip->getFromName($dir.$plugin_name.'.php');
+					if (false === $re)
+						return -1;
+					break;
+			}
+			if (true === @$zip->extractTo($path)) {
+				$zip->close();
+				return 0;
+			} else {
+				return 1;
+			}
 		} else {
-		    return 2;
+			return 2;
 		}
 	} else {
 		return 3;
@@ -648,10 +666,10 @@ function emUnZip ($zipfile, $path, $type = 'tpl') {
  * 删除文件或目录
  */
 function emDeleteFile ($file){
-    if (empty($file))
-    	return false;
-    if (@is_file($file))
-        return @unlink($file);
+	if (empty($file))
+		return false;
+	if (@is_file($file))
+		return @unlink($file);
    	$ret = true;
    	if ($handle = @opendir($file)) {
 		while ($filename = @readdir($handle)){
