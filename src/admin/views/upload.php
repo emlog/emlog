@@ -6,6 +6,9 @@
 <title>upload</title>
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="./views/js/common.js"></script>
+
+
+
 <script>
 function uploadfile()
 {
@@ -39,6 +42,7 @@ function removeattachfrom() {
 
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
+<!--
 	<p>(单个附件最大：<?php echo $maxsize ;?>，允许类型：<?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]" /></span></div>
@@ -48,7 +52,38 @@ function removeattachfrom() {
     <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a>
     </span>
 	</p>
+-->
+<div class="demo-box">
+<div id="status-message">选择要上传的文件：</div>
+<div id="custom-queue" class="uploadifyQueue"></div>
+<input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;">
+</div>
+
+
 </div>
 </form>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.js"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+<link href="../include/lib/js/uploadify/uploadify.css" type="text/css" rel="stylesheet">
+<script>
+    $(document).ready(function() {
+        $("#custom_file_upload").uploadify({            
+			id              : jQuery(this).attr('id'),
+			swf             : '../include/lib/js/uploadify/uploadify.swf',
+			uploader        : '../include/lib/js/uploadify/uploadify.php',
+			cancelImage     : '../include/lib/js/uploadify/cancel.png',
+			checkExisting   : '../include/lib/js/uploadify/uploadify-check-existing.php',
+			buttonText      : '选择上传文件',
+			auto            : true,
+			multi           : true,
+			buttonCursor    : 'pointer',
+			fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg;*.rar;*.zip',
+			queueID         : 'custom-queue',  
+			queueSizeLimit	: 10,
+			removeCompleted : false,
+			fileSizeLimit	: 102400,
+        });
+    });
+</script>
 </body>
 </html>
