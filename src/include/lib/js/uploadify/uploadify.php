@@ -23,8 +23,7 @@ THE SOFTWARE.
 */
 
 $targetFolder = 'jq_uploads'; // Relative to the root
-		header("Status: 404 Not Found");
-		echo 'Invalid file type.';exit;
+
 if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];
 	$targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
@@ -37,12 +36,11 @@ if (!empty($_FILES)) {
 	
 	if (in_array($fileParts['extension'],$fileTypes)) {
 		move_uploaded_file($tempFile,$targetFile);
-		$stringData = "1";
+		echo 'ok';
 	} else {
-		header("Status: 404 Not Found");
-		echo 'Invalid file type.';
+		header("HTTP/1.1 578 Not Found");
 		exit;
 	}
-
-	echo $stringData;
 }
+		header("HTTP/1.1 578 Not Found");
+		exit;

@@ -1,26 +1,3 @@
-/*
-Uploadify v3.0.0
-Copyright (c) 2010 Ronnie Garcia
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
-
 .uploadifyButton {
 	background-color: #505050;
 	-webkit-border-radius: 3px;
@@ -41,9 +18,6 @@ THE SOFTWARE.
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: 11px Verdana, Geneva, sans-serif;
-	margin-top: 5px;
-	max-width: 350px;
-	padding: 10px;
 }
 .uploadifyError {
 	background-color: #FDE5DD !important;
@@ -63,4 +37,57 @@ THE SOFTWARE.
 	background-color: #0099FF;
 	height: 3px;
 	width: 1px;
+}
+
+.uploadifyQueueItem {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+	border:#E5E5E5 solid 1px;
+    font: 11px Verdana,Geneva,sans-serif;
+    height: 30px;
+    margin: 1px;
+    padding: 2px;
+    width: 339px;
+	float:left;
+}
+.uploadifyError {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background-color: #FDE5DD !important;
+    border-color: -moz-use-text-color -moz-use-text-color #FBCBBC !important;
+    border-style: none none solid !important;
+    border-width: medium medium 1px !important;
+}
+.uploadifyQueueItem .cancel {
+    float: right;
+}
+.uploadifyQueue .completed {
+    color: #C5C5C5;
+}
+.uploadifyProgress {
+    background-color: #E5E5E5;
+    margin-top: 10px;
+    width: 100%;
+}
+.uploadifyProgressBar {
+    background-color: #0099FF;
+    height: 3px;
+    width: 1px;
+}
+#custom-queue {
+    border-bottom: 1px solid #E5E5E5;
+	border-radius: 3px;
+    height: 192px;
+    margin-bottom: 10px;
+    width: 695px;
+}
+#custom-bt{
+	margin:5px 0px;
 }

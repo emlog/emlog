@@ -54,12 +54,9 @@ function removeattachfrom() {
 	</p>
 -->
 <div class="demo-box">
-<div id="status-message">选择要上传的文件：</div>
+<div id="custom-bt"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
 <div id="custom-queue" class="uploadifyQueue"></div>
-<input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;">
 </div>
-
-
 </div>
 </form>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.js"></script>
@@ -79,9 +76,10 @@ function removeattachfrom() {
 			buttonCursor    : 'pointer',
 			fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg;*.rar;*.zip',
 			queueID         : 'custom-queue',  
-			queueSizeLimit	: 10,
+			queueSizeLimit	: 100,
 			removeCompleted : false,
 			fileSizeLimit	: 102400,
+			onUploadError	: function(file) {jQuery(this).uploadifyCancel(file.ID)},
         });
     });
 </script>
