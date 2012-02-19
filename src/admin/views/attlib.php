@@ -8,13 +8,11 @@
 <script type="text/javascript" src="./views/js/common.js"></script>
 </head>
 <script>
-function showupload(multi)
-{
+function showupload(multi){
 	var as_logid = parent.document.getElementById('as_logid').value
 	window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;	
 }
-function showattlib()
-{
+function showattlib(){
 	var as_logid = parent.document.getElementById('as_logid').value
 	window.location.href="attachment.php?action=attlib&logid="+as_logid;	
 }
