@@ -58,24 +58,6 @@ function showattlib()
 			onQueueComplete : function() {  
 				showattlib();
 			},
-			onUploadError : function(file,errorCode,errorMsg,errorString,swfuploadifyQueue) {  
-			    alert( 'id: ' + file.id  
-			           + ' - 索引: ' + file.index  
-			           + ' - 文件名: ' + file.name  
-			           + ' - 文件大小: ' + file.size  
-			           + ' - 类型: ' + file.type  
-			           + ' - 创建日期: ' + file.creationdate  
-			           + ' - 修改日期: ' + file.modificationdate  
-			           + ' - 文件状态: ' + file.filestatus  
-			           + ' - 错误代码: ' + errorCode  
-			           + ' - 错误描述: ' + errorMsg  
-			           + ' - 简要错误描述: ' + errorString  
-			           + ' - 出错的文件数: ' + swfuploadifyQueue.filesErrored  
-			           + ' - 错误信息: ' + swfuploadifyQueue.errorMsg  
-			           + ' - 要添加至队列的数量: ' + swfuploadifyQueue.filesSelected  
-			           + ' - 添加至对立的数量: ' + swfuploadifyQueue.filesQueued  
-			           + ' - 队列长度: ' + swfuploadifyQueue.queueLength);  
-			} 
         });
     });
 </script>

@@ -704,10 +704,7 @@ function emDirect($directUrl) {
  * @param boolean $isAutoGo 是否自动返回 true false
  */
 function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
-	if ($msg == '404') {
-		header("HTTP/1.1 404 Not Found");
-		$msg = '抱歉，你所请求的页面不存在！';
-	}
+	header("HTTP/1.1 404 Not Found");
 	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
@@ -731,8 +728,8 @@ body {
 	background-color:#FFFFFF;
 	font-size: 12px;
 	color: #666666;
-	width:750px;
-	margin:100px auto;
+	width:650px;
+	margin:60px auto 0px;
 	border-radius: 10px;
 	padding:30px 10px;
 	list-style:none;
