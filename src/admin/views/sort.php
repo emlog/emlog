@@ -84,7 +84,7 @@ function checksortalias(){
 	}else {
 		$("#alias_msg_hook").html('');
 		$("#msg").html('');
-		$("#addsort").attr("disabled", '');
+		$("#addsort").attr("disabled", false);
 	}
 }
 $(document).ready(function(){

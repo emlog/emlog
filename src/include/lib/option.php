@@ -20,7 +20,7 @@ class Option {
     //附件上传路径
     const UPLOADFILE_PATH = '../content/uploadfile/';
     //允许上传的附件类型
-    const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,bmp';
+    const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png';
 
     static function get($option){
         $CACHE = Cache::getInstance();

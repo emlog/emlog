@@ -8,10 +8,10 @@
 <script type="text/javascript" src="./views/js/common.js"></script>
 </head>
 <script>
-function showupload()
+function showupload(multi)
 {
 	var as_logid = parent.document.getElementById('as_logid').value
-	window.location.href="attachment.php?action=selectFile&logid="+as_logid;	
+	window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;	
 }
 function showattlib()
 {
@@ -21,7 +21,8 @@ function showattlib()
 </script>
 <body>
 <div id="media-upload-header">
-	<span><a href="javascript:showupload();">上传附件</a></span>
+	<span><a href="javascript:showupload(0);">上传附件</a></span>
+	<span><a href="javascript:showupload(1);">批量上传</a></span>
 	<span id="curtab"><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
 </div>
 <div id="media-upload-body">

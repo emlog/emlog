@@ -5,9 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="./views/js/common.js"></script>
-
-
 
 <script>
 function uploadfile()
@@ -16,10 +13,10 @@ function uploadfile()
 	document.upload.action = "attachment.php?action=upload&logid="+as_logid;
 	document.upload.submit();
 }
-function showupload()
+function showupload(multi)
 {
 	var as_logid = parent.document.getElementById('as_logid').value
-	window.location.href="attachment.php?action=selectFile&logid="+as_logid;	
+	window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;	
 }
 function showattlib()
 {
@@ -36,13 +33,13 @@ function removeattachfrom() {
 </script>
 <body>
 <div id="media-upload-header">
-	<span id="curtab"><a href="javascript:showupload();">上传附件</a></span>
+	<span id="curtab"><a href="javascript:showupload(0);">上传附件</a></span>
+	<span><a href="javascript:showupload(1);">批量上传</a></span>
 	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
 </div>
 
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
-<!--
 	<p>(单个附件最大：<?php echo $maxsize ;?>，允许类型：<?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]" /></span></div>
@@ -52,36 +49,7 @@ function removeattachfrom() {
     <a id="attach" title="减少附件" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a>
     </span>
 	</p>
--->
-<div class="demo-box">
-<div id="custom-bt"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
-<div id="custom-queue" class="uploadifyQueue"></div>
-</div>
 </div>
 </form>
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.js"></script>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
-<link href="../include/lib/js/uploadify/uploadify.css" type="text/css" rel="stylesheet">
-<script>
-    $(document).ready(function() {
-        $("#custom_file_upload").uploadify({            
-			id              : jQuery(this).attr('id'),
-			swf             : '../include/lib/js/uploadify/uploadify.swf',
-			uploader        : '../include/lib/js/uploadify/uploadify.php',
-			cancelImage     : '../include/lib/js/uploadify/cancel.png',
-			checkExisting   : '../include/lib/js/uploadify/uploadify-check-existing.php',
-			buttonText      : '选择上传文件',
-			auto            : true,
-			multi           : true,
-			buttonCursor    : 'pointer',
-			fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg;*.rar;*.zip',
-			queueID         : 'custom-queue',  
-			queueSizeLimit	: 100,
-			removeCompleted : false,
-			fileSizeLimit	: 102400,
-			onUploadError	: function(file) {jQuery(this).uploadifyCancel(file.ID)},
-        });
-    });
-</script>
 </body>
 </html>

@@ -12,6 +12,8 @@ $DB = MySql::getInstance();
 if ($action == 'selectFile') {
 	$attachnum = 0;
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+	$multi = isset($_GET['multi']) ? intval($_GET['multi']) : 0;
+	
 	if ($logid) {
 		$sql = 'SELECT * FROM '.DB_PREFIX."attachment where blogid=$logid";
 		$query=$DB->query($sql);
@@ -23,9 +25,11 @@ if ($action == 'selectFile') {
 	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val";
 	}
-	require_once(View::getView('upload'));
+	$view_tpl = $multi ? 'upload_multi' : 'upload';
+	require_once(View::getView($view_tpl));
 	View::output();
 }
+
 //上传附件
 if ($action == 'upload') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -45,6 +49,25 @@ if ($action == 'upload') {
 	$CACHE->updateCache('logatts');
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
+
+//批量上传
+if ($action == 'upload_multi') {
+	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
+	error_log("upload_multi:$logid".print_r($attach,1), 3 , "D:\a.txt");
+	if ($attach) {
+		if ($attach['error'] != 4) {
+			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
+			$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+			//写入附件信息
+			$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name']."','".$attach['size']."','".$upfname."','".time()."')";
+			$DB->query($query);
+			$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum+1 WHERE gid=$logid");
+		}
+	}
+	$CACHE->updateCache('logatts');
+}
+
 //附件库
 if ($action == 'attlib') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -66,6 +89,7 @@ if ($action == 'attlib') {
 	require_once(View::getView('attlib'));
 	View::output();
 }
+
 //删除附件
 if ($action == 'del_attach') {
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';

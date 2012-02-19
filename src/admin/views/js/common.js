@@ -221,11 +221,11 @@ function autosave(act){
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
     		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
-    		$("#savedf").attr("disabled", "");
+    		$("#savedf").attr("disabled", false);
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
-		    $("#savedf").attr("disabled", "");
+		    $("#savedf").attr("disabled", false);
 		    $("#savedf").val(btname);
 		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
 	    }
