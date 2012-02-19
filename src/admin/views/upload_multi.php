@@ -55,6 +55,7 @@ function showattlib()
 			removeCompleted : false,
 			fileSizeLimit	: 102400,
 			fileObjName     : 'attach',
+			postData		: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
 			onQueueComplete : function() {  
 				showattlib();
 			},

@@ -12,14 +12,18 @@
 function isLogin()
 {
 	global $userData;
-	if( !isset($_COOKIE[AUTH_COOKIE_NAME]) )
-	{
+	$auth_cookie = '';
+	if( isset($_COOKIE[AUTH_COOKIE_NAME]) ){
+		$auth_cookie = $_COOKIE[AUTH_COOKIE_NAME];
+	} elseif (isset($_POST[AUTH_COOKIE_NAME])){
+		$auth_cookie = $_POST[AUTH_COOKIE_NAME];
+	} else{
 		return false;
 	}
-	if( ($userData = validateAuthCookie($_COOKIE[AUTH_COOKIE_NAME])) === false)
-	{
+
+	if( ($userData = validateAuthCookie($auth_cookie)) === false){
 		return false;
-	}else {
+	}else{
 		return true;
 	}
 }

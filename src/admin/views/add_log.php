@@ -17,7 +17,7 @@
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="-1"></span><br />
           <div id="FrameUpload" style="display: none;">
-		  <iframe width="720" height="290" frameborder="0" src="attachment.php?action=selectFile"></iframe>
+		  	<iframe width="720" height="290" frameborder="0" src="attachment.php?action=selectFile"></iframe>
 		  </div>
 		  <textarea id="content" name="content" cols="100" rows="8" style="width:719px; height:460px;"></textarea>
           <script>loadEditor('content');</script>
