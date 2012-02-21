@@ -27,6 +27,10 @@
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
 <p id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></p>
+<?php 
+if(strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")): ?>
+<p class="error">你丫不支持</p>
+<?php endif;?>
 </div>
 <div id="admindex_msg">
 <h3>官方消息</h3>
