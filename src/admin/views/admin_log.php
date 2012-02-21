@@ -21,18 +21,21 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
-<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
-<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
-<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
-<div id="f_search">
-<form action="admin_log.php" method="get">
-<input type="text" placeholder="搜索" id="input_s" name="keyword">
-<?php if($pid):?>
-<input type="hidden" id="pid" name="pid" value="draft">
-<?php endif;?>
-</form>
-</div>
+	<div style="float:left; margin-top:8px;">
+		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+		<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
+		<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
+		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
+	</div>
+	<div style="float:right;">
+		<form action="admin_log.php" method="get">
+		<input type="text" placeholder="搜索" id="input_s" name="keyword">
+		<?php if($pid):?>
+		<input type="hidden" id="pid" name="pid" value="draft">
+		<?php endif;?>
+		</form>
+	</div>
+	<div style="clear:both"></div>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
 	分类：<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1<?php echo $isdraft; ?>">未分类</a></span>
