@@ -349,6 +349,53 @@ function findArray($array1,$array2){
 	return $r;
 }
 
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	switch ($result) {
+		case '100':
+			emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
+			break;
+		case '101':
+			emMsg('上传文件失败,错误码：'.$errorNum);
+			break;
+		case '102':
+			emMsg('错误的文件类型');
+			break;
+		case '103':
+			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+			emMsg("文件大小超出{$ret}的限制");
+			break;
+		case '104':
+			emMsg('创建文件上传目录失败');
+			break;
+		case '105':
+			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			break;
+		default:
+			return $result;
+			break;
+	}
+}
+
+//用于附件批量上传
+function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	switch ($result) {
+		case '100':
+		case '101':
+		case '102':
+		case '103':
+		case '104':
+		case '105':
+			header("HTTP/1.1 404 Not Found");
+			exit;
+			break;
+		default:
+			return $result;
+			break;
+	}
+}
+
 /**
  * 文件上传
  *
@@ -361,19 +408,18 @@ function findArray($array1,$array2){
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return string 文件路径
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
 	if ($errorNum == 1){
-		emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
+		return '100';//文件大小超过系统限制
 	}elseif ($errorNum > 1){
-		emMsg('上传文件失败,错误码：'.$errorNum);
+		return '101';//上传文件失败
 	}
 	$extension  = getFileSuffix($fileName);
 	if (!in_array($extension, $type)){
-		emMsg('错误的文件类型');
+		return '102';//错误的文件类型
 	}
 	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
-		$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
-		emMsg("文件大小超出{$ret}的限制");
+		return '103';//文件大小超出emlog的限制
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
@@ -382,14 +428,14 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 		umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false){
-			emMsg('创建文件上传目录失败');
+			return '104';//创建文件上传目录失败
 		}
 	}
 	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false){
-			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -409,11 +455,11 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	if (@is_uploaded_file($tmpFile)){
 		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
-			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
 		}
 		chmod($attachpath, 0777);
 	}
-	return 	$attach;
+	return 	$attach;//附件地址
 }
 
 /**
@@ -704,7 +750,10 @@ function emDirect($directUrl) {
  * @param boolean $isAutoGo 是否自动返回 true false
  */
 function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
-	header("HTTP/1.1 404 Not Found");
+	if ($msg == '404') {
+		header("HTTP/1.1 404 Not Found");
+		$msg = '抱歉，你所请求的页面不存在！';
+	}
 	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">

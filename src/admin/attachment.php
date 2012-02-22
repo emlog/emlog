@@ -58,7 +58,7 @@ if ($action == 'upload_multi') {
 	if ($attach) {
 		if ($attach['error'] != 4) {
 			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
-			$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+			$upfname = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 			//写入附件信息
 			$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name']."','".$attach['size']."','".$upfname."','".time()."')";
 			$DB->query($query);
