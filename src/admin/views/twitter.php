@@ -47,7 +47,7 @@
 <div id="tw_line">
 <h3>最新碎语</h3>
 <ul class="tw_scroll"></ul>
-<div class="tw_footer">来自云平台</div>
+<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
 </div>
 <script>
 (function($){

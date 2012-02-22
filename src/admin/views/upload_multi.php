@@ -7,19 +7,8 @@
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.js"></script>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+</head>
 <body>
-<div id="media-upload-header">
-	<span><a href="javascript:showupload(0);">上传附件</a></span>
-	<span id="curtab"><a href="javascript:showupload(1);">批量上传</a></span>
-	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
-</div>
-<form enctype="multipart/form-data" method="post" name="upload" action="">
-<div id="media-upload-body">
-<div id="custom-bt"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
-<div id="custom-queue" class="uploadifyQueue"></div>
-</div>
-</form>
 <script>
 function showupload(multi){
 	var as_logid = parent.document.getElementById('as_logid').value
@@ -29,6 +18,24 @@ function showattlib(){
 	var as_logid = parent.document.getElementById('as_logid').value
 	window.location.href="attachment.php?action=attlib&logid="+as_logid;	
 }
+</script>
+<div id="media-upload-header">
+	<span><a href="javascript:showupload(0);">上传附件</a></span>
+	<span id="curtab"><a href="javascript:showupload(1);">批量上传</a></span>
+	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
+</div>
+<?php 
+if(strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")): ?>
+<div class="ie_notice">您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。</div>
+<?php else:?>
+<form enctype="multipart/form-data" method="post" name="upload" action="">
+<div id="media-upload-body">
+<div id="custom-bt"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
+<div id="custom-queue" class="uploadifyQueue"></div>
+</div>
+</form>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+<script>
 $(document).ready(function() {
 	$("#custom_file_upload").uploadify({
 		id              : jQuery(this).attr('id'),
@@ -51,5 +58,6 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php endif; ?>
 </body>
 </html>

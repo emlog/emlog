@@ -168,13 +168,16 @@ textarea{font-size:12px}
 #tw_line ul{
 	padding:1px;
 	width:245px;
-	height:280px;
+	height:290px;
 	overflow:hidden;
+	margin-left:0px;
 }
 #tw_line li{margin:0px 0px 20px;}
 #tw_line img{width:28px; height:28px; border:1px solid #EFEFEF;}
 #tw_line .tw_date{ color:#CCCCCC; float:right;}
-#tw_line .tw_footer{ border-top:solid 1px #EFEFEF;color:#CCCCCC;}
+#tw_line .tw_footer{ border-top:solid 1px #EFEFEF; padding:5px 0px;}
+#tw_line .tw_footer a{ color:#999999;}
+#tw_line .tw_footer a:hover{ color: #CCCCCC;}
 
 #admin_style { margin:10px 10px 10px 10px;}
 #admin_style div{ float:left; margin:12px; width:235px; height:120px;}
