@@ -100,7 +100,7 @@ function emLoadJQuery() {
 		array_unshift($emHooks['index_head'], 'loadJQuery');
 		$isJQueryLoaded = true;
 		function loadJQuery() {
-			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.js" type="text/javascript"></script>';
+			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
 		}
 	}
 }
