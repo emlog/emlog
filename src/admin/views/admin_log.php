@@ -29,7 +29,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
-		<input type="text" placeholder="搜索" id="input_s" name="keyword">
+		<input type="text" id="input_s" name="keyword">
 		<?php if($pid):?>
 		<input type="hidden" id="pid" name="pid" value="draft">
 		<?php endif;?>

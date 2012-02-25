@@ -54,7 +54,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
-
+#sidebar .search {background: url("images/search.png") no-repeat scroll 5px 3px transparent;border: 1px solid #CCCCCC;border-radius: 3px 3px 3px 3px;font-size: 12px;line-height: 1.2em;padding: 4px 10px 4px 28px;}
 #footerbar {margin: 40px auto 50px; padding: 10px 0px; width: 960px; text-align: center; height: 100%; overflow: hidden; border-top: 1px solid #E2DDDE;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
