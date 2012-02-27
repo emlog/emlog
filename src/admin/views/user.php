@@ -13,10 +13,10 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="40"></th>
+        <th width="60"></th>
         <th width="100"><b>用户</b></th>
-        <th width="260"><b>描述</b></th>
-        <th width="210"><b>电子邮件</b></th>
+        <th width="340"><b>描述</b></th>
+        <th width="270"><b>电子邮件</b></th>
 		<th width="30" class="tdcenter"><b>日志</b></th>
       </tr>
     </thead>
