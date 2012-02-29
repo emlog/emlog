@@ -33,12 +33,10 @@ $array_tips = array(
 '新建一个允许发表评论的页面，你会发现其实它还是一个简单的留言板',
 '后台左侧菜单可以折叠哦、而且可以记住折叠状态',
 '检查你的站点目录下是否存在安装文件：install.php，有的话请删除它',
+'及时升级浏览器，更好的体验emlog',
 '今天你备份数据了吗？',
-'今天你写碎语了吗？',
-'今天天气还不错哦 :)',
-'节约能源，保护环境',
+'从明天起，做一个幸福的人。喂马，砍柴，周游世界',
 '如果你拥有爱，请在失去之前好好珍惜',
-'生命在于运动，别总对着电脑，出去走走吧'
 );
 
 function tips()
@@ -46,7 +44,7 @@ function tips()
 	global $array_tips;
 	$i = mt_rand(0, count($array_tips) - 1);
 	$tip = $array_tips[$i];	
-	echo "<div id=\"tip\">:) $tip</div>";
+	echo "<div id=\"tip\"> $tip</div>";
 }
 
 addAction('adm_main_top', 'tips');
