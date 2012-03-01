@@ -9,7 +9,7 @@
 <?php if(isset($_GET['error'])):?><span class="error">保存失败：根目录下的.htaccess不可写</span><?php endif;?>
 </div>
 <div style="margin-left:10px;">
-<div class="des">你可以在这里修改日志链接的形式，如果修改后日志无法访问，那可能是你的服务器环境不支持URL重写，请修改回默认形式、关闭日志连接别名。
+<div class="des" style="margin-left:10px;">你可以在这里修改日志链接的形式，如果修改后日志无法访问，那可能是你的服务器环境不支持URL重写，请修改回默认形式、关闭日志连接别名。
 <br />启用链接别名后可以自定义日志和页面的链接地址。
 </div>
 <form action="permalink.php?action=update" method="post">
