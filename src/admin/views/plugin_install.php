@@ -2,7 +2,7 @@
 <script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b>插件管理</b><div id="msg"></div>
 <?php if(isset($_GET['error_a'])):?><span class="error">只支持zip压缩格式的插件包</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="error">上传失败，请确保插件目录可写</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">上传失败，插件目录(content/plugins)不可写</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">空间不支持zip模块，请按照提示手动安装插件</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">请选择一个zip插件安装包</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">安装失败，插件安装包不符合标准</span><?php endif;?>

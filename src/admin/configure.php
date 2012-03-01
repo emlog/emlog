@@ -22,7 +22,6 @@ if ($action == '') {
     $conf_istwitter = $istwitter == 'y' ? 'checked="checked"' : '';
     $conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
-    $conf_iscommenter_url = $iscommenter_url == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
@@ -59,7 +58,6 @@ if ($action == 'mod_config') {
 	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
 	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
 	'isthumbnail' => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
-	'iscommenter_url' => isset($_POST['iscommenter_url']) ? addslashes($_POST['iscommenter_url']) : 'n',
 	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
 	'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
 	'isgravatar' => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',

@@ -309,7 +309,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_cod
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscommenter_url','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
