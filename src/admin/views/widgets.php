@@ -248,9 +248,8 @@ $(document).ready(function(){
 		$("#"+widget_id+" .widget-act-del").show();
 	});
 	//show edit form
-	$("#adm_widget_list .widget-title").toggle(
-		function(){$(this).parent().next(".widget-control").show("fast")},
-		function(){$(this).parent().next(".widget-control").hide("fast")}
+	$("#adm_widget_list .widget-title").click(
+		function(){$(this).parent().next(".widget-control").slideToggle('fast');}
 	);
 	//add widget
 	$("#adm_widget_list .widget-act-add").click(function(){
