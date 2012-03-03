@@ -732,12 +732,16 @@ textarea {
 	margin:0px 0px 0px 20px;
 	padding-right:10px;
 	float:left;
-	width:245px;
+	width:235px;
+}
+#tw_line h3{
+    margin:0px;
+    font-size:14px;
 }
 #tw_line ul {
 	padding:1px;
-	width:245px;
-	height:290px;
+	width:235px;
+	height:280px;
 	overflow:hidden;
 	margin-left:0px;
 }
