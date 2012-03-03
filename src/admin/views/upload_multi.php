@@ -25,7 +25,7 @@ function showattlib(){
 	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
 </div>
 <?php 
-if(strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")): ?>
+if(true === isIE6Or7()): ?>
 <div class="ie_notice">您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。</div>
 <?php else:?>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
