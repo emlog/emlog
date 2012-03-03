@@ -28,7 +28,7 @@ class Record_Controller {
 
 		//page meta
 		$blogtitle = $record.' - '.$blogname;
-        $description = $bloginfo;
+		$description = $bloginfo;
 
 		if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
 			$days = getMonthDayNum($match[2], $match[1]);
