@@ -17,9 +17,10 @@ class Search_Controller {
 		extract($options_cache);
 		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
+		$description = $bloginfo;
 		$blogtitle = $blogname;
 
-        $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
+		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';
 
 		$start_limit = ($page - 1) * $index_lognum;
