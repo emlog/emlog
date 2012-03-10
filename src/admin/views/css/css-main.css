@@ -897,6 +897,6 @@ textarea {
 	line-height:1.2em;
 	padding:4px 10px 4px 28px;
 }
-#user_new li,#sort_new li {
+#user_new li,#sort_new li, #user_edit li {
 	margin:12px 0px;
 }

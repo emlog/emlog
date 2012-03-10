@@ -7,7 +7,7 @@
 session_start();
 
 $randCode = '';
-$chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ23456789@%&*$?+';
+$chars = 'abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPRSTUVWXYZ23456789';
 for ( $i = 0; $i < 5; $i++ ){
 	$randCode .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
 }

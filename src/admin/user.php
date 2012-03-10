@@ -50,6 +50,13 @@ if ($action== 'edit') {
 	$data = $User_Model->getOneUser($uid);
 	extract($data);
 
+	$ex1 = $ex2 = '';
+	if ($role == 'writer') {
+		$ex1 = 'selected="selected"';
+	} elseif($role == 'admin') {
+	 	$ex2 = 'selected="selected"';
+	}
+
 	include View::getView('header');
 	require_once View::getView('useredit');
 	include View::getView('footer');View::output();
@@ -62,6 +69,7 @@ if ($action=='update') {
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
 	if (UID == $uid) {
@@ -80,10 +88,11 @@ if ($action=='update') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
 	}
 
-    $userData = array('username'=>$login, 
-                        'nickname'=>$nickname, 
-                        'email'=>$email, 
-                        'description'=>$description
+    $userData = array('username' => $login,
+                        'nickname' => $nickname,
+                        'email' => $email,
+                        'description' => $description,
+    					'role' => $role,
                         );
 
     if (!empty($password)) {

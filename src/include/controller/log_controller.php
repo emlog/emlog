@@ -53,7 +53,7 @@ class Log_Controller {
 
 		if (isset($params[1])) {
 			if ($params[1] == 'post') {
-				$logid = isset($params[2]) ? intval($params[2]) : '';
+				$logid = isset($params[2]) ? intval($params[2]) : 0;
 			} elseif (is_numeric($params[1])) {
 				$logid = intval($params[1]);
 			} else {

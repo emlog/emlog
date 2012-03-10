@@ -39,7 +39,8 @@ class User_Model {
 			'nickname' => htmlspecialchars($row['nickname']),
 			'email' => htmlspecialchars($row['email']),
 			'photo' => htmlspecialchars($row['photo']),
-			'description' => htmlspecialchars($row['description'])
+			'description' => htmlspecialchars($row['description']),
+			'role' => $row['role'],
 			);
 		}
 		return $userData;

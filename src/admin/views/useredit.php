@@ -7,19 +7,20 @@
 </div>
 <div class=line></div>
 <form action="user.php?action=update" method="post">
-<div>
-	<li>用户名</li>
-	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" /></li>
-	<li>昵称</li>
-	<li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" /></li>
-	<li>新密码</li>
-	<li><input type="password" value="" name="password" style="width:200px;" /> (不修改请留空)</li>
-	<li>重复新密码</li>
-	<li><input type="password" value="" name="password2" style="width:200px;" /></li>
-	<li>电子邮件</li>
-	<li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" /></li>
-	<li>个人描述</li>
-	<li><textarea name="description" rows="5" style="width:260px;"><?php echo $description; ?></textarea></li>
+<div id="user_edit">
+	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" /> 用户名</li>
+	<li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" /> 昵称</li>
+	<li><input type="password" value="" name="password" style="width:200px;" /> 新密码(不修改请留空)</li>
+	<li><input type="password" value="" name="password2" style="width:200px;" /> 重复新密码</li>
+	<li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" /> 电子邮件</li>
+	<li>
+	<select name="role">
+		<option value="writer" <?php echo $ex1; ?>>作者</option>
+		<option value="admin" <?php echo $ex2; ?>>管理员</option>
+	</select>
+	</li>
+	<li>个人描述<br />
+	<textarea name="description" rows="5" style="width:260px;"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
 	<input type="submit" value="保 存" class="submit" />
