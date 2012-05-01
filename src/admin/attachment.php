@@ -54,7 +54,6 @@ if ($action == 'upload') {
 if ($action == 'upload_multi') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
-	error_log("upload_multi:$logid".print_r($attach,1), 3 , "D:\a.txt");
 	if ($attach) {
 		if ($attach['error'] != 4) {
 			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
