@@ -101,7 +101,6 @@ class Log_Model {
 	 * 前台获取单条日志
 	 */
 	function getOneLogForHome($blogId) {
-		$timezone = Option::get('timezone');
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
@@ -109,7 +108,7 @@ class Log_Model {
 			$logData = array(
 			    'log_title' => htmlspecialchars($row['title']),
 				'timestamp' => $row['date'],
-				'date' => $row['date'] + $timezone * 3600,
+				'date' => $row['date'] + Option::get('timezone') * 3600,
 				'logid' => intval($row['gid']),
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
@@ -121,7 +120,7 @@ class Log_Model {
 				'tbcount' => intval($row['tbcount']),
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
-				'allow_remark' => $row['allow_remark'],
+				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
 				'allow_tb' => $row['allow_tb'],
 				'password' => $row['password']
 				);

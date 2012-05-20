@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-interface.js"></script>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>Widgets</b><span class="title_des">(侧边栏组件管理)</span>
+<div class=containertitle><b>侧边栏组件管理</b>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">

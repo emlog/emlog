@@ -313,13 +313,14 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnu
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','碎语');

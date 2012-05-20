@@ -293,6 +293,9 @@ class Comment_Model {
 	}
 	function isLogCanComment($blogId)
 	{
+		if (Option::get('iscomment') == 'n') {
+			return false;
+		}
 		$query = $this->db->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
 		$show_remark = $this->db->fetch_array($query);
 		if ($show_remark['allow_remark'] == 'n' || $show_remark === false)
