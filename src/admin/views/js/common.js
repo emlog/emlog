@@ -107,11 +107,18 @@ function checkalias(){
 		$("#msg").html('');
 	}
 }
-function addattach(imgurl,imgsrc,aid){
+function addattach_img(fileurl,imgsrc,aid){
 	if (KE.g['content'].wyswygMode == false){
 		alert('请先切换到所见所得模式');
-	}else {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+	}else if(imgsrc != "") {
+		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+	}
+}
+function addattach_file(fileurl,filename,aid){
+	if (KE.g['content'].wyswygMode == false){
+		alert('请先切换到所见所得模式');
+	} else {
+		KE.insertHtml('content', '<a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a>');
 	}
 }
 function insertTag (tag, boxId){

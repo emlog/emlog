@@ -210,21 +210,6 @@ function blog_sort($blogid){
 	<?php endif;?>
 <?php }?>
 <?php
-//blog：文件附件
-function blog_att($blogid){
-	global $CACHE;
-	$log_cache_atts = $CACHE->readCache('logatts');
-	$att = '';
-	if(!empty($log_cache_atts[$blogid])){
-		$att .= '附件下载：';
-		foreach($log_cache_atts[$blogid] as $val){
-			$att .= '<br /><a href="'.BLOG_URL.$val['url'].'" target="_blank">'.$val['filename'].'</a> '.$val['size'];
-		}
-	}
-	echo $att;
-}
-?>
-<?php
 //blog：日志标签
 function blog_tag($blogid){
 	global $CACHE;

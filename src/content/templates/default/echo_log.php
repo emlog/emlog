@@ -11,7 +11,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php blog_sort($logid); ?> <?php editflg($logid,$author); ?>
 	</p>
 	<?php echo $log_content; ?>
-	<p class="att"><?php blog_att($logid); ?></p>
 	<p class="tag"><?php blog_tag($logid); ?></p>
 	<?php doAction('log_related', $logData); ?>
 	<div class="nextlog"><?php neighbor_log($neighborLog); ?></div>
