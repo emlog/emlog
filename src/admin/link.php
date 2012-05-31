@@ -66,6 +66,7 @@ if ($action== 'mod_link')
 	require_once(View::getView('linkedit'));
 	include View::getView('footer');View::output();
 }
+
 if($action=='update_link')
 {
 	$sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
@@ -83,10 +84,31 @@ if($action=='update_link')
 	$CACHE->updateCache('link');
 	emDirect("./link.php?active_edit=true");
 }
-if ($action== 'dellink')
+
+if ($action == 'dellink')
 {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');
 	emDirect("./link.php?active_del=true");
+}
+
+if($action == 'hide')
+{
+	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
+
+	$Link_Model->updateLink(array('hide'=>'y'), $linkId);
+
+	$CACHE->updateCache('link');
+	emDirect('./link.php');
+}
+
+if($action == 'show')
+{
+	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
+
+	$Link_Model->updateLink(array('hide'=>'n'), $linkId);
+
+	$CACHE->updateCache('link');
+	emDirect('./link.php');
 }

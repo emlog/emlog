@@ -14,18 +14,28 @@
       <tr>
 	  	<th width="50"><b>序号</b></th>
         <th width="230"><b>链接</b></th>
-		<th width="30" class="tdcenter"><b>查看</b></th>
-		<th width="550"><b>描述</b></th>
+        <th width="80" class="tdcenter"><b>状态</b></th>
+		<th width="80" class="tdcenter"><b>查看</b></th>
+		<th width="400"><b>描述</b></th>
         <th width="100"></th>
       </tr>
     </thead>
     <tbody>
 	<?php 
 	if($links):
-	foreach($links as $key=>$value):?>  
+	foreach($links as $key=>$value):
+	doAction('adm_link_display');
+	?>  
       <tr>
 		<td><input class="num_input" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
+		<td class="tdcenter">
+		<?php if ($value['hide'] == 'n'): ?>
+		<a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
+		<?php else: ?>
+		<a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
+		<?php endif;?>
+		</td>
 		<td class="tdcenter">
 	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
 	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>

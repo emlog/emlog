@@ -341,6 +341,7 @@ CREATE TABLE {$db_prefix}link (
   sitename varchar(30) NOT NULL default '',
   siteurl varchar(75) NOT NULL default '',
   description varchar(255) NOT NULL default '',
+  hide enum('n','y') NOT NULL default 'n',
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."

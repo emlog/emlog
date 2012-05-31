@@ -286,11 +286,11 @@ class Cache {
 		$this->cacheWrite($cacheData, 'sort');
 	}
 	/**
-	 * 友站缓存
+	 * 友情链接缓存
 	 */
 	private function mc_link() {
 		$link_cache = array();
-		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
 			$link_cache[] = array(
 			    'link' => htmlspecialchars($show_link['sitename']),
