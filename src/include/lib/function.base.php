@@ -431,7 +431,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false,
 		return '103';//文件大小超出emlog的限制
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
+	$fname = substr(md5($fileName),0,4)  . time() .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(Option::UPLOADFILE_PATH)){
 		umask(0);
