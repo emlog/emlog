@@ -17,6 +17,7 @@ class Cache {
     private $tags_cache;
     private $sort_cache;
     private $link_cache;
+    private $navi_cache;
     private $newlog_cache;
     private $newtw_cache;
 	private $record_cache;
@@ -300,6 +301,23 @@ class Cache {
 		}
 		$cacheData = serialize($link_cache);
 		$this->cacheWrite($cacheData, 'link');
+	}
+	/**
+	 * 友情链接缓存
+	 */
+	private function mc_navi() {
+		$navi_cache = array();
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
+		while ($show_navi = $this->db->fetch_array($query)) {
+			$navi_cache[] = array(
+			    'naviname' => htmlspecialchars($show_navi['naviname']),
+				'url' => htmlspecialchars($show_navi['url']),
+				'des' => htmlspecialchars($show_navi['description']),
+				'newtab' => $show_navi['newtab'],
+				);
+		}
+		$cacheData = serialize($navi_cache);
+		$this->cacheWrite($cacheData, 'navi');
 	}
 	/**
 	 * 最新日志

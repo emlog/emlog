@@ -345,6 +345,17 @@ CREATE TABLE {$db_prefix}link (
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
+DROP TABLE IF EXISTS {$db_prefix}navi;
+CREATE TABLE {$db_prefix}navi (
+  id smallint(4) unsigned NOT NULL auto_increment,
+  naviname varchar(30) NOT NULL default '',
+  url varchar(75) NOT NULL default '',
+  description varchar(255) NOT NULL default '',
+  newtab enum('n','y') NOT NULL default 'n',
+  hide enum('n','y') NOT NULL default 'n',
+  taxis smallint(4) unsigned NOT NULL default '0',
+  PRIMARY KEY  (id)
+)".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (

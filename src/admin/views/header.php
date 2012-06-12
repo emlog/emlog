@@ -100,8 +100,8 @@
             <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">站点管理</div>
 			<div id="blog_mg">
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></div>
+            <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
-			<div class="sidebarsubmenu" id="menu_navibar"><a href="navbar.php" >导航</a></div>
 			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
 			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></div>
 			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>

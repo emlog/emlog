@@ -21,6 +21,9 @@ function em_confirm (id, property) {
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
 			var msg = "你确定要删除该链接吗？";break;
+		case 'navi':
+			var urlreturn="navbar.php?action=del&id="+id;
+			var msg = "你确定要删除该导航吗？";break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
 			var msg = "你确定要导入该备份文件吗？";break;
