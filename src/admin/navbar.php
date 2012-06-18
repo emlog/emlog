@@ -93,9 +93,6 @@ if($action=='update')
 if ($action == 'del')
 {
 	$navid = isset($_GET['id']) ? intval($_GET['id']) : '';
-	if (in_array($navid, array(1,2,3))) {
-		emDirect("./navbar.php?error_c=true");
-	}
 	$Navi_Model->deleteNavi($navid);
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_del=true");

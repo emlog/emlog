@@ -43,7 +43,7 @@
 	  	</td>
         <td><?php echo $value['url']; ?></td>
         <td>
-        <?php if(!$value['isdefault']):?>
+        <?php if($value['isdefault'] == 'n'):?>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');">删除</a>
         <?php endif;?>
         </td>
