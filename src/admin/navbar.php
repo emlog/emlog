@@ -40,18 +40,14 @@ if($action== 'add')
 	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
 	$url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
 
 	if($naviname =='' || $url =='')
 	{
 		emDirect("./navbar.php?error_a=true");
 	}
-	if(!preg_match("/^http|ftp.+$/i", $url))
-	{
-		$url = 'http://'.$url;
-	}
-	$Navi_Model->addNavi($naviname, $url, $description, $taxis, $newtab);
+
+	$Navi_Model->addNavi($naviname, $url, $taxis, $newtab);
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_add=true");
 }
@@ -64,6 +60,7 @@ if ($action== 'mod')
 	extract($naviData);
 
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';
+	$conf_isdefault = $isdefault == 'y' ? 'disabled="disabled"' : '';
 
 	include View::getView('header');
 	require_once(View::getView('naviedit'));
@@ -74,16 +71,20 @@ if($action=='update')
 {
 	$naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
 	$url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : '';
+	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
 	$naviId = isset($_POST['navid']) ? intval($_POST['navid']) : '';
+	$isdefault = isset($_POST['isdefault']) ? addslashes(trim($_POST['isdefault'])) : 'n';
 
-	if(!preg_match("/^http|ftp.+$/i", $url))
-	{
-		$url = 'http://'.$url;
+	$navi_data = array(
+		'naviname'=>$naviname,
+		'newtab'=>$newtab
+	);
+
+	if ($isdefault == 'n') {
+		$navi_data['url'] = $url;
 	}
 
-	$Navi_Model->updateNavi(array('naviname'=>$naviname, 'url'=>$url, 'description'=>$description, 'newtab'=>$newtab), $naviId);
+	$Navi_Model->updateNavi($navi_data, $naviId);
 
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_edit=true");
@@ -92,6 +93,9 @@ if($action=='update')
 if ($action == 'del')
 {
 	$navid = isset($_GET['id']) ? intval($_GET['id']) : '';
+	if (in_array($navid, array(1,2,3))) {
+		emDirect("./navbar.php?error_c=true");
+	}
 	$Navi_Model->deleteNavi($navid);
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_del=true");

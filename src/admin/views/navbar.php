@@ -6,6 +6,7 @@
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加导航成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">导航名称和地址不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的导航</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -16,7 +17,7 @@
         <th width="230"><b>导航</b></th>
         <th width="80" class="tdcenter"><b>状态</b></th>
 		<th width="80" class="tdcenter"><b>查看</b></th>
-		<th width="400"><b>描述</b></th>
+		<th width="400"><b>跳转地址</b></th>
         <th width="100"></th>
       </tr>
     </thead>
@@ -37,11 +38,15 @@
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
-	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看导航">
-	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank">
+	  	<img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
 	  	</td>
-        <td><?php echo $value['description']; ?></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');">删除</a></td>
+        <td><?php echo $value['url']; ?></td>
+        <td>
+        <?php if(!$value['isdefault']):?>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');">删除</a>
+        <?php endif;?>
+        </td>
       </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="4">还没有添加导航</td></tr>
@@ -55,7 +60,6 @@
 <div id="navi_new">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
-	<li><input name="description" style="width:230px;" maxlength="200"> 描述(选填)</li>
 	<li><input maxlength="200" style="width:328px;" name="url" /> 跳转地址，在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="添加导航"  /></li>
 </div>

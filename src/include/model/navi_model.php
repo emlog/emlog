@@ -20,8 +20,8 @@ class Navi_Model {
 		while($row = $this->db->fetch_array($res))
 		{
 			$row['naviname'] = htmlspecialchars($row['naviname']);
-			$row['description'] = subString(htmlClean($row['description'], false),0,80);
-			$row['url'] = $row['url'];
+			//$row['url'] = $row['url'];
+			//$row['isdefault'] = $row['isdefault'];
 			$navis[] = $row;
 		}
 		return $navis;
@@ -38,12 +38,12 @@ class Navi_Model {
 		$this->db->query("update ".DB_PREFIX."navi set $upStr where id=$navid");
 	}
 
-	function addNavi($name, $url, $des, $taxis, $newtab)
+	function addNavi($name, $url, $taxis, $newtab)
 	{
 		if($taxis > 30000 || $taxis < 0) {
 			$taxis = 0;
 		}
-		$sql="insert into ".DB_PREFIX."navi (naviname,url,description,taxis,newtab) values('$name','$url','$des', $taxis, '$newtab')";
+		$sql="insert into ".DB_PREFIX."navi (naviname,url,taxis,newtab) values('$name','$url', $taxis, '$newtab')";
 		$this->db->query($sql);
 	}
 
@@ -58,8 +58,8 @@ class Navi_Model {
 			$naviData = array(
 			'naviname' => htmlspecialchars(trim($row['naviname'])),
 			'url' => htmlspecialchars(trim($row['url'])),
-			'description' => htmlspecialchars(trim($row['description'])),
 			'newtab' => $row['newtab'],
+			'isdefault' => $row['isdefault'],
 			);
 		}
 		return $naviData;

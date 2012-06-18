@@ -186,6 +186,21 @@ function widget_link($title){
 	</li>
 <?php }?>
 <?php
+//blog：导航
+function blog_navi(){
+	global $CACHE; 
+	$navi_cache = $CACHE->readCache('navi');
+	?>
+	<li>
+	<h3><span><?php echo $title; ?></span></h3>
+	<ul id="link">
+	<?php foreach($link_cache as $value): ?>
+	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+	</li>
+<?php }?>
+<?php
 //blog：置顶
 function topflg($istop){
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶日志\" /> " : '';

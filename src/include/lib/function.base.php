@@ -660,6 +660,7 @@ function emStrtotime($timeStr) {
  * @param string $year 年份
  */
 function getMonthDayNum($month, $year) {
+	return date('t',mktime(0, 0, 0,$month,1,$year));
 	switch(intval($month)){
 		case 1:
 		case 3:

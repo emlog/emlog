@@ -303,17 +303,18 @@ class Cache {
 		$this->cacheWrite($cacheData, 'link');
 	}
 	/**
-	 * 友情链接缓存
+	 * 导航缓存
 	 */
 	private function mc_navi() {
 		$navi_cache = array();
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
-		while ($show_navi = $this->db->fetch_array($query)) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY taxis ASC");
+		while ($row = $this->db->fetch_array($query)) {
+			$isdefault = in_array($row['id'], array(1,2,3)) ? true : false;
 			$navi_cache[] = array(
-			    'naviname' => htmlspecialchars($show_navi['naviname']),
-				'url' => htmlspecialchars($show_navi['url']),
-				'des' => htmlspecialchars($show_navi['description']),
-				'newtab' => $show_navi['newtab'],
+					'naviname' => htmlspecialchars(trim($row['naviname'])),
+					'url' => $isdefault ? BLOG_URL . htmlspecialchars(trim($row['url'])) : htmlspecialchars(trim($row['url'])),
+					'newtab' => $row['newtab'],
+					'isdefault' => $isdefault,
 				);
 		}
 		$cacheData = serialize($navi_cache);
