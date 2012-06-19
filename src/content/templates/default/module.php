@@ -191,14 +191,23 @@ function blog_navi(){
 	global $CACHE; 
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-	<li>
-	<h3><span><?php echo $title; ?></span></h3>
-	<ul id="link">
-	<?php foreach($link_cache as $value): ?>
-	<li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+	<ul>
+	<?php 
+	foreach($navi_cache as $value):
+		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
+		$path = Dispatcher::setPath();
+		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+		?>
+		<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+		<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+		<?php 
+		continue;
+		endif;
+		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : $value['url'];
+		?>
+		<li><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
-	</li>
 <?php }?>
 <?php
 //blog：置顶

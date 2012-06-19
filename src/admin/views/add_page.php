@@ -28,19 +28,14 @@
           <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义该页面的链接地址。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
 			<input name="alias" id="alias" style="width:711px;" />
           </td>
-        </tr> 
-        <tr nowrap="nowrap">
-          <td><b>转向地址：</b>(如果填写，页面标题将指向该地址)<br />
-          <input name="url" id="url" maxlength="200" style="width:715px;" /><br />
-          </td>
         </tr>
         <tr>
           <td>
           <span id="page_options">
           <label for="allow_remark">页面接受评论</label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />
-          <label for="allow_tb">在新窗口打开</label>
-          <input type="checkbox" value="y" id="is_blank" name="is_blank" />
+          <label for="allow_tb">添加到导航</label>
+          <input type="checkbox" value="y" id="is_navi" name="is_navi" checked="checked" />
           </span>
           </td>
         </tr>

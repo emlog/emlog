@@ -6,8 +6,6 @@
 
 require_once 'globals.php';
 
-$navibar = Option::get('navibar');
-
 //加载页面管理页面
 if ($action == '') {
 	$emPage = new Log_Model();
@@ -53,15 +51,15 @@ if ($action == 'mod') {
 //保存页面
 if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$emPage = new Log_Model();
+	$Navi_Model = new Navi_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
-    $is_blank = isset($_POST['is_blank']) ? addslashes(trim($_POST['is_blank'])) : 'n';
+    $is_navi = isset($_POST['is_navi']) ? addslashes(trim($_POST['is_navi'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
@@ -88,20 +86,10 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		$pageId = $emPage->addlog($logData);
 	}
 
-	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl)){
-		$pageUrl = 'http://'.$pageUrl;
-	}
+	$Navi_Model->addNavi($title, Url::log($pageId), 0, 'n');
 
-	$navibar[$pageId] = array(
-	       'title' => stripslashes($title),
-	       'url' => stripslashes($pageUrl),
-	       'is_blank' => $is_blank == 'y' ? '_blank' : '',
-	       'hide' => $ishide
-	       );
-	$navibar = addslashes(serialize($navibar));
-	Option::updateOption('navibar', $navibar);
+	$CACHE->updateCache(array('logatts', 'options', 'logalias', 'navi'));
 
-	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
 	switch ($action){
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";

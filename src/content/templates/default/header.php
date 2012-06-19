@@ -32,28 +32,7 @@ require_once View::getView('module');
     <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
     <h3><?php echo $bloginfo; ?></h3>
   </div>
-
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
+  <div id="nav"><?php blog_navi();?></div>
 
-  <div id="nav">
-    <ul>
-	<li class="<?php echo $curpage == CURPAGE_HOME ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>">首页</a></li>
-	<?php if($istwitter == 'y'):?>
-	<li class="<?php echo $curpage == CURPAGE_TW ? 'current' : 'common';?>"><a href="<?php echo BLOG_URL; ?>t/"><?php echo Option::get('twnavi');?></a></li>
-	<?php endif;?>
-	<?php 
-	foreach ($navibar as $key => $val):
-	if ($val['hide'] == 'y'){continue;}
-	if (empty($val['url'])){$val['url'] = Url::log($key);}
-	?>
-	<li class="<?php echo isset($logid) && $key == $logid ? 'current' : 'common';?>"><a href="<?php echo $val['url']; ?>" target="<?php echo $val['is_blank']; ?>"><?php echo $val['title']; ?></a></li>
-	<?php endforeach;?>
-	<?php doAction('navbar', '<li class="common">', '</li>'); ?>
-	<?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-	<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-	<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
-	<?php else: ?>
-	<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">登录</a></li>
-	<?php endif; ?>
-   	</ul>
-  </div><!-- end #nav-->
+  
