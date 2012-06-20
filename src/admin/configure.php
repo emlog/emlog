@@ -70,7 +70,6 @@ if ($action == 'mod_config') {
     'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
     'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
     'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
-    'twnavi' => isset($_POST['twnavi']) ? addslashes($_POST['twnavi']) : '',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){

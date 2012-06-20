@@ -59,7 +59,6 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
-    $is_navi = isset($_POST['is_navi']) ? addslashes(trim($_POST['is_navi'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
@@ -86,9 +85,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		$pageId = $emPage->addlog($logData);
 	}
 
-	$Navi_Model->addNavi($title, Url::log($pageId), 0, 'n');
-
-	$CACHE->updateCache(array('logatts', 'options', 'logalias', 'navi'));
+	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
 
 	switch ($action){
 		case 'autosave':

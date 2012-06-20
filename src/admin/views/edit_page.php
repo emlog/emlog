@@ -33,8 +33,6 @@
           <span id="page_options">
           <label for="allow_remark">页面接受评论</label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-          <label for="allow_tb">添加到导航</label>
-          <input type="checkbox" value="y" id="is_blank" name="is_blank" <?php echo $is_blank; ?> />
           </span>
         </td>
         </tr>

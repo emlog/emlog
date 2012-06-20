@@ -44,7 +44,7 @@
         <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有添加链接</td></tr>
+	  <tr><td class="tdcenter" colspan="6">还没有添加链接</td></tr>
 	<?php endif;?>
     </tbody>
   </table>

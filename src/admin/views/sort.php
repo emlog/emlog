@@ -19,8 +19,9 @@
     <thead>
       <tr>
         <th width="55"><b>序号</b></th>
-        <th width="300"><b>名称</b></th>
+        <th width="250"><b>名称</b></th>
 		<th width="300"><b>别名</b></th>
+		<th width="50" class="tdcenter"><b>查看</b></th>
         <th width="50" class="tdcenter"><b>日志</b></th>
         <th width="100"></th>
       </tr>
@@ -35,11 +36,14 @@ foreach($sorts as $key=>$value): ?>
         <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
 		<td class="sortname"><?php echo $value['sortname']; ?></td>
 		<td class="alias"><?php echo $value['alias']; ?></td>
+		<td class="tdcenter">
+	  	<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+	  	</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
       </tr>
 <?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有添加分类</td></tr>
+	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
 <?php endif;?>  
 </tbody>
 </table>

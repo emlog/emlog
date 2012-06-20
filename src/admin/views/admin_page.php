@@ -10,8 +10,8 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="481" colspan="2"><b>标题</b></th>
-        <th width="30" class="tdcenter"><b>评论</b></th>
+        <th width="461" colspan="2"><b>标题</b></th>
+        <th width="50" class="tdcenter"><b>评论</b></th>
         <th width="280"><b>时间</b></th>
       </tr>
     </thead>
@@ -24,12 +24,12 @@
 		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 	}
 	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red">[隐藏]</font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="在新窗口查看"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+	'<font color="red"> - 草稿</font>' : 
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-        <td width="460">
+        <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		<?php echo $isHide; ?>    
 		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
@@ -46,8 +46,8 @@
 </form>
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-<a href="javascript:pageact('del');">删除</a> 
-<a href="javascript:pageact('hide');">隐藏</a> 
+<a href="javascript:pageact('del');">删除</a> | 
+<a href="javascript:pageact('hide');">转为草稿</a> | 
 <a href="javascript:pageact('pub');">发布</a>
 </div>
 <div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new">新建一个页面+</a></div>

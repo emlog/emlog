@@ -94,8 +94,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条，
-		首页导航文字：<input type="text" name="twnavi" value="<?php echo Option::get('twnavi'); ?>" style="width:66px;" />
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条
 
 		</td>
       </tr>

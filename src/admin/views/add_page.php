@@ -34,8 +34,6 @@
           <span id="page_options">
           <label for="allow_remark">页面接受评论</label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />
-          <label for="allow_tb">添加到导航</label>
-          <input type="checkbox" value="y" id="is_navi" name="is_navi" checked="checked" />
           </span>
           </td>
         </tr>

@@ -5,7 +5,7 @@
 <div id="navi_edit">
 	<li><input size="20" value="<?php echo $naviname; ?>" name="naviname" /> 导航名称</li>
 	<li>
-	<input size="50" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> 跳转地址，
+	<input size="50" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> 导航地址，
 	在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> /></li>
 	<li>
 	<input type="hidden" value="<?php echo $naviId; ?>" name="navid" />

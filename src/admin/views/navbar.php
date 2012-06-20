@@ -60,7 +60,7 @@
 <div id="navi_new">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:328px;" name="url" /> 跳转地址，在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+	<li><input maxlength="200" style="width:328px;" name="url" /> 导航地址，在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="添加导航"  /></li>
 </div>
 </form>
