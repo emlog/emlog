@@ -900,3 +900,34 @@ textarea {
 #user_new li,#sort_new li, #user_edit li, #navi_new li, #navi_edit li {
 	margin:12px 0px;
 }
+
+#navi_add h1{
+	font-size:12px;
+	font-weight:normal;
+	border:#E5E5E5 solid 1px;
+	border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+	border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+	background-color:#F1F1F1;
+	padding:2px 5px;
+	margin:0px;
+	background: url("../images/admindex_itembg.gif") repeat-x scroll center bottom transparent;
+	cursor:pointer;
+}
+#navi_add div{
+	width:270px;
+	float:left;
+	margin:30px 10px 0px 0px;
+}
+#navi_add ul{
+	border-left:#E5E5E5 solid 1px;
+	border-right:#E5E5E5 solid 1px;
+	border-bottom:#E5E5E5 solid 1px;
+	padding:10px;
+	background-color:#F6F6F6;
+	margin:0px;
+}
+#navi_add ul li{
+	padding:5px 0px;
+}

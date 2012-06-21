@@ -55,17 +55,63 @@
   </table>
   <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
 </form>
+
+
+<div id="navi_add">
+
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('navi_new', 2);">添加导航+</a></div>
-<div id="navi_new">
+<div>
+	<h1 onclick="displayToggle('navi_add_custom', 2);">添加自定义导航+</h1>
+	<ul id="navi_add_custom">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:328px;" name="url" /> 导航地址，在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+	<li><input maxlength="200" style="width:128px;" name="url" /> 导航地址</li>
+    <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="添加导航"  /></li>
+	</ul>
 </div>
 </form>
+
+<form action="navbar.php?action=add" method="post" name="navi" id="navi">
+<div>
+	<h1 onclick="displayToggle('navi_add_sort', 2);">添加分类到导航+</h1>
+	<ul id="navi_add_sort">
+	<?php 
+	if($sorts):
+	foreach($sorts as $key=>$value): 
+	?>
+	<li>
+        <input type="checkbox" name="sort[]" value="<?php echo $value['sid']; ?>" class="ids" />
+		<?php echo $value['sortname']; ?>
+	</li>
+	<?php endforeach;?>
+	<li><input type="submit" name="" value="添加导航"  /></li>
+	<?php else:?>
+	<li>还没有添加分类</li>
+	<?php endif;?> 
+	</ul>
+</div>
+</form>
+
+<form action="navbar.php?action=add" method="post" name="navi" id="navi">
+<div>
+	<h1 onclick="displayToggle('navi_add_page', 2);">添加页面到导航+</h1>
+	<ul id="navi_add_page">
+	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
+	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
+	<li><input maxlength="200" style="width:128px;" name="url" /> 导航地址</li>
+    <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+	<li><input type="submit" name="" value="添加导航"  /></li>
+	</ul>
+</div>
+</form>
+
+</div>
+
 <script>
-$("#navi_new").css('display', $.cookie('em_navi_new') ? $.cookie('em_navi_new') : 'none');
+$("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : 'none');
+$("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : 'none');
+$("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : 'none');
 $(document).ready(function(){
 	$("#adm_navi_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_navi_list tbody tr")

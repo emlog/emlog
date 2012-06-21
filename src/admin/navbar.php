@@ -11,6 +11,9 @@ $Navi_Model = new Navi_Model();
 if($action == '')
 {
 	$navis = $Navi_Model->getNavis();
+	$sorts = $CACHE->readCache('sort');
+	//$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
+	
 	include View::getView('header');
 	require_once(View::getView('navbar'));
 	include View::getView('footer');
