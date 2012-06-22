@@ -57,23 +57,19 @@
   </table>
   <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
 </form>
-
-
 <div id="navi_add">
-
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
 <div>
 	<h1 onclick="displayToggle('navi_add_custom', 2);">添加自定义导航+</h1>
 	<ul id="navi_add_custom">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:128px;" name="url" /> 导航地址</li>
+	<li><input maxlength="200" style="width:100px;" name="naviname" /> 导航名称</li>
+	<li><input maxlength="200" style="width:186px;" name="url" /> 导航地址</li>
     <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="添加"  /></li>
 	</ul>
 </div>
 </form>
-
 <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
 <div>
 	<h1 onclick="displayToggle('navi_add_sort', 2);">添加分类到导航+</h1>
@@ -83,7 +79,7 @@
 	foreach($sorts as $key=>$value): 
 	?>
 	<li>
-        <input type="checkbox" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
 		<?php echo $value['sortname']; ?>
 	</li>
 	<?php endforeach;?>
@@ -94,7 +90,6 @@
 	</ul>
 </div>
 </form>
-
 <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
 <div>
 	<h1 onclick="displayToggle('navi_add_page', 2);">添加页面到导航+</h1>
@@ -104,7 +99,7 @@
 	foreach($pages as $key=>$value): 
 	?>
 	<li>
-        <input type="checkbox" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
+        <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
 		<?php echo $value['title']; ?>
 	</li>
 	<?php endforeach;?>
@@ -115,9 +110,7 @@
 	</ul>
 </div>
 </form>
-
 </div>
-
 <script>
 $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : 'none');
 $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : 'none');
