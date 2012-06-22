@@ -26,9 +26,6 @@ class Cache {
     private $logalias_cache;
     private $logatts_cache;
 
-	/**
-	 * 构造函数
-	 */
 	private function __construct() {
 		$this->db = MySql::getInstance();
 	}

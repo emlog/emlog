@@ -198,6 +198,26 @@ class Log_Model {
 	}
 
 	/**
+	 * 获取全部页面列表
+	 *
+	 */
+	function getAllPageList() {
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
+		$res = $this->db->query($sql);
+		$pages = array();
+		while ($row = $this->db->fetch_array($res)) {
+			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			//$row['gid'] 	= $row['gid'];
+			//$row['comnum'] 	= $row['comnum'];
+			//$row['top'] 	= $row['top'];
+			//$row['attnum'] 	= $row['attnum'];
+			$pages[] = $row;
+		}
+		return $pages;
+	}
+
+	/**
 	 * 删除日志
 	 *
 	 * @param int $blogId

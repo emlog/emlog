@@ -901,6 +901,9 @@ textarea {
 	margin:12px 0px;
 }
 
+#navi_add{
+	margin:30px 0px 120px 0px;
+}
 #navi_add h1{
 	font-size:12px;
 	font-weight:normal;
@@ -918,7 +921,7 @@ textarea {
 #navi_add div{
 	width:270px;
 	float:left;
-	margin:30px 10px 0px 0px;
+	margin:10px 10px 0px 0px;
 }
 #navi_add ul{
 	border-left:#E5E5E5 solid 1px;
@@ -929,5 +932,5 @@ textarea {
 	margin:0px;
 }
 #navi_add ul li{
-	padding:5px 0px;
+	padding:3px 0px;
 }

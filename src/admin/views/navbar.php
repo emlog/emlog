@@ -7,6 +7,7 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">导航名称和地址不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的导航</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">请选择要添加的分类</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -67,12 +68,12 @@
 	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
 	<li><input maxlength="200" style="width:128px;" name="url" /> 导航地址</li>
     <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-	<li><input type="submit" name="" value="添加导航"  /></li>
+	<li><input type="submit" name="" value="添加"  /></li>
 	</ul>
 </div>
 </form>
 
-<form action="navbar.php?action=add" method="post" name="navi" id="navi">
+<form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
 <div>
 	<h1 onclick="displayToggle('navi_add_sort', 2);">添加分类到导航+</h1>
 	<ul id="navi_add_sort">
@@ -81,11 +82,11 @@
 	foreach($sorts as $key=>$value): 
 	?>
 	<li>
-        <input type="checkbox" name="sort[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <input type="checkbox" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
 		<?php echo $value['sortname']; ?>
 	</li>
 	<?php endforeach;?>
-	<li><input type="submit" name="" value="添加导航"  /></li>
+	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
 	<li>还没有添加分类</li>
 	<?php endif;?> 
@@ -93,15 +94,23 @@
 </div>
 </form>
 
-<form action="navbar.php?action=add" method="post" name="navi" id="navi">
+<form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
 <div>
 	<h1 onclick="displayToggle('navi_add_page', 2);">添加页面到导航+</h1>
 	<ul id="navi_add_page">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:128px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:128px;" name="url" /> 导航地址</li>
-    <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-	<li><input type="submit" name="" value="添加导航"  /></li>
+	<?php 
+	if($pages):
+	foreach($pages as $key=>$value): 
+	?>
+	<li>
+        <input type="checkbox" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
+		<?php echo $value['title']; ?>
+	</li>
+	<?php endforeach;?>
+	<li><input type="submit" name="" value="添加"  /></li>
+	<?php else:?>
+	<li>还没有添加分类</li>
+	<?php endif;?> 
 	</ul>
 </div>
 </form>

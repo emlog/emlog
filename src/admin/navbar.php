@@ -10,10 +10,12 @@ $Navi_Model = new Navi_Model();
 
 if($action == '')
 {
+	$emPage = new Log_Model();
+	
 	$navis = $Navi_Model->getNavis();
 	$sorts = $CACHE->readCache('sort');
-	//$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-	
+	$pages = $emPage->getAllPageList();
+
 	include View::getView('header');
 	require_once(View::getView('navbar'));
 	include View::getView('footer');
@@ -53,6 +55,37 @@ if($action== 'add')
 	$Navi_Model->addNavi($naviname, $url, $taxis, $newtab);
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_add=true");
+}
+
+if($action== 'add_sort')
+{
+	$sort_ids = isset($_POST['sort_ids']) ? $_POST['sort_ids'] : array();
+
+	$sorts = $CACHE->readCache('sort');
+
+	if (empty($sort_ids)) {
+		emDirect("./navbar.php?error_d=true");
+	}
+
+	foreach ($sort_ids as $val) {
+		$sort_id = intval($val);
+		$Navi_Model->addNavi($sorts[$sort_id]['sortname'], Url::sort($sort_id), 0, 'n');
+	}
+
+	$CACHE->updateCache('navi');
+	emDirect("./navbar.php?active_add=true");
+}
+
+if($action== 'add_page')
+{
+	$pages = isset($_POST['pages']) ? $_POST['pages'] : array();
+
+	foreach ($pages as $id => $title) {
+		$Navi_Model->addNavi($title, Url::log($id), 0, 'n');
+	}
+
+	$CACHE->updateCache('navi');
+	emDirect('./navbar.php?active_add=true');
 }
 
 if ($action== 'mod')
