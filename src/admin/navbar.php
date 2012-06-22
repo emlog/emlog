@@ -80,6 +80,10 @@ if($action== 'add_page')
 {
 	$pages = isset($_POST['pages']) ? $_POST['pages'] : array();
 
+	if (empty($pages)) {
+		emDirect("./navbar.php?error_e=true");
+	}
+	
 	foreach ($pages as $id => $title) {
 		$Navi_Model->addNavi($title, Url::log($id), 0, 'n');
 	}

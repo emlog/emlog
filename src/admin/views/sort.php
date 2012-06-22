@@ -50,7 +50,7 @@ foreach($sorts as $key=>$value): ?>
 <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
 </form>
 <form action="sort.php?action=add" method="post">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加新分类+</a></div>
+<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加分类+</a></div>
 <div id="sort_new">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>

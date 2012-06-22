@@ -8,6 +8,7 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的导航</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">请选择要添加的分类</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">请选择要添加的页面</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -88,7 +89,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
-	<li>还没有添加分类</li>
+	<li>还没有分类</li>
 	<?php endif;?> 
 	</ul>
 </div>
@@ -109,7 +110,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
-	<li>还没有添加分类</li>
+	<li>还没页面</li>
 	<?php endif;?> 
 	</ul>
 </div>

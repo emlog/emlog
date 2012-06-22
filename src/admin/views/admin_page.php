@@ -50,7 +50,7 @@
 <a href="javascript:pageact('hide');">转为草稿</a> | 
 <a href="javascript:pageact('pub');">发布</a>
 </div>
-<div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new">新建一个页面+</a></div>
+<div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new">新建页面+</a></div>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>个页面)</div>
 <script>
 $(document).ready(function(){
