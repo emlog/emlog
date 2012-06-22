@@ -15,7 +15,6 @@ class Search_Controller {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 		$description = $bloginfo;
 		$blogtitle = $blogname;

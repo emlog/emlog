@@ -194,18 +194,18 @@ function blog_navi(){
 	<ul>
 	<?php 
 	foreach($navi_cache as $value):
-		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
-		$path = Dispatcher::setPath();
 		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
-		?>
-		<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-		<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
-		<?php 
-		continue;
+			?>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<?php 
+			continue;
 		endif;
-		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : $value['url'];
+		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
+		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
+		$current_tab = (BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url']) ? 'current' : 'common';
 		?>
-		<li><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
+		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
 	<?php endforeach; ?>
 	</ul>
 <?php }?>

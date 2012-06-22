@@ -28,8 +28,6 @@ if ($action == '') {
 	$user_cache = $CACHE->readCache('user');
     $options_cache = $CACHE->readCache('options');
     extract($options_cache);
-    
-    $navibar = unserialize($navibar);
 
     $Twitter_Model = new Twitter_Model();
 

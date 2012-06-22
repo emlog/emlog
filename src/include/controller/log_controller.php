@@ -15,7 +15,6 @@ class Log_Controller {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
 		//page meta
@@ -47,7 +46,6 @@ class Log_Controller {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
-		$navibar = unserialize($navibar);
 
 		$logid = 0 ;
 

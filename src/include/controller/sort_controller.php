@@ -15,7 +15,6 @@ class Sort_Controller {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		extract($options_cache);
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
