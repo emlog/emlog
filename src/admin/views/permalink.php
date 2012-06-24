@@ -4,6 +4,7 @@
 <a class="navi1" href="./configure.php">基本设置</a>
 <a class="navi4" href="./style.php">后台风格</a>
 <a class="navi2" href="./permalink.php">日志链接</a>
+<a class="navi4" href="./configure.php?action=seo">SEO设置</a>
 <a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 <?php if(isset($_GET['error'])):?><span class="error">保存失败：根目录下的.htaccess不可写</span><?php endif;?>

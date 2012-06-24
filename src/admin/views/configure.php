@@ -4,6 +4,7 @@
 <a class="navi3" href="./configure.php">基本设置</a>
 <a class="navi4" href="./style.php">后台风格</a>
 <a class="navi4" href="./permalink.php">日志链接</a>
+<a class="navi4" href="./configure.php?action=seo">SEO设置</a>
 <a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 </div>
@@ -22,13 +23,8 @@
         <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
-        <td align="right">站点关键字：</td>
-        <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
-        (关键字之间用半角逗号","隔开)</td>
-      </tr>
-      <tr>
-        <td align="right">每页日志数：</td>
-        <td><input maxlength="5" size="8" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
+        <td align="right">每页显示：</td>
+        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" />条日志</td>
       </tr>
 	  <tr>
         <td valign="top" align="right">你所在时区：<br /></td>
@@ -94,7 +90,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语
 
 		</td>
       </tr>

@@ -91,3 +91,29 @@ if ($action == 'mod_config') {
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	emDirect("./configure.php?activated=true");
 }
+
+// seo setting
+if ($action == 'seo') {
+	$options_cache = $CACHE->readCache('options');
+	extract($options_cache);
+
+	include View::getView('header');
+	require_once(View::getView('configure_seo'));
+	include View::getView('footer');
+	View::output();
+}
+//update seo config
+if ($action == 'mod_config_seo') {
+	$getData = array(
+		'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
+		'site_descripiton' => isset($_POST['site_descripiton']) ? addslashes($_POST['site_descripiton']) : '',
+		'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
+	);
+
+	foreach ($getData as $key => $val) {
+		Option::updateOption($key, $val);
+	}
+
+	$CACHE->updateCache('options');
+	emDirect("./configure.php?action=seo&activated=true");
+}
