@@ -18,15 +18,56 @@
 </div>
 </div>
 <?php endif; ?>
-<div style="margin:20px 22px;">
-<div class="des">请上传一个zip压缩格式的模板安装包。<a href="http://www.emlog.net/template/" target="_blank">获取更多模板&raquo;</a></div>
-</div>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
-<div id="topimg_custom">
-	<li></li>
+<div style="margin:50px 0px 50px 20px;">
 	<li>
 	<input name="tplzip" type="file" />
-	<input type="submit" value="上传" class="submit" />
+	<input type="submit" value="上传" class="submit" /> (上传zip压缩格式的模板安装包)
 	</li>
 </div>
 </form>
+<div class="containertitle2">
+<span class="navi3">官方推荐</span>
+</div>
+
+<div id="recommend_template">
+
+<p><a href="http://www.emlog.net/templates" target="_blank">更多有用的插件&raquo;</a></p>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+</div>

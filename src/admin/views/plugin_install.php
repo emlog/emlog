@@ -17,18 +17,73 @@
 </div>
 </div>
 <?php endif; ?>
-<div style="margin:20px 22px;">
-<div class="des">请上传一个zip压缩格式的插件安装包。<a href="http://www.emlog.net/plugins/" target="_blank">获得更多插件&raquo;</a></div>
-</div>
 <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data" >
-<div id="topimg_custom">
-	<li></li>
+<div style="margin:50px 0px 50px 20px;">
 	<li>
 	<input name="pluzip" type="file" />
-	<input type="submit" value="上传" class="submit" />
+	<input type="submit" value="上传安装" class="submit" /> （上传一个zip压缩格式的插件安装包）
 	</li>
 </div>
 </form>
+
+<div class="containertitle2">
+<span class="navi3">官方推荐</span>
+</div>
+
+<div id="recommend_plugin">
+
+<p><a href="http://www.emlog.net/plugins" target="_blank">更多插件&raquo;</a></p>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+<ul>
+<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
+<li><a href="#"><b>CLEAN</b></a></li>
+<li>作者：xxxx</li>
+</ul>
+
+</div>
+
 <script>
 $("#menu_plug").addClass('sidebarsubmenu1');
 </script>

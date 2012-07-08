@@ -934,3 +934,37 @@ textarea {
 #navi_add ul li{
 	padding:3px 0px;
 }
+
+#recommend_template{
+	width:750;
+}
+#recommend_template ul{
+	float:left;
+	width:200px;
+	margin:10px 30px;
+	padding:0px;
+	text-align:center;
+}
+#recommend_template img{
+	border:1px solid #CCC;
+}
+#recommend_template p{
+	padding:0px 40px;
+}
+
+#recommend_plugin{
+	width:750;
+}
+#recommend_plugin ul{
+	float:left;
+	width:120px;
+	margin:10px 30px;
+	padding:0px;
+	text-align:center;
+}
+#recommend_plugin img{
+	border:1px solid #CCC;
+}
+#recommend_plugin p{
+	padding:0px 40px;
+}
