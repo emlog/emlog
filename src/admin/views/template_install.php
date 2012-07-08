@@ -32,7 +32,7 @@
 
 <div id="recommend_template">
 
-<p><a href="http://www.emlog.net/templates" target="_blank">更多有用的插件&raquo;</a></p>
+<p><a href="http://www.emlog.net/templates" target="_blank">更多精美模板&raquo;</a></p>
 
 <ul>
 <li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
