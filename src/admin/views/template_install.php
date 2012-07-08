@@ -22,7 +22,7 @@
 <div style="margin:50px 0px 50px 20px;">
 	<li>
 	<input name="tplzip" type="file" />
-	<input type="submit" value="上传" class="submit" /> (上传zip压缩格式的模板安装包)
+	<input type="submit" value="上传安装" class="submit" /> (上传zip压缩格式的模板安装包)
 	</li>
 </div>
 </form>
