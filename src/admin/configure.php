@@ -41,7 +41,7 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-//update config
+
 if ($action == 'mod_config') {
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
@@ -70,6 +70,9 @@ if ($action == 'mod_config') {
     'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
     'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
     'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
+	'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
+	'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
+	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
@@ -90,30 +93,4 @@ if ($action == 'mod_config') {
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	emDirect("./configure.php?activated=true");
-}
-
-// seo setting
-if ($action == 'seo') {
-	$options_cache = $CACHE->readCache('options');
-	extract($options_cache);
-
-	include View::getView('header');
-	require_once(View::getView('configure_seo'));
-	include View::getView('footer');
-	View::output();
-}
-//update seo config
-if ($action == 'mod_config_seo') {
-	$getData = array(
-		'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
-		'site_descripiton' => isset($_POST['site_descripiton']) ? addslashes($_POST['site_descripiton']) : '',
-		'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
-	);
-
-	foreach ($getData as $key => $val) {
-		Option::updateOption($key, $val);
-	}
-
-	$CACHE->updateCache('options');
-	emDirect("./configure.php?action=seo&activated=true");
 }

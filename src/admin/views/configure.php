@@ -4,23 +4,22 @@
 <a class="navi3" href="./configure.php">基本设置</a>
 <a class="navi4" href="./style.php">后台风格</a>
 <a class="navi4" href="./permalink.php">日志链接</a>
-<a class="navi4" href="./configure.php?action=seo">SEO设置</a>
 <a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 </div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td width="18%" align="right">站点名称：</td>
-        <td width="82%"><input maxlength="200" size="35" value="<?php echo $blogname; ?>" name="blogname" /></td>
+        <td width="18%" align="right">站点标题：</td>
+        <td width="82%"><input maxlength="200" style="width:180px;" value="<?php echo $blogname; ?>" name="blogname" /></td>
       </tr>
       <tr>
-        <td align="right" valign="top">站点描述：</td>
+        <td align="right" valign="top">站点副标题：</td>
         <td><textarea name="bloginfo" cols="" rows="2" style="width:300px;"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr>
         <td align="right">站点地址：</td>
-        <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
+        <td class="care"><input maxlength="200" style="width:300px;" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
         <td align="right">每页显示：</td>
@@ -85,6 +84,23 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
+        <td align="right">站点浏览器标题：</td>
+        <td><input maxlength="200" style="width:180px;" value="<?php echo $site_title; ?>" name="site_title" /></td>
+      </tr>
+      <tr>
+        <td align="right">站点关键字：</td>
+        <td><input maxlength="200" style="width:300px;" value="<?php echo $site_key; ?>" name="site_key" /></td>
+      </tr>
+      <tr>
+        <td align="right" width="18%" valign="top">站点浏览器描述：</td>
+        <td width="82%">
+		<textarea name="site_description" cols="" rows="2" style="width:300px;"><?php echo $site_description; ?></textarea>
+		</td>
+      </tr>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
         <td align="right" width="18%" valign="top">碎语：<br /></td>
         <td width="82%">
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
@@ -126,7 +142,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
         <td align="right">ICP备案号：</td>
-        <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
+        <td><input maxlength="200" style="width:180px;" value="<?php echo $icp; ?>" name="icp" /></td>
       </tr>
       <tr>
         <td align="right" width="18%" valign="top">首页底部信息：<br /></td>
