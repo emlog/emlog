@@ -31,59 +31,22 @@
 </div>
 
 <div id="recommend_plugin">
-
 <p><a href="http://www.emlog.net/plugins" target="_blank">更多插件&raquo;</a></p>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/plugins/10/icon/482be3690e70a89eadbceb9ce73f6be8.jpg" width="100" height="100"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
+<div id="recommend_plugin_list" style="overflow: hidden;text-align: center;">
+<span class="ajax_remind_1">正在读取...</span>
+</div>
 </div>
 
 <script>
 $("#menu_plug").addClass('sidebarsubmenu1');
+
+$(document).ready(function(){
+	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
+		var items = [];
+		$.each(data, function(i,item){
+			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
+		});
+		$("#recommend_plugin_list").html(items.join(""));
+	});
+});
 </script>

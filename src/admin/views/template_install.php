@@ -31,43 +31,19 @@
 </div>
 
 <div id="recommend_template">
-
 <p><a href="http://www.emlog.net/templates" target="_blank">更多精美模板&raquo;</a></p>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
-<ul>
-<li><a href="#"><img src="http://www.emlog.net/addons/templates/148/icon/385d060708b9516e0a7e4c79b416c8d0.jpg" width="180" height="140"></a><li>
-<li><a href="#"><b>CLEAN</b></a></li>
-<li>作者：xxxx</li>
-</ul>
-
+<div id="recommend_template_list" style="overflow: hidden;text-align: center;">
+<span class="ajax_remind_1">正在读取...</span>
 </div>
+</div>
+<script>
+$(document).ready(function(){
+	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
+		var items = [];
+		$.each(data, function(i,item){
+			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
+		});
+		$("#recommend_template_list").html(items.join(""));
+	});
+});
+</script>
