@@ -41,7 +41,7 @@ $(document).ready(function(){
 	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
 		var items = [];
 		$.each(data, function(i,item){
-			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
+			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="180" height="140"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
 		});
 		$("#recommend_template_list").html(items.join(""));
 	});
