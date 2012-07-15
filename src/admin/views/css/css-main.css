@@ -338,7 +338,8 @@ textarea {
 }
 .ajax_remind_1 {
 	padding:3px 5px;
-	background-color:#FDFFCE
+	background-color:#FDFFCE;
+    color:#CCCCCC;
 }
 #user,#pw {
 	height:28px;
@@ -469,7 +470,6 @@ textarea {
 	margin:5px
 }
 #admindex_msg span {
-	color:#CCC;
 	float:right
 }
 #admindex div h3 {

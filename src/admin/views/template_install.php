@@ -22,7 +22,7 @@
 <div style="margin:50px 0px 50px 20px;">
 	<li>
 	<input name="tplzip" type="file" />
-	<input type="submit" value="上传安装" class="submit" /> (上传zip压缩格式的模板安装包)
+	<input type="submit" value="上传安装" class="submit" /> (上传一个zip压缩格式的模板安装包)
 	</li>
 </div>
 </form>
@@ -31,7 +31,7 @@
 </div>
 
 <div id="recommend_template">
-<p><a href="http://www.emlog.net/templates" target="_blank">更多精美模板&raquo;</a></p>
+<p><a href="http://www.emlog.net/templates" target="_blank">更多模板&raquo;</a></p>
 <div id="recommend_template_list" style="overflow: hidden;text-align: center;">
 <span class="ajax_remind_1">正在读取...</span>
 </div>
