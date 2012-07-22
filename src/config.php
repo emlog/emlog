@@ -1,13 +1,13 @@
 <?php
-header("location: ./install.php");exit;
+
 //mysql database address
 define('DB_HOST','localhost');
 //mysql database user
 define('DB_USER','root');
 //database password
-define('DB_PASSWD','');
+define('DB_PASSWD','root');
 //database name
-define('DB_NAME','emlog');
+define('DB_NAME','dev');
 //database prefix
 define('DB_PREFIX','emlog_');
 //auth key
