@@ -16,4 +16,3 @@ body{background-color:#fff; padding:0px; font-family:Arial,Helvetica,sans-serif;
 .login-button .button input{background:url(../images/login_button.gif) no-repeat; border:0; color:#FFF; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
 .login-main .back{padding:5px 14px; background-color:#FFF; background-image:none}
 .login-main .back a{color:#09C; text-decoration:none}
-.login-ext{padding: 10px 12px 0;}

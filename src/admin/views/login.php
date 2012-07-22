@@ -25,7 +25,6 @@
 	<div class="button"><input type="submit" value=" 登 录" class="submit"></div>
 	</div>
 	<div style=" clear:both;"></div>
-	<div class="login-ext"><?php doAction('login_ext'); ?></div>
 	<div class="login-bottom"></div>
 	<div class="back"><a href="../">&laquo;返回首页</a></div>
 </div>
