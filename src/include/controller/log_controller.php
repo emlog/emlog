@@ -13,19 +13,15 @@ class Log_Controller {
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+
+		$options_cache = Option::getAll();
 		extract($options_cache);
+
 		$curpage = CURPAGE_HOME;
 
-		//page meta
-		$blogtitle = $blogname;
-		$description = $bloginfo;
-
 		$page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
-
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
-
 		$sqlSegment ='ORDER BY top DESC ,date DESC';
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache['lognum'];
@@ -42,13 +38,14 @@ class Log_Controller {
 	 */
 	function displayContent($params) {
 		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
+
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+
+		$options_cache = Option::getAll();
 		extract($options_cache);
 
 		$logid = 0 ;
-
 		if (isset($params[1])) {
 			if ($params[1] == 'post') {
 				$logid = isset($params[2]) ? intval($params[2]) : 0;
@@ -81,8 +78,8 @@ class Log_Controller {
 			$Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 		}
 		//page meta
-		$blogtitle = $log_title.' - '.$blogname;
-		$description = extractHtmlData($log_content, 330);
+		$site_title = $log_title . ' - ' . $site_title;
+		$site_description = extractHtmlData($log_content, 330);
 		$log_cache_tags = $CACHE->readCache('logtags');
 		if (!empty($log_cache_tags[$logid])){
 			foreach ($log_cache_tags[$logid] as $value){

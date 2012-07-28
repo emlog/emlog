@@ -15,9 +15,9 @@ require_once View::getView('module');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $blogtitle; ?></title>
+<title><?php echo $site_title; ?></title>
 <meta name="keywords" content="<?php echo $site_key; ?>" />
-<meta name="description" content="<?php echo $description; ?>" />
+<meta name="description" content="<?php echo $site_description; ?>" />
 <meta name="generator" content="emlog" />
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo BLOG_URL; ?>xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="<?php echo BLOG_URL; ?>wlwmanifest.xml" />

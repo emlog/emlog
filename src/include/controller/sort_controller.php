@@ -13,7 +13,7 @@ class Sort_Controller {
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 		$curpage = CURPAGE_HOME;
 
@@ -44,9 +44,7 @@ class Sort_Controller {
 		}
 		$sortName = $sort_cache[$sortid]['sortname'];
 		//page meta
-		$blogtitle = $sortName.' - '.$blogname;
-		$description = $bloginfo;
-		$site_key .= ','.$sortName;
+		$site_title = $sortName . ' - ' . $site_title;
 
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);

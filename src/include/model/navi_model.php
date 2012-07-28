@@ -1,6 +1,6 @@
 <?php
 /**
- * 友情链接
+ * 导航
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -63,6 +63,19 @@ class Navi_Model {
 			);
 		}
 		return $naviData;
+	}
+
+	function getNaviNameByUrl($url) {
+		$CACHE = Cache::getInstance();
+		$navi_cache = $CACHE->readCache('navi');
+		
+		foreach($navi_cache as $val) {
+			if ($val['url'] == $url) {
+				return $val['naviname'];
+			}
+		}
+
+		return '';
 	}
 
 	function deleteNavi($navid)

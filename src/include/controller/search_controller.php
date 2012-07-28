@@ -12,12 +12,9 @@ class Search_Controller {
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 		$curpage = CURPAGE_HOME;
-		$description = $bloginfo;
-		$blogtitle = $blogname;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';

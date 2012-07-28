@@ -12,8 +12,7 @@ class Record_Controller {
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 		$curpage = CURPAGE_HOME;
 
@@ -26,8 +25,7 @@ class Record_Controller {
 		$pageurl = '';
 
 		//page meta
-		$blogtitle = $record.' - '.$blogname;
-		$description = $bloginfo;
+		$site_title = $record . ' - ' . $site_title;
 
 		if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
 			$days = getMonthDayNum($match[2], $match[1]);

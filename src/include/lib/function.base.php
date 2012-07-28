@@ -208,8 +208,7 @@ function changeFileSize($fileSize){
 }
 
 /**
- * 获取文件后缀
- * @param string $fileName
+ * 获取文件名后缀
  */
 function getFileSuffix($fileName) { 
 	return strtolower(substr(strrchr($fileName, "."),1));
@@ -346,10 +345,6 @@ function getRandStr($length = 12, $special_chars = true){
 
 /**
  * 寻找两数组所有不同元素
- *
- * @param array $array1
- * @param array $array2
- * @return array
  */
 function findArray($array1,$array2){
 	$r1 = array_diff($array1, $array2);
@@ -655,12 +650,8 @@ function emStrtotime($timeStr) {
 
 /**
  * 获取指定月份的天数
- *
- * @param string $month 月份
- * @param string $year 年份
  */
 function getMonthDayNum($month, $year) {
-	return date('t',mktime(0, 0, 0,$month,1,$year));
 	switch(intval($month)){
 		case 1:
 		case 3:
@@ -669,7 +660,8 @@ function getMonthDayNum($month, $year) {
 		case 8:
 		case 10:
 		case 12:
-			return 31;break;
+			return 31;
+			break;
 		case 2:
 			if ($year % 4 == 0) {
 				return 29;

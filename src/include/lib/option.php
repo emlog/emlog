@@ -49,6 +49,16 @@ class Option {
 		}
     }
 
+    static function getAll(){
+    	$CACHE = Cache::getInstance();
+    	$options_cache = $CACHE->readCache('options');
+
+    	$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
+    	$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
+
+    	return $options_cache;
+    }
+
     static function getRoutingTable(){
     	$routingtable = array(
                     array(

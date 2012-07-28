@@ -12,8 +12,7 @@ class Tag_Controller {
 	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 		$curpage = CURPAGE_HOME;
 
@@ -24,9 +23,7 @@ class Tag_Controller {
 		$pageurl = '';
 
 		//page meta
-		$blogtitle = stripslashes($tag).' - '.$blogname;
-		$description = $bloginfo;
-		$site_key .= ','.$tag;
+		$site_title = stripslashes($tag) . ' - ' . $site_title;
 
 		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);

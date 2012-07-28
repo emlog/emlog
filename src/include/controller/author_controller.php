@@ -13,7 +13,7 @@ class Author_Controller {
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 		$curpage = CURPAGE_HOME;
 
@@ -30,9 +30,7 @@ class Author_Controller {
 
 		$author_name = $user_cache[$author]['name'];
 		//page meta
-		$blogtitle = $author_name . ' - ' . $blogname;
-		$description = $bloginfo;
-		$site_key .= ','.$author_name;
+		$site_title = $author_name . ' - ' . $site_title;
 
 		$sqlSegment = "and author=$author order by date desc";
 		$sta_cache = $CACHE->readCache('sta');
