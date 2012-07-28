@@ -109,7 +109,7 @@ $(document).ready(function(){
 	$.getJSON('http://emer.sinaapp.com/api/tw?callback=?',function(data){
 		var tw = '';
 		$.each(data,function(i,n){
-			tw+='<li><a target="_blank" href="'+n.blogurl+'"><img src="http://www.gravatar.com/avatar/'+n.emer_avatar+'?s=32" align="absmiddle" /> <span>'+n.blogname+'</span></a><div>'+n.content+'</div><span class="tw_date">'+n.date+'</span></li>'
+			tw+='<li><a target="_blank" href="'+n.blogurl+'">'+n.blogname+'</a><div>'+n.content+'</div><span class="tw_date">'+n.date+'</span></li>'
 		});
 		$("#tw_line ul").html("");
 		$('#tw_line ul').html(tw);

@@ -748,11 +748,6 @@ textarea {
 #tw_line li {
 	margin:0px 0px 20px;
 }
-#tw_line img {
-	width:28px;
-	height:28px;
-	border:1px solid #EFEFEF;
-}
 #tw_line .tw_date {
 	color:#CCCCCC;
 	float:right;
