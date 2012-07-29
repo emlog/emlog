@@ -6,16 +6,11 @@
  */
 
 class Author_Controller {
-
-	/**
-	 * 前台作者日志列表页面输出
-	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = Option::getAll();
 		extract($options_cache);
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '' ;

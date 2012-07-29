@@ -7,9 +7,6 @@
 require_once '../init.php';
 
 define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//前台模板路径
-define('CURPAGE_HOME',  'home');
-define('CURPAGE_LOG',   'echo_log');
-define('CURPAGE_TW',    'twitter');
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
@@ -36,7 +33,6 @@ if ($action == '') {
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
-    $curpage = CURPAGE_TW;
     $site_title = $Navi_Model->getNaviNameByUrl('t') . ' - ' . $site_title;
 
     include View::getView('header');
