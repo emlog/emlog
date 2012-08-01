@@ -3,7 +3,6 @@
  * Generate text cache
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Cache {
@@ -18,6 +17,7 @@ class Cache {
     private $tags_cache;
     private $sort_cache;
     private $link_cache;
+    private $navi_cache;
     private $newlog_cache;
     private $newtw_cache;
 	private $record_cache;
@@ -26,9 +26,6 @@ class Cache {
     private $logalias_cache;
     private $logatts_cache;
 
-	/**
-	 * Constructor
-	 */
 	private function __construct() {
 		$this->db = MySql::getInstance();
 	}
@@ -291,7 +288,7 @@ class Cache {
 	 */
 	private function mc_link() {
 		$link_cache = array();
-		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
 			$link_cache[] = array(
 			    'link' => htmlspecialchars($show_link['sitename']),
@@ -303,7 +300,23 @@ class Cache {
 		$this->cacheWrite($cacheData, 'link');
 	}
 	/**
-	 * Latest blog posts
+	 * 导航缓存
+	 */
+	private function mc_navi() {
+		$navi_cache = array();
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY taxis ASC");
+		while ($row = $this->db->fetch_array($query)) {
+			$navi_cache[] = array(
+					'naviname' => htmlspecialchars(trim($row['naviname'])),
+					'url' => htmlspecialchars(trim($row['url'])),
+					'newtab' => $row['newtab'],
+					'isdefault' => $row['isdefault'],
+				);
+		}
+		$cacheData = serialize($navi_cache);
+		$this->cacheWrite($cacheData, 'navi');
+	}
+	/**
 	 */
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
@@ -464,7 +477,8 @@ class Cache {
 	 */
 	function cacheWrite ($cacheData, $cacheName) {
 		global $lang;
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+		$cacheData = "<?php exit;//" . $cacheData;
 		@ $fp = fopen($cachefile, 'wb') OR emMsg($lang['cache_open_error']);
 		@ $fw = fwrite($fp, $cacheData) OR emMsg($lang['cache_write_error']);
 		$this->{$cacheName.'_cache'} = null;
@@ -478,7 +492,7 @@ class Cache {
 		if ($this->{$cacheName.'_cache'} != null) {
 			return $this->{$cacheName.'_cache'};
 		} else {
-			$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName;
+			$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 			// If the cache file does not exist, the cache file is automatically generated
 			if (!is_file($cachefile) || filesize($cachefile) <= 0) {
 				if (method_exists($this, 'mc_' . $cacheName)) {
@@ -488,7 +502,7 @@ class Cache {
 			if ($fp = fopen($cachefile, 'r')) {
 				$data = fread($fp, filesize($cachefile));
 				fclose($fp);
-				$this->{$cacheName.'_cache'} = unserialize($data);
+				$this->{$cacheName.'_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
 				return $this->{$cacheName.'_cache'};
 			}
 		}

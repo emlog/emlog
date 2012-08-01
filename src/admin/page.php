@@ -2,7 +2,6 @@
 /**
  * Page Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -11,8 +10,6 @@ require_once 'globals.php';
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-$navibar = Option::get('navibar');
-
 //Page Management page
 if ($action == '') {
 	$emPage = new Log_Model();
@@ -58,15 +55,14 @@ if ($action == 'mod') {
 //Save Page
 if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$emPage = new Log_Model();
+	$Navi_Model = new Navi_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-	$pageUrl = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-    $allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
-    $is_blank = !empty($_POST['is_blank']) ? 'y' : 'n';
+    $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
@@ -93,20 +89,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		$pageId = $emPage->addlog($logData);
 	}
 
-	if($pageUrl && !preg_match("/^http|ftp.+$/i", $pageUrl)){
-		$pageUrl = 'http://'.$pageUrl;
-	}
-
-	$navibar[$pageId] = array(
-	       'title' => stripslashes($title),
-	       'url' => stripslashes($pageUrl),
-	       'is_blank' => $is_blank == 'y' ? '_blank' : '',
-	       'hide' => $ishide
-	       );
-	$navibar = addslashes(serialize($navibar));
-	Option::updateOption('navibar', $navibar);
-
 	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
+
 	switch ($action){
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";

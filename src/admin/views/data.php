@@ -11,8 +11,7 @@
 <table width="100%" id="adm_bakdata_list" class="item_list">
   <thead>
     <tr>
-      <th width="22"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-      <th width="661"><b><? echo $lang['backup_file'];?></b></th>
+      <th width="683" colspan="2"><b>备份文件</b></th>
       <th width="226"><b><? echo $lang['backup_time'];?></b></th>
       <th width="149"><b><? echo $lang['backup_size'];?></b></th>
       <th width="87"></th>
@@ -20,22 +19,26 @@
   </head>
   <tbody>
 	<?php
+		if($bakfiles):
 		foreach($bakfiles  as $value):
 		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
 		$size =  changeFileSize(filesize($value));
 		$bakname = substr(strrchr($value,'/'),1);
 	?>
     <tr>
-      <td><input type="checkbox" value="<?php echo $value; ?>" name="bak[]" class="ids" /></td>
-      <td><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
+      <td width="22"><input type="checkbox" value="<?php echo $value; ?>" name="bak[]" class="ids" /></td>
+      <td width="661"><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
       <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');"><? echo $lang['backup_import'];?></a></td>
     </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
+	<?php endif;?>
 	</tbody>
 </table>
-<div class="list_footer"><? echo $lang['with_selected_do'];?>: <a href="javascript:bakact('del');"><? echo $lang['remove'];?></a></div>
+<div class="list_footer">
+<a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
 <div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);"><? echo $lang['backup_info'];?>+</a> <a href="javascript:$('#backup').hide();displayToggle('import', 0);"><? echo $lang['backup_local_file']; ?>+</a></div>
 <form action="data.php?action=bakstart" method="post">
@@ -63,11 +66,12 @@
 <div class=line></div>
 <div style="margin:0px 0px 20px 0px;">
 	<p class="des"><? echo $lang['cache_info'];?></p>
-	<p style="margin-left:10px;"><input type="button" onclick="window.location='data.php?action=Cache';" value="<? echo $lang['cache_rebuild'];?>" class="submit" /></p>
+	<p><input type="button" onclick="window.location='data.php?action=Cache';" value="<? echo $lang['cache_rebuild'];?>" class="submit" /></p>
 </div>
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_bakdata_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})

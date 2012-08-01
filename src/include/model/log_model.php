@@ -3,7 +3,6 @@
  * Blog page management
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Log_Model {
@@ -102,7 +101,6 @@ class Log_Model {
 	 * Get a single post for the frontend
 	 */
 	function getOneLogForHome($blogId) {
-		$timezone = Option::get('timezone');
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
@@ -110,7 +108,7 @@ class Log_Model {
 			$logData = array(
 			    'log_title' => htmlspecialchars($row['title']),
 				'timestamp' => $row['date'],
-				'date' => $row['date'] + $timezone * 3600,
+				'date' => $row['date'] + Option::get('timezone') * 3600,
 				'logid' => intval($row['gid']),
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
@@ -122,7 +120,7 @@ class Log_Model {
 				'tbcount' => intval($row['tbcount']),
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
-				'allow_remark' => $row['allow_remark'],
+				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
 				'allow_tb' => $row['allow_tb'],
 				'password' => $row['password']
 				);
@@ -153,12 +151,12 @@ class Log_Model {
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
-			$row['date'] = gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : 'No Title';
-			$row['gid'] = $row['gid'];
-			$row['comnum'] = $row['comnum'];
-			$row['istop'] = $row['top'] == 'y' ? "<font color=\"red\">[{$lang['recommended']}]</font>" : '';
-			$row['attnum'] = $row['attnum'] > 0 ? "<font color=\"green\">[{$lang['attachments']}: " . $row['attnum'] . "]</font>" : '';
+			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			//$row['gid'] 	= $row['gid'];
+			//$row['comnum'] 	= $row['comnum'];
+			//$row['top'] 	= $row['top'];
+			//$row['attnum'] 	= $row['attnum'];
 			$logs[] = $row;
 		}
 		return $logs;
@@ -199,6 +197,26 @@ class Log_Model {
 			$logs[] = $row;
 		}
 		return $logs;
+	}
+
+	/**
+	 * 获取全部页面列表
+	 *
+	 */
+	function getAllPageList() {
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
+		$res = $this->db->query($sql);
+		$pages = array();
+		while ($row = $this->db->fetch_array($res)) {
+			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			//$row['gid'] 	= $row['gid'];
+			//$row['comnum'] 	= $row['comnum'];
+			//$row['top'] 	= $row['top'];
+			//$row['attnum'] 	= $row['attnum'];
+			$pages[] = $row;
+		}
+		return $pages;
 	}
 
 	/**

@@ -18,24 +18,31 @@
     <thead>
       <tr>
         <th width="55"><b><? echo $lang['order'];?></b></th>
-        <th width="300"><b><? echo $lang['name']; ?></b></th>
+        <th width="250"><b><? echo $lang['name']; ?></b></th>
 		<th width="300"><b><? echo $lang['alias']; ?></b></th>
         <th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
         <th width="100"></th>
       </tr>
     </thead>
     <tbody>
-<?php foreach($sorts as $key=>$value): ?>
+<?php 
+if($sorts):
+foreach($sorts as $key=>$value): ?>
       <tr>
         <td>
         <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
         <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
 		<td class="sortname"><?php echo $value['sortname']; ?></td>
 		<td class="alias"><?php echo $value['alias']; ?></td>
+		<td class="tdcenter">
+	  	<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+	  	</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');"><? echo $lang['remove'];?></a></td>
       </tr>
-<?php endforeach;?>   
+<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
+<?php endif;?>  
 </tbody>
 </table>
 <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="submit" /></div>
@@ -43,12 +50,9 @@
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><? echo $lang['category_add']; ?>+</a></div>
 <div id="sort_new">
-	<li><? echo $lang['order']; ?></li>
-	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
-	<li><? echo $lang['category_name']; ?></li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
-	<li><? echo $lang['alias']; ?></li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> (<? echo $lang['alias_friendly']; ?>)</li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
+	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (用于URL的友好显示)</li>
 	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
@@ -82,7 +86,7 @@ function checksortalias(){
 	}else {
 		$("#alias_msg_hook").html('');
 		$("#msg").html('');
-		$("#addsort").attr("disabled", '');
+		$("#addsort").attr("disabled", false);
 	}
 }
 $(document).ready(function(){

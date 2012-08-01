@@ -7,4 +7,12 @@ a:hover{color:#333; text-decoration:none}
 #curtab{background-color:#FFF; border-left:1px solid #F0F0F0; border-right:1px solid #F0F0F0; border-top:1px solid #F0F0F0}
 #attlist{float:left; border:1px solid #CCC; list-style:none; text-align:center; margin:5px; padding:3px}
 #attmsg{margin:40px 0px 0px 250px}
-#media-upload-body{margin:0px 200px 0px 0px}
+#media-upload-body{margin:0px 1px 5px 1px}
+.ie_notice{
+	width:380px;
+	margin:30px 30px; 
+	background-color:#FDFFCE; 
+	font-size:12px;
+	padding:3px 5px 3px;
+	border:1px #FFBA43 solid;
+}

@@ -2,7 +2,6 @@
 /**
  * Trackback Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 

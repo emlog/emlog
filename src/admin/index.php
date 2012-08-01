@@ -2,18 +2,13 @@
 /**
  * Admin Center
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
 
 if ($action == '') {
-	$user_cache = $CACHE->readCache('user');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $name =  $user_cache[UID]['name'];
-
-    $sta_log = ROLE == 'admin' ? $sta_cache['lognum'] : $sta_cache[UID]['lognum'];
-    $sta_tw = ROLE == 'admin' ? $sta_cache['twnum'] : $sta_cache[UID]['twnum'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$DB = MySql::getInstance();

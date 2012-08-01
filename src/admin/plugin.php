@@ -2,7 +2,6 @@
 /**
  * Plugin management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -75,6 +74,7 @@ if($action == 'del')
 	$Plugin_Model->inactivePlugin($plugin);
 	$pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
 	if (true === emDeleteFile('../content/plugins/' . $pludir)) {
+		$CACHE->updateCache('options');
 		emDirect("./plugin.php?activate_del=1");
 	} else {
 		emDirect("./plugin.php?error_a=1");

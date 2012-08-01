@@ -25,6 +25,7 @@
 	<div class="button"><input type="submit" value=" <? echo $lang['login'];?> " class="submit"></div>
 	</div>
 	<div style=" clear:both;"></div>
+	<div class="login-ext"><?php doAction('login_ext'); ?></div>
 	<div class="login-bottom"></div>
 	<div class="back"><a href="../">&laquo; <? echo $lang['back_home'];?></a></div>
 </div>

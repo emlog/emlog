@@ -2,20 +2,19 @@
 /**
  * Basic function library
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 function __autoload($class) {
 	$class = strtolower($class);
-    if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
-    	require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
-    } elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
-        require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
-    } else{
+	if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
+	} else{
     	emMsg($class.$lang['load_failed'], BLOG_URL);
-    }
+	}
 }
 
 /**
@@ -77,19 +76,46 @@ function getBlogUrl(){
 	}
 }
 
+function isIE6Or7() {
+	if (isset($_SERVER['HTTP_USER_AGENT'])) {
+		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")) {
+			return true;
+		}
+	}
+	return false;
+}
+
 /**
  * Check the plugin
  */
 function checkPlugin($plugin) {
-    if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
-        return true;
-    } else {
-        return false;
-    }
+	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /**
- * Verify email address format
+ * 加载jQuery
+ */
+function emLoadJQuery() {
+	static $isJQueryLoaded = false;
+	if(!$isJQueryLoaded) {
+		global $emHooks;
+		if(!isset($emHooks['index_head'])) {
+			$emHooks['index_head'] = array();
+		}
+		array_unshift($emHooks['index_head'], 'loadJQuery');
+		$isJQueryLoaded = true;
+		function loadJQuery() {
+			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
+		}
+	}
+}
+
+/**
+Verify email address format
  */
 function checkMail($email){
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60){
@@ -107,6 +133,9 @@ function checkMail($email){
  * @param int $length Substring length
  */
 function subString($strings,$start,$length){
+	if (function_exists('mb_substr')) {
+		return mb_substr($strings, $start, $length, 'utf8');
+	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
 	for ($i = 0; $i < mb_strlen($str); $i++){
@@ -145,15 +174,15 @@ function extractHtmlData($data, $len) {
 	$data = strip_tags(subString($data, 0, $len + 30));
 	$search = array ("/([\r\n])[\s]+/",	// Remove whitespace characters
 		             "/&(quot|#34);/i",	// Replace HTML entities
-		             "/&(amp|#38);/i",
-		             "/&(lt|#60);/i",
-		             "/&(gt|#62);/i",
-		             "/&(nbsp|#160);/i",
+					 "/&(amp|#38);/i",
+					 "/&(lt|#60);/i",
+					 "/&(gt|#62);/i",
+					 "/&(nbsp|#160);/i",
 					 "/&(iexcl|#161);/i",
 					 "/&(cent|#162);/i",
-		             "/&(pound|#163);/i",
-		             "/&(copy|#169);/i",
-		             "/\"/i",
+					 "/&(pound|#163);/i",
+					 "/&(copy|#169);/i",
+					 "/\"/i",
 					);
 	$replace = array (" ","\"","&"," "," ","",chr(161),chr(162),chr(163),chr(169), "");
 	$data = subString(preg_replace($search, $replace, $data), 0, $len);
@@ -181,7 +210,6 @@ function changeFileSize($fileSize){
 
 /**
  * Get file suffix
- * @param string $fileName
  */
 function getFileSuffix($fileName) { 
 	return strtolower(substr(strrchr($fileName, "."),1));
@@ -320,16 +348,59 @@ function getRandStr($length = 12, $special_chars = true){
 
 /**
  * Find all the different elements of the two arrays
- *
- * @param array $array1
- * @param array $array2
- * @return array
  */
 function findArray($array1,$array2){
-    $r1 = array_diff($array1, $array2);
-    $r2 = array_diff($array2, $array1);
-    $r = array_merge($r1, $r2);
-    return $r;
+	$r1 = array_diff($array1, $array2);
+	$r2 = array_diff($array2, $array1);
+	$r = array_merge($r1, $r2);
+	return $r;
+}
+
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	switch ($result) {
+		case '100':
+			emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
+			break;
+		case '101':
+			emMsg('上传文件失败,错误码：'.$errorNum);
+			break;
+		case '102':
+			emMsg('错误的文件类型');
+			break;
+		case '103':
+			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+			emMsg("文件大小超出{$ret}的限制");
+			break;
+		case '104':
+			emMsg('创建文件上传目录失败');
+			break;
+		case '105':
+			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			break;
+		default:
+			return $result;
+			break;
+	}
+}
+
+//用于附件批量上传
+function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+	switch ($result) {
+		case '100':
+		case '101':
+		case '102':
+		case '103':
+		case '104':
+		case '105':
+			header("HTTP/1.1 404 Not Found");
+			exit;
+			break;
+		default:
+			return $result;
+			break;
+	}
 }
 
 /**
@@ -344,36 +415,35 @@ function findArray($array1,$array2){
  * @param boolean $is_thumbnail Whether to generate thumbnail
  * @return string File path
  */
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=Option::IS_THUMBNAIL){
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
     global $lang;
 	if ($errorNum == 1){
-		emMsg($lang['attachment_exceed_system_limit'].ini_get('upload_max_filesize'));
+		return '100';//文件大小超过系统限制
 	}elseif ($errorNum > 1){
-		emMsg($lang['upload_failed_code'].$errorNum);
+		return '101';//上传文件失败
 	}
 	$extension  = getFileSuffix($fileName);
 	if (!in_array($extension, $type)){
-		emMsg($lang['wrong_file_type']);
+		return '102';//错误的文件类型
 	}
 	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
-		$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
-		emMsg($lang['file_size_exceeded'].$ret.$lang['restrictions']);
+		return '103';//文件大小超出emlog的限制
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-	$fname = md5($fileName) . gmdate('YmdHis') .'.'. $extension;
+	$fname = substr(md5($fileName),0,4)  . time() .'.'. $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(Option::UPLOADFILE_PATH)){
 		umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false){
-			emMsg($lang['attachment_create_failed']);
+			return '104';//创建文件上传目录失败
 		}
 	}
 	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false){
-			emMsg($lang['uploads_not_written']);
+			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -382,22 +452,22 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if ($is_thumbnail) {
-	    if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
-	        $attach = $thum;
-	        resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
-	    } elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
-	        $attach = $thum;
-	    }
+		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
+			$attach = $thum;
+			resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
+			$attach = $thum;
+		}
 	}
 
 	if (@is_uploaded_file($tmpFile)){
 		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
-			emMsg($lang['uploads_not_written']);
+			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
 		}
 		chmod($attachpath, 0777);
 	}
-	return 	$attach;
+	return 	$attach;//附件地址
 }
 
 /**
@@ -420,7 +490,7 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
 	}
 
 	$size = chImageSize($img, $max_w, $max_h);
-    $newwidth = $size['w'];
+	$newwidth = $size['w'];
 	$newheight = $size['h'];
 	$w = $size['rc_w'];
 	$h = $size['rc_h'];
@@ -535,111 +605,109 @@ function getGravatar($email, $s=40, $d='mm', $g='g') {
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-    if($origin_tz === null) {
-        if(!is_string($origin_tz = date_default_timezone_get())) {
-            return false; // A UTC timestamp was returned -- bail out!
-        }
-    }
-    $origin_dtz = new DateTimeZone($origin_tz);
-    $remote_dtz = new DateTimeZone($remote_tz);
-    $origin_dt = new DateTime('now', $origin_dtz);
-    $remote_dt = new DateTime('now', $remote_dtz);
-    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-    return $offset;
+	if($origin_tz === null) {
+		if(!is_string($origin_tz = date_default_timezone_get())) {
+			return false; // A UTC timestamp was returned -- bail out!
+		}
+	}
+	$origin_dtz = new DateTimeZone($origin_tz);
+	$remote_dtz = new DateTimeZone($remote_tz);
+	$origin_dt = new DateTime('now', $origin_dtz);
+	$remote_dt = new DateTime('now', $remote_dtz);
+	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+	return $offset;
 }
 
 /**
  * Convert string to UNIX timestamp independent of time zone
  */
 function emStrtotime($timeStr) {
-    $timezone = Option::get('timezone');
-    if ($timeStr) {
-	    $unixPostDate = @strtotime($timeStr);
-	    if ($unixPostDate === false) {
-	        return false;
-	    } else {
-            $serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
-            if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
-                $unixPostDate -= $timezone * 3600;
-            } else {
-                if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
-            		/*
+	$timezone = Option::get('timezone');
+	if ($timeStr) {
+		$unixPostDate = @strtotime($timeStr);
+		if ($unixPostDate === false) {
+			return false;
+		} else {
+			$serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
+			if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+				$unixPostDate -= $timezone * 3600;
+			} else {
+				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
+					/*
             		* If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
             	    * But the time we passed in is actually the local time in the time zone configured by the blog, not the local time in the server time zone
             		* Therefore, we need to remove the time obtained by strtotime / add the time difference between the two time zones to get the UTC time
-            		*/
-            		$offset = getTimeZoneOffset($serverTimeZone);
+					*/
+					$offset = getTimeZoneOffset($serverTimeZone);
             		// First subtract/add the time difference of the local time zone configuration
-            		$unixPostDate -= $timezone * 3600;
+					$unixPostDate -= $timezone * 3600;
             		// Subtract/add the time difference between the server time zone and utc to get the utc time
-            		$unixPostDate -= $offset;
-        		}
-        	}
-        }
-        return $unixPostDate;
-    } else {
-        return false;
-    }
+					$unixPostDate -= $offset;
+				}
+			}
+		}
+		return $unixPostDate;
+	} else {
+		return false;
+	}
 }
 
 /**
  * Get the number of days in a specified month
- *
- * @param string $month Month
- * @param string $year Year
  */
 function getMonthDayNum($month, $year) {
-    switch(intval($month)){
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            return 31;break;
-        case 2:
-            if ($year % 4 == 0) {
-                return 29;
-            } else {
-                return 28;
-            }
-            break;
-        default:
-            return 30;
-            break;
-    }
+	switch(intval($month)){
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			return 31;
+			break;
+		case 2:
+			if ($year % 4 == 0) {
+				return 29;
+			} else {
+				return 28;
+			}
+			break;
+		default:
+			return 30;
+			break;
+	}
 }
 /**
  * Unzip the zip archive
  */
 function emUnZip ($zipfile, $path, $type = 'tpl') {
 	if(class_exists('ZipArchive', FALSE)) {
-	    $zip = new ZipArchive();
-	    if (@$zip->open($zipfile) === TRUE) {
-	    	$r = explode('/', $zip->getNameIndex(0), 2);
-	    	$dir = isset($r[0]) ? $r[0].'/' : '';
-	    	switch ($type) {
-	    		case 'tpl':
-	    			$re = $zip->getFromName($dir.'header.php');
-	    			if (false === $re)
-	    			return -2;
-	    			break;
-	    		case 'plugin':
-	    			$plugin_name = substr($dir, 0, -1);
-	    			$re = $zip->getFromName($dir.$plugin_name.'.php');
-	    			if (false === $re)
-	    				return -1;
-	    			break;
-	    	}
-	    	if (true === @$zip->extractTo($path)) {
-	    		$zip->close();
-	    		return 0;
-	    	} else {
-	    		return 1;
-	    	}
+		$zip = new ZipArchive();
+		if (@$zip->open($zipfile) === TRUE) {
+			$r = explode('/', $zip->getNameIndex(0), 2);
+			$dir = isset($r[0]) ? $r[0].'/' : '';
+			switch ($type) {
+				case 'tpl':
+					$re = $zip->getFromName($dir.'header.php');
+					if (false === $re)
+					return -2;
+					break;
+				case 'plugin':
+					$plugin_name = substr($dir, 0, -1);
+					$re = $zip->getFromName($dir.$plugin_name.'.php');
+					if (false === $re)
+						return -1;
+					break;
+			}
+			if (true === @$zip->extractTo($path)) {
+				$zip->close();
+				return 0;
+			} else {
+				return 1;
+			}
 		} else {
-		    return 2;
+			return 2;
 		}
 	} else {
 		return 3;
@@ -650,10 +718,10 @@ function emUnZip ($zipfile, $path, $type = 'tpl') {
  * Delete file or directory
  */
 function emDeleteFile ($file){
-    if (empty($file))
-    	return false;
-    if (@is_file($file))
-        return @unlink($file);
+	if (empty($file))
+		return false;
+	if (@is_file($file))
+		return @unlink($file);
    	$ret = true;
    	if ($handle = @opendir($file)) {
 		while ($filename = @readdir($handle)){
@@ -717,8 +785,8 @@ body {
 	background-color:#FFFFFF;
 	font-size: 12px;
 	color: #666666;
-	width:750px;
-	margin:100px auto;
+	width:650px;
+	margin:60px auto 0px;
 	border-radius: 10px;
 	padding:30px 10px;
 	list-style:none;

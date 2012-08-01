@@ -17,26 +17,29 @@ setTimeout(hideActived,2600);
   <table width="100%" id="adm_tb_list" class="item_list">
   <thead>
       <tr>
-        <th width="10"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="270"><b><? echo $lang['title'];?></b></th>
+        <th width="280" colspan="2"><b>标题</b></th>
         <th width="300"><b><? echo $lang['trackback_source'];?></b></th>
 		<th width="80"><b>IP</b></th>
         <th width="120"><b><? echo $lang['time'];?></b></th>
       </tr>
   </thead>
   <tbody>
-	<?php foreach($trackback as $key=>$value):?>	
+	<?php 
+	if($trackback):
+	foreach($trackback as $key=>$value):?>	
       <tr>
-        <td><input type="checkbox" name="tb[]" value="<?php echo $value['tbid']; ?>" class="ids" ></td>
-        <td><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['title']; ?></a></td>
+        <td width="10"><input type="checkbox" name="tb[]" value="<?php echo $value['tbid']; ?>" class="ids" ></td>
+        <td width="270"><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['title']; ?></a></td>
         <td><?php echo $value['blog_name']; ?></td>
         <td><?php echo $value['ip']; ?></td>
         <td><?php echo $value['date']; ?></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="5">还没有收到引用</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
-<div class="list_footer"><? echo $lang['with_selected_do'];?>: <a href="javascript:tbact('del');"><? echo $lang['remove'];?></a></div>
+<div class="list_footer"><a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:tbact('del');">删除</a></div>
 <div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>)</div> 
 </form>
 <script>
@@ -49,5 +52,6 @@ function tbact(act){
 	$("#operate").val(act);
 	$("#form_tb").submit();
 }
+$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 $("#menu_tb").addClass('sidebarsubmenu1');
 </script>

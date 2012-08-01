@@ -3,7 +3,6 @@
  * xmlrpc Blog service interface
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 ob_start();
@@ -507,7 +506,7 @@ function mw_newMediaObject($args) {
 	$thum = $uppath . 'thum-' . $fname;
 	$thum_created = true;
 
-	if (Option::IS_THUMBNAIL && in_array($extension, $imtype) && function_exists('ImageCreate')) {
+	if (Option::get('isthumbnail') && in_array($extension, $imtype) && function_exists('ImageCreate')) {
 		$max_w = Option::IMG_MAX_W;
 		$max_h = Option::IMG_MAX_H;
 		$size = chImageSize($attachpath, $max_w, $max_h);

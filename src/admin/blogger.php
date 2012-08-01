@@ -2,7 +2,6 @@
 /**
  * Blogger Profile
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -14,7 +13,8 @@ if ($action == '') {
 	$icon = '';
 	if ($photo && file_exists($photo)){
 		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
-		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" border=\"1\" /><a href=\"javascript: em_confirm(0, 'avatar');\">[".$lang['photo_delete']."]</a>";
+		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
+		<br /><a href=\"javascript: em_confirm(0, 'avatar');\">删除头像</a>";
 	}
 	include View::getView('header');
 	require_once(View::getView('blogger'));

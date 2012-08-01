@@ -2,7 +2,6 @@
 /**
  * Load Global Items
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 error_reporting(E_ALL);

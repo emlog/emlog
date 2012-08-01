@@ -2,12 +2,11 @@
 /**
  * Frontend control options
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Option {
 	//Version number
-    const EMLOG_VERSION = '4.1.1';
+    const EMLOG_VERSION = '4.3.0';
 	//Maximum width of image attachment thumbnail
 	const IMG_MAX_W = 420;
 	//Maximum height of image attachment thumbnail
@@ -16,14 +15,12 @@ class Option {
 	const ICON_MAX_W = 140;
 	//Maximum height of avatar thumbnail
 	const ICON_MAX_H = 220;
-    //Whether the uploaded image generates a thumbnail. 1: Yes, 0: No
-    const IS_THUMBNAIL = 1;
     //Maximum attachment size (unit: byte, default 20M)
     const UPLOADFILE_MAXSIZE = 20971520;
     //Attachment upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
     //Attachment types allowed to upload
-    const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,bmp';
+    const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png';
 
     static function get($option){
         $CACHE = Cache::getInstance();
@@ -50,6 +47,16 @@ class Option {
 					break;
 			}
 		}
+    }
+
+    static function getAll(){
+    	$CACHE = Cache::getInstance();
+    	$options_cache = $CACHE->readCache('options');
+
+    	$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
+    	$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
+
+    	return $options_cache;
     }
 
     static function getRoutingTable(){

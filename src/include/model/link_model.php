@@ -2,7 +2,6 @@
 /**
  * Links
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Link_Model {

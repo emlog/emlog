@@ -2,7 +2,6 @@
 /**
  * Twitter
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
 */
 
 require_once '../init.php';
@@ -11,9 +10,6 @@ define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Foreground
 define('CURPAGE_HOME',  'home');
 define('CURPAGE_LOG',   'echo_log');
 define('CURPAGE_TW',    'twitter');
-
-$blogtitle = Option::get('twnavi') . ' - ' . Option::get('blogname');
-$description = Option::get('bloginfo');
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
@@ -27,15 +23,13 @@ if ($action == 'cal') {
 
 if ($action == '') {
 	$user_cache = $CACHE->readCache('user');
-    $options_cache = $CACHE->readCache('options');
+    $options_cache = Option::getAll();
     extract($options_cache);
     
-    $navibar = unserialize($navibar);
-
     $Twitter_Model = new Twitter_Model();
+    $Navi_Model = new Navi_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, BLOG_URL.'t/?page=');
@@ -43,6 +37,8 @@ if ($action == '') {
     $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
     $curpage = CURPAGE_TW;
+    $site_title = $Navi_Model->getNaviNameByUrl('t') . ' - ' . $site_title;
+
     include View::getView('header');
     require_once View::getView('t');
     View::output();

@@ -16,13 +16,12 @@
 <div style="margin-left:20px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
 <div>
-	<li><? echo $lang['nickname'];?></li>
+	<li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
+	<li>头像 (120X120 的jpg或png图片)</li>
+	<li><input name="photo" type="file" style="width:245px;" /></li>
 	<li><input maxlength="50" style="width:210px;" value="<?php echo $nickname; ?>" name="name" /></li>
 	<li><? echo $lang['email'];?></li>
 	<li><input name="email" value="<?php echo $email; ?>" style="width:210px;" maxlength="200" /></li>
-	<li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
-	<li><? echo $lang['photo_info'];?></li>
-	<li><input name="photo" type="file" style="width:245px;" /></li>
 	<li><? echo $lang['personal_description'];?></li>
 	<li><textarea name="description" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
 	<li><input type="submit" value="<? echo $lang['personal_data_save'];?>" class="submit" /></li>

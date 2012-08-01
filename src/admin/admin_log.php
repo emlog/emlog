@@ -2,7 +2,6 @@
 /**
  * Posts Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -19,6 +18,7 @@ if($action == '')
 	$tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 	$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
@@ -34,6 +34,8 @@ if($action == '')
 		$sqlSegment = "and sortid=$sid";
 	}elseif ($uid){
 		$sqlSegment = "and author=$uid";
+	}elseif ($keyword) {
+		$sqlSegment = "and title like '%$keyword%'";
 	}
 	$sqlSegment .= ' ORDER BY ';
 	if(isset($_GET['sortView']))
@@ -62,7 +64,6 @@ if($action == '')
 	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
 	$logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
 	$sorts = $CACHE->readCache('sort');
-	$users = $CACHE->readCache('user');
 	$log_cache_tags = $CACHE->readCache('logtags');
 	$tags = $Tag_Model->getTag();
 

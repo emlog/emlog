@@ -2,7 +2,6 @@
 /**
  * Install
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));
@@ -35,14 +34,14 @@ if(!$act){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:0px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 6px;}
+.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 4px;}
 .logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
 .title{text-align:center;}
-.title span{font-size:24px;font-weight:bold;}
+.title span{font-size:24px; color:#666666;}
 .input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 .submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
-.title2{font-size:14px;color:#000000;border-bottom: #CCCCCC 1px solid; margin:20px 0px;}
+.title2{font-size:18px;color:#666666;border-bottom: #CCCCCC 1px solid; margin:40px 0px 20px 0px;padding:10px 0px;}
 .foot{text-align:center;}
 .main li{ margin:20px 0px;}
 -->
@@ -101,7 +100,6 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <input type="reset" class="submit" value="<? echo $lang['reset'];?>">
 </p>
 </div>
-<div><p class="foot">Powered by <a href="http://www.emlog.net">emlog</a></p></div>
 </div>
 </form>
 </body>
@@ -170,7 +168,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
 {$lang['install_seems_installed']}
-<input name="Submit" type="submit" value="{$lang['install_continue']} &raquo;">
+<input type="submit" value="{$lang['install_continue']} &raquo;">
 </p>
 <p><a href="javascript:history.back(-1);">&laquo; {$lang['return_back']}</a></p>
 </div>
@@ -302,6 +300,8 @@ KEY option_name (option_name)
 )".$add."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','Hello World');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','{$lang['install_slogan']}');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
@@ -321,26 +321,26 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','20');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','15');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('twnavi','{$lang['twitter']}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('navibar','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
@@ -353,11 +353,26 @@ CREATE TABLE {$db_prefix}link (
   sitename varchar(30) NOT NULL default '',
   siteurl varchar(75) NOT NULL default '',
   description varchar(255) NOT NULL default '',
+  hide enum('n','y') NOT NULL default 'n',
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES 
 (1, 'emlog', 'http://www.emlog.net', '{$lang['emlog_homepage']}', 0);
+DROP TABLE IF EXISTS {$db_prefix}navi;
+CREATE TABLE {$db_prefix}navi (
+  id smallint(4) unsigned NOT NULL auto_increment,
+  naviname varchar(30) NOT NULL default '',
+  url varchar(75) NOT NULL default '',
+  newtab enum('n','y') NOT NULL default 'n',
+  hide enum('n','y') NOT NULL default 'n',
+  taxis smallint(4) unsigned NOT NULL default '0',
+  isdefault enum('n','y') NOT NULL default 'n',
+  PRIMARY KEY  (id)
+)".$add."
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '首页', '', 1, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '碎语', 't', 2, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '登录', 'admin', 3, 'y');
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,

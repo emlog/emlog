@@ -18,7 +18,9 @@ $isdraft = $hide == 'y' ? true : false;
           <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox"><? echo $lang['attachment_manager'];?></a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>"></span><br />
-          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe></div>
+          <div id="FrameUpload" style="display: none;">
+          	<iframe width="720" height="290" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
+          </div>
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
           <script>loadEditor('content');</script>
 		  </td>

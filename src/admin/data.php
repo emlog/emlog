@@ -2,7 +2,6 @@
 /**
  * Data Backup
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -136,7 +135,6 @@ if ($action == 'Cache'){
  * @param file $sqlfile
  */
 function checkSqlFileInfo($sqlfile) {
-	// Read backup file information
 	$fp = @fopen($sqlfile, 'r');
 	if ($fp){
 		$dumpinfo = array();
@@ -148,11 +146,9 @@ function checkSqlFileInfo($sqlfile) {
 		}
 		fclose($fp);
 		if (!empty($dumpinfo)){
-			// Verify version
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
 				emMsg($lang['backup_format_invalid'] . Option::EMLOG_VERSION);
 			}
-			// Verify table prefix
 			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
 				emMsg($lang['backup_prefix_invalid'] . $dumpinfo[2]);
 			}

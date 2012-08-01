@@ -21,10 +21,21 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class=line></div>
 <div class="filters">
 <div id="f_title">
-<span <?php echo !$sid && !$tagId && !$uid ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>"><? echo $lang['all'];?></a></span>
-<span id="f_t_sort"><a href="javascript:void(0);"><? echo $lang['unclassified'];?></a></span>
-<span id="f_t_tag"><a href="javascript:void(0);"><? echo $lang['tags'];?></a></span>
-<span id="f_t_user"><a href="javascript:void(0);"><? echo $lang['author'];?></a></span>
+	<div style="float:left; margin-top:8px;">
+		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
+		<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
+		<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
+		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
+	</div>
+	<div style="float:right;">
+		<form action="admin_log.php" method="get">
+		<input type="text" id="input_s" name="keyword">
+		<?php if($pid):?>
+		<input type="hidden" id="pid" name="pid" value="draft">
+		<?php endif;?>
+		</form>
+	</div>
+	<div style="clear:both"></div>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
 	<? echo $lang['categories'];?>: <span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>"><? echo $lang['author'];?></a></span>
@@ -50,7 +61,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div id="f_user" <?php echo $isDisplayUser ?>>
 	<? echo $lang['author'];?>:
-	<?php foreach($users as $key => $val):
+	<?php foreach($user_cache as $key => $val):
 		if (ROLE != 'admin' && $key != UID){
 			continue;
 		}
@@ -69,41 +80,29 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
   <table width="100%" id="adm_log_list" class="item_list">
   <thead>
       <tr>
-        <th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="490"><b><? echo $lang['title'];?></b></th>
+        <th width="511" colspan="2"><b>标题</b></th>
 		<?php if ($pid != 'draft'): ?>
 		<th width="40" class="tdcenter"><b><? echo $lang['view'];?></b></th>
 		<?php endif; ?>
 		<th width="100"><b><? echo $lang['author'];?></b></th>
         <th width="146"><b><? echo $lang['category'];?></b></th>
-        <th width="148"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>"><? echo $lang['time'];?></a></b></th>
-		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>"><? echo $lang['comments'];?></a></b></th>
-		<th width="40" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>"><? echo $lang['views'];?></a></b></th>
+        <th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>"><? echo $lang['time'];?></a></b></th>
+		<th width="39" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>"><? echo $lang['comments'];?></a></b></th>
+		<th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>"><? echo $lang['views'];?></a></b></th>
       </tr>
 	</thead>
  	<tbody>
 	<?php
+	if($logs):
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? $lang['unclassified'] : $sorts[$value['sortid']]['sortname'];
-	$author = $users[$value['author']]['name'];
-	$tags = isset($log_cache_tags[$value['gid']]) ? $log_cache_tags[$value['gid']] : '' ;
-	$tagStr = '';
-	if (is_array($tags) && !empty($tags)) {
-		foreach ($tags as $val) {
-			$tagStr .="<span class=logtag><a href=\"./admin_log.php?tagid={$val['tid']}$isdraft\">{$val['tagname']}</a></span>";
-		}
-		if ($tagStr) {
-			$tagStr = '<span class=logtags>'.$tagStr.'</span>';
-		}
-	}
+	$author = $user_cache[$value['author']]['name'];
 	?>
       <tr>
-      <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-      <td>
-      <a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-      <?php echo $value['attnum']; ?>
-      <?php echo $value['istop']; ?>
-      <?php echo $tagStr; ?>
+      <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+      <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
+	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td class="tdcenter">
@@ -117,21 +116,23 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	  <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="8">还没有日志</td></tr>
+	<?php endif;?>
 	</tbody>
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
-	<? echo $lang['with_selected_do'];?>:
-    <a href="javascript:logact('del');"><? echo $lang['remove'];?></a>
+	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+    <a href="javascript:logact('del');">删除</a> | 
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');"><? echo $lang['publish'];?></a>
 	<?php else: ?>
-	<a href="javascript:logact('hide');"><? echo $lang['unpublish'];?></a>
+	<a href="javascript:logact('hide');"><? echo $lang['unpublish'];?></a> |
 
 	<?php if (ROLE == 'admin'):?>
-	<a href="javascript:logact('top');"><? echo $lang['recommend'];?></a>
-    <a href="javascript:logact('notop');"><? echo $lang['unrecommend'];?></a>
+	<a href="javascript:logact('top');"><? echo $lang['recommend'];?></a> |
+    <a href="javascript:logact('notop');"><? echo $lang['unrecommend'];?></a> |
     <?php endif;?>
 
 	<select name="sort" id="sort" onChange="changeSort(this);" style="width:200px;">
@@ -142,10 +143,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<option value="-1"><? echo $lang['unclassified'];?></option>
 	</select>
 
-	<?php if (ROLE == 'admin' && count($users) > 1):?>
+	<?php if (ROLE == 'admin' && count($user_cache) > 1):?>
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected"><? echo $lang['move_to_category'];?>...</option>
-	<?php foreach($users as $key => $val):
+	<?php foreach($user_cache as $key => $val):
 	$val['name'] = $val['name'];
 	?>
 	<option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
@@ -166,6 +167,7 @@ $(document).ready(function(){
 	$("#f_t_sort").click(function(){$("#f_sort").toggle();$("#f_tag").hide();$("#f_user").hide();});
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
 	$("#f_t_user").click(function(){$("#f_user").toggle();$("#f_sort").hide();$("#f_tag").hide();});
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function logact(act){

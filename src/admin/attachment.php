@@ -2,7 +2,6 @@
 /**
  * Attachment Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -13,6 +12,8 @@ $DB = MySql::getInstance();
 if ($action == 'selectFile') {
 	$attachnum = 0;
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+	$multi = isset($_GET['multi']) ? intval($_GET['multi']) : 0;
+	
 	if ($logid) {
 		$sql = 'SELECT * FROM '.DB_PREFIX."attachment where blogid=$logid";
 		$query=$DB->query($sql);
@@ -25,7 +26,8 @@ if ($action == 'selectFile') {
 	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val";
 	}
-	require_once(View::getView('upload'));
+	$view_tpl = $multi ? 'upload_multi' : 'upload';
+	require_once(View::getView($view_tpl));
 	View::output();
 }
 
@@ -36,7 +38,8 @@ if ($action == 'upload') {
 	if ($attach) {
 		for ($i = 0; $i < count($attach['name']); $i++) {
 			if ($attach['error'][$i] != 4) {
-				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType());
+				$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
+				$upfname = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType(), false, $isthumbnail);
 				//Save Attachment Information
 				$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name'][$i]."','".$attach['size'][$i]."','".$upfname."','".time()."')";
 				$DB->query($query);
@@ -46,6 +49,23 @@ if ($action == 'upload') {
 	}
 	$CACHE->updateCache('logatts');
 	emDirect("attachment.php?action=attlib&logid=$logid");
+}
+
+//Bulk upload
+if ($action == 'upload_multi') {
+	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
+	if ($attach) {
+		if ($attach['error'] != 4) {
+			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
+			$upfname = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+			//Write attachment information
+			$query="INSERT INTO ".DB_PREFIX."attachment (blogid,filename,filesize,filepath,addtime) values ($logid,'".$attach['name']."','".$attach['size']."','".$upfname."','".time()."')";
+			$DB->query($query);
+			$DB->query("UPDATE ".DB_PREFIX."blog SET attnum=attnum+1 WHERE gid=$logid");
+		}
+	}
+	$CACHE->updateCache('logatts');
 }
 
 //Attachment Gallery

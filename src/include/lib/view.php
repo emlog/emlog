@@ -2,7 +2,6 @@
 /**
  * View control
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class View {

@@ -3,7 +3,6 @@
  * View author posts
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Author_Controller {
@@ -15,13 +14,12 @@ class Author_Controller {
 		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 //Navigation bar
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
@@ -37,9 +35,7 @@ if(empty($navibar)) {
 
 		$author_name = $user_cache[$author]['name'];
 		//page meta
-		$blogtitle = $author_name . ' - ' . $blogname;
-		$description = $bloginfo;
-		$site_key .= ','.$author_name;
+		$site_title = $author_name . ' - ' . $site_title;
 
 		$sqlSegment = "and author=$author order by date desc";
 		$sta_cache = $CACHE->readCache('sta');

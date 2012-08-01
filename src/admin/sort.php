@@ -2,7 +2,6 @@
 /**
  * Categories Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';

@@ -21,6 +21,7 @@
   </thead>
   <tbody>
 	<?php 
+	if($plugins):
 	$i = 0;
 	foreach($plugins as $key=>$val):
 		$plug_state = 'inactive';
@@ -47,7 +48,7 @@
 		<?php if ($val['ForEmlog'] != ''):?><? echo $lang['applicable_for_emlog']; ?><?php echo $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
 		<?php if ($val['Author'] != ''):?>
 		<? echo $lang['author'];?>: <?php if ($val['AuthorUrl'] != ''):?>
-			<a href="<?php echo $val['AuthorUrl'];?>" title="<? echo $lang['author_homepage']; ?>"><?php echo $val['Author'];?></a>
+			<a href="<?php echo $val['AuthorUrl'];?>" target="_blank"><?php echo $val['Author'];?></a>
 			<?php else:?>
 			<?php echo $val['Author'];?>
 			<?php endif;?>
@@ -56,7 +57,11 @@
 		</td>
 		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');"><? echo $lang['remove']; ?></a></td>
       </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else: ?>
+	  <tr>
+        <td class="tdcenter" colspan="5">还没有安装插件</td>
+      </tr>
+	<?php endif;?>
 	</tbody>
   </table>
 </form>

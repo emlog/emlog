@@ -2,7 +2,6 @@
 /**
  * Category management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Sort_Model {

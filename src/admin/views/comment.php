@@ -30,14 +30,14 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="19"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="350"><b><? echo $lang['content'];?></b></th>
+        <th width="369" colspan="2"><b>内容</b></th>
 		<th width="300"><b><? echo $lang['time'];?></b></th>
         <th width="250"><b><? echo $lang['comment_author'];?></b></th>
       </tr>
     </thead>
     <tbody>
 	<?php
+	if($comment):
 	foreach($comment as $key=>$value):
 	$ishide = $value['hide']=='y'?'<font color="red">['.$lang['comments_unapproved'].']</font>':'';
 	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
@@ -49,8 +49,8 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	doAction('adm_comment_display');
 	?>
      <tr>
-        <td><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?>
+        <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
+        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
 		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');"><? echo $lang['remove']; ?></a>
@@ -65,11 +65,13 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="4">还没有收到评论</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
 	<div class="list_footer">
-	<? echo $lang['with_selected_do'];?>:
+	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:commentact('del');"><? echo $lang['remove'];?></a>
 	<a href="javascript:commentact('hide');"><? echo $lang['comments_hide'];?></a>
 	<a href="javascript:commentact('pub');"><? echo $lang['comments_approve'];?></a>
@@ -79,6 +81,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </form>
 <script>
 $(document).ready(function(){
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})

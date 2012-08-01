@@ -220,7 +220,7 @@ if($i == $wgNum):
 		$title = $lang['widget_custom'].' ('.$matches[1].')';
 	}	
 	?>
-	<li class="sortableitem" id="<?php echo $widget; ?>">
+	<li class="sortableitem" id="em_<?php echo $widget; ?>">
 	<input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
 	<?php 
 	if ($flg){
@@ -243,20 +243,20 @@ $(document).ready(function(){
 	$("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 	var widgets = $(".sortableitem").map(function(){return $(this).attr("id");});
 	$.each(widgets,function(i,widget_id){
+		var widget_id = widget_id.substring(3);
 		$("#"+widget_id+" .widget-act-add").hide();
 		$("#"+widget_id+" .widget-act-del").show();
 	});
 	//show edit form
-	$("#adm_widget_list .widget-title").toggle(
-		function(){$(this).parent().next(".widget-control").show("fast")},
-		function(){$(this).parent().next(".widget-control").hide("fast")}
+	$("#adm_widget_list .widget-title").click(
+		function(){$(this).parent().next(".widget-control").slideToggle('fast');}
 	);
 	//add widget
 	$("#adm_widget_list .widget-act-add").click(function(){
 		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").html();
 		var widget_id = $(this).parent().parent().attr("id");
-		var widget_element = "<li class=\"sortableitem\" id=\""+widget_id+"\">"+title+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
+		var widget_element = "<li class=\"sortableitem\" id=\"em_"+widget_id+"\">"+title+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
 		$("#adm_widget_box ul").append(widget_element);
 		$(this).hide();
 		$(this).next(".widget-act-del").show();
@@ -264,7 +264,7 @@ $(document).ready(function(){
 	//remove widget
 	$("#adm_widget_list .widget-act-del").click(function(){
 		var widget_id = $(this).parent().parent().attr("id");
-		$("#adm_widget_box ul #" + widget_id).remove();
+		$("#adm_widget_box ul #em_" + widget_id).remove();
 		$(this).hide();
 		$(this).prev(".widget-act-add").show();
 	});

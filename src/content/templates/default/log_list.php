@@ -14,7 +14,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php editflg($value['logid'],$value['author']); ?>
 	</p>
 	<?php echo $value['log_description']; ?>
-	<p class="att"><?php blog_att($value['logid']); ?></p>
 	<p class="tag"><?php blog_tag($value['logid']); ?></p>
 	<p class="count">
 	<a href="<?php echo $value['log_url']; ?>#comments"><? echo $lang['number_of_comments']; ?> (<?php echo $value['comnum']; ?>)</a>

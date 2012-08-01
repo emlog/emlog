@@ -2,7 +2,6 @@
 /**
  * Twitters
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -10,7 +9,6 @@ require_once 'globals.php';
 $Twitter_Model = new Twitter_Model();
 
 if ($action == '') {
-    $user_cache = $CACHE->readCache('user');
     $Reply_Model = new Reply_Model();
 
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -19,10 +17,6 @@ if ($action == '') {
     $twnum = $Twitter_Model->getTwitterNum(1);
     $pageurl =  pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page=');
     $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
-
-    $conf_istwitter = Option::get('istwitter') == 'y' ? 'checked="checked"' : '';
-    $conf_reply_code = Option::get('reply_code') == 'y' ? 'checked="checked"' : '';
-    $conf_ischkreply = Option::get('ischkreply') == 'y' ? 'checked="checked"' : '';
 
     include View::getView('header');
     require_once View::getView('twitter');
@@ -81,8 +75,6 @@ if ($action == 'getreply') {
 }
 // Reply the twit
 if ($action == 'reply') {
-    $user_cache = $CACHE->readCache('user');
-
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
@@ -144,21 +136,4 @@ if ($action == 'pubreply') {
     $Reply_Model = new Reply_Model();
     $Reply_Model->pubReply($rid);
     $Twitter_Model->updateReplyNum($tid, '+1');
-}
-// Twitter settings
-if ($action == 'set') {
-    $data = array(
-        'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
-        'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
-        'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
-        'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
-    	'twnavi' => isset($_POST['twnavi']) ? addslashes($_POST['twnavi']) : '',
-    );
-
-	foreach ($data as $key => $val){
-		Option::updateOption($key, $val);
-	}
-
-	$CACHE->updateCache('options');
-    emDirect("twitter.php?active_set=true");
 }

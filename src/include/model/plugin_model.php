@@ -2,7 +2,6 @@
 /**
  * Plug-ins
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Plugin_Model {

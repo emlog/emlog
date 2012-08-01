@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
 <script src="../lang/<?php echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/js/common.js"></script>
@@ -24,24 +24,26 @@
     <td width="9" id="headerleft"></td>
     <td width="125"  class="logo" align="left"><a href="./" title="<? echo $lang['return_to_admin_center']; ?>">emlog</a></td>
     <td class="vesion" width="20"><?php echo Option::EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="<? echo $lang['blog_view_in_new_window']; ?>">
+    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏站点">
     <?php 
     	$blog_name = Option::get('blogname');
     	if (empty($blog_name)) {
-    		$blog_name = $lang['blog_view'];
+    		$blog_name = '查看站点';
     	}
-    	echo $blog_name;
+    	echo subString($blog_name, 0, 60);
     ?>
     </a></td>
     <td align=right nowrap class="headtext">
     <?php if (ROLE == 'admin'):?>
-    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> <? echo $lang['templates']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	你好，<a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?>
+	<img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" 
+	align="top" height="20" width="20" style="border:1px #FFFFFF solid;" />
+	</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php else:?>
 	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
-	<a href="./"><? echo $lang['admin_center']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="./?action=logout"><? echo $lang['logout']; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;	</td>
+	<a href="./?action=logout"><? echo $lang['logout']; ?></a>
+	</td>
     <td width="9" id="headerright" ></td>
 	</tbody>
 </table>
@@ -97,17 +99,18 @@
                 <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
 		<div id="blog_mg">
                         <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
-			<div class="sidebarsubmenu" id="menu_page"><a href="page.php"><? echo $lang['pages'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_user"><a href="user.php"><? echo $lang['users'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['backup'];?></a></div>
-		</div>
-	    </div>
-          </td>
-	</tr>
-	</tbody>
-      </table>
-      <table cellspacing=0 cellpadding=0 width="100%" border=0>
+            <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></div>
+			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
+			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
+			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></div>
+			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
+			</div>
+			</div>
+			</td>
+		  </tr>
+		</tbody>
+	</table>
+	<table cellspacing=0 cellpadding=0 width="100%" border=0>
       <tbody>
         <tr>
           <td valign=top align=left width=114>

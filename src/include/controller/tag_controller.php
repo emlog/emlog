@@ -3,7 +3,6 @@
  * Blog tags
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Tag_Controller {
@@ -14,14 +13,12 @@ class Tag_Controller {
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 //Navigation bar
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
@@ -31,9 +28,7 @@ if(empty($navibar)) {
 		$pageurl = '';
 
 		//page meta
-		$blogtitle = stripslashes($tag).' - '.$blogname;
-		$description = $bloginfo;
-		$site_key .= ','.$tag;
+		$site_title = stripslashes($tag) . ' - ' . $site_title;
 
 		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);

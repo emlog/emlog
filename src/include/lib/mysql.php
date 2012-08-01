@@ -3,7 +3,6 @@
  * Database operation class
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 /**

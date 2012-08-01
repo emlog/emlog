@@ -13,10 +13,12 @@
         </tr>
         <tr>
           <td>
-          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox"><? echo $lang['attachment_manager'];?></a><span id="asmsg">
+          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">上传和插入+</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>"></span><br />
-          <div id="FrameUpload" style="display: none;"><iframe width="720" height="160" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe></div>          
+          <div id="FrameUpload" style="display: none;">
+          	<iframe width="720" height="290" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe>
+          </div>
 		  <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
           <script>loadEditor('content');</script>
 		  </td>
@@ -26,18 +28,11 @@
 			<input name="alias" id="alias" style="width:711px;" value="<?php echo $alias; ?>" />
           </td>
         </tr> 
-        <tr nowrap="nowrap">
-          <td><b>$lang['page_url']:</b>(<? echo $lang['page_url_info']; ?>)<br />
-          <input name="url" id="url" maxlength="200" style="width:715px;" value="<?php echo $pageUrl; ?>" /><br />
-          </td>
-        </tr>
         <tr>
         <td>
           <span id="page_options">
           <label for="allow_remark"><? echo $lang['page_comments_allow']; ?></label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-          <label for="allow_tb"><? echo $lang['page_new_window']; ?></label>
-          <input type="checkbox" value="y" id="is_blank" name="is_blank" <?php echo $is_blank; ?> />
           </span>
         </td>
         </tr>

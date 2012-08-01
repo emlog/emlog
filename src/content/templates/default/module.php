@@ -159,8 +159,7 @@ function widget_search($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logserch">
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
-	<input name="keyword"  type="text" value="" style="width:120px;"/>
-	<input type="submit" id="logserch_logserch" value="<? echo $lang['do_search'];?>" />
+	<input name="keyword" class="search" type="text" />
 	</form>
 	</ul>
 	</li>
@@ -217,7 +216,30 @@ function widget_link($title){
 <?php }?>
 
 <?php
-//blog: Top Blog Flag
+//blog：导航
+function blog_navi(){
+	global $CACHE; 
+	$navi_cache = $CACHE->readCache('navi');
+	?>
+	<ul>
+	<?php 
+	foreach($navi_cache as $value):
+		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+			?>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<?php 
+			continue;
+		endif;
+		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
+		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
+		$current_tab = (BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url']) ? 'current' : 'common';
+		?>
+		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+<?php }?>
+<?php
 function topflg($istop){
 	global $lang;
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"{$lang['post_recommend']}\" /> " : '';
@@ -246,23 +268,7 @@ function blog_sort($blogid){
 <?php }?>
 
 <?php
-//blog: Attachments
-function blog_att($blogid){
-	global $lang;
-	global $CACHE;
-	$log_cache_atts = $CACHE->readCache('logatts');
-	$att = '';
-	if(!empty($log_cache_atts[$blogid])){
-		$att .= $lang['attachments']. ': ';
-		foreach($log_cache_atts[$blogid] as $val){
-			$att .= '<br /><a href="'.BLOG_URL.$val['url'].'" target="_blank">'.$val['filename'].'</a> '.$val['size'];
-		}
-	}
-	echo $att;
-}
-?>
 
-<?php
 //blog: Blog Tags
 function blog_tag($blogid){
 	global $lang;

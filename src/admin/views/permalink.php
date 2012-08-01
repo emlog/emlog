@@ -9,7 +9,7 @@
 <?php if(isset($_GET['error'])):?><span class="error"><? echo $lang['error_htaccess']; ?></span><?php endif;?>
 </div>
 <div style="margin-left:10px;">
-<div class="des"><? echo $lang['permalink_info']; ?>
+<div class="des" style="margin-left:10px;"><? echo $lang['permalink_info']; ?>
 </div>
 <form action="permalink.php?action=update" method="post">
 <div style="margin:10px 10px;">

@@ -2,7 +2,6 @@
 /**
  * Load Background Global items
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once '../init.php';
@@ -11,6 +10,7 @@ define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//Background current templat
 
 //Read the Cache
 $sta_cache = $CACHE->readCache('sta');
+$user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 //Login authentication

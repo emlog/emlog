@@ -13,43 +13,56 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="40"></th>
+        <th width="60"></th>
         <th width="100"><b><? echo $lang['author'];?></b></th>
-        <th width="260"><b><? echo $lang['personal_description'];?></b></th>
-        <th width="80"><b><? echo $lang['email'];?></b></th>
+        <th width="340"><b><? echo $lang['personal_description'];?></b></th>
+        <th width="270"><b><? echo $lang['email'];?></b></th>
 		<th width="30" class="tdcenter"><b><? echo $lang['posts'];?></b></th>
-		<th width="130"></th>
       </tr>
     </thead>
     <tbody>
 	<?php
-	$user_cache = $CACHE->readCache('user');
+	if($users):
 	foreach($users as $key => $val):
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
-		<td><a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a></td>
+		<td>
+		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
+		<br /><?php echo $val['role'] == 'admin' ? '管理员' : '作者'; ?>
+		<span style="display:none; margin-left:8px;">
+		<?php if (UID != $val['uid']): ?>
+		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a>
+		<?php else:?>
+		<a href="blogger.php">编辑</a>
+		<?php endif;?>
+		</span>
+		</td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
 		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
-		<td><a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');"><? echo $lang['remove'];?></a></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="6">还没有添加作者</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
 </form>
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><? echo $lang['user_add_info'];?> &raquo;</a></div>
 <div id="user_new">
-	<li><? echo $lang['user_name'];?></li>
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" /></li>
-	<li><? echo $lang['password'];?></li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" /></li>
-	<li><? echo $lang['password_repeat'];?></li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /></li>
-	<li><br></li>
-	<li><input type="submit" name="" value="<? echo $lang['user_add'];?>"  /></li>
+	<li><input name="login" type="text" id="login" value="" style="width:180px;" /> 用户名</li>
+	<li><input name="password" type="password" id="password" value="" style="width:180px;" /> 密码 (大于6位)</li>
+	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /> 重复密码</li>
+	<li>
+	<select name="role">
+		<option value="writer">作者</option>
+		<option value="admin">管理员</option>
+	</select>
+	</li>
+	<li><input type="submit" name="" value="添加用户"  /></li>
 </div>
 </div>
 </form>
@@ -58,8 +71,8 @@ $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') 
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
 });
 setTimeout(hideActived,2600);
 $("#menu_user").addClass('sidebarsubmenu1');

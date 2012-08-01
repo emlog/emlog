@@ -5,7 +5,7 @@
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
         <div class="right">
         <form method="post" action="twitter.php?action=post">
-        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a> (<? echo $lang['with']; ?> <span class=care2><b><?php echo $sta_log;?></b></span><? echo $lang['posted_blogs']; ?>, <span class=care2><b><?php echo $sta_tw;?></b></span> <? echo $lang['twitter_number']; ?>)</div>
+        <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
         <div class="box_1"><textarea class="box2" name="t"><? echo $lang['write_something']; ?></textarea></div>
         <div class="tbutton" style="display:none;"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
         </form>
@@ -16,8 +16,9 @@
 <div class="clear"></div>
 <?php if (ROLE == 'admin'):?>
 <div id="admindex_servinfo">
-<h3><? echo $lang['server_info'];?></h3>
+<h3>站点信息</h3>
 <ul>
+	<li>有<b><?php echo $sta_cache['lognum'];?></b>篇日志，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条碎语</li>
 	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
 	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
 	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>

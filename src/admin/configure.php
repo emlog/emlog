@@ -2,7 +2,6 @@
 /**
  * Blog settings
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -13,12 +12,17 @@ if ($action == '') {
 
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
 	$conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
+	$conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
 	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
 	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
+	$conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
 	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
 	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
+    $conf_istwitter = $istwitter == 'y' ? 'checked="checked"' : '';
+    $conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
+    $conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
@@ -37,7 +41,7 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-//update config
+
 if ($action == 'mod_config') {
 	$getData = array(
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
@@ -50,16 +54,25 @@ if ($action == 'mod_config') {
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
+	'iscomment' => isset($_POST['iscomment']) ? addslashes($_POST['iscomment']) : 'n',
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
 	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
 	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
+	'isthumbnail' => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
 	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
 	'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
 	'isgravatar' => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',
 	'comment_paging' => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
 	'comment_pnum' => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
 	'comment_order' => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
+    'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
+    'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
+    'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
+    'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
+	'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
+	'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
+	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){

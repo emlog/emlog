@@ -3,7 +3,6 @@
  * Blog categories
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Sort_Controller {
@@ -15,16 +14,15 @@ class Sort_Controller {
 		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 //Navigation bar
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
 
-        $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
+		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 
 		$sortid = '';
 		if (!empty($params[2])) {
@@ -33,11 +31,11 @@ if(empty($navibar)) {
 			} else {
 				$sort_cache = $CACHE->readCache('sort');
 				foreach ($sort_cache as $key => $value) {
-	        		$alias = addslashes(urldecode(trim($params[2])));
-	        		if (array_search($alias, $value, true)){
-	        			$sortid = $key;
-	        			break;
-	        		}
+					$alias = addslashes(urldecode(trim($params[2])));
+					if (array_search($alias, $value, true)){
+						$sortid = $key;
+						break;
+					}
 				}
 			}
 		}
@@ -50,10 +48,8 @@ if(empty($navibar)) {
 			emMsg('404', BLOG_URL);
 		}
 		$sortName = $sort_cache[$sortid]['sortname'];
-        //page meta
-		$blogtitle = $sortName.' - '.$blogname;
-        $description = $bloginfo;
-        $site_key .= ','.$sortName;
+		//page meta
+		$site_title = $sortName . ' - ' . $site_title;
 
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);

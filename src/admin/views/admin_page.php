@@ -10,14 +10,14 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-      	<th width="21"><input onclick="CheckAll(this.form)" type="checkbox" value="on" name="chkall" /></th>
-        <th width="460"><b><? echo $lang['title'];?></b></th>
-        <th width="30" class="tdcenter"><b><? echo $lang['comments'];?></b></th>
+        <th width="461" colspan="2"><b>标题</b></th>
+        <th width="50" class="tdcenter"><b>评论</b></th>
         <th width="280"><b><? echo $lang['time'];?></b></th>
       </tr>
     </thead>
     <tbody>
 	<?php
+	if($pages):
 	foreach($pages as $key => $value):
 	if (empty($navibar[$value['gid']]['url']))
 	{
@@ -28,21 +28,25 @@
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.$lang['page_new_window'].'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
-     	<td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-        <td>
+     	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+        <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
-        <?php echo $value['attnum']; ?>
-        <?php echo $isHide; ?>
+   		<?php echo $isHide; ?>    
+		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
-	<?php endforeach; ?>
+	<?php endforeach;else:?>
+	  <tr><td class="tdcenter" colspan="4">还没有页面</td></tr>
+	<?php endif;?>
 	</tbody>
   </table>
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
-<div class="list_footer"><? echo $lang['with_selected_do'];?>:
+<div class="list_footer">
+<a href="javascript:void(0);" id="select_all">全选</a>
+<? echo $lang['with_selected_do'];?>:
 <a href="javascript:pageact('del');"><? echo $lang['remove'];?></a> 
 <a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
@@ -54,7 +58,8 @@ $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")});
+	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function pageact(act){

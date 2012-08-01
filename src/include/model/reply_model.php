@@ -2,7 +2,6 @@
 /**
  * Reply management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Reply_Model {

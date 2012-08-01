@@ -2,7 +2,6 @@
 /**
  * User Management
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class User_Model {
@@ -14,9 +13,9 @@ class User_Model {
 		$this->db = MySql::getInstance();
 	}
 
-	function getUsers($role = 'writer')
+	function getUsers()
 	{
-		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user where role='writer'");
+		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user");
 		$users = array();
 		while($row = $this->db->fetch_array($res))
 		{
@@ -40,7 +39,8 @@ class User_Model {
 			'nickname' => htmlspecialchars($row['nickname']),
 			'email' => htmlspecialchars($row['email']),
 			'photo' => htmlspecialchars($row['photo']),
-			'description' => htmlspecialchars($row['description'])
+			'description' => htmlspecialchars($row['description']),
+			'role' => $row['role'],
 			);
 		}
 		return $userData;

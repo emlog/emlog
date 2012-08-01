@@ -3,7 +3,6 @@
  * Blog search
  *
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 class Search_Controller {
@@ -14,16 +13,13 @@ class Search_Controller {
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
-		$options_cache = $CACHE->readCache('options');
+		$options_cache = Option::getAll();
 		extract($options_cache);
 //Navigation bar
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$navibar = unserialize($navibar);
 		$curpage = CURPAGE_HOME;
-		$blogtitle = $blogname;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';

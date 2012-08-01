@@ -2,7 +2,6 @@
 /**
  * Save the post (add, modify)
  * @copyright (c) Emlog All Rights Reserved
- * $Id$
  */
 
 require_once 'globals.php';
@@ -22,9 +21,9 @@ $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 $pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-$top = !empty($_POST['top']) ? 'y' : 'n';
-$allow_remark = !empty($_POST['allow_remark']) ? 'y' : 'n';
-$allow_tb = !empty($_POST['allow_tb']) ? 'y' : 'n';
+$top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
+$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+$allow_tb = isset($_POST['allow_tb']) ? addslashes(trim($_POST['allow_tb'])) : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 

@@ -1,10 +1,3 @@
-function CheckAll(form) {
-	for (var i=0;i<form.elements.length;i++) {
-		var e = form.elements[i];
-		if (e.name != 'chkall')
-		e.checked = form.chkall.checked;
-	}
-}
 function getChecked(node) {
 	var re = false;
 	$('input.'+node).each(function(i){
@@ -28,6 +21,9 @@ function em_confirm (id, property) {
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
 			var msg = l_sure_delete_link;break;
+		case 'navi':
+			var urlreturn="navbar.php?action=del&id="+id;
+			var msg = "你确定要删除该导航吗？";break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
 			var msg = l_sure_import;break;
@@ -114,11 +110,18 @@ function checkalias(){
 		$("#msg").html('');
 	}
 }
-function addattach(imgurl,imgsrc,aid){
+function addattach_img(fileurl,imgsrc,aid){
+	if (KE.g['content'].wyswygMode == false){
+		alert('请先切换到所见所得模式');
+	}else if(imgsrc != "") {
+		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+	}
+}
+function addattach_file(fileurl,filename,aid){
 	if (KE.g['content'].wyswygMode == false){
 		alert(l_wysiwyg_first);
-	}else {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+imgurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+l_show_orig_img+'\" border=\"0\"></a>');
+	} else {
+		KE.insertHtml('content', '<a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a>');
 	}
 }
 function insertTag (tag, boxId){
@@ -143,8 +146,8 @@ function autosave(act){
 		var logid = $("#as_logid").val();
 		var content = KE.html('content');
 		var pageurl = $.trim($("#url").val());
-		var allow_remark = $.trim($("table input[name=allow_remark][checked]").val());
-		var is_blank = $.trim($("table input[name=is_blank][checked]").val());
+		var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
+		var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
 		var ishide = $.trim($("#ishide").val());
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
@@ -167,9 +170,9 @@ function autosave(act){
 		var content = KE.html('content');
 		var excerpt = KE.html('excerpt');
 		var tag = $.trim($("#tag").val());
-		var top = $.trim($("#post_options input[name=top][checked]").val());
-		var allow_remark = $.trim($("#post_options input[name=allow_remark][checked]").val());
-		var allow_tb = $.trim($("#post_options input[name=allow_tb][checked]").val());
+		var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
+		var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
+		var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
 		var password = $.trim($("#password").val());
 		var ishide = $.trim($("#ishide").val());
 		var ishide = ishide == "" ? "y" : ishide;
@@ -228,11 +231,11 @@ function autosave(act){
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
 		$("#msg_2").html("<span class=\"ajax_remind_1\">"+l_saved_at+hours+":"+mins+":"+secs+"</span>");
-    		$("#savedf").attr("disabled", "");
+    		$("#savedf").attr("disabled", false);
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
-		    $("#savedf").attr("disabled", "");
+		    $("#savedf").attr("disabled", false);
 		    $("#savedf").val(btname);
 		    $("#msg").html("<span class=\"msg_autosave_error\">"+l_network_error+"</span>");
 	    }

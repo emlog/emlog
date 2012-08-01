@@ -11,7 +11,7 @@
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
         <td width="18%" align="right"><? echo $lang['blog_name'];?>:</td>
-        <td width="82%"><input maxlength="200" size="35" value="<?php echo $blogname; ?>" name="blogname" /></td>
+        <td width="82%"><input maxlength="200" style="width:180px;" value="<?php echo $blogname; ?>" name="blogname" /></td>
       </tr>
       <tr>
         <td align="right" valign="top"><? echo $lang['blog_description'];?>:</td>
@@ -19,16 +19,11 @@
       </tr>
       <tr>
         <td align="right"><? echo $lang['blog_url'];?>:</td>
-        <td class="care"><input maxlength="200" size="35" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
+        <td class="care"><input maxlength="200" style="width:300px;" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
         <td align="right"><? echo $lang['blog_keywords'];?>:</td>
-        <td><input maxlength="200" size="35" value="<?php echo $site_key; ?>" name="site_key" />
-        <? echo $lang['separate_keywords'];?></td>
-      </tr>
-      <tr>
-        <td align="right"><? echo $lang['registration_number'];?>:</td>
-        <td><input maxlength="5" size="8" value="<?php echo $index_lognum; ?>" name="index_lognum" /></td>
+        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" />条日志</td>
       </tr>
 	  <tr>
         <td valign="top" align="right"><? echo $lang['server_tz'];?>:<br /></td>
@@ -77,20 +72,44 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right"><? echo $lang['comments_require_approving'];?>:<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /></td>
-      </tr>
-	  <tr>
-        <td align="right"><? echo $lang['trackback_settings_enable'];?>:<br /></td>
-		<td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /></td>
+        <td align="right" width="18%" valign="top">功能开关：<br /></td>
+        <td width="82%">
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> />登录验证码<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />图片附件缩略图<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作<br />
+      	<input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> />引用通告
+      	</td>
+      <tr>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
+        <td align="right">站点浏览器标题：</td>
+        <td><input maxlength="200" style="width:180px;" value="<?php echo $site_title; ?>" name="site_title" /></td>
       </tr>
       <tr>
-        <td align="right"><? echo $lang['gzip_enable'];?>:<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /></td>
+        <td align="right"><? echo $lang['trackback_settings_enable'];?>:<br /></td>
+        <td><input maxlength="200" style="width:300px;" value="<?php echo $site_key; ?>" name="site_key" /></td>
       </tr>
-	  <tr>
-        <td align="right"><? echo $lang['enable_offline_writing']; ?>:<br /></td>
-        <td class="care"><input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /></td>
+      <tr>
+        <td align="right" width="18%" valign="top"><? echo $lang['gzip_enable'];?>:<br /></td>
+        <td width="82%">
+		<textarea name="site_description" cols="" rows="2" style="width:300px;"><?php echo $site_description; ?></textarea>
+		</td>
+      </tr>
+  </table>
+  <div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
+        <td align="right" width="18%" valign="top"><? echo $lang['enable_offline_writing']; ?>:<br /></td>
+        <td width="82%">
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语
+
+		</td>
       </tr>
   </table>
   <div class="setting_line"></div>
@@ -110,11 +129,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['comments']; ?>:<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><? echo $lang['approved']; ?><br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_iscomment; ?> /><? echo $lang['approved']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><? echo $lang['verification_code']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><? echo $lang['author_avatar']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
-		<? echo $lang['comments_number_per_page']; ?>: <input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />,
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />评论分页，
 		<? echo $lang['show_first']; ?>:
 		<select name="comment_order">
 			<option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option>
@@ -127,7 +146,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
         <td align="right"><? echo $lang['registration_number']; ?>:</td>
-        <td><input maxlength="200" size="35" value="<?php echo $icp; ?>" name="icp" /></td>
+        <td><input maxlength="200" style="width:180px;" value="<?php echo $icp; ?>" name="icp" /></td>
       </tr>
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['footer_info'];?>:<br /></td>

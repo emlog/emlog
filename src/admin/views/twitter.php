@@ -14,19 +14,6 @@
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/></div>
     </form>
-    <?php if (ROLE == 'admin'):?>
-    <div class="op"><a href="javascript:displayToggle('sz_box', 2);"><? echo $lang['settings']; ?></a></div>
-    <form method="post" action="twitter.php?action=set">
-        <div class="sz_box" id="sz_box">
-            <span><? echo $lang['twitter_show_front']; ?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /></span>
-            <span><? echo $lang['twitter_captcha']; ?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /></span>
-            <span><? echo $lang['twitter_premoderate']; ?>:<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /></span>
-           	<span><? echo $lang['twitters_per_page']; ?>:<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" /></span>
-           	<span><? echo $lang['twitter_use_name']; ?>:<input type="text" name="twnavi" value="<?php echo Option::get('twnavi'); ?>" style="width:66px;" /></span>
-            <input class="tbutton" type="submit" value="<? echo $lang['save']; ?>" />
-        </div>
-    </form>
-    <?php endif;?>
     </div>
     <div class="clear"></div>
     <ul>
@@ -57,7 +44,38 @@
 	 <li class="page"><?php echo $pageurl;?> (<? echo $lang['with']; ?><?php echo $twnum; ?> <? echo $lang['twitter_number']; ?>)</li>
     </ul>
 </div>
+<div id="tw_line">
+<h3>最新碎语</h3>
+<ul class="tw_scroll"></ul>
+<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
+</div>
 <script>
+(function($){
+	$.fn.extend({
+		Scroll:function(opt,callback){
+			if(!opt) var opt={};
+			var _this=this.eq(0).find("ul:first");
+			var speed=opt.speed?parseInt(opt.speed,10):500,
+			timer=opt.timer?parseInt(opt.timer,10):3000;
+
+			scrollUp=function(){
+				var thisLi= _this.find("li:first");
+				var thisheight =thisLi.height();
+				thisLi.animate({opacity: 1,height:0}, speed,function(){
+				thisLi.appendTo(_this).css("opacity","1").height(thisheight);
+				});
+			}
+			 _this.hover(function(){
+				clearInterval(timerID);
+			},function(){
+				timerID=setInterval("scrollUp()",timer);
+			});
+				timerID=setInterval("scrollUp()",timer);
+		}        
+	})
+})(jQuery);
+$("#tw_line").Scroll({speed:1000,timer:8000});
+
 $(document).ready(function(){
     $(".post a").toggle(
       function () {
@@ -85,6 +103,17 @@ $(document).ready(function(){
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
     $(".box").focus();
+
+	//twitter line
+    $("#tw_line ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+	$.getJSON('http://emer.sinaapp.com/api/tw?callback=?',function(data){
+		var tw = '';
+		$.each(data,function(i,n){
+			tw+='<li><a target="_blank" href="'+n.blogurl+'"><img src="http://www.gravatar.com/avatar/'+n.emer_avatar+'?s=32" align="absmiddle" /> <span>'+n.blogname+'</span></a><div>'+n.content+'</div><span class="tw_date">'+n.date+'</span></li>'
+		});
+		$("#tw_line ul").html("");
+		$('#tw_line ul').html(tw);
+	});
 });
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
