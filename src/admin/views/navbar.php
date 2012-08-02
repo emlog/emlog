@@ -1,25 +1,25 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class=containertitle><b>导航管理</b>
-<?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除导航成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改导航成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="actived">添加导航成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">导航名称和地址不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的导航</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="error">请选择要添加的分类</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="error">请选择要添加的页面</span><?php endif;?>
+<div class=containertitle><b><? echo $lang['nav_manage']; ?></b>
+<?php if(isset($_GET['active_taxis'])):?><span class="actived"><? echo $lang['categories_ordered_ok']'; ?></span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['nav_del_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['nav_edit_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived"><? echo $lang['nav_add_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['nav_empty']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['nav_no_category']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['nav_not_del']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['category_select']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['page_select']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
   <table width="100%" id="adm_navi_list" class="item_list">
     <thead>
       <tr>
-	  	<th width="50"><b>序号</b></th>
-        <th width="230"><b>导航</b></th>
-        <th width="80" class="tdcenter"><b>状态</b></th>
-		<th width="80" class="tdcenter"><b>查看</b></th>
-		<th width="400"><b>跳转地址</b></th>
+	  	<th width="50"><b><? echo $lang['order']; ?></b></th>
+        <th width="230"><b><? echo $lang['navbar']; ?></b></th>
+        <th width="80" class="tdcenter"><b><? echo $lang['status']; ?></b></th>
+		<th width="80" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
+		<th width="400"><b><? echo $lang['url_redirect']; ?></b></th>
         <th width="100"></th>
       </tr>
     </thead>
@@ -31,12 +31,12 @@
 	?>  
       <tr>
 		<td><input class="num_input" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
-		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="修改导航"><?php echo $value['naviname']; ?></a></td>
+		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="<? echo $lang['nav_edit']; ?>"><?php echo $value['naviname']; ?></a></td>
 		<td class="tdcenter">
 		<?php if ($value['hide'] == 'n'): ?>
-		<a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" title="点击隐藏导航">显示</a>
+		<a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" title="<? echo $lang['nav_hide']; ?>"><? echo $lang['visible']; ?></a>
 		<?php else: ?>
-		<a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" title="点击显示导航" style="color:red;">隐藏</a>
+		<a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" title="<? echo $lang['nav_show']; ?>" style="color:red;"><? echo $lang['hide']; ?></a>
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
@@ -46,33 +46,33 @@
         <td><?php echo $value['url']; ?></td>
         <td>
         <?php if($value['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');">删除</a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');"><? echo $lang['remove']; ?></a>
         <?php endif;?>
         </td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有添加导航</td></tr>
+	  <tr><td class="tdcenter" colspan="4"><? echo $lang['nav_no_yet']; ?></td></tr>
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order']; ?>" class="submit" /></div>
 </form>
 <div id="navi_add">
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
 <div>
-	<h1 onclick="displayToggle('navi_add_custom', 2);">添加自定义导航+</h1>
+	<h1 onclick="displayToggle('navi_add_custom', 2);"><? echo $lang['nav_add_custom']; ?>+</h1>
 	<ul id="navi_add_custom">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:100px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:186px;" name="url" /> 导航地址</li>
-    <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-	<li><input type="submit" name="" value="添加"  /></li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
+	<li><input maxlength="200" style="width:100px;" name="naviname" /><? echo $lang['nav_name']; ?></li>
+	<li><input maxlength="200" style="width:186px;" name="url" /><? echo $lang['nav_url']; ?></li>
+    <li><? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	</ul>
 </div>
 </form>
 <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
 <div>
-	<h1 onclick="displayToggle('navi_add_sort', 2);">添加分类到导航+</h1>
+	<h1 onclick="displayToggle('navi_add_sort', 2);"><? echo $lang['nav_add_category']; ?>+</h1>
 	<ul id="navi_add_sort">
 	<?php 
 	if($sorts):
@@ -83,16 +83,16 @@
 		<?php echo $value['sortname']; ?>
 	</li>
 	<?php endforeach;?>
-	<li><input type="submit" name="" value="添加"  /></li>
+	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li>还没有分类</li>
+	<li><? echo $lang['category_no_yet']; ?></li>
 	<?php endif;?> 
 	</ul>
 </div>
 </form>
 <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
 <div>
-	<h1 onclick="displayToggle('navi_add_page', 2);">添加页面到导航+</h1>
+	<h1 onclick="displayToggle('navi_add_page', 2);"><? echo $lang['nav_page_add']; ?>+</h1>
 	<ul id="navi_add_page">
 	<?php 
 	if($pages):
@@ -103,9 +103,9 @@
 		<?php echo $value['title']; ?>
 	</li>
 	<?php endforeach;?>
-	<li><input type="submit" name="" value="添加"  /></li>
+	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li>还没页面</li>
+	<li><? echo $lang['no_pages_yet']; ?></li>
 	<?php endif;?> 
 	</ul>
 </div>

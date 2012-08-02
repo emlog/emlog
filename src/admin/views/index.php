@@ -16,9 +16,9 @@
 <div class="clear"></div>
 <?php if (ROLE == 'admin'):?>
 <div id="admindex_servinfo">
-<h3>站点信息</h3>
+<h3><? echo $lang['site_info']; ?></h3>
 <ul>
-	<li>有<b><?php echo $sta_cache['lognum'];?></b>篇日志，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条碎语</li>
+	<li><? echo $lang['with']; ?> <b><?php echo $sta_cache['lognum'];?></b><? echo $lang['posted_blogs']; ?>, <b><?php echo $sta_cache['comnum_all'];?></b><? echo $lang['_comments']; ?>, <b><?php echo $sta_cache['twnum'];?></b><? echo $lang['twitter_number']; ?></li>
 	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
 	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
 	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>

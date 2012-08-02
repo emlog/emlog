@@ -22,10 +22,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class="filters">
 <div id="f_title">
 	<div style="float:left; margin-top:8px;">
-		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
-		<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
-		<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
-		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
+		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>"><? echo $lang['all']; ?></a></span>
+		<span id="f_t_sort"><a href="javascript:void(0);"><? echo $lang['categories']; ?></a></span>
+		<span id="f_t_tag"><a href="javascript:void(0);"><? echo $lang['tags']; ?></a></span>
+		<span id="f_t_user"><a href="javascript:void(0);"><? echo $lang['users']; ?></a></span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
@@ -80,7 +80,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
   <table width="100%" id="adm_log_list" class="item_list">
   <thead>
       <tr>
-        <th width="511" colspan="2"><b>标题</b></th>
+        <th width="511" colspan="2"><b><? echo $lang['title']; ?></b></th>
 		<?php if ($pid != 'draft'): ?>
 		<th width="40" class="tdcenter"><b><? echo $lang['view'];?></b></th>
 		<?php endif; ?>
@@ -101,8 +101,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <tr>
       <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
-	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="<? echo $lang['recommend']; ?>" /><?php endif; ?>
+	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td class="tdcenter">
@@ -117,14 +117,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="8">还没有日志</td></tr>
+	  <tr><td class="tdcenter" colspan="8"><? echo $lang['no_posts_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
 	</table>
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
-	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-    <a href="javascript:logact('del');">删除</a> | 
+	<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
+    <a href="javascript:logact('del');"><? echo $lang['remove']; ?></a> | 
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');"><? echo $lang['publish'];?></a>
 	<?php else: ?>

@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <td>
-          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox">上传和插入+</a><span id="asmsg">
+          <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox"><? echo $lang['upload_insert']; ?>+</a><span id="asmsg">
           <?php doAction('adm_writelog_head'); ?>
           <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>"></span><br />
           <div id="FrameUpload" style="display: none;">

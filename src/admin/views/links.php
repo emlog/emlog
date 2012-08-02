@@ -14,9 +14,9 @@
       <tr>
 	  	<th width="50"><b><? echo $lang['order'];?></b></th>
         <th width="230"><b><? echo $lang['link'];?></b></th>
-        <th width="80" class="tdcenter"><b>状态</b></th>
-		<th width="80" class="tdcenter"><b>查看</b></th>
-		<th width="400"><b>描述</b></th>
+        <th width="80" class="tdcenter"><b><? echo $lang['status']; ?></b></th>
+		<th width="80" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
+		<th width="400"><b><? echo $lang['link_description']; ?></b></th>
         <th width="100"></th>
       </tr>
     </thead>
@@ -31,20 +31,20 @@
 		<td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="<? echo $lang['link_edit']; ?>"><?php echo $value['sitename']; ?></a></td>
 		<td class="tdcenter">
 		<?php if ($value['hide'] == 'n'): ?>
-		<a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
+		<a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="<? echo $lang['click_to_hide_link']; ?>"><? echo $lang['visible']; ?></a>
 		<?php else: ?>
-		<a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
+		<a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="<? echo $lang['click_to_show_link']; ?>" style="color:red;"><? echo $lang['hidden']; ?></a>
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
-	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
+	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank" title="<? echo $lang['link_follow']; ?>">
 	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['description']; ?></td>
         <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');"><? echo $lang['remove'];?></a></td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="6">还没有添加链接</td></tr>
+	  <tr><td class="tdcenter" colspan="6"><? echo $lang['no_links_yet']; ?></td></tr>
 	<?php endif;?>
     </tbody>
   </table>

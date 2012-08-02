@@ -22,16 +22,15 @@
         <td class="care"><input maxlength="200" style="width:300px;" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
-        <td align="right"><? echo $lang['blog_keywords'];?>:</td>
-        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" />条日志</td>
+        <td align="right"><? echo $lang['show_perpage']; ?>:</td>
+        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" /><? echo $lang['keyword_perpage_max']; ?></td>
       </tr>
 	  <tr>
         <td valign="top" align="right"><? echo $lang['server_tz'];?>:<br /></td>
         <td>
 		<select name="timezone">
 <?php
-		$tzlist = array(
-			'-12'=> $lang['tz-12:00'],
+		$tzlist = array('-12'=> $lang['tz-12:00'],
 			'-11'=> $lang['tz-11:00'],
 			'-10'=> $lang['tz-10:00'],
 			'-9'=>  $lang['tz-09:00'],
@@ -72,20 +71,20 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         </td>
       </tr>
       <tr>
-        <td align="right" width="18%" valign="top">功能开关：<br /></td>
+        <td align="right" width="18%" valign="top"><? echo $lang['function_switch']; ?>:<br /></td>
         <td width="82%">
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> />登录验证码<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />图片附件缩略图<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作<br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> />引用通告
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /><? echo $lang['login_captcha']; ?><br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><? echo $lang['attachment_thumb']; ?><br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><? echo $lang['gzip_compression']; ?><br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><? echo $lang['offline_writing']; ?><br />
+      	<input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /><? echo $lang['trackbacks_use']; ?>
       	</td>
       <tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right">站点浏览器标题：</td>
+        <td align="right"><? echo $lang['site_title']; ?>:</td>
         <td><input maxlength="200" style="width:180px;" value="<?php echo $site_title; ?>" name="site_title" /></td>
       </tr>
       <tr>
@@ -104,10 +103,10 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['enable_offline_writing']; ?>:<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /><? echo $lang['twitter_enable']; ?><br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><? echo $lang['reply_captcha_ebable']; ?><br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><? echo $lang['reply_premoderate']; ?><br />
+		<? echo $lang['twitters_per_page']; ?>: <input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />
 
 		</td>
       </tr>
@@ -129,16 +128,13 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['comments']; ?>:<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_iscomment; ?> /><? echo $lang['approved']; ?><br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><? echo $lang['comments_enable']; ?><br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><? echo $lang['approved']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><? echo $lang['verification_code']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><? echo $lang['author_avatar']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />评论分页，
-		<? echo $lang['show_first']; ?>:
-		<select name="comment_order">
-			<option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option>
-			<option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option>
-		</select><br />
+		<? echo $lang['show_perpage']; ?>: <input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><? echo $lang['_comments']; ?>,
+		<? echo $lang['show_first']; ?>: <select name="comment_order"><option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option><option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option></select><br />
 		</td>
       </tr>
   </table>

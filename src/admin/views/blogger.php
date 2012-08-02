@@ -17,9 +17,9 @@
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
 <div>
 	<li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
-	<li>头像 (120X120 的jpg或png图片)</li>
+	<li><? echo $lang['photo_info']; ?></li>
 	<li><input name="photo" type="file" style="width:245px;" /></li>
-	<li>昵称</li>
+	<li><? echo $lang['nickname']; ?></li>
 	<li><input maxlength="50" style="width:210px;" value="<?php echo $nickname; ?>" name="name" /></li>
 	<li><? echo $lang['email'];?></li>
 	<li><input name="email" value="<?php echo $email; ?>" style="width:210px;" maxlength="200" /></li>

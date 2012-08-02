@@ -216,8 +216,9 @@ function widget_link($title){
 <?php }?>
 
 <?php
-//blog：导航
+//blog:navigation
 function blog_navi(){
+	global $lang;
 	global $CACHE; 
 	$navi_cache = $CACHE->readCache('navi');
 	?>
@@ -226,8 +227,8 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
 			<?php 
 			continue;
 		endif;
@@ -240,6 +241,7 @@ function blog_navi(){
 	</ul>
 <?php }?>
 <?php
+//blog:top
 function topflg($istop){
 	global $lang;
 	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"{$lang['post_recommend']}\" /> " : '';
@@ -259,6 +261,7 @@ function editflg($logid,$author){
 <?php
 //blog: Categories
 function blog_sort($blogid){
+	global $lang;
 	global $CACHE; 
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>

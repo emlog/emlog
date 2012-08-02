@@ -17,7 +17,7 @@ foreach($tags as $key=>$value): ?>
 </li>
 <li style="margin:20px 0px"><input type="submit" value="<? echo $lang['tags_delete_selected'];?>" class="submit" /></li>
 <?php else:?>
-<li style="margin:20px 30px">还没有标签，写日志的时候可以给日志打标签</li>
+<li style="margin:20px 30px"><? echo $lang['no_tags_yet']; ?></li>
 <?php endif;?>
 </div>
 </form>

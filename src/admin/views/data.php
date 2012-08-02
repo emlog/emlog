@@ -11,7 +11,7 @@
 <table width="100%" id="adm_bakdata_list" class="item_list">
   <thead>
     <tr>
-      <th width="683" colspan="2"><b>备份文件</b></th>
+      <th width="683" colspan="2"><b><? echo $lang['backup_file']; ?></b></th>
       <th width="226"><b><? echo $lang['backup_time'];?></b></th>
       <th width="149"><b><? echo $lang['backup_size'];?></b></th>
       <th width="87"></th>
@@ -33,12 +33,12 @@
       <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');"><? echo $lang['backup_import'];?></a></td>
     </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
+	  <tr><td class="tdcenter" colspan="5"><? echo $lang['no_backups_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
 </table>
 <div class="list_footer">
-<a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:bakact('del');">删除</a></div>
+<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>: <a href="javascript:bakact('del');"><? echo $lang['remove']; ?></a></div>
 </form>
 <div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);"><? echo $lang['backup_info'];?>+</a> <a href="javascript:$('#backup').hide();displayToggle('import', 0);"><? echo $lang['backup_local_file']; ?>+</a></div>
 <form action="data.php?action=bakstart" method="post">

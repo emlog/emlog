@@ -240,7 +240,7 @@ class Comment_Model {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
-        global $lang;
+		global $lang;
 		$ipaddr = getIp();
 		$utctimestamp = time();
 		if($pid != 0) {

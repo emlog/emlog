@@ -14,7 +14,7 @@ if ($action == '') {
 	if ($photo && file_exists($photo)){
 		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
-		<br /><a href=\"javascript: em_confirm(0, 'avatar');\">删除头像</a>";
+		<br /><a href=\"javascript: em_confirm(0, 'avatar');\">{$lang['photo_delete']}</a>";
 	}
 	include View::getView('header');
 	require_once(View::getView('blogger'));

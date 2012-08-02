@@ -20,13 +20,13 @@ function showattlib(){
 }
 </script>
 <div id="media-upload-header">
-	<span><a href="javascript:showupload(0);">上传附件</a></span>
-	<span id="curtab"><a href="javascript:showupload(1);">批量上传</a></span>
-	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
+	<span><a href="javascript:showupload(0);"><? echo $lang['attachment_upload']; ?></a></span>
+	<span id="curtab"><a href="javascript:showupload(1);"><? echo $lang['bulk_upload']; ?></a></span>
+	<span><a href="javascript:showattlib();"><? echo $lang['attachment_library']; ?> (<?php echo $attachnum; ?>)</a></span>
 </div>
 <?php 
 if(true === isIE6Or7()): ?>
-<div class="ie_notice">您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。</div>
+<div class="ie_notice"><? echo $lang['upload_bad_browser']; ?></div>
 <?php else:?>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		uploader        : 'attachment.php?action=upload_multi&logid='+parent.document.getElementById('as_logid').value,
 		cancelImage     : './views/images/cancel.png',
 		checkExisting   : false,
-		buttonText      : '选择文件',
+		buttonText      : '<? echo $lang['file_select']; ?>',
 		auto            : true,
 		multi           : true,
 		buttonCursor    : 'pointer',

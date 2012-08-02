@@ -1,6 +1,6 @@
 <?php
 /**
- * 导航
+ * Navigation
  * @copyright (c) Emlog All Rights Reserved
  */
 

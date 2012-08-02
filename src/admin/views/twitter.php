@@ -45,9 +45,9 @@
     </ul>
 </div>
 <div id="tw_line">
-<h3>最新碎语</h3>
+<h3><? echo $lang['twitters_last']; ?></h3>
 <ul class="tw_scroll"></ul>
-<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
+<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank"><? echo $lang['from_cloud']; ?></a></div>
 </div>
 <script>
 (function($){
@@ -105,7 +105,7 @@ $(document).ready(function(){
     $(".box").focus();
 
 	//twitter line
-    $("#tw_line ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+    $("#tw_line ul").html("<span class=\"ajax_remind_1\"><? echo $lang['loading']; ?>...</span>");
 	$.getJSON('http://emer.sinaapp.com/api/tw?callback=?',function(data){
 		var tw = '';
 		$.each(data,function(i,n){

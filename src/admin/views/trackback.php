@@ -17,7 +17,7 @@ setTimeout(hideActived,2600);
   <table width="100%" id="adm_tb_list" class="item_list">
   <thead>
       <tr>
-        <th width="280" colspan="2"><b>标题</b></th>
+        <th width="280" colspan="2"><b><? echo $lang['title']; ?></b></th>
         <th width="300"><b><? echo $lang['trackback_source'];?></b></th>
 		<th width="80"><b>IP</b></th>
         <th width="120"><b><? echo $lang['time'];?></b></th>
@@ -35,11 +35,11 @@ setTimeout(hideActived,2600);
         <td><?php echo $value['date']; ?></td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="5">还没有收到引用</td></tr>
+	  <tr><td class="tdcenter" colspan="5"><? echo $lang['no_trackback_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
-<div class="list_footer"><a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:tbact('del');">删除</a></div>
+<div class="list_footer"><a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>: <a href="javascript:tbact('del');"><? echo $lang['remove']; ?></a></div>
 <div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>)</div> 
 </form>
 <script>

@@ -300,7 +300,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'link');
 	}
 	/**
-	 * 导航缓存
+	 * Navigation cache
 	 */
 	private function mc_navi() {
 		$navi_cache = array();

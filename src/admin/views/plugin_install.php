@@ -19,19 +19,19 @@
 <div style="margin:50px 0px 50px 20px;">
 	<li>
 	<input name="pluzip" type="file" />
-	<input type="submit" value="<? echo $lang['upload']; ?>" class="submit" /> （上传一个zip压缩格式的插件安装包）
+	<input type="submit" value="<? echo $lang['upload']; ?>" class="submit" /> <? echo $lang['plugin_upload_zip']; ?>
 	</li>
 </div>
 </form>
 
 <div class="containertitle2">
-<span class="navi3">官方推荐</span>
+<span class="navi3"><? echo $lang['official_recommendation']; ?></span>
 </div>
 
 <div id="recommend_plugin">
-<p><a href="http://www.emlog.net/plugins" target="_blank">更多插件&raquo;</a></p>
+<p><a href="http://www.emlog.net/plugins" target="_blank"><? echo $lang['plugin_more']; ?>&raquo;</a></p>
 <div id="recommend_plugin_list" style="overflow: hidden;text-align: center;">
-<span class="ajax_remind_1">正在读取...</span>
+<span class="ajax_remind_1"><? echo $lang['loading']; ?>...</span>
 </div>
 </div>
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
 		var items = [];
 		$.each(data, function(i,item){
-			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
+			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>'+l_author+': '+item.author+'</li> </ul>');
 		});
 		$("#recommend_plugin_list").html(items.join(""));
 	});

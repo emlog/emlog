@@ -31,7 +31,7 @@ function removeattachfrom() {
 <body>
 <div id="media-upload-header">
 	<span id="curtab"><a href="javascript:showupload(0);"><? echo $lang['attachment_upload'];?></a></span>
-	<span><a href="javascript:showupload(1);">批量上传</a></span>
+	<span><a href="javascript:showupload(1);"><? echo $lang['bulk_upload']; ?></a></span>
 	<span><a href="javascript:showattlib();"><? echo $lang['attachment_library'];?> ( <?php echo $attachnum; ?> )</a></span>
 </div>
 <form enctype="multipart/form-data" method="post" name="upload" action="">

@@ -11,7 +11,7 @@ class Log_Controller {
      * Frontend  post list
 	 */
 	function display($params) {
-        global $lang;
+		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 

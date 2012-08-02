@@ -10,8 +10,8 @@
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="461" colspan="2"><b>标题</b></th>
-        <th width="50" class="tdcenter"><b>评论</b></th>
+        <th width="461" colspan="2"><b><? echo $lang['title']; ?></b></th>
+        <th width="50" class="tdcenter"><b><? echo $lang['comments']; ?></b></th>
         <th width="280"><b><? echo $lang['time'];?></b></th>
       </tr>
     </thead>
@@ -32,21 +32,21 @@
         <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		<?php echo $isHide; ?>    
-		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有页面</td></tr>
+	  <tr><td class="tdcenter" colspan="4"><? echo $lang['no_pages_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">
-<a href="javascript:void(0);" id="select_all">全选</a>
-<? echo $lang['with_selected_do'];?>:
+<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a>
+    <? echo $lang['with_selected_do'];?>:
 <a href="javascript:pageact('del');"><? echo $lang['remove'];?></a> 
 <a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>

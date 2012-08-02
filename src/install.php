@@ -367,9 +367,9 @@ CREATE TABLE {$db_prefix}navi (
   isdefault enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '首页', '', 1, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '碎语', 't', 2, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '登录', 'admin', 3, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '{$lang['home']}', '', 1, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '{$lang['twitter']}', 't', 2, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '{$lang['login']}', 'admin', 3, 'y');
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,

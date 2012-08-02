@@ -72,6 +72,7 @@ class Dispatcher {
     }
 
     public function dispatch(){
+	global $lang;
         $module = new $this->_model();
         $method = $this->_method;
         $module->$method($this->_params);

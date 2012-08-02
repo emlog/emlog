@@ -13,7 +13,7 @@
   <thead>
       <tr>
         <th width="100"></th>
-        <th width="36" class="tdcenter"><b><? echo $lang['plugin_status'];?></b></th>
+        <th width="36" class="tdcenter"><b><? echo $lang['status'];?></b></th>
 		<th width="30" class="tdcenter"><b><? echo $lang['plugin_version'];?></b></th>
 		<th width="500" class="tdcenter"><b><? echo $lang['description'];?></b></th>
 		<th width="30" class="tdcenter"></th>
@@ -59,7 +59,7 @@
       </tr>
 	<?php endforeach;else: ?>
 	  <tr>
-        <td class="tdcenter" colspan="5">还没有安装插件</td>
+        <td class="tdcenter" colspan="5"><? echo $lang['no_plugin_yet']; ?></td>
       </tr>
 	<?php endif;?>
 	</tbody>

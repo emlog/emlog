@@ -30,7 +30,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="369" colspan="2"><b>内容</b></th>
+        <th width="369" colspan="2"><b><? echo $lang['content']; ?></b></th>
 		<th width="300"><b><? echo $lang['time'];?></b></th>
         <th width="250"><b><? echo $lang['comment_author'];?></b></th>
       </tr>
@@ -66,12 +66,12 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有收到评论</td></tr>
+	  <tr><td class="tdcenter" colspan="4"><? echo $lang['comments_no_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
 	<div class="list_footer">
-	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+	<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
     <a href="javascript:commentact('del');"><? echo $lang['remove'];?></a>
 	<a href="javascript:commentact('hide');"><? echo $lang['comments_hide'];?></a>
 	<a href="javascript:commentact('pub');"><? echo $lang['comments_approve'];?></a>

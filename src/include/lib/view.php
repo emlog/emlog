@@ -15,6 +15,7 @@ class View {
 	}
 
     public static function output() {
+	global $lang;
         $content = ob_get_clean();
 	    if (Option::get('isgzipenable') == 'y' && function_exists('ob_gzhandler')){
 	        ob_start('ob_gzhandler');

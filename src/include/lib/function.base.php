@@ -97,7 +97,7 @@ function checkPlugin($plugin) {
 }
 
 /**
- * 加载jQuery
+ * Load jQuery
  */
 function emLoadJQuery() {
 	static $isJQueryLoaded = false;
@@ -360,23 +360,23 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
-			emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
+			emMsg($lang['attachment_exceed_system_limit'].ini_get('upload_max_filesize'));
 			break;
 		case '101':
-			emMsg('上传文件失败,错误码：'.$errorNum);
+			emMsg($lang['backup_sql_error'].$errorNum);
 			break;
 		case '102':
-			emMsg('错误的文件类型');
+			emMsg($lang['wrong_file_type']);
 			break;
 		case '103':
 			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
-			emMsg("文件大小超出{$ret}的限制");
+			emMsg($lang['file_size_exceeded'] . $ret);
 			break;
 		case '104':
-			emMsg('创建文件上传目录失败');
+			emMsg($lang['attachment_create_failed']);
 			break;
 		case '105':
-			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
+			emMsg($lang['uploads_not_written']);
 			break;
 		default:
 			return $result;
@@ -384,7 +384,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 	}
 }
 
-//用于附件批量上传
+//Batch upload of attachments
 function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
@@ -418,16 +418,16 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
     global $lang;
 	if ($errorNum == 1){
-		return '100';//文件大小超过系统限制
+		return '100';//File size exceeds system limit
 	}elseif ($errorNum > 1){
-		return '101';//上传文件失败
+		return '101';//Failed to upload file
 	}
 	$extension  = getFileSuffix($fileName);
 	if (!in_array($extension, $type)){
-		return '102';//错误的文件类型
+		return '102';//Wrong file type
 	}
 	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
-		return '103';//文件大小超出emlog的限制
+		return '103';//File size exceeds emlog limit
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = substr(md5($fileName),0,4)  . time() .'.'. $extension;
@@ -436,14 +436,14 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false,
 		umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false){
-			return '104';//创建文件上传目录失败
+			return '104';//Failed to create file upload directory
 		}
 	}
 	if (!is_dir($uppath)){
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false){
-			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
+			return '105';//Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -463,11 +463,11 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false,
 	if (@is_uploaded_file($tmpFile)){
 		if (@!move_uploaded_file($tmpFile ,$attachpath)){
 			@unlink($tmpFile);
-			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
+			return '105';//Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 		chmod($attachpath, 0777);
 	}
-	return 	$attach;//附件地址
+	return 	$attach;//Attachment address
 }
 
 /**

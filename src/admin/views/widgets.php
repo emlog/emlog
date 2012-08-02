@@ -232,7 +232,7 @@ if($i == $wgNum):
 <?php endforeach;?>
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-<div style="margin:10px 40px;"><input type="submit" value="<? echo $lang['widgets_order_save'];?>" class="submit" /></div>
+<div style="margin:20px 40px;"><input type="submit" value="<? echo $lang['widgets_order_save'];?>" class="submit" /></div>
 <div style="margin:10px 40px;"><a href="http://www.emlog.net/extend/widgets" target="_blank"><? echo $lang['widget_repository']; ?>&raquo;</a></div>
 <div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');"><? echo $lang['plugin_reset']; ?>&raquo;</a></div>
 </div>

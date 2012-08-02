@@ -23,7 +23,7 @@ function em_confirm (id, property) {
 			var msg = l_sure_delete_link;break;
 		case 'navi':
 			var urlreturn="navbar.php?action=del&id="+id;
-			var msg = "你确定要删除该导航吗？";break;
+			var msg = l_navigation_del_sure;break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
 			var msg = l_sure_import;break;
@@ -112,9 +112,9 @@ function checkalias(){
 }
 function addattach_img(fileurl,imgsrc,aid){
 	if (KE.g['content'].wyswygMode == false){
-		alert('请先切换到所见所得模式');
+		alert(l_wysiwyg_first);
 	}else if(imgsrc != "") {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+l_show_orig_img+'\" border=\"0\"></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){

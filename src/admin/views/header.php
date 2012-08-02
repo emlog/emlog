@@ -24,23 +24,23 @@
     <td width="9" id="headerleft"></td>
     <td width="125"  class="logo" align="left"><a href="./" title="<? echo $lang['return_to_admin_center']; ?>">emlog</a></td>
     <td class="vesion" width="20"><?php echo Option::EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="在新窗口浏站点">
+    <td  class="home" align="left"><a href="../" target="_blank" title="<? echo $lang['site_in_new_window']; ?>">
     <?php 
     	$blog_name = Option::get('blogname');
     	if (empty($blog_name)) {
-    		$blog_name = '查看站点';
+    		$blog_name = $lang['site_view'];
     	}
     	echo subString($blog_name, 0, 60);
     ?>
     </a></td>
     <td align=right nowrap class="headtext">
     <?php if (ROLE == 'admin'):?>
-	你好，<a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?>
+	<? echo $lang['hello']; ?>, <a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?>
 	<img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" 
 	align="top" height="20" width="20" style="border:1px #FFFFFF solid;" />
 	</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"><? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"><? echo $lang['templates']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php else:?>
 	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
@@ -101,11 +101,11 @@
             <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
             <div id="blog_mg">
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['widgets'];?></a></div>
-            <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></div>
-			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
-			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
-			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></div>
-			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
+            <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><? echo $lang['navbar']; ?></a></div>
+			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" ><? echo $lang['pages']; ?></a></div>
+			<div class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links']; ?></a></div>
+			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" ><? echo $lang['users']; ?></a></div>
+			<div class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></div>
 			</div>
 			</div>
 			</td>

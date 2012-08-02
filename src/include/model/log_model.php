@@ -76,6 +76,7 @@ class Log_Model {
 	 * Get a single post in the background
 	 */
 	function getOneLogForAdmin($blogId) {
+		global $lang;
 		$timezone = Option::get('timezone');
 		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
@@ -140,7 +141,7 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
-        global $lang;
+	        global $lang;
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
@@ -152,7 +153,7 @@ class Log_Model {
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -200,7 +201,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取全部页面列表
+	 * Get a list of all pages
 	 *
 	 */
 	function getAllPageList() {
@@ -209,7 +210,7 @@ class Log_Model {
 		$pages = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -225,6 +226,7 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
+		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {

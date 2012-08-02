@@ -22,7 +22,7 @@
         <th width="250"><b><? echo $lang['name']; ?></b></th>
 		<th width="300"><b><? echo $lang['alias']; ?></b></th>
 		<th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
-        <th width="50" class="tdcenter"><b>日志</b></th>
+        <th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
         <th width="100"></th>
       </tr>
     </thead>
@@ -43,7 +43,7 @@ foreach($sorts as $key=>$value): ?>
         <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');"><? echo $lang['remove'];?></a></td>
       </tr>
 <?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
+	  <tr><td class="tdcenter" colspan="6"><? echo $lang['category_no_yet']; ?></td></tr>
 <?php endif;?>  
 </tbody>
 </table>
@@ -52,9 +52,9 @@ foreach($sorts as $key=>$value): ?>
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><? echo $lang['category_add']; ?>+</a></div>
 <div id="sort_new">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (用于URL的友好显示)</li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
+	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /><? echo $lang['link_name']; ?></li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> <? echo $lang['alias_prompt']; ?></li>
 	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
