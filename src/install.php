@@ -60,17 +60,15 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<span class="care">(<? echo $lang['db_hostname_info'];?>)</span>
 </li>
 <li>
-    <? echo $lang['db_username'];?>:<br />
-    <input name="dbuser" type="text" class="input" value="">
+    <? echo $lang['db_username'];?>:<br /><input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    <? echo $lang['db_password'];?>:<br />
-  <input name="password" type="password" class="input">
+    <? echo $lang['db_password'];?>:<br /><input name="password" type="password" class="input">
 </li>
 <li>
     <? echo $lang['db_name'];?>:<br />
       <input name="dbname" type="text" class="input" value="">
-          <span class="care">(<? echo $lang['db_name_info'];?>)</span>
+	  <span class="care">(<? echo $lang['db_name_info'];?>)</span>
 </li>
 <li>
     <? echo $lang['db_prefix'];?>:<br />
@@ -97,7 +95,6 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <div>
 <p class="foot">
 <input type="submit" class="submit" value="<? echo $lang['submit'];?>">
-<input type="reset" class="submit" value="<? echo $lang['reset'];?>">
 </p>
 </div>
 </div>
@@ -425,7 +422,6 @@ CREATE TABLE {$db_prefix}reply (
   KEY gid (tid),
   KEY hide (hide)
 )".$add."
-(1,'{$lang['install_twitter']}','1230508801');
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid tinyint(3) unsigned NOT NULL auto_increment,

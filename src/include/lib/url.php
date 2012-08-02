@@ -29,7 +29,6 @@ class Url
             		$sort .= '/';
             	}
                 $logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-            	//Url in html mode
                 //Add html suffix to the alias
                 if (Option::get('isalias_html') == 'y') {
                 	$logUrl .= '.html';

@@ -11,6 +11,7 @@
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['alias_unique']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['alias_no_system']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="error"><? echo $lang['alias_no_numeric']; ?></span><?php endif;?>
+
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
@@ -20,7 +21,8 @@
         <th width="55"><b><? echo $lang['order'];?></b></th>
         <th width="250"><b><? echo $lang['name']; ?></b></th>
 		<th width="300"><b><? echo $lang['alias']; ?></b></th>
-        <th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
+		<th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
+        <th width="50" class="tdcenter"><b>日志</b></th>
         <th width="100"></th>
       </tr>
     </thead>

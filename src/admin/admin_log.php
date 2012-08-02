@@ -154,7 +154,7 @@ if($action == 'operate_log')
 		case 'change_author':
 			if (ROLE != 'admin')
 			{
-				formMsg($lang['access_disabled'],'./', 0);
+				formMsg($lang['access_disabled'],'./');
 			}
 			foreach($logs as $val)
 			{

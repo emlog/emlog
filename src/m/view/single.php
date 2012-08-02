@@ -44,7 +44,6 @@
 		<?php endif; ?>
 		<? echo $lang['content']; ?><br /><textarea name="comment" rows="10"></textarea><br />
 		<?php echo $verifyCode; ?><br /><input type="submit" value="<? echo $lang['comment_add']; ?>" />
-		<?php endif; ?>
 		</form>
 	</div>
 </div>

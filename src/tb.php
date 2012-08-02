@@ -13,7 +13,6 @@ $charset = isset($_SERVER['HTTP_ACCEPT_CHARSET']) ? strtolower($_SERVER['HTTP_AC
 if ($charset && !strstr($charset, 'utf-8')){
 	$encode = $charset;
 }
-
 $title     = isset($_REQUEST['title']) ? iconv2utf(html2text(addslashes(trim($_REQUEST['title'])))) : '';
 $excerpt   = isset($_REQUEST['excerpt']) ? trimmed_title(iconv2utf(html2text(addslashes(trim($_REQUEST['excerpt'])))), 255) : '';
 $url       = isset($_REQUEST['url']) ? addslashes(trim($_REQUEST['url'])) : '';
@@ -62,7 +61,6 @@ if (Option::get('istrackback') == 'y' && $logid && $title && $excerpt && $url &&
 	showXML($lang['parameter_error']);
 }
 
-//Send Message Page
 function showXML($message, $error = 1){
 	header('Content-type: text/xml');
 	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";

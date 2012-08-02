@@ -18,7 +18,7 @@
 		$CACHE = Cache::getInstance();
 		$user_cache = $CACHE->readCache('user');
 	?>
-	</ echo $lang['logged_as']; ?><b> <?php echo $user_cache[UID]['name']; ?></b><br />
+	<? echo $lang['logged_as']; ?><b> <?php echo $user_cache[UID]['name']; ?></b><br />
 	<input type="hidden" name="comname" value="<?php echo $user_cache[UID]['name']; ?>" />
 	<input type="hidden" name="commail" value="<?php echo $user_cache[UID]['mail']; ?>" />
 	<input type="hidden" name="comurl" value="<?php echo BLOG_URL; ?>" />

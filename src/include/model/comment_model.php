@@ -193,7 +193,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . addslashes($comment['poster']) . ':' . $content;
+				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -245,7 +245,7 @@ class Comment_Model {
 		$utctimestamp = time();
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . ':' . $content;
+			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');

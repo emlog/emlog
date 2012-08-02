@@ -39,6 +39,8 @@
 	<img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" 
 	align="top" height="20" width="20" style="border:1px #FFFFFF solid;" />
 	</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> 设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php else:?>
 	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<?php endif;?>
@@ -96,9 +98,9 @@
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-                <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
-		<div id="blog_mg">
-                        <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >Widgets</a></div>
+            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
+            <div id="blog_mg">
+            <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['widgets'];?></a></div>
             <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
 			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>

@@ -18,7 +18,7 @@ class Calendar {
 	 * Generate calendar
 	 */
     static function generate() {
-	global $lang;
+		global $lang;
         $DB = MySql::getInstance();
         $timezone = Option::get('timezone');
         $timestamp = time() + $timezone * 3600;

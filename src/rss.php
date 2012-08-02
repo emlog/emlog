@@ -55,7 +55,6 @@ END;
 function getBlog($sort = null) {
 	global $lang;
 	$DB = MySql::getInstance();
-	global $lang;
 	$subsql = $sort ? "and sortid=$sort" : '';
 	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');
 	$result = $DB->query($sql);

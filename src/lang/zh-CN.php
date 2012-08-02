@@ -139,7 +139,7 @@ $lang['blog_password_protected_info'] = '该日志已设置加密，请点击标
 $lang['blog_password_required'] = '该日志需要密码才能访问，请输入密码';//'The post requires a password to access, please enter the password';
 $lang['blog_tags'] = '日志标签';//'Blog tags';
 
-$lang['management'] = '博客管理';//'Management';
+$lang['management'] = '站点管理';//'博客管理';//'Site Management';
 $lang['blog_author'] = '日志作者';//'Blog Author';
 
 

@@ -8,10 +8,10 @@
 class Comment_Controller {
 
 	/**
-     * Add comment
+	 * Add comment
 	 */
 	function addComment($params) {
-	global $lang;
+		global $lang;
 		$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 		$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 		$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
@@ -23,7 +23,7 @@ class Comment_Controller {
 		if (ISLOGIN === true) {
 			$CACHE = Cache::getInstance();
 			$user_cache = $CACHE->readCache('user');
-        	$name = addslashes(@$user_cache[UID]['name_orig']);
+			$name = addslashes($user_cache[UID]['name_orig']);
 			$mail = addslashes($user_cache[UID]['mail']);
 			$url = addslashes(BLOG_URL);
 		}

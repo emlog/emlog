@@ -23,7 +23,6 @@
 	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
 	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>
 	<li><? echo $lang['gd_library'];?>: <?php echo $gd_ver; ?></li>
-	<li><? echo $lang['safe_mode'];?>: <?php echo $safe_mode ? $lang['enabled'] : $lang['disabled']; ?></li>
 	<li><? echo $lang['attachment_max_size'];?>: <?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo"><? echo $lang['php_info'];?> &raquo;</a></li>
 </ul>

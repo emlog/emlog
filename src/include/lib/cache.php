@@ -317,6 +317,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'navi');
 	}
 	/**
+	 * Latest blog posts
 	 */
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
