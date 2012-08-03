@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
+<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js"></script>
 <div class=containertitle><b><? echo $lang['page_add']; ?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
   <form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
