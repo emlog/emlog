@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <div class=containertitle><b><? echo $lang['nav_manage']; ?></b>
-<?php if(isset($_GET['active_taxis'])):?><span class="actived"><? echo $lang['categories_ordered_ok']'; ?></span><?php endif;?>
+<?php if(isset($_GET['active_taxis'])):?><span class="actived"><? echo $lang['categories_ordered_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['nav_del_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['nav_edit_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="actived"><? echo $lang['nav_add_ok']; ?></span><?php endif;?>
@@ -40,7 +40,7 @@
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
-	  	<a href="<?php echo $value['siteurl']; ?>" target="_blank">
+	  	<a href="<?php echo @$value['siteurl']; ?>" target="_blank">
 	  	<img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['url']; ?></td>
