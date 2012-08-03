@@ -7,6 +7,7 @@
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
+<script src="../lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 </head>
 <body>
 <script>
