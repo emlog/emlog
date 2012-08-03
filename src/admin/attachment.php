@@ -24,8 +24,10 @@ if ($action == 'selectFile') {
 	//Allowed attachment type
 	$att_type_str = '';
 	foreach (Option::getAttType() as $val) {
-		$att_type_str .= " $val";
+		$att_type_str .= " $val,";
 	}
+	$att_type_str = rtrim($att_type_str, ',');
+
 	$view_tpl = $multi ? 'upload_multi' : 'upload';
 	require_once(View::getView($view_tpl));
 	View::output();
