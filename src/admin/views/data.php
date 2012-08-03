@@ -49,7 +49,7 @@
 		<?php endforeach; ?>
       	</select></p>
 	<p><? echo $lang['backup_filename'];?>: (<? echo $lang['backup_filename_info'];?>) <br /><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-	<p><? echo $lang['backup_place'];?>?
+	<p><? echo $lang['backup_place'];?>:
 	<? echo $lang['backup_local'];?><input type="radio" checked="checked" value="local" name="bakplace" id="bakup_place" />
 	<? echo $lang['backup_server'];?><input type="radio" value="server" name="bakplace" id="bakup_place" /></p>
 	<p><input type="submit" value="<? echo $lang['backup_start'];?>" class="submit" /></p>
