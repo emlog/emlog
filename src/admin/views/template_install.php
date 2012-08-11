@@ -38,7 +38,7 @@
 </div>
 <script>
 $(document).ready(function(){
-	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
+	$.getJSON("http://www.emlog.net/api/template/latest?callback=?",function(data){
 		var items = [];
 		$.each(data, function(i,item){
 			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="180" height="140"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');

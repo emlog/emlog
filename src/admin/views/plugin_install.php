@@ -41,7 +41,7 @@
 $("#menu_plug").addClass('sidebarsubmenu1');
 
 $(document).ready(function(){
-	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
+	$.getJSON("http://www.emlog.net/api/plugin/latest?callback=?",function(data){
 		var items = [];
 		$.each(data, function(i,item){
 			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
