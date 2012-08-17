@@ -199,8 +199,9 @@ textarea {
 	float:left;
 	padding:0px 0px 0px 0px;
 	margin:5px 0px 0px 0px;
-	background-color:#ECEFF5;
-	width:405px
+	background-color:#F7F7F7;
+	border:1px solid #F0F0F0;
+	width:403px
 }
 .widget-top li {
 	float:left;
@@ -218,7 +219,9 @@ textarea {
 	padding:10px 10px;
 	display:none;
 	margin:0px 0px 5px 0px;
-	border:1px solid #E9F1FA
+	border-left:1px solid #F3F3F3;
+	border-right:1px solid #F3F3F3;
+	border-bottom:1px solid #F3F3F3;
 }
 .widget-act-del {
 	background:url(../images/icon_del.gif) no-repeat center;
@@ -263,7 +266,8 @@ textarea {
 	padding:5px
 }
 .sortableitem {
-	background-color:#ECEFF5;
+	background-color:#F7F7F7;
+	border:1px solid #F0F0F0;
 	list-style:none;
 	margin:5px 0px;
 	padding:5px;
