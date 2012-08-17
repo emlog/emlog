@@ -15,7 +15,7 @@
 </div>
 <div style="margin-left:30px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
-<div id="blogger">
+<div id="profile">
 	<li>
 	<?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/><br />
 	头像<br />
