@@ -1,27 +1,27 @@
 <?php
+
 /**
  * 基础函数库
  * @copyright (c) Emlog All Rights Reserved
  */
-
 function __autoload($class) {
 	$class = strtolower($class);
-	if (file_exists(EMLOG_ROOT . '/include/model/'. $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/model/'. $class . '.php');
-	} elseif (file_exists(EMLOG_ROOT . '/include/lib/'. $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/lib/'. $class . '.php');
-	} elseif (file_exists(EMLOG_ROOT . '/include/controller/'. $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/controller/'. $class . '.php');
-	} else{
-		emMsg($class.'加载失败。', BLOG_URL);
+	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
+	} else {
+		emMsg($class . '加载失败。', BLOG_URL);
 	}
 }
 
 /**
  * 去除多余的转义字符
  */
-function doStripslashes(){
-	if (get_magic_quotes_gpc()){
+function doStripslashes() {
+	if (get_magic_quotes_gpc()) {
 		$_GET = stripslashesDeep($_GET);
 		$_POST = stripslashesDeep($_POST);
 		$_COOKIE = stripslashesDeep($_COOKIE);
@@ -32,7 +32,7 @@ function doStripslashes(){
 /**
  * 递归去除转义字符
  */
-function stripslashesDeep($value){
+function stripslashesDeep($value) {
 	$value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
 	return $value;
 }
@@ -43,9 +43,9 @@ function stripslashesDeep($value){
  * @param unknown_type $content
  * @param unknown_type $wrap 是否换行
  */
-function htmlClean($content, $wrap=true){
+function htmlClean($content, $wrap = true) {
 	$content = htmlspecialchars($content);
-	if($wrap){
+	if ($wrap) {
 		$content = str_replace("\n", '<br />', $content);
 	}
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
@@ -56,9 +56,9 @@ function htmlClean($content, $wrap=true){
 /**
  * 获取用户ip地址
  */
-function getIp(){
+function getIp() {
 	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-	if(!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)){
+	if (!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)) {
 		$ip = '';
 	}
 	return $ip;
@@ -67,11 +67,11 @@ function getIp(){
 /**
  * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */
-function getBlogUrl(){
+function getBlogUrl() {
 	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
-	if(preg_match("/^.*\//", $phpself, $matches)){
-		return 'http://'.$_SERVER['HTTP_HOST'].$matches[0];
-	}else{
+	if (preg_match("/^.*\//", $phpself, $matches)) {
+		return 'http://' . $_SERVER['HTTP_HOST'] . $matches[0];
+	} else {
 		return BLOG_URL;
 	}
 }
@@ -101,24 +101,26 @@ function checkPlugin($plugin) {
  */
 function emLoadJQuery() {
 	static $isJQueryLoaded = false;
-	if(!$isJQueryLoaded) {
+	if (!$isJQueryLoaded) {
 		global $emHooks;
-		if(!isset($emHooks['index_head'])) {
+		if (!isset($emHooks['index_head'])) {
 			$emHooks['index_head'] = array();
 		}
 		array_unshift($emHooks['index_head'], 'loadJQuery');
 		$isJQueryLoaded = true;
+
 		function loadJQuery() {
 			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
 		}
+
 	}
 }
 
 /**
  * 验证email地址格式
  */
-function checkMail($email){
-	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60){
+function checkMail($email) {
+	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
 		return true;
 	} else {
 		return false;
@@ -132,32 +134,32 @@ function checkMail($email){
  * @param int $start 开始处 eg:0
  * @param int $length 截取长度
  */
-function subString($strings,$start,$length){
+function subString($strings, $start, $length) {
 	if (function_exists('mb_substr')) {
 		return mb_substr($strings, $start, $length, 'utf8');
 	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
-	for ($i = 0; $i < strlen($str); $i++){
+	for ($i = 0; $i < strlen($str); $i++) {
 		if (ord($str[$i]) >= 128)
-		$char++;
+			$char++;
 	}
-	$str2 = substr($strings, $start, $length+1);
-	$str3 = substr($strings, $start, $length+2);
-	if ($char % 3 == 1){
-		if ($length <= strlen($strings)){
+	$str2 = substr($strings, $start, $length + 1);
+	$str3 = substr($strings, $start, $length + 2);
+	if ($char % 3 == 1) {
+		if ($length <= strlen($strings)) {
 			$str3 = $str3 .= '...';
 		}
 		return $str3;
 	}
-	if ($char%3 == 2){
-		if ($length <= strlen($strings)){
+	if ($char % 3 == 2) {
+		if ($length <= strlen($strings)) {
 			$str2 = $str2 .= '...';
 		}
 		return $str2;
 	}
-	if ($char%3 == 0){
-		if ($length <= strlen($strings)){
+	if ($char % 3 == 0) {
+		if ($length <= strlen($strings)) {
 			$str = $str .= '...';
 		}
 		return $str;
@@ -172,19 +174,19 @@ function subString($strings,$start,$length){
  */
 function extractHtmlData($data, $len) {
 	$data = strip_tags(subString($data, 0, $len + 30));
-	$search = array ("/([\r\n])[\s]+/",	// 去掉空白字符
-					 "/&(quot|#34);/i",	// 替换 HTML 实体
-					 "/&(amp|#38);/i",
-					 "/&(lt|#60);/i",
-					 "/&(gt|#62);/i",
-					 "/&(nbsp|#160);/i",
-					 "/&(iexcl|#161);/i",
-					 "/&(cent|#162);/i",
-					 "/&(pound|#163);/i",
-					 "/&(copy|#169);/i",
-					 "/\"/i",
-					);
-	$replace = array (" ","\"","&"," "," ","",chr(161),chr(162),chr(163),chr(169), "");
+	$search = array("/([\r\n])[\s]+/", // 去掉空白字符
+		"/&(quot|#34);/i", // 替换 HTML 实体
+		"/&(amp|#38);/i",
+		"/&(lt|#60);/i",
+		"/&(gt|#62);/i",
+		"/&(nbsp|#160);/i",
+		"/&(iexcl|#161);/i",
+		"/&(cent|#162);/i",
+		"/&(pound|#163);/i",
+		"/&(copy|#169);/i",
+		"/\"/i",
+	);
+	$replace = array(" ", "\"", "&", " ", " ", "", chr(161), chr(162), chr(163), chr(169), "");
 	$data = subString(preg_replace($search, $replace, $data), 0, $len);
 	return $data;
 }
@@ -194,14 +196,14 @@ function extractHtmlData($data, $len) {
  *
  * @param string $fileSize 文件大小 kb
  */
-function changeFileSize($fileSize){
-	if($fileSize >= 1073741824){
-		$fileSize = round($fileSize / 1073741824  ,2) . 'GB';
-	} elseif($fileSize >= 1048576){
-		$fileSize = round($fileSize / 1048576 ,2) . 'MB';
-	} elseif($fileSize >= 1024){
+function changeFileSize($fileSize) {
+	if ($fileSize >= 1073741824) {
+		$fileSize = round($fileSize / 1073741824, 2) . 'GB';
+	} elseif ($fileSize >= 1048576) {
+		$fileSize = round($fileSize / 1048576, 2) . 'MB';
+	} elseif ($fileSize >= 1024) {
 		$fileSize = round($fileSize / 1024, 2) . 'KB';
-	} else{
+	} else {
 		$fileSize = $fileSize . '字节';
 	}
 	return $fileSize;
@@ -210,8 +212,8 @@ function changeFileSize($fileSize){
 /**
  * 获取文件名后缀
  */
-function getFileSuffix($fileName) { 
-	return strtolower(substr(strrchr($fileName, "."),1));
+function getFileSuffix($fileName) {
+	return strtolower(substr(strrchr($fileName, "."), 1));
 }
 
 /**
@@ -222,24 +224,27 @@ function getFileSuffix($fileName) {
  * @param int $page 当前页码
  * @param string $url 页码的地址
  */
-function pagination($count,$perlogs,$page,$url,$anchor=''){
+function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
-	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|","",$url);
-	for ($i = $page-5;$i <= $page+5 && $i <= $pnums; $i++){
-		if ($i > 0){
-			if ($i == $page){
+	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
+	for ($i = $page - 5; $i <= $page + 5 && $i <= $pnums; $i++) {
+		if ($i > 0) {
+			if ($i == $page) {
 				$re .= " <span>$i</span> ";
-			} elseif($i == 1) {
+			} elseif ($i == 1) {
 				$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
 			} else {
 				$re .= " <a href=\"$url$i$anchor\">$i</a> ";
 			}
 		}
 	}
-	if ($page > 6) $re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em>...</em>$re";
-	if ($page + 5 < $pnums) $re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
-	if ($pnums <= 1) $re = '';
+	if ($page > 6)
+		$re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em>...</em>$re";
+	if ($page + 5 < $pnums)
+		$re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
+	if ($pnums <= 1)
+		$re = '';
 	return $re;
 }
 
@@ -250,9 +255,9 @@ function pagination($count,$perlogs,$page,$url,$anchor=''){
  * @param string $actionFunc
  * @return boolearn
  */
-function addAction($hook, $actionFunc){
+function addAction($hook, $actionFunc) {
 	global $emHooks;
-	if (!@in_array($actionFunc, $emHooks[$hook])){
+	if (!@in_array($actionFunc, $emHooks[$hook])) {
 		$emHooks[$hook][] = $actionFunc;
 	}
 	return true;
@@ -263,11 +268,11 @@ function addAction($hook, $actionFunc){
  *
  * @param string $hook
  */
-function doAction($hook){
+function doAction($hook) {
 	global $emHooks;
 	$args = array_slice(func_get_args(), 1);
-	if (isset($emHooks[$hook])){
-		foreach ($emHooks[$hook] as $function){
+	if (isset($emHooks[$hook])) {
+		foreach ($emHooks[$hook] as $function) {
 			$string = call_user_func_array($function, $args);
 		}
 	}
@@ -279,10 +284,10 @@ function doAction($hook){
  * @param string $content 日志内容
  * @param int $lid 日志id
  */
-function breakLog($content,$lid){
-	$a = explode('[break]',$content,2);
-	if(!empty($a[1]))
-	$a[0].='<p class="readmore"><a href="'.Url::log($lid).'">阅读全文&gt;&gt;</a></p>';
+function breakLog($content, $lid) {
+	$a = explode('[break]', $content, 2);
+	if (!empty($a[1]))
+		$a[0].='<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
 	return $a[0];
 }
 
@@ -291,8 +296,8 @@ function breakLog($content,$lid){
  *
  * @param string $content 日志内容
  */
-function rmBreak($content){
-	$content = str_replace('[break]','',$content);
+function rmBreak($content) {
+	$content = str_replace('[break]', '', $content);
 	return $content;
 }
 
@@ -304,19 +309,19 @@ function rmBreak($content){
  * @param $dstr
  * @return string
  */
-function smartDate($datetemp, $dstr='Y-m-d H:i'){
+function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 	$timezone = Option::get('timezone');
 	$op = '';
 	$sec = time() - $datetemp;
 	$hover = floor($sec / 3600);
-	if ($hover == 0){
+	if ($hover == 0) {
 		$min = floor($sec / 60);
-		if ( $min == 0) {
-			$op = $sec.' 秒前';
+		if ($min == 0) {
+			$op = $sec . ' 秒前';
 		} else {
 			$op = "$min 分钟前";
 		}
-	} elseif ($hover < 24){
+	} elseif ($hover < 24) {
 		$op = "约 {$hover} 小时前";
 	} else {
 		$op = gmdate($dstr, $datetemp + $timezone * 3600);
@@ -331,13 +336,13 @@ function smartDate($datetemp, $dstr='Y-m-d H:i'){
  * @param boolean $special_chars
  * @return string
  */
-function getRandStr($length = 12, $special_chars = true){
+function getRandStr($length = 12, $special_chars = true) {
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	if ( $special_chars ){
+	if ($special_chars) {
 		$chars .= '!@#$%^&*()';
 	}
 	$randStr = '';
-	for ( $i = 0; $i < $length; $i++ ){
+	for ($i = 0; $i < $length; $i++) {
 		$randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
 	}
 	return $randStr;
@@ -346,21 +351,21 @@ function getRandStr($length = 12, $special_chars = true){
 /**
  * 寻找两数组所有不同元素
  */
-function findArray($array1,$array2){
+function findArray($array1, $array2) {
 	$r1 = array_diff($array1, $array2);
 	$r2 = array_diff($array2, $array1);
 	$r = array_merge($r1, $r2);
 	return $r;
 }
 
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
-			emMsg('文件大小超过系统'.ini_get('upload_max_filesize').'限制');
+			emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
 			break;
 		case '101':
-			emMsg('上传文件失败,错误码：'.$errorNum);
+			emMsg('上传文件失败,错误码：' . $errorNum);
 			break;
 		case '102':
 			emMsg('错误的文件类型');
@@ -382,7 +387,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=fa
 }
 
 //用于附件批量上传
-function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
+function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
@@ -412,34 +417,34 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return string 文件路径
  */
-function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false, $is_thumbnail=true){
-	if ($errorNum == 1){
-		return '100';//文件大小超过系统限制
-	}elseif ($errorNum > 1){
-		return '101';//上传文件失败
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	if ($errorNum == 1) {
+		return '100'; //文件大小超过系统限制
+	} elseif ($errorNum > 1) {
+		return '101'; //上传文件失败
 	}
-	$extension  = getFileSuffix($fileName);
-	if (!in_array($extension, $type)){
-		return '102';//错误的文件类型
+	$extension = getFileSuffix($fileName);
+	if (!in_array($extension, $type)) {
+		return '102'; //错误的文件类型
 	}
-	if ($fileSize > Option::UPLOADFILE_MAXSIZE){
-		return '103';//文件大小超出emlog的限制
+	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
+		return '103'; //文件大小超出emlog的限制
 	}
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-	$fname = substr(md5($fileName),0,4)  . time() .'.'. $extension;
+	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	$attachpath = $uppath . $fname;
-	if (!is_dir(Option::UPLOADFILE_PATH)){
+	if (!is_dir(Option::UPLOADFILE_PATH)) {
 		umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
-		if ($ret === false){
-			return '104';//创建文件上传目录失败
+		if ($ret === false) {
+			return '104'; //创建文件上传目录失败
 		}
 	}
-	if (!is_dir($uppath)){
+	if (!is_dir($uppath)) {
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
-		if ($ret === false){
-			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
+		if ($ret === false) {
+			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -450,20 +455,20 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false,
 	if ($is_thumbnail) {
 		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
 			$attach = $thum;
-			resizeImage($tmpFile, $uppath.'thum52-'. $fname, 52, 52);
-		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)){
+			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
 			$attach = $thum;
 		}
 	}
 
-	if (@is_uploaded_file($tmpFile)){
-		if (@!move_uploaded_file($tmpFile ,$attachpath)){
+	if (@is_uploaded_file($tmpFile)) {
+		if (@!move_uploaded_file($tmpFile, $attachpath)) {
 			@unlink($tmpFile);
-			return '105';//上传失败。文件上传目录(content/uploadfile)不可写
+			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
 		}
 		chmod($attachpath, 0777);
 	}
-	return 	$attach;//附件地址
+	return $attach; //附件地址
 }
 
 /**
@@ -477,7 +482,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon=false,
  */
 function resizeImage($img, $thum_path, $max_w, $max_h) {
 	//仅支持PNG,JPG图片的缩略
-	if (!in_array(getFileSuffix($thum_path), array('jpg','png','jpeg'))) {
+	if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg'))) {
 		return false;
 	}
 	//是否支持GD
@@ -490,7 +495,7 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
 	$newheight = $size['h'];
 	$w = $size['rc_w'];
 	$h = $size['rc_h'];
-	if ($w <= $max_w && $h <= $max_h){
+	if ($w <= $max_w && $h <= $max_h) {
 		return false;
 	}
 	return imageCropAndResize($img, $thum_path, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
@@ -511,27 +516,26 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
  * @param int $src_h 原图高度
  */
 function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
-	if (function_exists('imagecreatefromstring')){
+	if (function_exists('imagecreatefromstring')) {
 		$src_img = imagecreatefromstring(file_get_contents($src_image));
 	} else {
 		return false;
 	}
 
-	if (function_exists('imagecopyresampled')){
+	if (function_exists('imagecopyresampled')) {
 		$new_img = imagecreatetruecolor($dst_w, $dst_h);
 		imagecopyresampled($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
-	} elseif(function_exists('imagecopyresized')) {
+	} elseif (function_exists('imagecopyresized')) {
 		$new_img = imagecreate($dst_w, $dst_h);
 		imagecopyresized($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 	} else {
 		return false;
 	}
 
-	switch (getFileSuffix($dst_path))
-	{
+	switch (getFileSuffix($dst_path)) {
 		case 'png':
-			if(function_exists('imagepng') && imagepng($new_img, $dst_path)){
-				ImageDestroy ($new_img);
+			if (function_exists('imagepng') && imagepng($new_img, $dst_path)) {
+				ImageDestroy($new_img);
 				return true;
 			} else {
 				return false;
@@ -539,8 +543,8 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 			break;
 		case 'jpg':
 		default:
-			if(function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)){
-				ImageDestroy ($new_img);
+			if (function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)) {
+				ImageDestroy($new_img);
 				return true;
 			} else {
 				return false;
@@ -557,18 +561,18 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
  * @param int $max_h 最大缩放高
  * @return array
  */
-function chImageSize ($img, $max_w, $max_h){
+function chImageSize($img, $max_w, $max_h) {
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
 	//计算缩放比例
 	@$w_ratio = $max_w / $w;
-	@$h_ratio =	$max_h / $h;
+	@$h_ratio = $max_h / $h;
 	//决定处理后的图片宽和高
-	if( ($w <= $max_w) && ($h <= $max_h) ){
+	if (($w <= $max_w) && ($h <= $max_h)) {
 		$tn['w'] = $w;
 		$tn['h'] = $h;
-	} else if(($w_ratio * $h) < $max_h){
+	} else if (($w_ratio * $h) < $max_h) {
 		$tn['h'] = ceil($w_ratio * $h);
 		$tn['w'] = $max_w;
 	} else {
@@ -577,7 +581,7 @@ function chImageSize ($img, $max_w, $max_h){
 	}
 	$tn['rc_w'] = $w;
 	$tn['rc_h'] = $h;
-	return $tn ;
+	return $tn;
 }
 
 /**
@@ -588,7 +592,7 @@ function chImageSize ($img, $max_w, $max_h){
  * @param $d default avatar
  * @param $g
  */
-function getGravatar($email, $s=40, $d='mm', $g='g') {
+function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
 	$hash = md5($email);
 	$avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
 	return $avatar;
@@ -601,8 +605,8 @@ function getGravatar($email, $s=40, $d='mm', $g='g') {
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-	if($origin_tz === null) {
-		if(!is_string($origin_tz = date_default_timezone_get())) {
+	if ($origin_tz === null) {
+		if (!is_string($origin_tz = date_default_timezone_get())) {
 			return false; // A UTC timestamp was returned -- bail out!
 		}
 	}
@@ -630,10 +634,10 @@ function emStrtotime($timeStr) {
 			} else {
 				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
 					/*
-					* 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
-					* 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
-					* 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
-					*/
+					 * 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
+					 * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
+					 * 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+					 */
 					$offset = getTimeZoneOffset($serverTimeZone);
 					// 首先减去/加上本地时区配置的时差
 					$unixPostDate -= $timezone * 3600;
@@ -652,7 +656,7 @@ function emStrtotime($timeStr) {
  * 获取指定月份的天数
  */
 function getMonthDayNum($month, $year) {
-	switch(intval($month)){
+	switch (intval($month)) {
 		case 1:
 		case 3:
 		case 5:
@@ -674,24 +678,25 @@ function getMonthDayNum($month, $year) {
 			break;
 	}
 }
+
 /**
  * 解压zip
  */
-function emUnZip ($zipfile, $path, $type = 'tpl') {
-	if(class_exists('ZipArchive', FALSE)) {
+function emUnZip($zipfile, $path, $type = 'tpl') {
+	if (class_exists('ZipArchive', FALSE)) {
 		$zip = new ZipArchive();
 		if (@$zip->open($zipfile) === TRUE) {
 			$r = explode('/', $zip->getNameIndex(0), 2);
-			$dir = isset($r[0]) ? $r[0].'/' : '';
+			$dir = isset($r[0]) ? $r[0] . '/' : '';
 			switch ($type) {
 				case 'tpl':
-					$re = $zip->getFromName($dir.'header.php');
+					$re = $zip->getFromName($dir . 'header.php');
 					if (false === $re)
-					return -2;
+						return -2;
 					break;
 				case 'plugin':
 					$plugin_name = substr($dir, 0, -1);
-					$re = $zip->getFromName($dir.$plugin_name.'.php');
+					$re = $zip->getFromName($dir . $plugin_name . '.php');
 					if (false === $re)
 						return -1;
 					break;
@@ -713,27 +718,27 @@ function emUnZip ($zipfile, $path, $type = 'tpl') {
 /**
  * 删除文件或目录
  */
-function emDeleteFile ($file){
+function emDeleteFile($file) {
 	if (empty($file))
 		return false;
 	if (@is_file($file))
 		return @unlink($file);
-   	$ret = true;
-   	if ($handle = @opendir($file)) {
-		while ($filename = @readdir($handle)){
+	$ret = true;
+	if ($handle = @opendir($file)) {
+		while ($filename = @readdir($handle)) {
 			if ($filename == '.' || $filename == '..')
 				continue;
 			if (!emDeleteFile($file . '/' . $filename))
 				$ret = false;
 		}
-   	} else {
-   		$ret = false;
-   	}
-   	@closedir($handle);
-	if ( file_exists($file) && !rmdir($file) ){
+	} else {
 		$ret = false;
 	}
-   	return $ret;
+	@closedir($handle);
+	if (file_exists($file) && !rmdir($file)) {
+		$ret = false;
+	}
+	return $ret;
 }
 
 /**
@@ -751,7 +756,7 @@ function emDirect($directUrl) {
  * @param string $url 返回地址
  * @param boolean $isAutoGo 是否自动返回 true false
  */
-function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
+function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 	if ($msg == '404') {
 		header("HTTP/1.1 404 Not Found");
 		$msg = '抱歉，你所请求的页面不存在！';
@@ -761,7 +766,7 @@ function emMsg($msg, $url='javascript:history.back(-1);', $isAutoGo=false){
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 EOT;
-	if($isAutoGo){
+	if ($isAutoGo) {
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
 	}
 	echo <<<EOT
