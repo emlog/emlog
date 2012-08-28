@@ -48,7 +48,7 @@ class Log_Controller {
 					$alias = addslashes(urldecode(trim($params[1])));
 					$logid = array_search($alias, $logalias_cache);
 					if (!$logid) {
-						emMsg('404', BLOG_URL);
+						show_404_page();
 					}
 				}
 			}
@@ -59,7 +59,7 @@ class Log_Controller {
 
 		$logData = $Log_Model->getOneLogForHome($logid);
 		if ($logData === false) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 		extract($logData);
 

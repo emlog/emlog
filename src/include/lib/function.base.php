@@ -808,3 +808,17 @@ body {
 EOT;
 	exit;
 }
+
+/**
+ * 显示404错误页面
+ * 
+ */
+function show_404_page() {
+	if (is_file(TEMPLATE_PATH . '404.php')) {
+		header("HTTP/1.1 404 Not Found");
+		include View::getView('404');
+		exit;
+	} else {
+		emMsg('404', BLOG_URL);
+	}
+}

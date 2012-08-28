@@ -35,7 +35,7 @@ class Sort_Controller {
 
 		$sort_cache = $CACHE->readCache('sort');
 		if (!isset($sort_cache[$sortid])) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 		$sortName = $sort_cache[$sortid]['sortname'];
 		//page meta

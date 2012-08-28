@@ -20,7 +20,7 @@ class Author_Controller {
 
 		$user_cache = $CACHE->readCache('user');
 		if (!isset($user_cache[$author])) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 
 		$author_name = $user_cache[$author]['name'];
