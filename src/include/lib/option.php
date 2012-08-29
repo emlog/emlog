@@ -6,7 +6,7 @@
 
 class Option {
 	//版本编号
-    const EMLOG_VERSION = '4.3.0';
+    const EMLOG_VERSION = '5.0.0';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高
@@ -155,6 +155,7 @@ class Option {
 	        'newcomm' => '最新评论',
 	        'newlog' => '最新日志',
 	        'random_log' => '随机日志',
+			'hotlog' => '热门日志',
 	        'link' => '链接',
 	        'search' => '搜索',
 	        'custom_text' => '自定义组件'

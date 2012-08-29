@@ -119,6 +119,21 @@ function widget_newlog($title){
 	</li>
 <?php }?>
 <?php
+//widget：热门日志
+function widget_hotlog($title){
+	$index_hotlognum = Option::get('index_hotlognum');
+	$Log_Model = new Log_Model();
+	$randLogs = $Log_Model->getHotLog($index_hotlognum);?>
+	<li>
+	<h3><span><?php echo $title; ?></span></h3>
+	<ul id="hotlog">
+	<?php foreach($randLogs as $value): ?>
+	<li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+	</li>
+<?php }?>
+<?php
 //widget：随机日志
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');

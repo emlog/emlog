@@ -62,12 +62,16 @@ if($action == 'setwg') {
 			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
-			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
+			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 5;
 			Option::updateOption('index_newlognum', $index_newlog);
 			$CACHE->updateCache('newlog');
 			break;
+		case 'hotlog':
+			$index_hotlognum = isset($_POST['index_hotlognum']) ? intval($_POST['index_hotlognum']) : 5;
+			Option::updateOption('index_hotlognum', $index_hotlognum);
+			break;
 		case 'random_log':
-			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
+			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 5;
 			Option::updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'custom_text':

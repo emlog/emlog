@@ -9,6 +9,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">请选择要添加的分类</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">请选择要添加的页面</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -64,7 +65,8 @@
 	<ul id="navi_add_custom">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:100px;" name="naviname" /> 导航名称</li>
-	<li><input maxlength="200" style="width:186px;" name="url" /> 导航地址</li>
+	<li>
+	<input maxlength="200" style="width:175px;" name="url" id="url" /> 地址(带http)</li>
     <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="添加"  /></li>
 	</ul>

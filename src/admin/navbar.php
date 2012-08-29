@@ -46,10 +46,15 @@ if($action== 'add')
 	$naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
 	$url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
 	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
-
+	
 	if($naviname =='' || $url =='')
 	{
 		emDirect("./navbar.php?error_a=true");
+	}
+
+	if(!preg_match("/^(http|https|ftp):\/\/.*$/i", $url))
+	{
+		emDirect("./navbar.php?error_f=true");
 	}
 
 	$Navi_Model->addNavi($naviname, $url, $taxis, $newtab);

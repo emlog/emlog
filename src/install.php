@@ -287,7 +287,7 @@ PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )".$add."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','点滴记忆');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','美好的生活需要用心记录');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
@@ -303,6 +303,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_hotlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','default');

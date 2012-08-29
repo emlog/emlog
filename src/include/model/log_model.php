@@ -326,12 +326,24 @@ class Log_Model {
 
 	/**
 	 * 随机获取指定数量日志
-	 *
-	 * @param int $num
-	 * @return array
 	 */
 	function getRandLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
+		$res = $this->db->query($sql);
+		$logs = array();
+		while ($row = $this->db->fetch_array($res)) {
+			$row['gid'] = intval($row['gid']);
+			$row['title'] = htmlspecialchars($row['title']);
+			$logs[] = $row;
+		}
+		return $logs;
+	}
+
+	/**
+	 * 获取热门日志
+	 */
+	function getHotLog($num) {
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
