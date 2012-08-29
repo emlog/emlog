@@ -248,6 +248,8 @@ CREATE TABLE {$db_prefix}blog (
   KEY author (author),
   KEY sortid (sortid),
   KEY type (type),
+  KEY views (views),
+  KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '欢迎使用emlog', '1230508801', '从今天起，做一个幸福的人。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
