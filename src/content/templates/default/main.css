@@ -109,6 +109,7 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
 #twitter p {font-size: 12px;text-align:right;}
 #twitter li small {font-size: 10px;padding: 0px 10px;}
+#twitter li .t_img{background:url(images/img.gif) no-repeat;padding: 0 7px;margin: 0 0 0 10px;}
 
 #tw .main_img{ border:1px #2772ae solid; float:left;}
 #tw .main_img img{ border:1px #fff solid}
@@ -156,3 +157,4 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw ul .huifu textarea{width:550px;}
 #tw ul li .bttome .post{ font-size:12px;line-height:14px;margin:0; text-align:right; float:none;clear:both; width:610px; background:0; border:0;}
 #tw ul li .bttome .time{ float:none; margin-top:-25px;}
+#tw p .t_img{background:url(images/img.gif) no-repeat;padding: 0 7px;margin: 0 0 0 10px;}

@@ -396,6 +396,7 @@ DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT,
 content text NOT NULL,
+img varchar(200) DEFAULT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
 replynum mediumint(8) unsigned NOT NULL default '0',

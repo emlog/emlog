@@ -599,8 +599,29 @@ textarea {
 	margin:0px 5px;
 }
 #tw .tbutton {
-	margin:3px 0px 0px 5px;
+	margin:5px 0px 0px 5px;
 	float:left;
+}
+#tw .twImg{
+	float:left;
+	margin: 7px 0 0 5px;
+	position: relative;
+}
+.t_img{
+	background:url(../images/img.gif) no-repeat;
+	padding: 0 7px;
+	margin: 0 0 0 10px;
+}
+#img_pop {
+	background: #F9F9F9;
+	border: 1px solid #E5E5E5;
+	display: none;
+	left: 0;
+	margin: 3px 0 8px;
+	padding: 4px;
+	position: absolute;
+	bottom: 10px;
+	z-index: 120;
 }
 #tw .tbutton input {
 	background:url(../images/weibe_button.gif) no-repeat;

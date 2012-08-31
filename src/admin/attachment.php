@@ -108,3 +108,27 @@ if ($action == 'del_attach') {
 	$CACHE->updateCache('logatts');
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
+
+if($action == 'upload_tw_img'){
+	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
+	if ($attach) {
+		$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
+		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+		echo '{"filePath":"'.$upfname.'"}';
+		exit;
+	}
+	echo '{"filePath":""}';
+	exit;
+}
+
+if ($action == 'del_tw_img') {
+	$filepath = isset($_GET['filepath']) ? $_GET['filepath'] : '';
+	if ($filepath && file_exists($filepath)) {
+		$fpath = str_replace('thum-', '', $filepath);
+		if ($fpath != $filepath) {
+			@unlink($fpath) or false;
+		}
+		@unlink($filepath) or false;
+	}
+	exit;
+}
