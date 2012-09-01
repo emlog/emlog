@@ -87,7 +87,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
-	<li>还没有分类</li>
+	<li>还没有分类，<a href="sort.php">新建分类</a></li>
 	<?php endif;?> 
 	</ul>
 </div>
@@ -107,7 +107,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
-	<li>还没页面</li>
+	<li>还没页面，<a href="page.php">新建页面</a></li>
 	<?php endif;?> 
 	</ul>
 </div>

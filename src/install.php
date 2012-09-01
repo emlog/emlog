@@ -278,6 +278,7 @@ CREATE TABLE {$db_prefix}comment (
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
   KEY gid (gid),
+  KEY date (date),
   KEY hide (hide)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}options;
@@ -311,6 +312,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templ
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_needchinese','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',15);
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
