@@ -31,11 +31,11 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
-    $img = empty($val['img']) ? "" : '<a title="查看图片" class="t_img" href="'.str_replace('thum-', '', $val['img']).'" target="_blank">&nbsp;</a>';
+    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 3px solid #EFEFEF;" src="'.$val['img'].'"/></a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
-    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?> <?php echo $img;?></p>
+    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?> <br/><?php echo $img;?></p>
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复</a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>

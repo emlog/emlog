@@ -112,9 +112,11 @@ if ($action == 'del_attach') {
 if($action == 'upload_tw_img'){
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if ($attach) {
-		$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
-		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
-		echo '{"filePath":"'.$upfname.'"}';
+		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, false);
+		$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
+		$thum = str_replace($uppath,$uppath.'thum-',$upfname);
+		resizeImage($upfname, $thum, 120, 150);
+		echo '{"filePath":"'.$thum.'"}';
 		exit;
 	}
 	echo '{"filePath":""}';

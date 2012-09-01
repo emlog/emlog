@@ -18,11 +18,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                 BLOG_URL . 'admin/views/images/avatar.jpg' : 
                 BLOG_URL . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
-    $img = empty($val['img']) ? "" : '<a title="查看图片" class="t_img" href="'.str_replace('thum-', '', $val['img']).'" target="_blank">&nbsp;</a>';
+    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 3px solid #EFEFEF;" src="'.$val['img'].'"/></a>';
     ?> 
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
-    <p class="post1"><span><?php echo $author; ?></span><br /><?php echo $val['t'].$img;?></p>
+    <p class="post1"><span><?php echo $author; ?></span><br /><?php echo $val['t'].'<br/>'.$img;?></p>
     <div class="clear"></div>
     <div class="bttome">
         <p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');">回复(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
