@@ -26,6 +26,7 @@ if ($action == '') {
 // 发布碎语.
 if ($action == 'post') {
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
+    $img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
 
     if (!$t){
         emDirect("twitter.php?error_a=true");
@@ -34,6 +35,7 @@ if ($action == 'post') {
     $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
+            'img' => str_replace('..', BLOG_URL, $img)
     );
 
     $Twitter_Model->addTwitter($tdata);

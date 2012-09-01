@@ -10,9 +10,16 @@
     <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
+    <input type="hidden" name="img" id="imgPath" />
     <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/></div>
+    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
+    <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
+    <div id="img_name" class="twImg" style="display:none;">
+        <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
+        <a href="javascript:;" onclick="unSelectFile()">[取消]</a>
+        <div id="img_pop"></div>
+    </div>
     </form>
     </div>
     <div class="clear"></div>
@@ -24,10 +31,11 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
+    $img = empty($val['img']) ? "" : '<a title="查看图片" class="t_img" href="'.str_replace('thum-', '', $val['img']).'" target="_blank">&nbsp;</a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
-    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
+    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?> <?php echo $img;?></p>
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复</a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
@@ -49,6 +57,7 @@
 <ul class="tw_scroll"></ul>
 <div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
 </div>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
 <script>
 (function($){
 	$.fn.extend({
@@ -114,7 +123,51 @@ $(document).ready(function(){
 		$("#tw_line ul").html("");
 		$('#tw_line ul').html(tw);
 	});
+	
+	$("#custom_file_upload").uploadify({
+		id              : jQuery(this).attr('id'),
+		swf             : '../include/lib/js/uploadify/uploadify.swf',
+		uploader        : 'attachment.php?action=upload_tw_img',
+		cancelImage     : './views/images/cancel.png',
+		buttonText      : '选择图片',
+		checkExisting   : "/",
+		auto            : true,
+		multi           : false,
+		buttonCursor    : 'pointer',
+		fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg',
+		queueID         : 'custom-queue',
+		queueSizeLimit	: 100,
+		removeCompleted : false,
+		fileSizeLimit	: 20971520,
+		fileObjName     : 'attach',
+		postData		: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
+		onUploadSuccess : onUploadSuccess,
+		onUploadError   : onUploadError
+	});
 });
+function onUploadSuccess(file, data, response){
+	var data = eval("("+data+")");
+	if(data.filePath){
+		$("#imgPath").val(data.filePath);
+		$("#img_select").hide();
+		$("#img_name").show();
+		$("#img_name_a").text(file.name);
+		$("#img_pop").html("<img src='"+data.filePath+"'/>");
+	}else{
+		alert("上传失败！");	
+	}
+}
+function onUploadError(file, errorCode, errorMsg, errorString){
+	alert(errorString);
+}
+function unSelectFile(){
+	$.get("attachment.php?action=del_tw_img",{filepath:$("#imgPath").val()});
+	$("#imgPath").val("");
+	$("#img_select").show();
+	$("#img_name").hide();
+	$("#img_name_a").text("{图片名称}");
+	$("#img_pop").empty();
+}
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
     $("#rp_"+tid+" textarea").focus();
