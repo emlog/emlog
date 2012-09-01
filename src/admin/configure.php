@@ -12,6 +12,7 @@ if ($action == '') {
 
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
 	$conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
+	$conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
 	$conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
 	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
 	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
@@ -54,6 +55,8 @@ if ($action == 'mod_config') {
 	'timezone' => isset($_POST['timezone']) ? floatval($_POST['timezone']) : '',
 	'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 	'comment_code' => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
+	'comment_needchinese' => isset($_POST['comment_needchinese']) ? addslashes($_POST['comment_needchinese']) : 'n',
+	'comment_interval' => isset($_POST['comment_interval']) ? intval($_POST['comment_interval']) : 15,
 	'iscomment' => isset($_POST['iscomment']) ? addslashes($_POST['iscomment']) : 'n',
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',

@@ -35,6 +35,8 @@ class Comment_Controller {
 			emMsg('评论失败：该日志已关闭评论');
 		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
 			emMsg('评论失败：已存在相同内容评论');
+		} elseif ($Comment_Model->isCommentTooFast() === true){
+			emMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论');
 		} elseif (empty($name)){
 			emMsg('评论失败：请填写姓名');
 		} elseif (strlen($name) > 20){
@@ -49,6 +51,8 @@ class Comment_Controller {
 			emMsg('评论失败：请填写评论内容');
 		} elseif (strlen($content) > 8000) {
 			emMsg('评论失败：内容不符合规范');
+		} elseif (Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+			emMsg('评论失败：评论内容需包含中文');
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			emMsg('评论失败：验证码错误');
 		} else {

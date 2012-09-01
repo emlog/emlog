@@ -242,6 +242,7 @@ class Comment_Model {
 	{
 		$ipaddr = getIp();
 		$utctimestamp = time();
+
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
 			$content = '@' . addslashes($comment['poster']) . '：' . $content;
@@ -260,7 +261,7 @@ class Comment_Model {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved', $cid);
-            header('Location: ' . Url::log($blogId).'#'.$cid);
+            emDirect(Url::log($blogId).'#'.$cid);
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved', $cid);
@@ -291,6 +292,7 @@ class Comment_Model {
 		}
 		return true;
 	}
+
 	function isLogCanComment($blogId)
 	{
 		if (Option::get('iscomment') == 'n') {
@@ -304,6 +306,18 @@ class Comment_Model {
 		}else {
 			return true;
 		}
+	}
+
+	function isCommentTooFast()
+	{
+		$ipaddr = getIp();
+		$utctimestamp = time() - Option::get('comment_interval');
+
+		$sql = 'select count(*) as num from ' . DB_PREFIX."comment where date > $utctimestamp AND ip='$ipaddr'";
+		$res = $this->db->query($sql);
+		$row = $this->db->fetch_array($res);
+
+		return intval($row['num']) > 0 ? true : false;
 	}
 
 	function setCommentCookie($name,$mail,$url)

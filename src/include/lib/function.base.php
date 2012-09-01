@@ -771,7 +771,7 @@ EOT;
 	}
 	echo <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog system message</title>
+<title>提示信息</title>
 <style type="text/css">
 <!--
 body {
