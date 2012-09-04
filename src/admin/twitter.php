@@ -35,12 +35,12 @@ if ($action == 'post') {
     $tdata = array('content' => $Twitter_Model->formatTwitter($t),
             'author' => UID,
             'date' => time(),
-            'img' => str_replace('..', BLOG_URL, $img)
+            'img' => str_replace('../', BLOG_URL, $img)
     );
 
-    $Twitter_Model->addTwitter($tdata);
+    $twid = $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
-    doAction('post_twitter', $t);
+    doAction('post_twitter', $t, $twid);
     emDirect("twitter.php?active_t=true");
 }
 // 删除碎语.

@@ -20,6 +20,7 @@
         <a href="javascript:;" onclick="unSelectFile()">[取消]</a>
         <div id="img_pop"></div>
     </div>
+    <?php  doAction('twitter_form'); ?>
     </form>
     </div>
     <div class="clear"></div>
@@ -222,6 +223,7 @@ function pubreply(rid,tid){
 }
 function checkt(){
     var t=$(".box").val();
+    if(!$.trim(t)){return false;}
     var n=140 - t.length;
     if (n<0){return false;}
 }
