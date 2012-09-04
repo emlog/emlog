@@ -7,7 +7,7 @@
 require_once 'globals.php';
 
 //显示组件管理面板
-if($action == '') {
+if ($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
 	$widgets = Option::get('widgets'.$wgNum);
 	$widgetTitle = Option::get('widget_title');
@@ -21,9 +21,9 @@ if($action == '') {
 
 	$customWgTitle = array();
 	foreach ($widgetTitle as $key => $val) {
-		if(preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
+		if (preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
 			$customWgTitle[$key] = $matchs[1];
-		}else{
+		} else {
 			$customWgTitle[$key] = $val;
 		}
 	}
@@ -35,7 +35,7 @@ if($action == '') {
 }
 
 //修改组件设置
-if($action == 'setwg') {
+if ($action == 'setwg') {
 	$widgetTitle = Option::get('widget_title'); //当前所有组件标题
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
@@ -83,15 +83,15 @@ if($action == 'setwg') {
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
 			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//要删除的组件id
 			//添加新自定义组件
-			if($new_content) {
+			if ($new_content) {
 				//确定组件索引
 				$i = 0;
 				$maxKey = 0;
-				if(is_array($custom_widget)) {
+				if (is_array($custom_widget)) {
 					foreach ($custom_widget as $key => $val) {
 						preg_match("/^custom_wg_(\d+)/", $key, $matches);
 						$k = $matches[1];
-						if($k > $i) {
+						if ($k > $i) {
 							$maxKey = $k;
 						}
 						$i = $k;
@@ -102,16 +102,16 @@ if($action == 'setwg') {
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				Option::updateOption('custom_widget', $custom_widget_str);
-			}elseif ($content){
+			} elseif ($content) {
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				Option::updateOption('custom_widget', $custom_widget_str);
-			}elseif ($rmwg){
-				for($i=1; $i<5; $i++) {
+			} elseif ($rmwg) {
+				for ($i=1; $i<5; $i++) {
 					$widgets = Option::get('widgets'.$i);
-					if(is_array($widgets) && !empty($widgets)) {
+					if (is_array($widgets) && !empty($widgets)) {
 						foreach ($widgets as $key => $val) {
-							if($val == $rmwg) {
+							if ($val == $rmwg) {
 								unset($widgets[$key]);
 							}
 						}
@@ -130,7 +130,7 @@ if($action == 'setwg') {
 }
 
 //保存组件排序
-if($action == 'compages') {
+if ($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//侧边栏编号 1、2、3 ……
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	Option::updateOption("widgets{$wgNum}", $widgets);
@@ -139,7 +139,7 @@ if($action == 'compages') {
 }
 
 //恢复组件设置到初始安装状态
-if($action == 'reset') {
+if ($action == 'reset') {
 	$widget_title = serialize(Option::getWidgetTitle());
 	$default_widget = serialize(Option::getDefWidget());
 

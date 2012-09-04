@@ -21,9 +21,9 @@ if ($action == '') {
 	$conf_isxmlrpcenable = $isxmlrpcenable == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
-    $conf_istwitter = $istwitter == 'y' ? 'checked="checked"' : '';
-    $conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
-    $conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
+	$conf_istwitter = $istwitter == 'y' ? 'checked="checked"' : '';
+	$conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
+	$conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
@@ -69,25 +69,25 @@ if ($action == 'mod_config') {
 	'comment_paging' => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
 	'comment_pnum' => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
 	'comment_order' => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
-    'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
-    'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
-    'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
-    'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
+	'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
+	'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
+	'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
+	'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
 	'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
 	'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
 	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	);
 
-	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
+	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
 		emMsg("开启登录验证码失败!服务器不支持该功能","configure.php");
 	}
-	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')){
+	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
 		emMsg("开启评论验证码失败!服务器不支持该功能","configure.php");
 	}
-	if($getData['blogurl'] && substr($getData['blogurl'], -1) != '/'){
+	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
 	}
-	if($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)){
+	if ($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)) {
 		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 

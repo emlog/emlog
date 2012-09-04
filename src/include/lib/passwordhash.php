@@ -65,9 +65,9 @@ class PasswordHash {
 			$output = '';
 			for ($i = 0; $i < $count; $i += 16) {
 				$this->random_state =
-				    md5(microtime() . $this->random_state);
+					md5(microtime() . $this->random_state);
 				$output .=
-				    pack('H*', md5($this->random_state));
+					pack('H*', md5($this->random_state));
 			}
 			$output = substr($output, 0, $count);
 		}
@@ -217,7 +217,7 @@ class PasswordHash {
 		if (CRYPT_BLOWFISH == 1 && !$this->portable_hashes) {
 			$random = $this->get_random_bytes(16);
 			$hash =
-			    crypt($password, $this->gensalt_blowfish($random));
+				crypt($password, $this->gensalt_blowfish($random));
 			if (strlen($hash) == 60)
 				return $hash;
 		}
@@ -226,7 +226,7 @@ class PasswordHash {
 			if (strlen($random) < 3)
 				$random = $this->get_random_bytes(3);
 			$hash =
-			    crypt($password, $this->gensalt_extended($random));
+				crypt($password, $this->gensalt_extended($random));
 			if (strlen($hash) == 20)
 				return $hash;
 		}
@@ -234,8 +234,8 @@ class PasswordHash {
 		if (strlen($random) < 6)
 			$random = $this->get_random_bytes(6);
 		$hash =
-		    $this->crypt_private($password,
-		    $this->gensalt_private($random));
+			$this->crypt_private($password,
+			$this->gensalt_private($random));
 		if (strlen($hash) == 34)
 			return $hash;
 

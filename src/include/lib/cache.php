@@ -14,17 +14,17 @@ class Cache {
 	private $user_cache;
 	private $sta_cache;
 	private $comment_cache;
-    private $tags_cache;
-    private $sort_cache;
-    private $link_cache;
-    private $navi_cache;
-    private $newlog_cache;
-    private $newtw_cache;
+	private $tags_cache;
+	private $sort_cache;
+	private $link_cache;
+	private $navi_cache;
+	private $newlog_cache;
+	private $newtw_cache;
 	private $record_cache;
-    private $logtags_cache;
-    private $logsort_cache;
-    private $logalias_cache;
-    private $logatts_cache;
+	private $logtags_cache;
+	private $logsort_cache;
+	private $logalias_cache;
+	private $logatts_cache;
 
 	private function __construct() {
 		$this->db = MySql::getInstance();
@@ -98,8 +98,8 @@ class Cache {
 		$user_cache = array();
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
 		while ($row = $this->db->fetch_array($query)) {
-            $photo = array();
-            $avatar = '';
+			$photo = array();
+			$avatar = '';
 			if(!empty($row['photo'])){
 				$photosrc = str_replace("../", '', $row['photo']);
 				$imgsize = chImageSize($row['photo'], Option::ICON_MAX_W, Option::ICON_MAX_H);
@@ -112,8 +112,8 @@ class Cache {
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = array(
-			    'photo' => $photo,
-			    'avatar' => $avatar,
+				'photo' => $photo,
+				'avatar' => $avatar,
 				'name_orig' => $row['nickname'],
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
@@ -127,7 +127,7 @@ class Cache {
 	 * 站点统计缓存
 	 */
 	private function mc_sta() {
-	    $sta_cache = array();
+		$sta_cache = array();
 		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
@@ -136,7 +136,7 @@ class Cache {
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
 
 		$sta_cache = array(
-		    'lognum' => $lognum,
+			'lognum' => $lognum,
 			'draftnum' => $draftnum,
 			'comnum' => $comnum,
 			'comnum_all' => $comnum + $hidecom,
@@ -152,7 +152,7 @@ class Cache {
 			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
 			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-            $twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
+			$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
 
 			$sta_cache[$row['uid']] = array(
 				'lognum' => $logNum,
@@ -177,7 +177,7 @@ class Cache {
 		}
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
-        $com_cids = array();
+		$com_cids = array();
 		while ($show_com = $this->db->fetch_array($query)) {
 			$com_page = '';
 			if($comment_paging == 'y') {
@@ -199,7 +199,7 @@ class Cache {
 				$com_page = intval(floor(array_search($cid, $com_cids[$show_com['gid']]) / $comment_pnum)) + 1;
 			}
 			$com_cache[] = array(
-			    'cid' => $show_com['cid'],
+				'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
 				'date' => $show_com['date'],
@@ -255,11 +255,11 @@ class Cache {
 			$usenum = substr_count($show_tag['gid'], ',') - 1;
 			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
 			$tag_cache[] = array(
-			         'tagurl' => urlencode($show_tag['tagname']),
-			         'tagname' => htmlspecialchars($show_tag['tagname']),
-			         'fontsize' => $fontsize,
-			         'usenum' => $usenum
-			         );
+					'tagurl' => urlencode($show_tag['tagname']),
+					'tagname' => htmlspecialchars($show_tag['tagname']),
+					'fontsize' => $fontsize,
+					'usenum' => $usenum
+					);
 		}
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData, 'tags');
@@ -273,12 +273,12 @@ class Cache {
 		while ($row = $this->db->fetch_array($query)) {
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
 			$sort_cache[$row['sid']] = array(
-				     'lognum' => $logNum,
-				     'sortname' => htmlspecialchars($row['sortname']),
-					 'alias' =>$row['alias'],
-				     'sid' => intval($row['sid']),
-				     'taxis' => intval($row['taxis'])
-				    );
+				'lognum' => $logNum,
+				'sortname' => htmlspecialchars($row['sortname']),
+				'alias' =>$row['alias'],
+				'sid' => intval($row['sid']),
+				'taxis' => intval($row['taxis'])
+				);
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData, 'sort');
@@ -291,7 +291,7 @@ class Cache {
 		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
 			$link_cache[] = array(
-			    'link' => htmlspecialchars($show_link['sitename']),
+				'link' => htmlspecialchars($show_link['sitename']),
 				'url' => htmlspecialchars($show_link['siteurl']),
 				'des' => htmlspecialchars($show_link['description'])
 				);
@@ -343,8 +343,8 @@ class Cache {
 		$res = $this->db->query($sql);
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
-		    $row['id'] = $row['id'];
-		    $row['t'] = $row['content'];
+			$row['id'] = $row['id'];
+			$row['t'] = $row['content'];
 			$row['date'] = $row['date'];
 			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
@@ -369,7 +369,7 @@ class Cache {
 					$record_cache[$h]['lognum'] = $lognum;
 				}
 				$record_cache[$p] = array(
-				    'record' => gmdate('Y年n月', $show_record['date']),
+					'record' => gmdate('Y年n月', $show_record['date']),
 					'date' => gmdate('Ym', $show_record['date'])
 					);
 				$p++;
@@ -432,19 +432,19 @@ class Cache {
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');
 	}
-    /**
-     * 日志别名缓存
-     */
-    private function mc_logalias() {
-        $sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
-        $query = $this->db->query($sql);
-        $log_cache_alias = array();
-        while ($row = $this->db->fetch_array($query)) {
-            $log_cache_alias[$row['gid']] = $row['alias'];
-        }
-        $cacheData = serialize($log_cache_alias);
-        $this->cacheWrite($cacheData, 'logalias');
-    }
+	/**
+	 * 日志别名缓存
+	 */
+	private function mc_logalias() {
+		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
+		$query = $this->db->query($sql);
+		$log_cache_alias = array();
+		while ($row = $this->db->fetch_array($query)) {
+			$log_cache_alias[$row['gid']] = $row['alias'];
+		}
+		$cacheData = serialize($log_cache_alias);
+		$this->cacheWrite($cacheData, 'logalias');
+	}
 	/**
 	 * 日志\页面附件缓存
 	 */

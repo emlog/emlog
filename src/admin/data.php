@@ -6,7 +6,7 @@
 
 require_once 'globals.php';
 
-if($action == ''){
+if ($action == '') {
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
 	$timezone = Option::get('timezone');
@@ -20,33 +20,33 @@ if($action == ''){
 	View::output();
 }
 
-if($action == 'bakstart'){
+if ($action == 'bakstart') {
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
 	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
 	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
 
 	$timezone = Option::get('timezone');
 
-	if(!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname)){
+	if (!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname)) {
 		emDirect("./data.php?error_b=true");
 	}
 	$filename = '../content/backup/'.$bakfname.'.sql';
 
 	$sqldump = '';
-	foreach($table_box as $table){
+	foreach ($table_box as $table) {
 		$sqldump .= dataBak($table);
 	}
-	if(trim($sqldump)){
+	if (trim($sqldump)) {
 		$dumpfile = '#version:emlog '. Option::EMLOG_VERSION . "\n";
 		$dumpfile .= '#date:' . gmdate('Y-m-d H:i', time() + $timezone * 3600) . "\n";
 		$dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";
-		if($bakplace == 'local'){
+		if ($bakplace == 'local') {
 			header('Content-Type: text/x-sql');
 			header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
 			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', time() + $timezone * 3600).'.sql');
-			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])){
+			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
 				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				header('Pragma: public');
 			} else {
@@ -59,30 +59,30 @@ if($action == 'bakstart'){
 			if ($fp)
 			{
 				@flock($fp, 3);
-				if(@!fwrite($fp, $dumpfile))
+				if (@!fwrite($fp, $dumpfile))
 				{
 					@fclose($fp);
 					emMsg('备份失败。备份目录(content/backup)不可写');
-				}else{
+				} else{
 					emDirect("./data.php?active_backup=true");
 				}
-			}else{
+			} else{
 				emMsg('创建备份文件失败。备份目录(content/backup)不可写');
 			}
 		}
-	}else{
+	} else{
 		emMsg('数据表没有任何内容');
 	}
 }
 
 //导入服务器备份文件
-if ($action == 'renewdata'){
+if ($action == 'renewdata') {
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
-	if (!file_exists($sqlfile)){
+	if (!file_exists($sqlfile)) {
 		emMsg('文件不存在');
 	}
 
-	if (getFileSuffix($sqlfile) !== 'sql'){
+	if (getFileSuffix($sqlfile) !== 'sql') {
 		emMsg('只能导入emlog备份的SQL文件');
 	}
 	checkSqlFileInfo($sqlfile);
@@ -92,7 +92,7 @@ if ($action == 'renewdata'){
 }
 
 //导入本地备份文件
-if ($action == 'import'){
+if ($action == 'import') {
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
 		emMsg('非法提交的信息');
@@ -100,9 +100,9 @@ if ($action == 'import'){
 	if (getFileSuffix($sqlfile['name']) != 'sql') {
 		emMsg('只能导入emlog备份的SQL文件');
 	}
-	if ($sqlfile['error'] == 1){
+	if ($sqlfile['error'] == 1) {
 		emMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制');
-	}elseif ($sqlfile['error'] > 1){
+	} elseif ($sqlfile['error'] > 1) {
 		emMsg('上传文件失败,错误码：'.$sqlfile['error']);
 	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
@@ -112,11 +112,11 @@ if ($action == 'import'){
 }
 
 //批量删除备份文件
-if($action == 'dell_all_bak'){
-	if(!isset($_POST['bak'])){
+if ($action == 'dell_all_bak') {
+	if (!isset($_POST['bak'])) {
 		emDirect("./data.php?error_a=true");
-	}else{
-		foreach($_POST['bak'] as $val){
+	} else{
+		foreach ($_POST['bak'] as $val) {
 			unlink($val);
 		}
 		emDirect("./data.php?active_del=true");
@@ -124,7 +124,7 @@ if($action == 'dell_all_bak'){
 }
 
 //更新缓存
-if ($action == 'Cache'){
+if ($action == 'Cache') {
 	$CACHE->updateCache();
 	emDirect("./data.php?active_mc=true");
 }
@@ -136,16 +136,16 @@ if ($action == 'Cache'){
  */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
-	if ($fp){
+	if ($fp) {
 		$dumpinfo = array();
 		$line = 0;
-		while (!feof($fp)){
+		while (!feof($fp)) {
 			$dumpinfo[] = fgets($fp, 4096);
 			$line++;
 			if ($line == 3) break;
 		}
 		fclose($fp);
-		if (!empty($dumpinfo)){
+		if (!empty($dumpinfo)) {
 			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
 				emMsg('导入失败！该备份文件只能导入到' . Option::EMLOG_VERSION . '版本的emlog站点!');
 			}
@@ -169,19 +169,19 @@ function bakindata($filename) {
 	$DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
-	if(isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
-	    $sql[0] = substr($sql[0], 3);
+	if (isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
+		$sql[0] = substr($sql[0], 3);
 	}
 	array_unshift($sql,$setchar);
 	$query = '';
-	foreach($sql as $value){
+	foreach ($sql as $value) {
 		$value = trim($value);
-		if(!$value || $value[0]=='#'){
+		if (!$value || $value[0]=='#') {
 			continue;
 		}
-		if(preg_match("/\;$/i", $value)){
+		if (preg_match("/\;$/i", $value)) {
 			$query .= $value;
-			if(preg_match("/^CREATE/i", $query)){
+			if (preg_match("/^CREATE/i", $query)) {
 				$query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is",'',$query);
 			}
 			$DB->query($query);
@@ -198,7 +198,7 @@ function bakindata($filename) {
  * @param string $table 数据库表名
  * @return string
  */
-function dataBak($table){
+function dataBak($table) {
 	$DB = MySql::getInstance();
 	$sql = "DROP TABLE IF EXISTS $table;\n";
 	$createtable = $DB->query("SHOW CREATE TABLE $table");
@@ -208,10 +208,10 @@ function dataBak($table){
 	$rows = $DB->query("SELECT * FROM $table");
 	$numfields = $DB->num_fields($rows);
 	$numrows = $DB->num_rows($rows);
-	while ($row = $DB->fetch_row($rows)){
+	while ($row = $DB->fetch_row($rows)) {
 		$comma = "";
 		$sql .= "INSERT INTO $table VALUES(";
-		for ($i = 0; $i < $numfields; $i++){
+		for ($i = 0; $i < $numfields; $i++) {
 			$sql .= $comma."'".mysql_escape_string($row[$i])."'";
 			$comma = ",";
 		}
@@ -225,12 +225,12 @@ function dataBak($table){
  * 检查文件是否包含BOM(byte-order mark)
  */
 function checkBOM($contents) {
-    $charset[1] = substr($contents, 0, 1);
-    $charset[2] = substr($contents, 1, 1);
-    $charset[3] = substr($contents, 2, 1);
-    if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
-        return true;
-    } else {
-        return false;
-    }
+	$charset[1] = substr($contents, 0, 1);
+	$charset[2] = substr($contents, 1, 1);
+	$charset[3] = substr($contents, 2, 1);
+	if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
+		return true;
+	} else {
+		return false;
+	}
 }

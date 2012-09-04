@@ -40,7 +40,7 @@ class Twitter_Model {
 	 * @return int
 	 */
 	function getTwitterNum($spot = 0) {
-	    $author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
+		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
 		$res = $this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		$twNum = $this->db->num_rows($res);
 		return $twNum;
@@ -62,8 +62,8 @@ class Twitter_Model {
 		$res = $this->db->query($sql);
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
-		    $row['id'] = $row['id'];
-		    $row['t'] = $row['content'];
+			$row['id'] = $row['id'];
+			$row['t'] = $row['content'];
 			$row['date'] = smartDate($row['date']);
 			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
@@ -88,13 +88,13 @@ class Twitter_Model {
 	 * @param string $do '+1' or '-1'
 	 */
 	function updateReplyNum($tid, $do) {
-	    $this->db->query("UPDATE ".DB_PREFIX."twitter SET replynum = replynum $do WHERE id='$tid'");
+		$this->db->query("UPDATE ".DB_PREFIX."twitter SET replynum = replynum $do WHERE id='$tid'");
 	}
 
-    function formatTwitter($t) {
-        //识别URL
-        $t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
-        $t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
-        return $t;
-    }
+	function formatTwitter($t) {
+		//识别URL
+		$t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
+		$t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
+		return $t;
+	}
 }

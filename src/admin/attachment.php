@@ -109,14 +109,14 @@ if ($action == 'del_attach') {
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 
-if($action == 'upload_tw_img'){
+if ($action == 'upload_tw_img') {
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if ($attach) {
 		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, false);
 		$size = @getimagesize($upfname);
 		$w = $size[0];
 		$h = $size[1];
-		if($w>150 || $h>120){
+		if ($w>150 || $h>120) {
 			$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 			$thum = str_replace($uppath,$uppath.'thum-',$upfname);
 			resizeImage($upfname, $thum, 120, 150);

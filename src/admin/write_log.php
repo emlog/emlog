@@ -7,7 +7,7 @@
 require_once 'globals.php';
 
 //显示撰写日志页面
-if($action == '') {
+if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
 
@@ -45,8 +45,8 @@ if ($action == 'edit') {
 	$tags = $Tag_Model->getTag();
 
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
-    $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
-    $is_allow_tb = $allow_tb == 'y' ? 'checked="checked"' : '';
+	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+	$is_allow_tb = $allow_tb == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once View::getView('edit_log');

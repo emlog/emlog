@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
-if($action == '' && !$plugin) {
+if ($action == '' && !$plugin) {
 	$Plugin_Model = new Plugin_Model();
 	$plugins = $Plugin_Model->getPlugins();
 
@@ -21,16 +21,16 @@ if($action == '' && !$plugin) {
 //激活
 if ($action == 'active') {
 	$Plugin_Model = new Plugin_Model();
-	if ($Plugin_Model->activePlugin($plugin) ){
-	    $CACHE->updateCache('options');
-	    emDirect("./plugin.php?active=true");
+	if ($Plugin_Model->activePlugin($plugin) ) {
+		$CACHE->updateCache('options');
+		emDirect("./plugin.php?active=true");
 	} else {
-	    emDirect("./plugin.php?active_error=true");
+		emDirect("./plugin.php?active_error=true");
 	}
 }
 
 //禁用
-if($action == 'inactive') {
+if ($action == 'inactive') {
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
 	$CACHE->updateCache('options');
@@ -47,15 +47,15 @@ if ($action == '' && $plugin) {
 
 //保存插件设置
 if ($action == 'setting') {
-	if(!empty($_POST)) {
+	if (!empty($_POST)) {
 		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
-		if(false === plugin_setting()){
-		    emDirect("./plugin.php?plugin={$plugin}&error=true");
-		}else{
-		    emDirect("./plugin.php?plugin={$plugin}&setting=true");
+		if (false === plugin_setting()) {
+			emDirect("./plugin.php?plugin={$plugin}&error=true");
+		} else{
+			emDirect("./plugin.php?plugin={$plugin}&setting=true");
 		}
-	}else{
-	    emDirect("./plugin.php?plugin={$plugin}&error=true");
+	} else{
+		emDirect("./plugin.php?plugin={$plugin}&error=true");
 	}
 }
 
@@ -68,8 +68,7 @@ if ($action == 'install') {
 }
 
 //删除插件
-if($action == 'del')
-{
+if ($action == 'del') {
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
 	$pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
@@ -85,10 +84,10 @@ if($action == 'del')
 if ($action == 'upload_zip') {
 	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
-	if ($zipfile['error'] == 4){
+	if ($zipfile['error'] == 4) {
 		emDirect("./plugin.php?action=install&error_d=1");
 	}
-	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
+	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
 		emMsg('插件上传失败');
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {

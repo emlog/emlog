@@ -72,8 +72,8 @@ class Log_Controller {
 		$site_title = $log_title . ' - ' . $site_title;
 		$site_description = extractHtmlData($log_content, 330);
 		$log_cache_tags = $CACHE->readCache('logtags');
-		if (!empty($log_cache_tags[$logid])){
-			foreach ($log_cache_tags[$logid] as $value){
+		if (!empty($log_cache_tags[$logid])) {
+			foreach ($log_cache_tags[$logid] as $value) {
 				$site_key .= ','.$value['tagname'];
 			}
 		}
@@ -90,7 +90,7 @@ class Log_Controller {
 			$neighborLog = $Log_Model->neighborLog($timestamp);
 			$tb = $Trackback_Model->getTrackbacks(null, $logid, 0);
 			$tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
-			require_once View::getView('echo_log');
+			include View::getView('echo_log');
 		}elseif ($type == 'page') {
 			include View::getView('page');
 		}

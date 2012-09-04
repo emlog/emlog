@@ -58,14 +58,14 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-    $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
 	//check alias
 	if (!empty($alias)) {
 		$logalias_cache = $CACHE->readCache('logalias');
-	    $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
+		$alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
 	}
 
 	$logData = array(
@@ -79,21 +79,21 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'type'=>'page'
 	);
 
-	if($pageId > 0){//自动保存后,添加变为更新
+	if ($pageId > 0) {//自动保存后,添加变为更新
 		$emPage->updateLog($logData, $pageId);
-	}else{
+	} else{
 		$pageId = $emPage->addlog($logData);
 	}
 
 	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
 
-	switch ($action){
+	switch ($action) {
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";
 			break;
 		case 'add':
 		case 'edit':
-			if($action == 'add') {
+			if ($action == 'add') {
 				emDirect("./page.php?active_hide_n=true");//页面发布成功
 			} else {
 				emDirect("./page.php?active_savepage=true");//页面保存成功
@@ -108,9 +108,9 @@ if ($action == 'operate_page') {
 
 	$emPage = new Log_Model();
 
-	switch ($operate){
+	switch ($operate) {
 		case 'del':
-			foreach($pages as $value){
+			foreach ($pages as $value) {
 				$emPage->deleteLog($value);
 				unset($navibar[$value]);
 			}
@@ -123,7 +123,7 @@ if ($action == 'operate_page') {
 		case 'hide':
 		case 'pub':
 			$ishide = $operate == 'hide' ? 'y' : 'n';
-			foreach($pages as $value){
+			foreach ($pages as $value) {
 				$emPage->hideSwitch($value, $ishide);
 				$navibar[$value]['hide'] = $ishide;
 			}

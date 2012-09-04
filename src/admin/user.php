@@ -53,7 +53,7 @@ if ($action== 'edit') {
 	$ex1 = $ex2 = '';
 	if ($role == 'writer') {
 		$ex1 = 'selected="selected"';
-	} elseif($role == 'admin') {
+	} elseif ($role == 'admin') {
 	 	$ex2 = 'selected="selected"';
 	}
 
@@ -88,18 +88,18 @@ if ($action=='update') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
 	}
 
-    $userData = array('username' => $login,
-                        'nickname' => $nickname,
-                        'email' => $email,
-                        'description' => $description,
-    					'role' => $role,
-                        );
+	$userData = array('username' => $login,
+						'nickname' => $nickname,
+						'email' => $email,
+						'description' => $description,
+						'role' => $role,
+						);
 
-    if (!empty($password)) {
-    	$PHPASS = new PasswordHash(8, true);
-    	$password = $PHPASS->HashPassword($password);
-        $userData['password'] = $password;
-    }
+	if (!empty($password)) {
+		$PHPASS = new PasswordHash(8, true);
+		$password = $PHPASS->HashPassword($password);
+		$userData['password'] = $password;
+	}
 
 	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');

@@ -22,21 +22,21 @@ if ($action == 'login') {
 	if (checkUser($username, $password, $img_code) === true) {
 		setAuthCookie($username, $ispersis);
 		emDirect("./");
-	}else{
+	} else{
 		loginPage();
 	}
 }
 //退出
-if ($action == 'logout'){
+if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	emDirect("../");
 }
 
-if(ISLOGIN === false){
+if (ISLOGIN === false) {
 	loginpage();
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','twitter','attachment','blogger','comment','index','save_log','trackback'))){
+if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','twitter','attachment','blogger','comment','index','save_log','trackback'))) {
 	emMsg('权限不足！','./');
 }

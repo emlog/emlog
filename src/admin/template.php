@@ -6,7 +6,7 @@
 
 require_once 'globals.php';
 
-if($action == '') {
+if ($action == '') {
 	$nonce_templet = Option::get('nonce_templet');
 	$nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
 	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
@@ -20,19 +20,16 @@ if($action == '') {
 	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
 	$tplForEm = !empty($tplForEmlog[1]) ? '适用于emlog：' . $tplForEmlog[1] : '';
 
-	if(isset($tplAuthor[1]))
-	{
+	if (isset($tplAuthor[1])) {
 		$tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
-	}else{
+	} else{
 		$tplAuthor = '';
 	}
 	//模板列表
 	$handle = @opendir(TPLS_PATH) OR die('emlog template path error!');
 	$tpls = array();
-	while ($file = @readdir($handle))
-	{
-		if(@file_exists(TPLS_PATH.$file.'/header.php'))
-		{
+	while ($file = @readdir($handle)) {
+		if (@file_exists(TPLS_PATH.$file.'/header.php')) {
 			$tplData = implode('', @file(TPLS_PATH.$file.'/header.php'));
 			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
 			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
@@ -54,7 +51,7 @@ if($action == '') {
 }
 
 //使用模板
-if($action == 'usetpl')
+if ($action == 'usetpl')
 {
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
@@ -66,7 +63,7 @@ if($action == 'usetpl')
 }
 
 //删除模板
-if($action == 'del')
+if ($action == 'del')
 {
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
@@ -78,7 +75,7 @@ if($action == 'del')
 }
 
 //自定义顶部图片页面
-if($action == 'custom-top')
+if ($action == 'custom-top')
 {
 	$topimg = Option::get('topimg');
 
@@ -86,14 +83,14 @@ if($action == 'custom-top')
 
 	$handle = @opendir($top_image_path) OR die('emlog default template path error!');
 	$default_topimgs = array();
-    while ($file = @readdir($handle)) 
-    {
-    	if (getFileSuffix($file) == 'jpg' && !strstr($file, '_mini.jpg')) {
-        	$default_topimgs[] = array('path'=>'content/templates/default/images/top/'.$file);
-    	}
-    }
-    $custom_topimgs = Option::get('custom_topimgs');
-    $topimgs = array_merge($default_topimgs, $custom_topimgs);
+	while ($file = @readdir($handle)) 
+	{
+		if (getFileSuffix($file) == 'jpg' && !strstr($file, '_mini.jpg')) {
+			$default_topimgs[] = array('path'=>'content/templates/default/images/top/'.$file);
+		}
+	}
+	$custom_topimgs = Option::get('custom_topimgs');
+	$topimgs = array_merge($default_topimgs, $custom_topimgs);
 	closedir($handle);
 
 	include View::getView('header');
@@ -103,7 +100,7 @@ if($action == 'custom-top')
 }
 
 //使用顶部图片
-if($action == 'update_top')
+if ($action == 'update_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
 
@@ -113,13 +110,13 @@ if($action == 'update_top')
 }
 
 //删除自定义顶部图片
-if($action == 'del_top')
+if ($action == 'del_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
 
 	$custom_topimgs = Option::get('custom_topimgs');
 	$key = array_search($top, $custom_topimgs);
-	if(isset($custom_topimgs[$key])) {
+	if (isset($custom_topimgs[$key])) {
 		unset($custom_topimgs[$key]);
 	}
 
@@ -138,10 +135,9 @@ if ($action == 'upload_top') {
 	$photo_type = array('jpg', 'jpeg', 'png');
 	$topimg = '';
 
-	if($_FILES['topimg']['error'] != 4)
-	{
+	if ($_FILES['topimg']['error'] != 4) {
 		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
-	}else{
+	} else{
 		emDirect("./template.php?action=custom-top");
 	}
 
@@ -187,7 +183,7 @@ if ($action == 'crop') {
 }
 
 //安装模板
-if($action == 'install')
+if ($action == 'install')
 {
 	include View::getView('header');
 	require_once View::getView('template_install');
@@ -199,10 +195,10 @@ if($action == 'install')
 if ($action == 'upload_zip') {
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
-	if ($zipfile['error'] == 4){
+	if ($zipfile['error'] == 4) {
 		emDirect("./template.php?action=install&error_d=1");
 	}
-	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])){
+	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
 		emMsg('模板上传失败');
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {

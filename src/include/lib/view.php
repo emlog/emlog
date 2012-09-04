@@ -25,5 +25,5 @@ class View {
 		ob_end_flush();
 		exit;
 	}
-	
+
 }

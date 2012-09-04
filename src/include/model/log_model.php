@@ -92,7 +92,7 @@ class Log_Model {
 			$row['password'] = htmlspecialchars($row['password']);
 			$logData = $row;
 			return $logData;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -106,7 +106,7 @@ class Log_Model {
 		$row = $this->db->fetch_array($res);
 		if ($row) {
 			$logData = array(
-			    'log_title' => htmlspecialchars($row['title']),
+				'log_title' => htmlspecialchars($row['title']),
 				'timestamp' => $row['date'],
 				'date' => $row['date'] + Option::get('timezone') * 3600,
 				'logid' => intval($row['gid']),
@@ -125,7 +125,7 @@ class Log_Model {
 				'password' => $row['password']
 				);
 			return $logData;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -181,14 +181,14 @@ class Log_Model {
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
 			$row['log_url'] = Url::log($row['gid']);
 			$row['logid'] = $row['gid'];
-		    $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
-            if (!empty($row['password']) && $cookiePassword != $row['password']) {
-                $row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
-            }else {
-                if (!empty($row['excerpt'])) {
-                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
-                }
-            }
+			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
+			if (!empty($row['password']) && $cookiePassword != $row['password']) {
+				$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+			} else {
+				if (!empty($row['excerpt'])) {
+					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
+				}
+			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
@@ -361,20 +361,20 @@ class Log_Model {
 	 * @param array $logalias_cache
 	 * @param int $logid
 	 */
-    function checkAlias($alias, $logalias_cache, $logid) {
-    	static $i=2;
-    	$key = array_search($alias, $logalias_cache);
-        if (false !== $key && $key != $logid) {
-        	if($i == 2) {
-        		$alias .= '-'.$i;
-        	}else{
-        		$alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
-        	}
-    		$i++;
-    		return $this->checkAlias($alias, $logalias_cache, $logid);
-   		}
-   		return $alias;
-    }
+	function checkAlias($alias, $logalias_cache, $logid) {
+		static $i=2;
+		$key = array_search($alias, $logalias_cache);
+		if (false !== $key && $key != $logid) {
+			if($i == 2) {
+				$alias .= '-'.$i;
+			}else{
+				$alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
+			}
+			$i++;
+			return $this->checkAlias($alias, $logalias_cache, $logid);
+		}
+		return $alias;
+	}
 
 	/**
 	 * 加密日志访问验证
@@ -413,7 +413,7 @@ EOT;
 				setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 			}
 			exit;
-		}else {
+		} else {
 			setcookie('em_logpwd_' . $logid, $logPwd);
 		}
 	}

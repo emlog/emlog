@@ -70,7 +70,7 @@ function sendinfo(url,node){
 	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
 function loadr(url,tid){
-    url = url+"&stamp="+timestamp();
+	url = url+"&stamp="+timestamp();
 	var r=document.getElementById("r_"+tid);
 	var rp=document.getElementById("rp_"+tid);
 	if (r.style.display=="block"){
@@ -78,30 +78,30 @@ function loadr(url,tid){
 		rp.style.display="none";
 	} else {
 		r.style.display="block";
-        r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">加载中...</span>';
-        XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
+		r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">加载中...</span>';
+		XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
 	}
 }
 function reply(url,tid){
-    var rtext=document.getElementById("rtext_"+tid).value;
-    var rname=document.getElementById("rname_"+tid).value;
-    var rcode=document.getElementById("rcode_"+tid).value;
-    var rmsg=document.getElementById("rmsg_"+tid);
-    var rn=document.getElementById("rn_"+tid);
-    var r=document.getElementById("r_"+tid);
-    var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
-    XMLHttp.sendReq('POST',url,data,function(obj){
-        if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
-        }else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
-        }else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
-        }else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
-        }else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
-        }else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
-        }else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
+	var rtext=document.getElementById("rtext_"+tid).value;
+	var rname=document.getElementById("rname_"+tid).value;
+	var rcode=document.getElementById("rcode_"+tid).value;
+	var rmsg=document.getElementById("rmsg_"+tid);
+	var rn=document.getElementById("rn_"+tid);
+	var r=document.getElementById("r_"+tid);
+	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+	XMLHttp.sendReq('POST',url,data,function(obj){
+		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
+		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
+		}else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
+		}else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
+		}else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
+		}else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
+		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){
-    var rtext=document.getElementById("rtext_"+tid).value = rp;
-    focusEle("rtext_"+tid);
+	var rtext=document.getElementById("rtext_"+tid).value = rp;
+	focusEle("rtext_"+tid);
 }
 function commentReply(pid,c){
 	var response = document.getElementById('comment-post');

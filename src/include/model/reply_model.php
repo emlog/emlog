@@ -8,8 +8,7 @@ class Reply_Model {
 
 	private $db;
 
-	function __construct()
-	{
+	function __construct() {
 		$this->db = MySql::getInstance();
 	}
 
@@ -20,9 +19,9 @@ class Reply_Model {
 	 * @return int
 	 */
 	function addReply($rData) {
-	    if (true === $this->isReplyExist($rData['tid'], $rData['name'], $rData['content'])){
-	        return false;
-	    }
+		if (true === $this->isReplyExist($rData['tid'], $rData['name'], $rData['content'])) {
+			return false;
+		}
 		$kItem = array();
 		$dItem = array();
 		foreach ($rData as $key => $data) {
@@ -44,8 +43,7 @@ class Reply_Model {
 	 * @param int $page
 	 * @return array
 	 */
-	function getReplys($tid, $hide = null)
-	{
+	function getReplys($tid, $hide = null) {
 		$andQuery = '1=1';
 		$andQuery .= $tid ? " and tid=$tid" : '';
 		$andQuery .= $hide ? " and hide='$hide'" : '';
@@ -75,12 +73,11 @@ class Reply_Model {
 	 * @param string $hide
 	 * @return int $replyNum
 	 */
-	function getReplyNum($tid = null, $hide = null)
-	{
+	function getReplyNum($tid = null, $hide = null) {
 		$andQuery = '1=1';
 		$andQuery .= $tid ? " and tid=$tid" : '';
 		$andQuery .= $hide ? " and hide='$hide'" : '';
-	    $sql = "SELECT id FROM ".DB_PREFIX."reply where $andQuery";
+		$sql = "SELECT id FROM ".DB_PREFIX."reply where $andQuery";
 		$res = $this->db->query($sql);
 		$replyNum = $this->db->num_rows($res);
 		return $replyNum;
@@ -92,8 +89,7 @@ class Reply_Model {
 	 * @param int $replyId
 	 * @return 受影响的twitter id
 	 */
-	function delReply($replyId)
-	{
+	function delReply($replyId) {
 		$row = $this->db->once_fetch_array("SELECT hide FROM ".DB_PREFIX."reply WHERE id=$replyId");
 		$this->db->query("DELETE FROM ".DB_PREFIX."reply where id=$replyId");
 		$hide = $row['hide'];
@@ -105,8 +101,7 @@ class Reply_Model {
 	 *
 	 * @param int $replyId
 	 */
-	function hideReply($replyId)
-	{
+	function hideReply($replyId) {
 		$this->db->query("UPDATE ".DB_PREFIX."reply SET hide='y' WHERE id=$replyId");
 	}
 	/**
@@ -114,27 +109,24 @@ class Reply_Model {
 	 *
 	 * @param int $replyId
 	 */
-	function pubReply($replyId)
-	{
+	function pubReply($replyId) {
 		$row = $this->db->once_fetch_array("SELECT tid FROM ".DB_PREFIX."reply WHERE id=$replyId");
 		$this->db->query("UPDATE ".DB_PREFIX."reply SET hide='n' WHERE id=$replyId");
 		$tid = intval($row['tid']);
 		return $tid;
 	}
 
-	function isReplyExist($tid, $name, $content)
-	{
+	function isReplyExist($tid, $name, $content) {
 		$query = $this->db->query("SELECT id FROM ".DB_PREFIX."reply WHERE tid=$tid AND name='$name' AND content='$content'");
 		$result = $this->db->num_rows($query);
-		if ($result > 0){
+		if ($result > 0) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 
-	function setReplyCookie($name)
-	{
+	function setReplyCookie($name) {
 		$cookietime = time() + 31536000;
 		setcookie('replyposter',$name,$cookietime);
 	}

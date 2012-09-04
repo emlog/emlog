@@ -9,19 +9,18 @@
  *
  * @return boolean
  */
-function isLogin()
-{
+function isLogin() {
 	global $userData;
 	$auth_cookie = '';
-	if( isset($_COOKIE[AUTH_COOKIE_NAME]) ){
+	if(isset($_COOKIE[AUTH_COOKIE_NAME])) {
 		$auth_cookie = $_COOKIE[AUTH_COOKIE_NAME];
-	} elseif (isset($_POST[AUTH_COOKIE_NAME])){
+	} elseif (isset($_POST[AUTH_COOKIE_NAME])) {
 		$auth_cookie = $_POST[AUTH_COOKIE_NAME];
 	} else{
 		return false;
 	}
 
-	if( ($userData = validateAuthCookie($auth_cookie)) === false){
+	if(($userData = validateAuthCookie($auth_cookie)) === false) {
 		return false;
 	}else{
 		return true;
@@ -36,21 +35,18 @@ function isLogin()
  * @param string $imgcode
  * @param string $logincode
  */
-function checkUser($username, $password, $imgcode, $logincode = false)
-{
+function checkUser($username, $password, $imgcode, $logincode = false) {
 	session_start();
-	if (trim($username) == '' || trim($password) == '')
-	{
+	if (trim($username) == '' || trim($password) == '') {
 		return false;
 	} else {
 		$sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
 		$logincode = false === $logincode ? Option::get('login_code') : $logincode;
-		if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode))
-		{
+		if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
 			return false;
 		}
 		$userData = getUserDataByLogin($username);
-		if ($userData === false){
+		if ($userData === false) {
 			return false;
 		}
 		$hash = $userData['password'];
@@ -63,8 +59,7 @@ function checkUser($username, $password, $imgcode, $logincode = false)
  * 登录页面
  *
  */
-function loginPage()
-{
+function loginPage() {
 	Option::get('login_code') == 'y' ?
 	$ckcode = "<span>验证码</span>
 	<div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
@@ -80,16 +75,13 @@ function loginPage()
  * @param string $userLogin User's username
  * @return bool|object False on failure, User DB row object
  */
-function getUserDataByLogin($userLogin)
-{
+function getUserDataByLogin($userLogin) {
 	$DB = MySql::getInstance();
-	if ( empty( $userLogin ) )
-	{
+	if (empty($userLogin)) {
 		return false;
 	}
 	$userData = false;
-	if ( !$userData = $DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."user WHERE username = '$userLogin'"))
-	{
+	if (!$userData = $DB->once_fetch_array("SELECT * FROM ".DB_PREFIX."user WHERE username = '$userLogin'")) {
 		return false;
 	}
 	$userData['nickname'] = htmlspecialchars($userData['nickname']);
@@ -104,11 +96,9 @@ function getUserDataByLogin($userLogin)
  * @param string $hash Hash of the user's password to check against.
  * @return bool False, if the $password does not match the hashed password
  */
-function checkPassword($password, $hash)
-{
+function checkPassword($password, $hash) {
 	global $em_hasher;
-	if ( empty($em_hasher) )
-	{
+	if (empty($em_hasher)) {
 		$em_hasher = new PasswordHash(8, true);
 	}
 	$check = $em_hasher->CheckPassword($password, $hash);
@@ -121,10 +111,8 @@ function checkPassword($password, $hash)
  * @param int $user_id User ID
  * @param bool $remember Whether to remember the user or not
  */
-function setAuthCookie($user_login, $ispersis = false)
-{
-	if ( $ispersis )
-	{
+function setAuthCookie($user_login, $ispersis = false) {
+	if ($ispersis) {
 		$expiration  = time() + 60 * 60 * 24 * 30 * 12;
 	} else {
 		$expiration = null;
@@ -141,8 +129,7 @@ function setAuthCookie($user_login, $ispersis = false)
  * @param int $expiration Cookie expiration in seconds
  * @return string Authentication cookie contents
  */
-function generateAuthCookie($user_login, $expiration)
-{
+function generateAuthCookie($user_login, $expiration) {
 	$key = emHash($user_login . '|' . $expiration);
 	$hash = hash_hmac('md5', $user_login . '|' . $expiration, $key);
 
@@ -157,8 +144,7 @@ function generateAuthCookie($user_login, $expiration)
  * @param string $data Plain text to hash
  * @return string Hash of $data
  */
-function emHash($data)
-{
+function emHash($data) {
 	$key = AUTH_KEY;
 	return hash_hmac('md5', $data, $key);
 }
@@ -171,23 +157,19 @@ function emHash($data)
  * @param unknown_type $key
  * @return unknown
  */
-if( !function_exists('hash_hmac') )
-{
-	function hash_hmac($algo, $data, $key)
-	{
+if(!function_exists('hash_hmac')) {
+	function hash_hmac($algo, $data, $key) {
 		$packs = array('md5' => 'H32', 'sha1' => 'H40');
 
-		if ( !isset($packs[$algo]) )
-		{
+		if (!isset($packs[$algo])) {
 			return false;
 		}
 
 		$pack = $packs[$algo];
 
-		if (strlen($key) > 64)
-		{
+		if (strlen($key) > 64) {
 			$key = pack($pack, $algo($key));
-		}else if (strlen($key) < 64){
+		} elseif (strlen($key) < 64) {
 			$key = str_pad($key, 64, chr(0));
 		}
 
@@ -205,37 +187,31 @@ if( !function_exists('hash_hmac') )
  * @param string $cookie Optional. If used, will validate contents instead of cookie's
  * @return bool|int False if invalid cookie, User ID if valid.
  */
-function validateAuthCookie($cookie = '')
-{
-	if ( empty($cookie) )
-	{
+function validateAuthCookie($cookie = '') {
+	if (empty($cookie)) {
 		return false;
 	}
 
 	$cookie_elements = explode('|', $cookie);
-	if ( count($cookie_elements) != 3 )
-	{
+	if (count($cookie_elements) != 3) {
 		return false;
 	}
 
 	list($username, $expiration, $hmac) = $cookie_elements;
 
-	if ( !empty($expiration) && $expiration < time() )
-	{
+	if (!empty($expiration) && $expiration < time()) {
 		return false;
 	}
 
 	$key = emHash($username . '|' . $expiration);
 	$hash = hash_hmac('md5', $username . '|' . $expiration, $key);
 
-	if ( $hmac != $hash )
-	{
+	if ($hmac != $hash) {
 		return false;
 	}
 
 	$user = getUserDataByLogin($username);
-	if ( ! $user )
-	{
+	if (!$user) {
 		return false;
 	}
 

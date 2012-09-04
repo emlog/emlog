@@ -9,8 +9,7 @@ require_once 'globals.php';
 $Log_Model = new Log_Model();
 
 //显示日志(草稿)管理页面
-if($action == '')
-{
+if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$User_Model = new User_Model();
 
@@ -26,36 +25,33 @@ if($action == '')
 	$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
 
 	$sqlSegment = '';
-	if($tagId)
-	{
+	if ($tagId) {
 		$blogIdStr = $Tag_Model->getTagById($tagId);
 		$sqlSegment = "and gid IN ($blogIdStr)";
-	}elseif ($sid){
+	} elseif ($sid) {
 		$sqlSegment = "and sortid=$sid";
-	}elseif ($uid){
+	} elseif ($uid) {
 		$sqlSegment = "and author=$uid";
-	}elseif ($keyword) {
+	} elseif ($keyword) {
 		$sqlSegment = "and title like '%$keyword%'";
 	}
 	$sqlSegment .= ' ORDER BY ';
-	if(isset($_GET['sortView']))
-	{
+	if (isset($_GET['sortView'])) {
 		$sqlSegment .= "views $sortView";
-	}elseif(isset($_GET['sortComm'])){
+	} elseif (isset($_GET['sortComm'])) {
 		$sqlSegment .= "comnum $sortComm";
-	}elseif(isset($_GET['sortDate'])){
+	} elseif (isset($_GET['sortDate'])) {
 		$sqlSegment .= "date $sortDate";
-	}else {
+	} else {
 		$sqlSegment .= 'top DESC,date DESC';
 	}
 
 	$hide_state = $pid ? 'y' : 'n';
-	if($pid == 'draft')
-	{
+	if ($pid == 'draft') {
 		$hide_stae = 'y';
 		$sorturl = '&pid=draft';
 		$pwd = '草稿箱';
-	}else{
+	} else{
 		$hide_stae = 'n';
 		$sorturl = '';
 		$pwd = '日志管理';
@@ -68,8 +64,7 @@ if($action == '')
 	$tags = $Tag_Model->getTag();
 
 	$subPage = '';
-	foreach ($_GET as $key=>$val)
-	{
+	foreach ($_GET as $key=>$val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
 	$pageurl =  pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
@@ -80,55 +75,51 @@ if($action == '')
 }
 
 //操作日志
-if($action == 'operate_log')
-{
+if ($action == 'operate_log') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
 	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$author = isset($_POST['author']) ? intval($_POST['author']) : '';
 
-	if($operate == '')
-	{
+	if ($operate == '') {
 		emDirect("./admin_log.php?pid=$pid&error_b=true");
 	}
-	if(empty($logs))
-	{
+	if (empty($logs)) {
 		emDirect("./admin_log.php?pid=$pid&error_a=true");
 	}
 
-	switch ($operate)
-	{
+	switch ($operate) {
 		case 'del':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->deleteLog($val);
 				doAction('del_log', $val);
 			}
 			$CACHE->updateCache();
-			if($pid == 'draft')
+			if ($pid == 'draft')
 			{
 				emDirect("./admin_log.php?pid=draft&active_del=true");
-			}else{
+			} else{
 				emDirect("./admin_log.php?active_del=true");
 			}
 			break;
 		case 'top':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('top'=>'y'), $val);
 			}
 			emDirect("./admin_log.php?active_up=true");
 			break;
 		case 'notop':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('top'=>'n'), $val);
 			}
 			emDirect("./admin_log.php?active_down=true");
 			break;
 		case 'hide':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->hideSwitch($val, 'y');
 			}
@@ -136,7 +127,7 @@ if($action == 'operate_log')
 			emDirect("./admin_log.php?active_hide=true");
 			break;
 		case 'pub':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->hideSwitch($val, 'n');
 			}
@@ -144,7 +135,7 @@ if($action == 'operate_log')
 			emDirect("./admin_log.php?pid=draft&active_post=true");
 			break;
 		case 'move':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('sortid'=>$sort), $val);
 			}
@@ -156,7 +147,7 @@ if($action == 'operate_log')
 			{
 				emMsg('权限不足！','./');
 			}
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('author'=>$author), $val);
 			}

@@ -25,7 +25,7 @@ if ($action == 'update') {
 	$isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
 	$isalias_html = isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n';
 
-	if($permalink != '0' || $isalias == 'y'){
+	if ($permalink != '0' || $isalias == 'y') {
 		$fp = @fopen(EMLOG_ROOT.'/.htaccess', 'w');
 		$t = parse_url(BLOG_URL);
 		$rw_rule = '<IfModule mod_rewrite.c>
@@ -35,7 +35,7 @@ if ($action == 'update') {
 					   RewriteBase ' . $t['path'] . '
 					   RewriteRule . ' . $t['path'] . 'index.php [L]
 					</IfModule>';
-		if (!@fwrite($fp, $rw_rule)){
+		if (!@fwrite($fp, $rw_rule)) {
 			header('Location: ./permalink.php?error=true');
 			exit;
 		}

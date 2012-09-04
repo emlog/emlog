@@ -38,8 +38,8 @@ class MySql {
 	/**
 	 * 构造函数
 	 */
-    private function __construct() {
-    	if (!function_exists('mysql_connect')) {
+	private function __construct() {
+		if (!function_exists('mysql_connect')) {
 			emMsg('服务器PHP不支持MySql数据库');
 		}
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
@@ -49,17 +49,17 @@ class MySql {
 			mysql_query("SET NAMES 'utf8'");
 		}
 		@mysql_select_db(DB_NAME, $this->conn) OR emMsg("未找到指定数据库");
-    }
+	}
 
-    /**
+	/**
 	 * 静态方法，返回数据库连接实例
 	 */
-    public static function getInstance() {
-        if (self::$instance == null) {
-            self::$instance = new MySql();
-        }
-        return self::$instance;
-    }
+	public static function getInstance() {
+		if (self::$instance == null) {
+			self::$instance = new MySql();
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * 关闭数据库连接

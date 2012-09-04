@@ -31,19 +31,19 @@ class Comment_Controller {
 
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->setCommentCookie($name,$mail,$url);
-		if($Comment_Model->isLogCanComment($blogId) === false){
+		if($Comment_Model->isLogCanComment($blogId) === false) {
 			emMsg('评论失败：该日志已关闭评论');
-		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
+		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
 			emMsg('评论失败：已存在相同内容评论');
-		} elseif ($Comment_Model->isCommentTooFast() === true){
+		} elseif ($Comment_Model->isCommentTooFast() === true) {
 			emMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论');
-		} elseif (empty($name)){
+		} elseif (empty($name)) {
 			emMsg('评论失败：请填写姓名');
-		} elseif (strlen($name) > 20){
+		} elseif (strlen($name) > 20) {
 			emMsg('评论失败：姓名不符合规范');
 		} elseif ($mail != '' && !checkMail($mail)) {
 			emMsg('评论失败：邮件地址不符合规范');
-		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
+		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
 			emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
 			emMsg('评论失败：主页地址不符合规范','javascript:history.back(-1);');
