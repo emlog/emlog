@@ -21,7 +21,6 @@ class Log_Controller {
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= Url::logPage();
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');
 		include View::getView('log_list');

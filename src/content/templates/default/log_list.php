@@ -24,7 +24,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <?php endforeach; ?>
 
 <div id="pagenavi">
-	<?php echo $page_url;?>
+	<?php log_page($lognum, $index_lognum, $page, $pageurl);?>
 </div>
 
 </div><!-- end #contentleft-->
