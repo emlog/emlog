@@ -35,7 +35,7 @@ if ($action == 'post') {
 	$tdata = array('content' => $Twitter_Model->formatTwitter($t),
 			'author' => UID,
 			'date' => time(),
-			'img' => str_replace('../', BLOG_URL, $img)
+			'img' => str_replace('../', '', $img)
 	);
 
 	$twid = $Twitter_Model->addTwitter($tdata);

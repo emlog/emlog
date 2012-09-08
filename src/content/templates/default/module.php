@@ -76,7 +76,7 @@ function widget_twitter($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-	<?php $img = empty($value['img']) ? "" : '<a title="查看图片" class="t_img" href="'.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
+	<?php $img = empty($value['img']) ? "" : '<a title="查看图片" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
 	<li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
