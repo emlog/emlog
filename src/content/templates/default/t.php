@@ -18,7 +18,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                 BLOG_URL . 'admin/views/images/avatar.jpg' : 
                 BLOG_URL . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
-    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 3px solid #EFEFEF;" src="'.$val['img'].'"/></a>';
+    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.$val['img'].'"/></a>';
     ?> 
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
