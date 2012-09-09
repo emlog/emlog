@@ -1,17 +1,17 @@
 <?php
-
 /**
  * URL处理
  * @copyright (c) Emlog All Rights Reserved
  */
+
 class Url {
 
 	/**
 	 * 获取日志链接
 	 */
 	static function log($blogId) {
-		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
+		$urlMode = Option::get('isurlrewrite');
 		$CACHE = Cache::getInstance();
 
 		//开启日志别名
@@ -30,32 +30,33 @@ class Url {
 				$logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
 				//开启别名html后缀
 				if (Option::get('isalias_html') == 'y') {
-					$logUrl .= '.html';
+                	$logUrl .= '.html';
+                }
+                return $logUrl;
+            }
+        }
+
+        switch ($urlMode) {
+            case '0'://默认：动态
+                $logUrl = BLOG_URL . '?post=' . $blogId;
+					break;
+			case '1'://静态
+				$logUrl = BLOG_URL . 'post-' . $blogId . '.html';
+				break;
+			case '2'://目录
+				$logUrl = BLOG_URL . 'post/' . $blogId;
+				break;
+			case '3'://分类
+				$log_sort = $CACHE->readCache('logsort');
+				if (!empty($log_sort[$blogId]['alias'])) {
+					$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
+				} elseif (!empty($log_sort[$blogId]['name'])) {
+					$logUrl = BLOG_URL . $log_sort[$blogId]['name'] . '/' . $blogId;
+				} else {
+					$logUrl = BLOG_URL . $blogId;
 				}
-			}
-		} else {
-			switch ($urlMode) {
-				case '0'://默认：动态
-					$logUrl = BLOG_URL . '?post=' . $blogId;
-					break;
-				case '1'://静态
-					$logUrl = BLOG_URL . 'post-' . $blogId . '.html';
-					break;
-				case '2'://目录
-					$logUrl = BLOG_URL . 'post/' . $blogId;
-					break;
-				case '3'://分类
-					$log_sort = $CACHE->readCache('logsort');
-					if (!empty($log_sort[$blogId]['alias'])) {
-						$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
-					} elseif (!empty($log_sort[$blogId]['name'])) {
-						$logUrl = BLOG_URL . $log_sort[$blogId]['name'] . '/' . $blogId;
-					} else {
-						$logUrl = BLOG_URL . $blogId;
-					}
-					$logUrl .= '.html';
-					break;
-			}
+				$logUrl .= '.html';
+				break;
 		}
 		doAction('log_url_created', $logUrl);
 		return $logUrl;
