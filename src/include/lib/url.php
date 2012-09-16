@@ -30,15 +30,15 @@ class Url {
 				$logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
 				//开启别名html后缀
 				if (Option::get('isalias_html') == 'y') {
-                	$logUrl .= '.html';
-                }
-                return $logUrl;
-            }
-        }
+					$logUrl .= '.html';
+				}
+				return $logUrl;
+			}
+		}
 
-        switch ($urlMode) {
-            case '0'://默认：动态
-                $logUrl = BLOG_URL . '?post=' . $blogId;
+		switch ($urlMode) {
+			case '0'://默认：动态
+				$logUrl = BLOG_URL . '?post=' . $blogId;
 					break;
 			case '1'://静态
 				$logUrl = BLOG_URL . 'post-' . $blogId . '.html';

@@ -213,7 +213,7 @@ function changeFileSize($fileSize) {
  * 获取文件名后缀
  */
 function getFileSuffix($fileName) {
-	return pathinfo($fileName,  PATHINFO_EXTENSION);
+	return strtolower(pathinfo($fileName,  PATHINFO_EXTENSION));
 }
 
 /**
