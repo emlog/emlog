@@ -14,8 +14,8 @@
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">
 <input name="t" value="" /> <br/>
-<input type="file" name="img"/><br/>
-<input type="submit" value="发碎语" />
+<input type="submit" value="发碎语" /><br/>
+<input type="file" name="img" /><br/>
 </form>
 <?php endif;?>
 <?php 

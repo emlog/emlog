@@ -212,7 +212,8 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理中心</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php 
 			continue;
