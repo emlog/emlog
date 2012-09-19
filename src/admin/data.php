@@ -10,7 +10,7 @@ if ($action == '') {
 	$retval = glob('../content/backup/*.sql');
 	$bakfiles = $retval ? $retval : array();
 	$timezone = Option::get('timezone');
-	$tables = array('attachment', 'blog', 'comment', 'options', 'reply', 'sort', 'link','tag','trackback','twitter','user');
+	$tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'reply', 'sort', 'link','tag','trackback','twitter','user');
 	$defname = 'emlog_'. gmdate('Ymd', time() + $timezone * 3600) . '_' . substr(md5(gmdate('YmdHis', time() + $timezone * 3600)),0,18);
 	doAction('data_prebakup');
 
