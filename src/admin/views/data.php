@@ -43,7 +43,7 @@
 <div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);">备份数据+</a>　<a href="javascript:$('#backup').hide();displayToggle('import', 0);">导入本地备份文件+</a></div>
 <form action="data.php?action=bakstart" method="post">
 <div id="backup">
-	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="11" name="table_box[]">
+	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="12" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>
