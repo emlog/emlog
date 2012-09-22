@@ -1,11 +1,10 @@
 <?php
-
 /**
  * 视图控制
  * @copyright (c) Emlog All Rights Reserved
  */
-class View {
 
+class View {
 	public static function getView($template, $ext = '.php') {
 		if (!is_dir(TEMPLATE_PATH)) {
 			emMsg('当前使用的模板已被删除或损坏，请登录后台更换其他模板。', BLOG_URL . 'admin/template.php');
@@ -20,10 +19,9 @@ class View {
 		} else {
 			ob_start();
 		}
-		doAction('before_output', $content);
 		echo $content;
 		ob_end_flush();
 		exit;
 	}
-
+	
 }
