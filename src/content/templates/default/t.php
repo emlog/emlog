@@ -30,7 +30,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     </div>
 	<div class="clear"></div>
    	<ul id="r_<?php echo $tid;?>" class="r"></ul>
-    <div class="huifu" id="rp_<?php echo $tid;?>">   
+    <?php if ($istreply == 'y'):?>
+    <div class="huifu" id="rp_<?php echo $tid;?>">
 	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
         <div class="tinfo" style="display:<?php if(ROLE == 'admin' || ROLE == 'writer'){echo 'none';}?>">
@@ -41,6 +42,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div class="msg"><span id="rmsg_<?php echo $tid; ?>" style="color:#FF0000"></span></div>
     </div>
     </div>
+    <?php endif;?>
     </li>
     <?php endforeach;?>
 	<li id="pagenavi"><?php echo $pageurl;?><span></span></li>

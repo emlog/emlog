@@ -22,6 +22,7 @@ if ($action == '') {
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
 	$conf_istwitter = $istwitter == 'y' ? 'checked="checked"' : '';
+	$conf_istreply = $istreply == 'y' ? 'checked="checked"' : '';
 	$conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
 	$conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
 
@@ -70,6 +71,7 @@ if ($action == 'mod_config') {
 	'comment_pnum' => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
 	'comment_order' => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
 	'istwitter' => isset($_POST['istwitter']) ? addslashes($_POST['istwitter']) : 'n',
+	'istreply' => isset($_POST['istreply']) ? addslashes($_POST['istreply']) : 'n',
 	'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
 	'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
 	'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,

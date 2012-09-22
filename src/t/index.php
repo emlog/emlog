@@ -39,6 +39,7 @@ if ($action == '') {
     require_once View::getView('t');
     View::output();
 }
+
 // 获取回复.
 if ($action == 'getr') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -47,25 +48,33 @@ if ($action == 'getr') {
     $replys = $Reply_Model->getReplys($tid, 'n');
 
     $response = '';
-    foreach($replys as $val){
-         $response .= "
-         <li>
-         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
-         <em><a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a></em>
-         </li>";
+    if ($replys) {
+	    foreach($replys as $val){
+	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a>" : '';
+	    	$response .= "
+	         <li>
+	         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
+	         <em>$sub_reply</em>
+	         </li>";
+	    }
+    } else{
+    	$response .= "<li>还没有回复！</li>";
     }
     echo $response;
 }
+
 // 回复碎语.
 if ($action == 'reply') {
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
     $rcode = isset($_POST['rcode']) ? strtoupper(addslashes(trim($_POST['rcode']))) : '';
     $tid = isset($_POST['tid']) ? intval(trim($_POST['tid'])) : '';
-    
+
     $user_cache = $CACHE->readCache('user');
 
-    if (!$r || strlen($r) > 420){
+    if (Option::get('istreply') == 'n' ) {
+    	exit('err0');
+    } elseif (!$r || strlen($r) > 420){
         exit('err1');
     } elseif (ROLE == 'visitor' && empty($rname)) {
         exit('err2');
@@ -117,6 +126,7 @@ if ($action == 'reply') {
          </li>";
     echo $response;
 }
+
 // 回复验证码.
 if ($action == 'ckcode') {
     require_once EMLOG_ROOT.'/include/lib/checkcode.php';

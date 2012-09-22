@@ -331,6 +331,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenabl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');

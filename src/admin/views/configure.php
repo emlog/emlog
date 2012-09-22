@@ -103,10 +103,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top">碎语：<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语<br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语，
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启碎语回复，
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码，
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语
 
 		</td>
       </tr>
