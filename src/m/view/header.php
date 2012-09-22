@@ -22,6 +22,8 @@ a:link,a:visited,a:hover,a:active {text-decoration: none;color:#333;}
 .comcont{color:#333; padding:6px 0px;}.reply{color:#FF3300; font-size:12px;}
 .cominfo{text-align:right; color:#999999; border-bottom:1px solid #DDDDDD; padding:8px 0px;font-size:12px;}
 .texts{width:92%; height:200px;}.excerpt{width:92%; height:100px;}
+textarea {width: 95%;}
+textarea {border: 1px solid #A5ABB3;color: #303C46;}
 </style>
 </head>
 <body>

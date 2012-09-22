@@ -13,9 +13,11 @@
 <div id="m">
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">
-<input name="t" value="" /> <br/>
-<input type="submit" value="发碎语" /><br/>
-<input type="file" name="img" /><br/>
+碎语内容：<br />
+<textarea cols="20" rows="3" name="t"></textarea><br />
+选择要上传的图片:<br />
+<input type="file" name="img" /><br />
+<input type="submit" value="发布" />
 </form>
 <?php endif;?>
 <?php 
