@@ -281,7 +281,7 @@ if (ISLOGIN === true && $action == 't') {
     
     $attach = isset($_FILES['img']) ? $_FILES['img'] : '';
 	if ($attach['tmp_name']) {
-		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, false);
+		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], array('jpg', 'jpeg','png'), false, false);
 		$size = @getimagesize($upfname);
 		$w = $size[0];
 		$h = $size[1];
