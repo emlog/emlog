@@ -135,7 +135,7 @@ $(document).ready(function(){
 		auto            : true,
 		multi           : false,
 		buttonCursor    : 'pointer',
-		fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg',
+		fileTypeExts    : '*.jpg;*.png;*.jpeg',
 		queueID         : 'custom-queue',
 		queueSizeLimit	: 100,
 		removeCompleted : false,
