@@ -17,7 +17,7 @@
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
         <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
-        <a href="javascript:;" onclick="unSelectFile()">[取消]</a>
+        <a href="javascript:;" onclick="unSelectFile()"> [取消]</a>
         <div id="img_pop"></div>
     </div>
     <?php  doAction('twitter_form'); ?>
@@ -222,8 +222,6 @@ function pubreply(rid,tid){
         });
 }
 function checkt(){
-    var t=$(".box").val();
-    if(!$.trim(t)){return false;}
     var n=140 - t.length;
     if (n<0){return false;}
 }

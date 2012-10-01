@@ -28,6 +28,10 @@ if ($action == 'post') {
 	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
 
+	if ($img && !$t) {
+		$t = '分享图片';
+	}
+
 	if (!$t) {
 		emDirect("twitter.php?error_a=true");
 	}

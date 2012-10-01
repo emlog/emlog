@@ -1,6 +1,6 @@
 <?php
 /**
- * mobile 版本
+ * 手机版本
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -271,6 +271,12 @@ if (ISLOGIN === true && $action == 't') {
     $Twitter_Model = new Twitter_Model();
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
+    $attach = isset($_FILES['img']) ? $_FILES['img'] : '';
+
+    if ($attach['tmp_name'] && !$t) {
+    	$t = '分享图片';
+    }
+
     if (!$t){
         emDirect("./?action=tw");
     }
@@ -278,8 +284,7 @@ if (ISLOGIN === true && $action == 't') {
             'author' => UID,
             'date' => time(),
     );
-    
-    $attach = isset($_FILES['img']) ? $_FILES['img'] : '';
+
 	if ($attach['tmp_name']) {
 		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], array('jpg', 'jpeg','png'), false, false);
 		$size = @getimagesize($upfname);
@@ -291,10 +296,10 @@ if (ISLOGIN === true && $action == 't') {
 			resizeImage($upfname, $thum, 120, 150);
 			$upfname = $thum;
 		}
-		
+
 		$tdata['img'] = str_replace('../', '', $upfname);
 	}
-   	
+
     $Twitter_Model->addTwitter($tdata);
     $CACHE->updateCache(array('sta','newtw'));
     doAction('post_twitter', $t);
