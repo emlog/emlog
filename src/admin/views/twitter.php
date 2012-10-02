@@ -135,7 +135,7 @@ $(document).ready(function(){
 		auto            : true,
 		multi           : false,
 		buttonCursor    : 'pointer',
-		fileTypeExts    : '*.jpg;*.png;*.jpeg',
+		fileTypeExts    : '*.jpg;*.png;*.gif;*.jpeg',
 		queueID         : 'custom-queue',
 		queueSizeLimit	: 100,
 		removeCompleted : false,
@@ -222,7 +222,7 @@ function pubreply(rid,tid){
         });
 }
 function checkt(){
-    var n=140 - t.length;
-    if (n<0){return false;}
+	var t=$(".box").val();
+    if (t.length > 140){return false;}
 }
 </script>

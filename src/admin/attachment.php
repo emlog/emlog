@@ -116,11 +116,12 @@ if ($action == 'upload_tw_img') {
 		$size = @getimagesize($upfname);
 		$w = $size[0];
 		$h = $size[1];
-		if ($w>150 || $h>120) {
+		if ($w > T_IMG_MAX_W || $h > T_IMG_MAX_H) {
 			$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-			$thum = str_replace($uppath,$uppath.'thum-',$upfname);
-			resizeImage($upfname, $thum, 120, 150);
-			$upfname = $thum;
+			$thum = str_replace($uppath, $uppath.'thum-', $upfname);
+			if (false !== resizeImage($upfname, $thum, T_IMG_MAX_W, T_IMG_MAX_H)) {
+				$upfname = $thum;
+			}
 		}
 		echo '{"filePath":"'.$upfname.'"}';
 		exit;

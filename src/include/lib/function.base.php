@@ -482,11 +482,9 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
  * @return unknown
  */
 function resizeImage($img, $thum_path, $max_w, $max_h) {
-	//仅支持PNG,JPG图片的缩略
-	if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg'))) {
+	if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg', 'gif'))) {
 		return false;
 	}
-	//是否支持GD
 	if (!function_exists('ImageCreate')) {
 		return false;
 	}
@@ -545,6 +543,14 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 		case 'jpg':
 		default:
 			if (function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)) {
+				ImageDestroy($new_img);
+				return true;
+			} else {
+				return false;
+			}
+			break;
+		case 'gif':
+			if (function_exists('imagegif') && imagegif($new_img, $dst_path)) {
 				ImageDestroy($new_img);
 				return true;
 			} else {
