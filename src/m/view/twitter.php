@@ -1,15 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div id="navi">
-<a href="./">首页</a> 
-<a href="./?action=tw" id="active">碎语</a> 
-<a href="./?action=com">评论</a> 
-<?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
-<a href="./?action=logout">退出</a>
-<?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>
-<?php endif;?>
-</div>
 <div id="m">
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">

@@ -40,7 +40,7 @@ if ($action == '') {
     View::output();
 }
 
-// 获取回复.
+// 获取回复
 if ($action == 'getr') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
@@ -63,7 +63,7 @@ if ($action == 'getr') {
     echo $response;
 }
 
-// 回复碎语.
+// 回复碎语
 if ($action == 'reply') {
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
@@ -127,7 +127,7 @@ if ($action == 'reply') {
     echo $response;
 }
 
-// 回复验证码.
+// 回复验证码
 if ($action == 'ckcode') {
     require_once EMLOG_ROOT.'/include/lib/checkcode.php';
 }

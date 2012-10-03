@@ -254,7 +254,7 @@ if ($action == 'reply') {
 	View::output();
 }
 // 碎语
-if ($action == 'tw') {
+if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $user_cache = $CACHE->readCache('user');
