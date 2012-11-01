@@ -356,12 +356,14 @@ class Cache {
 	 * 日志归档缓存
 	 */
 	private function mc_record() {
+		$timezone = Option::get('timezone');
 		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
 		$record_cache = array();
 		while ($show_record = $this->db->fetch_array($query)) {
+			$show_record = $show_record['date'] + $timezone * 3600;
 			$f_record = gmdate('Y_n', $show_record['date']);
 			if ($record != $f_record) {
 				$h = $p-1;
