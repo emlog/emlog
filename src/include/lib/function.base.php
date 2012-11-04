@@ -58,7 +58,7 @@ function htmlClean($content, $wrap = true) {
  */
 function getIp() {
 	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-	if (!preg_match("/^\d+\.\d+\.\d+\.\d+$/", $ip)) {
+	if (!ip2long($ip)) {
 		$ip = '';
 	}
 	return $ip;
@@ -135,8 +135,9 @@ function checkMail($email) {
  * @param int $length 截取长度
  */
 function subString($strings, $start, $length) {
-	if (function_exists('mb_substr')) {
-		return mb_substr($strings, $start, $length, 'utf8');
+	if (function_exists('mb_substr') && function_exists('mb_strlen')) {
+		$sub_str = mb_substr($strings, $start, $length, 'utf8');
+		return $sub_str < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
 	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
@@ -435,14 +436,14 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	$attachpath = $uppath . $fname;
 	if (!is_dir(Option::UPLOADFILE_PATH)) {
-		umask(0);
+		@umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false) {
 			return '104'; //创建文件上传目录失败
 		}
 	}
 	if (!is_dir($uppath)) {
-		umask(0);
+		@umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
 			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
@@ -467,7 +468,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 			@unlink($tmpFile);
 			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
 		}
-		chmod($attachpath, 0777);
+		@chmod($attachpath, 0777);
 	}
 	return $attach; //附件地址
 }
@@ -663,26 +664,15 @@ function emStrtotime($timeStr) {
  * 获取指定月份的天数
  */
 function getMonthDayNum($month, $year) {
-	switch (intval($month)) {
-		case 1:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			return 31;
-			break;
-		case 2:
-			if ($year % 4 == 0) {
-				return 29;
-			} else {
-				return 28;
-			}
-			break;
-		default:
-			return 30;
-			break;
+	$months_map = array(1=>31, 3=>31, 4=>30, 5=>31, 6=>30, 7=>31, 8=>31, 9=>30, 10=>31, 11=>30, 12=>31);
+	if(array_key_exists($month, $months_map)) {
+		return $months_map[$month];
+	} else{
+		if ($year % 4 == 0) {
+			return 29;
+		} else {
+			return 28;
+		}
 	}
 }
 

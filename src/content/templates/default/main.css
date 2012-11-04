@@ -5,13 +5,13 @@ img{ border:none;}
 a:link, a:active, a:visited {color:#886353; text-decoration:none;}
 a:hover {color:#886353; text-decoration:underline;}
 
-#header h1 {color: #1F1F1F; font-size: 30px; font-weight: normal; letter-spacing: 0px; margin: 10px 0px 3px 0px; padding: 20px 0px 0px 0px; font-family: Georgia, "Times New Roman", Times, serif;}
+#header h1 {color: #1F1F1F; font-size: 30px; font-weight: normal; letter-spacing: 0px; margin: 10px 0px 3px 0px; padding: 20px 0px 0px 0px; font-family: Georgia, "Times New Roman", Times, serif; line-height:normal;}
 #header h1 a:link {color: #1F1F1F; text-decoration: none;}
 #header h1 a:active {color: #1F1F1F; text-decoration: none;}
 #header h1 a:visited {color: #1F1F1F; text-decoration: none;}
 #header h1 a:hover {color: #1F1F1F; text-decoration: none;}
 #header h3 {color: #525252; font-style: italic; font-size: 15px; font-weight: normal; margin: 0px 0px 0px 40px; padding: 10px 0px 10px 0px;}
-
+/*µ¼º½²¿·Ö*/
 #nav {text-align: center; margin: 10px 0px 20px 0px; padding: 0px;}
 #nav ul {margin: 15px 0px 0px 0px; padding: 0px;}
 #nav li {display: inline; font-weight:bold; padding:0 5px 0 10px;}
