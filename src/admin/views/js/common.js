@@ -121,7 +121,7 @@ function addattach_file(fileurl,filename,aid){
 	if (KE.g['content'].wyswygMode == false){
 		alert('请先切换到所见所得模式');
 	} else {
-		KE.insertHtml('content', '<a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a>');
+		KE.insertHtml('content', '<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
 	}
 }
 function insertTag (tag, boxId){
