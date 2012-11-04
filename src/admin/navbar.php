@@ -114,6 +114,10 @@ if ($action=='update') {
 		'newtab'=>$newtab
 	);
 
+	if (empty($naviname)) {
+		unset($navi_data['naviname']);
+	}
+
 	if ($isdefault == 'n') {
 		$navi_data['url'] = $url;
 	}
