@@ -217,7 +217,7 @@ function autosave(act){
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
-		var isrespone=/^autosave\_gid\:\d+\_df\:\d*\_$/;
+		var isrespone=/autosave\_gid\:\d+\_df\:\d*\_/;
 		if(isrespone.test(data)){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
 			var logid = getvar[1];
