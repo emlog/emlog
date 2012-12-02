@@ -4,7 +4,10 @@
 <?php if(isset($_GET['active_backup'])):?><span class="actived">数据备份成功</span><?php endif;?>
 <?php if(isset($_GET['active_import'])):?><span class="actived">备份导入成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的备份文件</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="error">错误的备份文件名</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">服务器不支持zip，无法导入zip备份</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">上传备份失败</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">错误的备份文件</span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
@@ -40,7 +43,7 @@
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:bakact('del');">删除</a></div>
 </form>
-<div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);">备份数据+</a>　<a href="javascript:$('#backup').hide();displayToggle('import', 0);">导入本地备份文件+</a></div>
+<div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);">备份数据+</a>　<a href="javascript:$('#backup').hide();displayToggle('import', 0);">导入本地备份+</a></div>
 <form action="data.php?action=bakstart" method="post">
 <div id="backup">
 	<p>选择要备份的数据库表：<br /><select multiple="multiple" size="12" name="table_box[]">
@@ -48,10 +51,14 @@
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>
       	</select></p>
-	<p>备份文件名：(由英文字母、数字、下划线组成) <br /><input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-	<p>备份文件保存在？
-	本地<input type="radio" checked="checked" value="local" name="bakplace" id="bakup_place" />
-	服务器<input type="radio" value="server" name="bakplace" id="bakup_place" /></p>
+	<p>导出备份文件到：
+	<select name="bakplace" id="bakplace">
+		<option value="local" selected="selected">本地</option>
+		<option value="server">服务器</option>
+	</select>
+	</p>
+	<p id="local_bakzip">压缩(zip格式)：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
+	<p id="server_bakfname" style="display:none;">备份文件名：<input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
 	<p><input type="submit" value="开始备份" class="submit" /></p>
 </div>
 </form>
@@ -75,7 +82,8 @@ $(document).ready(function(){
 	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_bakdata_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")})
+		.mouseout(function(){$(this).removeClass("trover")});
+	$("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
 });
 function bakact(act){
 	if (getChecked('ids') == false) {

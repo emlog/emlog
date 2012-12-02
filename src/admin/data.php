@@ -24,14 +24,10 @@ if ($action == 'bakstart') {
 	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
 	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
 	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
+	$zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
 	$timezone = Option::get('timezone');
-
-	if (!preg_match("/^[a-zA-Z0-9_]+$/",$bakfname)) {
-		emDirect("./data.php?error_b=true");
-	}
-	$filename = '../content/backup/'.$bakfname.'.sql';
-
+	$filename = '';
 	$sqldump = '';
 	foreach ($table_box as $table) {
 		$sqldump .= dataBak($table);
@@ -43,9 +39,16 @@ if ($action == 'bakstart') {
 		$dumpfile .= $sqldump;
 		$dumpfile .= "\n#the end of backup";
 		if ($bakplace == 'local') {
-			header('Content-Type: text/x-sql');
+			$filename = 'emlog_'. gmdate('Ymd_His', time() + $timezone * 3600);
 			header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
-			header('Content-Disposition: attachment; filename=emlog_'. gmdate('Ymd', time() + $timezone * 3600).'.sql');
+			if ($zipbak == 'y') {
+				header('Content-Type: application/zip');
+				header('Content-Disposition: attachment; filename=' . $filename . '.zip');
+				$dumpfile = emZip($filename . '.sql', $dumpfile);
+			} else {
+				header('Content-Type: text/x-sql');
+				header('Content-Disposition: attachment; filename=' . $filename . '.sql');
+			}
 			if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
 				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				header('Pragma: public');
@@ -55,16 +58,18 @@ if ($action == 'bakstart') {
 			}
 			echo $dumpfile;
 		} else {
+			if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
+				emDirect('./data.php?error_b=true');
+			}
+			$filename = '../content/backup/'.$bakfname.'.sql';
 			@$fp = fopen($filename, 'w+');
-			if ($fp)
-			{
+			if ($fp){
 				@flock($fp, 3);
-				if (@!fwrite($fp, $dumpfile))
-				{
+				if (@!fwrite($fp, $dumpfile)){
 					@fclose($fp);
 					emMsg('备份失败。备份目录(content/backup)不可写');
 				} else{
-					emDirect("./data.php?active_backup=true");
+					emDirect('./data.php?active_backup=true');
 				}
 			} else{
 				emMsg('创建备份文件失败。备份目录(content/backup)不可写');
@@ -88,7 +93,7 @@ if ($action == 'renewdata') {
 	checkSqlFileInfo($sqlfile);
 	bakindata($sqlfile);
 	$CACHE->updateCache();
-	emDirect("./data.php?active_import=true");
+	emDirect('./data.php?active_import=true');
 }
 
 //导入本地备份文件
@@ -97,36 +102,47 @@ if ($action == 'import') {
 	if (!$sqlfile) {
 		emMsg('非法提交的信息');
 	}
-	if (getFileSuffix($sqlfile['name']) != 'sql') {
-		emMsg('只能导入emlog备份的SQL文件');
-	}
 	if ($sqlfile['error'] == 1) {
 		emMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制');
 	} elseif ($sqlfile['error'] > 1) {
 		emMsg('上传文件失败,错误码：'.$sqlfile['error']);
 	}
+	if (getFileSuffix($sqlfile['name']) == 'zip') {
+		$ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
+		switch ($ret) {
+			case -3:
+				emDirect('./data.php?active_import=error_c');
+				break;
+			case 1:
+			case 2:
+				emDirect('./data.php?active_import=error_d');
+				break;
+			case 3:
+				emDirect('./data.php?active_import=error_e');
+				break;
+		}
+		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' .str_replace('.zip', '.sql', $sqlfile['name']);
+		if (!file_exists($sqlfile['tmp_name'])) {
+			emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
+		}
+	} elseif (getFileSuffix($sqlfile['name']) != 'sql') {
+		emMsg('只能导入emlog备份的SQL文件');
+	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
 	$CACHE->updateCache();
-	emDirect("./data.php?active_import=true");
+	emDirect('./data.php?active_import=true');
 }
 
-//批量删除备份文件
 if ($action == 'dell_all_bak') {
 	if (!isset($_POST['bak'])) {
-		emDirect("./data.php?error_a=true");
+		emDirect('./data.php?error_a=true');
 	} else{
 		foreach ($_POST['bak'] as $val) {
 			unlink($val);
 		}
-		emDirect("./data.php?active_del=true");
+		emDirect('./data.php?active_del=true');
 	}
-}
-
-//更新缓存
-if ($action == 'Cache') {
-	$CACHE->updateCache();
-	emDirect("./data.php?active_mc=true");
 }
 
 /**
@@ -233,4 +249,9 @@ function checkBOM($contents) {
 	} else {
 		return false;
 	}
+}
+
+if ($action == 'Cache') {
+	$CACHE->updateCache();
+	emDirect('./data.php?active_mc=true');
 }

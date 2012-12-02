@@ -6,7 +6,7 @@ Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
 Sidebar Amount:1
-ForEmlog:5.0.0
+ForEmlog:5.0.1
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');

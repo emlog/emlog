@@ -697,6 +697,11 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 					if (false === $re)
 						return -1;
 					break;
+				case 'backup':
+					$sql_name = substr($dir, 0, -1);
+					if (getFileSuffix($sql_name) != 'sql')
+						return -3;
+					break;
 			}
 			if (true === @$zip->extractTo($path)) {
 				$zip->close();
@@ -709,6 +714,24 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 		}
 	} else {
 		return 3;
+	}
+}
+
+/**
+ * zip压缩
+ */
+function emZip($orig_fname, $content) {
+	$zip = new ZipArchive();
+	$tempzip = EMLOG_ROOT . '/content/cache/emtemp.zip';
+	$res = $zip->open($tempzip, ZipArchive::CREATE);
+	if ($res === TRUE) {
+		$zip->addFromString($orig_fname, $content);
+		$zip->close();
+		$zip_content = file_get_contents($tempzip);
+		unlink($tempzip);
+		return $zip_content;
+	} else {
+		return false;
 	}
 }
 
