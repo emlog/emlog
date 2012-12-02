@@ -137,7 +137,7 @@ function checkMail($email) {
 function subString($strings, $start, $length) {
 	if (function_exists('mb_substr') && function_exists('mb_strlen')) {
 		$sub_str = mb_substr($strings, $start, $length, 'utf8');
-		return $sub_str < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
+		return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
 	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
