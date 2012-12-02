@@ -64,7 +64,7 @@
 </form>
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
-	<p><input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" /></p>
+	<p><input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" /> (支持emlog导出的sql及zip格式备份)</p>
 </div>
 </form>
 <div class=containertitle><b>数据缓存</b>
