@@ -236,7 +236,7 @@ function topflg($istop){
 <?php
 //blog：编辑
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
