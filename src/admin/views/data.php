@@ -8,6 +8,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="error">服务器不支持zip，无法导入zip备份</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">上传备份失败</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">错误的备份文件</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">服务器不支持zip，无法导出zip备份</span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">

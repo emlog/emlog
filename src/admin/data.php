@@ -40,11 +40,12 @@ if ($action == 'bakstart') {
 		$dumpfile .= "\n#the end of backup";
 		if ($bakplace == 'local') {
 			$filename = 'emlog_'. gmdate('Ymd_His', time() + $timezone * 3600);
-			header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
 			if ($zipbak == 'y') {
+				if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false ) {
+					emDirect('./data.php?error_f=true');
+				}
 				header('Content-Type: application/zip');
 				header('Content-Disposition: attachment; filename=' . $filename . '.zip');
-				$dumpfile = emZip($filename . '.sql', $dumpfile);
 			} else {
 				header('Content-Type: text/x-sql');
 				header('Content-Disposition: attachment; filename=' . $filename . '.sql');
@@ -56,6 +57,7 @@ if ($action == 'bakstart') {
 				header('Pragma: no-cache');
 				header('Last-Modified: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
 			}
+			header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
 			echo $dumpfile;
 		} else {
 			if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {

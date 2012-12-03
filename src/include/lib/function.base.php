@@ -680,40 +680,38 @@ function getMonthDayNum($month, $year) {
  * 解压zip
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
-	if (class_exists('ZipArchive', FALSE)) {
-		$zip = new ZipArchive();
-		if (@$zip->open($zipfile) === TRUE) {
-			$r = explode('/', $zip->getNameIndex(0), 2);
-			$dir = isset($r[0]) ? $r[0] . '/' : '';
-			switch ($type) {
-				case 'tpl':
-					$re = $zip->getFromName($dir . 'header.php');
-					if (false === $re)
-						return -2;
-					break;
-				case 'plugin':
-					$plugin_name = substr($dir, 0, -1);
-					$re = $zip->getFromName($dir . $plugin_name . '.php');
-					if (false === $re)
-						return -1;
-					break;
-				case 'backup':
-					$sql_name = substr($dir, 0, -1);
-					if (getFileSuffix($sql_name) != 'sql')
-						return -3;
-					break;
-			}
-			if (true === @$zip->extractTo($path)) {
-				$zip->close();
-				return 0;
-			} else {
-				return 1;
-			}
-		} else {
-			return 2;
-		}
-	} else {
+	if (!class_exists('ZipArchive', FALSE)) {
 		return 3;
+	}
+	$zip = new ZipArchive();
+	if (@$zip->open($zipfile) !== TRUE) {
+		return 2;
+	}
+	$r = explode('/', $zip->getNameIndex(0), 2);
+	$dir = isset($r[0]) ? $r[0] . '/' : '';
+	switch ($type) {
+		case 'tpl':
+			$re = $zip->getFromName($dir . 'header.php');
+			if (false === $re)
+				return -2;
+			break;
+		case 'plugin':
+			$plugin_name = substr($dir, 0, -1);
+			$re = $zip->getFromName($dir . $plugin_name . '.php');
+			if (false === $re)
+				return -1;
+			break;
+		case 'backup':
+			$sql_name = substr($dir, 0, -1);
+			if (getFileSuffix($sql_name) != 'sql')
+				return -3;
+			break;
+	}
+	if (true === @$zip->extractTo($path)) {
+		$zip->close();
+		return 0;
+	} else {
+		return 1;
 	}
 }
 
@@ -721,6 +719,9 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
  * zip压缩
  */
 function emZip($orig_fname, $content) {
+	if (!class_exists('ZipArchive', FALSE)) {
+		return false;
+	}
 	$zip = new ZipArchive();
 	$tempzip = EMLOG_ROOT . '/content/cache/emtemp.zip';
 	$res = $zip->open($tempzip, ZipArchive::CREATE);
