@@ -363,7 +363,7 @@ class Cache {
 		$lognum = 1;
 		$record_cache = array();
 		while ($show_record = $this->db->fetch_array($query)) {
-			$show_record = $show_record['date'] + $timezone * 3600;
+			$show_record['date'] = $show_record['date'] + $timezone * 3600;
 			$f_record = gmdate('Y_n', $show_record['date']);
 			if ($record != $f_record) {
 				$h = $p-1;
