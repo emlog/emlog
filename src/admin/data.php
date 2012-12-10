@@ -113,14 +113,14 @@ if ($action == 'import') {
 		$ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
 		switch ($ret) {
 			case -3:
-				emDirect('./data.php?active_import=error_c');
+				emDirect('./data.php?error_e=true');
 				break;
 			case 1:
 			case 2:
-				emDirect('./data.php?active_import=error_d');
+				emDirect('./data.php?error_d=true');
 				break;
 			case 3:
-				emDirect('./data.php?active_import=error_e');
+				emDirect('./data.php?error_c=true');
 				break;
 		}
 		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' .str_replace('.zip', '.sql', $sqlfile['name']);
