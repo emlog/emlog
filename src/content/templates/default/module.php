@@ -154,7 +154,7 @@ function widget_random_log($title){
 function widget_search($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
-	<ul id="logserch">
+	<ul id="logsearch">
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 	<input name="keyword" class="search" type="text" />
 	</form>
