@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>碎语</b>
+<div class=containertitle><b>微语</b>
 <?php if(isset($_GET['active_t'])):?><span class="actived">发布成功</span><?php endif;?>
 <?php if(isset($_GET['active_set'])):?><span class="actived">设置保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">碎语删除成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">碎语内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">微语删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">微语内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
 <div id="tw">
@@ -50,11 +50,11 @@
     </div>
     </li>
     <?php endforeach;?>
-	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条碎语)</li>
+	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
     </ul>
 </div>
 <div id="tw_line">
-<h3>最新碎语</h3>
+<h3>最新微语</h3>
 <ul class="tw_scroll"></ul>
 <div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
 </div>

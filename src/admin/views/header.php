@@ -58,9 +58,9 @@
         <tr>
           <td valign=top align=left width="114">
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">日志管理</div>
+            <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">管理菜单</div>
 			<div id="log_mg">
-            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php">写日志</a></div>
+            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></div>
 			<div class="sidebarsubmenu" id="menu_draft"><a href="admin_log.php?pid=draft">草稿<span id="dfnum">
 			<?php 
 			if (ROLE == 'admin'){
@@ -70,8 +70,7 @@
 			}
 			?>
 			</span></a></div>
-			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">日志</a></div>
-			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">碎语</a></div>
+			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></div>
 			<?php if (ROLE == 'admin'):?>
             <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></div>
             <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></div>
@@ -85,40 +84,31 @@
 			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
 			<?php endif; ?>
             <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></div>
-			</div>
-			</div>
-       	    </td>
-		  </tr>
-		</tbody>
-	</table>
-	<?php if (ROLE == 'admin'):?>
-      <table cellspacing=0 cellpadding=0 width="100%" border=0 >
-        <tbody>
-        <tr>
-          <td valign=top align=left width=114>
-            <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);">站点管理</div>
-			<div id="blog_mg">
+            <div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></div>
+			<?php if (ROLE == 'admin'):?>
             <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></div>
             <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></div>
 			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></div>
 			<div class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></div>
 			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></div>
 			<div class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></div>
-			</div>
+            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></div>
+			<?php endif;?>
+            </div>
 			</div>
 			</td>
 		  </tr>
 		</tbody>
 	</table>
+    <?php if (ROLE == 'admin'):?>
 	<table cellspacing=0 cellpadding=0 width="100%" border=0>
       <tbody>
         <tr>
           <td valign=top align=left width=114>
             <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">功能扩展</div>
+            <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">扩展功能</div>
 			<div id="extend_mg">
-            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/images/plugin.gif" align="absbottom" border="0"> 插件</a></div>
+            <div class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></div>
             <?php doAction('adm_sidebar_ext'); ?>
 			</div>
 			</div>
@@ -126,7 +116,7 @@
 		  </tr>
 		</tbody>
 	</table>
-	<?php endif;?>
+     <?php endif;?>
 	<div id="sidebarBottom"></div>
 </td>
 <td id=container valign=top align=left>

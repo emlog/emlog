@@ -22,7 +22,7 @@
         <th width="250"><b>名称</b></th>
 		<th width="300"><b>别名</b></th>
 		<th width="50" class="tdcenter"><b>查看</b></th>
-        <th width="50" class="tdcenter"><b>日志</b></th>
+        <th width="50" class="tdcenter"><b>文章</b></th>
         <th width="100"></th>
       </tr>
     </thead>

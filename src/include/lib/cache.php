@@ -245,7 +245,7 @@ class Cache {
 		}
 		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag");
 		while ($show_tag = $this->db->fetch_array($query)) {
-			// 排除草稿在tag日志数里的统计
+			// 排除草稿在tag文章数里的统计
 			foreach ($hideGids as $val) {
 				$show_tag['gid'] = str_replace(',' . $val . ',', ',', $show_tag['gid']);
 			}
@@ -317,7 +317,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'navi');
 	}
 	/**
-	 * 最新日志
+	 * 最新文章
 	 */
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
@@ -334,7 +334,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'newlog');
 	}
 	/**
-	 * 最新碎语
+	 * 最新微语
 	 */
 	private function mc_newtw() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newtwnum'"));
@@ -353,7 +353,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'newtw');
 	}
 	/**
-	 * 日志归档缓存
+	 * 文章归档缓存
 	 */
 	private function mc_record() {
 		$timezone = Option::get('timezone');
@@ -391,7 +391,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'record');
 	}
 	/**
-	 * 日志标签缓存
+	 * 文章标签缓存
 	 */
 	private function mc_logtags() {
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where type='blog'");
@@ -414,7 +414,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'logtags');
 	}
 	/**
-	 * 日志分类缓存
+	 * 文章分类缓存
 	 */
 	private function mc_logsort() {
 		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog'";
@@ -435,7 +435,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'logsort');
 	}
 	/**
-	 * 日志别名缓存
+	 * 文章别名缓存
 	 */
 	private function mc_logalias() {
 		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
@@ -448,7 +448,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'logalias');
 	}
 	/**
-	 * 日志\页面附件缓存
+	 * 文章\页面附件缓存
 	 */
 	private function mc_logatts() {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog";
@@ -481,7 +481,7 @@ class Cache {
 	function cacheWrite ($cacheData, $cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
-		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
+		@ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
 		@ $fw = fwrite($fp, $cacheData) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
 		$this->{$cacheName.'_cache'} = null;
 		fclose($fp);

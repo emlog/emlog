@@ -25,7 +25,7 @@ function showattlib(){
 </div>
 <div id="media-upload-body">
 <?php if(!$attach): ?>
-<p id="attmsg">该日志没有附件</p>
+<p id="attmsg">该文章没有附件</p>
 <?php else:
 foreach($attach as $key=>$value):
 	$extension  = strtolower(substr(strrchr($value['filepath'], "."),1));

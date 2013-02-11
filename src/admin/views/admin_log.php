@@ -6,17 +6,17 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <div class=containertitle><b><?php echo $pwd; ?></b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除日志成功</span><?php endif;?>
-<?php if(isset($_GET['active_up'])):?><span class="actived">日志置顶成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
+<?php if(isset($_GET['active_up'])):?><span class="actived">置顶成功</span><?php endif;?>
 <?php if(isset($_GET['active_down'])):?><span class="actived">取消置顶成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">请选择要处理的日志</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">请选择要处理的文章</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
-<?php if(isset($_GET['active_post'])):?><span class="actived">发布日志成功</span><?php endif;?>
-<?php if(isset($_GET['active_move'])):?><span class="actived">移动日志成功</span><?php endif;?>
+<?php if(isset($_GET['active_post'])):?><span class="actived">发布成功</span><?php endif;?>
+<?php if(isset($_GET['active_move'])):?><span class="actived">移动成功</span><?php endif;?>
 <?php if(isset($_GET['active_change_author'])):?><span class="actived">更改作者成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">转入草稿箱成功</span><?php endif;?>
 <?php if(isset($_GET['active_savedraft'])):?><span class="actived">草稿保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_savelog'])):?><span class="actived">日志保存成功</span><?php endif;?>
+<?php if(isset($_GET['active_savelog'])):?><span class="actived">保存成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <div class="filters">
@@ -117,7 +117,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="8">还没有日志</td></tr>
+	  <tr><td class="tdcenter" colspan="8">还没有文章</td></tr>
 	<?php endif;?>
 	</tbody>
 	</table>
@@ -157,7 +157,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php endif;?>
 	</div>
 </form>
-<div class="page"><?php echo $pageurl; ?> (有<?php echo $logNum; ?>条<?php echo $pid == 'draft' ? '草稿' : '日志'; ?>)</div>
+<div class="page"><?php echo $pageurl; ?> (有<?php echo $logNum; ?>篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
 <script>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
@@ -172,16 +172,16 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function logact(act){
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的文章');
 		return;}
-	if(act == 'del' && !confirm('你确定要删除所选日志吗？')){return;}
+	if(act == 'del' && !confirm('你确定要删除所选文章吗？')){return;}
 	$("#operate").val(act);
 	$("#form_log").submit();
 }
 function changeSort(obj) {
 	var sortId = obj.value;
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的文章');
 		return;}
 	if($('#sort').val() == '')return;
 	$("#operate").val('move');
@@ -190,7 +190,7 @@ function changeSort(obj) {
 function changeAuthor(obj) {
 	var sortId = obj.value;
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的日志');
+		alert('请选择要操作的文章');
 		return;}
 	if($('#author').val() == '')return;
 	$("#operate").val('change_author');

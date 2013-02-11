@@ -31,7 +31,7 @@ if (empty ($action) && empty ($logid)) {
 	include View::getView('footer');
 	View::output();
 }
-// 日志
+// 文章
 if (!empty ($logid)) {
 	$Log_Model = new Log_Model();
 	$Comment_Model = new Comment_Model();
@@ -155,7 +155,7 @@ if ($action == 'addcom') {
     doAction('comment_post');
 
 	if($Comment_Model->isLogCanComment($blogId) === false){
-        mMsg('评论失败：该日志已关闭评论','./?post=' . $blogId);
+        mMsg('评论失败：该文章已关闭评论','./?post=' . $blogId);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
         mMsg('评论失败：已存在相同内容评论','./?post=' . $blogId);
     } elseif (strlen($name) > 20 || strlen($name) == 0){
@@ -253,7 +253,7 @@ if ($action == 'reply') {
 	include View::getView('footer');
 	View::output();
 }
-// 碎语
+// 微语
 if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

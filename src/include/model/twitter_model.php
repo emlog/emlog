@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语twitter
+ * 微语
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -14,7 +14,7 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 写入碎语
+	 * 写入微语
 	 *
 	 * @param array $tData
 	 * @return int
@@ -34,7 +34,7 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 获取指定条件的碎语条数
+	 * 获取指定条件的微语条数
 	 *
 	 * @param int $spot 0:前台 1:后台
 	 * @return int
@@ -47,7 +47,7 @@ class Twitter_Model {
 	}
 
 	/**
-	 * 获取碎语列表
+	 * 获取微语列表
 	 *
 	 * @param int $page
 	 * @param int $spot 0:前台 1:后台
@@ -82,7 +82,7 @@ class Twitter_Model {
 	}
 	
 	/**
-	 * 更新碎语回复数目
+	 * 更新微语回复数目
 	 *
 	 * @param int $tid
 	 * @param string $do '+1' or '-1'

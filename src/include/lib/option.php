@@ -6,7 +6,7 @@
 
 class Option {
 	//版本编号
-	const EMLOG_VERSION = '5.0.1';
+	const EMLOG_VERSION = '5.1.0';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高
@@ -15,9 +15,9 @@ class Option {
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
-	//碎语图片缩略图最大宽
+	//微语图片缩略图最大宽
 	const T_IMG_MAX_W = 180;
-	//碎语图片缩略图最大高
+	//微语图片缩略图最大高
 	const T_IMG_MAX_H = 136;
 	//附件大小上限，单位：字节，默认20M
 	const UPLOADFILE_MAXSIZE = 20971520;
@@ -151,14 +151,14 @@ class Option {
 		$widget_title = array(
 			'blogger' => 'blogger',
 			'calendar' => '日历',
-			'twitter' => '最新碎语',
+			'twitter' => '最新微语',
 			'tag' => '标签',
 			'sort' => '分类',
 			'archive' => '存档',
 			'newcomm' => '最新评论',
-			'newlog' => '最新日志',
-			'random_log' => '随机日志',
-			'hotlog' => '热门日志',
+			'newlog' => '最新文章',
+			'random_log' => '随机文章',
+			'hotlog' => '热门文章',
 			'link' => '链接',
 			'search' => '搜索',
 			'custom_text' => '自定义组件'

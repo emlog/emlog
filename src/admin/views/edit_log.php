@@ -3,13 +3,13 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑日志<?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
+<div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑文章<?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
           <td>
-		  <label for="title" id="title_label">输入日志标题</label>
+		  <label for="title" id="title_label">输入文章标题</label>
           <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
           </td>
         </tr>
@@ -28,7 +28,7 @@ $isdraft = $hide == 'y' ? true : false;
         <tr nowrap="nowrap">
           <td>
 			  <div style="margin:10px 0px 5px 0px;">
-			  <label for="tag" id="tag_label">日志标签，逗号或空格分隔</label>
+			  <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
 			  <input name="tag" id="tag" maxlength="200" style="width:432px;" value="<?php echo $tagStr; ?>" />
 
 			  <select name="sort" id="sort" style="width:130px;">
@@ -62,13 +62,13 @@ $isdraft = $hide == 'y' ? true : false;
 	<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
-          <td><b>日志摘要：</b><br />
+          <td><b>文章摘要：</b><br />
 		  <textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea>
 		  <script>loadEditor('excerpt');</script>
 		  </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义该篇日志的链接地址。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
+          <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义该篇文章的链接地址。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
 			<input name="alias" id="alias" value="<?php echo $alias;?>" style="width:711px;" />
           </td>
         </tr>
@@ -78,11 +78,11 @@ $isdraft = $hide == 'y' ? true : false;
           </td>
         </tr>
         <tr>
-          <td><b>日志访问密码：</b>
+          <td><b>文章访问密码：</b>
           <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
           <span id="post_options">
           <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-          <label for="top">日志置顶</label>
+          <label for="top">文章置顶</label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
           <label for="allow_remark">允许评论</label>
           <input type="checkbox" value="y" id="allow_tb" name="allow_tb" <?php echo $is_allow_tb; ?> />

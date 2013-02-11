@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语
+ * 微语
  * @copyright (c) Emlog All Rights Reserved
 */
 
@@ -11,7 +11,7 @@ define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//前台模�
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if (Option::get('istwitter') == 'n') {
-    emMsg('抱歉，碎语未开启前台访问！', BLOG_URL);
+    emMsg('抱歉，微语未开启前台访问！', BLOG_URL);
 }
 
 if ($action == 'cal') {
@@ -63,7 +63,7 @@ if ($action == 'getr') {
     echo $response;
 }
 
-// 回复碎语
+// 回复微语
 if ($action == 'reply') {
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';

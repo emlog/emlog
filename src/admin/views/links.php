@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class=containertitle><b>链接管理</b>
+<div class=containertitle><b>友情链接管理</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除链接成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改链接成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="actived">添加链接成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">修改成功</span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived">添加成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">站点名称和地址不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的链接</span><?php endif;?>
 </div>

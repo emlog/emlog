@@ -17,7 +17,7 @@
         <th width="100"><b>用户</b></th>
         <th width="340"><b>描述</b></th>
         <th width="270"><b>电子邮件</b></th>
-		<th width="30" class="tdcenter"><b>日志</b></th>
+		<th width="30" class="tdcenter"><b>文章</b></th>
       </tr>
     </thead>
     <tbody>

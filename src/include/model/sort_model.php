@@ -1,6 +1,6 @@
 <?php
 /**
- * 日志分类
+ * 文章分类
  * @copyright (c) Emlog All Rights Reserved
  */
 

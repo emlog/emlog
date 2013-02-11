@@ -33,11 +33,11 @@ textarea {border: 1px solid #A5ABB3;color: #303C46;}
 <div id="navi">
 <a href="./">首页</a>
 <?php if(Option::get('istwitter') == 'y'): ?>
-<a href="./?action=tw">碎语</a>
+<a href="./?action=tw">微语</a>
 <?php endif;?>
 <a href="./?action=com">评论</a>
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write">写日志</a> 
+<a href="./?action=write">写文章</a> 
 <a href="./?action=logout">退出</a>
 <?php else:?>
 <a href="<?php echo BLOG_URL; ?>m/?action=login">登录</a>

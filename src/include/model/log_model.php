@@ -1,6 +1,6 @@
 <?php
 /**
- * 日志、页面管理
+ * 文章、页面管理
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -14,7 +14,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 添加日志、页面
+	 * 添加文章、页面
 	 *
 	 * @param array $logData
 	 * @return int
@@ -34,7 +34,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 更新日志内容
+	 * 更新文章内容
 	 *
 	 * @param array $logData
 	 * @param int $blogId
@@ -50,7 +50,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取指定条件的日志条数
+	 * 获取指定条件的文章条数
 	 *
 	 * @param int $spot 0:前台 1:后台
 	 * @param string $hide
@@ -73,7 +73,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 后台获取单条日志
+	 * 后台获取单篇文章
 	 */
 	function getOneLogForAdmin($blogId) {
 		$timezone = Option::get('timezone');
@@ -98,7 +98,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 前台获取单条日志
+	 * 前台获取单篇文章
 	 */
 	function getOneLogForHome($blogId) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
@@ -131,7 +131,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 后台获取日志列表
+	 * 后台获取文章列表
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -162,7 +162,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 前台获取日志列表
+	 * 前台获取文章列表
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -183,7 +183,7 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-				$row['excerpt'] = '<p>[该日志已设置加密，请点击标题输入密码访问]</p>';
+				$row['excerpt'] = '<p>[该文章已设置加密，请点击标题输入密码访问]</p>';
 			} else {
 				if (!empty($row['excerpt'])) {
 					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
@@ -218,7 +218,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 删除日志
+	 * 删除文章
 	 *
 	 * @param int $blogId
 	 */
@@ -250,7 +250,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 隐藏/显示日志
+	 * 隐藏/显示文章
 	 *
 	 * @param int $blogId
 	 * @param string $hideState
@@ -263,7 +263,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取日志发布时间
+	 * 获取文章发布时间
 	 *
 	 * @param int $timezone
 	 * @param string $postDate
@@ -306,7 +306,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取相邻日志
+	 * 获取相邻文章
 	 *
 	 * @param int $date unix时间戳
 	 * @return array
@@ -325,7 +325,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 随机获取指定数量日志
+	 * 随机获取指定数量文章
 	 */
 	function getRandLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
@@ -340,7 +340,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取热门日志
+	 * 获取热门文章
 	 */
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -355,7 +355,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 处理日志别名，防止别名重复
+	 * 处理文章别名，防止别名重复
 	 *
 	 * @param string $alias
 	 * @param array $logalias_cache
@@ -377,7 +377,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 加密日志访问验证
+	 * 加密文章访问验证
 	 *
 	 * @param string $pwd
 	 * @param string $pwd2
@@ -401,7 +401,7 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <body>
 <div class="main">
 <form action="" method="post">
-请输入该日志的访问密码<br>
+请输入该文章的访问密码<br>
 <input type="password" name="logpwd" /><input type="submit" value="进入.." />
 <br /><br /><a href="$url">&laquo;返回首页</a>
 </form>

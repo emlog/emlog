@@ -123,7 +123,7 @@ function blogger_getUsersBlogs() {
 }
 
 /**
- * 删除日志
+ * 删除文章
  */
 function mw_deletePost($args) {
 	escape($args);
@@ -136,7 +136,7 @@ function mw_deletePost($args) {
 	response('<boolean>1</boolean>');
 }
 /**
- * 保存新日志
+ * 保存新文章
  */
 function mw_newPost($args) {
 	global $options_cache;
@@ -187,7 +187,7 @@ function mw_newPost($args) {
 	response("<i4>$new_id</i4>");
 }
 /**
- * 更新日志
+ * 更新文章
  */
 function mw_editPost($args) {
 	global $options_cache;
@@ -271,7 +271,7 @@ function mw_getCategories($args) {
 }
 
 /**
- * 读取日志信息
+ * 读取文章信息
  */
 function mw_getPost($args) {
 	global $options_cache;
@@ -286,7 +286,7 @@ function mw_getPost($args) {
 	$Log_Model = new Log_Model();
 	define('UID', $user['uid']);
 	$post = $Log_Model->getOneLogForAdmin($post_ID);
-	if (empty($post)) return error_message(404, '对不起,您访问日志不存在');
+	if (empty($post)) return error_message(404, '对不起,您访问的文章不存在');
 	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
@@ -442,7 +442,7 @@ function mw_getRecentPosts($args) {
 	}
 
 	if (empty($xml)) {
-		error_massage(404, '没有日志');
+		error_massage(404, '没有文章');
 	}
 	$xml = "<array><data>$xml</data></array>";
 	response($xml);

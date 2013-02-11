@@ -2,7 +2,7 @@
 <div id="m">
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">
-碎语内容：<br />
+微语内容：<br />
 <textarea cols="20" rows="3" name="t"></textarea><br />
 选择要上传的图片:<br />
 <input type="file" name="img" /><br />

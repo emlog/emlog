@@ -19,7 +19,7 @@ foreach($tags as $key=>$value): ?>
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
 <a href="javascript:deltags();">删除</a>
 <?php else:?>
-<li style="margin:20px 30px">还没有标签，写日志的时候可以给日志打标签</li>
+<li style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</li>
 <?php endif;?>
 </div>
 </form>

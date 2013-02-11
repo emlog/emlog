@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理日志
+ * 管理文章
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 
-//显示日志(草稿)管理页面
+//显示文章(草稿)管理页面
 if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$User_Model = new User_Model();
@@ -54,7 +54,7 @@ if ($action == '') {
 	} else{
 		$hide_stae = 'n';
 		$sorturl = '';
-		$pwd = '日志管理';
+		$pwd = '文章管理';
 	}
 
 	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
@@ -74,7 +74,7 @@ if ($action == '') {
 	include View::getView('footer');View::output();
 }
 
-//操作日志
+//操作文章
 if ($action == 'operate_log') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';

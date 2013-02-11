@@ -280,10 +280,10 @@ function doAction($hook) {
 }
 
 /**
- * 日志分割
+ * 文章分割
  *
- * @param string $content 日志内容
- * @param int $lid 日志id
+ * @param string $content 文章内容
+ * @param int $lid 文章id
  */
 function breakLog($content, $lid) {
 	$a = explode('[break]', $content, 2);
@@ -296,7 +296,7 @@ function breakLog($content, $lid) {
 /**
  * 删除[break]标签
  *
- * @param string $content 日志内容
+ * @param string $content 文章内容
  */
 function rmBreak($content) {
 	$content = str_replace('[break]', '', $content);

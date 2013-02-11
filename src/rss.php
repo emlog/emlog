@@ -48,7 +48,7 @@ echo <<< END
 END;
 
 /**
- * 获取日志信息
+ * 获取文章信息
  *
  * @return array
  */
@@ -66,7 +66,7 @@ function getBlog($sort = null) {
 		$re['content']	= $re['content'];
 		if(!empty($re['password']))
 		{
-			$re['content'] = '<p>[该日志已设置加密]</p>';
+			$re['content'] = '<p>[该文章已设置加密]</p>';
 		}
 		elseif(Option::get('rss_output_fulltext') == 'n')
 		{

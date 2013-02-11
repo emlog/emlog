@@ -35,14 +35,14 @@
 	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
-			<li class="widget-title">最新碎语</li>
+			<li class="widget-title">最新微语</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li>首页显示最新碎语数</li>
+			<li>首页显示最新微语数</li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
@@ -106,14 +106,14 @@
 	<form action="widgets.php?action=setwg&wg=newlog" method="post">
 	<div class="widget-line" id="newlog">
 		<div class="widget-top">
-			<li class="widget-title">最新日志</li>
+			<li class="widget-title">最新文章</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
-			<li>首页显示最新日志数</li>
+			<li>首页显示最新文章数</li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
@@ -121,14 +121,14 @@
 	<form action="widgets.php?action=setwg&wg=hotlog" method="post">
 	<div class="widget-line" id="hotlog">
 		<div class="widget-top">
-			<li class="widget-title">热门日志</li>
+			<li class="widget-title">热门文章</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
-			<li>首页显示热门日志数</li>
+			<li>首页显示热门文章数</li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
@@ -136,14 +136,14 @@
 	<form action="widgets.php?action=setwg&wg=random_log" method="post">
 	<div class="widget-line" id="random_log">
 		<div class="widget-top">
-			<li class="widget-title">随机日志</li>
+			<li class="widget-title">随机文章</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li>标题</li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
-			<li>首页显示随机日志数</li>
+			<li>首页显示随机文章数</li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>

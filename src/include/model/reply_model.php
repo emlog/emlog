@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语回复管理
+ * 微语回复管理
  * @copyright (c) Emlog All Rights Reserved
  */
 

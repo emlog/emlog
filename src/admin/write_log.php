@@ -1,12 +1,12 @@
 <?php
 /**
- * 显示撰写、编辑日志界面
+ * 显示撰写、编辑文章界面
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'globals.php';
 
-//显示撰写日志页面
+//显示撰写文章页面
 if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
@@ -23,7 +23,7 @@ if ($action == '') {
 	View::output();
 }
 
-//显示编辑日志页面
+//显示编辑文章页面
 if ($action == 'edit') {
 	$Log_Model = new Log_Model();
 	$Tag_Model = new Tag_Model();

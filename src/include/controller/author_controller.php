@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看作者日志
+ * 查看作者文章
  *
  * @copyright (c) Emlog All Rights Reserved
  */

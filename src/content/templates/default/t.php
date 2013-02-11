@@ -1,6 +1,6 @@
 <?php 
 /*
-* 碎语部分
+* 微语部分
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="contentleft">
 <div id="tw">
     <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-    <div class="top"><a href="<?php echo BLOG_URL . 'admin/twitter.php' ?>">写碎语</a></div>
+    <div class="top"><a href="<?php echo BLOG_URL . 'admin/twitter.php' ?>">写微语</a></div>
     <?php endif; ?>
     <ul>
     <?php 

@@ -43,7 +43,7 @@ function widget_tag($title){
 	<ul id="blogtags">
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-		<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇日志"><?php echo $value['tagname']; ?></a></span>
+		<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇文章"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -66,7 +66,7 @@ function widget_sort($title){
 	</li>
 <?php }?>
 <?php
-//widget：最新碎语
+//widget：最新微语
 function widget_twitter($title){
 	global $CACHE; 
 	$newtws_cache = $CACHE->readCache('newtw');
@@ -105,7 +105,7 @@ function widget_newcomm($title){
 	</li>
 <?php }?>
 <?php
-//widget：最新日志
+//widget：最新文章
 function widget_newlog($title){
 	global $CACHE; 
 	$newLogs_cache = $CACHE->readCache('newlog');
@@ -120,7 +120,7 @@ function widget_newlog($title){
 	</li>
 <?php }?>
 <?php
-//widget：热门日志
+//widget：热门文章
 function widget_hotlog($title){
 	$index_hotlognum = Option::get('index_hotlognum');
 	$Log_Model = new Log_Model();
@@ -135,7 +135,7 @@ function widget_hotlog($title){
 	</li>
 <?php }?>
 <?php
-//widget：随机日志
+//widget：随机文章
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');
 	$Log_Model = new Log_Model();
@@ -212,7 +212,7 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写日志</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php 
@@ -229,7 +229,7 @@ function blog_navi(){
 <?php
 //blog：置顶
 function topflg($istop){
-	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶日志\" /> " : '';
+	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶文章\" /> " : '';
 	echo $topflg;
 }
 ?>
@@ -251,7 +251,7 @@ function blog_sort($blogid){
 	<?php endif;?>
 <?php }?>
 <?php
-//blog：日志标签
+//blog：文章标签
 function blog_tag($blogid){
 	global $CACHE;
 	$log_cache_tags = $CACHE->readCache('logtags');
@@ -265,7 +265,7 @@ function blog_tag($blogid){
 }
 ?>
 <?php
-//blog：日志作者
+//blog：文章作者
 function blog_author($uid){
 	global $CACHE;
 	$user_cache = $CACHE->readCache('user');
@@ -277,7 +277,7 @@ function blog_author($uid){
 }
 ?>
 <?php
-//blog：相邻日志
+//blog：相邻文章
 function neighbor_log($neighborLog){
 	extract($neighborLog);?>
 	<?php if($prevLog):?>

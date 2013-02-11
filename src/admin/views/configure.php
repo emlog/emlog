@@ -3,7 +3,7 @@
 <div class="containertitle2">
 <a class="navi3" href="./configure.php">基本设置</a>
 <a class="navi4" href="./style.php">后台风格</a>
-<a class="navi4" href="./permalink.php">日志链接</a>
+<a class="navi4" href="./permalink.php">文章链接</a>
 <a class="navi4" href="./blogger.php">个人资料</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 </div>
@@ -23,7 +23,7 @@
       </tr>
       <tr>
         <td align="right">每页显示：</td>
-        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" />条日志</td>
+        <td><input maxlength="5" size="4" value="<?php echo $index_lognum; ?>" name="index_lognum" />篇文章</td>
       </tr>
 	  <tr>
         <td valign="top" align="right">你所在时区：<br /></td>
@@ -101,11 +101,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right" width="18%" valign="top">碎语：<br /></td>
+        <td align="right" width="18%" valign="top">微语：<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启碎语，
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条碎语<br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启碎语回复，
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启微语，
+		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条微语<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启微语回复，
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码，
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
 
@@ -117,7 +117,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%">RSS：<br /></td>
         <td width="82%">
-		输出<input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" name="rss_output_num" />篇日志，且输出<select name="rss_output_fulltext">
+		输出<input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" name="rss_output_num" />篇文章，且输出<select name="rss_output_fulltext">
 		<option value="y" <?php echo $ex1; ?>>全文</option>
 		<option value="n" <?php echo $ex2; ?>>摘要</option>
         </select>

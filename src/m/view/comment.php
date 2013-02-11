@@ -10,7 +10,7 @@ foreach($comment as $value):
 <?php endif;?>
 </div>
 <?php if(ISLOGIN === true): ?>
-<div class="info">所属日志：<?php echo $value['title']; ?></div>
+<div class="info">所属文章：<?php echo $value['title']; ?></div>
 <?php endif;?>
 <div class="cominfo">
 <?php if(ISLOGIN === true && $value['hide'] == 'n'): ?>

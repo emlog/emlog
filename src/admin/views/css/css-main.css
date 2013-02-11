@@ -30,12 +30,10 @@ li {
 #container {
 	padding-left:30px;
 }
-#menu_wt a {
-	background:url(../images/addblog.gif) no-repeat 18px 1px;
-}
-#menu_tw a {
-	background:url(../images/t.gif) no-repeat 20px 1px;
-}
+#menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
+#menu_tw a {background:url(../images/t.gif) no-repeat 20px 1px;}
+#menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
+#menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
 .containertitle {
 	background-position:left 3px;
 	font-size:14px;

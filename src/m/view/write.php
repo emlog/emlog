@@ -19,6 +19,6 @@
 <input type="hidden" name="gid" value=<?php echo $logid; ?> />
 <input type="hidden" name="author" value=<?php echo $author; ?> />
 <input name="date" type="hidden" value="<?php print !empty($date) ? gmdate('Y-m-d H:i:s', $date) : ''; ?>" />
-<input type="submit" value="发布日志" />
+<input type="submit" value="发布文章" />
 </form>
 </div>

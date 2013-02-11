@@ -1,6 +1,6 @@
 <?php 
 /*
-* 首页日志列表部分
+* 首页文章列表部分
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>

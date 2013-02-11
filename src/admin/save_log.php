@@ -1,6 +1,6 @@
 <?php
 /**
- * 保存日志（增加、修改）
+ * 保存文章（增加、修改）
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -12,7 +12,7 @@ $Trackback_Model = new Trackback_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的日志时间
+$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
 $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
@@ -81,9 +81,9 @@ switch ($action) {
 				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
 			if ($action == 'add' || isset($_POST['pubdf'])) {
-				emDirect("./admin_log.php?active_post=true");//日志发布成功
+				emDirect("./admin_log.php?active_post=true");//文章发布成功
 			} else {
-				emDirect("./admin_log.php?active_savelog=true");//日志保存成功
+				emDirect("./admin_log.php?active_savelog=true");//文章保存成功
 			}
 		}
 		break;

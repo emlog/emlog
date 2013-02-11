@@ -1,6 +1,6 @@
 <?php
 /**
- * 查询日志
+ * 查询文章
  *
  * @copyright (c) Emlog All Rights Reserved
  */

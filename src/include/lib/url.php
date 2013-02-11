@@ -7,14 +7,14 @@
 class Url {
 
     /**
-     * 获取日志链接
+     * 获取文章链接
      */
 	static function log($blogId) {
     	$urlMode = Option::get('isurlrewrite');
         $logUrl = '';
         $CACHE = Cache::getInstance();
 
-        //开启日志别名
+        //开启文章别名
         if (Option::get('isalias') == 'y') {
             $logalias_cache = $CACHE->readCache('logalias');
             if (!empty($logalias_cache[$blogId])) {
@@ -145,7 +145,7 @@ class Url {
     }
 
     /**
-	 * 获取首页日志分页链接
+	 * 获取首页文章分页链接
 	 */
 	static function logPage() {
 		$logPageUrl = '';

@@ -1,13 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
-<div class=containertitle><b>写日志</b><span id="msg_2"></span></div>
+<div class=containertitle><b>写文章</b><span id="msg_2"></span></div>
 <div id="msg"></div>
   <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">
       <tbody>
         <tr nowrap="nowrap">
           <td>
-          <label for="title" id="title_label">输入日志标题</label>
+          <label for="title" id="title_label">输入文章标题</label>
           <input type="text" maxlength="200" style="width:710px;" name="title" id="title"/>
           </td>
         </tr>
@@ -26,7 +26,7 @@
         <tr nowrap="nowrap">
           <td>
 		  <div style="margin:10px 0px 5px 0px;">
-		  <label for="tag" id="tag_label">日志标签，逗号或空格分隔</label>
+		  <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
           <input name="tag" id="tag" maxlength="200" style="width:432px;" />
 
           <select name="sort" id="sort" style="width:130px;">
@@ -57,13 +57,13 @@
 	<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
 	<table cellspacing="1" cellpadding="4" width="720" border="0" id="advset">
         <tr nowrap="nowrap">
-          <td><b>日志摘要：</b><br />
+          <td><b>文章摘要：</b><br />
 			<textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea>
             <script>loadEditor('excerpt');</script>
           </td>
         </tr>
         <tr nowrap="nowrap">
-          <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义日志链接。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
+          <td><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义文章链接。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span><br />
 			<input name="alias" id="alias" style="width:711px;" />
           </td>
         </tr>   
@@ -73,11 +73,11 @@
           </td>
         </tr>
         <tr>
-          <td><b>日志访问密码：</b>
+          <td><b>文章访问密码：</b>
           <input type="text" value="" name="password" id="password" style="width:80px;" />
           <span id="post_options">
           <input type="checkbox" value="y" name="top" id="top" />
-          <label for="top">日志置顶</label>
+          <label for="top">文章置顶</label>
           <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
           <label for="allow_remark">允许评论</label>
           <input type="checkbox" value="y" id="allow_tb" name="allow_tb" checked="checked" />
@@ -90,7 +90,7 @@
 		<tr>
           <td align="center"><br>
           <input type="hidden" name="ishide" id="ishide" value="">
-          <input type="submit" value="发布日志" onclick="return checkform();" class="button" />
+          <input type="submit" value="发布文章" onclick="return checkform();" class="button" />
           <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
           <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="button" />
 		  </td>

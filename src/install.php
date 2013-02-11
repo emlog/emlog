@@ -158,7 +158,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	<input name="adminpw" type="hidden" class="input" value="$adminpw">
 	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
-你的emlog看起来已经安装过了。继续安装将会覆盖老的日志数据，你确定要继续吗？
+你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
 <input type="submit" value="继续&raquo;">
 </p>
 <p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
@@ -172,11 +172,11 @@ EOT;
 
 	if(!is_writable('config.php'))
 	{
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
 	}
 	if(!is_writable(EMLOG_ROOT.'/content/cache'))
 	{
-		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为everyone可写');
+		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
 	}
 	$config = "<?php\n"
 	."//mysql database address\n"
@@ -199,7 +199,7 @@ EOT;
 	$fw = @fwrite($fp, $config);
 	if (!$fw)
 	{
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为everyone可写');
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
 	}else{
 		$result.="配置文件修改成功<br />";
 	}
@@ -365,7 +365,7 @@ CREATE TABLE {$db_prefix}navi (
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '首页', '', 1, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '碎语', 't', 2, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '微语', 't', 2, 'y');
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '登录', 'admin', 3, 'y');
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (

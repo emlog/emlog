@@ -1,6 +1,6 @@
 <?php
 /**
- * 碎语
+ * 微语
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -23,7 +23,7 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-// 发布碎语.
+// 发布微语.
 if ($action == 'post') {
 	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
@@ -47,7 +47,7 @@ if ($action == 'post') {
 	doAction('post_twitter', $t, $twid);
 	emDirect("twitter.php?active_t=true");
 }
-// 删除碎语.
+// 删除微语.
 if ($action == 'del') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);
@@ -79,7 +79,7 @@ if ($action == 'getreply') {
 	}
 	echo $response;
 }
-// 回复碎语.
+// 回复微语.
 if ($action == 'reply') {
 	$r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
