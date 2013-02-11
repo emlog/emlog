@@ -149,7 +149,7 @@ class Option {
 	 */
 	static function getWidgetTitle() {
 		$widget_title = array(
-			'blogger' => 'blogger',
+			'blogger' => '个人资料',
 			'calendar' => '日历',
 			'twitter' => '最新微语',
 			'tag' => '标签',

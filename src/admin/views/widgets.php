@@ -9,7 +9,7 @@
 	<form action="widgets.php?action=setwg&wg=blogger" method="post">
 	<div class="widget-line" id="blogger">
 		<div class="widget-top">
-			<li class="widget-title">blogger</li>
+			<li class="widget-title">个人资料</li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
