@@ -30,8 +30,7 @@ if(!$act){
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 .main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 4px;}
 .logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
-.title{text-align:center;}
-.title span{font-size:24px; color:#666666;}
+.title{text-align:center; font-size: 14px;}
 .input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 .submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
@@ -45,9 +44,9 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <p class="logo"></p>
-<p class="title"><span>emlog<?php echo Option::EMLOG_VERSION ?></span> 安装程序</p>
+<p class="title">emlog <?php echo Option::EMLOG_VERSION ?> 安装程序</p>
 <div class="b">
-<p class="title2">数据库设置</p>
+<p class="title2">MySQL数据库设置</p>
 <li>
 	数据库地址： <br />
     <input name="hostname" type="text" class="input" value="localhost">
@@ -67,7 +66,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <li>
     数据库前缀：<br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
-  <span class="care"> (可随意填写，由英文字母、数字、下划线组成，且必须以下划线结束)</span>
+  <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
 </li>
 </div>
 <div class="c">
@@ -213,8 +212,8 @@ EOT;
 	$type = 'MYISAM';
 	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
-
-	$widgets = Option::getWidgetTitle();
+    
+    $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 
 	$widget_title = serialize($widgets);
@@ -252,7 +251,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '欢迎使用emlog', '1230508801', '从今天起，做一个幸福的人。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '欢迎使用emlog', '".time()."', '从今天起，做一个幸福的人。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
