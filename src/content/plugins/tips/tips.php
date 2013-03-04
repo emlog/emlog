@@ -39,8 +39,7 @@ $array_tips = array(
 '如果你拥有爱，请在失去之前好好珍惜',
 );
 
-function tips()
-{
+function tips() {
 	global $array_tips;
 	$i = mt_rand(0, count($array_tips) - 1);
 	$tip = $array_tips[$i];	
@@ -49,10 +48,8 @@ function tips()
 
 addAction('adm_main_top', 'tips');
 
-function tips_css()
-{
-	echo "
-	<style type='text/css'>
+function tips_css() {
+	echo "<style type='text/css'>
 	#tip{
 		background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
 		padding:3px 18px;
@@ -60,7 +57,7 @@ function tips_css()
 		font-size:12px;
 		color:#999999;
 	}
-	</style>";
+    </style>\n";
 }
 
 addAction('adm_head', 'tips_css');
