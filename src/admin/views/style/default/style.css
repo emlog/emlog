@@ -48,26 +48,30 @@ a:hover{color:#333;text-decoration:none}
 	width:486px;
 	padding:8px 0px 0px 15px;
 }
-#top_menu{padding:9px 0px 0px 15px;float:left;}
+#top_menu{
+	padding:9px 15px 0px 0px;
+	float:right;
+}
 #top_menu span{margin: 0px 8px;}
 
 /*侧边栏*/
-#sidebar{
+#side{
 	background-position:left top;
 	background-image:url(./images/sidebar_bg.gif);width:114px;
 	background-repeat:repeat-y;
 	text-align:center;
+	float:left;
 }
-#sidebar a{
+#side a{
 	color:#333;
 	text-decoration:none;
 	display:block;
 }
-#sidebar a:hover{
+#side a:hover{
 	color:#2A9DDB;
 	text-decoration:none;
 }
-#sidebar a:active{
+#side a:active{
 	text-decoration:none;
 	padding:1px 0px 0px 1px;
 }
@@ -81,7 +85,7 @@ a:hover{color:#333;text-decoration:none}
 	font-size:5px;
 	background:url(./images/sidebar_bg_b.gif) no-repeat bottom;
 	width:114px;height:5px}
-#sidebar .coment_number{
+#side .coment_number{
 	background: url(./images/coment_numbg.gif) no-repeat 1px 1px;font-size:9px;position: relative;
 	margin-top:-32px;
 	height:30px;
@@ -89,7 +93,7 @@ a:hover{color:#333;text-decoration:none}
 	float:right;
 	margin-right:20px;_margin-right:10px;
 }
-#sidebar .coment_number a ,#sidebar .coment_number a:hover{
+#side .coment_number a ,#sidebar .coment_number a:hover{
 	color:#FFFFFF;
 	height:20px;
 	font-weight:bold;
@@ -104,12 +108,12 @@ a:hover{color:#333;text-decoration:none}
 	cursor:pointer;
 	font-weight:bold;
 }
-.sidebarsubmenu{
+.sidesubmenu{
 	background:url(./images/sidebar_menubg.gif) repeat-x;
 	width:104px;
 	padding-top:3px;height:22px;margin:auto;
 }
-.sidebarsubmenu1{
+.sidesubmenu_curr{
 	background: url(./images/sidebar_current_menubg.gif) repeat-x;
 	width:103px;
 	padding-top:3px;

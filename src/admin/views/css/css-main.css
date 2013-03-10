@@ -1,14 +1,12 @@
-html {
-	overflow-y:scroll;
-}
+html {overflow-y:scroll;}
 fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 	margin:0;
 	padding:0;
 	border:0;
 }
-th {
-	text-align:left;
-}
+th {text-align:left;}
+li {list-style:none;}
+.mb-8 {margin-bottom:8px;}
 body {
 	font-size:12px;
 	color:#000;
@@ -17,18 +15,19 @@ body {
 	padding:0;
 	margin:0;
 }
-.mb-8 {
-	margin-bottom:8px;
-}
-.main {
+#mainpage {
 	margin:5px auto 0px;
 	width:988px;
 }
-li {
-	list-style:none;
-}
 #container {
 	padding-left:30px;
+	float:left;
+	width:840px;
+}
+#footer{
+	clear:both;
+	margin:0px auto;
+	text-align:center;
 }
 #menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
 #menu_tw a {background:url(../images/t.gif) no-repeat 20px 1px;}
@@ -178,6 +177,7 @@ textarea {
 .trover {
 	background-color:#E9F1FA
 }
+/*自定义侧边栏*/
 .widgetpage {
 	width:750px;
 	cursor:default;
@@ -236,7 +236,6 @@ textarea {
 	cursor:pointer;
 	height:15px
 }
-/*custom_widgets*/
 .wg_line {
 	float:left;
 	width:408px;
@@ -621,6 +620,7 @@ textarea {
 	bottom: 10px;
 	z-index: 120;
 }
+/*微语*/
 #tw .tbutton input {
 	background:url(../images/weibe_button.gif) no-repeat;
 	border:0;
@@ -751,40 +751,7 @@ textarea {
 	background:url(../images/loading.gif) no-repeat 200px 2px;
 	height:20px;
 }
-#tw_line {
-	margin:0px 0px 0px 20px;
-	padding-right:10px;
-	float:left;
-	width:235px;
-}
-#tw_line h3{
-    margin:0px;
-    font-size:14px;
-}
-#tw_line ul {
-	padding:1px;
-	width:235px;
-	height:280px;
-	overflow:hidden;
-	margin-left:0px;
-}
-#tw_line li {
-	margin:0px 0px 20px;
-}
-#tw_line .tw_date {
-	color:#CCCCCC;
-	float:right;
-}
-#tw_line .tw_footer {
-	border-top:solid 1px #EFEFEF;
-	padding:5px 0px;
-}
-#tw_line .tw_footer a {
-	color:#999999;
-}
-#tw_line .tw_footer a:hover {
-	color:#CCCCCC;
-}
+/*后台风格*/
 #admin_style {
 	margin:10px 10px 10px 10px;
 }
@@ -809,6 +776,7 @@ textarea {
 	font-size:11px;
 	color:#999999
 }
+/*默认模板顶部图片*/
 .topimg_line {
 	clear:both;
 	width:794px;

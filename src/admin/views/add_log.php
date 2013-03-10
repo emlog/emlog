@@ -99,7 +99,7 @@
   </form>
 <div class=line></div>
 <script>
-$("#menu_wt").addClass('sidebarsubmenu1');
+$("#menu_wt").addClass('sidesubmenu_curr');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 $("#alias").keyup(function(){checkalias();});
 $("#title").focus(function(){$("#title_label").hide();});

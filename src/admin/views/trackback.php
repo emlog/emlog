@@ -53,5 +53,5 @@ function tbact(act){
 	$("#form_tb").submit();
 }
 $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
-$("#menu_tb").addClass('sidebarsubmenu1');
+$("#menu_tb").addClass('sidesubmenu_curr');
 </script>

@@ -18,6 +18,7 @@ foreach($tags as $key=>$value): ?>
 <li style="margin:20px 0px">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
 <a href="javascript:deltags();">删除</a>
+</li>
 <?php else:?>
 <li style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</li>
 <?php endif;?>
@@ -34,5 +35,5 @@ function deltags(){
 	$("#form_tag").submit();
 }
 setTimeout(hideActived,2600);
-$("#menu_tag").addClass('sidebarsubmenu1');
+$("#menu_tag").addClass('sidesubmenu_curr');
 </script>

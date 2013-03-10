@@ -72,5 +72,5 @@ $("#adm_plugin_list tbody tr")
 	.mouseover(function(){$(this).addClass("trover")})
 	.mouseout(function(){$(this).removeClass("trover")})
 setTimeout(hideActived,2600);
-$("#menu_plug").addClass('sidebarsubmenu1');
+$("#menu_plug").addClass('sidesubmenu_curr');
 </script>

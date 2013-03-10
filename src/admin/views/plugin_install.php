@@ -38,7 +38,7 @@
 </div>
 
 <script>
-$("#menu_plug").addClass('sidebarsubmenu1');
+$("#menu_plug").addClass('sidesubmenu_curr');
 
 $(document).ready(function(){
 	$.getJSON("http://www.emlog.net/api/plugin/latest?callback=?",function(data){

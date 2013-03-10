@@ -53,39 +53,8 @@
 	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
     </ul>
 </div>
-<div id="tw_line">
-<h3>最新微语</h3>
-<ul class="tw_scroll"></ul>
-<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank">来自云平台</a></div>
-</div>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
 <script>
-(function($){
-	$.fn.extend({
-		Scroll:function(opt,callback){
-			if(!opt) var opt={};
-			var _this=this.eq(0).find("ul:first");
-			var speed=opt.speed?parseInt(opt.speed,10):500,
-			timer=opt.timer?parseInt(opt.timer,10):3000;
-
-			scrollUp=function(){
-				var thisLi= _this.find("li:first");
-				var thisheight =thisLi.height();
-				thisLi.animate({opacity: 1,height:0}, speed,function(){
-				thisLi.appendTo(_this).css("opacity","1").height(thisheight);
-				});
-			}
-			 _this.hover(function(){
-				clearInterval(timerID);
-			},function(){
-				timerID=setInterval("scrollUp()",timer);
-			});
-				timerID=setInterval("scrollUp()",timer);
-		}        
-	})
-})(jQuery);
-$("#tw_line").Scroll({speed:1000,timer:8000});
-
 $(document).ready(function(){
     $(".post a").toggle(
       function () {
@@ -111,19 +80,8 @@ $(document).ready(function(){
     });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
-    $("#menu_tw").addClass('sidebarsubmenu1');
+    $("#menu_tw").addClass('sidesubmenu_curr');
     $(".box").focus();
-
-	//twitter line
-    $("#tw_line ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON('http://emer.sinaapp.com/api/tw?callback=?',function(data){
-		var tw = '';
-		$.each(data,function(i,n){
-			tw+='<li><a target="_blank" href="'+n.blogurl+'">'+n.blogname+'</a><div>'+n.content+'</div><span class="tw_date">'+n.date+'</span></li>'
-		});
-		$("#tw_line ul").html("");
-		$('#tw_line ul').html(tw);
-	});
 	
 	$("#custom_file_upload").uploadify({
 		id              : jQuery(this).attr('id'),

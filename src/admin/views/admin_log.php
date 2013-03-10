@@ -197,8 +197,8 @@ function changeAuthor(obj) {
 	$("#form_log").submit();
 }
 <?php if ($isdraft) :?>
-$("#menu_draft").addClass('sidebarsubmenu1');
+$("#menu_draft").addClass('sidesubmenu_curr');
 <?php else:?>
-$("#menu_log").addClass('sidebarsubmenu1');
+$("#menu_log").addClass('sidesubmenu_curr');
 <?php endif;?>
 </script>

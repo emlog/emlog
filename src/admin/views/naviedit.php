@@ -16,5 +16,5 @@
 </div>
 </form>
 <script>
-$("#menu_navbar").addClass('sidebarsubmenu1');
+$("#menu_navbar").addClass('sidesubmenu_curr');
 </script>

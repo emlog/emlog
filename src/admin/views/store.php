@@ -6,5 +6,5 @@
 
 <script>
 setTimeout(hideActived,2600);
-$("#menu_store").addClass('sidebarsubmenu1');
+$("#menu_store").addClass('sidesubmenu_curr');
 </script>
