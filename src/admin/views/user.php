@@ -64,7 +64,6 @@
 	</li>
 	<li><input type="submit" name="" value="添加用户"  /></li>
 </div>
-</div>
 </form>
 <script>
 $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');

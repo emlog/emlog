@@ -49,10 +49,10 @@ a:hover{color:#333;text-decoration:none}
 	padding:8px 0px 0px 15px;
 }
 #top_menu{
-	padding:9px 15px 0px 0px;
+	padding:9px 8px 0px 0px;
 	float:right;
 }
-#top_menu span{margin: 0px 8px;}
+#top_menu span{margin: 0px 6px;}
 
 /*侧边栏*/
 #side{

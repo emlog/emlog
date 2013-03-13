@@ -27,6 +27,7 @@ body {
 #footer{
 	clear:both;
 	margin:0px auto;
+	padding:18px 0px 12px;
 	text-align:center;
 }
 #menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
