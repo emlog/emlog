@@ -106,12 +106,12 @@ a:hover{color:#333;text-decoration:none}
 	height:24px;
 	cursor:pointer;
 }
-.sidesubmenu{
+.sidebarsubmenu{
 	background:url(./images/sidebar_menubg.gif) repeat-x;
 	width:104px;
 	padding-top:3px;height:22px;margin:auto;
 }
-.sidesubmenu_curr{
+.sidebarsubmenu1{
 	background: url(./images/sidebar_current_menubg.gif) repeat-x;
 	width:103px;
 	padding-top:3px;

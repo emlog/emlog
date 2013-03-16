@@ -42,8 +42,8 @@
 <div id="side">
 	<div id="sidebartop"></div>
     <div id="log_mg">
-		<li class="sidesubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
-		<li class="sidesubmenu" id="menu_draft">
+		<li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
+		<li class="sidebarsubmenu" id="menu_draft">
     	<a href="admin_log.php?pid=draft">草稿<span id="dfnum">
 		<?php 
 		if (ROLE == 'admin'){
@@ -53,12 +53,12 @@
 		}
 		?>
 		</span></a></li>
-		<li class="sidesubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
+		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
 		<?php if (ROLE == 'admin'):?>
-        <li class="sidesubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
-        <li class="sidesubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
+        <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
+        <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
     	<?php endif;?>
-        <li class="sidesubmenu" id="menu_cm"><a href="comment.php">评论</a> </li>
+        <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </li>
    		<?php
 		$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 		if ($hidecmnum > 0):
@@ -66,22 +66,22 @@
 		?>
 		<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
-    	<li class="sidesubmenu" id="menu_tb"><a href="trackback.php">引用</a></li>
-    	<li class="sidesubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
+    	<li class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></li>
+    	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
 		<?php if (ROLE == 'admin'):?>
-    	<li class="sidesubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
-   	 	<li class="sidesubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
-    	<li class="sidesubmenu" id="menu_page"><a href="page.php" >页面</a></li>
-    	<li class="sidesubmenu" id="menu_link"><a href="link.php">链接</a></li>
-    	<li class="sidesubmenu" id="menu_user"><a href="user.php" >用户</a></li>
-    	<li class="sidesubmenu" id="menu_data"><a href="data.php">数据</a></li>
-    	<li class="sidesubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
-        <li class="sidesubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
+    	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
+   	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
+    	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
+    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></li>
+    	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></li>
+    	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
+    	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
+        <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
 		<?php endif;?>
-        <li class="sidesubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
+        <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
     </div>
     <div id="extend_mg">
-    	<li class="sidesubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
+    	<li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
 		<?php doAction('adm_sidebar_ext'); ?>
     </div>
 	<div id="sidebarBottom"></div>

@@ -126,6 +126,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-	$("#menu_sort").addClass('sidesubmenu_curr');
+	$("#menu_sort").addClass('sidebarsubmenu1');
 });
 </script>

@@ -51,7 +51,7 @@
 <script>
 checkalias();
 $("#alias").keyup(function(){checkalias();});
-$("#menu_page").addClass('sidesubmenu_curr');
+$("#menu_page").addClass('sidebarsubmenu1');
 
 $("#title").focus(function(){$("#title_label").hide();});
 $("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});

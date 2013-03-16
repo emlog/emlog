@@ -26,5 +26,5 @@
 </div>
 </form>
 <script>
-$("#menu_plug").addClass('sidesubmenu_curr');
+$("#menu_plug").addClass('sidebarsubmenu1');
 </script>

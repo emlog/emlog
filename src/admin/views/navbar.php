@@ -124,5 +124,5 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 setTimeout(hideActived,2600);
-$("#menu_navbar").addClass('sidesubmenu_curr');
+$("#menu_navbar").addClass('sidebarsubmenu1');
 </script>

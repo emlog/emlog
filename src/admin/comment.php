@@ -81,6 +81,16 @@ if ($action== 'reply_comment') {
 	include View::getView('footer');
 	View::output();
 }
+if ($action== 'edit_comment') {
+	include View::getView('header');
+	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
+	$commentArray = $Comment_Model->getOneComment($commentId);
+	extract($commentArray);
+
+	require_once(View::getView('comment_edit'));
+	include View::getView('footer');
+	View::output();
+}
 if ($action=='doreply') {
 	$reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
 	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
@@ -101,4 +111,29 @@ if ($action=='doreply') {
 	$CACHE->updateCache('sta');
 	doAction('comment_reply', $commentId, $reply);
 	emDirect("./comment.php?active_rep=true");
+}
+if ($action=='doedit') {
+	$name = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
+    $mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
+    $url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
+    $comment = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
+	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
+
+	if ($comment == '') {
+		emDirect("./comment.php?error_e=true");
+	}
+	if (strlen($comment) > 2000) {
+		emDirect("./comment.php?error_d=true");
+	}
+
+    $commentData = array(
+        'poster' => $name,
+        'mail' => $mail,
+        'url' => $url,
+        'comment' => $comment,
+    );
+
+	$Comment_Model->updateComment($commentData, $commentId);
+	$CACHE->updateCache('comment');
+	emDirect("./comment.php?active_edit=true");
 }

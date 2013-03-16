@@ -35,5 +35,5 @@ function deltags(){
 	$("#form_tag").submit();
 }
 setTimeout(hideActived,2600);
-$("#menu_tag").addClass('sidesubmenu_curr');
+$("#menu_tag").addClass('sidebarsubmenu1');
 </script>

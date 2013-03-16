@@ -3,11 +3,13 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">屏蔽评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">修改评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的评论</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">请选择要执行的操作</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">回复内容不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="error">回复内容过长</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">内容过长</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">评论内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
@@ -60,6 +62,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">屏蔽</a>
 		<?php endif;?>
 		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
+        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
@@ -97,5 +100,5 @@ function commentact(act){
 	$("#operate").val(act);
 	$("#form_com").submit();
 }
-$("#menu_cm").addClass('sidesubmenu_curr');
+$("#menu_cm").addClass('sidebarsubmenu1');
 </script>

@@ -105,7 +105,7 @@ class Comment_Model {
 		$res = $this->db->query($sql);
 		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
-		$commentArray['poster'] = trim($commentArray['poster']);
+		$commentArray['poster'] = htmlspecialchars($commentArray['poster']);
 		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;
 	}
@@ -251,6 +251,22 @@ class Comment_Model {
 			doAction('comment_saved', $cid);
 			emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
 		}
+	}
+
+    
+	/**
+	 * 修改评论
+	 *
+	 * @param array $commentData
+	 * @param int $commentId
+	 */
+	function updateComment($commentData, $commentId) {
+		$Item = array();
+		foreach ($commentData as $key => $data) {
+			$Item[] = "$key='$data'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET $upStr WHERE cid=$commentId");
 	}
 
 	function isCommentExist($blogId, $name, $content) {

@@ -95,5 +95,5 @@ function bakact(act){
 	$("#operate").val(act);
 	$("#form_bak").submit();
 }
-$("#menu_data").addClass('sidesubmenu_curr');
+$("#menu_data").addClass('sidebarsubmenu1');
 </script>

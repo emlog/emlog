@@ -49,7 +49,7 @@
   </form>
 <div class=line></div>
 <script>
-$("#menu_page").addClass('sidesubmenu_curr');
+$("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});
 
 $("#title").focus(function(){$("#title_label").hide();});

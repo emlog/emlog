@@ -292,6 +292,6 @@ $(document).ready(function(){
 	$("#wg_select").change(function(){
 		window.location = "widgets.php?wg="+$(this).val();
 	});
-	$("#menu_widget").addClass('sidesubmenu_curr');
+	$("#menu_widget").addClass('sidebarsubmenu1');
 });
 </script>

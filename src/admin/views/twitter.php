@@ -80,7 +80,7 @@ $(document).ready(function(){
     });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
-    $("#menu_tw").addClass('sidesubmenu_curr');
+    $("#menu_tw").addClass('sidebarsubmenu1');
     $(".box").focus();
 	
 	$("#custom_file_upload").uploadify({

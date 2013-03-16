@@ -74,5 +74,5 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
 });
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('sidesubmenu_curr');
+$("#menu_user").addClass('sidebarsubmenu1');
 </script>

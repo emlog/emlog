@@ -29,5 +29,5 @@
 </form>
 <script>
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('sidesubmenu_curr');
+$("#menu_user").addClass('sidebarsubmenu1');
 </script>
