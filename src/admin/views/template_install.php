@@ -26,24 +26,3 @@
 	</li>
 </div>
 </form>
-<div class="containertitle2">
-<span class="navi3">官方推荐</span>
-</div>
-
-<div id="recommend_template">
-<p><a href="http://www.emlog.net/templates" target="_blank">更多模板&raquo;</a></p>
-<div id="recommend_template_list" style="overflow: hidden;text-align: center;">
-<span class="ajax_remind_1">正在读取...</span>
-</div>
-</div>
-<script>
-$(document).ready(function(){
-	$.getJSON("http://www.emlog.net/api/template/latest?callback=?",function(data){
-		var items = [];
-		$.each(data, function(i,item){
-			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="180" height="140"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>作者：'+item.author+'</li> </ul>');
-		});
-		$("#recommend_template_list").html(items.join(""));
-	});
-});
-</script>

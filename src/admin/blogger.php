@@ -11,7 +11,7 @@ if ($action == '') {
 	$row = $User_Model->getOneUser(UID);
 	extract($row);
 	$icon = '';
-	if ($photo && file_exists($photo)) {
+	if ($photo) {
 		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
 		<br /><a href=\"javascript: em_confirm(0, 'avatar');\">删除头像</a>";

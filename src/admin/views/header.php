@@ -41,7 +41,6 @@
 </div>
 <div id="side">
 	<div id="sidebartop"></div>
-    <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);">管理菜单</div>
     <div id="log_mg">
 		<li class="sidesubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
 		<li class="sidesubmenu" id="menu_draft">
@@ -77,9 +76,10 @@
     	<li class="sidesubmenu" id="menu_user"><a href="user.php" >用户</a></li>
     	<li class="sidesubmenu" id="menu_data"><a href="data.php">数据</a></li>
     	<li class="sidesubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
+        <li class="sidesubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
 		<?php endif;?>
+        <li class="sidesubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
     </div>
-    <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);">扩展功能</div>
     <div id="extend_mg">
     	<li class="sidesubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
 		<?php doAction('adm_sidebar_ext'); ?>
@@ -89,7 +89,23 @@
 <div id="container">
 <?php doAction('adm_main_top'); ?>
 <script>
-$("#blog_mg").css('display', $.cookie('em_blog_mg') ? $.cookie('em_blog_mg') : '');
-$("#log_mg").css('display', $.cookie('em_log_mg') ? $.cookie('em_log_mg') : '');
+<!--边栏折叠-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
+if ($.cookie('em_extend_ext')) {
+	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
+}
+$("#menu_ext").toggle(
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass);
+	  },
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass);
+	  }
+);
 </script>

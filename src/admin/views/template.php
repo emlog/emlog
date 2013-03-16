@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi3" href="./template.php">当前模板</a>
 <a class="navi4" href="./template.php?action=install">安装模板</a>
@@ -50,3 +49,7 @@ if($i > 0 && $i % 3 == 0){echo "</tr>";}
 endforeach; 
 ?>
 </table>
+<script>
+setTimeout(hideActived,2600);
+$("#menu_tpl").addClass('sidesubmenu_curr');
+</script>
