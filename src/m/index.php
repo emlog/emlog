@@ -144,6 +144,8 @@ if ($action == 'addcom') {
     $blogId = isset($_GET['gid']) ? intval($_GET['gid']) : - 1;
     $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 
+    $targetBlogUrl = './?post=' . $blogId;
+
     if (ISLOGIN === true) {
         $CACHE = Cache::getInstance();
         $user_cache = $CACHE->readCache('user');
@@ -155,19 +157,23 @@ if ($action == 'addcom') {
     doAction('comment_post');
 
 	if($Comment_Model->isLogCanComment($blogId) === false){
-        mMsg('评论失败：该文章已关闭评论','./?post=' . $blogId);
+        mMsg('评论失败：该文章已关闭评论', $targetBlogUrl);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
-        mMsg('评论失败：已存在相同内容评论','./?post=' . $blogId);
-    } elseif (strlen($name) > 20 || strlen($name) == 0){
-        mMsg('评论失败：姓名不符合规范','./?post=' . $blogId);
+        mMsg('评论失败：已存在相同内容评论', $targetBlogUrl);
+    } elseif ($Comment_Model->isCommentTooFast() === true) {
+		mMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论', $targetBlogUrl);
+	} elseif (strlen($name) > 20 || strlen($name) == 0){
+        mMsg('评论失败：姓名不符合规范', $targetBlogUrl);
     } elseif ($mail != '' && !checkMail($mail)) {
-        mMsg('评论失败：邮件地址不符合规范', './?post=' . $blogId);
+        mMsg('评论失败：邮件地址不符合规范', $targetBlogUrl);
     } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
-        mMsg('评论失败：禁止使用管理员昵称或邮箱评论','./?post=' . $blogId);
+        mMsg('评论失败：禁止使用管理员昵称或邮箱评论', $targetBlogUrl);
     } elseif (strlen($content) == '' || strlen($content) > 2000) {
-        mMsg('评论失败：内容不符合规范','./?post=' . $blogId);
-    } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-        mMsg('评论失败：验证码错误','./?post=' . $blogId);
+        mMsg('评论失败：内容不符合规范', $targetBlogUrl);
+    } elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+		mMsg('评论失败：评论内容需包含中文', $targetBlogUrl);
+	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        mMsg('评论失败：验证码错误', $targetBlogUrl);
     } else {
 		$DB = MySql::getInstance();
         $ipaddr = getIp();
@@ -191,11 +197,11 @@ if ($action == 'addcom') {
 			$DB->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved', $cid);
-            emDirect('./?post=' . $blogId);
+            emDirect($targetBlogUrl);
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved', $cid);
-		    mMsg('评论发表成功，请等待管理员审核', './?post=' . $blogId);
+		    mMsg('评论发表成功，请等待管理员审核', $targetBlogUrl);
 		}
     }
 }
