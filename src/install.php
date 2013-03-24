@@ -251,7 +251,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '欢迎使用emlog', '".time()."', '从今天起，做一个幸福的人。', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -330,7 +330,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenabl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
@@ -406,6 +406,7 @@ replynum mediumint(8) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
 )".$add."
+INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
   id mediumint(8) unsigned NOT NULL auto_increment,
