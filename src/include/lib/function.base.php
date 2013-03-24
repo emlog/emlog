@@ -13,7 +13,7 @@ function __autoload($class) {
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
 	} else {
-		emMsg($class . '加载失败。', BLOG_URL);
+		emMsg($class . '加载失败。');
 	}
 }
 
@@ -841,5 +841,36 @@ function show_404_page() {
 		exit;
 	} else {
 		emMsg('404', BLOG_URL);
+	}
+}
+
+/**
+ * hmac 加密
+ *
+ * @param unknown_type $algo hash算法 md5
+ * @param unknown_type $data 用户名和到期时间
+ * @param unknown_type $key
+ * @return unknown
+ */
+if(!function_exists('hash_hmac')) {
+	function hash_hmac($algo, $data, $key) {
+		$packs = array('md5' => 'H32', 'sha1' => 'H40');
+
+		if (!isset($packs[$algo])) {
+			return false;
+		}
+
+		$pack = $packs[$algo];
+
+		if (strlen($key) > 64) {
+			$key = pack($pack, $algo($key));
+		} elseif (strlen($key) < 64) {
+			$key = str_pad($key, 64, chr(0));
+		}
+
+		$ipad = (substr($key, 0, 64) ^ str_repeat(chr(0x36), 64));
+		$opad = (substr($key, 0, 64) ^ str_repeat(chr(0x5C), 64));
+
+		return $algo($opad . pack($pack, $algo($ipad . $data)));
 	}
 }

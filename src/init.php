@@ -12,7 +12,6 @@ define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once EMLOG_ROOT.'/config.php';
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
-require_once EMLOG_ROOT.'/include/lib/function.login.php';
 
 doStripslashes();
 
@@ -20,7 +19,7 @@ $CACHE = Cache::getInstance();
 
 $userData = array();
 
-define('ISLOGIN',	isLogin());
+define('ISLOGIN',	LoginAuth::isLogin());
 //用户组: admin管理员, writer联合撰写人, visitor访客
 define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
 //用户ID

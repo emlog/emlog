@@ -11,7 +11,6 @@ define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
-require_once EMLOG_ROOT . '/include/lib/function.login.php';
 
 $api_methods = array(
 	// metaWeblog 接口
@@ -595,7 +594,7 @@ function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// 检查用户权限
-	if (!checkUser($username, $password , '', 'n')) {
+	if (!LoginAuth::checkUser($username, $password , '', 'n')) {
 		error_message(403, '用户名密码错误');
 		return false;
 	}

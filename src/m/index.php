@@ -334,8 +334,8 @@ if ($action == 'auth') {
 	$password = addslashes(trim($_POST['pw']));
 	$img_code = (Option::get('login_code') == 'y' && isset ($_POST['imgcode'])) ? addslashes (trim (strtoupper ($_POST['imgcode']))) : '';
 	$ispersis = true;
-	if (checkUser($username, $password, $img_code) === true) {
-		setAuthCookie($username, $ispersis);
+	if (LoginAuth::checkUser($username, $password, $img_code) === true) {
+		loginAuth::setAuthCookie($username, $ispersis);
 		emDirect('?tem=' . time());
 	}else {
 		emDirect("?action=login");

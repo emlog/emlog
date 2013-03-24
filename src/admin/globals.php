@@ -19,11 +19,13 @@ if ($action == 'login') {
 	$ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	if (checkUser($username, $password, $img_code) === true) {
-		setAuthCookie($username, $ispersis);
+    $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
+    
+	if ($loginAuthRet === true) {
+		LoginAuth::setAuthCookie($username, $ispersis);
 		emDirect("./");
 	} else{
-		loginPage();
+		LoginAuth::loginPage($loginAuthRet);
 	}
 }
 //退出
@@ -33,7 +35,7 @@ if ($action == 'logout') {
 }
 
 if (ISLOGIN === false) {
-	loginpage();
+	LoginAuth::loginPage();
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));

@@ -79,9 +79,9 @@ if ($action == 'update_pwd') {
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
 
 	$PHPASS = new PasswordHash(8, true);
-	$ispass = checkPassword($oldpass, $userData['password']);
+	$ispass = LoginAuth::checkPassword($oldpass, $userData['password']);
 
-	if (!$ispass) {
+	if (true !== $ispass) {
 		emMsg('错误的当前密码');
 	} elseif (!empty($login) && $User_Model->isUserExist($login, UID)) {
 		emMsg('用户名已存在');
