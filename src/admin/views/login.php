@@ -29,6 +29,9 @@
 	<div class="login-bottom"></div>
 	<div class="back"><a href="../">&laquo;返回首页</a></div>
 </div>
+<?php if ($error_msg): ?>
+<div class="login-error"><?php echo $error_msg; ?></div>
+<?php endif;?>
 </form>
 <script>focusEle('user');</script>
 </body>

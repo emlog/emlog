@@ -17,3 +17,4 @@ body{background-color:#fff; padding:0px; font-family:Arial,Helvetica,sans-serif;
 .login-main .back{padding:5px 14px; background-color:#FFF; background-image:none}
 .login-main .back a{color:#09C; text-decoration:none}
 .login-ext{padding:10px 12px 0;}
+.login-error{background-color:#FFEBE8; border: 1px solid #CC0000; margin: 8px auto 0px; padding: 11px 12px; width:266px;border-radius: 5px;}

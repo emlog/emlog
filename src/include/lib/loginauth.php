@@ -71,6 +71,20 @@ class LoginAuth{
         <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
+        $error_msg = '';
+        if ($errorCode) {
+            switch ($errorCode) {
+                case self::LOGIN_ERROR_AUTHCODE:
+                    $error_msg = '验证错误，请重新输入';
+                    break;
+                case self::LOGIN_ERROR_USER:
+                    $error_msg = '用户名错误，请重新输入';
+                    break;
+                case self::LOGIN_ERROR_PASSWD:
+                    $error_msg = '密码错误，请重新输入';
+                    break;
+            }
+        }
         require_once View::getView('login');
         View::output();
     }
