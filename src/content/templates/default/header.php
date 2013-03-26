@@ -24,8 +24,8 @@ require_once View::getView('module');
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
 <link href="<?php echo TEMPLATE_URL; ?>main.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
 <script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
 <?php doAction('index_head'); ?>
 </head>
 <body>
@@ -36,5 +36,3 @@ require_once View::getView('module');
   </div>
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
   <div id="nav"><?php blog_navi();?></div>
-
-  

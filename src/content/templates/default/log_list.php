@@ -1,7 +1,7 @@
 <?php 
-/*
-* 首页文章列表部分
-*/
+/**
+ * 首页文章列表部分
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">

@@ -1,7 +1,7 @@
 <?php 
-/*
-* 微语部分
-*/
+/**
+ * 微语部分
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">

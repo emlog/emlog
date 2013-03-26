@@ -1,7 +1,7 @@
 <?php 
-/*
-* 自建页面模板
-*/
+/**
+ * 自建页面模板
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">
