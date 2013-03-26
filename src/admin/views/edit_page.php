@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
 <div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div>
 <div id="msg"></div>
   <form action="page.php?action=edit" method="post" id="addlog" name="addlog">

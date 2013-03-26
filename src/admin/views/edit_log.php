@@ -3,6 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 $isdraft = $hide == 'y' ? true : false;
 ?>
 <script charset="utf-8" src="./editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
 <div class=containertitle><b><?php if ($isdraft) :?>编辑草稿<?php else:?>编辑文章<?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
   <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
     <table cellspacing="1" cellpadding="4" width="720" border="0">

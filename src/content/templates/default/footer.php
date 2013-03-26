@@ -12,5 +12,6 @@ Powered by <a href="http://www.emlog.net" title="emlog <?php echo Option::EMLOG_
 <?php doAction('index_footer'); ?>
 </div><!--end #footerbar-->
 </div><!--end #wrap-->
+<script>prettyPrint();</script>
 </body>
 </html>
