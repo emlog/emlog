@@ -178,10 +178,10 @@ function(a,b,c){return"<noscript"+unescape(b)+">"+unescape(c)+"</noscript>"}).re
 "none")return'<div class="ke-display-none" data-ke-input-tag="'+escape(a)+'"></div>';return a}));return a.replace(/<embed[^>]*type="([^"]+)"[^>]*>(?:<\/embed>)?/ig,function(a){a=H(a);a.src=l(a.src,"");a.width=l(a.width,0);a.height=l(a.height,0);return ob(b.themesPath+"common/blank.gif",a)}).replace(/<a[^>]*name="([^"]+)"[^>]*>(?:<\/a>)?/ig,function(a){var c=H(a);if(c.href!==i)return a;return'<img class="ke-anchor" src="'+b.themesPath+'common/anchor.gif" data-ke-name="'+escape(c.name)+'" />'}).replace(/<script([^>]*)>([\s\S]*?)<\/script>/ig,
 function(a,b,c){return'<div class="ke-script" data-ke-script-attr="'+escape(b)+'">'+escape(c)+"</div>"}).replace(/<noscript([^>]*)>([\s\S]*?)<\/noscript>/ig,function(a,b,c){return'<div class="ke-noscript" data-ke-noscript-attr="'+escape(b)+'">'+escape(c)+"</div>"}).replace(/(<[^>]*)(href|src)="([^"]*)"([^>]*>)/ig,function(a,b,c,d,e){if(a.match(/\sdata-ke-src="[^"]*"/i))return a;return a=b+c+'="'+d+'" data-ke-src="'+C(d)+'"'+e}).replace(/(<[^>]+\s)(on\w+="[^"]*"[^>]*>)/ig,function(a,b,c){return b+
 "data-ke-"+c}).replace(/<table[^>]*\s+border="0"[^>]*>/ig,function(a){if(a.indexOf("ke-zeroborder")>=0)return a;return Qb(a,"ke-zeroborder")})})})}})(window);
+window.editorMap = {};
 function loadEditor(id){
-    var editor;
-    KindEditor.ready(function(K) {
-    	editor = K.create('#'+id, {
+    $(function() {
+    	editorMap[id] = KindEditor.create('#'+id, {
     		resizeMode:1,
     		allowUpload:false,
     		allowImageUpload:false,
@@ -189,5 +189,6 @@ function loadEditor(id){
     		allowPreviewEmoticons:false,
     		urlType:'domain',
     		items:['bold','italic','underline','strikethrough','forecolor','hilitecolor','fontname','fontsize','lineheight','removeformat','plainpaste','quickformat','insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright','link','unlink','image','flash','table','emoticons','code','fullscreen','source','|','about']
-    	});})
+    	});
+    });
 }

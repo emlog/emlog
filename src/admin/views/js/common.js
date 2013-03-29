@@ -111,17 +111,17 @@ function checkalias(){
 	}
 }
 function addattach_img(fileurl,imgsrc,aid){
-	if (KE.g['content'].wyswygMode == false){
+	if (editorMap['content'].designMode === false){
 		alert('请先切换到所见所得模式');
 	}else if(imgsrc != "") {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
+		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"点击查看原图\" border=\"0\"></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){
-	if (KE.g['content'].wyswygMode == false){
+	if (editorMap['content'].designMode === false){
 		alert('请先切换到所见所得模式');
 	} else {
-		KE.insertHtml('content', '<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
+		editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
 	}
 }
 function insertTag (tag, boxId){
@@ -139,12 +139,14 @@ function insertTag (tag, boxId){
 //act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
 function autosave(act){
 	var nodeid = "as_logid";
+    editorMap['content'].sync();
+    editorMap['excerpt'].sync();
 	if (act == 3 || act == 4){
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
 		var logid = $("#as_logid").val();
-		var content = KE.html('content');
+		var content = $('#content').val();
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
@@ -167,8 +169,8 @@ function autosave(act){
 		var date = $.trim($("#date").val());
 		var logid = $("#as_logid").val();
 		var author = $("#author").val();
-		var content = KE.html('content');
-		var excerpt = KE.html('excerpt');
+		var content = $('#content').val();
+		var excerpt = $('#excerpt').val();
 		var tag = $.trim($("#tag").val());
 		var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
