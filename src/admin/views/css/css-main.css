@@ -407,6 +407,12 @@ textarea {
 	padding:10px;
 	margin:10px 0px 5px 32px
 }
+#post{
+    width: 726px;
+}
+#post_bar {
+    margin:5px 0px;
+}
 #show_advset {
 	margin:3px 0px 0px 0px;
 	background:url(../images/advset.gif) no-repeat 56px 4px;
@@ -416,7 +422,11 @@ textarea {
 	display:none;
 	background-color:#F5F5F5;
 	border-top:#ECECEC solid 1px;
-	padding:5px 3px 10px 3px
+	padding:5px 2px 10px 2px
+}
+#post_button{
+    text-align: center;
+    margin:10px 0px;
 }
 #post_options {
 	float:right

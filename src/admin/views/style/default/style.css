@@ -7,27 +7,27 @@ Url:http://www.emlog.net
 /*顶部*/
 a{color:#2A9DDB;text-decoration:none;}
 a:hover{color:#333;text-decoration:none}
-#top a{color:#FFF;text-decoration:none}
-#top a:hover{color:#CCC;text-decoration:none}
-#top{
+#header a{color:#FFF;text-decoration:none}
+#header a:hover{color:#CCC;text-decoration:none}
+#header{
 	background:url(./images/top_mid.gif) repeat-x;
 	color:#FFFFFF;
 	height:40px;
 	margin-bottom:10px;
 }
-#top_left{
+#header_left{
 	background: url(./images/top_left.png) no-repeat;
 	width:9px;
 	height:40px;
 	float:left;
 }
-#top_right{
+#header_right{
 	background: url(./images/top_right.png) no-repeat right top;
 	width:9px;
 	height:40px;
 	float:right;
 }
-#top_logo a{
+#header_logo a{
 	text-indent:-9999px;
 	height:40px;
 	width:120px;
@@ -36,23 +36,23 @@ a:hover{color:#333;text-decoration:none}
 	outline: none;
 	float:left;
 }
-#top_vesion{
+#header_vesion{
 	font-size:10px;
 	padding:15px 10px 0px 10px;color: #FFFFFF;
 	float:left;
 	width:48px;
 }
-#top_title{
+#header_title{
 	font-size:15px;
 	float:left;
 	width:486px;
 	padding:8px 0px 0px 15px;
 }
-#top_menu{
+#header_menu{
 	padding:9px 8px 0px 0px;
 	float:right;
 }
-#top_menu span{margin: 0px 6px;}
+#header_menu span{margin: 0px 6px;}
 
 /*侧边栏*/
 #side{

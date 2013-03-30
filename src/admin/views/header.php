@@ -17,11 +17,11 @@
 </head>
 <body>
 <div id="mainpage">
-<div id="top">
-    <div id="top_left"></div>
-    <div id="top_logo"><a href="./" title="返回管理首页">emlog</a></div>
-    <div id="top_vesion"><?php echo Option::EMLOG_VERSION; ?></div>
-    <div id="top_title">
+<div id="header">
+    <div id="header_left"></div>
+    <div id="header_logo"><a href="./" title="返回管理首页">emlog</a></div>
+    <div id="header_vesion"><?php echo Option::EMLOG_VERSION; ?></div>
+    <div id="header_title">
     <a href="../" target="_blank" title="在新窗口浏站点">
     <?php 
     $blog_name = Option::get('blogname');
@@ -29,8 +29,8 @@
     ?>
     </a>
     </div>
-    <div id="top_right"></div>
-    <div id="top_menu">
+    <div id="header_right"></div>
+    <div id="header_menu">
     你好，<a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?> <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" height="20" width="20" style="border:1px #FFFFFF solid;" /></a><span>|</span>
     <?php if (ROLE == 'admin'):?>
 	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a><span>|</span>
