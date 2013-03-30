@@ -139,9 +139,8 @@ function insertTag (tag, boxId){
 //act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
 function autosave(act){
 	var nodeid = "as_logid";
-    editorMap['content'].sync();
-    editorMap['excerpt'].sync();
 	if (act == 3 || act == 4){
+		editorMap['content'].sync();
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
@@ -161,6 +160,8 @@ function autosave(act){
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}else{
+	    editorMap['content'].sync();
+	    editorMap['excerpt'].sync();
 		var url = "save_log.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
