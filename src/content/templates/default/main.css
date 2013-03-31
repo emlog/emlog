@@ -32,7 +32,7 @@ a:hover {color:#886353; text-decoration:underline;}
 #pagenavi span{font-size:16px; color:#999999;}
 
 #content {width: 960px; margin: 0px auto 0px; padding: 0px;}
-#content p {padding: 0px 0px 15px 0px; margin: 0px; line-height: 20px;}
+#content p {padding: 0px 0px 15px 0px; margin: 0px; line-height: 10px;}
 #content h1 {display:none;}
 #content h2 {color: #1F1F1F; font-size: 18px; font-weight:bold; padding: 0px 0px 0px 0px; margin: 25px 0px 10px 0px;}
 #content h2 a:link {color:#1F1F1F; text-decoration:none;}
