@@ -3,12 +3,11 @@ Style Name:默认风格
 Author:emlog
 Url:http://www.emlog.net
 */
-
-/*顶部*/
 a{color:#2A9DDB;text-decoration:none;}
 a:hover{color:#333;text-decoration:none}
 #header a{color:#FFF;text-decoration:none}
 #header a:hover{color:#CCC;text-decoration:none}
+
 #header{
 	background:url(./images/top_mid.gif) repeat-x;
 	color:#FFFFFF;
@@ -54,7 +53,6 @@ a:hover{color:#333;text-decoration:none}
 }
 #header_menu span{margin: 0px 6px;}
 
-/*侧边栏*/
 #side{
 	background-position:left top;
 	background-image:url(./images/sidebar_bg.gif);width:114px;
@@ -119,7 +117,6 @@ a:hover{color:#333;text-decoration:none}
 	margin:auto;
 }
 
-/*分页*/
 .page{text-align:center;margin:10px 0px;}
 .page span{
 	background-color: #CC3300;
