@@ -96,8 +96,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </html>
 <?php
 }
-if($act == 'install' || $act == 'reinstall')
-{
+if($act == 'install' || $act == 'reinstall'){
 	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
 	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
 	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
@@ -108,8 +107,7 @@ if($act == 'install' || $act == 'reinstall')
 	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
 	$result = '';
 
-	if($db_prefix == '')
-	{
+	if($db_prefix == ''){
 		emMsg('数据库前缀不能为空!');
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
 		emMsg('数据库前缀格式错误!');
@@ -131,8 +129,7 @@ if($act == 'install' || $act == 'reinstall')
 	$DB = MySql::getInstance();
 	$CACHE = Cache::getInstance();
 
-	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
-	{
+	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
 		echo <<<EOT
 <html>
 <head>
@@ -169,12 +166,10 @@ EOT;
 		exit;
 	}
 
-	if(!is_writable('config.php'))
-	{
+	if(!is_writable('config.php')){
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
 	}
-	if(!is_writable(EMLOG_ROOT.'/content/cache'))
-	{
+	if(!is_writable(EMLOG_ROOT.'/content/cache')){
 		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
 	}
 	$config = "<?php\n"
@@ -196,11 +191,8 @@ EOT;
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
-	if (!$fw)
-	{
+	if (!$fw){
 		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
-	}else{
-		$result.="配置文件修改成功<br />";
 	}
 	fclose($fp);
 
@@ -436,31 +428,23 @@ KEY username (username)
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);
-	foreach($array_sql as $sql)
-	{
+	foreach($array_sql as $sql){
 		$sql = trim($sql);
-		if ($sql)
-		{
-			if (strstr($sql, 'CREATE TABLE'))
-			{
-				preg_match('/CREATE TABLE ([^ ]*)/', $sql, $matches);
-				$ret = $DB->query($sql);
-				if ($ret)
-				{
-					$result .= '数据库表：'.$matches[1].' 创建成功<br />';
-				}
-			} else {
-				$ret = $DB->query($sql);
-			}
+		if ($sql){
+			$DB->query($sql);
 		}
 	}
 	//重建缓存
 	$CACHE->updateCache();
-	$result .= "管理员: {$admin} 添加成功<br />恭喜你！emlog 安装成功<br />";
+	$result .= "
+		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
+		<p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
+		<p><b>用户名</b>：{$admin}</p>
+		<p><b>密 码</b>：您刚才设定的密码</p>";
 	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
-	    $result .= '<span style="color:red;"><b>请删除根目录下安装文件(install.php)</b></span> ';
+	    $result .= '<p style="color:red;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
 	}
-	$result .= '<a href="./"> 进入emlog </a>';
-	emMsg($result);
+	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+	emMsg($result, 'none');
 }
 ?>

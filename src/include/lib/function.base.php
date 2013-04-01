@@ -822,7 +822,11 @@ body {
 <body>
 <div class="main">
 <p>$msg</p>
-<p><a href="$url">&laquo;点击返回</a></p>
+EOT;
+	if ($url != 'none') {
+		echo '<p><a href="$url">&laquo;点击返回</a></p>';
+	}
+	echo <<<EOT
 </div>
 </body>
 </html>
