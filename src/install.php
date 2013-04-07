@@ -15,7 +15,7 @@ doStripslashes();
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if (PHP_VERSION < '5.0'){
-    emMsg('emlog从3.5开始不再支持您当前的 PHP'.PHP_VERSION.' 环境，请您选用支持 PHP5 的主机，或下载 emlog3.4 安装。');
+    emMsg('您的php版本过低，请选用支持PHP5的环境安装emlog。');
 }
 
 if(!$act){

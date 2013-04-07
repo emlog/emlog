@@ -71,6 +71,7 @@ echo $tagStr;
         <label for="allow_tb">允许引用</label>
     </span>
 </div>
+</div>
 <div id="post_button">
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
     <input type="hidden" name="gid" value=<?php echo $logid; ?> />
@@ -80,7 +81,6 @@ echo $tagStr;
     <?php if ($isdraft) :?>
     <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="button" />
     <?php endif;?>
-</div>
 </div>
 </div>
 </form>

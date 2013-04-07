@@ -43,12 +43,28 @@ class MySql {
 			emMsg('服务器PHP不支持MySql数据库');
 		}
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
-			emMsg("连接数据库失败,可能是数据库用户名或密码错误");
+            switch ($this->geterrno()) {
+                case 2005:
+                    emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+                    break;
+                case 2003:
+                    emMsg("连接数据库失败，数据库端口错误");
+                    break;
+                case 2006:
+                    emMsg("连接数据库失败，数据库服务器不可用");
+                    break;
+                case 1045:
+                    emMsg("连接数据库失败，数据库用户名或密码错误");
+                    break;
+                default :
+                    emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->geterrno());
+                    break;
+            }
 		}
 		if ($this->getMysqlVersion() > '4.1') {
 			mysql_query("SET NAMES 'utf8'");
 		}
-		@mysql_select_db(DB_NAME, $this->conn) OR emMsg("未找到指定数据库");
+		@mysql_select_db(DB_NAME, $this->conn) OR emMsg("连接数据库失败，未找到您填写的数据库");
 	}
 
 	/**
@@ -129,6 +145,13 @@ class MySql {
 	 */
 	function geterror() {
 		return mysql_error();
+	}
+
+    /**
+	 * 获取mysql错误编码
+	 */
+	function geterrno() {
+		return mysql_errno();
 	}
 
 	/**
