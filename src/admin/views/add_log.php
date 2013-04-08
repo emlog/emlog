@@ -52,8 +52,10 @@
 <div><textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
 <div><span id="alias_msg_hook"></span><b>链接别名：</b>(用于自定义文章链接。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" style="width:711px;" /></div>
+<?php if (Option::get('istrackback') == 'y'): ?>
 <div><b>引用通告：</b>(每行一条引用地址)</div>
 <div><textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea></div>
+<?php endif;?>
 <div>
     <b>文章访问密码：</b><input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
