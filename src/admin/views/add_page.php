@@ -11,7 +11,7 @@
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="post_bar">
-    <a href="javascript: displayToggle('FrameUpload', 0);autosave(4);" class="thickbox">上传和插入+</a>
+    <a href="javascript: displayToggle('FrameUpload', 0);autosave(4);" class="thickbox"><b>上传和插入+</b></a>
     <span id="asmsg">
         <?php doAction('adm_writelog_head'); ?>
         <input type="hidden" name="as_logid" id="as_logid" value="-1">
