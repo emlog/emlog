@@ -1,5 +1,4 @@
 <?php
-header("location: ./install.php");exit;
 //mysql database address
 define('DB_HOST','localhost');
 //mysql database user
@@ -11,6 +10,6 @@ define('DB_NAME','emlog');
 //database prefix
 define('DB_PREFIX','emlog_');
 //auth key
-define('AUTH_KEY','VWq5RC2k1T*^1gdvJ1*VFn50e1LSgc#M4c8ba17bcb8bf97039c28fe8d792d7c5');
+define('AUTH_KEY','fMfEnGJGnNY2j!Fb!cLKYFh*Lm@m^1UX267ce8090d380ab80c654842e59d4e31');
 //cookie name
-define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_gSozFLFifPYsLA2MZC4lLv3d23jvbo7Q');
+define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_6DOr41ljWrNCEI6Qg4BblgMf64UWbyac');
