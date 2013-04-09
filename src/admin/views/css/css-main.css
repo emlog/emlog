@@ -354,12 +354,6 @@ textarea {
 	height:28px;
 	width:80px
 }
-.sortname {
-	cursor:pointer;
-}
-.alias {
-	cursor:pointer;
-}
 .logtags {
 	margin-left:5px
 }

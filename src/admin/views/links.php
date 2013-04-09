@@ -41,7 +41,10 @@
 	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['description']; ?></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a></td>
+        <td>
+        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');">删除</a>
+        </td>
       </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6">还没有添加链接</td></tr>

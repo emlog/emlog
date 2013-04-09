@@ -41,6 +41,21 @@ class Sort_Model {
 		$this->db->query("DELETE FROM ".DB_PREFIX."sort where sid=$sid");
 	}
 
+	function getOneSortById($sid) {
+		$sql = "select * from ".DB_PREFIX."sort where sid=$sid";
+		$res = $this->db->query($sql);
+		$row = $this->db->fetch_array($res);
+		$sortData = array();
+		if ($row) {
+			$sortData = array(
+					'sortname' => htmlspecialchars(trim($row['sortname'])),
+					'alias' => $row['alias'],
+					//'description' => htmlspecialchars(trim($row['description']))
+			);
+		}
+		return $sortData;
+	}
+
 	function getSortName($sid) {
 		if ($sid > 0) {
 			$res = $this->db->query("SELECT sortname FROM ". DB_PREFIX ."sort WHERE sid = $sid");

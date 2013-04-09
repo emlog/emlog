@@ -61,15 +61,27 @@ if ($action== 'add') {
 	emDirect("./sort.php?active_add=true");
 }
 
-if ($action == 'update') {
+if ($action== 'mod_sort') {
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 
+	$sortData = $Sort_Model->getOneSortById($sid);
+	extract($sortData);
+
+	include View::getView('header');
+	require_once(View::getView('sortedit'));
+	include View::getView('footer');
+	View::output();
+}
+
+if ($action == 'update') {
+	$sid = isset($_POST['sid']) ? intval($_POST['sid']) : '';
+
 	$sort_data = array();
-	if (isset($_GET['name'])) {
-		$sort_data['sortname'] = addslashes(trim($_GET['name']));
+	if (isset($_POST['sortname'])) {
+		$sort_data['sortname'] = addslashes(trim($_POST['sortname']));
 	}
-	if (isset($_GET['alias'])) {
-		$sort_data['alias'] = addslashes(trim($_GET['alias']));
+	if (isset($_POST['alias'])) {
+		$sort_data['alias'] = addslashes(trim($_POST['alias']));
 		if (!empty($sort_data['alias'])) {
 			if (!preg_match("|^[\w-]+$|", $sort_data['alias'])) {
 				emDirect("./sort.php?error_c=true");

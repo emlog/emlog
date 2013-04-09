@@ -34,13 +34,16 @@ foreach($sorts as $key=>$value): ?>
         <td>
         <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
         <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
-		<td class="sortname"><?php echo $value['sortname']; ?></td>
+		<td class="sortname"><a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
 		<td class="alias"><?php echo $value['alias']; ?></td>
 		<td class="tdcenter">
 	  	<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a></td>
+        <td>
+        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
+        </td>
       </tr>
 <?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
@@ -96,36 +99,6 @@ $(document).ready(function(){
 	$("#adm_sort_list tbody tr")
 	.mouseover(function(){$(this).addClass("trover")})
 	.mouseout(function(){$(this).removeClass("trover")});
-	$(".sortname").click(function a(){
-		if($(this).find(".sort_input").attr("type") == "text"){return false;}
-		var name = $.trim($(this).html());
-		var m = $.trim($(this).text());
-		$(this).html("<input type=text value=\""+name+"\" class=sort_input>");
-		$(this).find(".sort_input").focus();
-		$(this).find(".sort_input").bind("blur", function(){
-			var n = $.trim($(this).val());
-			if(n != m && n != ""){
-				window.location = "sort.php?action=update&sid="+$(this).parent().parent().find(".sort_id").val()+"&name="+encodeURIComponent(n);
-			}else{
-				$(this).parent().html(name);
-			}
-		});
-	});
-	$(".alias").click(function b(){
-		if($(this).find(".alias_input").attr("type") == "text"){return false;}
-		var name = $.trim($(this).html());
-		var m = $.trim($(this).text());
-		$(this).html("<input type=text value=\""+name+"\" class=alias_input>");
-		$(this).find(".alias_input").focus();
-		$(this).find(".alias_input").bind("blur", function(){
-			var n = $.trim($(this).val());
-			if(n != m){
-				window.location = "sort.php?action=update&sid="+$(this).parent().parent().find(".sort_id").val()+"&alias="+encodeURIComponent(n);
-			}else{
-				$(this).parent().html(name);
-			}
-		});
-	});
 	$("#menu_sort").addClass('sidebarsubmenu1');
 });
 </script>

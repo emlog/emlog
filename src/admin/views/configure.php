@@ -94,7 +94,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top">站点浏览器描述：</td>
         <td width="82%">
-		<textarea name="site_description" cols="" rows="2" style="width:300px;"><?php echo $site_description; ?></textarea>
+		<textarea name="site_description" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea>
 		</td>
       </tr>
   </table>
@@ -149,8 +149,8 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top">首页底部信息：<br /></td>
         <td width="82%">
-		<textarea name="footer_info" cols="" rows="3" style="width:300px;"><?php echo $footer_info; ?></textarea><br />
-		(支持html, 可用于添加流量统计代码)
+		<textarea name="footer_info" cols="" rows="6" style="width:300px;"><?php echo $footer_info; ?></textarea><br />
+		(支持html，可用于添加流量统计代码)
 		</td>
       </tr>
   </table>

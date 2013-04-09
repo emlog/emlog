@@ -32,7 +32,7 @@
 	?>  
       <tr>
 		<td><input class="num_input" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
-		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="修改导航"><?php echo $value['naviname']; ?></a></td>
+		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
 		<td class="tdcenter">
 		<?php if ($value['hide'] == 'n'): ?>
 		<a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" title="点击隐藏导航">显示</a>
@@ -46,6 +46,7 @@
 	  	</td>
         <td><?php echo $value['url']; ?></td>
         <td>
+        <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>">编辑</a>
         <?php if($value['isdefault'] == 'n'):?>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');">删除</a>
         <?php endif;?>
