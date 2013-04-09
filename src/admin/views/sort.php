@@ -7,11 +7,9 @@
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加分类成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">分类名称不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的分类</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="error">别名只能由字母、数字、下划线、短横线组成</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">别名格式错误</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">别名不能重复</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">别名不得包含系统保留关键字</span><?php endif;?>
-<?php if(isset($_GET['error_f'])):?><span class="error">别名不能为纯数字</span><?php endif;?>
-
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
@@ -54,10 +52,10 @@ foreach($sorts as $key=>$value): ?>
 </form>
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加分类+</a></div>
-<div id="sort_new">
+<div id="sort_new" class="item_edit">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (用于URL的友好显示)</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (可不填，用于URL的友好显示)</li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="submit"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>

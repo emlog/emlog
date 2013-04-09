@@ -126,7 +126,7 @@ if ($action == 'setwg') {
 			break;
 	}
 	$CACHE->updateCache('options');
-	emDirect("./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=1");
 }
 
 //保存组件排序
@@ -148,5 +148,5 @@ if ($action == 'reset') {
 	Option::updateOption("widgets1", $default_widget);
 
 	$CACHE->updateCache('options');
-	emDirect("./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=1");
 }

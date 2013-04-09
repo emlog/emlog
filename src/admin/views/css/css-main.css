@@ -6,7 +6,6 @@ fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 }
 th {text-align:left;}
 li {list-style:none;}
-.mb-8 {margin-bottom:8px;}
 body {
 	font-size:12px;
 	color:#000;
@@ -181,7 +180,6 @@ textarea {
 .trover {
 	background-color:#E9F1FA
 }
-/*自定义侧边栏*/
 .widgetpage {
 	width:750px;
 	cursor:default;
@@ -628,7 +626,6 @@ textarea {
 	bottom: 10px;
 	z-index: 120;
 }
-/*微语*/
 #tw .tbutton input {
 	background:url(../images/weibe_button.gif) no-repeat;
 	border:0;
@@ -784,7 +781,6 @@ textarea {
 	font-size:11px;
 	color:#999999
 }
-/*默认模板顶部图片*/
 .topimg_line {
 	clear:both;
 	width:794px;
@@ -891,9 +887,7 @@ textarea {
 	line-height:1.2em;
 	padding:4px 10px 4px 28px;
 }
-#user_new li,#sort_new li, #user_edit li, #navi_edit li, #profile li , #chpwd li{
-	margin:12px 0px;
-}
+.item_edit li{margin:12px 0px;}
 #navi_add{
 	margin:20px 0px 120px 0px;
 }
@@ -927,7 +921,6 @@ textarea {
 #navi_add ul li{
 	padding:3px 0px;
 }
-
 #recommend_template{
 	width:750;
 }

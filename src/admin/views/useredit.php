@@ -7,7 +7,7 @@
 </div>
 <div class=line></div>
 <form action="user.php?action=update" method="post">
-<div id="user_edit">
+<div class="item_edit">
 	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" /> 用户名</li>
 	<li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" /> 昵称</li>
 	<li><input type="password" value="" name="password" style="width:200px;" /> 新密码(不修改请留空)</li>

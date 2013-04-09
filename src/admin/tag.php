@@ -31,18 +31,18 @@ if ($action=='update_tag') {
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 	$Tag_Model->updateTagName($tagId, $tagName);
 	$CACHE->updateCache(array('tags', 'logtags'));
-	emDirect("./tag.php?active_edit=true");
+	emDirect("./tag.php?active_edit=1");
 }
 
 //批量删除标签
 if ($action== 'dell_all_tag') {
 	$tags = isset($_POST['tag']) ? $_POST['tag'] : '';
 	if (!$tags) {
-		emDirect("./tag.php?error_a=true");
+		emDirect("./tag.php?error_a=1");
 	}
 	foreach ($tags as $key=>$value) {
 		$Tag_Model->deleteTag($key);
 	}
 	$CACHE->updateCache(array('tags', 'logtags'));
-	emDirect("./tag.php?active_del=true");
+	emDirect("./tag.php?active_del=1");
 }

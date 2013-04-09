@@ -14,8 +14,8 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">电子邮件格式错误</span><?php endif;?>
 </div>
 <div style="margin-left:30px;">
-<form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data" class="mb-8">
-<div id="profile">
+<form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
+<div class="item_edit">
 	<li>
 	<?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/><br />
 	头像<br />
@@ -29,7 +29,7 @@
 </form>
 <div style="margin:30px 0px 10px;"><a href="javascript:displayToggle('chpwd', 2);">修改密码及登录名+</a></div>
 <form action="blogger.php?action=update_pwd" method="post" name="blooger" id="blooger">
-<div id="chpwd">
+<div id="chpwd" class="item_edit">
 	<li><input type="password" maxlength="200" style="width:185px;" value="" name="oldpass" /> 当前密码</li>
 	<li><input type="password" maxlength="200" style="width:185px;" value="" name="newpass" /> 新密码（不小于6位）</li>
 	<li><input type="password" maxlength="200" style="width:185px;" value="" name="repeatpass" /> 重复新密码</li>

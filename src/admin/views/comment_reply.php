@@ -3,7 +3,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">
-<div>
+<div class="item_edit">
 	<li>评论人：<?php echo $poster; ?></li>
 	<li>时间：<?php echo $date; ?></li>
 	<li>内容：<?php echo $comment; ?></li>

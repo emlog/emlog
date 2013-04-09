@@ -59,7 +59,7 @@ if ($action == 'usetpl')
 	Option::updateOption('nonce_templet', $tplName);
 	Option::updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->updateCache('options');
-	emDirect("./template.php?activated=true");
+	emDirect("./template.php?activated=1");
 }
 
 //删除模板
@@ -106,7 +106,7 @@ if ($action == 'update_top')
 
 	Option::updateOption('topimg', $top);
 	$CACHE->updateCache('options');
-	emDirect("./template.php?action=custom-top&activated=true");
+	emDirect("./template.php?action=custom-top&activated=1");
 }
 
 //删除自定义顶部图片
@@ -127,7 +127,7 @@ if ($action == 'del_top')
 	Option::updateOption('custom_topimgs', serialize($custom_topimgs));
 
 	$CACHE->updateCache('options');
-	emDirect("./template.php?action=custom-top&active_del=true");
+	emDirect("./template.php?action=custom-top&active_del=1");
 }
 
 //上传顶部图片
@@ -161,14 +161,14 @@ if ($action == 'crop') {
 	$topimg_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '.jpg';
 	$ret = imageCropAndResize($top_img, $topimg_path, 0, 0, $x1, $y1, $width, $height, $width, $height);
 	if (false === $ret) {
-		emDirect("./template.php?action=custom-top&error_a=true");
+		emDirect("./template.php?action=custom-top&error_a=1");
 	}
 
 	//create mini topimg
 	$topimg_mini_path = Option::UPLOADFILE_PATH . gmdate('Ym') . '/top-' . $time . '_mini.jpg';
 	$ret = imageCropAndResize($topimg_path, $topimg_mini_path, 0, 0, 0, 0, 230, 48, $width, $height);
 	if (false === $ret) {
-		emDirect("./template.php?action=custom-top&error_a=true");
+		emDirect("./template.php?action=custom-top&error_a=1");
 	}
 
 	@unlink($top_img);
@@ -179,7 +179,7 @@ if ($action == 'crop') {
 	Option::updateOption('topimg', substr($topimg_path, 3));
 	Option::updateOption('custom_topimgs', serialize($custom_topimgs));
 	$CACHE->updateCache('options');
-	emDirect("./template.php?action=custom-top&activated=true");
+	emDirect("./template.php?action=custom-top&activated=1");
 }
 
 //安装模板

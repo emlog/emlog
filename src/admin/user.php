@@ -76,16 +76,16 @@ if ($action=='update') {
 		emDirect('./user.php');
 	}
 	if ($login == '') {
-		emDirect("./user.php?action=edit&uid={$uid}&error_login=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
 	}
 	if ($User_Model->isUserExist($login, $uid)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_exist=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
 	}
 	if ($password != $password2) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
 	}
 
 	$userData = array('username' => $login,

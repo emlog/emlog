@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: tips
+Plugin Name: 小贴士
 Version: 1.1
 Plugin URL:
 Description: 这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示。
-ForEmlog:4.2.1
+ForEmlog:5.1.0
 Author: emlog
 Author URL: http://www.emlog.net
 */

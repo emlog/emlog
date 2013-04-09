@@ -33,7 +33,7 @@ if ($action == 'post') {
 	}
 
 	if (!$t) {
-		emDirect("twitter.php?error_a=true");
+		emDirect("twitter.php?error_a=1");
 	}
 
 	$tdata = array('content' => $Twitter_Model->formatTwitter($t),
@@ -45,14 +45,14 @@ if ($action == 'post') {
 	$twid = $Twitter_Model->addTwitter($tdata);
 	$CACHE->updateCache(array('sta','newtw'));
 	doAction('post_twitter', $t, $twid);
-	emDirect("twitter.php?active_t=true");
+	emDirect("twitter.php?active_t=1");
 }
 // 删除微语.
 if ($action == 'del') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));
-	emDirect("twitter.php?active_del=true");
+	emDirect("twitter.php?active_del=1");
 }
 // 获取回复.
 if ($action == 'getreply') {

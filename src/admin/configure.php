@@ -97,5 +97,5 @@ if ($action == 'mod_config') {
 		Option::updateOption($key, $val);
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
-	emDirect("./configure.php?activated=true");
+	emDirect("./configure.php?activated=1");
 }

@@ -23,9 +23,9 @@ if ($action == 'active') {
 	$Plugin_Model = new Plugin_Model();
 	if ($Plugin_Model->activePlugin($plugin) ) {
 		$CACHE->updateCache('options');
-		emDirect("./plugin.php?active=true");
+		emDirect("./plugin.php?active=1");
 	} else {
-		emDirect("./plugin.php?active_error=true");
+		emDirect("./plugin.php?active_error=1");
 	}
 }
 
@@ -34,7 +34,7 @@ if ($action == 'inactive') {
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
 	$CACHE->updateCache('options');
-	emDirect("./plugin.php?inactive=true");
+	emDirect("./plugin.php?inactive=1");
 }
 
 //加载插件配置页面
@@ -50,12 +50,12 @@ if ($action == 'setting') {
 	if (!empty($_POST)) {
 		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 		if (false === plugin_setting()) {
-			emDirect("./plugin.php?plugin={$plugin}&error=true");
+			emDirect("./plugin.php?plugin={$plugin}&error=1");
 		} else{
-			emDirect("./plugin.php?plugin={$plugin}&setting=true");
+			emDirect("./plugin.php?plugin={$plugin}&setting=1");
 		}
 	} else{
-		emDirect("./plugin.php?plugin={$plugin}&error=true");
+		emDirect("./plugin.php?plugin={$plugin}&error=1");
 	}
 }
 

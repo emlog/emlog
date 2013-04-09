@@ -3,7 +3,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=doedit" method="post">
-<div id="user_edit">
+<div class="item_edit">
 	<li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" /> 评论人</li>
     <li><input type="text"  value="<?php echo $mail; ?>" name="mail" style="width:200px;" /> 电子邮件</li>
 	<li><input type="text"  value="<?php echo $url; ?>" name="url" style="width:200px;" /> 主页</li>

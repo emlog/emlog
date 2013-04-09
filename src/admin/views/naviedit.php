@@ -2,7 +2,7 @@
 <div class=containertitle><b>修改导航</b></div>
 <div class=line></div>
 <form action="navbar.php?action=update" method="post">
-<div id="navi_edit">
+<div class="item_edit">
 	<li><input size="20" value="<?php echo $naviname; ?>" name="naviname" /> 导航名称</li>
 	<li>
 	<input size="50" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> 导航地址，

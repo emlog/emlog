@@ -74,16 +74,16 @@ switch ($action) {
 	case 'edit':
 		$tbmsg = '';
 		if ($ishide == 'y') {
-			emDirect("./admin_log.php?pid=draft&active_savedraft=true");
+			emDirect("./admin_log.php?pid=draft&active_savedraft=1");
 		} else {
 			//发送Trackback
 			if (!empty($pingurl)) {
 				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
 			if ($action == 'add' || isset($_POST['pubdf'])) {
-				emDirect("./admin_log.php?active_post=true");//文章发布成功
+				emDirect("./admin_log.php?active_post=1");//文章发布成功
 			} else {
-				emDirect("./admin_log.php?active_savelog=true");//文章保存成功
+				emDirect("./admin_log.php?active_savelog=1");//文章保存成功
 			}
 		}
 		break;

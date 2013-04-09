@@ -32,9 +32,9 @@ if ($action == 'update') {
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	if (strlen($nickname) > 20) {
-		emDirect("./blogger.php?error_a=true");
+		emDirect("./blogger.php?error_a=1");
 	} else if ($email != '' && !checkMail($email)) {
-		emDirect("./blogger.php?error_b=true");
+		emDirect("./blogger.php?error_b=1");
 	}
 
 	$photo_type = array('gif', 'jpg', 'jpeg','png');
@@ -45,7 +45,7 @@ if ($action == 'update') {
 	}
 	$User_Model->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
 	$CACHE->updateCache('user');
-	emDirect("./blogger.php?active_edit=true");
+	emDirect("./blogger.php?active_edit=1");
 }
 
 if ($action == 'delicon') {
@@ -66,7 +66,7 @@ if ($action == 'delicon') {
 	}
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' where uid=" . UID);
 	$CACHE->updateCache('user');
-	emDirect("./blogger.php?active_del=true");
+	emDirect("./blogger.php?active_del=1");
 }
 
 if ($action == 'update_pwd') {

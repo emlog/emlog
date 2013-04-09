@@ -30,9 +30,9 @@ if ($action== 'taxis') {
 			$Navi_Model->updateNavi(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('navi');
-		emDirect("./navbar.php?active_taxis=true");
+		emDirect("./navbar.php?active_taxis=1");
 	} else {
-		emDirect("./navbar.php?error_b=true");
+		emDirect("./navbar.php?error_b=1");
 	}
 }
 
@@ -43,16 +43,16 @@ if ($action== 'add') {
 	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
 	
 	if ($naviname =='' || $url =='') {
-		emDirect("./navbar.php?error_a=true");
+		emDirect("./navbar.php?error_a=1");
 	}
 
 	if (!preg_match("/^(http|https|ftp):\/\/.*$/i", $url)) {
-		emDirect("./navbar.php?error_f=true");
+		emDirect("./navbar.php?error_f=1");
 	}
 
 	$Navi_Model->addNavi($naviname, $url, $taxis, $newtab);
 	$CACHE->updateCache('navi');
-	emDirect("./navbar.php?active_add=true");
+	emDirect("./navbar.php?active_add=1");
 }
 
 if ($action== 'add_sort') {
@@ -61,7 +61,7 @@ if ($action== 'add_sort') {
 	$sorts = $CACHE->readCache('sort');
 
 	if (empty($sort_ids)) {
-		emDirect("./navbar.php?error_d=true");
+		emDirect("./navbar.php?error_d=1");
 	}
 
 	foreach ($sort_ids as $val) {
@@ -70,14 +70,14 @@ if ($action== 'add_sort') {
 	}
 
 	$CACHE->updateCache('navi');
-	emDirect("./navbar.php?active_add=true");
+	emDirect("./navbar.php?active_add=1");
 }
 
 if ($action== 'add_page') {
 	$pages = isset($_POST['pages']) ? $_POST['pages'] : array();
 
 	if (empty($pages)) {
-		emDirect("./navbar.php?error_e=true");
+		emDirect("./navbar.php?error_e=1");
 	}
 	
 	foreach ($pages as $id => $title) {
@@ -125,14 +125,14 @@ if ($action=='update') {
 	$Navi_Model->updateNavi($navi_data, $naviId);
 
 	$CACHE->updateCache('navi');
-	emDirect("./navbar.php?active_edit=true");
+	emDirect("./navbar.php?active_edit=1");
 }
 
 if ($action == 'del') {
 	$navid = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Navi_Model->deleteNavi($navid);
 	$CACHE->updateCache('navi');
-	emDirect("./navbar.php?active_del=true");
+	emDirect("./navbar.php?active_del=1");
 }
 
 if ($action == 'hide') {

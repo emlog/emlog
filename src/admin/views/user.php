@@ -52,7 +52,7 @@
 </form>
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加用户+</a></div>
-<div id="user_new">
+<div id="user_new" class="item_edit">
 	<li><input name="login" type="text" id="login" value="" style="width:180px;" /> 用户名</li>
 	<li><input name="password" type="password" id="password" value="" style="width:180px;" /> 密码 (大于6位)</li>
 	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /> 重复密码</li>

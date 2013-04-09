@@ -25,9 +25,9 @@ if ($action== 'link_taxis') {
 			$Link_Model->updateLink(array('taxis'=>$value), $key);
 		}
 		$CACHE->updateCache('link');
-		emDirect("./link.php?active_taxis=true");
+		emDirect("./link.php?active_taxis=1");
 	} else {
-		emDirect("./link.php?error_b=true");
+		emDirect("./link.php?error_b=1");
 	}
 }
 
@@ -38,14 +38,14 @@ if ($action== 'addlink') {
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	if ($sitename =='' || $siteurl =='') {
-		emDirect("./link.php?error_a=true");
+		emDirect("./link.php?error_a=1");
 	}
 	if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
 		$siteurl = 'http://'.$siteurl;
 	}
 	$Link_Model->addLink($sitename, $siteurl, $description, $taxis);
 	$CACHE->updateCache('link');
-	emDirect("./link.php?active_add=true");
+	emDirect("./link.php?active_add=1");
 }
 
 if ($action== 'mod_link') {
@@ -72,14 +72,14 @@ if ($action=='update_link') {
 	$Link_Model->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
 
 	$CACHE->updateCache('link');
-	emDirect("./link.php?active_edit=true");
+	emDirect("./link.php?active_edit=1");
 }
 
 if ($action == 'dellink') {
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');
-	emDirect("./link.php?active_del=true");
+	emDirect("./link.php?active_del=1");
 }
 
 if ($action == 'hide') {
