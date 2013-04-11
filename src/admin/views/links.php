@@ -51,7 +51,7 @@
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="改变排序" class="button" /></div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);">添加链接+</a></div>

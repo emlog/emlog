@@ -7,31 +7,32 @@
 <div id="post">
 <div>
     <label for="title" id="title_label">输入文章标题</label>
-    <input type="text" maxlength="200" style="width:710px;" name="title" id="title"/>
+    <input type="text" maxlength="200" style="width:792px;" name="title" id="title"/>
 </div>
 <div id="post_bar">
-    <a href="javascript: displayToggle('FrameUpload', 0);autosave(1);" class="thickbox"><b>上传和插入+</b></a>
-    <span id="asmsg">
-        <?php doAction('adm_writelog_head'); ?>
-        <input type="hidden" name="as_logid" id="as_logid" value="-1">
-    </span><br />
+	<div>
+	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+	    <?php doAction('adm_writelog_head'); ?>
+	    <span id="asmsg"></span>
+	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
+    </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="720" height="290" frameborder="0" src="attachment.php?action=selectFile"></iframe>
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" cols="100" rows="8" style="width:719px; height:460px;"></textarea>
+    <textarea id="content" name="content" cols="100" rows="8" style="width:800px; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
-    <input name="tag" id="tag" maxlength="200" style="width:432px;" />
-    <select name="sort" id="sort" style="width:130px;">
+    <input name="tag" id="tag" maxlength="200" style="width:455px;" />
+    <select name="sort" id="sort" style="width:145px;">
         <option value="-1">选择分类...</option>
         <?php foreach($sorts as $val):?>
         <option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
         <?php endforeach;?>
     </select>
-    <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
+    发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <?php if (!empty($tags)):?>
@@ -46,18 +47,18 @@
     echo $tagStr;
 ?>
 </div>
-<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
+<div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
 <div id="advset">
-<div><b>文章摘要：</b></div>
-<div><textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
-<div><span id="alias_msg_hook"></span><b>文章链接别名：</b>(用于自定义文章链接。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
-<div><input name="alias" id="alias" style="width:711px;" /></div>
+<div>文章摘要：</div>
+<div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
+<div><input name="alias" id="alias" style="width:798px;" /></div>
 <?php if (Option::get('istrackback') == 'y'): ?>
-<div><b>引用通告：</b>(每行一条引用地址)</div>
-<div><textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea></div>
+<div>引用通告：(每行一条引用地址)</div>
+<div><textarea name="pingurl" id="pingurl" style="width:795px; height:50px;" class="input"></textarea></div>
 <?php endif;?>
 <div>
-    <b>文章访问密码：</b><input type="text" value="" name="password" id="password" style="width:80px;" />
+    文章访问密码：<input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
         <label for="top">文章置顶</label>

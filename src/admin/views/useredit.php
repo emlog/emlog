@@ -23,8 +23,8 @@
 	<textarea name="description" rows="5" style="width:260px;"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
-	<input type="submit" value="保 存" class="submit" />
-	<input type="button" value="取 消" class="submit" onclick="window.location='user.php';" /></li>
+	<input type="submit" value="保 存" class="button" />
+	<input type="button" value="取 消" class="button" onclick="window.location='user.php';" /></li>
 </div>
 </form>
 <script>

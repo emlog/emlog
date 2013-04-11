@@ -10,8 +10,8 @@
 	<li>
 	<input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
 	<input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
-	<input type="submit" value="保 存" class="submit" />
-	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();" />
+	<input type="submit" value="保 存" class="button" />
+	<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();" />
 	</li>
 </div>
 </form>

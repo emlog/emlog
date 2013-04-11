@@ -9,25 +9,26 @@ $isdraft = $hide == 'y' ? true : false;
 <div id="post">
 <div>
     <label for="title" id="title_label">输入文章标题</label>
-    <input type="text" maxlength="200" style="width:710px;" name="title" id="title" value="<?php echo $title; ?>" />
+    <input type="text" maxlength="200" style="width:792px;" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
-    <a href="javascript: displayToggle('FrameUpload', 0);" class="thickbox"><b>上传和插入+</b></a>
-    <span id="asmsg">
-        <?php doAction('adm_writelog_head'); ?>
-        <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
-    </span><br />
+	<div>
+	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+	    <?php doAction('adm_writelog_head'); ?>
+	    <span id="asmsg"></span>
+	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+    </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="720" height="290" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" style="width:719px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+    <textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
-    <input name="tag" id="tag" maxlength="200" style="width:432px;" value="<?php echo $tagStr; ?>" />
-    <select name="sort" id="sort" style="width:130px;">
+    <input name="tag" id="tag" maxlength="200" style="width:455px;" value="<?php echo $tagStr; ?>" />
+    <select name="sort" id="sort" style="width:145px;">
      <?php
      $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
      foreach($sorts as $val):
@@ -36,7 +37,7 @@ $isdraft = $hide == 'y' ? true : false;
         <option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
      <?php endforeach; ?>
     </select>
-    <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
+    发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
 <?php if (!empty($tags)):?>
@@ -51,18 +52,18 @@ foreach ($tags as $val){
 echo $tagStr;
 ?>
 </div>
-<div id="show_advset" onclick="displayToggle('advset', 1);"><b>高级选项</b></div>
+<div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
 <div id="advset">
-<div><b>文章摘要：</b></div>
-<div><textarea id="excerpt" name="excerpt" style="width:719px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
-<div><span id="alias_msg_hook"></span><b>文章链接别名：</b>(用于自定义该篇文章的链接地址。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)</div>
-<div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:711px;" /></div>
+<div>文章摘要：</div>
+<div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
+<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)</div>
+<div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:798px;" /></div>
 <?php if (Option::get('istrackback') == 'y'): ?>
 <div><b>引用通告：</b>(每行一条引用地址)</div>
-<div><textarea name="pingurl" id="pingurl" style="width:715px; height:50px;" class="input"></textarea></div>
+<div><textarea name="pingurl" id="pingurl" style="width:795px; height:50px;" class="input"></textarea></div>
 <?php endif;?>
-<div>          
-    <b>文章访问密码：</b>
+<div>
+	文章访问密码：
     <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />

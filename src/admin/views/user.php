@@ -62,7 +62,7 @@
 		<option value="admin">管理员</option>
 	</select>
 	</li>
-	<li><input type="submit" name="" value="添加用户"  /></li>
+	<li><input type="submit" name="" value="添加用户" class="button" /></li>
 </div>
 </form>
 <script>

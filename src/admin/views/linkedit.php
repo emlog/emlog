@@ -8,8 +8,8 @@
 	<li>链接描述<br /><textarea name="description" rows="3" cols="45"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $linkId; ?>" name="linkid" />
-	<input type="submit" value="保 存" class="submit" />
-	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();" /></li>
+	<input type="submit" value="保 存" class="button" />
+	<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
 <script>

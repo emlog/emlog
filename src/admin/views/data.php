@@ -60,7 +60,7 @@
 	</p>
 	<p id="local_bakzip">压缩(zip格式)：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
 	<p id="server_bakfname" style="display:none;">备份文件名：<input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-	<p><input type="submit" value="开始备份" class="submit" /></p>
+	<p><input type="submit" value="开始备份" class="button" /></p>
 </div>
 </form>
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
@@ -74,7 +74,7 @@
 <div class=line></div>
 <div style="margin:0px 0px 20px 0px;">
 	<p class="des">缓存可以大幅度提高站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
-	<p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="submit" /></p>
+	<p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="button" /></p>
 </div>
 <script>
 setTimeout(hideActived,2600);

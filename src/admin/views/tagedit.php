@@ -6,8 +6,8 @@
 <li><input size="40" value="<?php echo $tagname; ?>" name="tagname" /></li>
 <li style="margin:10px 0px">
 <input type="hidden" value="<?php echo $tagid; ?>" name="tid" />
-<input type="submit" value="保 存" class="submit" />
-<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();"/>
+<input type="submit" value="保 存" class="button" />
+<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();"/>
 </li>
 </div>
 </form>

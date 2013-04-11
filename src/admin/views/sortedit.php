@@ -11,8 +11,8 @@
 	<li><input size="40" value="<?php echo $alias; ?>" name="alias" id="alias" /> 别名 <span id="alias_msg_hook"></span></li>
 	<li>
 	<input type="hidden" value="<?php echo $sid; ?>" name="sid" />
-	<input type="submit" value="保 存" class="submit" id="save"  />
-	<input type="button" value="取 消" class="submit" onclick="javascript: window.history.back();" />
+	<input type="submit" value="保 存" class="button" id="save"  />
+	<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();" />
     </li>
 </div>
 </form>

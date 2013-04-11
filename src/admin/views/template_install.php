@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi1" href="./template.php">当前模板</a>
 <a class="navi2" href="./template.php?action=install">安装模板</a>
@@ -26,3 +25,7 @@
 	</li>
 </div>
 </form>
+<script>
+setTimeout(hideActived,2600);
+$("#menu_tpl").addClass('sidebarsubmenu1');
+</script>

@@ -57,7 +57,7 @@
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="改变排序" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="改变排序" class="button" /></div>
 </form>
 <div id="navi_add">
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
