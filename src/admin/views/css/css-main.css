@@ -954,3 +954,15 @@ textarea {
 #recommend_plugin p{
 	padding:0px 40px;
 }
+
+#faceWraps{
+	display:none;
+	width: 420px;
+	overflow: auto;
+	position: absolute;
+	text-align: center;
+	z-index: 10000;
+	border-radius: 5px;
+	border: 1px solid #DDDDDD;
+	background: #FEFEFE;
+}

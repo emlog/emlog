@@ -14,6 +14,7 @@
     <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
+	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/emo/15.gif">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
         <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
@@ -53,7 +54,9 @@
 	 <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
     </ul>
 </div>
+<div id="faceWraps"></div>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="./views/emo/emo.js"></script>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(
@@ -103,7 +106,40 @@ $(document).ready(function(){
 		onUploadSuccess : onUploadSuccess,
 		onUploadError   : onUploadError
 	});
+	
+	$("#face").click(function(e){
+		var wrap = $("#faceWraps");
+		if(!wrap.html()){
+			var emotionsStr = [];
+			$.each(emo,function(k,v){
+				emotionsStr.push('< style="cursor: pointer;padding: 3px;" title="'+k+'"img src="./views/emo/'+v+'"/>');
+			});
+			wrap.html(emotionsStr.join(""));
+		}
+		
+		wrap.children().unbind('click').click(function () {
+			var val= $("textarea").val();
+			$("textarea").val((val||"")+$(this).attr("title"));
+			$("textarea").focus();
+		});
+
+		var offset = $(this).offset();
+		wrap.css({
+			left : offset.left,
+			top : offset.top
+		});
+		wrap.show();
+		e.stopPropagation();
+		e.preventDefault();
+		$(document.body).unbind('click').click(function (e) {
+			wrap.hide();
+		});
+		$(document).unbind('click').scroll(function (e) {
+			wrap.hide();
+		});
+	});
 });
+
 function onUploadSuccess(file, data, response){
 	var data = eval("("+data+")");
 	if(data.filePath){

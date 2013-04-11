@@ -344,7 +344,7 @@ class Cache {
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['id'] = $row['id'];
-			$row['t'] = $row['content'];
+			$row['t'] = emoFormat($row['content']);
 			$row['date'] = $row['date'];
 			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
