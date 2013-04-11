@@ -85,7 +85,7 @@ if ($action== 'add_page') {
 	}
 
 	$CACHE->updateCache('navi');
-	emDirect('./navbar.php?active_add=true');
+	emDirect('./navbar.php?active_add=1');
 }
 
 if ($action== 'mod') {

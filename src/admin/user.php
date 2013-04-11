@@ -24,16 +24,16 @@ if ($action== 'new') {
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
 
 	if ($login == '') {
-		emDirect('./user.php?error_login=true');
+		emDirect('./user.php?error_login=1');
 	}
 	if ($User_Model->isUserExist($login)) {
-		emDirect('./user.php?error_exist=true');
+		emDirect('./user.php?error_exist=1');
 	}
 	if (strlen($password) < 6) {
-		emDirect('./user.php?error_pwd_len=true');
+		emDirect('./user.php?error_pwd_len=1');
 	}
 	if ($password != $password2) {
-		emDirect('./user.php?error_pwd2=true');
+		emDirect('./user.php?error_pwd2=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
@@ -41,7 +41,7 @@ if ($action== 'new') {
 
 	$User_Model->addUser($login, $password, $role);
 	$CACHE->updateCache(array('sta','user'));
-	emDirect('./user.php?active_add=true');
+	emDirect('./user.php?active_add=1');
 }
 
 if ($action== 'edit') {
@@ -103,7 +103,7 @@ if ($action=='update') {
 
 	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');
-	emDirect('./user.php?active_update=true');
+	emDirect('./user.php?active_update=1');
 }
 
 if ($action== 'del') {
@@ -116,5 +116,5 @@ if ($action== 'del') {
 
 	$User_Model->deleteUser($uid);
 	$CACHE->updateCache(array('sta','user'));
-	emDirect('./user.php?active_del=true');
+	emDirect('./user.php?active_del=1');
 }

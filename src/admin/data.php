@@ -42,7 +42,7 @@ if ($action == 'bakstart') {
 			$filename = 'emlog_'. gmdate('Ymd_His', time() + $timezone * 3600);
 			if ($zipbak == 'y') {
 				if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false ) {
-					emDirect('./data.php?error_f=true');
+					emDirect('./data.php?error_f=1');
 				}
 				header('Content-Type: application/zip');
 				header('Content-Disposition: attachment; filename=' . $filename . '.zip');
@@ -61,7 +61,7 @@ if ($action == 'bakstart') {
 			echo $dumpfile;
 		} else {
 			if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
-				emDirect('./data.php?error_b=true');
+				emDirect('./data.php?error_b=1');
 			}
 			$filename = '../content/backup/'.$bakfname.'.sql';
 			@$fp = fopen($filename, 'w+');
@@ -71,7 +71,7 @@ if ($action == 'bakstart') {
 					@fclose($fp);
 					emMsg('备份失败。备份目录(content/backup)不可写');
 				} else{
-					emDirect('./data.php?active_backup=true');
+					emDirect('./data.php?active_backup=1');
 				}
 			} else{
 				emMsg('创建备份文件失败。备份目录(content/backup)不可写');
@@ -95,7 +95,7 @@ if ($action == 'renewdata') {
 	checkSqlFileInfo($sqlfile);
 	bakindata($sqlfile);
 	$CACHE->updateCache();
-	emDirect('./data.php?active_import=true');
+	emDirect('./data.php?active_import=1');
 }
 
 //导入本地备份文件
@@ -113,14 +113,14 @@ if ($action == 'import') {
 		$ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
 		switch ($ret) {
 			case -3:
-				emDirect('./data.php?error_e=true');
+				emDirect('./data.php?error_e=1');
 				break;
 			case 1:
 			case 2:
-				emDirect('./data.php?error_d=true');
+				emDirect('./data.php?error_d=1');
 				break;
 			case 3:
-				emDirect('./data.php?error_c=true');
+				emDirect('./data.php?error_c=1');
 				break;
 		}
 		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' .str_replace('.zip', '.sql', $sqlfile['name']);
@@ -133,17 +133,17 @@ if ($action == 'import') {
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
 	$CACHE->updateCache();
-	emDirect('./data.php?active_import=true');
+	emDirect('./data.php?active_import=1');
 }
 
 if ($action == 'dell_all_bak') {
 	if (!isset($_POST['bak'])) {
-		emDirect('./data.php?error_a=true');
+		emDirect('./data.php?error_a=1');
 	} else{
 		foreach ($_POST['bak'] as $val) {
 			unlink($val);
 		}
-		emDirect('./data.php?active_del=true');
+		emDirect('./data.php?active_del=1');
 	}
 }
 
@@ -255,5 +255,5 @@ function checkBOM($contents) {
 
 if ($action == 'Cache') {
 	$CACHE->updateCache();
-	emDirect('./data.php?active_mc=true');
+	emDirect('./data.php?active_mc=1');
 }

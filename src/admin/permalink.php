@@ -36,7 +36,7 @@ if ($action == 'update') {
 					   RewriteRule . ' . $t['path'] . 'index.php [L]
 					</IfModule>';
 		if (!@fwrite($fp, $rw_rule)) {
-			header('Location: ./permalink.php?error=true');
+			header('Location: ./permalink.php?error=1');
 			exit;
 		}
 		fclose($fp);
@@ -46,5 +46,5 @@ if ($action == 'update') {
 	Option::updateOption('isalias', $isalias);
 	Option::updateOption('isalias_html', $isalias_html);
 	$CACHE->updateCache('options');
-	header('Location: ./permalink.php?activated=true');
+	header('Location: ./permalink.php?activated=1');
 }
