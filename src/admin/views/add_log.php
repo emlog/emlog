@@ -24,9 +24,12 @@
     <textarea id="content" name="content" cols="100" rows="8" style="width:800px; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
-    <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
-    <input name="tag" id="tag" maxlength="200" style="width:455px;" />
-    <select name="sort" id="sort" style="width:145px;">
+    <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
+    <input name="tag" id="tag" maxlength="200" style="width:368px;" />
+    <?php if (!empty($tags)):?>
+    <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
+    <?php endif; ?>
+    <select name="sort" id="sort" style="width:130px;">
         <option value="-1">选择分类...</option>
         <?php foreach($sorts as $val):?>
         <option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
@@ -35,9 +38,6 @@
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
-<?php if (!empty($tags)):?>
-<div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>
-<?php endif; ?>
 <div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
 <?php 
     $tagStr = '';

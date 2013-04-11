@@ -26,9 +26,12 @@ $isdraft = $hide == 'y' ? true : false;
     <textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
-    <label for="tag" id="tag_label">文章标签，逗号或空格分隔</label>
-    <input name="tag" id="tag" maxlength="200" style="width:455px;" value="<?php echo $tagStr; ?>" />
-    <select name="sort" id="sort" style="width:145px;">
+    <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
+    <input name="tag" id="tag" maxlength="200" style="width:368px;" value="<?php echo $tagStr; ?>" />
+    <?php if (!empty($tags)):?>
+    <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
+    <?php endif; ?>
+    <select name="sort" id="sort" style="width:130px;">
      <?php
      $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
      foreach($sorts as $val):
@@ -40,9 +43,6 @@ $isdraft = $hide == 'y' ? true : false;
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
-<?php if (!empty($tags)):?>
-<div style="color:#2A9DDB;cursor:pointer;"><a href="javascript:displayToggle('tagbox', 0);">选择已有标签+</a></div>
-<?php endif; ?>
 <div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
 <?php 
 $tagStr = '';
