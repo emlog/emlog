@@ -28,9 +28,7 @@ $isdraft = $hide == 'y' ? true : false;
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
     <input name="tag" id="tag" maxlength="200" style="width:368px;" value="<?php echo $tagStr; ?>" />
-    <?php if (!empty($tags)):?>
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
-    <?php endif; ?>
     <select name="sort" id="sort" style="width:130px;">
      <?php
      $sorts[] = array('sid'=>-1, 'sortname'=>'选择分类...');
@@ -44,12 +42,14 @@ $isdraft = $hide == 'y' ? true : false;
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
 <div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
-<?php 
-$tagStr = '';
-foreach ($tags as $val){
-    $tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-}
-echo $tagStr;
+<?php
+    if ($tags) {
+        foreach ($tags as $val){
+            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+        }
+    } else {
+        echo '还没有设置过标签！';
+    }
 ?>
 </div>
 <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>

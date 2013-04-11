@@ -1,12 +1,15 @@
 <?php
 /**
- * 固定连接
+ * seo设置
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'globals.php';
 
 if ($action == '') {
+	$options_cache = $CACHE->readCache('options');
+	extract($options_cache);
+
 	$ex0 = $ex1 = $ex2 = $ex3 = '';
 	$t = 'ex'.Option::get('isurlrewrite');
 	$$t = 'checked="checked"';
@@ -15,7 +18,7 @@ if ($action == '') {
 	$isalias_html = Option::get('isalias_html') == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
-	require_once(View::getView('permalink'));
+	require_once(View::getView('seo'));
 	include View::getView('footer');
 	View::output();
 }
@@ -36,7 +39,7 @@ if ($action == 'update') {
 					   RewriteRule . ' . $t['path'] . 'index.php [L]
 					</IfModule>';
 		if (!@fwrite($fp, $rw_rule)) {
-			header('Location: ./permalink.php?error=1');
+			header('Location: ./seo.php?error=1');
 			exit;
 		}
 		fclose($fp);
@@ -46,5 +49,5 @@ if ($action == 'update') {
 	Option::updateOption('isalias', $isalias);
 	Option::updateOption('isalias_html', $isalias_html);
 	$CACHE->updateCache('options');
-	header('Location: ./permalink.php?activated=1');
+	header('Location: ./seo.php?activated=1');
 }

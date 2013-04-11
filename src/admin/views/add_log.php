@@ -26,9 +26,7 @@
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
     <input name="tag" id="tag" maxlength="200" style="width:368px;" />
-    <?php if (!empty($tags)):?>
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
-    <?php endif; ?>
     <select name="sort" id="sort" style="width:130px;">
         <option value="-1">选择分类...</option>
         <?php foreach($sorts as $val):?>
@@ -39,12 +37,14 @@
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
-<?php 
-    $tagStr = '';
-    foreach ($tags as $val){
-        $tagStr .=" <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+<?php
+    if ($tags) {
+        foreach ($tags as $val){
+            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+        }
+    } else {
+        echo '还没有设置过标签！';
     }
-    echo $tagStr;
 ?>
 </div>
 <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
