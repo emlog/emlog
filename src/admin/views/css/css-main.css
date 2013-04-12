@@ -957,7 +957,7 @@ textarea {
 
 #faceWraps{
 	display:none;
-	width: 420px;
+	width: 300px;
 	overflow: auto;
 	position: absolute;
 	text-align: center;

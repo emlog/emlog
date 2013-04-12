@@ -14,7 +14,7 @@
     <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
-	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/emo/15.gif">
+	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
         <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
@@ -56,7 +56,7 @@
 </div>
 <div id="faceWraps"></div>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="./views/emo/emo.js"></script>
+<script type="text/javascript" src="./views/js/emo.js"></script>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(
@@ -112,7 +112,7 @@ $(document).ready(function(){
 		if(!wrap.html()){
 			var emotionsStr = [];
 			$.each(emo,function(k,v){
-				emotionsStr.push('< style="cursor: pointer;padding: 3px;" title="'+k+'"img src="./views/emo/'+v+'"/>');
+				emotionsStr.push('<img style="cursor: pointer;padding: 3px;" title="'+k+'" src="./editor/plugins/emoticons/images/'+v+'"/>');
 			});
 			wrap.html(emotionsStr.join(""));
 		}
