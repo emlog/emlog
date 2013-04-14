@@ -33,7 +33,7 @@ class Log_Controller {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 
-		$options_cache = Option::getAll();
+        $options_cache = $CACHE->readCache('options');
 		extract($options_cache);
 
 		$logid = 0 ;
@@ -68,9 +68,19 @@ class Log_Controller {
 			$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
 			$Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 		}
-		//page meta
-		$site_title = $log_title . ' - ' . $site_title;
-		$site_description = extractHtmlData($log_content, 330);
+		//meta
+        switch ($log_title_style) {
+            case '0':
+                $site_title = $log_title;
+                break;
+            case '1':
+                $site_title = $log_title . ' - ' . $blogname;
+                break;
+            case '2':
+                $site_title = $log_title . ' - ' . $site_title;
+                break;
+        }
+		$site_description = extractHtmlData($log_content, 90);
 		$log_cache_tags = $CACHE->readCache('logtags');
 		if (!empty($log_cache_tags[$logid])) {
 			foreach ($log_cache_tags[$logid] as $value) {

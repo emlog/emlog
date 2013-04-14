@@ -31,10 +31,10 @@
     <li>站点关键字(keywords)<br /><input maxlength="200" style="width:300px;" value="<?php echo $site_key; ?>" name="site_key" /></li>
     <li>站点浏览器描述(description)<br /><textarea name="site_description" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea></li>
     <li>文章浏览器标题方案：
-        <select name="rss_output_fulltext">
-		<option value="y" <?php echo $ex1; ?>>仅文章标题</option>
-		<option value="n" <?php echo $ex2; ?>>文章标题 - 站点标题</option>
-        <option value="n" <?php echo $ex2; ?>>文章标题 - 站点浏览器标题</option>
+        <select name="log_title_style">
+		<option value="0" <?php echo $opt0; ?>>文章标题</option>
+		<option value="1" <?php echo $opt1; ?>>文章标题 - 站点标题</option>
+        <option value="2" <?php echo $opt2; ?>>文章标题 - 站点浏览器标题</option>
         </select>
     </li>
     <li style="margin-top:10px;"><input type="submit" value="保存设置" class="button" /></li>

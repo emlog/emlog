@@ -11,11 +11,15 @@ if ($action == '') {
 	extract($options_cache);
 
 	$ex0 = $ex1 = $ex2 = $ex3 = '';
-	$t = 'ex'.Option::get('isurlrewrite');
+	$t = 'ex'.$isurlrewrite;
 	$$t = 'checked="checked"';
 
-	$isalias = Option::get('isalias') == 'y' ? 'checked="checked"' : '';
-	$isalias_html = Option::get('isalias_html') == 'y' ? 'checked="checked"' : '';
+    $opt0 = $opt1 = $opt2 = '';
+    $t = 'opt'.$log_title_style;
+	$$t = 'selected="selected"';
+
+	$isalias = $isalias == 'y' ? 'checked="checked"' : '';
+	$isalias_html = $isalias_html == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once(View::getView('seo'));
@@ -27,6 +31,16 @@ if ($action == 'update') {
 	$permalink = isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0';
 	$isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
 	$isalias_html = isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n';
+    
+    $getData = array(
+        'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
+        'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
+        'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
+        'isurlrewrite' => isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0',
+        'isalias' => isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n',
+        'isalias_html' => isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n',
+        'log_title_style' => isset($_POST['log_title_style']) ? addslashes($_POST['log_title_style']) : '0',
+    );
 
 	if ($permalink != '0' || $isalias == 'y') {
 		$fp = @fopen(EMLOG_ROOT.'/.htaccess', 'w');
@@ -45,9 +59,9 @@ if ($action == 'update') {
 		fclose($fp);
 	}
 
-	Option::updateOption('isurlrewrite', $permalink);
-	Option::updateOption('isalias', $isalias);
-	Option::updateOption('isalias_html', $isalias_html);
+	foreach ($getData as $key => $val) {
+		Option::updateOption($key, $val);
+	}
 	$CACHE->updateCache('options');
 	header('Location: ./seo.php?activated=1');
 }

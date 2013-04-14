@@ -285,6 +285,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('log_title_style','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');

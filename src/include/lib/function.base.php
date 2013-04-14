@@ -188,7 +188,7 @@ function extractHtmlData($data, $len) {
 		"/\"/i",
 	);
 	$replace = array(" ", "\"", "&", " ", " ", "", chr(161), chr(162), chr(163), chr(169), "");
-	$data = subString(preg_replace($search, $replace, $data), 0, $len);
+	$data = trim(subString(preg_replace($search, $replace, $data), 0, $len));
 	return $data;
 }
 
