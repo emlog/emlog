@@ -98,15 +98,13 @@ class Trackback_Model {
 	 * @return int $tbNum
 	 */
 	function getTbNum() {
-		$comNum = '';
 		if (ROLE == 'admin') {
 			$sql = "SELECT tbid FROM ".DB_PREFIX."trackback";
 		} else {
 			$sql = "SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author=".UID;
 		}
 		$res = $this->db->query($sql);
-		$tbNum = $this->db->num_rows($res);
-		return $tbNum;
+		return $this->db->num_rows($res);
 	}
 
 	function deleteTrackback($tbid) {

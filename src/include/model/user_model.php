@@ -12,8 +12,14 @@ class User_Model {
 		$this->db = MySql::getInstance();
 	}
 
-	function getUsers() {
-		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user");
+	function getUsers($page = null) {
+        $condition = '';
+		if ($page) {
+			$perpage_num = Option::get('admin_perpage_num');
+			$startId = ($page - 1) * $perpage_num;
+			$condition = "LIMIT $startId, ".$perpage_num;
+		}
+		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."user $condition");
 		$users = array();
 		while($row = $this->db->fetch_array($res)) {
 			$row['name'] = htmlspecialchars($row['nickname']);
@@ -77,6 +83,12 @@ class User_Model {
 		}else {
 			return false;
 		}
+	}
+
+	function getUserNum() {
+		$sql = "SELECT uid FROM ".DB_PREFIX."user";
+		$res = $this->db->query($sql);
+		return $this->db->num_rows($res);
 	}
 
 }

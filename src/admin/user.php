@@ -10,7 +10,11 @@ $User_Model = new User_Model();
 
 //加载用户管理页面
 if ($action == '') {
-	$users = $User_Model->getUsers();
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$users = $User_Model->getUsers($page);
+    $usernum = $User_Model->getUserNum();
+    $pageurl =  pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
+
 	include View::getView('header');
 	require_once View::getView('user');
 	include View::getView('footer');
