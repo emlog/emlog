@@ -410,6 +410,18 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
 /**
  * 文件上传
  *
+ * 返回的数组索引
+ * mime_type 文件类型
+ * size      文件大小(单位KB)
+ * file_path 文件路径
+ * width     宽度
+ * height    高度
+ * 可选值（仅在上传文件是图片且系统开启缩略图时起作用）
+ * thum_path   缩略图的路径
+ * thum_width  缩略图宽度
+ * thum_height 缩略图高度
+ * thum_size   缩略图大小(单位KB)
+ *
  * @param string $fileName 文件名
  * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpFile 上传后的临时文件
@@ -417,7 +429,8 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
- * @return string 文件路径
+ * @return array 文件数据 索引 
+ * 
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if ($errorNum == 1) {
@@ -463,7 +476,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 			$attach = $thum;
 			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
 		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
-			$file_info['thum_image_path'] = $thum;
+			$file_info['thum_path'] = $thum;
 			$file_info['thum_width'] = Option::IMG_MAX_W;
 			$file_info['thum_height'] = Option::IMG_MAX_W;
 			$file_info['thum_size'] = filesize($thum);
@@ -483,11 +496,11 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
-			$file_info['width'] = $size['width'];
-			$file_info['height'] = $size['height'];
+			$file_info['width'] = $size[0];
+			$file_info['height'] = $size[1];
 		}
 	}
-	return $file_info; //附件地址
+	return $file_info;
 }
 
 /**
