@@ -25,6 +25,7 @@
 	</li>
 </div>
 </form>
+<div style="margin:10px 20px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></div>
 <script>
 $("#menu_plug").addClass('sidebarsubmenu1');
 </script>

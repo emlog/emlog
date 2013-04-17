@@ -9,7 +9,7 @@
 <?php if(isset($_GET['error_e'])):?><span class="error">安装失败，模板安装包不符合标准</span><?php endif;?>
 </div>
 <?php if(isset($_GET['error_c'])): ?>
-<div style="margin:20px 10px;">
+<div style="margin:20px 20px;">
 <div class="des">
 手动安装模板： <br />
 1、把解压后的模板文件夹上传到 content/templates目录下。 <br />
@@ -25,6 +25,7 @@
 	</li>
 </div>
 </form>
+<div style="margin:10px 20px;">获取更多模板：<a href="store.php">应用中心&raquo;</a></div>
 <script>
 setTimeout(hideActived,2600);
 $("#menu_tpl").addClass('sidebarsubmenu1');
