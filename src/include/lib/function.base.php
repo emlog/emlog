@@ -410,6 +410,18 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
 /**
  * 文件上传
  *
+ * 返回的数组索引
+ * mime_type 文件类型
+ * size      文件大小(单位KB)
+ * file_path 文件路径
+ * width     宽度
+ * height    高度
+ * 可选值（仅在上传文件是图片且系统开启缩略图时起作用）
+ * thum_file   缩略图的路径
+ * thum_width  缩略图宽度
+ * thum_height 缩略图高度
+ * thum_size   缩略图大小(单位KB)
+ *
  * @param string $fileName 文件名
  * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpFile 上传后的临时文件
@@ -417,7 +429,8 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
- * @return string 文件路径
+ * @return array 文件数据 索引 
+ * 
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if ($errorNum == 1) {
@@ -432,9 +445,16 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
 		return '103'; //文件大小超出emlog的限制
 	}
+	$file_info = array();
+	$file_info['file_name'] = $fileName;
+	$file_info['mime_type'] = get_mimetype($extension);
+	$file_info['size'] = $fileSize;
+	$file_info['width'] = 0;
+	$file_info['height'] = 0;
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	$attachpath = $uppath . $fname;
+	$file_info['file_path'] = $attachpath;
 	if (!is_dir(Option::UPLOADFILE_PATH)) {
 		@umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
@@ -451,7 +471,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	}
 	doAction('attach_upload', $tmpFile);
 
-	//resizeImage
+	// 生成缩略图
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if ($is_thumbnail) {
@@ -459,6 +479,13 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 			$attach = $thum;
 			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
 		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+			$file_info['thum_file'] = $thum;			
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
 			$attach = $thum;
 		}
 	}
@@ -470,7 +497,16 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		}
 		@chmod($attachpath, 0777);
 	}
-	return $attach; //附件地址
+	
+	// 如果附件是图片需要提取宽高
+	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
+		$size = getimagesize($file_info['file_path']);
+		if ($size) {
+			$file_info['width'] = $size[0];
+			$file_info['height'] = $size[1];
+		}
+	}
+	return $file_info;
 }
 
 /**
@@ -894,4 +930,75 @@ if(!function_exists('hash_hmac')) {
 
 		return $algo($opad . pack($pack, $algo($ipad . $data)));
 	}
+}
+
+/**
+ * 根据文件后缀获取其mine类型
+ * @param string $extension
+ * @return string
+ */
+ function get_mimetype($extension) {
+	$ct['htm'] = 'text/html';
+	$ct['html'] = 'text/html';
+	$ct['txt'] = 'text/plain';
+	$ct['asc'] = 'text/plain';
+	$ct['bmp'] = 'image/bmp';
+	$ct['gif'] = 'image/gif';
+	$ct['jpeg'] = 'image/jpeg';
+	$ct['jpg'] = 'image/jpeg';
+	$ct['jpe'] = 'image/jpeg';
+	$ct['png'] = 'image/png';
+	$ct['ico'] = 'image/vnd.microsoft.icon';
+	$ct['mpeg'] = 'video/mpeg';
+	$ct['mpg'] = 'video/mpeg';
+	$ct['mpe'] = 'video/mpeg';
+	$ct['qt'] = 'video/quicktime';
+	$ct['mov'] = 'video/quicktime';
+	$ct['avi'] = 'video/x-msvideo';
+	$ct['wmv'] = 'video/x-ms-wmv';
+	$ct['mp2'] = 'audio/mpeg';
+	$ct['mp3'] = 'audio/mpeg';
+	$ct['rm'] = 'audio/x-pn-realaudio';
+	$ct['ram'] = 'audio/x-pn-realaudio';
+	$ct['rpm'] = 'audio/x-pn-realaudio-plugin';
+	$ct['ra'] = 'audio/x-realaudio';
+	$ct['wav'] = 'audio/x-wav';
+	$ct['css'] = 'text/css';
+	$ct['zip'] = 'application/zip';
+	$ct['pdf'] = 'application/pdf';
+	$ct['doc'] = 'application/msword';
+	$ct['bin'] = 'application/octet-stream';
+	$ct['exe'] = 'application/octet-stream';
+	$ct['class'] = 'application/octet-stream';
+	$ct['dll'] = 'application/octet-stream';
+	$ct['xls'] = 'application/vnd.ms-excel';
+	$ct['ppt'] = 'application/vnd.ms-powerpoint';
+	$ct['wbxml'] = 'application/vnd.wap.wbxml';
+	$ct['wmlc'] = 'application/vnd.wap.wmlc';
+	$ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
+	$ct['dvi'] = 'application/x-dvi';
+	$ct['spl'] = 'application/x-futuresplash';
+	$ct['gtar'] = 'application/x-gtar';
+	$ct['gzip'] = 'application/x-gzip';
+	$ct['js'] = 'application/x-javascript';
+	$ct['swf'] = 'application/x-shockwave-flash';
+	$ct['tar'] = 'application/x-tar';
+	$ct['xhtml'] = 'application/xhtml+xml';
+	$ct['au'] = 'audio/basic';
+	$ct['snd'] = 'audio/basic';
+	$ct['midi'] = 'audio/midi';
+	$ct['mid'] = 'audio/midi';
+	$ct['m3u'] = 'audio/x-mpegurl';
+	$ct['tiff'] = 'image/tiff';
+	$ct['tif'] = 'image/tiff';
+	$ct['rtf'] = 'text/rtf';
+	$ct['wml'] = 'text/vnd.wap.wml';
+	$ct['wmls'] = 'text/vnd.wap.wmlscript';
+	$ct['xsl'] = 'text/xml';
+	$ct['xml'] = 'text/xml';
+	
+	if (!$type = $ct[strtolower($extension)]) {
+		$type = 'text/html';
+	}
+	return $type;
 }
