@@ -7,9 +7,9 @@
 require_once 'globals.php';
 
 $Sort_Model = new Sort_Model();
+$sorts = $CACHE->readCache('sort');
 
 if ($action == '') {
-	$sorts = $CACHE->readCache('sort');
 	include View::getView('header');
 	require_once View::getView('sort');
 	include View::getView('footer');
@@ -35,6 +35,8 @@ if ($action== 'add') {
 	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
+	$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
+	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	if (empty($sortname)) {
 		emDirect("./sort.php?error_a=1");
@@ -55,8 +57,11 @@ if ($action== 'add') {
 			}
 		}
 	}
+	if ($pid != 0 && !isset($sorts[$pid])) {
+		$pid = 0;
+	}
 
-	$Sort_Model->addSort($sortname, $alias, $taxis);
+	$Sort_Model->addSort($sortname, $alias, $taxis, $pid, $description);
 	$CACHE->updateCache('sort');
 	emDirect("./sort.php?active_add=1");
 }
@@ -76,12 +81,16 @@ if ($action== 'mod_sort') {
 if ($action == 'update') {
 	$sid = isset($_POST['sid']) ? intval($_POST['sid']) : '';
     $sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+	$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
+	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	$sort_data = array();
 	if (empty($sortname)) {
 		emDirect("./sort.php?action=mod_sort&sid={$sid}&error_a=1");
 	}
-    $sort_data['sortname'] = addslashes(trim($_POST['sortname']));
+    $sort_data['sortname'] = $sortname;
+    $sort_data['pid'] = $pid;
+    $sort_data['description'] = $description;
 
 	if (isset($_POST['alias'])) {
 		$sort_data['alias'] = addslashes(trim($_POST['alias']));

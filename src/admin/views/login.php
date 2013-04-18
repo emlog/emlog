@@ -21,7 +21,7 @@
 		<?php echo $ckcode; ?>
 	</div>
 	<div class="login-button">
-	<div class="checkbox"> <input type="checkbox" name="ispersis" id="ispersis" value="1" /><span>记住我</span></div>
+	<div class="checkbox"> <input type="checkbox" name="ispersis" id="ispersis" value="1" /><span><label for="ispersis">记住我</label></span></div>
 	<div class="button"><input type="submit" value=" 登 录" class="submit"></div>
 	</div>
 	<div style=" clear:both;"></div>

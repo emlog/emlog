@@ -373,6 +373,8 @@ CREATE TABLE {$db_prefix}sort (
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(200) NOT NULL DEFAULT '',
   taxis smallint(4) unsigned NOT NULL default '0',
+  pid tinyint(3) unsigned NOT NULL default '0',
+  description VARCHAR(1024) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;

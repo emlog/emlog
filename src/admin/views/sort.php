@@ -13,36 +13,63 @@
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
-  <table width="100%" id="adm_sort_list" class="item_list">
-    <thead>
-      <tr>
-        <th width="55"><b>序号</b></th>
-        <th width="250"><b>名称</b></th>
-		<th width="300"><b>别名</b></th>
-		<th width="50" class="tdcenter"><b>查看</b></th>
-        <th width="50" class="tdcenter"><b>文章</b></th>
-        <th width="100"></th>
-      </tr>
-    </thead>
-    <tbody>
+	<table width="100%" id="adm_sort_list" class="item_list">
+		<thead>
+			<tr>
+			<th width="55"><b>序号</b></th>
+			<th width="250"><b>名称</b></th>
+			<th width="300"><b>别名</b></th>
+			<th width="50" class="tdcenter"><b>查看</b></th>
+			<th width="50" class="tdcenter"><b>文章</b></th>
+			<th width="100"></th>
+		</tr>
+		</thead>
+		<tbody>
 <?php 
 if($sorts):
-foreach($sorts as $key=>$value): ?>
-      <tr>
-        <td>
-        <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
-        <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
+foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+?>
+	<tr>
+		<td>
+			<input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
+			<input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" />
+		</td>
 		<td class="sortname"><a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
 		<td class="alias"><?php echo $value['alias']; ?></td>
 		<td class="tdcenter">
-	  	<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
-	  	</td>
+			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+		</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-        <td>
-        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
-        </td>
-      </tr>
+		<td>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
+		</td>
+	</tr>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+	<tr>
+		<td>
+			<input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
+			<input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" />
+		</td>
+		<td class="sortname">&nbsp;&nbsp;&nbsp;&nbsp;<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
+		<td class="alias"><?php echo $value['alias']; ?></td>
+		<td class="tdcenter">
+			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+		</td>
+		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+		<td>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
 <?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
 <?php endif;?>  
@@ -52,10 +79,29 @@ foreach($sorts as $key=>$value): ?>
 </form>
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加分类+</a></div>
-<div id="sort_new" class="item_edit">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (可不填，用于URL的友好显示)</li>
+<div id="sort_new">
+	<li>序号</li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
+	<li>名称</li>
+	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /></li>
+	<li>别名 (可不填，用于URL的友好显示)</li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /></li>
+	<li>父分类</li>
+	<li>
+		<select name="pid" id="pid">
+			<option value="0">无</option>
+			<?php
+				foreach($sorts as $key=>$value):
+					if($value['pid'] != 0) {
+						continue;
+					}
+			?>
+			<option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
+			<?php endforeach; ?>
+		</select>
+	</li>
+	<li>分类描述</li>
+	<li><textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>

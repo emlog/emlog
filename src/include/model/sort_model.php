@@ -31,13 +31,14 @@ class Sort_Model {
 		$this->db->query("update ".DB_PREFIX."sort set $upStr where sid=$sid");
 	}
 
-	function addSort($name, $alias, $taxis) {
-		$sql="insert into ".DB_PREFIX."sort (sortname,alias,taxis) values('$name','$alias',$taxis)";
+	function addSort($name, $alias, $taxis, $pid, $description) {
+		$sql="insert into ".DB_PREFIX."sort (sortname,alias,taxis,pid,description) values('$name','$alias',$taxis,$pid,'$description')";
 		$this->db->query($sql);
 	}
 
 	function deleteSort($sid) {
 		$this->db->query("update ".DB_PREFIX."blog set sortid=-1 where sortid=$sid");
+		$this->db->query("update ".DB_PREFIX."sort set pid=0 where pid=$sid");
 		$this->db->query("DELETE FROM ".DB_PREFIX."sort where sid=$sid");
 	}
 
@@ -50,7 +51,8 @@ class Sort_Model {
 			$sortData = array(
 					'sortname' => htmlspecialchars(trim($row['sortname'])),
 					'alias' => $row['alias'],
-					//'description' => htmlspecialchars(trim($row['description']))
+					'pid' => $row['pid'],
+					'description' => htmlspecialchars(trim($row['description']))
 			);
 		}
 		return $sortData;

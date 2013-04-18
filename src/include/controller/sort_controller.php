@@ -40,7 +40,7 @@ class Sort_Controller {
 		$sortName = $sort_cache[$sortid]['sortname'];
 		//page meta
 		$site_title = $sortName . ' - ' . $site_title;
-
+		$site_description = $sort_cache[$sortid]['description'];
 		$sqlSegment = "and sortid=$sortid order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::sort($sortid, 'page');

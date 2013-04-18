@@ -8,7 +8,23 @@
 <form action="sort.php?action=update" method="post">
 <div class="item_edit">
 	<li><input size="24" value="<?php echo $sortname; ?>" name="sortname" id="sortname" /> 名称</li>
-	<li><input size="40" value="<?php echo $alias; ?>" name="alias" id="alias" /> 别名 <span id="alias_msg_hook"></span></li>
+	<li><input size="40" value="<?php echo $alias; ?>" name="alias" id="alias" / 别名 <span id="alias_msg_hook"></span>></li>
+	<?php if (empty($sorts[$sid]['children'])): ?>
+	<li>
+		<span>父分类</span>
+		<select name="pid" id="pid">
+			<option value="0"<?php if($pid == 0):?> selected="selected"<?php endif; ?>>无</option>
+			<?php
+				foreach($sorts as $key=>$value):
+					if ($key == $sid || $value['pid'] != 0) continue;
+			?>
+			<option value="<?php echo $key; ?>"<?php if($pid == $key):?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
+			<?php endforeach; ?>
+		</select>
+	</li>
+	<?php endif; ?>
+	<li>分类描述<br />
+		<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $sid; ?>" name="sid" />
 	<input type="submit" value="保 存" class="button" id="save"  />

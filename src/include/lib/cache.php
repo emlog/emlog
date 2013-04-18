@@ -269,16 +269,24 @@ class Cache {
 	 */
 	private function mc_sort() {
 		$sort_cache = array();
-		$query = $this->db->query("SELECT sid,sortname,alias,taxis FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
-			$sort_cache[$row['sid']] = array(
+			$sortData = array(
 				'lognum' => $logNum,
 				'sortname' => htmlspecialchars($row['sortname']),
+				'description' => htmlspecialchars($row['description']),
 				'alias' =>$row['alias'],
 				'sid' => intval($row['sid']),
-				'taxis' => intval($row['taxis'])
+				'taxis' => intval($row['taxis']),
+				'pid' => intval($row['pid']),
 				);
+			if ($sortData['pid'] == 0) {
+				$sortData['children'] = array();
+			} elseif (isset($sort_cache[$row['pid']])) {
+				$sort_cache[$row['pid']]['children'][] = $row['sid'];
+			}
+			$sort_cache[$row['sid']] = $sortData;
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData, 'sort');
