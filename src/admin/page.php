@@ -85,7 +85,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 		$pageId = $emPage->addlog($logData);
 	}
 
-	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
+	$CACHE->updateCache(array('options', 'logalias'));
 
 	switch ($action) {
 		case 'autosave':
@@ -116,7 +116,7 @@ if ($action == 'operate_page') {
 			}
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'logalias'));
+			$CACHE->updateCache(array('options', 'sta', 'comment', 'logalias'));
 
 			emDirect("./page.php?active_del=1");
 			break;
@@ -129,7 +129,7 @@ if ($action == 'operate_page') {
 			}
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
+			$CACHE->updateCache(array('options', 'sta', 'comment'));
 			emDirect("./page.php?active_hide_".$ishide."=1");
 			break;
 	}

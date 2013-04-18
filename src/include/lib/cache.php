@@ -24,7 +24,6 @@ class Cache {
 	private $logtags_cache;
 	private $logsort_cache;
 	private $logalias_cache;
-	private $logatts_cache;
 
 	private function __construct() {
 		$this->db = MySql::getInstance();
@@ -454,33 +453,6 @@ class Cache {
 		}
 		$cacheData = serialize($log_cache_alias);
 		$this->cacheWrite($cacheData, 'logalias');
-	}
-	/**
-	 * 文章\页面附件缓存
-	 */
-	private function mc_logatts() {
-		$sql = "SELECT gid FROM " . DB_PREFIX . "blog";
-		$query = $this->db->query($sql);
-		$log_cache_atts = array();
-		while ($row = $this->db->fetch_array($query)) {
-			$logid = $row['gid'];
-			$attachment = array();
-			$attQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid=$logid ");
-			while ($show_attach = $this->db->fetch_array($attQuery)) {
-				$att_path = $show_attach['filepath']; //eg: ../uploadfile/200710/b.jpg
-				$atturl = substr($att_path, 3); //eg: uploadfile/200710/b.jpg
-				$postfix = strtolower(substr(strrchr($show_attach['filename'], "."), 1));
-				if (!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png', 'bmp'))) {
-					$attachment['url'] = $atturl;
-					$attachment['filename'] = $show_attach['filename'];
-					$attachment['size'] = changeFileSize($show_attach['filesize']);
-					$log_cache_atts[$logid][] = $attachment;
-				}
-			}
-		}
-		$cacheData = serialize($log_cache_atts);
-		$this->cacheWrite($cacheData, 'logatts');
-		unset($log_cache_atts);
 	}
 
 	/**

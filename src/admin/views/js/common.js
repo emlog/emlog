@@ -114,7 +114,7 @@ function addattach_img(fileurl,imgsrc,aid, width, height, alt){
 	if (editorMap['content'].designMode === false){
 		alert('请先切换到所见所得模式');
 	}else if (imgsrc != "") {
-		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
+		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="点击查看原图" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){

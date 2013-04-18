@@ -17,7 +17,7 @@
 	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
     </div>
     <div id="FrameUpload" style="display: none;">
-        <iframe width="720" height="290" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe>
+        <iframe width="800" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe>
     </div>
 </div>
 <div><textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea></div>
