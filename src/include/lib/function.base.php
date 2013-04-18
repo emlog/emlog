@@ -417,7 +417,7 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * width     宽度
  * height    高度
  * 可选值（仅在上传文件是图片且系统开启缩略图时起作用）
- * thum_path   缩略图的路径
+ * thum_file   缩略图的路径
  * thum_width  缩略图宽度
  * thum_height 缩略图高度
  * thum_size   缩略图大小(单位KB)
@@ -446,8 +446,11 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		return '103'; //文件大小超出emlog的限制
 	}
 	$file_info = array();
+	$file_info['file_name'] = $fileName;
 	$file_info['mime_type'] = get_mimetype($extension);
 	$file_info['size'] = $fileSize;
+	$file_info['width'] = 0;
+	$file_info['height'] = 0;
 	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
 	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
 	$attachpath = $uppath . $fname;
@@ -468,7 +471,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	}
 	doAction('attach_upload', $tmpFile);
 
-	//resizeImage
+	// 生成缩略图
 	$thum = $uppath . 'thum-' . $fname;
 	$attach = $attachpath;
 	if ($is_thumbnail) {
@@ -476,10 +479,13 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 			$attach = $thum;
 			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
 		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
-			$file_info['thum_path'] = $thum;
-			$file_info['thum_width'] = Option::IMG_MAX_W;
-			$file_info['thum_height'] = Option::IMG_MAX_W;
+			$file_info['thum_file'] = $thum;			
 			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
 			$attach = $thum;
 		}
 	}
