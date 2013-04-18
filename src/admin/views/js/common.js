@@ -17,40 +17,40 @@ function em_confirm (id, property) {
 			var msg = "你确定要删除该条微语吗？";break;
 		case 'comment':
 			var urlreturn="comment.php?action=del&id="+id;
-			var msg = "你确定要删除该评论吗？";break;
+			var msg = "你确定要删除该评论吗�;break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
-			var msg = "你确定要删除该链接吗？";break;
+			var msg = "你确定要删除该链接吗�;break;
 		case 'navi':
 			var urlreturn="navbar.php?action=del&id="+id;
-			var msg = "你确定要删除该导航吗？";break;
+			var msg = "你确定要删除该导航吗�;break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
-			var msg = "你确定要导入该备份文件吗？";break;
+			var msg = "你确定要导入该备份文件吗�;break;
 		case 'attachment':
 			var urlreturn="attachment.php?action=del_attach&aid="+id;
-			var msg = "你确定要删除该附件吗？";break;
+			var msg = "你确定要删除该附件吗�;break;
 		case 'avatar':
 			var urlreturn="blogger.php?action=delicon";
 			var msg = "你确定要删除头像吗？";break;
 		case 'sort':
 			var urlreturn="sort.php?action=del&sid="+id;
-			var msg = "你确定要删除该分类吗？";break;
+			var msg = "你确定要删除该分类吗�;break;
 		case 'page':
 			var urlreturn="page.php?action=del&gid="+id;
-			var msg = "你确定要删除该页面吗？";break;
+			var msg = "你确定要删除该页面吗�;break;
 		case 'user':
 			var urlreturn="user.php?action=del&uid="+id;
-			var msg = "你确定要删除该用户吗？";break;
+			var msg = "你确定要删除该用户吗�;break;
 		case 'tpl':
 			var urlreturn="template.php?action=del&tpl="+id;
-			var msg = "你确定要删除该模板吗？";break;
+			var msg = "你确定要删除该模板吗�;break;
 		case 'reset_widget':
 			var urlreturn="widgets.php?action=reset";
-			var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+			var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件�;break;
 		case 'plu':
 			var urlreturn="plugin.php?action=del&plugin="+id;
-			var msg = "你确定要删除该插件吗？";break;
+			var msg = "你确定要删除该插件吗�;break;
 	}
 	if(confirm(msg)){window.location = urlreturn;}else {return;}
 }
@@ -100,7 +100,7 @@ function checkalias(){
 	if (1 == isalias(a)){
 		$("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
 	}else if (2 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数�/span>');
 	}else if (3 == isalias(a)){
 		$("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
 	}else if (4 == isalias(a)){
@@ -112,14 +112,14 @@ function checkalias(){
 }
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
 	if (editorMap['content'].designMode === false){
-		alert('请先切换到所见所得模式');
+		alert('请先切换到所见所得模�);
 	}else if (imgsrc != "") {
 		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){
 	if (editorMap['content'].designMode === false){
-		alert('请先切换到所见所得模式');
+		alert('请先切换到所见所得模�);
 	} else {
 		editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
 	}
@@ -198,7 +198,7 @@ function autosave(act){
 	//check alias
 	if(alias != '') {
 		if (0 != isalias(alias)){
-			$("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失败</span>");
+			$("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失�/span>");
 			if(act == 0){setTimeout("autosave(0)",60000);}
 			return;
 		}
@@ -233,14 +233,14 @@ function autosave(act){
     		var hours = digital.getHours();
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
-    		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
+    		$("#msg_2").html("<span class=\"ajax_remind_1\">成功保存�"+hours+":"+mins+":"+secs+" </span>");
     		$("#savedf").attr("disabled", false);
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
 		    $("#savedf").attr("disabled", false);
 		    $("#savedf").val(btname);
-		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+		    $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异�..保存可能失败</span>");
 	    }
 	});
 	if(act == 0){
