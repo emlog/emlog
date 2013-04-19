@@ -55,7 +55,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
-		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');">删除</a>
+		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');" class="care">删除</a>
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
 		<?php else: ?>
@@ -75,7 +75,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   </table>
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-    <a href="javascript:commentact('del');">删除</a>
+    <a href="javascript:commentact('del');" class="care">删除</a>
 	<a href="javascript:commentact('hide');">屏蔽</a>
 	<a href="javascript:commentact('pub');">审核</a>
 	<input name="operate" id="operate" value="" type="hidden" />

@@ -124,7 +124,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-    <a href="javascript:logact('del');">删除</a> | 
+    <a href="javascript:logact('del');" class="care">删除</a> | 
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');">发布</a>
 	<?php else: ?>

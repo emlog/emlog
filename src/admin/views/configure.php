@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td align="right">站点地址：</td>
-        <td class="care"><input maxlength="200" style="width:300px;" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
+        <td><input maxlength="200" style="width:300px;" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
         <td align="right">每页显示：</td>

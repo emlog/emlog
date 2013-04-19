@@ -39,7 +39,7 @@ setTimeout(hideActived,2600);
 	<?php endif;?>
 	</tbody>
   </table>
-<div class="list_footer"><a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:tbact('del');">删除</a></div>
+<div class="list_footer"><a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:tbact('del');" class="care">删除</a></div>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $tbnum; ?>条引用)</div> 
 </form>
 <script>

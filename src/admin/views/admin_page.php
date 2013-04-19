@@ -46,7 +46,7 @@
 </form>
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-<a href="javascript:pageact('del');">删除</a> | 
+<a href="javascript:pageact('del');" class="care">删除</a> | 
 <a href="javascript:pageact('hide');">转为草稿</a> | 
 <a href="javascript:pageact('pub');">发布</a>
 </div>

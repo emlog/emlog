@@ -47,7 +47,7 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
 		</td>
 	</tr>
 	<?php
@@ -69,7 +69,7 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');">删除</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
 		</td>
 	</tr>
 	<?php endforeach; ?>

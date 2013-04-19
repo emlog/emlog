@@ -27,7 +27,7 @@
 	<li><input type="submit" value="保存资料" class="button" /></li>
 </div>
 </form>
-<div style="margin:30px 0px 10px;"><a href="javascript:displayToggle('chpwd', 2);">修改密码及登录名+</a></div>
+<div style="margin:30px 0px 10px;"><a href="javascript:displayToggle('chpwd', 2);" class="care">修改密码及登录名+</a></div>
 <form action="blogger.php?action=update_pwd" method="post" name="blooger" id="blooger">
 <div id="chpwd" class="item_edit">
 	<li><input type="password" maxlength="200" style="width:185px;" value="" name="oldpass" /> 当前密码</li>

@@ -31,7 +31,7 @@
 	</a>
 	<?php if (!is_array($val)):?>
 	<li class="admin_style_info" >
-	<a href="./template.php?action=del_top&top=<?php echo $imgpath_url; ?>">删除</a>
+	<a href="./template.php?action=del_top&top=<?php echo $imgpath_url; ?>" class="care">删除</a>
 	</li>
 	<?php endif;?>
 	</div>

@@ -41,7 +41,7 @@
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复</a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');">删除</a> </p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');" class="care">删除</a> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>

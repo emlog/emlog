@@ -34,7 +34,7 @@
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');">删除</a>
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');" class="care">删除</a>
 		<?php else:?>
 		<a href="blogger.php">编辑</a>
 		<?php endif;?>
