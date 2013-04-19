@@ -255,6 +255,7 @@ CREATE TABLE {$db_prefix}attachment (
   width smallint(5) NOT NULL default '0',
   height smallint(5) NOT NULL default '0',
   mimetype varchar(40) NOT NULL default '',
+  thumfor smallint(5) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."

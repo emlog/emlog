@@ -40,14 +40,15 @@ if ($action == 'upload') {
 				$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
 				$file_info = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType(), false, $isthumbnail);
 				// 写入附件信息
-				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s', 0)";
 				$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
 				$DB->query($query);
+				$aid = $DB->insert_id();
 				$DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
 				// 写入缩略图信息
 				if (isset($file_info['thum_file'])) {
-					$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
-					$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type']);
+					$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+					$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
 					$DB->query($query);		
 				}
 			}
@@ -65,14 +66,15 @@ if ($action == 'upload_multi') {
 			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
 			$file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 			// 写入附件信息
-			$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+			$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
 			$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
 			$DB->query($query);
+			$aid = $DB->insert_id();
 			$DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
 			// 写入缩略图信息
 			if (isset($file_info['thum_file'])) {
-				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
-				$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type']);
+				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+				$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
 				$DB->query($query);		
 			}
 		}
@@ -82,41 +84,28 @@ if ($action == 'upload_multi') {
 //附件库
 if ($action == 'attlib') {
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
-	$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid = $logid ";
+	$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid = $logid AND thumfor = 0";
 	$query = $DB->query($sql);
 	$attach = array();
 	while ($row = $DB->fetch_array($query)) {
 		$attsize = changeFileSize($row['filesize']);
 		$filename = htmlspecialchars($row['filename']);
-		// 识别图片
-		if (isset($attach[$filename]) && !empty($attach[$filename]['width'])) {
-			// 比较图片大小，宽度较大的那个是原图，较小的是缩略图
-			if ($attach[$filename]['width']	> $row['width']) {
-				$attach[$filename]['thum_filepath']	= $row['filepath'];
-				$attach[$filename]['thum_width']	= $row['width'];
-				$attach[$filename]['thum_height']	= $row['height'];
-			} else {
-				$attach[$filename]['thum_filepath']	= $attach[$filename]['filepath'];
-				$attach[$filename]['thum_filename']	= $attach[$filename]['filename'];
-				$attach[$filename]['thum_width']	= $attach[$filename]['width'];
-				$attach[$filename]['thum_height']	= $attach[$filename]['height'];
-				$attach[$filename]['filename']  = $filename;
-				$attach[$filename]['width']     = $row['width'];
-				$attach[$filename]['height']    = $row['height'];
-				$attach[$filename]['filepath']	= $row['filepath'];
-			}			
-		} else {
-			$attach[$filename] = array(
+		$attach[$row['aid']] = array(
 				'attsize'  => $attsize,
 				'aid'      => $row['aid'],
 				'filepath' => $row['filepath'],
 				'filename' => $filename,
 				'width'    => $row['width'],
-				'height'   => $row['height'],			
-			);
+				'height'   => $row['height'],
+		);		
+		$thum = $DB->once_fetch_array('SELECT * FROM ' . DB_PREFIX . 'attachment WHERE thumfor = '. $row['aid']);
+		if ($thum) {
+			$attach[$row['aid']]['thum_filepath']	= $thum['filepath'];
+			$attach[$row['aid']]['thum_width']	    = $thum['width'];
+			$attach[$row['aid']]['thum_height']  	= $thum['height'];
 		}
 	}
-    $attachnum = count($attach);
+	$attachnum = count($attach);
 	include View::getView('attlib');
 	View::output();
 }
@@ -130,18 +119,19 @@ if ($action == 'del_attach') {
 	if (file_exists($attach['filepath'])) {
 		@unlink($attach['filepath']) or emMsg("删除附件失败!");
 	}
-	$query = $DB->query("SELECT * FROM ".DB_PREFIX."attachment WHERE filename = '{$attach['filename']}' AND aid != {$attach['aid']}");
+	
+	// 读取缩略图并删除
+	$query = $DB->query("SELECT * FROM ".DB_PREFIX."attachment WHERE thumfor = ".$attach['aid']);
 	$thum_attach = $DB->fetch_array($query);
 	if ($thum_attach) {
 		if (file_exists($thum_attach['filepath'])) {
 			@unlink($thum_attach['filepath']) or emMsg("删除附件失败!");
 		}
-		$row = $DB->once_fetch_array("SELECT blogid FROM " . DB_PREFIX . "attachment where aid = {$thum_attach['aid']}");
-		$DB->query("DELETE FROM " . DB_PREFIX . "attachment where aid= {$thum_attach['aid']} ");
+		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
 	}
 
 	$DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum-1 WHERE gid = {$attach['blogid']}");
-	$DB->query("DELETE FROM " . DB_PREFIX . "attachment where aid = {$attach['aid']} ");
+	$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$attach['aid']} ");
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 
