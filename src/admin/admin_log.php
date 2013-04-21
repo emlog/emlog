@@ -93,6 +93,7 @@ if ($action == 'operate_log') {
 		case 'del':
 			foreach ($logs as $val)
 			{
+				doAction('before_del_log', $val);
 				$Log_Model->deleteLog($val);
 				doAction('del_log', $val);
 			}
