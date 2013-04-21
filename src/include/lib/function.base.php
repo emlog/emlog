@@ -714,6 +714,10 @@ function getMonthDayNum($month, $year) {
 
 /**
  * 解压zip
+ * @param type $zipfile 要解压的文件
+ * @param type $path 解压到该目录
+ * @param type $type
+ * @return int
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
 	if (!class_exists('ZipArchive', FALSE)) {

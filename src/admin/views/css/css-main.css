@@ -949,7 +949,6 @@ textarea {
 #recommend_plugin p{
 	padding:0px 40px;
 }
-
 #faceWraps{
 	display:none;
 	width: 300px;
@@ -960,4 +959,28 @@ textarea {
 	border-radius: 5px;
 	border: 1px solid #DDDDDD;
 	background: #FEFEFE;
+}
+#addon_ins{
+    border-radius: 5px;
+    border: 1px solid #DDDDDD;
+    width: 600px;
+    margin:30px auto;
+    padding:50px;
+    font-size: 14px;
+    text-align: center;
+}
+#addon_ins #addonload {
+	background:url(../images/loading.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+#addon_ins #addonsucc {
+	background:url(../images/icon_succ.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+#addon_ins #addonerror {
+	background:url(../images/icon_error.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
 }
