@@ -56,7 +56,7 @@ $isdraft = $hide == 'y' ? true : false;
 <div id="advset">
 <div>文章摘要：</div>
 <div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
-<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)</div>
+<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)</div>
 <div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:798px;" /></div>
 <?php if (Option::get('istrackback') == 'y'): ?>
 <div><b>引用通告：</b>(每行一条引用地址)</div>

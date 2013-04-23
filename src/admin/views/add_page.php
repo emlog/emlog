@@ -24,7 +24,7 @@
 <div><textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
-    链接别名：(用于自定义该页面的链接地址。需要<a href="./permalink.php" target="_blank">启用链接别名</a>)<br />
+    链接别名：(用于自定义该页面的链接地址。需要<a href="./seo.php" target="_blank">启用链接别名</a>)<br />
     <input name="alias" id="alias" style="width:798px;" />
 </div>
 <div>

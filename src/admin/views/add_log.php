@@ -51,7 +51,7 @@
 <div id="advset">
 <div>文章摘要：</div>
 <div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
-<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./permalink.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
+<div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" style="width:798px;" /></div>
 <?php if (Option::get('istrackback') == 'y'): ?>
 <div>引用通告：(每行一条引用地址)</div>
