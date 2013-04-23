@@ -136,7 +136,10 @@ if ($action == 'upload_top') {
 	$topimg = '';
 
 	if ($_FILES['topimg']['error'] != 4) {
-		$topimg = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
+		$file_info = uploadFile($_FILES['topimg']['name'], $_FILES['topimg']['error'], $_FILES['topimg']['tmp_name'], $_FILES['topimg']['size'], $photo_type, false, false);
+		if (!empty($file_info['file_path'])) {
+			$topimg = $file_info['file_path'];
+		}
 	} else{
 		emDirect("./template.php?action=custom-top");
 	}

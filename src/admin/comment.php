@@ -27,12 +27,14 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
+
 if ($action== 'del') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	emDirect("./comment.php?active_del=1");
 }
+
 if ($action=='hide') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->hideComment($id);
@@ -45,6 +47,7 @@ if ($action=='show') {
 	$CACHE->updateCache(array('sta','comment'));
 	emDirect("./comment.php?active_show=1");
 }
+
 if ($action== 'admin_all_coms') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : array();
@@ -71,6 +74,7 @@ if ($action== 'admin_all_coms') {
 		emDirect("./comment.php?active_show=1");
 	}
 }
+
 if ($action== 'reply_comment') {
 	include View::getView('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
@@ -81,16 +85,21 @@ if ($action== 'reply_comment') {
 	include View::getView('footer');
 	View::output();
 }
+
 if ($action== 'edit_comment') {
-	include View::getView('header');
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$commentArray = $Comment_Model->getOneComment($commentId);
+	if (!$commentArray) {
+		emMsg('不存在该评论！', './comment.php');
+	}
 	extract($commentArray);
 
+	include View::getView('header');
 	require_once(View::getView('comment_edit'));
 	include View::getView('footer');
 	View::output();
 }
+
 if ($action=='doreply') {
 	$reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
 	$commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
@@ -112,6 +121,7 @@ if ($action=='doreply') {
 	doAction('comment_reply', $commentId, $reply);
 	emDirect("./comment.php?active_rep=1");
 }
+
 if ($action=='doedit') {
 	$name = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
     $mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';

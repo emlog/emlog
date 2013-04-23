@@ -103,6 +103,9 @@ class Comment_Model {
 		$timezone = Option::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
+		if ($this->db->affected_rows() < 1) {
+			return false;
+		}
 		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
 		$commentArray['poster'] = htmlspecialchars($commentArray['poster']);

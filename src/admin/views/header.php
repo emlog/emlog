@@ -79,13 +79,15 @@
     	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
     	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
         <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
-		<?php endif;?>
         <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
+		<?php endif;?>
     </div>
+    <?php if (ROLE == 'admin'):?>
     <div id="extend_mg">
     	<li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
 		<?php doAction('adm_sidebar_ext'); ?>
     </div>
+    <?php endif;?>
 	<div id="sidebarBottom"></div>
 </div>
 <div id="container">

@@ -473,20 +473,24 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 
 	// 生成缩略图
 	$thum = $uppath . 'thum-' . $fname;
-	$attach = $attachpath;
 	if ($is_thumbnail) {
 		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
-			$attach = $thum;
-			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
-		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
-			$file_info['thum_file'] = $thum;			
+			$file_info['thum_file'] = $thum;
 			$file_info['thum_size'] = filesize($thum);
 			$size = getimagesize($thum);
 			if ($size) {
 				$file_info['thum_width'] = $size[0];
 				$file_info['thum_height'] = $size[1];
 			}
-			$attach = $thum;
+			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+			$file_info['thum_file'] = $thum;
+			$file_info['thum_size'] = filesize($thum);
+			$size = getimagesize($thum);
+			if ($size) {
+				$file_info['thum_width'] = $size[0];
+				$file_info['thum_height'] = $size[1];
+			}
 		}
 	}
 

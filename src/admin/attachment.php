@@ -119,8 +119,7 @@ if ($action == 'del_attach') {
 	if (file_exists($attach['filepath'])) {
 		@unlink($attach['filepath']) or emMsg("删除附件失败!");
 	}
-	
-	// 读取缩略图并删除
+
 	$query = $DB->query("SELECT * FROM ".DB_PREFIX."attachment WHERE thumfor = ".$attach['aid']);
 	$thum_attach = $DB->fetch_array($query);
 	if ($thum_attach) {
@@ -135,27 +134,28 @@ if ($action == 'del_attach') {
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 
+//微语图片上传
 if ($action == 'upload_tw_img') {
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if ($attach) {
-		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, false);
-		$size = @getimagesize($upfname);
-		$w = $size[0];
-		$h = $size[1];
+		$file_info = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, false);
+		$w = $file_info['width'];
+		$h = $file_info['height'];
 		if ($w > Option::T_IMG_MAX_W || $h > Option::T_IMG_MAX_H) {
 			$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-			$thum = str_replace($uppath, $uppath . 'thum-', $upfname);
-			if (false !== resizeImage($upfname, $thum, Option::T_IMG_MAX_W, Option::T_IMG_MAX_H)) {
-				$upfname = $thum;
+			$thum = str_replace($uppath, $uppath . 'thum-', $file_info['file_path']);
+			if (false !== resizeImage($file_info['file_path'], $thum, Option::T_IMG_MAX_W, Option::T_IMG_MAX_H)) {
+				$file_info['file_path'] = $thum;
 			}
 		}
-		echo '{"filePath":"' . $upfname . '"}';
+		echo '{"filePath":"' . $file_info['file_path'] . '"}';
 		exit;
 	}
 	echo '{"filePath":""}';
 	exit;
 }
 
+//微语图片删除
 if ($action == 'del_tw_img') {
 	$filepath = isset($_GET['filepath']) ? $_GET['filepath'] : '';
 	if ($filepath && file_exists($filepath)) {

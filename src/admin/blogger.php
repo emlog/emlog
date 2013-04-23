@@ -38,10 +38,12 @@ if ($action == 'update') {
 	}
 
 	$photo_type = array('gif', 'jpg', 'jpeg','png');
+	$usericon = $photo;
 	if ($_FILES['photo']['size'] > 0) {
-		$usericon = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $photo_type, true);
-	} else{
-		$usericon = $photo;
+		$file_info = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $photo_type, true);
+		if (!empty($file_info['file_path'])) {
+			$usericon = !empty($file_info['thum_file']) ? $file_info['thum_file'] : $file_info['file_path'];
+		}
 	}
 	$User_Model->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
 	$CACHE->updateCache('user');
