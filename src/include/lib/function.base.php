@@ -903,7 +903,7 @@ function emoFormat($t){
 		$matches = array_unique($matches[0]);
 		foreach ($matches as $data) {
 			if(isset($emos[$data]))
-				$t = str_replace($data,'<img title="'.$data.'" src="'.BLOG_URL.'/admin/editor/plugins/emoticons/images/'.$emos[$data].'"/>',$t);
+				$t = str_replace($data,'<img title="'.$data.'" src="'.BLOG_URL.'admin/editor/plugins/emoticons/images/'.$emos[$data].'"/>',$t);
 		}
 	}
 	return $t;
