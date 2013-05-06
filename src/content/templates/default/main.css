@@ -105,6 +105,13 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 
 .rss{ margin:20px 0px;}
 
+.attachment{
+    margin: 0px 3px;
+    padding: 0px 0px 0px 20px;
+    font-weight: bold;
+    background:url(images/att.png)  no-repeat 2px -1px
+}
+
 #twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
 #twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
 #twitter p {font-size: 12px;text-align:right;}
