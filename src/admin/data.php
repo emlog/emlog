@@ -154,27 +154,25 @@ if ($action == 'dell_all_bak') {
  */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
-	if ($fp) {
-		$dumpinfo = array();
-		$line = 0;
-		while (!feof($fp)) {
-			$dumpinfo[] = fgets($fp, 4096);
-			$line++;
-			if ($line == 3) break;
-		}
-		fclose($fp);
-		if (!empty($dumpinfo)) {
-			if (preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0]) === 0) {
-				emMsg('导入失败！该备份文件只能导入到' . Option::EMLOG_VERSION . '版本的emlog站点!');
-			}
-			if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-				emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);
-			}
-		} else {
-			emMsg('导入失败！该备份文件不是 emlog的备份文件!');
-		}
-	} else {
+	if (!$fp) {
 		emMsg('导入失败！读取文件失败');
+	}
+	$dumpinfo = array();
+	$line = 0;
+	while (!feof($fp)) {
+		$dumpinfo[] = fgets($fp, 4096);
+		$line++;
+		if ($line == 3) break;
+	}
+	fclose($fp);
+	if (empty($dumpinfo)) {
+		emMsg('导入失败！该备份文件不是 emlog的备份文件!');
+	}
+	if (!preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0])) {
+		emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+	}
+	if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
+		emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);
 	}
 }
 
@@ -227,11 +225,11 @@ function dataBak($table) {
 	$numfields = $DB->num_fields($rows);
 	$numrows = $DB->num_rows($rows);
 	while ($row = $DB->fetch_row($rows)) {
-		$comma = "";
+		$comma = '';
 		$sql .= "INSERT INTO $table VALUES(";
 		for ($i = 0; $i < $numfields; $i++) {
-			$sql .= $comma."'".mysql_escape_string($row[$i])."'";
-			$comma = ",";
+			$sql .= $comma."'".mysql_real_escape_string($row[$i])."'";
+			$comma = ',';
 		}
 		$sql .= ");\n";
 	}
