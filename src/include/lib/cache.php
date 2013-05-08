@@ -312,12 +312,17 @@ class Cache {
 	private function mc_navi() {
 		$navi_cache = array();
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY taxis ASC");
+		$sorts = $this->readCache('sort');
 		while ($row = $this->db->fetch_array($query)) {
+			$children = array();
+			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
 			$navi_cache[] = array(
 					'naviname' => htmlspecialchars(trim($row['naviname'])),
-					'url' => htmlspecialchars(trim($row['url'])),
+					'url' => htmlspecialchars(trim($url)),
 					'newtab' => $row['newtab'],
-					'isdefault' => $row['isdefault'],
+					'type' => intval($row['type']),
+					'typeId' => intval($row['type_id']),
+					'children' => $children,
 				);
 		}
 		$cacheData = serialize($navi_cache);

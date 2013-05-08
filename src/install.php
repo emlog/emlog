@@ -138,7 +138,7 @@ if($act == 'install' || $act == 'reinstall'){
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 .main p {line-height: 18px;margin: 5px 20px;}
 -->
 </style>
@@ -251,10 +251,7 @@ CREATE TABLE {$db_prefix}attachment (
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
-  addtime bigint(20) NOT NULL default '0',
-  width smallint(5) NOT NULL default '0',
-  height smallint(5) NOT NULL default '0',
-  mimetype varchar(40) NOT NULL default '',
+  addtime bigint(20) NOT NULL,
   thumfor smallint(5) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
@@ -358,11 +355,13 @@ CREATE TABLE {$db_prefix}navi (
   hide enum('n','y') NOT NULL default 'n',
   taxis smallint(4) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
+  type tinyint(3) unsigned NOT NULL default '0',
+  type_id mediumint(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '首页', '', 1, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '微语', 't', 2, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '登录', 'admin', 3, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (2, '微语', 't', 2, 'y', 2);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,

@@ -224,9 +224,10 @@ function blog_navi(){
 	$navi_cache = $CACHE->readCache('navi');
 	?>
 	<ul>
-	<?php 
+	<?php
+	$currentUrl = BLOG_URL . trim(Dispatcher::setPath(), '/');
 	foreach($navi_cache as $value):
-		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['type'] == 1 && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
@@ -235,8 +236,7 @@ function blog_navi(){
 			continue;
 		endif;
 		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
-		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
-		$current_tab = (BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url']) ? 'current' : 'common';
+		$current_tab = trim($value['url'], '/') == $currentUrl ? 'current' : 'common';
 		?>
 		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
 	<?php endforeach; ?>

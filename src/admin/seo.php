@@ -62,6 +62,6 @@ if ($action == 'update') {
 	foreach ($getData as $key => $val) {
 		Option::updateOption($key, $val);
 	}
-	$CACHE->updateCache('options');
+	$CACHE->updateCache(array('options', 'navi'));
 	header('Location: ./seo.php?activated=1');
 }
