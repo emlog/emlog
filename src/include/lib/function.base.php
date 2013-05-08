@@ -1005,8 +1005,5 @@ if(!function_exists('hash_hmac')) {
 	$ct['xsl'] = 'text/xml';
 	$ct['xml'] = 'text/xml';
 	
-	if (!$type = $ct[strtolower($extension)]) {
-		$type = 'text/html';
-	}
-	return $type;
+	return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }

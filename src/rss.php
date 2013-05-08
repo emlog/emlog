@@ -52,9 +52,20 @@ END;
  *
  * @return array
  */
-function getBlog($sort = null) {
+function getBlog($sortid = null) {
 	$DB = MySql::getInstance();
-	$subsql = $sort ? "and sortid=$sort" : '';
+	$sorts = Cache::getInstance()->readCache('sort');
+	if (isset($sorts[$sortid])) {
+		$sort = $sorts[$sortid];
+		if ($sort['pid'] != 0 || empty($sort['children'])) {
+			$subsql = "and sortid=$sortid";
+		} else {
+			$sortids = array_merge(array($sortid), $sort['children']);
+			$subsql = "and sortid in (" . implode(',', $sortids) . ")";
+		}
+	} else {
+		$subsql = $sortid ? "and sortid=$sortid" : '';
+	}
 	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');
 	$result = $DB->query($sql);
 	$blog = array();
