@@ -62,7 +62,7 @@ if ($action== 'add') {
 	}
 
 	$Sort_Model->addSort($sortname, $alias, $taxis, $pid, $description);
-	$CACHE->updateCache('sort');
+	$CACHE->updateCache(array('sort', 'navi'));
 	emDirect("./sort.php?active_add=1");
 }
 
@@ -114,13 +114,13 @@ if ($action == 'update') {
 	}
 
 	$Sort_Model->updateSort($sort_data, $sid);
-	$CACHE->updateCache(array('sort', 'logsort'));
+	$CACHE->updateCache(array('sort', 'logsort', 'navi'));
 	emDirect("./sort.php?active_edit=1");
 }
 
 if ($action == 'del') {
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
 	$Sort_Model->deleteSort($sid);
-	$CACHE->updateCache(array('sort', 'logsort'));
+	$CACHE->updateCache(array('sort', 'logsort', 'navi'));
 	emDirect("./sort.php?active_del=1");
 }

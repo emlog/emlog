@@ -196,11 +196,6 @@ class Url {
 			//分类
 			case 4:
 				$url = Url::sort($typeId);
-				foreach ($sorts as $sort) {
-					if ($sort['pid'] == $typeId) {
-						$children[] = $sort;
-					}
-				}
 				break;
 			//页面
 			case 5:
