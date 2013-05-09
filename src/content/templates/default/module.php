@@ -227,7 +227,7 @@ function blog_navi(){
 	<?php
 	$currentUrl = BLOG_URL . trim(Dispatcher::setPath(), '/');
 	foreach($navi_cache as $value):
-		if($value['type'] == 1 && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['type'] == 3 && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
