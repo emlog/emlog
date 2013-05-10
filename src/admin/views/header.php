@@ -31,7 +31,7 @@
     </div>
     <div id="header_right"></div>
     <div id="header_menu">
-    你好，<a href="./blogger.php"><?php echo subString($user_cache[UID]['name'], 0, 12) ?> <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" height="20" width="20" style="border:1px #FFFFFF solid;" /></a><span>|</span>
+    <a href="./blogger.php" title="<?php echo subString($user_cache[UID]['name'], 0, 12) ?>"><img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top"/></a><span>|</span>
     <?php if (ROLE == 'admin'):?>
     <a href="configure.php"> 设置</a><span>|</span>
 	<?php endif;?>
