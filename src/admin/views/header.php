@@ -25,15 +25,14 @@
     <a href="../" target="_blank" title="在新窗口浏站点">
     <?php 
     $blog_name = Option::get('blogname');
-    echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 30);
+    echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 24);
     ?>
     </a>
     </div>
     <div id="header_right"></div>
     <div id="header_menu">
-    你好，<a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?> <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" height="20" width="20" style="border:1px #FFFFFF solid;" /></a><span>|</span>
+    你好，<a href="./blogger.php"><?php echo subString($user_cache[UID]['name'], 0, 12) ?> <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" height="20" width="20" style="border:1px #FFFFFF solid;" /></a><span>|</span>
     <?php if (ROLE == 'admin'):?>
-	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"> 换模板</a><span>|</span>
     <a href="configure.php"> 设置</a><span>|</span>
 	<?php endif;?>
 	<a href="./?action=logout">退出</a>
