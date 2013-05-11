@@ -29,6 +29,11 @@ if ($action== "mod_tag") {
 if ($action=='update_tag') {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
+    
+    if (empty($tagName)) {
+        emDirect("tag.php?action=mod_tag&tid=$tagId&error_a=1");
+    }
+    
 	$Tag_Model->updateTagName($tagId, $tagName);
 	$CACHE->updateCache(array('tags', 'logtags'));
 	emDirect("./tag.php?active_edit=1");

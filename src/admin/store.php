@@ -43,7 +43,7 @@ if ($action == 'addon') {
 	$source = 'http://www.emlog.net' . $source;
     $handle = fopen($source, "rb");
     if (FALSE === $handle) {
-        exit('error');
+        exit('error_get');
     }
     $contents = '';
     while (!feof($handle)) {
@@ -60,6 +60,6 @@ if ($action == 'addon') {
     if($ret === 0) {
         exit('succ');
     } else {
-        exit('error');
+        exit('error_zip');
     }
 }
