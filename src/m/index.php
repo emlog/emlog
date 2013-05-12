@@ -292,8 +292,9 @@ if (ISLOGIN === true && $action == 't') {
     );
 
 	if ($attach['tmp_name']) {
-		$upfname = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], array('jpg', 'jpeg','png'), false, false);
-		$size = @getimagesize($upfname);
+		$fileinfo = uploadFile($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], array('jpg', 'jpeg','png'), false, false);
+		$upfname = $fileinfo['file_path'];
+        $size = @getimagesize($upfname);
 		$w = $size[0];
 		$h = $size[1];
 		if ($w>150 || $h>120) {

@@ -15,6 +15,7 @@
 </div>
 <div class="clear"></div>
 <?php if (ROLE == 'admin'):?>
+<div style="margin-top: 20px;">
 <div id="admindex_servinfo">
 <h3>站点信息</h3>
 <ul>
@@ -33,6 +34,7 @@
 <ul></ul>
 </div>
 <div class="clear"></div>
+</div>
 </div>
 <script>
 $(document).ready(function(){
