@@ -15,6 +15,10 @@ $index_lognum = 5;
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
+if (Option::get('ismobile') == 'n') {
+	emMsg('手机访问版已关闭！', BLOG_URL);
+}
+
 // 首页
 if (empty ($action) && empty ($logid)) {
 	$Log_Model = new Log_Model();
