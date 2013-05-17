@@ -51,7 +51,7 @@ if ($action == 'addon') {
 
     while (!feof($rh)) {
         if (fwrite($wh, fread($rh, 4096)) === FALSE) {
-            exit('error');
+            exit('error_get');
         }
     }
 
