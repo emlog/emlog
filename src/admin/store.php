@@ -46,7 +46,7 @@ if ($action == 'addon') {
     $rh = fopen($source, 'rb');
     $wh = fopen($temp_file, 'w+b');
     if ( ! $rh || ! $wh) {
-        exit('error');
+        exit('error_get');
     }
 
     while (!feof($rh)) {
