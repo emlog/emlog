@@ -40,20 +40,23 @@ if ($action == 'addon') {
     if (empty($source)) {
         exit('error');
     }
-	$source = 'http://www.emlog.net' . $source;
-    $handle = fopen($source, "rb");
-    if (FALSE === $handle) {
-        exit('error_get');
-    }
-    $contents = '';
-    while (!feof($handle)) {
-      $contents .= fread($handle, 8192);
-    }
-    fclose($handle);
 
-    $temp_file = tempnam('/tmp', 'emtemp_');
-    $handle = fopen($temp_file, "wb");
-    fwrite($handle, $contents);
+	$source = 'http://www.emlog.net' . $source;
+	$temp_file = tempnam('/tmp', 'emtemp_');
+    $rh = fopen($source, 'rb');
+    $wh = fopen($temp_file, 'w+b');
+    if ( ! $rh || ! $wh) {
+        exit('error');
+    }
+
+    while (!feof($rh)) {
+        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
+            exit('error');
+        }
+    }
+
+    fclose($rh);
+    fclose($wh);	
 
     $unzip_path = $source_type == 'tpl' ? '../content/templates/' : '../content/plugins/';
 	$ret = emUnZip($temp_file, $unzip_path, $source_type);
