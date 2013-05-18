@@ -8,17 +8,14 @@ class Link_Model {
 
 	private $db;
 
-	function __construct()
-	{
+	function __construct() {
 		$this->db = MySql::getInstance();
 	}
 
-	function getLinks()
-	{
+	function getLinks() {
 		$res = $this->db->query("SELECT * FROM ".DB_PREFIX."link ORDER BY taxis ASC");
 		$links = array();
-		while($row = $this->db->fetch_array($res))
-		{
+		while($row = $this->db->fetch_array($res)) {
 			$row['sitename'] = htmlspecialchars($row['sitename']);
 			$row['description'] = subString(htmlClean($row['description'], false),0,80);
 			$row['siteurl'] = $row['siteurl'];
@@ -27,34 +24,29 @@ class Link_Model {
 		return $links;
 	}
 
-	function updateLink($linkData, $linkId)
-	{
+	function updateLink($linkData, $linkId) {
 		$Item = array();
-		foreach ($linkData as $key => $data)
-		{
+		foreach ($linkData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
 		$this->db->query("update ".DB_PREFIX."link set $upStr where id=$linkId");
 	}
 
-	function addLink($name, $url, $des, $taxis)
-	{
-		if($taxis > 30000 || $taxis < 0) {
+	function addLink($name, $url, $des, $taxis) {
+		if ($taxis > 30000 || $taxis < 0) {
 			$taxis = 0;
 		}
 		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description,taxis) values('$name','$url','$des', $taxis)";
 		$this->db->query($sql);
 	}
 
-	function getOneLink($linkId)
-	{
+	function getOneLink($linkId) {
 		$sql = "select * from ".DB_PREFIX."link where id=$linkId ";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		$linkData = array();
-		if($row)
-		{
+		if ($row) {
 			$linkData = array(
 			'sitename' => htmlspecialchars(trim($row['sitename'])),
 			'siteurl' => htmlspecialchars(trim($row['siteurl'])),
@@ -64,8 +56,7 @@ class Link_Model {
 		return $linkData;
 	}
 
-	function deleteLink($linkId)
-	{
+	function deleteLink($linkId) {
 		$this->db->query("DELETE FROM ".DB_PREFIX."link where id=$linkId");
 	}
 

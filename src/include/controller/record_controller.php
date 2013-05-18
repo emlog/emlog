@@ -6,10 +6,6 @@
  */
 
 class Record_Controller {
-
-	/**
-	 * Frontend archive post list
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -19,7 +15,6 @@ class Record_Controller {
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;

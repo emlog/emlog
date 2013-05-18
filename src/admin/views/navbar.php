@@ -9,6 +9,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['nav_not_del']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['category_select']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['page_select']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -40,13 +41,14 @@
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
-	  	<a href="<?php echo @$value['siteurl']; ?>" target="_blank">
+	  	<a href="<?php echo $value['url']; ?>" target="_blank">
 	  	<img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['url']; ?></td>
         <td>
+        <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>">编辑</a>
         <?php if($value['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');"><? echo $lang['remove']; ?></a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');" class="care"><? echo $lang['remove']; ?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -55,7 +57,7 @@
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order']; ?>" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order']; ?>" class="button" /></div>
 </form>
 <div id="navi_add">
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
@@ -64,7 +66,8 @@
 	<ul id="navi_add_custom">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
 	<li><input maxlength="200" style="width:100px;" name="naviname" /><? echo $lang['nav_name']; ?></li>
-	<li><input maxlength="200" style="width:186px;" name="url" /><? echo $lang['nav_url']; ?></li>
+	<li>
+	<input maxlength="200" style="width:175px;" name="url" id="url" /><? echo $lang['nav_url']; ?></li>
     <li><? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	</ul>
@@ -85,7 +88,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li><? echo $lang['category_no_yet']; ?></li>
+	<li><? echo $lang['category_no_yet']; ?>, <a href="sort.php">新建分类</a></li>
 	<?php endif;?> 
 	</ul>
 </div>
@@ -105,16 +108,16 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li><? echo $lang['no_pages_yet']; ?></li>
+	<li><? echo $lang['no_pages_yet']; ?>, <a href="page.php">新建页面</a></li>
 	<?php endif;?> 
 	</ul>
 </div>
 </form>
 </div>
 <script>
-$("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : 'none');
-$("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : 'none');
-$("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : 'none');
+$("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
+$("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
+$("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : '');
 $(document).ready(function(){
 	$("#adm_navi_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_navi_list tbody tr")

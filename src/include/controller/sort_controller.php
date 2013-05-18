@@ -6,10 +6,6 @@
  */
 
 class Sort_Controller {
-
-	/**
-	 * Frontend category list
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -20,7 +16,6 @@ class Sort_Controller {
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 
@@ -45,13 +40,20 @@ if(empty($navibar)) {
 
 		$sort_cache = $CACHE->readCache('sort');
 		if (!isset($sort_cache[$sortid])) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
-		$sortName = $sort_cache[$sortid]['sortname'];
+		$sort = $sort_cache[$sortid];
+		$sortName = $sort['sortname'];
 		//page meta
 		$site_title = $sortName . ' - ' . $site_title;
-
-		$sqlSegment = "and sortid=$sortid order by date desc";
+		$site_description = !empty($sort_cache[$sortid]['description']) ? $sort_cache[$sortid]['description'] : $sort_cache[$sortid]['description'];
+		if ($sort['pid'] != 0 || empty($sort['children'])) {
+			$sqlSegment = "and sortid=$sortid";
+		} else {
+			$sortids = array_merge(array($sortid), $sort['children']);
+			$sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
+		}
+		$sqlSegment .=  " order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= Url::sort($sortid, 'page');
 

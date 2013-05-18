@@ -62,14 +62,14 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-    $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
 	//check alias
 	if (!empty($alias)) {
 		$logalias_cache = $CACHE->readCache('logalias');
-	    $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
+		$alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
 	}
 
 	$logData = array(
@@ -85,22 +85,22 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
 	if($pageId > 0){//auto-save, add into update
 		$emPage->updateLog($logData, $pageId);
-	}else{
+	} else{
 		$pageId = $emPage->addlog($logData);
 	}
 
-	$CACHE->updateCache(array('logatts', 'options', 'logalias'));
+	$CACHE->updateCache(array('options', 'logalias'));
 
-	switch ($action){
+	switch ($action) {
 		case 'autosave':
 			echo "autosave_gid:{$pageId}_df:0_";
 			break;
 		case 'add':
 		case 'edit':
-			if($action == 'add') {
-				emDirect("./page.php?active_hide_n=true");//The page is published successfully
+			if ($action == 'add') {
+				emDirect("./page.php?active_hide_n=1");//The page is published successfully
 			} else {
-				emDirect("./page.php?active_savepage=true");//The page is saved successfully
+				emDirect("./page.php?active_savepage=1");//The page is saved successfully
 			}
 			break;
 	}
@@ -112,29 +112,29 @@ if ($action == 'operate_page') {
 
 	$emPage = new Log_Model();
 
-	switch ($operate){
+	switch ($operate) {
 		case 'del':
-			foreach($pages as $value){
+			foreach ($pages as $value) {
 				$emPage->deleteLog($value);
 				unset($navibar[$value]);
 			}
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment', 'logalias'));
+			$CACHE->updateCache(array('options', 'sta', 'comment', 'logalias'));
 
-			emDirect("./page.php?active_del=true");
+			emDirect("./page.php?active_del=1");
 			break;
 		case 'hide':
 		case 'pub':
 			$ishide = $operate == 'hide' ? 'y' : 'n';
-			foreach($pages as $value){
+			foreach ($pages as $value) {
 				$emPage->hideSwitch($value, $ishide);
 				$navibar[$value]['hide'] = $ishide;
 			}
 			$navibar = addslashes(serialize($navibar));
 			Option::updateOption('navibar', $navibar);
-			$CACHE->updateCache(array('logatts', 'options', 'sta', 'comment'));
-			emDirect("./page.php?active_hide_".$ishide."=true");
+			$CACHE->updateCache(array('options', 'sta', 'comment'));
+			emDirect("./page.php?active_hide_".$ishide."=1");
 			break;
 	}
 }

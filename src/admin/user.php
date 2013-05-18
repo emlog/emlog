@@ -10,7 +10,11 @@ $User_Model = new User_Model();
 
 //User Management page
 if ($action == '') {
-	$users = $User_Model->getUsers();
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$users = $User_Model->getUsers($page);
+    $usernum = $User_Model->getUserNum();
+    $pageurl =  pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
+
 	include View::getView('header');
 	require_once View::getView('user');
 	include View::getView('footer');
@@ -24,16 +28,16 @@ if ($action== 'new') {
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
 
 	if ($login == '') {
-		emDirect('./user.php?error_login=true');
+		emDirect('./user.php?error_login=1');
 	}
 	if ($User_Model->isUserExist($login)) {
-		emDirect('./user.php?error_exist=true');
+		emDirect('./user.php?error_exist=1');
 	}
 	if (mb_strlen($password) < 6) {
-		emDirect('./user.php?error_pwd_len=true');
+		emDirect('./user.php?error_pwd_len=1');
 	}
 	if ($password != $password2) {
-		emDirect('./user.php?error_pwd2=true');
+		emDirect('./user.php?error_pwd2=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
@@ -41,7 +45,7 @@ if ($action== 'new') {
 
 	$User_Model->addUser($login, $password, $role);
 	$CACHE->updateCache(array('sta','user'));
-	emDirect('./user.php?active_add=true');
+	emDirect('./user.php?active_add=1');
 }
 
 if ($action== 'edit') {
@@ -53,7 +57,7 @@ if ($action== 'edit') {
 	$ex1 = $ex2 = '';
 	if ($role == 'writer') {
 		$ex1 = 'selected="selected"';
-	} elseif($role == 'admin') {
+	} elseif ($role == 'admin') {
 	 	$ex2 = 'selected="selected"';
 	}
 
@@ -76,34 +80,34 @@ if ($action=='update') {
 		emDirect('./user.php');
 	}
 	if ($login == '') {
-		emDirect("./user.php?action=edit&uid={$uid}&error_login=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
 	}
 	if ($User_Model->isUserExist($login, $uid)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_exist=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
 	}
 	if (mb_strlen($password) > 0 && mb_strlen($password) < 6) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
 	}
 	if ($password != $password2) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=true");
+		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
 	}
 
-    $userData = array('username' => $login,
-                        'nickname' => $nickname,
-                        'email' => $email,
-                        'description' => $description,
-    					'role' => $role,
-                        );
+	$userData = array('username' => $login,
+						'nickname' => $nickname,
+						'email' => $email,
+						'description' => $description,
+						'role' => $role,
+						);
 
-    if (!empty($password)) {
-    	$PHPASS = new PasswordHash(8, true);
-    	$password = $PHPASS->HashPassword($password);
-        $userData['password'] = $password;
-    }
+	if (!empty($password)) {
+		$PHPASS = new PasswordHash(8, true);
+		$password = $PHPASS->HashPassword($password);
+		$userData['password'] = $password;
+	}
 
 	$User_Model->updateUser($userData, $uid);
 	$CACHE->updateCache('user');
-	emDirect('./user.php?active_update=true');
+	emDirect('./user.php?active_update=1');
 }
 
 if ($action== 'del') {
@@ -116,5 +120,5 @@ if ($action== 'del') {
 
 	$User_Model->deleteUser($uid);
 	$CACHE->updateCache(array('sta','user'));
-	emDirect('./user.php?active_del=true');
+	emDirect('./user.php?active_del=1');
 }

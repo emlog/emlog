@@ -110,18 +110,18 @@ function checkalias(){
 		$("#msg").html('');
 	}
 }
-function addattach_img(fileurl,imgsrc,aid){
-	if (KE.g['content'].wyswygMode == false){
+function addattach_img(fileurl,imgsrc,aid, width, height, alt){
+	if (editorMap['content'].designMode === false){
 		alert(l_wysiwyg_first);
-	}else if(imgsrc != "") {
-		KE.insertHtml('content','<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" alt=\"'+l_show_orig_img+'\" border=\"0\"></a>');
+	}else if (imgsrc != "") {
+		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+l_show_orig_img+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){
-	if (KE.g['content'].wyswygMode == false){
+	if (editorMap['content'].designMode === false){
 		alert(l_wysiwyg_first);
 	} else {
-		KE.insertHtml('content', '<a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a>');
+		editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
 	}
 }
 function insertTag (tag, boxId){
@@ -140,11 +140,12 @@ function insertTag (tag, boxId){
 function autosave(act){
 	var nodeid = "as_logid";
 	if (act == 3 || act == 4){
+		editorMap['content'].sync();
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
 		var logid = $("#as_logid").val();
-		var content = KE.html('content');
+		var content = $('#content').val();
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
@@ -159,6 +160,8 @@ function autosave(act){
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}else{
+	    editorMap['content'].sync();
+	    editorMap['excerpt'].sync();
 		var url = "save_log.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
@@ -167,8 +170,8 @@ function autosave(act){
 		var date = $.trim($("#date").val());
 		var logid = $("#as_logid").val();
 		var author = $("#author").val();
-		var content = KE.html('content');
-		var excerpt = KE.html('excerpt');
+		var content = $('#content').val();
+		var excerpt = $('#excerpt').val();
 		var tag = $.trim($("#tag").val());
 		var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
@@ -217,7 +220,7 @@ function autosave(act){
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
-		var isrespone=/^autosave\_gid\:\d+\_df\:\d*\_$/;
+		var isrespone=/autosave\_gid\:\d+\_df\:\d*\_/;
 		if(isrespone.test(data)){
 			var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
 			var logid = getvar[1];

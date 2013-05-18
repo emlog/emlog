@@ -6,10 +6,6 @@
  */
 
 class Search_Controller {
-
-	/**
-	 * Frontend blog search
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -19,16 +15,15 @@ class Search_Controller {
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
-		$keyword = isset($params[1]) && $params[1] == 'keyword' ? addslashes(urldecode(trim($params[2]))) : '';
+		$keyword = isset($params[1]) && $params[1] == 'keyword' ? trim($params[2]) : '';
+		$keyword = addslashes(htmlspecialchars(urldecode($keyword)));
+		$keyword = str_replace(array('%', '_'), array('\%', '\_'), $keyword);
 
 		$start_limit = ($page - 1) * $index_lognum;
 		$pageurl = '';
 
-		$keyword = str_replace('%','\%',$keyword);
-		$keyword = str_replace('_','\_',$keyword);
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page=';

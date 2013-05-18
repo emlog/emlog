@@ -3,11 +3,13 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['comments_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived"><? echo $lang['comments_approved_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived"><? echo $lang['comments_hide_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">修改评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_rep'])):?><span class="actived"><? echo $lang['comment_replied_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['comments_select'];?></span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['comments_select_operation'];?></span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['reply_empty']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['reply_is_long']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">评论内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
@@ -53,13 +55,14 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
-		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');"><? echo $lang['remove']; ?></a>
+		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');" class="care"><? echo $lang['remove']; ?></a>
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_approve']; ?></a>
 		<?php else: ?>
 		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_hide']; ?></a>
 		<?php endif;?>
 		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['reply']; ?></a>
+        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
@@ -72,7 +75,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   </table>
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
-    <a href="javascript:commentact('del');"><? echo $lang['remove'];?></a>
+    <a href="javascript:commentact('del');" class="care"><? echo $lang['remove'];?></a>
 	<a href="javascript:commentact('hide');"><? echo $lang['comments_hide'];?></a>
 	<a href="javascript:commentact('pub');"><? echo $lang['comments_approve'];?></a>
 	<input name="operate" id="operate" value="" type="hidden" />

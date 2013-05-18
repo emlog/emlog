@@ -14,17 +14,16 @@ class Cache {
 	private $user_cache;
 	private $sta_cache;
 	private $comment_cache;
-    private $tags_cache;
-    private $sort_cache;
-    private $link_cache;
-    private $navi_cache;
-    private $newlog_cache;
-    private $newtw_cache;
+	private $tags_cache;
+	private $sort_cache;
+	private $link_cache;
+	private $navi_cache;
+	private $newlog_cache;
+	private $newtw_cache;
 	private $record_cache;
-    private $logtags_cache;
-    private $logsort_cache;
-    private $logalias_cache;
-    private $logatts_cache;
+	private $logtags_cache;
+	private $logsort_cache;
+	private $logalias_cache;
 
 	private function __construct() {
 		$this->db = MySql::getInstance();
@@ -98,8 +97,8 @@ class Cache {
 		$user_cache = array();
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
 		while ($row = $this->db->fetch_array($query)) {
-            $photo = array();
-            $avatar = '';
+			$photo = array();
+			$avatar = '';
 			if(!empty($row['photo'])){
 				$photosrc = str_replace("../", '', $row['photo']);
 				$imgsize = chImageSize($row['photo'], Option::ICON_MAX_W, Option::ICON_MAX_H);
@@ -112,8 +111,8 @@ class Cache {
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = array(
-			    'photo' => $photo,
-			    'avatar' => $avatar,
+				'photo' => $photo,
+				'avatar' => $avatar,
 				'name_orig' => $row['nickname'],
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
@@ -127,7 +126,7 @@ class Cache {
 	 * Blog statistics cache
 	 */
 	private function mc_sta() {
-	    $sta_cache = array();
+		$sta_cache = array();
 		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
@@ -136,7 +135,7 @@ class Cache {
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
 
 		$sta_cache = array(
-		    'lognum' => $lognum,
+			'lognum' => $lognum,
 			'draftnum' => $draftnum,
 			'comnum' => $comnum,
 			'comnum_all' => $comnum + $hidecom,
@@ -152,7 +151,7 @@ class Cache {
 			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
 			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-            $twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
+			$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
 
 			$sta_cache[$row['uid']] = array(
 				'lognum' => $logNum,
@@ -177,7 +176,7 @@ class Cache {
 		}
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
-        $com_cids = array();
+		$com_cids = array();
 		while ($show_com = $this->db->fetch_array($query)) {
 			$com_page = '';
 			if($comment_paging == 'y') {
@@ -199,7 +198,7 @@ class Cache {
 				$com_page = intval(floor(array_search($cid, $com_cids[$show_com['gid']]) / $comment_pnum)) + 1;
 			}
 			$com_cache[] = array(
-			    'cid' => $show_com['cid'],
+				'cid' => $show_com['cid'],
 				'gid' => $show_com['gid'],
 				'name' => htmlspecialchars($show_com['poster']),
 				'date' => $show_com['date'],
@@ -255,11 +254,11 @@ class Cache {
 			$usenum = substr_count($show_tag['gid'], ',') - 1;
 			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
 			$tag_cache[] = array(
-			         'tagurl' => urlencode($show_tag['tagname']),
-			         'tagname' => htmlspecialchars($show_tag['tagname']),
-			         'fontsize' => $fontsize,
-			         'usenum' => $usenum
-			         );
+					'tagurl' => urlencode($show_tag['tagname']),
+					'tagname' => htmlspecialchars($show_tag['tagname']),
+					'fontsize' => $fontsize,
+					'usenum' => $usenum
+					);
 		}
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData, 'tags');
@@ -269,16 +268,24 @@ class Cache {
 	 */
 	private function mc_sort() {
 		$sort_cache = array();
-		$query = $this->db->query("SELECT sid,sortname,alias,taxis FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
-			$sort_cache[$row['sid']] = array(
-				     'lognum' => $logNum,
-				     'sortname' => htmlspecialchars($row['sortname']),
-					 'alias' =>$row['alias'],
-				     'sid' => intval($row['sid']),
-				     'taxis' => intval($row['taxis'])
-				    );
+			$sortData = array(
+				'lognum' => $logNum,
+				'sortname' => htmlspecialchars($row['sortname']),
+				'description' => htmlspecialchars($row['description']),
+				'alias' =>$row['alias'],
+				'sid' => intval($row['sid']),
+				'taxis' => intval($row['taxis']),
+				'pid' => intval($row['pid']),
+				);
+			if ($sortData['pid'] == 0) {
+				$sortData['children'] = array();
+			} elseif (isset($sort_cache[$row['pid']])) {
+				$sort_cache[$row['pid']]['children'][] = $row['sid'];
+			}
+			$sort_cache[$row['sid']] = $sortData;
 		}
 		$cacheData = serialize($sort_cache);
 		$this->cacheWrite($cacheData, 'sort');
@@ -291,7 +298,7 @@ class Cache {
 		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
 			$link_cache[] = array(
-			    'link' => htmlspecialchars($show_link['sitename']),
+				'link' => htmlspecialchars($show_link['sitename']),
 				'url' => htmlspecialchars($show_link['siteurl']),
 				'des' => htmlspecialchars($show_link['description'])
 				);
@@ -305,12 +312,22 @@ class Cache {
 	private function mc_navi() {
 		$navi_cache = array();
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY taxis ASC");
+		$sorts = $this->readCache('sort');
 		while ($row = $this->db->fetch_array($query)) {
+			$children = array();
+			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
+			if ($row['type'] == 4 && !empty($sorts[$row['type_id']]['children'])) {
+				foreach ($sorts[$row['type_id']]['children'] as $sortid) {
+					$children[] = $sorts[$sortid];
+				}
+			}
 			$navi_cache[] = array(
 					'naviname' => htmlspecialchars(trim($row['naviname'])),
-					'url' => htmlspecialchars(trim($row['url'])),
+					'url' => htmlspecialchars(trim($url)),
 					'newtab' => $row['newtab'],
-					'isdefault' => $row['isdefault'],
+					'type' => intval($row['type']),
+					'typeId' => intval($row['type_id']),
+					'children' => $children,
 				);
 		}
 		$cacheData = serialize($navi_cache);
@@ -343,8 +360,8 @@ class Cache {
 		$res = $this->db->query($sql);
 		$tws = array();
 		while ($row = $this->db->fetch_array($res)) {
-		    $row['id'] = $row['id'];
-		    $row['t'] = $row['content'];
+			$row['id'] = $row['id'];
+			$row['t'] = emoFormat($row['content']);
 			$row['date'] = $row['date'];
 			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
@@ -356,12 +373,14 @@ class Cache {
 	 * Blog archive cache
 	 */
 	private function mc_record() {
+		$timezone = Option::get('timezone');
 		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
 		$record_cache = array();
 		while ($show_record = $this->db->fetch_array($query)) {
+			$show_record['date'] = $show_record['date'] + $timezone * 3600;
 			$f_record = gmdate('Y_n', $show_record['date']);
 			if ($record != $f_record) {
 				$h = $p-1;
@@ -432,45 +451,18 @@ class Cache {
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');
 	}
-    /**
-     * Blog post alias cache
-     */
-    private function mc_logalias() {
-        $sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
-        $query = $this->db->query($sql);
-        $log_cache_alias = array();
-        while ($row = $this->db->fetch_array($query)) {
-            $log_cache_alias[$row['gid']] = $row['alias'];
-        }
-        $cacheData = serialize($log_cache_alias);
-        $this->cacheWrite($cacheData, 'logalias');
-    }
 	/**
-	 * Post/page attachment cache
+     * Blog post alias cache
 	 */
-	private function mc_logatts() {
-		$sql = "SELECT gid FROM " . DB_PREFIX . "blog";
+	private function mc_logalias() {
+		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
 		$query = $this->db->query($sql);
-		$log_cache_atts = array();
+		$log_cache_alias = array();
 		while ($row = $this->db->fetch_array($query)) {
-			$logid = $row['gid'];
-			$attachment = array();
-			$attQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE blogid=$logid ");
-			while ($show_attach = $this->db->fetch_array($attQuery)) {
-				$att_path = $show_attach['filepath']; //eg: ../uploadfile/200710/b.jpg
-				$atturl = substr($att_path, 3); //eg: uploadfile/200710/b.jpg
-				$postfix = strtolower(substr(strrchr($show_attach['filename'], "."), 1));
-				if (!in_array($postfix, array('jpg', 'jpeg', 'gif', 'png', 'bmp'))) {
-					$attachment['url'] = $atturl;
-					$attachment['filename'] = $show_attach['filename'];
-					$attachment['size'] = changeFileSize($show_attach['filesize']);
-					$log_cache_atts[$logid][] = $attachment;
-				}
-			}
+			$log_cache_alias[$row['gid']] = $row['alias'];
 		}
-		$cacheData = serialize($log_cache_atts);
-		$this->cacheWrite($cacheData, 'logatts');
-		unset($log_cache_atts);
+		$cacheData = serialize($log_cache_alias);
+		$this->cacheWrite($cacheData, 'logalias');
 	}
 
 	/**

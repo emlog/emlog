@@ -9,8 +9,7 @@ require_once 'globals.php';
 $Log_Model = new Log_Model();
 
 //Published/Drafts posts management page
-if($action == '')
-{
+if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$User_Model = new User_Model();
 
@@ -26,36 +25,33 @@ if($action == '')
 	$sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
 
 	$sqlSegment = '';
-	if($tagId)
-	{
+	if ($tagId) {
 		$blogIdStr = $Tag_Model->getTagById($tagId);
 		$sqlSegment = "and gid IN ($blogIdStr)";
-	}elseif ($sid){
+	} elseif ($sid) {
 		$sqlSegment = "and sortid=$sid";
-	}elseif ($uid){
+	} elseif ($uid) {
 		$sqlSegment = "and author=$uid";
-	}elseif ($keyword) {
+	} elseif ($keyword) {
 		$sqlSegment = "and title like '%$keyword%'";
 	}
 	$sqlSegment .= ' ORDER BY ';
-	if(isset($_GET['sortView']))
-	{
+	if (isset($_GET['sortView'])) {
 		$sqlSegment .= "views $sortView";
-	}elseif(isset($_GET['sortComm'])){
+	} elseif (isset($_GET['sortComm'])) {
 		$sqlSegment .= "comnum $sortComm";
-	}elseif(isset($_GET['sortDate'])){
+	} elseif (isset($_GET['sortDate'])) {
 		$sqlSegment .= "date $sortDate";
-	}else {
+	} else {
 		$sqlSegment .= 'top DESC,date DESC';
 	}
 
 	$hide_state = $pid ? 'y' : 'n';
-	if($pid == 'draft')
-	{
+	if ($pid == 'draft') {
 		$hide_state = 'y';
 		$sorturl = '&pid=draft';
 		$pwd = $lang['drafts'];
-	}else{
+	} else{
 		$hide_state = 'n';
 		$sorturl = '';
 		$pwd = $lang['published'];
@@ -68,8 +64,7 @@ if($action == '')
 	$tags = $Tag_Model->getTag();
 
 	$subPage = '';
-	foreach ($_GET as $key=>$val)
-	{
+	foreach ($_GET as $key=>$val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
 	$pageurl =  pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
@@ -80,88 +75,85 @@ if($action == '')
 }
 
 //Blog Operation
-if($action == 'operate_log')
-{
+if ($action == 'operate_log') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
 	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$author = isset($_POST['author']) ? intval($_POST['author']) : '';
 
-	if($operate == '')
-	{
-		emDirect("./admin_log.php?pid=$pid&error_b=true");
+	if ($operate == '') {
+		emDirect("./admin_log.php?pid=$pid&error_b=1");
 	}
-	if(empty($logs))
-	{
-		emDirect("./admin_log.php?pid=$pid&error_a=true");
+	if (empty($logs)) {
+		emDirect("./admin_log.php?pid=$pid&error_a=1");
 	}
 
-	switch ($operate)
-	{
+	switch ($operate) {
 		case 'del':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
+				doAction('before_del_log', $val);
 				$Log_Model->deleteLog($val);
 				doAction('del_log', $val);
 			}
 			$CACHE->updateCache();
-			if($pid == 'draft')
+			if ($pid == 'draft')
 			{
-				emDirect("./admin_log.php?pid=draft&active_del=true");
-			}else{
-				emDirect("./admin_log.php?active_del=true");
+				emDirect("./admin_log.php?pid=draft&active_del=1");
+			} else{
+				emDirect("./admin_log.php?active_del=1");
 			}
 			break;
 		case 'top':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('top'=>'y'), $val);
 			}
-			emDirect("./admin_log.php?active_up=true");
+			emDirect("./admin_log.php?active_up=1");
 			break;
 		case 'notop':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('top'=>'n'), $val);
 			}
-			emDirect("./admin_log.php?active_down=true");
+			emDirect("./admin_log.php?active_down=1");
 			break;
 		case 'hide':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_hide=true");
+			emDirect("./admin_log.php?active_hide=1");
 			break;
 		case 'pub':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->hideSwitch($val, 'n');
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?pid=draft&active_post=true");
+			emDirect("./admin_log.php?pid=draft&active_post=1");
 			break;
 		case 'move':
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('sortid'=>$sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
-			emDirect("./admin_log.php?active_move=true");
+			emDirect("./admin_log.php?active_move=1");
 			break;
 		case 'change_author':
 			if (ROLE != 'admin')
 			{
 				formMsg($lang['access_disabled'],'./');
 			}
-			foreach($logs as $val)
+			foreach ($logs as $val)
 			{
 				$Log_Model->updateLog(array('author'=>$author), $val);
 			}
 			$CACHE->updateCache('sta');
-			emDirect("./admin_log.php?active_change_author=true");
+			emDirect("./admin_log.php?active_change_author=1");
 			break;
 	}
 }

@@ -67,7 +67,7 @@ class Dispatcher {
         }
 
         if (empty($this->_model)) {
-        	emMsg('404', BLOG_URL);
+			show_404_page();
         }
     }
 

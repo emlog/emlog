@@ -1,7 +1,7 @@
 <?php 
-/*
+/**
 * Self-built page template
-*/
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">

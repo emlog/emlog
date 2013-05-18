@@ -124,7 +124,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
-    <a href="javascript:logact('del');"><? echo $lang['remove']; ?></a> | 
+    <a href="javascript:logact('del');" class="care"><? echo $lang['remove']; ?></a> | 
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');"><? echo $lang['publish'];?></a>
 	<?php else: ?>

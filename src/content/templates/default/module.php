@@ -1,7 +1,7 @@
 <?php 
-/*
+/**
 * Sidebar widgets
-*/
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <?php
@@ -63,11 +63,27 @@ function widget_sort($title){
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="blogsort">
-	<?php foreach($sort_cache as $value): ?>
+	<?php
+	foreach($sort_cache as $value):
+		if ($value['pid'] != 0) continue;
+	?>
 	<li>
 	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="订阅该分类"/></a>
+	<?php if (!empty($value['children'])): ?>
+		<ul>
+		<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+			$value = $sort_cache[$key];
+		?>
+		<li>
+			<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
 	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_feed'];?>"/></a>
-	</li>
+		</li>
+		<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -85,7 +101,8 @@ function widget_twitter($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-	<li><?php echo $value['t']; ?><p><?php echo smartDate($value['date']); ?> </p></li>
+	<?php $img = empty($value['img']) ? "" : '<a title="查看图片" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
+	<li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
 	<p><a href="<?php echo BLOG_URL . 't/'; ?>"><? echo $lang['more']; ?> &raquo;</a></p>
@@ -135,7 +152,22 @@ function widget_newlog($title){
 <?php }?>
 
 <?php
-//widget: Random Post
+//widget：热门文章
+function widget_hotlog($title){
+	$index_hotlognum = Option::get('index_hotlognum');
+	$Log_Model = new Log_Model();
+	$randLogs = $Log_Model->getHotLog($index_hotlognum);?>
+	<li>
+	<h3><span><?php echo $title; ?></span></h3>
+	<ul id="hotlog">
+	<?php foreach($randLogs as $value): ?>
+	<li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+	<?php endforeach; ?>
+	</ul>
+	</li>
+<?php }?>
+<?php
+//widget：随机文章
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');
 	$Log_Model = new Log_Model();
@@ -157,7 +189,7 @@ function widget_search($title){
 ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
-	<ul id="logserch">
+	<ul id="logsearch">
 	<form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
 	<input name="keyword" class="search" type="text" />
 	</form>
@@ -223,18 +255,19 @@ function blog_navi(){
 	$navi_cache = $CACHE->readCache('navi');
 	?>
 	<ul>
-	<?php 
+	<?php
+	$currentUrl = BLOG_URL . trim(Dispatcher::setPath(), '/');
 	foreach($navi_cache as $value):
-		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['type'] == 3 && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
 			<?php 
 			continue;
 		endif;
 		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
-		$value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
-		$current_tab = (BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url']) ? 'current' : 'common';
+		$current_tab = trim($value['url'], '/') == $currentUrl ? 'current' : 'common';
 		?>
 		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
 	<?php endforeach; ?>
@@ -253,7 +286,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'">'.$lang['edit'].'</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -271,7 +304,7 @@ function blog_sort($blogid){
 <?php }?>
 
 <?php
-
+//blog:Blog Tags
 //blog: Blog Tags
 function blog_tag($blogid){
 	global $lang;

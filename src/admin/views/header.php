@@ -7,6 +7,7 @@
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>管理中心 - <?php echo Option::get('blogname'); ?></title>
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
@@ -14,126 +15,103 @@
 <script src="../lang/<?php echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/js/common.js"></script>
 <?php doAction('adm_head');?>
-<title><?php echo Option::get('blogname'); ?> - <? echo $lang['admin_center']; ?></title>
 </head>
 <body>
-<div class="center">
-<table id=header cellspacing=0 cellpadding=0 width="988" border=0>
-  <tbody>
-  <tr>
-    <td width="9" id="headerleft"></td>
-    <td width="125"  class="logo" align="left"><a href="./" title="<? echo $lang['return_to_admin_center']; ?>">emlog</a></td>
-    <td class="vesion" width="20"><?php echo Option::EMLOG_VERSION; ?></td>
-    <td  class="home" align="left"><a href="../" target="_blank" title="<? echo $lang['site_in_new_window']; ?>">
+<div id="mainpage">
+<div id="header">
+    <div id="header_left"></div>
+    <div id="header_logo"><a href="./" title="返回管理首页">emlog</a></div>
+    <div id="header_vesion"><?php echo Option::EMLOG_VERSION; ?></div>
+    <div id="header_title">
+    <a href="../" target="_blank" title="在新窗口浏站点">
     <?php 
-    	$blog_name = Option::get('blogname');
-    	if (empty($blog_name)) {
-    		$blog_name = $lang['site_view'];
-    	}
-    	echo subString($blog_name, 0, 60);
+    $blog_name = Option::get('blogname');
+    echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 24);
     ?>
-    </a></td>
-    <td align=right nowrap class="headtext">
+    </a>
+    </div>
+    <div id="header_right"></div>
+    <div id="header_menu">
+    <a href="./blogger.php" title="<?php echo subString($user_cache[UID]['name'], 0, 12) ?>">
+        <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" width="20" height="20" />
+    </a><span>|</span>
     <?php if (ROLE == 'admin'):?>
-	<? echo $lang['hello']; ?>, <a href="./blogger.php"><?php echo $user_cache[UID]['name'] ?>
-	<img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" 
-	align="top" height="20" width="20" style="border:1px #FFFFFF solid;" />
-	</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="configure.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"><? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<a href="template.php" ><img src="./views/images/skin.gif" align="absmiddle" border="0"><? echo $lang['templates']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-	<?php else:?>
-	<a href="blogger.php"><img src="./views/images/setting.gif" align="absmiddle" border="0"> <? echo $lang['settings']; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="configure.php"> 设置</a><span>|</span>
 	<?php endif;?>
 	<a href="./?action=logout"><? echo $lang['logout']; ?></a>
-	</td>
-    <td width="9" id="headerright" ></td>
-	</tbody>
-</table>
-<table cellspacing=0 cellpadding=0 width="100%" border=0>
-<tbody >
-  <tr>
-    <td valign=top align=left width="114">
-    <div id=sidebartop></div>
-	<table cellspacing=0 cellpadding=0 width="100%" border=0>
-        <tbody>
-        <tr>
-          <td valign=top align=left width="114">
-            <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('log_mg', 1);"><? echo $lang['publications'];?></div>
-			<div id="log_mg">
-            <div class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><? echo $lang['post_add'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_draft"><a href="admin_log.php?pid=draft"><? echo $lang['drafts'];?><span id="dfnum">
-			<?php 
-			if (ROLE == 'admin'){
-				echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
-			}else{
-				echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
-			}
-			?>
-			</span></a></div>
-			<div class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><? echo $lang['posts'];?></a></div>
-			<div class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><? echo $lang['twitters'];?></a></div>
-			<?php if (ROLE == 'admin'):?>
-            <div class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></div>
-            <div class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></div>
-            <?php endif;?>
-            <div class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a></div>
-            <?php
-			$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-			if ($hidecmnum > 0):
-			$n = $hidecmnum > 999 ? '...' : $hidecmnum;
-			?>
+    </div>
+</div>
+<div id="side">
+	<div id="sidebartop"></div>
+    <div id="log_mg">
+		<li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
+		<li class="sidebarsubmenu" id="menu_draft">
+    	<a href="admin_log.php?pid=draft">草稿<span id="dfnum">
+		<?php 
+		if (ROLE == 'admin'){
+			echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
+		}else{
+			echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
+		}
+		?>
+		</span></a></li>
+		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><? echo $lang['posts'];?></a></li>
+		<?php if (ROLE == 'admin'):?>
+            <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></li>
+            <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></li>
+    	<?php endif;?>
+        <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a> </li>
+   		<?php
+		$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+		if ($hidecmnum > 0):
+		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
+		?>
 			<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?> <? echo $lang['comments_pending'];?>"> <?php echo $n; ?></a></div>
-			<?php endif; ?>
-            <div class="sidebarsubmenu" id="menu_tb"><a href="trackback.php"><? echo $lang['trackbacks'];?></a></div>
-			</div>
-			</div>
-       	    </td>
-		  </tr>
-		</tbody>
-	</table>
-	<?php if (ROLE == 'admin'):?>
-      <table cellspacing=0 cellpadding=0 width="100%" border=0 >
-        <tbody>
-        <tr>
-          <td valign=top align=left width=114>
-            <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('blog_mg', 1);"><? echo $lang['management'];?></div>
-            <div id="blog_mg">
-            <div class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['widgets'];?></a></div>
-            <div class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><? echo $lang['navbar']; ?></a></div>
-			<div class="sidebarsubmenu" id="menu_page"><a href="page.php" ><? echo $lang['pages']; ?></a></div>
-			<div class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links']; ?></a></div>
-			<div class="sidebarsubmenu" id="menu_user"><a href="user.php" ><? echo $lang['users']; ?></a></div>
-			<div class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></div>
-			</div>
-			</div>
-			</td>
-		  </tr>
-		</tbody>
-	</table>
-	<table cellspacing=0 cellpadding=0 width="100%" border=0>
-      <tbody>
-        <tr>
-          <td valign=top align=left width=114>
-            <div id=sidebar>
-            <div class="sidebarmenu" onclick="displayToggle('extend_mg', 1);"><? echo $lang['extensions'];?></div>
-			<div id="extend_mg">
-            <div class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><img src="./views/images/plugin.gif" align="absbottom" border="0"> <? echo $lang['plugins'];?></a></div>
-            <?php doAction('adm_sidebar_ext'); ?>
-			</div>
-			</div>
-       	    </td>
-		  </tr>
-		</tbody>
-	</table>
-	<?php endif;?>
+		<?php endif; ?>
+		<?php if (Option::get('istrackback') == 'y'): ?>
+    	<li class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></li>
+    	<?php endif;?>
+    	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
+		<?php if (ROLE == 'admin'):?>
+    	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
+   	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
+    	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
+    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></li>
+    	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></li>
+    	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
+    	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
+        <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
+        <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
+		<?php endif;?>
+    </div>
+    <?php if (ROLE == 'admin'):?>
+    <div id="extend_mg">
+    	<li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
+		<?php doAction('adm_sidebar_ext'); ?>
+    </div>
+    <?php endif;?>
 	<div id="sidebarBottom"></div>
-</td>
-<td id=container valign=top align=left>
+</div>
+<div id="container">
 <?php doAction('adm_main_top'); ?>
 <script>
-$("#blog_mg").css('display', $.cookie('em_blog_mg') ? $.cookie('em_blog_mg') : '');
-$("#log_mg").css('display', $.cookie('em_log_mg') ? $.cookie('em_log_mg') : '');
+<!--边栏折叠-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
+if ($.cookie('em_extend_ext')) {
+	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
+}
+$("#menu_ext").toggle(
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass);
+	  },
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass);
+	  }
+);
 </script>

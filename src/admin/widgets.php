@@ -7,7 +7,7 @@
 require_once 'globals.php';
 
 //Display widget management panel
-if($action == '') {
+if ($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
 	$widgets = Option::get('widgets'.$wgNum);
 	$widgetTitle = Option::get('widget_title');
@@ -21,9 +21,9 @@ if($action == '') {
 
 	$customWgTitle = array();
 	foreach ($widgetTitle as $key => $val) {
-		if(preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
+		if (preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
 			$customWgTitle[$key] = $matchs[1];
-		}else{
+		} else {
 			$customWgTitle[$key] = $val;
 		}
 	}
@@ -35,7 +35,7 @@ if($action == '') {
 }
 
 //Modify the widget settings
-if($action == 'setwg') {
+if ($action == 'setwg') {
 	$widgetTitle = Option::get('widget_title'); //The current title of all the widgets
 	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';	        //The widget to modify
 	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';   //New widget name
@@ -62,12 +62,16 @@ if($action == 'setwg') {
 			$CACHE->updateCache('newtw');
 			break;
 		case 'newlog':
-			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 10;
+			$index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 5;
 			Option::updateOption('index_newlognum', $index_newlog);
 			$CACHE->updateCache('newlog');
 			break;
+		case 'hotlog':
+			$index_hotlognum = isset($_POST['index_hotlognum']) ? intval($_POST['index_hotlognum']) : 5;
+			Option::updateOption('index_hotlognum', $index_hotlognum);
+			break;
 		case 'random_log':
-			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 20;
+			$index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 5;
 			Option::updateOption('index_randlognum', $index_randlognum);
 			break;
 		case 'custom_text':
@@ -79,15 +83,15 @@ if($action == 'setwg') {
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
 			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Widget id to remove
 			//Add a new custom widget
-			if($new_content) {
+			if ($new_content) {
 				//Determine the widget index
 				$i = 0;
 				$maxKey = 0;
-				if(is_array($custom_widget)) {
+				if (is_array($custom_widget)) {
 					foreach ($custom_widget as $key => $val) {
 						preg_match("/^custom_wg_(\d+)/", $key, $matches);
 						$k = $matches[1];
-						if($k > $i) {
+						if ($k > $i) {
 							$maxKey = $k;
 						}
 						$i = $k;
@@ -98,16 +102,16 @@ if($action == 'setwg') {
 				$custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				Option::updateOption('custom_widget', $custom_widget_str);
-			}elseif ($content){
+			} elseif ($content) {
 				$custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
 				$custom_widget_str = addslashes(serialize($custom_widget));
 				Option::updateOption('custom_widget', $custom_widget_str);
-			}elseif ($rmwg){
-				for($i=1; $i<5; $i++) {
+			} elseif ($rmwg) {
+				for ($i=1; $i<5; $i++) {
 					$widgets = Option::get('widgets'.$i);
-					if(is_array($widgets) && !empty($widgets)) {
+					if (is_array($widgets) && !empty($widgets)) {
 						foreach ($widgets as $key => $val) {
-							if($val == $rmwg) {
+							if ($val == $rmwg) {
 								unset($widgets[$key]);
 							}
 						}
@@ -122,11 +126,11 @@ if($action == 'setwg') {
 			break;
 	}
 	$CACHE->updateCache('options');
-	emDirect("./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=1");
 }
 
 //Save widget sorting
-if($action == 'compages') {
+if ($action == 'compages') {
 	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3...
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	Option::updateOption("widgets{$wgNum}", $widgets);
@@ -135,7 +139,7 @@ if($action == 'compages') {
 }
 
 //Reset widget settings
-if($action == 'reset') {
+if ($action == 'reset') {
 	$widget_title = serialize(Option::getWidgetTitle());
 	$default_widget = serialize(Option::getDefWidget());
 
@@ -144,5 +148,5 @@ if($action == 'reset') {
 	Option::updateOption("widgets1", $default_widget);
 
 	$CACHE->updateCache('options');
-	emDirect("./widgets.php?activated=true");
+	emDirect("./widgets.php?activated=1");
 }

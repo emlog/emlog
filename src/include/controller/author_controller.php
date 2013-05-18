@@ -6,10 +6,6 @@
  */
 
 class Author_Controller {
-
-	/**
-	 * Output of front-end author post list
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -20,7 +16,6 @@ class Author_Controller {
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '' ;
@@ -30,7 +25,7 @@ if(empty($navibar)) {
 
 		$user_cache = $CACHE->readCache('user');
 		if (!isset($user_cache[$author])) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 
 		$author_name = $user_cache[$author]['name'];

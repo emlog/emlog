@@ -8,8 +8,7 @@ class Comment_Model {
 
 	private $db;
 
-	function __construct()
-	{
+	function __construct() {
 		$this->db = MySql::getInstance();
 	}
 
@@ -22,29 +21,25 @@ class Comment_Model {
 	 * @param int $page
 	 * @return array
 	 */
-	function getComments($spot = 0, $blogId = null, $hide = null, $page = null)
-	{
+	function getComments($spot = 0, $blogId = null, $hide = null, $page = null) {
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
 		$condition = '';
-		if($page && $spot == 1)
-		{
+		if ($page && $spot == 1) {
 			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}
-		if($spot == 0 || $spot == 2)
-		{
+		if ($spot == 0 || $spot == 2) {
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.date ASC $condition";
-		}else{
+		} else {
 			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
 			$sql = "SELECT *,a.hide,a.date FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.date DESC $condition";
 		}
 		$ret = $this->db->query($sql);
 		$comments = array();
-		while($row = $this->db->fetch_array($ret))
-		{
+		while ($row = $this->db->fetch_array($ret)) {
 			$row['poster'] = htmlspecialchars($row['poster']);
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
@@ -57,71 +52,73 @@ class Comment_Model {
 			//$row['gid'];
 			$comments[$row['cid']] = $row;
 		}
-		if($spot == 0) {
-            $commentStacks = array();
-            $commentPageUrl = '';
-			foreach($comments as $cid => $comment) {
+		if ($spot == 0) {
+			$commentStacks = array();
+			$commentPageUrl = '';
+			foreach ($comments as $cid => $comment) {
 				$pid = $comment['pid'];
-                if($pid == 0) $commentStacks[] = $cid;
-				if($pid != 0 && isset($comments[$pid])) {
-					if($comments[$cid]['level'] > 4) {
+				if ($pid == 0) {
+					$commentStacks[] = $cid;
+				}
+				if ($pid != 0 && isset($comments[$pid])) {
+					if ($comments[$cid]['level'] > 4) {
 						$comments[$cid]['pid'] = $pid = $comments[$pid]['pid'];
 					}
 					$comments[$pid]['children'][] = $cid;
 				}
 			}
-            if(Option::get('comment_order') == 'newer') {
-			    $comments = array_reverse($comments, true);
-			    $commentStacks = array_reverse($commentStacks);
-            }
-            if(Option::get('comment_paging') == 'y') {
-                $pageurl = Url::log($blogId);
-                if(Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
-                    $pageurl .= '&comment-page=';
-                } else {
-                    $pageurl .= '/comment-page-';
-                }
-                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl, '#comments');
-                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
-            }
-            $comments = compact('comments','commentStacks','commentPageUrl');
-		} elseif($spot == 2) {
-            $commentStacks = array_keys($comments);
-            $commentPageUrl = '';
-			if(Option::get('comment_order') == 'newer') {
-			    $comments = array_reverse($comments, true);
-			    $commentStacks = array_reverse($commentStacks);
-            }
-            if(Option::get('comment_paging') == 'y') {
-                $pageurl = './?post=' . $blogId . '&comment-page=';
-                $commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
-                $commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
-            }
-            $comments = compact('comments','commentStacks','commentPageUrl');
+			if (Option::get('comment_order') == 'newer') {
+				$comments = array_reverse($comments, true);
+				$commentStacks = array_reverse($commentStacks);
+			}
+			if (Option::get('comment_paging') == 'y') {
+				$pageurl = Url::log($blogId);
+				if (Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
+					$pageurl .= '&comment-page=';
+				} else {
+					$pageurl .= '/comment-page-';
+				}
+				$commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl, '#comments');
+				$commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+			}
+			$comments = compact('comments','commentStacks','commentPageUrl');
+		} elseif ($spot == 2) {
+			$commentStacks = array_keys($comments);
+			$commentPageUrl = '';
+			if (Option::get('comment_order') == 'newer') {
+				$comments = array_reverse($comments, true);
+				$commentStacks = array_reverse($commentStacks);
+			}
+			if (Option::get('comment_paging') == 'y') {
+				$pageurl = './?post=' . $blogId . '&comment-page=';
+				$commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl);
+				$commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
+			}
+			$comments = compact('comments','commentStacks','commentPageUrl');
 		}
 		return $comments;
 	}
 
-	function getOneComment($commentId)
-	{
+	function getOneComment($commentId) {
 		$timezone = Option::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
+		if ($this->db->affected_rows() < 1) {
+			return false;
+		}
 		$commentArray = $this->db->fetch_array($res);
 		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
-		$commentArray['poster'] = trim($commentArray['poster']);
+		$commentArray['poster'] = htmlspecialchars($commentArray['poster']);
 		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;
 	}
 
-	function getCommentNum($blogId = null, $hide = null)
-	{
+	function getCommentNum($blogId = null, $hide = null) {
 		$comNum = '';
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if (ROLE == 'admin')
-		{
+		if (ROLE == 'admin') {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a where $andQuery";
 		}else {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
@@ -131,15 +128,14 @@ class Comment_Model {
 		return $comNum;
 	}
 
-	function delComment($commentId)
-	{
+	function delComment($commentId) {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
 		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
-		while($row = $this->db->fetch_array($query)) {
-			if(in_array($row['pid'],$commentIds)) {
+		while ($row = $this->db->fetch_array($query)) {
+			if (in_array($row['pid'],$commentIds)) {
 				$commentIds[] = $row['cid'];
 			}
 		}
@@ -148,15 +144,14 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
-	function hideComment($commentId)
-	{
+	function hideComment($commentId) {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
 		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
-		while($row = $this->db->fetch_array($query)) {
-			if(in_array($row['pid'],$commentIds)) {
+		while ($row = $this->db->fetch_array($query)) {
+			if (in_array($row['pid'],$commentIds)) {
 				$commentIds[] = $row['cid'];
 			}
 		}
@@ -165,13 +160,12 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
-	function showComment($commentId)
-	{
+	function showComment($commentId) {
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
 		/* Get parent comment ID */
-		while($row['pid'] != 0) {
+		while ($row['pid'] != 0) {
 			$commentId = intval($row['pid']);
 			$commentIds[] = $commentId;
 			$row = $this->db->once_fetch_array("SELECT pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -181,17 +175,16 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
-	function replyComment($blogId, $pid, $content, $hide)
-	{
+	function replyComment($blogId, $pid, $content, $hide) {
 		$CACHE = Cache::getInstance();
 		$user_cache = $CACHE->readCache('user');
-		if(isset($user_cache[UID])) {
+		if (isset($user_cache[UID])) {
 			$name = addslashes($user_cache[UID]['name_orig']);
 			$mail = addslashes($user_cache[UID]['mail']);
 			$url = addslashes(BLOG_URL);
 			$ipaddr = getIp();
 			$utctimestamp = time();
-			if($pid != 0) {
+			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
 				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
@@ -204,33 +197,27 @@ class Comment_Model {
 	/**
 	 * Batch processing of comments
 	 */
-	function batchComment($action, $comments)
-	{
-		switch ($action)
-		{
+	function batchComment($action, $comments) {
+		switch ($action) {
 			case 'delcom':
-				foreach($comments as $val)
-				{
+				foreach($comments as $val) {
 					$this->delComment($val);
 				}
 				break;
 			case 'hidecom':
-				foreach($comments as $val)
-				{
+				foreach($comments as $val) {
 					$this->hideComment($val);
 				}
 				break;
 			case 'showcom':
-				foreach($comments as $val)
-				{
+				foreach($comments as $val) {
 					$this->showComment($val);
 				}
 				break;
 		}
 	}
 
-	function updateCommentNum($blogId)
-	{
+	function updateCommentNum($blogId) {
 		$sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
 		$res = $this->db->once_fetch_array($sql);
 		$comNum = $res['count(*)'];
@@ -243,6 +230,7 @@ class Comment_Model {
 		global $lang;
 		$ipaddr = getIp();
 		$utctimestamp = time();
+
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
 			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
@@ -260,55 +248,77 @@ class Comment_Model {
 		if ($hide == 'n') {
 			$this->db->query('UPDATE '.DB_PREFIX."blog SET comnum = comnum + 1 WHERE gid='$blogId'");
 			$CACHE->updateCache(array('sta', 'comment'));
-            doAction('comment_saved', $cid);
-            header('Location: ' . Url::log($blogId).'#'.$cid);
+			doAction('comment_saved', $cid);
+			emDirect(Url::log($blogId).'#'.$cid);
 		} else {
-		    $CACHE->updateCache('sta');
-		    doAction('comment_saved', $cid);
+			$CACHE->updateCache('sta');
+			doAction('comment_saved', $cid);
 		    emMsg($lang['comment_posted_premod'], Url::log($blogId));
 		}
 	}
 
-	function isCommentExist($blogId, $name, $content)
-	{
+    
+	/**
+	 * 修改评论
+	 *
+	 * @param array $commentData
+	 * @param int $commentId
+	 */
+	function updateComment($commentData, $commentId) {
+		$Item = array();
+		foreach ($commentData as $key => $data) {
+			$Item[] = "$key='$data'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET $upStr WHERE cid=$commentId");
+	}
+
+	function isCommentExist($blogId, $name, $content) {
 		$query = $this->db->query("SELECT cid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
 		$result = $this->db->num_rows($query);
-		if ($result > 0)
-		{
+		if ($result > 0) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 
-	function isNameAndMailValid($name, $mail)
-	{
+	function isNameAndMailValid($name, $mail) {
 		$CACHE = Cache::getInstance();
 		$user_cache = $CACHE->readCache('user');
 		foreach($user_cache as $user) {
-			if($user['name'] == $name || ($mail != '' && $user['mail'] == $mail)) {
+			if ($user['name'] == $name || ($mail != '' && $user['mail'] == $mail)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	function isLogCanComment($blogId)
-	{
+
+	function isLogCanComment($blogId) {
 		if (Option::get('iscomment') == 'n') {
 			return false;
 		}
 		$query = $this->db->query("SELECT allow_remark FROM ".DB_PREFIX."blog WHERE gid=$blogId");
 		$show_remark = $this->db->fetch_array($query);
-		if ($show_remark['allow_remark'] == 'n' || $show_remark === false)
-		{
+		if ($show_remark['allow_remark'] == 'n' || $show_remark === false) {
 			return false;
 		}else {
 			return true;
 		}
 	}
 
-	function setCommentCookie($name,$mail,$url)
-	{
+	function isCommentTooFast() {
+		$ipaddr = getIp();
+		$utctimestamp = time() - Option::get('comment_interval');
+
+		$sql = 'select count(*) as num from ' . DB_PREFIX."comment where date > $utctimestamp AND ip='$ipaddr'";
+		$res = $this->db->query($sql);
+		$row = $this->db->fetch_array($res);
+
+		return intval($row['num']) > 0 ? true : false;
+	}
+
+	function setCommentCookie($name,$mail,$url) {
 		$cookietime = time() + 31536000;
 		setcookie('commentposter',$name,$cookietime);
 		setcookie('postermail',$mail,$cookietime);

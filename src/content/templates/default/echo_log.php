@@ -1,7 +1,7 @@
 <?php 
-/*
+/**
 * Read the blog page
-*/
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <div id="content">

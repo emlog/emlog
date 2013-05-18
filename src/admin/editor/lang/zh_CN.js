@@ -1,3 +1,11 @@
+/*******************************************************************************
+* KindEditor - WYSIWYG HTML Editor for Internet
+* Copyright (C) 2006-2011 kindsoft.net
+*
+* @author Roddy <luolonghao@gmail.com>
+* @site http://www.kindsoft.net/
+* @licence http://www.kindsoft.net/license.php
+*******************************************************************************/
 
 (function (KE, undefined) {
 
@@ -194,3 +202,43 @@ plugins.fontname = {
 };
 
 })(KindEditor);
+	'baidumap.address' : '地址: ',
+	'baidumap.search' : '搜索',
+	'baidumap.insertDynamicMap' : '插入动态地图',
+	'anchor.name' : '锚点名称',
+	'formatblock.formatBlock' : {
+		h1 : '标题 1',
+		h2 : '标题 2',
+		h3 : '标题 3',
+		h4 : '标题 4',
+		p : '正 文'
+	},
+	'fontname.fontName' : {
+		'SimSun' : '宋体',
+		'NSimSun' : '新宋体',
+		'FangSong_GB2312' : '仿宋_GB2312',
+		'KaiTi_GB2312' : '楷体_GB2312',
+		'SimHei' : '黑体',
+		'Microsoft YaHei' : '微软雅黑',
+		'Arial' : 'Arial',
+		'Arial Black' : 'Arial Black',
+		'Times New Roman' : 'Times New Roman',
+		'Courier New' : 'Courier New',
+		'Tahoma' : 'Tahoma',
+		'Verdana' : 'Verdana'
+	},
+	'lineheight.lineHeight' : [
+		{'1' : '单倍行距'},
+		{'1.5' : '1.5倍行距'},
+		{'2' : '2倍行距'},
+		{'2.5' : '2.5倍行距'},
+		{'3' : '3倍行距'}
+	],
+	'template.selectTemplate' : '可选模板',
+	'template.replaceContent' : '替换当前内容',
+	'template.fileList' : {
+		'1.html' : '图片和文字',
+		'2.html' : '表格',
+		'3.html' : '项目编号'
+	}
+}, 'zh_CN');

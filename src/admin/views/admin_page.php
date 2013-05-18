@@ -45,8 +45,8 @@
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">
-<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a>
-    <? echo $lang['with_selected_do'];?>:
+<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do'];?>:
+<a href="javascript:pageact('del');" class="care">删除</a> | 
 <a href="javascript:pageact('del');"><? echo $lang['remove'];?></a> 
 <a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>

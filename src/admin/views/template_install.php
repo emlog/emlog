@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi1" href="./template.php"><? echo $lang['template_current']; ?></a>
 <a class="navi2" href="./template.php?action=install"><? echo $lang['template_install']; ?></a>
@@ -10,7 +9,7 @@
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['template_non_standard']; ?></span><?php endif;?>
 </div>
 <?php if(isset($_GET['error_c'])): ?>
-<div style="margin:20px 10px;">
+<div style="margin:20px 20px;">
 <div class="des">
 <? echo $lang['template_install_manually']; ?>
 </div>
@@ -24,24 +23,8 @@
 	</li>
 </div>
 </form>
-<div class="containertitle2">
-<span class="navi3"><? echo $lang['official_recommendation']; ?></span>
-</div>
-
-<div id="recommend_template">
-<p><a href="http://www.emlog.net/templates" target="_blank"><? echo $lang['template_more']; ?>&raquo;</a></p>
-<div id="recommend_template_list" style="overflow: hidden;text-align: center;">
-<span class="ajax_remind_1"><? echo $lang['loading']; ?>...</span>
-</div>
-</div>
+<div style="margin:10px 20px;">获取更多模板：<a href="store.php">应用中心&raquo;</a></div>
 <script>
-$(document).ready(function(){
-	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
-		var items = [];
-		$.each(data, function(i,item){
-			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="180" height="140"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>'+l_author+': '+item.author+'</li> </ul>');
-		});
-		$("#recommend_template_list").html(items.join(""));
-	});
-});
+setTimeout(hideActived,2600);
+$("#menu_tpl").addClass('sidebarsubmenu1');
 </script>

@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $Trackback_Model = new Trackback_Model();
 
-if($action == '')
+if ($action == '')
 {
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -21,17 +21,15 @@ if($action == '')
 	include View::getView('footer');View::output();
 }
 //Delete Trackback
-if($action == 'dell')
+if ($action == 'dell')
 {
 	$tbs = isset($_POST['tb']) ? array_map('intval', $_POST['tb']) : array();
-	if(!$tbs)
-	{
-		emDirect("./trackback.php?error_a=true");
+	if (!$tbs) {
+		emDirect("./trackback.php?error_a=1");
 	}
-	foreach($tbs as $value)
-	{
+	foreach ($tbs as $value) {
 		$Trackback_Model->deleteTrackback($value);
 	}
 	$CACHE->updateCache('sta');
-	emDirect("./trackback.php?active_del=true");
+	emDirect("./trackback.php?active_del=1");
 }

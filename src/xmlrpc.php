@@ -11,7 +11,6 @@ define('EMLOG_ROOT', dirname(__FILE__));
 
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
-require_once EMLOG_ROOT . '/include/lib/function.login.php';
 
 $api_methods = array(
 	// metaWeblog interface
@@ -595,7 +594,7 @@ function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// Check user permissions
-	if (!checkUser($username, $password , '', 'n')) {
+	if (!LoginAuth::checkUser($username, $password , '', 'n')) {
 		error_message(403, $lang['user_name_pass_wrong']);
 		return false;
 	}

@@ -10,9 +10,18 @@
     <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
+    <input type="hidden" name="img" id="imgPath" />
     <div class="msg"><? echo $lang['twitter_length_max']; ?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/></div>
+    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
+	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
+    <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
+    <div id="img_name" class="twImg" style="display:none;">
+        <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
+        <a href="javascript:;" onclick="unSelectFile()"> [取消]</a>
+        <div id="img_pop"></div>
+    </div>
+    <?php  doAction('twitter_form'); ?>
     </form>
     </div>
     <div class="clear"></div>
@@ -24,14 +33,15 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
+    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
-    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?></p>
+    <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?> <br/><?php echo $img;?></p>
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);"><? echo $lang['reply']; ?></a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');"><? echo $lang['remove']; ?></a> </p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');" class="care"><? echo $lang['remove']; ?></a> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>
@@ -44,38 +54,10 @@
 	 <li class="page"><?php echo $pageurl;?> (<? echo $lang['with']; ?><?php echo $twnum; ?> <? echo $lang['twitter_number']; ?>)</li>
     </ul>
 </div>
-<div id="tw_line">
-<h3><? echo $lang['twitters_last']; ?></h3>
-<ul class="tw_scroll"></ul>
-<div class="tw_footer"><a href="http://emer.emlog.net/" target="_blank"><? echo $lang['from_cloud']; ?></a></div>
-</div>
+<div id="faceWraps"></div>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="./views/js/emo.js"></script>
 <script>
-(function($){
-	$.fn.extend({
-		Scroll:function(opt,callback){
-			if(!opt) var opt={};
-			var _this=this.eq(0).find("ul:first");
-			var speed=opt.speed?parseInt(opt.speed,10):500,
-			timer=opt.timer?parseInt(opt.timer,10):3000;
-
-			scrollUp=function(){
-				var thisLi= _this.find("li:first");
-				var thisheight =thisLi.height();
-				thisLi.animate({opacity: 1,height:0}, speed,function(){
-				thisLi.appendTo(_this).css("opacity","1").height(thisheight);
-				});
-			}
-			 _this.hover(function(){
-				clearInterval(timerID);
-			},function(){
-				timerID=setInterval("scrollUp()",timer);
-			});
-				timerID=setInterval("scrollUp()",timer);
-		}        
-	})
-})(jQuery);
-$("#tw_line").Scroll({speed:1000,timer:8000});
-
 $(document).ready(function(){
     $(".post a").toggle(
       function () {
@@ -103,18 +85,84 @@ $(document).ready(function(){
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
     $(".box").focus();
-
-	//twitter line
-    $("#tw_line ul").html("<span class=\"ajax_remind_1\"><? echo $lang['loading']; ?>...</span>");
-	$.getJSON('http://emer.sinaapp.com/api/tw?callback=?',function(data){
-		var tw = '';
-		$.each(data,function(i,n){
-			tw+='<li><a target="_blank" href="'+n.blogurl+'"><img src="http://www.gravatar.com/avatar/'+n.emer_avatar+'?s=32" align="absmiddle" /> <span>'+n.blogname+'</span></a><div>'+n.content+'</div><span class="tw_date">'+n.date+'</span></li>'
+	
+	$("#custom_file_upload").uploadify({
+		id              : jQuery(this).attr('id'),
+		swf             : '../include/lib/js/uploadify/uploadify.swf',
+		uploader        : 'attachment.php?action=upload_tw_img',
+		cancelImage     : './views/images/cancel.png',
+		buttonText      : '选择图片',
+		checkExisting   : "/",
+		auto            : true,
+		multi           : false,
+		buttonCursor    : 'pointer',
+		fileTypeExts    : '*.jpg;*.png;*.gif;*.jpeg',
+		queueID         : 'custom-queue',
+		queueSizeLimit	: 100,
+		removeCompleted : false,
+		fileSizeLimit	: 20971520,
+		fileObjName     : 'attach',
+		postData		: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
+		onUploadSuccess : onUploadSuccess,
+		onUploadError   : onUploadError
+	});
+	
+	$("#face").click(function(e){
+		var wrap = $("#faceWraps");
+		if(!wrap.html()){
+			var emotionsStr = [];
+			$.each(emo,function(k,v){
+				emotionsStr.push('<img style="cursor: pointer;padding: 3px;" title="'+k+'" src="./editor/plugins/emoticons/images/'+v+'"/>');
+			});
+			wrap.html(emotionsStr.join(""));
+		}
+		
+		wrap.children().unbind('click').click(function () {
+			var val= $("textarea").val();
+			$("textarea").val((val||"")+$(this).attr("title"));
+			$("textarea").focus();
 		});
-		$("#tw_line ul").html("");
-		$('#tw_line ul').html(tw);
+
+		var offset = $(this).offset();
+		wrap.css({
+			left : offset.left,
+			top : offset.top
+		});
+		wrap.show();
+		e.stopPropagation();
+		e.preventDefault();
+		$(document.body).unbind('click').click(function (e) {
+			wrap.hide();
+		});
+		$(document).unbind('click').scroll(function (e) {
+			wrap.hide();
+		});
 	});
 });
+
+function onUploadSuccess(file, data, response){
+	var data = eval("("+data+")");
+	if(data.filePath){
+		$("#imgPath").val(data.filePath);
+		$("#img_select").hide();
+		$("#img_name").show();
+		$("#img_name_a").text(file.name);
+		$("#img_pop").html("<img src='"+data.filePath+"'/>");
+	}else{
+		alert("上传失败！");	
+	}
+}
+function onUploadError(file, errorCode, errorMsg, errorString){
+	alert(errorString);
+}
+function unSelectFile(){
+	$.get("attachment.php?action=del_tw_img",{filepath:$("#imgPath").val()});
+	$("#imgPath").val("");
+	$("#img_select").show();
+	$("#img_name").hide();
+	$("#img_name_a").text("{图片名称}");
+	$("#img_pop").empty();
+}
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
     $("#rp_"+tid+" textarea").focus();
@@ -168,8 +216,7 @@ function pubreply(rid,tid){
         });
 }
 function checkt(){
-    var t=$(".box").val();
-    var n=140 - t.length;
-    if (n<0){return false;}
+	var t=$(".box").val();
+    if (t.length > 140){return false;}
 }
 </script>

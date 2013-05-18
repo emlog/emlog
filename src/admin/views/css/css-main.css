@@ -1,14 +1,11 @@
-html {
-	overflow-y:scroll;
-}
+html {overflow-y:scroll;}
 fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 	margin:0;
 	padding:0;
 	border:0;
 }
-th {
-	text-align:left;
-}
+th {text-align:left;}
+li {list-style:none;}
 body {
 	font-size:12px;
 	color:#000;
@@ -17,25 +14,28 @@ body {
 	padding:0;
 	margin:0;
 }
-.mb-8 {
-	margin-bottom:8px;
-}
-.center {
+#mainpage {
 	margin:5px auto 0px;
 	width:988px;
 }
-li {
-	list-style:none;
-}
 #container {
 	padding-left:30px;
+	float:left;
+	width:840px;
 }
-#menu_wt a {
-	background:url(../images/addblog.gif) no-repeat 18px 1px;
+#footer{
+	clear:both;
+	margin:0px auto;
+	padding:18px 0px 12px;
+	text-align:center;
 }
-#menu_tw a {
-	background:url(../images/t.gif) no-repeat 20px 1px;
-}
+#menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
+#menu_tw a {background:url(../images/t.gif) no-repeat 20px 1px;}
+#menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
+#menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
+#menu_ext { cursor:pointer;}
+.menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
+.menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
 .containertitle {
 	background-position:left 3px;
 	font-size:14px;
@@ -164,7 +164,7 @@ li {
 	color:#F30
 }
 .care {
-	color:#F30
+	color:#C13932
 }
 .care2 {
 	color:#093
@@ -204,8 +204,9 @@ textarea {
 	float:left;
 	padding:0px 0px 0px 0px;
 	margin:5px 0px 0px 0px;
-	background-color:#ECEFF5;
-	width:405px
+	background-color:#F7F7F7;
+	border:1px solid #F0F0F0;
+	width:403px
 }
 .widget-top li {
 	float:left;
@@ -223,7 +224,9 @@ textarea {
 	padding:10px 10px;
 	display:none;
 	margin:0px 0px 5px 0px;
-	border:1px solid #E9F1FA
+	border-left:1px solid #F3F3F3;
+	border-right:1px solid #F3F3F3;
+	border-bottom:1px solid #F3F3F3;
 }
 .widget-act-del {
 	background:url(../images/icon_del.gif) no-repeat center;
@@ -240,7 +243,6 @@ textarea {
 	cursor:pointer;
 	height:15px
 }
-/*custom_widgets*/
 .wg_line {
 	float:left;
 	width:408px;
@@ -268,7 +270,8 @@ textarea {
 	padding:5px
 }
 .sortableitem {
-	background-color:#ECEFF5;
+	background-color:#F7F7F7;
+	border:1px solid #F0F0F0;
 	list-style:none;
 	margin:5px 0px;
 	padding:5px;
@@ -286,14 +289,6 @@ textarea {
 	border:#CCC 1px solid
 }
 .adm_tpl_list span {
-	color:#999999;
-	font-size:10px;
-}
-.adm_tpl_list span a {
-	color:#999999;
-	font-size:11px;
-}
-.adm_tpl_list span a:hover {
 	color:#999999;
 	font-size:10px;
 }
@@ -354,12 +349,6 @@ textarea {
 	height:28px;
 	width:80px
 }
-.sortname {
-	cursor:pointer;
-}
-.alias {
-	cursor:pointer;
-}
 .logtags {
 	margin-left:5px
 }
@@ -407,16 +396,29 @@ textarea {
 	padding:10px;
 	margin:10px 0px 5px 32px
 }
-#show_advset {
-	margin:3px 0px 0px 0px;
-	background:url(../images/advset.gif) no-repeat 56px 4px;
-	cursor:pointer
+#post{
+    width: 806px;
+}
+#post_bar {
+    margin:5px 0px;
+}
+.show_advset {
+	margin:3px 10px 0px 0px;
+    padding:0px 20px 0px 0px;
+	background:url(../images/advset.gif) no-repeat 54px 4px;
+	cursor:pointer;
+    width:76px;
+    font-weight:bold;
 }
 #advset {
 	display:none;
 	background-color:#F5F5F5;
 	border-top:#ECECEC solid 1px;
-	padding:5px 3px 10px 3px
+	padding:5px 2px 10px 2px
+}
+#post_button{
+    text-align: center;
+    margin:10px 0px;
 }
 #post_options {
 	float:right
@@ -600,8 +602,29 @@ textarea {
 	margin:0px 5px;
 }
 #tw .tbutton {
-	margin:3px 0px 0px 5px;
+	margin:5px 0px 0px 5px;
 	float:left;
+}
+#tw .twImg{
+	float:left;
+	margin: 7px 0 0 5px;
+	position: relative;
+}
+.t_img{
+	background:url(../images/img.gif) no-repeat;
+	padding: 0 7px;
+	margin: 0 0 0 10px;
+}
+#img_pop {
+	background: #F9F9F9;
+	border: 1px solid #E5E5E5;
+	display: none;
+	left: 0;
+	margin: 3px 0 8px;
+	padding: 4px;
+	position: absolute;
+	bottom: 10px;
+	z-index: 120;
 }
 #tw .tbutton input {
 	background:url(../images/weibe_button.gif) no-repeat;
@@ -733,45 +756,7 @@ textarea {
 	background:url(../images/loading.gif) no-repeat 200px 2px;
 	height:20px;
 }
-#tw_line {
-	margin:0px 0px 0px 20px;
-	padding-right:10px;
-	float:left;
-	width:235px;
-}
-#tw_line h3{
-    margin:0px;
-    font-size:14px;
-}
-#tw_line ul {
-	padding:1px;
-	width:235px;
-	height:280px;
-	overflow:hidden;
-	margin-left:0px;
-}
-#tw_line li {
-	margin:0px 0px 20px;
-}
-#tw_line img {
-	width:28px;
-	height:28px;
-	border:1px solid #EFEFEF;
-}
-#tw_line .tw_date {
-	color:#CCCCCC;
-	float:right;
-}
-#tw_line .tw_footer {
-	border-top:solid 1px #EFEFEF;
-	padding:5px 0px;
-}
-#tw_line .tw_footer a {
-	color:#999999;
-}
-#tw_line .tw_footer a:hover {
-	color:#CCCCCC;
-}
+/*后台风格*/
 #admin_style {
 	margin:10px 10px 10px 10px;
 }
@@ -902,10 +887,7 @@ textarea {
 	line-height:1.2em;
 	padding:4px 10px 4px 28px;
 }
-#user_new li,#sort_new li, #user_edit li, #navi_edit li, #seo li {
-	margin:12px 0px;
-}
-
+.item_edit li{margin:12px 0px;}
 #navi_add{
 	margin:20px 0px 120px 0px;
 }
@@ -932,14 +914,13 @@ textarea {
 	border-left:#E5E5E5 solid 1px;
 	border-right:#E5E5E5 solid 1px;
 	border-bottom:#E5E5E5 solid 1px;
-	padding:10px;
+	padding:8px;
 	background-color:#F6F6F6;
 	margin:0px;
 }
 #navi_add ul li{
 	padding:3px 0px;
 }
-
 #recommend_template{
 	width:750;
 }
@@ -972,4 +953,39 @@ textarea {
 }
 #recommend_plugin p{
 	padding:0px 40px;
+}
+#faceWraps{
+	display:none;
+	width: 300px;
+	overflow: auto;
+	position: absolute;
+	text-align: center;
+	z-index: 10000;
+	border-radius: 5px;
+	border: 1px solid #DDDDDD;
+	background: #FEFEFE;
+}
+#addon_ins{
+    border-radius: 5px;
+    border: 1px solid #DDDDDD;
+    width: 600px;
+    margin:30px auto;
+    padding:50px;
+    font-size: 14px;
+    text-align: center;
+}
+#addon_ins #addonload {
+	background:url(../images/loading.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+#addon_ins #addonsucc {
+	background:url(../images/icon_succ.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+#addon_ins #addonerror {
+	background:url(../images/icon_error.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
 }

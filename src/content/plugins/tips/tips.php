@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: tips
+Plugin Name: 小贴士
 Version: 1.1
 Plugin URL:
 Description: This is the first emlog plug-in, it will send a page of your management tips and warm.
-ForEmlog:4.2.1
+ForEmlog:5.1.0
 Author: emlog
 Author URL: http://www.emlog.net
 */
@@ -42,8 +42,7 @@ $array_tips = array(
 'Life lies in exercise, don\'t always face the computer, go for a walk',
 );
 
-function tips()
-{
+function tips() {
 	global $array_tips;
 	$i = mt_rand(0, count($array_tips) - 1);
 	$tip = $array_tips[$i];	
@@ -52,10 +51,8 @@ function tips()
 
 addAction('adm_main_top', 'tips');
 
-function tips_css()
-{
-	echo "
-	<style type='text/css'>
+function tips_css() {
+	echo "<style type='text/css'>
 	#tip{
 		background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
 		padding:3px 18px;
@@ -63,7 +60,7 @@ function tips_css()
 		font-size:12px;
 		color:#999999;
 	}
-	</style>";
+    </style>\n";
 }
 
 addAction('adm_head', 'tips_css');

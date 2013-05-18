@@ -6,10 +6,7 @@
  */
 
 class Comment_Controller {
-
-	/**
 	 * Add comment
-	 */
 	function addComment($params) {
 		global $lang;
 		$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
@@ -36,17 +33,19 @@ class Comment_Controller {
 
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->setCommentCookie($name,$mail,$url);
-		if($Comment_Model->isLogCanComment($blogId) === false){
+		if($Comment_Model->isLogCanComment($blogId) === false) {
             emMsg($lang['comments_disabled']);
-		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
+		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
             emMsg($lang['comment_allready_exists']);
-		} elseif (empty($name)){
+		} elseif ($Comment_Model->isCommentTooFast() === true) {
+			emMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论');
+		} elseif (empty($name)) {
             emMsg($lang['comment_name_empty']);
         } elseif (mb_strlen($name) > 20){
             emMsg($lang['comment_name_invalid']);
 		} elseif ($mail != '' && !checkMail($mail)) {
             emMsg($lang['comment_email_invalid']);
-		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
+		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
             emMsg($lang['comment_admin_restricted']);
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
             emMsg($lang['comment_error_homepage'],'javascript:history.back(-1);');
@@ -54,6 +53,8 @@ class Comment_Controller {
             emMsg($lang['comment_error_empty']);
         } elseif (mb_strlen($content) > 8000) {
             emMsg($lang['comment_invalid']);
+		} elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+			emMsg('评论失败：评论内容需包含中文');
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
             emMsg($lang['comment_captcha_invalid']);
 		} else {

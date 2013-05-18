@@ -15,7 +15,6 @@ define('EMLOG_ROOT', dirname(__FILE__));
 require_once EMLOG_ROOT.'/config.php';
 /*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
-require_once EMLOG_ROOT.'/include/lib/function.login.php';
 
 doStripslashes();
 
@@ -23,7 +22,7 @@ $CACHE = Cache::getInstance();
 
 $userData = array();
 
-define('ISLOGIN',	isLogin());
+define('ISLOGIN',	LoginAuth::isLogin());
 //User role: admin = administrator, writer = co-author, visitor = guest
 define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
 //User ID

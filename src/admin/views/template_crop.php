@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b><? echo $lang['image_crop']; ?></b> <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['template_changed_successfully']; ?></span><?php endif;?></div>
 <div class=line></div>
 <link href="../include/lib/js/imgareaselect/imgareaselect.css" type=text/css rel=stylesheet>
@@ -18,6 +17,8 @@
 </div>
 </form>
 <script type="text/javascript">
+setTimeout(hideActived,2600);
+$("#menu_tpl").addClass('sidebarsubmenu1');
 	function onEndCrop( coords ) {
 		jQuery( '#x1' ).val(coords.x);
 		jQuery( '#y1' ).val(coords.y);

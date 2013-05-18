@@ -6,10 +6,6 @@
  */
 
 class Tag_Controller {
-
-	/**
-	 * Front-end tag list
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -19,7 +15,6 @@ class Tag_Controller {
 if(empty($navibar)) {
 	$navibar = 'a:0:{}';
 }
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
@@ -34,7 +29,7 @@ if(empty($navibar)) {
 		$blogIdStr = $Tag_Model->getTagByName($tag);
 
 		if ($blogIdStr === false) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);

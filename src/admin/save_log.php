@@ -32,32 +32,32 @@ $postTime = $Log_Model->postDate(Option::get('timezone'), $postDate, $date);
 //check alias
 if (!empty($alias)) {
 	$logalias_cache = $CACHE->readCache('logalias');
-    $alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
+	$alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
 }
 
 $logData = array(
 	'title'=>$title,
-    'alias'=>$alias,
+	'alias'=>$alias,
 	'content'=>$content,
 	'excerpt'=>$excerpt,
 	'author'=>$author,
 	'sortid'=>$sort,
 	'date'=>$postTime,
-    'top'=>$top,
+	'top'=>$top,
 	'allow_remark'=>$allow_remark,
 	'allow_tb'=>$allow_tb,
 	'hide'=>$ishide,
 	'password'=>$password
 );
 
-if($blogid > 0) {//auto-save drafts, add into update
+if ($blogid > 0) {//auto-save drafts, add into update
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
-}else{
-    if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
-        $blogid = $Log_Model->addlog($logData);
-    }
+} else{
+	if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
+		$blogid = $Log_Model->addlog($logData);
+	}
 	$Tag_Model->addTag($tagstring, $blogid);
 	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
@@ -73,17 +73,17 @@ switch ($action) {
 	case 'add':
 	case 'edit':
 		$tbmsg = '';
-		if($ishide == 'y') {
-			emDirect("./admin_log.php?pid=draft&active_savedraft=true");
+		if ($ishide == 'y') {
+			emDirect("./admin_log.php?pid=draft&active_savedraft=1");
 		} else {
 			//Send Trackback
-			if(!empty($pingurl)) {
+			if (!empty($pingurl)) {
 				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
 			}
 			if ($action == 'add' || isset($_POST['pubdf'])) {
-				emDirect("./admin_log.php?active_post=true");//Published successfully
+				emDirect("./admin_log.php?active_post=1");//Published successfully
 			} else {
-				emDirect("./admin_log.php?active_savelog=true");//Saved successfully
+				emDirect("./admin_log.php?active_savelog=1");//Saved successfully
 			}
 		}
 		break;

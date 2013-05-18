@@ -22,14 +22,17 @@
 		<?php echo $ckcode; ?>
 	</div>
 	<div class="login-button">
-	<div class="checkbox"> <input type="checkbox" name="ispersis" id="ispersis" value="1" /><span><? echo $lang['remember_me'];?></span></div>
+	<div class="checkbox"> <input type="checkbox" name="ispersis" id="ispersis" value="1" /><span><label for="ispersis"><? echo $lang['remember_me'];?></label></span></div>
 	<div class="button"><input type="submit" value=" <? echo $lang['login'];?> " class="submit"></div>
 	</div>
 	<div style=" clear:both;"></div>
 	<div class="login-ext"><?php doAction('login_ext'); ?></div>
 	<div class="login-bottom"></div>
-	<div class="back"><a href="../">&laquo; <? echo $lang['back_home'];?></a></div>
+	<div class="back"><a href="../">&laquo;<? echo $lang['back_home'];?></a> | <a href="http://wiki.emlog.net/doku.php?id=chpwd" target="_blank">忘记密码?</a></div>
 </div>
+<?php if ($error_msg): ?>
+<div class="login-error"><?php echo $error_msg; ?></div>
+<?php endif;?>
 </form>
 <script>focusEle('user');</script>
 </body>

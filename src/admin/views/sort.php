@@ -10,52 +10,99 @@
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['alias_characters']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['alias_unique']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['alias_no_system']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_f'])):?><span class="error"><? echo $lang['alias_no_numeric']; ?></span><?php endif;?>
-
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
-  <table width="100%" id="adm_sort_list" class="item_list">
-    <thead>
-      <tr>
+	<table width="100%" id="adm_sort_list" class="item_list">
+		<thead>
+			<tr>
         <th width="55"><b><? echo $lang['order'];?></b></th>
-        <th width="250"><b><? echo $lang['name']; ?></b></th>
-		<th width="300"><b><? echo $lang['alias']; ?></b></th>
-		<th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
-        <th width="50" class="tdcenter"><b><? echo $lang['posts']; ?></b></th>
-        <th width="100"></th>
-      </tr>
-    </thead>
-    <tbody>
+			<th width="160"><b>名称</b></th>
+            <th width="250"><b>描述</b></th>
+			<th width="160"><b>别名</b></th>
+			<th width="40" class="tdcenter"><b>查看</b></th>
+			<th width="40" class="tdcenter"><b>文章</b></th>
+			<th width="60"></th>
+		</tr>
+		</thead>
+		<tbody>
 <?php 
 if($sorts):
-foreach($sorts as $key=>$value): ?>
-      <tr>
-        <td>
-        <input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
-        <input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" /></td>
-		<td class="sortname"><?php echo $value['sortname']; ?></td>
-		<td class="alias"><?php echo $value['alias']; ?></td>
+foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+?>
+	<tr>
+		<td>
+			<input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
+			<input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" />
+		</td>
+		<td class="sortname"><a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a><br /></td>
+		<td><?php echo $value['description']; ?></td>
+        <td class="alias"><?php echo $value['alias']; ?></td>
 		<td class="tdcenter">
-	  	<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
-	  	</td>
+			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+		</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');"><? echo $lang['remove'];?></a></td>
-      </tr>
+		<td>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+		</td>
+	</tr>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+	<tr>
+		<td>
+			<input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
+			<input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" />
+		</td>
+		<td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
+		<td><?php echo $value['description']; ?></td>
+        <td class="alias"><?php echo $value['alias']; ?></td>
+		<td class="tdcenter">
+			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+		</td>
+		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+		<td>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
 <?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6"><? echo $lang['category_no_yet']; ?></td></tr>
 <?php endif;?>  
 </tbody>
 </table>
-<div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="submit" /></div>
+<div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="button" /></div>
 </form>
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><? echo $lang['category_add']; ?>+</a></div>
-<div id="sort_new">
+<div id="sort_new" class="item_edit">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /><? echo $lang['link_name']; ?></li>
 	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> <? echo $lang['alias_prompt']; ?></li>
-	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="submit"/><span id="alias_msg_hook"></span></li>
+	<li>
+		<select name="pid" id="pid">
+			<option value="0">无</option>
+			<?php
+				foreach($sorts as $key=>$value):
+					if($value['pid'] != 0) {
+						continue;
+					}
+			?>
+			<option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
+			<?php endforeach; ?>
+		</select>
+        父分类
+	</li>
+	<li>分类描述<br />
+	<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
+	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
 <script>
@@ -96,36 +143,6 @@ $(document).ready(function(){
 	$("#adm_sort_list tbody tr")
 	.mouseover(function(){$(this).addClass("trover")})
 	.mouseout(function(){$(this).removeClass("trover")});
-	$(".sortname").click(function a(){
-		if($(this).find(".sort_input").attr("type") == "text"){return false;}
-		var name = $.trim($(this).html());
-		var m = $.trim($(this).text());
-		$(this).html("<input type=text value=\""+name+"\" class=sort_input>");
-		$(this).find(".sort_input").focus();
-		$(this).find(".sort_input").bind("blur", function(){
-			var n = $.trim($(this).val());
-			if(n != m && n != ""){
-				window.location = "sort.php?action=update&sid="+$(this).parent().parent().find(".sort_id").val()+"&name="+encodeURIComponent(n);
-			}else{
-				$(this).parent().html(name);
-			}
-		});
-	});
-	$(".alias").click(function b(){
-		if($(this).find(".alias_input").attr("type") == "text"){return false;}
-		var name = $.trim($(this).html());
-		var m = $.trim($(this).text());
-		$(this).html("<input type=text value=\""+name+"\" class=alias_input>");
-		$(this).find(".alias_input").focus();
-		$(this).find(".alias_input").bind("blur", function(){
-			var n = $.trim($(this).val());
-			if(n != m){
-				window.location = "sort.php?action=update&sid="+$(this).parent().parent().find(".sort_id").val()+"&alias="+encodeURIComponent(n);
-			}else{
-				$(this).parent().html(name);
-			}
-		});
-	});
 	$("#menu_sort").addClass('sidebarsubmenu1');
 });
 </script>

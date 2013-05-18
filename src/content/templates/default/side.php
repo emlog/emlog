@@ -1,7 +1,7 @@
 <?php 
-/*
+/**
 * Sidebar
-*/
+ */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <ul id="sidebar">

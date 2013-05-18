@@ -21,7 +21,7 @@ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');//vot
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if (PHP_VERSION < '5.0'){
-    emMsg($lang['install_php_old'].PHP_VERSION.$lang['install_php_update']);
+    emMsg('您的php版本过低，请选用支持PHP5的环境安装emlog。');
 }
 
 if(!$act){
@@ -36,8 +36,7 @@ if(!$act){
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 .main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 4px;}
 .logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
-.title{text-align:center;}
-.title span{font-size:24px; color:#666666;}
+.title{text-align:center; font-size: 14px;}
 .input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 .submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 .care{color:#0066CC;}
@@ -51,7 +50,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <p class="logo"></p>
-<p class="title"><span>emlog<?php echo Option::EMLOG_VERSION ?></span> <? echo $lang['install'];?></p>
+<p class="title">emlog <?php echo Option::EMLOG_VERSION ?> <? echo $lang['install'];?></p>
 <div class="b">
 <p class="title2"><? echo $lang['install_step1'];?></p>
 <li>
@@ -103,8 +102,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </html>
 <?php
 }
-if($act == 'install' || $act == 'reinstall')
-{
+if($act == 'install' || $act == 'reinstall'){
 	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
 	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
 	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
@@ -115,8 +113,7 @@ if($act == 'install' || $act == 'reinstall')
 	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
 	$result = '';
 
-	if($db_prefix == '')
-	{
+	if($db_prefix == ''){
 		emMsg($lang['db_prefix_empty']);
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
 		emMsg($lang['db_prefix_invalid']);
@@ -138,8 +135,7 @@ if($act == 'install' || $act == 'reinstall')
 	$DB = MySql::getInstance();
 	$CACHE = Cache::getInstance();
 
-	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1)
-	{
+	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
 		echo <<<EOT
 <html>
 <head>
@@ -148,7 +144,7 @@ if($act == 'install' || $act == 'reinstall')
 <style type="text/css">
 <!--
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:750px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
+.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 .main p {line-height: 18px;margin: 5px 20px;}
 -->
 </style>
@@ -176,12 +172,11 @@ EOT;
 		exit;
 	}
 
-	if(!is_writable('config.php'))
-	{
+	if(!is_writable('config.php')){
+		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
 		emMsg($lang['config_no_permission']);
 	}
-	if(!is_writable(EMLOG_ROOT.'/content/cache'))
-	{
+	if(!is_writable(EMLOG_ROOT.'/content/cache')){
 		emMsg($lang['cache_write_error']);
 	}
 	$config = "<?php\n"
@@ -205,11 +200,8 @@ EOT;
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
-	if (!$fw)
-	{
+	if (!$fw){
 		emMsg($lang['config_no_permission']);
-	}else{
-		$result.=$lang['config_saved']."<br />";
 	}
 	fclose($fp);
 
@@ -221,8 +213,8 @@ EOT;
 	$type = 'MYISAM';
 	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
-
-	$widgets = Option::getWidgetTitle();
+    
+    $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 
 	$widget_title = serialize($widgets);
@@ -256,10 +248,11 @@ CREATE TABLE {$db_prefix}blog (
   KEY author (author),
   KEY sortid (sortid),
   KEY type (type),
+  KEY views (views),
+  KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES
-(1, '{$lang['install_post_title']}', '1230508801', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -267,7 +260,11 @@ CREATE TABLE {$db_prefix}attachment (
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
-  addtime bigint(20) NOT NULL,
+  addtime bigint(20) NOT NULL default '0',
+  width smallint(5) NOT NULL default '0',
+  height smallint(5) NOT NULL default '0',
+  mimetype varchar(40) NOT NULL default '',
+  thumfor smallint(5) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
@@ -285,6 +282,7 @@ CREATE TABLE {$db_prefix}comment (
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
   KEY gid (gid),
+  KEY date (date),
   KEY hide (hide)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}options;
@@ -300,6 +298,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('log_title_style','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','".BLOG_URL."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');
@@ -312,11 +311,14 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_hotlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','default');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_needchinese','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',15);
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
@@ -333,7 +335,9 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ismobile','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
@@ -365,11 +369,13 @@ CREATE TABLE {$db_prefix}navi (
   hide enum('n','y') NOT NULL default 'n',
   taxis smallint(4) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
+  type tinyint(3) unsigned NOT NULL default '0',
+  type_id mediumint(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '{$lang['home']}', '', 1, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '{$lang['twitter']}', 't', 2, 'y');
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '{$lang['login']}', 'admin', 3, 'y');
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '{$lang['home']}', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '{$lang['twitter']}', 't', 2, 'y', 2);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '{$lang['login']}', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
@@ -384,6 +390,8 @@ CREATE TABLE {$db_prefix}sort (
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(200) NOT NULL DEFAULT '',
   taxis smallint(4) unsigned NOT NULL default '0',
+  pid tinyint(3) unsigned NOT NULL default '0',
+  description VARCHAR(1024) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;
@@ -403,12 +411,14 @@ DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT,
 content text NOT NULL,
+img varchar(200) DEFAULT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
 replynum mediumint(8) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
 )".$add."
+INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
   id mediumint(8) unsigned NOT NULL auto_increment,
@@ -438,30 +448,22 @@ KEY username (username)
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);
-	foreach($array_sql as $sql)
-	{
+	foreach($array_sql as $sql){
 		$sql = trim($sql);
-		if ($sql)
-		{
-			if (strstr($sql, 'CREATE TABLE'))
-			{
-				preg_match('/CREATE TABLE ([^ ]*)/', $sql, $matches);
-				$ret = $DB->query($sql);
-				if ($ret)
-				{
-					$result .= $lang['db_table'].': '.$matches[1].' '.$lang['db_table_created'].'<br />';
-				}
-			} else {
-				$ret = $DB->query($sql);
-			}
+		if ($sql){
+			$DB->query($sql);
 		}
 	}
 	//Rebuild the cache
 	$CACHE->updateCache();
-	$result .= $lang['admin_name'].": {$admin} ".$lang['admin_name_added'].'<br />'.$lang['install_ok']."<br />";
+	$result .= "
+		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
+		<p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
+		<p><b>用户名</b>：{$admin}</p>
+		<p><b>密 码</b>：您刚才设定的密码</p>";
 	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
-	    $result .= '<span style="color:red;"><b>'.$lang['install_delete'].'</b></span> ';
+	    $result .= '<p style="color:red;margin:10px 20px;">'.$lang['install_delete'].'</p> ';
 	}
-	$result .= '<a href="./"> '.$lang['go_to_emlog'].' </a>';
-	emMsg($result);
+	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+	emMsg($result, 'none');
 }

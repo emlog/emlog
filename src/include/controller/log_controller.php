@@ -6,10 +6,6 @@
  */
 
 class Log_Controller {
-
-	/**
-     * Frontend  post list
-	 */
 	function display($params) {
 		global $lang;
 		$Log_Model = new Log_Model();
@@ -20,8 +16,6 @@ class Log_Controller {
         if(empty($navibar)) {
 	        $navibar = 'a:0:{}';
         }
-
-		$curpage = CURPAGE_HOME;
 
 		$page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
 		$start_limit = ($page - 1) * $index_lognum;
@@ -37,9 +31,6 @@ class Log_Controller {
 		include View::getView('log_list');
 	}
 
-	/**
-     * Frontend blog content
-	 */
 	function displayContent($params) {
 	global $lang;
 		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
@@ -47,7 +38,7 @@ class Log_Controller {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 
-		$options_cache = Option::getAll();
+        $options_cache = $CACHE->readCache('options');
 		extract($options_cache);
 //Navigation bar
 if(empty($navibar)) {
@@ -66,7 +57,7 @@ if(empty($navibar)) {
 					$alias = addslashes(urldecode(trim($params[1])));
 					$logid = array_search($alias, $logalias_cache);
 					if (!$logid) {
-						emMsg('404', BLOG_URL);
+						show_404_page();
 					}
 				}
 			}
@@ -77,7 +68,7 @@ if(empty($navibar)) {
 
 		$logData = $Log_Model->getOneLogForHome($logid);
 		if ($logData === false) {
-			emMsg('404', BLOG_URL);
+			show_404_page();
 		}
 		extract($logData);
 
@@ -86,12 +77,22 @@ if(empty($navibar)) {
 			$cookiepwd = isset($_COOKIE['em_logpwd_'.$logid]) ? addslashes(trim($_COOKIE['em_logpwd_'.$logid])) : '';
 			$Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 		}
-		//page meta
-		$site_title = $log_title . ' - ' . $site_title;
-		$site_description = extractHtmlData($log_content, 330);
+		//meta
+        switch ($log_title_style) {
+            case '0':
+                $site_title = $log_title;
+                break;
+            case '1':
+                $site_title = $log_title . ' - ' . $blogname;
+                break;
+            case '2':
+                $site_title = $log_title . ' - ' . $site_title;
+                break;
+        }
+		$site_description = extractHtmlData($log_content, 90);
 		$log_cache_tags = $CACHE->readCache('logtags');
-		if (!empty($log_cache_tags[$logid])){
-			foreach ($log_cache_tags[$logid] as $value){
+		if (!empty($log_cache_tags[$logid])) {
+			foreach ($log_cache_tags[$logid] as $value) {
 				$site_key .= ','.$value['tagname'];
 			}
 		}
@@ -102,14 +103,13 @@ if(empty($navibar)) {
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
 		$comments = $Comment_Model->getComments(0, $logid, 'n', $comment_page);
 
-		$curpage = CURPAGE_LOG;
 		include View::getView('header');
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);
 			$neighborLog = $Log_Model->neighborLog($timestamp);
 			$tb = $Trackback_Model->getTrackbacks(null, $logid, 0);
 			$tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
-			require_once View::getView('echo_log');
+			include View::getView('echo_log');
 		}elseif ($type == 'page') {
 			include View::getView('page');
 		}

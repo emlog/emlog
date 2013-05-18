@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class=containertitle><b><? echo $lang['top_image_customize']; ?></b>
 <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['top_image_replaced_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['top_image_deleted_ok']; ?></span><?php endif;?>
@@ -32,7 +31,7 @@
 	</a>
 	<?php if (!is_array($val)):?>
 	<li class="admin_style_info" >
-	<a href="./template.php?action=del_top&top=<?php echo $imgpath_url; ?>"><? echo $lang['remove']; ?></a>
+	<a href="./template.php?action=del_top&top=<?php echo $imgpath_url; ?>" class="care"><? echo $lang['remove']; ?></a>
 	</li>
 	<?php endif;?>
 	</div>
@@ -49,3 +48,7 @@
 	</li>
 </div>
 </form>
+<script>
+$("#menu_tpl").addClass('sidebarsubmenu1');
+setTimeout(hideActived,2600);
+</script>

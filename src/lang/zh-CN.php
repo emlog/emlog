@@ -923,3 +923,5 @@ $lang['upload_bad_browser']	= '您正在使用的浏览器版本太低，无法�
 $lang['file_select']		= '选择文件';//'Select file';
 $lang['administrator']		= '管理员';//'Administrator';
 $lang['no_author_yet']		= '还没有添加作者';//'No authors added yet';
+
+$lang['image_type_support']	= '(支持JPG、PNG格式图片)';//'(Support image format: JPG, PNG)';

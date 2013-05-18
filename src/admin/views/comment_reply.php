@@ -3,7 +3,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">
-<div>
+<div class="item_edit">
 	<li><? echo $lang['comment_author'];?>: <?php echo $poster; ?></li>
 	<li><? echo $lang['time'];?>: <?php echo $date; ?></li>
 	<li><? echo $lang['content'];?>: <?php echo $comment; ?></li>
@@ -12,11 +12,11 @@
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
 	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />
 	<input type="hidden" value="<?php echo $hide; ?>" name="hide" />
-	<input type="submit" value="<? echo $lang['reply'];?>" class="submit" />
+	<input type="submit" value="<? echo $lang['reply'];?>" class="button" />
 	<?php if ($hide == 'y'): ?>
-	    <input type="submit" value="<? echo $lang['reply_approve']; ?>" name="pub_it" class="submit" />
+	    <input type="submit" value="<? echo $lang['reply_approve']; ?>" name="pub_it" class="button" />
 	<?php endif; ?>
-	<input type="button" value="<? echo $lang['cancel'];?>" class="submit" onclick="javascript: window.history.back();"/></li>
+	<input type="button" value="<? echo $lang['cancel'];?>" class="button" onclick="javascript: window.history.back();"/></li>
 </div>
 </form>
 <script>

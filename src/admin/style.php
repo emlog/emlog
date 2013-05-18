@@ -10,10 +10,8 @@ if ($action == '') {
 	$style_path = './views/style/';
 	$handle = @opendir($style_path) OR die('emlog template path error!');
 	$styles = array();
-	while ($file = @readdir($handle))
-	{
-		if(file_exists($style_path.$file.'/style.css'))
-		{
+	while ($file = @readdir($handle)) {
+		if (file_exists($style_path.$file.'/style.css')) {
 			$styleData = implode('', @file($style_path.$file.'/style.css'));
 			preg_match("/Style Name:([^\r\n]+)/i", $styleData, $name);
 			preg_match("/Author:(.*)/i", $styleData, $author);
@@ -24,7 +22,7 @@ if ($action == '') {
 
 			if (!empty($author[1]) && !empty($url[1])) {
 				$styleInfo['style_author'] = '('.$lang['author'].': <a href="'.$url[1].'" target="_blank">'.$author[1].'</a>)';
-			} elseif (!empty($author[1])){
+			} elseif (!empty($author[1])) {
 				$styleInfo['style_author'] = '('.$lang['author'].': '.$author[1].')';
 			} else {
 				$styleInfo['style_author'] = '';
@@ -43,11 +41,10 @@ if ($action == '') {
 }
 
 //update
-if($action == 'usestyle')
-{
+if ($action == 'usestyle') {
 	$styleName = isset($_GET['style']) ? addslashes($_GET['style']) : '';
 
 	Option::updateOption('admin_style', $styleName);
 	$CACHE->updateCache('options');
-	emDirect("./style.php?activated=true");
+	emDirect("./style.php?activated=1");
 }

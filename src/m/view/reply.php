@@ -1,15 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div id="navi">
-<a href="./"><? echo $lang['home']; ?></a> 
-<a href="./?action=tw"><? echo $lang['twitters']; ?></a> 
-<a href="./?action=com" id="active"><? echo $lang['comments']; ?></a> 
-<?php if(ISLOGIN === true): ?>
-<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
-<a href="./?action=logout"><? echo $lang['logout']; ?></a>
-<?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login"><? echo $lang['login']; ?></a>
-<?php endif;?>
-</div>
 <div id="m">
 	<div class="comcont"><? echo $lang['reply']; ?> <b><?php echo $poster; ?></b>: <?php echo $comment; ?></div>
 	<form method="post" action="./index.php?action=addcom&gid=<?php echo $gid; ?>&pid=<?php echo $cid; ?>">

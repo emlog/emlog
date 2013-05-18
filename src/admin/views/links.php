@@ -41,14 +41,17 @@
 	  	<img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 	  	</td>
         <td><?php echo $value['description']; ?></td>
-        <td><a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');"><? echo $lang['remove'];?></a></td>
+        <td>
+        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');" class="care">删除</a>
+        </td>
       </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="6"><? echo $lang['no_links_yet']; ?></td></tr>
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="submit" /></div>
+  <div class="list_footer"><input type="submit" value="<? echo $lang['update_sort_order'];?>" class="button" /></div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);"><? echo $lang['link_add'];?>+</a></div>

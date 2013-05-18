@@ -9,40 +9,33 @@ class Trackback_Model {
 
 	private $db;
 
-	function __construct()
-	{
+	function __construct() {
 		$this->db = MySql::getInstance();
 	}
 
 	/**
 	 * Post trackback
 	 */
-	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content)
-	{
+	function postTrackback($blogurl, $pingUrl, $blogId, $title, $blogname, $content) {
 		global $lang;
 		$url = $blogurl."?post=".$blogId;
 		$hosts = explode("\n", $pingUrl);
 		$tbmsg = '';
-		foreach ($hosts as $key => $value)
-		{
+		foreach ($hosts as $key => $value) {
 			$host = trim($value);
-			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://"))
-			{
+			if(strstr(strtolower($host), "http://") || strstr(strtolower($host), "https://")) {
 				$data ="url=".rawurlencode($url)."&title=".rawurlencode($title)."&blog_name=".rawurlencode($blogname)."&excerpt=".rawurlencode($content);
 				$this->sendPacket($host, $data);
 			}
 		}
 	}
 
-	function sendPacket($url, $data)
-	{
+	function sendPacket($url, $data) {
 		$uinfo = parse_url($url);
-		if (isset($uinfo['query']))
-		{
+		if (isset($uinfo['query'])) {
 			$data .= "&".$uinfo['query'];
 		}
-		if (!$fp = @fsockopen($uinfo['host'], (($uinfo['port']) ? $uinfo['port'] : "80"), $errno, $errstr, 3))
-		{
+		if (!$fp = @fsockopen($uinfo['host'], (($uinfo['port']) ? $uinfo['port'] : "80"), $errno, $errstr, 3)) {
 			return false;
 		}
 
@@ -55,8 +48,7 @@ class Trackback_Model {
 		fwrite($fp, $out);
 
 		$http_response = '';
-		while(!feof($fp))
-		{
+		while (!feof($fp)) {
 			$http_response .= fgets($fp, 128);
 		}
 		@fclose($fp);
@@ -70,30 +62,26 @@ class Trackback_Model {
 	 * @param unknown_type $blogId
 	 * @return unknown
 	 */
-	function getTrackbacks($page = null, $blogId = null, $spot = 0)
-	{
-	    $timezone = Option::get('timezone');
+	function getTrackbacks($page = null, $blogId = null, $spot = 0) {
+		$timezone = Option::get('timezone');
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$condition = '';
-		if($page)
-		{
+		if ($page) {
 			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}
-		if($spot == 0)
-		{
+		if ($spot == 0) {
 			$sql = "SELECT * FROM ".DB_PREFIX."trackback as a where $andQuery ORDER BY a.tbid DESC $condition";
-		}else{
+		} else {
 			$sql = ROLE == 'admin' ?
 			"SELECT * FROM ".DB_PREFIX."trackback as a where $andQuery ORDER BY a.tbid DESC $condition" :
 			"SELECT *,a.title FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID." ORDER BY a.tbid DESC $condition";
 		}
 		$ret = $this->db->query($sql);
 		$trackbacks = array();
-		while($row = $this->db->fetch_array($ret))
-		{
+		while ($row = $this->db->fetch_array($ret)) {
 			$row['title'] = htmlspecialchars($row['title']);
 			$row['blog_name'] = htmlspecialchars($row['blog_name']);
 			$row['date'] = gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
@@ -110,22 +98,17 @@ class Trackback_Model {
 	 *
 	 * @return int $tbNum
 	 */
-	function getTbNum()
-	{
-		$comNum = '';
-		if (ROLE == 'admin')
-		{
+	function getTbNum() {
+		if (ROLE == 'admin') {
 			$sql = "SELECT tbid FROM ".DB_PREFIX."trackback";
-		}else {
+		} else {
 			$sql = "SELECT a.tbid FROM ".DB_PREFIX."trackback as a, ".DB_PREFIX."blog as b where a.gid=b.gid and b.author=".UID;
 		}
 		$res = $this->db->query($sql);
-		$tbNum = $this->db->num_rows($res);
-		return $tbNum;
+		return $this->db->num_rows($res);
 	}
 
-	function deleteTrackback($tbid)
-	{
+	function deleteTrackback($tbid) {
 		$sql = "SELECT gid FROM ".DB_PREFIX."trackback WHERE tbid=$tbid";
 		$blog = $this->db->once_fetch_array($sql);
 		$this->db->query("UPDATE ".DB_PREFIX."blog SET tbcount=tbcount-1 WHERE gid=".$blog['gid']);

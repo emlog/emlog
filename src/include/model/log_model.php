@@ -93,7 +93,7 @@ class Log_Model {
 			$row['password'] = htmlspecialchars($row['password']);
 			$logData = $row;
 			return $logData;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -107,7 +107,7 @@ class Log_Model {
 		$row = $this->db->fetch_array($res);
 		if ($row) {
 			$logData = array(
-			    'log_title' => htmlspecialchars($row['title']),
+				'log_title' => htmlspecialchars($row['title']),
 				'timestamp' => $row['date'],
 				'date' => $row['date'] + Option::get('timezone') * 3600,
 				'logid' => intval($row['gid']),
@@ -126,7 +126,7 @@ class Log_Model {
 				'password' => $row['password']
 				);
 			return $logData;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -184,14 +184,14 @@ class Log_Model {
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
 			$row['log_url'] = Url::log($row['gid']);
 			$row['logid'] = $row['gid'];
-		    $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
-            if (!empty($row['password']) && $cookiePassword != $row['password']) {
+			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
+			if (!empty($row['password']) && $cookiePassword != $row['password']) {
                 $row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
-            }else {
-                if (!empty($row['excerpt'])) {
+			} else {
+				if (!empty($row['excerpt'])) {
                     $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
-                }
-            }
+				}
+			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
@@ -330,12 +330,24 @@ class Log_Model {
 
 	/**
 	 * Randomly get a specified number of posts
-	 *
-	 * @param int $num
-	 * @return array
 	 */
 	function getRandLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
+		$res = $this->db->query($sql);
+		$logs = array();
+		while ($row = $this->db->fetch_array($res)) {
+			$row['gid'] = intval($row['gid']);
+			$row['title'] = htmlspecialchars($row['title']);
+			$logs[] = $row;
+		}
+		return $logs;
+	}
+
+	/**
+	 * 获取热门文章
+	 */
+	function getHotLog($num) {
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -353,20 +365,20 @@ class Log_Model {
 	 * @param array $logalias_cache
 	 * @param int $logid
 	 */
-    function checkAlias($alias, $logalias_cache, $logid) {
-    	static $i=2;
-    	$key = array_search($alias, $logalias_cache);
-        if (false !== $key && $key != $logid) {
-        	if($i == 2) {
-        		$alias .= '-'.$i;
-        	}else{
-        		$alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
-        	}
-    		$i++;
-    		return $this->checkAlias($alias, $logalias_cache, $logid);
-   		}
-   		return $alias;
-    }
+	function checkAlias($alias, $logalias_cache, $logid) {
+		static $i=2;
+		$key = array_search($alias, $logalias_cache);
+		if (false !== $key && $key != $logid) {
+			if($i == 2) {
+				$alias .= '-'.$i;
+			}else{
+				$alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
+			}
+			$i++;
+			return $this->checkAlias($alias, $logalias_cache, $logid);
+		}
+		return $alias;
+	}
 
 	/**
 	 * Verify access to the encrypted post
@@ -406,7 +418,7 @@ EOT;
 				setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 			}
 			exit;
-		}else {
+		} else {
 			setcookie('em_logpwd_' . $logid, $logPwd);
 		}
 	}

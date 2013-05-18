@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-interface.js"></script>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b><? echo $lang['widgets'];?></b> <span class="title_des">(<? echo $lang['sidebar_widgets']; ?>)</span>
+<div class=containertitle><b><? echo $lang['widgets'];?></b>
 <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">
@@ -115,6 +115,21 @@
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
 			<li><? echo $lang['latest_posts_number'];?></li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+		</div>
+	</div>
+	</form>
+	<form action="widgets.php?action=setwg&wg=hotlog" method="post">
+	<div class="widget-line" id="hotlog">
+		<div class="widget-top">
+			<li class="widget-title">热门文章</li>
+			<li class="widget-act-add"></li>
+			<li class="widget-act-del"></li>
+		</div>
+		<div class="widget-control">
+			<li>标题</li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
+			<li>首页显示热门文章数</li>
+			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="更改" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -232,9 +247,8 @@ if($i == $wgNum):
 <?php endforeach;?>
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-<div style="margin:20px 40px;"><input type="submit" value="<? echo $lang['widgets_order_save'];?>" class="submit" /></div>
-<div style="margin:10px 40px;"><a href="http://www.emlog.net/extend/widgets" target="_blank"><? echo $lang['widget_repository']; ?>&raquo;</a></div>
-<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');"><? echo $lang['plugin_reset']; ?>&raquo;</a></div>
+<div style="margin:20px 40px;"><input type="submit" value="<? echo $lang['widgets_order_save'];?>" class="button" /></div>
+<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');"><? echo $lang['plugin_reset']; ?></a></div>
 </div>
 </form>
 </div>

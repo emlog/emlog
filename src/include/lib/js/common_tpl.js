@@ -70,7 +70,7 @@ function sendinfo(url,node){
 	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
 function loadr(url,tid){
-    url = url+"&stamp="+timestamp();
+	url = url+"&stamp="+timestamp();
 	var r=document.getElementById("r_"+tid);
 	var rp=document.getElementById("rp_"+tid);
 	if (r.style.display=="block"){
@@ -79,29 +79,30 @@ function loadr(url,tid){
 	} else {
 		r.style.display="block";
         r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">'+l_loading+'...</span>';
-        XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
+		XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
 	}
 }
 function reply(url,tid){
-    var rtext=document.getElementById("rtext_"+tid).value;
-    var rname=document.getElementById("rname_"+tid).value;
-    var rcode=document.getElementById("rcode_"+tid).value;
-    var rmsg=document.getElementById("rmsg_"+tid);
-    var rn=document.getElementById("rn_"+tid);
-    var r=document.getElementById("r_"+tid);
-    var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
-    XMLHttp.sendReq('POST',url,data,function(obj){
+	var rtext=document.getElementById("rtext_"+tid).value;
+	var rname=document.getElementById("rname_"+tid).value;
+	var rcode=document.getElementById("rcode_"+tid).value;
+	var rmsg=document.getElementById("rmsg_"+tid);
+	var rn=document.getElementById("rn_"+tid);
+	var r=document.getElementById("r_"+tid);
+	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+	XMLHttp.sendReq('POST',url,data,function(obj){
         if(obj.responseText == 'err1'){rmsg.innerHTML = l_comment_length_max_140;
-        }else if(obj.responseText == 'err2'){rmsg.innerHTML = l_username_empty;
-        }else if(obj.responseText == 'err3'){rmsg.innerHTML = l_captcha_invalid;
-        }else if(obj.responseText == 'err4'){rmsg.innerHTML = l_nickname_disabled;
-        }else if(obj.responseText == 'err5'){rmsg.innerHTML = l_comment_exists;
-        }else if(obj.responseText == 'succ1'){rmsg.innerHTML = l_comment_ok_premod;
-        }else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
+        	}else if(obj.responseText == 'err2'){rmsg.innerHTML = l_username_empty;
+        	}else if(obj.responseText == 'err3'){rmsg.innerHTML = l_captcha_invalid;
+        	}else if(obj.responseText == 'err4'){rmsg.innerHTML = l_nickname_disabled;
+        	}else if(obj.responseText == 'err5'){rmsg.innerHTML = l_comment_exists;
+		}else if(obj.responseText == 'err0'){rmsg.innerHTML = '(禁止回复)';
+        	}else if(obj.responseText == 'succ1'){rmsg.innerHTML = l_comment_ok_premod;
+		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){
-    var rtext=document.getElementById("rtext_"+tid).value = rp;
-    focusEle("rtext_"+tid);
+	var rtext=document.getElementById("rtext_"+tid).value = rp;
+	focusEle("rtext_"+tid);
 }
 function commentReply(pid,c){
 	var response = document.getElementById('comment-post');

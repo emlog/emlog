@@ -19,25 +19,27 @@ if ($action == 'login') {
 	$ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	if (checkUser($username, $password, $img_code) === true) {
-		setAuthCookie($username, $ispersis);
+    $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
+    
+	if ($loginAuthRet === true) {
+		LoginAuth::setAuthCookie($username, $ispersis);
 		emDirect("./");
-	}else{
-		loginPage();
+	} else{
+		LoginAuth::loginPage($loginAuthRet);
 	}
 }
 
 //Logout
-if ($action == 'logout'){
+if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	emDirect("../");
 }
 
-if(ISLOGIN === false){
-	loginpage();
+if (ISLOGIN === false) {
+	LoginAuth::loginPage();
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','twitter','attachment','blogger','comment','index','save_log','trackback'))){
+if (ROLE == 'writer' && !in_array($request_uri, array('write_log','admin_log','twitter','attachment','blogger','comment','index','save_log','trackback'))) {
 	emMsg($lang['access_disabled'],'./');
 }

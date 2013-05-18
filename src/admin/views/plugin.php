@@ -55,7 +55,7 @@
 		<?php endif;?>
 		</div>
 		</td>
-		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');"><? echo $lang['remove']; ?></a></td>
+		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care"><? echo $lang['remove']; ?></a></td>
       </tr>
 	<?php endforeach;else: ?>
 	  <tr>

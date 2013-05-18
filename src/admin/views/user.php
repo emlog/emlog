@@ -34,7 +34,7 @@
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><? echo $lang['edit']; ?></a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');"><? echo $lang['remove']; ?></a>
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');" class="care"><? echo $lang['remove']; ?></a>
 		<?php else:?>
 		<a href="blogger.php"><? echo $lang['edit']; ?></a>
 		<?php endif;?>
@@ -50,9 +50,10 @@
 	</tbody>
   </table>
 </form>
+<div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位用户)</div> 
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><? echo $lang['user_add_info'];?> &raquo;</a></div>
-<div id="user_new">
+<div id="user_new" class="item_edit">
 	<li><input name="login" type="text" id="login" value="" style="width:180px;" /><? echo $lang['user_name']; ?></li>
 	<li><input name="password" type="password" id="password" value="" style="width:180px;" /><? echo $lang['password']; ?> <? echo $lang['password_length']; ?></li>
 	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /><? echo $lang['password_repeat']; ?></li>
@@ -62,8 +63,7 @@
 		<option value="admin"><? echo $lang['administrator']; ?></option>
 	</select>
 	</li>
-	<li><input type="submit" name="" value="<? echo $lang['user_add']; ?>"  /></li>
-</div>
+	<li><input type="submit" name="" value="<? echo $lang['user_add']; ?>" class="button" /></li>
 </div>
 </form>
 <script>

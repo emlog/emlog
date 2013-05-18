@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi3" href="./template.php"><? echo $lang['template_current'];?></a>
 <a class="navi4" href="./template.php?action=install"><? echo $lang['template_install']; ?></a>
@@ -43,10 +42,14 @@ $i++;
 	  <img alt="<? echo $lang['template_click']; ?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
 	  </a><br />
       <?php echo $value['tplname']; ?>
-      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl');"><? echo $lang['remove']; ?></a></span>
+      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl');" class="care"><? echo $lang['remove']; ?></a></span>
       </td>
 <?php 
 if($i > 0 && $i % 3 == 0){echo "</tr>";}
 endforeach; 
 ?>
 </table>
+<script>
+setTimeout(hideActived,2600);
+$("#menu_tpl").addClass('sidebarsubmenu1');
+</script>

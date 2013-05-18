@@ -1,26 +1,20 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div id="navi">
-<a href="./"><? echo $lang['home']; ?></a> 
-<a href="./?action=tw" id="active"><? echo $lang['twitters']; ?></a> 
-<a href="./?action=com"><? echo $lang['comments']; ?></a> 
-<?php if(ISLOGIN === true): ?>
-<a href="./?action=write"><? echo $lang['post_add']; ?></a> 
-<a href="./?action=logout"><? echo $lang['logout']; ?></a>
-<?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login"><? echo $lang['login']; ?></a>
-<?php endif;?>
-</div>
 <div id="m">
 <?php if(ISLOGIN === true): ?>
-<form method="post" action="./index.php?action=t" >
-<input name="t" value="" /> <input type="submit" value="<? echo $lang['twitter_send']; ?>" />
+<form method="post" action="./index.php?action=t" enctype="multipart/form-data">
+微语内容：<br />
+<textarea cols="20" rows="3" name="t"></textarea><br />
+选择要上传的图片:<br />
+<input type="file" name="img" /><br />
+<input type="submit" value="发布" />
 </form>
 <?php endif;?>
 <?php 
 foreach($tws as $value):
+$img = empty($value['img']) ? "" : '<a title="查看图片" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$value['img'].'"/></a>';
 $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 ?>
-<div class="twcont"><?php echo $value['content'];?></a></div>
+<div class="twcont"><?php echo $value['content'];?><p><?php echo $img;?></p></div>
 <div class="twinfo"><?php echo $by.' '.$value['date'];?>
 <?php if(ISLOGIN === true && $value['author'] == UID || ROLE == 'admin'): ?>
  <a href="./?action=delt&id=<?php echo $value['id'];?>"><? echo $lang['remove']; ?></a>

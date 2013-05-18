@@ -21,15 +21,15 @@ class Plugin_Model {
 
 		$ret = false;
 
-		if (in_array($plugin, $active_plugins)){
+		if (in_array($plugin, $active_plugins)) {
 			$ret = true;
 		} elseif(true === checkPlugin($plugin)) {
 			$active_plugins[] = $plugin;
-		    $active_plugins = serialize($active_plugins);
-		    Option::updateOption('active_plugins', $active_plugins);
-		    $ret = true;
+			$active_plugins = serialize($active_plugins);
+			Option::updateOption('active_plugins', $active_plugins);
+			$ret = true;
 		} else {
-		    $ret = false;
+			$ret = false;
 		}
 
 		//run init callback functions
@@ -50,7 +50,7 @@ class Plugin_Model {
 	 */
 	function inactivePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
-		if (in_array($plugin, $active_plugins)){
+		if (in_array($plugin, $active_plugins)) {
 			$key = array_search($plugin, $active_plugins);
 			unset($active_plugins[$key]);
 		} else {
@@ -79,26 +79,26 @@ class Plugin_Model {
 	 */
 	function getPlugins() {
 		global $emPlugins;
-		if (isset($emPlugins)){
+		if (isset($emPlugins)) {
 			return $emPlugins;
 		}
 		$emPlugins = array();
 		$pluginFiles = array();
 		$pluginPath = EMLOG_ROOT . '/content/plugins';
 		$pluginDir = @ dir($pluginPath);
-		if ($pluginDir){
-			while(($file = $pluginDir->read()) !== false){
-				if (preg_match('|^\.+$|', $file)){
+		if ($pluginDir) {
+			while(($file = $pluginDir->read()) !== false) {
+				if (preg_match('|^\.+$|', $file)) {
 					continue;
 				}
-				if (is_dir($pluginPath . '/' . $file)){
+				if (is_dir($pluginPath . '/' . $file)) {
 					$pluginsSubDir = @ dir($pluginPath . '/' . $file);
-					if ($pluginsSubDir){
-						while(($subFile = $pluginsSubDir->read()) !== false){
-							if (preg_match('|^\.+$|', $subFile)){
+					if ($pluginsSubDir) {
+						while(($subFile = $pluginsSubDir->read()) !== false) {
+							if (preg_match('|^\.+$|', $subFile)) {
 								continue;
 							}
-							if ($subFile == $file.'.php'){
+							if ($subFile == $file.'.php') {
 								$pluginFiles[] = "$file/$subFile";
 							}
 						}
@@ -106,13 +106,13 @@ class Plugin_Model {
 				}
 			}
 		}
-		if (!$pluginDir || !$pluginFiles){
+		if (!$pluginDir || !$pluginFiles) {
 			return $emPlugins;
 		}
 		sort($pluginFiles);
-		foreach($pluginFiles as $pluginFile){
+		foreach ($pluginFiles as $pluginFile) {
 			$pluginData = $this->getPluginData("$pluginPath/$pluginFile");
-			if (empty($pluginData['Name'])){
+			if (empty($pluginData['Name'])) {
 				continue;
 			}
 			$emPlugins[$pluginFile] = $pluginData;

@@ -23,28 +23,7 @@
 	</li>
 </div>
 </form>
-
-<div class="containertitle2">
-<span class="navi3"><? echo $lang['official_recommendation']; ?></span>
-</div>
-
-<div id="recommend_plugin">
-<p><a href="http://www.emlog.net/plugins" target="_blank"><? echo $lang['plugin_more']; ?>&raquo;</a></p>
-<div id="recommend_plugin_list" style="overflow: hidden;text-align: center;">
-<span class="ajax_remind_1"><? echo $lang['loading']; ?>...</span>
-</div>
-</div>
-
+<div style="margin:10px 20px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></div>
 <script>
 $("#menu_plug").addClass('sidebarsubmenu1');
-
-$(document).ready(function(){
-	$.getJSON("http://emer.emlog.net/api/recommend?callback=?",function(data){
-		var items = [];
-		$.each(data, function(i,item){
-			items.push('<ul> <li><a target="_blank" href="'+item.url+'"><img src="'+item.logo+'" width="100" height="100"></a><li> <li><a target="_blank" href="'+item.url+'"><b>'+item.name+'</b></a></li> <li>'+l_author+': '+item.author+'</li> </ul>');
-		});
-		$("#recommend_plugin_list").html(items.join(""));
-	});
-});
 </script>

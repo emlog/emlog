@@ -8,7 +8,7 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b><? echo $lang['trackback_management'];?></b>
+<div class=containertitle><b>引用通告（TrackBack）管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['trackback_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['trackback_select'];?></span><?php endif;?>
 </div>
@@ -39,7 +39,7 @@ setTimeout(hideActived,2600);
 	<?php endif;?>
 	</tbody>
   </table>
-<div class="list_footer"><a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>: <a href="javascript:tbact('del');"><? echo $lang['remove']; ?></a></div>
+<div class="list_footer"><a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>: <a href="javascript:tbact('del');" class="care"><? echo $lang['remove']; ?></a></div>
 <div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $tbnum; ?> <? echo $lang['trackbacks_articles'];?>)</div> 
 </form>
 <script>
