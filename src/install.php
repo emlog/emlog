@@ -173,7 +173,6 @@ EOT;
 	}
 
 	if(!is_writable('config.php')){
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
 		emMsg($lang['config_no_permission']);
 	}
 	if(!is_writable(EMLOG_ROOT.'/content/cache')){
@@ -181,22 +180,22 @@ EOT;
 	}
 	$config = "<?php\n"
 	."//mysql database address\n"
-	."define('DB_HOST','$db_host');\n\n"
-	."//mysql database user\n"
-	."define('DB_USER','$db_user');\n\n"
-	."//database password\n"
-	."define('DB_PASSWD','$db_pw');\n\n"
-	."//database name\n"
-	."define('DB_NAME','$db_name');\n\n"
-	."//database prefix\n"
-	."define('DB_PREFIX','$db_prefix');\n\n"
-	."//auth key\n"
-	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');\n\n"
-	."//cookie name\n"
-	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');\n\n"
-	."//blog language //vot\n"
-	."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."');\n\n"
-	;
+	."define('DB_HOST','$db_host');"
+	."\n//mysql database user\n"
+	."define('DB_USER','$db_user');"
+	."\n//database password\n"
+	."define('DB_PASSWD','$db_pw');"
+	."\n//database name\n"
+	."define('DB_NAME','$db_name');"
+	."\n//database prefix\n"
+	."define('DB_PREFIX','$db_prefix');"
+	."\n//auth key\n"
+	."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
+	."\n//cookie name\n"
+	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
+	."\n\n//blog language //vot"
+	."\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."');"
+	."\n";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);

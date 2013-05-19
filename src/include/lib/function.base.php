@@ -13,7 +13,7 @@ function __autoload($class) {
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
 	} else {
-    	emMsg($class . $lang['load_failed']);
+		emMsg($class . $lang['load_failed']);
 	}
 }
 
@@ -120,7 +120,7 @@ function emLoadJQuery() {
 Verify email address format
  */
 function checkMail($email) {
-	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60){
+	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60) {
 		return true;
 	} else {
 		return false;
@@ -141,26 +141,26 @@ function subString($strings, $start, $length) {
 	}
 	$str = substr($strings, $start, $length);
 	$char = 0;
-	for ($i = 0; $i < mb_strlen($str); $i++){
+	for ($i = 0; $i < mb_strlen($str); $i++) {
 		if (ord($str[$i]) >= 128)
 			$char++;
 	}
 	$str2 = substr($strings, $start, $length + 1);
 	$str3 = substr($strings, $start, $length + 2);
 	if ($char % 3 == 1) {
-		if ($length <= mb_strlen($strings)){
+		if ($length <= mb_strlen($strings)) {
 			$str3 = $str3 .= '...';
 		}
 		return $str3;
 	}
 	if ($char % 3 == 2) {
-		if ($length <= mb_strlen($strings)){
+		if ($length <= mb_strlen($strings)) {
 			$str2 = $str2 .= '...';
 		}
 		return $str2;
 	}
 	if ($char % 3 == 0) {
-		if ($length <= mb_strlen($strings)){
+		if ($length <= mb_strlen($strings)) {
 			$str = $str .= '...';
 		}
 		return $str;
@@ -175,8 +175,8 @@ function subString($strings, $start, $length) {
  */
 function extractHtmlData($data, $len) {
 	$data = strip_tags(subString($data, 0, $len + 30));
-	$search = array ("/([\r\n])[\s]+/",	// Remove whitespace characters
-		             "/&(quot|#34);/i",	// Replace HTML entities
+	$search = array("/([\r\n])[\s]+/",	// Remove whitespace characters
+		"/&(quot|#34);/i",	// Replace HTML entities
 		"/&(amp|#38);/i",
 		"/&(lt|#60);/i",
 		"/&(gt|#62);/i",
@@ -287,7 +287,7 @@ function doAction($hook) {
  * @param int $lid Post id
  */
 function breakLog($content, $lid) {
-    global $lang;
+	global $lang;
 	$a = explode('[break]', $content, 2);
 	if (!empty($a[1])) {
 		$a[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
@@ -314,7 +314,7 @@ function rmBreak($content) {
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-    global $lang;
+	global $lang;
 	$timezone = Option::get('timezone');
 	$op = '';
 	$sec = time() - $datetemp;
@@ -437,7 +437,7 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * 
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-    global $lang;
+	global $lang;
 	if ($errorNum == 1) {
 		return '100';//File size exceeds system limit
 	} elseif ($errorNum > 1) {
@@ -827,12 +827,12 @@ function emDirect($directUrl) {
  * @param boolean $isAutoGo Whether to return automatically, true/false
  */
 function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
-    global $lang;
+	global $lang;
+	$language = EMLOG_LANGUAGE;
 	if ($msg == '404') {
 		header("HTTP/1.1 404 Not Found");
 		$msg = $lang['page_not_exists'];
 	}
-	$language = EMLOG_LANGUAGE;
 	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{$language}">

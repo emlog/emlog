@@ -253,7 +253,7 @@ class Comment_Model {
 		} else {
 			$CACHE->updateCache('sta');
 			doAction('comment_saved', $cid);
-		    emMsg($lang['comment_posted_premod'], Url::log($blogId));
+			emMsg($lang['comment_posted_premod'], Url::log($blogId));
 		}
 	}
 

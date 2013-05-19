@@ -132,7 +132,7 @@ if ($action=='doedit') {
 	if ($comment == '') {
 		emDirect("./comment.php?error_e=1");
 	}
-	if (strlen($comment) > 2000) {
+	if (mb_strlen($comment) > 2000) {
 		emDirect("./comment.php?error_d=1");
 	}
 

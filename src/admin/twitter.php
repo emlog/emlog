@@ -84,7 +84,7 @@ if ($action == 'reply') {
 	$r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-	if (!$r || strlen($r) > 420) {
+	if (!$r || mb_strlen($r) > 420) {
 		exit('err1');
 	}
 
