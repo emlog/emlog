@@ -178,7 +178,7 @@ class Url {
 	}
 
 	/**
-	 * 获取评论链接
+	 * 获取导航链接
 	 */
 	static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');
@@ -191,7 +191,7 @@ class Url {
 			case 1:
 			case 2:
 			case 3:
-				$url = BLOG_URL . $url;
+				$url = $url;
 				break;
 			//分类
 			case 4:
