@@ -6,12 +6,12 @@
 <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
 <div id="post">
 <div>
-		  <label for="title" id="title_label"><? echo $lang['title'];?></label>
+    <label for="title" id="title_label"><? echo $lang['title'];?></label>
     <input type="text" maxlength="200" style="width:792px;" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
     <div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset">上传插入</span>
+	    <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><? echo $lang['upload_insert']; ?></span>
 	    <?php doAction('adm_writelog_head'); ?>
 	    <span id="asmsg"></span>
 	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
@@ -23,20 +23,20 @@
 <div><textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
-    链接别名：(用于自定义该页面的链接地址。需要<a href="./seo.php" target="_blank">启用链接别名</a>)<br />
+    <? echo $lang['link_alias']; ?>: (<? echo $lang['alias_prompt']; ?> <? echo $lang['need_for']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<br />
     <input name="alias" id="alias" style="width:798px;" value="<?php echo $alias; ?>" />
 </div>
 <div>
     <span id="page_options">
-    <label for="allow_remark">页面接受评论</label>
+    <label for="allow_remark"><? echo $lang['page_comments_allow']; ?></label>
     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
     </span>
 </div>
 <div id="post_button">
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
     <input type="hidden" name="gid" value=<?php echo $pageId; ?> />
-		  <input type="submit" value="<? echo $lang['post_save_and_return']; ?>" onclick="return checkform();" class="button" />
-		  <input type="button" name="savedf" id="savedf" value="<? echo $lang['save']; ?>" onclick="autosave(3);" class="button" />
+    <input type="submit" value="<? echo $lang['post_save_and_return']; ?>" onclick="return checkform();" class="button" />
+    <input type="button" name="savedf" id="savedf" value="<? echo $lang['save']; ?>" onclick="autosave(3);" class="button" />
 </div>
 </div>
 </form>

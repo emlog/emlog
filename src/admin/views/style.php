@@ -2,7 +2,7 @@
 <script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi1" href="./configure.php"><? echo $lang['base_settings']; ?></a>
-<a class="navi4" href="./seo.php">SEO设置</a>
+<a class="navi4" href="./seo.php"><? echo $lang['seo_settings']; ?></a>
 <a class="navi2" href="./style.php"><? echo $lang['backstage_style']; ?></a>
 <a class="navi4" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
 <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?>

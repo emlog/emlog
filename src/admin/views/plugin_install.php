@@ -23,7 +23,7 @@
 	</li>
 </div>
 </form>
-<div style="margin:10px 20px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></div>
+<div style="margin:10px 20px;"><? echo $lang['plugin_repository']; ?>: <a href="store.php"><? echo $lang['app_center']; ?>&raquo;</a></div>
 <script>
 $("#menu_plug").addClass('sidebarsubmenu1');
 </script>

@@ -46,9 +46,8 @@
 </form>
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do'];?>:
-<a href="javascript:pageact('del');" class="care">删除</a> | 
-<a href="javascript:pageact('del');"><? echo $lang['remove'];?></a> 
-<a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a>
+<a href="javascript:pageact('del');" class="care"><? echo $lang['remove'];?></a> | 
+<a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a> | 
 <a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
 </div>
 <div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new"><? echo $lang['page_add']; ?>+</a></div>

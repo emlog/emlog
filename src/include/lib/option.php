@@ -15,9 +15,9 @@ class Option {
 	const ICON_MAX_W = 140;
 	//Maximum height of avatar thumbnail
 	const ICON_MAX_H = 220;
-	//微语图片缩略图最大宽
+	//Maximum width of twitter image thumbnail
 	const T_IMG_MAX_W = 180;
-	//微语图片缩略图最大高
+	//Maximum height of twitter image thumbnail
 	const T_IMG_MAX_H = 136;
 	//Maximum attachment size (unit: byte, default 20M)
 	const UPLOADFILE_MAXSIZE = 20971520;
@@ -145,7 +145,7 @@ class Option {
 	}
 
 	/**
-     * Get the widget titles
+	 * Get the widget titles
 	 */
 	static function getWidgetTitle() {
 		$widget_title = array(
@@ -158,7 +158,7 @@ class Option {
 	        'newcomm' => $lang['latest_comments'],
 	        'newlog' => $lang['latest_posts'],
 	        'random_log' => $lang['random_posts'],
-		'hotlog' => '热门文章',
+		'hotlog' => $lang['hot_articles'],
 	        'link' => $lang['links'],
 	        'search' => $lang['search'],
 	        'custom_text' => $lang['widget_custom']

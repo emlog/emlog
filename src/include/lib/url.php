@@ -178,26 +178,26 @@ class Url {
 	}
 
 	/**
-	 * 获取评论链接
+	 * Get comment link
 	 */
 	static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');
 		switch ($type) {
-			//常规导航
+			//Conventional navigation
 			case 0:
 				$url = $url;
 				break;
-			//系统默认，包括首页，微语，登录
+			//System default, including homepage, twitter, login
 			case 1:
 			case 2:
 			case 3:
 				$url = BLOG_URL . $url;
 				break;
-			//分类
+			//Category
 			case 4:
 				$url = Url::sort($typeId);
 				break;
-			//页面
+			//Page
 			case 5:
 				$url = Url::log($typeId);
 				break;

@@ -16,7 +16,7 @@ $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if (Option::get('ismobile') == 'n') {
-	emMsg('手机访问版已关闭！', BLOG_URL);
+	emMsg($lang['mobile_disabled'], BLOG_URL);
 }
 
 // Front page
@@ -165,8 +165,8 @@ if ($action == 'addcom') {
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
         mMsg($lang['comment_allready_exists'], $targetBlogUrl);
     } elseif ($Comment_Model->isCommentTooFast() === true) {
-		mMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论', $targetBlogUrl);
-	} elseif (mb_strlen($name) > 20 || strlen($name) == 0){
+		mMsg($lang['comment_too_fast'], $targetBlogUrl);
+	} elseif (mb_strlen($name) > 20 || mb_strlen($name) == 0){
         mMsg($lang['comment_name_invalid'], $targetBlogUrl);
     } elseif ($mail != '' && !checkMail($mail)) {
         mMsg($lang['comment_email_invalid'], $targetBlogUrl);
@@ -175,7 +175,7 @@ if ($action == 'addcom') {
     } elseif (mb_strlen($content) == '' || mb_strlen($content) > 2000) {
         mMsg($lang['comment_invalid'], $targetBlogUrl);
     } elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
-		mMsg('评论失败：评论内容需包含中文', $targetBlogUrl);
+		mMsg($lang['comment_chinese'], $targetBlogUrl);
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg($lang['comment_captcha_invalid'], $targetBlogUrl);
     } else {
@@ -284,7 +284,7 @@ if (ISLOGIN === true && $action == 't') {
     $attach = isset($_FILES['img']) ? $_FILES['img'] : '';
 
     if ($attach['tmp_name'] && !$t) {
-    	$t = '分享图片';
+    	$t = $lang['image_share'];
     }
 
     if (!$t){

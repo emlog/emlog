@@ -29,7 +29,7 @@ if ($action == 'post') {
 	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
 
 	if ($img && !$t) {
-		$t = '分享图片';
+		$t = $lang['image_share'];
 	}
 
 	if (!$t) {
@@ -79,7 +79,7 @@ if ($action == 'getreply') {
 	}
 	echo $response;
 }
-// 回复微语.
+// Reply the twit.
 if ($action == 'reply') {
 	$r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;

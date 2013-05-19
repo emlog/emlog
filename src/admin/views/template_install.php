@@ -23,7 +23,7 @@
 	</li>
 </div>
 </form>
-<div style="margin:10px 20px;">获取更多模板：<a href="store.php">应用中心&raquo;</a></div>
+<div style="margin:10px 20px;"><? echo $lang['templates_more']; ?>: <a href="store.php"><? echo $lang['app_center']; ?>&raquo;</a></div>
 <script>
 setTimeout(hideActived,2600);
 $("#menu_tpl").addClass('sidebarsubmenu1');

@@ -45,19 +45,19 @@ class MySql {
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
             switch ($this->geterrno()) {
                 case 2005:
-                    emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+                    emMsg($lang['db_connect_error']);
                     break;
                 case 2003:
-                    emMsg("连接数据库失败，数据库端口错误");
+                    emMsg($lang['db_port_error']);
                     break;
                 case 2006:
-                    emMsg("连接数据库失败，数据库服务器不可用");
+                    emMsg($lang['db_server_error']);
                     break;
                 case 1045:
-                    emMsg("连接数据库失败，数据库用户名或密码错误");
+                    emMsg($lang['db_user_error']);
                     break;
                 default :
-                    emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->geterrno());
+                    emMsg($lang['db_error_code'] . $this->geterrno());
                     break;
             }
 		}
@@ -148,7 +148,7 @@ class MySql {
 	}
 
     /**
-	 * 获取mysql错误编码
+	 * Get mysql error code
 	 */
 	function geterrno() {
 		return mysql_errno();

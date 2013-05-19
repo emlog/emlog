@@ -50,7 +50,7 @@
 	</tbody>
   </table>
 </form>
-<div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位用户)</div> 
+<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with']; ?> <?php echo $usernum; ?><? echo $lang['_users']; ?>)</div> 
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><? echo $lang['user_add_info'];?> &raquo;</a></div>
 <div id="user_new" class="item_edit">

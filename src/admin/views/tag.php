@@ -16,11 +16,11 @@ foreach($tags as $key=>$value): ?>
 <?php endforeach; ?>
 </li>
 <li style="margin:20px 0px">
-<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-<a href="javascript:deltags();" class="care">删除</a>
+<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
+<a href="javascript:deltags();" class="care"><? echo $lang['remove']; ?></a>
 </li>
 <?php else:?>
-<li style="margin:20px 30px"><? echo $lang['no_tags_yet']; ?></li>
+<li style="margin:20px 30px"><? echo $lang['no_tags_yet_add']; ?></li>
 <?php endif;?>
 </div>
 </form>
@@ -28,10 +28,10 @@ foreach($tags as $key=>$value): ?>
 $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 function deltags(){
 	if (getChecked('ids') == false) {
-		alert('请选择要删除的标签');
+		alert(l_tag_select_del);
 		return;
 	}
-	if(!confirm('你确定要删除所选标签吗？')){return;}
+	if(!confirm(l_tag_del_sure)){return;}
 	$("#form_tag").submit();
 }
 setTimeout(hideActived,2600);

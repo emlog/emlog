@@ -9,7 +9,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['nav_not_del']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['category_select']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['page_select']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_f'])):?><span class="error">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error"><? echo $lang['nav_format_error']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
@@ -46,7 +46,7 @@
 	  	</td>
         <td><?php echo $value['url']; ?></td>
         <td>
-        <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>">编辑</a>
+        <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><? echo $lang['edit']; ?></a>
         <?php if($value['isdefault'] == 'n'):?>
         <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');" class="care"><? echo $lang['remove']; ?></a>
         <?php endif;?>
@@ -88,7 +88,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li><? echo $lang['category_no_yet']; ?>, <a href="sort.php">新建分类</a></li>
+	<li><? echo $lang['category_no_yet']; ?>, <a href="sort.php"><? echo $lang['category_add']; ?></a></li>
 	<?php endif;?> 
 	</ul>
 </div>
@@ -108,7 +108,7 @@
 	<?php endforeach;?>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
-	<li><? echo $lang['no_pages_yet']; ?>, <a href="page.php">新建页面</a></li>
+	<li><? echo $lang['no_pages_yet']; ?>, <a href="page.php"><? echo $lang['page_add']; ?></a></li>
 	<?php endif;?> 
 	</ul>
 </div>

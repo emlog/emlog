@@ -21,7 +21,7 @@ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');//vot
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if (PHP_VERSION < '5.0'){
-    emMsg('您的php版本过低，请选用支持PHP5的环境安装emlog。');
+    emMsg($lang['install_php_old']);
 }
 
 if(!$act){
@@ -50,7 +50,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <p class="logo"></p>
-<p class="title">emlog <?php echo Option::EMLOG_VERSION ?> <? echo $lang['install'];?></p>
+<p class="title">emlog <?php echo Option::EMLOG_VERSION ?> <? echo $lang['install_program'];?></p>
 <div class="b">
 <p class="title2"><? echo $lang['install_step1'];?></p>
 <li>
@@ -417,7 +417,7 @@ replynum mediumint(8) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
 )".$add."
-INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
+INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '{$lang['twitter_first_text']}', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
   id mediumint(8) unsigned NOT NULL auto_increment,
@@ -456,13 +456,13 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 	//Rebuild the cache
 	$CACHE->updateCache();
 	$result .= "
-		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
-		<p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
-		<p><b>用户名</b>：{$admin}</p>
-		<p><b>密 码</b>：您刚才设定的密码</p>";
+		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">{$lang['install_ok']}</p>
+		<p>{$lang['install_ok_prompt']}</p>
+		<p><b>{$lang['user_name']}</b>: {$admin}</p>
+		<p><b>{$lang['password']}</b>: {$lang['install_password']}</p>";
 	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
 	    $result .= '<p style="color:red;margin:10px 20px;">'.$lang['install_delete'].'</p> ';
 	}
-	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+	$result .= "<p style=\"text-align:right;\"><a href=\"./\">{$lang['visit_home']}</a> | <a href=\"./admin/\">{$lang['visit_admin']}</a></p>";
 	emMsg($result, 'none');
 }

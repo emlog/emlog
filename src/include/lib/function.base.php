@@ -476,7 +476,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	}
 	doAction('attach_upload', $tmpFile);
 
-	// 生成缩略图
+	// Generate thumbnail
 	$thum = $uppath . 'thum-' . $fname;
 	if ($is_thumbnail) {
 		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
@@ -723,8 +723,8 @@ function getMonthDayNum($month, $year) {
 
 /**
  * Unzip the zip archive
- * @param type $zipfile 要解压的文件
- * @param type $path 解压到该目录
+ * @param type $zipfile File to unzip
+ * @param type $path Unzip to this directory
  * @param type $type
  * @return int
  */
@@ -765,7 +765,7 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 }
 
 /**
- * zip压缩
+ * zip compression
  */
 function emZip($orig_fname, $content) {
 	if (!class_exists('ZipArchive', FALSE)) {
@@ -843,7 +843,7 @@ EOT;
 	}
 	echo <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>提示信息</title>
+<title>{$lang['redirect_title']}</title>
 <style type="text/css">
 <!--
 body {
@@ -905,7 +905,8 @@ function show_404_page() {
  * @param $t
  */
 function emoFormat($t){
-	$emos = array('[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
+//	$emos = array('[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
+	$emos = array('[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'	=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'	=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'	=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'	=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
 	if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
 		$matches = array_unique($matches[0]);
 		foreach ($matches as $data) {
@@ -917,10 +918,10 @@ function emoFormat($t){
 }
 
 /**
- * hmac 加密
+ * hmac encryption
  *
- * @param unknown_type $algo hash算法 md5
- * @param unknown_type $data 用户名和到期时间
+ * @param unknown_type $algo hash algorithm md5
+ * @param unknown_type $data Username and expiration time
  * @param unknown_type $key
  * @return unknown
  */
@@ -948,7 +949,7 @@ if(!function_exists('hash_hmac')) {
 }
 
 /**
- * 根据文件后缀获取其mine类型
+ * Get the mime type according to the file suffix
  * @param string $extension
  * @return string
  */

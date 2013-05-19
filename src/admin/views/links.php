@@ -42,8 +42,8 @@
 	  	</td>
         <td><?php echo $value['description']; ?></td>
         <td>
-        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');" class="care">删除</a>
+        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><? echo $lang['edit']; ?></a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');" class="care"><? echo $lang['remove']; ?></a>
         </td>
       </tr>
 	<?php endforeach;else:?>

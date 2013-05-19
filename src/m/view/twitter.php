@@ -2,16 +2,16 @@
 <div id="m">
 <?php if(ISLOGIN === true): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">
-微语内容：<br />
+<? echo $lang['twitter_content']; ?>:<br />
 <textarea cols="20" rows="3" name="t"></textarea><br />
-选择要上传的图片:<br />
+<? echo $lang['image_select']; ?>:<br />
 <input type="file" name="img" /><br />
-<input type="submit" value="发布" />
+<input type="submit" value="<? echo $lang['publish']; ?>" />
 </form>
 <?php endif;?>
 <?php 
 foreach($tws as $value):
-$img = empty($value['img']) ? "" : '<a title="查看图片" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$value['img'].'"/></a>';
+$img = empty($value['img']) ? "" : '<a title="' . $lang['image_view'] . '" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$value['img'].'"/></a>';
 $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 ?>
 <div class="twcont"><?php echo $value['content'];?><p><?php echo $img;?></p></div>

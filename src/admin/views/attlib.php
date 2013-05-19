@@ -37,10 +37,10 @@ foreach($attach as $key=>$value):
 	} elseif (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
 		$imgpath = $value['filepath'];
 		$ed_imgpath = BLOG_URL.substr($imgpath,3);
-		$embedlink = "<a href=\"javascript: parent.addattach_img('$atturl', '$ed_imgpath',{$value['aid']}, '{$value['width']}', '{$value['height']}', '{$value['filename']}');\" title=\"插入原图\">原图</a>";
+		$embedlink = "<a href=\"javascript: parent.addattach_img('$atturl', '$ed_imgpath',{$value['aid']}, '{$value['width']}', '{$value['height']}', '{$value['filename']}');\" title=\"{$lang['image_original_insert']}\">{$lang['image_original']}</a>";
 		if (isset($value['thum_filepath'])) {
 			$thum_url = BLOG_URL.substr($value['thum_filepath'], 3);
-			$embedlink .= " <a href=\"javascript: parent.addattach_img('$atturl', '$thum_url',{$value['aid']}, '{$value['thum_width']}', '{$value['thum_height']}', '{$value['filename']}');\" title=\"插入缩略图\">{$lang['attachment_embed']}</a>";
+			$embedlink .= " <a href=\"javascript: parent.addattach_img('$atturl', '$thum_url',{$value['aid']}, '{$value['thum_width']}', '{$value['thum_height']}', '{$value['filename']}');\" title=\"{$lang['thumbnail_insert']}\">{$lang['attachment_embed']}</a>";
 		}
 	} else {
 		$imgpath = "./views/images/fnone.gif";

@@ -13,12 +13,12 @@
     <input type="hidden" name="img" id="imgPath" />
     <div class="msg"><? echo $lang['twitter_length_max']; ?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
+    <div class="tbutton"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> </div>
 	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
-        <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{图片名称}</a>
-        <a href="javascript:;" onclick="unSelectFile()"> [取消]</a>
+        <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{<? echo $lang['image_name']; ?>}</a>
+        <a href="javascript:;" onclick="unSelectFile()"> [<? echo $lang['cancel']; ?>]</a>
         <div id="img_pop"></div>
     </div>
     <?php  doAction('twitter_form'); ?>
@@ -33,7 +33,7 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
-    $img = empty($val['img']) ? "" : '<a title="查看图片" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
+    $img = empty($val['img']) ? "" : '<a title="' . $lang['image_view'] . '" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
@@ -91,7 +91,7 @@ $(document).ready(function(){
 		swf             : '../include/lib/js/uploadify/uploadify.swf',
 		uploader        : 'attachment.php?action=upload_tw_img',
 		cancelImage     : './views/images/cancel.png',
-		buttonText      : '选择图片',
+		buttonText      : l_image_select,
 		checkExisting   : "/",
 		auto            : true,
 		multi           : false,
@@ -149,7 +149,7 @@ function onUploadSuccess(file, data, response){
 		$("#img_name_a").text(file.name);
 		$("#img_pop").html("<img src='"+data.filePath+"'/>");
 	}else{
-		alert("上传失败！");	
+		alert(l_upload_failed);	
 	}
 }
 function onUploadError(file, errorCode, errorMsg, errorString){
@@ -160,7 +160,7 @@ function unSelectFile(){
 	$("#imgPath").val("");
 	$("#img_select").show();
 	$("#img_name").hide();
-	$("#img_name_a").text("{图片名称}");
+	$("#img_name_a").text("{"+l_image_name+"}");
 	$("#img_pop").empty();
 }
 function reply(tid, rp){

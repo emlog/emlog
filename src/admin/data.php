@@ -125,10 +125,10 @@ if ($action == 'import') {
 		}
 		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' .str_replace('.zip', '.sql', $sqlfile['name']);
 		if (!file_exists($sqlfile['tmp_name'])) {
-			emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
+			emMsg($lang['backup_bad_format']);
 		}
 	} elseif (getFileSuffix($sqlfile['name']) != 'sql') {
-		emMsg('只能导入emlog备份的SQL文件');
+		emMsg($lang['backup_extension_invalid']);
 	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
@@ -156,7 +156,7 @@ if ($action == 'dell_all_bak') {
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
-		emMsg('导入失败！读取文件失败');
+		emMsg($lang['backup_read_error']);
 	}
 	$dumpinfo = array();
 	$line = 0;
@@ -167,13 +167,13 @@ function checkSqlFileInfo($sqlfile) {
 	}
 	fclose($fp);
 	if (empty($dumpinfo)) {
-		emMsg('导入失败！该备份文件不是 emlog的备份文件!');
+		emMsg($lang['backup_not_emlog']);
 	}
 	if (!preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0])) {
-		emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+		emMsg($lang['backup_bad_ver1'] . Option::EMLOG_VERSION . $lang['backup_bad_ver2']);
 	}
 	if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-				emMsg($lang['backup_prefix_invalid'] . $dumpinfo[2]);
+		emMsg($lang['backup_prefix_invalid'] . $dumpinfo[2]);
 	}
 }
 

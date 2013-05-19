@@ -69,7 +69,7 @@ function widget_sort($title){
 	?>
 	<li>
 	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="订阅该分类"/></a>
+	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_subscribe']; ?>"/></a>
 	<?php if (!empty($value['children'])): ?>
 		<ul>
 		<?php
@@ -79,7 +79,7 @@ function widget_sort($title){
 		?>
 		<li>
 			<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_feed'];?>"/></a>
+			<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_feed'];?>"/></a>
 		</li>
 		<?php endforeach; ?>
 		</ul>
@@ -101,7 +101,7 @@ function widget_twitter($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-	<?php $img = empty($value['img']) ? "" : '<a title="查看图片" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
+	<?php $img = empty($value['img']) ? "" : '<a title="' . $lang['image_view'] . '" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
 	<li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
@@ -152,7 +152,7 @@ function widget_newlog($title){
 <?php }?>
 
 <?php
-//widget：热门文章
+//widget: Popular articles
 function widget_hotlog($title){
 	$index_hotlognum = Option::get('index_hotlognum');
 	$Log_Model = new Log_Model();
@@ -167,7 +167,7 @@ function widget_hotlog($title){
 	</li>
 <?php }?>
 <?php
-//widget：随机文章
+//widget: Random posts
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');
 	$Log_Model = new Log_Model();
@@ -260,7 +260,7 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['type'] == 3 && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
+			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><? echo $lang['article_write']; ?></a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
 			<?php 
@@ -387,7 +387,7 @@ function blog_comments($comments){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['reply']; ?></a></div>
+			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['comment_reply']; ?></a></div>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']); ?>
 	</div>

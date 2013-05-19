@@ -1,6 +1,6 @@
 <?php
 /**
- * 应用中心
+ * Application Center
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -18,8 +18,8 @@ if ($action == '') {
 if ($action == 'instpl') {
     $source = isset($_GET['source']) ? trim($_GET['source']) : '';
     $source_type = 'tpl';
-    $source_typename = '模板';
-    $source_typeurl = '<a href="template.php">查看模板</a>';
+    $source_typename = $lang['templates'];
+    $source_typeurl = '<a href="template.php">' . $lang['template_view'] . '</a>';
     include View::getView('header');
     require_once(View::getView('store_install'));
     include View::getView('footer');
@@ -28,8 +28,8 @@ if ($action == 'instpl') {
 if ($action == 'insplu') {
     $source = isset($_GET['source']) ? trim($_GET['source']) : '';
     $source_type = 'plu';
-    $source_typename = '插件';
-    $source_typeurl = '<a href="plugin.php">查看插件</a>';
+    $source_typename = $lang['plugins'];
+    $source_typeurl = '<a href="plugin.php">' . $lang['plugin_view'] . '</a>';
     include View::getView('header');
     require_once(View::getView('store_install'));
     include View::getView('footer');  

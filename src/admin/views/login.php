@@ -28,7 +28,7 @@
 	<div style=" clear:both;"></div>
 	<div class="login-ext"><?php doAction('login_ext'); ?></div>
 	<div class="login-bottom"></div>
-	<div class="back"><a href="../">&laquo;<? echo $lang['back_home'];?></a> | <a href="http://wiki.emlog.net/doku.php?id=chpwd" target="_blank">忘记密码?</a></div>
+	<div class="back"><a href="../">&laquo;<? echo $lang['back_home'];?></a> | <a href="http://wiki.emlog.net/doku.php?id=chpwd" target="_blank"><? echo $lang['password_forget']; ?></a></div>
 </div>
 <?php if ($error_msg): ?>
 <div class="login-error"><?php echo $error_msg; ?></div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * 登录验证
+ * Login authentication
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -11,7 +11,7 @@ class LoginAuth{
     const LOGIN_ERROR_AUTHCODE = -3;
 
     /**
-     * 验证用户是否处于登录状态
+     * Verify that the user is logged in
      */
     public static function isLogin() {
         global $userData;
@@ -32,7 +32,7 @@ class LoginAuth{
     }
 
     /**
-     * 验证密码/用户
+     * Verify password/user
      *
      * @param string $username
      * @param string $password
@@ -63,11 +63,12 @@ class LoginAuth{
     }
 
     /**
-     * 登录页面
+     * Log in page
      */
     public static function loginPage($errorCode = NULL) {
+	global $lang;
         Option::get('login_code') == 'y' ?
-        $ckcode = "<span>验证码</span>
+        $ckcode = "<span>{$lang['verification_code']}</span>
         <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
@@ -75,13 +76,13 @@ class LoginAuth{
         if ($errorCode) {
             switch ($errorCode) {
                 case self::LOGIN_ERROR_AUTHCODE:
-                    $error_msg = '验证错误，请重新输入';
+                    $error_msg = $lang['captcha_invalid'];
                     break;
                 case self::LOGIN_ERROR_USER:
-                    $error_msg = '用户名错误，请重新输入';
+                    $error_msg = $lang['username_invalid'];
                     break;
                 case self::LOGIN_ERROR_PASSWD:
-                    $error_msg = '密码错误，请重新输入';
+                    $error_msg = $lang['password_invalid'];
                     break;
             }
         }
@@ -90,7 +91,7 @@ class LoginAuth{
     }
 
     /**
-     * 通过登录名查询管理员信息
+     * Query administrator information by login name
      *
      * @param string $userLogin User's username
      * @return bool|object False on failure, User DB row object
@@ -110,7 +111,7 @@ class LoginAuth{
     }
 
     /**
-     * 将明文密码和数据库加密后的密码进行验证
+     * Verify the plaintext password and the encrypted password of the database
      *
      * @param string $password Plaintext user's password
      * @param string $hash Hash of the user's password to check against.
@@ -126,7 +127,7 @@ class LoginAuth{
     }
 
     /**
-     * 写用于登录验证cookie
+     * Write a login authentication cookie
      *
      * @param int $user_id User ID
      * @param bool $remember Whether to remember the user or not
@@ -143,7 +144,7 @@ class LoginAuth{
     }
 
     /**
-     * 生成登录验证cookie
+     * Generate login authentication cookie
      *
      * @param int $user_id user login
      * @param int $expiration Cookie expiration in seconds
@@ -170,7 +171,7 @@ class LoginAuth{
     }
 
     /**
-     * 验证cookie
+     * Authentication cookie
      * Validates authentication cookie.
      *
      * @param string $cookie Optional. If used, will validate contents instead of cookie's

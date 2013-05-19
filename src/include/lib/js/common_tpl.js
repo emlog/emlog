@@ -96,7 +96,7 @@ function reply(url,tid){
         	}else if(obj.responseText == 'err3'){rmsg.innerHTML = l_captcha_invalid;
         	}else if(obj.responseText == 'err4'){rmsg.innerHTML = l_nickname_disabled;
         	}else if(obj.responseText == 'err5'){rmsg.innerHTML = l_comment_exists;
-		}else if(obj.responseText == 'err0'){rmsg.innerHTML = '(禁止回复)';
+		}else if(obj.responseText == 'err0'){rmsg.innerHTML = l_reply_disabled;
         	}else if(obj.responseText == 'succ1'){rmsg.innerHTML = l_comment_ok_premod;
 		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }

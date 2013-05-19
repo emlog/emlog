@@ -37,7 +37,7 @@ class Comment_Controller {
 		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
 			emMsg($lang['comment_allready_exists']);
 		} elseif ($Comment_Model->isCommentTooFast() === true) {
-			emMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论');
+			emMsg($lang['comment_too_fast']);
 		} elseif (empty($name)) {
 			emMsg($lang['comment_name_empty']);
 		} elseif (mb_strlen($name) > 20){
@@ -53,7 +53,7 @@ class Comment_Controller {
 		} elseif (mb_strlen($content) > 8000) {
 			emMsg($lang['comment_invalid']);
 		} elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
-			emMsg('评论失败：评论内容需包含中文');
+			emMsg($lang['comment_chinese']);
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			emMsg($lang['comment_captcha_invalid']);
 		} else {

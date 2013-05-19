@@ -1,6 +1,6 @@
 <?php 
 /**
- * 自定义404页面
+ * Custom 404 page
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>错误提示-页面未找到</title>
+<title><? echo $lang['404_title']; ?></title>
 <style type="text/css">
 <!--
 body {
@@ -37,8 +37,8 @@ body {
 </head>
 <body>
 <div class="main">
-<p>抱歉，你所请求的页面不存在！</p>
-<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+<p><? echo $lang['page_not_exists']; ?></p>
+<p><a href="javascript:history.back(-1);">&laquo;<? echo $lang['return_back']; ?></a></p>
 </div>
 </body>
 </html>

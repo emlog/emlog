@@ -5,10 +5,10 @@
 <?php if(isset($_GET['active_import'])):?><span class="actived"><? echo $lang['backup_imported_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['backup_select_file'];?></span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['backup_filename_invalid'];?></span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="error">服务器不支持zip，无法导入zip备份</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="error">上传备份失败</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="error">错误的备份文件</span><?php endif;?>
-<?php if(isset($_GET['error_f'])):?><span class="error">服务器不支持zip，无法导出zip备份</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['server_zip_nosupport']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['backup_upload_error']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['backup_filename_invalid']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error"><? echo $lang['zip_export_error']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
@@ -52,20 +52,20 @@
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>
       	</select></p>
-	<p>导出备份文件到：
+	<p><? echo $lang['backup_export_to']; ?>:
 	<select name="bakplace" id="bakplace">
-		<option value="local" selected="selected">本地</option>
-		<option value="server">服务器</option>
+		<option value="local" selected="selected"><? echo $lang['backup_local']; ?></option>
+		<option value="server"><? echo $lang['backup_server']; ?></option>
 	</select>
 	</p>
-	<p id="local_bakzip">压缩(zip格式)：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
-	<p id="server_bakfname" style="display:none;">备份文件名：<input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-	<p><input type="submit" value="开始备份" class="button" /></p>
+	<p id="local_bakzip"><? echo $lang['backup_compress']; ?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
+	<p id="server_bakfname" style="display:none;"><? echo $lang['backup_filename']; ?>: <input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
+	<p><input type="submit" value="<? echo $lang['backup_start']; ?>" class="button" /></p>
 </div>
 </form>
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
-	<p><input type="file" name="sqlfile" /> <input type="submit" value="<? echo $lang['backup_import']; ?>" class="submit" /> (支持emlog导出的sql及zip格式备份)</p>
+	<p><input type="file" name="sqlfile" /> <input type="submit" value="<? echo $lang['backup_import']; ?>" class="submit" /> <? echo $lang['backup_format_support']; ?></p>
 </div>
 </form>
 <div class=containertitle><b><? echo $lang['cache'];?></b>

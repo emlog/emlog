@@ -48,7 +48,7 @@ if ($action == 'upload') {
 				$DB->query($query);
 				$aid = $DB->insert_id();
 				$DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
-				// 写入缩略图信息
+				// Write thumbnail information
 				if (isset($file_info['thum_file'])) {
 					$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
 					$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
@@ -74,7 +74,7 @@ if ($action == 'upload_multi') {
 			$DB->query($query);
 			$aid = $DB->insert_id();
 			$DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
-			// 写入缩略图信息
+			// Write thumbnail information
 			if (isset($file_info['thum_file'])) {
 				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
 				$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
@@ -127,7 +127,7 @@ if ($action == 'del_attach') {
 	$thum_attach = $DB->fetch_array($query);
 	if ($thum_attach) {
 		if (file_exists($thum_attach['filepath'])) {
-			@unlink($thum_attach['filepath']) or emMsg("删除附件失败!");
+			@unlink($thum_attach['filepath']) or emMsg($lang['attachment_delete_error']);
 		}
 		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
 	}
@@ -137,7 +137,7 @@ if ($action == 'del_attach') {
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 
-//微语图片上传
+//Twitter image upload
 if ($action == 'upload_tw_img') {
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if ($attach) {
@@ -158,7 +158,7 @@ if ($action == 'upload_tw_img') {
 	exit;
 }
 
-//微语图片删除
+//Twitter image deletion
 if ($action == 'del_tw_img') {
 	$filepath = isset($_GET['filepath']) ? $_GET['filepath'] : '';
 	if ($filepath && file_exists($filepath)) {

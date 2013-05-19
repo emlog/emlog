@@ -8,7 +8,7 @@ $(document).ready(function(){
 });
 setTimeout(hideActived,2600);
 </script>
-<div class=containertitle><b>引用通告（TrackBack）管理</b>
+<div class=containertitle><b><? echo $lang['trackback_management']; ?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['trackback_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['trackback_select'];?></span><?php endif;?>
 </div>

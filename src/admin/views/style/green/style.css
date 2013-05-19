@@ -53,7 +53,7 @@ a:hover{color:#333; text-decoration:none}
 #header_menu span{margin: 0px 6px;color:#F1F1F1;}
 #header_menu img{border:1px #FFFFFF solid;}
 
-/*侧边栏*/
+/*Sidebar*/
 #side{
     background-position:left top;
     background-image:url(./images/sidebar_bg.gif);width:114px;

@@ -15,7 +15,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -56,7 +56,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -69,7 +69,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -82,7 +82,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -99,7 +99,7 @@
 			<li><? echo $lang['comments_latest_number'];?></li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum" /></li>
 			<li><? echo $lang['comments_trim_length'];?></li>
-			<li><input maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -114,22 +114,22 @@
 			<li><? echo $lang['title'];?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
 			<li><? echo $lang['latest_posts_number'];?></li>
-			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
 	<form action="widgets.php?action=setwg&wg=hotlog" method="post">
 	<div class="widget-line" id="hotlog">
 		<div class="widget-top">
-			<li class="widget-title">热门文章</li>
+			<li class="widget-title"><? echo $lang['hot_articles']; ?></li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
-			<li>标题</li>
+			<li><? echo $lang['title']; ?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
-			<li>首页显示热门文章数</li>
-			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="更改" class="submit" /></li>
+			<li><? echo $lang['home_hot_articles']; ?></li>
+			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<? echo $lang['change']; ?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -144,7 +144,7 @@
 			<li><? echo $lang['title'];?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
 			<li><? echo $lang['random_posts_number'];?></li>
-			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -157,7 +157,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -170,7 +170,7 @@
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title'];?></li>
-			<li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>"  /> <input type="submit" name="" value="<? echo $lang['widget_change'];?>" class="submit" /></li>
+			<li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>"  /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>
 	</form>
@@ -193,7 +193,7 @@
 			<input type="text" name="title" style="width:345px;" value="<?php echo $val['title']; ?>" />
 			</li>
 			<li><textarea name="content" rows="8" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
-			<li><input type="submit" name="" value="<? echo $lang['widget_change'];?>" />
+			<li><input type="submit" name="" value="<? echo $lang['change'];?>" />
 			<span style="margin-left:235px;"><a href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><? echo $lang['widget_delete'];?></a></span></li>
 		</div>
 	</div>

@@ -23,12 +23,12 @@ class Calendar {
 		$timezone = Option::get('timezone');
 		$timestamp = time() + $timezone * 3600;
 
-        //Write the post time to the array
+		//Write the post time to the array
 		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
 			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
 		}
-        //Get the current date
+		//Get the current date
 		$n_year  = gmdate("Y", $timestamp);
 		$n_year2 = gmdate("Y", $timestamp);
 		$n_month = gmdate("m", $timestamp);
@@ -43,7 +43,7 @@ class Calendar {
 			$year_month = substr(intval($_GET['record']),0,6);
 		}
 
-        //Year Month Jump Link
+		//Year Month Jump Link
 		$m  = $n_month - 1;
 		$mj = $n_month + 1;
 
@@ -61,31 +61,23 @@ class Calendar {
 			$m = '12';
 			$year_down = $n_year - 1;
 		}
-        $url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//Last year
-        $url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//Next year
-        $url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//Last month
-        $url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//Next month
+		$url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//Last year
+		$url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//Next year
+		$url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//Last month
+		$url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//Next month
 
 		$calendar ="<table class=\"calendartop\" cellspacing=\"0\"><tr>
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
 		</tr></table>
 		<table class=\"calendar\" cellspacing=\"0\">
-		<tr><td class=\"week\">一</td><td class=\"week\">二</td><td class=\"week\">三</td><td class=\"week\">四</td><td class=\"week\">五</td><td class=\"week\">六</td><td class=\"sun\">日</td></tr>";
-            <td class=\"week\">{$lang['monday_short']}</td>
-            <td class=\"week\">{$lang['tuesday_short']}</td>
-            <td class=\"week\">{$lang['wednesday_short']}</td>
-            <td class=\"week\">{$lang['thursday_short']}</td>
-            <td class=\"week\">{$lang['friday_short']}</td>
-            <td class=\"week\">{$lang['saturday_short']}</td>
-            <td class=\"sun\">{$lang['sunday_short']}</td>
-        </tr>";
-        
-        //Get the first day of the given year and month is the day of the week
+		<tr><td class=\"week\">{$lang['monday_short']}</td><td class=\"week\">{$lang['tuesday_short']}</td><td class=\"week\">{$lang['wednesday_short']}</td><td class=\"week\">{$lang['thursday_short']}</td><td class=\"week\">{$lang['friday_short']}</td><td class=\"week\">{$lang['saturday_short']}</td><td class=\"sun\">{$lang['sunday_short']}</td></tr>";
+
+		//Get the first day of the given year and month is the day of the week
 		$week = @gmdate("w",gmmktime(0,0,0,$n_month,1,$n_year));
-        //Get the number of days in a given year and month
+		//Get the number of days in a given year and month
 		$lastday = @gmdate("t",gmmktime(0,0,0,$n_month,1,$n_year));
-        //Get the last day of the given year and month is the day of the week
+		//Get the last day of the given year and month is the day of the week
 		$lastweek = @gmdate("w",gmmktime(0,0,0,$n_month,$lastday,$n_year));
 		if ($week == 0) {
 			$week = 7;
@@ -93,21 +85,21 @@ class Calendar {
 		$j = 1;
 		$w = 7;
 		$isend = false;
-        //Outer loop
+		//Outer loop
 		for ($i = 1;$i <= 6;$i++) {
 			if ($isend || ($i == 6 && $lastweek==0)) {
 				break;
 			}
 			$calendar .= '<tr>';
-        	//Inner loop
+			//Inner loop
 			for ($j ; $j <= $w; $j++) {
 				if ($j < $week) {
 					$calendar.= '<td>&nbsp;</td>';
 				} elseif ( $j <= 7 ) {
 					$r = $j - $week + 1;
-        			//If there are blog posts on that day, display the url style
+					//If there are blog posts on that day, display the url style
 					$n_time = $n_year . $n_month . '0' . $r;
-        			//There is a log and it is the same day
+					//There is a log and it is the same day
 					if (@in_array($n_time,$logdate) && $n_time == $time) {
 						$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $r .'</a></td>';
 					} elseif (@in_array($n_time,$logdate)) {
@@ -123,7 +115,7 @@ class Calendar {
 						$isend = true;
 						$calendar .= '<td>&nbsp;</td>';
 					} else {
-        				//If there are logs on that day, display the url style
+						//If there are logs on that day, display the url style
 						$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 						if (@in_array($n_time,$logdate) && $n_time == $time) {
 							$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $t .'</a></td>';
@@ -136,10 +128,10 @@ class Calendar {
 						}
 					}
 				}
-        	}//End of inner loop
+			}//End of inner loop
 			$calendar .= '</tr>';
 			$w += 7;
-        }//End of outer loop
+		}//End of outer loop
 		$calendar .= '</table>';
 		echo $calendar;
 	}

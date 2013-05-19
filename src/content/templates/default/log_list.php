@@ -29,8 +29,8 @@ foreach($logs as $value):
 endforeach;
 else:
 ?>
-	<h2>未找到</h2>
-	<p>抱歉，没有符合您查询条件的结果。</p>
+	<h2><? echo $lang['not_found']; ?></h2>
+	<p><? echo $lang['search_no_results']; ?></p>
 <?php endif;?>
 
 <div id="pagenavi">

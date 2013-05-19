@@ -90,7 +90,7 @@ if ($action== 'edit_comment') {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$commentArray = $Comment_Model->getOneComment($commentId);
 	if (!$commentArray) {
-		emMsg('不存在该评论！', './comment.php');
+		emMsg($lang['comment_not_exist'], './comment.php');
 	}
 	extract($commentArray);
 

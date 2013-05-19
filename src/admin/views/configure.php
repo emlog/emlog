@@ -2,7 +2,7 @@
 <script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi3" href="./configure.php"><? echo $lang['base_settings']; ?></a>
-<a class="navi4" href="./seo.php">SEO设置</a>
+<a class="navi4" href="./seo.php"><? echo $lang['seo_settings']; ?></a>
 <a class="navi4" href="./style.php"><? echo $lang['backstage_style']; ?></a>
 <a class="navi4" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
 <?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?>
@@ -78,20 +78,20 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><? echo $lang['gzip_compression']; ?><br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><? echo $lang['offline_writing']; ?><br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> /><? echo $lang['trackbacks_use']; ?>
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />手机访问版，地址：<span id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></span>
+      	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> /><? echo $lang['mobile_version']; ?>, <? echo $lang['link_url']; ?>: <span id="m"><a title="<? echo $lang['mobile_use']; ?>"><?php echo BLOG_URL.'m'; ?></a></span>
       	</td>
       <tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right" width="18%" valign="top">微语：<br /></td>
+        <td align="right" width="18%" valign="top"><? echo $lang['twitter']; ?>:<br /></td>
         <td width="82%">
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启微语，
-		每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" />条微语<br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启微语回复，
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码，
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /><? echo $lang['twitter_enable']; ?>,
+		<? echo $lang['show_perpage']; ?> <input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" style="width:25px;" /><? echo $lang['_twits']; ?><br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> /><? echo $lang['twitter_reply_enable']; ?>,
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><? echo $lang['reply_captcha_enable']; ?>,
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><? echo $lang['reply_premoderate']; ?><br />
 		</td>
       </tr>
   </table>
@@ -112,11 +112,11 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['comments']; ?>:<br /></td>
         <td width="82%">
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />开启评论，发表评论间隔<input maxlength="5" size="2" value="<?php echo $comment_interval; ?>" name=comment_interval />秒<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><? echo $lang['comment_enable']; ?>, <? echo $lang['comment_delay']; ?>: <input maxlength="5" size="2" value="<?php echo $comment_interval; ?>" name=comment_interval /><? echo $lang['_seconds']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><? echo $lang['approved']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><? echo $lang['verification_code']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><? echo $lang['author_avatar']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> />评论内容必须包含中文<br />
+		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /><? echo $lang['comment_need_chinese']; ?><br />
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
 		<? echo $lang['show_perpage']; ?>: <input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><? echo $lang['_comments']; ?>,
 		<? echo $lang['show_first']; ?>: <select name="comment_order"><option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option><option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option></select><br />
@@ -133,7 +133,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right" width="18%" valign="top"><? echo $lang['footer_info'];?>:<br /></td>
         <td width="82%">
 		<textarea name="footer_info" cols="" rows="6" style="width:300px;"><?php echo $footer_info; ?></textarea><br />
-		  <? echo $lang['footer_prompt']; ?>
+		<? echo $lang['footer_prompt']; ?>
 		</td>
       </tr>
   </table>

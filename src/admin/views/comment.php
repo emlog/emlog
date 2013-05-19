@@ -3,13 +3,13 @@
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['comments_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived"><? echo $lang['comments_approved_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived"><? echo $lang['comments_hide_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['comment_edit_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_rep'])):?><span class="actived"><? echo $lang['comment_replied_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['comments_select'];?></span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['comments_select_operation'];?></span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['reply_empty']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['reply_is_long']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="error">评论内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['comment_empty']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
@@ -62,7 +62,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_hide']; ?></a>
 		<?php endif;?>
 		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['reply']; ?></a>
-        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
+        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['edit']; ?></a>
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>

@@ -17,11 +17,11 @@
 		<thead>
 			<tr>
         <th width="55"><b><? echo $lang['order'];?></b></th>
-			<th width="160"><b>名称</b></th>
-            <th width="250"><b>描述</b></th>
-			<th width="160"><b>别名</b></th>
-			<th width="40" class="tdcenter"><b>查看</b></th>
-			<th width="40" class="tdcenter"><b>文章</b></th>
+			<th width="160"><b><? echo $lang['link_name']; ?></b></th>
+            <th width="250"><b><? echo $lang['link_description']; ?></b></th>
+			<th width="160"><b><? echo $lang['alias']; ?></b></th>
+			<th width="40" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
+			<th width="40" class="tdcenter"><b><? echo $lang['article']; ?></b></th>
 			<th width="60"></th>
 		</tr>
 		</thead>
@@ -46,8 +46,8 @@ foreach($sorts as $key=>$value):
 		</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
-			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><? echo $lang['edit']; ?></a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care"><? echo $lang['remove']; ?></a>
 		</td>
 	</tr>
 	<?php
@@ -68,8 +68,8 @@ foreach($sorts as $key=>$value):
 		</td>
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
-			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><? echo $lang['edit']; ?></a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care"><? echo $lang['remove']; ?></a>
 		</td>
 	</tr>
 	<?php endforeach; ?>
@@ -85,10 +85,10 @@ foreach($sorts as $key=>$value):
 <div id="sort_new" class="item_edit">
 	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
 	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /><? echo $lang['link_name']; ?></li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> <? echo $lang['alias_prompt']; ?></li>
+	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> <? echo $lang['alias']; ?> (<? echo $lang['alias_prompt']; ?>)</li>
 	<li>
 		<select name="pid" id="pid">
-			<option value="0">无</option>
+			<option value="0"><? echo $lang['none']; ?></option>
 			<?php
 				foreach($sorts as $key=>$value):
 					if($value['pid'] != 0) {
@@ -98,11 +98,11 @@ foreach($sorts as $key=>$value):
 			<option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
 			<?php endforeach; ?>
 		</select>
-        父分类
+        	<? echo $lang['category_parent']; ?>
 	</li>
-	<li>分类描述<br />
+	<li><? echo $lang['category_description']; ?><br />
 	<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
-	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
+	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
 <script>

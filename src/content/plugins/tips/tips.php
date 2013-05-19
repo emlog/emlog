@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: 小贴士
+Plugin Name: Tips
 Version: 1.1
 Plugin URL:
 Description: This is the first emlog plug-in, it will send a page of your management tips and warm.

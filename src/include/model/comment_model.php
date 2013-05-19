@@ -259,7 +259,7 @@ class Comment_Model {
 
     
 	/**
-	 * 修改评论
+	 * Edit comment
 	 *
 	 * @param array $commentData
 	 * @param int $commentId

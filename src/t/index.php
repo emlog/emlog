@@ -50,7 +50,7 @@ if ($action == 'getr') {
     $response = '';
     if ($replys) {
 	    foreach($replys as $val){
-	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a>" : '';
+	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">{$lang['reply']}</a>" : '';
 	    	$response .= "
 	         <li>
 	         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
@@ -58,7 +58,7 @@ if ($action == 'getr') {
 	         </li>";
 	    }
     } else{
-    	$response .= "<li>还没有回复！</li>";
+    	$response .= "<li>{$lang['reply_no_yet']}</li>";
     }
     echo $response;
 }

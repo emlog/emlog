@@ -344,7 +344,7 @@ class Log_Model {
 	}
 
 	/**
-	 * 获取热门文章
+	 * Get popular articles
 	 */
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
