@@ -46,12 +46,12 @@ if ($action == 'addon') {
     $rh = fopen($source, 'rb');
     $wh = fopen($temp_file, 'w+b');
     if ( ! $rh || ! $wh) {
-        exit('error_get');
+        exit('error_0');
     }
 
     while (!feof($rh)) {
         if (fwrite($wh, fread($rh, 4096)) === FALSE) {
-            exit('error_get');
+            exit('error_0');
         }
     }
 
@@ -60,9 +60,16 @@ if ($action == 'addon') {
 
     $unzip_path = $source_type == 'tpl' ? '../content/templates/' : '../content/plugins/';
 	$ret = emUnZip($temp_file, $unzip_path, $source_type);
-    if($ret === 0) {
-        exit('succ');
-    } else {
-        exit('error_zip');
-    }
+    switch ($ret) {
+		case 0:
+			exit('succ');
+			break;
+		case 1:
+		case 2:
+			exit('error_1');
+			break;
+		case 3:
+			exit('error_2');
+			break;
+	}
 }
