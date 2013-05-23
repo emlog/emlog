@@ -11,10 +11,6 @@ class Search_Controller {
 		$Log_Model = new Log_Model();
 		$options_cache = Option::getAll();
 		extract($options_cache);
-//Navigation bar
-if(empty($navibar)) {
-	$navibar = 'a:0:{}';
-}
 
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$keyword = isset($params[1]) && $params[1] == 'keyword' ? trim($params[2]) : '';

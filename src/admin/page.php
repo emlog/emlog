@@ -6,10 +6,6 @@
 
 require_once 'globals.php';
 
-//Navigation bar
-if(empty($navibar)) {
-	$navibar = 'a:0:{}';
-}
 //Page Management page
 if ($action == '') {
 	$emPage = new Log_Model();

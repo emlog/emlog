@@ -13,9 +13,6 @@ class Log_Controller {
 
 		$options_cache = Option::getAll();
 		extract($options_cache);
-        if(empty($navibar)) {
-	        $navibar = 'a:0:{}';
-        }
 
 		$page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
 		$start_limit = ($page - 1) * $index_lognum;
@@ -40,10 +37,6 @@ class Log_Controller {
 
         $options_cache = $CACHE->readCache('options');
 		extract($options_cache);
-//Navigation bar
-if(empty($navibar)) {
-	$navibar = 'a:0:{}';
-}
 
 		$logid = 0 ;
 		if (isset($params[1])) {
