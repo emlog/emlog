@@ -191,7 +191,7 @@ class Url {
 			case 1:
 			case 2:
 			case 3:
-				$url = BLOG_URL . $url;
+				$url = $url;
 				break;
 			//Category
 			case 4:

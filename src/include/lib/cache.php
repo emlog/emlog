@@ -322,12 +322,13 @@ class Cache {
 				}
 			}
 			$navi_cache[] = array(
-					'naviname' => htmlspecialchars(trim($row['naviname'])),
-					'url' => htmlspecialchars(trim($url)),
-					'newtab' => $row['newtab'],
-					'type' => intval($row['type']),
-					'typeId' => intval($row['type_id']),
-					'children' => $children,
+                    'naviname' => htmlspecialchars(trim($row['naviname'])),
+                    'url' => htmlspecialchars(trim($url)),
+                    'newtab' => $row['newtab'],
+                    'isdefault' => $row['isdefault'],
+                    'type' => intval($row['type']),
+                    'typeId' => intval($row['type_id']),
+                    'children' => $children,
 				);
 		}
 		$cacheData = serialize($navi_cache);

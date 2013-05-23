@@ -8,7 +8,13 @@ class Navi_Model {
 
 	private $db;
 
-	function __construct() {
+    const navitype_home    = 1;
+    const navitype_t       = 2;
+    const navitype_admin   = 3;
+    const navitype_sort    = 4;
+    const navitype_page    = 5;
+
+    function __construct() {
 		$this->db = MySql::getInstance();
 	}
 
@@ -59,12 +65,23 @@ class Navi_Model {
 		return $naviData;
 	}
 
-	function getNaviNameByUrl($url) {
+    function getNaviNameByUrl($url) {
 		$CACHE = Cache::getInstance();
 		$navi_cache = $CACHE->readCache('navi');
-		
 		foreach($navi_cache as $val) {
-			if ($val['url'] == $url) {
+			if ($val['url'] == $url){
+				return $val['naviname'];
+			}
+		}
+
+		return '';
+	}
+
+	function getNaviNameByType($type) {
+		$CACHE = Cache::getInstance();
+		$navi_cache = $CACHE->readCache('navi');
+		foreach($navi_cache as $val) {
+			if ($val['type'] == $type) {
 				return $val['naviname'];
 			}
 		}

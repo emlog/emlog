@@ -66,7 +66,7 @@ if ($action== 'add_sort') {
 
 	foreach ($sort_ids as $val) {
 		$sort_id = intval($val);
-		$Navi_Model->addNavi($sorts[$sort_id]['sortname'], '', 0, 'n', 4, $sort_id);
+		$Navi_Model->addNavi($sorts[$sort_id]['sortname'], '', 0, 'n', Navi_Model::navitype_sort, $sort_id);
 	}
 
 	$CACHE->updateCache('navi');
@@ -81,7 +81,7 @@ if ($action== 'add_page') {
 	}
 	
 	foreach ($pages as $id => $title) {
-		$Navi_Model->addNavi($title, '', 0, 'n', 5, $id);
+		$Navi_Model->addNavi($title, '', 0, 'n', Navi_Model::navitype_page, $id);
 	}
 
 	$CACHE->updateCache('navi');

@@ -256,9 +256,8 @@ function blog_navi(){
 	?>
 	<ul>
 	<?php
-	$currentUrl = BLOG_URL . trim(Dispatcher::setPath(), '/');
 	foreach($navi_cache as $value):
-		if($value['type'] == 3 && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><? echo $lang['article_write']; ?></a></li>
 			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
@@ -267,7 +266,8 @@ function blog_navi(){
 			continue;
 		endif;
 		$newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
-		$current_tab = trim($value['url'], '/') == $currentUrl ? 'current' : 'common';
+        $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
+        $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
 		?>
 		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
 	<?php endforeach; ?>

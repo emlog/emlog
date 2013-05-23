@@ -33,7 +33,7 @@ if ($action == '') {
     $avatar = empty($user_cache[UID]['avatar']) ? '../admin/views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
     $rcode = Option::get('reply_code') == 'y' ? "<img src=\"".DYNAMIC_BLOGURL."?action=ckcode&mode=t\" />" : '';
 
-    $site_title = $Navi_Model->getNaviNameByUrl('t') . ' - ' . $site_title;
+    $site_title = $Navi_Model->getNaviNameByType(Navi_Model::navitype_t) . ' - ' . $site_title;
 
     include View::getView('header');
     require_once View::getView('t');
