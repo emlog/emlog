@@ -4,7 +4,7 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-define('EMLOG_ROOT', dirname(__FILE__));
+define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
 define('DEL_INSTALLER', 0);
 
 require_once EMLOG_ROOT.'/include/lib/function.base.php';

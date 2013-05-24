@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
-define('EMLOG_ROOT', dirname(__FILE__));
+define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
 
 /*vot*/mb_internal_encoding('UTF-8');
 
