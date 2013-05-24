@@ -182,6 +182,7 @@ escape(b)+'">'+escape(c)+"</div>"}).replace(/<noscript([^>]*)>([\s\S]*?)<\/noscr
 window.editorMap = {};
 function loadEditor(id) {
 	editorMap[id] = editorMap[id] || KindEditor.create('#'+id, {
+		langType:EMLOG_LANG,
 		resizeMode:1,
 		allowUpload:false,
 		allowImageUpload:false,
