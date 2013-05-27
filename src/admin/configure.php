@@ -47,7 +47,6 @@ if ($action == '') {
 
 if ($action == 'mod_config') {
 	$getData = array(
-	'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
 	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
 	'blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
 	'bloginfo' => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
