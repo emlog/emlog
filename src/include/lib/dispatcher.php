@@ -38,7 +38,7 @@ class Dispatcher {
             self::$_instance = new Dispatcher();
             return self::$_instance;
         } else {
-            return $_instance;
+            return self::$_instance;
         }
     }
 
