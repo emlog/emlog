@@ -8,7 +8,8 @@ class Navi_Model {
 
 	private $db;
 
-    const navitype_home    = 1;
+	const navitype_custom  = 0;
+	const navitype_home    = 1;
     const navitype_t       = 2;
     const navitype_admin   = 3;
     const navitype_sort    = 4;
@@ -24,7 +25,7 @@ class Navi_Model {
 		while($row = $this->db->fetch_array($res)) {
 			$row['naviname'] = htmlspecialchars($row['naviname']);
 			$row['url'] = Url::navi($row['type'], $row['type_id'], $row['url']);
-			//$row['isdefault'] = $row['isdefault'];
+			$row['url'] = $row['isdefault'] == 'y' ? BLOG_URL . $row['url'] : $row['url'];
 			$navis[] = $row;
 		}
 		return $navis;
