@@ -4,12 +4,12 @@ define('DB_HOST','localhost');
 //mysql database user
 define('DB_USER','root');
 //database password
-define('DB_PASSWD','123qwe');
+define('DB_PASSWD','');
 //database name
-define('DB_NAME','emlog');
+define('DB_NAME','qiyu');
 //database prefix
-define('DB_PREFIX','emlog_');
+define('DB_PREFIX','blog_');
 //auth key
-define('AUTH_KEY','G64MebLgICPJMD0LpTWz8b@IVE%9TV80bb2600bff8a10cdb8daf0642b8b6a6ff');
+define('AUTH_KEY','!6kp3(Xy@PVBQ#ZkPjXk)3kvBZ6Raa9N255828c301a2b4b39adc0d3acf7051c9');
 //cookie name
-define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_dagSOLOaDS8xV3ZyIKceiMuTTThWYBGO');
+define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_oCyvkesletPupjDUoZupee0FCTyosFCF');
