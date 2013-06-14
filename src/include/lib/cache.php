@@ -316,7 +316,7 @@ class Cache {
 		while ($row = $this->db->fetch_array($query)) {
 			$children = array();
 			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
-			if ($row['type'] == 4 && !empty($sorts[$row['type_id']]['children'])) {
+			if ($row['type'] == Navi_Model::navitype_sort && !empty($sorts[$row['type_id']]['children'])) {
 				foreach ($sorts[$row['type_id']]['children'] as $sortid) {
 					$children[] = $sorts[$sortid];
 				}

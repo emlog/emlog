@@ -18,9 +18,10 @@
       <tr>
 	  	<th width="50"><b>序号</b></th>
         <th width="230"><b>导航</b></th>
-        <th width="80" class="tdcenter"><b>状态</b></th>
-		<th width="80" class="tdcenter"><b>查看</b></th>
-		<th width="400"><b>跳转地址</b></th>
+        <th width="60" class="tdcenter"><b>类型</b></th>
+        <th width="60" class="tdcenter"><b>状态</b></th>
+        <th width="50" class="tdcenter"><b>查看</b></th>
+		<th width="360"><b>地址</b></th>
         <th width="100"></th>
       </tr>
     </thead>
@@ -28,11 +29,29 @@
 	<?php 
 	if($navis):
 	foreach($navis as $key=>$value):
+	$value['type_name'] = '';
+	switch ($value['type']) {
+		case Navi_Model::navitype_home:
+		case Navi_Model::navitype_t:
+		case Navi_Model::navitype_admin:
+			$value['type_name'] = '系统';
+			break;
+		case Navi_Model::navitype_sort:
+			$value['type_name'] = '分类';
+			break;
+		case Navi_Model::navitype_page:
+			$value['type_name'] = '页面';
+			break;
+		case Navi_Model::navitype_custom:
+			$value['type_name'] = '自定';
+			break;
+	}
 	doAction('adm_navi_display');
 	?>  
       <tr>
 		<td><input class="num_input" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
+		<td class="tdcenter"><?php echo $value['type_name'];?></td>
 		<td class="tdcenter">
 		<?php if ($value['hide'] == 'n'): ?>
 		<a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" title="点击隐藏导航">显示</a>

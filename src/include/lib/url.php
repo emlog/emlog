@@ -191,22 +191,16 @@ class Url {
 	static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');
 		switch ($type) {
-			//常规导航
-			case 0:
+			case Navi_Model::navitype_custom:
+			case Navi_Model::navitype_home:
+			case Navi_Model::navitype_t:
+			case Navi_Model::navitype_admin:
 				$url = $url;
 				break;
-			//系统默认，包括首页，微语，登录
-			case 1:
-			case 2:
-			case 3:
-				$url = $url;
-				break;
-			//分类
-			case 4:
+			case Navi_Model::navitype_sort:
 				$url = Url::sort($typeId);
 				break;
-			//页面
-			case 5:
+			case Navi_Model::navitype_page:
 				$url = Url::log($typeId);
 				break;
 			default:
