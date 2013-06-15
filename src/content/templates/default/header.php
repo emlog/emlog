@@ -6,7 +6,7 @@ Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
 Sidebar Amount:1
-ForEmlog:5.1.0
+ForEmlog:5.1.2
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
@@ -19,7 +19,6 @@ require_once View::getView('module');
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="description" content="<?php echo $site_description; ?>" />
 <meta name="generator" content="emlog" />
-<script src="<? echo BLOG_URL; ?>lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo BLOG_URL; ?>xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="<?php echo BLOG_URL; ?>wlwmanifest.xml" />
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
@@ -36,4 +35,5 @@ require_once View::getView('module');
     <h3><?php echo $bloginfo; ?></h3>
   </div>
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
+  <div id="nav"><?php blog_navi();?></div>
   <div id="nav"><?php blog_navi();?></div>

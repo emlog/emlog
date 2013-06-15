@@ -517,13 +517,13 @@ function mw_newMediaObject($args) {
 			$thum_created = false;
 		}
 
-		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
+		if ($thum_created && ($extension == 'jpeg' || $extension == 'jpg')) {
 			if (function_exists('imagecreatefromjpeg')) {
 				$img = imagecreatefromjpeg($attachpath);
 			}else {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && $imtype == 'png') {
+		}elseif ($thum_created && $extension == 'png') {
 			if (function_exists('imagecreatefrompng')) {
 				$img = imagecreatefrompng($attachpath);
 			}else {
@@ -539,11 +539,11 @@ function mw_newMediaObject($args) {
 			imagecopyresized($newim, $img, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 		}
 
-		if ($thum_created && ($imtype == 'jpeg' || $imtype == 'jpeg')) {
+		if ($thum_created && ($extension == 'jpeg' || $extension == 'jpg')) {
 			if (!imagejpeg($newim, $attachpath)) {
 				$thum_created = false;
 			}
-		}elseif ($thum_created && ($imtype == 'png')) {
+		}elseif ($thum_created && ($extension == 'png')) {
 			if (!imagepng($newim, $attachpath)) {
 				$thum_created = false;
 			}
@@ -571,7 +571,7 @@ function mw_newMediaObject($args) {
             <member>
                 <name>type</name>
                 <value>
-                    <string>$imgType</string>
+                    <string></string>
                 </value>
             </member>
         </struct>
@@ -599,7 +599,7 @@ function login($username, $password) {
 		return false;
 	}
 	// Return user information
-	return getUserDataByLogin($username);
+	return LoginAuth::getUserDataByLogin($username);
 }
 
 function escape(&$array) {

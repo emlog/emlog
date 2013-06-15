@@ -6,7 +6,7 @@
 
 class Option {
 	//Version number
-	const EMLOG_VERSION = '5.1.0';
+	const EMLOG_VERSION = '5.1.2';
 	//Maximum width of image attachment thumbnail
 	const IMG_MAX_W = 420;
 	//Maximum height of image attachment thumbnail
@@ -65,109 +65,114 @@ class Option {
 
 	static function getRoutingTable(){
 		$routingtable = array(
-			array(
-				'model' => 'calendar',
-				'method' => 'generate',
-				'reg_0' => '|^.*/\?action=cal|',
-				),
-			array(
-				'model' => 'Log_Controller',
-				'method' => 'displayContent',
-				'reg_0' => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
-				'reg_1' => '|^.*/(post)-(\d+)\.html(/(comment-page)-(\d+))?/?([\?&].*)?$|',
-				'reg_2' => '|^.*/(post)/(\d+)(/(comment-page)-(\d+))?/?$|',
-				'reg_3' => '|^/([^\./\?=]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Record_Controller',
-				'method' => 'display',
-				'reg_0' => '|^.*/\?(record)=(\d{6,8})(&(page)=(\d+))?([\?&].*)?$|',
-				'reg' => '|^.*/(record)/(\d{6,8})/?((page)/(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Sort_Controller',
-				'method' => 'display',
-				'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
-				'reg' => '|^.*/(sort)/([^\./\?=]+)/?((page)/(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Tag_Controller',
-				'method' => 'display',
-				'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?([\?&].*)?$|',
-				'reg' => '|^.*/(tag)/([^/?]+)/?((page)/(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Author_Controller',
-				'method' => 'display',
-				'reg_0' => '|^.*/\?(author)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
-				'reg' => '|^.*/(author)/(\d+)/?((page)/(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Log_Controller',
-				'method' => 'display',
-				'reg_0' => '|^.*/\?(page)=(\d+)([\?&].*)?$|',
-				'reg' => '|^.*/(page)/(\d+)/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Search_Controller',
-				'method' =>'display',
-				'reg_0' => '|^.*/\?(keyword)=([^/&]+)(&(page)=(\d+))?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Comment_Controller',
-				'method' => 'addComment',
-				'reg_0' => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Plugin_Controller',
-				'method' => 'loadPluginShow',
-				'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Log_Controller',
-				'method' => 'displayContent',
-				'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
-				),
-			array(
-				'model' => 'Log_Controller',
-				'method' => 'display',
-				'reg_0' => '|^/?([\?&].*)?$|',
-				),
-			);
+					array(
+							'model' => 'calendar',
+							'method' => 'generate',
+							'reg_0' => '|^.*/\?action=cal|',
+							),
+					array(
+							'model' => 'Record_Controller',
+							'method' => 'display',
+							'reg_0' => '|^.*/\?(record)=(\d{6,8})(&(page)=(\d+))?([\?&].*)?$|',
+							'reg' => '|^.*/(record)/(\d{6,8})/?((\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Sort_Controller',
+							'method' => 'display',
+							'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
+							'reg' => '|^.*/(sort)/([^\./\?=]+)/?((\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Tag_Controller',
+							'method' => 'display',
+							'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?([\?&].*)?$|',
+							'reg' => '|^.*/(tag)/([^/?]+)/?((\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Author_Controller',
+							'method' => 'display',
+							'reg_0' => '|^.*/\?(author)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
+							'reg' => '|^.*/(author)/(\d+)/?((\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Log_Controller',
+							'method' => 'display',
+							'reg_0' => '|^.*/\?(page)=(\d+)([\?&].*)?$|',
+							'reg' => '|^.*/(page)/(\d+)/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Search_Controller',
+							'method' =>'display',
+							'reg_0' => '|^.*/\?(keyword)=([^/&]+)(&(page)=(\d+))?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Comment_Controller',
+							'method' => 'addComment',
+							'reg_0' => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Plugin_Controller',
+							'method' => 'loadPluginShow',
+							'reg_0' => '|^.*/(plugin)/([\w\-]+).*([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Plugin_Controller',
+							'method' => 'loadPluginShow',
+							'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Log_Controller',
+							'method' => 'displayContent',
+							'reg_0' => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
+							'reg_1' => '|^.*/(post)-(\d+)\.html(/(\d+))?/?([\?&].*)?$|',
+							'reg_2' => '|^.*/(post)/(\d+)(/(\d+))?/?$|',
+							'reg_3' => '|^/([^\./\?=]+)(\.html)?(/(\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Log_Controller',
+							'method' => 'displayContent',
+							'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(\d+))?/?([\?&].*)?$|',
+							),
+					array(
+							'model' => 'Log_Controller',
+							'method' => 'display',
+							'reg_0' => '|^/?([\?&].*)?$|',
+							),
+				);
 		return $routingtable;
 	}
 
 	/**
-     * Get the types of attachments allowed to upload
+	 * 获取允许上传的附件类型
 	 */
 	static function getAttType() {
 		return explode(',', self::ATTACHMENT_TYPE);
 	}
 
 	/**
-	 * Get the widget titles
+	 * 获取widget组件标题
 	 */
 	static function getWidgetTitle() {
 		$widget_title = array(
-	        'blogger' => $lang['widget_blogger'],
-	        'calendar' => $lang['calendar'],
-	        'twitter' => $lang['twitter'],
-	        'tag' => $lang['tags'],
-	        'sort' => $lang['categories'],
-	        'archive' => $lang['archive'],
-	        'newcomm' => $lang['latest_comments'],
-	        'newlog' => $lang['latest_posts'],
-	        'random_log' => $lang['random_posts'],
-		'hotlog' => $lang['hot_articles'],
-	        'link' => $lang['links'],
-	        'search' => $lang['search'],
-	        'custom_text' => $lang['widget_custom']
+			'blogger' => '个人资料',
+			'calendar' => '日历',
+			'twitter' => '最新微语',
+			'tag' => '标签',
+			'sort' => '分类',
+			'archive' => '存档',
+			'newcomm' => '最新评论',
+			'newlog' => '最新文章',
+			'random_log' => '随机文章',
+			'hotlog' => '热门文章',
+			'link' => '链接',
+			'search' => '搜索',
+			'custom_text' => '自定义组件'
 		);
 		return $widget_title;
 	}
 
 	/**
-     * Get a list of widgets during initial installation
+	 * 获取初始安装时的widget列表
 	 */
 	static function getDefWidget() {
 		$default_widget = array('calendar','archive','newcomm','link','search');
@@ -175,10 +180,10 @@ class Option {
 	}
 
 	/**
-     * Update configuration options
+	 * 更新配置选项
 	 * @param $name
 	 * @param $value
-     * @param $isSyntax Whether the update value is an expression
+	 * @param $isSyntax 更新值是否为一个表达式
 	 */
 	static function updateOption($name, $value, $isSyntax = false){
 		$DB = MySql::getInstance();

@@ -29,13 +29,13 @@ body {
 	padding:18px 0px 12px;
 	text-align:center;
 }
-#menu_wt a {background:url(../images/addblog.gif) no-repeat 3px 1px;}
-#menu_tw a {background:url(../images/t.gif) no-repeat 3px 1px;}
-#menu_plug a {background:url(../images/plugin.gif) no-repeat 3px 1px;}
-#menu_store a {background:url(../images/store.gif) no-repeat 3px 2px;}
+#menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
+#menu_tw a {background:url(../images/t.gif) no-repeat 20px 1px;}
+#menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
+#menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
 #menu_ext { cursor:pointer;}
-.menu_ext_minus {background:url(../images/minus.gif) no-repeat 5px 5px;}
-.menu_ext_plus {background:url(../images/plus.gif) no-repeat 5px 5px;}
+.menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
+.menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
 .containertitle {
 	background-position:left 3px;
 	font-size:14px;
@@ -46,43 +46,38 @@ body {
 	background-position:left 3px;
 	font-size:18px;
 	height:30px;
-*	background:url(../images/yeka.gif) 10px -82px no-repeat;
-	padding:0 0 0 0px;
-	margin:20px 0px 0px;
-	border-bottom: 1px solid #ddd;
+	background:url(../images/yeka.gif) 10px -82px no-repeat;
+	padding:0 0 0 20px;
+	margin:20px 0px 10px;
 }
 .containertitle2 .navi1,.containertitle2 .navi2,.containertitle2 .navi3,.containertitle2 .navi4 {
 	font-size:13px;
 	display:block;
-*	width:86px;
+	width:86px;
 	float:left;
 	text-align:center;
-	height:30px;
+	height:25px;
 	line-height:24px;
-	padding: 0 5px;
-	border: 1px solid #ddd;
-	border-bottom: none;
 }
 .containertitle2 .navi1 {
-*	background:url(../images/yeka.gif) no-repeat;
+	background:url(../images/yeka.gif) no-repeat;
 	color:#999;
 }
 .containertitle2 .navi2 {
-*	background:url(../images/yeka.gif) no-repeat -1px -29px;
+	background:url(../images/yeka.gif) no-repeat -1px -29px;
 	line-height:24px;
 }
 .containertitle2 .navi3 {
-*	background:url(../images/yeka.gif) no-repeat 0px -29px;
+	background:url(../images/yeka.gif) no-repeat 0px -29px;
 	line-height:24px;
 }
 .containertitle2 .navi4 {
-*	background:url(../images/yeka.gif) no-repeat -1px 0px;
+	background:url(../images/yeka.gif) no-repeat -1px 0px;
 	color:#999;
 }
 .containertitle2 .actived {
 	margin:0px 60px;
-*	background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
-	background:#ccc;
+	background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
 	font-size:12px;
 	padding:3px 12px 4px 30px;
 	border:1px #FFBA43 solid
@@ -756,7 +751,7 @@ textarea {
 	background:url(../images/loading.gif) no-repeat 200px 2px;
 	height:20px;
 }
-/*Backstage style*/
+/*后台风格*/
 #admin_style {
 	margin:10px 10px 10px 10px;
 }

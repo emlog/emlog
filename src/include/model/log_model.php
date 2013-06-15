@@ -76,13 +76,12 @@ class Log_Model {
 	 * Get a single post in the background
 	 */
 	function getOneLogForAdmin($blogId) {
-		global $lang;
 		$timezone = Option::get('timezone');
 		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-			emMsg($lang['access_disabled'], './');
+			emMsg('权限不足！', './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -99,7 +98,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a single post for the frontend
+	 * 前台获取单篇文章
 	 */
 	function getOneLogForHome($blogId) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
@@ -132,7 +131,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a post list for the background
+	 * 后台获取文章列表
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -141,7 +140,6 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
-	        global $lang;
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
@@ -153,7 +151,7 @@ class Log_Model {
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -164,7 +162,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a post list for the frontend
+	 * 前台获取文章列表
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -172,7 +170,6 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForHome($condition = '', $page = 1, $perPageNum) {
-		global $lang;
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
@@ -186,10 +183,10 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-                $row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
+				$row['excerpt'] = '<p>[该文章已设置加密，请点击标题输入密码访问]</p>';
 			} else {
 				if (!empty($row['excerpt'])) {
-                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
+					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
@@ -201,7 +198,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a list of all pages
+	 * 获取全部页面列表
 	 *
 	 */
 	function getAllPageList() {
@@ -210,7 +207,7 @@ class Log_Model {
 		$pages = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
+			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -221,25 +218,24 @@ class Log_Model {
 	}
 
 	/**
-	 * Delete Post
+	 * 删除文章
 	 *
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
-		global $lang;
 		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-			emMsg($lang['access_disabled'], './');
+			emMsg('权限不足！', './');
 		}
-		// Comments
+		// 评论
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// Trackbacks
+		// 引用
 		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
-		// Tags
+		// 标签
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-		// Attachments
+		// 附件
 		$query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
 		while ($attach = $this->db->fetch_array($query)) {
 			if (file_exists($attach['filepath'])) {
@@ -254,7 +250,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Hide/show the post
+	 * 隐藏/显示文章
 	 *
 	 * @param int $blogId
 	 * @param string $hideState
@@ -267,7 +263,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get the post release time
+	 * 获取文章发布时间
 	 *
 	 * @param int $timezone
 	 * @param string $postDate
@@ -291,7 +287,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Update the number of views
+	 * 增加阅读次数
 	 *
 	 * @param int $blogId
 	 */
@@ -300,7 +296,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Determine whether the post is repeated
+	 * 判断是否重复发文
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -310,9 +306,9 @@ class Log_Model {
 	}
 
 	/**
-	 * Get neighbor posts
+	 * 获取相邻文章
 	 *
-	 * @param int $date unix Timestamp
+	 * @param int $date unix时间戳
 	 * @return array
 	 */
 	function neighborLog($date) {
@@ -329,7 +325,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Randomly get a specified number of posts
+	 * 随机获取指定数量文章
 	 */
 	function getRandLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
@@ -344,7 +340,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get popular articles
+	 * 获取热门文章
 	 */
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -359,7 +355,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Handling post aliases to prevent duplicate aliases
+	 * 处理文章别名，防止别名重复
 	 *
 	 * @param string $alias
 	 * @param array $logalias_cache
@@ -381,13 +377,12 @@ class Log_Model {
 	}
 
 	/**
-	 * Verify access to the encrypted post
+	 * 加密文章访问验证
 	 *
 	 * @param string $pwd
 	 * @param string $pwd2
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
-		global $lang;
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
@@ -406,9 +401,9 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <body>
 <div class="main">
 <form action="" method="post">
-{$lang['blog_enter_password']}<br>
-<input type="password" name="logpwd" /><input type="submit" value="{$lang['enter']}.." />
-<br /><br /><a href="$url">&laquo;{$lang['back_home']}</a>
+请输入该文章的访问密码<br>
+<input type="password" name="logpwd" /><input type="submit" value="进入.." />
+<br /><br /><a href="$url">&laquo;返回首页</a>
 </form>
 </div>
 </body>

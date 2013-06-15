@@ -94,8 +94,12 @@ if ($action== 'mod') {
 	$naviData = $Navi_Model->getOneNavi($naviId);
 	extract($naviData);
 
+	if ($type != Navi_Model::navitype_custom) {
+		$url = '该导航地址由系统生成，无法修改';
+	}
+
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';
-	$conf_isdefault = $isdefault == 'y' ? 'disabled="disabled"' : '';
+	$conf_isdefault = $type != Navi_Model::navitype_custom ? 'disabled="disabled"' : '';
 
 	include View::getView('header');
 	require_once(View::getView('naviedit'));

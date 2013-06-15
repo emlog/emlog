@@ -12,15 +12,16 @@ class Url {
 	static function log($blogId) {
 		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
+		$urlMode = Option::get('isurlrewrite');
 		$CACHE = Cache::getInstance();
 
-        	//Turn on post url  alias
+		//开启文章别名
 		if (Option::get('isalias') == 'y') {
 			$logalias_cache = $CACHE->readCache('logalias');
 			if (!empty($logalias_cache[$blogId])) {
 				$logsort_cache = $CACHE->readCache('logsort');
 				$sort = '';
-            			//Url in category mode
+				//分类模式下的url
 				if (3 == $urlMode && isset($logsort_cache[$blogId])) {
 					$sort = !empty($logsort_cache[$blogId]['alias']) ? 
 						$logsort_cache[$blogId]['alias'] : 
@@ -28,7 +29,7 @@ class Url {
 					$sort .= '/';
 				}
 				$logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-                		//Add html suffix to the alias
+				//开启别名html后缀
 				if (Option::get('isalias_html') == 'y') {
 					$logUrl .= '.html';
 				}
@@ -37,16 +38,16 @@ class Url {
 		}
 
 		switch ($urlMode) {
-            		case '0'://Default: dynamic
+			case '0'://默认：动态
 				$logUrl = BLOG_URL . '?post=' . $blogId;
 				break;
-            		case '1'://Static
+			case '1'://静态
 				$logUrl = BLOG_URL . 'post-' . $blogId . '.html';
 				break;
-            		case '2'://Directory
+			case '2'://目录
 				$logUrl = BLOG_URL . 'post/' . $blogId;
 				break;
-            		case '3'://Category
+			case '3'://分类
 				$log_sort = $CACHE->readCache('logsort');
 				if (!empty($log_sort[$blogId]['alias'])) {
 					$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
@@ -58,11 +59,12 @@ class Url {
 				$logUrl .= '.html';
 				break;
 		}
+		doAction('log_url_created', $logUrl);
 		return $logUrl;
 	}
 
 	/**
-         * Get archive link
+	 * 获取归档链接
 	 */
 	static function record($record, $page = null) {
 		$recordUrl = '';
@@ -75,14 +77,15 @@ class Url {
 			default:
 				$recordUrl = BLOG_URL . 'record/' . $record;
 				if ($page)
-					$recordUrl = BLOG_URL . 'record/' . $record . '/page/';
+					$recordUrl = BLOG_URL . 'record/' . $record . '/';
 				break;
 		}
+		doAction('record_url_created', $recordUrl);
 		return $recordUrl;
 	}
 
 	/**
-         * Get category link
+	 * 获取分类链接
 	 */
 	static function sort($sortId, $page = null) {
 		$CACHE = Cache::getInstance();
@@ -98,14 +101,15 @@ class Url {
 			default:
 				$sortUrl = BLOG_URL . 'sort/' . $sort_index;
 				if ($page)
-					$sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page/';
+					$sortUrl = BLOG_URL . 'sort/' . $sort_index . '/';
 				break;
 		}
+		doAction('sort_url_created', $sortUrl);
 		return $sortUrl;
 	}
 
 	/**
-         * Get author link
+	 * 获取作者链接
 	 */
 	static function author($authorId, $page = null) {
 		$authorUrl = '';
@@ -118,14 +122,15 @@ class Url {
 			default:
 				$authorUrl = BLOG_URL . 'author/' . $authorId;
 				if ($page)
-					$authorUrl = BLOG_URL . 'author/' . $authorId . '/page/';
+					$authorUrl = BLOG_URL . 'author/' . $authorId . '/';
 				break;
 		}
+		doAction('author_url_created', $authorUrl);
 		return $authorUrl;
 	}
 
 	/**
-         * Get tag link
+	 * 获取标签链接
 	 */
 	static function tag($tag, $page = null) {
 		$tagUrl = '';
@@ -138,14 +143,15 @@ class Url {
 			default:
 				$tagUrl = BLOG_URL . 'tag/' . $tag;
 				if ($page)
-					$tagUrl = BLOG_URL . 'tag/' . $tag . '/page/';
+					$tagUrl = BLOG_URL . 'tag/' . $tag . '/';
 				break;
 		}
+		doAction('tag_url_created', $tagUrl);
 		return $tagUrl;
 	}
 
 	/**
-         * Get the page link
+	 * 获取首页文章分页链接
 	 */
 	static function logPage() {
 		$logPageUrl = '';
@@ -157,11 +163,12 @@ class Url {
 				$logPageUrl = BLOG_URL . 'page/';
 				break;
 		}
+		doAction('logpage_url_created', $logPageUrl);
 		return $logPageUrl;
 	}
 
 	/**
-         * Get comment link
+	 * 获取评论链接
 	 */
 	static function comment($blogId, $pageId, $cid) {
 		$commentUrl = Url::log($blogId);
@@ -169,36 +176,31 @@ class Url {
 			if (Option::get('isurlrewrite') == 0 && strpos($commentUrl, '=') !== false) {
 				$commentUrl .= '&comment-page=';
 			} else {
-				$commentUrl .= '/comment-page-';
+				$commentUrl .= '/';
 			}
 			$commentUrl .= $pageId;
 		}
 		$commentUrl .= '#' . $cid;
+		doAction('comment_url_created', $commentUrl);
 		return $commentUrl;
 	}
 
 	/**
-	 * Get comment link
+	 * 获取导航链接
 	 */
 	static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');
 		switch ($type) {
-			//Conventional navigation
-			case 0:
+			case Navi_Model::navitype_custom:
+			case Navi_Model::navitype_home:
+			case Navi_Model::navitype_t:
+			case Navi_Model::navitype_admin:
 				$url = $url;
 				break;
-			//System default, including homepage, twitter, login
-			case 1:
-			case 2:
-			case 3:
-				$url = $url;
-				break;
-			//Category
-			case 4:
+			case Navi_Model::navitype_sort:
 				$url = Url::sort($typeId);
 				break;
-			//Page
-			case 5:
+			case Navi_Model::navitype_page:
 				$url = Url::log($typeId);
 				break;
 			default:

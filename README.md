@@ -1,6 +1,6 @@
 ![](src/admin/views/default/images/logo.gif)
 
-Emlog Version 4.3.0
+Emlog
 ===================
 
 Introduction
