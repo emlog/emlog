@@ -9,15 +9,13 @@ $("#menu_store").addClass('sidebarsubmenu1');
 $(document).ready(function(){
     $.get('./store.php', {action:'addon', source:"<?php echo $source;?>", type:"<?php echo $source_type;?>" },
       function(data){
-        if (data.match("succ")) {
+        if (data == 'succ') {
             $("#addon_ins").html('<span id="addonsucc"><?php echo $source_typename;?><? echo $lang['install_ok']; ?>, <?php echo $source_typeurl;?></span>');
-        } else if(data.match("error_down")){
+        } else if(data == 'error_get'){
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['download_error_manually']; ?> <a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
-        } else if(data.match("error_zip")){
+        } else if(data == 'error_zip'){
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['decompression_error']; ?><a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
-        } else if(data.match("error_dir")){
-            $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>安装失败，可能是应用目录不可写，<a href="store.php">返回应用中心</a></span>');
-        }else{
+        } else{
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['install_error']; ?><a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
         }
       });

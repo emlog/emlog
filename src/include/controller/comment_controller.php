@@ -52,7 +52,7 @@ class Comment_Controller {
 			emMsg($lang['comment_error_empty']);
 		} elseif (mb_strlen($content) > 8000) {
 			emMsg($lang['comment_invalid']);
-		} elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+		} elseif (Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 			emMsg($lang['comment_chinese']);
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			emMsg($lang['comment_captcha_invalid']);

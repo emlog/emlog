@@ -186,7 +186,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			/*if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . addslashes($comment['poster']) . '：' . $content;
+				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}*/
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -227,12 +227,13 @@ class Comment_Model {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
+		global $lang;
 		$ipaddr = getIp();
 		$utctimestamp = time();
 
 		/*if($pid != 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}*/
 
 		$ischkcomment = Option::get('ischkcomment');
@@ -252,13 +253,13 @@ class Comment_Model {
 		} else {
 			$CACHE->updateCache('sta');
 			doAction('comment_saved', $cid);
-			emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
+			emMsg($lang['comment_posted_premod'], Url::log($blogId));
 		}
 	}
 
     
 	/**
-	 * 修改评论
+	 * Edit comment
 	 *
 	 * @param array $commentData
 	 * @param int $commentId

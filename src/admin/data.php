@@ -136,6 +136,7 @@ if ($action == 'import') {
 	emDirect('./data.php?active_import=1');
 }
 
+//Bulk delete the backup files
 if ($action == 'dell_all_bak') {
 	if (!isset($_POST['bak'])) {
 		emDirect('./data.php?error_a=1');
@@ -148,14 +149,14 @@ if ($action == 'dell_all_bak') {
 }
 
 /**
- * 检查备份文件头信息
+ * Check the backup file header information
  * 
  * @param file $sqlfile
  */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
-		emMsg('导入失败！读取文件失败');
+		emMsg($lang['backup_read_error']);
 	}
 	$dumpinfo = array();
 	$line = 0;
@@ -166,18 +167,18 @@ function checkSqlFileInfo($sqlfile) {
 	}
 	fclose($fp);
 	if (empty($dumpinfo)) {
-		emMsg('导入失败！该备份文件不是 emlog的备份文件!');
+		emMsg($lang['backup_not_emlog']);
 	}
 	if (!preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0])) {
-		emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+		emMsg($lang['backup_bad_ver1'] . Option::EMLOG_VERSION . $lang['backup_bad_ver2']);
 	}
 	if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-		emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);
+		emMsg($lang['backup_prefix_invalid'] . $dumpinfo[2]);
 	}
 }
 
 /**
- * 执行备份文件的SQL语句
+ * Import the backup file
  *
  * @param string $filename
  */
@@ -209,9 +210,9 @@ function bakindata($filename) {
 }
 
 /**
- * 备份数据库结构和所有数据
+ * Back up the database structure and all the data
  *
- * @param string $table 数据库表名
+ * @param string $table Database table name
  * @return string
  */
 function dataBak($table) {
@@ -238,7 +239,7 @@ function dataBak($table) {
 }
 
 /**
- * 检查文件是否包含BOM(byte-order mark)
+ * Check if the file contains BOM (byte-order mark)
  */
 function checkBOM($contents) {
 	$charset[1] = substr($contents, 0, 1);

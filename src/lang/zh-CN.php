@@ -674,6 +674,7 @@ $lang['comment_error_empty']		= '评论失败：请填写评论内容';//'Commen
 
 $lang['pages']			= '页面';//'Pages';
 $lang['_pages']			= '个页面';//' pages';// number of!
+$lang['page']			= '页面';//'Page';
 $lang['page_add']		= '新建页面';//'新建一个页面';//'Add new page';
 $lang['page_management']	= '页面管理';//'Page Management';
 $lang['page_url']		= '转向地址';//'External page URL';
@@ -1017,3 +1018,7 @@ $lang['category_parent']	= '父分类';//'Parent category';
 $lang['category_description']	= '分类描述';//'Category Description';
 $lang['alias_bad_format']	= '别名格式错误';//'Alias format error';
 $lang['category_edit']		= '编辑分类';//'Edit category';
+
+$lang['type']		= '类型';//'Type';
+$lang['system']		= '系统';//'System';
+$lang['custom']		= '自定';//'Custom';

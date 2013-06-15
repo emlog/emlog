@@ -79,10 +79,10 @@ if ($action == 'mod_config') {
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启登录验证码失败!服务器不支持该功能","configure.php");
+		emMsg($lang['verification_code_not_supported'],"configure.php");
 	}
 	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启评论验证码失败!服务器不支持该功能","configure.php");
+		emMsg($lang['verification_code_not_supported'],"configure.php");
 	}
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
@@ -96,5 +96,4 @@ if ($action == 'mod_config') {
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
 	emDirect("./configure.php?activated=1");
-}
 }

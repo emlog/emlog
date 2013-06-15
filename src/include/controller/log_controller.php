@@ -29,8 +29,8 @@ class Log_Controller {
 	}
 
 	function displayContent($params) {
-	global $lang;
-		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
+		global $lang;
+		$comment_page = isset($params[4]) && is_numeric($params[4]) ? intval($params[4]) : 1;
 
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();

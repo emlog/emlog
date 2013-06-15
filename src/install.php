@@ -357,8 +357,7 @@ CREATE TABLE {$db_prefix}link (
   taxis smallint(4) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES 
-(1, 'emlog', 'http://www.emlog.net', '{$lang['emlog_homepage']}', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', '{$lang['emlog_homepage']}', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id smallint(4) unsigned NOT NULL auto_increment,
@@ -372,9 +371,9 @@ CREATE TABLE {$db_prefix}navi (
   type_id mediumint(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (1, '{$lang['home']}', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (2, '{$lang['twitter']}', 't', 2, 'y', 2);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault) VALUES (3, '{$lang['login']}', 'admin', 3, 'y', 3);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '{$lang['home']}', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (2, '{$lang['twitter']}', 't', 2, 'y', 2);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '{$lang['login']}', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid mediumint(8) unsigned NOT NULL auto_increment,
@@ -390,7 +389,7 @@ CREATE TABLE {$db_prefix}sort (
   alias VARCHAR(200) NOT NULL DEFAULT '',
   taxis smallint(4) unsigned NOT NULL default '0',
   pid tinyint(3) unsigned NOT NULL default '0',
-  description VARCHAR(1024) NOT NULL default '',
+  description text NOT NULL,
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}trackback;
