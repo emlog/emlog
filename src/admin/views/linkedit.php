@@ -3,7 +3,7 @@
 <div class=line></div>
 <form action="link.php?action=update_link" method="post">
 <div class="item_edit">
-	<li><input size="25" value="<?php echo $sitename; ?>" name="sitename" /> <? echo $lang['link_name'];?></li>
+	<li><input size="25" value="<?php echo $sitename; ?>" name="sitename" /> <? echo $lang['name'];?></li>
 	<li><input size="40" value="<?php echo $siteurl; ?>" name="siteurl" /> <? echo $lang['link_url'];?></li>
 	<li><? echo $lang['link_description'];?><br /><textarea name="description" rows="3" cols="45"><?php echo $description; ?></textarea></li>
 	<li>

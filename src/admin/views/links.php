@@ -58,7 +58,7 @@
 <div id="link_new">
 	<li><? echo $lang['order']; ?></li>
 	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
-	<li><? echo $lang['link_name'];?></li>
+	<li><? echo $lang['name'];?></li>
 	<li><input maxlength="200" style="width:228px;" name="sitename" /></li>
 	<li><? echo $lang['link_url'];?></li>
 	<li><input maxlength="200" style="width:228px;" name="siteurl" /></li>

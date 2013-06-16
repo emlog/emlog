@@ -17,7 +17,7 @@
 		<thead>
 			<tr>
         <th width="55"><b><? echo $lang['order'];?></b></th>
-			<th width="160"><b><? echo $lang['link_name']; ?></b></th>
+			<th width="160"><b><? echo $lang['name']; ?></b></th>
             <th width="250"><b><? echo $lang['link_description']; ?></b></th>
 			<th width="160"><b><? echo $lang['alias']; ?></b></th>
 			<th width="40" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
@@ -83,8 +83,8 @@ foreach($sorts as $key=>$value):
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><? echo $lang['category_add']; ?>+</a></div>
 <div id="sort_new" class="item_edit">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /><? echo $lang['link_name']; ?></li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /> <? echo $lang['order']; ?></li>
+	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> <? echo $lang['name']; ?></li>
 	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> <? echo $lang['alias']; ?> (<? echo $lang['alias_prompt']; ?>)</li>
 	<li>
 		<select name="pid" id="pid">

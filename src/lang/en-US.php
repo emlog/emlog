@@ -491,7 +491,6 @@ $lang['link'] = 'Link';//链接
 $lang['link_edit'] = 'Edit link';//修改链接
 $lang['link_add'] = 'Add link';//添加链接
 $lang['link_follow'] = 'Follow the link';//查看链接
-$lang['link_name'] = 'Site name';//名称
 $lang['link_url'] = 'Site URL';//地址
 $lang['link_description'] = 'Site description';//描述
 $lang['links_ordered_ok'] = 'Links ordered successfully.';//排序更新成功
@@ -674,6 +673,7 @@ $lang['comment_error_empty']		= 'Comment failed: Please fill in the comment cont
 
 $lang['pages']			= 'Pages';//'页面';
 $lang['_pages']			= ' pages';// number of!//'个页面';
+$lang['page']			= 'Page';//'页面';
 $lang['page_add']		= 'Add new page';//'新建页面';//'新建一个页面';
 $lang['page_management']	= 'Page Management';//页面管理
 $lang['page_url']		= 'External page URL';//'转向地址';
@@ -1017,3 +1017,7 @@ $lang['category_parent']	= 'Parent category';//'父分类';
 $lang['category_description']	= 'Category Description';//'分类描述';
 $lang['alias_bad_format']	= 'Alias format error';//'别名格式错误';
 $lang['category_edit']		= 'Edit category';//'编辑分类';
+
+$lang['type']		= 'Type';//'类型';
+$lang['system']		= 'System';//'系统';
+$lang['custom']		= 'Custom';//'自定';

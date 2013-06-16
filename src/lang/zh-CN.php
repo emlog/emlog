@@ -491,7 +491,6 @@ $lang['link'] = '链接';//'Link';
 $lang['link_edit'] = '修改链接';//'Edit link';
 $lang['link_add'] = '添加链接';//'Add link';
 $lang['link_follow'] = '查看链接';//'Follow the link';
-$lang['link_name'] = '名称';//'Site name';
 $lang['link_url'] = '地址';//'Site URL';
 $lang['link_description'] = '描述';//'Site description';
 $lang['links_ordered_ok'] = '排序更新成功';//'Links ordered successfully.';
