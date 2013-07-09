@@ -46,7 +46,6 @@ if ($action == 'edit') {
 
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
-	$is_allow_tb = $allow_tb == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
 	require_once View::getView('edit_log');

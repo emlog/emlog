@@ -307,22 +307,6 @@ function neighbor_log($neighborLog){
 	<?php endif;?>
 <?php }?>
 <?php
-//blog：引用通告
-function blog_trackback($tb, $tb_url, $allow_tb){
-    if($allow_tb == 'y' && Option::get('istrackback') == 'y'):?>
-	<div id="trackback_address">
-	<p>引用地址: <input type="text" style="width:350px" class="input" value="<?php echo $tb_url; ?>">
-	<a name="tb"></a></p>
-	</div>
-	<?php endif; ?>
-	<?php foreach($tb as $key=>$value):?>
-		<ul id="trackback">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
-		</ul>
-	<?php endforeach; ?>
-<?php }?>
-<?php
 //blog：评论列表
 function blog_comments($comments){
     extract($comments);

@@ -113,15 +113,12 @@ class Log_Model {
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
 				'author' => $row['author'],
-				'tbscode' => substr(md5(gmdate('YndG')), 0, 6),
 				'log_content' => rmBreak($row['content']),
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
-				'tbcount' => intval($row['tbcount']),
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'allow_tb' => $row['allow_tb'],
 				'password' => $row['password']
 				);
 			return $logData;
@@ -230,8 +227,6 @@ class Log_Model {
 		}
 		// 评论
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// 引用
-		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
 		// 标签
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");

@@ -114,7 +114,6 @@ if (ISLOGIN === true && $action == 'savelog') {
 		'sortid' => $sort,
 		'date' => $postTime,
 		'allow_remark' => 'y',
-		'allow_tb' => 'y',
 		'hide' => 'n',
 		'password' => ''
 		);

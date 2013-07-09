@@ -67,9 +67,6 @@
 		?>
 		<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
-		<?php if (Option::get('istrackback') == 'y'): ?>
-    	<li class="sidebarsubmenu" id="menu_tb"><a href="trackback.php">引用</a></li>
-    	<?php endif;?>
     	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
 		<?php if (ROLE == 'admin'):?>
     	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>

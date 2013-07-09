@@ -69,10 +69,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 .footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 
 #contentleft .nextlog{text-align:center; margin:5px 0; font-size:12px}
-#trackback_address{font-size:12px; color:#999}
-#trackback_address input{border:#f1f1f1 solid 1px; background-color:#fffdf1; padding:2px 8px; color:#999; font-size:11px}
-#trackback{font-size:12px; color:#333; line-height:16px; overflow:hidden; margin:5px 0; padding:0px 0px 3px 0px; border-bottom:1px #f5f5f5 solid}
-#contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
 #contentleft .comment-header{margin:15px 0px 5px 0px}
 #contentleft .comment-post {clear:both}
 #contentleft .comment-post p{margin:5px 0px}

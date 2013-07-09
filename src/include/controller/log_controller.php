@@ -55,7 +55,6 @@ class Log_Controller {
 		}
 
 		$Comment_Model = new Comment_Model();
-		$Trackback_Model = new Trackback_Model();
 
 		$logData = $Log_Model->getOneLogForHome($logid);
 		if ($logData === false) {
@@ -98,8 +97,6 @@ class Log_Controller {
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);
 			$neighborLog = $Log_Model->neighborLog($timestamp);
-			$tb = $Trackback_Model->getTrackbacks(null, $logid, 0);
-			$tb_url = BLOG_URL . 'tb.php?sc=' . $tbscode . '&id=' . $logid; 
 			include View::getView('echo_log');
 		}elseif ($type == 'page') {
 			include View::getView('page');

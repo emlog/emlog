@@ -8,7 +8,6 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
 </div>
 <div class=line></div>
-<form action="trackback.php?action=dell_all_tb" method="post">
   <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
       <tr>
@@ -64,7 +63,6 @@
 	<?php endif;?>
 	</tbody>
   </table>
-</form>
 <div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");

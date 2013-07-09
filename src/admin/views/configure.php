@@ -77,7 +77,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />图片附件缩略图<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作<br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="istrackback" id="istrackback" <?php echo $conf_istrackback; ?> />引用通告<br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />手机访问版，地址：<span id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></span>
       	</td>
       <tr>
