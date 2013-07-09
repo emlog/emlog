@@ -35,6 +35,13 @@ if ($action== 'del') {
 	emDirect("./comment.php?active_del=1");
 }
 
+if ($action== 'delbyip') {
+	$ip = isset($_GET['ip']) ? $_GET['ip'] : '';
+	$Comment_Model->delCommentByIp($ip);
+	$CACHE->updateCache(array('sta','comment'));
+	emDirect("./comment.php?active_del=1");
+}
+
 if ($action=='hide') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->hideComment($id);

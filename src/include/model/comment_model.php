@@ -144,6 +144,21 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
+    /**
+     * 删除来自某IP的所有评论
+     * @param type $ip
+     */
+    function delCommentByIp($ip) {
+        $blogids = array();
+        $sql = "SELECT DISTINCT gid FROM ".DB_PREFIX."comment WHERE ip='$ip'";
+        $query = $this->db->query($sql);
+		while ($row = $this->db->fetch_array($query)) {
+            $blogids[] = $row['gid'];
+		}
+		$this->db->query("DELETE FROM ".DB_PREFIX."comment WHERE ip='$ip'");
+		$this->updateCommentNum($blogids);
+	}
+
 	function hideComment($commentId) {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
@@ -217,12 +232,21 @@ class Comment_Model {
 		}
 	}
 
+    /**
+     * 更新日志评论数
+     */
 	function updateCommentNum($blogId) {
-		$sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
-		$res = $this->db->once_fetch_array($sql);
-		$comNum = $res['count(*)'];
-		$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=$comNum WHERE gid=$blogId");
-		return $comNum;
+        if (is_array($blogId)) {
+            foreach ($blogId as $val) {
+                $this->updateCommentNum($val);
+            }
+        } else {
+            $sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
+            $res = $this->db->once_fetch_array($sql);
+            $comNum = $res['count(*)'];
+            $this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=$comNum WHERE gid=$blogId");
+            return $comNum;
+        }
 	}
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
