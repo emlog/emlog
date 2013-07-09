@@ -14,7 +14,7 @@ foreach($comment as $value):
 <?php endif;?>
 <div class="cominfo">
 <?php if(ISLOGIN === true && $value['hide'] == 'n'): ?>
-<a href="./?action=hidecom&id=<?php echo $value['cid'];?>">屏蔽</a>
+<a href="./?action=hidecom&id=<?php echo $value['cid'];?>">驳回</a>
 <?php elseif(ISLOGIN === true && $value['hide'] == 'y'):?>
 <a href="./?action=showcom&id=<?php echo $value['cid'];?>">审核</a>
 <?php endif;?>
