@@ -594,7 +594,7 @@ function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// 检查用户权限
-	if (!LoginAuth::checkUser($username, $password , '', 'n')) {
+	if (true !== LoginAuth::checkUser($username, $password , '', 'n')) {
 		error_message(403, '用户名密码错误');
 		return false;
 	}
