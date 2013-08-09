@@ -74,7 +74,7 @@ foreach($sorts as $key=>$value):
 	</tr>
 	<?php endforeach; ?>
 <?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="6">还没有添加分类</td></tr>
+	  <tr><td class="tdcenter" colspan="7">还没有添加分类</td></tr>
 <?php endif;?>  
 </tbody>
 </table>
