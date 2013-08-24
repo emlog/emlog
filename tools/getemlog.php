@@ -1,4 +1,9 @@
 <?php
+/**
+ * emlog在线安装脚本
+ * @copyright (c) Emlog All Rights Reserved
+ */
+
 define('EMLOG_DOWNLOAD', 'http://www.emlog.net/em_download/emlog/emlog_5.1.2.zip');
 define('DOC_ROOT', dirname(__FILE__));
 $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -49,8 +54,7 @@ if ($action == 'go') {
 			<!--
 			body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 			.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 4px;}
-			.logo{background:url(admin/views/images/logo.gif) no-repeat center;padding:30px 0px 30px 0px;margin:30px 0px;}
-			.title{text-align:center; font-size: 14px;}
+			.title{text-align:center; font-size: 24px;}
 			.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
 			.submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 			.care{color:#0066CC;}
@@ -63,13 +67,12 @@ if ($action == 'go') {
 	<body>
 		<form name="form1" method="post" action="?action=go">
 			<div class="main">
-				<p class="logo"></p>
-				<p class="title">emlog在线安装程序</p>
+				<p class="title">EMLOG在线安装程序</p>
 				<div class="b">
-					<p class="title2">MySQL数据库设置</p>
+					<p class="title2">在线安装</p>
 					<?php
 					$can_go = true;
-					if ( is_writable(DOC_ROOT)):
+					if ( !is_writable(DOC_ROOT)):
 						$can_go = false;
 					?>
 					<p style="color:red">您当前目录<?php echo DOC_ROOT?>没有写入权限，程序无法安装.</p>
@@ -77,7 +80,7 @@ if ($action == 'go') {
 					endif;
 					?>
 					<?php
-					if ( class_exists('ZipArchive')):
+					if ( !class_exists('ZipArchive')):
 						$can_go = false;
 					?>
 					<p style="color:red">PHP的Zip文件支持没有开启，程序无法安装.</p>
@@ -99,7 +102,6 @@ if ($action == 'go') {
 	</body>
 </html>
 <?php
-
 function rcopy($src, $dst) {
 	if (is_dir($src)) {
 		if (!file_exists($dst))
