@@ -3,8 +3,12 @@
  * emlog在线安装脚本
  * @copyright (c) Emlog All Rights Reserved
  */
+if (version_compare(phpversion(), '5.2', '<')) {
+	die('PHP版本必须高于5.2才能使用本安装程序.');
+}
+define('EMLOG_DOWNLOAD_CHINA', 'http://www.emlog.net/em_download/emlog/emlog_5.1.2.zip');
+define('EMLOG_DOWNLOAD_OVERSEA', 'http://emlog.googlecode.com/files/emlog_5.1.2.zip');
 
-define('EMLOG_DOWNLOAD', 'http://www.emlog.net/em_download/emlog/emlog_5.1.2.zip');
 define('DOC_ROOT', dirname(__FILE__));
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 if ($action == 'go') {
@@ -19,7 +23,11 @@ if ($action == 'go') {
 		try {
 			$http = Http::factory($emlog_zip, Http::TYPE_SOCK);
 		} catch (Exception $e) {
-			$http = Http::factory($emlog_zip, Http::TYPE_STREAM);
+			try {
+				$http = Http::factory($emlog_zip, Http::TYPE_STREAM);
+			} catch (Exception $e) {
+				die('您空间的PHP不支持远程下载.');
+			}
 		}
 	}
 	if (!$http) {
@@ -59,7 +67,7 @@ if ($action == 'go') {
 			.submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
 			.care{color:#0066CC;}
 			.title2{font-size:18px;color:#666666;border-bottom: #CCCCCC 1px solid; margin:40px 0px 20px 0px;padding:10px 0px;}
-			.foot{text-align:center;}
+			.foot{text-align:left;}
 			.main li{ margin:20px 0px;}
 			-->
 		</style>
@@ -69,7 +77,7 @@ if ($action == 'go') {
 			<div class="main">
 				<p class="title">EMLOG在线安装程序</p>
 				<div class="b">
-					<p class="title2">在线安装</p>
+					<p class="title2">EMLOG安装包下载点选择</p>
 					<?php
 					$can_go = true;
 					if ( !is_writable(DOC_ROOT)):
@@ -88,8 +96,10 @@ if ($action == 'go') {
 					endif;
 					?>
 					<p>
-						emlog安装包下载地址： <br />
-						<input name="emlog_zip" type="text" class="input" size="80" value="<?php echo EMLOG_DOWNLOAD ?>">
+						<select name="emlog_zip">
+							<option value="<?php echo EMLOG_DOWNLOAD_CHINA?>">EMLOG 5.1.2 主站下载（适合国内及香港主机）</option>
+							<option value="<?php echo EMLOG_DOWNLOAD_OVERSEA?>">EMLOG 5.1.2 美国镜像下载（适合海外主机）</option>
+						</select>
 					</p>
 				</div>
 				<div>
