@@ -6,8 +6,10 @@
 if (version_compare(phpversion(), '5.2', '<')) {
 	die('PHP版本必须高于5.2才能使用本安装程序.');
 }
-define('EMLOG_DOWNLOAD_CHINA', 'http://www.emlog.net/em_download/emlog/emlog_5.1.2.zip');
-define('EMLOG_DOWNLOAD_OVERSEA', 'http://emlog.googlecode.com/files/emlog_5.1.2.zip');
+header('Content-Type: text/html; charset=utf-8');
+error_reporting(E_ALL);
+define('TIMEOUT', 120);
+ini_set('max_execution_time', TIMEOUT);
 
 define('DOC_ROOT', dirname(__FILE__));
 $action = isset($_GET['action']) ? $_GET['action'] : '';
@@ -33,7 +35,13 @@ if ($action == 'go') {
 	if (!$http) {
 		die('您空间的PHP不支持远程下载.');
 	}
-	$data = $http->send();
+	try {
+		$data = $http->send();
+	} catch (Exception $e) {
+		echo '下载EMLOG压缩包时出现错误: <br>';
+		echo $e->getMessage();
+		die;
+	}
 	if ($data) {
 		$zip_file = DOC_ROOT . '/emlog.zip';
 		file_put_contents($zip_file, $data);
@@ -63,12 +71,15 @@ if ($action == 'go') {
 			body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 			.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:30px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid; border-radius: 4px;}
 			.title{text-align:center; font-size: 24px;}
-			.input {border: 1px solid #CCCCCC;font-family: Arial;font-size: 18px;height:28px;background-color:#F7F7F7;color: #666666;margin:0px 0px 0px 25px;}
+			.title2 {font-weight: bold; border-bottom: 1px solid #ccc; font-weight: bold; font-size: 16px;}
 			.submit{cursor: pointer;font-size: 12px;padding: 4px 10px;}
-			.care{color:#0066CC;}
-			.title2{font-size:18px;color:#666666;border-bottom: #CCCCCC 1px solid; margin:40px 0px 20px 0px;padding:10px 0px;}
 			.foot{text-align:left;}
 			.main li{ margin:20px 0px;}
+			#download_panel {display: none;}
+			#download_panel p {line-height: 24px;}
+			#download_panel input {vertical-align:middle;}
+			#loading_panel {line-height: 24px;}
+			#loading_panel span {color: red; font-weight: bold;}
 			-->
 		</style>
 	</head>
@@ -76,7 +87,10 @@ if ($action == 'go') {
 		<form name="form1" method="post" action="?action=go">
 			<div class="main">
 				<p class="title">EMLOG在线安装程序</p>
-				<div class="b">
+				<div id="loading_panel">
+					正在加载EMLOG版本信息......
+				</div>
+				<div id="download_panel">
 					<p class="title2">EMLOG安装包下载点选择</p>
 					<?php
 					$can_go = true;
@@ -95,12 +109,10 @@ if ($action == 'go') {
 					<?php
 					endif;
 					?>
-					<p>
-						<select name="emlog_zip">
-							<option value="<?php echo EMLOG_DOWNLOAD_CHINA?>">EMLOG 5.1.2 主站下载（适合国内及香港主机）</option>
-							<option value="<?php echo EMLOG_DOWNLOAD_OVERSEA?>">EMLOG 5.1.2 美国镜像下载（适合海外主机）</option>
-						</select>
-					</p>
+					<p>当前EMLOG版本: <span id="latest_version"></span></p>
+					<div id="versions">
+					
+					</div>
 				</div>
 				<div>
 					<p class="foot">
@@ -109,6 +121,29 @@ if ($action == 'go') {
 				</div>
 			</div>
 		</form>
+		<script>
+		function  $(id) {
+			return document.getElementById(id);
+		}
+		var timeout = null;
+		function emlog_getversion(data) {
+			window.clearTimeout(timeout);
+			
+			var version_htmls = [];
+			for (var index = 0; index < data.versions.length; index++) {
+			
+				version_htmls.push('<p><input type="radio" name="emlog_zip" value="'+ data.versions[index]['url'] +'" '+ (index == 0 ? 'checked' : '')+'/>'+ data.versions[index]['name'] + '<br></p>');
+			}
+			$('versions').innerHTML = version_htmls.join("\n");
+			$('latest_version').innerHTML = data.latest_version;
+			$('loading_panel').style.display = 'none';
+			$('download_panel').style.display = 'block';
+		}
+		timeout = window.setTimeout(function() {
+			$('loading_panel').innerHTML = '<span>EMLOG版本获取失败, 请刷新页面再试.</span>';
+		}, 30000);
+		</script>
+		<script src="http://www.emlog.net/services/version.php"></script>
 	</body>
 </html>
 <?php
@@ -352,7 +387,7 @@ abstract class Http_Basic {
 	 * @param array $options 当前操作类一些特殊的属性设置 
 	 * @return unknown 
 	 */
-	public function get($url = '', $vars = array(), $header = array(), $cookie = '', $timeout = 30, $options = array()) {
+	public function get($url = '', $vars = array(), $header = array(), $cookie = '', $timeout = TIMEOUT, $options = array()) {
 		$this->setUrl($url);
 		$this->setHeader($header);
 		$this->setCookie($cookie);
@@ -413,7 +448,7 @@ class Http_Curl extends Http_Basic {
 	 * @param array $options 当前操作类一些特殊的属性设置 
 	 * @return string 返回服务器端读取的返回数据 
 	 */
-	public function send($method = 'GET', $timeout = 30, $options = array()) {
+	public function send($method = 'GET', $timeout = TIMEOUT, $options = array()) {
 		// 处理参数是否为空  
 		if ($this->uri == '') {
 			throw new Exception(__CLASS__ . ": Access url is empty");
@@ -422,7 +457,7 @@ class Http_Curl extends Http_Basic {
 		// 初始化CURL  
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
 
@@ -461,7 +496,7 @@ class Http_Curl extends Http_Basic {
 		$data = curl_exec($ch);
 		if ($err = curl_error($ch)) {
 			curl_close($ch);
-			throw new Exception(__CLASS__ . " error: " . $err);
+			throw new Exception(__CLASS__ . " 请求错误: " . $err);
 		}
 		curl_close($ch);
 		return $data;
@@ -486,7 +521,7 @@ class Http_Sock extends Http_Basic {
 	 * @param array $options 当前操作类一些特殊的属性设置 
 	 * @return string 返回服务器端读取的返回数据 
 	 */
-	public function send($method = 'GET', $timeout = 30, $options = array()) {
+	public function send($method = 'GET', $timeout = TIMEOUT, $options = array()) {
 		//处理参数是否为空  
 		if ($this->uri == '') {
 			throw new Exception(__CLASS__ . ": Access url is empty");
@@ -540,7 +575,7 @@ class Http_Sock extends Http_Basic {
 		// 连接服务器发送请求数据  
 		$ip = gethostbyname($host);
 		if (!($fp = fsockopen($ip, $port, $errno, $errstr, $timeout))) {
-			throw new Exception(__CLASS__ . ": Can't connect $host:$port, errno:$errno,message:$errstr");
+			throw new Exception(__CLASS__ . ": 无法连接到 $host:$port, 错误代码:$errno, 调试信息:$errstr");
 		}
 
 		fputs($fp, $header);
@@ -595,7 +630,7 @@ class Http_Stream extends Http_Basic {
 	 * @param array $options 当前操作类一些特殊的属性设置 
 	 * @return string 返回服务器端读取的返回数据 
 	 */
-	public function send($method = 'GET', $timeout = 30, $options = array()) {
+	public function send($method = 'GET', $timeout = TIMEOUT, $options = array()) {
 		// 处理参数是否为空  
 		if ($this->uri == '') {
 			throw new Exception(__CLASS__ . ": Access url is empty");
@@ -653,7 +688,7 @@ class Http_Stream extends Http_Basic {
 		// 发送数据返回  
 		$context = stream_context_create($opts);
 		if (($buf = file_get_contents($this->uri, null, $context)) === false) {
-			throw new Exception(__CLASS__ . ": file_get_contents(" . $this->uri . ") fail");
+			throw new Exception(__CLASS__ . ": file_get_contents(" . $this->uri . ") 失败");
 		}
 		return $buf;
 	}
