@@ -49,8 +49,8 @@ if ($action == 'go') {
 		if ($zip->open($zip_file) === TRUE) {
 			$zip->extractTo(DOC_ROOT);
 			$zip->close();
-			rcopy(DOC_ROOT . '/emlog_5.1.2/src', DOC_ROOT);
-			rrmdir(DOC_ROOT . '/emlog_5.1.2');
+			rcopy(DOC_ROOT . '/src', DOC_ROOT);
+			rrmdir(DOC_ROOT . '/src');
 			unlink($zip_file);
 			unlink(__FILE__);
 			header('Location: install.php');
@@ -84,7 +84,7 @@ if ($action == 'go') {
 		</style>
 	</head>
 	<body>
-		<form name="form1" method="post" action="?action=go">
+		<form id="submit_form" method="post" action="?action=go">
 			<div class="main">
 				<p class="title">EMLOG在线安装程序</p>
 				<div id="loading_panel">
@@ -116,7 +116,7 @@ if ($action == 'go') {
 				</div>
 				<div>
 					<p class="foot">
-						<input type="submit" class="submit" value="开始安装emlog" <?php ! $can_go AND print 'disabled'?>>
+						<input type="submit" class="submit" id="start" value="开始安装emlog" <?php ! $can_go AND print 'disabled'?>>
 					</p>
 				</div>
 			</div>
@@ -128,7 +128,6 @@ if ($action == 'go') {
 		var timeout = null;
 		function emlog_getversion(data) {
 			window.clearTimeout(timeout);
-			
 			var version_htmls = [];
 			for (var index = 0; index < data.versions.length; index++) {
 			
@@ -139,9 +138,15 @@ if ($action == 'go') {
 			$('loading_panel').style.display = 'none';
 			$('download_panel').style.display = 'block';
 		}
+		$('start').onclick = function() {
+			this.setAttribute('disabled', true);
+			this.value = '正在下载emlog....';
+			$('submit_form').submit();
+		}; 
+		
 		timeout = window.setTimeout(function() {
 			$('loading_panel').innerHTML = '<span>EMLOG版本获取失败, 请刷新页面再试.</span>';
-		}, 30000);
+		}, <?php echo TIMEOUT * 1000?>);
 		</script>
 		<script src="http://www.emlog.net/services/version.php"></script>
 	</body>
