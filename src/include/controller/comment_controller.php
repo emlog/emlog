@@ -56,6 +56,7 @@ class Comment_Controller {
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			emMsg('评论失败：验证码错误');
 		} else {
+            $_SESSION['code'] = null;
 			$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
 		}
 	}

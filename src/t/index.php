@@ -116,6 +116,7 @@ if ($action == 'reply') {
     }
 
     $CACHE->updateCache('sta');
+    $_SESSION['code'] = null;
 
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
