@@ -16,12 +16,12 @@ body {
 }
 #mainpage {
 	margin:5px auto 0px;
-	width:988px;
+	width:1024px;
 }
 #container {
 	padding-left:30px;
 	float:left;
-	width:840px;
+	width:870px;
 }
 #footer{
 	clear:both;
@@ -125,8 +125,7 @@ body {
 	border-top:none;
 }
 .item_list td {
-	height:24px;
-	padding:5px 0px 5px 5px;
+	padding:10px 0px 10px 5px;
 	vertical-align:middle;
 }
 .tdcenter {
