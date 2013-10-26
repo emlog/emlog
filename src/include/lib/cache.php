@@ -491,6 +491,7 @@ class Cache {
 			if ($fp = fopen($cachefile, 'r')) {
 				$data = fread($fp, filesize($cachefile));
 				fclose($fp);
+                clearstatcache();
 				$this->{$cacheName.'_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
 				return $this->{$cacheName.'_cache'};
 			}
