@@ -36,10 +36,10 @@
 	<?php endif;?>
 	</div>
 	<?php endforeach; ?>
-    
+
     <div>
 	<a href="./template.php?action=update_top" title="不使用顶部图片" >
-	<img src="../content/templates/default/images/top/null.png" width="230px" height="48px" class="topTH" />
+	<img src="../content/templates/default/images/null.jpg" width="230px" height="48px" class="topTH" />
 	</a>
 	<?php if (!is_array($val)):?>
 	<li class="admin_style_info" >不使用顶部图片</li>
