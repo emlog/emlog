@@ -309,6 +309,13 @@ textarea {
 	padding:5px 30px;
 	border:1px #FFBA43 solid
 }
+.warning {
+	margin:0px 200px;text-align: center;
+	background-color:#FDFFCE;
+	font-size:12px;
+	padding:5px 30px;
+	border:1px #FFBA43 solid
+}
 #msg {
 	margin:0px 300px;
 	font-size:12px;
