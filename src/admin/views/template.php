@@ -9,13 +9,12 @@
 <?php else:?>
 <table cellspacing="20" cellpadding="0" width="80%" border="0">
     <tr>
-      <td width="27%">
+      <td width="42%">
 	  <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
-	  <td width="73%">
+	  <td width="58%">
 	  <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
 	  <?php echo $tplAuthor; ?><br>
-	  <?php echo $tplForEm; ?><br>
-	  <p><?php echo $tplDes; ?></p>
+	  <?php echo $tplDes; ?>
 	  <?php if ('default' == $nonce_templet): ?>
 	  <div class="custom_top_button"><a href="./template.php?action=custom-top">自定义顶部图片</a></div>
 	  <?php endif; ?>

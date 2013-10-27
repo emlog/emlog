@@ -65,7 +65,7 @@ if ($action == 'getreply') {
 	foreach ($replys as $val) {
 		 if ($val['hide'] == 'n') {
 			$style = "background-color:#FFF";
-			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">驳回</a></span> ";
+			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">隐藏</a></span> ";
 		 } else {
 			$style = "background-color:#FEE0E4";
 			$act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">审核</a></span> ";
@@ -111,7 +111,7 @@ if ($action == 'reply') {
 	$response = "
 		 <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
 		 <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-		 <span><a href=\"javascript: hidereply({$rid},{$tid});\">驳回</a></span> 
+		 <span><a href=\"javascript: hidereply({$rid},{$tid});\">隐藏</a></span> 
 		 <a href=\"javascript: delreply({$rid},{$tid});\">删除</a> 
 		 <em><a href=\"javascript:reply({$tid}, '@{$name}：');\">回复</a></em>
 		 </li>";

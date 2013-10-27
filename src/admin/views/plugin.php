@@ -25,12 +25,12 @@
 	foreach($plugins as $key=>$val):
 		$plug_state = 'inactive';
 		$plug_action = 'active';
-		$plug_state_des = '未激活';
+		$plug_state_des = '点击激活插件';
 		if (in_array($key, $active_plugins))
 		{
 			$plug_state = 'active';
 			$plug_action = 'inactive';
-			$plug_state_des = '已激活';
+			$plug_state_des = '点击禁用插件';
 		}
 		$i++;
 	?>	

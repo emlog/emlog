@@ -30,7 +30,6 @@ body {
 	text-align:center;
 }
 #menu_wt a {background:url(../images/addblog.gif) no-repeat 18px 1px;}
-#menu_tw a {background:url(../images/t.gif) no-repeat 20px 1px;}
 #menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
 #menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
 #menu_ext { cursor:pointer;}
@@ -822,7 +821,7 @@ textarea {
 	border-bottom:1px solid #F7F7F7
 }
 .custom_top_button {
-	margin-top:10px;
+	margin-top:60px;
 }
 .custom_top_button a {
 	background:url(../images/custom_top.gif) no-repeat;
