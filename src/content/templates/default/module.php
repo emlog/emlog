@@ -216,7 +216,7 @@ function widget_link($title){
 	<?php endforeach; ?>
 	</ul>
 	</li>
-<?php }?>
+<?php }?> 
 <?php
 //blog：导航
 function blog_navi(){
@@ -240,10 +240,13 @@ function blog_navi(){
 		?>
 		<li class="item <?php echo $current_tab;?>">
 			<a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a>
-			<ul class="sub-nav">
-				<li><a href="#">链接链接链接链接链接链接链接链接链接链接链接链接链接链接</a></li>
-				<li><a href="#">链接</a></li>
+			<?php if (!empty($value['children'])) :?>
+            <ul class="sub-nav">
+                <?php foreach ($value['children'] as $row){
+                        echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
+                }?>
 			</ul>
+            <?php endif;?>
 		</li>
 	<?php endforeach; ?>
 	</ul>
