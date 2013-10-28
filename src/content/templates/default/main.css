@@ -33,13 +33,28 @@ a:hover {color:#886353; text-decoration:underline;}
 	padding: 0px;
 	list-style: none;
 	border: 1px solid #eee;
-	border-top: 0;
 	top: 30px;
-	left: 0;
+	left: -1px;
 }
 
 #nav .sub-nav li {
-	padding: 3px 10px; 
+	min-width: 120px;
+	white-space: nowrap;
+}
+
+#nav .sub-nav a {
+	display: block;
+	padding: 0 5px;
+}
+
+* html #nav .sub-nav a {
+	display:inline;
+	zoom:1;
+	width: 120px;
+}
+
+#nav .sub-nav a:hover {
+	background-color: #EEE;
 }
 
 #banner {height:134px;}

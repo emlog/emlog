@@ -241,7 +241,7 @@ function blog_navi(){
 		<li class="item <?php echo $current_tab;?>">
 			<a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a>
 			<ul class="sub-nav">
-				<li><a href="#">链接</a></li>
+				<li><a href="#">链接链接链接链接链接链接链接链接链接链接链接链接链接链接</a></li>
 				<li><a href="#">链接</a></li>
 			</ul>
 		</li>
