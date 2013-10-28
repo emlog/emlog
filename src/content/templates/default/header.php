@@ -25,6 +25,9 @@ require_once View::getView('module');
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
 <script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
+<!--[if IE 6]>
+<script src="<?php echo TEMPLATE_URL; ?>iefix.js" type="text/javascript"></script>
+<![endif]-->
 <?php doAction('index_head'); ?>
 </head>
 <body>

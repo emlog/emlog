@@ -223,14 +223,14 @@ function blog_navi(){
 	global $CACHE; 
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-	<ul>
+	<ul class="bar">
 	<?php
 	foreach($navi_cache as $value):
 		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php 
 			continue;
 		endif;
@@ -238,7 +238,13 @@ function blog_navi(){
         $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
         $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
 		?>
-		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
+		<li class="item <?php echo $current_tab;?>">
+			<a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a>
+			<ul class="sub-nav">
+				<li><a href="#">链接</a></li>
+				<li><a href="#">链接</a></li>
+			</ul>
+		</li>
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
