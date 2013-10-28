@@ -20,11 +20,8 @@ a:hover {color:#886353; text-decoration:underline;}
 #nav a:visited {color:#1F1F1F; text-decoration:none;}
 #nav a:hover {color:#1F1F1F; text-decoration:underline;}
 #nav .current {background-color: #EFEFEF;}
-
 #nav .item:hover .sub-nav, 
-#nav .li-hover .sub-nav { 
-	display: block;
-}
+#nav .li-hover .sub-nav { display: block;}
 #nav .sub-nav {
 	display: none;
 	position: absolute;
@@ -34,19 +31,16 @@ a:hover {color:#886353; text-decoration:underline;}
 	list-style: none;
 	border: 1px solid #eee;
 	top: 30px;
-	left: -1px;
+	left: 0px;
 }
-
 #nav .sub-nav li {
 	min-width: 120px;
 	white-space: nowrap;
 }
-
 #nav .sub-nav a {
 	display: block;
-	padding: 0 5px;
+	padding: 0 18px;
 }
-
 * html #nav .sub-nav a {
 	display:inline;
 	zoom:1;
