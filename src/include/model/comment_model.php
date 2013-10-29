@@ -28,6 +28,9 @@ class Comment_Model {
 		$condition = '';
 		if ($page && $spot == 1) {
 			$perpage_num = Option::get('admin_perpage_num');
+			if ($page > PHP_INT_MAX) {
+				$page = PHP_INT_MAX;
+			}
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}

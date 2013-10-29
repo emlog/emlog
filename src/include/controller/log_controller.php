@@ -14,12 +14,16 @@ class Log_Controller {
 		extract($options_cache);
 
 		$page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
-		$start_limit = ($page - 1) * $index_lognum;
+		
 		$pageurl = '';
 		$sqlSegment ='ORDER BY top DESC ,date DESC';
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= Url::logPage();
+        $total_pages = ceil($lognum / $index_lognum);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 

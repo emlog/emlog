@@ -44,7 +44,7 @@ function stripslashesDeep($value) {
  * @param unknown_type $wrap 是否换行
  */
 function htmlClean($content, $wrap = true) {
-	$content = htmlspecialchars($content);
+	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 	if ($wrap) {
 		$content = str_replace("\n", '<br />', $content);
 	}

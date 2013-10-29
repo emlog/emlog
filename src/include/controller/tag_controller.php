@@ -14,7 +14,7 @@ class Tag_Controller {
 		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
 
-		$start_limit = ($page - 1) * $index_lognum;
+		
 		$pageurl = '';
 
 		//page meta
@@ -28,6 +28,10 @@ class Tag_Controller {
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
+		$total_pages = ceil($lognum / $index_lognum);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
 		$pageurl .= Url::tag(urlencode($tag), 'page');
 
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
