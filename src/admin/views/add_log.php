@@ -7,7 +7,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label">输入文章标题</label>
-    <input type="text" maxlength="200" style="width:792px;" name="title" id="title"/>
+    <input type="text" maxlength="200" style="width:852px;" name="title" id="title"/>
 </div>
 <div id="post_bar">
 	<div>
@@ -17,15 +17,15 @@
 	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
     </div>
     <div id="FrameUpload" style="display: none;">
-        <iframe width="800" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
+        <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" cols="100" rows="8" style="width:800px; height:460px;"></textarea>
+    <textarea id="content" name="content" cols="100" rows="8" style="width:860px; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
-    <input name="tag" id="tag" maxlength="200" style="width:368px;" />
+    <input name="tag" id="tag" maxlength="200" style="width:429px;" />
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
     <select name="sort" id="sort" style="width:130px;">
         <option value="-1">选择分类...</option>
@@ -36,7 +36,7 @@
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
-<div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
+<div id="tagbox" style="width:860px;margin:0px;display:none;">
 <?php
     if ($tags) {
         foreach ($tags as $val){
@@ -50,9 +50,9 @@
 <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
 <div id="advset">
 <div>文章摘要：</div>
-<div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><textarea id="excerpt" name="excerpt" style="width:860px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
-<div><input name="alias" id="alias" style="width:798px;" /></div>
+<div><input name="alias" id="alias" style="width:856px;" /></div>
 <div>
     文章访问密码：<input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">

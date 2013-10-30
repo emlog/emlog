@@ -406,7 +406,7 @@ textarea {
 	margin:10px 0px 5px 32px
 }
 #post{
-    width: 806px;
+    width: 866px;
 }
 #post_bar {
     margin:5px 0px;
@@ -468,11 +468,11 @@ textarea {
 }
 #admindex_servinfo {
 	float:left;
-	width:400px;
+	width:425px;
 	margin-right:10px
 }
 #admindex_msg {
-	width:400px;
+	width:425px;
 	float:left
 }
 #admindex_msg img {
