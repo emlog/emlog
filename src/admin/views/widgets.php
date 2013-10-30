@@ -203,9 +203,9 @@
 	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);">自定义一个新的组件+</a></div>
 	<div id="custom_text_new">
 		<li>组件名</li>
-		<li><input type="text" name="new_title" style="width:380px;" value="" /></li>
+		<li><input type="text" class="input" name="new_title" style="width:384px;" value="" /></li>
 		<li>内容 （支持html）</li>
-		<li><textarea name="new_content" rows="10" style="width:380px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" class="textarea" rows="10" style="width:380px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="添加组件"  /></li>
 	</div>
 	</form>

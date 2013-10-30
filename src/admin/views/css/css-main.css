@@ -132,8 +132,17 @@ body {
 	padding-left:0;
 }
 .input {
-	border:1px solid #CCC;
-	overflow-y:hidden
+    background: #FFF;
+    border: 1px solid #D9D9D6;
+    padding: 5px;
+    border-radius: 2px;
+}
+.textarea{
+    background: #FFF;
+    border: 1px solid #D9D9D6;
+    padding: 7px;
+    border-radius: 2px;
+    overflow-y:hidden;
 }
 .num_input {
 	border:1px dotted #EFEFEF;

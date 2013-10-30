@@ -83,11 +83,11 @@ foreach($sorts as $key=>$value):
 <form action="sort.php?action=add" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加分类+</a></div>
 <div id="sort_new" class="item_edit">
-    <li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:200px;" name="sortname" id="sortname" /> 名称</li>
-	<li><input maxlength="200" style="width:200px;" name="alias" id="alias" /> 别名 (可不填，用于URL的友好显示)</li>
+    <li><input maxlength="4" style="width:30px;" name="taxis" class="input"  /> 序号</li>
+	<li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> 名称</li>
+	<li><input maxlength="200" style="width:243px;" class="input" name="alias" id="alias" /> 别名 (可不填，用于URL的友好显示)</li>
 	<li>
-		<select name="pid" id="pid">
+		<select name="pid" id="pid" class="input">
 			<option value="0">无</option>
 			<?php
 				foreach($sorts as $key=>$value):
@@ -101,7 +101,7 @@ foreach($sorts as $key=>$value):
         父分类
 	</li>
 	<li>分类描述<br />
-	<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
+	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>
