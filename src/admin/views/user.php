@@ -7,6 +7,8 @@
 <?php if(isset($_GET['error_exist'])):?><span class="error">该用户名已存在</span><?php endif;?>
 <?php if(isset($_GET['error_pwd_len'])):?><span class="error">密码长度不得小于6位</span><?php endif;?>
 <?php if(isset($_GET['error_pwd2'])):?><span class="error">两次输入密码不一致</span><?php endif;?>
+<?php if(isset($_GET['error_del_a'])):?><span class="error">不能删除创始人</span><?php endif;?>
+<?php if(isset($_GET['error_del_b'])):?><span class="error">不能修改创始人信息</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -30,7 +32,7 @@
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
 		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
-		<br /><?php echo $val['role'] == 'admin' ? '管理员' : '作者'; ?>
+		<br /><?php echo $val['role'] == 'admin' ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 

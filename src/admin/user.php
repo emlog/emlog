@@ -79,6 +79,10 @@ if ($action=='update') {
 	if (UID == $uid) {
 		emDirect('./user.php');
 	}
+    //创始人账户不能被他人编辑
+    if ($uid == 1) {
+		emDirect('./user.php?error_del_b=1');
+	}
 	if ($login == '') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
 	}
@@ -116,6 +120,11 @@ if ($action== 'del') {
 
 	if (UID == $uid) {
 		emDirect('./user.php');
+	}
+
+    //创始人账户不能被删除
+    if ($uid == 1) {
+		emDirect('./user.php?error_del_a=1');
 	}
 
 	$User_Model->deleteUser($uid);
