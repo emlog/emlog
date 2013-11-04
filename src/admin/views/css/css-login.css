@@ -14,7 +14,7 @@ body{background-color:#fff; padding:0px; font-family:Arial,Helvetica,sans-serif;
 .login-button .checkbox{float:left}
 .login-button .button{float:right}
 .login-button .button input{background:url(../images/login_button.gif) no-repeat; border:0; color:#FFF; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
-.login-main .back{padding:5px 14px; background-color:#FFF; background-image:none}
+.login-main .back{padding:5px; background-color:#FFF; background-image:none; color: #CCC;}
 .login-main .back a{color:#09C; text-decoration:none}
 .login-ext{padding:10px 12px 0;}
 .login-error{background-color:#FFEBE8; border: 1px solid #CC0000; margin: 8px auto 0px; padding: 8px 11px; width:266px;border-radius: 4px;}
