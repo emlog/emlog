@@ -26,6 +26,7 @@ if ($action== 'new') {
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
+    $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	if ($login == '') {
 		emDirect('./user.php?error_login=1');
@@ -43,7 +44,7 @@ if ($action== 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser($login, $password, $role);
+	$User_Model->addUser($login, $password, $role, $ischeck);
 	$CACHE->updateCache(array('sta','user'));
 	emDirect('./user.php?active_add=1');
 }

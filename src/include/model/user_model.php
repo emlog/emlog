@@ -56,8 +56,8 @@ class User_Model {
 		$this->db->query("update ".DB_PREFIX."user set $upStr where uid=$uid");
 	}
 
-	function addUser($login, $password,  $role) {
-		$sql="insert into ".DB_PREFIX."user (username,password,role) values('$login','$password','$role')";
+	function addUser($login, $password,  $role, $ischeck) {
+		$sql="insert into ".DB_PREFIX."user (username,password,role,ischeck) values('$login','$password','$role','$ischeck')";
 		$this->db->query($sql);
 	}
 

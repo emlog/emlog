@@ -55,6 +55,13 @@
 		?>
 		</span></a></li>
 		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
+        <?php
+        $checknum = $sta_cache['checknum'];
+		if (ROLE == 'admin' && $checknum > 0):
+		$n = $checknum > 999 ? '...' : $checknum;
+		?>
+		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
+		<?php endif; ?>
 		<?php if (ROLE == 'admin'):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
@@ -65,7 +72,7 @@
 		if ($hidecmnum > 0):
 		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 		?>
-		<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条待审"><?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
     	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
 		<?php if (ROLE == 'admin'):?>

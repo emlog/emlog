@@ -33,17 +33,18 @@ if (!empty($alias)) {
 }
 
 $logData = array(
-	'title'=>$title,
-	'alias'=>$alias,
-	'content'=>$content,
-	'excerpt'=>$excerpt,
-	'author'=>$author,
-	'sortid'=>$sort,
-	'date'=>$postTime,
-	'top'=>$top,
-	'allow_remark'=>$allow_remark,
-	'hide'=>$ishide,
-	'password'=>$password
+	'title' => $title,
+	'alias' => $alias,
+	'content' => $content,
+	'excerpt' => $excerpt,
+	'author' => $author,
+	'sortid' => $sort,
+	'date' => $postTime,
+	'top '=> $top,
+	'allow_remark' => $allow_remark,
+	'hide' => $ishide,
+    'checked' => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',
+	'password' => $password
 );
 
 if ($blogid > 0) {//自动保存草稿后,添加变为更新
