@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="clear"></div>
-<?php if (ROLE == 'admin'):?>
+<?php if (ROLE == ROLE_ADMIN):?>
 <div style="margin-top: 20px;">
 <div id="admindex_servinfo">
 <h3>站点信息</h3>

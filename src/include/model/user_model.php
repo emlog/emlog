@@ -42,6 +42,7 @@ class User_Model {
 				'photo' => htmlspecialchars($row['photo']),
 				'description' => htmlspecialchars($row['description']),
 				'role' => $row['role'],
+                'ischeck' => $row['ischeck'],
 			);
 		}
 		return $userData;

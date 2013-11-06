@@ -40,7 +40,7 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function updateLog($logData, $blogId) {
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$Item = array();
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -64,7 +64,7 @@ class Log_Model {
 		if ($spot == 0) {
 			$author = '';
 		}else {
-			$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		}
 
 		$res = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
@@ -77,7 +77,7 @@ class Log_Model {
 	 */
 	function getOneLogForAdmin($blogId) {
 		$timezone = Option::get('timezone');
-		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
@@ -140,7 +140,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
@@ -220,7 +220,7 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');

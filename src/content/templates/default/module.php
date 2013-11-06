@@ -226,7 +226,7 @@ function blog_navi(){
 	<ul class="bar">
 	<?php
 	foreach($navi_cache as $value):
-		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
 			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
 			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
@@ -261,7 +261,7 @@ function topflg($istop){
 <?php
 //blog：编辑
 function editflg($logid,$author){
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
+	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -374,7 +374,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 		<p class="comment-header"><b>发表评论：</b><a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
-			<?php if(ROLE == 'visitor'): ?>
+			<?php if(ROLE == ROLE_VISITOR): ?>
 			<p>
 				<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
 				<label for="author"><small>昵称</small></label>

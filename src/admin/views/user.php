@@ -16,9 +16,9 @@
   	<thead>
       <tr>
         <th width="60"></th>
-        <th width="100"><b>用户</b></th>
-        <th width="340"><b>描述</b></th>
-        <th width="270"><b>电子邮件</b></th>
+        <th width="220"><b>用户</b></th>
+        <th width="250"><b>描述</b></th>
+        <th width="240"><b>电子邮件</b></th>
 		<th width="30" class="tdcenter"><b>文章</b></th>
       </tr>
     </thead>
@@ -31,8 +31,9 @@
      <tr>
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
-		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
-		<br /><?php echo $val['role'] == 'admin' ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
+		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
+		<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
+        <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
@@ -57,7 +58,7 @@
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加用户+</a></div>
 <div id="user_new" class="item_edit">
     <li>
-	<select name="role" class="input">
+	<select name="role" id="role" class="input">
 		<option value="writer">作者</option>
 		<option value="admin">管理员</option>
 	</select>
@@ -65,7 +66,7 @@
 	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="input" /> 用户名</li>
 	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="input" /> 密码 (大于6位)</li>
 	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="input" /> 重复密码</li>
-	<li>
+	<li id="ischeck">
 	<select name="ischeck" class="input">
         <option value="n">文章不需要审核</option>
 		<option value="y">文章需要审核</option>
@@ -81,6 +82,7 @@ $(document).ready(function(){
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
 		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+    $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);
 $("#menu_user").addClass('sidebarsubmenu1');

@@ -51,7 +51,7 @@ class Comment_Controller {
 			emMsg('评论失败：请填写评论内容');
 		} elseif (strlen($content) > 8000) {
 			emMsg('评论失败：内容不符合规范');
-		} elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+		} elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 			emMsg('评论失败：评论内容需包含中文');
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
 			emMsg('评论失败：验证码错误');

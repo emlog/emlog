@@ -13,10 +13,16 @@
 	<li><input type="password" value="" name="password" style="width:200px;" class="input" /> 新密码(不修改请留空)</li>
 	<li><input type="password" value="" name="password2" style="width:200px;" class="input" /> 重复新密码</li>
 	<li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" class="input" /> 电子邮件</li>
-	<li>
-	<select name="role" class="input">
+    <li>
+	<select name="role" id="role" class="input">
 		<option value="writer" <?php echo $ex1; ?>>作者</option>
 		<option value="admin" <?php echo $ex2; ?>>管理员</option>
+	</select>
+	</li>
+    <li id="ischeck">
+	<select name="ischeck" class="input">
+        <option value="n" <?php echo $ex3; ?>>文章不需要审核</option>
+		<option value="y" <?php echo $ex4; ?>>文章需要审核</option>
 	</select>
 	</li>
 	<li>个人描述<br />
@@ -30,4 +36,6 @@
 <script>
 setTimeout(hideActived,2600);
 $("#menu_user").addClass('sidebarsubmenu1');
+if($("#role").val() == 'admin') $("#ischeck").hide();
+$("#role").change(function(){$("#ischeck").toggle()})
 </script>

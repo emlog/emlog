@@ -175,7 +175,7 @@ if ($action == 'addcom') {
         mMsg('评论失败：禁止使用管理员昵称或邮箱评论', $targetBlogUrl);
     } elseif (strlen($content) == '' || strlen($content) > 2000) {
         mMsg('评论失败：内容不符合规范', $targetBlogUrl);
-    } elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+    } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 		mMsg('评论失败：评论内容需包含中文', $targetBlogUrl);
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg('评论失败：验证码错误', $targetBlogUrl);
@@ -190,7 +190,7 @@ if ($action == 'addcom') {
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
-		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
 
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";

@@ -144,7 +144,7 @@ if ($action == 'operate_log') {
 			emDirect("./admin_log.php?active_move=1");
 			break;
 		case 'change_author':
-			if (ROLE != 'admin')
+			if (ROLE != ROLE_ADMIN)
 			{
 				emMsg('权限不足！','./');
 			}

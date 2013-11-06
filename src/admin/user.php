@@ -25,8 +25,12 @@ if ($action== 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
     $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
+
+    if($role == ROLE_ADMIN) {
+        $ischeck = 'n';
+    }
 
 	if ($login == '') {
 		emDirect('./user.php?error_login=1');
@@ -55,11 +59,16 @@ if ($action== 'edit') {
 	$data = $User_Model->getOneUser($uid);
 	extract($data);
 
-	$ex1 = $ex2 = '';
-	if ($role == 'writer') {
+	$ex1 = $ex2 = $ex3 = $ex4 = '';
+	if ($role == ROLE_WRITER) {
 		$ex1 = 'selected="selected"';
-	} elseif ($role == 'admin') {
+	} elseif ($role == ROLE_ADMIN) {
 	 	$ex2 = 'selected="selected"';
+	}
+    if ($ischeck == 'n') {
+		$ex3 = 'selected="selected"';
+	} elseif ($ischeck == 'y') {
+	 	$ex4 = 'selected="selected"';
 	}
 
 	include View::getView('header');
@@ -74,7 +83,7 @@ if ($action=='update') {
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
 
 	if (UID == $uid) {

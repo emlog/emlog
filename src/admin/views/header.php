@@ -34,7 +34,7 @@
     <a href="./blogger.php" title="<?php echo subString($user_cache[UID]['name'], 0, 12) ?>">
         <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" width="20" height="20" />
     </a><span>|</span>
-    <?php if (ROLE == 'admin'):?>
+    <?php if (ROLE == ROLE_ADMIN):?>
     <a href="configure.php"> 设置</a><span>|</span>
 	<?php endif;?>
 	<a href="./?action=logout">退出</a>
@@ -47,7 +47,7 @@
 		<li class="sidebarsubmenu" id="menu_draft">
     	<a href="admin_log.php?pid=draft">草稿<span id="dfnum">
 		<?php 
-		if (ROLE == 'admin'){
+		if (ROLE == ROLE_ADMIN){
 			echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
 		}else{
 			echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
@@ -57,25 +57,25 @@
 		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
         <?php
         $checknum = $sta_cache['checknum'];
-		if (ROLE == 'admin' && $checknum > 0):
+		if (ROLE == ROLE_ADMIN && $checknum > 0):
 		$n = $checknum > 999 ? '...' : $checknum;
 		?>
 		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
-		<?php if (ROLE == 'admin'):?>
+		<?php if (ROLE == ROLE_ADMIN):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
     	<?php endif;?>
         <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </li>
    		<?php
-		$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+		$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 		if ($hidecmnum > 0):
 		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 		?>
 		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
     	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
-		<?php if (ROLE == 'admin'):?>
+		<?php if (ROLE == ROLE_ADMIN):?>
     	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
    	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
     	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
@@ -87,7 +87,7 @@
         <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
 		<?php endif;?>
     </div>
-    <?php if (ROLE == 'admin'):?>
+    <?php if (ROLE == ROLE_ADMIN):?>
     <div id="extend_mg">
     	<li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
 		<?php doAction('adm_sidebar_ext'); ?>

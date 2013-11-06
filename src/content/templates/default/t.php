@@ -31,7 +31,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div class="huifu" id="rp_<?php echo $tid;?>">
 	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
-        <div class="tinfo" style="display:<?php if(ROLE == 'admin' || ROLE == 'writer'){echo 'none';}?>">
+        <div class="tinfo" style="display:<?php if(ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER){echo 'none';}?>">
         昵称：<input type="text" id="rname_<?php echo $tid; ?>" value="" />
         <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>">验证码：<input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
         </div>

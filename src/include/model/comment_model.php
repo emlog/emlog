@@ -37,7 +37,7 @@ class Comment_Model {
 		if ($spot == 0 || $spot == 2) {
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.date ASC $condition";
 		} else {
-			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
+			$andQuery .= ROLE != ROLE_ADMIN ? ' and b.author='.UID : '';
 			$sql = "SELECT *,a.hide,a.date FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.date DESC $condition";
 		}
 		$ret = $this->db->query($sql);
@@ -121,7 +121,7 @@ class Comment_Model {
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if (ROLE == 'admin') {
+		if (ROLE == ROLE_ADMIN) {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a where $andQuery";
 		}else {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
@@ -263,7 +263,7 @@ class Comment_Model {
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
-		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
 
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";

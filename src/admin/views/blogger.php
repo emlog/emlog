@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
-<?php if (ROLE == 'admin'):?>
+<?php if (ROLE == ROLE_ADMIN):?>
 <a class="navi1" href="./configure.php">基本设置</a>
 <a class="navi4" href="./seo.php">SEO设置</a>
 <a class="navi4" href="./style.php">后台风格</a>

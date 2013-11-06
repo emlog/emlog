@@ -62,7 +62,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_user" <?php echo $isDisplayUser ?>>
 	作者：
 	<?php foreach($user_cache as $key => $val):
-		if (ROLE != 'admin' && $key != UID){
+		if (ROLE != ROLE_ADMIN && $key != UID){
 			continue;
 		}
 		$a = 'user_'.$key;
@@ -130,7 +130,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php else: ?>
 	<a href="javascript:logact('hide');">转入草稿箱</a> | 
 
-	<?php if (ROLE == 'admin'):?>
+	<?php if (ROLE == ROLE_ADMIN):?>
 	<a href="javascript:logact('top');">置顶</a> | 
     <a href="javascript:logact('notop');">取消置顶</a> | 
     <?php endif;?>
@@ -143,7 +143,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<option value="-1">未分类</option>
 	</select>
 
-	<?php if (ROLE == 'admin' && count($user_cache) > 1):?>
+	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($user_cache as $key => $val):
