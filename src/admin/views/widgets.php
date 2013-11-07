@@ -203,9 +203,9 @@
 	<div class="wg_line2"><a href="javascript:displayToggle('custom_text_new', 2);"><? echo $lang['widget_new'];?>+</a></div>
 	<div id="custom_text_new">
 		<li><? echo $lang['widget_name'];?></li>
-		<li><input type="text" name="new_title" style="width:380px;" value="" /></li>
+		<li><input type="text" class="input" name="new_title" style="width:384px;" value="" /></li>
 		<li><? echo $lang['widget_content'];?></li>
-		<li><textarea name="new_content" rows="10" style="width:380px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" class="textarea" rows="10" style="width:380px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="<? echo $lang['widget_add'];?>"  />
 	</div>
 	</form>

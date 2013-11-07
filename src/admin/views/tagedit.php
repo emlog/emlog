@@ -5,7 +5,7 @@
 <div class=line></div>
 <form  method="post" action="tag.php?action=update_tag">
 <div>
-<li><input size="40" value="<?php echo $tagname; ?>" name="tagname" /></li>
+<li><input size="40" value="<?php echo $tagname; ?>" name="tagname" class="input" /></li>
 <li style="margin:10px 0px">
 <input type="hidden" value="<?php echo $tagid; ?>" name="tid" />
 <input type="submit" value="<? echo $lang['save'];?>" class="button" />

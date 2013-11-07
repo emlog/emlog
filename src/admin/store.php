@@ -61,6 +61,7 @@ if ($action == 'addon') {
 
     $unzip_path = $source_type == 'tpl' ? '../content/templates/' : '../content/plugins/';
 	$ret = emUnZip($temp_file, $unzip_path, $source_type);
+    @unlink($temp_file);
     switch ($ret) {
 		case 0:
 			exit('succ');

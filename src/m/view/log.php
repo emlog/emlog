@@ -5,7 +5,7 @@
 <div class="info"><?php echo gmdate('Y-n-j G:i', $value['date']); ?></div>
 <div class="info2">
 <? echo $lang['comments']; ?>: <?php echo $value['comnum']; ?>, <? echo $lang['views']; ?>: <?php echo $value['views']; ?> 
-<?php if(ROLE == 'admin' || $value['author'] == UID): ?>
+<?php if(ROLE == ROLE_ADMIN || $value['author'] == UID): ?>
 <a href="./?action=write&id=<?php echo $value['logid'];?>"><? echo $lang['edit']; ?></a>
 <?php endif;?>
 </div>

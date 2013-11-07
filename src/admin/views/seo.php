@@ -29,7 +29,7 @@
     <li><? echo $lang['meta_keywords']; ?> (keywords)<br /><input maxlength="200" style="width:300px;" value="<?php echo $site_key; ?>" name="site_key" /></li>
     <li><? echo $lang['meta_description']; ?> (description)<br /><textarea name="site_description" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea></li>
     <li><? echo $lang['meta_title_scheme']; ?>:
-        <select name="log_title_style">
+        <select name="log_title_style" class="input">
 		<option value="0" <?php echo $opt0; ?>><? echo $lang['article_title']; ?></option>
 		<option value="1" <?php echo $opt1; ?>><? echo $lang['article_title_site_title']; ?></option>
         <option value="2" <?php echo $opt2; ?>><? echo $lang['article_title_site_meta_title']; ?></option>

@@ -10,7 +10,7 @@ $isdraft = $hide == 'y' ? true : false;
 <div id="post">
 <div>
     <label for="title" id="title_label"><? echo $lang['title'];?></label>
-    <input type="text" maxlength="200" style="width:792px;" name="title" id="title" value="<?php echo $title; ?>" />
+    <input type="text" maxlength="200" style="width:852px;" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
 	<div>
@@ -20,15 +20,15 @@ $isdraft = $hide == 'y' ? true : false;
 	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
     </div>
     <div id="FrameUpload" style="display: none;">
-        <iframe width="800" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
+        <iframe width="860" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+    <textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label"><? echo $lang['tags_by_comma']; ?></label>
-    <input name="tag" id="tag" maxlength="200" style="width:368px;" value="<?php echo $tagStr; ?>" />
+    <input name="tag" id="tag" maxlength="200" style="width:429px;" value="<?php echo $tagStr; ?>" />
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
     <select name="sort" id="sort" style="width:200px;">
      <?php
@@ -42,7 +42,7 @@ $isdraft = $hide == 'y' ? true : false;
     <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
-<div id="tagbox" style="width:688px;margin:0px 0px 0px 30px;display:none;">
+<div id="tagbox" style="width:860px;margin:0px;display:none;">
 <?php
     if ($tags) {
         foreach ($tags as $val){
@@ -56,13 +56,9 @@ $isdraft = $hide == 'y' ? true : false;
 <div class="show_advset" onclick="displayToggle('advset', 1);"><? echo $lang['advanced_options']; ?></div>
 <div id="advset">
 <div><? echo $lang['article_summary']; ?>:</div>
-<div><textarea id="excerpt" name="excerpt" style="width:800px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
+<div><textarea id="excerpt" name="excerpt" style="width:860px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
 <div><span id="alias_msg_hook"></span><? echo $lang['article_link_alias']; ?>: (<? echo $lang['link_alias_need_to']; ?> <a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)</div>
-<div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:798px;" /></div>
-<?php if (Option::get('istrackback') == 'y'): ?>
-<div><b><? echo $lang['trackbacks_use']; ?>:</b> <? echo $lang['trackback_1_perline']; ?></div>
-<div><textarea name="pingurl" id="pingurl" style="width:795px; height:50px;" class="input"></textarea></div>
-<?php endif;?>
+<div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:856px;" /></div>
 <div>
 	<? echo $lang['post_password']; ?>:
     <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
@@ -71,8 +67,6 @@ $isdraft = $hide == 'y' ? true : false;
         <label for="top"><? echo $lang['post_pin']; ?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
         <label for="allow_remark"><? echo $lang['comments_allow']; ?></label>
-        <input type="checkbox" value="y" id="allow_tb" name="allow_tb" <?php echo $is_allow_tb; ?> />
-        <label for="allow_tb"><? echo $lang['trackbacks_allow']; ?></label>
     </span>
 </div>
 </div>

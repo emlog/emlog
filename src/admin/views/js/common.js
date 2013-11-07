@@ -18,6 +18,9 @@ function em_confirm (id, property) {
 		case 'comment':
 			var urlreturn="comment.php?action=del&id="+id;
 			var msg = l_sure_del_comment;break;
+        case 'commentbyip':
+			var urlreturn="comment.php?action=delbyip&ip="+id;
+			var msg = "你确定要删除来自该IP的所有评论吗？";break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
 			var msg = l_sure_delete_link;break;

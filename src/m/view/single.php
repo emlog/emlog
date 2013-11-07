@@ -2,7 +2,7 @@
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
 	<div class="postinfo"><? echo $lang['posted_by']; ?>: <?php echo $user_cache[$author]['name'];?> <?php echo gmdate('Y-m-d H:i', $date); ?>
-	<?php if(ROLE == 'admin' || $author == UID): ?>
+	<?php if(ROLE == ROLE_ADMIN || $author == UID): ?>
 	<a href="./?action=dellog&gid=<?php echo $logid;?>"><? echo $lang['remove']; ?></a>
 	<?php endif;?>
 	</div>

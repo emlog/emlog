@@ -8,7 +8,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label"><? echo $lang['title'];?></label>
-    <input type="text" maxlength="200" style="width:792px;" name="title" id="title"/>
+    <input type="text" maxlength="200" style="width:852px;" name="title" id="title"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="post_bar">
@@ -19,14 +19,14 @@
 	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
     </div>
     <div id="FrameUpload" style="display: none;">
-        <iframe width="800" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
+        <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
     </div>
 </div>
-<div><textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
     <? echo $lang['link_alias']; ?>: (<? echo $lang['alias_prompt']; ?> <? echo $lang['need_for']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<br />
-    <input name="alias" id="alias" style="width:798px;" />
+    <input name="alias" id="alias" style="width:850px;" class="input" />
 </div>
 <div>
     <span id="page_options">

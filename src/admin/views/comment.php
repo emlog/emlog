@@ -21,7 +21,7 @@ $$a = "class=\"filter\"";
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>"><? echo $lang['all'];?></a></span>
 <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>"><? echo $lang['pending'];?>
 <?php
-$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
@@ -65,7 +65,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['edit']; ?></a>
 		</span>
 		</td>
-		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="删除来自该IP的所有评论" class="care">(X)</a></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>

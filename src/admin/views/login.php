@@ -13,7 +13,6 @@
 <div class="login-main">
 	<div class="login-top"></div>
 	<div class="login-logo"><a href="http://www.emlog.net" target="_blank"><img src="./views/images/login_logo.png" alt="emlog" width="294" height="68" /></a></div>
-	<small><?php echo Option::EMLOG_VERSION; ?></small>
 	<div class="login-input">
 		<span><? echo $lang['user_name'];?></span>
 		<div><input type="text" name="user" id="user" /></div>

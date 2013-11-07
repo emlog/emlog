@@ -15,7 +15,6 @@ if ($action == '') {
 	$conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
 	$conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
 	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
-	$conf_istrackback = $istrackback == 'y' ? 'checked="checked"' : '';
 	$conf_ismobile = $ismobile == 'y' ? 'checked="checked"' : '';
 	$conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
 	$conf_isgzipenable = $isgzipenable == 'y' ? 'checked="checked"' : '';
@@ -62,7 +61,6 @@ if ($action == 'mod_config') {
 	'ischkcomment' => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 	'isgzipenable' => isset($_POST['isgzipenable']) ? addslashes($_POST['isgzipenable']) : 'n',
 	'isxmlrpcenable' => isset($_POST['isxmlrpcenable']) ? addslashes($_POST['isxmlrpcenable']) : 'n',
-	'istrackback' => isset($_POST['istrackback']) ? addslashes($_POST['istrackback']) : 'n',
 	'ismobile' => isset($_POST['ismobile']) ? addslashes($_POST['ismobile']) : 'n',
 	'isthumbnail' => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
 	'rss_output_num' => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,

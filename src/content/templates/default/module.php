@@ -245,7 +245,7 @@ function widget_link($title){
 	<?php endforeach; ?>
 	</ul>
 	</li>
-<?php }?>
+<?php }?> 
 
 <?php
 //blog:navigation
@@ -254,14 +254,14 @@ function blog_navi(){
 	global $CACHE; 
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-	<ul>
+	<ul class="bar">
 	<?php
 	foreach($navi_cache as $value):
-		if($value['url'] == 'admin' && (ROLE == 'admin' || ROLE == 'writer')):
+		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><? echo $lang['article_write']; ?></a></li>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
-			<li class="common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
 			<?php 
 			continue;
 		endif;
@@ -269,7 +269,16 @@ function blog_navi(){
         $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
         $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
 		?>
-		<li class="<?php echo $current_tab;?>"><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
+		<li class="item <?php echo $current_tab;?>">
+			<a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a>
+			<?php if (!empty($value['children'])) :?>
+            <ul class="sub-nav">
+                <?php foreach ($value['children'] as $row){
+                        echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
+                }?>
+			</ul>
+            <?php endif;?>
+		</li>
 	<?php endforeach; ?>
 	</ul>
 <?php }?>
@@ -286,7 +295,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
+	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -346,24 +355,6 @@ function neighbor_log($neighborLog){
 	<?php if($nextLog):?>
 		 <a href="<?php echo Url::log($nextLog['gid']) ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
-<?php }?>
-
-<?php
-//blog: Trackbacks
-function blog_trackback($tb, $tb_url, $allow_tb){
-    global $lang;
-    if($allow_tb == 'y' && Option::get('istrackback') == 'y'):?>
-	<div id="trackback_address">
-	<p><? echo $lang['trackback_address'];?>: <input type="text" style="width:350px" class="input" value="<?php echo $tb_url; ?>">
-	<a name="tb"></a></p>
-	</div>
-	<?php endif; ?>
-	<?php foreach($tb as $key=>$value):?>
-		<ul id="trackback">
-		<li><a href="<?php echo $value['url'];?>" target="_blank"><?php echo $value['title'];?></a></li>
-		<li>BLOG: <?php echo $value['blog_name'];?></li><li><?php echo $value['date'];?></li>
-		</ul>
-	<?php endforeach; ?>
 <?php }?>
 
 <?php
@@ -429,7 +420,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 		<p class="comment-header"><b><? echo $lang['comment_add']; ?>: </b><a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
-			<?php if(ROLE == 'visitor'): ?>
+			<?php if(ROLE == ROLE_VISITOR): ?>
 			<p>
 				<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
 	<label for="author"><small><? echo $lang['nickname'];?></small></label>

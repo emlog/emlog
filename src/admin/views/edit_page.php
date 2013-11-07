@@ -8,7 +8,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label"><? echo $lang['title'];?></label>
-    <input type="text" maxlength="200" style="width:792px;" name="title" id="title" value="<?php echo $title; ?>" />
+    <input type="text" maxlength="200" style="width:852px;" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
     <div>
@@ -18,14 +18,14 @@
 	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
     </div>
     <div id="FrameUpload" style="display: none;">
-        <iframe width="800" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe>
+        <iframe width="860" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $pageId; ?>"></iframe>
     </div>
 </div>
-<div><textarea id="content" name="content" style="width:800px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea></div>
+<div><textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
     <? echo $lang['link_alias']; ?>: (<? echo $lang['alias_prompt']; ?> <? echo $lang['need_for']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<br />
-    <input name="alias" id="alias" style="width:798px;" value="<?php echo $alias; ?>" />
+    <input name="alias" id="alias" style="width:850px;" class="input" value="<?php echo $alias; ?>" />
 </div>
 <div>
     <span id="page_options">

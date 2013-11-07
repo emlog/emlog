@@ -48,7 +48,7 @@ $(document).ready(function() {
 		auto            : true,
 		multi           : true,
 		buttonCursor    : 'pointer',
-		fileTypeExts    : '*.jpg;*.gif;*.png;*.jpeg;*.rar;*.zip',
+		fileTypeExts    : '<?php echo $att_type_for_muti;?>',
 		queueID         : 'custom-queue',
 		queueSizeLimit	: 100,
 		removeCompleted : false,

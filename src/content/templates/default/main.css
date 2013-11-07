@@ -12,17 +12,44 @@ a:hover {color:#886353; text-decoration:underline;}
 #header h1 a:hover {color: #1F1F1F; text-decoration: none;}
 #header h3 {color: #525252; font-style: italic; font-size: 15px; font-weight: normal; margin: 0px 0px 0px 40px; padding: 10px 0px 10px 0px;}
 
-#nav {text-align: center; margin: 10px 0px 20px 0px; padding: 0px;}
-#nav ul {margin: 15px 0px 0px 0px; padding: 0px;}
-#nav li {display: inline; font-weight:bold; padding:0 5px 0 10px;}
+#nav {margin: 10px 0px 0px 0px;border: 1px solid #eee;}
+#nav .bar {margin: 0px; padding: 0px;height: 30px;}
+#nav .bar .item {height: 30px;line-height: 30px;display: block;float: left;padding: 0 18px; position: relative}
 #nav a:link {color:#1F1F1F; text-decoration:none;}
 #nav a:active {color:#1F1F1F; text-decoration:none;}
 #nav a:visited {color:#1F1F1F; text-decoration:none;}
 #nav a:hover {color:#1F1F1F; text-decoration:underline;}
-#nav .current a:link {color:#1F1F1F; text-decoration:underline;}
-#nav .current a:active {color:#1F1F1F; text-decoration:underline;}
-#nav .current a:visited {color:#1F1F1F; text-decoration:underline;}
-#nav .current a:hover {color:#1F1F1F; text-decoration:none;}
+#nav .current {background-color: #EFEFEF;}
+#nav .item:hover .sub-nav, 
+#nav .li-hover .sub-nav { display: block;}
+#nav .sub-nav {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	margin: 0px; 
+	padding: 0px;
+	list-style: none;
+	border: 1px solid #eee;
+	top: 30px;
+	left: 0px;
+}
+#nav .sub-nav li {
+	min-width: 120px;
+	white-space: nowrap;
+}
+#nav .sub-nav a {
+	display: block;
+	padding: 0 18px;
+}
+* html #nav .sub-nav a {
+	display:inline;
+	zoom:1;
+	width: 120px;
+}
+
+#nav .sub-nav a:hover {
+	background-color: #EEE;
+}
 
 #banner {height:134px;}
 
@@ -41,7 +68,7 @@ a:hover {color:#886353; text-decoration:underline;}
 #content h2 a:hover {color:#1F1F1F; text-decoration:underline;}
 #content h2.widgettitle {color: #444444; font-size: 12px; font-weight: bold; margin: 25px 0px 0px 0px; padding: 10px 0px 10px 0px;}
 #content h3 {color: #444444; font-size: 14px; font-weight: bold; margin: 15px 0px 0px 0px; padding: 8px 0px 8px 0px;}
-#contentleft {float: left; width: 678px; margin: 0px 0px 0px 0px; padding: 0px 20px 20px 20px; border-left: 1px solid #E2DDDE; border-right: 1px solid #E2DDDE;}
+#contentleft {float: left; width: 678px; margin: 0px 0px 0px 0px; padding: 0px 20px 20px 20px; border-left: 1px solid #eee; border-right: 1px solid #eee;}
 blockquote {margin: 0px 20px 20px 20px; padding: 25px 20px 25px 20px; background: #EFEFEF; border-left: 5px solid #696969; border-right: 5px solid #696969;}
 #contentleft .date {color:#A97965; font-size:12px;}
 #contentleft .att {color:#A97965; font-size:12px; margin:5px 0px 0px 0px;}
@@ -56,23 +83,19 @@ a img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
 a img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
 a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 
-#sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #E2DDDE; font:12px/18px Verdana, Arial, Helvetica, sans-serif;overflow:hidden}
+#sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #eee; font:12px/18px Verdana, Arial, Helvetica, sans-serif;overflow:hidden}
 #sidebar ul {list-style-type: none; margin: 0px; padding: 0px;}
 #sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 #sidebar li {list-style-type:none;}
 #sidebar .search {background: url("images/search.png") no-repeat scroll 5px 3px transparent;border: 1px solid #CCCCCC;border-radius: 3px 3px 3px 3px;font-size: 12px;line-height: 1.2em;padding: 4px 10px 4px 28px;}
 
-#footerbar {margin: 40px auto 30px; padding: 10px 0px; width: 960px; text-align: center; overflow: hidden; border-top: 1px solid #E2DDDE;}
+#footerbar {margin: 40px auto 30px; padding: 10px 0px; width: 960px; text-align: center; overflow: hidden; border-top: 1px solid #eee;}
 .footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
 .footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
 .footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
 
 #contentleft .nextlog{text-align:center; margin:5px 0; font-size:12px}
-#trackback_address{font-size:12px; color:#999}
-#trackback_address input{border:#f1f1f1 solid 1px; background-color:#fffdf1; padding:2px 8px; color:#999; font-size:11px}
-#trackback{font-size:12px; color:#333; line-height:16px; overflow:hidden; margin:5px 0; padding:0px 0px 3px 0px; border-bottom:1px #f5f5f5 solid}
-#contentleft #trackback li{margin:5px 0px; padding:0px; clear:both}
 #contentleft .comment-header{margin:15px 0px 5px 0px}
 #contentleft .comment-post {clear:both}
 #contentleft .comment-post p{margin:5px 0px}
@@ -122,8 +145,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw .main_img{ border:1px #2772ae solid; float:left;}
 #tw .main_img img{ border:1px #fff solid}
 #tw .op{ float:left; height:18px;margin:6px 5px 3px;}
-#tw .top{ font-size:12px; text-align:right; border-bottom:1px #F7F7F7 solid; line-height:2;width:560px;}
-#tw .top a{ padding:0px 5px 0px 17px; background: url(images/t.gif) no-repeat}
 #tw ul{ margin:5px 0px 3px 25px; width:520px; line-height:1.8;padding:0px;}
 #tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
 #tw ul li{margin:0px 0px; padding:0;}

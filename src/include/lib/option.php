@@ -24,7 +24,7 @@ class Option {
     //Attachment upload path
 	const UPLOADFILE_PATH = '../content/uploadfile/';
     //Attachment types allowed to upload
-	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png';
+	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx';
 
 	static function get($option){
 		$CACHE = Cache::getInstance();

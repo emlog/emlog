@@ -16,7 +16,7 @@ $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 ?>
 <div class="twcont"><?php echo $value['content'];?><p><?php echo $img;?></p></div>
 <div class="twinfo"><?php echo $by.' '.$value['date'];?>
-<?php if(ISLOGIN === true && $value['author'] == UID || ROLE == 'admin'): ?>
+<?php if(ISLOGIN === true && $value['author'] == UID || ROLE == ROLE_ADMIN): ?>
  <a href="./?action=delt&id=<?php echo $value['id'];?>"><? echo $lang['remove']; ?></a>
 <?php endif;?>
 </div>

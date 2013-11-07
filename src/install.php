@@ -235,12 +235,11 @@ CREATE TABLE {$db_prefix}blog (
   type varchar(20) NOT NULL default 'blog',
   views mediumint(8) unsigned NOT NULL default '0',
   comnum mediumint(8) unsigned NOT NULL default '0',
-  tbcount mediumint(8) unsigned NOT NULL default '0',
   attnum mediumint(8) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
+  checked enum('n','y') NOT NULL default 'y',
   allow_remark enum('n','y') NOT NULL default 'y',
-  allow_tb enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid),
   KEY date (date),
@@ -251,7 +250,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 0, 'n', 'n', 'y', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -332,7 +331,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrit
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istrackback','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ismobile','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
@@ -392,19 +390,6 @@ CREATE TABLE {$db_prefix}sort (
   description text NOT NULL,
   PRIMARY KEY  (sid)
 )".$add."
-DROP TABLE IF EXISTS {$db_prefix}trackback;
-CREATE TABLE {$db_prefix}trackback (
-  tbid mediumint(8) unsigned NOT NULL auto_increment,
-  gid mediumint(8) unsigned NOT NULL default '0',
-  title varchar(255) NOT NULL default '',
-  date bigint(20) NOT NULL,
-  excerpt text NOT NULL,
-  url varchar(255) NOT NULL default '',
-  blog_name varchar(255) NOT NULL default '',
-  ip varchar(16) NOT NULL default '',
-  PRIMARY KEY  (tbid),
-  KEY gid (gid)
-)".$add."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT,
@@ -437,6 +422,7 @@ CREATE TABLE {$db_prefix}user (
   password varchar(64) NOT NULL default '',
   nickname varchar(20) NOT NULL default '',
   role varchar(60) NOT NULL default '',
+  ischeck enum('n','y') NOT NULL default 'n',
   photo varchar(255) NOT NULL default '',
   email varchar(60) NOT NULL default '',
   description varchar(255) NOT NULL default '',

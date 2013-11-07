@@ -7,11 +7,11 @@
 <div class=line></div>
 <form action="sort.php?action=update" method="post">
 <div class="item_edit">
-	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" /> <? echo $lang['name']; ?></li>
-	<li><input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" /><? echo $lang['alias']; ?> <span id="alias_msg_hook"></span></li>
+	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> 名称</li>
+	<li><input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="input" />别名 <span id="alias_msg_hook"></span></li>
 	<?php if (empty($sorts[$sid]['children'])): ?>
 	<li>
-		<select name="pid" id="pid">
+		<select name="pid" id="pid" class="input">
 			<option value="0"<?php if($pid == 0):?> selected="selected"<?php endif; ?>><? echo $lang['none']; ?></option>
 			<?php
 				foreach($sorts as $key=>$value):
@@ -24,7 +24,7 @@
 	</li>
 	<?php endif; ?>
 	<li><? echo $lang['category_description']; ?><br />
-		<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"><?php echo $description; ?></textarea></li>
+		<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;" class="textarea"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $sid; ?>" name="sid" />
 	<input type="submit" value="<? echo $lang['save']; ?>" class="button" id="save"  />

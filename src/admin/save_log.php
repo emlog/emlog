@@ -8,7 +8,6 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
-$Trackback_Model = new Trackback_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
@@ -19,11 +18,9 @@ $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 $author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If it is automatically saved as a draft, there is a blog id number
-$pingurl  = isset($_POST['pingurl']) ? addslashes($_POST['pingurl']) : '';
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
 $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
-$allow_tb = isset($_POST['allow_tb']) ? addslashes(trim($_POST['allow_tb'])) : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 
@@ -36,18 +33,18 @@ if (!empty($alias)) {
 }
 
 $logData = array(
-	'title'=>$title,
-	'alias'=>$alias,
-	'content'=>$content,
-	'excerpt'=>$excerpt,
-	'author'=>$author,
-	'sortid'=>$sort,
-	'date'=>$postTime,
-	'top'=>$top,
-	'allow_remark'=>$allow_remark,
-	'allow_tb'=>$allow_tb,
-	'hide'=>$ishide,
-	'password'=>$password
+	'title' => $title,
+	'alias' => $alias,
+	'content' => $content,
+	'excerpt' => $excerpt,
+	'author' => $author,
+	'sortid' => $sort,
+	'date' => $postTime,
+	'top '=> $top,
+	'allow_remark' => $allow_remark,
+	'hide' => $ishide,
+    'checked' => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',
+	'password' => $password
 );
 
 if ($blogid > 0) {//auto-save drafts, add into update
@@ -76,10 +73,6 @@ switch ($action) {
 		if ($ishide == 'y') {
 			emDirect("./admin_log.php?pid=draft&active_savedraft=1");
 		} else {
-			//Send Trackback
-			if (!empty($pingurl)) {
-				$Trackback_Model->postTrackback(Option::get('blogurl'), $pingurl, $blogid, $title, Option::get('blogname'), $content);
-			}
 			if ($action == 'add' || isset($_POST['pubdf'])) {
 				emDirect("./admin_log.php?active_post=1");//Published successfully
 			} else {

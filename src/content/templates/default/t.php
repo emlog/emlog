@@ -7,9 +7,6 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <div id="content">
 <div id="contentleft">
 <div id="tw">
-    <?php if(ROLE == 'admin' || ROLE == 'writer'): ?>
-    <div class="top"><a href="<?php echo BLOG_URL . 'admin/twitter.php' ?>"><? echo $lang['twit_post']; ?></a></div>
-    <?php endif; ?>
     <ul>
     <?php 
     foreach($tws as $val):
@@ -34,7 +31,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div class="huifu" id="rp_<?php echo $tid;?>">
 	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
-        <div class="tinfo" style="display:<?php if(ROLE == 'admin' || ROLE == 'writer'){echo 'none';}?>">
+        <div class="tinfo" style="display:<?php if(ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER){echo 'none';}?>">
         <? echo $lang['nickname']; ?>: <input type="text" id="rname_<?php echo $tid; ?>" value="" />
         <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>"><? echo $lang['verification_code']; ?>: <input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
         </div>

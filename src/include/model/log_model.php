@@ -40,7 +40,7 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function updateLog($logData, $blogId) {
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$Item = array();
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -64,7 +64,7 @@ class Log_Model {
 		if ($spot == 0) {
 			$author = '';
 		}else {
-			$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		}
 
 		$res = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
@@ -78,7 +78,7 @@ class Log_Model {
 	function getOneLogForAdmin($blogId) {
 		global $lang;
 		$timezone = Option::get('timezone');
-		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
@@ -114,15 +114,12 @@ class Log_Model {
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
 				'author' => $row['author'],
-				'tbscode' => substr(md5(gmdate('YndG')), 0, 6),
 				'log_content' => rmBreak($row['content']),
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
-				'tbcount' => intval($row['tbcount']),
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'allow_tb' => $row['allow_tb'],
 				'password' => $row['password']
 				);
 			return $logData;
@@ -145,7 +142,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
@@ -227,15 +224,13 @@ class Log_Model {
 	 */
 	function deleteLog($blogId) {
 		global $lang;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');
 		}
 		// Comments
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// Trackbacks
-		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
 		// Tags
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");

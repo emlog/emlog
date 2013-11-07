@@ -35,7 +35,7 @@
     <a href="./blogger.php" title="<?php echo subString($user_cache[UID]['name'], 0, 12) ?>">
         <img src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" align="top" width="20" height="20" />
     </a><span>|</span>
-    <?php if (ROLE == 'admin'):?>
+    <?php if (ROLE == ROLE_ADMIN):?>
     <a href="configure.php"><? echo $lang['settings']; ?></a><span>|</span>
 	<?php endif;?>
 	<a href="./?action=logout"><? echo $lang['logout']; ?></a>
@@ -48,7 +48,7 @@
 		<li class="sidebarsubmenu" id="menu_draft">
     	<a href="admin_log.php?pid=draft"><? echo $lang['drafts']; ?><span id="dfnum">
 		<?php 
-		if (ROLE == 'admin'){
+		if (ROLE == ROLE_ADMIN){
 			echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
 		}else{
 			echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
@@ -56,23 +56,27 @@
 		?>
 		</span></a></li>
 		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><? echo $lang['posts'];?></a></li>
-		<?php if (ROLE == 'admin'):?>
+        <?php
+        $checknum = $sta_cache['checknum'];
+		if (ROLE == ROLE_ADMIN && $checknum > 0):
+		$n = $checknum > 999 ? '...' : $checknum;
+		?>
+		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
+		<?php endif; ?>
+		<?php if (ROLE == ROLE_ADMIN):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></li>
     	<?php endif;?>
         <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a> </li>
    		<?php
-		$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+		$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 		if ($hidecmnum > 0):
 		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 		?>
-		<div class="coment_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?> <? echo $lang['comments_pending'];?>"> <?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
-		<?php if (Option::get('istrackback') == 'y'): ?>
-    	<li class="sidebarsubmenu" id="menu_tb"><a href="trackback.php"><? echo $lang['trackbacks']; ?></a></li>
-    	<?php endif;?>
     	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><? echo $lang['twitter']; ?></a></li>
-		<?php if (ROLE == 'admin'):?>
+		<?php if (ROLE == ROLE_ADMIN):?>
     	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['sidebar']; ?></a></li>
    	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><? echo $lang['navbar']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" ><? echo $lang['pages']; ?></a></li>
@@ -84,7 +88,7 @@
         <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus"><? echo $lang['extensions']; ?></a></li>
 		<?php endif;?>
     </div>
-    <?php if (ROLE == 'admin'):?>
+    <?php if (ROLE == ROLE_ADMIN):?>
     <div id="extend_mg">
     	<li class="sidebarsubmenu" id="menu_store"><a href="store.php"><? echo $lang['app_center']; ?></a></li>
 		<?php doAction('adm_sidebar_ext'); ?>

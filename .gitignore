@@ -1,0 +1,11 @@
+# 相关程序生成的文件
+/src/config.php
+/src/content/backup/*.sql
+/src/content/cache/*.php
+# 开发工具文件
+.project
+.settings
+.buildpath
+.cache
+.idea
+.netbeans

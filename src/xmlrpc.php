@@ -594,7 +594,7 @@ function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// Check user permissions
-	if (!LoginAuth::checkUser($username, $password , '', 'n')) {
+	if (true !== LoginAuth::checkUser($username, $password , '', 'n')) {
 		error_message(403, $lang['user_name_pass_wrong']);
 		return false;
 	}

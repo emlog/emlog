@@ -17,7 +17,7 @@ class Record_Controller {
 
 		$GLOBALS['record'] = $record;//for sidebar calendar
 
-		$start_limit = ($page - 1) * $index_lognum;
+		
 		$pageurl = '';
 
 		//page meta
@@ -33,6 +33,13 @@ class Record_Controller {
 		}
 		$sqlSegment = "and date>=$record_stime and date<$record_etime order by top desc ,date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
+        
+        $total_pages = ceil($lognum / $index_lognum);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
+        $start_limit = ($page - 1) * $index_lognum;
+        
 		$pageurl .= Url::record($record, 'page');
 
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);

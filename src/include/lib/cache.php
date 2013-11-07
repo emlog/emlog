@@ -116,7 +116,8 @@ class Cache {
 				'name_orig' => $row['nickname'],
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
-				'des' => htmlClean($row['description'])
+				'des' => htmlClean($row['description']),
+                'ischeck' => htmlspecialchars($row['ischeck'])
 				);
 		}
 		$cacheData = serialize($user_cache);
@@ -129,9 +130,9 @@ class Cache {
 		$sta_cache = array();
 		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
+        $checknum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='n' "));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
 		$hidecom = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "comment where hide='y' "));
-		$tbnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "trackback "));
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
 
 		$sta_cache = array(
@@ -141,7 +142,7 @@ class Cache {
 			'comnum_all' => $comnum + $hidecom,
 			'twnum' => $twnum,
 			'hidecomnum' => $hidecom,
-			'tbnum' => $tbnum
+            'checknum' => $checknum,
 			);
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
@@ -150,7 +151,6 @@ class Cache {
 			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
 			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
 
 			$sta_cache[$row['uid']] = array(
@@ -158,7 +158,6 @@ class Cache {
 				'draftnum' => $draftNum,
 				'commentnum' => $commentNum,
 				'hidecommentnum' => $hidecommentNum,
-				'tbnum' => $tbNum,
 				'twnum' => $twnum
 				);
 		}
@@ -496,6 +495,7 @@ class Cache {
 			if ($fp = fopen($cachefile, 'r')) {
 				$data = fread($fp, filesize($cachefile));
 				fclose($fp);
+                clearstatcache();
 				$this->{$cacheName.'_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
 				return $this->{$cacheName.'_cache'};
 			}

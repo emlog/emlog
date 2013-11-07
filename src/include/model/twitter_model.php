@@ -40,7 +40,7 @@ class Twitter_Model {
 	 * @return int
 	 */
 	function getTwitterNum($spot = 0) {
-		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR || $spot == 0 ? '' : 'and author=' . UID;
 		$res = $this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		$twNum = $this->db->num_rows($res);
 		return $twNum;
@@ -56,7 +56,7 @@ class Twitter_Model {
 	function getTwitters($page = 1, $spot = 0) {
 		$perpage_num = $spot == 1 ? Option::get('admin_perpage_num') : Option::get('index_twnum');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = ROLE == 'admin' || ROLE == 'visitor' || $spot == 0 ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR || $spot == 0 ? '' : 'and author=' . UID;
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter WHERE 1=1 $author ORDER BY id DESC $limit";
 		$res = $this->db->query($sql);
@@ -73,7 +73,7 @@ class Twitter_Model {
 
 	function delTwitter($tid) {
 		global $lang;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');

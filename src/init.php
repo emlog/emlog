@@ -23,8 +23,13 @@ $CACHE = Cache::getInstance();
 $userData = array();
 
 define('ISLOGIN',	LoginAuth::isLogin());
+
 //User role: admin = administrator, writer = co-author, visitor = guest
-define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
+define('ROLE_ADMIN', 'admin');
+define('ROLE_WRITER', 'writer');
+define('ROLE_VISITOR', 'visitor');
+//用户角色
+define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Blog URL

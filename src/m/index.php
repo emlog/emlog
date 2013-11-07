@@ -19,6 +19,8 @@ if (Option::get('ismobile') == 'n') {
 	emMsg($lang['mobile_disabled'], BLOG_URL);
 }
 
+$navi_cache = $CACHE->readCache('navi');
+
 // Front page
 if (empty ($action) && empty ($logid)) {
 	$Log_Model = new Log_Model();
@@ -114,7 +116,6 @@ if (ISLOGIN === true && $action == 'savelog') {
 		'sortid' => $sort,
 		'date' => $postTime,
 		'allow_remark' => 'y',
-		'allow_tb' => 'y',
 		'hide' => 'n',
 		'password' => ''
 		);
@@ -174,7 +175,7 @@ if ($action == 'addcom') {
         mMsg($lang['comment_admin_restricted'], $targetBlogUrl);
     } elseif (mb_strlen($content) == '' || mb_strlen($content) > 2000) {
         mMsg($lang['comment_invalid'], $targetBlogUrl);
-    } elseif (ROLE == 'visitor' && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+    } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 		mMsg($lang['comment_chinese'], $targetBlogUrl);
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg($lang['comment_captcha_invalid'], $targetBlogUrl);
@@ -189,7 +190,7 @@ if ($action == 'addcom') {
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
-		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
 
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";

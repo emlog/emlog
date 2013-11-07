@@ -57,13 +57,13 @@
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);"><? echo $lang['link_add'];?>+</a></div>
 <div id="link_new">
 	<li><? echo $lang['order']; ?></li>
-	<li><input maxlength="4" style="width:30px;" name="taxis" /></li>
+	<li><input maxlength="4" style="width:30px;" class="input" name="taxis" /></li>
 	<li><? echo $lang['name'];?></li>
-	<li><input maxlength="200" style="width:228px;" name="sitename" /></li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="sitename" /></li>
 	<li><? echo $lang['link_url'];?></li>
-	<li><input maxlength="200" style="width:228px;" name="siteurl" /></li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /></li>
 	<li><? echo $lang['link_description'];?></li>
-	<li><textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;"></textarea></li>
+	<li><textarea name="description" type="text" class="textarea" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" name="" value="<? echo $lang['link_add'];?>"  /></li>
 </div>
 </form>

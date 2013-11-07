@@ -21,7 +21,6 @@ foreach($logs as $value):
 	<p class="tag"><?php blog_tag($value['logid']); ?></p>
 	<p class="count">
 	<a href="<?php echo $value['log_url']; ?>#comments"><? echo $lang['number_of_comments']; ?> (<?php echo $value['comnum']; ?>)</a>
-	<a href="<?php echo $value['log_url']; ?>#tb"><? echo $lang['number_of_trackbacks']; ?> (<?php echo $value['tbcount']; ?>)</a>
 	<a href="<?php echo $value['log_url']; ?>"><? echo $lang['views']; ?> (<?php echo $value['views']; ?>)</a>
 	</p>
 	<div style="clear:both;"></div>

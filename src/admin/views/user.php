@@ -7,6 +7,8 @@
 <?php if(isset($_GET['error_exist'])):?><span class="error"><? echo $lang['user_allready_exists'];?></span><?php endif;?>
 <?php if(isset($_GET['error_pwd_len'])):?><span class="error"><? echo $lang['password_short'];?></span><?php endif;?>
 <?php if(isset($_GET['error_pwd2'])):?><span class="error"><? echo $lang['password_not_equal'];?></span><?php endif;?>
+<?php if(isset($_GET['error_del_a'])):?><span class="error">不能删除创始人</span><?php endif;?>
+<?php if(isset($_GET['error_del_b'])):?><span class="error">不能修改创始人信息</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -29,8 +31,9 @@
      <tr>
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
-		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?>
-		<br /><?php echo $val['role'] == 'admin' ? $lang['administrator'] : $lang['author']; ?>
+		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
+		<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
+        <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><? echo $lang['edit']; ?></a> 
@@ -54,16 +57,21 @@
 <form action="user.php?action=new" method="post">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><? echo $lang['user_add_info'];?> &raquo;</a></div>
 <div id="user_new" class="item_edit">
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" /><? echo $lang['user_name']; ?></li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" /><? echo $lang['password']; ?> <? echo $lang['password_length']; ?></li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" /><? echo $lang['password_repeat']; ?></li>
-	<li>
-	<select name="role">
+    <li>
+	<select name="role" id="role" class="input">
 		<option value="writer"><? echo $lang['author']; ?></option>
 		<option value="admin"><? echo $lang['administrator']; ?></option>
 	</select>
 	</li>
-	<li><input type="submit" name="" value="<? echo $lang['user_add']; ?>" class="button" /></li>
+	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="input" /> 用户名</li>
+	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="input" /> 密码 (大于6位)</li>
+	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="input" /> 重复密码</li>
+	<li id="ischeck">
+	<select name="ischeck" class="input">
+        <option value="n">文章不需要审核</option>
+		<option value="y">文章需要审核</option>
+	</select>
+	</li>
 </div>
 </form>
 <script>
@@ -73,6 +81,7 @@ $(document).ready(function(){
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
 		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+    $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);
 $("#menu_user").addClass('sidebarsubmenu1');

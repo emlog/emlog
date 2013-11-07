@@ -7,7 +7,7 @@
 	<li><? echo $lang['comment_author'];?>: <?php echo $poster; ?></li>
 	<li><? echo $lang['time'];?>: <?php echo $date; ?></li>
 	<li><? echo $lang['content'];?>: <?php echo $comment; ?></li>
-	<li><textarea name="reply" rows="5" cols="60"></textarea></li>
+	<li><textarea name="reply" rows="5" cols="60" class="textarea"></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
 	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />

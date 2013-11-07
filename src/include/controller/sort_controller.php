@@ -31,7 +31,7 @@ class Sort_Controller {
 			}
 		}
 
-		$start_limit = ($page - 1) * $index_lognum;
+		
 		$pageurl = '';
 
 		$sort_cache = $CACHE->readCache('sort');
@@ -51,6 +51,10 @@ class Sort_Controller {
 		}
 		$sqlSegment .=  " order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
+		$total_pages = ceil($lognum / $index_lognum);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
 		$pageurl .= Url::sort($sortid, 'page');
 
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);

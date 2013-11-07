@@ -23,8 +23,10 @@ if ($action == 'selectFile') {
 
 	//Allowed attachment type
 	$att_type_str = '';
+    $att_type_for_muti = '';
 	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val,";
+        $att_type_for_muti .= '*.'.$val.';';
 	}
 	$att_type_str = rtrim($att_type_str, ',');
 
