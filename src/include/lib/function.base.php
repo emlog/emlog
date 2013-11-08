@@ -730,11 +730,11 @@ function getMonthDayNum($month, $year) {
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
 	if (!class_exists('ZipArchive', FALSE)) {
-		return 3;//zip模块问题
+		return 3;//zip module problem
 	}
 	$zip = new ZipArchive();
 	if (@$zip->open($zipfile) !== TRUE) {
-		return 2;//文件权限问题
+		return 2;//File permission issues
 	}
 	$r = explode('/', $zip->getNameIndex(0), 2);
 	$dir = isset($r[0]) ? $r[0] . '/' : '';
@@ -760,7 +760,7 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 		$zip->close();
 		return 0;
 	} else {
-		return 1;//文件权限问题
+		return 1;//File permission issues
 	}
 }
 

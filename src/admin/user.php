@@ -89,7 +89,7 @@ if ($action=='update') {
 	if (UID == $uid) {
 		emDirect('./user.php');
 	}
-    //创始人账户不能被他人编辑
+    //The founder account cannot be edited by others
     if ($uid == 1) {
 		emDirect('./user.php?error_del_b=1');
 	}
@@ -132,7 +132,7 @@ if ($action== 'del') {
 		emDirect('./user.php');
 	}
 
-    //创始人账户不能被删除
+    //The founder account cannot be deleted
     if ($uid == 1) {
 		emDirect('./user.php?error_del_a=1');
 	}

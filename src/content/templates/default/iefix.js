@@ -1,5 +1,5 @@
 window.onload =  function() {
-	/** 通过JS实现:hover类的效果 **/
+	/** JS fix: hover class effect **/
 	var nav_bar = document.getElementById('nav');
 	var ul = nav_bar.getElementsByTagName('ul')[0];
 	var childs = ul.childNodes;

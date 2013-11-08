@@ -148,7 +148,7 @@ class Comment_Model {
 	}
 
     /**
-     * 删除来自某IP的所有评论
+     * Delete all comments from a certain IP
      * @param type $ip
      */
     function delCommentByIp($ip) {
@@ -236,7 +236,7 @@ class Comment_Model {
 	}
 
     /**
-     * 更新日志评论数
+     * Update Number of Comments
      */
 	function updateCommentNum($blogId) {
         if (is_array($blogId)) {
