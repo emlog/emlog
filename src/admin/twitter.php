@@ -65,7 +65,7 @@ if ($action == 'getreply') {
 	foreach ($replys as $val) {
 		 if ($val['hide'] == 'n') {
 			$style = "background-color:#FFF";
-            $act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">{$lang['comments_hide']}</a></span> ";
+			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">隐藏</a></span> ";
 		 } else {
 			$style = "background-color:#FEE0E4";
             $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">{$lang['comments_approve']}</a></span> ";

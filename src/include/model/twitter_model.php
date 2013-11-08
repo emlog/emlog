@@ -73,7 +73,7 @@ class Twitter_Model {
 
 	function delTwitter($tid) {
 		global $lang;
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');

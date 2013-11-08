@@ -20,7 +20,7 @@ function em_confirm (id, property) {
 			var msg = l_sure_del_comment;break;
         case 'commentbyip':
 			var urlreturn="comment.php?action=delbyip&ip="+id;
-			var msg = "你确定要删除来自该IP的所有评论吗？";break;
+			var msg = l_sure_comment_del_from_ip;break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
 			var msg = l_sure_delete_link;break;

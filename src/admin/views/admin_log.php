@@ -23,9 +23,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_title">
 	<div style="float:left; margin-top:8px;">
 		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>"><? echo $lang['all']; ?></a></span>
-		<span id="f_t_sort"><a href="javascript:void(0);"><? echo $lang['categories']; ?></a></span>
+		<span id="f_t_sort"><a href="javascript:void(0);"><? echo $lang['category']; ?></a></span>
 		<span id="f_t_tag"><a href="javascript:void(0);"><? echo $lang['tags']; ?></a></span>
-		<span id="f_t_user"><a href="javascript:void(0);"><? echo $lang['users']; ?></a></span>
+		<span id="f_t_user"><a href="javascript:void(0);"><? echo $lang['author']; ?></a></span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
@@ -38,7 +38,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<div style="clear:both"></div>
 </div>
 <div id="f_sort" <?php echo $isDisplaySort ?>>
-	<? echo $lang['categories'];?>: <span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1&<?php echo $isdraft; ?>"><? echo $lang['author'];?></a></span>
+	<? echo $lang['category'];?>: <span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1<?php echo $isdraft; ?>"><? echo $lang['unclassified'];?></a></span>
 	<?php foreach($sorts as $val):
 		$a = "sort_{$val['sid']}";
 		$$a = '';

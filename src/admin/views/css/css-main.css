@@ -30,11 +30,11 @@ body {
 	text-align:center;
 }
 #menu_wt a {background:url(../images/addblog.gif) no-repeat 3px 1px;}
-#menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
-#menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
+#menu_plug a {background:url(../images/plugin.gif) no-repeat 3px 1px;}
+#menu_store a {background:url(../images/store.gif) no-repeat 3px 2px;}
 #menu_ext { cursor:pointer;}
-.menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
-.menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
+.menu_ext_minus {background:url(../images/minus.gif) no-repeat 5px 5px;}
+.menu_ext_plus {background:url(../images/plus.gif) no-repeat 5px 5px;}
 .containertitle {
 	background-position:left 3px;
 	font-size:14px;

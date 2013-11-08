@@ -8,11 +8,11 @@
 <div class=line></div>
 <form action="user.php?action=update" method="post">
 <div class="item_edit">
-	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="input" /> 用户名</li>
-	<li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" class="input" /> 昵称</li>
-	<li><input type="password" value="" name="password" style="width:200px;" class="input" /> 新密码(不修改请留空)</li>
-	<li><input type="password" value="" name="password2" style="width:200px;" class="input" /> 重复新密码</li>
-	<li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" class="input" /> 电子邮件</li>
+	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="input" /><? echo $lang['user_name']; ?></li>
+	<li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" class="input" /><? echo $lang['nickname']; ?></li>
+	<li><input type="password" value="" name="password" style="width:200px;" class="input" /><? echo $lang['password_new']; ?> (<? echo $lang['password_leave_empty']; ?>)</li>
+	<li><input type="password" value="" name="password2" style="width:200px;" class="input" /><? echo $lang['password_new_confirm']; ?></li>
+	<li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" class="input" /><? echo $lang['email']; ?></li>
     <li>
 	<select name="role" id="role" class="input">
 		<option value="writer" <?php echo $ex1; ?>><? echo $lang['author']; ?></option>
@@ -21,10 +21,11 @@
 	</li>
     <li id="ischeck">
 	<select name="ischeck" class="input">
-        <option value="n" <?php echo $ex3; ?>>文章不需要审核</option>
-		<option value="y" <?php echo $ex4; ?>>文章需要审核</option>
+        <option value="n" <?php echo $ex3; ?>><? echo $lang['article_no_review']; ?></option>
+		<option value="y" <?php echo $ex4; ?>><? echo $lang['article_to_review']; ?></option>
 	</select>
 	</li>
+	<li><? echo $lang['personal_description']; ?><br />
 	<textarea name="description" rows="5" style="width:260px;" class="textarea"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />

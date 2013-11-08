@@ -20,9 +20,8 @@
         <th width="230"><b><? echo $lang['navbar']; ?></b></th>
         <th width="60" class="tdcenter"><b><? echo $lang['type']; ?></b></th>
         <th width="60" class="tdcenter"><b><? echo $lang['status']; ?></b></th>
-	<th width="60" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
-	<th width="360"><b><? echo $lang['url_redirect']; ?></b></th>
-	<th width="360"><b>地址</b></th>
+        <th width="50" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
+		<th width="360"><b><? echo $lang['url_redirect']; ?></b></th>
         <th width="100"></th>
       </tr>
     </thead>

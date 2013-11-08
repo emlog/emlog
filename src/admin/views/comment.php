@@ -2,7 +2,7 @@
 <div class=containertitle><b><? echo $lang['comments_management'];?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['comments_deleted_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived"><? echo $lang['comments_approved_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_hide'])):?><span class="actived"><? echo $lang['comments_hide_ok'];?></span><?php endif;?>
+<?php if(isset($_GET['active_hide'])):?><span class="actived"><? echo $lang['comment_hide_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived"><? echo $lang['comment_edit_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_rep'])):?><span class="actived"><? echo $lang['comment_replied_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['comments_select'];?></span><?php endif;?>
@@ -59,13 +59,13 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_approve']; ?></a>
 		<?php else: ?>
-		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_hide']; ?></a>
+		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['hide']; ?></a>
 		<?php endif;?>
 		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['reply']; ?></a>
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['edit']; ?></a>
 		</span>
 		</td>
-		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="删除来自该IP的所有评论" class="care">(X)</a></td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="<? echo $lang['comment_del_from_ip']; ?>" class="care">(X)</a></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>
@@ -76,7 +76,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
     <a href="javascript:commentact('del');" class="care"><? echo $lang['remove'];?></a>
-	<a href="javascript:commentact('hide');"><? echo $lang['comments_hide'];?></a>
+	<a href="javascript:commentact('hide');"><? echo $lang['hide']; ?></a>
 	<a href="javascript:commentact('pub');"><? echo $lang['comments_approve'];?></a>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>

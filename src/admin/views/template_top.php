@@ -6,7 +6,7 @@
 </div>
 <div class=line></div>
 <?php if(!$topimg || !file_exists('../' . $topimg)): ?>
-<div class="error_msg"><? echo $lang['top_image_damaged']; ?></div>
+<div class="warning"><? echo $lang['top_image_damaged']; ?></div>
 <?php else:?>
 <div id="topimg_preview"><img src="<?php echo '../'.$topimg; ?>" width="758" height="105" /></div>
 <?php endif;?>
@@ -38,10 +38,10 @@
 	<?php endforeach; ?>
 
     <div>
-	<a href="./template.php?action=update_top" title="不使用顶部图片" >
+	<a href="./template.php?action=update_top" title="<? echo $lang['top_image_no']; ?>" >
 	<img src="../content/templates/default/images/null.jpg" width="230px" height="48px" class="topTH" />
 	</a>
-	<li class="admin_style_info" >不使用顶部图片</li>
+	<li class="admin_style_info" ><? echo $lang['top_image_no']; ?></li>
 	</div>
 </div>
 </form>

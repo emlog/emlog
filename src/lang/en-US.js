@@ -53,3 +53,4 @@ var l_tag_del_sure	= 'Are you sure you want to delete the selected tags?';//'你
 var l_image_select	= 'Select Image';//'选择图片';
 var l_upload_failed	= 'Upload failed!';//'上传失败！';
 var l_image_name	= 'Image name';//'图片名称';
+var l_sure_comment_del_from_ip	= 'Are you sure you want to delete all comments from this IP?';//'你确定要删除来自该IP的所有评论吗？';

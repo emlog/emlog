@@ -64,7 +64,7 @@ class Tag_Model {
 	 * @param string $tagStr
 	 */
 	function addTag($tagStr, $blogId) {
-		$tag = !empty($tagStr) ? preg_split ("/[,\s]|([，,])/", $tagStr) : array();
+/*NOT translate!*/ $tag = !empty($tagStr) ? preg_split ("/[,\s]|([，,])/", $tagStr) : array();
 		$tag = array_filter(array_unique($tag));
 		foreach ($tag as $tagName) {
 			$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
@@ -85,7 +85,7 @@ class Tag_Model {
 	 * @param int $blogId
 	 */
 	function updateTag($tagStr, $blogId) {
-		$tag = !empty($tagStr) ? preg_split ("/[,\s]|([，,])/", $tagStr) : array();
+/*NOT translate!*/ $tag = !empty($tagStr) ? preg_split ("/[,\s]|([，,])/", $tagStr) : array();
 		$query = $this->db->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$blogId."%' ");
 		$old_tag = array();
 		while ($row = $this->db->fetch_array($query)) {

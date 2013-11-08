@@ -259,9 +259,9 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php">写文章</a></li>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><? echo $lang['article_write']; ?></a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
+			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
 			<?php 
 			continue;
 		endif;
@@ -295,7 +295,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>

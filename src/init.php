@@ -28,9 +28,8 @@ define('ISLOGIN',	LoginAuth::isLogin());
 define('ROLE_ADMIN', 'admin');
 define('ROLE_WRITER', 'writer');
 define('ROLE_VISITOR', 'visitor');
-//用户角色
+//User role
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
-//User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Blog URL
 define('BLOG_URL', Option::get('blogurl'));

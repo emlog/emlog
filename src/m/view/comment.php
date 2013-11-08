@@ -14,7 +14,7 @@ foreach($comment as $value):
 <?php endif;?>
 <div class="cominfo">
 <?php if(ISLOGIN === true && $value['hide'] == 'n'): ?>
-<a href="./?action=hidecom&id=<?php echo $value['cid'];?>"><? echo $lang['comments_hide']; ?></a>
+<a href="./?action=hidecom&id=<?php echo $value['cid'];?>"><? echo $lang['hide']; ?></a>
 <?php elseif(ISLOGIN === true && $value['hide'] == 'y'):?>
 <a href="./?action=showcom&id=<?php echo $value['cid'];?>"><? echo $lang['approve']; ?></a>
 <?php endif;?>

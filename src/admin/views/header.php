@@ -61,7 +61,7 @@
 		if (ROLE == ROLE_ADMIN && $checknum > 0):
 		$n = $checknum > 999 ? '...' : $checknum;
 		?>
-		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?><? echo $lang['_pending_articles']; ?>"><?php echo $n; ?></a></div>
 		<?php endif; ?>
 		<?php if (ROLE == ROLE_ADMIN):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></li>
@@ -73,7 +73,7 @@
 		if ($hidecmnum > 0):
 		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 		?>
-		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?> <? echo $lang['comments_pending'];?>"> <?php echo $n; ?></a></div>
 		<?php endif; ?>
     	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><? echo $lang['twitter']; ?></a></li>
 		<?php if (ROLE == ROLE_ADMIN):?>
