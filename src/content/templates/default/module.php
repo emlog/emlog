@@ -207,6 +207,7 @@ function widget_custom_text($title, $content){ ?>
 function widget_link($title){
 	global $CACHE; 
 	$link_cache = $CACHE->readCache('link');
+    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -396,3 +397,13 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	</div>
 	<?php endif; ?>
 <?php }?>
+<?php
+//blog-tool:判断是否是首页
+function blog_tool_ishome(){
+    if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL){
+        return true;
+    } else {
+        return FALSE;
+    }
+}
+?>
