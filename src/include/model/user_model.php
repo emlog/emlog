@@ -63,7 +63,7 @@ class User_Model {
 	}
 
 	function deleteUser($uid) {
-		$this->db->query("update ".DB_PREFIX."blog set author=1 where author=$uid");
+		$this->db->query("update ".DB_PREFIX."blog set author=1 and checked='y' where author=$uid");
 		$this->db->query("delete ".DB_PREFIX."twitter,".DB_PREFIX."reply from ".DB_PREFIX."twitter left join ".DB_PREFIX."reply on ".DB_PREFIX."twitter.id=".DB_PREFIX."reply.tid where ".DB_PREFIX."twitter.author=$uid");
 		$this->db->query("delete from ".DB_PREFIX."user where uid=$uid");
 	}

@@ -170,7 +170,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition $limit";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -248,11 +248,25 @@ class Log_Model {
 	 * 隐藏/显示文章
 	 *
 	 * @param int $blogId
-	 * @param string $hideState
+	 * @param string $state
 	 */
-	function hideSwitch($blogId, $hideState) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$hideState' WHERE gid=$blogId");
-		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$hideState' WHERE gid=$blogId");
+	function hideSwitch($blogId, $state) {
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId");
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
+		$Comment_Model = new Comment_Model();
+		$Comment_Model->updateCommentNum($blogId);
+	}
+
+    /**
+	 * 审核/驳回作者文章
+	 *
+	 * @param int $blogId
+	 * @param string $state
+	 */
+	function checkSwitch($blogId, $state) {
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET checked='$state' WHERE gid=$blogId");
+        $state = $state == 'y' ? 'n' : 'y';
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
 	}
@@ -323,7 +337,7 @@ class Log_Model {
 	 * 随机获取指定数量文章
 	 */
 	function getRandLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -338,7 +352,7 @@ class Log_Model {
 	 * 获取热门文章
 	 */
 	function getHotLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {

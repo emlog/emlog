@@ -330,7 +330,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');

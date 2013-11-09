@@ -59,7 +59,7 @@
 <div id="user_new" class="item_edit">
     <li>
 	<select name="role" id="role" class="input">
-		<option value="writer">作者</option>
+		<option value="writer">作者（投稿人）</option>
 		<option value="admin">管理员</option>
 	</select>
 	</li>
