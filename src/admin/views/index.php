@@ -27,13 +27,16 @@
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
-<p id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></p>
 </div>
 <div id="admindex_msg">
 <h3>官方消息</h3>
 <ul></ul>
 </div>
 <div class="clear"></div>
+<div id="about">
+    您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
+    <span id="upmsg"></span>
+</div>
 </div>
 </div>
 <script>
@@ -80,5 +83,36 @@ function checkt(){
     var t=$(".box2").val();
     var n=140 - t.length;
     if (n<0){return false;}
+}
+$("#about #ckup").click(function(){
+    $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
+	$.getJSON("http://dahai.emlog.org/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+    function(data){
+        if (data.result.match("no")) {
+            $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
+        } else if(data.result.match("yes")) {
+            $("#about #upmsg").html("有可用的emlog更新版本 "+data.ver+"，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('"+data.file+"');\">现在更新</a>").removeClass();
+        } else{
+            $("#about #upmsg").html("检查失败，可能是网络问题").removeClass();
+        }
+    });
+});
+function doup(source){
+    $("#about #upmsg").html("系统正在更新中，请耐心等待").addClass("ajaxload");
+    $.get('./index.php?action=update&source='+source,
+      function(data){
+        $("#about #upmsg").removeClass();
+        if (data.match("succ")) {
+            $("#about #upmsg").html('更新成功');
+        } else if(data.match("error_down")){
+            $("#about #upmsg").html('更新失败，可能是服务器网络问题');
+        } else if(data.match("error_zip")){
+            $("#about #upmsg").html('更新失败，可能是服务器不支持zip模块');
+        } else if(data.match("error_dir")){
+            $("#about #upmsg").html('更新失败，目录不可写');
+        }else{
+            $("#about #upmsg").html('更新失败');
+        }
+      });
 }
 </script>

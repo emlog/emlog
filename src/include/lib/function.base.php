@@ -750,6 +750,8 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 			if (getFileSuffix($sql_name) != 'sql')
 				return -3;
 			break;
+		case 'update':
+			break;
 	}
 	if (true === @$zip->extractTo($path)) {
 		$zip->close();

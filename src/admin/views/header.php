@@ -20,7 +20,6 @@
 <div id="header">
     <div id="header_left"></div>
     <div id="header_logo"><a href="./" title="返回管理首页">emlog</a></div>
-    <div id="header_vesion"><?php echo Option::EMLOG_VERSION; ?></div>
     <div id="header_title">
     <a href="../" target="_blank" title="在新窗口浏站点">
     <?php 

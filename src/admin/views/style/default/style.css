@@ -29,17 +29,11 @@ a:hover{color:#333;text-decoration:none}
 #header_logo a{
 	text-indent:-9999px;
 	height:40px;
-	width:120px;
+	width:168px;
 	background:url(./images/logo.png) no-repeat;
 	display:block;
 	outline: none;
 	float:left;
-}
-#header_vesion{
-	font-size:10px;
-	padding:15px 10px 0px 10px;color: #FFFFFF;
-	float:left;
-	width:48px;
 }
 #header_title{
 	font-size:15px;

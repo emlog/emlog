@@ -496,7 +496,7 @@ textarea {
 }
 #admindex div li {
 	list-style:none;
-	padding:2px 0px;
+	padding:4px 0px 4px 5px;
 	border-bottom:1px dotted #E4E4E4;
 	clear:both
 }
@@ -504,6 +504,14 @@ textarea {
 	list-style:none;
 	margin:0px;
 	padding:3px 1px
+}
+#about{
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 12px;
+    margin:16px 0px 0px 0px;
+    width: 839px;
+    border-radius: 5px;
 }
 .clear {
 	clear:both;
@@ -994,6 +1002,11 @@ textarea {
 }
 #addon_ins #addonerror {
 	background:url(../images/icon_error.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+.ajaxload {
+	background:url(../images/loading.gif) no-repeat 10px;
 	height:20px;
     padding:0px 40px 0px 30px;
 }
