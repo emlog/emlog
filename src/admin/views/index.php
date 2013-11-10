@@ -53,11 +53,7 @@ $(document).ready(function(){
 			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
 		});
 	});
-});
-</script>
-<?php endif;?>
-<script>
-$(document).ready(function(){
+
     $(".box2").focus(function(){
         $(this).val('').css('height','50px').unbind('focus');
         $(".tbutton").show();
@@ -86,28 +82,28 @@ function checkt(){
 }
 $("#about #ckup").click(function(){
     $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
-	$.getJSON("http://dahai.emlog.org/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+	$.getJSON("http://www.emlog.net/services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         if (data.result.match("no")) {
             $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
         } else if(data.result.match("yes")) {
-            $("#about #upmsg").html("有可用的emlog更新版本 "+data.ver+"，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('"+data.file+"');\">现在更新</a>").removeClass();
+            $("#about #upmsg").html("有可用的emlog更新版本 "+data.ver+"，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">现在更新</a>").removeClass();
         } else{
             $("#about #upmsg").html("检查失败，可能是网络问题").removeClass();
         }
     });
 });
-function doup(source){
+function doup(source,upsql){
     $("#about #upmsg").html("系统正在更新中，请耐心等待").addClass("ajaxload");
-    $.get('./index.php?action=update&source='+source,
+    $.get('./index.php?action=update&source='+source+"&upsql="+upsql,
       function(data){
         $("#about #upmsg").removeClass();
         if (data.match("succ")) {
-            $("#about #upmsg").html('更新成功');
+            $("#about #upmsg").html('恭喜您！更新成功了，请<a href="./">刷新页面</a>开始体验新版emlog');
         } else if(data.match("error_down")){
-            $("#about #upmsg").html('更新失败，可能是服务器网络问题');
+            $("#about #upmsg").html('下载更新失败，可能是服务器网络问题');
         } else if(data.match("error_zip")){
-            $("#about #upmsg").html('更新失败，可能是服务器不支持zip模块');
+            $("#about #upmsg").html('解压更新失败，可能是服务器不支持zip模块');
         } else if(data.match("error_dir")){
             $("#about #upmsg").html('更新失败，目录不可写');
         }else{
@@ -116,3 +112,4 @@ function doup(source){
       });
 }
 </script>
+<?php endif;?>
