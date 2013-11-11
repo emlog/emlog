@@ -286,11 +286,15 @@ function doAction($hook) {
  * @param int $lid 文章id
  */
 function breakLog($content, $lid) {
-	$a = explode('[break]', $content, 2);
-	if (!empty($a[1])) {
-		$a[0].='<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
-	}
-	return $a[0];
+	$ret = explode('[break]', $content, 2);
+	if (!empty($ret[1])) {
+		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+        return $ret[0];
+	} elseif(Option::get('isexcerpt') == 'y') {
+        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+    } else {
+        return $content;
+    }
 }
 
 /**

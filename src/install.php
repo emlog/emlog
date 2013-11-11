@@ -325,6 +325,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ismobile','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
