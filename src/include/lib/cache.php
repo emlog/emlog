@@ -238,7 +238,7 @@ class Cache {
 		$rank = $spread / $rank;
 		// 获取草稿id
 		$hideGids = array();
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where hide='y' or checked='n' and type='blog'");
+		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
 		while ($row = $this->db->fetch_array($query)) {
 			$hideGids[] = $row['gid'];
 		}
