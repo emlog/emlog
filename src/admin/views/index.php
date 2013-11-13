@@ -53,33 +53,7 @@ $(document).ready(function(){
 			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
 		});
 	});
-
-    $(".box2").focus(function(){
-        $(this).val('').css('height','50px').unbind('focus');
-        $(".tbutton").show();
-    });
-    $(".box2").keyup(function(){
-       var t=$(this).val();
-       var n = 140 - t.length;
-       if (n>=0){
-         $(".tbutton span").html("(你还可以输入"+n+"字)");
-       }else {
-         $(".tbutton span").html("<span style=\"color:#FF0000\">(已超出"+Math.abs(n)+"字)</span>");
-       }
-    });
 });
-function closet(){
-    $(".tbutton").hide();
-    $(".tbutton span").html("(你还可以输入140字)");
-    $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
-        $(this).val('').css('height','50px').unbind('focus');
-        $(".tbutton").show();});
-}
-function checkt(){
-    var t=$(".box2").val();
-    var n=140 - t.length;
-    if (n<0){return false;}
-}
 $("#about #ckup").click(function(){
     $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
 	$.getJSON("http://www.emlog.net/services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
@@ -113,3 +87,32 @@ function doup(source,upsql){
 }
 </script>
 <?php endif;?>
+<script>
+$(document).ready(function(){
+    $(".box2").focus(function(){
+        $(this).val('').css('height','50px').unbind('focus');
+        $(".tbutton").show();
+    });
+    $(".box2").keyup(function(){
+       var t=$(this).val();
+       var n = 140 - t.length;
+       if (n>=0){
+         $(".tbutton span").html("(你还可以输入"+n+"字)");
+       }else {
+         $(".tbutton span").html("<span style=\"color:#FF0000\">(已超出"+Math.abs(n)+"字)</span>");
+       }
+    });
+});
+function closet(){
+    $(".tbutton").hide();
+    $(".tbutton span").html("(你还可以输入140字)");
+    $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
+        $(this).val('').css('height','50px').unbind('focus');
+        $(".tbutton").show();});
+}
+function checkt(){
+    var t=$(".box2").val();
+    var n=140 - t.length;
+    if (n<0){return false;}
+}
+</script>

@@ -16,7 +16,7 @@ $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 $excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
-$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
+$author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? intval(trim($_POST['author'])) : UID;
 $blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';

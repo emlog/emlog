@@ -137,7 +137,7 @@ if ($action == 'operate_log') {
 				$Log_Model->hideSwitch($val, 'n');
                 if (ROLE == ROLE_ADMIN)
                 {
-                    $Log_Model->checkSwitch($gid, 'y');
+                    $Log_Model->checkSwitch($val, 'y');
                 }
 			}
 			$CACHE->updateCache();
