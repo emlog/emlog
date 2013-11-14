@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="admindex">
+<?php if (ROLE == ROLE_ADMIN):?>
 <div id="admindex_main">
     <div id="tw">
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
@@ -14,7 +15,6 @@
     </div>
 </div>
 <div class="clear"></div>
-<?php if (ROLE == ROLE_ADMIN):?>
 <div style="margin-top: 20px;">
 <div id="admindex_servinfo">
 <h3>站点信息</h3>
@@ -86,7 +86,6 @@ function doup(source,upsql){
       });
 }
 </script>
-<?php endif;?>
 <script>
 $(document).ready(function(){
     $(".box2").focus(function(){
@@ -116,3 +115,9 @@ function checkt(){
     if (n<0){return false;}
 }
 </script>
+<?php else:?>
+<div id="admindex_main">
+<div id="about"><a href="blogger.php"><?php echo $name; ?></a> （<b><?php echo $sta_cache[UID]['lognum'];?></b>篇文章，<b><?php echo $sta_cache[UID]['commentnum'];?></b>条评论）</div>
+</div>
+<div class="clear"></div>
+<?php endif; ?>
