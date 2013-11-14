@@ -43,8 +43,10 @@ if ($action == 'update') {
         emDirect("./blogger.php?error_c=1");
 	} elseif (!empty($newpass) && $newpass != $repeatpass) {
         emDirect("./blogger.php?error_d=1");
-	} elseif($login != $user_cache[UID]['username'] && $User_Model->isUserExist($login, UID)) {
+	} elseif($User_Model->isUserExist($login, UID)) {
         emDirect("./blogger.php?error_e=1");
+    } elseif($User_Model->isNicknameExist($nickname, UID)) {
+        emDirect("./blogger.php?error_f=1");
     }
 
 	if (!empty($newpass)) {

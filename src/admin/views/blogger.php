@@ -14,7 +14,8 @@
 <?php if(isset($_GET['error_b'])):?><span class="error">电子邮件格式错误</span><?php endif;?>
 <?php if(isset($_GET['error_c'])):?><span class="error">密码长度不得小于6位</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">两次输入的密码不一致</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="error">要修改的登录名已存在</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">该登录名已存在</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">该昵称已存在</span><?php endif;?>
 </div>
 <div style="margin-left:30px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
