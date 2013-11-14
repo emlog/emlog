@@ -41,22 +41,10 @@ if ($action == 'addon') {
         exit('error');
     }
 
-	$source = OFFICIAL_SERVICE_HOST . '/' . $source;
-	$temp_file = tempnam('/tmp', 'emtemp_');
-    $rh = fopen($source, 'rb');
-    $wh = fopen($temp_file, 'w+b');
-    if ( ! $rh || ! $wh) {
-        exit('error_down');
+    $temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . '/' . $source);
+    if (!$temp_file) {
+         exit('error_down');
     }
-
-    while (!feof($rh)) {
-        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
-            exit('error_down');
-        }
-    }
-
-    fclose($rh);
-    fclose($wh);	
 
     $unzip_path = $source_type == 'tpl' ? '../content/templates/' : '../content/plugins/';
 	$ret = emUnZip($temp_file, $unzip_path, $source_type);

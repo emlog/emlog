@@ -787,6 +787,29 @@ function emZip($orig_fname, $content) {
 }
 
 /**
+ * 获取远程文件
+ * @param type $source 远程文件地址
+ * @return 临时文件地址
+ */
+function emFecthFile($source) {
+    $temp_file = tempnam('/tmp', 'emtemp_');
+    $rh = fopen($source, 'rb');
+    $wh = fopen($temp_file, 'w+b');
+    if ( ! $rh || ! $wh) {
+        return FALSE;
+    }
+
+    while (!feof($rh)) {
+        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
+            return FALSE;
+        }
+    }
+    fclose($rh);
+    fclose($wh);
+    return $temp_file;
+}
+
+/**
  * 删除文件或目录
  */
 function emDeleteFile($file) {
