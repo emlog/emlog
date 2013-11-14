@@ -33,7 +33,7 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-if ($action == 'update') {
+if ($action == 'update' && ROLE == ROLE_ADMIN) {
     $source = isset($_GET['source']) ? trim($_GET['source']) : '';
     $upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
 
@@ -41,7 +41,7 @@ if ($action == 'update') {
         exit('error');
     }
 	$temp_file = tempnam('/tmp', 'emtemp_');
-    $rh = fopen($source, 'rb');
+    $rh = fopen(OFFICIAL_SERVICE_HOST . $source, 'rb');
     $wh = fopen($temp_file, 'w+b');
     if ( ! $rh || ! $wh) {
         exit('error_down');
@@ -74,7 +74,7 @@ if ($action == 'update') {
     }
     $DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
-	$sql = file($upsql);
+	$sql = file(OFFICIAL_SERVICE_HOST . $upsql);
     if(!$sql) {
         exit('error_down');
     }

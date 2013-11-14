@@ -42,7 +42,7 @@
 <script>
 $(document).ready(function(){
 	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON("http://www.emlog.net/services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
 	function(data){
 		$("#admindex_msg ul").html("");
 		$.each(data.items, function(i,item){
@@ -56,7 +56,7 @@ $(document).ready(function(){
 });
 $("#about #ckup").click(function(){
     $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
-	$.getJSON("http://www.emlog.net/services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         if (data.result.match("no")) {
             $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();

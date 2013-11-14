@@ -41,7 +41,7 @@ if ($action == 'addon') {
         exit('error');
     }
 
-	$source = 'http://www.emlog.net' . $source;
+	$source = OFFICIAL_SERVICE_HOST . '/' . $source;
 	$temp_file = tempnam('/tmp', 'emtemp_');
     $rh = fopen($source, 'rb');
     $wh = fopen($temp_file, 'w+b');
