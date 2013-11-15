@@ -86,6 +86,24 @@ class User_Model {
 		}
 	}
 
+    /**
+	 * 判断用户昵称是否存在
+	 *
+	 * @param string $nickname
+	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @return boolean
+	 */
+	function isNicknameExist($nickname, $uid = '') {
+		$subSql = $uid ? 'and uid!='.$uid : '';
+		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE nickname='$nickname' $subSql");
+		$res = $this->db->num_rows($query);
+		if ($res > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	function getUserNum() {
 		$sql = "SELECT uid FROM ".DB_PREFIX."user";
 		$res = $this->db->query($sql);

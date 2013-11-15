@@ -73,8 +73,8 @@
 		?>
 		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
 		<?php endif; ?>
-    	<li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
 		<?php if (ROLE == ROLE_ADMIN):?>
+        <li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
     	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
    	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
     	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
