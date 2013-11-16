@@ -132,6 +132,7 @@ class Comment_Model {
 	}
 
 	function delComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -147,10 +148,6 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
-    /**
-     * 删除来自某IP的所有评论
-     * @param type $ip
-     */
     function delCommentByIp($ip) {
         $blogids = array();
         $sql = "SELECT DISTINCT gid FROM ".DB_PREFIX."comment WHERE ip='$ip'";
@@ -163,6 +160,7 @@ class Comment_Model {
 	}
 
 	function hideComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -179,6 +177,7 @@ class Comment_Model {
 	}
 
 	function showComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -212,9 +211,6 @@ class Comment_Model {
 		}
 	}
 
-	/**
-	 * 批量处理评论
-	 */
 	function batchComment($action, $comments) {
 		switch ($action) {
 			case 'delcom':
@@ -235,9 +231,6 @@ class Comment_Model {
 		}
 	}
 
-    /**
-     * 更新日志评论数
-     */
 	function updateCommentNum($blogId) {
         if (is_array($blogId)) {
             foreach ($blogId as $val) {
@@ -283,14 +276,8 @@ class Comment_Model {
 		}
 	}
 
-    
-	/**
-	 * 修改评论
-	 *
-	 * @param array $commentData
-	 * @param int $commentId
-	 */
 	function updateComment($commentData, $commentId) {
+        $this->isYoursComment($commentId);
 		$Item = array();
 		foreach ($commentData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -306,6 +293,17 @@ class Comment_Model {
 			return true;
 		}else {
 			return false;
+		}
+	}
+
+    function isYoursComment($cid) {
+        if (ROLE == ROLE_ADMIN) {
+            return true;
+        }
+		$query = $this->db->query("SELECT a.cid FROM ".DB_PREFIX."comment as a,".DB_PREFIX."blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=".UID);
+		$result = $this->db->num_rows($query);
+		if ($result <= 0) {
+			emMsg('权限不足！', './');
 		}
 	}
 
