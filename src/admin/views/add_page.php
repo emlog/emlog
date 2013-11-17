@@ -7,7 +7,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label">输入页面标题</label>
-    <input type="text" maxlength="200" style="width:852px;" name="title" id="title"/>
+    <input type="text" maxlength="200" name="title" id="title"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="post_bar">
@@ -21,11 +21,11 @@
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
     </div>
 </div>
-<div><textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><textarea id="content" name="content" style="width:845px; height:460px;"></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
     链接别名：(用于自定义该页面的链接地址。需要<a href="./seo.php" target="_blank">启用链接别名</a>)<br />
-    <input name="alias" id="alias" style="width:850px;" class="input" />
+    <input name="alias" id="alias"/>
 </div>
 <div>
     <span id="page_options">

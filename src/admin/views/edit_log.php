@@ -9,7 +9,7 @@ $isdraft = $hide == 'y' ? true : false;
 <div id="post">
 <div>
     <label for="title" id="title_label">输入文章标题</label>
-    <input type="text" maxlength="200" style="width:852px;" name="title" id="title" value="<?php echo $title; ?>" />
+    <input type="text" maxlength="200" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
 	<div>
@@ -23,11 +23,11 @@ $isdraft = $hide == 'y' ? true : false;
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"><?php echo $content; ?></textarea>
+    <textarea id="content" name="content" style="width:845px; height:460px;"><?php echo $content; ?></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>
-    <input name="tag" id="tag" maxlength="200" style="width:429px;" value="<?php echo $tagStr; ?>" />
+    <input name="tag" id="tag" maxlength="200" value="<?php echo $tagStr; ?>" />
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
     <select name="sort" id="sort" style="width:130px;">
      <?php
@@ -41,7 +41,7 @@ $isdraft = $hide == 'y' ? true : false;
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
-<div id="tagbox" style="width:860px;margin:0px;display:none;">
+<div id="tagbox">
 <?php
     if ($tags) {
         foreach ($tags as $val){
@@ -55,9 +55,9 @@ $isdraft = $hide == 'y' ? true : false;
 <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
 <div id="advset">
 <div>文章摘要：</div>
-<div><textarea id="excerpt" name="excerpt" style="width:860px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
+<div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)</div>
-<div><input name="alias" id="alias" value="<?php echo $alias;?>" style="width:856px;" /></div>
+<div><input name="alias" id="alias" value="<?php echo $alias;?>"/></div>
 <div>
 	文章访问密码：
     <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />

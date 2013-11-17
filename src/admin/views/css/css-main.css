@@ -16,12 +16,12 @@ body {
 }
 #mainpage {
 	margin:5px auto 0px;
-	width:1024px;
+	width:996px;
 }
 #container {
 	padding-left:30px;
 	float:left;
-	width:870px;
+	width:840px;
 }
 #footer{
 	clear:both;
@@ -405,41 +405,6 @@ textarea {
 	padding:10px;
 	margin:10px 0px 5px 32px
 }
-#post{
-    width: 866px;
-}
-#post_bar {
-    margin:5px 0px;
-}
-.show_advset {
-	margin:3px 10px 0px 0px;
-    padding:0px 20px 0px 0px;
-	background:url(../images/advset.gif) no-repeat 54px 4px;
-	cursor:pointer;
-    width:76px;
-    font-weight:bold;
-}
-#advset {
-    display:none;
-	background-color:#F5F5F5;
-	border-top:#ECECEC solid 1px;
-	padding:5px 2px 10px 2px
-}
-#post_button{
-    text-align: center;
-    margin:10px 0px;
-}
-#post_options {
-	float:right
-}
-#post_options label {
-	vertical-align:middle;
-	cursor:pointer
-}
-#post_options input {
-	vertical-align:middle;
-	margin:3px 0px 3px 15px
-}
 #page_options {
 	float:left;
 }
@@ -469,11 +434,11 @@ textarea {
 }
 #admindex_servinfo {
 	float:left;
-	width:425px;
-	margin-right:10px
+	width:410px;
+	margin-right:20px
 }
 #admindex_msg {
-	width:425px;
+	width:410px;
 	float:left
 }
 #admindex_msg img {
@@ -509,9 +474,9 @@ textarea {
 #about{
     text-align: center;
     background-color: #f9f9f9;
-    padding: 12px;
+    padding: 12px 0px;
     margin:16px 0px 0px 0px;
-    width: 839px;
+    width: 842px;
     border-radius: 5px;
 }
 .clear {
@@ -868,7 +833,10 @@ textarea {
 	text-decoration:none;
 	padding:4px 0px 0px 26px
 }
-#title {
+#post{
+    width: 866px;
+}
+#post #title {
 	border-radius:3px 3px 3px 3px;
 	border-style:solid;
 	border-width:1px;
@@ -877,10 +845,10 @@ textarea {
 	line-height:100%;
 	outline:medium none;
 	padding:3px 4px;
-	width:100%;
+	width:837px;
 	margin:0px 0px 10px 0px;
 }
-#title_label {
+#post #title_label {
 	vertical-align:middle;
 	color:#BBBBBB;
 	font-size:14px;
@@ -888,13 +856,54 @@ textarea {
 	position:absolute;
 	cursor:text;
 }
-#tag_label {
+#post #tag{
+    width:414px;
+}
+#post #tag_label {
 	vertical-align:middle;
 	color:#BBBBBB;
 	font-size:12px;
 	padding:3px;
 	position:absolute;
 	cursor:text;
+}
+#post #tagbox {
+    width:860px;
+    margin:0px;
+    display:none;
+}
+#post #advset {
+    display:none;
+    width: 845px;
+}
+#post #alias{
+    width: 841px;
+}
+#post_bar {
+    margin:5px 0px;
+}
+.show_advset {
+	margin:3px 10px 0px 0px;
+    padding:0px 20px 0px 0px;
+	background:url(../images/advset.gif) no-repeat 54px 4px;
+	cursor:pointer;
+    width:76px;
+    font-weight:bold;
+}
+#post_button{
+    text-align: center;
+    margin:10px 0px;
+}
+#post_options {
+	float:right
+}
+#post_options label {
+	vertical-align:middle;
+	cursor:pointer
+}
+#post_options input {
+	vertical-align:middle;
+	margin:3px 0px 3px 15px
 }
 #input_s {
 	background:url("../images/search.png") no-repeat scroll 5px 3px transparent;
