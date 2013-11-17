@@ -53,7 +53,7 @@
 <div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px;"></textarea></div>
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" /></div>
-<div>
+<div style="margin-top:3px;">
     文章访问密码：<input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />

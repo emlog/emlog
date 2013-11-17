@@ -58,9 +58,8 @@ $isdraft = $hide == 'y' ? true : false;
 <div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)</div>
 <div><input name="alias" id="alias" value="<?php echo $alias;?>"/></div>
-<div>
-	文章访问密码：
-    <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
+<div style="margin-top:3px;">
+	文章访问密码：<input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
         <label for="top">文章置顶</label>
