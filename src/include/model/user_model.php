@@ -42,6 +42,7 @@ class User_Model {
 				'photo' => htmlspecialchars($row['photo']),
 				'description' => htmlspecialchars($row['description']),
 				'role' => $row['role'],
+                'ischeck' => $row['ischeck'],
 			);
 		}
 		return $userData;
@@ -56,13 +57,13 @@ class User_Model {
 		$this->db->query("update ".DB_PREFIX."user set $upStr where uid=$uid");
 	}
 
-	function addUser($login, $password,  $role) {
-		$sql="insert into ".DB_PREFIX."user (username,password,role) values('$login','$password','$role')";
+	function addUser($login, $password,  $role, $ischeck) {
+		$sql="insert into ".DB_PREFIX."user (username,password,role,ischeck) values('$login','$password','$role','$ischeck')";
 		$this->db->query($sql);
 	}
 
 	function deleteUser($uid) {
-		$this->db->query("update ".DB_PREFIX."blog set author=1 where author=$uid");
+		$this->db->query("update ".DB_PREFIX."blog set author=1 and checked='y' where author=$uid");
 		$this->db->query("delete ".DB_PREFIX."twitter,".DB_PREFIX."reply from ".DB_PREFIX."twitter left join ".DB_PREFIX."reply on ".DB_PREFIX."twitter.id=".DB_PREFIX."reply.tid where ".DB_PREFIX."twitter.author=$uid");
 		$this->db->query("delete from ".DB_PREFIX."user where uid=$uid");
 	}
@@ -77,6 +78,24 @@ class User_Model {
 	function isUserExist($login, $uid = '') {
 		$subSql = $uid ? 'and uid!='.$uid : '';
 		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE username='$login' $subSql");
+		$res = $this->db->num_rows($query);
+		if ($res > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+    /**
+	 * 判断用户昵称是否存在
+	 *
+	 * @param string $nickname
+	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @return boolean
+	 */
+	function isNicknameExist($nickname, $uid = '') {
+		$subSql = $uid ? 'and uid!='.$uid : '';
+		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE nickname='$nickname' $subSql");
 		$res = $this->db->num_rows($query);
 		if ($res > 0) {
 			return true;

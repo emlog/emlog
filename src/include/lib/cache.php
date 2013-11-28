@@ -116,7 +116,9 @@ class Cache {
 				'name_orig' => $row['nickname'],
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
-				'des' => htmlClean($row['description'])
+				'des' => htmlClean($row['description']),
+                'ischeck' => htmlspecialchars($row['ischeck']),
+                'role' => $row['role'],
 				);
 		}
 		$cacheData = serialize($user_cache);
@@ -127,11 +129,11 @@ class Cache {
 	 */
 	private function mc_sta() {
 		$sta_cache = array();
-		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
+		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
+        $checknum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='n' "));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
 		$hidecom = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "comment where hide='y' "));
-		$tbnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "trackback "));
 		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
 
 		$sta_cache = array(
@@ -141,7 +143,7 @@ class Cache {
 			'comnum_all' => $comnum + $hidecom,
 			'twnum' => $twnum,
 			'hidecomnum' => $hidecom,
-			'tbnum' => $tbnum
+            'checknum' => $checknum,
 			);
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
@@ -150,7 +152,6 @@ class Cache {
 			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
 			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$tbNum = $this->db->num_rows($this->db->query("SELECT a.tbid FROM " . DB_PREFIX . "trackback as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
 			$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
 
 			$sta_cache[$row['uid']] = array(
@@ -158,7 +159,6 @@ class Cache {
 				'draftnum' => $draftNum,
 				'commentnum' => $commentNum,
 				'hidecommentnum' => $hidecommentNum,
-				'tbnum' => $tbNum,
 				'twnum' => $twnum
 				);
 		}
@@ -238,7 +238,7 @@ class Cache {
 		$rank = $spread / $rank;
 		// 获取草稿id
 		$hideGids = array();
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where hide='y' and type='blog'");
+		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
 		while ($row = $this->db->fetch_array($query)) {
 			$hideGids[] = $row['gid'];
 		}
@@ -270,7 +270,7 @@ class Cache {
 		$sort_cache = array();
 		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
-			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
+			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and checked='y' and type='blog'"));
 			$sortData = array(
 				'lognum' => $logNum,
 				'sortname' => htmlspecialchars($row['sortname']),
@@ -340,7 +340,7 @@ class Cache {
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
 		$index_newlognum = $row['option_value'];
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -375,7 +375,7 @@ class Cache {
 	 */
 	private function mc_record() {
 		$timezone = Option::get('timezone');
-		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
+		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
@@ -495,6 +495,7 @@ class Cache {
 			if ($fp = fopen($cachefile, 'r')) {
 				$data = fread($fp, filesize($cachefile));
 				fclose($fp);
+                clearstatcache();
 				$this->{$cacheName.'_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
 				return $this->{$cacheName.'_cache'};
 			}

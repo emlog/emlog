@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="admindex">
+<?php if (ROLE == ROLE_ADMIN):?>
 <div id="admindex_main">
     <div id="tw">
         <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
@@ -14,7 +15,6 @@
     </div>
 </div>
 <div class="clear"></div>
-<?php if (ROLE == 'admin'):?>
 <div style="margin-top: 20px;">
 <div id="admindex_servinfo">
 <h3>站点信息</h3>
@@ -27,19 +27,22 @@
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
-<p id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></p>
 </div>
 <div id="admindex_msg">
 <h3>官方消息</h3>
 <ul></ul>
 </div>
 <div class="clear"></div>
+<div id="about">
+    您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
+    <span id="upmsg"></span>
+</div>
 </div>
 </div>
 <script>
 $(document).ready(function(){
 	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON("http://www.emlog.net/services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
 	function(data){
 		$("#admindex_msg ul").html("");
 		$.each(data.items, function(i,item){
@@ -51,8 +54,38 @@ $(document).ready(function(){
 		});
 	});
 });
+$("#about #ckup").click(function(){
+    $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
+	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+    function(data){
+        if (data.result.match("no")) {
+            $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
+        } else if(data.result.match("yes")) {
+            $("#about #upmsg").html("有可用的emlog更新版本 "+data.ver+"，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">现在更新</a>").removeClass();
+        } else{
+            $("#about #upmsg").html("检查失败，可能是网络问题").removeClass();
+        }
+    });
+});
+function doup(source,upsql){
+    $("#about #upmsg").html("系统正在更新中，请耐心等待").addClass("ajaxload");
+    $.get('./index.php?action=update&source='+source+"&upsql="+upsql,
+      function(data){
+        $("#about #upmsg").removeClass();
+        if (data.match("succ")) {
+            $("#about #upmsg").html('恭喜您！更新成功了，请<a href="./">刷新页面</a>开始体验新版emlog');
+        } else if(data.match("error_down")){
+            $("#about #upmsg").html('下载更新失败，可能是服务器网络问题');
+        } else if(data.match("error_zip")){
+            $("#about #upmsg").html('解压更新失败，可能是服务器不支持zip模块');
+        } else if(data.match("error_dir")){
+            $("#about #upmsg").html('更新失败，目录不可写');
+        }else{
+            $("#about #upmsg").html('更新失败');
+        }
+      });
+}
 </script>
-<?php endif;?>
 <script>
 $(document).ready(function(){
     $(".box2").focus(function(){
@@ -82,3 +115,9 @@ function checkt(){
     if (n<0){return false;}
 }
 </script>
+<?php else:?>
+<div id="admindex_main">
+<div id="about"><a href="blogger.php"><?php echo $name; ?></a> （<b><?php echo $sta_cache[UID]['lognum'];?></b>篇文章，<b><?php echo $sta_cache[UID]['commentnum'];?></b>条评论）</div>
+</div>
+<div class="clear"></div>
+<?php endif; ?>

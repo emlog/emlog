@@ -136,13 +136,13 @@ class Plugin_Model {
 		preg_match("/Author:(.*)/i", $pluginData, $author_name);
 		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
-		$plugin_name = isset($plugin_name[1]) ? trim($plugin_name[1]) : '';
-		$version = isset($version[1]) ? $version[1] : '';
-		$description = isset($description[1]) ? $description[1] : '';
-		$plugin_url = isset($plugin_url[1]) ? trim($plugin_url[1]) : '';
-		$author = isset($author_name[1]) ? trim($author_name[1]) : '';
-		$foremlog = isset($foremlog[1]) ? trim($foremlog[1]) : '';
-		$author_url = isset($author_url[1]) ? trim($author_url[1]) : '';
+		$plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
+		$version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
+		$description = isset($description[1]) ? strip_tags(trim($description[1])) : '';
+		$plugin_url = isset($plugin_url[1]) ? strip_tags(trim($plugin_url[1])) : '';
+		$author = isset($author_name[1]) ?strip_tags( trim($author_name[1])) : '';
+		$foremlog = isset($foremlog[1]) ? strip_tags(trim($foremlog[1])) : '';
+		$author_url = isset($author_url[1]) ? strip_tags(trim($author_url[1])) : '';
 
 		return array(
 		'Name' => $plugin_name,

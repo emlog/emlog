@@ -5,8 +5,8 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">裁剪图片失败</span><?php endif;?>
 </div>
 <div class=line></div>
-<?php if(!file_exists('../' . $topimg)): ?>
-<div class="error_msg">当前使用的顶部图片已被删除或损坏，请选择其它图片。</div>
+<?php if(!$topimg || !file_exists('../' . $topimg)): ?>
+<div class="warning">当前未使用顶部图片或者使用中的顶部图片被删除</div>
 <?php else:?>
 <div id="topimg_preview"><img src="<?php echo '../'.$topimg; ?>" width="758" height="105" /></div>
 <?php endif;?>
@@ -36,6 +36,13 @@
 	<?php endif;?>
 	</div>
 	<?php endforeach; ?>
+
+    <div>
+	<a href="./template.php?action=update_top" title="不使用顶部图片" >
+	<img src="../content/templates/default/images/null.jpg" width="230px" height="48px" class="topTH" />
+	</a>
+	<li class="admin_style_info" >不使用顶部图片</li>
+	</div>
 </div>
 </form>
 <div class="topimg_line">自定义图片</div>

@@ -8,7 +8,6 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
 </div>
 <div class=line></div>
-<form action="trackback.php?action=dell_all_tb" method="post">
   <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
       <tr>
@@ -26,12 +25,12 @@
 	foreach($plugins as $key=>$val):
 		$plug_state = 'inactive';
 		$plug_action = 'active';
-		$plug_state_des = '未激活';
+		$plug_state_des = '点击激活插件';
 		if (in_array($key, $active_plugins))
 		{
 			$plug_state = 'active';
 			$plug_action = 'inactive';
-			$plug_state_des = '已激活';
+			$plug_state_des = '点击禁用插件';
 		}
 		$i++;
 	?>	
@@ -64,7 +63,6 @@
 	<?php endif;?>
 	</tbody>
   </table>
-</form>
 <div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");

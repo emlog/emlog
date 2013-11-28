@@ -2,7 +2,7 @@
 <div class=containertitle><b>评论管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide'])):?><span class="actived">屏蔽评论成功</span><?php endif;?>
+<?php if(isset($_GET['active_hide'])):?><span class="actived">隐藏评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_rep'])):?><span class="actived">回复评论成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要执行操作的评论</span><?php endif;?>
@@ -21,7 +21,7 @@ $$a = "class=\"filter\"";
 <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
 <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
 <?php
-$hidecmnum = ROLE == 'admin' ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
@@ -59,13 +59,14 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
 		<?php else: ?>
-		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">屏蔽</a>
+		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
 		<?php endif;?>
 		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
 		</span>
 		</td>
-		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?></td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
+            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="删除来自该IP的所有评论" class="care">(X)</a><?php endif;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>
@@ -76,7 +77,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:commentact('del');" class="care">删除</a>
-	<a href="javascript:commentact('hide');">屏蔽</a>
+	<a href="javascript:commentact('hide');">隐藏</a>
 	<a href="javascript:commentact('pub');">审核</a>
 	<input name="operate" id="operate" value="" type="hidden" />
 	</div>

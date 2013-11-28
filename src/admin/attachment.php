@@ -22,8 +22,10 @@ if ($action == 'selectFile') {
 	$maxsize = changeFileSize(Option::UPLOADFILE_MAXSIZE);
 	//允许附件类型
 	$att_type_str = '';
+    $att_type_for_muti = '';
 	foreach (Option::getAttType() as $val) {
 		$att_type_str .= " $val";
+        $att_type_for_muti .= '*.'.$val.';';
 	}
 	$view_tpl = $multi ? 'upload_multi' : 'upload';
 	require_once(View::getView($view_tpl));

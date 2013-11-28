@@ -40,7 +40,7 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function updateLog($logData, $blogId) {
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$Item = array();
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -64,7 +64,7 @@ class Log_Model {
 		if ($spot == 0) {
 			$author = '';
 		}else {
-			$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		}
 
 		$res = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
@@ -77,7 +77,7 @@ class Log_Model {
 	 */
 	function getOneLogForAdmin($blogId) {
 		$timezone = Option::get('timezone');
-		$author = ROLE == 'admin' ? '' : 'AND author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
@@ -113,15 +113,12 @@ class Log_Model {
 				'sortid' => intval($row['sortid']),
 				'type' => $row['type'],
 				'author' => $row['author'],
-				'tbscode' => substr(md5(gmdate('YndG')), 0, 6),
 				'log_content' => rmBreak($row['content']),
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
-				'tbcount' => intval($row['tbcount']),
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'allow_tb' => $row['allow_tb'],
 				'password' => $row['password']
 				);
 			return $logData;
@@ -143,7 +140,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
@@ -173,7 +170,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition $limit";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -223,15 +220,13 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
 		}
 		// 评论
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// 引用
-		$this->db->query("DELETE FROM " . DB_PREFIX . "trackback where gid=$blogId");
 		// 标签
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
@@ -253,11 +248,29 @@ class Log_Model {
 	 * 隐藏/显示文章
 	 *
 	 * @param int $blogId
-	 * @param string $hideState
+	 * @param string $state
 	 */
-	function hideSwitch($blogId, $hideState) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$hideState' WHERE gid=$blogId");
-		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$hideState' WHERE gid=$blogId");
+	function hideSwitch($blogId, $state) {
+        $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
+        if ($this->db->affected_rows() < 1) {
+			emMsg('权限不足！', './');
+		}
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
+		$Comment_Model = new Comment_Model();
+		$Comment_Model->updateCommentNum($blogId);
+	}
+
+    /**
+	 * 审核/驳回作者文章
+	 *
+	 * @param int $blogId
+	 * @param string $state
+	 */
+	function checkSwitch($blogId, $state) {
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET checked='$state' WHERE gid=$blogId");
+        $state = $state == 'y' ? 'n' : 'y';
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
 	}
@@ -328,7 +341,7 @@ class Log_Model {
 	 * 随机获取指定数量文章
 	 */
 	function getRandLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -343,7 +356,7 @@ class Log_Model {
 	 * 获取热门文章
 	 */
 	function getHotLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {

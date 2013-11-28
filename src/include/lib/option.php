@@ -6,7 +6,7 @@
 
 class Option {
 	//版本编号
-	const EMLOG_VERSION = '5.1.2';
+	const EMLOG_VERSION = '5.2.0';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高
@@ -24,7 +24,7 @@ class Option {
 	//附件上传路径
 	const UPLOADFILE_PATH = '../content/uploadfile/';
 	//允许上传的附件类型
-	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png';
+	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx';
 
 	static function get($option){
 		$CACHE = Cache::getInstance();

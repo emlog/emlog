@@ -28,13 +28,16 @@ class Comment_Model {
 		$condition = '';
 		if ($page && $spot == 1) {
 			$perpage_num = Option::get('admin_perpage_num');
+			if ($page > PHP_INT_MAX) {
+				$page = PHP_INT_MAX;
+			}
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, ".$perpage_num;
 		}
 		if ($spot == 0 || $spot == 2) {
 			$sql = "SELECT * FROM ".DB_PREFIX."comment as a where $andQuery ORDER BY a.date ASC $condition";
 		} else {
-			$andQuery .= ROLE != 'admin' ? ' and b.author='.UID : '';
+			$andQuery .= ROLE != ROLE_ADMIN ? ' and b.author='.UID : '';
 			$sql = "SELECT *,a.hide,a.date FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid ORDER BY a.date DESC $condition";
 		}
 		$ret = $this->db->query($sql);
@@ -118,7 +121,7 @@ class Comment_Model {
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if (ROLE == 'admin') {
+		if (ROLE == ROLE_ADMIN) {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a where $andQuery";
 		}else {
 			$sql = "SELECT count(*) FROM ".DB_PREFIX."comment as a, ".DB_PREFIX."blog as b where $andQuery and a.gid=b.gid and b.author=".UID;
@@ -129,6 +132,7 @@ class Comment_Model {
 	}
 
 	function delComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -144,7 +148,19 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
+    function delCommentByIp($ip) {
+        $blogids = array();
+        $sql = "SELECT DISTINCT gid FROM ".DB_PREFIX."comment WHERE ip='$ip'";
+        $query = $this->db->query($sql);
+		while ($row = $this->db->fetch_array($query)) {
+            $blogids[] = $row['gid'];
+		}
+		$this->db->query("DELETE FROM ".DB_PREFIX."comment WHERE ip='$ip'");
+		$this->updateCommentNum($blogids);
+	}
+
 	function hideComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -161,6 +177,7 @@ class Comment_Model {
 	}
 
 	function showComment($commentId) {
+        $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
@@ -194,9 +211,6 @@ class Comment_Model {
 		}
 	}
 
-	/**
-	 * 批量处理评论
-	 */
 	function batchComment($action, $comments) {
 		switch ($action) {
 			case 'delcom':
@@ -218,11 +232,17 @@ class Comment_Model {
 	}
 
 	function updateCommentNum($blogId) {
-		$sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
-		$res = $this->db->once_fetch_array($sql);
-		$comNum = $res['count(*)'];
-		$this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=$comNum WHERE gid=$blogId");
-		return $comNum;
+        if (is_array($blogId)) {
+            foreach ($blogId as $val) {
+                $this->updateCommentNum($val);
+            }
+        } else {
+            $sql = "SELECT count(*) FROM ".DB_PREFIX."comment WHERE gid=$blogId AND hide='n'";
+            $res = $this->db->once_fetch_array($sql);
+            $comNum = $res['count(*)'];
+            $this->db->query("UPDATE ".DB_PREFIX."blog SET comnum=$comNum WHERE gid=$blogId");
+            return $comNum;
+        }
 	}
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
@@ -236,7 +256,7 @@ class Comment_Model {
 		}*/
 
 		$ischkcomment = Option::get('ischkcomment');
-		$hide = ROLE == 'visitor' ? $ischkcomment : 'n';
+		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
 
 		$sql = 'INSERT INTO '.DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 				VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
@@ -256,14 +276,8 @@ class Comment_Model {
 		}
 	}
 
-    
-	/**
-	 * 修改评论
-	 *
-	 * @param array $commentData
-	 * @param int $commentId
-	 */
 	function updateComment($commentData, $commentId) {
+        $this->isYoursComment($commentId);
 		$Item = array();
 		foreach ($commentData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -282,6 +296,17 @@ class Comment_Model {
 			return true;
 		}else {
 			return false;
+		}
+	}
+
+    function isYoursComment($cid) {
+        if (ROLE == ROLE_ADMIN) {
+            return true;
+        }
+		$query = $this->db->query("SELECT a.cid FROM ".DB_PREFIX."comment as a,".DB_PREFIX."blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=".UID);
+		$result = $this->db->num_rows($query);
+		if ($result <= 0) {
+			emMsg('权限不足！', './');
 		}
 	}
 

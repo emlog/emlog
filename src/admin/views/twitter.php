@@ -209,7 +209,7 @@ function hidereply(rid,tid){
 function pubreply(rid,tid){
     $.get("twitter.php?action=pubreply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(){
         $("#reply_"+rid).css('background-color','#FFF');
-        $("#reply_"+rid+" span a").text('屏蔽');
+        $("#reply_"+rid+" span a").text('隐藏');
         $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+","+tid+")");
         var rnum = Number($("#"+tid+" small").text());
         if(rnum == 1){$("#"+tid+" small").text('');}else{$("#"+tid+" small").text(rnum-1);}

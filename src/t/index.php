@@ -76,9 +76,9 @@ if ($action == 'reply') {
     	exit('err0');
     } elseif (!$r || strlen($r) > 420){
         exit('err1');
-    } elseif (ROLE == 'visitor' && empty($rname)) {
+    } elseif (ROLE == ROLE_VISITOR && empty($rname)) {
         exit('err2');
-    }elseif (ROLE == 'visitor' && Option::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
+    }elseif (ROLE == ROLE_VISITOR && Option::get('reply_code') == 'y' && session_start() && $rcode != $_SESSION['code']){
         exit('err3');
     }
 
@@ -89,14 +89,14 @@ if ($action == 'reply') {
     }
 
     $date = time();
-    $name =  subString(ROLE == 'visitor' ? $rname : addslashes($user_cache[UID]['name']), 0, 16);
+    $name =  subString(ROLE == ROLE_VISITOR ? $rname : addslashes($user_cache[UID]['name']), 0, 16);
 
     $rdata = array(
             'tid' => $tid,
             'content' => $r,
             'name' => $name,
             'date' => $date,
-            'hide' => ROLE == 'visitor' ? Option::get('ischkreply') : 'n'
+            'hide' => ROLE == ROLE_VISITOR ? Option::get('ischkreply') : 'n'
     );
 
     $Twitter_Model = new Twitter_Model();
@@ -109,13 +109,14 @@ if ($action == 'reply') {
 
     doAction('reply_twitter', $r, $name, $date, $tid);
 
-    if (Option::get('ischkreply') == 'n' || ROLE != 'visitor'){
+    if (Option::get('ischkreply') == 'n' || ROLE != ROLE_VISITOR){
         $Twitter_Model->updateReplyNum($tid, '+1');
     }else{
         exit('succ1');
     }
 
     $CACHE->updateCache('sta');
+    $_SESSION['code'] = null;
 
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));

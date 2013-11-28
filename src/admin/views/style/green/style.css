@@ -28,17 +28,11 @@ a:hover{color:#333; text-decoration:none}
 #header_logo a{
     text-indent:-9999px;
     height:40px;
-    width:120px;
+    width:168px;
     background:url(./images/logo.png) no-repeat;
     display:block;
     outline: none;
     float:left;
-}
-#header_vesion{
-    font-size:10px;
-    padding:15px 10px 0px 10px;color: #FFFFFF;
-    float:left;
-    width:48px;
 }
 #header_title{
     font-size:15px;
@@ -47,7 +41,7 @@ a:hover{color:#333; text-decoration:none}
     padding:8px 0px 0px 15px;
 }
 #header_menu{
-	padding:9px 5px 0px 0px;
+	padding:9px 10px 0px 0px;
 	float:right;
 }
 #header_menu span{margin: 0px 6px;color:#F1F1F1;}
@@ -84,7 +78,7 @@ a:hover{color:#333; text-decoration:none}
     font-size:5px;
     background:url(./images/sidebar_bg_b.gif) no-repeat bottom;
     width:114px;height:5px}
-#side .coment_number{
+#side .notice_number{
     background: url(./images/coment_numbg.gif) no-repeat 1px 1px;font-size:9px;position: relative;
     margin-top:-32px;
     height:30px;
@@ -92,7 +86,7 @@ a:hover{color:#333; text-decoration:none}
     float:right;
     margin-right:20px;_margin-right:10px;
 }
-#side .coment_number a ,#sidebar .coment_number a:hover{
+#side .notice_number a ,#sidebar .notice_number a:hover{
     color:#FFFFFF;
     height:20px;
     font-weight:bold;

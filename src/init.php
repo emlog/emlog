@@ -20,8 +20,13 @@ $CACHE = Cache::getInstance();
 $userData = array();
 
 define('ISLOGIN',	LoginAuth::isLogin());
-//用户组: admin管理员, writer联合撰写人, visitor访客
-define('ROLE', ISLOGIN === true ? $userData['role'] : 'visitor');
+
+//用户组:admin管理员, writer联合撰写人, visitor访客
+define('ROLE_ADMIN', 'admin');
+define('ROLE_WRITER', 'writer');
+define('ROLE_VISITOR', 'visitor');
+//用户角色
+define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //用户ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //站点固定地址

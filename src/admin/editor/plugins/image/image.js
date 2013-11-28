@@ -69,7 +69,7 @@ KindEditor.plugin('image', function(K) {
 			'<label for="remoteTitle" style="width:60px;">' + lang.imgTitle + '</label>',
 			'<input type="text" id="remoteTitle" class="ke-input-text" name="title" value="" style="width:200px;" />',
 			'</div>',
-			'</div>',
+			'<span style="color:red;">（上传本地图片：请点击文章标题下方“上传插入”）</span></div>',
 			//remote image - end
 			//local upload - start
 			'<div class="tab2" style="display:none;">',

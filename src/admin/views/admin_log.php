@@ -17,6 +17,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if(isset($_GET['active_hide'])):?><span class="actived">转入草稿箱成功</span><?php endif;?>
 <?php if(isset($_GET['active_savedraft'])):?><span class="actived">草稿保存成功</span><?php endif;?>
 <?php if(isset($_GET['active_savelog'])):?><span class="actived">保存成功</span><?php endif;?>
+<?php if(isset($_GET['active_ck'])):?><span class="actived">文章审核成功</span><?php endif;?>
+<?php if(isset($_GET['active_unck'])):?><span class="actived">文章驳回成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <div class="filters">
@@ -62,7 +64,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_user" <?php echo $isDisplayUser ?>>
 	作者：
 	<?php foreach($user_cache as $key => $val):
-		if (ROLE != 'admin' && $key != UID){
+		if (ROLE != ROLE_ADMIN && $key != UID){
 			continue;
 		}
 		$a = 'user_'.$key;
@@ -97,12 +99,21 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	foreach($logs as $key=>$value):
 	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
 	$author = $user_cache[$value['author']]['name'];
+    $author_role = $user_cache[$value['author']]['role'];
 	?>
       <tr>
       <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
       <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
 	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+      <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
+      <span style="display:none; margin-left:8px;">
+		<?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>">审核</a> 
+        <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
+        <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>">驳回</a> 
+        <?php endif;?>
+      </span>
       </td>
 	  <?php if ($pid != 'draft'): ?>
 	  <td class="tdcenter">
@@ -130,7 +141,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php else: ?>
 	<a href="javascript:logact('hide');">转入草稿箱</a> | 
 
-	<?php if (ROLE == 'admin'):?>
+	<?php if (ROLE == ROLE_ADMIN):?>
 	<a href="javascript:logact('top');">置顶</a> | 
     <a href="javascript:logact('notop');">取消置顶</a> | 
     <?php endif;?>
@@ -143,7 +154,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<option value="-1">未分类</option>
 	</select>
 
-	<?php if (ROLE == 'admin' && count($user_cache) > 1):?>
+	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
 	<select name="author" id="author" onChange="changeAuthor(this);">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($user_cache as $key => $val):
@@ -162,8 +173,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_log_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")});
+		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();});
 	$("#f_t_sort").click(function(){$("#f_sort").toggle();$("#f_tag").hide();$("#f_user").hide();});
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
 	$("#f_t_user").click(function(){$("#f_user").toggle();$("#f_sort").hide();$("#f_tag").hide();});

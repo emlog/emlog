@@ -5,7 +5,7 @@
 <div class="info"><?php echo gmdate('Y-n-j G:i', $value['date']); ?></div>
 <div class="info2">
 评论:<?php echo $value['comnum']; ?> 阅读:<?php echo $value['views']; ?> 
-<?php if(ROLE == 'admin' || $value['author'] == UID): ?>
+<?php if(ROLE == ROLE_ADMIN || $value['author'] == UID): ?>
 <a href="./?action=write&id=<?php echo $value['logid'];?>">编辑</a>
 <?php endif;?>
 </div>

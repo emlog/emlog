@@ -16,11 +16,16 @@ class Search_Controller {
 		$keyword = addslashes(htmlspecialchars(urldecode($keyword)));
 		$keyword = str_replace(array('%', '_'), array('\%', '\_'), $keyword);
 
-		$start_limit = ($page - 1) * $index_lognum;
+		
 		$pageurl = '';
 
 		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
+        $total_pages = ceil($lognum / $index_lognum);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
+        
 		$pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page=';
 
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);

@@ -25,7 +25,12 @@ if ($action== 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
+    $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
+
+    if($role == ROLE_ADMIN) {
+        $ischeck = 'n';
+    }
 
 	if ($login == '') {
 		emDirect('./user.php?error_login=1');
@@ -43,7 +48,7 @@ if ($action== 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser($login, $password, $role);
+	$User_Model->addUser($login, $password, $role, $ischeck);
 	$CACHE->updateCache(array('sta','user'));
 	emDirect('./user.php?active_add=1');
 }
@@ -54,11 +59,16 @@ if ($action== 'edit') {
 	$data = $User_Model->getOneUser($uid);
 	extract($data);
 
-	$ex1 = $ex2 = '';
-	if ($role == 'writer') {
+	$ex1 = $ex2 = $ex3 = $ex4 = '';
+	if ($role == ROLE_WRITER) {
 		$ex1 = 'selected="selected"';
-	} elseif ($role == 'admin') {
+	} elseif ($role == ROLE_ADMIN) {
 	 	$ex2 = 'selected="selected"';
+	}
+    if ($ischeck == 'n') {
+		$ex3 = 'selected="selected"';
+	} elseif ($ischeck == 'y') {
+	 	$ex4 = 'selected="selected"';
 	}
 
 	include View::getView('header');
@@ -73,11 +83,20 @@ if ($action=='update') {
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : 'writer';
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
+    $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
+
+    if($role == ROLE_ADMIN) {
+        $ischeck = 'n';
+    }
 
 	if (UID == $uid) {
 		emDirect('./user.php');
+	}
+    //创始人账户不能被他人编辑
+    if ($uid == 1) {
+		emDirect('./user.php?error_del_b=1');
 	}
 	if ($login == '') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
@@ -97,6 +116,7 @@ if ($action=='update') {
 						'email' => $email,
 						'description' => $description,
 						'role' => $role,
+                        'ischeck' => $ischeck,
 						);
 
 	if (!empty($password)) {
@@ -116,6 +136,11 @@ if ($action== 'del') {
 
 	if (UID == $uid) {
 		emDirect('./user.php');
+	}
+
+    //创始人账户不能被删除
+    if ($uid == 1) {
+		emDirect('./user.php?error_del_a=1');
 	}
 
 	$User_Model->deleteUser($uid);

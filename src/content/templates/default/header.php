@@ -1,12 +1,11 @@
 <?php
 /*
 Template Name:默认模板
-Description:默认模板，简洁优雅 ……
+Description:默认模板，简洁优雅
 Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
 Sidebar Amount:1
-ForEmlog:5.1.2
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
@@ -26,6 +25,9 @@ require_once View::getView('module');
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
 <script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
+<!--[if IE 6]>
+<script src="<?php echo TEMPLATE_URL; ?>iefix.js" type="text/javascript"></script>
+<![endif]-->
 <?php doAction('index_head'); ?>
 </head>
 <body>
@@ -34,5 +36,7 @@ require_once View::getView('module');
     <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
     <h3><?php echo $bloginfo; ?></h3>
   </div>
+  <?php if(Option::get('topimg')): ?>
   <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
+  <?php endif;?>
   <div id="nav"><?php blog_navi();?></div>

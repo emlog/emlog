@@ -31,10 +31,31 @@ if ($action == 'update') {
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
+    $login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
+	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
+
 	if (strlen($nickname) > 20) {
 		emDirect("./blogger.php?error_a=1");
 	} else if ($email != '' && !checkMail($email)) {
 		emDirect("./blogger.php?error_b=1");
+	} elseif (strlen($newpass)>0 && strlen($newpass) < 6) {
+        emDirect("./blogger.php?error_c=1");
+	} elseif (!empty($newpass) && $newpass != $repeatpass) {
+        emDirect("./blogger.php?error_d=1");
+	} elseif($User_Model->isUserExist($login, UID)) {
+        emDirect("./blogger.php?error_e=1");
+    } elseif($User_Model->isNicknameExist($nickname, UID)) {
+        emDirect("./blogger.php?error_f=1");
+    }
+
+	if (!empty($newpass)) {
+        $PHPASS = new PasswordHash(8, true);
+		$newpass = $PHPASS->HashPassword($newpass);
+		$User_Model->updateUser(array('password'=>$newpass), UID);
+	} 
+    if ($login != $user_cache[UID]['username']) {
+		$User_Model->updateUser(array('username'=>$login), UID);
 	}
 
 	$photo_type = array('gif', 'jpg', 'jpeg','png');
@@ -69,45 +90,4 @@ if ($action == 'delicon') {
 	$DB->query("UPDATE ".DB_PREFIX."user SET photo='' where uid=" . UID);
 	$CACHE->updateCache('user');
 	emDirect("./blogger.php?active_del=1");
-}
-
-if ($action == 'update_pwd') {
-
-	$User_Model = new User_Model();
-
-	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
-	$oldpass = isset($_POST['oldpass']) ? addslashes(trim($_POST['oldpass'])) : '';
-	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
-
-	$PHPASS = new PasswordHash(8, true);
-	$ispass = LoginAuth::checkPassword($oldpass, $userData['password']);
-
-	if (true !== $ispass) {
-		emMsg('错误的当前密码');
-	} elseif (!empty($login) && $User_Model->isUserExist($login, UID)) {
-		emMsg('用户名已存在');
-	} elseif (strlen($newpass)>0 && strlen($newpass) < 6) {
-		emMsg('密码长度不得小于6位');
-	} elseif (!empty($newpass) && $newpass != $repeatpass) {
-		emMsg('两次输入的密码不一致');
-	}
-
-	if (!empty($newpass) && empty($login))//只修改密码
-	{
-		$newpass = $PHPASS->HashPassword($newpass);
-		$User_Model->updateUser(array('password'=>$newpass), UID);
-		emMsg('密码修改成功!','./');
-	} elseif (!empty($newpass) && !empty($login))//修改密码及用户
-	{
-		$newpass = $PHPASS->HashPassword($newpass);
-		$User_Model->updateUser(array('username'=>$login, 'password'=>$newpass), UID);
-		emMsg('密码和后台登录名修改成功!请重新登录','./');
-	} elseif (empty($newpass) && !empty($login))//只修改后台登录名
-	{
-		$User_Model->updateUser(array('username'=>$login), UID);
-		emMsg('后台登录名修改成功!请重新登录','./');
-	} else{
-		emMsg('请输入要修改的项目');
-	}
 }
