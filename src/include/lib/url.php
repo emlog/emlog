@@ -12,7 +12,6 @@ class Url {
 	static function log($blogId) {
 		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
-		$urlMode = Option::get('isurlrewrite');
 		$CACHE = Cache::getInstance();
 
 		//开启文章别名
@@ -59,7 +58,6 @@ class Url {
 				$logUrl .= '.html';
 				break;
 		}
-		doAction('log_url_created', $logUrl);
 		return $logUrl;
 	}
 
@@ -77,10 +75,9 @@ class Url {
 			default:
 				$recordUrl = BLOG_URL . 'record/' . $record;
 				if ($page)
-					$recordUrl = BLOG_URL . 'record/' . $record . '/';
+					$recordUrl = BLOG_URL . 'record/' . $record . '/page/';
 				break;
 		}
-		doAction('record_url_created', $recordUrl);
 		return $recordUrl;
 	}
 
@@ -101,10 +98,9 @@ class Url {
 			default:
 				$sortUrl = BLOG_URL . 'sort/' . $sort_index;
 				if ($page)
-					$sortUrl = BLOG_URL . 'sort/' . $sort_index . '/';
+					$sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page/';
 				break;
 		}
-		doAction('sort_url_created', $sortUrl);
 		return $sortUrl;
 	}
 
@@ -122,10 +118,9 @@ class Url {
 			default:
 				$authorUrl = BLOG_URL . 'author/' . $authorId;
 				if ($page)
-					$authorUrl = BLOG_URL . 'author/' . $authorId . '/';
+					$authorUrl = BLOG_URL . 'author/' . $authorId . '/page/';
 				break;
 		}
-		doAction('author_url_created', $authorUrl);
 		return $authorUrl;
 	}
 
@@ -143,10 +138,9 @@ class Url {
 			default:
 				$tagUrl = BLOG_URL . 'tag/' . $tag;
 				if ($page)
-					$tagUrl = BLOG_URL . 'tag/' . $tag . '/';
+					$tagUrl = BLOG_URL . 'tag/' . $tag . '/page/';
 				break;
 		}
-		doAction('tag_url_created', $tagUrl);
 		return $tagUrl;
 	}
 
@@ -163,7 +157,6 @@ class Url {
 				$logPageUrl = BLOG_URL . 'page/';
 				break;
 		}
-		doAction('logpage_url_created', $logPageUrl);
 		return $logPageUrl;
 	}
 
@@ -176,12 +169,11 @@ class Url {
 			if (Option::get('isurlrewrite') == 0 && strpos($commentUrl, '=') !== false) {
 				$commentUrl .= '&comment-page=';
 			} else {
-				$commentUrl .= '/';
+				$commentUrl .= '/comment-page-';
 			}
 			$commentUrl .= $pageId;
 		}
 		$commentUrl .= '#' . $cid;
-		doAction('comment_url_created', $commentUrl);
 		return $commentUrl;
 	}
 

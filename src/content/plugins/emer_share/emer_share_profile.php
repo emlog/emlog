@@ -1,3 +1,0 @@
-<?php
-define('EMEER_SHARE_ID','13');
-define('EMEER_SHARE_PW','67a23122453adc776a280b4312911650');

@@ -174,7 +174,7 @@ class Cache {
 		while($row = $this->db->fetch_array($query)) {
 			$$row['option_name'] = $row['option_value'];
 		}
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' AND poster!='奇遇' ORDER BY date DESC LIMIT 0, $index_comnum");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
 		$com_cache = array();
 		$com_cids = array();
 		while ($show_com = $this->db->fetch_array($query)) {

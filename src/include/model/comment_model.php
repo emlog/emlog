@@ -79,7 +79,7 @@ class Comment_Model {
 				if (Option::get('isurlrewrite') == 0 && strpos($pageurl,'=') !== false) {
 					$pageurl .= '&comment-page=';
 				} else {
-					$pageurl .= '/';
+					$pageurl .= '/comment-page-';
 				}
 				$commentPageUrl = pagination(count($commentStacks), Option::get('comment_pnum'), $page, $pageurl, '#comments');
 				$commentStacks = array_slice($commentStacks, ($page - 1) * Option::get('comment_pnum'), Option::get('comment_pnum'));
@@ -201,10 +201,10 @@ class Comment_Model {
 			$url = addslashes(BLOG_URL);
 			$ipaddr = getIp();
 			$utctimestamp = time();
-			/*if ($pid != 0) {
+			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
 				$content = '@' . addslashes($comment['poster']) . '：' . $content;
-			}*/
+			}
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
 			$this->updateCommentNum($blogId);
@@ -250,10 +250,10 @@ class Comment_Model {
 		$ipaddr = getIp();
 		$utctimestamp = time();
 
-		/*if($pid != 0) {
+		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
 			$content = '@' . addslashes($comment['poster']) . '：' . $content;
-		}*/
+		}
 
 		$ischkcomment = Option::get('ischkcomment');
 		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
@@ -287,9 +287,6 @@ class Comment_Model {
 	}
 
 	function isCommentExist($blogId, $name, $content) {
-		if (ISLOGIN) {
-			return false;
-		}
 		$query = $this->db->query("SELECT cid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
 		$result = $this->db->num_rows($query);
 		if ($result > 0) {

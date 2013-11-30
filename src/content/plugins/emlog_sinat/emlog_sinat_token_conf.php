@@ -1,4 +1,0 @@
-<?php
-define('SINAT_ACCESS_TOKEN','d7342921da8a3a625b6866b261fb8d17');
-define('SINAT_ACCESS_SECRET','0d3a8fa7f2b0aa8fadf4da7b14e28dd8');
-define('SINAT_UID','1058400041');

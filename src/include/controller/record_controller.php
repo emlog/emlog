@@ -11,7 +11,7 @@ class Record_Controller {
 		$options_cache = Option::getAll();
 		extract($options_cache);
 
-		$page = isset($params[4]) && is_numeric($params[4]) ? abs(intval($params[4])) : 1;
+		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 		$record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
 
 		$GLOBALS['record'] = $record;//for sidebar calendar
