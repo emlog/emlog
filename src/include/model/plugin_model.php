@@ -111,7 +111,7 @@ class Plugin_Model {
 		}
 		sort($pluginFiles);
 		foreach ($pluginFiles as $pluginFile) {
-			$pluginData = $this->getPluginData("$pluginPath/$pluginFile");
+			$pluginData = $this->getPluginData($pluginFile);
 			if (empty($pluginData['Name'])) {
 				continue;
 			}
@@ -127,7 +127,8 @@ class Plugin_Model {
 	 * @return array
 	 */
 	function getPluginData($pluginFile) {
-		$pluginData = implode('', file($pluginFile));
+        $pluginPath = EMLOG_ROOT . '/content/plugins/';
+		$pluginData = implode('', file($pluginPath . $pluginFile));
 		preg_match("/Plugin Name:(.*)/i", $pluginData, $plugin_name);
 		preg_match("/Version:(.*)/i", $pluginData, $version);
 		preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
@@ -137,6 +138,13 @@ class Plugin_Model {
 		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
 		$plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
+        $active_plugins = Option::get('active_plugins');
+        $ret = explode('/', $pluginFile);
+        $plugin = $ret[0];
+        if (file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php') && in_array($pluginFile, $active_plugins)) {
+            $plugin_name = "<a href=\"./plugin.php?plugin=$plugin\" title=\"点击设置插件\">$plugin_name <img src=\"./views/images/set.png\"></a>";
+        }
+
 		$version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
 		$description = isset($description[1]) ? strip_tags(trim($description[1])) : '';
 		$plugin_url = isset($plugin_url[1]) ? strip_tags(trim($plugin_url[1])) : '';

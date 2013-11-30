@@ -7,7 +7,7 @@
         <div class="right">
         <form method="post" action="twitter.php?action=post">
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
-        <div class="box_1"><textarea class="box2" name="t">为今天写点什么吧 ……</textarea></div>
+        <div class="box_1"><textarea class="box2" name="t">用微语记录生活 ……</textarea></div>
         <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
         </form>
         </div>
@@ -105,7 +105,7 @@ $(document).ready(function(){
 function closet(){
     $(".tbutton").hide();
     $(".tbutton span").html("(你还可以输入140字)");
-    $(".box2").val('为今天写点什么吧……').css('height','17px').bind('focus',function(){
+    $(".box2").val('用微语记录生活……').css('height','17px').bind('focus',function(){
         $(this).val('').css('height','50px').unbind('focus');
         $(".tbutton").show();});
 }
