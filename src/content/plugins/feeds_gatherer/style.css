@@ -1,0 +1,38 @@
+.lof-links {
+	margin:10px;
+}
+.lof-links div.lof-item {
+	float:left;
+	width:220px;
+	margin:3px 3px 0px 0;
+	text-indent: 0em;
+	cursor:default;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+	border:1px dotted #DDD;
+}
+.lof-links div.lof-title {
+	margin:5px 0;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.lof-links div.lof-title a {
+	font-size:16px;
+}
+.lof-links span.lof-href img {
+	border: none;
+	clear : both;
+	float : none;
+}
+.lof-links div.lof-log {
+	margin:0 0 0 8px;
+}
+
+.lof-links div.lof-log a.lof-new{
+	color:#ff0000;
+}
+.lof-links div.lof-log a.lof-new1{
+	color:#00DD00;
+}
