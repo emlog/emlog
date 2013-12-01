@@ -87,10 +87,10 @@ class User_Model {
 	}
 
     /**
-	 * 判断用户昵称是否存在
+	 * Check if the user's nickname exists
 	 *
 	 * @param string $nickname
-	 * @param int $uid 兼容更新作者资料时用户名未变更情况
+	 * @param int $uid Compatible with the fact that the user name has not changed when the author's information is updated
 	 * @return boolean
 	 */
 	function isNicknameExist($nickname, $uid = '') {

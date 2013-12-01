@@ -1030,9 +1030,22 @@ $lang['navigation_generated']	= '该导航地址由系统生成，无法修改';
 $lang['comment_hide_ok']	= '隐藏评论成功';//'Comment was hide successfully';
 $lang['comment_del_from_ip']	= '删除来自该IP的所有评论';//'Delete all comments from this IP';
 
-$lang['_pebding_articles']	= '篇文章待审';//' pending articles';
+$lang['_pending_articles']	= '篇文章待审';//' pending articles';
 $lang['top_image_no']		= '不使用顶部图片';//'Do not use top image';
 $lang['founder_no_delete']	= '不能删除创始人';//'Cannot delete founder';
 $lang['founder_no_edit']	= '不能修改创始人信息';//'Cannot modify founder information';
 $lang['article_no_review']	= '文章不需要审核';//'The article does not need to be reviewed';
 $lang['article_to_review']	= '文章需要审核';//'Article needs to be reviewed ';
+
+$lang['plugin_setup_click']	= '点击设置插件';//'Click to set up the plugin';
+$lang['article_review_ok']	= '文章审核成功';//'The article was successfully reviewed';
+$lang['article_reject_ok']	= '文章驳回成功';//'The article was successfully rejected';
+$lang['reject']			= '审核';//'Reject';
+$lang['nickname_allready_exists'] = '该昵称已存在';//'The nickname already exists';
+$lang['summary_auto']		= '自动摘要，截取文章的前';//'Automatic summary, get it from the article beginning';
+$lang['summary_prompt']		= '个字作为摘要';//'Some words for a summary';
+$lang['mobile_address']		= '手机访问版，地址';//'Mobile version address';
+$lang['app_dir_not_writable']	= '安装失败，可能是应用目录不可写';//'Installation failed, may be the application directory is not writable';
+$lang['emlog_using']		= '您正在使用emlog';//'You are using emlog';
+$lang['check_update']		= '检查更新';//'Check for updates';
+$lang['_articles']		= '篇文章';//' articles';

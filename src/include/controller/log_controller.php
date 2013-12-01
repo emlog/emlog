@@ -103,7 +103,7 @@ class Log_Controller {
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);
 			$neighborLog = $Log_Model->neighborLog($timestamp);
-            $tb = array();$tb_url = '';//兼容未删除引用模板
+            $tb = array();$tb_url = '';//Compatible with undeleted reference templates
 			include View::getView('echo_log');
 		}elseif ($type == 'page') {
 			include View::getView('page');

@@ -17,8 +17,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if(isset($_GET['active_hide'])):?><span class="actived"><? echo $lang['post_draft_ok'];?></span><?php endif;?>
 <?php if(isset($_GET['active_savedraft'])):?><span class="actived"><? echo $lang['post_saved_draft_ok']; ?></span><?php endif;?>
 <?php if(isset($_GET['active_savelog'])):?><span class="actived"><? echo $lang['post_saved_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['active_ck'])):?><span class="actived">文章审核成功</span><?php endif;?>
-<?php if(isset($_GET['active_unck'])):?><span class="actived">文章驳回成功</span><?php endif;?>
+<?php if(isset($_GET['active_ck'])):?><span class="actived"><? echo $lang['article_review_ok']; ?></span><?php endif;?>
+<?php if(isset($_GET['active_unck'])):?><span class="actived"><? echo $lang['article_reject_ok']; ?></span><?php endif;?>
 </div>
 <div class=line></div>
 <div class="filters">
@@ -106,12 +106,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
       <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="<? echo $lang['recommend']; ?>" /><?php endif; ?>
 	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
-      <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
+      <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <? echo $lang['pending']; ?></span><?php endif; ?>
       <span style="display:none; margin-left:8px;">
 		<?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>">审核</a> 
+		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>"><? echo $lang['approve']; ?></a> 
         <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-        <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>">驳回</a> 
+        <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>"><? echo $lang['reject']; ?></a> 
         <?php endif;?>
       </span>
       </td>

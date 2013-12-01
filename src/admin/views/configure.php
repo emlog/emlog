@@ -77,9 +77,9 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><? echo $lang['attachment_thumb']; ?><br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><? echo $lang['gzip_compression']; ?><br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><? echo $lang['offline_writing']; ?><br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />手机访问版，地址：<span id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></span><br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />自动摘要，截取文章的前
-        <input type="text" name="excerpt_subnum" maxlength="3" value="<?php echo Option::get('excerpt_subnum'); ?>" class="input" style="width:25px;" />个字作为摘要<br />
+      	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> /><? echo $lang['mobile_address']; ?>: <span id="m"><a title="<? echo $lang['mobile_use']; ?>"><?php echo BLOG_URL.'m'; ?></a></span><br />
+      	<input type="checkbox" style="vertical-align:middle;" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><? echo $lang['summary_auto']; ?>
+        <input type="text" name="excerpt_subnum" maxlength="3" value="<?php echo Option::get('excerpt_subnum'); ?>" class="input" style="width:25px;" />>? echo $lang['summary_prompt']; ?><br />
         </td>
       <tr>
   </table>

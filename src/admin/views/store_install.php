@@ -2,7 +2,7 @@
 <div class=containertitle>
 <b><? echo $lang['install']; ?> <?php echo $source_typename;?></b>
 <div class=line></div>
-<div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?>正在下载安装中</span></div>
+<div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?><? echo $lang['download_install']; ?></span></div>
 </div>
 <script>
 $("#menu_store").addClass('sidebarsubmenu1');
@@ -16,7 +16,7 @@ $(document).ready(function(){
         } else if(data.match("error_zip")){
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['decompression_error']; ?><a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
         } else if(data.match("error_dir")){
-            $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>安装失败，可能是应用目录不可写，<a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
+            $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['app_dir_not_writable']; ?>, <a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
         }else{
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?><? echo $lang['install_error']; ?><a href="store.php"><? echo $lang['back_to_appcenter']; ?></a></span>');
         }

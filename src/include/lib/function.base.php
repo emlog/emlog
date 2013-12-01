@@ -290,10 +290,10 @@ function breakLog($content, $lid) {
 	global $lang;
 	$ret = explode('[break]', $content, 2);
 	if (!empty($ret[1])) {
-		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
         return $ret[0];
 	} elseif(Option::get('isexcerpt') == 'y') {
-        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
     } else {
         return $content;
     }
@@ -792,9 +792,9 @@ function emZip($orig_fname, $content) {
 }
 
 /**
- * 获取远程文件
- * @param type $source 远程文件地址
- * @return 临时文件地址
+ * Get remote file
+ * @param type $source Remote file address
+ * @return Temporary file address
  */
 function emFecthFile($source) {
     $temp_file = tempnam('/tmp', 'emtemp_');

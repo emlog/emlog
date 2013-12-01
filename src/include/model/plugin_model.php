@@ -142,7 +142,7 @@ class Plugin_Model {
         $ret = explode('/', $pluginFile);
         $plugin = $ret[0];
         if (file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php') && in_array($pluginFile, $active_plugins)) {
-            $plugin_name = "<a href=\"./plugin.php?plugin=$plugin\" title=\"点击设置插件\">$plugin_name <img src=\"./views/images/set.png\"></a>";
+            $plugin_name = "<a href=\"./plugin.php?plugin=$plugin\" title=\"{$lang['plugin_setup_click']}\">$plugin_name <img src=\"./views/images/set.png\"></a>";
         }
 
 		$version = isset($version[1]) ? strip_tags(trim($version[1])) : '';

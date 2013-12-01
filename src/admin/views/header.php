@@ -60,30 +60,30 @@
 		if (ROLE == ROLE_ADMIN && $checknum > 0):
 		$n = $checknum > 999 ? '...' : $checknum;
 		?>
-		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?><? echo $lang['_pending_articles']; ?>"><?php echo $n; ?></a></div>
 		<?php endif; ?>
 		<?php if (ROLE == ROLE_ADMIN):?>
-        <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
-        <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
+        <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></li>
+        <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></li>
     	<?php endif;?>
-        <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </li>
+        <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a> </li>
    		<?php
 		$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 		if ($hidecmnum > 0):
 		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
 		?>
-		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
+		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?> <? echo $lang['comments_pending'];?>"> <?php echo $n; ?></a></div>
 		<?php endif; ?>
 		<?php if (ROLE == ROLE_ADMIN):?>
-        <li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
-    	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
-   	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
-    	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
-    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></li>
-    	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></li>
-    	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
-    	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
-        <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
+        <li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><? echo $lang['twitter']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['sidebar']; ?></a></li>
+   	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><? echo $lang['navbar']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" ><? echo $lang['pages']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" ><? echo $lang['users']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></li>
+    	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><? echo $lang['plugins']; ?></a></li>
+        <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php"><? echo $lang['templates']; ?></a></li>
 		<?php endif;?>
     </div>
     <?php if (ROLE == ROLE_ADMIN):?>

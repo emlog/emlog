@@ -154,7 +154,7 @@ if ($action == 'operate_log') {
 		case 'change_author':
 			if (ROLE != ROLE_ADMIN)
 			{
-				emMsg($lang['access_disabled'],'./');
+				formMsg($lang['access_disabled'],'./');
 			}
 			foreach ($logs as $val)
 			{
@@ -166,7 +166,7 @@ if ($action == 'operate_log') {
         case 'check':
             if (ROLE != ROLE_ADMIN)
 			{
-				emMsg('权限不足！','./');
+				emMsg($lang['access_disabled'],'./');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
@@ -175,7 +175,7 @@ if ($action == 'operate_log') {
         case 'uncheck':
             if (ROLE != ROLE_ADMIN)
 			{
-				emMsg('权限不足！','./');
+				emMsg($lang['access_disabled'],'./');
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();

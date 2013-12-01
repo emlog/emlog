@@ -159,10 +159,6 @@ class Comment_Model {
 		$this->updateCommentNum($blogids);
 	}
 
-		$this->db->query("DELETE FROM ".DB_PREFIX."comment WHERE ip='$ip'");
-		$this->updateCommentNum($blogids);
-	}
-
 	function hideComment($commentId) {
         $this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
@@ -235,9 +231,6 @@ class Comment_Model {
 		}
 	}
 
-    /**
-     * Update Number of Comments
-     */
 	function updateCommentNum($blogId) {
         if (is_array($blogId)) {
             foreach ($blogId as $val) {
@@ -314,7 +307,7 @@ class Comment_Model {
 		$query = $this->db->query("SELECT a.cid FROM ".DB_PREFIX."comment as a,".DB_PREFIX."blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=".UID);
 		$result = $this->db->num_rows($query);
 		if ($result <= 0) {
-			emMsg('权限不足！', './');
+			emMsg($lang['access_disabled'], './');
 		}
 	}
 

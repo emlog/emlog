@@ -60,7 +60,7 @@ $isdraft = $hide == 'y' ? true : false;
 <div><span id="alias_msg_hook"></span><? echo $lang['article_link_alias']; ?>: (<? echo $lang['link_alias_need_to']; ?> <a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)</div>
 <div><input name="alias" id="alias" value="<?php echo $alias;?>"/></div>
 <div style="margin-top:3px;">
-	文章访问密码：<input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
+	<? echo $lang['post_password']; ?>: <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
         <label for="top"><? echo $lang['post_pin']; ?></label>

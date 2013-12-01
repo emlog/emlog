@@ -236,7 +236,7 @@ function widget_custom_text($title, $content){ ?>
 function widget_link($title){
 	global $CACHE; 
 	$link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
+    //if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment.
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -295,7 +295,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
+	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -358,6 +358,7 @@ function neighbor_log($neighborLog){
 <?php }?>
 
 <?php
+//blog: Blog Comment List
 function blog_comments($comments){
 	global $lang; 
     extract($comments);
@@ -442,7 +443,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	<?php endif; ?>
 <?php }?>
 <?php
-//blog-tool:判断是否是首页
+//blog-tool:Determine whether it is the homepage
 function blog_tool_ishome(){
     if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL){
         return true;

@@ -7,7 +7,7 @@
 require_once '../init.php';
 
 define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//Background current template path
-define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//官方服务域名
+define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official service host
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');

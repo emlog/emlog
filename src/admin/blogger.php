@@ -39,7 +39,7 @@ if ($action == 'update') {
 		emDirect("./blogger.php?error_a=1");
 	} else if ($email != '' && !checkMail($email)) {
 		emDirect("./blogger.php?error_b=1");
-	} elseif (mb_strlen($newpass)>0 && lsestrlen($newpass) < 6) {
+	} elseif (strlen($newpass)>0 && strlen($newpass) < 6) {
         emDirect("./blogger.php?error_c=1");
 	} elseif (!empty($newpass) && $newpass != $repeatpass) {
         emDirect("./blogger.php?error_d=1");

@@ -192,7 +192,7 @@ class Log_Model {
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
-            $row['tbcount'] = 0;//兼容未删除引用的模板
+            $row['tbcount'] = 0;//Compatible with templates that have not deleted trackbacks
 			$logs[] = $row;
 		}
 		return $logs;
@@ -225,7 +225,7 @@ class Log_Model {
 	 */
 	function deleteLog($blogId) {
 		global $lang;
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');
@@ -259,7 +259,7 @@ class Log_Model {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg($lang['access_disabled'], './');
 		}
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
@@ -267,7 +267,7 @@ class Log_Model {
 	}
 
     /**
-	 * 审核/驳回作者文章
+	 * Review/reject the author's article
 	 *
 	 * @param int $blogId
 	 * @param string $state

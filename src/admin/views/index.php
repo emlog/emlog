@@ -34,7 +34,7 @@
 </div>
 <div class="clear"></div>
 <div id="about">
-    您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
+    <?echo $lang['emlog_using']; ?> <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);"><>echo $lang['check_update']; ?></a></span><br />
     <span id="upmsg"></span>
 </div>
 </div>
@@ -55,33 +55,33 @@ $(document).ready(function(){
 	});
 });
 $("#about #ckup").click(function(){
-    $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
+    $("#about #upmsg").html(l_check_wait).addClass("ajaxload");
 	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         if (data.result.match("no")) {
-            $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
+            $("#about #upmsg").html(l_update_no).removeClass();
         } else if(data.result.match("yes")) {
-            $("#about #upmsg").html("有可用的emlog更新版本 "+data.ver+"，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">现在更新</a>").removeClass();
+            $("#about #upmsg").html(l_update_exists + data.ver + ", " + l_update_backup + ", <a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">" + l_update_now + "</a>").removeClass();
         } else{
-            $("#about #upmsg").html("检查失败，可能是网络问题").removeClass();
+            $("#about #upmsg").html(l_check_error).removeClass();
         }
     });
 });
 function doup(source,upsql){
-    $("#about #upmsg").html("系统正在更新中，请耐心等待").addClass("ajaxload");
+    $("#about #upmsg").html(l_update_wait).addClass("ajaxload");
     $.get('./index.php?action=update&source='+source+"&upsql="+upsql,
       function(data){
         $("#about #upmsg").removeClass();
         if (data.match("succ")) {
-            $("#about #upmsg").html('恭喜您！更新成功了，请<a href="./">刷新页面</a>开始体验新版emlog');
+            $("#about #upmsg").html(l_update_ok + ', ' + l_please + ' <a href="./">' + l_page_refresh + '</a> ' + l_start_new_ver);
         } else if(data.match("error_down")){
-            $("#about #upmsg").html('下载更新失败，可能是服务器网络问题');
+            $("#about #upmsg").html(l_download_error);
         } else if(data.match("error_zip")){
-            $("#about #upmsg").html('解压更新失败，可能是服务器不支持zip模块');
+            $("#about #upmsg").html(l_unzip_error);
         } else if(data.match("error_dir")){
-            $("#about #upmsg").html('更新失败，目录不可写');
+            $("#about #upmsg").html(l_update_not_writeable);
         }else{
-            $("#about #upmsg").html('更新失败');
+            $("#about #upmsg").html(l_update_error);
         }
       });
 }
@@ -117,7 +117,7 @@ function checkt(){
 </script>
 <?php else:?>
 <div id="admindex_main">
-<div id="about"><a href="blogger.php"><?php echo $name; ?></a> （<b><?php echo $sta_cache[UID]['lognum'];?></b>篇文章，<b><?php echo $sta_cache[UID]['commentnum'];?></b>条评论）</div>
+<div id="about"><a href="blogger.php"><?php echo $name; ?></a> (<b><?php echo $sta_cache[UID]['lognum'];?></b><? echo $lang['_articles']; ?>, <b><?php echo $sta_cache[UID]['commentnum'];?></b><? echo $lang['_comments']; ?>)</div>
 </div>
 <div class="clear"></div>
 <?php endif; ?>
