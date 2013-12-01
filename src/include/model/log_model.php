@@ -173,7 +173,7 @@ class Log_Model {
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' $condition $limit";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -192,6 +192,7 @@ class Log_Model {
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
+            $row['tbcount'] = 0;//兼容未删除引用的模板
 			$logs[] = $row;
 		}
 		return $logs;
@@ -224,7 +225,7 @@ class Log_Model {
 	 */
 	function deleteLog($blogId) {
 		global $lang;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');
@@ -252,11 +253,29 @@ class Log_Model {
 	 * Hide/show the post
 	 *
 	 * @param int $blogId
-	 * @param string $hideState
+	 * @param string $state
 	 */
-	function hideSwitch($blogId, $hideState) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$hideState' WHERE gid=$blogId");
-		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$hideState' WHERE gid=$blogId");
+	function hideSwitch($blogId, $state) {
+        $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
+        if ($this->db->affected_rows() < 1) {
+			emMsg('权限不足！', './');
+		}
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
+		$Comment_Model = new Comment_Model();
+		$Comment_Model->updateCommentNum($blogId);
+	}
+
+    /**
+	 * 审核/驳回作者文章
+	 *
+	 * @param int $blogId
+	 * @param string $state
+	 */
+	function checkSwitch($blogId, $state) {
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET checked='$state' WHERE gid=$blogId");
+        $state = $state == 'y' ? 'n' : 'y';
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
 	}
@@ -327,7 +346,7 @@ class Log_Model {
 	 * Randomly get a specified number of posts
 	 */
 	function getRandLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY rand() LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY rand() LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -342,7 +361,7 @@ class Log_Model {
 	 * Get popular articles
 	 */
 	function getHotLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {

@@ -236,6 +236,7 @@ function widget_custom_text($title, $content){ ?>
 function widget_link($title){
 	global $CACHE; 
 	$link_cache = $CACHE->readCache('link');
+    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -259,7 +260,6 @@ function blog_navi(){
 	foreach($navi_cache as $value):
 		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/write_log.php"><? echo $lang['article_write']; ?></a></li>
 			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
 			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
 			<?php 
@@ -295,7 +295,7 @@ function topflg($istop){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
+	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -358,7 +358,6 @@ function neighbor_log($neighborLog){
 <?php }?>
 
 <?php
-//blog: Blog Comment List
 function blog_comments($comments){
 	global $lang; 
     extract($comments);
@@ -442,3 +441,13 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	</div>
 	<?php endif; ?>
 <?php }?>
+<?php
+//blog-tool:判断是否是首页
+function blog_tool_ishome(){
+    if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL){
+        return true;
+    } else {
+        return FALSE;
+    }
+}
+?>

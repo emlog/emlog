@@ -36,7 +36,7 @@ class Comment_Controller {
 			emMsg($lang['comments_disabled']);
 		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
 			emMsg($lang['comment_allready_exists']);
-		} elseif ($Comment_Model->isCommentTooFast() === true) {
+		} elseif (ROLE == ROLE_VISITOR && $Comment_Model->isCommentTooFast() === true) {
 			emMsg($lang['comment_too_fast']);
 		} elseif (empty($name)) {
 			emMsg($lang['comment_name_empty']);

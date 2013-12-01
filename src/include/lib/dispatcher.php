@@ -49,9 +49,9 @@ class Dispatcher {
         $urlMode = Option::get('isurlrewrite');
         foreach ($this->_routingTable as $route) {
             if (!isset($route['reg_' . $urlMode])) {
-            	$reg = isset($route['reg']) ? $route['reg'] : $route['reg_0'];
+                $reg = isset($route['reg']) ? $route['reg'] : $route['reg_0'];
             } else {
-            	$reg = $route['reg_' . $urlMode];
+                $reg = $route['reg_' . $urlMode];
             }
             if (preg_match($reg, $this->_path, $matches)) {
                 $this->_model = $route['model'];
@@ -67,7 +67,7 @@ class Dispatcher {
         }
 
         if (empty($this->_model)) {
-			show_404_page();
+            show_404_page();
         }
     }
 
@@ -80,7 +80,9 @@ class Dispatcher {
 
     public static function setPath(){
         $path = '';
-        if (isset($_SERVER['REQUEST_URI'])){
+        if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { //iis
+            $path = $_SERVER['HTTP_X_REWRITE_URL'];
+        } elseif (isset($_SERVER['REQUEST_URI'])) {
             $path = $_SERVER['REQUEST_URI'];
         } else {
             if (isset($_SERVER['argv'])) {
@@ -92,11 +94,11 @@ class Dispatcher {
 
         //for iis6 path is GBK
         if (isset($_SERVER['SERVER_SOFTWARE']) && false !== stristr($_SERVER['SERVER_SOFTWARE'], 'IIS')) {
-        	if (function_exists('mb_convert_encoding')) {
-        		$path = mb_convert_encoding($path, 'UTF-8', 'GBK');
-        	} else {
-        		$path = @iconv('GBK', 'UTF-8', @iconv('UTF-8', 'GBK', $path)) == $path ? $path : @iconv('GBK', 'UTF-8', $path);
-        	}
+            if (function_exists('mb_convert_encoding')) {
+                $path = mb_convert_encoding($path, 'UTF-8', 'GBK');
+            } else {
+                $path = @iconv('GBK', 'UTF-8', @iconv('UTF-8', 'GBK', $path)) == $path ? $path : @iconv('GBK', 'UTF-8', $path);
+            }
         }
         //for ie6 header location
         $r = explode('#', $path, 2);

@@ -250,7 +250,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,hide,allow_remark,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid smallint(5) unsigned NOT NULL auto_increment,
@@ -333,12 +333,14 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ismobile','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('topimg','content/templates/default/images/top/default.jpg');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_topimgs','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','a:1:{i:0;s:13:\"tips/tips.php\";}');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');

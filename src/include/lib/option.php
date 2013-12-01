@@ -6,7 +6,7 @@
 
 class Option {
 	//Version number
-	const EMLOG_VERSION = '5.1.2';
+	const EMLOG_VERSION = '5.2.0';
 	//Maximum width of image attachment thumbnail
 	const IMG_MAX_W = 420;
 	//Maximum height of image attachment thumbnail

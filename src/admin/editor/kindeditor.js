@@ -188,6 +188,7 @@ function loadEditor(id) {
 		allowImageUpload:false,
 		allowFlashUpload:false,
 		allowPreviewEmoticons:false,
+		filterMode:false,
 		urlType:'domain',
 		items:['bold','italic','underline','strikethrough','forecolor','hilitecolor','fontname','fontsize','lineheight','removeformat','plainpaste','quickformat','insertorderedlist','insertunorderedlist','indent','outdent','justifyleft','justifycenter','justifyright','link','unlink','image','flash','table','emoticons','code','fullscreen','source','|','about']
 	});

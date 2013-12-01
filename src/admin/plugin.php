@@ -42,6 +42,7 @@ if ($action == '' && $plugin) {
 	include View::getView('header');
 	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 	plugin_setting_view();
+    echo '<script>$("#menu_plug").addClass("sidebarsubmenu1");</script>';
 	include View::getView('footer');
 }
 

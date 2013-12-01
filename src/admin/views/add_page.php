@@ -8,7 +8,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label"><? echo $lang['title'];?></label>
-    <input type="text" maxlength="200" style="width:852px;" name="title" id="title"/>
+    <input type="text" maxlength="200" name="title" id="title"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="post_bar">
@@ -22,11 +22,11 @@
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
     </div>
 </div>
-<div><textarea id="content" name="content" style="width:860px; height:460px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><textarea id="content" name="content" style="width:845px; height:460px;"></textarea></div>
 <div>
     <span id="alias_msg_hook"></span>
     <? echo $lang['link_alias']; ?>: (<? echo $lang['alias_prompt']; ?> <? echo $lang['need_for']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<br />
-    <input name="alias" id="alias" style="width:850px;" class="input" />
+    <input name="alias" id="alias"/>
 </div>
 <div>
     <span id="page_options">

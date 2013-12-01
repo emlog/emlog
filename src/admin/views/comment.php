@@ -65,8 +65,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><? echo $lang['edit']; ?></a>
 		</span>
 		</td>
-		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="<? echo $lang['comment_del_from_ip']; ?>" class="care">(X)</a></td>
-        <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
+		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
+            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="删除来自该IP的所有评论" class="care">(X)</a><?php endif;?></td>
+        <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="4"><? echo $lang['comments_no_yet']; ?></td></tr>

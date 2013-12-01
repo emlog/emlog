@@ -117,7 +117,8 @@ class Cache {
 				'name' => htmlspecialchars($row['nickname']),
 				'mail' => htmlspecialchars($row['email']),
 				'des' => htmlClean($row['description']),
-                'ischeck' => htmlspecialchars($row['ischeck'])
+                'ischeck' => htmlspecialchars($row['ischeck']),
+                'role' => $row['role'],
 				);
 		}
 		$cacheData = serialize($user_cache);
@@ -128,7 +129,7 @@ class Cache {
 	 */
 	private function mc_sta() {
 		$sta_cache = array();
-		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' "));
+		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' "));
 		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
         $checknum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='n' "));
 		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
@@ -237,7 +238,7 @@ class Cache {
 		$rank = $spread / $rank;
 		// Get draft id
 		$hideGids = array();
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where hide='y' and type='blog'");
+		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
 		while ($row = $this->db->fetch_array($query)) {
 			$hideGids[] = $row['gid'];
 		}
@@ -269,7 +270,7 @@ class Cache {
 		$sort_cache = array();
 		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
-			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and type='blog'"));
+			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and checked='y' and type='blog'"));
 			$sortData = array(
 				'lognum' => $logNum,
 				'sortname' => htmlspecialchars($row['sortname']),
@@ -339,7 +340,7 @@ class Cache {
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
 		$index_newlognum = $row['option_value'];
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
@@ -374,7 +375,7 @@ class Cache {
 	 */
 	private function mc_record() {
 		$timezone = Option::get('timezone');
-		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and type='blog' ORDER BY date DESC");
+		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;

@@ -288,11 +288,15 @@ function doAction($hook) {
  */
 function breakLog($content, $lid) {
 	global $lang;
-	$a = explode('[break]', $content, 2);
-	if (!empty($a[1])) {
-		$a[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
-	}
-	return $a[0];
+	$ret = explode('[break]', $content, 2);
+	if (!empty($ret[1])) {
+		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+        return $ret[0];
+	} elseif(Option::get('isexcerpt') == 'y') {
+        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">阅读全文&gt;&gt;</a></p>';
+    } else {
+        return $content;
+    }
 }
 
 /**
@@ -755,6 +759,8 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 			if (getFileSuffix($sql_name) != 'sql')
 				return -3;
 			break;
+		case 'update':
+			break;
 	}
 	if (true === @$zip->extractTo($path)) {
 		$zip->close();
@@ -783,6 +789,29 @@ function emZip($orig_fname, $content) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * 获取远程文件
+ * @param type $source 远程文件地址
+ * @return 临时文件地址
+ */
+function emFecthFile($source) {
+    $temp_file = tempnam('/tmp', 'emtemp_');
+    $rh = fopen($source, 'rb');
+    $wh = fopen($temp_file, 'w+b');
+    if ( ! $rh || ! $wh) {
+        return FALSE;
+    }
+
+    while (!feof($rh)) {
+        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
+            return FALSE;
+        }
+    }
+    fclose($rh);
+    fclose($wh);
+    return $temp_file;
 }
 
 /**

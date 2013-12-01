@@ -36,6 +36,9 @@ if ($action== 'del') {
 }
 
 if ($action== 'delbyip') {
+    if (ROLE != ROLE_ADMIN) {
+		emMsg('权限不足！', './');
+    }
 	$ip = isset($_GET['ip']) ? $_GET['ip'] : '';
 	$Comment_Model->delCommentByIp($ip);
 	$CACHE->updateCache(array('sta','comment'));

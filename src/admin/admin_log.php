@@ -19,6 +19,7 @@ if ($action == '') {
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
 	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $checked = isset($_GET['checked']) ? addslashes($_GET['checked']) : '';
 
 	$sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
 	$sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC' : 'ASC';
@@ -32,6 +33,8 @@ if ($action == '') {
 		$sqlSegment = "and sortid=$sid";
 	} elseif ($uid) {
 		$sqlSegment = "and author=$uid";
+	} elseif ($checked) {
+		$sqlSegment = "and checked='$checked'";
 	} elseif ($keyword) {
 		$sqlSegment = "and title like '%$keyword%'";
 	}
@@ -76,16 +79,17 @@ if ($action == '') {
 
 //Blog Operation
 if ($action == 'operate_log') {
-	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$operate = isset($_REQUEST['operate']) ? $_REQUEST['operate'] : '';
 	$pid = isset($_POST['pid']) ? $_POST['pid'] : '';
 	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$author = isset($_POST['author']) ? intval($_POST['author']) : '';
+    $gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 
 	if ($operate == '') {
 		emDirect("./admin_log.php?pid=$pid&error_b=1");
 	}
-	if (empty($logs)) {
+	if (empty($logs) && empty($gid)) {
 		emDirect("./admin_log.php?pid=$pid&error_a=1");
 	}
 
@@ -131,6 +135,10 @@ if ($action == 'operate_log') {
 			foreach ($logs as $val)
 			{
 				$Log_Model->hideSwitch($val, 'n');
+                if (ROLE == ROLE_ADMIN)
+                {
+                    $Log_Model->checkSwitch($val, 'y');
+                }
 			}
 			$CACHE->updateCache();
 			emDirect("./admin_log.php?pid=draft&active_post=1");
@@ -154,6 +162,24 @@ if ($action == 'operate_log') {
 			}
 			$CACHE->updateCache('sta');
 			emDirect("./admin_log.php?active_change_author=1");
+			break;
+        case 'check':
+            if (ROLE != ROLE_ADMIN)
+			{
+				emMsg('权限不足！','./');
+			}
+			$Log_Model->checkSwitch($gid, 'y');
+			$CACHE->updateCache();
+			emDirect("./admin_log.php?active_ck=1");
+			break;
+        case 'uncheck':
+            if (ROLE != ROLE_ADMIN)
+			{
+				emMsg('权限不足！','./');
+			}
+			$Log_Model->checkSwitch($gid, 'n');
+			$CACHE->updateCache();
+			emDirect("./admin_log.php?active_unck=1");
 			break;
 	}
 }

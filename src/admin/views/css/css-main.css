@@ -16,7 +16,7 @@ body {
 }
 #mainpage {
 	margin:5px auto 0px;
-	width:1024px;
+	width:996px;
 }
 #container {
 	padding-left:30px;
@@ -30,8 +30,8 @@ body {
 	text-align:center;
 }
 #menu_wt a {background:url(../images/addblog.gif) no-repeat 3px 1px;}
-#menu_plug a {background:url(../images/plugin.gif) no-repeat 3px 1px;}
-#menu_store a {background:url(../images/store.gif) no-repeat 3px 2px;}
+#menu_plug a {background:url(../images/plugin.gif) no-repeat 20px 1px;}
+#menu_store a {background:url(../images/store.gif) no-repeat 10px 2px;}
 #menu_ext { cursor:pointer;}
 .menu_ext_minus {background:url(../images/minus.gif) no-repeat 5px 5px;}
 .menu_ext_plus {background:url(../images/plus.gif) no-repeat 5px 5px;}
@@ -410,40 +410,6 @@ textarea {
 	padding:10px;
 	margin:10px 0px 5px 32px
 }
-#post{
-    width: 866px;
-}
-#post_bar {
-    margin:5px 0px;
-}
-.show_advset {
-	margin:3px 10px 0px 0px;
-    padding:0px 20px 0px 0px;
-	background:url(../images/advset.gif) no-repeat 54px 4px;
-	cursor:pointer;
-    width:76px;
-    font-weight:bold;
-}
-#advset {
-	background-color:#F5F5F5;
-	border-top:#ECECEC solid 1px;
-	padding:5px 2px 10px 2px
-}
-#post_button{
-    text-align: center;
-    margin:10px 0px;
-}
-#post_options {
-	float:right
-}
-#post_options label {
-	vertical-align:middle;
-	cursor:pointer
-}
-#post_options input {
-	vertical-align:middle;
-	margin:3px 0px 3px 15px
-}
 #page_options {
 	float:left;
 }
@@ -473,11 +439,11 @@ textarea {
 }
 #admindex_servinfo {
 	float:left;
-	width:425px;
-	margin-right:10px
+	width:410px;
+	margin-right:20px
 }
 #admindex_msg {
-	width:425px;
+	width:410px;
 	float:left
 }
 #admindex_msg img {
@@ -501,7 +467,7 @@ textarea {
 }
 #admindex div li {
 	list-style:none;
-	padding:2px 0px;
+	padding:4px 0px 4px 5px;
 	border-bottom:1px dotted #E4E4E4;
 	clear:both
 }
@@ -509,6 +475,14 @@ textarea {
 	list-style:none;
 	margin:0px;
 	padding:3px 1px
+}
+#about{
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 10px 0px;
+    margin:12px 0px 0px 0px;
+    width: 842px;
+    border-radius: 5px;
 }
 .clear {
 	clear:both;
@@ -864,7 +838,10 @@ textarea {
 	text-decoration:none;
 	padding:4px 0px 0px 26px
 }
-#title {
+#post{
+    width: 866px;
+}
+#post #title {
 	border-radius:3px 3px 3px 3px;
 	border-style:solid;
 	border-width:1px;
@@ -873,10 +850,10 @@ textarea {
 	line-height:100%;
 	outline:medium none;
 	padding:3px 4px;
-	width:100%;
+	width:837px;
 	margin:0px 0px 10px 0px;
 }
-#title_label {
+#post #title_label {
 	vertical-align:middle;
 	color:#BBBBBB;
 	font-size:14px;
@@ -884,13 +861,54 @@ textarea {
 	position:absolute;
 	cursor:text;
 }
-#tag_label {
+#post #tag{
+    width:414px;
+}
+#post #tag_label {
 	vertical-align:middle;
 	color:#BBBBBB;
 	font-size:12px;
 	padding:3px;
 	position:absolute;
 	cursor:text;
+}
+#post #tagbox {
+    width:860px;
+    margin:0px;
+    display:none;
+}
+#post #advset {
+    display:none;
+    width: 845px;
+}
+#post #alias{
+    width: 841px;
+}
+#post_bar {
+    margin:5px 0px;
+}
+.show_advset {
+	margin:3px 10px 0px 0px;
+    padding:0px 20px 0px 0px;
+	background:url(../images/advset.gif) no-repeat 54px 4px;
+	cursor:pointer;
+    width:76px;
+    font-weight:bold;
+}
+#post_button{
+    text-align: center;
+    margin:10px 0px;
+}
+#post_options {
+	float:right
+}
+#post_options label {
+	vertical-align:middle;
+	cursor:pointer
+}
+#post_options input {
+	vertical-align:middle;
+	margin:3px 0px 3px 15px
 }
 #input_s {
 	background:url("../images/search.png") no-repeat scroll 5px 3px transparent;
@@ -987,11 +1005,6 @@ textarea {
     font-size: 14px;
     text-align: center;
 }
-#addon_ins #addonload {
-	background:url(../images/loading.gif) no-repeat 10px;
-	height:20px;
-    padding:0px 40px 0px 30px;
-}
 #addon_ins #addonsucc {
 	background:url(../images/icon_succ.gif) no-repeat 10px;
 	height:20px;
@@ -999,6 +1012,11 @@ textarea {
 }
 #addon_ins #addonerror {
 	background:url(../images/icon_error.gif) no-repeat 10px;
+	height:20px;
+    padding:0px 40px 0px 30px;
+}
+.ajaxload {
+	background:url(../images/loading.gif) no-repeat 10px;
 	height:20px;
     padding:0px 40px 0px 30px;
 }

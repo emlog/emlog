@@ -15,10 +15,10 @@
 <?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['password_short']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['password_not_equal']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['username_allready_exists']; ?></span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">该昵称已存在</span><?php endif;?>
 </div>
-<div style="margin-left:30px;">
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
-<div class="item_edit">
+<div class="item_edit" style="margin-left:30px;">
 	<li>
 	<?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/><br />
 	<? echo $lang['photo_info']; ?><br />

@@ -8,7 +8,7 @@
 <div id="post">
 <div>
     <label for="title" id="title_label"><? echo $lang['article_title']; ?></label>
-    <input type="text" maxlength="200" style="width:852px;" name="title" id="title"/>
+    <input type="text" maxlength="200" name="title" id="title"/>
 </div>
 <div id="post_bar">
 	<div>
@@ -22,11 +22,11 @@
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" cols="100" rows="8" style="width:860px; height:460px;"></textarea>
+    <textarea id="content" name="content" style="width:845px; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
 		  <label for="tag" id="tag_label"><? echo $lang['tags_by_comma']; ?></label>
-    <input name="tag" id="tag" maxlength="200" style="width:429px;" />
+    <input name="tag" id="tag" maxlength="200"/>
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
     <select name="sort" id="sort" style="width:200px;">
         <option value="-1"><? echo $lang['choose_category']; ?></option>
@@ -37,7 +37,7 @@
     <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
-<div id="tagbox" style="width:860px;margin:0px;display:none;">
+<div id="tagbox">
 <?php
     if ($tags) {
         foreach ($tags as $val){
@@ -51,10 +51,10 @@
 <div class="show_advset" onclick="displayToggle('advset', 1);"><? echo $lang['advanced_options']; ?></div>
 <div id="advset">
 <div><? echo $lang['article_summary']; ?>:</div>
-<div><textarea id="excerpt" name="excerpt" style="width:860px; height:260px; border:#CCCCCC solid 1px;"></textarea></div>
+<div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px;"></textarea></div>
 <div><span id="alias_msg_hook"></span><? echo $lang['article_link_alias']; ?>: (<? echo $lang['link_alias_need_to']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<span id="alias_msg_hook"></span></div>
-<div><input name="alias" id="alias" style="width:856px;" /></div>
-<div>
+<div><input name="alias" id="alias" /></div>
+<div style="margin-top:3px;">
     <? echo $lang['post_password']; ?>: <input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
@@ -67,7 +67,6 @@
 <div id="post_button">
     <input type="hidden" name="ishide" id="ishide" value="">
           <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
-    <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />	 
           <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
 </div>
 </div>

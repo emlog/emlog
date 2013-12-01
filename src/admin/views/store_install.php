@@ -2,7 +2,7 @@
 <div class=containertitle>
 <b><? echo $lang['install']; ?> <?php echo $source_typename;?></b>
 <div class=line></div>
-<div id="addon_ins"><span id="addonload"><?php echo $source_typename;?><? echo $lang['download_install']; ?></span></div>
+<div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?>正在下载安装中</span></div>
 </div>
 <script>
 $("#menu_store").addClass('sidebarsubmenu1');

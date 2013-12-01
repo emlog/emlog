@@ -85,6 +85,11 @@ if ($action=='update') {
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
+    $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
+
+    if($role == ROLE_ADMIN) {
+        $ischeck = 'n';
+    }
 
 	if (UID == $uid) {
 		emDirect('./user.php');
@@ -111,6 +116,7 @@ if ($action=='update') {
 						'email' => $email,
 						'description' => $description,
 						'role' => $role,
+                        'ischeck' => $ischeck,
 						);
 
 	if (!empty($password)) {
