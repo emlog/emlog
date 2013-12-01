@@ -83,10 +83,10 @@
 <div>
 	<h1 onclick="displayToggle('navi_add_custom', 2);"><? echo $lang['nav_add_custom']; ?>+</h1>
 	<ul id="navi_add_custom">
-	<li><input maxlength="4" style="width:30px;" name="taxis" /><? echo $lang['order']; ?></li>
-	<li><input maxlength="200" style="width:100px;" name="naviname" /><? echo $lang['nav_name']; ?></li>
+	<li><input maxlength="4" style="width:30px;" name="taxis" /> <? echo $lang['order']; ?></li>
+	<li><input maxlength="200" style="width:100px;" name="naviname" /> <? echo $lang['nav_name']; ?></li>
 	<li>
-	<input maxlength="200" style="width:175px;" name="url" id="url" /><? echo $lang['nav_url']; ?></li>
+	<input maxlength="200" style="width:175px;" name="url" id="url" /> <? echo $lang['nav_url']; ?></li>
     <li><? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	</ul>

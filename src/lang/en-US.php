@@ -455,7 +455,8 @@ $lang['save changes'] = 'Save changes';//确认修改
 $lang['my_status'] = 'My status';
 $lang['modify_login_password'] = 'Modify Login/Password';//修改密码/登录名
 $lang['password_current'] = 'Current Password';//当前密码
-$lang['password_new'] = 'New Password (not less than 5 characters)';//新密码
+$lang['password_new'] = 'New Password';//'新密码';
+$lang['password_not_less'] = '(not less than 5 characters)';//'（不小于5位，不修改请留空）';//'（不小于6位，不修改请留空）';
 $lang['password_new_confirm'] = 'Confirm New Password (to ensure that the new Password is equal with the above)';//重复新密码
 $lang['password_leave_empty'] = 'Leave Password empty if not changed';//不修改请留空
 
