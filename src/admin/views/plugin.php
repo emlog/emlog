@@ -11,11 +11,11 @@
   <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
       <tr>
-        <th width="100"></th>
-        <th width="36" class="tdcenter"><b>状态</b></th>
-		<th width="30" class="tdcenter"><b>版本</b></th>
-		<th width="500" class="tdcenter"><b>描述</b></th>
-		<th width="30" class="tdcenter"></th>
+        <th width="200"></th>
+        <th width="40" class="tdcenter"><b>状态</b></th>
+		<th width="60" class="tdcenter"><b>版本</b></th>
+		<th width="450" class="tdcenter"><b>描述</b></th>
+		<th width="60" class="tdcenter"></th>
       </tr>
   </thead>
   <tbody>
@@ -33,6 +33,9 @@
 			$plug_state_des = '点击禁用插件';
 		}
 		$i++;
+        if (TRUE === $val['Setting']) {
+            $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\" /></a>";
+        }
 	?>	
       <tr>
         <td class="tdcenter"><?php echo $val['Name']; ?></td>
@@ -54,7 +57,14 @@
 		<?php endif;?>
 		</div>
 		</td>
-		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care">删除</a></td>
+		<td class="tdcenter">
+            <?php 
+            if (TRUE === $val['Setting']) {
+                echo "<a href=\"./plugin.php?plugin={$val['Plugin']}\">设置</a><br />";
+            }
+            ?>
+            <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care">删除</a>
+        </td>
       </tr>
 	<?php endforeach;else: ?>
 	  <tr>

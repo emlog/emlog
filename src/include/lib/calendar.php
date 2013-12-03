@@ -23,7 +23,7 @@ class Calendar {
 		$timestamp = time() + $timezone * 3600;
 
 		//建立文章时间写入数组
-		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and type='blog'");
+		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
 			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
 		}

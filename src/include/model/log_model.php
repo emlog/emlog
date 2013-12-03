@@ -101,7 +101,7 @@ class Log_Model {
 	 * 前台获取单篇文章
 	 */
 	function getOneLogForHome($blogId) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -327,8 +327,8 @@ class Log_Model {
 	 */
 	function neighborLog($date) {
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and type='blog' ORDER BY date DESC LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and type='blog' ORDER BY date LIMIT 1");
+		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and checked='y' and type='blog' ORDER BY date LIMIT 1");
 		if ($neighborlog['nextLog']) {
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
 		}
