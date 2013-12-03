@@ -58,11 +58,6 @@
 		</div>
 		</td>
 		<td class="tdcenter">
-            <?php 
-            if (TRUE === $val['Setting']) {
-                echo "<a href=\"./plugin.php?plugin={$val['Plugin']}\">设置</a><br />";
-            }
-            ?>
             <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care">删除</a>
         </td>
       </tr>
