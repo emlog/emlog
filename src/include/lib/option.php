@@ -6,7 +6,7 @@
 
 class Option {
 	//版本编号
-	const EMLOG_VERSION = '5.2.0';
+	const EMLOG_VERSION = '5.2.1';
 	//图片附件缩略图最大宽
 	const IMG_MAX_W = 420;
 	//图片附件缩略图最大高
