@@ -73,12 +73,24 @@ class Twitter_Model {
 
 	function delTwitter($tid) {
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+        $query = $this->db->query("select img from " . DB_PREFIX . "twitter where id=$tid $author");
+        $row = $this->db->fetch_array($query);
+
+        // del tw
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
 		}
-		// delete reply
+		// del reply
 		$this->db->query("DELETE FROM " . DB_PREFIX . "reply where tid=$tid");
+        // del pic
+		if (!empty($row['img'])) {
+			$fpath = str_replace('thum-', '', $row['img']);
+			if ($fpath != $row['img']) {
+				@unlink('../' . $fpath);
+			}
+			@unlink('../' . $row['img']);
+		}
 	}
 	
 	/**
