@@ -6,7 +6,7 @@
 <a class="navi4" href="./style.php">后台风格</a>
 <a class="navi2" href="./blogger.php">个人设置</a>
 <?php else:?>
-<a class="navi1" href="./blogger.php">个人设置</a>
+<a class="navi3" href="./blogger.php">个人设置</a>
 <?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>
