@@ -290,7 +290,7 @@ class Cache {
 		$sort_cache = array();
 		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
-			$data = $this->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
 			$logNum = $data['total'];
 			$sortData = array(
 				'lognum' => $logNum,

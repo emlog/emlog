@@ -223,7 +223,7 @@ CREATE TABLE {$db_prefix}blog (
   excerpt longtext NOT NULL,
   alias VARCHAR(200) NOT NULL DEFAULT '',
   author int(10) NOT NULL default '1',
-  sortid tinyint(3) NOT NULL default '-1',
+  sortid int(10) NOT NULL default '-1',
   type varchar(20) NOT NULL default 'blog',
   views mediumint(8) unsigned NOT NULL default '0',
   comnum mediumint(8) unsigned NOT NULL default '0',
@@ -245,16 +245,16 @@ CREATE TABLE {$db_prefix}blog (
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid smallint(5) unsigned NOT NULL auto_increment,
+  aid int(10) unsigned NOT NULL auto_increment,
   blogid mediumint(8) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
   addtime bigint(20) NOT NULL default '0',
-  width smallint(5) NOT NULL default '0',
-  height smallint(5) NOT NULL default '0',
+  width int(10) NOT NULL default '0',
+  height int(10) NOT NULL default '0',
   mimetype varchar(40) NOT NULL default '',
-  thumfor smallint(5) NOT NULL default 0,
+  thumfor int(10) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
@@ -341,23 +341,23 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id smallint(4) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment,
   sitename varchar(30) NOT NULL default '',
   siteurl varchar(75) NOT NULL default '',
   description varchar(255) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
-  taxis smallint(4) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id smallint(4) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment,
   naviname varchar(30) NOT NULL default '',
   url varchar(75) NOT NULL default '',
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
-  taxis smallint(4) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
   type_id mediumint(8) unsigned NOT NULL default '0',
@@ -376,11 +376,11 @@ CREATE TABLE {$db_prefix}tag (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid tinyint(3) unsigned NOT NULL auto_increment,
+  sid int(10) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis smallint(4) unsigned NOT NULL default '0',
-  pid tinyint(3) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   description text NOT NULL,
   PRIMARY KEY  (sid)
 )".$add."
@@ -411,7 +411,7 @@ CREATE TABLE {$db_prefix}reply (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid tinyint(3) unsigned NOT NULL auto_increment,
+  uid int(10) unsigned NOT NULL auto_increment,
   username varchar(32) NOT NULL default '',
   password varchar(64) NOT NULL default '',
   nickname varchar(20) NOT NULL default '',

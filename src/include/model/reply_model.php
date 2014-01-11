@@ -77,10 +77,8 @@ class Reply_Model {
 		$andQuery = '1=1';
 		$andQuery .= $tid ? " and tid=$tid" : '';
 		$andQuery .= $hide ? " and hide='$hide'" : '';
-		$sql = "SELECT id FROM ".DB_PREFIX."reply where $andQuery";
-		$res = $this->db->query($sql);
-		$replyNum = $this->db->num_rows($res);
-		return $replyNum;
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."reply where $andQuery");
+		return $data['total'];
 	}
 
 	/**
@@ -117,9 +115,8 @@ class Reply_Model {
 	}
 
 	function isReplyExist($tid, $name, $content) {
-		$query = $this->db->query("SELECT id FROM ".DB_PREFIX."reply WHERE tid=$tid AND name='$name' AND content='$content'");
-		$result = $this->db->num_rows($query);
-		if ($result > 0) {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."reply WHERE tid=$tid AND name='$name' AND content='$content'");
+		if ($data['total'] > 0) {
 			return true;
 		}else {
 			return false;

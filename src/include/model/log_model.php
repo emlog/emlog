@@ -67,9 +67,8 @@ class Log_Model {
 			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		}
 
-		$res = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
-		$LogNum = $this->db->num_rows($res);
-		return $LogNum;
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
+		return $data['total'];
 	}
 
 	/**

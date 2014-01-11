@@ -77,9 +77,8 @@ class User_Model {
 	 */
 	function isUserExist($login, $uid = '') {
 		$subSql = $uid ? 'and uid!='.$uid : '';
-		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE username='$login' $subSql");
-		$res = $this->db->num_rows($query);
-		if ($res > 0) {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."user WHERE username='$login' $subSql");
+		if ($data['total'] > 0) {
 			return true;
 		}else {
 			return false;
@@ -95,9 +94,8 @@ class User_Model {
 	 */
 	function isNicknameExist($nickname, $uid = '') {
 		$subSql = $uid ? 'and uid!='.$uid : '';
-		$query = $this->db->query("SELECT uid FROM ".DB_PREFIX."user WHERE nickname='$nickname' $subSql");
-		$res = $this->db->num_rows($query);
-		if ($res > 0) {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."user WHERE nickname='$nickname' $subSql");
+		if ($data['total'] > 0) {
 			return true;
 		}else {
 			return false;
@@ -105,9 +103,7 @@ class User_Model {
 	}
 
 	function getUserNum() {
-		$sql = "SELECT uid FROM ".DB_PREFIX."user";
-		$res = $this->db->query($sql);
-		return $this->db->num_rows($res);
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."user");
+		return $data['total'];
 	}
-
 }

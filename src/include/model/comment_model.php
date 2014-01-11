@@ -287,9 +287,8 @@ class Comment_Model {
 	}
 
 	function isCommentExist($blogId, $name, $content) {
-		$query = $this->db->query("SELECT cid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
-		$result = $this->db->num_rows($query);
-		if ($result > 0) {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
+		if ($data['total'] > 0) {
 			return true;
 		}else {
 			return false;

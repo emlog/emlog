@@ -41,9 +41,8 @@ class Twitter_Model {
 	 */
 	function getTwitterNum($spot = 0) {
 		$author = ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR || $spot == 0 ? '' : 'and author=' . UID;
-		$res = $this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
-		$twNum = $this->db->num_rows($res);
-		return $twNum;
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
+		return $data['total'];
 	}
 
 	/**
