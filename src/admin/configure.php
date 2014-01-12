@@ -88,7 +88,7 @@ if ($action == 'mod_config') {
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
 	}
-	if ($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)) {
+	if ($getData['blogurl'] && strncasecmp($getData['blogurl'],'http',4)) {
 		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 
