@@ -109,13 +109,13 @@ $("#menu_ext").toggle(
 		displayToggle('extend_mg', 1)
 		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
 		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass);
+		$.cookie('em_extend_ext', exClass, {expires:365});
 	  },
 	  function () {
 		displayToggle('extend_mg', 1)
 		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
 		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass);
+		$.cookie('em_extend_ext', exClass, {expires:365});
 	  }
 );
 </script>
