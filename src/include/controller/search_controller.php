@@ -32,6 +32,6 @@ class Search_Controller {
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');
-		include View::getView('log_list');
+		include View::getView('list');
 	}
 }

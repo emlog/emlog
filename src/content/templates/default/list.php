@@ -1,6 +1,6 @@
 <?php 
 /**
- * 站点首页模板
+ * 二级文章列表页面
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
