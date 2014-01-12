@@ -37,7 +37,7 @@ if ($action == 'update' && ROLE == ROLE_ADMIN) {
 	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
 	$upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
 
-	if (empty($source) || empty($upsql)) {
+	if (empty($source)) {
 		exit('error');
 	}
 
