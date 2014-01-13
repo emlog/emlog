@@ -216,7 +216,7 @@ EOT;
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid mediumint(8) unsigned NOT NULL auto_increment,
+  gid int(10) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
@@ -225,9 +225,9 @@ CREATE TABLE {$db_prefix}blog (
   author int(10) NOT NULL default '1',
   sortid int(10) NOT NULL default '-1',
   type varchar(20) NOT NULL default 'blog',
-  views mediumint(8) unsigned NOT NULL default '0',
-  comnum mediumint(8) unsigned NOT NULL default '0',
-  attnum mediumint(8) unsigned NOT NULL default '0',
+  views int(10) unsigned NOT NULL default '0',
+  comnum int(10) unsigned NOT NULL default '0',
+  attnum int(10) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   checked enum('n','y') NOT NULL default 'y',
@@ -246,7 +246,7 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment,
-  blogid mediumint(8) unsigned NOT NULL default '0',
+  blogid int(10) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
@@ -260,9 +260,9 @@ CREATE TABLE {$db_prefix}attachment (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid mediumint(8) unsigned NOT NULL auto_increment,
-  gid mediumint(8) unsigned NOT NULL default '0',
-  pid mediumint(8) unsigned NOT NULL default '0',
+  cid int(10) unsigned NOT NULL auto_increment,
+  gid int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
@@ -360,7 +360,7 @@ CREATE TABLE {$db_prefix}navi (
   taxis int(10) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
-  type_id mediumint(8) unsigned NOT NULL default '0',
+  type_id int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
@@ -368,7 +368,7 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid mediumint(8) unsigned NOT NULL auto_increment,
+  tid int(10) unsigned NOT NULL auto_increment,
   tagname varchar(60) NOT NULL default '',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
@@ -391,15 +391,15 @@ content text NOT NULL,
 img varchar(200) DEFAULT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
-replynum mediumint(8) unsigned NOT NULL default '0',
+replynum int(10) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
 )".$add."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
-  id mediumint(8) unsigned NOT NULL auto_increment,
-  tid mediumint(8) unsigned NOT NULL default '0',
+  id int(10) unsigned NOT NULL auto_increment,
+  tid int(10) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   name varchar(20) NOT NULL default '',
   content text NOT NULL,
