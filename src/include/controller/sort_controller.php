@@ -41,7 +41,9 @@ class Sort_Controller {
 		$sortName = $sort['sortname'];
 		//page meta
 		$site_title = $sortName . ' - ' . $site_title;
-		$site_description = !empty($sort_cache[$sortid]['description']) ? $sort_cache[$sortid]['description'] : $sort_cache[$sortid]['description'];
+		if (!empty($sort_cache[$sortid]['description'])) {
+			$site_description = $sort_cache[$sortid]['description'];
+		}
 		if ($sort['pid'] != 0 || empty($sort['children'])) {
 			$sqlSegment = "and sortid=$sortid";
 		} else {
