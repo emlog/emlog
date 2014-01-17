@@ -1,6 +1,6 @@
 pre.prettyprint {
     border: 0px solid #888;
-    font-family: "Courier New" , Courier , monospace;
+    font-family: Consolas , "Courier New" , Courier , monospace;
     font-size: 12px;
     overflow: auto;
     margin: 5px 0px;
