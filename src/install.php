@@ -233,6 +233,7 @@ CREATE TABLE {$db_prefix}blog (
   checked enum('n','y') NOT NULL default 'y',
   allow_remark enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
+  template varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid),
   KEY date (date),
   KEY author (author),
@@ -382,6 +383,7 @@ CREATE TABLE {$db_prefix}sort (
   taxis int(10) unsigned NOT NULL default '0',
   pid int(10) unsigned NOT NULL default '0',
   description text NOT NULL,
+  template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
