@@ -98,13 +98,28 @@
 	<ul id="navi_add_sort">
 	<?php 
 	if($sorts):
-	foreach($sorts as $key=>$value): 
-	?>
+    foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+    ?>
 	<li>
         <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
 		<?php echo $value['sortname']; ?>
 	</li>
-	<?php endforeach;?>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+    <li>
+        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+		---- <?php echo $value['sortname']; ?>
+	</li>
+	<?php 
+        endforeach;
+   endforeach;
+   ?>
 	<li><input type="submit" name="" value="添加"  /></li>
 	<?php else:?>
 	<li>还没有分类，<a href="sort.php">新建分类</a></li>

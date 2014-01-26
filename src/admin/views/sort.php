@@ -67,6 +67,7 @@ foreach($sorts as $key=>$value):
 		<td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
 		<td><?php echo $value['description']; ?></td>
         <td class="alias"><?php echo $value['alias']; ?></td>
+        <td class="alias"><?php echo $value['template']; ?></td>
 		<td class="tdcenter">
 			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 		</td>

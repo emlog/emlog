@@ -83,7 +83,7 @@
     	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
     	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
         <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
-        <li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用中心</a></li>
+        <li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用</a></li>
         <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
         <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
         <?php endif;?>
