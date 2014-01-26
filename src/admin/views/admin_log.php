@@ -148,9 +148,25 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
 	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">
 	<option value="" selected="selected">移动到分类...</option>
-	<?php foreach($sorts as $val):?>
-	<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
-	<?php endforeach;?>
+
+    <?php 
+    foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+    ?>
+    <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+    <option value="<?php echo $value['sid']; ?>">---<?php echo $value['sortname']; ?></option>
+	<?php
+    endforeach;
+    endforeach;
+    ?>
+
 	<option value="-1">未分类</option>
 	</select>
 

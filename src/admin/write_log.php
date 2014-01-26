@@ -11,7 +11,7 @@ if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
 
-	$sorts = $Sort_Model->getSorts();
+	$sorts = $CACHE->readCache('sort');
 	$tags = $Tag_Model->getTag();
 
 	$localtime = time() + Option::get('timezone') * 3600;
@@ -34,7 +34,7 @@ if ($action == 'edit') {
 	extract($blogData);
 
 	$orig_date = $date - Option::get('timezone') * 3600;
-	$sorts = $Sort_Model->getSorts();
+	$sorts = $CACHE->readCache('sort');
 	//log tag
 	$tags = array();
 	foreach ($Tag_Model->getTag($logid) as $val) {

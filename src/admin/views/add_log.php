@@ -29,9 +29,23 @@
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
     <select name="sort" id="sort" style="width:130px;">
         <option value="-1">选择分类...</option>
-        <?php foreach($sorts as $val):?>
-        <option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
-        <?php endforeach;?>
+        <?php 
+        foreach($sorts as $key=>$value):
+        if ($value['pid'] != 0) {
+            continue;
+        }
+        ?>
+        <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+        <?php
+            $children = $value['children'];
+            foreach ($children as $key):
+            $value = $sorts[$key];
+        ?>
+        <option value="<?php echo $value['sid']; ?>">---<?php echo $value['sortname']; ?></option>
+        <?php
+        endforeach;
+        endforeach;
+        ?>
     </select>
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
