@@ -11,8 +11,9 @@
   	<thead>
       <tr>
         <th width="461" colspan="2"><b>标题</b></th>
+        <th width="140"><b>模板</b></th>
         <th width="50" class="tdcenter"><b>评论</b></th>
-        <th width="280"><b>时间</b></th>
+        <th width="140"><b>时间</b></th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
    		<?php echo $isHide; ?>    
 		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
+        <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
