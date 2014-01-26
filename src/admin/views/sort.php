@@ -88,8 +88,8 @@ foreach($sorts as $key=>$value):
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);">添加分类+</a></div>
 <div id="sort_new" class="item_edit">
     <li><input maxlength="4" style="width:30px;" name="taxis" class="input"  /> 序号</li>
-	<li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> 名称</li>
-	<li><input maxlength="200" style="width:243px;" class="input" name="alias" id="alias" /> 别名 (可不填，用于URL的友好显示)</li>
+	<li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> 名称<span class="required">*</sapn></li>
+	<li><input maxlength="200" style="width:243px;" class="input" name="alias" id="alias" /> 别名 (用于URL的友好显示)</li>
 	<li>
 		<select name="pid" id="pid" class="input">
 			<option value="0">无</option>
@@ -104,7 +104,11 @@ foreach($sorts as $key=>$value):
 		</select>
         父分类
 	</li>
+<<<<<<< HEAD
     <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> 模板 (用于自定义分类页面模板，对应模板目录下.php文件)</li>
+=======
+    <li><input maxlength="200" style="width:168px;" class="input" name="sortname" id="sortname" value="log_list" /> 模板 (用于自定义分类页面模板，默认为模板目录下log_list.php文件)</li>
+>>>>>>> 3cc368fa7b338b1b8b38e34872247bea3dc6006a
 	<li>分类描述<br />
 	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
 	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
