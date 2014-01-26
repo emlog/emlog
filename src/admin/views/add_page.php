@@ -22,12 +22,13 @@
     </div>
 </div>
 <div><textarea id="content" name="content" style="width:845px; height:460px;"></textarea></div>
-<div>
+<div style="margin-top: 5px;">
     <span id="alias_msg_hook"></span>
     链接别名：(用于自定义该页面的链接地址。需要<a href="./seo.php" target="_blank">启用链接别名</a>)<br />
-    <input name="alias" id="alias"/>
+    <input name="alias" id="alias" class="input" />
 </div>
-<div>
+<div style="margin-top:3px;">
+    页面模板：<input maxlength="200" class="input" name="template" id="template" value="page" />
     <span id="page_options">
         <label for="allow_remark">页面接受评论</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />

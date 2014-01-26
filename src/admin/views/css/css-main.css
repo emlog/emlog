@@ -406,7 +406,8 @@ textarea {
 	margin:10px 0px 5px 32px
 }
 #page_options {
-	float:left;
+	float:right;
+    margin-right: 5px;
 }
 #page_options label {
 	vertical-align:middle;
@@ -877,7 +878,7 @@ textarea {
     width: 845px;
 }
 #post #alias{
-    width: 841px;
+    width: 835px;
 }
 #post_bar {
     margin:5px 0px;

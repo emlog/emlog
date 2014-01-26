@@ -89,6 +89,7 @@ class Log_Model {
 			$row['content'] = htmlspecialchars($row['content']);
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
 			$row['password'] = htmlspecialchars($row['password']);
+            $row['template'] = htmlspecialchars($row['template']);
 			$logData = $row;
 			return $logData;
 		} else {
@@ -118,7 +119,8 @@ class Log_Model {
 				'top' => $row['top'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'password' => $row['password']
+				'password' => $row['password'],
+                'template' => $row['template'],
 				);
 			return $logData;
 		} else {

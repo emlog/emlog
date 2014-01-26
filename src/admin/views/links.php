@@ -55,13 +55,10 @@
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);">添加链接+</a></div>
-<div id="link_new">
-	<li>序号</li>
-	<li><input maxlength="4" style="width:30px;" class="input" name="taxis" /></li>
-	<li>名称</li>
-	<li><input maxlength="200" style="width:232px;" class="input" name="sitename" /></li>
-	<li>地址</li>
-	<li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /></li>
+<div id="link_new" class="item_edit">
+	<li><input maxlength="4" style="width:30px;" class="input" name="taxis" /> 序号</li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="sitename" /> 名称<span class="required">*</sapn></li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /> 地址<span class="required">*</sapn></li>
 	<li>描述</li>
 	<li><textarea name="description" type="text" class="textarea" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" name="" value="添加链接"  /></li>

@@ -58,7 +58,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+	$template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
+    $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
@@ -76,7 +77,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	'allow_remark'=>$allow_remark,
 	'hide'=>$ishide,
 	'alias'=>$alias,
-	'type'=>'page'
+	'type'=>'page',
+    'template' => $template,
 	);
 
 	if ($pageId > 0) {//自动保存后,添加变为更新

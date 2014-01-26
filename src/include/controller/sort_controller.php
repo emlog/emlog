@@ -61,7 +61,9 @@ class Sort_Controller {
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
+        $template = !empty($sort['template']) && file_exists(TEMPLATE_PATH . $sort['template'] . '.php') ? $sort['template'] : 'log_list';
+
 		include View::getView('header');
-		include View::getView('list');
+		include View::getView($template);
 	}
 }

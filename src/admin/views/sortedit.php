@@ -7,7 +7,7 @@
 <div class=line></div>
 <form action="sort.php?action=update" method="post">
 <div class="item_edit">
-	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> 名称</li>
+	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> 名称 <span class="required">*</sapn></li>
 	<li><input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="input" />别名 <span id="alias_msg_hook"></span></li>
 	<?php if (empty($sorts[$sid]['children'])): ?>
 	<li>

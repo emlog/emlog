@@ -43,6 +43,6 @@ class Author_Controller {
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
 		include View::getView('header');
-		include View::getView('list');
+		include View::getView('log_list');
 	}
 }
