@@ -1015,3 +1015,4 @@ textarea {
 	height:20px;
     padding:0px 40px 0px 30px;
 }
+.required{color: red; font-size: 16px; margin-left: 2px;}
