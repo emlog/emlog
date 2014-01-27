@@ -343,7 +343,11 @@ class Log_Model {
 	 * 随机获取指定数量文章
 	 */
 	function getRandLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY rand() LIMIT 0, $num";
+        global $CACHE;
+        $sta_cache = $CACHE->readCache('sta');
+        $lognum = $sta_cache['lognum'];
+        $start = $lognum > $num ? mt_rand(0, $lognum - $num): 0;
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
