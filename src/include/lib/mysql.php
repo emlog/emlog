@@ -19,13 +19,13 @@ class MySql {
 
 	/**
 	 * 内部数据连接对象
-	 * @var resourse
+	 * @var mysqli
 	 */
 	private $conn;
 
 	/**
 	 * 内部数据结果
-	 * @var resourse
+	 * @var mysqli_result
 	 */
 	private $result;
 
@@ -39,32 +39,38 @@ class MySql {
 	 * 构造函数
 	 */
 	private function __construct() {
-		if (!function_exists('mysql_connect')) {
-			emMsg('服务器PHP不支持MySql数据库');
+		if (!class_exists('mysqli')) {
+			emMsg('服务器PHP不支持MySqli函数');
 		}
-		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
-            switch ($this->geterrno()) {
-                case 2005:
-                    emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
-                    break;
-                case 2003:
-                    emMsg("连接数据库失败，数据库端口错误");
-                    break;
-                case 2006:
-                    emMsg("连接数据库失败，数据库服务器不可用");
-                    break;
-                case 1045:
-                    emMsg("连接数据库失败，数据库用户名或密码错误");
-                    break;
-                default :
-                    emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->geterrno());
-                    break;
-            }
+
+		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
+
+		if ($this->conn->connect_error) {
+			switch ($this->conn->connect_errno) {
+				case 1044:
+				case 1045:
+					emMsg("连接数据库失败，数据库用户名或密码错误");
+					break;
+
+				case 2003:
+					emMsg("连接数据库失败，数据库端口错误");
+					break;
+
+				case 2005:
+					emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+					break;
+
+				case 2006:
+					emMsg("连接数据库失败，数据库服务器不可用");
+					break;
+
+				default :
+					emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+					break;
+			}
 		}
-		if ($this->getMysqlVersion() > '4.1') {
-			mysql_query("SET NAMES 'utf8'");
-		}
-		@mysql_select_db(DB_NAME, $this->conn) OR emMsg("连接数据库失败，未找到您填写的数据库");
+
+		$this->conn->set_charset('utf8');
 	}
 
 	/**
@@ -74,6 +80,7 @@ class MySql {
 		if (self::$instance == null) {
 			self::$instance = new MySql();
 		}
+
 		return self::$instance;
 	}
 
@@ -81,7 +88,7 @@ class MySql {
 	 * 关闭数据库连接
 	 */
 	function close() {
-		return mysql_close($this->conn);
+		return $this->conn->close();
 	}
 
 	/**
@@ -89,11 +96,11 @@ class MySql {
 	 *
 	 */
 	function query($sql) {
-		$this->result = @mysql_query($sql, $this->conn);
+		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
 		if (!$this->result) {
-			emMsg("SQL语句执行错误：$sql <br />" . $this->geterror());
-		}else {
+			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
+		} else {
 			return $this->result;
 		}
 	}
@@ -102,8 +109,8 @@ class MySql {
 	 * 从结果集中取得一行作为关联数组/数字索引数组
 	 *
 	 */
-	function fetch_array($query , $type = MYSQL_ASSOC) {
-		return mysql_fetch_array($query, $type);
+	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
+		return $query->fetch_array($type);
 	}
 
 	function once_fetch_array($sql) {
@@ -115,57 +122,58 @@ class MySql {
 	 * 从结果集中取得一行作为数字索引数组
 	 *
 	 */
-	function fetch_row($query) {
-		return mysql_fetch_row($query);
+	function fetch_row(mysqli_result $query) {
+		return $query->fetch_row();
 	}
 
 	/**
 	 * 取得行的数目
 	 *
 	 */
-	function num_rows($query) {
-		return mysql_num_rows($query);
+	function num_rows(mysqli_result $query) {
+		return $query->num_rows;
 	}
 
 	/**
 	 * 取得结果集中字段的数目
 	 */
-	function num_fields($query) {
-		return mysql_num_fields($query);
+	function num_fields(mysqli_result $query) {
+		return $query->field_count;
 	}
+
 	/**
 	 * 取得上一步 INSERT 操作产生的 ID
 	 */
 	function insert_id() {
-		return mysql_insert_id($this->conn);
+		return $this->conn->insert_id;
 	}
 
 	/**
 	 * 获取mysql错误
 	 */
 	function geterror() {
-		return mysql_error();
+		return $this->conn->error;
 	}
 
-    /**
+	/**
 	 * 获取mysql错误编码
 	 */
 	function geterrno() {
-		return mysql_errno();
+		return $this->conn->errno;
 	}
 
 	/**
 	 * Get number of affected rows in previous MySQL operation
 	 */
 	function affected_rows() {
-		return mysql_affected_rows();
+		return $this->conn->affected_rows;
 	}
 
 	/**
 	 * 取得数据库版本信息
 	 */
 	function getMysqlVersion() {
-		return mysql_get_server_info();
+		return $this->conn->server_info;
 	}
 
 	/**
