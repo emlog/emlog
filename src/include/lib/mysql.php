@@ -43,13 +43,17 @@ class MySql {
 			emMsg('服务器PHP不支持MySqli函数');
 		}
 
-		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
+		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 
 		if ($this->conn->connect_error) {
 			switch ($this->conn->connect_errno) {
 				case 1044:
 				case 1045:
 					emMsg("连接数据库失败，数据库用户名或密码错误");
+					break;
+
+                case 1049:
+					emMsg("连接数据库失败，未找到您填写的数据库");
 					break;
 
 				case 2003:
