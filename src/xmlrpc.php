@@ -604,7 +604,7 @@ function login($username, $password) {
 
 function escape(&$array) {
 	if (!is_array($array)) {
-		return(mysql_real_escape_string($array));
+		return(MySql::getInstance()->escape_string($array));
 	}else {
 		foreach ((array) $array as $k => $v) {
 			if (is_array($v)) {
@@ -612,7 +612,7 @@ function escape(&$array) {
 			}else if (is_object($v)) {
 				// skip
 			}else {
-				$array[$k] = mysql_real_escape_string($v);
+				$array[$k] = MySql::getInstance()->escape_string($v);
 			}
 		}
 	}

@@ -228,7 +228,7 @@ function dataBak($table) {
 		$comma = '';
 		$sql .= "INSERT INTO $table VALUES(";
 		for ($i = 0; $i < $numfields; $i++) {
-			$sql .= $comma."'".mysql_real_escape_string($row[$i])."'";
+			$sql .= $comma."'" . $DB->escape_string($row[$i]) . "'";
 			$comma = ',';
 		}
 		$sql .= ");\n";
