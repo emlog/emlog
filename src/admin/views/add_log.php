@@ -41,7 +41,7 @@
             foreach ($children as $key):
             $value = $sorts[$key];
         ?>
-        <option value="<?php echo $value['sid']; ?>">---<?php echo $value['sortname']; ?></option>
+        <option value="<?php echo $value['sid']; ?>">&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
         <?php
         endforeach;
         endforeach;

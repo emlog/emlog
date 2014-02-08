@@ -45,13 +45,11 @@ $isdraft = $hide == 'y' ? true : false;
             $value = $sorts[$key];
             $flg = $value['sid'] == $sortid ? 'selected' : '';
         ?>
-        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>---<?php echo $value['sortname']; ?></option>
+        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
         <?php
         endforeach;
         endforeach;
-        ?>  
-        
-        
+        ?>
     </select>
     发布于：<input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
