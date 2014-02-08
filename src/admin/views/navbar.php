@@ -113,8 +113,8 @@
 		$value = $sorts[$key];
 	?>
     <li>
-        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
-		---- <?php echo $value['sortname']; ?>
+        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <?php echo $value['sortname']; ?>
 	</li>
 	<?php 
         endforeach;
