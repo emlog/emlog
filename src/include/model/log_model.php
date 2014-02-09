@@ -256,9 +256,6 @@ class Log_Model {
 	function hideSwitch($blogId, $state) {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
-        if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
-		}
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
