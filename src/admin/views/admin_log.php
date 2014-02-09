@@ -104,7 +104,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <tr>
       <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="置顶" /><?php endif; ?>
+      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶" /><?php endif; ?>
+      <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶" /><?php endif; ?>
 	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
       <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
       <span style="display:none; margin-left:8px;">
@@ -139,10 +140,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php if($pid == 'draft'): ?>
 	<a href="javascript:logact('pub');">发布</a>
 	<?php else: ?>
-	<a href="javascript:logact('hide');">转入草稿箱</a> | 
+	<a href="javascript:logact('hide');">放入草稿箱</a> | 
 
 	<?php if (ROLE == ROLE_ADMIN):?>
-	<a href="javascript:logact('top');">置顶</a> | 
+	<a href="javascript:logact('top');">首页置顶</a> | 
+    <a href="javascript:logact('sortop');">分类置顶</a> | 
     <a href="javascript:logact('notop');">取消置顶</a> | 
     <?php endif;?>
 

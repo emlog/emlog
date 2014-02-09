@@ -75,7 +75,7 @@ $isdraft = $hide == 'y' ? true : false;
 	文章访问密码：<input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-        <label for="top">文章置顶</label>
+        <label for="top">首页置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
         <label for="allow_remark">允许评论</label>
     </span>

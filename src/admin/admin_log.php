@@ -46,7 +46,7 @@ if ($action == '') {
 	} elseif (isset($_GET['sortDate'])) {
 		$sqlSegment .= "date $sortDate";
 	} else {
-		$sqlSegment .= 'top DESC,date DESC';
+		$sqlSegment .= 'top DESC, sortop DESC, date DESC';
 	}
 
 	$hide_state = $pid ? 'y' : 'n';
@@ -116,10 +116,17 @@ if ($action == 'operate_log') {
 			}
 			emDirect("./admin_log.php?active_up=1");
 			break;
+		case 'sortop':
+			foreach ($logs as $val)
+			{
+				$Log_Model->updateLog(array('sortop'=>'y'), $val);
+			}
+			emDirect("./admin_log.php?active_up=1");
+			break;
 		case 'notop':
 			foreach ($logs as $val)
 			{
-				$Log_Model->updateLog(array('top'=>'n'), $val);
+				$Log_Model->updateLog(array('top'=>'n', 'sortop'=>'n'), $val);
 			}
 			emDirect("./admin_log.php?active_down=1");
 			break;

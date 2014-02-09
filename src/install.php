@@ -229,6 +229,7 @@ CREATE TABLE {$db_prefix}blog (
   comnum int(10) unsigned NOT NULL default '0',
   attnum int(10) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
+  sortop enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   checked enum('n','y') NOT NULL default 'y',
   allow_remark enum('n','y') NOT NULL default 'y',
@@ -243,7 +244,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment,

@@ -50,7 +50,7 @@ class Sort_Controller {
 			$sortids = array_merge(array($sortid), $sort['children']);
 			$sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
 		}
-		$sqlSegment .=  " order by date desc";
+		$sqlSegment .=  " order by sortop desc, date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {

@@ -253,9 +253,12 @@ function blog_navi(){
 <?php }?>
 <?php
 //blog：置顶
-function topflg($istop){
-	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"置顶文章\" /> " : '';
-	echo $topflg;
+function topflg($top, $sortop='n', $sortid=null){
+    if(blog_tool_ishome()) {
+       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"首页置顶文章\" /> " : '';
+    } elseif($sortid){
+       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"分类置顶文章\" /> " : '';
+    }
 }
 ?>
 <?php

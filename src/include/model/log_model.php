@@ -117,6 +117,7 @@ class Log_Model {
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
 				'top' => $row['top'],
+                'sortop' => $row['sortop'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
 				'password' => $row['password'],
