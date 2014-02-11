@@ -125,6 +125,17 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		</td>
       </tr>
   </table>
+<div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
+        <td align="right" width="18%" valign="top">附件：<br /></td>
+        <td width="82%">
+		文件上传最大限制 <input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />K（单位Kb）<br />
+        文件上传允许类型 <input maxlength="200" style="width:290px;" class="input" value="<?php echo $blogname; ?>" name="blogname" />（半角逗号分隔）<br />
+        图片附件缩略图最大尺寸：<input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />x<input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />（最大宽度x最大高度，单位像素）<br />
+		</td>
+      </tr>
+  </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
