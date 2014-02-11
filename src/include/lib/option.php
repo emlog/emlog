@@ -7,11 +7,6 @@
 class Option {
 	//版本编号
 	const EMLOG_VERSION = '5.2.1';
-	//图片附件缩略图最大宽
-	const IMG_MAX_W = 420;
-	//图片附件缩略图最大高
-	const IMG_MAX_H = 460;
-	//头像缩略图最大宽
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
@@ -19,12 +14,8 @@ class Option {
 	const T_IMG_MAX_W = 180;
 	//微语图片缩略图最大高
 	const T_IMG_MAX_H = 136;
-	//附件大小上限，单位：字节，默认20M
-	const UPLOADFILE_MAXSIZE = 20971520;
 	//附件上传路径
 	const UPLOADFILE_PATH = '../content/uploadfile/';
-	//允许上传的附件类型
-	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx';
 
 	static function get($option){
 		$CACHE = Cache::getInstance();
@@ -141,9 +132,16 @@ class Option {
 	 * 获取允许上传的附件类型
 	 */
 	static function getAttType() {
-		return explode(',', self::ATTACHMENT_TYPE);
+		return explode(',', self::get('att_type'));
 	}
 
+    /**
+	 * 获取附件最大限制,单位字节
+	 */
+	static function getAttMaxSize() {
+		return self::get('att_maxsize') * 1024;
+	}
+    
 	/**
 	 * 获取widget组件标题
 	 */

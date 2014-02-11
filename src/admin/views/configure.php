@@ -74,7 +74,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right" width="18%" valign="top">功能开关：<br /></td>
         <td width="82%">
         <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> />登录验证码<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />图片附件缩略图<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作<br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />手机访问版，地址：<span id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></span><br />
@@ -130,9 +129,9 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top">附件：<br /></td>
         <td width="82%">
-		文件上传最大限制 <input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />K（单位Kb）<br />
-        文件上传允许类型 <input maxlength="200" style="width:290px;" class="input" value="<?php echo $blogname; ?>" name="blogname" />（半角逗号分隔）<br />
-        图片附件缩略图最大尺寸：<input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />x<input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />（最大宽度x最大高度，单位像素）<br />
+		附件上传最大限制 <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB<br />
+        允许上传的附件类型 <input maxlength="200" style="width:290px;" class="input" value="<?php echo $att_type; ?>" name="att_type" />（多个用半角逗号分隔）<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，缩略图最大尺寸：<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" />（最大宽度x最大高度，单位：像素）<br />
 		</td>
       </tr>
   </table>

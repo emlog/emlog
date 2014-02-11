@@ -506,8 +506,8 @@ function mw_newMediaObject($args) {
 	$thum_created = true;
 
 	if (Option::get('isthumbnail') && in_array($extension, $imtype) && function_exists('ImageCreate')) {
-		$max_w = Option::IMG_MAX_W;
-		$max_h = Option::IMG_MAX_H;
+		$max_w = Option::get('att_imgmaxw');
+		$max_h = Option::get('att_imgmaxh');
 		$size = chImageSize($attachpath, $max_w, $max_h);
 		$newwidth = $size['w'];
 		$newheight = $size['h'];

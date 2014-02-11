@@ -377,7 +377,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			emMsg('错误的文件类型');
 			break;
 		case '103':
-			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+			$ret = changeFileSize(Option::getAttMaxSize());
 			emMsg("文件大小超出{$ret}的限制");
 			break;
 		case '104':
@@ -446,7 +446,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if (!in_array($extension, $type)) {
 		return '102'; //错误的文件类型
 	}
-	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
+	if ($fileSize > Option::getAttMaxSize()) {
 		return '103'; //文件大小超出emlog的限制
 	}
 	$file_info = array();
@@ -487,7 +487,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 				$file_info['thum_height'] = $size[1];
 			}
 			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
-		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+		} elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
 			$file_info['thum_file'] = $thum;
 			$file_info['thum_size'] = filesize($thum);
 			$size = getimagesize($thum);
