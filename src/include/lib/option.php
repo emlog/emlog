@@ -6,7 +6,7 @@
 
 class Option {
 	//版本编号
-	const EMLOG_VERSION = '5.2.1';
+	const EMLOG_VERSION = '5.3.0';
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
