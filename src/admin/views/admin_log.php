@@ -28,7 +28,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
         <span id="f_t_sort">
-            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:130px;">
+            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;">
             <option value="" selected="selected">按分类查看...</option>
             <?php 
             foreach($sorts as $key=>$value):
@@ -158,7 +158,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<a href="javascript:logact('hide');">放入草稿箱</a> | 
 
 	<?php if (ROLE == ROLE_ADMIN):?>
-    <select name="top" id="top" onChange="changeTop(this);" style="width:130px;">
+    <select name="top" id="top" onChange="changeTop(this);" style="width:90px;">
         <option value="" selected="selected">置顶操作...</option>
         <option value="top">首页置顶</option>
         <option value="sortop">分类置顶</option>
@@ -166,7 +166,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </select>
     <?php endif;?>
 
-	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">
+	<select name="sort" id="sort" onChange="changeSort(this);" style="width:110px;">
 	<option value="" selected="selected">移动到分类...</option>
 
     <?php 
@@ -190,7 +190,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</select>
 
 	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
-	<select name="author" id="author" onChange="changeAuthor(this);">
+	<select name="author" id="author" onChange="changeAuthor(this);" style="width:110px;">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($user_cache as $key => $val):
 	$val['name'] = $val['name'];
