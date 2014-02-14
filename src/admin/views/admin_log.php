@@ -25,9 +25,33 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_title">
 	<div style="float:left; margin-top:8px;">
 		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
-		<span id="f_t_sort"><a href="javascript:void(0);">分类</a></span>
-		<span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
+        <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
 		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
+        <span id="f_t_sort">
+            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:130px;">
+            <option value="" selected="selected">按分类查看...</option>
+            <?php 
+            foreach($sorts as $key=>$value):
+            if ($value['pid'] != 0) {
+                continue;
+            }
+            $flg = $value['sid'] == $sid ? 'selected' : '';
+            ?>
+            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+            <?php
+                $children = $value['children'];
+                foreach ($children as $key):
+                $value = $sorts[$key];
+                $flg = $value['sid'] == $sid ? 'selected' : '';
+            ?>
+            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+            <?php
+            endforeach;
+            endforeach;
+            ?>
+            <option value="-1" <?php if($sid == -1) echo 'selected'; ?>>未分类</option>
+            </select>
+        </span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
@@ -39,20 +63,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</div>
 	<div style="clear:both"></div>
 </div>
-<div id="f_sort" <?php echo $isDisplaySort ?>>
-	分类：<span <?php echo $sid == -1 ?  "class=\"filter\"" : ''; ?>><a href="./admin_log.php?sid=-1<?php echo $isdraft; ?>">未分类</a></span>
-	<?php foreach($sorts as $val):
-		$a = "sort_{$val['sid']}";
-		$$a = '';
-		$b = "sort_$sid";
-		$$b = "class=\"filter\"";
-	?>
-	<span <?php echo $$a; ?>><a href="./admin_log.php?sid=<?php echo $val['sid'].$isdraft; ?>"><?php echo $val['sortname']; ?></a></span>
-	<?php endforeach;?>
-</div>
 <div id="f_tag" <?php echo $isDisplayTag ?>>
 	标签：
-	<?php foreach($tags as $val):
+	<?php 
+    if(empty($tags)) echo '还没有标签';
+    foreach($tags as $val):
 		$a = 'tag_'.$val['tid'];
 		$$a = '';
 		$b = 'tag_'.$tagId;
@@ -143,9 +158,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<a href="javascript:logact('hide');">放入草稿箱</a> | 
 
 	<?php if (ROLE == ROLE_ADMIN):?>
-	<a href="javascript:logact('top');">首页置顶</a> | 
-    <a href="javascript:logact('sortop');">分类置顶</a> | 
-    <a href="javascript:logact('notop');">取消置顶</a> | 
+    <select name="top" id="top" onChange="changeTop(this);" style="width:130px;">
+        <option value="" selected="selected">置顶操作...</option>
+        <option value="top">首页置顶</option>
+        <option value="sortop">分类置顶</option>
+        <option value="notop">取消置顶</option>
+    </select>
     <?php endif;?>
 
 	<select name="sort" id="sort" onChange="changeSort(this);" style="width:130px;">
@@ -168,7 +186,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     endforeach;
     endforeach;
     ?>
-
 	<option value="-1">未分类</option>
 	</select>
 
@@ -208,7 +225,6 @@ function logact(act){
 	$("#form_log").submit();
 }
 function changeSort(obj) {
-	var sortId = obj.value;
 	if (getChecked('ids') == false) {
 		alert('请选择要操作的文章');
 		return;}
@@ -217,13 +233,23 @@ function changeSort(obj) {
 	$("#form_log").submit();
 }
 function changeAuthor(obj) {
-	var sortId = obj.value;
 	if (getChecked('ids') == false) {
 		alert('请选择要操作的文章');
 		return;}
 	if($('#author').val() == '')return;
 	$("#operate").val('change_author');
 	$("#form_log").submit();
+}
+function changeTop(obj) {
+	if (getChecked('ids') == false) {
+		alert('请选择要操作的文章');
+		return;}
+	if($('#top').val() == '')return;
+	$("#operate").val(obj.value);
+	$("#form_log").submit();
+}
+function selectSort(obj) {
+    window.open("./admin_log.php?sid=" + obj.value,"_self");
 }
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('sidebarsubmenu1');
