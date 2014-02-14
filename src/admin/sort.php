@@ -36,7 +36,9 @@ if ($action== 'add') {
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 	$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+    $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
+	$description = isset($_POST['description'])  ? addslashes(trim($_POST['description'])) : '';
+    
 
 	if (empty($sortname)) {
 		emDirect("./sort.php?error_a=1");
@@ -61,7 +63,7 @@ if ($action== 'add') {
 		$pid = 0;
 	}
 
-	$Sort_Model->addSort($sortname, $alias, $taxis, $pid, $description);
+	$Sort_Model->addSort($sortname, $alias, $taxis, $pid, $description, $template);
 	$CACHE->updateCache(array('sort', 'navi'));
 	emDirect("./sort.php?active_add=1");
 }
@@ -82,7 +84,8 @@ if ($action == 'update') {
 	$sid = isset($_POST['sid']) ? intval($_POST['sid']) : '';
     $sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+	$template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
+    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
 	$sort_data = array();
 	if (empty($sortname)) {
@@ -90,6 +93,7 @@ if ($action == 'update') {
 	}
     $sort_data['sortname'] = $sortname;
     $sort_data['pid'] = $pid;
+    $sort_data['template'] = $template;
     $sort_data['description'] = $description;
 
 	if (isset($_POST['alias'])) {

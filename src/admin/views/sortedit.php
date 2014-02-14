@@ -7,7 +7,7 @@
 <div class=line></div>
 <form action="sort.php?action=update" method="post">
 <div class="item_edit">
-	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> <? echo $lang['name']; ?></li>
+	<li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> <? echo $lang['name']; ?> <span class="required">*</span></li>
 	<li><input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="input" /><? echo $lang['alias']; ?> <span id="alias_msg_hook"></span></li>
 	<?php if (empty($sorts[$sid]['children'])): ?>
 	<li>
@@ -22,6 +22,7 @@
 		</select>
         <span><? echo $lang['category_parent']; ?></span>
 	</li>
+    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="<?php echo $template; ?>" /> 模板 (用于自定义分类页面模板，对应模板目录下.php文件)</li>
 	<?php endif; ?>
 	<li><? echo $lang['category_description']; ?><br />
 		<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;" class="textarea"><?php echo $description; ?></textarea></li>

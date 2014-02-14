@@ -18,8 +18,9 @@
 			<tr>
         <th width="55"><b><? echo $lang['order'];?></b></th>
 			<th width="160"><b><? echo $lang['name']; ?></b></th>
-            <th width="250"><b><? echo $lang['link_description']; ?></b></th>
-			<th width="160"><b><? echo $lang['alias']; ?></b></th>
+            <th width="180"><b><? echo $lang['link_description']; ?></b></th>
+			<th width="130"><b><? echo $lang['alias']; ?></b></th>
+            <th width="100"><b>模板</b></th>
 			<th width="40" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
 			<th width="40" class="tdcenter"><b><? echo $lang['article']; ?></b></th>
 			<th width="60"></th>
@@ -38,9 +39,12 @@ foreach($sorts as $key=>$value):
 			<input type="hidden" value="<?php echo $value['sid'];?>" class="sort_id" />
 			<input maxlength="4" class="num_input" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>" />
 		</td>
-		<td class="sortname"><a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a><br /></td>
+		<td class="sortname">
+            <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
+        </td>
 		<td><?php echo $value['description']; ?></td>
         <td class="alias"><?php echo $value['alias']; ?></td>
+        <td class="alias"><?php echo $value['template']; ?></td>
 		<td class="tdcenter">
 			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 		</td>
@@ -63,6 +67,7 @@ foreach($sorts as $key=>$value):
 		<td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
 		<td><?php echo $value['description']; ?></td>
         <td class="alias"><?php echo $value['alias']; ?></td>
+        <td class="alias"><?php echo $value['template']; ?></td>
 		<td class="tdcenter">
 			<a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
 		</td>
@@ -84,7 +89,7 @@ foreach($sorts as $key=>$value):
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><? echo $lang['category_add']; ?>+</a></div>
 <div id="sort_new" class="item_edit">
     <li><input maxlength="4" style="width:30px;" name="taxis" class="input"  /> <? echo $lang['order']; ?></li>
-	<li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> <? echo $lang['name']; ?></li>
+	<li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> <? echo $lang['name']; ?><span class="required">*</span></li>
 	<li><input maxlength="200" style="width:243px;" class="input" name="alias" id="alias" /> <? echo $lang['alias']; ?> (<? echo $lang['alias_prompt']; ?>)</li>
 	<li>
 		<select name="pid" id="pid" class="input">
@@ -100,7 +105,9 @@ foreach($sorts as $key=>$value):
 		</select>
         	<? echo $lang['category_parent']; ?>
 	</li>
+    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> 模板 (用于自定义分类页面模板，默认为模板目录下log_list.php文件)</li>
 	<li><? echo $lang['category_description']; ?><br />
+	<li>分类描述<br />
 	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
 	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="button"/><span id="alias_msg_hook"></span></li>
 </div>

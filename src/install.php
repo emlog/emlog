@@ -224,23 +224,25 @@ EOT;
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid mediumint(8) unsigned NOT NULL auto_increment,
+  gid int(10) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
   excerpt longtext NOT NULL,
   alias VARCHAR(200) NOT NULL DEFAULT '',
   author int(10) NOT NULL default '1',
-  sortid tinyint(3) NOT NULL default '-1',
+  sortid int(10) NOT NULL default '-1',
   type varchar(20) NOT NULL default 'blog',
-  views mediumint(8) unsigned NOT NULL default '0',
-  comnum mediumint(8) unsigned NOT NULL default '0',
-  attnum mediumint(8) unsigned NOT NULL default '0',
+  views int(10) unsigned NOT NULL default '0',
+  comnum int(10) unsigned NOT NULL default '0',
+  attnum int(10) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
+  sortop enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   checked enum('n','y') NOT NULL default 'y',
   allow_remark enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
+  template varchar(255) NOT NULL default '',
   PRIMARY KEY  (gid),
   KEY date (date),
   KEY author (author),
@@ -250,27 +252,27 @@ CREATE TABLE {$db_prefix}blog (
   KEY comnum (comnum),
   KEY hide (hide)
 )".$add."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,tbcount,top,hide, allow_remark,allow_tb,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '{$lang['install_post_title']}', '".time()."', '{$lang['install_post_body']}', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid smallint(5) unsigned NOT NULL auto_increment,
-  blogid mediumint(8) unsigned NOT NULL default '0',
+  aid int(10) unsigned NOT NULL auto_increment,
+  blogid int(10) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
   filesize int(10) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
   addtime bigint(20) NOT NULL default '0',
-  width smallint(5) NOT NULL default '0',
-  height smallint(5) NOT NULL default '0',
+  width int(10) NOT NULL default '0',
+  height int(10) NOT NULL default '0',
   mimetype varchar(40) NOT NULL default '',
-  thumfor smallint(5) NOT NULL default 0,
+  thumfor int(10) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid mediumint(8) unsigned NOT NULL auto_increment,
-  gid mediumint(8) unsigned NOT NULL default '0',
-  pid mediumint(8) unsigned NOT NULL default '0',
+  cid int(10) unsigned NOT NULL auto_increment,
+  gid int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   poster varchar(20) NOT NULL default '',
   comment text NOT NULL,
@@ -319,6 +321,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_nee
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',15);
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','20480');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','420');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','460');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','15');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
@@ -349,26 +355,26 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id smallint(4) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment,
   sitename varchar(30) NOT NULL default '',
   siteurl varchar(75) NOT NULL default '',
   description varchar(255) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
-  taxis smallint(4) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', '{$lang['emlog_homepage']}', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id smallint(4) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment,
   naviname varchar(30) NOT NULL default '',
   url varchar(75) NOT NULL default '',
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
-  taxis smallint(4) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
-  type_id mediumint(8) unsigned NOT NULL default '0',
+  type_id int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '{$lang['home']}', '', 1, 'y', 1);
@@ -376,7 +382,7 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '{$lang['login']}', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid mediumint(8) unsigned NOT NULL auto_increment,
+  tid int(10) unsigned NOT NULL auto_increment,
   tagname varchar(60) NOT NULL default '',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
@@ -384,12 +390,13 @@ CREATE TABLE {$db_prefix}tag (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid tinyint(3) unsigned NOT NULL auto_increment,
+  sid int(10) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis smallint(4) unsigned NOT NULL default '0',
-  pid tinyint(3) unsigned NOT NULL default '0',
+  taxis int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   description text NOT NULL,
+  template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
@@ -399,15 +406,15 @@ content text NOT NULL,
 img varchar(200) DEFAULT NULL,
 author int(10) NOT NULL default '1',
 date bigint(20) NOT NULL,
-replynum mediumint(8) unsigned NOT NULL default '0',
+replynum int(10) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
 )".$add."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '{$lang['twitter_first_text']}', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
-  id mediumint(8) unsigned NOT NULL auto_increment,
-  tid mediumint(8) unsigned NOT NULL default '0',
+  id int(10) unsigned NOT NULL auto_increment,
+  tid int(10) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
   name varchar(20) NOT NULL default '',
   content text NOT NULL,
@@ -419,7 +426,7 @@ CREATE TABLE {$db_prefix}reply (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid tinyint(3) unsigned NOT NULL auto_increment,
+  uid int(10) unsigned NOT NULL auto_increment,
   username varchar(32) NOT NULL default '',
   password varchar(64) NOT NULL default '',
   nickname varchar(20) NOT NULL default '',

@@ -74,7 +74,6 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right" width="18%" valign="top"><? echo $lang['function_switch']; ?>:<br /></td>
         <td width="82%">
         <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /><? echo $lang['login_captcha']; ?><br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><? echo $lang['attachment_thumb']; ?><br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><? echo $lang['gzip_compression']; ?><br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><? echo $lang['offline_writing']; ?><br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> /><? echo $lang['mobile_address']; ?>: <span id="m"><a title="<? echo $lang['mobile_use']; ?>"><?php echo BLOG_URL.'m'; ?></a></span><br />
@@ -122,6 +121,17 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
 		<? echo $lang['show_perpage']; ?>: <input maxlength="5" size="4" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><? echo $lang['_comments']; ?>,
 		<? echo $lang['show_first']; ?>: <select name="comment_order"><option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option><option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option></select><br />
+		</td>
+      </tr>
+  </table>
+<div class="setting_line"></div>
+  <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
+      <tr>
+        <td align="right" width="18%" valign="top">附件：<br /></td>
+        <td width="82%">
+		附件上传最大限制 <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB（上传文件还受到服务器PHP配置最大上传<?php echo ini_get('upload_max_filesize'); ?>限制）<br />
+        允许上传的附件类型 <input maxlength="200" style="width:320px;" class="input" value="<?php echo $att_type; ?>" name="att_type" />（多个用半角逗号分隔）<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，最大尺寸：<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" />（单位：像素）<br />
 		</td>
       </tr>
   </table>

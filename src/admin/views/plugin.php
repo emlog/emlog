@@ -11,11 +11,11 @@
   <table width="100%" id="adm_plugin_list" class="item_list">
   <thead>
       <tr>
-        <th width="100"></th>
-        <th width="36" class="tdcenter"><b><? echo $lang['status'];?></b></th>
-		<th width="30" class="tdcenter"><b><? echo $lang['plugin_version'];?></b></th>
-		<th width="500" class="tdcenter"><b><? echo $lang['description'];?></b></th>
-		<th width="30" class="tdcenter"></th>
+        <th width="200"></th>
+        <th width="40" class="tdcenter"><b><? echo $lang['status'];?></b></th>
+		<th width="60" class="tdcenter"><b><? echo $lang['plugin_version'];?></b></th>
+		<th width="450" class="tdcenter"><b><? echo $lang['description'];?></b></th>
+		<th width="60" class="tdcenter"></th>
       </tr>
   </thead>
   <tbody>
@@ -33,6 +33,9 @@
 			$plug_state_des = $lang['plugin_active'];
 		}
 		$i++;
+        if (TRUE === $val['Setting']) {
+            $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\" /></a>";
+        }
 	?>	
       <tr>
         <td class="tdcenter"><?php echo $val['Name']; ?></td>
@@ -54,7 +57,9 @@
 		<?php endif;?>
 		</div>
 		</td>
-		<td><a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care"><? echo $lang['remove']; ?></a></td>
+		<td class="tdcenter">
+	    <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care"><? echo $lang['remove']; ?></a>
+        </td>
       </tr>
 	<?php endforeach;else: ?>
 	  <tr>

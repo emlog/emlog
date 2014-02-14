@@ -13,7 +13,7 @@ class Sort_Controller {
 		$options_cache = Option::getAll();
 		extract($options_cache);
 
-		$page = isset($params[4]) && is_numeric($params[4]) ? abs(intval($params[4])) : 1;
+		$page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
 
 		$sortid = '';
 		if (!empty($params[2])) {
@@ -42,14 +42,16 @@ class Sort_Controller {
 		$sortName = $sort['sortname'];
 		//page meta
 		$site_title = $sortName . ' - ' . $site_title;
-		$site_description = !empty($sort_cache[$sortid]['description']) ? $sort_cache[$sortid]['description'] : $sort_cache[$sortid]['description'];
+		if (!empty($sort_cache[$sortid]['description'])) {
+			$site_description = $sort_cache[$sortid]['description'];
+		}
 		if ($sort['pid'] != 0 || empty($sort['children'])) {
 			$sqlSegment = "and sortid=$sortid";
 		} else {
 			$sortids = array_merge(array($sortid), $sort['children']);
 			$sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
 		}
-		$sqlSegment .=  " order by date desc";
+		$sqlSegment .=  " order by sortop desc, date desc";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
@@ -60,7 +62,9 @@ class Sort_Controller {
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
+        $template = !empty($sort['template']) && file_exists(TEMPLATE_PATH . $sort['template'] . '.php') ? $sort['template'] : 'log_list';
+
 		include View::getView('header');
-		include View::getView('log_list');
+		include View::getView($template);
 	}
 }

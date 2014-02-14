@@ -98,14 +98,28 @@
 	<ul id="navi_add_sort">
 	<?php 
 	if($sorts):
-	foreach($sorts as $key=>$value): 
-	?>
+    foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+    ?>
 	<li>
         <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
 		<?php echo $value['sortname']; ?>
 	</li>
-	<?php endforeach;?>
-	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+    <li>
+        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <?php echo $value['sortname']; ?>
+	</li>
+	<?php 
+        endforeach;
+   endforeach;
+   ?>
 	<?php else:?>
 	<li><? echo $lang['category_no_yet']; ?>, <a href="sort.php"><? echo $lang['category_add']; ?></a></li>
 	<?php endif;?> 

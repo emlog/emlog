@@ -129,12 +129,23 @@ class Cache {
 	 */
 	private function mc_sta() {
 		$sta_cache = array();
-		$lognum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' "));
-		$draftnum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='y'"));
-        $checknum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='n' "));
-		$comnum = $this->db->num_rows($this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE hide='n' "));
-		$hidecom = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "comment where hide='y' "));
-		$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter "));
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
+		$lognum = $data['total'];
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='y'");
+		$draftnum = $data['total'];		
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='n' ");
+		$checknum = $data['total'];			
+
+  		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='n' ");
+		$comnum = $data['total'];	
+
+  		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
+		$hidecom = $data['total'];
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter ");
+		$twnum = $data['total'];
 
 		$sta_cache = array(
 			'lognum' => $lognum,
@@ -144,23 +155,32 @@ class Cache {
 			'twnum' => $twnum,
 			'hidecomnum' => $hidecom,
             'checknum' => $checknum,
-			);
+		);
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
+		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user");
 		while ($row = $this->db->fetch_array($query)) {
-			$logNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='n' and type='blog'"));
-			$draftNum = $this->db->num_rows($this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} and hide='y' and type='blog'"));
-			$commentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and b.author={$row['uid']}"));
-			$hidecommentNum = $this->db->num_rows($this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where a.gid=b.gid and a.hide='y' and b.author={$row['uid']}"));
-			$twnum = $this->db->num_rows($this->db->query("SELECT id FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}"));
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' and type='blog'");
+			$logNum = $data['total'];
+			
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='y' AND type='blog'");
+			$draftNum = $data['total'];
+			
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid = b.gid AND b.author={$row['uid']}");
+			$commentNum = $data['total'];			
 
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid and a.hide='y' AND b.author={$row['uid']}");
+			$hidecommentNum = $data['total'];			
+			
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}");
+			$twnum = $data['total'];
+			
 			$sta_cache[$row['uid']] = array(
 				'lognum' => $logNum,
 				'draftnum' => $draftNum,
 				'commentnum' => $commentNum,
 				'hidecommentnum' => $hidecommentNum,
 				'twnum' => $twnum
-				);
+			);
 		}
 
 		$cacheData = serialize($sta_cache);
@@ -268,9 +288,10 @@ class Cache {
 	 */
 	private function mc_sort() {
 		$sort_cache = array();
-		$query = $this->db->query("SELECT sid,sortname,alias,taxis,pid,description FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
-			$logNum = $this->db->num_rows($this->db->query("SELECT sortid FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " and hide='n' and checked='y' and type='blog'"));
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
+			$logNum = $data['total'];
 			$sortData = array(
 				'lognum' => $logNum,
 				'sortname' => htmlspecialchars($row['sortname']),
@@ -279,6 +300,7 @@ class Cache {
 				'sid' => intval($row['sid']),
 				'taxis' => intval($row['taxis']),
 				'pid' => intval($row['pid']),
+                'template' => htmlspecialchars($row['template']),
 				);
 			if ($sortData['pid'] == 0) {
 				$sortData['children'] = array();

@@ -380,7 +380,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			emMsg($lang['wrong_file_type']);
 			break;
 		case '103':
-			$ret = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+			$ret = changeFileSize(Option::getAttMaxSize());
 			emMsg($lang['file_size_exceeded'] . $ret);
 			break;
 		case '104':
@@ -451,7 +451,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if (!in_array($extension, $type)) {
 		return '102';//Wrong file type
 	}
-	if ($fileSize > Option::UPLOADFILE_MAXSIZE) {
+	if ($fileSize > Option::getAttMaxSize()) {
 		return '103';//File size exceeds emlog limit
 	}
 	$file_info = array();
@@ -492,7 +492,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 				$file_info['thum_height'] = $size[1];
 			}
 			resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
-		} elseif (resizeImage($tmpFile, $thum, Option::IMG_MAX_W, Option::IMG_MAX_H)) {
+		} elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
 			$file_info['thum_file'] = $thum;
 			$file_info['thum_size'] = filesize($thum);
 			$size = getimagesize($thum);
@@ -651,7 +651,7 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
 	$hash = md5($email);
-	$avatar = "http://avatar.qiyuuu.com/$hash/$s/$d/$g";
+	$avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
 	return $avatar;
 }
 

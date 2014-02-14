@@ -23,12 +23,13 @@
     </div>
 </div>
 <div><textarea id="content" name="content" style="width:845px; height:460px;"></textarea></div>
-<div>
+<div style="margin-top: 5px;">
     <span id="alias_msg_hook"></span>
     <? echo $lang['link_alias']; ?>: (<? echo $lang['alias_prompt']; ?> <? echo $lang['need_for']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<br />
-    <input name="alias" id="alias"/>
+    <input name="alias" id="alias" class="input" />
 </div>
-<div>
+<div style="margin-top:3px;">
+    页面模板：<input maxlength="200" class="input" name="template" id="template" value="page" /> （对应模板目录下.php文件）
     <span id="page_options">
         <label for="allow_remark"><? echo $lang['page_comments_allow']; ?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />

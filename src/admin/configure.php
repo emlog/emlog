@@ -77,6 +77,10 @@ if ($action == 'mod_config') {
 	'ischkreply' => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
 	'reply_code' => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
 	'index_twnum' => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
+    'att_maxsize' => isset($_POST['att_maxsize']) ? intval($_POST['att_maxsize']) : 20480,
+    'att_type' => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
+    'att_imgmaxw' => isset($_POST['att_imgmaxw']) ? intval($_POST['att_imgmaxw']) : 420,
+    'att_imgmaxh' => isset($_POST['att_imgmaxh']) ? intval($_POST['att_imgmaxh']) : 460,
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
@@ -88,7 +92,7 @@ if ($action == 'mod_config') {
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
 	}
-	if ($getData['blogurl'] && strncasecmp($getData['blogurl'],'http://',7)) {
+	if ($getData['blogurl'] && strncasecmp($getData['blogurl'],'http',4)) {
 		$getData['blogurl'] = 'http://'.$getData['blogurl'];
 	}
 

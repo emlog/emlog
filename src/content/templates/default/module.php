@@ -284,10 +284,13 @@ function blog_navi(){
 <?php }?>
 <?php
 //blog:top
-function topflg($istop){
+function topflg($top, $sortop='n', $sortid=null){
 	global $lang;
-	$topflg = $istop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/import.gif\" title=\"{$lang['post_recommend']}\" /> " : '';
-	echo $topflg;
+    if(blog_tool_ishome()) {
+       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"首页置顶文章\" /> " : '';
+    } elseif($sortid){
+       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"分类置顶文章\" /> " : '';
+    }
 }
 ?>
 

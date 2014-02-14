@@ -104,9 +104,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <tr>
       <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
       <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.gif" align="top" title="<? echo $lang['recommend']; ?>" /><?php endif; ?>
-	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
-      <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <? echo $lang['pending']; ?></span><?php endif; ?>
+      <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶" /><?php endif; ?>
+      <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶" /><?php endif; ?>
+	  <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+      <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
       <span style="display:none; margin-left:8px;">
 		<?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
 		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>"><? echo $lang['approve']; ?></a> 
@@ -143,15 +144,31 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
 	<?php if (ROLE == ROLE_ADMIN):?>
 	<a href="javascript:logact('top');"><? echo $lang['recommend'];?></a> |
+    <a href="javascript:logact('sortop');">分类置顶</a> | 
     <a href="javascript:logact('notop');"><? echo $lang['unrecommend'];?></a> |
     <?php endif;?>
 
 	<select name="sort" id="sort" onChange="changeSort(this);" style="width:200px;">
 	<option value="" selected="selected"><? echo $lang['move_to_category'];?>...</option>
-	<?php foreach($sorts as $val):?>
-	<option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
-	<?php endforeach;?>
-	<option value="-1"><? echo $lang['unclassified'];?></option>
+
+    <?php 
+    foreach($sorts as $key=>$value):
+	if ($value['pid'] != 0) {
+		continue;
+	}
+    ?>
+    <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+	<?php
+		$children = $value['children'];
+		foreach ($children as $key):
+		$value = $sorts[$key];
+	?>
+    <option value="<?php echo $value['sid']; ?>">&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+	<?php
+    endforeach;
+    endforeach;
+    ?>
+
 	</select>
 
 	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>

@@ -19,7 +19,7 @@ if ($action == 'selectFile') {
         $row = $Log_Model->getOneLogForAdmin($logid);
 		$attachnum = (int)$row['attnum'];
 	}
-	$maxsize = changeFileSize(Option::UPLOADFILE_MAXSIZE);
+	$maxsize = changeFileSize(Option::getAttMaxSize());
 
 	//Allowed attachment type
 	$att_type_str = '';

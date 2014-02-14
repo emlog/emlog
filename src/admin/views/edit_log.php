@@ -31,13 +31,26 @@ $isdraft = $hide == 'y' ? true : false;
     <input name="tag" id="tag" maxlength="200" value="<?php echo $tagStr; ?>" />
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
     <select name="sort" id="sort" style="width:200px;">
-     <?php
-     $sorts[] = array('sid'=>-1, 'sortname'=>$lang['choose_category'].'...');
-     foreach($sorts as $val):
-         $flg = $val['sid'] == $sortid ? 'selected' : '';
-     ?>
-        <option value="<?php echo $val['sid']; ?>" <?php echo $flg; ?>><?php echo $val['sortname']; ?></option>
-     <?php endforeach; ?>
+        <option value="-1">选择分类...</option>
+        <?php 
+        foreach($sorts as $key=>$value):
+        if ($value['pid'] != 0) {
+            continue;
+        }
+        $flg = $value['sid'] == $sortid ? 'selected' : '';
+        ?>
+        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+        <?php
+            $children = $value['children'];
+            foreach ($children as $key):
+            $value = $sorts[$key];
+            $flg = $value['sid'] == $sortid ? 'selected' : '';
+        ?>
+        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+        <?php
+        endforeach;
+        endforeach;
+        ?>
     </select>
     <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >

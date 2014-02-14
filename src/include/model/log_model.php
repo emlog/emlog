@@ -67,9 +67,8 @@ class Log_Model {
 			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		}
 
-		$res = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
-		$LogNum = $this->db->num_rows($res);
-		return $LogNum;
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
+		return $data['total'];
 	}
 
 	/**
@@ -91,6 +90,7 @@ class Log_Model {
 			$row['content'] = htmlspecialchars($row['content']);
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
 			$row['password'] = htmlspecialchars($row['password']);
+            $row['template'] = !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'page';
 			$logData = $row;
 			return $logData;
 		} else {
@@ -102,7 +102,7 @@ class Log_Model {
 	 * Get a single post for the frontend
 	 */
 	function getOneLogForHome($blogId) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n'";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -118,9 +118,11 @@ class Log_Model {
 				'views' => intval($row['views']),
 				'comnum' => intval($row['comnum']),
 				'top' => $row['top'],
+                'sortop' => $row['sortop'],
 				'attnum' => intval($row['attnum']),
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'password' => $row['password']
+				'password' => $row['password'],
+                'template' => $row['template'],
 				);
 			return $logData;
 		} else {
@@ -258,9 +260,6 @@ class Log_Model {
 	function hideSwitch($blogId, $state) {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
-        if ($this->db->affected_rows() < 1) {
-			emMsg($lang['access_disabled'], './');
-		}
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
@@ -331,8 +330,8 @@ class Log_Model {
 	 */
 	function neighborLog($date) {
 		$neighborlog = array();
-		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and type='blog' ORDER BY date DESC LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and type='blog' ORDER BY date LIMIT 1");
+		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and checked='y' and type='blog' ORDER BY date LIMIT 1");
 		if ($neighborlog['nextLog']) {
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
 		}
@@ -346,7 +345,11 @@ class Log_Model {
 	 * Randomly get a specified number of posts
 	 */
 	function getRandLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY rand() LIMIT 0, $num";
+        global $CACHE;
+        $sta_cache = $CACHE->readCache('sta');
+        $lognum = $sta_cache['lognum'];
+        $start = $lognum > $num ? mt_rand(0, $lognum - $num): 0;
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {

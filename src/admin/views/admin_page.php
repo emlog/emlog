@@ -11,8 +11,9 @@
   	<thead>
       <tr>
         <th width="461" colspan="2"><b><? echo $lang['title']; ?></b></th>
+        <th width="140"><b>模板</b></th>
         <th width="50" class="tdcenter"><b><? echo $lang['comments']; ?></b></th>
-        <th width="280"><b><? echo $lang['time'];?></b></th>
+        <th width="140"><b><? echo $lang['time'];?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
    		<?php echo $isHide; ?>    
 		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
+        <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>

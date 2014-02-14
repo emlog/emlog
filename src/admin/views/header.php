@@ -84,14 +84,39 @@
     	<li class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><? echo $lang['plugins']; ?></a></li>
         <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php"><? echo $lang['templates']; ?></a></li>
+        <li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用</a></li>
+        <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
+        <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
+        <?php endif;?>
 		<?php endif;?>
     </div>
     <?php if (ROLE == ROLE_ADMIN):?>
     <div id="extend_mg">
-    	<li class="sidebarsubmenu" id="menu_store"><a href="store.php"><? echo $lang['app_center']; ?></a></li>
+		<?php doAction('adm_sidebar_ext'); ?>
     </div>
     <?php endif;?>
 	<div id="sidebarBottom"></div>
 </div>
 <div id="container">
 <?php doAction('adm_main_top'); ?>
+<script>
+<!--边栏折叠-->
+$("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
+if ($.cookie('em_extend_ext')) {
+	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
+}
+$("#menu_ext").toggle(
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass, {expires:365});
+	  },
+	  function () {
+		displayToggle('extend_mg', 1)
+		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+		$(this).find("a").removeClass().addClass(exClass);
+		$.cookie('em_extend_ext', exClass, {expires:365});
+	  }
+);
+</script>

@@ -12,7 +12,7 @@ class Comment_Controller {
 		$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 		$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
 		$url = isset($_POST['comurl']) ? addslashes(trim($_POST['comurl'])) : '';
-		$imgcode = isset($_POST['imgcode']) ? strtoupper(trim($_POST['imgcode'])) : '';
+		$imgcode = isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 		$blogId = isset($_POST['gid']) ? intval($_POST['gid']) : -1;
 		$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
 

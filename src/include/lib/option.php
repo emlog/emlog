@@ -6,12 +6,7 @@
 
 class Option {
 	//Version number
-	const EMLOG_VERSION = '5.2.0';
-	//Maximum width of image attachment thumbnail
-	const IMG_MAX_W = 420;
-	//Maximum height of image attachment thumbnail
-	const IMG_MAX_H = 460;
-	//Maximum width of avatar thumbnail
+	const EMLOG_VERSION = '5.2.1';
 	const ICON_MAX_W = 140;
 	//Maximum height of avatar thumbnail
 	const ICON_MAX_H = 220;
@@ -19,12 +14,8 @@ class Option {
 	const T_IMG_MAX_W = 180;
 	//Maximum height of twitter image thumbnail
 	const T_IMG_MAX_H = 136;
-	//Maximum attachment size (unit: byte, default 20M)
-	const UPLOADFILE_MAXSIZE = 20971520;
     //Attachment upload path
 	const UPLOADFILE_PATH = '../content/uploadfile/';
-    //Attachment types allowed to upload
-	const ATTACHMENT_TYPE = 'rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx';
 
 	static function get($option){
 		$CACHE = Cache::getInstance();
@@ -65,80 +56,75 @@ class Option {
 
 	static function getRoutingTable(){
 		$routingtable = array(
-					array(
-							'model' => 'calendar',
-							'method' => 'generate',
-							'reg_0' => '|^.*/\?action=cal|',
-							),
-					array(
-							'model' => 'Record_Controller',
-							'method' => 'display',
-							'reg_0' => '|^.*/\?(record)=(\d{6,8})(&(page)=(\d+))?([\?&].*)?$|',
-							'reg' => '|^.*/(record)/(\d{6,8})/?((\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Sort_Controller',
-							'method' => 'display',
-							'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
-							'reg' => '|^.*/(sort)/([^\./\?=]+)/?((\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Tag_Controller',
-							'method' => 'display',
-							'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?([\?&].*)?$|',
-							'reg' => '|^.*/(tag)/([^/?]+)/?((\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Author_Controller',
-							'method' => 'display',
-							'reg_0' => '|^.*/\?(author)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
-							'reg' => '|^.*/(author)/(\d+)/?((\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Log_Controller',
-							'method' => 'display',
-							'reg_0' => '|^.*/\?(page)=(\d+)([\?&].*)?$|',
-							'reg' => '|^.*/(page)/(\d+)/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Search_Controller',
-							'method' =>'display',
-							'reg_0' => '|^.*/\?(keyword)=([^/&]+)(&(page)=(\d+))?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Comment_Controller',
-							'method' => 'addComment',
-							'reg_0' => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Plugin_Controller',
-							'method' => 'loadPluginShow',
-							'reg_0' => '|^.*/(plugin)/([\w\-]+).*([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Plugin_Controller',
-							'method' => 'loadPluginShow',
-							'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Log_Controller',
-							'method' => 'displayContent',
-							'reg_0' => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
-							'reg_1' => '|^.*/(post)-(\d+)\.html(/(\d+))?/?([\?&].*)?$|',
-							'reg_2' => '|^.*/(post)/(\d+)(/(\d+))?/?$|',
-							'reg_3' => '|^/([^\./\?=]+)(\.html)?(/(\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Log_Controller',
-							'method' => 'displayContent',
-							'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(\d+))?/?([\?&].*)?$|',
-							),
-					array(
-							'model' => 'Log_Controller',
-							'method' => 'display',
-							'reg_0' => '|^/?([\?&].*)?$|',
-							),
-				);
+			array(
+				'model' => 'calendar',
+				'method' => 'generate',
+				'reg_0' => '|^.*/\?action=cal|',
+				),
+			array(
+				'model' => 'Log_Controller',
+				'method' => 'displayContent',
+				'reg_0' => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
+				'reg_1' => '|^.*/(post)-(\d+)\.html(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+				'reg_2' => '|^.*/(post)/(\d+)(/(comment-page)-(\d+))?/?$|',
+				'reg_3' => '|^/([^\./\?=]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Record_Controller',
+				'method' => 'display',
+				'reg_0' => '|^.*/\?(record)=(\d{6,8})(&(page)=(\d+))?([\?&].*)?$|',
+				'reg' => '|^.*/(record)/(\d{6,8})/?((page)/(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Sort_Controller',
+				'method' => 'display',
+				'reg_0' => '|^.*/\?(sort)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
+				'reg' => '|^.*/(sort)/([^\./\?=]+)/?((page)/(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Tag_Controller',
+				'method' => 'display',
+				'reg_0' => '|^.*/\?(tag)=([^&]+)(&(page)=(\d+))?([\?&].*)?$|',
+				'reg' => '|^.*/(tag)/([^/?]+)/?((page)/(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Author_Controller',
+				'method' => 'display',
+				'reg_0' => '|^.*/\?(author)=(\d+)(&(page)=(\d+))?([\?&].*)?$|',
+				'reg' => '|^.*/(author)/(\d+)/?((page)/(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Log_Controller',
+				'method' => 'display',
+				'reg_0' => '|^.*/\?(page)=(\d+)([\?&].*)?$|',
+				'reg' => '|^.*/(page)/(\d+)/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Search_Controller',
+				'method' =>'display',
+				'reg_0' => '|^.*/\?(keyword)=([^/&]+)(&(page)=(\d+))?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Comment_Controller',
+				'method' => 'addComment',
+				'reg_0' => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Plugin_Controller',
+				'method' => 'loadPluginShow',
+				'reg_0' => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Log_Controller',
+				'method' => 'displayContent',
+				'reg_0' => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+				),
+			array(
+				'model' => 'Log_Controller',
+				'method' => 'display',
+				'reg_0' => '|^/?([\?&].*)?$|',
+				),
+			);
 		return $routingtable;
 	}
 
@@ -146,9 +132,16 @@ class Option {
      * Get the types of attachments allowed to upload
 	 */
 	static function getAttType() {
-		return explode(',', self::ATTACHMENT_TYPE);
+		return explode(',', self::get('att_type'));
 	}
 
+    /**
+	 * 获取附件最大限制,单位字节
+	 */
+	static function getAttMaxSize() {
+		return self::get('att_maxsize') * 1024;
+	}
+    
 	/**
 	 * Get the widget titles
 	 */

@@ -137,14 +137,12 @@ class Plugin_Model {
 		preg_match("/Author:(.*)/i", $pluginData, $author_name);
 		preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
-		$plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
         $active_plugins = Option::get('active_plugins');
         $ret = explode('/', $pluginFile);
         $plugin = $ret[0];
-        if (file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php') && in_array($pluginFile, $active_plugins)) {
-            $plugin_name = "<a href=\"./plugin.php?plugin=$plugin\" title=\"{$lang['plugin_setup_click']}\">$plugin_name <img src=\"./views/images/set.png\"></a>";
-        }
+        $setting = (file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php') && in_array($pluginFile, $active_plugins)) ? true : false;
 
+        $plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
 		$version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
 		$description = isset($description[1]) ? strip_tags(trim($description[1])) : '';
 		$plugin_url = isset($plugin_url[1]) ? strip_tags(trim($plugin_url[1])) : '';
@@ -160,6 +158,8 @@ class Plugin_Model {
 		'Author' => $author,
 		'ForEmlog' => $foremlog,
 		'AuthorUrl' => $author_url,
+        'Setting' => $setting,
+        'Plugin' => $plugin,
 		);
 	}
 }

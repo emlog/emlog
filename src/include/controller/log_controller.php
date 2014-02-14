@@ -34,7 +34,7 @@ class Log_Controller {
 
 	function displayContent($params) {
 		global $lang;
-		$comment_page = isset($params[4]) && is_numeric($params[4]) ? intval($params[4]) : 1;
+		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
 
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
@@ -106,7 +106,8 @@ class Log_Controller {
             $tb = array();$tb_url = '';//Compatible with undeleted reference templates
 			include View::getView('echo_log');
 		}elseif ($type == 'page') {
-			include View::getView('page');
+            $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';
+			include View::getView($template);
 		}
 	}
 }

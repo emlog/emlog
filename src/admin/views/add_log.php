@@ -30,9 +30,23 @@
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
     <select name="sort" id="sort" style="width:200px;">
         <option value="-1"><? echo $lang['choose_category']; ?></option>
-        <?php foreach($sorts as $val):?>
-        <option value="<?php echo $val['sid']; ?>"><?php echo $val['sortname']; ?></option>
-        <?php endforeach;?>
+        <?php 
+        foreach($sorts as $key=>$value):
+        if ($value['pid'] != 0) {
+            continue;
+        }
+        ?>
+        <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+        <?php
+            $children = $value['children'];
+            foreach ($children as $key):
+            $value = $sorts[$key];
+        ?>
+        <option value="<?php echo $value['sid']; ?>">&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+        <?php
+        endforeach;
+        endforeach;
+        ?>
     </select>
     <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
@@ -67,6 +81,7 @@
 <div id="post_button">
     <input type="hidden" name="ishide" id="ishide" value="">
           <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
+    <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />
           <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
 </div>
 </div>
