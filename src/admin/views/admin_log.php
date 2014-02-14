@@ -249,7 +249,7 @@ function changeTop(obj) {
 	$("#form_log").submit();
 }
 function selectSort(obj) {
-    window.open("./admin_log.php?sid=" + obj.value,"_self");
+    window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
 }
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('sidebarsubmenu1');
