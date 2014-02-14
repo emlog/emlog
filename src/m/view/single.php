@@ -7,6 +7,7 @@
 	<?php endif;?>
 	</div>
 	<div class="postcont"><?php echo $log_content; ?></div>
+    <?php if(!empty($commentStacks)): ?>
 	<div class="t">评论：</div>
 	<div class="c">
 		<?php foreach($commentStacks as $cid):
@@ -21,6 +22,8 @@
 		<?php endforeach; ?>
 		<div id="page"><?php echo $commentPageUrl;?></div>
 	</div>
+    <?php endif;?>
+    <?php if($allow_remark == 'y'): ?>
 	<div class="t">发表评论：</div>
 	<div class="c">
 		<form method="post" action="./index.php?action=addcom&gid=<?php echo $logid; ?>">
@@ -35,4 +38,5 @@
 		<?php echo $verifyCode; ?><br /><input type="submit" value="发表评论" />
 		</form>
 	</div>
+    <?php endif;?>
 </div>
