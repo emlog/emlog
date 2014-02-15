@@ -52,13 +52,14 @@ a:hover{color:#333;text-decoration:none}
 	background-position:left top;
 	background-image:url(./images/sidebar_bg.gif);width:114px;
 	background-repeat:repeat-y;
-	text-align:center;
+*	text-align:center;
 	float:left;
 }
 #side a{
 	color:#333;
 	text-decoration:none;
 	display:block;
+	text-indent: 23px;
 }
 #side a:hover{
 	color:#2A9DDB;
