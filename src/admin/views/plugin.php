@@ -34,7 +34,7 @@
 		}
 		$i++;
         if (TRUE === $val['Setting']) {
-            $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\" /></a>";
+            $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"{$lang['plugin_setup_click']}\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\" /></a>";
         }
 	?>	
       <tr>

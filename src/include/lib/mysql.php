@@ -50,11 +50,11 @@ class MySql {
 			switch ($this->conn->connect_errno) {
 				case 1044:
 				case 1045:
-					emMsg("连接数据库失败，数据库用户名或密码错误");
+					emMsg($lang['db_user_error']);
 					break;
 
                 case 1049:
-					emMsg("连接数据库失败，未找到您填写的数据库");
+					emMsg($lang['db_not_found']);
 					break;
 
 				case 2003:
@@ -62,7 +62,7 @@ class MySql {
 					break;
 
 				case 2005:
-					emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+					emMsg($lang['db_connect_error']);
 					break;
 
 				case 2006:

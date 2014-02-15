@@ -28,7 +28,7 @@
     <input name="alias" id="alias" value="<?php echo $alias; ?>" class="input" />
 </div>
 <div style="margin-top:3px;">
-    页面模板：<input maxlength="200" class="input" name="template" id="template" value="<?php echo $template;?>" /> （对应模板目录下.php文件）
+    <? echo $lang['page_template']; ?>: <input maxlength="200" class="input" name="template" id="template" value="<?php echo $template;?>" /> <? echo $lang['page_template_file']; ?>
     <span id="page_options">
     <label for="allow_remark"><? echo $lang['page_comments_allow']; ?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />

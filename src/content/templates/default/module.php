@@ -287,9 +287,9 @@ function blog_navi(){
 function topflg($top, $sortop='n', $sortid=null){
 	global $lang;
     if(blog_tool_ishome()) {
-       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"首页置顶文章\" /> " : '';
+       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"{$lang['article_top_home']}\" /> " : '';
     } elseif($sortid){
-       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"分类置顶文章\" /> " : '';
+       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"{$lang['article_top_category']}\" /> " : '';
     }
 }
 ?>

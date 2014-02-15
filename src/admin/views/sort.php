@@ -20,7 +20,7 @@
 			<th width="160"><b><? echo $lang['name']; ?></b></th>
             <th width="180"><b><? echo $lang['link_description']; ?></b></th>
 			<th width="130"><b><? echo $lang['alias']; ?></b></th>
-            <th width="100"><b>模板</b></th>
+            <th width="100"><b><? echo $lang['template']; ?></b></th>
 			<th width="40" class="tdcenter"><b><? echo $lang['view']; ?></b></th>
 			<th width="40" class="tdcenter"><b><? echo $lang['article']; ?></b></th>
 			<th width="60"></th>
@@ -105,9 +105,8 @@ foreach($sorts as $key=>$value):
 		</select>
         	<? echo $lang['category_parent']; ?>
 	</li>
-    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> 模板 (用于自定义分类页面模板，默认为模板目录下log_list.php文件)</li>
+    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> <? echo $lang['template']; ?> <? echo $lang['template_log_list']; ?></li>
 	<li><? echo $lang['category_description']; ?><br />
-	<li>分类描述<br />
 	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
 	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="button"/><span id="alias_msg_hook"></span></li>
 </div>

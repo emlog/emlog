@@ -31,7 +31,7 @@ $isdraft = $hide == 'y' ? true : false;
     <input name="tag" id="tag" maxlength="200" value="<?php echo $tagStr; ?>" />
     <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
     <select name="sort" id="sort" style="width:200px;">
-        <option value="-1">选择分类...</option>
+        <option value="-1"><? echo $lang['category_choose']; ?>...</option>
         <?php 
         foreach($sorts as $key=>$value):
         if ($value['pid'] != 0) {

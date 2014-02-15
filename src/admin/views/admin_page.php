@@ -11,7 +11,7 @@
   	<thead>
       <tr>
         <th width="461" colspan="2"><b><? echo $lang['title']; ?></b></th>
-        <th width="140"><b>模板</b></th>
+        <th width="140"><b><? echo $lang['template']; ?></b></th>
         <th width="50" class="tdcenter"><b><? echo $lang['comments']; ?></b></th>
         <th width="140"><b><? echo $lang['time'];?></b></th>
       </tr>

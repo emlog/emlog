@@ -56,9 +56,9 @@
 <form action="link.php?action=addlink" method="post" name="link" id="link">
 <div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('link_new', 2);"><? echo $lang['link_add'];?>+</a></div>
 <div id="link_new" class="item_edit">
-	<li><input maxlength="4" style="width:30px;" class="input" name="taxis" /> 序号</li>
-	<li><input maxlength="200" style="width:232px;" class="input" name="sitename" /> 名称<span class="required">*</sapn></li>
-	<li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /> 地址<span class="required">*</sapn></li>
+	<li><input maxlength="4" style="width:30px;" class="input" name="taxis" /> <? echo $lang['order']; ?></li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="sitename" /> <? echo $lang['name'];?><span class="required">*</sapn></li>
+	<li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /> <? echo $lang['link_url'];?><span class="required">*</sapn></li>
 	<li><? echo $lang['link_description'];?></li>
 	<li><textarea name="description" type="text" class="textarea" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" name="" value="<? echo $lang['link_add'];?>"  /></li>

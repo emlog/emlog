@@ -84,9 +84,9 @@
     	<li class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><? echo $lang['plugins']; ?></a></li>
         <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php"><? echo $lang['templates']; ?></a></li>
-        <li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用</a></li>
+        <li class="sidebarsubmenu" id="menu_store"><a href="store.php"><? echo $lang['apps']; ?></a></li>
         <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
-        <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
+        <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus"><? echo $lang['extensions']; ?></a></li>
         <?php endif;?>
 		<?php endif;?>
     </div>
