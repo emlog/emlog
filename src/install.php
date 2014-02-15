@@ -364,6 +364,7 @@ CREATE TABLE {$db_prefix}navi (
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   taxis int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
   type_id int(10) unsigned NOT NULL default '0',

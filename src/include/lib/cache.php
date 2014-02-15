@@ -333,25 +333,38 @@ class Cache {
 	 */
 	private function mc_navi() {
 		$navi_cache = array();
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY taxis ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY pid ASC, taxis ASC");
 		$sorts = $this->readCache('sort');
 		while ($row = $this->db->fetch_array($query)) {
 			$children = array();
 			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
+
 			if ($row['type'] == Navi_Model::navitype_sort && !empty($sorts[$row['type_id']]['children'])) {
 				foreach ($sorts[$row['type_id']]['children'] as $sortid) {
 					$children[] = $sorts[$sortid];
 				}
 			}
-			$navi_cache[] = array(
+			$naviData = array(
+                    'id' => intval($row['id']),
                     'naviname' => htmlspecialchars(trim($row['naviname'])),
                     'url' => htmlspecialchars(trim($url)),
                     'newtab' => $row['newtab'],
                     'isdefault' => $row['isdefault'],
                     'type' => intval($row['type']),
                     'typeId' => intval($row['type_id']),
+                    'taxis' => intval($row['taxis']),
+                    'hide' => $row['hide'],
+                    'pid' => intval($row['pid']),
                     'children' => $children,
-				);
+                    );
+            if ($row['type'] == Navi_Model::navitype_custom) {
+                if($naviData['pid'] == 0) {
+                    $naviData['childnavi'] = array();
+                } elseif (isset($navi_cache[$row['pid']])) {
+                    $navi_cache[$row['pid']]['childnavi'][] = $naviData;
+                }
+            }
+            $navi_cache[$row['id']] = $naviData;
 		}
 		$cacheData = serialize($navi_cache);
 		$this->cacheWrite($cacheData, 'navi');
