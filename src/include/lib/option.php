@@ -136,7 +136,7 @@ class Option {
 	}
 
     /**
-	 * 获取附件最大限制,单位字节
+	 * Get the maximum attachment size, in bytes
 	 */
 	static function getAttMaxSize() {
 		return self::get('att_maxsize') * 1024;

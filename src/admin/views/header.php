@@ -100,7 +100,7 @@
 <div id="container">
 <?php doAction('adm_main_top'); ?>
 <script>
-<!--边栏折叠-->
+<!--Sidebar collapse-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
 if ($.cookie('em_extend_ext')) {
 	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));

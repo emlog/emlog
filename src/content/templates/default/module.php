@@ -316,7 +316,6 @@ function blog_sort($blogid){
 <?php }?>
 
 <?php
-//blog:Blog Tags
 //blog: Blog Tags
 function blog_tag($blogid){
 	global $lang;
