@@ -9,14 +9,14 @@ define('DEL_INSTALLER', 0);
 
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
-header('Content-Type: text/html; charset=UTF-8');
-doStripslashes();
-
 //Blog language //vot
 //define('EMLOG_LANGUAGE','zh-CN');
 define('EMLOG_LANGUAGE','en-US');
 //define('EMLOG_LANGUAGE','ru-RU');
 require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');//vot
+
+header('Content-Type: text/html; charset=UTF-8');
+doStripslashes();
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 

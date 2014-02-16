@@ -1,4 +1,29 @@
 <?php
+/**
+ * Load Language File
+ *
+ * @param string $file //Language File Name
+ * @return none
+ * @author Valery Votintsev, codersclub.org
+ */
+function load_language($file='') {
+  global $lang;
+  if($file) {
+    @require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/'.$file.'.php');
+  }
+}
+/**
+ * Return Language Variable
+ *
+ * @param string $key //Language Keyword
+ * @return string //Language Value
+ * @author Valery Votintsev, codersclub.org
+ */
+function lang($key='') {
+  global $lang;
+  return isset($lang[$key]) ? $lang[$key] : '{'.$key.'}';
+}
+
 
 /**
  * Basic function library
