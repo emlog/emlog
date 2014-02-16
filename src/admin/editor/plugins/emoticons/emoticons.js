@@ -13,7 +13,7 @@ KindEditor.plugin('emoticons', function(K) {
 		allowPreview = self.allowPreviewEmoticons === undefined ? true : self.allowPreviewEmoticons,
 		currentPageNum = 1;
 	self.clickToolbar(name, function() {
-		var rows = 5, cols = 8, total = 38, startNum = 0,
+		var rows = 5, cols = 9, total = 135, startNum = 0,
 			cells = rows * cols, pages = Math.ceil(total / cells),
 			colsHalf = Math.floor(cols / 2),
 			wrapperDiv = K('<div class="ke-plugin-emoticons"></div>'),
@@ -80,9 +80,7 @@ KindEditor.plugin('emoticons', function(K) {
 				for (var j = 0; j < cols; j++) {
 					var cell = K(row.insertCell(j));
 					cell.addClass('ke-cell');
-					if (i * cols + j < total) {
-						bindCellEvent(cell, j, num);
-					}
+					bindCellEvent(cell, j, num);
 					var span = K('<span class="ke-img"></span>')
 						.css('background-position', '-' + (24 * num) + 'px 0px')
 						.css('background-image', 'url(' + path + 'static.gif)');
@@ -112,9 +110,6 @@ KindEditor.plugin('emoticons', function(K) {
 			});
 		}
 		function createPageTable(currentPageNum) {
-			if (pages <= 1) {
-				return;
-			}
 			pageDiv = K('<div class="ke-page"></div>');
 			wrapperDiv.append(pageDiv);
 			for (var pageNum = 1; pageNum <= pages; pageNum++) {

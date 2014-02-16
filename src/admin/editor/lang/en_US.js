@@ -229,4 +229,11 @@ KindEditor.lang({
 		'2.html' : 'Table',
 		'3.html' : 'List'
 	}
-}, 'en_US');
+}, 'en');
+
+KindEditor.each(KindEditor.options.items, function(i, name) {
+	if (name == 'baidumap') {
+		KindEditor.options.items[i] = 'map';
+	}
+});
+KindEditor.options.langType = 'en';
