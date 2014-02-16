@@ -34,7 +34,7 @@
 </div>
 <div class="clear"></div>
 <div id="about">
-    <?echo $lang['emlog_using']; ?> <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);"><>echo $lang['check_update']; ?></a></span><br />
+    <?echo $lang['emlog_using']; ?> <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);"><?echo $lang['check_update']; ?></a></span><br />
     <span id="upmsg"></span>
 </div>
 </div>
@@ -60,7 +60,7 @@ $("#about #ckup").click(function(){
     function(data){
         if (data.result.match("no")) {
             $("#about #upmsg").html(l_update_no).removeClass();
-        } else if(data.result.match("yes")) {
+	} else if(data.result.match("yes")) {
             $("#about #upmsg").html(l_update_exists + data.ver + ", " + l_update_backup + ", <a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">" + l_update_now + "</a>").removeClass();
         } else{
             $("#about #upmsg").html(l_check_error).removeClass();
