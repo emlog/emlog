@@ -5,10 +5,6 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-/**
- * MYSQL数据操方法封装类
- */
-
 class MySql {
 
 	/**
@@ -97,11 +93,13 @@ class MySql {
 
 	/**
 	 * 发送查询语句
-	 *
 	 */
 	function query($sql) {
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
+        if (1046 == $this->geterrno()) {
+            emMsg("连接数据库失败，请填写数据库名");
+        }
 		if (!$this->result) {
 			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
 		} else {
@@ -111,7 +109,6 @@ class MySql {
 
 	/**
 	 * 从结果集中取得一行作为关联数组/数字索引数组
-	 *
 	 */
 	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
 		return $query->fetch_array($type);
@@ -124,7 +121,6 @@ class MySql {
 
 	/**
 	 * 从结果集中取得一行作为数字索引数组
-	 *
 	 */
 	function fetch_row(mysqli_result $query) {
 		return $query->fetch_row();
