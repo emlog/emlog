@@ -919,6 +919,7 @@ EOT;
  * 
  */
 function show_404_page() {
+	global $lang;
 	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
