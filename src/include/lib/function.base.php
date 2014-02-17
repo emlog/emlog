@@ -1,4 +1,15 @@
 <?php
+//------------------------------------------------------------------
+// Unix Style Dir Name
+function udir($file='', $remove_drive = false) {
+  $file = str_replace('\\','/',$file);
+  if($remove_drive) {
+    $file = preg_replace("/^\w:/",'',$file);
+  }
+  return $file;
+}
+
+
 /**
  * Load Language File
  *
@@ -8,8 +19,17 @@
  */
 function load_language($file='') {
   global $lang;
-  if($file) {
-    @require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/'.$file.'.php');
+  $langfile = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/'.$file.'.php';
+
+//DEBUG
+//echo '<pre>';
+//echo "load_language\n";
+//echo 'file=', $file, "\n";
+//echo 'langfile=', $langfile, "\n";
+//echo '</pre>';
+
+  if($langfile) {
+    @require_once($langfile);
   }
 }
 /**

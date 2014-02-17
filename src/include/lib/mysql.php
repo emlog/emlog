@@ -41,7 +41,7 @@ class MySql {
 	private function __construct() {
 		global $lang;
 		if (!function_exists('mysql_connect')) {
-			emMsg($lang['mysql_not_supported']);
+			emMsg(lang('mysql_not_supported'));
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
@@ -50,27 +50,27 @@ class MySql {
 			switch ($this->conn->connect_errno) {
 				case 1044:
 				case 1045:
-					emMsg($lang['db_user_error']);
+					emMsg(lang('db_user_error'));
 					break;
 
                 case 1049:
-					emMsg($lang['db_not_found']);
+					emMsg(lang('db_not_found'));
 					break;
 
 				case 2003:
-                    emMsg($lang['db_port_error']);
+                    emMsg(lang('db_port_error'));
 					break;
 
 				case 2005:
-					emMsg($lang['db_connect_error']);
+					emMsg(lang('db_connect_error'));
 					break;
 
 				case 2006:
-                    emMsg($lang['db_server_error']);
+                    emMsg(lang('db_server_error'));
 					break;
 
 				default :
-                    emMsg($lang['db_error_code'] . $this->geterrno());
+                    emMsg(lang('db_error_code') . $this->geterrno());
 					break;
 			}
 		}
@@ -104,7 +104,7 @@ class MySql {
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
 		if (!$this->result) {
-			emMsg($lang['sql_statement_error'] . ": $sql<br />" . $this->geterror());
+			emMsg(lang('sql_statement_error') . ": $sql<br />" . $this->geterror());
 		} else {
 			return $this->result;
 		}
