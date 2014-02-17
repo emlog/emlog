@@ -18,7 +18,6 @@ function udir($file='', $remove_drive = false) {
  * @author Valery Votintsev, codersclub.org
  */
 function load_language($file='') {
-  global $lang;
   $langfile = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/'.$file.'.php';
 
 //DEBUG
@@ -31,6 +30,13 @@ function load_language($file='') {
   if($langfile) {
     @require_once($langfile);
   }
+  // Language file must contain $lang = array(...);
+  if(isset($lang)) {
+    foreach($lang AS $k=>$v) {
+      $GLOBALS['LANGUAGE'][$k] = $v;
+    }
+  }
+  unset($lang);
 }
 /**
  * Return Language Variable
@@ -40,8 +46,7 @@ function load_language($file='') {
  * @author Valery Votintsev, codersclub.org
  */
 function lang($key='') {
-  global $lang;
-  return isset($lang[$key]) ? $lang[$key] : '{'.$key.'}';
+  return isset($GLOBALS['LANGUAGE'][$key]) ? $GLOBALS['LANGUAGE'][$key] : '{'.$key.'}';
 }
 
 
@@ -155,7 +160,9 @@ function emLoadJQuery() {
 		$isJQueryLoaded = true;
 
 		function loadJQuery() {
-			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
+//vot			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
+//vot			echo '<!--script src="http://code.jquery.com/jquery-latest.js"></script-->';
+/*vot*/			echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
 		}
 
 	}

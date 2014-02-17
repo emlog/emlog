@@ -6,8 +6,8 @@
 <title>upload</title>
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
-<script src="../lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
+<!--script src="http://code.jquery.com/jquery-latest.js"></script-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
 <script>

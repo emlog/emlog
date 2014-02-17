@@ -10,9 +10,10 @@
 <title><? echo $lang['admin_center']; ?> - <?php echo Option::get('blogname'); ?></title>
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js"></script>
+<script src="<?=EMLOG_URL?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
+<!--script src="http://code.jquery.com/jquery-latest.js"></script-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
-<script src="../lang/<?php echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/js/common.js"></script>
 <?php doAction('adm_head');?>
 </head>
