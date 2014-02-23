@@ -25,8 +25,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_title">
 	<div style="float:left; margin-top:8px;">
 		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
-        <span id="f_t_tag"><a href="javascript:void(0);">标签</a></span>
-		<span id="f_t_user"><a href="javascript:void(0);">作者</a></span>
         <span id="f_t_sort">
             <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;">
             <option value="" selected="selected">按分类查看...</option>
@@ -52,6 +50,22 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <option value="-1" <?php if($sid == -1) echo 'selected'; ?>>未分类</option>
             </select>
         </span>
+        <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
+        <span id="f_t_user">
+            <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:110px;">
+                <option value="" selected="selected">按作者查看...</option>
+                <?php 
+                foreach($user_cache as $key=>$value):
+                $flg = $key == $uid ? 'selected' : '';
+                ?>
+                <option value="<?php echo $key; ?>" <?php echo $flg; ?>><?php echo $value['name']; ?></option>
+                <?php
+                endforeach;
+                ?>
+            </select>
+        </span>
+        <?php endif;?>
+        <span id="f_t_tag"><a href="javascript:void(0);">按标签查看</a></span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
@@ -74,21 +88,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 		$$b = "class=\"filter\"";
 	?>
 	<span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'].$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
-	<?php endforeach;?>
-</div>
-<div id="f_user" <?php echo $isDisplayUser ?>>
-	作者：
-	<?php foreach($user_cache as $key => $val):
-		if (ROLE != ROLE_ADMIN && $key != UID){
-			continue;
-		}
-		$a = 'user_'.$key;
-		$$a = '';
-		$b = 'user_'.$uid;
-		$$b = "class=\"filter\"";
-		$val['name'] = $val['name'];
-	?>
-	<span <?php echo $$a; ?>><a href="./admin_log.php?uid=<?php echo $key.$isdraft; ?>"><?php echo $val['name']; ?></a></span>
 	<?php endforeach;?>
 </div>
 </div>
@@ -210,9 +209,7 @@ $(document).ready(function(){
 	$("#adm_log_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
 		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();});
-	$("#f_t_sort").click(function(){$("#f_sort").toggle();$("#f_tag").hide();$("#f_user").hide();});
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
-	$("#f_t_user").click(function(){$("#f_user").toggle();$("#f_sort").hide();$("#f_tag").hide();});
 	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
@@ -250,6 +247,9 @@ function changeTop(obj) {
 }
 function selectSort(obj) {
     window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+}
+function selectUser(obj) {
+    window.open("./admin_log.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
 }
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('sidebarsubmenu1');
