@@ -26,7 +26,7 @@ class Cache {
 	private $logalias_cache;
 
 	private function __construct() {
-		$this->db = MySql::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	/**

@@ -25,7 +25,7 @@ $api_methods = array(
 	'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
 	);
 
-$DB = MySql::getInstance();
+$DB = Database::getInstance();
 $options_cache = Cache::getInstance()->readCache('options');
 // 有些基于浏览器的客户端会发送cookie，我们不需要它们
 $_COOKIE = array();
@@ -355,7 +355,7 @@ function mw_getPost($args) {
 
 function mw_getRecentPosts($args) {
 	escape($args);
-	$db = MySql::getInstance();
+	$db = Database::getInstance();
 	$username = $args[1];
 	$password = $args[2];
 	$num_posts = intval($args[3]);
@@ -604,7 +604,7 @@ function login($username, $password) {
 
 function escape(&$array) {
 	if (!is_array($array)) {
-		return(MySql::getInstance()->escape_string($array));
+		return(Database::getInstance()->escape_string($array));
 	}else {
 		foreach ((array) $array as $k => $v) {
 			if (is_array($v)) {
@@ -612,7 +612,7 @@ function escape(&$array) {
 			}else if (is_object($v)) {
 				// skip
 			}else {
-				$array[$k] = MySql::getInstance()->escape_string($v);
+				$array[$k] = Database::getInstance()->escape_string($v);
 			}
 		}
 	}

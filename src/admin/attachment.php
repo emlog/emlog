@@ -6,7 +6,7 @@
  */
 require_once 'globals.php';
 
-$DB = MySql::getInstance();
+$DB = Database::getInstance();
 
 //上传表单显示
 if ($action == 'selectFile') {

@@ -180,7 +180,7 @@ if ($action == 'addcom') {
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg('评论失败：验证码错误', $targetBlogUrl);
     } else {
-		$DB = MySql::getInstance();
+		$DB = Database::getInstance();
         $ipaddr = getIp();
 		$utctimestamp = time();
 

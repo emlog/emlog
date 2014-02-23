@@ -53,7 +53,7 @@ END;
  * @return array
  */
 function getBlog($sortid = null) {
-	$DB = MySql::getInstance();
+	$DB = Database::getInstance();
 	$sorts = Cache::getInstance()->readCache('sort');
 	if (isset($sorts[$sortid])) {
 		$sort = $sorts[$sortid];

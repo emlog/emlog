@@ -9,7 +9,7 @@ class Comment_Model {
 	private $db;
 
 	function __construct() {
-		$this->db = MySql::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	/**

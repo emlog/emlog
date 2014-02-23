@@ -7,6 +7,9 @@
 class Option {
 	//版本编号
 	const EMLOG_VERSION = '5.3.0';
+	//默认MySQL链接方式，mysql或mysqli
+	const DEFAULT_MYSQLCONN = 'mysqli';
+    //头像缩略图最大宽
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
 	const ICON_MAX_H = 220;
@@ -179,7 +182,7 @@ class Option {
 	 * @param $isSyntax 更新值是否为一个表达式
 	 */
 	static function updateOption($name, $value, $isSyntax = false){
-		$DB = MySql::getInstance();
+		$DB = Database::getInstance();
 		$value = $isSyntax ? $value : "'$value'";
 		$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
 	}
