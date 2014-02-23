@@ -8,7 +8,7 @@ class Option {
 	//版本编号
 	const EMLOG_VERSION = '5.3.0';
 	//默认MySQL链接方式，mysql或mysqli
-	const DEFAULT_MYSQLCONN = 'mysqli';
+	const DEFAULT_MYSQLCONN = 'mysql';
     //头像缩略图最大宽
 	const ICON_MAX_W = 140;
 	//头像缩略图最大高
