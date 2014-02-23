@@ -133,7 +133,7 @@ class LoginAuth{
      */
     public static function setAuthCookie($user_login, $ispersis = false) {
         if ($ispersis) {
-            $expiration  = time() + 60 * 60 * 24 * 30 * 12;
+            $expiration  = time() + 3600 * 24 * 30 * 12;
         } else {
             $expiration = null;
         }
@@ -204,5 +204,22 @@ class LoginAuth{
             return false;
         }
         return $user;
+    }
+
+    /**
+     * 生成token，防御CSRF攻击
+     */
+    public static function genToken() {
+        return md5(AUTH_KEY);
+    }
+
+    /**
+     * 检查token，防御CSRF攻击
+     */
+    public static function checkToken() {
+        $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
+        if ($token != self::getToken()) {
+            emMsg('权限不足');
+        }
     }
 }

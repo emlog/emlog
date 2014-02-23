@@ -55,7 +55,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
-		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');" class="care">删除</a>
+            <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
 		<?php else: ?>

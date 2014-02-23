@@ -30,6 +30,9 @@ if ($action == '') {
 
 if ($action== 'del') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+
+    LoginAuth::checkToken();
+
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	emDirect("./comment.php?active_del=1");

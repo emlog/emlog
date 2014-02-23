@@ -10,7 +10,7 @@ function getChecked(node) {
 function timestamp(){
 	return new Date().getTime();
 }
-function em_confirm (id, property) {
+function em_confirm (id, property, token) {
 	switch (property){
 		case 'tw':
 			var urlreturn="twitter.php?action=del&id="+id;
@@ -55,7 +55,7 @@ function em_confirm (id, property) {
 			var urlreturn="plugin.php?action=del&plugin="+id;
 			var msg = "你确定要删除该插件吗？";break;
 	}
-	if(confirm(msg)){window.location = urlreturn;}else {return;}
+	if(confirm(msg)){window.location = urlreturn + "&token="+token;}else {return;}
 }
 function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
