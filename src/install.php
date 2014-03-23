@@ -64,7 +64,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	  <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
 </li>
 <li>
-    数据库前缀：<br />
+    数据库表前缀：<br />
   <input name="dbprefix" type="text" class="input" value="emlog_">
   <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
 </li>
@@ -108,9 +108,9 @@ if($act == 'install' || $act == 'reinstall'){
 	$result = '';
 
 	if($db_prefix == ''){
-		emMsg('数据库前缀不能为空!');
+		emMsg('数据库表前缀不能为空!');
 	}elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
-		emMsg('数据库前缀格式错误!');
+		emMsg('数据库表前缀格式错误!');
 	}elseif($admin == '' || $adminpw == ''){
 		emMsg('登录名和密码不能为空!');
 	}elseif(strlen($adminpw) < 6){

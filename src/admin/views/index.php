@@ -20,8 +20,8 @@
 <h3>站点信息</h3>
 <ul>
 	<li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条微语</li>
-	<li>PHP版本：<?php echo $php_ver; ?></li>
-	<li>MySQL版本：<?php echo $mysql_ver; ?></li>
+	<li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
+    <li>PHP版本：<?php echo $php_ver; ?>，MySQL版本：<?php echo $mysql_ver; ?></li>
 	<li>服务器环境：<?php echo $serverapp; ?></li>
 	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
 	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>

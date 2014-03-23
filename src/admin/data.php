@@ -172,7 +172,7 @@ function checkSqlFileInfo($sqlfile) {
 		emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
 	}
 	if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
-		emMsg('导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配' . $dumpinfo[2]);
+		emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不匹配' . $dumpinfo[2]);
 	}
 }
 
