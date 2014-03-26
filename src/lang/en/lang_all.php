@@ -251,28 +251,28 @@ $lang = array(
 
 //---------------------------
 //admin/views/blogger.php
-[4] ''	=> '基本设置',//'基本设置',
-[5] ''	=> 'SEO设置',//'SEO设置',
-[6] ''	=> '后台风格',//'后台风格',
-[7] ''	=> '个人设置',//'个人设置',
-[9] ''	=> '个人设置',//'个人设置',
-[11] ''	=> '个人资料修改成功',//'个人资料修改成功',
-[12] ''	=> '头像删除成功',//'头像删除成功',
-[13] ''	=> '昵称不能太长',//'昵称不能太长',
-[14] ''	=> '电子邮件格式错误',//'电子邮件格式错误',
-[15] ''	=> '密码长度不得小于6位',//'密码长度不得小于6位',
-[16] ''	=> '两次输入的密码不一致',//'两次输入的密码不一致',
-[17] ''	=> '该登录名已存在',//'该登录名已存在',
-[18] ''	=> '该昵称已存在',//'该昵称已存在',
-[24] ''	=> '头像',//'头像',
-[25] ''	=> '(支持JPG、PNG格式图片)',//'(支持JPG、PNG格式图片)',
-[27] ''	=> '昵称',//'昵称',
-[28] ''	=> '邮箱',//'邮箱',
-[29] ''	=> '个人描述',//'个人描述',
-[30] ''	=> '登陆名',//'登陆名',
-[31] ''	=> '新密码（不小于6位，不修改请留空）',//'新密码（不小于6位，不修改请留空）',
-[32] ''	=> '再输入一次新密码',//'再输入一次新密码',
-[33] ''	=> '保存资料',//'保存资料',
+[4] 'basic_settings'		=> 'Basic Settings',//'基本设置',
+[5] 'seo_settings'		=> 'SEO Settings',//'SEO设置',
+[6] 'backround_style'		=> 'Background style',//'后台风格',
+[7] 'personal_settings'		=> 'Personal Settings',//'个人设置',
+[9]// 'personal_settings'	=> 'Personal Settings',//'个人设置',
+[11] 'personal_data_modified_ok'	=> 'Personal data modified successfully',//'个人资料修改成功',
+[12] 'avatar_deleted_ok'	=> 'Avatar deleted successfully',//'头像删除成功',
+[13] 'nickname_too_long'	=> 'Nickname can not be too long',//'昵称不能太长',
+[14] 'email_format_invalid'	=> 'E-mail format invalid',//'电子邮件格式错误',
+[15] 'password_length_short'	=> 'Password length must be not less than 6 characters',//'密码长度不得小于6位',
+[16] 'password_not_equal'	=> 'Two passwords are not equal',//'两次输入的密码不一致',
+[17] 'username_exists'		=> 'This login name already exists',//'该登录名已存在',
+[18] 'nickname_exists'		=> 'This nickname already exists',//'该昵称已存在',
+[24] 'avatar'			=> 'Avatar',//'头像',
+[25] 'avatar_format_supported'	=> '(Supported formats: JPG, PNG)',//'(支持JPG、PNG格式图片)',
+[27] 'nickname'			=> 'Nicname',//'昵称',
+[28] 'email'			=> 'E-mail',//'邮箱',
+[29] 'personal_description'	=> 'Personal Description',//'个人描述',
+[30] 'login_name'		=> 'Login name',//'登陆名',
+[31] 'new_password_info'	=> 'New Password (not less than 6 characters, left blank if do not need to modify)',//'新密码（不小于6位，不修改请留空）',
+[32] 'new_password_repeat'	=> 'Repeat new password',//'再输入一次新密码',
+[33] 'save_data'		=> 'Save Data',//'保存资料',
 
 //---------------------------
 //admin/views/comment.php
@@ -335,10 +335,10 @@ $lang = array(
 
 //---------------------------
 //admin/views/configure.php
-[4] ''	=> '基本设置',//'基本设置',
-[5] ''	=> 'SEO设置',//'SEO设置',
-[6] ''	=> '后台风格',//'后台风格',
-[7] ''	=> '个人设置',//'个人设置',
+[4]// 'basic_settings'	=> 'Basic Settings',//'基本设置',
+[5]// 'seo_settings'	=> 'SEO Settings',//'SEO设置',
+[6]// 'backround_style'	=> 'Background style',//'后台风格',
+[7]// 'personal_settings'	=> 'Personal Settings',//'个人设置',
 [8] ''	=> '设置保存成功',//'设置保存成功',
 [13] ''	=> '站点标题',//'站点标题',
 [17] ''	=> '站点副标题',//'站点副标题',
@@ -386,7 +386,7 @@ $lang = array(
 [80] ''	=> '用手机访问你的站点',//'用手机访问你的站点',
 [81] ''	=> '自动摘要，截取文章的前',//'自动摘要，截取文章的前',
 [82] ''	=> '个字作为摘要',//'个字作为摘要',
-[89] ''	=> '微语',//'微语',
+[89] 'twitter'		=> 'Twitter',//'微语',
 [91] ''	=> '开启微语，',//'开启微语，',
 [92] ''	=> '每页显示',//'每页显示',
 [92] ''	=> '条微语',//'条微语',
@@ -513,7 +513,7 @@ $lang = array(
 [66]// 'category'		=> 'Category',//'分类',
 [68]// 'comments'	=> 'Comments',//'评论',
 [74] ''	=> '条评论待审',//'条评论待审',
-[77] 'twitter'		=> 'Twitter',//'微语',
+[77]// 'twitter'		=> 'Twitter',//'微语',
 [78] ''	=> '侧边栏',//'侧边栏',
 [79] ''	=> '导航',//'导航',
 [80] ''	=> '页面',//'页面',
@@ -613,8 +613,8 @@ $lang = array(
 
 //---------------------------
 //admin/views/login.php
-[8] ''	=> '登录',//'登录',
-[16] ''	=> '用户名',//'用户名',
+[8] 'login'		=> 'Login',//'登录',
+[16] 'user_name'		=> 'User name',//'用户名',
 [18] ''	=> '密码',//'密码',
 [23] ''	=> '记住我',//'记住我',
 [24] ''	=> '登 录',//'登 录',
@@ -717,10 +717,10 @@ $lang = array(
 
 //---------------------------
 //admin/views/seo.php
-[4] ''	=> '基本设置',//'基本设置',
-[5] ''	=> 'SEO设置',//'SEO设置',
-[6] ''	=> '后台风格',//'后台风格',
-[7] ''	=> '个人设置',//'个人设置',
+[4]// 'basic_settings'	=> 'Basic Settings',//'基本设置',
+[5]// 'seo_settings'	=> 'SEO Settings',//'SEO设置',
+[6]// 'backround_style'	=> 'Background style',//'后台风格',
+[7]// 'personal_settings'	=> 'Personal Settings',//'个人设置',
 [8] ''	=> '设置保存成功',//'设置保存成功',
 [9] ''	=> '保存失败：根目录下的.htaccess不可写',//'保存失败：根目录下的.htaccess不可写',
 [13] ''	=> '文章链接设置',//'文章链接设置',
@@ -824,10 +824,10 @@ $lang = array(
 
 //---------------------------
 //admin/views/style.php
-[4] ''	=> 'Basic settings',//'基本设置',
-[5] ''	=> 'SEO settings',//'SEO设置',
-[6] ''	=> 'Background style',//'后台风格',
-[7] ''	=> 'Personal settings',//'个人设置',
+[4]// 'basic_settings'	=> 'Basic Settings',//'基本设置',
+[5]// 'seo_settings'	=> 'SEO Settings',//'SEO设置',
+[6]// 'backround_style'	=> 'Background style',//'后台风格',
+[7]// 'personal_settings'	=> 'Personal Settings',//'个人设置',
 [8] ''	=> 'Settings has been saved successfully',//'设置保存成功',
 [17] ''	=> 'Click to use this style',//'点击使用该风格,
 [24] ''	=> 'Click to use this style',//'点击使用该风格',
@@ -927,7 +927,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/twitter.php
-[2] 'twitter'	=> 'Twitter',//'微语',
+[2]// 'twitter'		=> 'Twitter',//'微语',
 [3] //'published_ok'	=> 'Entry has been publised successfully',//'发布成功',
 [4] ''	=> 'Settings has been updated successfully',//'设置保存成功',
 [5] ''	=> 'Whisper has been deleted successfully',//'微语删除成功',
@@ -987,7 +987,7 @@ $lang = array(
 [5] ''	=> 'User has been added successfully',//'添加用户成功',
 [6] ''	=> 'Username cannot be empty',//'用户名不能为空',
 [7] ''	=> 'The username already exists',//'该用户名已存在',
-[8] ''	=> 'Password cannot be less than 6 characters',//'密码长度不得小于6位',
+[8]// 'password_length_short'	=> 'Password length must be not less than 6 characters',//'密码长度不得小于6位',
 [9] ''	=> 'Enter the passwords',//'两次输入密码不一致',
 [10] ''	=> 'You cannot delete Founder',//'不能删除创始人',
 [11] ''	=> 'Information about Founder cannot be modified',//'不能修改创始人信息',
@@ -1008,7 +1008,7 @@ $lang = array(
 [58] ''	=> 'Add user+',//'添加用户+',
 [62] ''	=> 'Author (Contributor)',//'作者（投稿人）',
 [63] ''	=> 'Administrator',//'管理员',
-[66] ''	=> 'Username',//'用户名',
+[66]// 'user_name'		=> 'User name',//'用户名',
 [67] ''	=> 'Password (more than 6 characters)',//'密码 (大于6位)',
 [68] ''	=> 'Repeat password',//'重复密码',
 [71] ''	=> 'Entries that do not need to be verified',//'文章不需要审核',
@@ -1020,10 +1020,10 @@ $lang = array(
 [2] ''	=> 'Information management',//'修改作者资料',
 [3] ''	=> 'Username cannot be empty',//'用户名不能为空',
 [4] ''	=> 'The username already exists',//'该用户名已存在',
-[5] ''	=> 'Password cannot be less than 6 characters',//'密码长度不得小于6位',
+[5]// 'password_length_short'	=> 'Password length must be not less than 6 characters',//'密码长度不得小于6位',
 [6] ''	=> 'Enter the passwords',//'两次输入密码不一致',
-[11] ''	=> 'Username',//'用户名',
-[12] ''	=> 'Name',//'昵称',
+[11]// 'user_name'		=> 'User name',//'用户名',
+[12]// 'nickname'	=> 'Nicname',//'昵称',
 [13] ''	=> 'New password (leave blank, if you do not want to modify)',//'新密码(不修改请留空)',
 [14] ''	=> 'Repeat new password',//'重复新密码',
 [15] ''	=> 'E-mail',//'电子邮件',
@@ -1031,7 +1031,7 @@ $lang = array(
 [19] ''	=> 'Administrator',//'管理员',
 [24] ''	=> 'Entries that do not to be verified',//'文章不需要审核',
 [25] ''	=> 'Entries that need to be verified',//'文章需要审核',
-[28] ''	=> 'Personal information',//'个人描述',
+[28]// 'personal_description'	=> 'Personal Description',//'个人描述',
 [32] ''	=> 'Save',//'保 存',
 [33] ''	=> 'Cancel',//取 消',
 
@@ -1140,7 +1140,7 @@ $lang = array(
 //m/view/reply.php
 [3]//'reply'	=> 'Reply',//'回复',
 [10] ''	=> 'You are currently logged in as',//'当前已登录为',
-[15] ''	=> 'Name',//'昵称',
+[15]// 'nickname'	=> 'Nicname',//'昵称',
 [16] ''	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
 [17] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
 [19] ''	=> 'Content',//'内容',
@@ -1184,7 +1184,7 @@ $lang = array(
  'admin_name'		=> 'User name',//'登录名',
  'admin_password'	=> 'Password',//'登录密码',
  'admin_password_info'	=> '(Minimum 5 characters)',//'(不小于5位)',
- 'admin_password_repeat'	=> 'Confirm password',//再次输入登录密码',
+ 'admin_password_repeat'	=> 'Confirm password',//'再次输入登录密码',
  'install_emlog'	=> 'Install emlog!',//'开始安装emlog',
  'db_prefix_empty'	=> 'Database prefix can not be empty!',//'数据库前缀不能为空!',
  'db_prefix_invalid'	=> 'Database prefix is incorrect!',//'数据库前缀格式错误!',
@@ -1212,7 +1212,7 @@ $lang = array(
  'password_entered'	=> 'you have created a two seconds ago',//'您刚才设定的密码',
  'delete_install'	=> 'Warning! Please delete the installation file install.php',//'警告：请手动删除根目录下安装文件：install.php',
  'go_to_front'		=> 'Visit Blog',//'访问首页',
- 'go_to_admincp'	=> 'Go to Administration Control Panel',//'登录后台',
+ 'go_to_admincp'	=> 'Go to AdminCP',//'登录后台',
 
 //---------------------------------------
 //include/lib/mysql.php
@@ -1254,11 +1254,11 @@ $lang = array(
 //content/templates/default/404.php
 [11] ''	=> 'Error - page not found.',//'错误提示-页面未找到',
 [40] ''	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
-[41] ''	=> '&laquo; Click here to return',//'&laquo;点击返回',
+[41]// 'return'		=> '&laquo;Return back',//'&laquo;点击返回',
 
 //---------------------------
 //content/templates/default/echo_log.php
-'' ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
+//ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
 [10]//'user'	=> 'User',//'作者',
 [10]//'post_time'	=> 'Posted on',//'发布于',
 
@@ -1297,7 +1297,7 @@ $lang = array(
 [361]//'reply'	=> 'Reply',//'回复',
 [373] ''	=> 'Cancel reply',//'取消回复',
 [374] ''	=> 'Leave a comment',//'发表评论',
-[380] ''	=> 'Name',//'昵称',
+[380]// 'nickname'	=> 'Nicname',//'昵称',
 [384] ''	=> 'E-mail address (optional)',//'邮件地址 (选填)',
 [388] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
 [392] ''	=> 'Leave a comment',//'发表评论',
@@ -1314,7 +1314,7 @@ $lang = array(
 //content/templates/default/t.php
 [18] ''	=> 'View images',//'查看图片',
 [25]//'reply'	=> 'Reply',//'回复',
-[35] ''	=> 'Username',//'昵称',
+[35]// 'nickname'	=> 'Nicname',//'昵称',
 [36] ''	=> 'Captcha',//'验证码',
 [38]//'reply'	=> 'Reply',//'回复',
 
@@ -1380,7 +1380,7 @@ $lang = array(
 [387] ''	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
 [856] ''	=> 'Sorry, the page that you requested does not exist!',//'抱歉，你所请求的页面不存在！',
 [868] ''	=> 'Message',//'提示信息',
-[900] ''	=> '&laquo; click to return',//'点击返回',
+[900]// 'return'		=> '&laquo;Return back',//'&laquo;点击返回',
 [930] '[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 //[930] '[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 
@@ -1500,7 +1500,7 @@ $lang = array(
 [38]// 'comments'	=> 'Comments',//'评论',
 [40]//'post_write'	=> 'Write post',//'写文章',
 [41]//'logout'			=> 'Logout',//'退出',
-[43] ''	=> 'Login',//'登录',
+[43]// 'login'		=> 'Login',//'登录',
 
 //---------------------------
 //m/view/log.php
@@ -1516,7 +1516,7 @@ $lang = array(
 
 //---------------------------
 //m/view/login.php
-[4] ''	=> 'Name',//'用户名',
+[4]// 'user_name'		=> 'User name',//'用户名',
 [6] ''	=> 'Password',//'密码',
 [9] ''	=> 'Login',//'登 录',
 
@@ -1531,7 +1531,7 @@ $lang = array(
 [18]//'reply'	=> 'Reply',//'回复',
 [24] ''	=> 'Leave a comment',//'发表评论',
 [28] ''	=> 'You are logged as',//'当前已登录为',
-[30] ''	=> 'Name',//'昵称',
+[30]// 'nickname'	=> 'Nicname',//'昵称',
 [31] ''	=> 'E-mail adress (optional)'//'邮件地址 (选填)',
 [32] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
 [34] ''	=> 'Content',//'内容',
