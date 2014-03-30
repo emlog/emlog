@@ -11,6 +11,7 @@ define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
 $isgzipenable = 'n'; //手机浏览关闭gzip压缩
 $index_lognum = 5;
+$site_title = Option::get('blogname');
 
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
@@ -47,7 +48,9 @@ if (!empty ($logid)) {
 		mMsg ('不存在该条目', './');
 	}
 	extract($logData);
-	if (!empty($password)) {
+
+    $site_title = $log_title;
+    if (!empty($password)) {
 		$postpwd = isset($_POST['logpwd']) ? addslashes(trim ($_POST['logpwd'])) : '';
 		$cookiepwd = isset($_COOKIE ['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE ['em_logpwd_' . $logid])) : '';
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
@@ -127,13 +130,6 @@ if (ISLOGIN === true && $action == 'savelog') {
 		$blogid = $Log_Model->addlog($logData);
 		$Tag_Model->addTag($tagstring, $blogid);
 	}
-	$CACHE->updateCache();
-	emDirect("./");
-}
-if (ISLOGIN === true && $action == 'dellog') {
-	$Log_Model = new Log_Model();
-	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
-	$Log_Model->deleteLog($id);
 	$CACHE->updateCache();
 	emDirect("./");
 }
@@ -272,6 +268,7 @@ if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page=');
+    $site_title = '微语';
 
 	include View::getView('header');
 	include View::getView('twitter');

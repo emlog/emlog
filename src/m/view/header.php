@@ -5,7 +5,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><?php echo Option::get('blogname'); ?></title>
+<title><?php echo $site_title; ?></title>
 <style type="text/css" id="internalStyle">
 body{background-color:#FFFFFF; font-size:14px; margin: 0; padding:0;font-family: Helvetica, Arial, sans-serif;-webkit-text-size-adjust: none;}
 a:link,a:visited,a:hover,a:active {text-decoration: none;color:#333;}
@@ -35,8 +35,8 @@ textarea {border: 1px solid #A5ABB3;color: #303C46;}
 <?php if(Option::get('istwitter') == 'y'): ?>
 <a href="./?action=tw">微语</a>
 <?php endif;?>
-<a href="./?action=com">评论</a>
 <?php if(ISLOGIN === true): ?>
+<a href="./?action=com">评论</a>
 <a href="./?action=write">写文章</a> 
 <a href="./?action=logout">退出</a>
 <?php else:?>

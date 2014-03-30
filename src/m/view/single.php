@@ -1,11 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo">post by:<?php echo $user_cache[$author]['name'];?> <?php echo gmdate('Y-n-j G:i', $date); ?>
-	<?php if(ROLE == ROLE_ADMIN || $author == UID): ?>
-	<a href="./?action=dellog&gid=<?php echo $logid;?>">删除</a>
-	<?php endif;?>
-	</div>
+	<div class="postinfo"><?php echo gmdate('Y-n-j', $date); ?> <?php echo $user_cache[$author]['name'];?></div>
 	<div class="postcont"><?php echo $log_content; ?></div>
     <?php if(!empty($commentStacks)): ?>
 	<div class="t">评论：</div>
