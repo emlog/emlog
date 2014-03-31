@@ -167,4 +167,11 @@ class MySql {
 	function getQueryCount() {
 		return $this->queryCount;
 	}
+
+    /**
+	 *  Escapes special characters
+	 */
+	function escape_string($sql) {
+		return mysql_real_escape_string($sql);
+	}
 }
