@@ -542,7 +542,7 @@ $lang = array(
 [25] 'server_environment'	=> 'Server environment',//'服务器环境',
 [26] 'gd_library'		=> 'GD graphic library',//'GD图形处理库',
 [27] 'server_max_upload_size'	=> 'Maximum upload file size allowed by server',//'服务器允许上传最大文件',
-[28] 'more'			=> 'More Info&raquo;',//'更多信息&raquo;',
+[28] 'more_info			=> 'More Info&raquo;',//'更多信息&raquo;',
 [32] 'official_source'		=> 'Official sources',//'官方消息',
 [37] 'using_emlog'		=> 'You are using emlog',//'您正在使用emlog',
 [37] 'update_check'		=> 'Check for updates',//'检查更新',
@@ -694,7 +694,7 @@ $lang = array(
 [28] 'plugin_active_ok'		=> 'Click to activate the plug-in',//'点击激活插件',
 [33] 'plugin_disable_ok'	=> 'Click to disable the plug-in',//'点击禁用插件',
 [37] 'plugin_settings_click'	=> 'Click to plug-in settings',//'点击设置插件',
-[48]// 'more'			=> 'More Info&raquo;',//'更多信息&raquo;',
+[48]// 'more_info'		=> 'More Info&raquo;',//'更多信息&raquo;',
 [50]// 'ok_for_emlog'		=> 'Suitable for emlog',//'适用于emlog',
 [52]//'user'			=> 'User',//'作者',
 [61]//'delete'			=> 'Delete',//'删除',
@@ -979,7 +979,7 @@ $lang = array(
 [23]// 'attachment_upload'	=> 'Upload attachment',//'上传附件',
 [24]// 'bulk_upload'		=> 'Bulk upload',//'批量上传',
 [25]// 'attachment_library'	=> 'Attachment Library',//'附件库',
-[25]// ''	=> ')',//'）',
+[25]// ')'	=> ')',//'）',
 [29] 'browser_upgrade'	=> 'Your browser is too old to display this feature. You cannot use the bulk upload. Please, upgrade your web browser or switch to another.',//'您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。',
 [46] 'file_select'	=> 'Select the file',//'选择文件',
 
@@ -1113,28 +1113,28 @@ $lang = array(
 
 //---------------------------
 //include/controller/comment_controller.php
-[35] 	''	=> 'Comment error: The comments for this entry has been closed.',//'评论失败：该文章已关闭评论',
-[37] 	''	=> 'Comment error: The same content already exists.',//'评论失败：已存在相同内容评论',
-[39] 	''	=> 'Comment error: You must wait before sending another comment.',//'评论失败：您提交评论的速度太快了，请稍后再发表评论',
-[41] 	''	=> 'Comment error: Please, enter your name.',//'评论失败：请填写姓名',
-[43] 	''	=> 'Comment error: Name does not meet requirements.',//'评论失败：姓名不符合规范',
-[45] 	''	=> 'Comment error: E-mail address does not meet requirements.',//'评论失败：邮件地址不符合规范',
-[47] 	''	=> 'Comment error: User data cannot be the same as administrator or other users.',//'评论失败：禁止使用管理员昵称或邮箱评论',
-[49] 	''	=> 'Comment error: Homepage URL is invalid.',//'评论失败：主页地址不符合规范',
-[51] 	''	=> 'Comment error: Please, enter some content.',//'评论失败：请填写评论内容,
-[53] 	''	=> 'Comment error: Content does not meet requirements.',//'评论失败：内容不符合规范',
-[55] 	''	=> 'Comment error: Content must contain Chinese words.',//'评论失败：评论内容需包含中文',
-[57] 	''	=> 'Comment error: Invalid captcha.',//'评论失败：验证码错误',
+[35] 'comment_error_comment_disabled'	=> 'Comment error: The comments for this entry has been closed.',//'评论失败：该文章已关闭评论',
+[37] 'comment_error_content_exists'	=> 'Comment error: The same content already exists.',//'评论失败：已存在相同内容评论',
+[39] 'comment_error_flood_control'	=> 'Comment error: You must wait before sending another comment.',//'评论失败：您提交评论的速度太快了，请稍后再发表评论',
+[41] 'comment_error_name_enter'		=> 'Comment error: Please, enter your name.',//'评论失败：请填写姓名',
+[43] 'comment_error_name_invalid'	=> 'Comment error: Name does not meet requirements.',//'评论失败：姓名不符合规范',
+[45] 'comment_error_email_invalid'	=> 'Comment error: E-mail address does not meet requirements.',//'评论失败：邮件地址不符合规范',
+[47] 'comment_error_other_user'		=> 'Comment error: User data cannot be the same as administrator or other users.',//'评论失败：禁止使用管理员昵称或邮箱评论',
+[49] 'comment_error_url_invalid'	=> 'Comment error: Homepage URL is invalid.',//'评论失败：主页地址不符合规范',
+[51] 'comment_error_empty'		=> 'Comment error: Please, enter some content.',//'评论失败：请填写评论内容',
+[53] 'comment_error_content_invalid'	=> 'Comment error: Content does not meet requirements.',//'评论失败：内容不符合规范',
+[55] 'comment_error_national_chars'	=> 'Comment error: Content must contain Chinese characters.',//'评论失败：评论内容需包含中文',
+[57] 'comment_error_captcha_invalid'	=> 'Comment error: Invalid captcha.',//'评论失败：验证码错误',
 
 //---------------------------
 //include/model/comment_model.php
-[275] ''	=> 'Thank you. Your comment is waiting for approval',//'评论发表成功，请等待管理员审核',
+[275] 'comment_wait_approve'	=> 'Thank you. Your comment is waiting for approval',//'评论发表成功，请等待管理员审核',
 [306] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //m/view/comment.php
-[5] ''	=> '[pending]',//'[待审]',
-[9]//'delete'	=> 'Delete',//'删除',
+[5]// 'pending'		=> 'Pending',//'待审',
+[9]// 'delete'	=> 'Delete',//'删除',
 [13] 'belongs_to_post'	=> 'belongs to post',//'所属文章',
 [17] 'hide'	=> 'Hide',//'隐藏',
 [19]// 'approve'		=> 'Approve',//'审核',
@@ -1143,12 +1143,12 @@ $lang = array(
 //---------------------------
 //m/view/reply.php
 [3]//'reply'	=> 'Reply',//'回复',
-[10] ''	=> 'You are currently logged in as',//'当前已登录为',
+[10] 'logged_as'	=> 'You are currently logged in as',//'当前已登录为',
 [15]// 'nickname'	=> 'Nicname',//'昵称',
-[16] ''	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
-[17] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
+[16] 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
+[17] 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
 [19]// 'content'	=> 'Content',//'内容',
-[20] ''	=> 'Leave a comment',//发表评论',
+[20] 'comment_leave'	=> 'Leave a comment',//'发表评论',
 
 );
 
@@ -1233,93 +1233,93 @@ $lang = array(
 
 //---------------------------
 //content/plugins/tips/tips.php
-[15] ''	=> 'You can upload some attachments in this entry.',//'你可以在文章中上传多个附件',
-[16] ''	=> '试试给你的EM后台换个风格吧，就在设置里面',//'试试给你的EM后台换个风格吧，就在设置里面',
-[17] ''	=> 'Emlog supports flexible label (tag) function.',//'emlog支持灵活的标签(tag)功能',
-[18] ''	=> '在撰写文章的时候你可以使用Tab键方便的缩进内容',//'在撰写文章的时候你可以使用Tab键方便的缩进内容',
-[19] ''	=> '你可以为你的文章写一段漂亮的摘要，这样仅让摘要显示在首页并出现阅读全文链接',//'你可以为你的文章写一段漂亮的摘要，这样仅让摘要显示在首页并出现阅读全文链接',
-[20] ''	=> '为防文章丢失，emlog会在你书写文章的时候为你自动保存它们',//'为防文章丢失，emlog会在你书写文章的时候为你自动保存它们',
-[21] ''	=> '你可以在文章中插入flash格式的多媒体文件',//'你可以在文章中插入flash格式的多媒体文件',
-[22] ''	=> '不一样的心情，文章表情图标为您传达',//'不一样的心情，文章表情图标为您传达',
-[23] ''	=> '你可以把你未写完的文章保存到草稿箱里，等下次有时间的时候再写',//'你可以把你未写完的文章保存到草稿箱里，等下次有时间的时候再写',
-[24] ''	=> 'emlog会把太大的图片附件自动生产缩略图，从而加快页面加载速度',//'emlog会把太大的图片附件自动生产缩略图，从而加快页面加载速度',
-[25] ''	=> '请关注后台首页的 官方信息 栏目，这里有最新的emlog动态',//'请关注后台首页的 官方信息 栏目，这里有最新的emlog动态',
-[26] ''	=> '你可以把图片附件嵌入到内容中，让你的文章图文并茂',//'你可以把图片附件嵌入到内容中，让你的文章图文并茂',
-[27] ''	=> '你可以在写文章的时候为文章设置访问密码，只让你授予密码的人访问',//'你可以在写文章的时候为文章设置访问密码，只让你授予密码的人访问',
-[28] ''	=> 'emlog支持多人联合撰写',//'emlog支持多人联合撰写',
-[29] ''	=> 'emlog支持自建页面，并且可以上传照片，为自己做一个图文并茂的自我介绍页吧',//'emlog支持自建页面，并且可以上传照片，为自己做一个图文并茂的自我介绍页吧',
-[30] ''	=> 'Create a review page that allow you to create simple message board.',//'新建一个允许发表评论的页面，你会发现其实它还是一个简单的留言板',
-[31] ''	=> 'Please, delete your installation file install.php .',//'检查你的站点目录下是否存在安装文件：install.php，有的话请删除它',
-[32] ''	=> 'Timely upgrade your browser for a better experience with emlog.',//'及时升级浏览器，更好的体验emlog',
-[33] ''	=> 'Did you backup your files today?',//'今天你备份数据了吗？',
-[34] ''	=> 'From tomorrow you will be happy person. Horses, firewood and traveling around the world!',//'从明天起，做一个幸福的人。喂马，砍柴，周游世界',
+[15] 'attach_upload_tip'	=> 'You can upload some attachments in this entry.',//'你可以在文章中上传多个附件',
+[16] 'change_style_tip'		=> 'Try to go to AdminCP, and change the style inside the settings',//'试试给你的EM后台换个风格吧，就在设置里面',
+[17] 'tag_tip'			=> 'Emlog supports flexible tag functions.',//'emlog支持灵活的标签(tag)功能',
+[18] 'indent_tip'		=> 'When writing a post, you can use the Tab key to indent the content',//'在撰写文章的时候你可以使用Tab键方便的缩进内容',
+[19] 'summary_tip'		=> 'You can write a nice summary for your post, so let summary appear only on the home page and read the text link',//'你可以为你的文章写一段漂亮的摘要，这样仅让摘要显示在首页并出现阅读全文链接',
+[20] 'autosave_tip'		=> 'To prevent a post lost, emlog will automatically save the content when you write a post',//'为防文章丢失，emlog会在你书写文章的时候为你自动保存它们',
+[21] 'flash_tip'		=> 'You can insert a flash format media files into the content',//'你可以在文章中插入flash格式的多媒体文件',
+[22] 'emoticon_tip'		=> 'If not the same mood, you can use corresponding emoticons',//'不一样的心情，文章表情图标为您传达',
+[23] 'draft_tip'		=> 'You can save your yet not finished post as Draft, and then continue writing at the next time',//'你可以把你未写完的文章保存到草稿箱里，等下次有时间的时候再写',
+[24] 'thumbnail_tip'		=> 'Emlog will automatically produce thumbnails for big images attached, thus speed up the page loading',//'emlog会把太大的图片附件自动生产缩略图，从而加快页面加载速度',
+[25] 'official_feed_tip'	=> 'Please pay attention to the official home page background information section, here are the latest emlog news feed',//'请关注后台首页的 官方信息 栏目，这里有最新的emlog动态',
+[26] 'image_tip'		=> 'You can put image attachments into the content, let your post be illustrated',//'你可以把图片附件嵌入到内容中，让你的文章图文并茂',
+[27] 'post_password_tip'	=> 'You can set a password for access your post, let grant access only to people who knows that password',//'你可以在写文章的时候为文章设置访问密码，只让你授予密码的人访问',
+[28] 'co-author_tip'		=> 'Emlog supports multiuser co-authoring',//'emlog支持多人联合撰写',
+[29] 'intro_page_tip'		=> 'Emlog supports personal pages, and you can upload photos, for illustrat your own introduction page',//'emlog支持自建页面，并且可以上传照片，为自己做一个图文并茂的自我介绍页吧',
+[30] 'message_board_tip'	=> 'Create a review page that allow you to create simple message board.',//'新建一个允许发表评论的页面，你会发现其实它还是一个简单的留言板',
+[31] 'install_delete_tip'	=> 'Please, delete your installation file install.php .',//'检查你的站点目录下是否存在安装文件：install.php，有的话请删除它',
+[32] 'browser_upgrade_tip'	=> 'Timely upgrade your browser for a better experience with emlog.',//'及时升级浏览器，更好的体验emlog',
+[33] 'create_backup_tip'	=> 'Did you backup your files today?',//'今天你备份数据了吗？',
+[34] 'tomorrow_happy_tip'	=> 'From tomorrow you will be happy person. Horses, firewood and traveling around the world!',//'从明天起，做一个幸福的人。喂马，砍柴，周游世界',
 
 //---------------------------
 //content/templates/default/404.php
-[11] ''	=> 'Error - page not found.',//'错误提示-页面未找到',
-[40] ''	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
+[11] '404_error'	=> 'Error - page not found.',//'错误提示-页面未找到',
+[40] '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
 [41]// 'return'		=> '&laquo;Return back',//'&laquo;点击返回',
 
 //---------------------------
 //content/templates/default/echo_log.php
 //ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
-[10]//'user'	=> 'User',//'作者',
+[10]//'user'		=> 'User',//'作者',
 [10]//'post_time'	=> 'Posted on',//'发布于',
 
 //---------------------------
 //content/templates/default/footer.php
-[10] ''	=> 'Powered by',
-[10] ''	=> 'Powered by Emlog',//'采用emlog系统',
+[10] 'powered_by'	=> 'Powered by',
+[10] 'powered_by_emlog'	=> 'Powered by Emlog',//'采用emlog系统',
 
 //---------------------------
 //content/templates/default/header.php
 
 //---------------------------
 //content/templates/default/log_list.php
-[16]//'user'	=> 'User',//'作者',
+[16]//'user'		=> 'User',//'作者',
 [16]//'post_time'	=> 'Posted on',//'发布于',
 [23]// 'comments'	=> 'Comments',//'评论',
-[24] ''	=> 'Browse',//'浏览',
-[31] ''	=> 'Not found.',//'未找到',
-[32] ''	=> 'Sorry, no results found.',//'抱歉，没有符合您查询条件的结果。',
+[24] 'browse'		=> 'Browse',//'浏览',
+[31] 'not_found'	=> 'Not found.',//'未找到',
+[32] 'sorry_no_results'	=> 'Sorry, no results found.',//'抱歉，没有符合您查询条件的结果。',
 
 //---------------------------
 //content/templates/default/module.php
-[46]// '_posts'	=> 'posts',//'篇文章',
-[65] ''	=> 'Subscribe this category',//'订阅该分类',
-[75] ''	=> 'Subscribe this category',//'订阅该分类',
-[95]// 'view_images'	=> 'View images',//'查看图片',
-[99] ''	=> 'More &raquo;',//'更多&raquo;',
-[232] ''	=> 'Site management',//'管理站点',
+[46]// '_posts'			=> 'posts',//'篇文章',
+[65] 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
+[75]// 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
+[95]// 'view_images'		=> 'View images',//'查看图片',
+[99] 'more'			=> 'More &raquo;',//'更多&raquo;',
+[232] 'site_management'		=> 'Site management',//'管理站点',
 [233]//'logout'			=> 'Logout',//'退出',
-[257] ''	=> 'Top entries',//'置顶文章',
-[264]// 'edit'	=> 'Edit',//'编辑',
+[257] 'top_posts'		=> 'Top entries',//'置顶文章',
+[264]// 'edit'			=> 'Edit',//'编辑',
 [275]// 'category'		=> 'Category',//'分类',
-[284] 'tag'	=> 'Tag',//'标签',
-[324]// 'comments'	=> 'Comments',//'评论',
-[338]//'reply'	=> 'Reply',//'回复',
-[361]//'reply'	=> 'Reply',//'回复',
-[373] ''	=> 'Cancel reply',//'取消回复',
-[374] ''	=> 'Leave a comment',//'发表评论',
-[380]// 'nickname'	=> 'Nicname',//'昵称',
-[384] ''	=> 'E-mail address (optional)',//'邮件地址 (选填)',
-[388] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
-[392] ''	=> 'Leave a comment',//'发表评论',
+[284]// 'tags'		=> 'Tags',//'标签',
+[324]// 'comments'		=> 'Comments',//'评论',
+[338]//'reply'			=> 'Reply',//'回复',
+[361]//'reply'			=> 'Reply',//'回复',
+[373] 'cancel_reply'		=> 'Cancel reply',//'取消回复',
+[374]// 'comment_leave'		=> 'Leave a comment',//'发表评论',
+[380]// 'nickname'		=> 'Nicname',//'昵称',
+[384]// 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
+[388]// 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
+[392]// 'comment_leave'		=> 'Leave a comment',//'发表评论',
 
 //---------------------------
 //content/templates/default/page.php
 
 //---------------------------
 //content/templates/default/side.php
-[34] ''	=> 'RSS Subscription',//'RSS订阅',
-[34] ''	=> 'RSS Subscription',//'订阅Rss',
+[34] 'rss_feed'	=> 'RSS Subscription',//'RSS订阅',
+[34] 'feed_rss'	=> 'RSS Subscription',//'订阅Rss',
 
 //---------------------------
 //content/templates/default/t.php
 [18]// 'view_images'	=> 'View images',//'查看图片',
 [25]//'reply'	=> 'Reply',//'回复',
 [35]// 'nickname'	=> 'Nicname',//'昵称',
-[36] ''	=> 'Captcha',//'验证码',
+[36] 'captcha'	=> 'Captcha',//'验证码',
 [38]//'reply'	=> 'Reply',//'回复',
 
 //---------------------------
@@ -1347,17 +1347,17 @@ $lang = array(
 //include/lib/cache.php
 [392] 'date_short_format'	=> 'm.Y',//'Y年n月',
 [475] ''	=> '读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',//'读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',
-[476] ''	=> 'The cache directory (content/cache) is not writable.',//'写入缓存失败，缓存目录 (content/cache) 不可写',
+[476] 'cache_not_writable'	=> 'The cache directory (content/cache) is not writable.',//'写入缓存失败，缓存目录 (content/cache) 不可写',
 
 //---------------------------
 //include/lib/calendar.php
-[73] ''	=> 'Monday',//'一',
-[73] ''	=> 'Tuesday',//'二',
-[73] ''	=> 'Wednesday',//'三',
-[73] ''	=> 'Thursday',//'四',
-[73] ''	=> 'Friday',//'五',
-[73] ''	=> 'Saturday',//'六',
-[73] ''	=> 'Sunday',//'日',
+[73] 'weekday_1'	=> 'Monday',//'一',
+[73] 'weekday_2'	=> 'Tuesday',//'二',
+[73] 'weekday_3'	=> 'Wednesday',//'三',
+[73] 'weekday_4'	=> 'Thursday',//'四',
+[73] 'weekday_5'	=> 'Friday',//'五',
+[73] 'weekday_6'	=> 'Saturday',//'六',
+[73] 'weekday_7'	=> 'Sunday',//'日',
 
 //---------------------------
 //include/lib/checkcode.php
@@ -1367,37 +1367,38 @@ $lang = array(
 
 //---------------------------
 //include/lib/function.base.php
-[16] ''	=> ' Failed to load.',//'加载失败。',
-[208] ''	=> ' Byte',//'字节',
+[16] '_load_failed'	=> ' Failed to load.',//'加载失败。',
+[208] '_bytes'	=> ' bytes',//'字节',
 [244]//'home'	=> 'Home',//'首页',
-[246] ''	=> 'End',//'尾页',
-[291] ''	=> 'Read more &gt;&gt;',//'阅读全文&gt;&gt;',
-[294] ''	=> 'Read more &gt;&gt;',//'阅读全文&gt;&gt;',
-[326] ''	=> ' seconds ago.',//'秒前',
-[328] ''	=> ' minutes ago.',//'分钟前',
-[331] ''	=> '~ {$hover} ago.',//'约 {$hover} 小时前',
-[371] ''	=> 'File size exceeds ' . ini_get('upload_max_filesize') . ' limit.',//'文件大小超过系统 ' . ini_get('upload_max_filesize') . ' 限制',
-[374] ''	=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
-[377] ''	=> 'This file type is not supported.',//'错误的文件类型',
-[381] ''	=> 'File size exceeds {$ret} limit.',//'文件大小超出 {$ret} 的限制',
-[384] ''	=> 'Failed to create file upload directory.',//创建文件上传目录失败',
-[387] ''	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
-[856] ''	=> 'Sorry, the page that you requested does not exist!',//'抱歉，你所请求的页面不存在！',
-[868] ''	=> 'Message',//'提示信息',
+[246] 'end'	=> 'End',//'尾页',
+[291]// 'read_more'	=> 'Read more',//'阅读全文',
+[294]// 'read_more'	=> 'Read more',//'阅读全文',
+[326] '_sec_ago'	=> ' seconds ago.',//'秒前',
+[328] '_min_ago'	=> ' minutes ago.',//'分钟前',
+[331] '_any_ago'	=> '~ {$hover} ago.',//'约 {$hover} 小时前',
+[371] 'file_size_exceeds_system'	=> 'File size exceeds the system ',//'文件大小超过系统 ',
+[371]// '_limit'			=> ' limit',//' 限制',//LEAVE THIS EMPTY???
+[374] 'upload_failed_error_code'	=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
+[377] 'file_type_not_supported'	=> 'This file type is not supported.',//'错误的文件类型',
+[381] 'file_size_exceeds_n_limit'	=> 'File size exceeds {$ret} limit.',//'文件大小超出 {$ret} 的限制',
+[384] 'upload_folder_create_error'	=> 'Failed to create file upload directory.',//'创建文件上传目录失败',
+[387] 'upload_folder_unwritable'	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
+[856]// '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
+[868] 'prompt'	=> 'Prompt Message',//'提示信息',
 [900]// 'return'		=> '&laquo;Return back',//'&laquo;点击返回',
-[930] '[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
+[930] '[Yeah]'=>'0.gif', '[Ha ha]'=>'1.gif', '[Sad]'=>'2.gif', '[Crazy]'=>'3.gif', '[Bad]'=>'4.gif', '[Bother]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 //[930] '[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 
 //---------------------------
 //include/lib/loginauth.php
-[70] ''	=> 'Captcha',//'验证码',
-[78] ''	=> 'Captcha error. Please, re-enter.',//'验证错误，请重新输入',
-[81] ''	=> 'Wrong username. Please, re-enter.',//'用户名错误，请重新输入',
-[84] ''	=> 'Wrong password. Please, re-enter.',//'密码错误，请重新输入',
+[70]// 'captcha'	=> 'Captcha',//'验证码',
+[78] 'captcha_error_reenter'	=> 'Captcha error. Please, re-enter.',//'验证错误，请重新输入',
+[81] 'user_name_wrong_reenter'	=> 'Wrong username. Please, re-enter.',//'用户名错误，请重新输入',
+[84] 'password_wrong_reenter'	=> 'Wrong password. Please, re-enter.',//'密码错误，请重新输入',
 
 //---------------------------
 //include/lib/mysql.php
-[43] ''	=> '服务器PHP不支持MySql数据库',//服务器PHP不支持MySql数据库',
+[43] 'php_mysql_not_supported'	=> 'Server does not support PHP MySql database',//'服务器PHP不支持MySql数据库',
 [48] ''	=> 'Database connection error: The database server is unavailable.',//'连接数据库失败，数据库地址错误或者数据库服务器不可用',
 [51] ''	=> 'Database connection error: The database port is invalid.',//'连接数据库失败，数据库端口错误',
 [54] ''	=> 'Database connection error: The database server is unavailable.',//'连接数据库失败，数据库服务器不可用',
@@ -1411,7 +1412,7 @@ $lang = array(
 [152]// 'blogger'		=> 'Personal information',//'个人资料',
 [153] 'calendar'	=> 'Calendar',//'日历',
 [154] 'twitter_latest'	=> 'Latest whispers',//'最新微语',
-[155] 'tag'		=> 'Tag',//'标签',
+[155]// 'tags'		=> 'Tags',//'标签',
 [156] 'sort'		=> 'Category',//'分类',
 [157]// 'archive'	=> 'Archive',//'存档',
 [158]// 'new_comments'		=> 'Latest comments',//'最新评论',
@@ -1435,10 +1436,10 @@ $lang = array(
 //---------------------------
 //include/model/log_model.php
 [84] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[151] ''	=> 'Untitled',//'无标题',
-[183] ''	=> '[This entry has been protected. Click on title and enter the password to access this page.]',//'[该文章已设置加密，请点击标题输入密码访问]',
-[186] ''	=> 'Read more &gt;&gt;',//'阅读全文&gt;&gt;',
-[208] ''	=> 'Untitled',//'无标题',
+[151] 'no_title'	=> 'Untitled',//'无标题',
+[183] 'post_protected_by_password'	=> '[This entry has been protected. Click on title and enter the password to access this page.]',//'[该文章已设置加密，请点击标题输入密码访问]',
+[186]//  'read_more'	=> 'Read more',//'阅读全文',
+[208]// 'no_title'	=> 'Untitled',//'无标题',
 [227] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 [258] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
 [418] ''	=> 'Please enter password to access this page.',//'请输入该文章的访问密码',
@@ -1483,19 +1484,19 @@ $lang = array(
 //m/index.php
 [19] ''	=> 'Mobile version of the site is not available.',//'该站点手机版已关闭！',
 [47] ''	=> 'The entry does not exist.',//'不存在该条目',
-[165] ''	=> 'Comment error: The comments for this entry has been closed.',//'评论失败：该文章已关闭评论',
-[167] ''	=> 'Comment error: The same content already exists.',//'评论失败：已存在相同内容评论',
-[169] ''	=> 'Comment error: You must wait before sending another comment.',//'评论失败：您提交评论的速度太快了，请稍后再发表评论',
-[171] ''	=> 'Comment error: Name does not meet requirements.',//'评论失败：姓名不符合规范',
-[173] ''	=> 'Comment error: E-mail address does not meet requirements.',//'评论失败：邮件地址不符合规范',
-[175] ''	=> 'Comment error: User data cannot be the same as administrator or other users.',//'评论失败：禁止使用管理员昵称或邮箱评论',
-[177] ''	=> 'Comment error: Content does not meet requirements.',//'评论失败：内容不符合规范',
-[179] ''	=> 'Comment error: Content must contain Chinese words.',//'评论失败：评论内容需包含中文',
-[181] ''	=> 'Comment error: Invalid captcha.',//'评论失败：验证码错误',
-[209] ''	=> 'Thank you. Your comment is waiting for approval.',//'评论发表成功，请等待管理员审核',
+[165]// 'comment_error_comment_disabled'	=> 'Comment error: The comments for this entry has been closed.',//'评论失败：该文章已关闭评论',
+[167]// 'comment_error_content_exists'		=> 'Comment error: The same content already exists.',//'评论失败：已存在相同内容评论',
+[169]// 'comment_error_flood_control'	=> 'Comment error: You must wait before sending another comment.',//'评论失败：您提交评论的速度太快了，请稍后再发表评论',
+[171]// 'comment_error_name_invalid'	=> 'Comment error: Name does not meet requirements.',//'评论失败：姓名不符合规范',
+[173]// 'comment_error_email_invalid'	=> 'Comment error: E-mail address does not meet requirements.',//'评论失败：邮件地址不符合规范',
+[175]// 'comment_error_other_user'		=> 'Comment error: User data cannot be the same as administrator or other users.',//'评论失败：禁止使用管理员昵称或邮箱评论',
+[177]// 'comment_error_content_invalid'	=> 'Comment error: Content does not meet requirements.',//'评论失败：内容不符合规范',
+[179]// 'comment_error_national_chars'	=> 'Comment error: Content must contain Chinese characters.',//'评论失败：评论内容需包含中文',
+[181]// 'comment_error_captcha_invalid'	=> 'Comment error: Invalid captcha.',//'评论失败：验证码错误',
+[209]// 'comment_wait_approve'	=> 'Thank you. Your comment is waiting for approval',//'评论发表成功，请等待管理员审核',
 [258] ''	=> 'Parameter error',//'参数错误',
 [288] ''	=> 'Share images',//'分享图片',
-[328] ''	=> 'Captcha',//'验证码',
+[328]// 'captcha'	=> 'Captcha',//'验证码',
 
 //---------------------------
 //m/view/header.php
@@ -1533,13 +1534,13 @@ $lang = array(
 [6]//'delete'	=> 'Delete',//'删除',
 [10]// 'comments'	=> 'Comments',//'评论',
 [18]//'reply'	=> 'Reply',//'回复',
-[24] ''	=> 'Leave a comment',//'发表评论',
-[28] ''	=> 'You are logged as',//'当前已登录为',
+[24]// 'comment_leave'	=> 'Leave a comment',//'发表评论',
+[28]// 'logged_as'	=> 'You are currently logged in as',//'当前已登录为',
 [30]// 'nickname'	=> 'Nicname',//'昵称',
-[31] ''	=> 'E-mail adress (optional)'//'邮件地址 (选填)',
-[32] ''	=> 'Homepage (optional)',//'个人主页 (选填)',
+[31]// 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
+[32]// 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
 [34]// 'content'	=> 'Content',//'内容',
-[35] ''	=> 'Leave a comment',//'发表评论',
+[35]// 'comment_leave'	=> 'Leave a comment',//'发表评论',
 
 //---------------------------
 //m/view/twitter.php
@@ -1585,8 +1586,8 @@ $lang = array(
 [459] ''	=> 'File error.',//'文件错误',
 [470] ''	=> 'File name error.',//'文件名错误',
 [475] ''	=> 'File type error.',//'文件类型错误',
-[485] ''	=> 'Failed to create new file.',//'创建文件上传目录失败',
-[492] ''	=> 'Upload failed. Directory cannot be updated (content/uploadfile).',//'上传失败。文件上传目录(content/uploadfile)不可写',
+[485]// 'upload_folder_create_error'	=> 'Failed to create file upload directory.',//'创建文件上传目录失败',
+[492]// 'upload_folder_unwritable'	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
 [498] ''	=> 'Files cannot be saved',//'文件无法写入',
 [598] ''	=> 'Username password error',//'用户名密码错误',
 
