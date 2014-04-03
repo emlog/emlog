@@ -1,7 +1,7 @@
 var LNG = {
 //---------------------------
 //admin/editor/plugins/image/image.js
-[72]: '（上传本地图片：请点击文章标题下方“上传插入”）',
+[72]: 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
 
 //---------------------------
 //admin/editor/plugins/quickformat/quickformat.js
@@ -12,7 +12,7 @@ var LNG = {
 
 //---------------------------
 //admin/editor/plugins/image/image.js
-/[72] '（上传本地图片：请点击文章标题下方“上传插入”）',
+/[72] 'Add photo from local drive. Just click on insert button.',
 
 //---------------------------
 //admin/editor/plugins/quickformat/quickformat.js
@@ -23,55 +23,55 @@ var LNG = {
 
 //---------------------------
 //admin/views/js/common.js
-[17]: '你确定要删除该条微语吗？',
-[20]: '你确定要删除该评论吗？',
-[23]: '你确定要删除来自该IP的所有评论吗？',
-[26]: '你确定要删除该链接吗？',
-[29]: '你确定要删除该导航吗？',
-[32]: '你确定要导入该备份文件吗？',
-[35]: '你确定要删除该附件吗？',
-[38]: '你确定要删除头像吗？',
-[41]: '你确定要删除该分类吗？',
-[44]: '你确定要删除该页面吗？',
-[47]: '你确定要删除该用户吗？',
-[50]: '你确定要删除该模板吗？',
-[53]: '你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。',
-[56]: '你确定要删除该插件吗？',
-[90]: '标题不能为空',
-[96]: '链接别名错误',
-[104]: '别名错误，应由字母、数字、下划线、短横线组成',
-[106]: '别名错误，不能为纯数字',
-[108]: '别名错误，不能为',
-[108]: '或',
-[108]: '数字',
-[110]: '别名错误，与系统链接冲突',
-[118]: '请先切换到所见所得模式',
-[120]: '点击查看原图',
-[125]: '请先切换到所见所得模式',
-[204]: '链接别名错误，自动保存失败',
-[220]: '正在保存...',
-[222]: '正在保存',
-[239]: '成功保存于 ',
-[246]: '网络或系统出现异常...保存可能失败',
+[17]: 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
+[20]: 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
+[23]: 'Are you sure you want to delete all comments from that IP?',//'你确定要删除来自该IP的所有评论吗？',
+[26]: 'Are you sure you want to delete this link?',//'你确定要删除该链接吗？',
+[29]: 'Are you sure you want to delete this navigation?',//'你确定要删除该导航吗？',
+[32]: 'Are you sure you want to import the backup files?',//'你确定要导入该备份文件吗？',
+[35]: 'Are you sure you want to delete this attachment?',//'你确定要删除该附件吗？',
+[38]: 'Are you sure you want to delete this image?',//'你确定要删除头像吗？',
+[41]: 'Are you sure you want to delete this category?',//'你确定要删除该分类吗？',
+[44]: 'Are you sure you want to delete this page?',//'你确定要删除该页面吗？',
+[47]: 'Are you sure you want to delete this user?',//'你确定要删除该用户吗？',
+[50]: 'Are you sure you want to delete default template?',//'你确定要删除该模板吗？',
+[53]: 'Are you sure you want to restore default component settings? This operation will lose your custom components.',//'你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。',
+[56]: 'Are you sure you want to delete this plugin?',//'你确定要删除该插件吗？',
+[90]: 'Title cannot be empty',//'标题不能为空',
+[96]: 'Alias error',//'链接别名错误',
+[104]: 'Alias should contain letters, numbers, underscores and dashes',//'别名错误，应由字母、数字、下划线、短横线组成',
+[106]: 'Alias cannot contain numbers only',//'别名错误，不能为纯数字',
+[108]: 'Alias cannot be',//'别名错误，不能为',
+[108]: 'or',//'或',
+[108]: 'numbers',//'数字',
+[110]: 'Alias error (system conflict)',//'别名错误，与系统链接冲突',
+[118]: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
+[120]: 'Click to view full size',//'点击查看原图',
+[125]: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
+[204]: 'Alias error. This failure were automatically saved.',//'链接别名错误，自动保存失败',
+[220]: 'Saving...',//'正在保存...',
+[222]: 'Saving',//'正在保存',
+[239]: 'Successfully saved in ',//'成功保存于',
+[246]: 'Error while saving... Unable to save.',//'网络或系统出现异常...保存可能失败',
 
 //---------------------------
 //admin/views/js/emo.js
-[1]: var emo = {'[耶]':'0.gif', '[呵呵]':'1.gif', '[悲伤]':'2.gif', '[抓狂]':'3.gif', '[衰]':'4.gif', '[花心]':'5.gif', '[哼]':'6.gif', '[泪]':'7.gif', '[害羞]':'8.gif', '[酷]':'9.gif', '[晕]':'10.gif', '[挤眼]':'11.gif', '[鬼脸]':'12.gif', '[汗]':'13.gif', '[吃惊]':'14.gif', '[发呆]':'15.gif', '[闭嘴]':'16.gif', '[撇嘴]':'17.gif', '[疑问]':'18.gif', '[睡觉]':'19.gif', '[NO]':'20.gif', '[大哭]':'21.gif', '[爱你]':'22.gif', '[嘻嘻]':'23.gif', '[生病]':'24.gif', '[偷笑]':'25.gif', '[思考]':'26.gif', '[玫瑰]':'27.gif', '[心]':'28.gif', '[伤心]':'29.gif', '[咖啡]':'30.gif', '[音乐]':'31.gif', '[下雨]':'32.gif', '[晴天]':'33.gif', '[星星]':'34.gif', '[月亮]':'35.gif'};
+[1]: var emo = {'[Yes]':'0.gif', '[Oh]':'1.gif', '[Sad]':'2.gif', '[Crazy]':'3.gif', '[Falling]':'4.gif', '[Mahogany]':'5.gif', '[Hum]':'6.gif', '[Tear]':'7.gif', '[Shy]':'8.gif', '[Cool]':'9.gif', '[Dizzy]':'10.gif', '[Wink]':'11.gif', '[Grimace]':'12.gif', '[Sweat]':'13.gif', '[Suprised]':'14.gif', '[Daze]':'15.gif', '[Shut]':'16.gif', '[Kiss]':'17.gif', '[Doubt]':'18.gif', '[Sleep]':'19.gif', '[NO]':'20.gif', '[Cry]':'21.gif', '[Love]':'22.gif', '[Hehe]':'23.gif', '[Sick]':'24.gif', '[Giggle]':'25.gif', '[Think]':'26.gif', '[Rose]':'27.gif', '[Heart]':'28.gif', '[Sad]':'29.gif', '[Coffee]':'30.gif', '[Music]':'31.gif', '[Rain]':'32.gif', '[Sunny]':'33.gif', '[Star]':'34.gif', '[Moon]':'35.gif'}; //'[1]: var emo = {'[耶]':'0.gif', '[呵呵]':'1.gif', '[悲伤]':'2.gif', '[抓狂]':'3.gif', '[衰]':'4.gif', '[花心]':'5.gif', '[哼]':'6.gif', '[泪]':'7.gif', '[害羞]':'8.gif', '[酷]':'9.gif', '[晕]':'10.gif', '[挤眼]':'11.gif', '[鬼脸]':'12.gif', '[汗]':'13.gif', '[吃惊]':'14.gif', '[发呆]':'15.gif', '[闭嘴]':'16.gif', '[撇嘴]':'17.gif', '[疑问]':'18.gif', '[睡觉]':'19.gif', '[NO]':'20.gif', '[大哭]':'21.gif', '[爱你]':'22.gif', '[嘻嘻]':'23.gif', '[生病]':'24.gif', '[偷笑]':'25.gif', '[思考]':'26.gif', '[玫瑰]':'27.gif', '[心]':'28.gif', '[伤心]':'29.gif', '[咖啡]':'30.gif', '[音乐]':'31.gif', '[下雨]':'32.gif', '[晴天]':'33.gif', '[星星]':'34.gif', '[月亮]':'35.gif'};',
 
 //---------------------------
 //content/templates/default/iefix.js
 
 //---------------------------
 //include/lib/js/common_tpl.js
-[69]: 	'加载中...',
-[81]: 	'加载中...',
-[94]: 	'(回复长度需在140个字内)',
-[95]: 	'(昵称不能为空)',
-[96]: 	'(验证码错误)',
-[97]: 	'(不允许使用该昵称)',
-[98]: 	'(已存在该回复)',
-[99]: 	'(禁止回复)',
-[100]: 	'(回复成功，等待管理员审核)',
+[69]: 	'Loading...',//'加载中...',
+[81]: 	'Loading...',//'加载中...',
+[94]: 	'(Up to 140 characters)',//'(回复长度需在140个字内)',
+[95]: 	'(Nickname cannot be empty)',//'(昵称不能为空)',
+[96]: 	'(Verification code error)',//'(验证码错误)',
+[97]: 	'(Do not allow this nickname)',//'(不允许使用该昵称)',
+[98]: 	'(This niokname already exists)',//'(已存在该回复)',
+[99]: 	'(Disable comments)',//'(禁止回复)',
+[100]: 	'(Thank you. Your comment is awaiting moderation.)',//'(回复成功，等待管理员审核)',
 
 //---------------------------
 //include/lib/js/jquery/jquery-1.7.1.js
