@@ -12,7 +12,7 @@ var LNG = {
 
 //---------------------------
 //admin/editor/plugins/image/image.js
-/[72] 'Add photo from local drive. Just click on insert button.',
+/[72] 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
 
 //---------------------------
 //admin/editor/plugins/quickformat/quickformat.js
@@ -56,7 +56,7 @@ var LNG = {
 
 //---------------------------
 //admin/views/js/emo.js
-[1]: var emo = {'[Yes]':'0.gif', '[Oh]':'1.gif', '[Sad]':'2.gif', '[Crazy]':'3.gif', '[Falling]':'4.gif', '[Mahogany]':'5.gif', '[Hum]':'6.gif', '[Tear]':'7.gif', '[Shy]':'8.gif', '[Cool]':'9.gif', '[Dizzy]':'10.gif', '[Wink]':'11.gif', '[Grimace]':'12.gif', '[Sweat]':'13.gif', '[Suprised]':'14.gif', '[Daze]':'15.gif', '[Shut]':'16.gif', '[Kiss]':'17.gif', '[Doubt]':'18.gif', '[Sleep]':'19.gif', '[NO]':'20.gif', '[Cry]':'21.gif', '[Love]':'22.gif', '[Hehe]':'23.gif', '[Sick]':'24.gif', '[Giggle]':'25.gif', '[Think]':'26.gif', '[Rose]':'27.gif', '[Heart]':'28.gif', '[Sad]':'29.gif', '[Coffee]':'30.gif', '[Music]':'31.gif', '[Rain]':'32.gif', '[Sunny]':'33.gif', '[Star]':'34.gif', '[Moon]':'35.gif'}; //'[1]: var emo = {'[耶]':'0.gif', '[呵呵]':'1.gif', '[悲伤]':'2.gif', '[抓狂]':'3.gif', '[衰]':'4.gif', '[花心]':'5.gif', '[哼]':'6.gif', '[泪]':'7.gif', '[害羞]':'8.gif', '[酷]':'9.gif', '[晕]':'10.gif', '[挤眼]':'11.gif', '[鬼脸]':'12.gif', '[汗]':'13.gif', '[吃惊]':'14.gif', '[发呆]':'15.gif', '[闭嘴]':'16.gif', '[撇嘴]':'17.gif', '[疑问]':'18.gif', '[睡觉]':'19.gif', '[NO]':'20.gif', '[大哭]':'21.gif', '[爱你]':'22.gif', '[嘻嘻]':'23.gif', '[生病]':'24.gif', '[偷笑]':'25.gif', '[思考]':'26.gif', '[玫瑰]':'27.gif', '[心]':'28.gif', '[伤心]':'29.gif', '[咖啡]':'30.gif', '[音乐]':'31.gif', '[下雨]':'32.gif', '[晴天]':'33.gif', '[星星]':'34.gif', '[月亮]':'35.gif'};',
+[1]: var emo = {'[Yes]':'0.gif', '[Oh]':'1.gif', '[Sad]':'2.gif', '[Crazy]':'3.gif', '[Falling]':'4.gif', '[Mahogany]':'5.gif', '[Hum]':'6.gif', '[Tear]':'7.gif', '[Shy]':'8.gif', '[Cool]':'9.gif', '[Dizzy]':'10.gif', '[Wink]':'11.gif', '[Grimace]':'12.gif', '[Sweat]':'13.gif', '[Surprised]':'14.gif', '[Daze]':'15.gif', '[Shut]':'16.gif', '[Kiss]':'17.gif', '[Doubt]':'18.gif', '[Sleep]':'19.gif', '[NO]':'20.gif', '[Cry]':'21.gif', '[Love]':'22.gif', '[Hehe]':'23.gif', '[Sick]':'24.gif', '[Giggle]':'25.gif', '[Think]':'26.gif', '[Rose]':'27.gif', '[Heart]':'28.gif', '[Sad]':'29.gif', '[Coffee]':'30.gif', '[Music]':'31.gif', '[Rain]':'32.gif', '[Sunny]':'33.gif', '[Star]':'34.gif', '[Moon]':'35.gif'}; //'[1]: var emo = {'[耶]':'0.gif', '[呵呵]':'1.gif', '[悲伤]':'2.gif', '[抓狂]':'3.gif', '[衰]':'4.gif', '[花心]':'5.gif', '[哼]':'6.gif', '[泪]':'7.gif', '[害羞]':'8.gif', '[酷]':'9.gif', '[晕]':'10.gif', '[挤眼]':'11.gif', '[鬼脸]':'12.gif', '[汗]':'13.gif', '[吃惊]':'14.gif', '[发呆]':'15.gif', '[闭嘴]':'16.gif', '[撇嘴]':'17.gif', '[疑问]':'18.gif', '[睡觉]':'19.gif', '[NO]':'20.gif', '[大哭]':'21.gif', '[爱你]':'22.gif', '[嘻嘻]':'23.gif', '[生病]':'24.gif', '[偷笑]':'25.gif', '[思考]':'26.gif', '[玫瑰]':'27.gif', '[心]':'28.gif', '[伤心]':'29.gif', '[咖啡]':'30.gif', '[音乐]':'31.gif', '[下雨]':'32.gif', '[晴天]':'33.gif', '[星星]':'34.gif', '[月亮]':'35.gif'};',
 
 //---------------------------
 //content/templates/default/iefix.js
