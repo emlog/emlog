@@ -17,7 +17,7 @@ $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if (Option::get('ismobile') == 'n') {
-	emMsg('该站点手机版已关闭！', BLOG_URL);
+	emMsg('站点未开启手机访问', BLOG_URL);
 }
 
 $navi_cache = $CACHE->readCache('navi');
