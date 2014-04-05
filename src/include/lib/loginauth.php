@@ -210,8 +210,7 @@ class LoginAuth{
      * 生成token，防御CSRF攻击
      */
     public static function genToken() {
-        global $user_cache;
-        return md5(substr(AUTH_KEY, 16, 32) . UID . $user_cache[UID]['mail']);
+        return md5(substr(AUTH_KEY, 16, 32) . UID);
     }
 
     /**

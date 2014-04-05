@@ -6,6 +6,7 @@
 <textarea cols="20" rows="3" name="t"></textarea><br />
 选择要上传的图片:<br />
 <input type="file" name="img" /><br />
+<input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <input type="submit" value="发布" />
 </form>
 <?php endif;?>
@@ -16,8 +17,8 @@ $by = $value['author'] != 1 ? 'by:'.$user_cache[$value['author']]['name'] : '';
 ?>
 <div class="twcont"><?php echo $value['content'];?><p><?php echo $img;?></p></div>
 <div class="twinfo"><?php echo $by.' '.$value['date'];?>
-<?php if(ISLOGIN === true && $value['author'] == UID || ROLE == ROLE_ADMIN): ?>
- <a href="./?action=delt&id=<?php echo $value['id'];?>">删除</a>
+<?php if(ROLE == ROLE_ADMIN): ?>
+ <a href="./?action=delt&id=<?php echo $value['id'];?>&token=<?php echo LoginAuth::genToken();?>">删除</a>
 <?php endif;?>
 </div>
 <?php endforeach; ?>

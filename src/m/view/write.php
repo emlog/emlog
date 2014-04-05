@@ -17,6 +17,7 @@
 摘要：<br /><textarea name="excerpt" class="excerpt"><?php echo $excerpt; ?></textarea><br />
 标签：<br /><input type="text" name="tag" value="<?php echo $tagStr; ?>" /><br />
 <input type="hidden" name="gid" value=<?php echo $logid; ?> />
+<input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <input type="hidden" name="author" value=<?php echo $author; ?> />
 <input name="date" type="hidden" value="<?php print !empty($date) ? gmdate('Y-m-d H:i:s', $date) : ''; ?>" />
 <input type="submit" value="发布文章" />
