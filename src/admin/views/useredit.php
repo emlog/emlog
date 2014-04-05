@@ -28,6 +28,7 @@
 	<li>个人描述<br />
 	<textarea name="description" rows="5" style="width:260px;" class="textarea"><?php echo $description; ?></textarea></li>
 	<li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
 	<input type="submit" value="保 存" class="button" />
 	<input type="button" value="取 消" class="button" onclick="window.location='user.php';" /></li>

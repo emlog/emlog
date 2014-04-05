@@ -84,6 +84,7 @@ if ($action == 'bakstart') {
 
 //导入服务器备份文件
 if ($action == 'renewdata') {
+    LoginAuth::checkToken();
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile)) {
 		emMsg('文件不存在');
@@ -100,6 +101,7 @@ if ($action == 'renewdata') {
 
 //导入本地备份文件
 if ($action == 'import') {
+    LoginAuth::checkToken();
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
 		emMsg('非法提交的信息');

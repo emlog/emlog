@@ -78,6 +78,7 @@
 </div>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="">
     <input type="submit" value="发布文章" onclick="return checkform();" class="button" />
     <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />

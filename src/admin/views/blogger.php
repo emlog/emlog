@@ -30,7 +30,10 @@
 	<li><input maxlength="200" style="width:200px;" class="input" value="<?php echo $username; ?>" name="username" /> 登陆名</li>
     <li><input type="password" maxlength="200" class="input" style="width:200px;" value="" name="newpass" /> 新密码（不小于6位，不修改请留空）</li>
 	<li><input type="password" maxlength="200" class="input" style="width:200px;" value="" name="repeatpass" /> 再输入一次新密码</li>
-    <li><input type="submit" value="保存资料" class="button" /></li>
+    <li>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="submit" value="保存资料" class="button" />
+    </li>
 </div>
 </form>
 <script>

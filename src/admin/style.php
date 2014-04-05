@@ -42,6 +42,7 @@ if ($action == '') {
 
 //update
 if ($action == 'usestyle') {
+    LoginAuth::checkToken();
 	$styleName = isset($_GET['style']) ? addslashes($_GET['style']) : '';
 
 	Option::updateOption('admin_style', $styleName);

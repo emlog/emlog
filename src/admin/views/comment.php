@@ -66,7 +66,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
-            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="删除来自该IP的所有评论" class="care">(X)</a><?php endif;?></td>
+            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="删除来自该IP的所有评论" class="care">(X)</a><?php endif;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>

@@ -71,7 +71,7 @@
         <td>
         <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>">编辑</a>
         <?php if($value['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');" class="care">删除</a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
         <?php endif;?>
         </td>
       </tr>
@@ -98,7 +98,7 @@
         <td>
         <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>">编辑</a>
         <?php if($val['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi');" class="care">删除</a>
+        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
         <?php endif;?>
         </td>
       </tr>

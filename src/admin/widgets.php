@@ -140,6 +140,7 @@ if ($action == 'compages') {
 
 //恢复组件设置到初始安装状态
 if ($action == 'reset') {
+    LoginAuth::checkToken();
 	$widget_title = serialize(Option::getWidgetTitle());
 	$default_widget = serialize(Option::getDefWidget());
 

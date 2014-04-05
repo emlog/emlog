@@ -53,6 +53,7 @@ if ($action == '') {
 //使用模板
 if ($action == 'usetpl')
 {
+    LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
@@ -65,6 +66,7 @@ if ($action == 'usetpl')
 //删除模板
 if ($action == 'del')
 {
+    LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
 	if (true === emDeleteFile(TPLS_PATH . $tplName)) {
@@ -196,6 +198,7 @@ if ($action == 'install')
 
 //上传zip模板
 if ($action == 'upload_zip') {
+    LoginAuth::checkToken();
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
 	if ($zipfile['error'] == 4) {

@@ -39,6 +39,7 @@ if ($action== 'del') {
 }
 
 if ($action== 'delbyip') {
+    LoginAuth::checkToken();
     if (ROLE != ROLE_ADMIN) {
 		emMsg('权限不足！', './');
     }

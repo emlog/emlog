@@ -46,6 +46,7 @@ if ($action == '') {
 }
 
 if ($action == 'mod_config') {
+    LoginAuth::checkToken();
 	$getData = array(
 	'blogname' => isset($_POST['blogname']) ? addslashes($_POST['blogname'])  : '',
 	'blogurl' => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',

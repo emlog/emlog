@@ -20,6 +20,7 @@ if ($action == '' && !$plugin) {
 
 //激活
 if ($action == 'active') {
+    LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
 	if ($Plugin_Model->activePlugin($plugin) ) {
 		$CACHE->updateCache('options');
@@ -31,6 +32,7 @@ if ($action == 'active') {
 
 //禁用
 if ($action == 'inactive') {
+    LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
 	$CACHE->updateCache('options');
@@ -69,6 +71,7 @@ if ($action == 'install') {
 
 //删除插件
 if ($action == 'del') {
+    LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
 	$pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
@@ -82,6 +85,7 @@ if ($action == 'del') {
 
 //上传zip插件
 if ($action == 'upload_zip') {
+    LoginAuth::checkToken();
 	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
 	if ($zipfile['error'] == 4) {

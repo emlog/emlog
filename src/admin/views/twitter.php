@@ -11,6 +11,7 @@
     <div class="right">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
@@ -21,7 +22,7 @@
         <a href="javascript:;" onclick="unSelectFile()"> [取消]</a>
         <div id="img_pop"></div>
     </div>
-    <?php  doAction('twitter_form'); ?>
+    <?php doAction('twitter_form'); ?>
     </form>
     </div>
     <div class="clear"></div>
@@ -41,7 +42,7 @@
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);">回复</a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');" class="care">删除</a> </p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>

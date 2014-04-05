@@ -51,7 +51,7 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		</td>
 	</tr>
 	<?php
@@ -74,7 +74,7 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care">删除</a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		</td>
 	</tr>
 	<?php endforeach; ?>
@@ -108,6 +108,7 @@ foreach($sorts as $key=>$value):
     <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> 模板 (用于自定义分类页面模板，默认为模板目录下log_list.php文件)</li>
 	<li>分类描述<br />
 	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<li><input type="submit" id="addsort" value="添加新分类" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>

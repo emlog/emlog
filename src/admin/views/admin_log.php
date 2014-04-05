@@ -147,6 +147,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php endif;?>
 	</tbody>
 	</table>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="operate" id="operate" value="" type="hidden" />
 	<div class="list_footer">
 	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：

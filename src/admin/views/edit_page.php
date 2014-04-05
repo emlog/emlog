@@ -34,6 +34,7 @@
     </span>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
     <input type="hidden" name="gid" value=<?php echo $pageId; ?> />
     <input type="submit" value="保存并返回" onclick="return checkform();" class="button" />

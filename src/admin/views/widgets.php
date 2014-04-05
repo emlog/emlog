@@ -248,7 +248,7 @@ if($i == $wgNum):
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 <div style="margin:20px 40px;"><input type="submit" value="保存组件排序" class="button" /></div>
-<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget');">恢复组件设置到初始安装状态</a></div>
+<div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');">恢复组件设置到初始安装状态</a></div>
 </div>
 </form>
 </div>

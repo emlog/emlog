@@ -35,7 +35,7 @@
       <td width="661"><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
-      <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');">导入</a></td>
+      <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup', '<?php echo LoginAuth::genToken(); ?>');">导入</a></td>
     </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
@@ -76,7 +76,10 @@
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
     <p class="des">仅可导入相同版本emlog导出的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
-	<p><input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" /> </p>
+	<p>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" />
+    </p>
 </div>
 </form>
 

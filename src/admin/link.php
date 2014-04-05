@@ -76,6 +76,7 @@ if ($action=='update_link') {
 }
 
 if ($action == 'dellink') {
+    LoginAuth::checkToken();
 	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');

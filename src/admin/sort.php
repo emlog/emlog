@@ -38,7 +38,6 @@ if ($action== 'add') {
 	$pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
     $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
 	$description = isset($_POST['description'])  ? addslashes(trim($_POST['description'])) : '';
-    
 
 	if (empty($sortname)) {
 		emDirect("./sort.php?error_a=1");
@@ -124,6 +123,9 @@ if ($action == 'update') {
 
 if ($action == 'del') {
 	$sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
+
+    LoginAuth::checkToken();
+
 	$Sort_Model->deleteSort($sid);
 	$CACHE->updateCache(array('sort', 'logsort', 'navi'));
 	emDirect("./sort.php?active_del=1");

@@ -138,6 +138,7 @@ if ($action=='update') {
 }
 
 if ($action == 'del') {
+    LoginAuth::checkToken();
 	$navid = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Navi_Model->deleteNavi($navid);
 	$CACHE->updateCache('navi');

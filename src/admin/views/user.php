@@ -37,7 +37,7 @@
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');" class="care">删除</a>
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		<?php else:?>
 		<a href="blogger.php">编辑</a>
 		<?php endif;?>
@@ -72,6 +72,7 @@
 		<option value="y">文章需要审核</option>
 	</select>
 	</li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<li><input type="submit" name="" value="添加用户" class="button" /></li>
 </div>
 </form>

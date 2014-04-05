@@ -152,7 +152,8 @@ function autosave(act){
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
-		var ishide = $.trim($("#ishide").val());
+		var token = $.trim($("#token").val());
+        var ishide = $.trim($("#ishide").val());
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
 					+"&title="+encodeURIComponent(title)
@@ -160,6 +161,7 @@ function autosave(act){
 					+"&allow_remark="+allow_remark
 					+"&is_blank="+is_blank
 					+"&url="+pageurl
+                    +"&token="+token
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}else{
@@ -181,6 +183,7 @@ function autosave(act){
 		var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
 		var password = $.trim($("#password").val());
 		var ishide = $.trim($("#ishide").val());
+        var token = $.trim($("#token").val());
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
 					+"&excerpt="+encodeURIComponent(excerpt)
@@ -195,6 +198,7 @@ function autosave(act){
 					+"&allow_remark="+allow_remark
 					+"&allow_tb="+allow_tb
 					+"&password="+password
+                    +"&token="+token
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}

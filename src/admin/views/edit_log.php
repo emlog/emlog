@@ -82,6 +82,7 @@ $isdraft = $hide == 'y' ? true : false;
 </div>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
     <input type="hidden" name="gid" value=<?php echo $logid; ?> />
     <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />

@@ -86,6 +86,8 @@ if ($action == 'operate_log') {
 	$author = isset($_POST['author']) ? intval($_POST['author']) : '';
     $gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
 
+    LoginAuth::checkToken();
+
 	if ($operate == '') {
 		emDirect("./admin_log.php?pid=$pid&error_b=1");
 	}

@@ -114,6 +114,7 @@ if ($action == 'attlib') {
 
 //删除附件
 if ($action == 'del_attach') {
+    LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';
 	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
 	$attach = $DB->fetch_array($query);

@@ -37,7 +37,10 @@
         <option value="2" <?php echo $opt2; ?>>文章标题 - 站点浏览器标题</option>
         </select>
     </li>
-    <li style="margin-top:10px;"><input type="submit" value="保存设置" class="button" /></li>
+    <li style="margin-top:10px;">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="submit" value="保存设置" class="button" />
+    </li>
 </div>
 </form>
 </div>
