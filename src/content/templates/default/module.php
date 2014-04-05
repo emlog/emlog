@@ -62,7 +62,6 @@ function widget_sort($title){
 	?>
 	<li>
 	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="订阅该分类"/></a>
 	<?php if (!empty($value['children'])): ?>
 		<ul>
 		<?php
@@ -72,10 +71,10 @@ function widget_sort($title){
 		?>
 		<li>
 			<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-			<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="订阅该分类"/></a>
 		</li>
 		<?php endforeach; ?>
 		</ul>
+    </li>
 	<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>
