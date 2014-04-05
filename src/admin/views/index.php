@@ -8,7 +8,10 @@
         <form method="post" action="twitter.php?action=post">
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
         <div class="box_1"><textarea class="box2" name="t">用微语记录生活 ……</textarea></div>
-        <div class="tbutton" style="display:none;"><input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span></div>
+        <div class="tbutton" style="display:none;">
+            <input type="submit" value="发布" onclick="return checkt();"/> <a href="javascript:closet();">取消</a> <span>(你还可以输入140字)</span>
+            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        </div>
         </form>
         </div>
 		<div class="clear"></div>
