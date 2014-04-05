@@ -310,7 +310,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_needchinese','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',15);
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',60);
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','20480');
@@ -318,12 +318,12 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','420');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','460');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','15');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');

@@ -100,7 +100,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%">RSS：<br /></td>
         <td width="82%">
-		输出<input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" class="input" name="rss_output_num" />篇文章，且输出
+		输出<input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" class="input" name="rss_output_num" />篇文章（0为关闭），且输出
         <select name="rss_output_fulltext" class="input">
 		<option value="y" <?php echo $ex1; ?>>全文</option>
 		<option value="n" <?php echo $ex2; ?>>摘要</option>
