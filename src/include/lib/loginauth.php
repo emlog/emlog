@@ -210,7 +210,8 @@ class LoginAuth{
      * 生成token，防御CSRF攻击
      */
     public static function genToken() {
-        return md5(AUTH_KEY);
+        global $user_cache;
+        return md5(substr(AUTH_KEY, 16, 32) . UID . $user_cache[UID]['mail']);
     }
 
     /**
@@ -218,8 +219,8 @@ class LoginAuth{
      */
     public static function checkToken() {
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
-        if ($token != self::getToken()) {
-            emMsg('权限不足');
+        if ($token != self::genToken()) {
+            emMsg('权限不足，token error');
         }
     }
 }
