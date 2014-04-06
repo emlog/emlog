@@ -75,7 +75,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td width="82%">
         <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> />登录验证码<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> />Gzip压缩<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作<br />
+        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> />离线写作（支持用Windows Live Writer等工具写文章）<br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> />手机访问版，地址：<span id="m"><a title="用手机访问你的站点"><?php echo BLOG_URL.'m'; ?></a></span><br />
       	<input type="checkbox" style="vertical-align:middle;" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />自动摘要，截取文章的前
         <input type="text" name="excerpt_subnum" maxlength="3" value="<?php echo Option::get('excerpt_subnum'); ?>" class="input" style="width:25px;" />个字作为摘要<br />
