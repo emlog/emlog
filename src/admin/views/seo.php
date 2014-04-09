@@ -12,7 +12,7 @@
 <form action="seo.php?action=update" method="post">
 <div style="font-size: 14px; margin: 10px 0px 10px 10px;"><b>文章链接设置：</b></div>
 <div class="des" style="margin-left:10px;">
-    你可以在这里修改文章链接的形式，如果修改后文章无法访问，那可能是你的服务器环境不支持URL重写，请修改回默认形式、关闭文章连接别名。
+    你可以在这里修改文章链接的形式，如果修改后文章无法访问，那可能是你的服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。
     <br />启用链接别名后可以自定义文章和页面的链接地址。
 </div>
 <div style="margin:10px 8px;">

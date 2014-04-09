@@ -33,7 +33,7 @@ class MySqlii {
 
 	private function __construct() {
 		if (!class_exists('mysqli')) {
-			emMsg('服务器PHP不支持MySqli函数');
+			emMsg('服务器空间PHP不支持MySqli函数');
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);

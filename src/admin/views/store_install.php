@@ -14,7 +14,7 @@ $(document).ready(function(){
         } else if(data.match("error_down")){
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>下载失败，可能是服务器网络问题，请手动下载安装，<a href="store.php">返回应用中心</a></span>');
         } else if(data.match("error_zip")){
-            $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>安装失败，可能是服务器不支持zip模块，请手动下载安装，<a href="store.php">返回应用中心</a></span>');
+            $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>安装失败，可能是你的服务器空间不支持zip模块，请手动下载安装，<a href="store.php">返回应用中心</a></span>');
         } else if(data.match("error_dir")){
             $("#addon_ins").html('<span id="addonerror"><?php echo $source_typename;?>安装失败，可能是应用目录不可写，<a href="store.php">返回应用中心</a></span>');
         }else{

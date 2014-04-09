@@ -5,10 +5,10 @@
 <?php if(isset($_GET['active_import'])):?><span class="actived">备份导入成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的备份文件</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="error">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="error">服务器不支持zip，无法导入zip备份</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">服务器空间不支持zip，无法导入zip备份</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">上传备份失败</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">错误的备份文件</span><?php endif;?>
-<?php if(isset($_GET['error_f'])):?><span class="error">服务器不支持zip，无法导出zip备份</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">服务器空间不支持zip，无法导出zip备份</span><?php endif;?>
 <?php if(isset($_GET['active_mc'])):?><span class="actived">缓存更新成功</span><?php endif;?>
 </div>
 <div class=line></div>

@@ -33,7 +33,7 @@ class MySql {
 
 	private function __construct() {
 		if (!function_exists('mysql_connect')) {
-			emMsg('服务器PHP不支持MySql数据库');
+			emMsg('服务器空间PHP不支持MySql数据库');
 		}
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
             switch ($this->geterrno()) {

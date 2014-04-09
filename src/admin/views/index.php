@@ -27,7 +27,7 @@
     <li>PHP版本：<?php echo $php_ver; ?>，MySQL版本：<?php echo $mysql_ver; ?></li>
 	<li>服务器环境：<?php echo $serverapp; ?></li>
 	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
-	<li>服务器允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
+	<li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
 	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
 </div>
@@ -80,7 +80,7 @@ function doup(source,upsql){
         } else if(data.match("error_down")){
             $("#about #upmsg").html('下载更新失败，可能是服务器网络问题');
         } else if(data.match("error_zip")){
-            $("#about #upmsg").html('解压更新失败，可能是服务器不支持zip模块');
+            $("#about #upmsg").html('解压更新失败，可能是你的服务器空间不支持zip模块');
         } else if(data.match("error_dir")){
             $("#about #upmsg").html('更新失败，目录不可写');
         }else{
