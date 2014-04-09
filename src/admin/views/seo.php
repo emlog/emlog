@@ -25,7 +25,7 @@
 	<li>启用文章链接别名html后缀：<input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> /></li>
 </div>
 <div style="border-top:1px solid #F7F7F7; width:521px; margin:10px 0px 10px 0px;"></div>
-<div style="font-size: 14px; margin: 20px 0px 10px 10px;"><b>Meta设置：</b></div>
+<div style="font-size: 14px; margin: 20px 0px 10px 10px;"><b>meta信息设置：</b></div>
 <div class="item_edit" style="margin-left:10px;">
     <li>站点浏览器标题(title)<br /><input maxlength="200" style="width:300px;" class="input" value="<?php echo $site_title; ?>" name="site_title" /></li>
     <li>站点关键字(keywords)<br /><input maxlength="200" style="width:300px;" class="input" value="<?php echo $site_key; ?>" name="site_key" /></li>
