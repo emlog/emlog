@@ -118,7 +118,7 @@
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
 	<li><input maxlength="200" style="width:100px;" name="naviname" /> 导航名称<span class="required">*</sapn></li>
 	<li>
-	<input maxlength="200" style="width:170px;" name="url" id="url" /> 地址(带http)<span class="required">*</sapn></li>
+	<input maxlength="200" style="width:168px;" name="url" id="url" /> 地址(带http)<span class="required">*</sapn></li>
     <li>
             <select name="pid" id="pid" class="input">
                 <option value="0">无</option>
