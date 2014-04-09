@@ -72,6 +72,8 @@
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
         <label for="top">首页置顶</label>
+		<input type="checkbox" value="y" name="sortop" id="sortop" />
+        <label for="sortop">分类置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
         <label for="allow_remark">允许评论</label>
     </span>

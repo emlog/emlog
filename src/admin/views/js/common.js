@@ -179,6 +179,7 @@ function autosave(act){
 		var excerpt = $('#excerpt').val();
 		var tag = $.trim($("#tag").val());
 		var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
+		var sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
 		var password = $.trim($("#password").val());
@@ -195,6 +196,7 @@ function autosave(act){
 					+"&date="+date
 					+"&tag="+encodeURIComponent(tag)
 					+"&top="+top
+					+"&sortop="+sortop
 					+"&allow_remark="+allow_remark
 					+"&allow_tb="+allow_tb
 					+"&password="+password
