@@ -24,8 +24,8 @@ var LNG = {
 //---------------------------
 //admin/views/js/common.js
 [17] 'twitter_del_sure' : 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
-[20] 'twitter_del_sure' : 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
-[23]: 'Are you sure you want to delete all comments from that IP?',//'你确定要删除来自该IP的所有评论吗？',
+[20] 'comment_del_sure' : 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
+[23] 'comment_ip_del_sure: 'Are you sure you want to delete all comments from that IP?',//'你确定要删除来自该IP的所有评论吗？',
 [26]: 'Are you sure you want to delete this link?',//'你确定要删除该链接吗？',
 [29]: 'Are you sure you want to delete this navigation?',//'你确定要删除该导航吗？',
 [32]: 'Are you sure you want to import the backup files?',//'你确定要导入该备份文件吗？',
@@ -38,7 +38,7 @@ var LNG = {
 [53]: 'Are you sure you want to restore default component settings? This operation will lose your custom components.',//'你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。',
 [56]: 'Are you sure you want to delete this plugin?',//'你确定要删除该插件吗？',
 [90]: 'Title cannot be empty',//'标题不能为空',
-[96]: 'Alias error',//'链接别名错误',
+[96]: 'Link Alias error',//'链接别名错误',
 [104]: 'Alias should contain letters, numbers, underscores and dashes',//'别名错误，应由字母、数字、下划线、短横线组成',
 [106]: 'Alias cannot contain numbers only',//'别名错误，不能为纯数字',
 [108]: 'Alias cannot be',//'别名错误，不能为',
