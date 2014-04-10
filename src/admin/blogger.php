@@ -55,8 +55,9 @@ if ($action == 'update') {
         $PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword($newpass);
 		$User_Model->updateUser(array('password'=>$newpass), UID);
-	} 
-    if ($login != $user_cache[UID]['username']) {
+	}
+
+    if (!empty($login)) {
 		$User_Model->updateUser(array('username'=>$login), UID);
 	}
 

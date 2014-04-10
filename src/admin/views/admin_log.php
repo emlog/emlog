@@ -124,9 +124,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
       <span style="display:none; margin-left:8px;">
 		<?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>">审核</a> 
+		<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a> 
         <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-        <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>">驳回</a> 
+        <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a> 
         <?php endif;?>
       </span>
       </td>
