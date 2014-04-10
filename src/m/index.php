@@ -155,6 +155,10 @@ if ($action == 'addcom') {
         $url = addslashes(BLOG_URL);
     }
 
+	if ($url && strncasecmp($url,'http',4)) {
+		$url = 'http://'.$url;
+	}
+
     doAction('comment_post');
 
 	if($Comment_Model->isLogCanComment($blogId) === false){
