@@ -7,13 +7,13 @@ $lang = array(
 [56] 'drafts'		=> 'Drafts',//'草稿箱',
 [60] 'post_manager'	=> 'Post Manager',//'文章管理',
 [157] 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[169]//'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[178]//'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[169]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[178]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //admin/attachment.php
 [122] 'attachment_delete_error'		=> 'Attachment delete failed!',//'删除附件失败!',
-[129] //'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
+[129]// 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
 
 //---------------------------
 //admin/blogger.php
@@ -21,7 +21,7 @@ $lang = array(
 
 //---------------------------
 //admin/comment.php
-[40] //'no_permission'		=> 'Insufficient permissions!',//'权限不足！',
+[40]// 'no_permission'		=> 'Insufficient permissions!',//'权限不足！',
 [103] 'comment_not_exist'	=> 'This comment does not exist!',//'不存在该评论！',
 
 //---------------------------
@@ -41,7 +41,7 @@ $lang = array(
 [108] '_limit'				=> ' limit',//' 限制',//LEAVE THIS EMPTY???
 [110] 'upload_failed_code'		=> 'Upload failed. Error code',//'上传文件失败,错误码',
 [128] 'import_only_emlog_no_change'	=> 'You can only import emlog backup archive, and the archive file name can not be changed!',//'只能导入emlog备份的压缩包，且不能修改压缩包文件名！',
-[131]//'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
+[131]// 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
 [158] 'import_failed_not_read'		=> 'Import failed! Can not read the file',//'导入失败！读取文件失败',
 [169] 'import_failed_not_emlog'		=> 'Import failed! The backup file is not the emlog backup file!',//'导入失败！该备份文件不是 emlog的备份文件!',
 [172] 'import_failed_not_emlog_ver'	=> 'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',//'导入失败！该备份文件不是emlog ' . Option::EMLOG_VERSION . '  生成的备份!',
@@ -49,7 +49,7 @@ $lang = array(
 
 //---------------------------
 //admin/globals.php
-[44]//'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[44]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //admin/index.php
@@ -144,7 +144,7 @@ $lang = array(
 //admin/views/add_page.php
 [4] 'add_page'			=> 'Add page',//'新建页面',
 [9] 'page_title_info'		=> 'Enter the page title',//'输入页面标题',
-[15]//'upload_insert'		=> 'Insert upload',//'上传插入',
+[15]// 'upload_insert'		=> 'Insert upload',//'上传插入',
 [27] 'link_alias'		=> 'Link Alias',//'链接别名',
 [27] 'link_alias_info'		=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
 [27] 'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
@@ -174,10 +174,10 @@ $lang = array(
 [43]// 'category'		=> 'Category',//'分类',
 [43] 'uncategorized'	=> 'Uncategorized',//'未分类',
 [54]// 'tags'		=> 'Tags',//'标签',
-[65]//'user'		=> 'User',//'作者',
+[65]// 'user'		=> 'User',//'作者',
 [85] 'title'		=> 'Title',//'标题',
 [87] 'view'		=> 'View',//'查看',
-[89]//'user'		=> 'User',//'作者',
+[89]// 'user'		=> 'User',//'作者',
 [90]// 'category'	=> 'Category',//'分类',
 [91] 'time'		=> 'Date',//'时间',
 [92] 'comments'		=> 'Comments',//'评论',
@@ -192,7 +192,7 @@ $lang = array(
 [131] 'no_posts'	=> 'Yet no entries',//'还没有文章',
 [137] 'select'		=> 'Select',//'全选',
 [137] 'selected_items'	=> 'Selected items',//'选中项',
-[138]//'delete'		=> 'Delete',//'删除',
+[138]// 'delete'		=> 'Delete',//'删除',
 [140] 'publish'		=> 'Publish',//'发布',
 [142] 'set_draft'	=> 'Save as draft',//'转入草稿箱',
 [145]// 'stick'		=> 'Stick',//'置顶',
@@ -219,17 +219,17 @@ $lang = array(
 [13]// 'title'		=> 'Title',//'标题',
 [14]// 'comments'	=> 'Comments',//'评论',
 [15]// 'time'		=> 'Date',//'时间',
-[27]//'draft'		=> 'Draft',//'草稿',
+[27]// 'draft'		=> 'Draft',//'草稿',
 [28] 'page_view'	=> 'View page',//'查看页面',
 [35]// 'attachment'	=> 'Attachment',//'附件',
 [41] 'no_pages'		=> 'No pages',//'还没有页面',
 [48]// 'select'		=> 'Select',//'全选',
 [48]// 'selected_items'	=> 'Selected items',//'选中项',
-[49]//'delete'		=> 'Delete',//'删除',
+[49]// 'delete'		=> 'Delete',//'删除',
 [50] 'make_draft'	=> 'Convert to draft',//'转为草稿',
 [51]// 'publish'	=> 'Publish',//'发布',
 [53]// 'add_page'	=> 'Add page',//'新建页面',
-[54]//'have'		=> 'Have',//'有',
+[54]// 'have'		=> 'Have',//'有',
 [54] '_pages'		=> ' pages',//'个页面',
 [66] 'select_page_to_operate'	=> 'Please, select the page to operate',//'请选择要操作的页面',
 [68] 'sure_delete_selected_pages'	=> 'Are you sure you want to delete selected pages?',//'你确定要删除所选页面吗？',
@@ -239,7 +239,7 @@ $lang = array(
 [22] 'attachment_upload'	=> 'Upload attachment',//'上传附件',
 [23] 'bulk_upload'		=> 'Bulk upload',//'批量上传',//'('
 [24] 'attachment_library'	=> 'Attachment Library',//'附件库',
-[24] //'）',//'）',
+[24]// '）',//'）',
 [28] 'no_attachments'	=> 'The post has no attachment',//'该文章没有附件',
 [35] 'insert'		=> 'Insert',//'插入',
 [39] 'insert_full_size'	=> 'Insert full size image',//'插入原图',
@@ -247,7 +247,7 @@ $lang = array(
 [42] 'insert_thumbnail'	=> 'Insert thumbnail',//'插入缩略图',
 [42] 'thumbnail'	=> 'Thumbnail',//'缩略图',
 [46]// 'insert'		=> 'Insert',//'插入',
-[57]//'delete'		=> 'Delete',//'删除',
+[57]// 'delete'		=> 'Delete',//'删除',
 
 //---------------------------
 //admin/views/blogger.php
@@ -295,20 +295,20 @@ $lang = array(
 [37] 'belongs_to_post'	=> 'belongs to post',//'所属文章',
 [44]// 'pending'	=> 'Pending',//'待审',
 [46] 'from'		=> 'From',//'来自',
-[58]//'delete'		=> 'Delete',//'删除',
+[58]// 'delete'		=> 'Delete',//'删除',
 [60]// 'approve'	=> 'Approve',//'审核',
-[62]//'hide'		=> 'Hide',//'隐藏',
-[64]//'reply'		=> 'Reply',//'回复',
+[62]// 'hide'		=> 'Hide',//'隐藏',
+[64]// 'reply'		=> 'Reply',//'回复',
 [65] 'edit'		=> 'Edit',//'编辑',
 [69] 'delete_comments_from_ip'	=> 'Delete all comments from that IP',//'删除来自该IP的所有评论',
 [70] 'show_post'	=> 'See the post',//'查看该文章',
 [73] 'no_comments_yet'	=> 'Have not yet received comments',//'还没有收到评论',
 [78]// 'select'		=> 'Select',//'全选',
 [78]// 'selected_items'	=> 'Selected items',//'选中项',
-[79]//'delete'		=> 'Delete',//'删除',
-[80]//'hide'		=> 'Hide',//'隐藏',
+[79]// 'delete'		=> 'Delete',//'删除',
+[80]// 'hide'		=> 'Hide',//'隐藏',
 [81]// 'approve'	=> 'Approve',//'审核',
-[84]//'have'		=> 'Have',//'有',
+[84]// 'have'		=> 'Have',//'有',
 [84] '_comments'	=> 'comments',//'条评论',
 [97] 'comment_operation_select'		=> 'Please select the operation for comments',//'请选择要操作的评论',
 [100] 'comment_selected_delete_sure'	=> 'Are you sure you want to delete selected comments?',//'你确定要删除所选评论吗？',
@@ -329,7 +329,7 @@ $lang = array(
 [7]// 'commentators'	=> 'commentators',//'评论人',
 [8]// 'time'		=> 'Date',//'时间',
 [9]// 'content'		=> 'Content',//'内容',
-[15]//'reply'		=> 'Reply',//'回复',
+[15]// 'reply'		=> 'Reply',//'回复',
 [17] 'reply_and_audit'	=> 'Reply and audit',//'回复并审核',
 [19]// 'cancel'		=> 'Cancel',//'取 消',
 
@@ -438,7 +438,7 @@ $lang = array(
 [40] 'backup_no'	=> 'No backups found',//'还没有备份',
 [45]// 'select'		=> 'Select',//'全选',
 [45]// 'selected_items'	=> 'Selected items',//'选中项',
-[45]//'delete'		=> 'Delete',//'删除',
+[45]// 'delete'		=> 'Delete',//'删除',
 [47] 'backup_create'	=> 'Create Backup',//'备份数据',//'备份数据+',
 [47] 'spacer'		=> ' ',//'　',//It is the empty space between two words
 [47] 'backup_import_local'	=> 'Import Local Backup',//'导入本地备份',//'导入本地备份+',
@@ -462,23 +462,23 @@ $lang = array(
 //admin/views/edit_log.php
 [7] 'draft_edit'		=> 'Edit draft',//'编辑草稿',
 [7] 'post_edit'			=> 'Edit post',//'编辑文章',
-[11]//'enter_post_title'	=> 'Enter the post title',//'输入文章标题',
-[16]//'upload_insert'		=> 'Insert upload',//'上传插入',
-[29]//'post_tags_separated'	=> 'Posts tags, separated by comma or space. Too many tags will affect the system efficiency',//'文章标签，逗号或空格分隔，过多的标签会影响系统运行效率',
-[31]//'tags_have'		=> 'Have tags+',//'已有标签+',
-[34]//'category_select'		=> 'Select Category...',//'选择分类...',
-[41]//'post_time'		=> 'Posted on',//'发布于',
-[51]//'tag_not_set'		=> 'Tags have not been set!',//'还没有设置过标签！',
-[55]//'advanced_options'	=> 'Advanced Options',//'高级选项',
-[57]//'post_description'	=> 'Post Description',//'文章摘要',
-[59]//'post_alias'		=> 'Post Link Alias',//'文章链接别名',
+[11]// 'enter_post_title'	=> 'Enter the post title',//'输入文章标题',
+[16]// 'upload_insert'		=> 'Insert upload',//'上传插入',
+[29]// 'post_tags_separated'	=> 'Posts tags, separated by comma or space. Too many tags will affect the system efficiency',//'文章标签，逗号或空格分隔，过多的标签会影响系统运行效率',
+[31]// 'tags_have'		=> 'Have tags+',//'已有标签+',
+[34]// 'category_select'		=> 'Select Category...',//'选择分类...',
+[41]// 'post_time'		=> 'Posted on',//'发布于',
+[51]// 'tag_not_set'		=> 'Tags have not been set!',//'还没有设置过标签！',
+[55]// 'advanced_options'	=> 'Advanced Options',//'高级选项',
+[57]// 'post_description'	=> 'Post Description',//'文章摘要',
+[59]// 'post_alias'		=> 'Post Link Alias',//'文章链接别名',
 [59] 'used_to_customize'	=> 'It is used to customize the article link. Needs',//'用于自定义该篇文章的链接地址。需要',
-[59]//'post_alias_enable'	=> 'Enable post link alias',//'启用文章链接别名',
-[62]//'post_access_password'	=> 'Post Access Password',//'文章访问密码',
-[65]//'top_posts'		=> 'Top Posts',//'文章置顶',
-[67]//'allow_comments'		=> 'Allow Comments',//'允许评论',
+[59]// 'post_alias_enable'	=> 'Enable post link alias',//'启用文章链接别名',
+[62]// 'post_access_password'	=> 'Post Access Password',//'文章访问密码',
+[65]// 'top_posts'		=> 'Top Posts',//'文章置顶',
+[67]// 'allow_comments'		=> 'Allow Comments',//'允许评论',
 [75] 'save_and_return'		=> 'Save and Return',//'保存并返回',
-[76]//'save'			=> 'Save',//'保存',
+[76]// 'save'			=> 'Save',//'保存',
 [78]// 'publish'		=> 'Publish',//'发布',
 
 //---------------------------
@@ -487,7 +487,7 @@ $lang = array(
 [9]// 'page_title_info'		=> 'Enter the page title',//'输入页面标题',
 [14]// 'upload_insert'		=> 'Insert upload',//'上传插入',
 [26]// 'link_alias'		=> 'Link Alias',//'链接别名',
-[26]//'link_alias_info'		=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
+[26]// 'link_alias_info'		=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
 [26]// 'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
 [31]// 'page_enable_comments'	=> 'Page accepted comments',//'页面接受评论',
 [38]// 'save_and_return'	=> 'Save and Return',//'保存并返回',
@@ -505,8 +505,8 @@ $lang = array(
 [27] 'to_site'			=> 'View My site',//'查看我的站点',
 [37] 'settings'			=> 'Settings',//'设置',
 [39] 'logout'			=> 'Logout',//'退出',
-[45]//'post_write'		=> 'Write post',//'写文章',
-[47]//'draft'			=> 'Draft',//'草稿',
+[45]// 'post_write'		=> 'Write post',//'写文章',
+[47]// 'draft'			=> 'Draft',//'草稿',
 [56]// 'posts'			=> 'posts',//'文章',
 [62] 'posts_pending'		=> 'Pending posts',//'篇文章待审',
 [65]// 'tags'			=> 'Tags',//'标签',
@@ -533,7 +533,7 @@ $lang = array(
 [11] 'cancel'			=> 'Cancel',//'取消',
 [11] 'twitter_write_length'	=> '(You can enter 140 characters maximum)',//'(你还可以输入140字)',
 [20] 'site_info'		=> 'Site Info',//'站点信息',
-[22]//'have'			=> 'Have',//'有',
+[22]// 'have'			=> 'Have',//'有',
 [22]// '_posts'			=> 'posts',//'篇文章',
 [22]// '_comments_'		=> ' comments, ',//'条评论，',
 [22]// '_twitters'		=> ' twitters',//'条微语',
@@ -567,7 +567,7 @@ $lang = array(
 [101]// '_characters'		=> ' characters',//'字',
 [107]// 'twitter_write_length'	=> '(You can enter 140 characters maximum)',//'(你还可以输入140字)',
 [108]// 'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活 ……',
-[120] '('			=> '(',//'（',
+[120]// '('			=> '(',//'（',
 [120]// '_posts'		=> 'posts',//'篇文章',//'篇文章，',
 [120]// '_comments'		=> 'comments',//'条评论',
 [120] ')'			=> ')',//'）',
@@ -586,7 +586,7 @@ $lang = array(
 [2] 'link_management'	=> 'Link Management',//'友情链接管理',
 [3] 'order_update_ok'	=> 'Order updated successfully',//'排序更新成功',
 [3] 'category_update_ok'	=> 'Category updated successfully',//'排序更新成功',
-[4] //'deleted_ok'	=> 'Deleted successfully',//'删除成功',
+[4]// 'deleted_ok'	=> 'Deleted successfully',//'删除成功',
 [5] 'edit_ok'		=> 'Modified successfully',//'修改成功',
 [6] 'add_ok'		=> 'Added successfully',//'添加成功',
 [7] 'site_and_url_empty'	=> 'Site name and address can not be empty',//'站点名称和地址不能为空',
@@ -600,10 +600,10 @@ $lang = array(
 [34] 'link_hide'	=> 'Click to hide links',//'点击隐藏链接',
 [34] 'show'		=> 'Show',//'显示',
 [36] 'link_show'	=> 'Click to show links',//'点击显示链接',
-[36]//'hide'		=> 'Hide',//'隐藏',
+[36]// 'hide'		=> 'Hide',//'隐藏',
 [40] 'view_link'	=> 'View link',//'查看链接',
 [45]// 'edit'		=> 'Edit',//'编辑',
-[46]//'delete'		=> 'Delete',//'删除',
+[46]// 'delete'		=> 'Delete',//'删除',
 [50] 'no_links'		=> 'Yet no links added',//'还没有添加链接',
 [54] 'order_change'	=> 'Change order',//'改变排序',
 [57] 'link_add'		=> 'Add link',//'添加链接',//'添加链接+',
@@ -650,9 +650,9 @@ $lang = array(
 [57] 'nav_hide_click'	=> 'Click to hide navigation',//'点击隐藏导航',
 [57]// 'show'		=> 'Show',//'显示',
 [59] 'nav_show_click'	=> 'Click to show navigation',//'点击显示导航',
-[59]//'hide'		=> 'Hide',//'隐藏',
+[59]// 'hide'		=> 'Hide',//'隐藏',
 [68]// 'edit'		=> 'Edit',//'编辑',
-[70]//'delete'		=> 'Delete',//'删除',
+[70]// 'delete'		=> 'Delete',//'删除',
 [75] 'nav_no'		=> 'Has not yet added navigation',//'还没有添加导航',
 [79]// 'order_change'	=> 'Change order',//'改变排序',
 [84] 'nav_add_custom'	=> 'Add custom navigation',//'添加自定义导航','添加自定义导航+',
@@ -668,7 +668,7 @@ $lang = array(
 [117] 'nav_page_add'	=> 'Add pages to the navigation',//'添加页面到导航',//'添加页面到导航+',
 [128]// 'add'		=> 'Add',//'添加',
 [130] 'pages_no'	=> 'No pages',//'还没页面',//'还没页面，','还没页面,',
-[130]//'add_page'	=> 'Add page',//'新建页面',
+[130]// 'add_page'	=> 'Add page',//'新建页面',
 
 //---------------------------
 //admin/views/naviedit.php
@@ -684,7 +684,7 @@ $lang = array(
 [2] 'plugin_manage'		=> 'Plugin Management',//'插件管理',
 [3] 'plugin_upload_ok'		=> 'Plugin uploaded successfully, please activate it to use',//'插件上传成功，请激活使用',
 [4] 'plugin_active_ok'		=> 'Plug-in activated successfully',//'插件激活成功',
-[5]//'deleted_ok'		=> 'Deleted successfully',//'删除成功',
+[5]// 'deleted_ok'		=> 'Deleted successfully',//'删除成功',
 [6] 'plugin_active_failed'	=> 'Plug-in activation failed',//'插件激活失败',
 [7] 'plugin_disable_ok'		=> 'Plug-in disabled successfully',//'插件禁用成功',
 [8] 'plugin_delete_failed'	=> 'Delete failed, check the plug-in file permissions',//'删除失败，请检查插件文件权限',
@@ -696,8 +696,8 @@ $lang = array(
 [37] 'plugin_settings_click'	=> 'Click to plug-in settings',//'点击设置插件',
 [48]// 'more_info'		=> 'More Info&raquo;',//'更多信息&raquo;',
 [50]// 'ok_for_emlog'		=> 'Suitable for emlog',//'适用于emlog',
-[52]//'user'			=> 'User',//'作者',
-[61]//'delete'			=> 'Delete',//'删除',
+[52]// 'user'			=> 'User',//'作者',
+[61]// 'delete'			=> 'Delete',//'删除',
 [66] 'plugin_no_installed'	=> 'No installed plugins',//'还没有安装插件',
 [71] 'plugin_install'		=> 'Install plugin',//'安装插件',
 
@@ -732,7 +732,7 @@ $lang = array(
 [20] 'file_format'		=> 'File format',//'文件形式',
 [21] 'directory_format'		=> 'Directory format',//'目录形式',
 [22] 'category_format'		=> 'Category format',//'分类形式',
-[24]//'post_alias_enable'	=> 'Enable post link alias',//'启用文章链接别名',
+[24]// 'post_alias_enable'	=> 'Enable post link alias',//'启用文章链接别名',
 [25] 'enable_html_suffix'	=> 'Enable html suffix for article link alias',//'启用文章链接别名html后缀',
 [28] 'meta_settings'		=> 'Meta settings',//'Meta设置',
 [30] 'meta_title'		=> 'Site Browser Title (title)',//'站点浏览器标题(title)',
@@ -763,9 +763,9 @@ $lang = array(
 [23]// 'view'		=> 'View',//'查看',
 [24]// 'posts'		=> 'posts',//'文章',
 [49]// 'edit'		=> 'Edit',//'编辑',
-[50]//'delete'		=> 'Delete',//'删除',
+[50]// 'delete'		=> 'Delete',//'删除',
 [71]// 'edit'		=> 'Edit',//'编辑',
-[72]//'delete'		=> 'Delete',//'删除',
+[72]// 'delete'		=> 'Delete',//'删除',
 [77] 'categories_no'	=> 'Have not yet added Category',//'还没有添加分类',
 [81]// 'order_change'	=> 'Change order',//'改变排序',
 [84] 'category_add'	=> 'Add Category',//'添加分类',//'添加分类+',
@@ -842,7 +842,7 @@ $lang = array(
 [5] 'tag_select_to_delete'	=> 'Please, select tab that you want to delete',//'请选择要删除的标签','请选择要删除的标签'
 [19]// 'select'		=> 'Select',//'全选',
 [19]// 'selected_items'	=> 'Selected items',//'选中项',
-[20]//'delete'		=> 'Delete',//'删除',
+[20]// 'delete'		=> 'Delete',//'删除',
 [23] 'tags_no'		=> 'No tags yet! You can play with tags when writing a post',//'还没有标签，写文章的时候可以给文章打标签',
 [31]// 'tag_select_to_delete'	=> 'Please, select tab that you want to delete',//'请选择要删除的标签','请选择要删除的标签'
 [34] 'tag_delete_sure'	=> 'Are you sure you want delete this tag?',//'你确定要删除所选标签吗？',
@@ -867,7 +867,7 @@ $lang = array(
 [29] 'template_delete_ok'	=> 'Template have been removed successfully',//'删除模板成功',
 [30] 'template_delete_failed'	=> 'Delete failed, check the template file permissions',//'删除失败，请检查模板文件权限',
 [41] 'template_use_this'	=> 'Click to use this template',//'点击使用该模板',
-[44]//'delete'			=> 'Delete',//'删除',
+[44]// 'delete'			=> 'Delete',//'删除',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -903,7 +903,7 @@ $lang = array(
 [9] 'top_image_unavailable'	=> 'Current top image is unused or deleted',//'当前未使用顶部图片或者使用中的顶部图片被删除',
 [14] 'images_optional'		=> 'Optional images',//'可选图片',
 [29] 'image_click_to_use'	=> 'Click on image to use it',//'点击使用该图片',
-[34]//'delete'			=> 'Delete',//'删除',
+[34]// 'delete'			=> 'Delete',//'删除',
 [41] 'top_image_not_use'	=> 'Do not use the top image.',//'不使用顶部图片',
 [44]// 'top_image_not_use'	=> 'Do not use the top image.',//'不使用顶部图片',
 [48] 'top_image_custom'		=> 'Custom image',//'自定义图片',
@@ -915,14 +915,14 @@ $lang = array(
 [11] 'trackback_manage'		=> 'TrackBack Management',//'引用通告（TrackBack）管理',
 [12] 'trackback_delete_ok'	=> 'Reference deleted successfully',//'删除引用成功',
 [13] 'trackback_select_to_operate'	=> 'Please select references to perform the operation',//'请选择要执行操作的引用',
-[20]// 'title'	=> 'Title',//'标题',
-[21] 'source'	=> 'Source',//'来源',
-[23]// 'time'	=> 'Date',//'时间',
-[38] 'trackback_no'	=> 'Have not yet received references',//'还没有收到引用',
-[42]// 'select'	=> 'Select',//'全选',
-[42]// 'selected_items'	=> 'Selected items',//'选中项',
-[42]// 'delete'	=> 'Delete',//'删除',
-[43]// 'have'	=> 'Have',//'有',
+[20]// 'title'			=> 'Title',//'标题',
+[21] 'source'			=> 'Source',//'来源',
+[23]// 'time'			=> 'Date',//'时间',
+[38] 'trackback_no'		=> 'Have not yet received references',//'还没有收到引用',
+[42]// 'select'			=> 'Select',//'全选',
+[42]// 'selected_items'		=> 'Selected items',//'选中项',
+[42]// 'delete'			=> 'Delete',//'删除',
+[43]// 'have'			=> 'Have',//'有',
 [43] '_trackbacks'			=> 'post references',//'条引用',
 [48] 'trackback_select_to_operate'	=> 'Please, select references to operate',//'请选择要操作的引用',
 [51] 'trackback_delete_selected_sure'	=> 'Are you sure you want to delete selected references?',//'你确定要删除所选引用吗？',
@@ -930,7 +930,7 @@ $lang = array(
 //---------------------------
 //admin/views/twitter.php
 [2]// 'twitter'			=> 'Twitter',//'微语',
-[3] //'published_ok'		=> 'Entry has been publised successfully',//'发布成功',
+[3]// 'published_ok'		=> 'Entry has been publised successfully',//'发布成功',
 [4]// 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
 [5] 'twitter_delete_ok'		=> 'Whisper has been deleted successfully',//'微语删除成功',
 [6] 'twitter_empty'		=> 'Micro-blog content cannot be empty',//'微语内容不能为空',
@@ -939,10 +939,10 @@ $lang = array(
 [20] 'image_title'		=> '{Image title}',//'{图片名称}',
 [21]// 'cancel'			=> 'Cancel',//'取消',
 [36] 'view_images'		=> 'View images',//'查看图片',
-[43]//'reply'	=> 'Reply',//'回复',
-[44]//'delete'	=> 'Delete',//'删除',
-[50]//'reply'	=> 'Reply',//'回复',
-[54]//'have'	=> 'Have',//'有',
+[43]// 'reply'			=> 'Reply',//'回复',
+[44]// 'delete'			=> 'Delete',//'删除',
+[50]// 'reply'			=> 'Reply',//'回复',
+[54]// 'have'			=> 'Have',//'有',
 [54]// '_twitters'		=> ' twitters',//'条微语',
 [79]// 'you_can_enter'		=> 'You can enter ',//'你还可以输入',
 [79] '_characters'		=> ' characters',//' 字',
@@ -956,19 +956,19 @@ $lang = array(
 [188] 'reply_delete_sure'	=> 'Are you sure you want to delete the post reply?',//'你确定要删除该条回复吗？',
 [193]// 'approve'		=> 'Approve',//'审核',
 [203]// 'approve'		=> 'Approve',//'审核',
-[212]//'hide'	=> 'Hide',//'隐藏',
+[212]// 'hide'	=> 'Hide',//'隐藏',
 
 //---------------------------
 //admin/views/upload.php
 [32]// 'attachment_upload'	=> 'Upload attachment',//'上传附件',
-[33]// 'bulk_upload'	=> 'Bulk upload',//'批量上传',
+[33]// 'bulk_upload'		=> 'Bulk upload',//'批量上传',
 [34]// 'attachment_library'	=> 'Attachment Library',//'附件库',
-[34]// '('	=> '(',//'（',
-[34]// ')'	=> ' )',//' ）',
+[34]// '('		=> '(',//'（',
+[34]// ')'		=> ' )',//' ）',
 [38] 'attach_max_size'	=> 'Maximum size of single attachment',//'单个附件最大',
-[38] ','	=> ',',//'，',
+[38]// ','		=> ',',//'，',
 [38] 'types_allowed'	=> 'Allowed types',//'允许类型',
-[41]// 'upload'			=> 'Upload',//'上传',
+[41]// 'upload'		=> 'Upload',//'上传',
 [43] 'attachment_add'	=> 'Add attachment',//'增加附件',
 [43] 'plus_button'	=> '[ + ]',//'[ + ]',
 [44] 'attach_reduce'	=> 'Reduce attachments',//'减少附件',
@@ -979,7 +979,7 @@ $lang = array(
 [23]// 'attachment_upload'	=> 'Upload attachment',//'上传附件',
 [24]// 'bulk_upload'		=> 'Bulk upload',//'批量上传',
 [25]// 'attachment_library'	=> 'Attachment Library',//'附件库',
-[25]// ')'	=> ')',//'）',
+[25]// ')'		=> ')',//'）',
 [29] 'browser_upgrade'	=> 'Your browser is too old to display this feature. You cannot use the bulk upload. Please, upgrade your web browser or switch to another.',//'您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。',
 [46] 'file_select'	=> 'Select the file',//'选择文件',
 
@@ -995,23 +995,23 @@ $lang = array(
 [9] 'passwords_not_equal'	=> 'Entered twice passwords are not equal',//'两次输入密码不一致',
 [10] 'founder_not_delete'	=> 'You can not delete Founder',//'不能删除创始人',
 [11] 'founder_not_edit'		=> 'Information about Founder cannot be modified',//'不能修改创始人信息',
-[19]// 'user'	=> 'User',//'用户',
+[19]// 'user'		=> 'User',//'用户',
 [20]// 'description'	=> 'Description',//'描述',
-[21]// 'email'	=> 'E-mail',//'电子邮件',
+[21]// 'email'		=> 'E-mail',//'电子邮件',
 [22]// 'posts'		=> 'posts',//'文章',
-[35] 'founder'	=> 'Founder',//'创始人',
-[35] 'admin'	=> 'Administrator',//'管理员',
-[35]//'user'	=> 'User',//'作者',
+[35] 'founder'		=> 'Founder',//'创始人',
+[35] 'admin'		=> 'Administrator',//'管理员',
+[35]// 'user'		=> 'User',//'作者',
 [36] 'posts_to_audit'	=> '(posts to be verified)',//'(文章需审核)',
-[39]// 'edit'	=> 'Edit',//'编辑',
-[40]//'delete'	=> 'Delete',//'删除',
-[42]// 'edit'	=> 'Edit',//'编辑',
+[39]// 'edit'		=> 'Edit',//'编辑',
+[40]// 'delete'		=> 'Delete',//'删除',
+[42]// 'edit'		=> 'Edit',//'编辑',
 [51] 'no_authors_yet'	=> 'No authors yet',//'还没有添加作者',
-[56]//'have'	=> 'Have',//'有',
-[56] 'users'	=> 'Users',//'位用户',
-[58] 'user_add'	=> 'Add user',//'添加用户',//'添加用户+',
+[56]// 'have'		=> 'Have',//'有',
+[56] 'users'		=> 'Users',//'位用户',
+[58] 'user_add'		=> 'Add user',//'添加用户',//'添加用户+',
 [62] 'author_contributor'	=> 'Author (Contributor)',//'作者（投稿人）',
-[63]// 'admin'	=> 'Administrator',//'管理员',
+[63]// 'admin'			=> 'Administrator',//'管理员',
 [66]// 'user_name'		=> 'User name',//'用户名',
 [67] 'password_min_length'	=> 'Password (more than 6 characters)',//'密码 (大于6位)',
 [68] 'password_repeat'		=> 'Repeat password',//'重复密码',
@@ -1030,60 +1030,60 @@ $lang = array(
 [12]// 'nickname'		=> 'Nicname',//'昵称',
 [13] 'password_new'		=> 'New password (leave blank, if you do not want to modify)',//'新密码(不修改请留空)',
 [14] 'password_new_repeat'	=> 'Repeat new password',//'重复新密码',
-[15]// 'email'	=> 'E-mail',//'电子邮件',
-[18]//'user'	=> 'User',//'作者',
-[19]// 'admin'	=> 'Administrator',//'管理员',
+[15]// 'email'			=> 'E-mail',//'电子邮件',
+[18]// 'user'			=> 'User',//'作者',
+[19]// 'admin'			=> 'Administrator',//'管理员',
 [24]// 'posts_not_need_audit'	=> 'Posts not need to be verified',//'文章不需要审核',
 [25]// 'posts_to_audit'		=> 'Posts that need to be verified',//'文章需要审核',
 [28]// 'personal_description'	=> 'Personal Description',//'个人描述',
-[32]// 'save'	=> 'Save',//'保 存',
-[33]// 'cancel'		=> 'Cancel',//'取 消',
+[32]// 'save'			=> 'Save',//'保 存',
+[33]// 'cancel'			=> 'Cancel',//'取 消',
 
 //---------------------------
 //admin/views/widgets.php
 [4] 'widget_manage'	=> 'Sidebar component management',//'侧边栏组件管理',
 [5]// 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
 [12] 'blogger'		=> 'Personal information',//'个人资料',
-[17]// 'title'	=> 'Title',//'标题',
-[18] 'change'	=> 'Change',//'更改',
-[25] 'calendar'	=> 'Calendar',//'日历',
-[30]// 'title'	=> 'Title',//'标题',
-[31]// 'change'	=> 'Change',//'更改',
+[17]// 'title'		=> 'Title',//'标题',
+[18] 'change'		=> 'Change',//'更改',
+[25] 'calendar'		=> 'Calendar',//'日历',
+[30]// 'title'		=> 'Title',//'标题',
+[31]// 'change'		=> 'Change',//'更改',
 [38] 'twitter_latest'	=> 'Latest whispers',//'最新微语',
-[43]// 'title'	=> 'Title',//'标题',
+[43]// 'title'		=> 'Title',//'标题',
 [45] 'twitter_latest_num'	=> 'Number of latest whispers',//'首页显示最新微语数',
-[46]// 'change'	=> 'Change',//'更改',
+[46]// 'change'		=> 'Change',//'更改',
 [53]// 'tags'		=> 'Tags',//'标签',
-[58]// 'title'	=> 'Title',//'标题',
-[59]// 'change'	=> 'Change',//'更改',
-[66]// 'category'		=> 'Category',//'分类',
-[71]// 'title'	=> 'Title',//'标题',
-[72]// 'change'	=> 'Change',//'更改',
-[79] 'archive'	=> 'Archive',//'存档',
-[84]// 'title'	=> 'Title',//'标题',
-[85]// 'change'	=> 'Change',//'更改',
+[58]// 'title'		=> 'Title',//'标题',
+[59]// 'change'		=> 'Change',//'更改',
+[66]// 'category'	=> 'Category',//'分类',
+[71]// 'title'		=> 'Title',//'标题',
+[72]// 'change'		=> 'Change',//'更改',
+[79] 'archive'		=> 'Archive',//'存档',
+[84]// 'title'		=> 'Title',//'标题',
+[85]// 'change'		=> 'Change',//'更改',
 [92] 'new_comments'		=> 'Latest comments',//'最新评论',
-[97]// 'title'	=> 'Title',//'标题',
+[97]// 'title'		=> 'Title',//'标题',
 [99] 'new_comments_home'	=> 'Home Latest comments',//'首页最新评论数',
 [101] 'new_comments_length'	=> 'Summary length for latest comments',//'新近评论截取字节数',
 [102]// 'change'	=> 'Change',//'更改',
 [109] 'new_posts'		=> 'Latest entries',//'最新文章',
-[114]// 'title'	=> 'Title',//'标题',
+[114]// 'title'		=> 'Title',//'标题',
 [116] 'new_posts_home'	=> 'Home Show Latest Posts',//'首页显示最新文章数',
 [117]// 'change'	=> 'Change',//'更改',
 [124] 'hot_posts'		=> 'Popular posts',//'热门文章',
-[129]// 'title'	=> 'Title',//'标题',
+[129]// 'title'		=> 'Title',//'标题',
 [131] 'hot_posts_home'	=> 'Show popular entries at Home',//'首页显示热门文章数',
 [132]// 'change'	=> 'Change',//'更改',
 [139] 'random_posts'	=> 'Random posts',//'随机文章',
-[144]// 'title'	=> 'Title',//'标题',
+[144]// 'title'		=> 'Title',//'标题',
 [146] 'random_post_home'	=> 'Show random entries at Home',//'首页显示随机文章数',
 [147]// 'change'	=> 'Change',//'更改',
 [154]// 'link'		=> 'Link',//'链接',
-[159]// 'title'	=> 'Title',//'标题',
+[159]// 'title'		=> 'Title',//'标题',
 [160]// 'change'	=> 'Change',//'更改',
 [167] 'search'		=> 'Search',//'搜索',
-[172]// 'title'	=> 'Title',//'标题',
+[172]// 'title'		=> 'Title',//'标题',
 [173]// 'change'	=> 'Change',//'更改',
 [177] 'custom_widget'	=> 'Custom component'//'自定义组件',
 [181] 'untitled_widget'	=> 'Untitled component',//'未命名组件',
@@ -1129,20 +1129,20 @@ $lang = array(
 //---------------------------
 //include/model/comment_model.php
 [275] 'comment_wait_approve'	=> 'Thank you. Your comment is waiting for approval',//'评论发表成功，请等待管理员审核',
-[306] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[306]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //m/view/comment.php
 [5]// 'pending'		=> 'Pending',//'待审',
-[9]// 'delete'	=> 'Delete',//'删除',
+[9]// 'delete'		=> 'Delete',//'删除',
 [13] 'belongs_to_post'	=> 'belongs to post',//'所属文章',
-[17] 'hide'	=> 'Hide',//'隐藏',
-[19]// 'approve'		=> 'Approve',//'审核',
-[21]//'reply'	=> 'Reply',//'回复',
+[17] 'hide'		=> 'Hide',//'隐藏',
+[19]// 'approve'	=> 'Approve',//'审核',
+[21]// 'reply'		=> 'Reply',//'回复',
 
 //---------------------------
 //m/view/reply.php
-[3]//'reply'	=> 'Reply',//'回复',
+[3]// 'reply'		=> 'Reply',//'回复',
 [10] 'logged_as'	=> 'You are currently logged in as',//'当前已登录为',
 [15]// 'nickname'	=> 'Nicname',//'昵称',
 [16] 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
@@ -1263,8 +1263,9 @@ $lang = array(
 //---------------------------
 //content/templates/default/echo_log.php
 //ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
-[10]//'user'		=> 'User',//'作者',
-[10]//'post_time'	=> 'Posted on',//'发布于',
+  'date_format_hm'	=> 'Y-m-d H:i', //'Y-n-j G:i',
+[10]// 'user'		=> 'User',//'作者',
+[10]// 'post_time'	=> 'Posted on',//'发布于',
 
 //---------------------------
 //content/templates/default/footer.php
@@ -1276,8 +1277,8 @@ $lang = array(
 
 //---------------------------
 //content/templates/default/log_list.php
-[16]//'user'		=> 'User',//'作者',
-[16]//'post_time'	=> 'Posted on',//'发布于',
+[16]// 'user'		=> 'User',//'作者',
+[16]// 'post_time'	=> 'Posted on',//'发布于',
 [23]// 'comments'	=> 'Comments',//'评论',
 [24] 'browse'		=> 'Browse',//'浏览',
 [31] 'not_found'	=> 'Not found.',//'未找到',
@@ -1291,14 +1292,14 @@ $lang = array(
 [95]// 'view_images'		=> 'View images',//'查看图片',
 [99] 'more'			=> 'More &raquo;',//'更多&raquo;',
 [232] 'site_management'		=> 'Site management',//'管理站点',
-[233]//'logout'			=> 'Logout',//'退出',
+[233]// 'logout'			=> 'Logout',//'退出',
 [257] 'top_posts'		=> 'Top entries',//'置顶文章',
 [264]// 'edit'			=> 'Edit',//'编辑',
 [275]// 'category'		=> 'Category',//'分类',
-[284]// 'tags'		=> 'Tags',//'标签',
+[284]// 'tags'			=> 'Tags',//'标签',
 [324]// 'comments'		=> 'Comments',//'评论',
-[338]//'reply'			=> 'Reply',//'回复',
-[361]//'reply'			=> 'Reply',//'回复',
+[338]// 'reply'			=> 'Reply',//'回复',
+[361]// 'reply'			=> 'Reply',//'回复',
 [373] 'cancel_reply'		=> 'Cancel reply',//'取消回复',
 [374]// 'comment_leave'		=> 'Leave a comment',//'发表评论',
 [380]// 'nickname'		=> 'Nicname',//'昵称',
@@ -1317,10 +1318,10 @@ $lang = array(
 //---------------------------
 //content/templates/default/t.php
 [18]// 'view_images'	=> 'View images',//'查看图片',
-[25]//'reply'	=> 'Reply',//'回复',
+[25]// 'reply'		=> 'Reply',//'回复',
 [35]// 'nickname'	=> 'Nicname',//'昵称',
-[36] 'captcha'	=> 'Captcha',//'验证码',
-[38]//'reply'	=> 'Reply',//'回复',
+[36] 'captcha'		=> 'Captcha',//'验证码',
+[38]// 'reply'		=> 'Reply',//'回复',
 
 //---------------------------
 //include/controller/author_controller.php
@@ -1345,8 +1346,8 @@ $lang = array(
 
 //---------------------------
 //include/lib/cache.php
-[392] 'date_short_format'	=> 'm.Y',//'Y年n月',
-[475] ''	=> '读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',//'读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',
+[392] 'date_format_short'	=> 'm.Y',//'Y年n月',
+[475] 'cache_read_error'	=> 'Cache read failed. If you are using a Unix/Linux host, modify the permissions of the cache directory (content/cache) and all the folders inside it to 777. If you are using a Windows host, please contact the administrator, and make all files under this directory writeable.',//'读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',
 [476] 'cache_not_writable'	=> 'The cache directory (content/cache) is not writable.',//'写入缓存失败，缓存目录 (content/cache) 不可写',
 
 //---------------------------
@@ -1369,7 +1370,7 @@ $lang = array(
 //include/lib/function.base.php
 [16] '_load_failed'	=> ' Failed to load.',//'加载失败。',
 [208] '_bytes'	=> ' bytes',//'字节',
-[244]//'home'	=> 'Home',//'首页',
+[244]// 'home'	=> 'Home',//'首页',
 [246] 'end'	=> 'End',//'尾页',
 [291]// 'read_more'	=> 'Read more',//'阅读全文',
 [294]// 'read_more'	=> 'Read more',//'阅读全文',
@@ -1386,7 +1387,8 @@ $lang = array(
 [856]// '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
 [868] 'prompt'	=> 'Prompt Message',//'提示信息',
 [900]// 'return'		=> '&laquo;Return back',//'&laquo;点击返回',
-[930] '[Yeah]'=>'0.gif', '[Ha ha]'=>'1.gif', '[Sad]'=>'2.gif', '[Crazy]'=>'3.gif', '[Bad]'=>'4.gif', '[Bother]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
+//[930] MUST BE THE SAME AS IN: /admin/views/js/emo.js
+[930] '[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
 //[930] '[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 
 //---------------------------
@@ -1435,13 +1437,13 @@ $lang = array(
 
 //---------------------------
 //include/model/log_model.php
-[84] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[84]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 [151] 'no_title'	=> 'Untitled',//'无标题',
 [183] 'post_protected_by_password'	=> '[This entry has been protected. Click on title and enter the password to access this page.]',//'[该文章已设置加密，请点击标题输入密码访问]',
 [186]//  'read_more'	=> 'Read more',//'阅读全文',
 [208]// 'no_title'	=> 'Untitled',//'无标题',
-[227] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[258] //'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
+[227]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+[258]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
 [418] ''	=> 'Please enter password to access this page.',//'请输入该文章的访问密码',
 [419] ''	=> 'Enter..',//'进入',
 [420]// 'back_home'	=> '&laquo; Back to home',//'&laquo;返回首页',
@@ -1469,7 +1471,7 @@ $lang = array(
 
 //---------------------------
 //include/model/twitter_model.php
-[82]//'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
+[82]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
 
 //---------------------------
 //include/model/user_model.php
@@ -1500,11 +1502,11 @@ $lang = array(
 
 //---------------------------
 //m/view/header.php
-[34]//'home'	=> 'Home',//'首页',
-[36]//'twitter'	=> 'Twitter',//'微语',
+[34]// 'home'	=> 'Home',//'首页',
+[36]// 'twitter'	=> 'Twitter',//'微语',
 [38]// 'comments'	=> 'Comments',//'评论',
-[40]//'post_write'	=> 'Write post',//'写文章',
-[41]//'logout'			=> 'Logout',//'退出',
+[40]// 'post_write'	=> 'Write post',//'写文章',
+[41]// 'logout'			=> 'Logout',//'退出',
 [43]// 'login'		=> 'Login',//'登录',
 
 //---------------------------
@@ -1531,9 +1533,9 @@ $lang = array(
 
 //---------------------------
 //m/view/single.php
-[6]//'delete'	=> 'Delete',//'删除',
+[6]// 'delete'	=> 'Delete',//'删除',
 [10]// 'comments'	=> 'Comments',//'评论',
-[18]//'reply'	=> 'Reply',//'回复',
+[18]// 'reply'	=> 'Reply',//'回复',
 [24]// 'comment_leave'	=> 'Leave a comment',//'发表评论',
 [28]// 'logged_as'	=> 'You are currently logged in as',//'当前已登录为',
 [30]// 'nickname'	=> 'Nicname',//'昵称',
@@ -1548,24 +1550,24 @@ $lang = array(
 [7] ''	=> 'Select an image to upload',//'选择要上传的图片',
 [9]// 'publish'	=> 'Publish',//'发布',
 [14]// 'view_images'	=> 'View images',//'查看图片',
-[20]//'delete'	=> 'Delete',//'删除',
+[20]// 'delete'	=> 'Delete',//'删除',
 
 //---------------------------
 //m/view/write.php
 [4]// 'title'	=> 'Title',//'标题',
 [5] ''	=> 'Category',//分类',
-[8]//'category_select'	=> 'Select Category...',//'选择分类...',
+[8]// 'category_select'	=> 'Select Category...',//'选择分类...',
 [16]// 'content'	=> 'Content',//'内容',
 [17] ''	=> 'Summary',//'摘要',
 [18]// 'tags'		=> 'Tags',//'标签',
-[22]//'post_publish'	=> 'Publish Post',//'发布文章',
+[22]// 'post_publish'	=> 'Publish Post',//'发布文章',
 
 //---------------------------
 //t/index.php
 [14] ''	=> '抱歉，微语未开启前台访问！',//'抱歉，微语未开启前台访问！',
-[53]//'reply'	=> 'Reply',//'回复',
+[53]// 'reply'	=> 'Reply',//'回复',
 [61] ''	=> 'No replies',//'还没有回复！',
-[126]//'reply'	=> 'Reply',//'回复',
+[126]// 'reply'	=> 'Reply',//'回复',
 
 //---------------------------
 //tb.php
