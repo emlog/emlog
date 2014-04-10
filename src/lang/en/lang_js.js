@@ -1,7 +1,7 @@
 var LNG = {
 //---------------------------
 //admin/editor/plugins/image/image.js
-[72]: 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
+[72] 'image_add' : 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
 
 //---------------------------
 //admin/editor/plugins/quickformat/quickformat.js
@@ -12,7 +12,7 @@ var LNG = {
 
 //---------------------------
 //admin/editor/plugins/image/image.js
-/[72] 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
+//[72] 'image_add' : 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
 
 //---------------------------
 //admin/editor/plugins/quickformat/quickformat.js
@@ -23,8 +23,8 @@ var LNG = {
 
 //---------------------------
 //admin/views/js/common.js
-[17]: 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
-[20]: 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
+[17] 'twitter_del_sure' : 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
+[20] 'twitter_del_sure' : 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
 [23]: 'Are you sure you want to delete all comments from that IP?',//'你确定要删除来自该IP的所有评论吗？',
 [26]: 'Are you sure you want to delete this link?',//'你确定要删除该链接吗？',
 [29]: 'Are you sure you want to delete this navigation?',//'你确定要删除该导航吗？',
