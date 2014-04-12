@@ -56,8 +56,8 @@
     </ul>
 </div>
 <div id="faceWraps"></div>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="./views/js/emo.js"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>""></script>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(

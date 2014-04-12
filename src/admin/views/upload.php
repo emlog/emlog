@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
+<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
 <script>
 function uploadfile(){
 	var as_logid = parent.document.getElementById('as_logid').value
