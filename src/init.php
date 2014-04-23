@@ -30,6 +30,7 @@ define('ROLE_WRITER', 'writer');
 define('ROLE_VISITOR', 'visitor');
 //User role
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
+//User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Blog URL
 define('BLOG_URL', Option::get('blogurl'));
@@ -52,3 +53,7 @@ if ($active_plugins && is_array($active_plugins)) {
 		}
 	}
 }
+
+// Load the core Lang File
+/*vot*/ load_language('init');
+

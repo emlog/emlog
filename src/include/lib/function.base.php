@@ -1,6 +1,13 @@
 <?php
 //------------------------------------------------------------------
-// Unix Style Dir Name
+/**
+ * Unix Style Dir Name
+ *
+ * @param string $file //original path
+ * @param boolean $remove_drive //If need to remove the Windows-like drive, i.e. C:\windows\system32\...
+ * @return unix style path
+ * @author Valery Votintsev, codersclub.org
+ */
 function udir($file='', $remove_drive = false) {
   $file = str_replace('\\','/',$file);
   if($remove_drive) {
@@ -185,6 +192,7 @@ function checkMail($email) {
  * @param string $strings Original string
  * @param int $start Start position eg:0
  * @param int $length Substring length
+ * @return string
  */
 function subString($strings, $start, $length) {
 	if (function_exists('mb_substr') && function_exists('mb_strlen')) {
@@ -1097,3 +1105,18 @@ if(!function_exists('hash_hmac')) {
 	
 	return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }
+
+//vot:  Load Language File
+function load_lang($model='') {
+  global $lang;
+  if($model) {
+    @require_once EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
+  }
+}
+
+//vot: Get the LANGUAGE Variable Value
+function lang($key='') {
+  global $lang;
+  return (isset($lang[$key])) ? $lang[$key] : '{'.$key.'}';
+}
+
