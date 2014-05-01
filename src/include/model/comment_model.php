@@ -102,7 +102,7 @@ class Comment_Model {
 		return $comments;
 	}
 
-	function getOneComment($commentId) {
+	function getOneComment($commentId, $nl2br = false) {
 		$timezone = Option::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
@@ -110,7 +110,7 @@ class Comment_Model {
 			return false;
 		}
 		$commentArray = $this->db->fetch_array($res);
-		$commentArray['comment'] = htmlClean(trim($commentArray['comment']));
+		$commentArray['comment'] = $nl2br ? htmlClean(trim($commentArray['comment'])) : htmlClean(trim($commentArray['comment']), FALSE);
 		$commentArray['poster'] = htmlspecialchars($commentArray['poster']);
 		$commentArray['date'] = gmdate("Y-m-d H:i",$commentArray['date'] + $timezone * 3600);
 		return $commentArray;

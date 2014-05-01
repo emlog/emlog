@@ -43,10 +43,10 @@ function stripslashesDeep($value) {
  * @param unknown_type $content
  * @param unknown_type $wrap 是否换行
  */
-function htmlClean($content, $wrap = true) {
+function htmlClean($content, $nl2br = true) {
 	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
-	if ($wrap) {
-		$content = str_replace("\n", '<br />', $content);
+	if ($nl2br) {
+		$content = nl2br($content);
 	}
 	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
 	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);

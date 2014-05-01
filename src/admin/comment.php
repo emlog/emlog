@@ -102,7 +102,7 @@ if ($action== 'reply_comment') {
 
 if ($action== 'edit_comment') {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $Comment_Model->getOneComment($commentId);
+	$commentArray = $Comment_Model->getOneComment($commentId, FALSE);
 	if (!$commentArray) {
 		emMsg('不存在该评论！', './comment.php');
 	}
