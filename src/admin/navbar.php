@@ -10,8 +10,8 @@ $Navi_Model = new Navi_Model();
 
 if ($action == '') {
 	$emPage = new Log_Model();
-	
-	$navis = $Navi_Model->getNavis();
+
+    $navis = $Navi_Model->getNavis();
 	$sorts = $CACHE->readCache('sort');
 	$pages = $emPage->getAllPageList();
 
@@ -40,6 +40,7 @@ if ($action== 'add') {
 	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
 	$url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
+    $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
 	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
 	
 	if ($naviname =='' || $url =='') {
@@ -50,7 +51,7 @@ if ($action== 'add') {
 		emDirect("./navbar.php?error_f=1");
 	}
 
-	$Navi_Model->addNavi($naviname, $url, $taxis, $newtab);
+	$Navi_Model->addNavi($naviname, $url, $taxis, $pid, $newtab);
 	$CACHE->updateCache('navi');
 	emDirect("./navbar.php?active_add=1");
 }
@@ -66,7 +67,7 @@ if ($action== 'add_sort') {
 
 	foreach ($sort_ids as $val) {
 		$sort_id = intval($val);
-		$Navi_Model->addNavi(addslashes($sorts[$sort_id]['sortname']), '', 0, 'n', Navi_Model::navitype_sort, $sort_id);
+		$Navi_Model->addNavi(addslashes($sorts[$sort_id]['sortname']), '', 0, 0, 'n', Navi_Model::navitype_sort, $sort_id);
 	}
 
 	$CACHE->updateCache('navi');
@@ -81,7 +82,7 @@ if ($action== 'add_page') {
 	}
 	
 	foreach ($pages as $id => $title) {
-		$Navi_Model->addNavi($title, '', 0, 'n', Navi_Model::navitype_page, $id);
+		$Navi_Model->addNavi($title, '', 0, 0, 'n', Navi_Model::navitype_page, $id);
 	}
 
 	$CACHE->updateCache('navi');
@@ -90,6 +91,8 @@ if ($action== 'add_page') {
 
 if ($action== 'mod') {
 	$naviId = isset($_GET['navid']) ? intval($_GET['navid']) : '';
+
+    $navis = $CACHE->readCache('navi');
 
 	$naviData = $Navi_Model->getOneNavi($naviId);
 	extract($naviData);
@@ -112,10 +115,12 @@ if ($action=='update') {
 	$newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
 	$naviId = isset($_POST['navid']) ? intval($_POST['navid']) : '';
 	$isdefault = isset($_POST['isdefault']) ? addslashes(trim($_POST['isdefault'])) : 'n';
+    $pid = isset($_POST['pid']) ? intval(trim($_POST['pid'])) : 0;
 
 	$navi_data = array(
-		'naviname'=>$naviname,
-		'newtab'=>$newtab
+		'naviname' => $naviname,
+		'newtab' => $newtab,
+        'pid' => $pid,
 	);
 
 	if (empty($naviname)) {

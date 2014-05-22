@@ -22,8 +22,8 @@
 		</select>
         <span><? echo $lang['category_parent']; ?></span>
 	</li>
-    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="<?php echo $template; ?>" /> <? echo $lang['template']; ?> <? echo $lang['template_log_list']; ?></li>
 	<?php endif; ?>
+    <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="<?php echo $template; ?>" /> <? echo $lang['template']; ?> <? echo $lang['template_log_list']; ?></li>
 	<li><? echo $lang['category_description']; ?><br />
 		<textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;" class="textarea"><?php echo $description; ?></textarea></li>
 	<li>

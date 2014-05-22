@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="m">
-<?php if(ISLOGIN === true): ?>
+<?php if(ROLE == ROLE_ADMIN): ?>
 <form method="post" action="./index.php?action=t" enctype="multipart/form-data">
 <? echo $lang['twitter_content']; ?>:<br />
 <textarea cols="20" rows="3" name="t"></textarea><br />

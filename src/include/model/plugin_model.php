@@ -10,7 +10,7 @@ class Plugin_Model {
 	private $plugin;
 
 	function __construct() {
-		$this->db = MySql::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	/**

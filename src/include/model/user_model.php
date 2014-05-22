@@ -9,7 +9,7 @@ class User_Model {
 	private $db;
 
 	function __construct() {
-		$this->db = MySql::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	function getUsers($page = null) {

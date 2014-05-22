@@ -6,7 +6,7 @@
  */
 require_once 'globals.php';
 
-$DB = MySql::getInstance();
+$DB = Database::getInstance();
 
 //Show Upload Form
 if ($action == 'selectFile') {

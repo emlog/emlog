@@ -258,6 +258,11 @@ function blog_navi(){
 	<ul class="bar">
 	<?php
 	foreach($navi_cache as $value):
+
+        if ($value['pid'] != 0) {
+            continue;
+        }
+
 		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
 			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
@@ -278,6 +283,16 @@ function blog_navi(){
                 }?>
 			</ul>
             <?php endif;?>
+
+            <?php if (!empty($value['childnavi'])) :?>
+            <ul class="sub-nav">
+                <?php foreach ($value['childnavi'] as $row){
+                        $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
+                        echo '<li><a href="' . $row['url'] . "\" $newtab >" . $row['naviname'].'</a></li>';
+                }?>
+			</ul>
+            <?php endif;?>
+
 		</li>
 	<?php endforeach; ?>
 	</ul>

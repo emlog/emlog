@@ -132,7 +132,7 @@ if($act == 'install' || $act == 'reinstall'){
 	define('DB_NAME',   $db_name);
 	define('DB_PREFIX', $db_prefix);
 
-	$DB = MySql::getInstance();
+	$DB = Database::getInstance();
 	$CACHE = Cache::getInstance();
 
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
@@ -372,6 +372,7 @@ CREATE TABLE {$db_prefix}navi (
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
   taxis int(10) unsigned NOT NULL default '0',
+  pid int(10) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
   type_id int(10) unsigned NOT NULL default '0',

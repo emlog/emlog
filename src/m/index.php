@@ -180,7 +180,7 @@ if ($action == 'addcom') {
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
         mMsg($lang['comment_captcha_invalid'], $targetBlogUrl);
     } else {
-		$DB = MySql::getInstance();
+		$DB = Database::getInstance();
         $ipaddr = getIp();
 		$utctimestamp = time();
 
