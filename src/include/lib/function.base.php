@@ -1,67 +1,11 @@
 <?php
-//------------------------------------------------------------------
-/**
- * Unix Style Dir Name
- *
- * @param string $file //original path
- * @param boolean $remove_drive //If need to remove the Windows-like drive, i.e. C:\windows\system32\...
- * @return unix style path
- * @author Valery Votintsev, codersclub.org
- */
-function udir($file='', $remove_drive = false) {
-  $file = str_replace('\\','/',$file);
-  if($remove_drive) {
-    $file = preg_replace("/^\w:/",'',$file);
-  }
-  return $file;
-}
-
-
-/**
- * Load Language File
- *
- * @param string $file //Language File Name
- * @return none
- * @author Valery Votintsev, codersclub.org
- */
-function load_language($file='') {
-  $langfile = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/'.$file.'.php';
-
-//DEBUG
-//echo '<pre>';
-//echo "load_language\n";
-//echo 'file=', $file, "\n";
-//echo 'langfile=', $langfile, "\n";
-//echo '</pre>';
-
-  if($langfile) {
-    @require_once($langfile);
-  }
-  // Language file must contain $lang = array(...);
-  if(isset($lang)) {
-    foreach($lang AS $k=>$v) {
-      $GLOBALS['LANGUAGE'][$k] = $v;
-    }
-  }
-  unset($lang);
-}
-/**
- * Return Language Variable
- *
- * @param string $key //Language Keyword
- * @return string //Language Value
- * @author Valery Votintsev, codersclub.org
- */
-function lang($key='') {
-  return isset($GLOBALS['LANGUAGE'][$key]) ? $GLOBALS['LANGUAGE'][$key] : '{'.$key.'}';
-}
-
 
 /**
  * Basic function library
  * @copyright (c) Emlog All Rights Reserved
  */
 function __autoload($class) {
+	global $lang;
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
@@ -168,7 +112,6 @@ function emLoadJQuery() {
 
 		function loadJQuery() {
 //vot			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
-//vot			echo '<!--script src="http://code.jquery.com/jquery-latest.js"></script-->';
 /*vot*/			echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
 		}
 
@@ -258,7 +201,7 @@ function extractHtmlData($data, $len) {
  * @param string $fileSize File size, kb
  */
 function changeFileSize($fileSize) {
-    global $lang;
+	global $lang;
 	if ($fileSize >= 1073741824) {
 		$fileSize = round($fileSize / 1073741824, 2) . 'GB';
 	} elseif ($fileSize >= 1048576) {
@@ -287,6 +230,7 @@ function getFileSuffix($fileName) {
  * @param string $url Page URL
  */
 function pagination($count, $perlogs, $page, $url, $anchor = '') {
+	global $lang;
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
@@ -428,6 +372,7 @@ function findArray($array1, $array2) {
 }
 
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+	global $lang;
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
@@ -501,7 +446,6 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * 
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	global $lang;
 	if ($errorNum == 1) {
 		return '100';//File size exceeds system limit
 	} elseif ($errorNum > 1) {
@@ -979,7 +923,6 @@ EOT;
  * 
  */
 function show_404_page() {
-	global $lang;
 	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
@@ -995,7 +938,6 @@ function show_404_page() {
  * @param $t
  */
 function emoFormat($t){
-//	$emos = array('[耶]'=>'0.gif', '[呵呵]'=>'1.gif', '[悲伤]'=>'2.gif', '[抓狂]'=>'3.gif', '[衰]'=>'4.gif', '[花心]'=>'5.gif', '[哼]'=>'6.gif', '[泪]'=>'7.gif', '[害羞]'=>'8.gif', '[酷]'=>'9.gif', '[晕]'=>'10.gif', '[挤眼]'=>'11.gif', '[鬼脸]'=>'12.gif', '[汗]'=>'13.gif', '[吃惊]'=>'14.gif', '[发呆]'=>'15.gif', '[闭嘴]'=>'16.gif', '[撇嘴]'=>'17.gif', '[疑问]'=>'18.gif', '[睡觉]'=>'19.gif', '[NO]'=>'20.gif', '[大哭]'=>'21.gif', '[爱你]'=>'22.gif', '[嘻嘻]'=>'23.gif', '[生病]'=>'24.gif', '[偷笑]'=>'25.gif', '[思考]'=>'26.gif', '[玫瑰]'=>'27.gif', '[心]'=>'28.gif', '[伤心]'=>'29.gif', '[咖啡]'=>'30.gif', '[音乐]'=>'31.gif', '[下雨]'=>'32.gif', '[晴天]'=>'33.gif', '[星星]'=>'34.gif', '[月亮]'=>'35.gif');
 	$emos = array('[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'	=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'	=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'	=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'	=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
 	if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
 		$matches = array_unique($matches[0]);
@@ -1106,17 +1048,50 @@ if(!function_exists('hash_hmac')) {
 	return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }
 
-//vot:  Load Language File
+//------------------------------------------------------------------
+// Functions added by Valery Votintsev (vot) at codersclub.org
+
+/**
+ * Unix Style Dir Name
+ * @author Valery Votintsev, codersclub.org
+ *
+ * @param string $file //original path
+ * @param boolean $remove_drive //If need to remove the Windows-like drive, i.e. C:\windows\system32\...
+ * @return unix style path
+ */
+function udir($file='', $remove_drive = false) {
+  $file = str_replace('\\','/',$file);
+  if($remove_drive) {
+    $file = preg_replace("/^\w:/",'',$file);
+  }
+  return $file;
+}
+
+
+/**
+ * Load Language File
+ * @author Valery Votintsev, codersclub.org
+ *
+ * @param string $file //Language File Name
+ * @return none
+ */
 function load_lang($model='') {
   global $lang;
   if($model) {
+    $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
     @require_once EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
   }
 }
 
-//vot: Get the LANGUAGE Variable Value
+/**
+ * Return Language Variable
+ * @author Valery Votintsev, codersclub.org
+ *
+ * @param string $key //Language Keyword
+ * @return string //Language Value
+ */
+// Get the LANGUAGE Variable Value
 function lang($key='') {
   global $lang;
   return (isset($lang[$key])) ? $lang[$key] : '{'.$key.'}';
 }
-

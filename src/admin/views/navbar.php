@@ -81,13 +81,13 @@
 	?>
         <tr>
 		<td><input class="num_input" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
-		<td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
+		<td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="<? $lang['nav_edit']; ?>"><?php echo $val['naviname']; ?></a></td>
 		<td class="tdcenter"><?php echo $value['type_name'];?></td>
 		<td class="tdcenter">
 		<?php if ($val['hide'] == 'n'): ?>
-		<a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" title="点击隐藏导航">显示</a>
+		<a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" title="<? echo $lang['nav_hide']; ?>"><? echo $lang['visible']; ?></a>
 		<?php else: ?>
-		<a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" title="点击显示导航" style="color:red;">隐藏</a>
+		<a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" title="<? echo $lang['nav_show']; ?>" style="color:red;"><? echo $lang['hidden']; ?></a>
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
@@ -96,9 +96,9 @@
 	  	</td>
         <td><?php echo $val['url']; ?></td>
         <td>
-        <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>">编辑</a>
+        <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><? echo $lang['edit']; ?></a>
         <?php if($val['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi');" class="care">删除</a>
+        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi');" class="care"><? echo $lang['remove']; ?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -118,12 +118,10 @@
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> <? echo $lang['order']; ?></li>
 	<li><input maxlength="200" style="width:100px;" name="naviname" /> <? echo $lang['nav_name']; ?><span class="required">*</sapn></li>
 	<li>
-	<input maxlength="200" style="width:170px;" name="url" id="url" /> rl" /> <? echo $lang['nav_ur<span class="required">*</sapn></li>
+	<input maxlength="200" style="width:170px;" name="url" id="url" /> <? echo $lang['nav_url']; ?><span class="required">*</sapn></li>
     <li>
             <select name="pid" id="pid" class="input">
-    <li><? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
-                <option value="0">无</option>
+                <option value="0"><? echo $lang['none']; ?></option>
                 <?php
                     foreach($navis as $key=>$value):
                         if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -133,7 +131,7 @@
                 <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
                 <?php endforeach; ?>
             </select>
-            父导航
+            <? echo $lang['nav_parent']; ?>
     </li>
     <li><? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
 	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
@@ -168,6 +166,7 @@
         endforeach;
    endforeach;
    ?>
+	<li><input type="submit" name="" value="<? echo $lang['add']; ?>"  /></li>
 	<?php else:?>
 	<li><? echo $lang['category_no_yet']; ?>, <a href="sort.php"><? echo $lang['category_add']; ?></a></li>
 	<?php endif;?> 

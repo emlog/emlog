@@ -14,3 +14,10 @@ define('DB_PREFIX','emlog_');
 define('AUTH_KEY','emlog-key');
 //cookie name
 define('AUTH_COOKIE_NAME','emlog-cookie');
+
+//--------------------------------------------------------
+//blog language //vot
+//define('EMLOG_LANGUAGE','zh-TW');
+//define('EMLOG_LANGUAGE','zh-CN');
+define('EMLOG_LANGUAGE','en');
+//define('EMLOG_LANGUAGE','ru');

@@ -8,10 +8,9 @@
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <title><? echo $lang['admin_center']; ?> - <?php echo Option::get('blogname'); ?></title>
+<script src="<?=BLOG_URL?>lang/<? echo EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-<script src="<?=EMLOG_URL?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
-<!--script src="http://code.jquery.com/jquery-latest.js"></script-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js"></script>
 <script type="text/javascript" src="./views/js/common.js"></script>

@@ -11,7 +11,7 @@
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>
             <select name="pid" id="pid" class="input">
-                <option value="0">无</option>
+                <option value="0"><? echo $lang['none']; ?></option>
                 <?php
                     foreach($navis as $key=>$value):
                         if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -22,7 +22,7 @@
                 <option value="<?php echo $value['id']; ?>" <?php echo $flg;?>><?php echo $value['naviname']; ?></option>
                 <?php endforeach; ?>
             </select>
-            父导航
+            <? echo $lang['nav_parent']; ?>
     </li>
     <?php endif; ?>
 	<li>

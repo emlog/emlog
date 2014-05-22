@@ -273,6 +273,7 @@ function mw_getCategories($args) {
  * Read post information
  */
 function mw_getPost($args) {
+	global $lang;
 	global $options_cache;
 	escape($args);
 
@@ -354,6 +355,7 @@ function mw_getPost($args) {
 }
 
 function mw_getRecentPosts($args) {
+	global $lang;
 	escape($args);
 	$db = Database::getInstance();
 	$username = $args[1];
@@ -448,6 +450,7 @@ function mw_getRecentPosts($args) {
 }
 
 function mw_newMediaObject($args) {
+	global $lang;
 	global $options_cache;
 	escape($args[1]);
 	escape($args[2]);
@@ -591,6 +594,7 @@ function getIso($utctimestamp) {
 }
 
 function login($username, $password) {
+	global $lang;
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// Check user permissions

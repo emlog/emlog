@@ -25,7 +25,7 @@
 		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 	}
 	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red">['.$lang['draft'].']</font>' : 
+	'<font color="red"> - '.$lang['draft'].'</font>' : 
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.$lang['page_new_window'].'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
@@ -65,9 +65,9 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function pageact(act){
 	if (getChecked('ids') == false) {
-		alert('<? echo $lang['page_select_to_deal'];?>');
+		alert(l_page_select);
 		return;}
-	if(act == 'del' && !confirm('<? echo $lang['page_delete_sure'];?>')){return;}
+	if(act == 'del' && !confirm(l_sure_delete_page)){return;}
 	$("#operate").val(act);
 	$("#form_page").submit();
 }

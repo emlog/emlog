@@ -5,7 +5,7 @@
 <? echo $lang['category']; ?>:<br />
 	      <select name="sort" id="sort">
 			<?php
-			$sorts[] = array('sid'=>-1, 'sortname'=>$lang['$lang['choose_category']']);
+			$sorts[] = array('sid'=>-1, 'sortname'=>$lang['choose_category']);
 			foreach($sorts as $val):
 			$flg = $val['sid'] == $sortid ? 'selected' : '';
 			?>

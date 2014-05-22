@@ -29,7 +29,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 		<span id="f_t_user"><a href="javascript:void(0);"><? echo $lang['author']; ?></a></span>
         <span id="f_t_sort">
             <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;">
-            <option value="" selected="selected">按分类查看...</option>
+            <option value="" selected="selected"><? echo $lang['view_by_category']; ?>...</option>
             <?php 
             foreach($sorts as $key=>$value):
             if ($value['pid'] != 0) {
@@ -49,7 +49,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             endforeach;
             endforeach;
             ?>
-            <option value="-1" <?php if($sid == -1) echo 'selected'; ?>>未分类</option>
+            <option value="-1" <?php if($sid == -1) echo 'selected'; ?>><? echo $lang['unclassified']; ?></option>
             </select>
         </span>
 	</div>
@@ -66,7 +66,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_tag" <?php echo $isDisplayTag ?>>
 	<? echo $lang['tags'];?>:
 	<?php 
-    if(empty($tags)) echo '还没有标签';
+    if(empty($tags)) echo $lang['no_tags_yet'];
     foreach($tags as $val):
 		$a = 'tag_'.$val['tid'];
 		$$a = '';
@@ -159,10 +159,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
 	<?php if (ROLE == ROLE_ADMIN):?>
     <select name="top" id="top" onChange="changeTop(this);" style="width:90px;">
-        <option value="" selected="selected">置顶操作...</option>
-        <option value="top">首页置顶</option>
-        <option value="sortop">分类置顶</option>
-        <option value="notop">取消置顶</option>
+        <option value="" selected="selected"><? echo $lang['sticy_action']; ?>...</option>
+        <option value="top"><? echo $lang['top_home']; ?></option>
+        <option value="sortop"><? echo $lang['category_top']; ?></option>
+        <option value="notop"><? echo $lang['unrecommend']; ?></option>
     </select>
     <?php endif;?>
 
@@ -186,6 +186,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     endforeach;
     endforeach;
     ?>
+	<option value="-1"><? echo $lang['unclassified']; ?></option>
 	</select>
 
 	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
@@ -217,7 +218,7 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function logact(act){
 	if (getChecked('ids') == false) {
-		alert('<? echo $lang['post_select_to_deal'];?>');
+		alert(l_article_select);
 		return;}
 	if(act == 'del' && !confirm('<? echo $lang['post_delete_sure'];?>')){return;}
 	$("#operate").val(act);
@@ -225,7 +226,7 @@ function logact(act){
 }
 function changeSort(obj) {
 	if (getChecked('ids') == false) {
-		alert('<? echo $lang['post_select_to_deal'];?>');
+		alert(l_article_select);
 		return;}
 	if($('#sort').val() == '')return;
 	$("#operate").val('move');
@@ -233,7 +234,7 @@ function changeSort(obj) {
 }
 function changeAuthor(obj) {
 	if (getChecked('ids') == false) {
-		alert('<? echo $lang['post_select_to_deal'];?>');
+		alert(l_article_select);
 		return;}
 	if($('#author').val() == '')return;
 	$("#operate").val('change_author');
@@ -241,7 +242,7 @@ function changeAuthor(obj) {
 }
 function changeTop(obj) {
 	if (getChecked('ids') == false) {
-		alert('请选择要操作的文章');
+		alert(l_article_select);
 		return;}
 	if($('#top').val() == '')return;
 	$("#operate").val(obj.value);

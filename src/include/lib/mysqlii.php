@@ -32,8 +32,9 @@ class MySqlii {
 	private static $instance = null;
 
 	private function __construct() {
+		global $lang;
 		if (!class_exists('mysqli')) {
-			emMsg('服务器PHP不支持MySqli函数');
+			emMsg($lang['mysqli_not_support']);
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
@@ -42,27 +43,27 @@ class MySqlii {
 			switch ($this->conn->connect_errno) {
 				case 1044:
 				case 1045:
-					emMsg("连接数据库失败，数据库用户名或密码错误");
+					emMsg($lang['db_user_error']);
 					break;
 
                 case 1049:
-					emMsg("连接数据库失败，未找到您填写的数据库");
+					emMsg($lang['db_not_found']);
 					break;
 
 				case 2003:
-					emMsg("连接数据库失败，数据库端口错误");
+					emMsg($lang['db_port_error']);
 					break;
 
 				case 2005:
-					emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+					emMsg($lang['db_connect_error']);
 					break;
 
 				case 2006:
-					emMsg("连接数据库失败，数据库服务器不可用");
+					emMsg($lang['db_server_error']);
 					break;
 
 				default :
-					emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+					emMsg($lang['db_error_code'] . $this->conn->connect_errno);
 					break;
 			}
 		}
@@ -92,13 +93,14 @@ class MySqlii {
 	 * 发送查询语句
 	 */
 	function query($sql) {
+		global $lang;
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
         if (1046 == $this->geterrno()) {
-            emMsg("连接数据库失败，请填写数据库名");
+            emMsg($lang['db_no_name']);
         }
 		if (!$this->result) {
-			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
+			emMsg($lang['sql_statement_error'] . ": $sql<br />" . $this->geterror());
 		} else {
 			return $this->result;
 		}

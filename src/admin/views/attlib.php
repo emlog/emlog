@@ -55,7 +55,7 @@ foreach($attach as $key=>$value):
 	<br />
 	<?php echo subString($value['filename'], 0, 6) ?>
 	<?php endif;?>
-	<br /><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');">? echo $lang['remove'];?></a> <?php echo $embedlink; ?></li>
+	<br /><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');"><? echo $lang['remove'];?></a> <?php echo $embedlink; ?></li>
 <?php endforeach; endif; ?>
 </div>
 </body>

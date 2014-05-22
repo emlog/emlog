@@ -72,7 +72,7 @@ class Dispatcher {
     }
 
     public function dispatch(){
-/*vot*/ load_language($this->_model);
+///*vot*/ load_language($this->_model);
         $module = new $this->_model();
         $method = $this->_method;
         $module->$method($this->_params);
