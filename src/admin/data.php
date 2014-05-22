@@ -136,7 +136,6 @@ if ($action == 'import') {
 	emDirect('./data.php?active_import=1');
 }
 
-//Bulk delete the backup files
 if ($action == 'dell_all_bak') {
 	if (!isset($_POST['bak'])) {
 		emDirect('./data.php?error_a=1');

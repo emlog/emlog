@@ -11,7 +11,8 @@
 <div style="margin-left:10px;">
 <form action="seo.php?action=update" method="post">
 <div style="font-size: 14px; margin: 10px 0px 10px 10px;"><b><? echo $lang['link_settings']; ?>:</b></div>
-<div class="des" style="margin-left:10px;"><? echo $lang['permalink_info']; ?>
+<div class="des" style="margin-left:10px;">
+    <? echo $lang['permalink_info']; ?>
 </div>
 <div style="margin:10px 8px;">
 	<li><input type="radio" name="permalink" value="0" <?php echo $ex0; ?>><? echo $lang['default_format']; ?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></li>

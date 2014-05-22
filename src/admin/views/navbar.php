@@ -37,7 +37,7 @@
             case Navi_Model::navitype_home:
             case Navi_Model::navitype_t:
             case Navi_Model::navitype_admin:
-			$value['type_name'] = $lang['system'];
+                $value['type_name'] = $lang['system'];
                 break;
             case Navi_Model::navitype_sort:
                 $value['type_name'] = '<font color="blue">' . $lang['category'] . '</font>';

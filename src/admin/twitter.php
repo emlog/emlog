@@ -73,8 +73,8 @@ if ($action == 'getreply') {
 		 $response .= "
 		 <li id=\"reply_{$val['id']}\" style=\"{$style}\">
 		 <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
-         <a href=\"javascript: delreply({$val['id']},{$tid});\">{$lang['remove']}</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">{$lang['reply']}</a></em>
+		 <a href=\"javascript: delreply({$val['id']},{$tid});\">{$lang['remove']}</a> 
+		 <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">{$lang['reply']}</a></em>
 		 </li>";
 	}
 	echo $response;
@@ -111,9 +111,9 @@ if ($action == 'reply') {
 	$response = "
 		 <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
 		 <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-         <span><a href=\"javascript: hidereply({$rid},{$tid});\">{$lang['comments_hide']}</a></span> 
-         <a href=\"javascript: delreply({$rid},{$tid});\">{$lang['remove']}</a> 
-         <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
+		 <span><a href=\"javascript: hidereply({$rid},{$tid});\">{$lang['comments_hide']}</a></span> 
+		 <a href=\"javascript: delreply({$rid},{$tid});\">{$lang['remove']}</a> 
+		 <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
 		 </li>";
 	echo $response;
 }

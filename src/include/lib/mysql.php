@@ -34,31 +34,31 @@ class MySql {
 	private function __construct() {
 		global $lang;
 		if (!function_exists('mysql_connect')) {
-			emMsg(lang('mysql_not_supported'));
+			emMsg($lang['mysql_not_supported']);
 		}
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
             switch ($this->geterrno()) {
                 case 2005:
-                    emMsg(lang('db_connect_error'));
+                    emMsg($lang['db_connect_error']);
                     break;
                 case 2003:
-                    emMsg(lang('db_port_error'));
+                    emMsg($lang['db_port_error']);
                     break;
                 case 2006:
-                    emMsg(lang('db_server_error'));
+                    emMsg($lang['db_server_error']);
                     break;
                 case 1045:
-                    emMsg(lang('db_user_error'));
+                    emMsg($lang['db_user_error']);
                     break;
                 default :
-                    emMsg(lang('db_error_code') . $this->geterrno());
+                    emMsg($lang['db_error_code'] . $this->geterrno());
                     break;
             }
 		}
 		if ($this->getMysqlVersion() > '4.1') {
 			mysql_query("SET NAMES 'utf8'");
 		}
-		@mysql_select_db(DB_NAME, $this->conn) OR emMsg("连接数据库失败，未找到您填写的数据库");
+		@mysql_select_db(DB_NAME, $this->conn) OR emMsg($lang['db_not_found']);
 	}
 
 	/**
@@ -83,10 +83,11 @@ class MySql {
 	 *
 	 */
 	function query($sql) {
+		global $lang;
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {
-			emMsg(lang('sql_statement_error') . ": $sql<br />" . $this->geterror());
+			emMsg($lang['sql_statement_error'] . ": $sql<br />" . $this->geterror());
 		}else {
 			return $this->result;
 		}

@@ -6,7 +6,6 @@
 <title>upload</title>
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css" type="text/css" rel="stylesheet">
-<!--script src="http://code.jquery.com/jquery-latest.js"></script-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>

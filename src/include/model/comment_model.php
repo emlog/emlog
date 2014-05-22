@@ -297,6 +297,7 @@ class Comment_Model {
 	}
 
     function isYoursComment($cid) {
+	global $lang;
         if (ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR) {
             return true;
         }

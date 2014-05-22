@@ -184,9 +184,7 @@ function widget_random_log($title){
 
 <?php
 //widget: Search
-function widget_search($title){
-	global $lang; 
-?>
+function widget_search($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="logsearch">
@@ -313,7 +311,7 @@ function topflg($top, $sortop='n', $sortid=null){
 //blog: Edit
 function editflg($logid,$author){
 	global $lang;
-	$editflg = ROLE == 'admin' || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
+	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -440,7 +438,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 			<?php if(ROLE == ROLE_VISITOR): ?>
 			<p>
 				<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-	<label for="author"><small><? echo $lang['nickname'];?></small></label>
+				<label for="author"><small><? echo $lang['nickname'];?></small></label>
 			</p>
 			<p>
 				<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">

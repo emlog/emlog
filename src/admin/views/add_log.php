@@ -80,9 +80,9 @@
 </div>
 <div id="post_button">
     <input type="hidden" name="ishide" id="ishide" value="">
-          <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
+    <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
     <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />
-          <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
+    <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
 </div>
 </div>
 </form>

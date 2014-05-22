@@ -6,7 +6,7 @@
 	<li><input size="20" value="<?php echo $naviname; ?>" name="naviname" /> <? echo $lang['nav_name']; ?></li>
 	<li>
 	<input size="50" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <? echo $lang['nav_url']; ?>,
-	<? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> /></li>
+	<? echo $lang['open_new_window']; ?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> />
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>

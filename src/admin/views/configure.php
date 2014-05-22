@@ -101,7 +101,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
         <td align="right" width="18%">RSS:<br /></td>
         <td width="82%">
 		<? echo $lang['output']; ?> <input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" class="input" name="rss_output_num" /><? echo $lang['posts_and_output']; ?>
-	<select name="rss_output_fulltext" class="input">
+        <select name="rss_output_fulltext" class="input">
 		<option value="y" <?php echo $ex1; ?>><? echo $lang['full text']; ?></option>
 		<option value="n" <?php echo $ex2; ?>><? echo $lang['summary']; ?></option>
         </select>

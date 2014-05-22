@@ -185,10 +185,10 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-                $row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
+				$row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
 			} else {
 				if (!empty($row['excerpt'])) {
-                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
+					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
@@ -227,7 +227,7 @@ class Log_Model {
 	 */
 	function deleteLog($blogId) {
 		global $lang;
-		$author = ROLE == 'admin' ? '' : 'and author=' . UID;
+		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg($lang['access_disabled'], './');

@@ -150,19 +150,19 @@ class Option {
 	 */
 	static function getWidgetTitle() {
 		$widget_title = array(
-	        'blogger' => $lang['widget_blogger'],
-	        'calendar' => $lang['calendar'],
-	        'twitter' => $lang['twitter'],
-	        'tag' => $lang['tags'],
-	        'sort' => $lang['categories'],
-	        'archive' => $lang['archive'],
-	        'newcomm' => $lang['latest_comments'],
-	        'newlog' => $lang['latest_posts'],
-	        'random_log' => $lang['random_posts'],
-		'hotlog' => $lang['hot_articles'],
-	        'link' => $lang['links'],
-	        'search' => $lang['search'],
-	        'custom_text' => $lang['widget_custom']
+			'blogger' => $lang['widget_blogger'],
+			'calendar' => $lang['calendar'],
+			'twitter' => $lang['twitter'],
+			'tag' => $lang['tags'],
+			'sort' => $lang['categories'],
+			'archive' => $lang['archive'],
+			'newcomm' => $lang['latest_comments'],
+			'newlog' => $lang['latest_posts'],
+			'random_log' => $lang['random_posts'],
+			'hotlog' => $lang['hot_articles'],
+			'link' => $lang['links'],
+			'search' => $lang['search'],
+			'custom_text' => $lang['widget_custom']
 		);
 		return $widget_title;
 	}

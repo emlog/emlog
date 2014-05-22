@@ -16,7 +16,7 @@
 	<table width="100%" id="adm_sort_list" class="item_list">
 		<thead>
 			<tr>
-        <th width="55"><b><? echo $lang['order'];?></b></th>
+			<th width="55"><b><? echo $lang['order'];?></b></th>
 			<th width="160"><b><? echo $lang['name']; ?></b></th>
             <th width="180"><b><? echo $lang['link_description']; ?></b></th>
 			<th width="130"><b><? echo $lang['alias']; ?></b></th>
@@ -103,7 +103,7 @@ foreach($sorts as $key=>$value):
 			<option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
 			<?php endforeach; ?>
 		</select>
-        	<? echo $lang['category_parent']; ?>
+        <? echo $lang['category_parent']; ?>
 	</li>
     <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> <? echo $lang['template']; ?> <? echo $lang['template_log_list']; ?></li>
 	<li><? echo $lang['category_description']; ?><br />

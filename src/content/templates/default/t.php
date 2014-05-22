@@ -22,7 +22,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <div class="post1"><span><?php echo $author; ?></span><br /><?php echo $val['t'].'<br/>'.$img;?></div>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');"></ echo $lang['reply']; ?>(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
+        <p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');"><? echo $lang['reply']; ?>(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
         <p class="time"><?php echo $val['date'];?> </p>
     </div>
 	<div class="clear"></div>

@@ -58,7 +58,7 @@
 		</div>
 		</td>
 		<td class="tdcenter">
-	    <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care"><? echo $lang['remove']; ?></a>
+            <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu');" class="care"><? echo $lang['remove']; ?></a>
         </td>
       </tr>
 	<?php endforeach;else: ?>

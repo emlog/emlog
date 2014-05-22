@@ -424,7 +424,7 @@ class Cache {
 					$record_cache[$h]['lognum'] = $lognum;
 				}
 				$record_cache[$p] = array(
-				    'record' => gmdate('Y-m', $show_record['date']),
+					'record' => gmdate('Y-m', $show_record['date']),
 					'date' => gmdate('Ym', $show_record['date'])
 					);
 				$p++;
