@@ -17,7 +17,7 @@ class Option {
 	const T_IMG_MAX_W = 180;
 	//Maximum height of twitter image thumbnail
 	const T_IMG_MAX_H = 136;
-    //Attachment upload path
+	//Attachment upload path
 	const UPLOADFILE_PATH = '../content/uploadfile/';
 
 	static function get($option){
@@ -132,7 +132,7 @@ class Option {
 	}
 
 	/**
-     * Get the types of attachments allowed to upload
+	 * Get the types of attachments allowed to upload
 	 */
 	static function getAttType() {
 		return explode(',', self::get('att_type'));
@@ -168,7 +168,7 @@ class Option {
 	}
 
 	/**
-     * Get a list of widgets during initial installation
+	 * Get a list of widgets during initial installation
 	 */
 	static function getDefWidget() {
 		$default_widget = array('calendar','archive','newcomm','link','search');
@@ -176,10 +176,10 @@ class Option {
 	}
 
 	/**
-     * Update configuration options
+	 * Update configuration options
 	 * @param $name
 	 * @param $value
-     * @param $isSyntax Whether the update value is an expression
+	 * @param $isSyntax Whether the update value is an expression
 	 */
 	static function updateOption($name, $value, $isSyntax = false){
 		$DB = Database::getInstance();

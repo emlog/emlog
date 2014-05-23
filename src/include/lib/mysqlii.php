@@ -1,6 +1,6 @@
 <?php
 /**
- * MySQLi数据库操作类
+ * MySqli Database operation class
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -8,25 +8,25 @@
 class MySqlii {
 
 	/**
-	 * 查询次数
+	 * Query count
 	 * @var int
 	 */
 	private $queryCount = 0;
 
 	/**
-	 * 内部数据连接对象
+	 * Internal data connection object
 	 * @var mysqli
 	 */
 	private $conn;
 
 	/**
-	 * 内部数据结果
+	 * Internal data result
 	 * @var mysqli_result
 	 */
 	private $result;
 
 	/**
-	 * 内部实例对象
+	 * Internal instance object
 	 * @var object MySql
 	 */
 	private static $instance = null;
@@ -72,7 +72,7 @@ class MySqlii {
 	}
 
 	/**
-	 * 静态方法，返回数据库连接实例
+	 * Return the database connection instance
 	 */
 	public static function getInstance() {
 		if (self::$instance == null) {
@@ -83,14 +83,14 @@ class MySqlii {
 	}
 
 	/**
-	 * 关闭数据库连接
+	 * Close database connection
 	 */
 	function close() {
 		return $this->conn->close();
 	}
 
 	/**
-	 * 发送查询语句
+	 * Send query
 	 */
 	function query($sql) {
 		global $lang;
@@ -107,7 +107,7 @@ class MySqlii {
 	}
 
 	/**
-	 * 从结果集中取得一行作为关联数组/数字索引数组
+	 * Get a row from the result set as an associative array/digital index array
 	 */
 	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
 		return $query->fetch_array($type);

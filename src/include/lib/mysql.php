@@ -8,7 +8,7 @@
 class MySql {
 
 	/**
-	 * Number of queries
+	 * Query count
 	 * @var int
 	 */
 	private $queryCount = 0;
@@ -20,7 +20,7 @@ class MySql {
 	private $conn;
 
 	/**
-	 * Internal data results
+	 * Internal data result
 	 * @var resourse
 	 */
 	private $result;

@@ -7,20 +7,20 @@
 class Url {
 
 	/**
-         * Get post link
+	 * Get post link
 	 */
 	static function log($blogId) {
 		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
 		$CACHE = Cache::getInstance();
 
-        	//Turn on post url  alias
+		//Turn on post url  alias
 		if (Option::get('isalias') == 'y') {
 			$logalias_cache = $CACHE->readCache('logalias');
 			if (!empty($logalias_cache[$blogId])) {
 				$logsort_cache = $CACHE->readCache('logsort');
 				$sort = '';
-            			//Url in category mode
+				//Url in category mode
 				if (3 == $urlMode && isset($logsort_cache[$blogId])) {
 					$sort = !empty($logsort_cache[$blogId]['alias']) ? 
 						$logsort_cache[$blogId]['alias'] : 
@@ -28,7 +28,7 @@ class Url {
 					$sort .= '/';
 				}
 				$logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-                		//Add html suffix to the alias
+				//Add html suffix to the alias
 				if (Option::get('isalias_html') == 'y') {
 					$logUrl .= '.html';
 				}
@@ -37,16 +37,16 @@ class Url {
 		}
 
 		switch ($urlMode) {
-            		case '0'://Default: dynamic
+			case '0'://Default: dynamic
 				$logUrl = BLOG_URL . '?post=' . $blogId;
 				break;
-            		case '1'://Static
+			case '1'://Static
 				$logUrl = BLOG_URL . 'post-' . $blogId . '.html';
 				break;
-            		case '2'://Directory
+			case '2'://Directory
 				$logUrl = BLOG_URL . 'post/' . $blogId;
 				break;
-            		case '3'://Category
+			case '3'://Category
 				$log_sort = $CACHE->readCache('logsort');
 				if (!empty($log_sort[$blogId]['alias'])) {
 					$logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
@@ -62,7 +62,7 @@ class Url {
 	}
 
 	/**
-         * Get archive link
+	 * Get archive link
 	 */
 	static function record($record, $page = null) {
 		$recordUrl = '';
@@ -82,7 +82,7 @@ class Url {
 	}
 
 	/**
-         * Get category link
+	 * Get category link
 	 */
 	static function sort($sortId, $page = null) {
 		$CACHE = Cache::getInstance();
@@ -105,7 +105,7 @@ class Url {
 	}
 
 	/**
-         * Get author link
+	 * Get author link
 	 */
 	static function author($authorId, $page = null) {
 		$authorUrl = '';
@@ -125,7 +125,7 @@ class Url {
 	}
 
 	/**
-         * Get tag link
+	 * Get tag link
 	 */
 	static function tag($tag, $page = null) {
 		$tagUrl = '';
@@ -145,7 +145,7 @@ class Url {
 	}
 
 	/**
-         * Get the page link
+	 * Get the page link
 	 */
 	static function logPage() {
 		$logPageUrl = '';
@@ -161,7 +161,7 @@ class Url {
 	}
 
 	/**
-         * Get comment link
+	 * Get comment link
 	 */
 	static function comment($blogId, $pageId, $cid) {
 		$commentUrl = Url::log($blogId);
