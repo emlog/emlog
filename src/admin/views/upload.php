@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
 <link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
-<script src="../lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
+<script src="../lang/<? echo EMLOG_LANGUAGE; ?>/lang_js.js" type="text/javascript"></script>
 <script>
 function uploadfile(){
 	var as_logid = parent.document.getElementById('as_logid').value

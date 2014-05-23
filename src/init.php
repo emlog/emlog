@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__).'/../_ToDo/my_func.php';
 /**
  * Load Global Items
  * @copyright (c) Emlog All Rights Reserved
@@ -13,8 +14,12 @@ define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
 /*vot*/mb_internal_encoding('UTF-8');
 
 require_once EMLOG_ROOT.'/config.php';
-/*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'.php');
+
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
+
+///*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_all.php');
+// Load the core Lang File
+/*vot*/ load_lang('all');
 
 doStripslashes();
 
@@ -53,7 +58,3 @@ if ($active_plugins && is_array($active_plugins)) {
 		}
 	}
 }
-
-// Load the core Lang File
-/*vot*/ load_language('init');
-

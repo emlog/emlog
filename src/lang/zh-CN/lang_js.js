@@ -69,3 +69,5 @@ var l_download_error	= '下载更新失败，可能是服务器网络问题';//'
 var l_unzip_error	= '解压更新失败，可能是服务器不支持zip模块';//'Failed to unzip and update, it may be that the server does not support the zip module';
 var l_update_not_writeable	= '更新失败，目录不可写';//'Update failed, directory is not writable';
 var l_update_error	= '更新失败';//'Update failed';
+var l_article_select	= '请选择要操作的文章';//'Please select the article to be operated';
+var l_page_select	= '请选择要操作的页面';//'Please select the page to deal with';

@@ -45,6 +45,8 @@ $lang['db_port_error']	= '连接数据库失败，数据库端口错误';//'Fail
 $lang['db_server_error']	= '连接数据库失败，数据库服务器不可用';//'Failed to connect to the database, the database server is unavailable';
 $lang['db_user_error']	= '连接数据库失败，数据库用户名或密码错误';//'Failed to connect to the database, the database user name or password is wrong';
 $lang['db_error_code']	= '连接数据库失败，请检查数据库信息。错误编号：';//'Failed to connect to the database, please check the database information. Error number: ';
+$lang['db_no_name']	= '连接数据库失败，请填写数据库名';//'Failed to connect to the database, please fill in the database name';
+
 
 $lang['admin_settings'] = '博主设置 （用于安装成功后登录博客）';//'Blogger settings (used to log in to the blog after successful installation)';
 $lang['admin_name']	= '博主登录名';//'Administrator Name';
@@ -303,7 +305,7 @@ $lang['your_homepage'] = '个人主页';//'Personal Home Page';
 $lang['your_comment'] = 'Your Comment Text';
 $lang['powered_by'] = 'Powered by';
 $lang['total_blogs'] = 'Total blogs';
-$lang['subscribe'] = 'Subscribe';//订阅
+$lang['subscribe'] = '订阅';//'Subscribe';
 $lang['subscribe_blog'] = 'Subscribe to this blog';
 $lang['subscribe_category'] = 'Subscribe to this Category';
 $lang['total_comments'] = 'Total Comments';
@@ -913,7 +915,7 @@ $lang['nav_not_del']		= '默认导航不能删除';//'Default navigation cannot 
 $lang['category_select']	= '请选择要添加的分类';//'Please select the category to add';
 $lang['page_select']		= '请选择要添加的页面';//'Please select the page to add';
 $lang['url_redirect']		= '跳转地址';//'Redirect address';
-$lang['nav_edit']		= '修改导航';//'Edit navigation';
+$lang['nav_edit']		= '编辑导航';//'Edit navigation';
 $lang['nav_hide']		= '点击隐藏导航';//'Click to hide navigation';
 $lang['nav_show']		= '点击显示导航';//'Click to show navigation';
 $lang['nav_no_yet']		= '还没有添加导航';//'No navigation added yet';
@@ -931,7 +933,7 @@ $lang['plugin_more']		= '更多插件';//'More plugins';
 $lang['alias_prompt']		= '用于自定义该页面的链接地址。';//'Used to customize the link address of this page. It is required to ';
 $lang['need_for']		= '需要';//'It is required to ';
 
-$lang['no_tags_yet']		= '还没有设置过标签！';//'No tags have been set yet!';
+$lang['no_tags_yet']		= '还没有标签';//'No tags yet';
 $lang['no_tags_yet_add']	= '还没有标签，写日志的时候可以给日志打标签';//'No tags yet. You can add tags when writing the post';
 $lang['template_upload_zip']	= '(上传一个zip压缩格式的模板安装包)';//'(Upload a template installation package in zip compression format)';
 $lang['template_more']		= '更多模板';//'More templates';
@@ -1064,3 +1066,9 @@ $lang['apps']			= '应用';//'Applications';
 $lang['template_log_list']	= '(用于自定义分类页面模板，默认为模板目录下log_list.php文件)';//'(Used to customize the category page template, the default is the log_list.php file in the template directory)';
 $lang['article_top_home']	= '首页置顶文章';//'Top article on homepage';
 $lang['article_top_category']	= '分类置顶文章';//'Top article on category';
+
+$lang['view_by_category']	= '按分类查看';//'View by category';
+$lang['sticy_action']		= '置顶操作';//'Sticky operation';
+$lang['top_home']		= '首页置顶';//'Home top';
+$lang['nav_parent']		= '父导航';//'Parent navigation';
+$lang['mysqli_not_support']	= '服务器PHP不支持MySqli函数';//'Server PHP does not support MySqli functions';
