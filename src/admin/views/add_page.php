@@ -45,7 +45,10 @@
 </form>
 <div class=line></div>
 <script>
-loadEditor('content');
+KindEditor.ready(function(K) {
+	var editor1 = KindEditor.create('#content', {
+	});
+});
 $("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});
 $("#title").focus(function(){$("#title_label").hide();});

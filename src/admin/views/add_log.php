@@ -91,8 +91,12 @@
 </form>
 <div class=line></div>
 <script>
-loadEditor('content');
-loadEditor('excerpt');
+KindEditor.ready(function(K) {
+	var editor1 = KindEditor.create('#content', {
+	});
+	var editor2 = KindEditor.create('#excerpt', {
+	});
+});
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 $("#alias").keyup(function(){checkalias();});
