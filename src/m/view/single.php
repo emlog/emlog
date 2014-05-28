@@ -15,7 +15,7 @@
 		<div class="info"><?php echo $comment['date']; ?> <a href="./?action=reply&cid=<?php echo $comment['cid'];?>"><? echo $lang['reply']; ?></a></div>
 		<div class="comcont"><?php echo $comment['content']; ?></div>
         <?php if(ROLE === ROLE_ADMIN): ?>
-        <div class="delcom"><a href="./?action=delcom&id=<?php echo $comment['cid'];?>&gid=<?php echo $logid; ?>&token=<?php echo LoginAuth::genToken();?>">删除</a></div>
+        <div class="delcom"><a href="./?action=delcom&id=<?php echo $comment['cid'];?>&gid=<?php echo $logid; ?>&token=<?php echo LoginAuth::genToken();?>"><? echo $lang['remove']; ?></a></div>
         <?php endif; ?>
 		</div>
 		<?php endforeach; ?>

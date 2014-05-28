@@ -78,7 +78,7 @@ $isdraft = $hide == 'y' ? true : false;
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
         <label for="top"><? echo $lang['post_pin']; ?></label>
 		<input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-        <label for="sortop">分类置顶</label>
+        <label for="sortop"><? echo $lang['category_top']; ?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
         <label for="allow_remark"><? echo $lang['comments_allow']; ?></label>
     </span>

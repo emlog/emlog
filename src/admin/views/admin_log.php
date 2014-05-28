@@ -53,7 +53,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
         <span id="f_t_user">
             <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:110px;">
-                <option value="" selected="selected">按作者查看...</option>
+                <option value="" selected="selected"><? echo $lang['view_by_author']; ?>...</option>
                 <?php 
                 foreach($user_cache as $key=>$value):
                 $flg = $key == $uid ? 'selected' : '';
@@ -65,7 +65,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             </select>
         </span>
         <?php endif;?>
-        <span id="f_t_tag"><a href="javascript:void(0);">按标签查看</a></span>
+        <span id="f_t_tag"><a href="javascript:void(0);"><? echo $lang['view_by_tag']; ?></a></span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">

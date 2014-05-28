@@ -241,7 +241,7 @@ if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page=');
-    $site_title = '微语';
+    $site_title = $lang['twitter'];
 
 	include View::getView('header');
 	include View::getView('twitter');

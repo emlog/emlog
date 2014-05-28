@@ -23,7 +23,7 @@
 <h3><? echo $lang['site_info']; ?></h3>
 <ul>
 	<li><? echo $lang['with']; ?> <b><?php echo $sta_cache['lognum'];?></b><? echo $lang['posted_blogs']; ?>, <b><?php echo $sta_cache['comnum_all'];?></b><? echo $lang['_comments']; ?>, <b><?php echo $sta_cache['twnum'];?></b><? echo $lang['twitter_number']; ?></li>
-	<li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
+	<li><? echo $lang['db_prefix']; ?>: <?php echo DB_PREFIX; ?></li>
 	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
 	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
 	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>
