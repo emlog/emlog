@@ -6,7 +6,7 @@
 <title>upload</title>
 <link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 </head>
 <body>
 <script>
