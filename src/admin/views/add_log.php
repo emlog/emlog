@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script charset="utf-8" src="./editor/kindeditor.js"></script>
-<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js"></script>
+<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>var EMLOG_LANG = '<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>';</script>
 <div class=containertitle><b><? echo $lang['post_add'];?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
@@ -73,12 +73,15 @@
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
         <label for="top"><? echo $lang['post_pin']; ?></label>
+		<input type="checkbox" value="y" name="sortop" id="sortop" />
+        <label for="sortop">分类置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
         <label for="allow_remark"><? echo $lang['comments_allow']; ?></label>
     </span>
 </div>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="">
     <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
     <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />

@@ -43,7 +43,13 @@ if ($action == 'upload') {
 		for ($i = 0; $i < count($attach['name']); $i++) {
 			if ($attach['error'][$i] != 4) {
 				$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
-				$file_info = uploadFile($attach['name'][$i], $attach['error'][$i], $attach['tmp_name'][$i], $attach['size'][$i], Option::getAttType(), false, $isthumbnail);
+
+				$file_name = Database::getInstance()->escape_string($attach['name'][$i]);
+				$file_error = $attach['error'][$i];
+				$file_tmp_name = $attach['tmp_name'][$i];
+				$file_size = $attach['size'][$i];
+
+				$file_info = uploadFile($file_name, $file_error, $file_tmp_name, $file_size, Option::getAttType(), false, $isthumbnail);
 				//Save Attachment Information
 				$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s', 0)";
 				$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
@@ -69,6 +75,7 @@ if ($action == 'upload_multi') {
 	if ($attach) {
 		if ($attach['error'] != 4) {
 			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
+			$attach['name'] = Database::getInstance()->escape_string($attach['name']);
 			$file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 			//Write attachment information
 			$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
@@ -117,6 +124,7 @@ if ($action == 'attlib') {
 
 //Delete attachment
 if ($action == 'del_attach') {
+    LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';
 	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
 	$attach = $DB->fetch_array($query);

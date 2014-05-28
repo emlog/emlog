@@ -30,7 +30,10 @@
 	<li><input maxlength="200" style="width:200px;" class="input" value="<?php echo $username; ?>" name="username" /> <? echo $lang['login_name']; ?></li>
     <li><input type="password" maxlength="200" class="input" style="width:200px;" value="" name="newpass" /> <? echo $lang['password_new']; ?> <? echo $lang['password_not_less']; ?></li>
 	<li><input type="password" maxlength="200" class="input" style="width:200px;" value="" name="repeatpass" /> <? echo $lang['password_repeat']; ?></li>
-    <li><input type="submit" value="<? echo $lang['personal_data_save']; ?>" class="button" /></li>
+    <li>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+	<input type="submit" value="<? echo $lang['personal_data_save']; ?>" class="button" />
+    </li>
 </div>
 </form>
 <script>

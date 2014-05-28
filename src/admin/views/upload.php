@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
+<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
 <script src="../lang/<? echo EMLOG_LANGUAGE; ?>/lang_js.js" type="text/javascript"></script>
 <script>
 function uploadfile(){

@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script charset="utf-8" src="./editor/kindeditor.js"></script>
-<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js"></script>
+<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>var EMLOG_LANG = '<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>';</script>
 <div class=containertitle><b><? echo $lang['page_add']; ?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
@@ -36,6 +36,7 @@
     </span>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="">
     <input type="submit" value="<? echo $lang['page_publish'];?>" onclick="return checkform();" class="button" />
     <input type="button" name="savedf" id="savedf" value="<? echo $lang['page_save'];?>" onclick="autosave(3);" class="button" />

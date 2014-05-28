@@ -1,11 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo"><? echo $lang['posted_by']; ?>: <?php echo $user_cache[$author]['name'];?> <?php echo gmdate('Y-m-d H:i', $date); ?>
-	<?php if(ROLE == ROLE_ADMIN || $author == UID): ?>
-	<a href="./?action=dellog&gid=<?php echo $logid;?>"><? echo $lang['remove']; ?></a>
-	<?php endif;?>
-	</div>
+	<div class="postinfo"><?php echo gmdate('Y-m-d', $date); ?> <?php echo $user_cache[$author]['name'];?></div>
 	<div class="postcont"><?php echo $log_content; ?></div>
     <?php if(!empty($commentStacks)): ?>
 	<div class="t"><? echo $lang['comments']; ?>:</div>
@@ -18,6 +14,9 @@
 		<b><?php echo $comment['poster']; ?></b>
 		<div class="info"><?php echo $comment['date']; ?> <a href="./?action=reply&cid=<?php echo $comment['cid'];?>"><? echo $lang['reply']; ?></a></div>
 		<div class="comcont"><?php echo $comment['content']; ?></div>
+        <?php if(ROLE === ROLE_ADMIN): ?>
+        <div class="delcom"><a href="./?action=delcom&id=<?php echo $comment['cid'];?>&gid=<?php echo $logid; ?>&token=<?php echo LoginAuth::genToken();?>">删除</a></div>
+        <?php endif; ?>
 		</div>
 		<?php endforeach; ?>
 		<div id="page"><?php echo $commentPageUrl;?></div>

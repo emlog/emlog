@@ -42,6 +42,9 @@ if ($action=='update_tag') {
 //Bulk Delete Tags
 if ($action== 'dell_all_tag') {
 	$tags = isset($_POST['tag']) ? $_POST['tag'] : '';
+
+    LoginAuth::checkToken();
+
 	if (!$tags) {
 		emDirect("./tag.php?error_a=1");
 	}

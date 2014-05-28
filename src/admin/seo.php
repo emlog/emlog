@@ -28,6 +28,7 @@ if ($action == '') {
 }
 
 if ($action == 'update') {
+    LoginAuth::checkToken();
 	$permalink = isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0';
 	$isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
 	$isalias_html = isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n';

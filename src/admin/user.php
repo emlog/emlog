@@ -28,6 +28,8 @@ if ($action== 'new') {
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
     $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
+    LoginAuth::checkToken();
+
     if($role == ROLE_ADMIN) {
         $ischeck = 'n';
     }
@@ -87,6 +89,8 @@ if ($action=='update') {
 	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
     $ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
+    LoginAuth::checkToken();
+
     if($role == ROLE_ADMIN) {
         $ischeck = 'n';
     }
@@ -131,6 +135,7 @@ if ($action=='update') {
 }
 
 if ($action== 'del') {
+    LoginAuth::checkToken();
 	$users = $User_Model->getUsers();
 	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 

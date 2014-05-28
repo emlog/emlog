@@ -69,7 +69,6 @@ function widget_sort($title){
 	?>
 	<li>
 	<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-	<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_subscribe']; ?>"/></a>
 	<?php if (!empty($value['children'])): ?>
 		<ul>
 		<?php
@@ -79,10 +78,10 @@ function widget_sort($title){
 		?>
 		<li>
 			<a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-			<a href="<?php echo BLOG_URL; ?>rss.php?sort=<?php echo $value['sid']; ?>"><img src="<?php echo TEMPLATE_URL; ?>images/rss.png" alt="<? echo $lang['category_feed'];?>"/></a>
 		</li>
 		<?php endforeach; ?>
 		</ul>
+    </li>
 	<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>
@@ -324,7 +323,7 @@ function blog_sort($blogid){
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if(!empty($log_cache_sort[$blogid])): ?>
-	<? echo $lang['category']; ?>: <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
+    <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php endif;?>
 <?php }?>
 

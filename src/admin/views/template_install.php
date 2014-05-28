@@ -18,6 +18,7 @@
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div style="margin:50px 0px 50px 20px;">
 	<li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="tplzip" type="file" />
 	<input type="submit" value="<? echo $lang['upload']; ?>" class="submit" /> <? echo $lang['template_upload_zip']; ?>
 	</li>

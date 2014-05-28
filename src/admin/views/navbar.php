@@ -71,7 +71,7 @@
         <td>
         <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><? echo $lang['edit']; ?></a>
         <?php if($value['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi');" class="care"><? echo $lang['remove']; ?></a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -98,7 +98,7 @@
         <td>
         <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><? echo $lang['edit']; ?></a>
         <?php if($val['isdefault'] == 'n'):?>
-        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi');" class="care"><? echo $lang['remove']; ?></a>
+        <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -118,7 +118,7 @@
 	<li><input maxlength="4" style="width:30px;" name="taxis" /> <? echo $lang['order']; ?></li>
 	<li><input maxlength="200" style="width:100px;" name="naviname" /> <? echo $lang['nav_name']; ?><span class="required">*</sapn></li>
 	<li>
-	<input maxlength="200" style="width:170px;" name="url" id="url" /> <? echo $lang['nav_url']; ?><span class="required">*</sapn></li>
+	<input maxlength="200" style="width:168px;" name="url" id="url" /> <? echo $lang['nav_url']; ?><span class="required">*</sapn></li>
     <li>
             <select name="pid" id="pid" class="input">
                 <option value="0"><? echo $lang['none']; ?></option>

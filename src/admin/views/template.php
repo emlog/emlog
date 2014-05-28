@@ -37,11 +37,11 @@ if($i % 3 == 0){echo "<tr>";}
 $i++;
 ?>
       <td align="center" width="300">
-	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>">
+	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
 	  <img alt="<? echo $lang['template_click']; ?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
 	  </a><br />
       <?php echo $value['tplname']; ?>
-      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl');" class="care"><? echo $lang['remove']; ?></a></span>
+      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a></span>
       </td>
 <?php 
 if($i > 0 && $i % 3 == 0){echo "</tr>";}

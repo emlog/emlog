@@ -11,6 +11,7 @@ define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
 $isgzipenable = 'n'; //Turn off gzip compression for mobile browsing
 $index_lognum = 5;
+$site_title = Option::get('blogname');
 
 $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
@@ -20,6 +21,7 @@ if (Option::get('ismobile') == 'n') {
 }
 
 $navi_cache = $CACHE->readCache('navi');
+$user_cache = $CACHE->readCache('user');
 
 // Front page
 if (empty ($action) && empty ($logid)) {
@@ -47,7 +49,9 @@ if (!empty ($logid)) {
 		mMsg ($lang['entry_not_exists'], './');
 	}
 	extract($logData);
-	if (!empty($password)) {
+
+    $site_title = $log_title;
+    if (!empty($password)) {
 		$postpwd = isset($_POST['logpwd']) ? addslashes(trim ($_POST['logpwd'])) : '';
 		$cookiepwd = isset($_COOKIE ['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE ['em_logpwd_' . $logid])) : '';
 		authPassword ($postpwd, $cookiepwd, $password, $logid);
@@ -57,7 +61,6 @@ if (!empty ($logid)) {
 	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
 	$comments = $Comment_Model->getComments(2, $logid, 'n', $commentPage);
 	extract($comments);
-	$user_cache = $CACHE->readCache('user');
 
 	$Log_Model->updateViewCount($logid);
 	include View::getView('header');
@@ -99,6 +102,8 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$Log_Model = new Log_Model();
 	$Tag_Model = new Tag_Model();
 
+    LoginAuth::checkToken();
+
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
 	$content = isset($_POST['content']) ? nl2br(addslashes(trim($_POST['content']))) : '';
@@ -130,13 +135,6 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$CACHE->updateCache();
 	emDirect("./");
 }
-if (ISLOGIN === true && $action == 'dellog') {
-	$Log_Model = new Log_Model();
-	$id = isset($_GET['gid']) ? intval($_GET['gid']) : -1;
-	$Log_Model->deleteLog($id);
-	$CACHE->updateCache();
-	emDirect("./");
-}
 // Comment
 if ($action == 'addcom') {
 	$Comment_Model = new Comment_Model();
@@ -152,12 +150,14 @@ if ($action == 'addcom') {
     $targetBlogUrl = './?post=' . $blogId;
 
     if (ISLOGIN === true) {
-        $CACHE = Cache::getInstance();
-        $user_cache = $CACHE->readCache('user');
 		$name = addslashes($user_cache[UID]['name_orig']);
        	$mail = addslashes($user_cache[UID]['mail']);
         $url = addslashes(BLOG_URL);
     }
+
+	if ($url && strncasecmp($url,'http',4)) {
+		$url = 'http://'.$url;
+	}
 
     doAction('comment_post');
 
@@ -210,45 +210,15 @@ if ($action == 'addcom') {
 		}
     }
 }
-if ($action == 'com') {
-	if (ISLOGIN === true) {
-		$hide = '';
-		$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+if (ROLE === ROLE_ADMIN && $action == 'delcom') {
+    LoginAuth::checkToken();
+    $blogId = isset($_GET['gid']) ? intval($_GET['gid']) : - 1;
+    $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 
-		$Comment_Model = new Comment_Model();
-
-		$comment = $Comment_Model->getComments(1, null, $hide, $page);
-		$cmnum = $Comment_Model->getCommentNum(null, $hide);
-		$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "./?action=com&page=");
-	}else {
-		$comment = $CACHE->readCache('comment');
-		$pageurl = '';
-	}
-	include View::getView('header');
-	include View::getView('comment');
-	include View::getView('footer');
-	View::output();
-}
-if (ISLOGIN === true && $action == 'delcom') {
 	$Comment_Model = new Comment_Model();
-	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
-	emDirect("./?action=com");
-}
-if (ISLOGIN === true && $action == 'showcom') {
-	$Comment_Model = new Comment_Model();
-	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$Comment_Model->showComment($id);
-	$CACHE->updateCache(array('sta','comment'));
-	emDirect("./?action=com");
-}
-if (ISLOGIN === true && $action == 'hidecom') {
-	$Comment_Model = new Comment_Model();
-	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
-	$Comment_Model->hideComment($id);
-	$CACHE->updateCache(array('sta','comment'));
-	emDirect("./?action=com");
+	emDirect('./?post=' . $blogId);
 }
 if ($action == 'reply') {
 	$Comment_Model = new Comment_Model();
@@ -268,17 +238,18 @@ if ($action == 'reply') {
 if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-    $user_cache = $CACHE->readCache('user');
     $tws = $Twitter_Model->getTwitters($page);
     $twnum = $Twitter_Model->getTwitterNum();
     $pageurl =  pagination($twnum, Option::get('index_twnum'), $page, './?action=tw&page=');
+    $site_title = '微语';
 
 	include View::getView('header');
 	include View::getView('twitter');
 	include View::getView('footer');
 	View::output();
 }
-if (ISLOGIN === true && $action == 't') {
+if (ROLE === ROLE_ADMIN && $action == 't') {
+    LoginAuth::checkToken();
     $Twitter_Model = new Twitter_Model();
 
     $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
@@ -317,7 +288,8 @@ if (ISLOGIN === true && $action == 't') {
     doAction('post_twitter', $t);
     emDirect("./?action=tw");
 }
-if (ISLOGIN === true && $action == 'delt') {
+if (ROLE === ROLE_ADMIN && $action == 'delt') {
+    LoginAuth::checkToken();
     $Twitter_Model = new Twitter_Model();
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);

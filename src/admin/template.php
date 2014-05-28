@@ -53,6 +53,7 @@ if ($action == '') {
 //Use template
 if ($action == 'usetpl')
 {
+    LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
@@ -65,6 +66,7 @@ if ($action == 'usetpl')
 //Blog post saved successfully
 if ($action == 'del')
 {
+    LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
 	if (true === emDeleteFile(TPLS_PATH . $tplName)) {
@@ -196,6 +198,7 @@ if ($action == 'install')
 
 //Upload zip template
 if ($action == 'upload_zip') {
+    LoginAuth::checkToken();
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
 	if ($zipfile['error'] == 4) {

@@ -30,12 +30,16 @@ if ($action == '') {
 
 if ($action== 'del') {
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
+
+    LoginAuth::checkToken();
+
 	$Comment_Model->delComment($id);
 	$CACHE->updateCache(array('sta','comment'));
 	emDirect("./comment.php?active_del=1");
 }
 
 if ($action== 'delbyip') {
+    LoginAuth::checkToken();
     if (ROLE != ROLE_ADMIN) {
 		emMsg($lang['access_disabled'], './');
     }
@@ -98,7 +102,7 @@ if ($action== 'reply_comment') {
 
 if ($action== 'edit_comment') {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-	$commentArray = $Comment_Model->getOneComment($commentId);
+	$commentArray = $Comment_Model->getOneComment($commentId, FALSE);
 	if (!$commentArray) {
 		emMsg($lang['comment_not_exist'], './comment.php');
 	}

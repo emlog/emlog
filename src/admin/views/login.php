@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="./views/css/css-login.css" type="text/css" media="screen" /> 
+<link rel="stylesheet" href="./views/css/css-login.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" media="screen" /> 
 <script src="../lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
-<script type="text/javascript" src="./views/js/common.js"></script>
+<script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <title><? echo $lang['login'];?></title>
 </head>
 <body>

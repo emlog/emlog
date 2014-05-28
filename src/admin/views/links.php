@@ -43,7 +43,7 @@
         <td><?php echo $value['description']; ?></td>
         <td>
         <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><? echo $lang['edit']; ?></a>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link');" class="care"><? echo $lang['remove']; ?></a>
+        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
         </td>
       </tr>
 	<?php endforeach;else:?>

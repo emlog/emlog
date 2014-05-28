@@ -15,6 +15,7 @@ foreach($tags as $key=>$value): ?>
 <a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
 <?php endforeach; ?>
 </li>
+<input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <li style="margin:20px 0px">
 <a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
 <a href="javascript:deltags();" class="care"><? echo $lang['remove']; ?></a>

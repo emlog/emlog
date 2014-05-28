@@ -40,10 +40,11 @@
         <td><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4"><? echo $lang['no_pages_yet']; ?></td></tr>
+	  <tr><td class="tdcenter" colspan="5"><? echo $lang['no_pages_yet']; ?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
+  <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">

@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script charset="utf-8" src="./editor/kindeditor.js"></script>
-<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js"></script>
-<div class=containertitle><b><? echo $lang['page_edit'];?></b><span id="msg_2"></span></div>
+<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>var EMLOG_LANG = '<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>';</script>
+<div class=containertitle><b><? echo $lang['page_edit'];?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
 <div id="post">
@@ -35,6 +35,7 @@
     </span>
 </div>
 <div id="post_button">
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>">
     <input type="hidden" name="gid" value=<?php echo $pageId; ?> />
     <input type="submit" value="<? echo $lang['post_save_and_return']; ?>" onclick="return checkform();" class="button" />

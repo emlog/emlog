@@ -45,6 +45,7 @@ if ($action == 'edit') {
 	$tags = $Tag_Model->getTag();
 
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
+	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');

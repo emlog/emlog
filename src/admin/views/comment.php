@@ -55,7 +55,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
 		<span style="display:none; margin-left:8px;">    
-		<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment');" class="care"><? echo $lang['remove']; ?></a>
+            <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
 		<?php if($value['hide'] == 'y'):?>
 		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><? echo $lang['comments_approve']; ?></a>
 		<?php else: ?>
@@ -66,7 +66,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 		</span>
 		</td>
 		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
-            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip');" title="<? echo $lang['comment_del_from_ip']; ?>" class="care">(X)</a><?php endif;?></td>
+            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<? echo $lang['comment_del_from_ip']; ?>" class="care">(X)</a><?php endif;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<? echo $lang['blog_view_link'];?>"><?php echo $value['title']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>

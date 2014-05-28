@@ -129,7 +129,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="right" width="18%" valign="top"><? echo $lang['attachments']; ?>:<br /></td>
         <td width="82%">
-		<? echo $lang['attachment_max_upload']; ?>: <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<? echo $lang['attachment_php_info']; ?> <?php echo ini_get('upload_max_filesize'); ?><? echo $lang['limit']; ?>)<br />
+		<? echo $lang['attachment_max_upload']; ?>: <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<? echo $lang['attachment_php_info']; ?> <?php echo ini_get('upload_max_filesize'); ?> <? echo $lang['limit']; ?>)<br />
         <? echo $lang['attachment_types']; ?>: <input maxlength="200" style="width:320px;" class="input" value="<?php echo $att_type; ?>" name="att_type" />(<? echo $lang['separate_by_comma']; ?>)<br />
         <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><? echo $lang['thumbnail_generate']; ?>, <? echo $lang['max_size']; ?>: <input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /> <? echo $lang['unit_pixel']; ?><br />
 		</td>
@@ -152,7 +152,10 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="center" colspan="2"><input type="submit" value="<? echo $lang['save_settings'];?>" class="button" /></td>
+        <td align="center" colspan="2">
+            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        	<input type="submit" value="<? echo $lang['save_settings'];?>" class="button" />
+        </td>
       </tr>
   </table>
 </form>

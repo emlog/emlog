@@ -84,6 +84,7 @@ if ($action == 'bakstart') {
 
 //Import Backup Data
 if ($action == 'renewdata') {
+    LoginAuth::checkToken();
 	$sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
 	if (!file_exists($sqlfile)) {
 		emMsg($lang['file_not_exists']);
@@ -100,6 +101,7 @@ if ($action == 'renewdata') {
 
 //Import local backup files
 if ($action == 'import') {
+    LoginAuth::checkToken();
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
 		emMsg($lang['backup_illegal_info']);

@@ -11,6 +11,7 @@
     <div class="right">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <div class="msg"><? echo $lang['twitter_length_max']; ?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
     <div class="tbutton"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> </div>
@@ -21,7 +22,7 @@
         <a href="javascript:;" onclick="unSelectFile()"> [<? echo $lang['cancel']; ?>]</a>
         <div id="img_pop"></div>
     </div>
-    <?php  doAction('twitter_form'); ?>
+    <?php doAction('twitter_form'); ?>
     </form>
     </div>
     <div class="clear"></div>
@@ -41,7 +42,7 @@
     <div class="clear"></div>
     <div class="bttome">
         <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);"><? echo $lang['reply']; ?></a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw');" class="care"><? echo $lang['remove']; ?></a> </p>
+        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>
@@ -55,8 +56,8 @@
     </ul>
 </div>
 <div id="faceWraps"></div>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="./views/js/emo.js"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>""></script>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(

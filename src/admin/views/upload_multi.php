@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css" type="text/css" rel="stylesheet">
-<link href="./views/css/css-uploadify.css" type="text/css" rel="stylesheet">
+<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
+<link href="./views/css/css-uploadify.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
@@ -34,7 +34,7 @@ if(true === isIE6Or7()): ?>
 <div id="custom-queue" class="uploadifyQueue"></div>
 </div>
 </form>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
 $(document).ready(function() {
 	$("#custom_file_upload").uploadify({

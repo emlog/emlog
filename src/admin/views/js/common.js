@@ -10,7 +10,7 @@ function getChecked(node) {
 function timestamp(){
 	return new Date().getTime();
 }
-function em_confirm (id, property) {
+function em_confirm (id, property, token) {
 	switch (property){
 		case 'tw':
 			var urlreturn="twitter.php?action=del&id="+id;
@@ -55,7 +55,7 @@ function em_confirm (id, property) {
 			var urlreturn="plugin.php?action=del&plugin="+id;
 			var msg = l_sure_del_plugin;break;
 	}
-	if(confirm(msg)){window.location = urlreturn;}else {return;}
+	if(confirm(msg)){window.location = urlreturn + "&token="+token;}else {return;}
 }
 function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
@@ -152,7 +152,8 @@ function autosave(act){
 		var pageurl = $.trim($("#url").val());
 		var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
-		var ishide = $.trim($("#ishide").val());
+		var token = $.trim($("#token").val());
+        var ishide = $.trim($("#ishide").val());
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
 					+"&title="+encodeURIComponent(title)
@@ -160,6 +161,7 @@ function autosave(act){
 					+"&allow_remark="+allow_remark
 					+"&is_blank="+is_blank
 					+"&url="+pageurl
+                    +"&token="+token
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}else{
@@ -177,10 +179,12 @@ function autosave(act){
 		var excerpt = $('#excerpt').val();
 		var tag = $.trim($("#tag").val());
 		var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
+		var sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
 		var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
 		var password = $.trim($("#password").val());
 		var ishide = $.trim($("#ishide").val());
+        var token = $.trim($("#token").val());
 		var ishide = ishide == "" ? "y" : ishide;
 		var querystr = "content="+encodeURIComponent(content)
 					+"&excerpt="+encodeURIComponent(excerpt)
@@ -192,9 +196,11 @@ function autosave(act){
 					+"&date="+date
 					+"&tag="+encodeURIComponent(tag)
 					+"&top="+top
+					+"&sortop="+sortop
 					+"&allow_remark="+allow_remark
 					+"&allow_tb="+allow_tb
 					+"&password="+password
+                    +"&token="+token
 					+"&ishide="+ishide
 					+"&as_logid="+logid;
 	}

@@ -13,8 +13,9 @@ if ($action == '') {
 	$icon = '';
 	if ($photo) {
 		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
+        $token = LoginAuth::genToken();
 		$icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
-		<br /><a href=\"javascript: em_confirm(0, 'avatar');\">{$lang['photo_delete']}</a>";
+		<br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">{$lang['photo_delete']}</a>";
 	} else {
 		$icon = '<img src="./views/images/avatar.jpg" />';
 	}
@@ -25,6 +26,7 @@ if ($action == '') {
 }
 
 if ($action == 'update') {
+    LoginAuth::checkToken();
 	$User_Model = new User_Model();
 	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
@@ -53,8 +55,9 @@ if ($action == 'update') {
         $PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword($newpass);
 		$User_Model->updateUser(array('password'=>$newpass), UID);
-	} 
-    if ($login != $user_cache[UID]['username']) {
+	}
+
+    if (!empty($login)) {
 		$User_Model->updateUser(array('username'=>$login), UID);
 	}
 
@@ -72,6 +75,7 @@ if ($action == 'update') {
 }
 
 if ($action == 'delicon') {
+    LoginAuth::checkToken();
 	$DB = Database::getInstance();
 	$query = $DB->query("select photo from ".DB_PREFIX."user where uid=" . UID);
 	$icon = $DB->fetch_array($query);

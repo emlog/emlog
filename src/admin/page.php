@@ -61,6 +61,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 	$template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
+    LoginAuth::checkToken();
+
 	$postTime = $emPage->postDate(Option::get('timezone'));
 
 	//check alias
@@ -107,6 +109,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 if ($action == 'operate_page') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
+
+    LoginAuth::checkToken();
 
 	$emPage = new Log_Model();
 

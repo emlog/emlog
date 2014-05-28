@@ -37,7 +37,7 @@
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><? echo $lang['edit']; ?></a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user');" class="care"><? echo $lang['remove']; ?></a>
+		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
 		<?php else:?>
 		<a href="blogger.php"><? echo $lang['edit']; ?></a>
 		<?php endif;?>
@@ -72,6 +72,7 @@
 		<option value="y">$lang['article_to_review']</option>
 	</select>
 	</li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<li><input type="submit" name="" value="<? echo $lang['user_add']; ?>" class="button" /></li>
 </div>
 </form>

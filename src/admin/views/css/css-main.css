@@ -516,6 +516,10 @@ textarea {
 	display:none;
 	margin:0px 0px 20px 20px;
 }
+#cache {
+	display:none;
+	margin:0px 0px 20px 0px;
+}
 .title_des {
 	font-size:12px;
 	color:#999999;

@@ -4,9 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css" type=text/css rel=stylesheet>
+<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
 <script src="../lang/<? echo EMLOG_LANGUAGE; ?>.js" type="text/javascript"></script>
-<script type="text/javascript" src="./views/js/common.js"></script>
+<script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 </head>
 <script>
 function showupload(multi){
@@ -55,7 +55,7 @@ foreach($attach as $key=>$value):
 	<br />
 	<?php echo subString($value['filename'], 0, 6) ?>
 	<?php endif;?>
-	<br /><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment');"><? echo $lang['remove'];?></a> <?php echo $embedlink; ?></li>
+	<br /><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');"><? echo $lang['remove'];?></a> <?php echo $embedlink; ?></li>
 <?php endforeach; endif; ?>
 </div>
 </body>

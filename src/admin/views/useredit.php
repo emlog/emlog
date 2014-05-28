@@ -28,6 +28,7 @@
 	<li><? echo $lang['personal_description']; ?><br />
 	<textarea name="description" rows="5" style="width:260px;" class="textarea"><?php echo $description; ?></textarea></li>
 	<li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
 	<input type="submit" value="<? echo $lang['save']; ?>" class="button" />
 	<input type="button" value="<? echo $lang['cancel']; ?> " class="button" onclick="window.location='user.php';" /></li>

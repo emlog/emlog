@@ -9,6 +9,7 @@
 <?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['backup_upload_error']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['backup_filename_invalid']; ?></span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="error"><? echo $lang['zip_export_error']; ?></span><?php endif;?>
+<?php if(isset($_GET['active_mc'])):?><span class="actived">缓存更新成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
@@ -34,7 +35,7 @@
       <td width="661"><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
       <td><?php echo $modtime; ?></td>
       <td><?php echo $size; ?></td>
-      <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup');"><? echo $lang['backup_import'];?></a></td>
+      <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup', '<?php echo LoginAuth::genToken(); ?>');"><? echo $lang['backup_import'];?></a></td>
     </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="5"><? echo $lang['no_backups_yet']; ?></td></tr>
@@ -44,38 +45,48 @@
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>: <a href="javascript:bakact('del');" class="care"><? echo $lang['remove']; ?></a></div>
 </form>
-<div style="margin:20px 0px 20px 0px;"><a href="javascript:$('#import').hide();displayToggle('backup', 0);"><? echo $lang['backup_info'];?>+</a> <a href="javascript:$('#backup').hide();displayToggle('import', 0);"><? echo $lang['backup_local_file']; ?>+</a></div>
+<div style="margin:50px 0px 20px 0px;">
+    <a href="javascript:$('#import').hide();$('#cache').hide();displayToggle('backup', 0);" style="margin-right: 16px;"><? echo $lang['backup_info'];?>+</a> 
+    <a href="javascript:$('#backup').hide();$('#cache').hide();displayToggle('import', 0);" style="margin-right: 16px;"><? echo $lang['backup_local_file']; ?>+</a> 
+    <a href="javascript:$('#backup').hide();$('#import').hide();displayToggle('cache', 0);" style="margin-right: 16px;">更新缓存+</a>
+</div>
+
 <form action="data.php?action=bakstart" method="post">
 <div id="backup">
-	<p><? echo $lang['backup_choose_database'];?>:<br /><select multiple="multiple" size="12" name="table_box[]">
+	<p><? echo $lang['backup_choose_database'];?>:<br />
+        <select multiple="multiple" size="12" name="table_box[]">
 		<?php foreach($tables  as $value): ?>
 		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
 		<?php endforeach; ?>
-      	</select></p>
+      	</select>
+	</p>
 	<p><? echo $lang['backup_export_to']; ?>:
-	<select name="bakplace" id="bakplace">
+        <select name="bakplace" id="bakplace">
 		<option value="local" selected="selected"><? echo $lang['backup_local']; ?></option>
 		<option value="server"><? echo $lang['backup_server']; ?></option>
-	</select>
-	</p>
+        </select>
+    </p>
 	<p id="local_bakzip"><? echo $lang['backup_compress']; ?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
 	<p id="server_bakfname" style="display:none;"><? echo $lang['backup_filename']; ?>: <input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
 	<p><input type="submit" value="<? echo $lang['backup_start']; ?>" class="button" /></p>
 </div>
 </form>
+
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
-	<p><input type="file" name="sqlfile" /> <input type="submit" value="<? echo $lang['backup_import']; ?>" class="submit" /> <? echo $lang['backup_format_support']; ?></p>
+    <p class="des">仅可导入相同版本emlog导出的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
+	<p>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" />
+    </p>
 </div>
 </form>
-<div class=containertitle><b><? echo $lang['cache'];?></b>
-<?php if(isset($_GET['active_mc'])):?><span class="actived"><? echo $lang['cache_updated_ok'];?></span><?php endif;?>
-</div>
-<div class=line></div>
-<div style="margin:0px 0px 20px 0px;">
-	<p class="des"><? echo $lang['cache_info'];?></p>
+
+<div id="cache">
+	<p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
 	<p><input type="button" onclick="window.location='data.php?action=Cache';" value="<? echo $lang['cache_rebuild'];?>" class="button" /></p>
 </div>
+
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){

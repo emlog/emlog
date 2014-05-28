@@ -8,7 +8,10 @@
         <form method="post" action="twitter.php?action=post">
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
         <div class="box_1"><textarea class="box2" name="t"><? echo $lang['write_something']; ?></textarea></div>
-        <div class="tbutton" style="display:none;"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
+        <div class="tbutton" style="display:none;">
+            <input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
+            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        </div>
         </form>
         </div>
 		<div class="clear"></div>
@@ -20,6 +23,7 @@
 <h3><? echo $lang['site_info']; ?></h3>
 <ul>
 	<li><? echo $lang['with']; ?> <b><?php echo $sta_cache['lognum'];?></b><? echo $lang['posted_blogs']; ?>, <b><?php echo $sta_cache['comnum_all'];?></b><? echo $lang['_comments']; ?>, <b><?php echo $sta_cache['twnum'];?></b><? echo $lang['twitter_number']; ?></li>
+	<li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
 	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
 	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
 	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>

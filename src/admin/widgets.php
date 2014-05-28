@@ -140,6 +140,7 @@ if ($action == 'compages') {
 
 //Reset widget settings
 if ($action == 'reset') {
+    LoginAuth::checkToken();
 	$widget_title = serialize(Option::getWidgetTitle());
 	$default_widget = serialize(Option::getDefWidget());
 

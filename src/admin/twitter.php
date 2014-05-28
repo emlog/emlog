@@ -28,6 +28,8 @@ if ($action == 'post') {
 	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
 
+    LoginAuth::checkToken();
+
 	if ($img && !$t) {
 		$t = $lang['image_share'];
 	}
@@ -49,6 +51,7 @@ if ($action == 'post') {
 }
 // Delete twit
 if ($action == 'del') {
+    LoginAuth::checkToken();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
 	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache(array('sta','newtw'));

@@ -36,7 +36,10 @@
         <option value="2" <?php echo $opt2; ?>><? echo $lang['article_title_site_meta_title']; ?></option>
         </select>
     </li>
-    <li style="margin-top:10px;"><input type="submit" value="<? echo $lang['save_settings']; ?>" class="button" /></li>
+    <li style="margin-top:10px;">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+	<input type="submit" value="<? echo $lang['save_settings']; ?>" class="button" />
+    </li>
 </div>
 </form>
 </div>

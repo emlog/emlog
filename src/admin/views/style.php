@@ -14,14 +14,14 @@
 	$style = $value['style_file'];
 	?>
 	<div>
-	<a href="./style.php?action=usestyle&style=<?php echo $style; ?>" title="<? echo $lang['use_this_style']; ?>" >
+	<a href="./style.php?action=usestyle&style=<?php echo $style; ?>&token=<?php echo LoginAuth::genToken(); ?>" title="<? echo $lang['use_this_style']; ?>" >
 	<img src="<?php echo $style_path.$style; ?>/preview.jpg" width="230px" height="48px" class="styleTH" />
 	</a>
 	<li class="admin_style_info" >
 	<?php if($style == Option::get('admin_style')): ?>
 	<img src="./views/images/onsel.gif" align="absmiddle" />
 	<?php endif;?>
-	<a href="./style.php?action=usestyle&style=<?php echo $style; ?>" title="<? echo $lang['use_this_style']; ?>" ><?php echo $value['style_name']; ?></a> <br /><span><?php echo $value['style_author'];?></span></li>
+	<a href="./style.php?action=usestyle&style=<?php echo $style; ?>&token=<?php echo LoginAuth::genToken(); ?>" title="<? echo $lang['use_this_style']; ?>" ><?php echo $value['style_name']; ?></a> <br /><span><?php echo $value['style_author'];?></span></li>
 	</div>
 	<?php endforeach;?>
 </div>

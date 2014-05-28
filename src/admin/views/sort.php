@@ -51,7 +51,7 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><? echo $lang['edit']; ?></a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care"><? echo $lang['remove']; ?></a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
 		</td>
 	</tr>
 	<?php
@@ -74,12 +74,12 @@ foreach($sorts as $key=>$value):
 		<td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
 		<td>
 			<a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><? echo $lang['edit']; ?></a>
-			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort');" class="care"><? echo $lang['remove']; ?></a>
+			<a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
 		</td>
 	</tr>
 	<?php endforeach; ?>
 <?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="7"><? echo $lang['category_no_yet']; ?></td></tr>
+	  <tr><td class="tdcenter" colspan="8"><? echo $lang['category_no_yet']; ?></td></tr>
 <?php endif;?>  
 </tbody>
 </table>
@@ -108,6 +108,7 @@ foreach($sorts as $key=>$value):
     <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="log_list" /> <? echo $lang['template']; ?> <? echo $lang['template_log_list']; ?></li>
 	<li><? echo $lang['category_description']; ?><br />
 	<textarea name="description" type="text" style="width:240px;height:60px;overflow:auto;" class="textarea"></textarea></li>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<li><input type="submit" id="addsort" value="<? echo $lang['category_add']; ?>" class="button"/><span id="alias_msg_hook"></span></li>
 </div>
 </form>

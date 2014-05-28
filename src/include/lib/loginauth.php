@@ -134,7 +134,7 @@ class LoginAuth{
      */
     public static function setAuthCookie($user_login, $ispersis = false) {
         if ($ispersis) {
-            $expiration  = time() + 60 * 60 * 24 * 30 * 12;
+            $expiration  = time() + 3600 * 24 * 30 * 12;
         } else {
             $expiration = null;
         }
@@ -205,5 +205,29 @@ class LoginAuth{
             return false;
         }
         return $user;
+    }
+
+    /**
+     * 生成token，防御CSRF攻击
+     */
+    public static function genToken() {
+        $token_cookie_name = 'EM_TOKENCOOKIE_' . md5(substr(AUTH_KEY, 16, 32) . UID);
+        if (isset($_COOKIE[$token_cookie_name])) {
+            return $_COOKIE[$token_cookie_name];
+        } else {
+            $token = md5(getRandStr(16));
+            setcookie($token_cookie_name, $token, 0, '/');
+            return $token;
+        }
+    }
+
+    /**
+     * 检查token，防御CSRF攻击
+     */
+    public static function checkToken(){
+        $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
+        if ($token != self::genToken()) {
+            emMsg('权限不足，token error');
+        }
     }
 }
