@@ -17,9 +17,8 @@ require_once EMLOG_ROOT.'/config.php';
 
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
-///*vot*/ require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_all.php');
-// Load the core Lang File
-/*vot*/ load_lang('all');
+// Load the Lang File
+/*vot*/ load_language('all');
 
 doStripslashes();
 

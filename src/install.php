@@ -11,9 +11,10 @@ require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
 //Blog language //vot
 //define('EMLOG_LANGUAGE','zh-CN');
-define('EMLOG_LANGUAGE','en-US');
-//define('EMLOG_LANGUAGE','ru-RU');
-require_once(EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_install.php');//vot
+//define('EMLOG_LANGUAGE','zh-TW');
+define('EMLOG_LANGUAGE','en');
+//define('EMLOG_LANGUAGE','ru');
+/*vot*/ load_language('install');
 
 header('Content-Type: text/html; charset=UTF-8');
 doStripslashes();

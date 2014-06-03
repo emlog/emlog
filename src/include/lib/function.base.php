@@ -1064,11 +1064,11 @@ if(!function_exists('hash_hmac')) {
 
 /**
  * Unix Style Dir Name
- * @author Valery Votintsev, codersclub.org
  *
  * @param string $file //original path
  * @param boolean $remove_drive //If need to remove the Windows-like drive, i.e. C:\windows\system32\...
  * @return unix style path
+ * @author Valery Votintsev, codersclub.org
  */
 function udir($file='', $remove_drive = false) {
   $file = str_replace('\\','/',$file);
@@ -1081,28 +1081,49 @@ function udir($file='', $remove_drive = false) {
 
 /**
  * Load Language File
- * @author Valery Votintsev, codersclub.org
  *
  * @param string $file //Language File Name
  * @return none
+ * @author Valery Votintsev, codersclub.org
  */
-function load_lang($model='') {
+function load_language($model='') {
   global $lang;
+
+//DEBUG
+//echo '<pre>';
+//echo 'load_language:', "\n";
+//echo '	model=', $model, "\n";
+//echo '</pre>';
+
   if($model) {
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
-    @require_once EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
+//DEBUG
+//echo '<pre>';
+//echo '	file=', $file, "\n";
+//echo '</pre>';
+    if(is_file($file)) {
+      @require_once $file;
+//  // Language file must contain $lang = array(...);
+//  if(isset($lang)) {
+//    foreach($lang AS $k=>$v) {
+//      $GLOBALS['LANGUAGE'][$k] = $v;
+//    }
+//  }
+//  unset($lang);
+    }
   }
 }
 
 /**
  * Return Language Variable
- * @author Valery Votintsev, codersclub.org
  *
  * @param string $key //Language Keyword
  * @return string //Language Value
+ * @author Valery Votintsev, codersclub.org
  */
-// Get the LANGUAGE Variable Value
 function lang($key='') {
   global $lang;
+//  return isset($GLOBALS['LANGUAGE'][$key]) ? $GLOBALS['LANGUAGE'][$key] : '{'.$key.'}';
   return (isset($lang[$key])) ? $lang[$key] : '{'.$key.'}';
 }
+
