@@ -1093,10 +1093,10 @@ function load_language($model='') {
     $model = str_replace('_controller','',$model);
 
 //DEBUG
-echo '<pre>';
-echo 'load_language:', "\n";
-echo '	model=', $model, "\n";
-echo '</pre>';
+//echo '<pre>';
+//echo 'load_language:', "\n";
+//echo '	model=', $model, "\n";
+//echo '</pre>';
 
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
 
