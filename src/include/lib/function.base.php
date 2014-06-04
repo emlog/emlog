@@ -1089,11 +1089,14 @@ function udir($file='', $remove_drive = false) {
 function load_language($model='') {
   global $LANGUAGE;
 
+    $model = strtolower($model);
+    $model = str_replace('_controller','',$model);
+
 //DEBUG
-//echo '<pre>';
-//echo 'load_language:', "\n";
-//echo '	model=', $model, "\n";
-//echo '</pre>';
+echo '<pre>';
+echo 'load_language:', "\n";
+echo '	model=', $model, "\n";
+echo '</pre>';
 
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
 
