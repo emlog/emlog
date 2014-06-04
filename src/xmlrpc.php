@@ -7,7 +7,7 @@
 
 ob_start();
 
-define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
