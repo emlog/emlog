@@ -4,10 +4,12 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
+/*vot*/ load_language('calendar');
+
 class Calendar {
 
 	/**
-	 * Calendar call URL
+	 * Calendar call address
 	 */
 	static function url() {
 		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($GLOBALS['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
@@ -18,12 +20,11 @@ class Calendar {
 	 * Generate calendar
 	 */
 	static function generate() {
-		global $lang;
 		$DB = Database::getInstance();
 		$timezone = Option::get('timezone');
 		$timestamp = time() + $timezone * 3600;
 
-		//Write the post time to the array
+		//Array of post create time
 		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
 			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
@@ -43,7 +44,7 @@ class Calendar {
 			$year_month = substr(intval($_GET['record']),0,6);
 		}
 
-		//Year Month Jump Link
+		//Month to jump links
 		$m  = $n_month - 1;
 		$mj = $n_month + 1;
 
@@ -61,9 +62,9 @@ class Calendar {
 			$m = '12';
 			$year_down = $n_year - 1;
 		}
-		$url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//Last year
-		$url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//Next year
-		$url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//Last month
+		$url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//Previous Year
+		$url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//Next Year
+		$url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//Previous Month
 		$url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//Next month
 
 		$calendar ="<table class=\"calendartop\" cellspacing=\"0\"><tr>
@@ -71,13 +72,13 @@ class Calendar {
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
 		</tr></table>
 		<table class=\"calendar\" cellspacing=\"0\">
-		<tr><td class=\"week\">{$lang['monday_short']}</td><td class=\"week\">{$lang['tuesday_short']}</td><td class=\"week\">{$lang['wednesday_short']}</td><td class=\"week\">{$lang['thursday_short']}</td><td class=\"week\">{$lang['friday_short']}</td><td class=\"week\">{$lang['saturday_short']}</td><td class=\"sun\">{$lang['sunday_short']}</td></tr>";
+<!--vot-->	<tr><td class=\"week\">".lang('weekday1')."</td><td class=\"week\">".lang('weekday2')."</td><td class=\"week\">".lang('weekday3')."</td><td class=\"week\">".lang('weekday4')."</td><td class=\"week\">".lang('weekday5')."</td><td class=\"week\">".lang('weekday6')."</td><td class=\"sun\">".lang('weekday7')."</td></tr>";
 
-		//Get the first day of the given year and month is the day of the week
+		//Get a given date is the first day of the week
 		$week = @gmdate("w",gmmktime(0,0,0,$n_month,1,$n_year));
-		//Get the number of days in a given year and month
+		//Gets the number of days in a given year and month
 		$lastday = @gmdate("t",gmmktime(0,0,0,$n_month,1,$n_year));
-		//Get the last day of the given year and month is the day of the week
+		//Get a given date is the last day of the week
 		$lastweek = @gmdate("w",gmmktime(0,0,0,$n_month,$lastday,$n_year));
 		if ($week == 0) {
 			$week = 7;
@@ -85,21 +86,21 @@ class Calendar {
 		$j = 1;
 		$w = 7;
 		$isend = false;
-		//Outer loop
+		//Outer loop generates rows
 		for ($i = 1;$i <= 6;$i++) {
 			if ($isend || ($i == 6 && $lastweek==0)) {
 				break;
 			}
 			$calendar .= '<tr>';
-			//Inner loop
+			//Inner loop generates columns
 			for ($j ; $j <= $w; $j++) {
 				if ($j < $week) {
 					$calendar.= '<td>&nbsp;</td>';
 				} elseif ( $j <= 7 ) {
 					$r = $j - $week + 1;
-					//If there are blog posts on that day, display the url style
+					//Format the date for url
 					$n_time = $n_year . $n_month . '0' . $r;
-					//There is a log and it is the same day
+					//If there is an article for that day
 					if (@in_array($n_time,$logdate) && $n_time == $time) {
 						$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $r .'</a></td>';
 					} elseif (@in_array($n_time,$logdate)) {
@@ -115,7 +116,7 @@ class Calendar {
 						$isend = true;
 						$calendar .= '<td>&nbsp;</td>';
 					} else {
-						//If there are logs on that day, display the url style
+						//Format the date for url
 						$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 						if (@in_array($n_time,$logdate) && $n_time == $time) {
 							$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $t .'</a></td>';
