@@ -1,6 +1,6 @@
 <?php
 /**
- * MySqli Database operation class
+ * MySQLi Database Operations
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -8,7 +8,7 @@
 class MySqlii {
 
 	/**
-	 * Query count
+	 * Number of queries
 	 * @var int
 	 */
 	private $queryCount = 0;
@@ -26,7 +26,7 @@ class MySqlii {
 	private $result;
 
 	/**
-	 * Internal instance object
+	 * Internal object instance
 	 * @var object MySql
 	 */
 	private static $instance = null;
@@ -119,14 +119,14 @@ class MySqlii {
 	}
 
 	/**
-	 * 从结果集中取得一行作为数字索引数组
+	 * Fetch a row as an array of results from a numerical index
 	 */
 	function fetch_row(mysqli_result $query) {
 		return $query->fetch_row();
 	}
 
 	/**
-	 * 取得行的数目
+	 * The number of rows obtained
 	 *
 	 */
 	function num_rows(mysqli_result $query) {
@@ -134,28 +134,28 @@ class MySqlii {
 	}
 
 	/**
-	 * 取得结果集中字段的数目
+	 * Get the number of fields in the result set
 	 */
 	function num_fields(mysqli_result $query) {
 		return $query->field_count;
 	}
 
 	/**
-	 * 取得上一步 INSERT 操作产生的 ID
+	 * Get the last ID generated from the previous INSERT operation
 	 */
 	function insert_id() {
 		return $this->conn->insert_id;
 	}
 
 	/**
-	 * 获取mysql错误
+	 * Get mysql error
 	 */
 	function geterror() {
 		return $this->conn->error;
 	}
 
 	/**
-	 * 获取mysql错误编码
+	 * Get mysql error code
 	 */
 	function geterrno() {
 		return $this->conn->errno;
@@ -169,14 +169,14 @@ class MySqlii {
 	}
 
 	/**
-	 * 取得数据库版本信息
+	 * Get database version
 	 */
 	function getMysqlVersion() {
 		return $this->conn->server_info;
 	}
 
 	/**
-	 * 取得数据库查询次数
+	 * Get the number of database queries
 	 */
 	function getQueryCount() {
 		return $this->queryCount;
