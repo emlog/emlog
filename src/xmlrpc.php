@@ -55,10 +55,10 @@ if (isset($_GET['rsd'])) {
 	exit;
 }
 if ($options_cache['isxmlrpcenable'] == 'n') {
-	error_message(500, $lang['xmlrpc_disabled']);
+/*vot*/	error_message(500, lang('xmlrpc_is_off'));
 }
 if (!$HTTP_RAW_POST_DATA) {
-	error_message(500, $lang['xmlrpc_error_post']);
+/*vot*/	error_message(500, lang('xmlrpc_only_post'));
 }
 $data = $HTTP_RAW_POST_DATA;
 
@@ -67,7 +67,7 @@ $array_structs_types = $array_structs = $current_struct_name_array = $params = a
 
 $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
-	error_message(500, $lang['xmlrpc_empty']);
+/*vot*/	error_message(500, lang('error_data_empty'));
 }
 // Compatible with php libxml module 2.7.0-2.7.3 version parsing xml missing html tag bracket bug
 if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
@@ -273,7 +273,6 @@ function mw_getCategories($args) {
  * Read post information
  */
 function mw_getPost($args) {
-	global $lang;
 	global $options_cache;
 	escape($args);
 
@@ -286,7 +285,7 @@ function mw_getPost($args) {
 	$Log_Model = new Log_Model();
 	define('UID', $user['uid']);
 	$post = $Log_Model->getOneLogForAdmin($post_ID);
-	if (empty($post)) return error_message(404, $lang['post_not_exists']);
+/*vot*/	if (empty($post)) return error_message(404, lang('post_no_access'));
 	$log_cache_tags = Cache::getInstance()->readCache('logtags');
 	$tags = '';
 	if (!empty($log_cache_tags[$post['gid']])) {
@@ -355,7 +354,6 @@ function mw_getPost($args) {
 }
 
 function mw_getRecentPosts($args) {
-	global $lang;
 	escape($args);
 	$db = Database::getInstance();
 	$username = $args[1];
@@ -443,14 +441,13 @@ function mw_getRecentPosts($args) {
 	}
 
 	if (empty($xml)) {
-		error_massage(404, $lang['post_not_found']);
+/*vot*/		error_massage(404, lang('no_posts'));
 	}
 	$xml = "<array><data>$xml</data></array>";
 	response($xml);
 }
 
 function mw_newMediaObject($args) {
-	global $lang;
 	global $options_cache;
 	escape($args[1]);
 	escape($args[2]);
@@ -459,7 +456,7 @@ function mw_newMediaObject($args) {
 	$user = login($username, $password);
 	$file = $args[3];
 	if (!preg_match('/([^\/\:\*\?<>\|]+\.\w{2,6})|(\\{2}[^\/\:\*\?<>\|]+\.\w{2,6})/', $file['name'], $matches))
-		error_message(500, $lang['file_error']);
+/*vot*/		error_message(500, lang('file_error'));
 	$filename = $matches[0];
 
 	$bits = $file['bits'];
@@ -470,12 +467,12 @@ function mw_newMediaObject($args) {
 	$att_type = Option::getAttType();
 
 	if (empty($filename))
-		error_message(500, $lang['file_name_error']);
+/*vot*/		error_message(500, lang('file_name_error'));
 
 	$extension = strtolower(substr(strrchr($filename, "."), 1));
 	// File type detection
 	if (!in_array($extension, $att_type)) {
-		error_message(500, $lang['file_type_error']);
+/*vot*/		error_message(500, lang('file_type_error'));
 	}
 	$uppath_root = substr(Option::UPLOADFILE_PATH, 1);
 	$uppath = $uppath_root . gmdate('Ym') . '/';
@@ -485,20 +482,20 @@ function mw_newMediaObject($args) {
 		umask(0);
 		$ret = @mkdir($uppath_root, 0777);
 		if ($ret === false) {
-			error_message(500, $lang['attachment_create_failed']);
+/*vot*/			error_message(500, lang('upload_folder_create_error'));
 		}
 	}
 	if (!is_dir($uppath)) {
 		umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
-			error_message(500, $lang['uploads_not_written']);
+/*vot*/			error_message(500, lang('upload_folder_unwritable'));
 		}
 	}
 
 	$fp = @fopen($attachpath, 'wb');
 	if (!$fp)
-		error_message(500, $lang['file_write_error']);
+/*vot*/		error_message(500, lang('file_write_error'));
 	fwrite($fp, $bits);
 	fclose($fp);
 
@@ -594,12 +591,11 @@ function getIso($utctimestamp) {
 }
 
 function login($username, $password) {
-	global $lang;
 	$username = addslashes($username);
 	$password = addslashes($password);
 	// Check user permissions
 	if (true !== LoginAuth::checkUser($username, $password , '', 'n')) {
-		error_message(403, $lang['user_name_pass_wrong']);
+/*vot*/		error_message(403, lang('username_password_error'));
 		return false;
 	}
 	// Return user information
