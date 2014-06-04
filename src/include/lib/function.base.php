@@ -1095,7 +1095,7 @@ function load_language($model='') {
 //echo '	model=', $model, "\n";
 //echo '</pre>';
 
-  if(!isset($LANGUAGE)) {$LANGUAGE = array()};
+  if(!isset($LANGUAGE)) {$LANGUAGE = array();}
 
   if($model) {
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
