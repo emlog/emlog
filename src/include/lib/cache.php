@@ -1,6 +1,6 @@
 <?php
 /**
- * Generate text cache
+ * Cache class
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -30,7 +30,7 @@ class Cache {
 	}
 
 	/**
-	 * Return the database connection instance
+	 * Static method, Returns the database connection instance
 	 *
 	 * @return Cache
 	 */
@@ -43,7 +43,7 @@ class Cache {
 	/**
 	 * Update cache
 	 * 
-	 * @param array/string $cacheMethodName Need to update the cache, update multiple using array: array('options','user'), single using string: 'options', leave all blank
+	 * @param array/string $cacheMethodName need to update the cache, Update multiple uses an array of methods: array('options', 'user'), Using a single string by:  'options', blank for All
 	 * @return unknown_type
 	 */
 	function updateCache($cacheMethodName = null) {
@@ -54,7 +54,7 @@ class Cache {
 			}
 			return;
 		}
-		// Update multiple caches
+		// Update multiple cache
 		if (is_array($cacheMethodName)) {
 			foreach ($cacheMethodName as $name) {
 				if (method_exists($this, 'mc_' . $name)) {
@@ -65,7 +65,7 @@ class Cache {
 		}
 		// Update all cache
 		if ($cacheMethodName == null) {
-			// Automatically run all methods of this class to update the cache (the name of such methods must start with mc_)
+			// Automatically run all the cache update methods (Such method name must start with the mc_)
 			$cacheMethodNames = get_class_methods($this);
 			foreach ($cacheMethodNames as $method) {
 				if (preg_match('/^mc_/', $method)) {
@@ -75,8 +75,8 @@ class Cache {
 		}
 	}
 	/**
-	 * Site configuration cache
-	 * Note that the method of updating the cache must start with mc
+	 * Site Configuration Cache
+	 * Note that the update cache method must begin with mc
 	 */
 	private function mc_options() {
 		$options_cache = array();
@@ -91,7 +91,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'options');
 	}
 	/**
-	 * User information cache
+	 * User Info Cache
 	 */
 	private function mc_user() {
 		$user_cache = array();
@@ -125,7 +125,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'user');
 	}
 	/**
-	 * Blog statistics cache
+	 * Site Statistics cache
 	 */
 	private function mc_sta() {
 		$sta_cache = array();
@@ -187,7 +187,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'sta');
 	}
 	/**
-	 * Latest comments cache
+	 * Last comments cache
 	 */
 	private function mc_comment() {
 		$query = $this->db->query("SELECT option_value,option_name FROM " . DB_PREFIX . "options WHERE option_name IN('index_comnum','comment_subnum','comment_paging','comment_pnum','comment_order')");
@@ -231,7 +231,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'comment');
 	}
 	/**
-	 * Sidebar tab cache
+	 * Sidebar tags cache
 	 */
 	private function mc_tags() {
 		$tag_cache = array();
@@ -264,7 +264,7 @@ class Cache {
 		}
 		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag");
 		while ($show_tag = $this->db->fetch_array($query)) {
-			// Exclude the statistics of drafts in the number of tag logs
+			// Exclude draft post tags from the statistics
 			foreach ($hideGids as $val) {
 				$show_tag['gid'] = str_replace(',' . $val . ',', ',', $show_tag['gid']);
 			}
@@ -284,7 +284,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'tags');
 	}
 	/**
-	 * Sidebar categories cache
+	 * Sidebar Categories cache
 	 */
 	private function mc_sort() {
 		$sort_cache = array();
@@ -313,7 +313,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'sort');
 	}
 	/**
-	 * Friend sites cache
+	 * Friendly Links Cache
 	 */
 	private function mc_link() {
 		$link_cache = array();
@@ -329,7 +329,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'link');
 	}
 	/**
-	 * Navigation cache
+	 * Navigation Cache
 	 */
 	private function mc_navi() {
 		$navi_cache = array();
@@ -370,7 +370,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'navi');
 	}
 	/**
-	 * Latest blog posts
+	 * Latest Posts
 	 */
 	private function mc_newlog() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
@@ -406,7 +406,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'newtw');
 	}
 	/**
-	 * Blog archive cache
+	 * Post Archive Cache
 	 */
 	private function mc_record() {
 		$timezone = Option::get('timezone');
@@ -444,7 +444,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'record');
 	}
 	/**
-	 * Blog tags cache
+	 * Post tags cache
 	 */
 	private function mc_logtags() {
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where type='blog'");
@@ -467,7 +467,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'logtags');
 	}
 	/**
-	 *Blog categories cache
+	 * Blog Categories cache
 	 */
 	private function mc_logsort() {
 		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog'";
@@ -488,7 +488,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'logsort');
 	}
 	/**
-     * Blog post alias cache
+	 * Post aliases cache
 	 */
 	private function mc_logalias() {
 		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
@@ -505,11 +505,10 @@ class Cache {
 	 * Write cache
 	 */
 	function cacheWrite ($cacheData, $cacheName) {
-		global $lang;
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
-		@ $fp = fopen($cachefile, 'wb') OR emMsg($lang['cache_open_error']);
-		@ $fw = fwrite($fp, $cacheData) OR emMsg($lang['cache_write_error']);
+/*vot*/		@ $fp = fopen($cachefile, 'wb') OR emMsg(lang('cache_read_error'));
+/*vot*/		@ $fw = fwrite($fp, $cacheData) OR emMsg(lang('cache_not_writable'));
 		$this->{$cacheName.'_cache'} = null;
 		fclose($fp);
 	}
