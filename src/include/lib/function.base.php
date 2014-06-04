@@ -1082,12 +1082,12 @@ function udir($file='', $remove_drive = false) {
 /**
  * Load Language File
  *
- * @param string $file //Language File Name
+ * @param string $model //Language File Name
  * @return none
  * @author Valery Votintsev, codersclub.org
  */
 function load_language($model='') {
-  global $lang;
+  global $LANGUAGE;
 
 //DEBUG
 //echo '<pre>';
@@ -1095,21 +1095,24 @@ function load_language($model='') {
 //echo '	model=', $model, "\n";
 //echo '</pre>';
 
+  if(!isset($LANGUAGE)) {$LANGUAGE = array()};
+
   if($model) {
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
 //DEBUG
 //echo '<pre>';
 //echo '	file=', $file, "\n";
 //echo '</pre>';
+
     if(is_file($file)) {
+
+      $lang = array();
       @require_once $file;
-//  // Language file must contain $lang = array(...);
-//  if(isset($lang)) {
-//    foreach($lang AS $k=>$v) {
-//      $GLOBALS['LANGUAGE'][$k] = $v;
-//    }
-//  }
-//  unset($lang);
+
+      // Language file must contain $lang = array(...);
+      $LANGUAGE = array_merge($LANGUAGE, $lang);
+
+      unset($lang);
     }
   }
 }
@@ -1122,8 +1125,7 @@ function load_language($model='') {
  * @author Valery Votintsev, codersclub.org
  */
 function lang($key='') {
-  global $lang;
-//  return isset($GLOBALS['LANGUAGE'][$key]) ? $GLOBALS['LANGUAGE'][$key] : '{'.$key.'}';
-  return (isset($lang[$key])) ? $lang[$key] : '{'.$key.'}';
+  global $LANGUAGE;
+  return isset($LANGUAGE[$key]) ? $LANGUAGE[$key] : '{'.$key.'}';
 }
 
