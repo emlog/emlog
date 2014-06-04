@@ -5,6 +5,8 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
+/*vot*/ load_language('mysql');
+
 class MySql {
 
 	/**
