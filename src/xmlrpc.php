@@ -1,6 +1,6 @@
 <?php
 /**
- * xmlrpc Blog service interface
+ * xmlrpc Service Interface
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -12,24 +12,26 @@ define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
+/*vot*/ load_language('xmlrpc');
+
 $api_methods = array(
-	// metaWeblog interface
+	// metaWeblog Interface
 	'metaWeblog.newPost' => 'mw_newPost',
 	'metaWeblog.editPost' => 'mw_editPost',
 	'metaWeblog.getPost' => 'mw_getPost',
 	'metaWeblog.getRecentPosts' => 'mw_getRecentPosts',
 	'metaWeblog.getCategories' => 'mw_getCategories',
 	'metaWeblog.newMediaObject' => 'mw_newMediaObject',
-	// blogger interface
+	// blogger Interface
 	'blogger.deletePost' => 'mw_deletePost',
 	'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
 	);
 
 $DB = Database::getInstance();
 $options_cache = Cache::getInstance()->readCache('options');
-// Some browser-based clients will send cookies, we don't need them
+// Some browser-based client sends cookie, We do not need them
 $_COOKIE = array();
-// PHP 5.2.2 version has the next bug: The system will not automatically generate the constant $HTTP_RAW_POST_DATA
+// PHP 5.2.2 version has the following bug, the system does not automatically generate the $HTTP_RAW_POST_DATA constant
 if (!isset($HTTP_RAW_POST_DATA)) {
 	$HTTP_RAW_POST_DATA = file_get_contents('php://input');
 }
@@ -69,7 +71,7 @@ $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
 /*vot*/	error_message(500, lang('error_data_empty'));
 }
-// Compatible with php libxml module 2.7.0-2.7.3 version parsing xml missing html tag bracket bug
+// Compatible php libxml library 2.7.0-2.7.3 Version parsing xml lose html Tag brackets bug
 if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
 	$data = str_replace(array('&lt;', '&gt;', '&amp;'), array('&#60;', '&#62;' , '&#38;'), $data);
 }
@@ -87,7 +89,7 @@ if (!array_key_exists($method_name, $api_methods)) die('unknow request');
 call_user_func($api_methods[$method_name], $params);
 
 /**
- * Read blog information
+ * Read Site Information
  */
 function blogger_getUsersBlogs() {
 	global $options_cache;
@@ -122,7 +124,7 @@ function blogger_getUsersBlogs() {
 }
 
 /**
- * Delete blog post
+ * Delete post
  */
 function mw_deletePost($args) {
 	escape($args);
@@ -135,7 +137,7 @@ function mw_deletePost($args) {
 	response('<boolean>1</boolean>');
 }
 /**
- * Save new blog post
+ * Save new post
  */
 function mw_newPost($args) {
 	global $options_cache;
@@ -154,7 +156,7 @@ function mw_newPost($args) {
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
 	$update_data['excerpt'] = '';
-	// Get only the first category
+	// Just take the first category
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$Sort_Model = new Sort_Model();
 	$sorts = $Sort_Model->getSorts();
@@ -166,7 +168,7 @@ function mw_newPost($args) {
 			break;
 		}
 	}
-	// Publish time
+	// Post Time
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}else {
@@ -181,12 +183,12 @@ function mw_newPost($args) {
 		$Tag_Model->addTag($data['mt_keywords'], $new_id);
 		unset($Tag_Model);
 	}
-	// Rrefresh cache
+	// Update the cache
 	Cache::getInstance()->updateCache();
 	response("<i4>$new_id</i4>");
 }
 /**
- * Edit post
+ * Update post
  */
 function mw_editPost($args) {
 	global $options_cache;
@@ -206,7 +208,7 @@ function mw_editPost($args) {
 	$update_data['content'] = htmlspecialchars_decode($data['description']);
 	$update_data['author'] = UID;
 	$update_data['hide'] = $publish == 1 ? 'n' : 'y';
-	// Take the category id according to the category name, note that only the first category is taken
+	// Check the category id according to the category name, Note that just take the first category
 	$sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
 	$Sort_Model = new Sort_Model();
 	$sorts = $Sort_Model->getSorts();
@@ -218,25 +220,25 @@ function mw_editPost($args) {
 			break;
 		}
 	}
-	// Create time
+	// Post Time
 	if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
 		$update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
 	}
 	// Update data
 	$Log_Model = new Log_Model();
 	$Log_Model->updateLog($update_data, $id);
-	// Update tags
+	// Update Tags
 	if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
 		$Tag_Model = new Tag_Model();
 		$Tag_Model->updateTag($data['mt_keywords'], $id);
 	}
-	// Refresh cache
+	// Update cache
 	Cache::getInstance()->updateCache();
 	response('<boolean>1</boolean>');
 }
 
 /**
- * Get blog categories
+ * Get site Categories
  */
 function mw_getCategories($args) {
 	escape($args);
@@ -270,7 +272,7 @@ function mw_getCategories($args) {
 }
 
 /**
- * Read post information
+ * Get Post
  */
 function mw_getPost($args) {
 	global $options_cache;
@@ -593,7 +595,7 @@ function getIso($utctimestamp) {
 function login($username, $password) {
 	$username = addslashes($username);
 	$password = addslashes($password);
-	// Check user permissions
+	// Check user rights
 	if (true !== LoginAuth::checkUser($username, $password , '', 'n')) {
 /*vot*/		error_message(403, lang('username_password_error'));
 		return false;

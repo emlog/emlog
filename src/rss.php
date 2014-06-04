@@ -6,6 +6,8 @@
 
 require_once './init.php';
 
+/*vot*/ load_language('rss');
+
 header('Content-type: application/xml');
 
 $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
@@ -20,7 +22,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <title><![CDATA['.Option::get('blogname').']]></title> 
 <description><![CDATA['.Option::get('bloginfo').']]></description>
 <link>'.$URL.'</link>
-<language>'.EMLOG_LANGUAGE.'</language>
+<!--vot--><language>'.EMLOG_LANGUAGE.'</language>
 <generator>www.emlog.net</generator>';
 
 foreach($blog as $value){
@@ -48,13 +50,12 @@ echo <<< END
 END;
 
 /**
- * Get blog information
+ * Get blog info
  *
  * @return array
  */
 function getBlog($sortid = null) {
-	global $lang;
-	$DB = MySql::getInstance();
+	$DB = Database::getInstance();
 	$sorts = Cache::getInstance()->readCache('sort');
 	if (isset($sorts[$sortid])) {
 		$sort = $sorts[$sortid];
@@ -78,7 +79,7 @@ function getBlog($sortid = null) {
 		$re['content']	= $re['content'];
 		if(!empty($re['password']))
 		{
-			$re['content'] = '<p>['.$lang['blog_password_protected'].']</p>';
+/*vot*/			$re['content'] = lang('post_encrypted');
 		}
 		elseif(Option::get('rss_output_fulltext') == 'n')
 		{
@@ -87,7 +88,7 @@ function getBlog($sortid = null) {
 			}else {
 				$re['content'] = extractHtmlData($re['content'], 330);
 			}
-			$re['content'] .= ' <a href="'.Url::log($re['id']).'">'.$lang['read_more'].'&gt;&gt;</a>';
+/*vot*/			$re['content'] .= ' <a href="'.Url::log($re['id']).'">'.lang('read_more').'</a>';
 		}
 
 		$blog[] = $re;
