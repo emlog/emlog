@@ -4,8 +4,6 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-/*vot*/ load_language('calendar');
-
 class Calendar {
 
 	/**

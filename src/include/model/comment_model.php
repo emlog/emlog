@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment management
+ * Model: Comments Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -13,9 +13,9 @@ class Comment_Model {
 	}
 
 	/**
-	 * Get comments
+	 * Get comments by condition
 	 *
-	 * @param int $spot 0: Frontend, 1: Backsend
+	 * @param int $spot //0: foreground, 1: Background, 2: Mobile
 	 * @param int $blogId
 	 * @param string $hide
 	 * @param int $page
@@ -102,7 +102,7 @@ class Comment_Model {
 		return $comments;
 	}
 
-	function getOneComment($commentId, $nl2br = false) {
+	function getOneComment($commentId) {
 		$timezone = Option::get('timezone');
 		$sql = "select * from ".DB_PREFIX."comment where cid=$commentId";
 		$res = $this->db->query($sql);
@@ -136,7 +136,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* Get sub-comment ID */
+		/* Get child comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
 		while ($row = $this->db->fetch_array($query)) {
 			if (in_array($row['pid'],$commentIds)) {
@@ -164,7 +164,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* Get sub-comment ID */
+		/* Get child comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM ".DB_PREFIX."comment WHERE gid=$blogId AND cid>$commentId ");
 		while ($row = $this->db->fetch_array($query)) {
 			if (in_array($row['pid'],$commentIds)) {
@@ -181,7 +181,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM ".DB_PREFIX."comment WHERE cid=$commentId");
 		$blogId = intval($row['gid']);
 		$commentIds = array($commentId);
-		/* Get parent comment ID */
+		/* Gets parent comment ID */
 		while ($row['pid'] != 0) {
 			$commentId = intval($row['pid']);
 			$commentIds[] = $commentId;
@@ -203,7 +203,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
+/*vot*/				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
 			$this->db->query("INSERT INTO ".DB_PREFIX."comment (date,poster,gid,comment,mail,url,hide,ip,pid)
 					VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -211,6 +211,12 @@ class Comment_Model {
 		}
 	}
 
+	/**
+	 * Batch Comments Actions
+	 *
+	 * @param string $action
+	 * @param array $comments
+	 */
 	function batchComment($action, $comments) {
 		switch ($action) {
 			case 'delcom':
@@ -253,7 +259,7 @@ class Comment_Model {
 
 		if($pid != 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
+/*vot*/			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');

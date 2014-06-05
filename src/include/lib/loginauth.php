@@ -11,7 +11,7 @@ class LoginAuth{
     const LOGIN_ERROR_AUTHCODE = -3;
 
     /**
-     * Verify that the user is logged in
+     * Verify that the user is logged on
      */
     public static function isLogin() {
         global $userData;
@@ -32,7 +32,7 @@ class LoginAuth{
     }
 
     /**
-     * Verify password/user
+     * Verify User/Password
      *
      * @param string $username
      * @param string $password
@@ -63,12 +63,11 @@ class LoginAuth{
     }
 
     /**
-     * Log in page
+     * Login Page
      */
     public static function loginPage($errorCode = NULL) {
-	global $lang;
         Option::get('login_code') == 'y' ?
-        $ckcode = "<span>{$lang['verification_code']}</span>
+        $ckcode = "<span>".lang('captcha')."</span>
         <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
@@ -76,13 +75,13 @@ class LoginAuth{
         if ($errorCode) {
             switch ($errorCode) {
                 case self::LOGIN_ERROR_AUTHCODE:
-                    $error_msg = $lang['captcha_invalid'];
+/*vot*/             $error_msg = lang('captcha_error_reenter');
                     break;
                 case self::LOGIN_ERROR_USER:
-                    $error_msg = $lang['username_invalid'];
+/*vot*/             $error_msg = lang('user_name_wrong_reenter');
                     break;
                 case self::LOGIN_ERROR_PASSWD:
-                    $error_msg = $lang['password_invalid'];
+/*vot*/             $error_msg = lang('password_wrong_reenter');
                     break;
             }
         }
@@ -91,7 +90,7 @@ class LoginAuth{
     }
 
     /**
-     * Query administrator information by login name
+     * Check the User data by login name
      *
      * @param string $userLogin User's username
      * @return bool|object False on failure, User DB row object
@@ -111,7 +110,7 @@ class LoginAuth{
     }
 
     /**
-     * Verify the plaintext password and the encrypted password of the database
+     * Compare the plaintext password and the database encrypted password
      *
      * @param string $password Plaintext user's password
      * @param string $hash Hash of the user's password to check against.
@@ -127,7 +126,7 @@ class LoginAuth{
     }
 
     /**
-     * Write a login authentication cookie
+     * Write the login authentication cookie
      *
      * @param int $user_id User ID
      * @param bool $remember Whether to remember the user or not
@@ -144,7 +143,7 @@ class LoginAuth{
     }
 
     /**
-     * Generate login authentication cookie
+     * Generate the login authentication cookie
      *
      * @param int $user_id user login
      * @param int $expiration Cookie expiration in seconds
@@ -171,7 +170,7 @@ class LoginAuth{
     }
 
     /**
-     * Authentication cookie
+     * Verify cookie
      * Validates authentication cookie.
      *
      * @param string $cookie Optional. If used, will validate contents instead of cookie's
@@ -208,7 +207,7 @@ class LoginAuth{
     }
 
     /**
-     * 生成token，防御CSRF攻击
+     * Generate token, defense CSRF attack
      */
     public static function genToken() {
         $token_cookie_name = 'EM_TOKENCOOKIE_' . md5(substr(AUTH_KEY, 16, 32) . UID);
@@ -222,7 +221,7 @@ class LoginAuth{
     }
 
     /**
-     * 检查token，防御CSRF攻击
+     * Check the token, defense CSRF attack
      */
     public static function checkToken(){
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';

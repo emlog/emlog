@@ -1,20 +1,18 @@
 <?php
 /**
- * View control
+ * Views Handler
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class View {
 	public static function getView($template, $ext = '.php') {
-	    global $lang;
 		if (!is_dir(TEMPLATE_PATH)) {
-			emMsg($lang['template_damaged'], BLOG_URL . 'admin/template.php');
+/*vot*/			emMsg(lang('template_not_found'), BLOG_URL . 'admin/template.php');
 		}
 		return TEMPLATE_PATH . $template . $ext;
 	}
 
 	public static function output() {
-		global $lang;
 		$content = ob_get_clean();
 		if (Option::get('isgzipenable') == 'y' && function_exists('ob_gzhandler')) {
 			ob_start('ob_gzhandler');

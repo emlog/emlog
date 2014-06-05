@@ -1,25 +1,34 @@
 <?php
 
 /**
- * Basic function library
+ * Basic Function library
  * @copyright (c) Emlog All Rights Reserved
  */
+
+// Load the core Lang File
+/*vot*/ load_language('core');
+
 function __autoload($class) {
-	global $lang;
 	$class = strtolower($class);
+//DEBUG
+echo '<pre>';
+echo '__autoload:', "\n";
+echo '	class=', $class, "\n";
+echo '</pre>';
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
+/*vot*/		load_language($class);
 		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
 	} else {
-		emMsg($class . $lang['load_failed']);
+/*vot*/		emMsg($class . lang('_load_failed'));
 	}
 }
 
 /**
- * Remove redundant escape characters
+ * Remove excess escape character
  */
 function doStripslashes() {
 	if (get_magic_quotes_gpc()) {
@@ -31,7 +40,7 @@ function doStripslashes() {
 }
 
 /**
- * Recursively remove escape characters
+ * Recursive removal of escape characters
  */
 function stripslashesDeep($value) {
 	$value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
@@ -39,10 +48,10 @@ function stripslashesDeep($value) {
 }
 
 /**
- * Convert HTML code function
+ * HTML code conversion function
  *
  * @param unknown_type $content
- * @param unknown_type $wrap Whether to wrap
+ * @param unknown_type $wrap = Do wrap
  */
 function htmlClean($content, $nl2br = true) {
 	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
@@ -55,7 +64,7 @@ function htmlClean($content, $nl2br = true) {
 }
 
 /**
- * Get user ip address
+ * Get User Ip
  */
 function getIp() {
 	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
@@ -66,7 +75,7 @@ function getIp() {
 }
 
 /**
- * Get the blog address (only for the root directory script, currently only used for homepage ajax requests)
+ * Get site URL (Only for the root directory script, currently used only for home ajax request)
  */
 function getBlogUrl() {
 	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
@@ -87,7 +96,7 @@ function isIE6Or7() {
 }
 
 /**
- * Check the plugin
+ * Check Plugin
  */
 function checkPlugin($plugin) {
 	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
@@ -118,7 +127,7 @@ function emLoadJQuery() {
 }
 
 /**
-Verify email address format
+ * Validate email address format
  */
 function checkMail($email) {
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60) {
@@ -129,11 +138,11 @@ function checkMail($email) {
 }
 
 /**
- * Get a substring encoded as utf8
+ * Get utf8 substring
  *
- * @param string $strings Original string
- * @param int $start Start position eg:0
- * @param int $length Substring length
+ * @param string $strings //source string 
+ * @param int $start //start position, eg:0
+ * @param int $length //substring length
  * @return string
  */
 function subString($strings, $start, $length) {
@@ -170,15 +179,15 @@ function subString($strings, $start, $length) {
 }
 
 /**
- * Extract plain text summaries from content that may contain html markup
+ * Extract plain text from html content
  *
  * @param string $data
  * @param int $len
  */
 function extractHtmlData($data, $len) {
 	$data = strip_tags(subString($data, 0, $len + 30));
-	$search = array("/([\r\n])[\s]+/",	// Remove whitespace characters
-		"/&(quot|#34);/i",	// Replace HTML entities
+	$search = array("/([\r\n])[\s]+/", // Remove whitespace characters
+		"/&(quot|#34);/i", // Replace HTML entities
 		"/&(amp|#38);/i",
 		"/&(lt|#60);/i",
 		"/&(gt|#62);/i",
@@ -195,12 +204,11 @@ function extractHtmlData($data, $len) {
 }
 
 /**
- * Convert attachment size unit
+ * Convert Attachment size unit
  *
- * @param string $fileSize File size, kb
+ * @param string $fileSize //File Size kb
  */
 function changeFileSize($fileSize) {
-	global $lang;
 	if ($fileSize >= 1073741824) {
 		$fileSize = round($fileSize / 1073741824, 2) . 'GB';
 	} elseif ($fileSize >= 1048576) {
@@ -208,28 +216,27 @@ function changeFileSize($fileSize) {
 	} elseif ($fileSize >= 1024) {
 		$fileSize = round($fileSize / 1024, 2) . 'KB';
 	} else {
-		$fileSize = $fileSize . $lang['bytes'];
+/*vot*/		$fileSize = $fileSize . lang('_bytes');//Bytes
 	}
 	return $fileSize;
 }
 
 /**
- * Get file suffix
+ * Get the file name suffix
  */
 function getFileSuffix($fileName) {
 	return strtolower(pathinfo($fileName,  PATHINFO_EXTENSION));
 }
 
 /**
- * Paging function
+ * Pagination Function
  *
- * @param int $count Total number of entries
- * @param int $perlogs Number of items displayed per page
- * @param int $page Current page number
- * @param string $url Page URL
+ * @param int $count The total number of entries
+ * @param int $perlogs The number of articles per page
+ * @param int $page The current page number
+ * @param string $url Page address
  */
 function pagination($count, $perlogs, $page, $url, $anchor = '') {
-	global $lang;
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
@@ -245,16 +252,16 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 		}
 	}
 	if ($page > 6)
-		$re = "<a href=\"{$urlHome}$anchor\" title=\"{$lang['first_page']}\">&laquo;</a><em>...</em>$re";
+/*vot*/		$re = "<a href=\"{$urlHome}$anchor\" title=\"".lang('first_page')."\">&laquo;</a><em>...</em>$re";
 	if ($page + 5 < $pnums)
-		$re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"{$lang['last_page']}\">&raquo;</a>";
+/*vot*/		$re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"".lang('last_page')."\">&raquo;</a>";
 	if ($pnums <= 1)
 		$re = '';
 	return $re;
 }
 
 /**
- * This function is called in the plug-in, and the plug-in function is mounted to the reserved hook
+ * Plug-in function call, mounted plug-in function to a hook on the reserved
  *
  * @param string $hook
  * @param string $actionFunc
@@ -269,7 +276,7 @@ function addAction($hook, $actionFunc) {
 }
 
 /**
- * Execute the function hung on the hook, support multiple parameters eg:doAction('post_comment', $author, $email, $url, $comment);
+ * Implementation of the hanging hook function, support multi-parameter eg:doAction('post_comment', $author, $email, $url, $comment);
  *
  * @param string $hook
  */
@@ -278,32 +285,37 @@ function doAction($hook) {
 	$args = array_slice(func_get_args(), 1);
 	if (isset($emHooks[$hook])) {
 		foreach ($emHooks[$hook] as $function) {
+//DEBUG
+//echo '<pre>';
+//echo '__doAction:', "\n";
+//echo '	function=', $function, "\n";
+//echo '</pre>';
+
 			$string = call_user_func_array($function, $args);
 		}
 	}
 }
 
 /**
- * Split blog post
+ * Post split
  *
- * @param string $content Post content
+ * @param string $content Post Content
  * @param int $lid Post id
  */
 function breakLog($content, $lid) {
-	global $lang;
 	$ret = explode('[break]', $content, 2);
 	if (!empty($ret[1])) {
-		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
+/*vot*/		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
         return $ret[0];
 	} elseif(Option::get('isexcerpt') == 'y') {
-        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">'.$lang['read_more'] . '&gt;&gt;</a></p>';
+/*vot*/        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
     } else {
         return $content;
     }
 }
 
 /**
- * Remove the [break] tag
+ * Delete [break] tag
  *
  * @param string $content Post content
  */
@@ -313,7 +325,7 @@ function rmBreak($content) {
 }
 
 /**
- * Time conversion function
+ * Time transformation function
  *
  * @param $now
  * @param $datetemp
@@ -321,7 +333,6 @@ function rmBreak($content) {
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-	global $lang;
 	$timezone = Option::get('timezone');
 	$op = '';
 	$sec = time() - $datetemp;
@@ -329,12 +340,12 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 	if ($hover == 0) {
 		$min = floor($sec / 60);
 		if ($min == 0) {
-			$op = $sec . $lang['seconds_ago'];
+/*vot*/			$op = $sec . lang('_sec_ago');
 		} else {
-			$op = $min.$lang['minutes_ago'];
+/*vot*/			$op = $min . lang('_min_ago');
 		}
 	} elseif ($hover < 24) {
-		$op = $lang['approximately'].$hover.$lang['hours_ago'];
+		$op = lang('about_') . $hover . lang('_hour_ago');
 	} else {
 		$op = gmdate($dstr, $datetemp + $timezone * 3600);
 	}
@@ -361,7 +372,11 @@ function getRandStr($length = 12, $special_chars = true) {
 }
 
 /**
- * Find all the different elements of the two arrays
+ * Looking for all the different elements of the two arrays
+ *
+ * @param array $array1
+ * @param array $array2
+ * @return array
  */
 function findArray($array1, $array2) {
 	$r1 = array_diff($array1, $array2);
@@ -371,27 +386,26 @@ function findArray($array1, $array2) {
 }
 
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	global $lang;
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
 		case '100':
-			emMsg($lang['attachment_exceed_system_limit'] . ini_get('upload_max_filesize'));
+/*vot*/			emMsg(lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit'));
 			break;
 		case '101':
-			emMsg($lang['backup_sql_error'] . $errorNum);
+/*vot*/			emMsg(lang('upload_failed_error_code') . $errorNum);
 			break;
 		case '102':
-			emMsg($lang['wrong_file_type']);
+/*vot*/			emMsg(lang('file_type_not_supported'));
 			break;
 		case '103':
 			$ret = changeFileSize(Option::getAttMaxSize());
-			emMsg($lang['file_size_exceeded'] . $ret);
+/*vot*/			emMsg(lang('file_size_exceeds_') . {$ret} . lang('_of_limit'));
 			break;
 		case '104':
-			emMsg($lang['attachment_create_failed']);
+/*vot*/			emMsg(lang('upload_folder_create_error'));
 			break;
 		case '105':
-			emMsg($lang['uploads_not_written']);
+/*vot*/			emMsg(lang('upload_folder_unwritable'));
 			break;
 		default:
 			return $result;
@@ -399,7 +413,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 	}
 }
 
-//Batch upload of attachments
+//Use for Attachment Bulk Upload
 function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
@@ -419,43 +433,42 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
 }
 
 /**
- * Update file
+ * File Upload
  *
- * Keys of the returned array
- * mime_type File type
- * size      File size (in KB)
- * file_path File path
+ * returned Array of indexes
+ * mime_type File Type
+ * size      File Size (in KB)
+ * file_path File Path
  * width     Width
  * height    Height
- * Optional values (only works when the uploaded file is a picture and the system turns on thumbnails)
+ * Optional values (Only if the is an image and the system have to make a thjumbnail)
  * thum_file   Thumbnail path
- * thum_width  Thumbnail width
+ * thum_width  Thumbnail Width
  * thum_height Thumbnail height
  * thum_size   Thumbnail size (in KB)
  *
- * @param string $fileName File name
+ * @param string $fileName File Name
  * @param string $errorNum Error code: $_FILES['error']
- * @param string $tmpFile Temporary file after upload
- * @param string $fileSize File size KB
- * @param array $type File types allowed to upload
- * @param boolean $isIcon Whether to upload an avatar
+ * @param string $tmpFile Temporary File Uploaded
+ * @param string $fileSize File Size KB
+ * @param array $type Allowed to upload file types
+ * @param boolean $isIcon Whether it is the avatar uploaded
  * @param boolean $is_thumbnail Whether to generate thumbnail
- * @return string File path
- * @return array File data
+ * @return array File Data Index
  * 
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if ($errorNum == 1) {
-		return '100';//File size exceeds system limit
+		return '100'; //File size exceeds the system limit
 	} elseif ($errorNum > 1) {
-		return '101';//Failed to upload file
+		return '101'; //File upload failed
 	}
 	$extension = getFileSuffix($fileName);
 	if (!in_array($extension, $type)) {
-		return '102';//Wrong file type
+		return '102'; //Incorrect file type
 	}
 	if ($fileSize > Option::getAttMaxSize()) {
-		return '103';//File size exceeds emlog limit
+		return '103'; //File size exceeds the emlog limit
 	}
 	$file_info = array();
 	$file_info['file_name'] = $fileName;
@@ -471,14 +484,14 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		@umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false) {
-			return '104';//Failed to create file upload directory
+			return '104'; //Create the file upload directory failed
 		}
 	}
 	if (!is_dir($uppath)) {
 		@umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
-			return '105';//Upload failed. File upload directory (content/uploadfile) is not writable
+			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -509,12 +522,12 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if (@is_uploaded_file($tmpFile)) {
 		if (@!move_uploaded_file($tmpFile, $attachpath)) {
 			@unlink($tmpFile);
-			return '105';//Upload failed. File upload directory (content/uploadfile) is not writable
+			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 		@chmod($attachpath, 0777);
 	}
 	
-	// If the attachment is a picture
+	// If the attachment is an image, then need to extract the width and height
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
@@ -526,7 +539,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 }
 
 /**
- * Generate image thumbnail
+ * Generate thumbnail image
  *
  * @param string $img Original image
  * @param string $thum_path Generate thumbnail path
@@ -554,18 +567,18 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
 }
 
 /**
- * Crop and zoom image
+ * Image Crop & Resize
  *
  * @param string $src_image Original image
- * @param string $dst_path Save path of the cropped image
- * @param int $dst_x New image coordinate x
- * @param int $dst_y New image coordinate y
- * @param int $src_x Original image coordinate x
- * @param int $src_y Original image coordinate y
+ * @param string $dst_path Cropped Image save path
+ * @param int $dst_x New image coordinates x
+ * @param int $dst_y New image coordinates y
+ * @param int $src_x Original coordinates x
+ * @param int $src_y Original coordinates y
  * @param int $dst_w New image width
  * @param int $dst_h New image height
- * @param int $src_w Original image width
- * @param int $src_h Original image height
+ * @param int $src_w Original width
+ * @param int $src_h Original height
  */
 function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
 	if (function_exists('imagecreatefromstring')) {
@@ -614,21 +627,21 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 }
 
 /**
- * Change the picture size according to the proportion (not generating thumbnails)
+ * Proportional image zoom size
  *
- * @param string $img Image path
- * @param int $max_w Max thumb width
- * @param int $max_h Max thumb height
+ * @param string $img Image Path
+ * @param int $max_w Max zoom Width
+ * @param int $max_h Maximum zoom Height
  * @return array
  */
 function chImageSize($img, $max_w, $max_h) {
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
-	//Calculate the ratio
+	//Calculate zoom ratio
 	@$w_ratio = $max_w / $w;
 	@$h_ratio = $max_h / $h;
-	//Calculate the width and height of the processed image
+	//Verify the Image width and height
 	if (($w <= $max_w) && ($h <= $max_h)) {
 		$tn['w'] = $w;
 		$tn['h'] = $h;
@@ -659,9 +672,9 @@ function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
 }
 
 /**
- * Calculate the time difference of the time zone
+ * Calculate time zone difference
  * @param string $remote_tz Remote time zone
- * @param string $origin_tz Standard time zone
+ * @param string $origin_tz Original time zone
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
@@ -679,7 +692,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
- * Convert string to UNIX timestamp independent of time zone
+ * Convert a string Time zone to UNIX timestamp
  */
 function emStrtotime($timeStr) {
 	$timezone = Option::get('timezone');
@@ -694,14 +707,14 @@ function emStrtotime($timeStr) {
 			} else {
 				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
 					/*
-            				 * If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
-			            	 * But the time we passed in is actually the local time in the time zone configured by the blog, not the local time in the server time zone
-            				 * Therefore, we need to remove the time obtained by strtotime / add the time difference between the two time zones to get the UTC time
+					 * If the server is configured by default to the time zone, So PHP will put the time to identify the incoming local time zone
+					 * But if we passed the time actually Local blog configurable time zone, it is not the server time zone Local Time
+					 * Therefore, We need to strtotime Get time to remove /Plus the difference of two time zones, Get utc time
 					 */
 					$offset = getTimeZoneOffset($serverTimeZone);
-            		// First subtract/add the time difference of the local time zone configuration
+					// First subtract/Plus the local time zone configuration difference
 					$unixPostDate -= $timezone * 3600;
-            		// Subtract/add the time difference between the server time zone and utc to get the utc time
+					// Minus/Plus the server zone and time difference utc, Get utc time
 					$unixPostDate -= $offset;
 				}
 			}
@@ -713,7 +726,7 @@ function emStrtotime($timeStr) {
 }
 
 /**
- * Get the number of days in a specified month
+ * Gets a number of days of the specified month
  */
 function getMonthDayNum($month, $year) {
 	$month = (int)$month;
@@ -741,19 +754,19 @@ function getMonthDayNum($month, $year) {
 }
 
 /**
- * Unzip the zip archive
- * @param type $zipfile File to unzip
- * @param type $path Unzip to this directory
+ * Extract zip
+ * @param type $zipfile Original Zip File
+ * @param type $path Extract to the directory
  * @param type $type
  * @return int
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
 	if (!class_exists('ZipArchive', FALSE)) {
-		return 3;//zip module problem
+		return 3;//zip Module problem
 	}
 	$zip = new ZipArchive();
 	if (@$zip->open($zipfile) !== TRUE) {
-		return 2;//File permission issues
+		return 2;//File permissions problem
 	}
 	$r = explode('/', $zip->getNameIndex(0), 2);
 	$dir = isset($r[0]) ? $r[0] . '/' : '';
@@ -781,12 +794,12 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 		$zip->close();
 		return 0;
 	} else {
-		return 1;//File permission issues
+		return 1;//File permissions problem
 	}
 }
 
 /**
- * zip compression
+ * zip Compression
  */
 function emZip($orig_fname, $content) {
 	if (!class_exists('ZipArchive', FALSE)) {
@@ -807,7 +820,7 @@ function emZip($orig_fname, $content) {
 }
 
 /**
- * Get remote file
+ * Get Remote File
  * @param type $source Remote file address
  * @return Temporary file address
  */
@@ -830,7 +843,7 @@ function emFecthFile($source) {
 }
 
 /**
- * Delete file or directory
+ * Deleting a file or directory
  */
 function emDeleteFile($file) {
 	if (empty($file))
@@ -856,7 +869,7 @@ function emDeleteFile($file) {
 }
 
 /**
- * Page redirect
+ * Page Redirection
  */
 function emDirect($directUrl) {
 	header("Location: $directUrl");
@@ -864,30 +877,30 @@ function emDirect($directUrl) {
 }
 
 /**
- * Display system message
+ * Display system info
  *
  * @param string $msg Message
- * @param string $url Return URL
- * @param boolean $isAutoGo Whether to return automatically, true/false
+ * @param string $url Return Address
+ * @param boolean $isAutoGo Whether or not auto-return true false
  */
 function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
-	global $lang;
-	$language = EMLOG_LANGUAGE;
 	if ($msg == '404') {
 		header("HTTP/1.1 404 Not Found");
-		$msg = $lang['page_not_exists'];
+/*vot*/		$msg = lang('404_description');
 	}
-	echo <<<EOT
+/*vot*/	$lang = EMLOG_LANG;
+/*vot*/	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="{$language}">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang">
 <head>
 EOT;
 	if ($isAutoGo) {
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
 	}
+/*vot*/ $title = lang('prompt');
 	echo <<<EOT
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$lang['redirect_title']}</title>
+<title>$title</title>
 <style type="text/css">
 <!--
 body {
@@ -919,7 +932,7 @@ body {
 <p>$msg</p>
 EOT;
 	if ($url != 'none') {
-		echo '<p><a href="' . $url . '">&laquo;' . $lang['return_back'] . '</a></p>';
+/*vot*/		echo '<p><a href="' . $url . '">'. lang('click_return').'</a></p>';
 	}
 	echo <<<EOT
 </div>
@@ -930,7 +943,7 @@ EOT;
 }
 
 /**
- * Display 404 error page
+ * Show error 404 page
  * 
  */
 function show_404_page() {
@@ -944,12 +957,12 @@ function show_404_page() {
 }
 
 /**
- * Replace emoji
+ * Replace Emoticons
  *
  * @param $t
  */
 function emoFormat($t){
-	$emos = array('[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'	=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'	=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'	=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'	=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
+/*vot*/	$emos = array('[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'	=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'	=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'	=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'	=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
 	if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
 		$matches = array_unique($matches[0]);
 		foreach ($matches as $data) {
@@ -961,10 +974,10 @@ function emoFormat($t){
 }
 
 /**
- * hmac encryption
+ * hmac Encryption
  *
- * @param unknown_type $algo hash algorithm md5
- * @param unknown_type $data Username and expiration time
+ * @param unknown_type $algo hash Algorithm md5
+ * @param unknown_type $data User name and expiration date
  * @param unknown_type $key
  * @return unknown
  */
@@ -992,7 +1005,7 @@ if(!function_exists('hash_hmac')) {
 }
 
 /**
- * Get the mime type according to the file suffix
+ * Get the MIME type based on the file extension
  * @param string $extension
  * @return string
  */
@@ -1091,12 +1104,13 @@ function load_language($model='') {
 
     $model = strtolower($model);
     $model = str_replace('_controller','',$model);
+    $model = str_replace('_model','',$model);
 
 //DEBUG
-//echo '<pre>';
-//echo 'load_language:', "\n";
-//echo '	model=', $model, "\n";
-//echo '</pre>';
+echo '<pre>';
+echo 'load_language:', "\n";
+echo '	model=', $model, "\n";
+echo '</pre>';
 
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
 

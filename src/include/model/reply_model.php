@@ -1,6 +1,6 @@
 <?php
 /**
- * Reply management
+ * Twitter Reply Model
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -13,7 +13,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * Add reply
+	 * Reply
 	 *
 	 * @param array $tData
 	 * @return int
@@ -36,7 +36,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * Get replies
+	 * Get Reply
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -67,7 +67,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * Get a number of replies
+	 * Get the number of replies
 	 *
 	 * @param int $tid
 	 * @param string $hide
@@ -82,10 +82,10 @@ class Reply_Model {
 	}
 
 	/**
-	 * Delete reply
+	 * Delete Reply
 	 *
 	 * @param int $replyId
-	 * @return int Affected twitter id
+	 * @return Is hidden the twitter id
 	 */
 	function delReply($replyId) {
 		$row = $this->db->once_fetch_array("SELECT hide FROM ".DB_PREFIX."reply WHERE id=$replyId");
@@ -95,7 +95,7 @@ class Reply_Model {
 	}
 
 	/**
-	 * Hide reply
+	 * Hide Reply
 	 *
 	 * @param int $replyId
 	 */

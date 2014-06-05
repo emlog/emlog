@@ -1,26 +1,26 @@
 <?php
 /**
- * URL processing
+ * URL Processing
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Url {
 
 	/**
-	 * Get post link
+	 * Get Post Link
 	 */
 	static function log($blogId) {
 		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
 		$CACHE = Cache::getInstance();
 
-		//Turn on post url  alias
+		//Open the Post alias
 		if (Option::get('isalias') == 'y') {
 			$logalias_cache = $CACHE->readCache('logalias');
 			if (!empty($logalias_cache[$blogId])) {
 				$logsort_cache = $CACHE->readCache('logsort');
 				$sort = '';
-				//Url in category mode
+				//Category Mode under the url
 				if (3 == $urlMode && isset($logsort_cache[$blogId])) {
 					$sort = !empty($logsort_cache[$blogId]['alias']) ? 
 						$logsort_cache[$blogId]['alias'] : 
@@ -28,7 +28,7 @@ class Url {
 					$sort .= '/';
 				}
 				$logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-				//Add html suffix to the alias
+				//Open the alias html suffix
 				if (Option::get('isalias_html') == 'y') {
 					$logUrl .= '.html';
 				}
@@ -37,7 +37,7 @@ class Url {
 		}
 
 		switch ($urlMode) {
-			case '0'://Default: dynamic
+			case '0'://Default: Dynamic
 				$logUrl = BLOG_URL . '?post=' . $blogId;
 				break;
 			case '1'://Static
@@ -62,7 +62,7 @@ class Url {
 	}
 
 	/**
-	 * Get archive link
+	 * Get the archive link
 	 */
 	static function record($record, $page = null) {
 		$recordUrl = '';
@@ -82,7 +82,7 @@ class Url {
 	}
 
 	/**
-	 * Get category link
+	 * Get Category Link
 	 */
 	static function sort($sortId, $page = null) {
 		$CACHE = Cache::getInstance();
@@ -145,7 +145,7 @@ class Url {
 	}
 
 	/**
-	 * Get the page link
+	 * Get the Home Post pagination links
 	 */
 	static function logPage() {
 		$logPageUrl = '';
@@ -161,7 +161,7 @@ class Url {
 	}
 
 	/**
-	 * Get comment link
+	 * Get Comment Link
 	 */
 	static function comment($blogId, $pageId, $cid) {
 		$commentUrl = Url::log($blogId);
@@ -178,7 +178,7 @@ class Url {
 	}
 
 	/**
-	 * Get comment link
+	 * Get navigation link
 	 */
 	static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');

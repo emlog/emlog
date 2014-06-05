@@ -5,16 +5,13 @@ require_once dirname(__FILE__).'/../_ToDo/my_func.php';
  * @copyright (c) Emlog All Rights Reserved
  */
 
-error_reporting(E_ALL);
+/*vot*/ error_reporting(E_ALL);
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
-define('EMLOG_ROOT', str_replace('\\', '/', dirname(__FILE__)));
-
-/*vot*/mb_internal_encoding('UTF-8');
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 
 require_once EMLOG_ROOT.'/config.php';
-
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
 // Load the Lang File
@@ -28,23 +25,23 @@ $userData = array();
 
 define('ISLOGIN',	LoginAuth::isLogin());
 
-//User role: admin = administrator, writer = co-author, visitor = guest
+//User Groups: admin=Administrator, writer=Co-Author, visitor=Guest
 define('ROLE_ADMIN', 'admin');
 define('ROLE_WRITER', 'writer');
 define('ROLE_VISITOR', 'visitor');
-//User role
+//User Roles
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
-//Blog URL
+//Site fixed address
 define('BLOG_URL', Option::get('blogurl'));
-//Template folder URL
+//Template Library URL
 define('TPLS_URL', BLOG_URL.'content/templates/');
-//Template folder path
+//Template Library Path
 define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
-//Solve the frontend multi-domain ajax queries
+//Resolve the front domain for ajax
 define('DYNAMIC_BLOGURL', getBlogUrl());
-//Front-end template URL
+//Front template URL
 define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
 
 //Load plug-ins
