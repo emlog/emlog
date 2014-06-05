@@ -5,6 +5,8 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
+/*vot*/ load_language('database');
+
 class Database {
 
     public static function getInstance() {

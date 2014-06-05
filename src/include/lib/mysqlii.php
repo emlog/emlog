@@ -5,8 +5,6 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-/*vot*/ load_language('mysqli');
-
 class MySqlii {
 
 	/**
@@ -34,9 +32,8 @@ class MySqlii {
 	private static $instance = null;
 
 	private function __construct() {
-		global $lang;
 		if (!class_exists('mysqli')) {
-			emMsg($lang['mysqli_not_support']);
+/*vot*/			emMsg(lang('mysqli_not_supported'));
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
@@ -45,27 +42,27 @@ class MySqlii {
 			switch ($this->conn->connect_errno) {
 				case 1044:
 				case 1045:
-					emMsg($lang['db_user_error']);
+/*vot*/					emMsg(lang('db_credential_error'));
 					break;
 
                 case 1049:
-					emMsg($lang['db_not_found']);
+/*vot*/					emMsg(lang('db_not_found'));
 					break;
 
 				case 2003:
-					emMsg($lang['db_port_error']);
+/*vot*/					emMsg(lang('db_port_invalid'));
 					break;
 
 				case 2005:
-					emMsg($lang['db_connect_error']);
+/*vot*/					emMsg(lang('db_unavailable'));
 					break;
 
 				case 2006:
-					emMsg($lang['db_server_error']);
+/*vot*/					emMsg(lang('db_server_unavailable'));
 					break;
 
 				default :
-					emMsg($lang['db_error_code'] . $this->conn->connect_errno);
+/*vot*/					emMsg(lang('db_error_code') . $this->conn->connect_errno);
 					break;
 			}
 		}
@@ -74,7 +71,7 @@ class MySqlii {
 	}
 
 	/**
-	 * Return the database connection instance
+	 * Static method that returns the database connection instance
 	 */
 	public static function getInstance() {
 		if (self::$instance == null) {
@@ -92,24 +89,23 @@ class MySqlii {
 	}
 
 	/**
-	 * Send query
+	 * Send query statement
 	 */
 	function query($sql) {
-		global $lang;
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
         if (1046 == $this->geterrno()) {
-            emMsg($lang['db_no_name']);
+/*vot*/		emMsg(lang('db_error_name'));
         }
 		if (!$this->result) {
-			emMsg($lang['sql_statement_error'] . ": $sql<br />" . $this->geterror());
+/*vot*/			emMsg(lang('db_sql_error'). ": {$sql}<br />" . $this->geterror());
 		} else {
 			return $this->result;
 		}
 	}
 
 	/**
-	 * Get a row from the result set as an associative array/digital index array
+	 * Fetch a row as an associative array / array results from a numerical index
 	 */
 	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
 		return $query->fetch_array($type);
