@@ -5,14 +5,14 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
+/*vot*/ load_language('xmlrpc');
+
 ob_start();
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
-
-/*vot*/ load_language('xmlrpc');
 
 $api_methods = array(
 	// metaWeblog Interface
@@ -35,7 +35,7 @@ $_COOKIE = array();
 if (!isset($HTTP_RAW_POST_DATA)) {
 	$HTTP_RAW_POST_DATA = file_get_contents('php://input');
 }
-// Fix mozBlog or other cases where the incompatible xml tag is not in the first line
+// Case repair mozBlog or other incompatible of cases xml tags are not the first line
 if (isset($HTTP_RAW_POST_DATA))
 	$HTTP_RAW_POST_DATA = trim($HTTP_RAW_POST_DATA);
 // Send api support information to the client

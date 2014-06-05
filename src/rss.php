@@ -79,7 +79,7 @@ function getBlog($sortid = null) {
 		$re['content']	= $re['content'];
 		if(!empty($re['password']))
 		{
-/*vot*/			$re['content'] = lang('post_encrypted');
+/*vot*/			$re['content'] = '<p>[' . lang('post_protected_by_password') . ']</p>';
 		}
 		elseif(Option::get('rss_output_fulltext') == 'n')
 		{
