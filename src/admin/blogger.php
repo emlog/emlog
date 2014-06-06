@@ -76,7 +76,7 @@ if ($action == 'update') {
 
 if ($action == 'delicon') {
     LoginAuth::checkToken();
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$query = $DB->query("select photo from ".DB_PREFIX."user where uid=" . UID);
 	$icon = $DB->fetch_array($query);
 	$icon_1 = $icon['photo'];

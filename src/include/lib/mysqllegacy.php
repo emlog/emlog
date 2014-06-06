@@ -1,11 +1,11 @@
 <?php
 /**
- * MySQLi数据库操作类
+ * MySQL数据库操作类
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class MySqlii {
+class MySqlLegacy {
 
 	/**
 	 * 查询次数
@@ -15,13 +15,13 @@ class MySqlii {
 
 	/**
 	 * 内部数据连接对象
-	 * @var mysqli
+	 * @var resourse
 	 */
 	private $conn;
 
 	/**
 	 * 内部数据结果
-	 * @var mysqli_result
+	 * @var resourse
 	 */
 	private $result;
 
@@ -30,22 +30,29 @@ class MySqlii {
 	 * @var object MySql
 	 */
 	private static $instance = null;
-	
+
 	/**
 	 * 数据库连接方式
 	 * @var string
 	 */
-	public $mysqlLib = 'MySQLi';
-
+	public $mysqlLib = 'MySQL';
+	
 	private function __construct(& $errno) {
-		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
-
-		if ($this->conn->connect_error) {
-			$errno = $this->conn->connect_errno;
+		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
+            $errno = $this->geterrno();
+            return;
+		}
+		
+		if ($this->getMysqlVersion() > '4.1') {
+			mysql_query("SET NAMES 'utf8'");
+		}
+		
+		try {
+			mysql_select_db(DB_NAME, $this->conn);
+		} catch (Exception $ex) {
+			$errno = 1049;
 			return;
 		}
-
-		$this->conn->set_charset('utf8');
 	}
 
 	/**
@@ -53,9 +60,8 @@ class MySqlii {
 	 */
 	public static function getInstance(& $errno) {
 		if (self::$instance == null) {
-			self::$instance = new MySqlii($errno);
+			self::$instance = new MySqlLegacy($errno);
 		}
-
 		return self::$instance;
 	}
 
@@ -63,30 +69,29 @@ class MySqlii {
 	 * 关闭数据库连接
 	 */
 	function close() {
-		return $this->conn->close();
+		return mysql_close($this->conn);
 	}
 
 	/**
 	 * 发送查询语句
+	 *
 	 */
 	function query($sql) {
-		$this->result = $this->conn->query($sql);
+		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
-        if (1046 == $this->geterrno()) {
-            emMsg("连接数据库失败，请填写数据库名");
-        }
 		if (!$this->result) {
-			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
-		} else {
+			emMsg("SQL语句执行错误：$sql <br />" . $this->geterror());
+		}else {
 			return $this->result;
 		}
 	}
 
 	/**
 	 * 从结果集中取得一行作为关联数组/数字索引数组
+	 *
 	 */
-	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
-		return $query->fetch_array($type);
+	function fetch_array($query , $type = MYSQL_ASSOC) {
+		return mysql_fetch_array($query, $type);
 	}
 
 	function once_fetch_array($sql) {
@@ -96,59 +101,59 @@ class MySqlii {
 
 	/**
 	 * 从结果集中取得一行作为数字索引数组
+	 *
 	 */
-	function fetch_row(mysqli_result $query) {
-		return $query->fetch_row();
+	function fetch_row($query) {
+		return mysql_fetch_row($query);
 	}
 
 	/**
 	 * 取得行的数目
 	 *
 	 */
-	function num_rows(mysqli_result $query) {
-		return $query->num_rows;
+	function num_rows($query) {
+		return mysql_num_rows($query);
 	}
 
 	/**
 	 * 取得结果集中字段的数目
 	 */
-	function num_fields(mysqli_result $query) {
-		return $query->field_count;
+	function num_fields($query) {
+		return mysql_num_fields($query);
 	}
-
 	/**
 	 * 取得上一步 INSERT 操作产生的 ID
 	 */
 	function insert_id() {
-		return $this->conn->insert_id;
+		return mysql_insert_id($this->conn);
 	}
 
 	/**
 	 * 获取mysql错误
 	 */
 	function geterror() {
-		return $this->conn->error;
+		return mysql_error();
 	}
 
-	/**
+    /**
 	 * 获取mysql错误编码
 	 */
 	function geterrno() {
-		return $this->conn->errno;
+		return mysql_errno();
 	}
 
 	/**
 	 * Get number of affected rows in previous MySQL operation
 	 */
 	function affected_rows() {
-		return $this->conn->affected_rows;
+		return mysql_affected_rows();
 	}
 
 	/**
 	 * 取得数据库版本信息
 	 */
 	function getMysqlVersion() {
-		return $this->conn->server_info;
+		return mysql_get_server_info();
 	}
 
 	/**
@@ -162,6 +167,6 @@ class MySqlii {
 	 *  Escapes special characters
 	 */
 	function escape_string($sql) {
-		return $this->conn->real_escape_string($sql);
+		return mysql_real_escape_string($sql);
 	}
 }
