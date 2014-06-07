@@ -182,7 +182,7 @@ class Option {
 	 * @param $isSyntax 更新值是否为一个表达式
 	 */
 	static function updateOption($name, $value, $isSyntax = false){
-		$DB = Database::getInstance();
+		$DB = MySql::getInstance();
 		$value = $isSyntax ? $value : "'$value'";
 		$DB->query('UPDATE '.DB_PREFIX."options SET option_value=$value where option_name='$name'");
 	}

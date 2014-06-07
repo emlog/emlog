@@ -126,7 +126,7 @@ if($act == 'install' || $act == 'reinstall'){
 	define('DB_NAME',   $db_name);
 	define('DB_PREFIX', $db_prefix);
 
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$CACHE = Cache::getInstance();
 
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){

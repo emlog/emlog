@@ -9,7 +9,7 @@ class Link_Model {
 	private $db;
 
 	function __construct() {
-		$this->db = Database::getInstance();
+		$this->db = MySql::getInstance();
 	}
 
 	function getLinks() {

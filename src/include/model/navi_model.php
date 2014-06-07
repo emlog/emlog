@@ -16,7 +16,7 @@ class Navi_Model {
     const navitype_page    = 5;
 
     function __construct() {
-		$this->db = Database::getInstance();
+		$this->db = MySql::getInstance();
 	}
 
 	function getNavis() {

@@ -96,7 +96,7 @@ class LoginAuth{
      * @return bool|object False on failure, User DB row object
      */
     public static function getUserDataByLogin($userLogin) {
-        $DB = Database::getInstance();
+        $DB = MySql::getInstance();
         if (empty($userLogin)) {
             return false;
         }

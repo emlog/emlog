@@ -11,8 +11,9 @@ if ($action == '') {
 	$name =  $user_cache[UID]['name'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
+	$mysql_lib = $DB->mysqlLib;
 	$php_ver = PHP_VERSION;
 	$uploadfile_maxsize = ini_get('upload_max_filesize');
 	$safe_mode = ini_get('safe_mode');
@@ -63,7 +64,7 @@ if ($action == 'update' && ROLE == ROLE_ADMIN) {
 	if(!$upsql) {
 		exit('succ');
 	}
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $upsql);
 	if (!$temp_file) {

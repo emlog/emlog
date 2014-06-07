@@ -184,7 +184,7 @@ function checkSqlFileInfo($sqlfile) {
  * @param string $filename
  */
 function bakindata($filename) {
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
 	$sql = file($filename);
 	if (isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
@@ -217,7 +217,7 @@ function bakindata($filename) {
  * @return string
  */
 function dataBak($table) {
-	$DB = Database::getInstance();
+	$DB = MySql::getInstance();
 	$sql = "DROP TABLE IF EXISTS $table;\n";
 	$createtable = $DB->query("SHOW CREATE TABLE $table");
 	$create = $DB->fetch_row($createtable);
