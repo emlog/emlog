@@ -12,7 +12,6 @@ $sort = isset($_GET['sort']) ? intval($_GET['sort']) : '';
 
 $URL = BLOG_URL;
 $blog = getBlog($sort);
-$user_cache = $CACHE->readCache('user');
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
@@ -22,7 +21,8 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <link>'.$URL.'</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
-
+if (!empty($blog)) {
+$user_cache = $CACHE->readCache('user');
 foreach($blog as $value){
 	$link = Url::log($value['id']);
 	$abstract = str_replace('[break]','',$value['content']);
@@ -42,6 +42,7 @@ foreach($blog as $value){
 </item>
 END;
 }
+}
 echo <<< END
 </channel>
 </rss>
@@ -53,6 +54,10 @@ END;
  * @return array
  */
 function getBlog($sortid = null) {
+    $rss_output_num = Option::get('rss_output_num');
+    if ($rss_output_num == 0) {
+        return array();
+    }
 	$DB = Database::getInstance();
 	$sorts = Cache::getInstance()->readCache('sort');
 	if (isset($sorts[$sortid])) {
@@ -66,7 +71,7 @@ function getBlog($sortid = null) {
 	} else {
 		$subsql = $sortid ? "and sortid=$sortid" : '';
 	}
-	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . Option::get('rss_output_num');
+	$sql = "SELECT * FROM ".DB_PREFIX."blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . $rss_output_num;
 	$result = $DB->query($sql);
 	$blog = array();
 	while ($re = $DB->fetch_array($result))
