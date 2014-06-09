@@ -7,7 +7,6 @@
 
 class Comment_Controller {
 	function addComment($params) {
-		global $lang;
 		$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 		$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
 		$mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
@@ -33,29 +32,29 @@ class Comment_Controller {
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->setCommentCookie($name,$mail,$url);
 		if($Comment_Model->isLogCanComment($blogId) === false) {
-			emMsg($lang['comments_disabled']);
+/*vot*/			emMsg(lang('comment_error_comment_disabled'));
 		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
-			emMsg($lang['comment_allready_exists']);
+/*vot*/			emMsg(lang('comment_error_content_exists'));
 		} elseif (ROLE == ROLE_VISITOR && $Comment_Model->isCommentTooFast() === true) {
-			emMsg($lang['comment_too_fast']);
+/*vot*/			emMsg(lang('comment_error_flood_control'));
 		} elseif (empty($name)) {
-			emMsg($lang['comment_name_empty']);
-		} elseif (mb_strlen($name) > 20){
-			emMsg($lang['comment_name_invalid']);
+/*vot*/			emMsg(lang('comment_error_name_enter'));
+		} elseif (mb_strlen($name) > 20) {
+/*vot*/			emMsg(lang('comment_error_name_invalid'));
 		} elseif ($mail != '' && !checkMail($mail)) {
-			emMsg($lang['comment_email_invalid']);
+/*vot*/			emMsg(lang('comment_error_email_invalid'));
 		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
-			emMsg($lang['comment_admin_restricted']);
+/*vot*/			emMsg(lang('comment_error_other_user'));
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
-			emMsg($lang['comment_error_homepage'],'javascript:history.back(-1);');
+/*vot*/			emMsg(lang('comment_error_url_invalid'),'javascript:history.back(-1);');
 		} elseif (empty($content)) {
-			emMsg($lang['comment_error_empty']);
+/*vot*/			emMsg(lang('comment_error_empty'));
 		} elseif (mb_strlen($content) > 8000) {
-			emMsg($lang['comment_invalid']);
+/*vot*/			emMsg(lang('comment_error_content_invalid'));
 		} elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
-			emMsg($lang['comment_chinese']);
+/*vot*/			emMsg(lang('comment_error_national_chars'));
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-			emMsg($lang['comment_captcha_invalid']);
+/*vot*/			emMsg(lang('comment_error_captcha_invalid'));
 		} else {
             $_SESSION['code'] = null;
 			$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);

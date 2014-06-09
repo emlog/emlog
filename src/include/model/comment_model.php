@@ -253,7 +253,6 @@ class Comment_Model {
 
 	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) 
 	{
-		global $lang;
 		$ipaddr = getIp();
 		$utctimestamp = time();
 
@@ -279,7 +278,7 @@ class Comment_Model {
 		} else {
 			$CACHE->updateCache('sta');
 			doAction('comment_saved', $cid);
-			emMsg($lang['comment_posted_premod'], Url::log($blogId));
+/*vot*/			emMsg(lang('comment_wait_approve'), Url::log($blogId));
 		}
 	}
 
@@ -303,14 +302,13 @@ class Comment_Model {
 	}
 
     function isYoursComment($cid) {
-	global $lang;
         if (ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR) {
             return true;
         }
 		$query = $this->db->query("SELECT a.cid FROM ".DB_PREFIX."comment as a,".DB_PREFIX."blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=".UID);
 		$result = $this->db->num_rows($query);
 		if ($result <= 0) {
-			emMsg($lang['access_disabled'], './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 	}
 
