@@ -8,9 +8,9 @@
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
 <title><? echo $lang['admin_center']; ?> - <?php echo Option::get('blogname'); ?></title>
-<script src="<?=BLOG_URL?>lang/<? echo EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+<script src="<?=BLOG_URL?>lang/<? echo EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.7.1.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
@@ -63,7 +63,7 @@
 		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?><? echo $lang['_pending_articles']; ?>"><?php echo $n; ?></a></div>
 		<?php endif; ?>
 		<?php if (ROLE == ROLE_ADMIN):?>
-        <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><? echo $lang['tags'];?></a></li>
+<!--vot--><li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><?=lang(tags)?></a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><? echo $lang['categories'];?></a></li>
     	<?php endif;?>
         <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><? echo $lang['comments'];?></a> </li>
@@ -100,7 +100,7 @@
 <div id="container">
 <?php doAction('adm_main_top'); ?>
 <script>
-<!--Sidebar collapse-->
+<!--Sidebar Toggle-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
 if ($.cookie('em_extend_ext')) {
 	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));

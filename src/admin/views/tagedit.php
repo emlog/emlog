@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b><? echo $lang['tag_edit'];?></b></div>
-<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['tag_empty']; ?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('tag_edit')?></b>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('tag_empty')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="tag.php?action=update_tag">

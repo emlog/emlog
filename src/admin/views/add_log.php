@@ -1,7 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script>var EMLOG_LANG = '<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>';</script>
+<!--vot--><script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <div class=containertitle><b><? echo $lang['post_add'];?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -25,10 +24,10 @@
     <textarea id="content" name="content" style="width:845px; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
-		  <label for="tag" id="tag_label"><? echo $lang['tags_by_comma']; ?></label>
+<!--vot--><label for="tag" id="tag_label"><?=lang('post_tags_separated')?></label>
     <input name="tag" id="tag" maxlength="200"/>
-    <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><? echo $lang['tags_current']; ?>+</a></span>
-    <select name="sort" id="sort" style="width:200px;">
+<!--vot--> <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
+    <select name="sort" id="sort" style="width:130px;">
         <option value="-1"><? echo $lang['category_choose']; ?></option>
         <?php 
         foreach($sorts as $key=>$value):
@@ -58,7 +57,7 @@
             echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
         }
     } else {
-        echo $lang['no_tags_yet'];
+/*vot*/ echo lang('tag_not_set');
     }
 ?>
 </div>

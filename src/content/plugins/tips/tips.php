@@ -3,7 +3,7 @@
 Plugin Name: Tips
 Version: 1.1
 Plugin URL:
-Description: This is the first emlog plug-in, it will send a page of your management tips and warm.
+Description: It is the world's first emlog plugin, it will send one cozy little tips in your administration page.
 Author: emlog
 Author URL: http://www.emlog.net
 */

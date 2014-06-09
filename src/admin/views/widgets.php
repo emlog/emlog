@@ -50,7 +50,7 @@
 	<form action="widgets.php?action=setwg&wg=tag" method="post">
 	<div class="widget-line" id="tag">
 		<div class="widget-top">
-			<li class="widget-title"><? echo $lang['tags'];?></li>
+<!--vot-->		<li class="widget-title"><?=lang('tags')?></li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
@@ -228,8 +228,8 @@ if($i == $wgNum):
 <ul>
 <?php 
 	foreach ($widgets as $widget):
-	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//Whether the widget is a custom widget
-	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
+/*vot*/	$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;//Whether custom widget
+/*vot*/	$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : '';	//Get custom widget title
 	if($flg && empty($title)){
 		preg_match("/^custom_wg_(\d+)/", $widget, $matches);
 		$title = $lang['widget_custom'].' ('.$matches[1].')';

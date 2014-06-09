@@ -65,7 +65,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             </select>
         </span>
         <?php endif;?>
-        <span id="f_t_tag"><a href="javascript:void(0);"><? echo $lang['view_by_tag']; ?></a></span>
+<!--vot--> <span id="f_t_tag"><a href="javascript:void(0);"><?=lang('tag_by_view')?></a></span>
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
@@ -78,9 +78,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<div style="clear:both"></div>
 </div>
 <div id="f_tag" <?php echo $isDisplayTag ?>>
-	<? echo $lang['tags'];?>:
+<!--vot--> <?=lang('tags')?>:
 	<?php 
-    if(empty($tags)) echo $lang['no_tags_yet'];
+/*vot*/ if(empty($tags)) echo lang('tags_no');
     foreach($tags as $val):
 		$a = 'tag_'.$val['tid'];
 		$$a = '';

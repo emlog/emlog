@@ -1,13 +1,12 @@
 <?php 
 /**
-* Sidebar widgets
+ * Sidebar components, modules page
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <?php
-//widget:blogger
+//widget:Blogger
 function widget_blogger($title){
-	global $lang; 
 	global $CACHE;
 	$user_cache = $CACHE->readCache('user');
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
@@ -24,11 +23,9 @@ function widget_blogger($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Calendar
-function widget_calendar($title){
-	global $lang; ?>
+//widget:Calendar
+function widget_calendar($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
 	<div id="calendar">
@@ -36,9 +33,8 @@ function widget_calendar($title){
 	<script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
 	</li>
 <?php }?>
-
 <?php
-//widget: Tags
+//widget:Tags
 function widget_tag($title){
 	global $lang; 
 	global $CACHE;
@@ -53,11 +49,9 @@ function widget_tag($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Categories
+//widget:Sort
 function widget_sort($title){
-	global $lang; 
 	global $CACHE;
 	$sort_cache = $CACHE->readCache('sort'); ?>
 	<li>
@@ -87,9 +81,8 @@ function widget_sort($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: twitter
+//widget:Latest whispers
 function widget_twitter($title){
 	global $lang; 
 	global $CACHE; 
@@ -109,11 +102,9 @@ function widget_twitter($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Latest comments
+//widget:Latest Comments
 function widget_newcomm($title){
-	global $lang; 
 	global $CACHE; 
 	$com_cache = $CACHE->readCache('comment');
 	?>
@@ -133,9 +124,8 @@ function widget_newcomm($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Latest Posts
+//widget:Latest Posts
 function widget_newlog($title){
 	global $CACHE; 
 	$newLogs_cache = $CACHE->readCache('newlog');
@@ -149,9 +139,8 @@ function widget_newlog($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Popular articles
+//widget:Popular Posts
 function widget_hotlog($title){
 	$index_hotlognum = Option::get('index_hotlognum');
 	$Log_Model = new Log_Model();
@@ -166,7 +155,7 @@ function widget_hotlog($title){
 	</li>
 <?php }?>
 <?php
-//widget: Random posts
+//widget:Random Post
 function widget_random_log($title){
 	$index_randlognum = Option::get('index_randlognum');
 	$Log_Model = new Log_Model();
@@ -180,9 +169,8 @@ function widget_random_log($title){
 	</ul>
 	</li>
 <?php }?>
-
 <?php
-//widget: Search
+//widget:Search
 function widget_search($title){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -193,9 +181,8 @@ function widget_search($title){ ?>
 	</ul>
 	</li>
 <?php } ?>
-
 <?php
-//widget: Archive
+//widget:Archive
 function widget_archive($title){
 	global $lang;
 	global $CACHE; 
@@ -216,9 +203,8 @@ $m = $lang['month_'.intval($da[1])].' '.$da[0];
 	</ul>
 	</li>
 <?php } ?>
-
 <?php
-//widget: Custom Component
+//widget:Custom Component
 function widget_custom_text($title, $content){ ?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -227,13 +213,12 @@ function widget_custom_text($title, $content){ ?>
 	</ul>
 	</li>
 <?php } ?>
-
 <?php
-//widget: Links
+//widget:Links
 function widget_link($title){
 	global $CACHE; 
 	$link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment.
+    //if (!blog_tool_ishome()) return;#only at Home show Friends chain to remove double slash comment
 	?>
 	<li>
 	<h3><span><?php echo $title; ?></span></h3>
@@ -244,9 +229,8 @@ function widget_link($title){
 	</ul>
 	</li>
 <?php }?> 
-
 <?php
-//blog:navigation
+//blog:Navigation
 function blog_navi(){
 	global $lang;
 	global $CACHE; 
@@ -295,7 +279,7 @@ function blog_navi(){
 	</ul>
 <?php }?>
 <?php
-//blog:top
+//blog:Top
 function topflg($top, $sortop='n', $sortid=null){
 	global $lang;
     if(blog_tool_ishome()) {
@@ -305,20 +289,17 @@ function topflg($top, $sortop='n', $sortid=null){
     }
 }
 ?>
-
 <?php
-//blog: Edit
+//blog:Editor
 function editflg($logid,$author){
 	global $lang;
 	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
 	echo $editflg;
 }
 ?>
-
 <?php
-//blog: Categories
+//blog:Category
 function blog_sort($blogid){
-	global $lang;
 	global $CACHE; 
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
@@ -326,15 +307,13 @@ function blog_sort($blogid){
     <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php endif;?>
 <?php }?>
-
 <?php
-//blog: Blog Tags
+//blog:Post Tags
 function blog_tag($blogid){
-	global $lang;
 	global $CACHE;
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])){
-		$tag = $lang['tags'].':';
+/*vot*/		$tag = <?=lang('tags')?>.':';
 		foreach ($log_cache_tags[$blogid] as $value){
 			$tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
 		}
@@ -342,9 +321,8 @@ function blog_tag($blogid){
 	}
 }
 ?>
-
 <?php
-//blog: Blog Author
+//blog:Post author
 function blog_author($uid){
 	global $CACHE;
 	$user_cache = $CACHE->readCache('user');
@@ -355,9 +333,8 @@ function blog_author($uid){
 	echo '<a href="'.Url::author($uid)."\" $title>$author</a>";
 }
 ?>
-
 <?php
-//blog: Nearest Posts
+//blog:Neighbor Post
 function neighbor_log($neighborLog){
 	extract($neighborLog);?>
 	<?php if($prevLog):?>
@@ -370,9 +347,8 @@ function neighbor_log($neighborLog){
 		 <a href="<?php echo Url::log($nextLog['gid']) ?>"><?php echo $nextLog['title'];?></a>&raquo;
 	<?php endif;?>
 <?php }?>
-
 <?php
-//blog: Blog Comment List
+//blog:Comment List
 function blog_comments($comments){
 	global $lang; 
     extract($comments);
@@ -402,7 +378,7 @@ function blog_comments($comments){
     </div>
 <?php }?>
 <?php
-//blog: sub-comment list
+//blog:sub-comment list
 function blog_comments_children($comments, $children){
 	global $lang;
 	$isGravatar = Option::get('isgravatar');
@@ -422,9 +398,8 @@ function blog_comments_children($comments, $children){
 	</div>
 	<?php endforeach; ?>
 <?php }?>
-
 <?php
-//blog: Comment form
+//blog:Post a comment form
 function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark){
 	global $lang;
 	if($allow_remark == 'y'): ?>
@@ -457,7 +432,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 	<?php endif; ?>
 <?php }?>
 <?php
-//blog-tool:Determine whether it is the homepage
+//blog-tool: Determine whether it is the Home
 function blog_tool_ishome(){
     if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL){
         return true;
@@ -465,4 +440,3 @@ function blog_tool_ishome(){
         return FALSE;
     }
 }
-?>
