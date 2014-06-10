@@ -1,6 +1,6 @@
 <?php
 /**
- * Link management
+ * Link Manager
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -98,7 +98,7 @@ if ($action== 'mod') {
 	extract($naviData);
 
 	if ($type != Navi_Model::navitype_custom) {
-		$url = $lang['navigation_generated'];
+/*vot*/		$url = lang('addres_generated');
 	}
 
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';
