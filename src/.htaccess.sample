@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^wlwmanifest\.xml$ wlwmanifest.php [L]
