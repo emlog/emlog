@@ -10,8 +10,8 @@ $lang = array(
 
 //---------------------------
 //wlwmanifest.php
-[26] 'site_view'	=> 'View website',//'查看网站',
-[27] 'admin_panel'	=> 'Admin Panel',//'后台管理',
-[42] 'comment_edit'	=> 'Edit comment',//'编辑评论',
+ 'site_view'	=> 'View website',//'查看网站',
+ 'admin_panel'	=> 'Admin Panel',//'后台管理',
+ 'comment_edit'	=> 'Edit comment',//'编辑评论',
 
 );
