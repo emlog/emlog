@@ -82,7 +82,7 @@ function widget_sort($title){
 	</li>
 <?php }?>
 <?php
-//widget:Latest whispers
+//widget:Latest twitters
 function widget_twitter($title){
 	global $lang; 
 	global $CACHE; 

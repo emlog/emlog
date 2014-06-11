@@ -13,9 +13,9 @@ class Option {
 	const ICON_MAX_W = 140;
 	//Maximum avatar thumbnail height
 	const ICON_MAX_H = 220;
-	//Maximum width of whisper thumbnail Image
+	//Maximum width of twitter image thumbnail
 	const T_IMG_MAX_W = 180;
-	//Maximum height of whisper thumbnail Image
+	//Maximum height of twitter image thumbnail
 	const T_IMG_MAX_H = 136;
 	//Attachments upload path
 	const UPLOADFILE_PATH = '../content/uploadfile/';

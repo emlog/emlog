@@ -1,6 +1,6 @@
 <?php
 /**
- * Twitter
+ * Twitter model
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -14,7 +14,7 @@ class Twitter_Model {
 	}
 
 	/**
-	 * Add a twit
+	 * Write twitter
 	 *
 	 * @param array $tData
 	 * @return int
@@ -34,9 +34,9 @@ class Twitter_Model {
 	}
 
 	/**
-	 * Get the number of twits with specified conditions
+	 * Get the number of twitters by the specified conditions
 	 *
-	 * @param int $spot 0: foreground, 1: background
+	 * @param int $spot 0:Frontend 1:Backend
 	 * @return int
 	 */
 	function getTwitterNum($spot = 0) {
@@ -46,10 +46,10 @@ class Twitter_Model {
 	}
 
 	/**
-	 * Get a list of twits
+	 * Get twitter list
 	 *
 	 * @param int $page
-	 * @param int $spot 0: foreground, 1: background
+	 * @param int $spot 0:Frontend 1:Backend
 	 * @return array
 	 */
 	function getTwitters($page = 1, $spot = 0) {
@@ -94,7 +94,7 @@ class Twitter_Model {
 	}
 	
 	/**
-	 * Update the number of replies
+	 * Update the twitter number of replies
 	 *
 	 * @param int $tid
 	 * @param string $do '+1' or '-1'
@@ -104,7 +104,7 @@ class Twitter_Model {
 	}
 
 	function formatTwitter($t) {
-		//Identify URL
+		//Prepare the URL
 		$t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
 		$t = str_replace(array('[+@]','[@+]','[-@+]'), array('<a','>','</a>'), $t);
 		return $t;

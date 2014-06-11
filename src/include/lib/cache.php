@@ -387,7 +387,7 @@ class Cache {
 		$this->cacheWrite($cacheData, 'newlog');
 	}
 	/**
-	 * Latest twits
+	 * Latest twitters
 	 */
 	private function mc_newtw() {
 		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newtwnum'"));

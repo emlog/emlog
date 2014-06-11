@@ -1,6 +1,6 @@
 <?php
 /**
- * Twitters
+ * Whisper
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -23,7 +23,7 @@ if ($action == '') {
 	include View::getView('footer');
 	View::output();
 }
-// Post twit
+// Publish the twitter.
 if ($action == 'post') {
 	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
@@ -31,7 +31,7 @@ if ($action == 'post') {
     LoginAuth::checkToken();
 
 	if ($img && !$t) {
-		$t = $lang['image_share'];
+/*vot*/		$t = lang('image_share');
 	}
 
 	if (!$t) {
@@ -49,7 +49,7 @@ if ($action == 'post') {
 	doAction('post_twitter', $t, $twid);
 	emDirect("twitter.php?active_t=1");
 }
-// Delete twit
+// Delete twitter.
 if ($action == 'del') {
     LoginAuth::checkToken();
 	$id = isset($_GET['id']) ? intval($_GET['id']) : '';
@@ -57,7 +57,7 @@ if ($action == 'del') {
 	$CACHE->updateCache(array('sta','newtw'));
 	emDirect("twitter.php?active_del=1");
 }
-// Get reply
+// Get reply.
 if ($action == 'getreply') {
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
@@ -68,21 +68,21 @@ if ($action == 'getreply') {
 	foreach ($replys as $val) {
 		 if ($val['hide'] == 'n') {
 			$style = "background-color:#FFF";
-			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">{$lang['hide']}</a></span> ";
+/*vot*/			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">".lang('hide')."</a></span> ";
 		 } else {
 			$style = "background-color:#FEE0E4";
-            $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">{$lang['comments_approve']}</a></span> ";
+/*vot*/			$act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">".lang('approve')."</a></span> ";
 		 }
 		 $response .= "
 		 <li id=\"reply_{$val['id']}\" style=\"{$style}\">
 		 <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
-		 <a href=\"javascript: delreply({$val['id']},{$tid});\">{$lang['remove']}</a> 
-		 <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">{$lang['reply']}</a></em>
+<!--vot-->	 <a href=\"javascript: delreply({$val['id']},{$tid});\">".lang('delete')."</a> 
+<!--vot-->	 <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">".lang('reply')."</a></em>
 		 </li>";
 	}
 	echo $response;
 }
-// Reply the twit.
+// Reply the twitter.
 if ($action == 'reply') {
 	$r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -114,13 +114,13 @@ if ($action == 'reply') {
 	$response = "
 		 <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
 		 <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-		 <span><a href=\"javascript: hidereply({$rid},{$tid});\">{$lang['comments_hide']}</a></span> 
-		 <a href=\"javascript: delreply({$rid},{$tid});\">{$lang['remove']}</a> 
-		 <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
+<!--vot-->	 <span><a href=\"javascript: hidereply({$rid},{$tid});\">".lang('hide')."</a></span> 
+<!--vot-->	 <a href=\"javascript: delreply({$rid},{$tid});\">".lang('delete')."</a> 
+<!--vot-->	 <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">".lang('reply')."</a></em>
 		 </li>";
 	echo $response;
 }
-// Delete reply
+// Delete reply.
 if ($action == 'delreply') {
 	$rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -130,7 +130,7 @@ if ($action == 'delreply') {
 	}
 	echo $tid;
 }
-// Hide reply
+// Hide reply.
 if ($action == 'hidereply') {
 	$rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
@@ -138,7 +138,7 @@ if ($action == 'hidereply') {
 	$Reply_Model->hideReply($rid);
 	$Twitter_Model->updateReplyNum($tid, '-1');
 }
-// Publish reply
+// Audit reply.
 if ($action == 'pubreply') {
 	$rid = isset($_GET['rid']) ? intval($_GET['rid']) : null;
 	$tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
