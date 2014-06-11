@@ -74,14 +74,6 @@ $lang = array(
 [82]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！', './');
 
 //---------------------------
-//m/view/twitter.php
-[5] 'twitter_content'		=> 'Twitter content',//'微语内容',
-[7] 'image_upload_select'	=> 'Select an image to upload',//'选择要上传的图片',
-[9]// 'publish'		=> 'Publish',//'发布',
-[14]// 'view_images'	=> 'View images',//'查看图片',
-[20]// 'delete'		=> 'Delete',//'删除',
-
-//---------------------------
 //t/index.php
 [14] 'twitter_access_disabled'	=> 'Sorry, twitter access is not enabled!',//'抱歉，微语未开启前台访问！',
 [53]// 'reply'			=> 'Reply',//'回复',

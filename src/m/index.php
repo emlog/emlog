@@ -7,9 +7,11 @@
 
 require_once '../init.php';
 
+/*vot*/ load_language('m');//mobile language
+
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
-$isgzipenable = 'n'; //Turn off gzip compression for mobile browsing
+$isgzipenable = 'n'; //Disable gzip compression for Mobile browsers
 $index_lognum = 5;
 $site_title = Option::get('blogname');
 
@@ -23,7 +25,7 @@ if (Option::get('ismobile') == 'n') {
 $navi_cache = $CACHE->readCache('navi');
 $user_cache = $CACHE->readCache('user');
 
-// Front page
+// Home
 if (empty ($action) && empty ($logid)) {
 	$Log_Model = new Log_Model();
 	$page = isset($_GET['page']) ? abs(intval ($_GET['page'])) : 1;
@@ -39,7 +41,7 @@ if (empty ($action) && empty ($logid)) {
 	include View::getView('footer');
 	View::output();
 }
-// Blog
+// Post
 if (!empty ($logid)) {
 	$Log_Model = new Log_Model();
 	$Comment_Model = new Comment_Model();
@@ -135,7 +137,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$CACHE->updateCache();
 	emDirect("./");
 }
-// Comment
+// Add Comment
 if ($action == 'addcom') {
 	$Comment_Model = new Comment_Model();
 

@@ -170,61 +170,15 @@ $lang = array(
 // 'db_sql_error'		=> 'SQL statement execution error',//'SQL语句执行错误',
 
 //---------------------------
-//admin/views/footer.php
-[3] 'welcome_using'	=> 'Welcome using the',//'欢迎使用',
-
-//---------------------------
-//admin/views/header.php
-[10] 'admin_center'		=> 'AdminCP',//'管理中心',
-[22] 'return_to_admin_center'	=> 'Return to AdminCP',//'返回管理首页',
-[24] 'to_site_new_window'	=> 'Visit the site in a new window',//'在新窗口浏站点',
-[27] 'to_site'			=> 'View My site',//'查看我的站点',
-[37] 'settings'			=> 'Settings',//'设置',
-[39] 'logout'			=> 'Logout',//'退出',
-[45]// 'post_write'		=> 'Write post',//'写文章',
-[47]// 'draft'			=> 'Draft',//'草稿',
-[56]// 'posts'			=> 'posts',//'文章',
-[62] 'posts_pending'		=> 'Pending posts',//'篇文章待审',
-[65]// 'tags'			=> 'Tags',//'标签',
-[66]// 'category'		=> 'Category',//'分类',
-[68]// 'comments'		=> 'Comments',//'评论',
-[74] 'comments_pending'		=> 'Pending comments',//'条评论待审',
-[77]// 'twitter'		=> 'Twitter',//'微语',
-[78] 'sidebar'			=> 'Sidebar',//'侧边栏',
-[79] 'navigation'		=> 'Navigation',//'导航',
-[80] 'pages'			=> 'Pages',//'页面',
-[81] 'links'			=> 'Links',//'链接',
-[82] 'user'			=> 'User',//'用户',
-[83] 'data'			=> 'Data',//'数据',
-[84]// 'plugins'		=> 'Plug-ins',//'插件',
-[85]// 'template'		=> 'Template',//'模板',
-[86] 'app_center'		=> 'App center',//'应用中心',
-[88] 'extensions'		=> 'Extensions',//'扩展功能',
-[102]// '<!--Sidebar folded-->',//'<!--边栏折叠-->'
-
-//---------------------------
 //content/templates/default/404.php
-[11] '404_error'	=> 'Error - page not found.',//'错误提示-页面未找到',
-[40]// '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
-[41]// 'click_return'		=> '&laquo;Return back',//'&laquo;点击返回',
+ '404_error'	=> 'Error - page not found.',//'错误提示-页面未找到',
+ '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
+ 'click_return'		=> '&laquo;Return back',//'&laquo;点击返回',
 
 //---------------------------
 //content/templates/default/footer.php
-[10] 'powered_by'	=> 'Powered by',
-[10] 'powered_by_emlog'	=> 'Powered by Emlog',//'采用emlog系统',
-
-//---------------------------
-//m/view/header.php
-[34]// 'home'		=> 'Home',//'首页',
-[36]// 'twitter'	=> 'Twitter',//'微语',
-[38]// 'comments'	=> 'Comments',//'评论',
-[40]// 'post_write'	=> 'Write post',//'写文章',
-[41]// 'logout'		=> 'Logout',//'退出',
-[43]// 'login'		=> 'Login',//'登录',
-
-//---------------------------
-//m/view/msg.php (Error Message)
-[4] 'return'		=> 'Return',//'返回',
+ 'powered_by'	=> 'Powered by',
+ 'powered_by_emlog'	=> 'Powered by Emlog',//'采用emlog系统',
 
 //---------------------------
 //content/templates/default/module.php

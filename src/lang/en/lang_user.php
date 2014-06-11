@@ -102,11 +102,4 @@ $lang = array(
 [32]// 'save'			=> 'Save',//'保 存',
 [33]// 'cancel'			=> 'Cancel',//'取 消',
 
-//---------------------------
-//m/view/login.php
-[4]// 'user_name'	=> 'User name',//'用户名',
-[6]// 'password'	=> 'Password',//'密码',
-[9]// 'log_in'		=> 'Log in',//'登 录',
-
-
 );
