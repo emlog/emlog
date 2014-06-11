@@ -69,9 +69,9 @@
 	  	</td>
         <td><?php echo $value['url']; ?></td>
         <td>
-<--vot-->	<a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><?=lang('edit')?></a>
+<!--vot-->	<a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><?=lang('edit')?></a>
         <?php if($value['isdefault'] == 'n'):?>
-<--vot-->	<a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->	<a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -81,13 +81,13 @@
 	?>
         <tr>
 		<td><input class="num_input" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
-<--vot-->	<td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="<?=lang('nav_edit')?>"><?php echo $val['naviname']; ?></a></td>
+<!--vot-->	<td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="<?=lang('nav_edit')?>"><?php echo $val['naviname']; ?></a></td>
 		<td class="tdcenter"><?php echo $value['type_name'];?></td>
 		<td class="tdcenter">
 		<?php if ($val['hide'] == 'n'): ?>
-<--vot-->	<a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
+<!--vot-->	<a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
 		<?php else: ?>
-<--vot-->	<a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
+<!--vot-->	<a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
 		<?php endif;?>
 		</td>
 		<td class="tdcenter">
@@ -96,32 +96,32 @@
 	  	</td>
         <td><?php echo $val['url']; ?></td>
         <td>
-<--vot-->	<a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><?=lang('edit')?></a>
+<!--vot-->	<a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><?=lang('edit')?></a>
         <?php if($val['isdefault'] == 'n'):?>
-<--vot-->	<a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->	<a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
         <?php endif;?>
         </td>
       </tr>
       <?php endforeach;endif; ?>
 	<?php endforeach;else:?>
-<--vot-->  <tr><td class="tdcenter" colspan="4"><?=lang('nav_no')?></td></tr>
+<!--vot-->  <tr><td class="tdcenter" colspan="4"><?=lang('nav_no')?></td></tr>
 	<?php endif;?>
     </tbody>
   </table>
-<--vot-->  <div class="list_footer"><input type="submit" value="<?=lang('order_change')?>" class="button" /></div>
+<!--vot-->  <div class="list_footer"><input type="submit" value="<?=lang('order_change')?>" class="button" /></div>
 </form>
 <div id="navi_add">
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
 <div>
-<--vot--> <h1 onclick="displayToggle('navi_add_custom', 2);"><?=lang('nav_add_custom')?>+</h1>
+<!--vot--> <h1 onclick="displayToggle('navi_add_custom', 2);"><?=lang('nav_add_custom')?>+</h1>
 	<ul id="navi_add_custom">
-<--vot--> <li><input maxlength="4" style="width:30px;" name="taxis" /> <?=lang('id')?></li>
-<--vot--> <li><input maxlength="200" style="width:100px;" name="naviname" /> <?=lang('nav_name')?><span class="required">*</sapn></li>
+<!--vot--> <li><input maxlength="4" style="width:30px;" name="taxis" /> <?=lang('id')?></li>
+<!--vot--> <li><input maxlength="200" style="width:100px;" name="naviname" /> <?=lang('nav_name')?><span class="required">*</sapn></li>
 	<li>
-<--vot--> <input maxlength="200" style="width:168px;" name="url" id="url" /> <?=lang('nav_url_http')?><span class="required">*</sapn></li>
+<!--vot--> <input maxlength="200" style="width:168px;" name="url" id="url" /> <?=lang('nav_url_http')?><span class="required">*</sapn></li>
     <li>
             <select name="pid" id="pid" class="input">
-<--vot-->	<option value="0"><?=lang('no')?></option>
+<!--vot-->	<option value="0"><?=lang('no')?></option>
                 <?php
                     foreach($navis as $key=>$value):
                         if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -131,16 +131,16 @@
                 <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
                 <?php endforeach; ?>
             </select>
-<--vot-->   <?=lang('nav_parent')?>
+<!--vot-->   <?=lang('nav_parent')?>
     </li>
-<--vot--> <li><?=lang('open_new_win')?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-<--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
+<!--vot--> <li><?=lang('open_new_win')?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+<!--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
 	</ul>
 </div>
 </form>
 <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
 <div>
-<--vot--> <h1 onclick="displayToggle('navi_add_sort', 2);"><?=lang('nav_add_category')?>+</h1>
+<!--vot--> <h1 onclick="displayToggle('navi_add_sort', 2);"><?=lang('nav_add_category')?>+</h1>
 	<ul id="navi_add_sort">
 	<?php 
 	if($sorts):
@@ -166,16 +166,16 @@
         endforeach;
    endforeach;
    ?>
-<--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
+<!--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
 	<?php else:?>
-<--vot--> <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
+<!--vot--> <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
 	<?php endif;?> 
 	</ul>
 </div>
 </form>
 <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
 <div>
-<--vot--> <h1 onclick="displayToggle('navi_add_page', 2);"><?=lang('nav_page_add')?>+</h1>
+<!--vot--> <h1 onclick="displayToggle('navi_add_page', 2);"><?=lang('nav_page_add')?>+</h1>
 	<ul id="navi_add_page">
 	<?php 
 	if($pages):
@@ -186,9 +186,9 @@
 		<?php echo $value['title']; ?>
 	</li>
 	<?php endforeach;?>
-<--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
+<!--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
 	<?php else:?>
-<--vot--> <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
+<!--vot--> <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
 	<?php endif;?> 
 	</ul>
 </div>
