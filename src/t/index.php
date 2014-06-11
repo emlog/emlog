@@ -11,7 +11,7 @@ define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Front temp
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if (Option::get('istwitter') == 'n') {
-    emMsg($lang['twitter_not_guest'], BLOG_URL);
+/*vot*/ emMsg(lang('twitter_access_disabled'), BLOG_URL);
 }
 
 if ($action == 'cal') {
@@ -50,7 +50,7 @@ if ($action == 'getr') {
     $response = '';
     if ($replys) {
 	    foreach($replys as $val){
-	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">{$lang['reply']}</a>" : '';
+/*vot*/	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">".lang('reply')."</a>" : '';
 	    	$response .= "
 	         <li>
 	         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
@@ -58,7 +58,7 @@ if ($action == 'getr') {
 	         </li>";
 	    }
     } else{
-    	$response .= "<li>{$lang['reply_no_yet']}</li>";
+/*vot*/	$response .= "<li>".lang('no_replies')."</li>";
     }
     echo $response;
 }
@@ -123,7 +123,7 @@ if ($action == 'reply') {
 /*vot*/    $response = "
          <li>
          <span class=\"name\">".stripslashes(htmlspecialchars($name))."</span> {$r}<span class=\"time\">{$date}</span>
-         <em><a href=\"javascript:re({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
+         <em><a href=\"javascript:re({$tid}, '@{$name}:');\">".lang('reply')."</a></em>
          </li>";
     echo $response;
 }

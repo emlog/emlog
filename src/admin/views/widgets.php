@@ -35,14 +35,14 @@
 	<form action="widgets.php?action=setwg&wg=twitter" method="post">
 	<div class="widget-line" id="twitter">
 		<div class="widget-top">
-			<li class="widget-title"><? echo $lang['twitters_last']; ?></li>
+<!--vot-->		<li class="widget-title"><?=lang('twitter_latest')?></li>
 			<li class="widget-act-add"></li>
 			<li class="widget-act-del"></li>
 		</div>
 		<div class="widget-control">
 			<li><? echo $lang['title']; ?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-			<li><? echo $lang['twitters_last_info']; ?></li>
+<!--vot-->		<li><?=lang('twitter_latest_num')?></li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="<? echo $lang['change'];?>" class="submit" /></li>
 		</div>
 	</div>

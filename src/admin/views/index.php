@@ -7,7 +7,7 @@
         <div class="right">
         <form method="post" action="twitter.php?action=post">
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
-        <div class="box_1"><textarea class="box2" name="t"><? echo $lang['write_something']; ?></textarea></div>
+<!--vot--><div class="box_1"><textarea class="box2" name="t" placeholder="<?=lang('twitter_write_placeholder')?>"></textarea></div>
         <div class="tbutton" style="display:none;">
             <input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />

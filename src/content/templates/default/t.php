@@ -1,6 +1,6 @@
 <?php 
 /**
-* Widget part
+ * Twitter part
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -15,14 +15,14 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
                 BLOG_URL . 'admin/views/images/avatar.jpg' : 
                 BLOG_URL . $user_cache[$val['author']]['avatar'];
     $tid = (int)$val['id'];
-    $img = empty($val['img']) ? "" : '<a title="' . $lang['image_view'] . '" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
+    $img = empty($val['img']) ? "" : '<a title="'.lang('view_image').'" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
     ?> 
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <div class="post1"><span><?php echo $author; ?></span><br /><?php echo $val['t'].'<br/>'.$img;?></div>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');"><? echo $lang['reply']; ?>(<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
+<!--vot--><p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');"><?=lang('reply')?> (<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
         <p class="time"><?php echo $val['date'];?> </p>
     </div>
 	<div class="clear"></div>
@@ -32,10 +32,10 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
         <div class="tinfo" style="display:<?php if(ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER){echo 'none';}?>">
-        <? echo $lang['nickname']; ?>: <input type="text" id="rname_<?php echo $tid; ?>" value="" />
-        <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>"><? echo $lang['verification_code']; ?>: <input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
+<!--vot--> <?=lang('nickname')?>: <input type="text" id="rname_<?php echo $tid; ?>" value="" />
+<!--vot--> <span style="display:<?php if($reply_code == 'n'){echo 'none';}?>"><?=lang('captcha')?>: <input type="text" id="rcode_<?php echo $tid; ?>" value="" /><?php echo $rcode; ?></span>        
         </div>
-        <input class="button_p" type="button" onclick="reply('<?php echo DYNAMIC_BLOGURL; ?>index.php?action=reply',<?php echo $tid;?>);" value="<? echo $lang['reply']; ?>" /> 
+<!--vot--> <input class="button_p" type="button" onclick="reply('<?php echo DYNAMIC_BLOGURL; ?>index.php?action=reply',<?php echo $tid;?>);" value="<?=lang('reply')?>" /> 
         <div class="msg"><span id="rmsg_<?php echo $tid; ?>" style="color:#FF0000"></span></div>
     </div>
     </div>

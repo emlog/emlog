@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b><? echo $lang['twitter']; ?></b>
-<?php if(isset($_GET['active_t'])):?><span class="actived"><? echo $lang['posted_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['active_set'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['twitter_del_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['twitter_empty']; ?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('twitters')?></b>
+<!--vot--><?php if(isset($_GET['active_t'])):?><span class="actived"><?=lang('published_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_set'])):?><span class="actived"><?=lang('settings_saved_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('twitter_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('twitter_empty')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <div id="tw">
@@ -12,14 +12,14 @@
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-    <div class="msg"><? echo $lang['twitter_length_max']; ?></div>
+<!--vot--> <div class="msg"><?=lang('can_enter_max_140')?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> </div>
+<!--vot--> <div class="tbutton"><input type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> </div>
 	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
-        <a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{<? echo $lang['image_name']; ?>}</a>
-        <a href="javascript:;" onclick="unSelectFile()"> [<? echo $lang['cancel']; ?>]</a>
+<!--vot--><a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{<?=lang('image_title')?>}</a>
+<!--vot--><a href="javascript:;" onclick="unSelectFile()"> [<?=lang('cancel')?>]</a>
         <div id="img_pop"></div>
     </div>
     <?php doAction('twitter_form'); ?>
@@ -34,25 +34,25 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
-    $img = empty($val['img']) ? "" : '<a title="' . $lang['image_view'] . '" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
+/*vot*/    $img = empty($val['img']) ? "" : '<a title="<?=lang('view_images')?>" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
     <p class="post1"><?php echo $author; ?><br /><?php echo $val['t'];?> <br/><?php echo $img;?></p>
     <div class="clear"></div>
     <div class="bttome">
-        <p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);"><? echo $lang['reply']; ?></a>( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
-        <p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a> </p>
+<!--vot--><p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);"><?=lang('reply')?></a> ( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
+<!--vot--><p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a> </p>
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>
     <div class="huifu" id="rp_<?php echo $tid;?>">
 	<textarea name="reply"></textarea>
-    <div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="<? echo $lang['reply']; ?>" /> <span style="color:#FF0000"></span></div>
+<!--vot--><div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="<?=lang('reply')?>" /> <span style="color:#FF0000"></span></div>
     </div>
     </li>
     <?php endforeach;?>
-	 <li class="page"><?php echo $pageurl;?> (<? echo $lang['with']; ?><?php echo $twnum; ?> <? echo $lang['twitter_number']; ?>)</li>
+<!--vot--> <li class="page"><?php echo $pageurl;?> (<?=lang('have')?><?php echo $twnum; ?><?=lang('_twitters')?>)</li>
     </ul>
 </div>
 <div id="faceWraps"></div>
@@ -77,9 +77,9 @@ $(document).ready(function(){
        var t=$(this).val();
        var n = 140 - t.length;
        if (n>=0){
-         $(".msg").html("<? echo $lang['can_yet_enter']; ?>"+n+" <? echo $lang['characters']; ?>");
+/*vot*/  $(".msg").html("<?=lang('you_can_enter')?>"+n+"<?=lang('_characters')?>");
        }else {
-         $(".msg").html("<span style=\"color:#FF0000\"><? echo $lang['length_exceed']; ?>"+Math.abs(n)+" <? echo $lang['characters']; ?></span>");
+/*vot*/  $(".msg").html("<span style=\"color:#FF0000\"><?=lang('exceeded_')?>"+Math.abs(n)+"<?=lang('_characters')?></span>");
        }
     });
     setTimeout(hideActived,2600);
@@ -92,7 +92,7 @@ $(document).ready(function(){
 		swf             : '../include/lib/js/uploadify/uploadify.swf',
 		uploader        : 'attachment.php?action=upload_tw_img',
 		cancelImage     : './views/images/cancel.png',
-		buttonText      : l_image_select,
+/*vot*/		buttonText      : lang('image_select'),
 		checkExisting   : "/",
 		auto            : true,
 		multi           : false,
@@ -150,7 +150,7 @@ function onUploadSuccess(file, data, response){
 		$("#img_name_a").text(file.name);
 		$("#img_pop").html("<img src='"+data.filePath+"'/>");
 	}else{
-		alert(l_upload_failed);	
+/*vot*/		alert("<?=lang('upload_failed')?>");	
 	}
 }
 function onUploadError(file, errorCode, errorMsg, errorString){
@@ -161,7 +161,7 @@ function unSelectFile(){
 	$("#imgPath").val("");
 	$("#img_select").show();
 	$("#img_name").hide();
-	$("#img_name_a").text("{"+l_image_name+"}");
+/*vot*/	$("#img_name_a").text("{<?=lang('image_title')?>}");
 	$("#img_pop").empty();
 }
 function reply(tid, rp){
@@ -174,9 +174,9 @@ function doreply(tid){
 	$.post('twitter.php?action=reply&tid='+tid+"&stamp="+timestamp(), post, function(data){
 		data = $.trim(data);
 		if (data == 'err1'){
-            $(".huifu span").text('<? echo $lang['twitter_length_max']; ?>');
+/*vot*/		  $(".huifu span").text('<?=lang('reply_length_max_140')?>');
 		}else if(data == 'err2'){
-		    $(".huifu span").text('<? echo $lang['twitter_reply_exists']; ?>');
+/*vot*/		  $(".huifu span").text('<?=lang('replied_already')?>');
 		}else{
     		$("#r_"+tid).append(data);
     		var rnum = Number($("#"+tid+" span").text());
@@ -186,12 +186,12 @@ function doreply(tid){
 	});
 }
 function delreply(rid,tid){
-    if(confirm('<? echo $lang['twitter_reply_delete_sure']; ?>')){
+/*vot*/ if(confirm('<?=lang('reply_delete_sure')?>')){
         $.get("twitter.php?action=delreply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(data){
             var tid = Number(data);
             var rnum = Number($("#"+tid+" span").text());
             $("#"+tid+" span").text(rnum-1);
-            if ($("#reply_"+rid+" span a").text() == '<? echo $lang['approve']; ?>'){
+/*vot*/     if ($("#reply_"+rid+" span a").text() == '<?=lang('approve')?>'){
                 var rnum = Number($("#"+tid+" small").text());
                 if(rnum == 1){$("#"+tid+" small").text('');}else{$("#"+tid+" small").text(rnum-1);}
             }
@@ -201,7 +201,7 @@ function delreply(rid,tid){
 function hidereply(rid,tid){
     $.get("twitter.php?action=hidereply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(){
         $("#reply_"+rid).css('background-color','#FEE0E4');
-        $("#reply_"+rid+" span a").text('<? echo $lang['approve']; ?>');
+/*vot*/ $("#reply_"+rid+" span a").text('<?=lang('approve')?>');
         $("#reply_"+rid+" span a").attr("href","javascript: pubreply("+rid+","+tid+")");
         var rnum = Number($("#"+tid+" small").text());
         $("#"+tid+" small").text(rnum+1);
@@ -210,7 +210,7 @@ function hidereply(rid,tid){
 function pubreply(rid,tid){
     $.get("twitter.php?action=pubreply&rid="+rid+"&tid="+tid+"&stamp="+timestamp(), function(){
         $("#reply_"+rid).css('background-color','#FFF');
-        $("#reply_"+rid+" span a").text('<? echo $lang['hide']; ?>');
+/*vot*/ $("#reply_"+rid+" span a").text('<?=lang('hide')?>');
         $("#reply_"+rid+" span a").attr("href","javascript: hidereply("+rid+","+tid+")");
         var rnum = Number($("#"+tid+" small").text());
         if(rnum == 1){$("#"+tid+" small").text('');}else{$("#"+tid+" small").text(rnum-1);}
