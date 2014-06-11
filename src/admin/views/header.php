@@ -79,7 +79,7 @@
     	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><? echo $lang['sidebar']; ?></a></li>
    	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><? echo $lang['navbar']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" ><? echo $lang['pages']; ?></a></li>
-    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php"><? echo $lang['links']; ?></a></li>
+<!--vot--><li class="sidebarsubmenu" id="menu_link"><a href="link.php"><?=lang('links')?></a></li>
     	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" ><? echo $lang['users']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_data"><a href="data.php"><? echo $lang['data']; ?></a></li>
     	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php"><? echo $lang['plugins']; ?></a></li>
