@@ -6,7 +6,7 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Foreground template path
+define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Front template path
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
@@ -40,7 +40,7 @@ if ($action == '') {
     View::output();
 }
 
-// Get a reply
+// Get Reply
 if ($action == 'getr') {
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
@@ -63,7 +63,7 @@ if ($action == 'getr') {
     echo $response;
 }
 
-// Reply the twit.
+// Reply twitter
 if ($action == 'reply') {
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $rname = isset($_POST['rname']) ? addslashes(trim($_POST['rname'])) : '';
@@ -120,7 +120,7 @@ if ($action == 'reply') {
 
     $date = smartDate($date);
     $r = htmlClean(stripslashes($r));
-    $response = "
+/*vot*/    $response = "
          <li>
          <span class=\"name\">".stripslashes(htmlspecialchars($name))."</span> {$r}<span class=\"time\">{$date}</span>
          <em><a href=\"javascript:re({$tid}, '@{$name}:');\">{$lang['reply']}</a></em>
@@ -128,7 +128,7 @@ if ($action == 'reply') {
     echo $response;
 }
 
-// Verification code for the reply
+// Reply verification code
 if ($action == 'ckcode') {
     require_once EMLOG_ROOT.'/include/lib/checkcode.php';
 }

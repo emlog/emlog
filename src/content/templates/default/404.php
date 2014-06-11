@@ -8,7 +8,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? echo $lang['404_title']; ?></title>
+<!--vot--><title><?=lang('404_error')?></title>
 <style type="text/css">
 <!--
 body {
@@ -37,8 +37,8 @@ body {
 </head>
 <body>
 <div class="main">
-<p><? echo $lang['page_not_exists']; ?></p>
-<p><a href="javascript:history.back(-1);">&laquo;<? echo $lang['return_back']; ?></a></p>
+<!--vot--><p><?=lang('404_description')?></p>
+<!--vot--><p><a href="javascript:history.back(-1);"><?=lang('click_return')?></a></p>
 </div>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <?php 
 /**
-* Bottom information
+ * Page Bottom Information
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 </div><!--end #content-->
 <div style="clear:both;"></div>
 <div id="footerbar">
-	Powered by <a href="http://www.emlog.net" title="<? echo $lang['emlog_homepage']; ?>">emlog</a> 
-	<a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
+<!--vot--> <?=lang('powered_by')?> <a href="http://www.emlog.net" title="<?=lang('powered_by_emlog')?>">emlog</a> 
+<!--vot--> <? if($icp) {?><a href="http://www.miibeian.gov.cn" target="_blank"><?= $icp; ?></a> <?}?><?=$footer_info?>
 	<?php doAction('index_footer'); ?>
 </div><!--end #footerbar-->
 </div><!--end #wrap-->
