@@ -3,8 +3,8 @@
 <div class=line></div>
 <form action="link.php?action=update_link" method="post">
 <div class="item_edit">
-	<li><input size="40" value="<?php echo $sitename; ?>" class="input" name="sitename" /> <? echo $lang['name'];?><span class="required">*</sapn></li>
-	<li><input size="40" value="<?php echo $siteurl; ?>" class="input" name="siteurl" /> <? echo $lang['link_url'];?><span class="required">*</sapn></li>
+	<li><input size="40" value="<?php echo $sitename; ?>" class="input" name="sitename" /> <? echo $lang['name'];?><span class="required">*</span></li>
+	<li><input size="40" value="<?php echo $siteurl; ?>" class="input" name="siteurl" /> <? echo $lang['link_url'];?><span class="required">*</span></li>
 	<li><? echo $lang['link_description'];?><br /><textarea name="description" rows="3" class="textarea" cols="42"><?php echo $description; ?></textarea></li>
 	<li>
 	<input type="hidden" value="<?php echo $linkId; ?>" name="linkid" />

@@ -1,6 +1,6 @@
 <?php
 /**
- * Category management
+ * Model: Blog Categories
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -60,13 +60,12 @@ class Sort_Model {
 	}
 
 	function getSortName($sid) {
-		global $lang;
 		if ($sid > 0) {
 			$res = $this->db->query("SELECT sortname FROM ". DB_PREFIX ."sort WHERE sid = $sid");
 			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		} else {
-			$sortName = $lang['unclassified'];
+			$sortName = lang('uncategorized');
 		}
 		return $sortName;
 	}

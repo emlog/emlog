@@ -89,7 +89,7 @@ foreach($sorts as $key=>$value):
 <!--vot--><div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('sort_new', 2);"><?=lang('category_add')?>+</a></div>
 <div id="sort_new" class="item_edit">
 <!--vot--> <li><input maxlength="4" style="width:30px;" name="taxis" class="input"  /> <?=lang('id')?></li>
-<!--vot--> <li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> <?=lang('name')?><span class="required">*</sapn></li>
+<!--vot--> <li><input maxlength="200" style="width:243px;" class="input" name="sortname" id="sortname" /> <?=lang('name')?><span class="required">*</span></li>
 <!--vot--> <li><input maxlength="200" style="width:243px;" class="input" name="alias" id="alias" /> <?=lang('alias_info')?></li>
 	<li>
 		<select name="pid" id="pid" class="input">

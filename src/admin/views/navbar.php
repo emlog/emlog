@@ -116,9 +116,9 @@
 <!--vot--> <h1 onclick="displayToggle('navi_add_custom', 2);"><?=lang('nav_add_custom')?>+</h1>
 	<ul id="navi_add_custom">
 <!--vot--> <li><input maxlength="4" style="width:30px;" name="taxis" /> <?=lang('id')?></li>
-<!--vot--> <li><input maxlength="200" style="width:100px;" name="naviname" /> <?=lang('nav_name')?><span class="required">*</sapn></li>
+<!--vot--> <li><input maxlength="200" style="width:100px;" name="naviname" /> <?=lang('nav_name')?><span class="required">*</span></li>
 	<li>
-<!--vot--> <input maxlength="200" style="width:168px;" name="url" id="url" /> <?=lang('nav_url_http')?><span class="required">*</sapn></li>
+<!--vot--> <input maxlength="200" style="width:168px;" name="url" id="url" /> <?=lang('nav_url_http')?><span class="required">*</span></li>
     <li>
             <select name="pid" id="pid" class="input">
 <!--vot-->	<option value="0"><?=lang('no')?></option>
