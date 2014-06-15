@@ -14,46 +14,46 @@ function em_confirm (id, property, token) {
 	switch (property){
 		case 'tw':
 			var urlreturn="twitter.php?action=del&id="+id;
-			var msg = l_sure_del_twitter;break;
+/*vot*/			var msg = lang('twitter_del_sure');break;
 		case 'comment':
 			var urlreturn="comment.php?action=del&id="+id;
-			var msg = l_sure_del_comment;break;
+/*vot*/			var msg = lang('comment_del_sure');break;
         case 'commentbyip':
 			var urlreturn="comment.php?action=delbyip&ip="+id;
-			var msg = l_sure_comment_del_from_ip;break;
+/*vot*/			var msg = lang('comment_ip_del_sure');break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
-			var msg = l_sure_delete_link;break;
+/*vot*/			var msg = ['link_del_sure'];break;
 		case 'navi':
 			var urlreturn="navbar.php?action=del&id="+id;
-			var msg = l_navigation_del_sure;break;
+/*vot*/			var msg = lang('navi_del_sure');break;
 		case 'backup':
 			var urlreturn="data.php?action=renewdata&sqlfile="+id;
-			var msg = l_sure_import;break;
+/*vot*/			var msg = lang('backup_import_sure');break;
 		case 'attachment':
 			var urlreturn="attachment.php?action=del_attach&aid="+id;
-			var msg = l_sure_delete_attach;break;
+/*vot*/			var msg = lang('attach_del_sure');break;
 		case 'avatar':
 			var urlreturn="blogger.php?action=delicon";
-			var msg = l_sure_delete_image;break;
+/*vot*/			var msg = lang('avatar_del_sure');break;
 		case 'sort':
 			var urlreturn="sort.php?action=del&sid="+id;
-			var msg = l_sure_delete_category;break;
+/*vot*/			var msg = lang('category_del_sure');break;
 		case 'page':
 			var urlreturn="page.php?action=del&gid="+id;
-			var msg = l_sure_delete_page;break;
+/*vot*/			var msg = lang('page_del_sure');break;
 		case 'user':
 			var urlreturn="user.php?action=del&uid="+id;
-			var msg = l_sure_delete_user;break;
+/*vot*/			var msg = lang('user_del_sure');break;
 		case 'tpl':
 			var urlreturn="template.php?action=del&tpl="+id;
-			var msg = l_sure_del_template;break;
+/*vot*/			var msg = lang('template_del_sure');break;
 		case 'reset_widget':
 			var urlreturn="widgets.php?action=reset";
-			var msg = l_sure_reset_plugin;break;
+/*vot*/			var msg = lang('plugin_reset_sure');break;
 		case 'plu':
 			var urlreturn="plugin.php?action=del&plugin="+id;
-			var msg = l_sure_del_plugin;break;
+/*vot*/			var msg = lang('plugin_del_sure');break;
 	}
 	if(confirm(msg)){window.location = urlreturn + "&token="+token;}else {return;}
 }
@@ -87,13 +87,13 @@ function checkform(){
 	var a = $.trim($("#alias").val());
 	var t = $.trim($("#title").val());
 	if (t==""){
-		alert(l_title_empty);
+/*vot*/		alert(lang('title_empty'));
 		$("#title").focus();
 		return false;
 	}else if(0 == isalias(a)){
 		return true;
 	}else {
-		alert(l_alias_error);
+/*vot*/		alert(lang('alis_link_error'));
 		$("#alias").focus();
 		return false
 	};
@@ -101,13 +101,13 @@ function checkform(){
 function checkalias(){
 	var a = $.trim($("#alias").val());
 	if (1 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_invalid+'</span>');
+/*vot*/		$("#alias_msg_hook").html('<span id="input_error">'+lang('alias_invalid_chars')+'</span>');
 	}else if (2 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_numeric+'</span>');
+/*vot*/		$("#alias_msg_hook").html('<span id="input_error">'+lang('alias_digital')+'</span>');
 	}else if (3 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_not_post+'</span>');
+/*vot*/		$("#alias_msg_hook").html('<span id="input_error">'+lang('alias_format_must_be')+'</span>');
 	}else if (4 == isalias(a)){
-		$("#alias_msg_hook").html('<span id="input_error">'+l_alias_not_system+'</span>');
+/*vot*/		$("#alias_msg_hook").html('<span id="input_error">'+lang('alias_system_conflict')+'</span>');
 	}else {
 		$("#alias_msg_hook").html('');
 		$("#msg").html('');
@@ -115,14 +115,14 @@ function checkalias(){
 }
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
 	if (editorMap['content'].designMode === false){
-		alert(l_wysiwyg_first);
+/*vot*/		alert(lang('wysiwyg_switch'));
 	}else if (imgsrc != "") {
-		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+l_show_orig_img+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
+/*vot*/		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+lang('click_view_fullsize')+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){
 	if (editorMap['content'].designMode === false){
-		alert(l_wysiwyg_first);
+/*vot*/		alert(lang('wysiwyg_switch'));
 	} else {
 		editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
 	}
@@ -207,7 +207,7 @@ function autosave(act){
 	//check alias
 	if(alias != '') {
 		if (0 != isalias(alias)){
-			$("#msg").html("<span class=\"msg_autosave_error\">'+l_alias_failed+'</span>");
+/*vot*/			$("#msg").html("<span class=\"msg_autosave_error\">"+lang('alis_link_error_not_saved')+"</span>");
 			if(act == 0){setTimeout("autosave(0)",60000);}
 			return;
 		}
@@ -223,9 +223,9 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
-	$("#msg").html("<span class=\"msg_autosave_do\">"+l_saving+"...</span>");
+/*vot*/	$("#msg").html("<span class=\"msg_autosave_do\">"+lang('saving')+"...</span>");
 	var btname = $("#savedf").val();
-	$("#savedf").val(l_saving);
+/*vot*/	$("#savedf").val(lang('saving'));
 	$("#savedf").attr("disabled", "disabled");
 	$.post(url, querystr, function(data){
 		data = $.trim(data);
@@ -242,14 +242,14 @@ function autosave(act){
     		var hours = digital.getHours();
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
-		$("#msg_2").html("<span class=\"ajax_remind_1\">"+l_saved_at+hours+":"+mins+":"+secs+"</span>");
+/*vot*/		$("#msg_2").html("<span class=\"ajax_remind_1\">"+lang('saved_ok_time')+hours+":"+mins+":"+secs+" </span>");
     		$("#savedf").attr("disabled", false);
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
 		    $("#savedf").attr("disabled", false);
 		    $("#savedf").val(btname);
-		    $("#msg").html("<span class=\"msg_autosave_error\">"+l_network_error+"</span>");
+/*vot*/		    $("#msg").html("<span class=\"msg_autosave_error\">"+lang('save_system_error')+"</span>");
 	    }
 	});
 	if(act == 0){
