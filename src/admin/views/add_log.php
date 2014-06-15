@@ -1,17 +1,17 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <!--vot--><script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<div class=containertitle><b><? echo $lang['post_add'];?></b><span id="msg_2"></span></div>
+<!--vot--><div class=containertitle><b><?=lang('post_write')?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <div id="post">
 <div>
-    <label for="title" id="title_label"><? echo $lang['article_title']; ?></label>
+<!--vot--><label for="title" id="title_label"><?=lang('enter_post_title')?></label>
     <input type="text" maxlength="200" name="title" id="title"/>
 </div>
 <div id="post_bar">
 	<div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><? echo $lang['upload_insert']; ?></span>
+<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
 	    <?php doAction('adm_writelog_head'); ?>
 	    <span id="asmsg"></span>
 	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
@@ -28,7 +28,7 @@
     <input name="tag" id="tag" maxlength="200"/>
 <!--vot--> <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
     <select name="sort" id="sort" style="width:130px;">
-        <option value="-1"><? echo $lang['category_choose']; ?></option>
+<!--vot--><option value="-1"><?=lang('category_select')?></option>
         <?php 
         foreach($sorts as $key=>$value):
         if ($value['pid'] != 0) {
@@ -47,7 +47,7 @@
         endforeach;
         ?>
     </select>
-    <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
+<!--vot--><?=lang('post_time')?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
 <div id="tagbox">
@@ -61,30 +61,30 @@
     }
 ?>
 </div>
-<div class="show_advset" onclick="displayToggle('advset', 1);"><? echo $lang['advanced_options']; ?></div>
+<div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
 <div id="advset">
-<div><? echo $lang['article_summary']; ?>:</div>
+<!--vot--><div><?=lang('post_description')?>:</div>
 <div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px;"></textarea></div>
-<div><span id="alias_msg_hook"></span><? echo $lang['article_link_alias']; ?>: (<? echo $lang['link_alias_need_to']; ?><a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)<span id="alias_msg_hook"></span></div>
+<!--vot--><div><span id="alias_msg_hook"></span><?=lang('post_alias')?>: (<?=lang('post_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('post_alias_enable')?></a>) <span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" /></div>
 <div style="margin-top:3px;">
-    <? echo $lang['post_password']; ?>: <input type="text" value="" name="password" id="password" style="width:80px;" />
+<!--vot-->    <?=lang('post_access_password')?>: <input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
-        <label for="top"><? echo $lang['post_pin']; ?></label>
+<!--vot--><label for="top"><?=lang('home_top')?></label>
 		<input type="checkbox" value="y" name="sortop" id="sortop" />
-        <label for="sortop"><? echo $lang['category_top']; ?></label>
+<!--vot--><label for="sortop"><?=lang('category_top')?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
-        <label for="allow_remark"><? echo $lang['comments_allow']; ?></label>
+<!--vot--><label for="allow_remark"><?=lang('allow_comments')?></label>
     </span>
 </div>
 </div>
 <div id="post_button">
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input type="hidden" name="ishide" id="ishide" value="">
-    <input type="submit" value="<? echo $lang['post_publish'];?>" onclick="return checkform();" class="button" />
+<!--vot--><input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="button" />
     <input type="hidden" name="author" id="author" value=<?php echo UID; ?> />
-    <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="button" />
 </div>
 </div>
 </form>

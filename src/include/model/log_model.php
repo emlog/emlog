@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog page management
+ * Model: Blog Page Management
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -14,7 +14,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Add blog post
+	 * Add a new post to the database
 	 *
 	 * @param array $logData
 	 * @return int
@@ -34,7 +34,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Update blog post
+	 * Update the post content
 	 *
 	 * @param array $logData
 	 * @param int $blogId
@@ -50,9 +50,9 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a number of posts with specified conditions
+	 * Get the number of posts with specified conditions
 	 *
-	 * @param int $spot 0: foreground, 1: background
+	 * @param int $spot //0: foreground 1: Background
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -72,16 +72,15 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a single post in the background
+	 * Get a Single post by ID for Admin
 	 */
 	function getOneLogForAdmin($blogId) {
-		global $lang;
 		$timezone = Option::get('timezone');
 		$author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-			emMsg($lang['access_disabled'], './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -99,7 +98,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a single post for the frontend
+	 * Get a Single post by ID for homepage
 	 */
 	function getOneLogForHome($blogId) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
@@ -131,7 +130,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a post list for the background
+	 * Get posts by conditions for Admin
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -140,7 +139,6 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
-	        global $lang;
 		$timezone = Option::get('timezone');
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
@@ -152,7 +150,7 @@ class Log_Model {
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
+/*vot*/			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -163,7 +161,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get a post list for the frontend
+	 * Get posts by conditions for Homepage
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -171,7 +169,6 @@ class Log_Model {
 	 * @return array
 	 */
 	function getLogsForHome($condition = '', $page = 1, $perPageNum) {
-		global $lang;
 		$timezone = Option::get('timezone');
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
@@ -185,16 +182,16 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-				$row['excerpt'] = "<p>[{$lang['blog_password_protected_info']}]</p>";
+/*vot*/				$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
 			} else {
 				if (!empty($row['excerpt'])) {
-					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.$lang['read_more'].'&gt;&gt;</a></p>';
+/*vot*/					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></p>';
 				}
 			}
 			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
-            $row['tbcount'] = 0;//Compatible with templates that have not deleted trackbacks
+            $row['tbcount'] = 0;//Compatible not deleted Quote of template
 			$logs[] = $row;
 		}
 		return $logs;
@@ -210,7 +207,7 @@ class Log_Model {
 		$pages = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
-			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : $lang['no_title'];
+/*vot*/			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			//$row['gid'] 	= $row['gid'];
 			//$row['comnum'] 	= $row['comnum'];
 			//$row['top'] 	= $row['top'];
@@ -221,16 +218,15 @@ class Log_Model {
 	}
 
 	/**
-	 * Delete Post
+	 * Delete the post by ID
 	 *
 	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
-		global $lang;
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-			emMsg($lang['access_disabled'], './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 		// Comments
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
@@ -252,7 +248,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Hide/show the post
+	 * Hide/Show the post by ID
 	 *
 	 * @param int $blogId
 	 * @param string $state
@@ -266,7 +262,7 @@ class Log_Model {
 	}
 
     /**
-	 * Review/reject the author's article
+	 * Audit/Reject the post author
 	 *
 	 * @param int $blogId
 	 * @param string $state
@@ -280,7 +276,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get the post release time
+	 * Make the post date/time
 	 *
 	 * @param int $timezone
 	 * @param string $postDate
@@ -304,7 +300,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Update the number of views
+	 * Update the post view count
 	 *
 	 * @param int $blogId
 	 */
@@ -313,7 +309,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Determine whether the post is repeated
+	 * Determine whether the repeated posting
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -323,9 +319,9 @@ class Log_Model {
 	}
 
 	/**
-	 * Get neighbor posts
+	 * Make Link to the nearest posts
 	 *
-	 * @param int $date unix Timestamp
+	 * @param int $date //unix Timestamp
 	 * @return array
 	 */
 	function neighborLog($date) {
@@ -342,7 +338,10 @@ class Log_Model {
 	}
 
 	/**
-	 * Randomly get a specified number of posts
+	 * Get Random Post
+	 *
+	 * @param int $num
+	 * @return array
 	 */
 	function getRandLog($num) {
         global $CACHE;
@@ -361,7 +360,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Get popular articles
+	 * Get Hot Posts
 	 */
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -376,7 +375,7 @@ class Log_Model {
 	}
 
 	/**
-	 * Handling post aliases to prevent duplicate aliases
+	 * Process Post alias, Prevent alias duplicated
 	 *
 	 * @param string $alias
 	 * @param array $logalias_cache
@@ -398,16 +397,18 @@ class Log_Model {
 	}
 
 	/**
-	 * Verify access to the encrypted post
+	 * Encrypted Post access authentication
 	 *
 	 * @param string $pwd
 	 * @param string $pwd2
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
-		global $lang;
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
+/*vot*/ $page_pass = lang('page_password_enter');
+/*vot*/ $submit_pass = lang('submit_password');
+/*vot*/ $back = lang('back_home');
 			echo <<<EOT
 <html>
 <head>
@@ -423,9 +424,9 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <body>
 <div class="main">
 <form action="" method="post">
-{$lang['blog_enter_password']}<br>
-<input type="password" name="logpwd" /><input type="submit" value="{$lang['enter']}.." />
-<br /><br /><a href="$url">&laquo;{$lang['back_home']}</a>
+{$page_pass}<br>
+<input type="password" name="logpwd" /><input type="submit" value="{$submit_pass}" />
+<br /><br /><a href="$url">{$back}</a>
 </form>
 </div>
 </body>

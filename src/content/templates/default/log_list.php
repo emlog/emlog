@@ -1,6 +1,6 @@
 <?php 
 /**
-* Blog post list
+ * Home Post List section
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
@@ -20,16 +20,16 @@ foreach($logs as $value):
 	<?php echo $value['log_description']; ?>
 	<p class="tag"><?php blog_tag($value['logid']); ?></p>
 	<p class="count">
-	<a href="<?php echo $value['log_url']; ?>#comments"><? echo $lang['number_of_comments']; ?> (<?php echo $value['comnum']; ?>)</a>
-	<a href="<?php echo $value['log_url']; ?>"><? echo $lang['views']; ?> (<?php echo $value['views']; ?>)</a>
+<!--vot--><a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?> (<?php echo $value['comnum']; ?>)</a>
+<!--vot--><a href="<?php echo $value['log_url']; ?>"><?=lang('_views')?> (<?php echo $value['views']; ?>)</a>
 	</p>
 	<div style="clear:both;"></div>
 <?php 
 endforeach;
 else:
 ?>
-	<h2><? echo $lang['not_found']; ?></h2>
-	<p><? echo $lang['search_no_results']; ?></p>
+<!--vot--><h2><?=lang('not_found')?></h2>
+<!--vot--><p><?=lang('sorry_no_results')?></p>
 <?php endif;?>
 
 <div id="pagenavi">

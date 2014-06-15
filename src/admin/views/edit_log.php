@@ -4,16 +4,16 @@ $isdraft = $hide == 'y' ? true : false;
 ?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <!--vot--><script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<div class=containertitle><b><?php if ($isdraft) :?><? echo $lang['draft_edit']; ?><?php else:?><? echo $lang['post_edit']; ?><?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
+<!--vot--><div class=containertitle><b><?php if ($isdraft) :?><?=lang('draft_edit')?><?php else:?><?=lang('post_edit')?><?php endif;?></b><span id="msg_2"></span></div><div id="msg"></div>
 <form action="save_log.php?action=edit" method="post" id="addlog" name="addlog">
 <div id="post">
 <div>
-    <label for="title" id="title_label"><? echo $lang['title'];?></label>
+<!--vot--><label for="title" id="title_label"><?=lang('enter_post_title')?></label>
     <input type="text" maxlength="200" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
 	<div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><? echo $lang['attachment_manager'];?></span>
+<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
 	    <?php doAction('adm_writelog_head'); ?>
 	    <span id="asmsg"></span>
 	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
@@ -30,7 +30,7 @@ $isdraft = $hide == 'y' ? true : false;
     <input name="tag" id="tag" maxlength="200" value="<?php echo $tagStr; ?>" />
 <!--vot--><span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
     <select name="sort" id="sort" style="width:130px;">
-        <option value="-1"><? echo $lang['category_choose']; ?>...</option>
+<!--vot--><option value="-1"><?=lang('category_select')?>...</option>
         <?php 
         foreach($sorts as $key=>$value):
         if ($value['pid'] != 0) {
@@ -51,7 +51,7 @@ $isdraft = $hide == 'y' ? true : false;
         endforeach;
         ?>
     </select>
-    <? echo $lang['posted_on']; ?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
+<!--vot--><?=lang('post_time')?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo gmdate('Y-m-d H:i:s', $date); ?>"/>
     <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
 </div>
 <div id="tagbox">
@@ -65,21 +65,21 @@ $isdraft = $hide == 'y' ? true : false;
     }
 ?>
 </div>
-<div class="show_advset" onclick="displayToggle('advset', 1);"><? echo $lang['advanced_options']; ?></div>
+<!--vot--><div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
 <div id="advset">
-<div><? echo $lang['article_summary']; ?>:</div>
+<!--vot--><div><?=lang('post_description')?>:</div>
 <div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px; border:#CCCCCC solid 1px;"><?php echo $excerpt; ?></textarea></div>
-<div><span id="alias_msg_hook"></span><? echo $lang['article_link_alias']; ?>: (<? echo $lang['link_alias_need_to']; ?> <a href="./seo.php" target="_blank"><? echo $lang['link_alias_enable']; ?></a>)</div>
+<!--vot--><div><span id="alias_msg_hook"></span><?=lang('post_alias')?>: (<?=lang('used_to_customize')?><a href="./seo.php" target="_blank"><?=lang('post_alias_enable')?></a>)</div>
 <div><input name="alias" id="alias" value="<?php echo $alias;?>"/></div>
 <div style="margin-top:3px;">
-	<? echo $lang['post_password']; ?>: <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
+<!--vot--><?=lang('post_access_password')?>: <input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-        <label for="top"><? echo $lang['post_pin']; ?></label>
+<!--vot--><label for="top"><?=lang('home_top')?></label>
 		<input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-        <label for="sortop"><? echo $lang['category_top']; ?></label>
+<!--vot--><label for="sortop"><?=lang('category_top')?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-        <label for="allow_remark"><? echo $lang['comments_allow']; ?></label>
+<!--vot--><label for="allow_remark"><?=lang('allow_comments')?></label>
     </span>
 </div>
 </div>
@@ -88,10 +88,10 @@ $isdraft = $hide == 'y' ? true : false;
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
     <input type="hidden" name="gid" value=<?php echo $logid; ?> />
     <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
-    <input type="submit" value="<? echo $lang['post_save_and_return'];?>" onclick="return checkform();" class="button" />
-    <input type="button" name="savedf" id="savedf" value="<? echo $lang['post_save_draft'];?>" onclick="autosave(2);" class="button" />
+<!--vot--><input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="button" />
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="button" />
     <?php if ($isdraft) :?>
-    <input type="submit" name="pubdf" id="pubdf" value="<? echo $lang['publish']; ?>" onclick="return checkform();" class="button" />
+<!--vot--><input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="button" />
     <?php endif;?>
 </div>
 </div>
