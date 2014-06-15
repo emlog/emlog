@@ -104,7 +104,7 @@ if ($action== 'edit_comment') {
 	$commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
 	$commentArray = $Comment_Model->getOneComment($commentId, FALSE);
 	if (!$commentArray) {
-		emMsg($lang['comment_not_exist'], './comment.php');
+/*vot*/		emMsg(lang('comment_not_exist'), './comment.php');
 	}
 	extract($commentArray);
 

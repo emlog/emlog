@@ -33,14 +33,14 @@ $lang = array(
  'file_size_exceeds_system'	=> 'File size exceeds the system limit ',//'文件大小超过系统 ',
  '_limit'			=> '',//' limit',//'限制',//LEAVE THIS EMPTY???
  'upload_failed_error_code'	=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
- 'file_type_not_supported'		=> 'This file type is not supported.',//'错误的文件类型',
- 'file_size_exceeds_'	=> 'File size exceeds the limit ',//'文件大小超出',
- '_of_limit'		=> '',//' limit',//'的限制',
+ 'file_type_not_supported'	=> 'This file type is not supported.',//'错误的文件类型',
+ 'file_size_exceeds_'		=> 'File size exceeds the limit ',//'文件大小超出',
+ '_of_limit'			=> '',//' limit',//'的限制',
  'upload_folder_create_error'	=> 'Failed to create file upload directory.',//'创建文件上传目录失败',
  'upload_folder_unwritable'	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
- '404_description'			=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
- 'prompt'		=> 'Prompt Message',//'提示信息',
- 'click_return'		=> '&laquo;Return back',//'&laquo;点击返回',
+ '404_description'		=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
+ 'prompt'			=> 'Prompt Message',//'提示信息',
+ 'click_return'			=> '&laquo;Return back',//'&laquo;点击返回',
 //[930] MUST BE THE SAME AS IN: /admin/views/js/emo.js
  'emoticons'	=> array(
 		'[Smile]'	=> '0.gif',
@@ -171,42 +171,43 @@ $lang = array(
 
 //---------------------------
 //content/templates/default/404.php
- '404_error'	=> 'Error - page not found.',//'错误提示-页面未找到',
+ '404_error'		=> 'Error - page not found.',//'错误提示-页面未找到',
  '404_description'	=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
  'click_return'		=> '&laquo;Return back',//'&laquo;点击返回',
 
 //---------------------------
 //content/templates/default/footer.php
- 'powered_by'	=> 'Powered by',
+ 'powered_by'		=> 'Powered by',
  'powered_by_emlog'	=> 'Powered by Emlog',//'采用emlog系统',
 
 //---------------------------
 //content/templates/default/module.php
-[46]// '_posts'			=> 'posts',//'篇文章',
-[65] 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
-[75]// 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
-[95]// 'view_images'		=> 'View images',//'查看图片',
-[99] 'more'			=> 'More &raquo;',//'更多&raquo;',
-[232] 'site_management'		=> 'Site management',//'管理站点',
-[233]// 'logout'		=> 'Logout',//'退出',
-[257] 'top_posts'		=> 'Top entries',//'置顶文章',
-[264]// 'edit'			=> 'Edit',//'编辑',
-[275]// 'category'		=> 'Category',//'分类',
-[284]// 'tags'			=> 'Tags',//'标签',
-[324]// 'comments'		=> 'Comments',//'评论',
-[338]// 'reply'			=> 'Reply',//'回复',
-[361]// 'reply'			=> 'Reply',//'回复',
-[373] 'cancel_reply'		=> 'Cancel reply',//'取消回复',
-[374]// 'comment_leave'		=> 'Leave a comment',//'发表评论',
-[380]// 'nickname'		=> 'Nicname',//'昵称',
-[384]// 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
-[388]// 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
-[392]// 'comment_leave'		=> 'Leave a comment',//'发表评论',
+// '_posts'			=> 'posts',//'篇文章',
+// 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
+// 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
+ 'view_image'		=> 'View image',//'查看图片',
+ 'more'			=> 'More &raquo;',//'更多&raquo;',
+ 'site_management'	=> 'Site management',//'管理站点',
+ 'logout'		=> 'Logout',//'退出',
+ 'top_posts'		=> 'Top entries',//'置顶文章',
+ 'cat_top_posts'	=> 'Category Top entries',//'分类置顶文章',
+// 'edit'		=> 'Edit',//'编辑',
+// 'category'		=> 'Category',//'分类',
+// 'tags'		=> 'Tags',//'标签',
+// 'comments'		=> 'Comments',//'评论',
+// 'reply'		=> 'Reply',//'回复',
+// 'reply'		=> 'Reply',//'回复',
+ 'cancel_reply'		=> 'Cancel reply',//'取消回复',
+// 'comment_leave'	=> 'Leave a comment',//'发表评论',
+// 'nickname'		=> 'Nicname',//'昵称',
+// 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
+// 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
+// 'comment_leave'	=> 'Leave a comment',//'发表评论',
 
 //---------------------------
 //content/templates/default/side.php
-[34] 'rss_feed'	=> 'RSS Subscription',//'RSS订阅',
-[34] 'feed_rss'	=> 'RSS Subscription',//'订阅Rss',
+ 'rss_feed'	=> 'RSS Subscription',//'RSS订阅',
+ 'feed_rss'	=> 'RSS Subscription',//'订阅Rss',
 
 
 );

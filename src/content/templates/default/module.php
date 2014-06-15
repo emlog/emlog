@@ -36,7 +36,6 @@ function widget_calendar($title){ ?>
 <?php
 //widget:Tags
 function widget_tag($title){
-	global $lang; 
 	global $CACHE;
 	$tag_cache = $CACHE->readCache('tags');?>
 	<li>
@@ -44,7 +43,7 @@ function widget_tag($title){
 	<ul id="blogtags">
 	<?php foreach($tag_cache as $value): ?>
 		<span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-		<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> <? echo $lang['blog_posts'];?>"><?php echo $value['tagname']; ?></a></span>
+<!--vot-->	<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> <?=lang('_posts')?>"><?php echo $value['tagname']; ?></a></span>
 	<?php endforeach; ?>
 	</ul>
 	</li>
@@ -84,7 +83,6 @@ function widget_sort($title){
 <?php
 //widget:Latest twitters
 function widget_twitter($title){
-	global $lang; 
 	global $CACHE; 
 	$newtws_cache = $CACHE->readCache('newtw');
 	$istwitter = Option::get('istwitter');
@@ -93,11 +91,11 @@ function widget_twitter($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-	<?php $img = empty($value['img']) ? "" : '<a title="' . $lang['image_view'] . '" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
+<!--vot-->	<?php $img = empty($value['img']) ? "" : '<a title="<?=lang('view_image')?>" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
 	<li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
-	<p><a href="<?php echo BLOG_URL . 't/'; ?>"><? echo $lang['more']; ?> &raquo;</a></p>
+<!--vot-->	<p><a href="<?php echo BLOG_URL . 't/'; ?>"><?=lang('more')?></a></p>
 	<?php endif;?>
 	</ul>
 	</li>
@@ -113,9 +111,6 @@ function widget_newcomm($title){
 	<ul id="newcomment">
 	<?php
 	foreach($com_cache as $value):
-	if(empty($value['page'])) {
-		$value['page'] = '';
-	}
 	$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 	?>
 	<li id="comment"><?php echo $value['name']; ?>
@@ -232,7 +227,6 @@ function widget_link($title){
 <?php
 //blog:Navigation
 function blog_navi(){
-	global $lang;
 	global $CACHE; 
 	$navi_cache = $CACHE->readCache('navi');
 	?>
@@ -246,8 +240,8 @@ function blog_navi(){
 
 		if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 			?>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><? echo $lang['admin_center']; ?></a></li>
-			<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><? echo $lang['logout']; ?></a></li>
+<!--vot-->		<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><?=lang('site_management')?></a></li>
+<!--vot-->		<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><?=lang('logout')?></a></li>
 			<?php 
 			continue;
 		endif;
@@ -281,19 +275,17 @@ function blog_navi(){
 <?php
 //blog:Top
 function topflg($top, $sortop='n', $sortid=null){
-	global $lang;
     if(blog_tool_ishome()) {
-       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"{$lang['article_top_home']}\" /> " : '';
+/*vot*/       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"".lang('top_posts')?>."\" /> " : '';
     } elseif($sortid){
-       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"{$lang['article_top_category']}\" /> " : '';
+/*vot*/       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"".lang('cat_top_posts')."\" /> " : '';
     }
 }
 ?>
 <?php
 //blog:Editor
 function editflg($logid,$author){
-	global $lang;
-	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.$lang['edit'].'</a>' : '';
+/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="'.BLOG_URL.'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">'.lang('edit').'</a>' : '';
 	echo $editflg;
 }
 ?>
@@ -350,11 +342,11 @@ function neighbor_log($neighborLog){
 <?php
 //blog:Comment List
 function blog_comments($comments){
-	global $lang; 
+    global $lang;
     extract($comments);
     if($commentStacks): ?>
 	<a name="comments"></a>
-	<p class="comment-header"><b><? echo $lang['comments'];?></b></p>
+<!--vot-->	<p class="comment-header"><b><?=lang('comments')?>:</b></p>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
@@ -380,7 +372,6 @@ function blog_comments($comments){
 <?php
 //blog:sub-comment list
 function blog_comments_children($comments, $children){
-	global $lang;
 	$isGravatar = Option::get('isgravatar');
 	foreach($children as $child):
 	$comment = $comments[$child];
@@ -392,7 +383,7 @@ function blog_comments_children($comments, $children){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['reply']; ?></a></div><?php endif; ?>
+<!--vot-->		<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']);?>
 	</div>
@@ -401,30 +392,29 @@ function blog_comments_children($comments, $children){
 <?php
 //blog:Post a comment form
 function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark){
-	global $lang;
 	if($allow_remark == 'y'): ?>
 	<div id="comment-place">
 	<div class="comment-post" id="comment-post">
-		<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><? echo $lang['cancel_reply']; ?></a></div>
-		<p class="comment-header"><b><? echo $lang['comment_add']; ?>: </b><a name="respond"></a></p>
+<!--vot-->	<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
+<!--vot-->		<p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
 		<form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
 			<input type="hidden" name="gid" value="<?php echo $logid; ?>" />
 			<?php if(ROLE == ROLE_VISITOR): ?>
 			<p>
 				<input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-				<label for="author"><small><? echo $lang['nickname'];?></small></label>
+<!--vot-->			<label for="author"><small><?=lang('nickname')?></small></label>
 			</p>
 			<p>
 				<input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
-				<label for="email"><small><? echo $lang['email_optional']; ?></small></label>
+<!--vot-->			<label for="email"><small><?=lang('email_optional')?></small></label>
 			</p>
 			<p>
 				<input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-				<label for="url"><small><? echo $lang['homepage_optional']; ?></small></label>
+<!--vot-->			<label for="url"><small><?=lang('homepage_optional')?></small></label>
 			</p>
 			<?php endif; ?>
 			<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-			<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<? echo $lang['comment_add']; ?>" tabindex="6" /></p>
+<!--vot-->		<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
 			<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
 		</form>
 	</div>

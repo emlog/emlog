@@ -113,7 +113,7 @@ $lang = array(
 [5] 'twitter_content'		=> 'Twitter content',//'微语内容',
 [7] 'image_upload_select'	=> 'Select an image to upload',//'选择要上传的图片',
 [9]// 'publish'		=> 'Publish',//'发布',
-[14]// 'view_images'	=> 'View images',//'查看图片',
+[14]// 'view_image'	=> 'View image',//'查看图片',
 [20]// 'delete'		=> 'Delete',//'删除',
 
 //---------------------------
