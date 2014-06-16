@@ -1,6 +1,6 @@
 <?php
 /**
- * Basic settings
+ * Basic Settings
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -21,9 +21,9 @@ if ($action == '') {
 			$styleInfo['style_file'] = $file;
 
 			if (!empty($author[1]) && !empty($url[1])) {
-				$styleInfo['style_author'] = '('.$lang['author'].': <a href="'.$url[1].'" target="_blank">'.$author[1].'</a>)';
+/*vot*/				$styleInfo['style_author'] = '('.lang('user').': <a href="'.$url[1].'" target="_blank">'.$author[1].'</a>)';
 			} elseif (!empty($author[1])) {
-				$styleInfo['style_author'] = '('.$lang['author'].': '.$author[1].')';
+/*vot*/				$styleInfo['style_author'] = '('.lang('user').': '.$author[1].')';
 			} else {
 				$styleInfo['style_author'] = '';
 			}

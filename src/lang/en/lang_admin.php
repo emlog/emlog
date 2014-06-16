@@ -60,6 +60,11 @@ $lang = array(
 [31] 'plugin_view'	=> 'View Plugin',//'查看插件',
 
 //---------------------------
+//admin/style.php
+// 'user'	=> 'User',//'作者',
+// 'users'	=> 'Users',//'作者',
+
+//---------------------------
 //admin/template.php
 [21] 'ok_for_emlog'		=> 'Suitable for emlog',//'适用于emlog',
 [24]// 'user'			=> 'User',//'作者'
