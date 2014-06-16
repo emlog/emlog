@@ -1,14 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b><? echo $lang['user_management'];?></b>
-<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['user_deleted_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_update'])):?><span class="actived"><? echo $lang['user_edited_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="actived"><? echo $lang['user_added_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['error_login'])):?><span class="error"><? echo $lang['user_name_empty'];?></span><?php endif;?>
-<?php if(isset($_GET['error_exist'])):?><span class="error"><? echo $lang['user_allready_exists'];?></span><?php endif;?>
-<?php if(isset($_GET['error_pwd_len'])):?><span class="error"><? echo $lang['password_short'];?></span><?php endif;?>
-<?php if(isset($_GET['error_pwd2'])):?><span class="error"><? echo $lang['password_not_equal'];?></span><?php endif;?>
-<?php if(isset($_GET['error_del_a'])):?><span class="error"><? echo $lang['founder_no_delete']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_del_b'])):?><span class="error"><? echo $lang['founder_no_edit']; ?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('user_management')?></b>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_update'])):?><span class="actived"><?=lang('user_modify_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="actived"><?=lang('user_add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_login'])):?><span class="error"><?=lang('user_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_exist'])):?><span class="error"><?=lang('user_name_exists')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd_len'])):?><span class="error"><?=lang('password_length_short')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd2'])):?><span class="error"><?=lang('passwords_not_equal')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_a'])):?><span class="error"><?=lang('founder_not_delete')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_b'])):?><span class="error"><?=lang('founder_not_edit')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -16,10 +16,10 @@
   	<thead>
       <tr>
         <th width="60"></th>
-        <th width="220"><b><? echo $lang['author'];?></b></th>
-        <th width="250"><b><? echo $lang['personal_description'];?></b></th>
-        <th width="240"><b><? echo $lang['email'];?></b></th>
-		<th width="30" class="tdcenter"><b><? echo $lang['posts'];?></b></th>
+<!--vot--><th width="220"><b><?=lang('user')?></b></th>
+<!--vot--><th width="250"><b><?=lang('description')?></b></th>
+<!--vot--><th width="240"><b><?=lang('email')?></b></th>
+<!--vot--><th width="30" class="tdcenter"><b><?=lang('posts')?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -32,14 +32,14 @@
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
 		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
-		<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? $lang['founder']:$lang['administrator'] : $lang['author']; ?>
-        <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo $lang['article_need_premod'];?>
+<!--vot-->	<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder'):lang('admin') : lang('user'); ?>
+<!--vot-->      <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit');?>
 		<span style="display:none; margin-left:8px;">
 		<?php if (UID != $val['uid']): ?>
-		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><? echo $lang['edit']; ?></a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a>
+<!--vot-->	<a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?=lang('edit')?></a> 
+<!--vot-->	<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
 		<?php else:?>
-		<a href="blogger.php"><? echo $lang['edit']; ?></a>
+<!--vot-->	<a href="blogger.php"><?=lang('edit')?></a>
 		<?php endif;?>
 		</span>
 		</td>
@@ -48,32 +48,32 @@
 		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="6"><? echo $lang['no_author_yet']; ?></td></tr>
+<!--vot--><tr><td class="tdcenter" colspan="6"><?=lang('no_authors_yet')?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
 </form>
-<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with']; ?> <?php echo $usernum; ?><? echo $lang['_users']; ?>)</div> 
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $usernum; ?><?=lang('_users')?>)</div> 
 <form action="user.php?action=new" method="post">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><? echo $lang['user_add_info'];?> &raquo;</a></div>
+<!--vot--><div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);"><?=lang('user_add')?>+</a></div>
 <div id="user_new" class="item_edit">
     <li>
 	<select name="role" id="role" class="input">
-		<option value="writer"><? echo $lang['author']; ?></option>
-		<option value="admin"><? echo $lang['administrator']; ?></option>
+<!--vot-->	<option value="writer"><?=lang('author_contributor')?></option>
+<!--vot-->	<option value="admin"><?=lang('admin')?></option>
 	</select>
 	</li>
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="input" /><? echo $lang['user_name']; ?></li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="input" /> <? echo $lang['password']; ?> <? echo $lang['password_length']; ?></li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="input" /> <? echo $lang['password_repeat']; ?></li>
+<!--vot--><li><input name="login" type="text" id="login" value="" style="width:180px;" class="input" /> <?=lang('user_name')?></li>
+<!--vot--><li><input name="password" type="password" id="password" value="" style="width:180px;" class="input" /> <?=lang('password_min_length')?></li>
+<!--vot--><li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="input" /> <?=lang('password_repeat')?></li>
 	<li id="ischeck">
 	<select name="ischeck" class="input">
-	        <option value="n"><? echo $lang['article_no_review']; ?></option>
-		<option value="y">$lang['article_to_review']</option>
+<!--vot-->	<option value="n"><?=lang('posts_not_need_audit')?></option>
+<!--vot-->	<option value="y"><?=lang('posts_need_audit')?></option>
 	</select>
 	</li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<li><input type="submit" name="" value="<? echo $lang['user_add']; ?>" class="button" /></li>
+<!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="button" /></li>
 </div>
 </form>
 <script>
