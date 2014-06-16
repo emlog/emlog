@@ -236,7 +236,7 @@ if ($action == 'reply') {
 	include View::getView('footer');
 	View::output();
 }
-// Twitters
+// Twitter
 if ($action == 'tw' && Option::get('istwitter') == 'y') {
     $Twitter_Model = new Twitter_Model();
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

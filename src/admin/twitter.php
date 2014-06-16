@@ -1,6 +1,6 @@
 <?php
 /**
- * Whisper
+ * Twitter
  * @copyright (c) Emlog All Rights Reserved
  */
 
