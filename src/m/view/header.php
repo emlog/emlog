@@ -33,14 +33,14 @@ textarea {border: 1px solid #A5ABB3;color: #303C46;}
 <div id="blogname"><a href="./"><?php echo Option::get('blogname'); ?></a></div>
 </div>
 <div id="navi">
-<a href="./"><? echo $lang['home']; ?></a>
+<!--vot--><a href="./"><?=lang('home')?></a>
 <?php if(Option::get('istwitter') == 'y'): ?>
-<a href="./?action=tw"><? echo $lang['twitter']; ?></a>
+<!--vot--><a href="./?action=tw"><?=lang('twitters')?></a>
 <?php endif;?>
 <?php if(ISLOGIN === true): ?>
-<a href="./?action=write"><? echo $lang['article_write']; ?></a> 
-<a href="./?action=logout"><? echo $lang['logout']; ?></a>
+<!--vot--><a href="./?action=write"><?=lang('post_write')?></a> 
+<!--vot--><a href="./?action=logout"><?=lang('logout')?></a>
 <?php else:?>
-<a href="<?php echo BLOG_URL; ?>m/?action=login">$lang['login']</a>
+<!--vot--><a href="<?php echo BLOG_URL; ?>m/?action=login"><?=lang('login')?></a>
 <?php endif;?>
 </div>

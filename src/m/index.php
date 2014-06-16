@@ -19,7 +19,7 @@ $logid = isset ($_GET['post']) ? intval ($_GET['post']) : '';
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if (Option::get('ismobile') == 'n') {
-	emMsg($lang['mobile_disabled'], BLOG_URL);
+/*vot*/	emMsg(lang('mobile_version_unavailable'), BLOG_URL);
 }
 
 $navi_cache = $CACHE->readCache('navi');
@@ -48,7 +48,7 @@ if (!empty ($logid)) {
 
 	$logData = $Log_Model->getOneLogForHome($logid);
 	if ($logData === false) {
-		mMsg ($lang['entry_not_exists'], './');
+/*vot*/		mMsg (lang('blog_entry_not_exists'), './');
 	}
 	extract($logData);
 
@@ -164,23 +164,23 @@ if ($action == 'addcom') {
     doAction('comment_post');
 
 	if($Comment_Model->isLogCanComment($blogId) === false){
-        mMsg($lang['comments_disabled'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_comment_disabled'), $targetBlogUrl);
     } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true){
-        mMsg($lang['comment_allready_exists'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_content_exists'), $targetBlogUrl);
     } elseif ($Comment_Model->isCommentTooFast() === true) {
-		mMsg($lang['comment_too_fast'], $targetBlogUrl);
-	} elseif (mb_strlen($name) > 20 || mb_strlen($name) == 0){
-        mMsg($lang['comment_name_invalid'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_flood_control'), $targetBlogUrl);
+	} elseif (strlen($name) > 20 || strlen($name) == 0){
+/*vot*/		mMsg(lang('comment_error_name_invalid'), $targetBlogUrl);
     } elseif ($mail != '' && !checkMail($mail)) {
-        mMsg($lang['comment_email_invalid'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_email_invalid'), $targetBlogUrl);
     } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false){
-        mMsg($lang['comment_admin_restricted'], $targetBlogUrl);
-    } elseif (mb_strlen($content) == '' || mb_strlen($content) > 2000) {
-        mMsg($lang['comment_invalid'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_other_user'), $targetBlogUrl);
+    } elseif (strlen($content) == '' || strlen($content) > 2000) {
+/*vot*/		mMsg(lang('comment_error_content_invalid'), $targetBlogUrl);
     } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
-		mMsg($lang['comment_chinese'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_national_chars'), $targetBlogUrl);
 	}elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
-        mMsg($lang['comment_captcha_invalid'], $targetBlogUrl);
+/*vot*/		mMsg(lang('comment_error_captcha_invalid'), $targetBlogUrl);
     } else {
 		$DB = Database::getInstance();
         $ipaddr = getIp();
@@ -188,7 +188,7 @@ if ($action == 'addcom') {
 
 		if($pid != 0) {
 			$comment = $Comment_Model->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . ':' . $content;
+/*vot*/			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
@@ -208,7 +208,7 @@ if ($action == 'addcom') {
 		} else {
 		    $CACHE->updateCache('sta');
 		    doAction('comment_saved', $cid);
-		    mMsg($lang['comment_posted_premod'], $targetBlogUrl);
+/*vot*/			mMsg(lang('comment_wait_approve'), $targetBlogUrl);
 		}
     }
 }
@@ -227,7 +227,7 @@ if ($action == 'reply') {
 	$cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
 	$commentArray = $Comment_Model->getOneComment($cid);
 	if(!$commentArray) {
-		mMsg($lang['parameter_error'], './');
+/*vot*/		mMsg(lang('comment_parameter_error'), './');
 	}
 	extract($commentArray);
 	$verifyCode = ISLOGIN == false && Option::get('comment_code') == 'y' ? "<img src=\"../include/lib/checkcode.php\" /><br /><input name=\"imgcode\" type=\"text\" />" : '';
@@ -258,7 +258,7 @@ if (ROLE === ROLE_ADMIN && $action == 't') {
     $attach = isset($_FILES['img']) ? $_FILES['img'] : '';
 
     if ($attach['tmp_name'] && !$t) {
-    	$t = $lang['image_share'];
+/*vot*/	$t = lang('comment_parameter_error');
     }
 
     if (!$t){
@@ -299,7 +299,7 @@ if (ROLE === ROLE_ADMIN && $action == 'delt') {
 	emDirect("./?action=tw");
 }
 if ($action == 'login') {
-	Option::get('login_code') == 'y' ? $ckcode = "<span>{$lang['verification_code']}</span>
+	Option::get('login_code') == 'y' ? $ckcode = "<span>".lang('captcha')."</span>
     <div class=\"val\"><img src=\"../include/lib/checkcode.php\" /><br />
 	<input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
     </div>" : $ckcode = '';
