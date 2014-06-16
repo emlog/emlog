@@ -4,60 +4,61 @@ $lang = array(
 
 //---------------------------
 //admin/admin_log.php
-[56] 'drafts'		=> 'Drafts',//'草稿箱',
-[60] 'post_manager'	=> 'Post Manager',//'文章管理',
-[166] 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[178]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-[187]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+ 'drafts'		=> 'Drafts',//'草稿箱',
+ 'post_manage'		=> 'Post Manager',//'文章管理',
+ 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //admin/attachment.php
-[130] 'attachment_delete_error'		=> 'Attachment delete failed!',//'删除附件失败!',
-[137]// 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
+ 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
+// 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
 
 //---------------------------
 //admin/configure.php
-[88] 'verification_code_not_supported' => 'Open verification Code failed! Server does not support this feature.',//'开启登录验证码失败!服务器不支持该功能',
-[91] 'verification_code_comment_not_supported' =>'Open verification code for comments failed! Server does not support this feature',//'开启评论验证码失败!服务器不支持该功能',
+ 'verification_code_not_supported' => 'Open verification Code failed! Server does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
+ 'verification_code_comment_not_supported' =>'Open verification code for comments failed! Server does not support the GD graphics library.',//'开启评论验证码失败!服务器空间不支持GD图形库',
 
 //---------------------------
 //admin/data.php
-[72] 'backup_directory_not_writable'	=> 'Backup failed. Backup directory (content/backup) is not writable.',//'备份失败。备份目录(content/backup)不可写',
-[77] 'backup_create_file_error'		=> 'Create a backup file failed. Backup directory (content/backup) is not writable.',//'创建备份文件失败。备份目录(content/backup)不可写',
-[81] 'backup_empty' 			=> 'Nothing to backup. Database tables have no any content.',//'数据表没有任何内容',
-[90] 'file_not_exists'			=> 'File does not exist',//'文件不存在',
-[94] 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
-[107] 'info_illegal'			=> 'Submitted information is illegal',//'非法提交的信息',
-[110] 'attachment_exceed_system_limit'	=> 'Attachment size exceeds the system limit ',//'附件大小超过系统 ',//+end space
-[110]// '_limit'				=> ' limit',//'限制',//LEAVE THIS EMPTY???
-[112] 'upload_failed_code'		=> 'Upload failed. Error code',//'上传文件失败,错误码',
-[130] 'import_only_emlog_no_change'	=> 'You can only import emlog backup archive, and the archive file name can not be changed!',//'只能导入emlog备份的压缩包，且不能修改压缩包文件名！',
-[133]// 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
-[160] 'import_failed_not_read'		=> 'Import failed! Can not read the file',//'导入失败！读取文件失败',
-[171] 'import_failed_not_emlog'		=> 'Import failed! The backup file is not the emlog backup file!',//'导入失败！该备份文件不是 emlog的备份文件!',
-[174] 'import_failed_not_emlog_ver'	=> 'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',//'导入失败！该备份文件不是emlog ' . Option::EMLOG_VERSION . '  生成的备份!',
-[177] 'import_failed_bad_prefix'	=> 'Import failed! The database backup file prefix does not match the current system database prefix ',//'导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配 ',
+ 'backup_directory_not_writable'	=> 'Backup failed. Backup directory (content/backup) is not writable.',//'备份失败。备份目录(content/backup)不可写',
+ 'backup_create_file_error'	=> 'Create a backup file failed. Backup directory (content/backup) is not writable.',//'创建备份文件失败。备份目录(content/backup)不可写',
+ 'backup_empty' 		=> 'Nothing to backup. Database tables have no any content.',//'数据表没有任何内容',
+ 'file_not_exists'		=> 'File does not exist',//'文件不存在',
+ 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
+ 'info_illegal'			=> 'Submitted information is illegal',//'非法提交的信息',
+ 'attachment_exceed_system_limit'	=> 'Attachment size exceeds the system limit ',//'附件大小超过系统 ',//+end space
+// '_limit'			=> ' ',//' limit',//'限制',//LEAVE THIS EMPTY???
+ 'upload_failed_code'		=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
+ 'import_only_emlog_no_change'	=> 'You can only import emlog backup archive, and the archive file name can not be changed!',//'只能导入emlog备份的压缩包，且不能修改压缩包文件名！',
+// 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
+ 'import_failed_not_read'	=> 'Import failed! Can not read the file',//'导入失败！读取文件失败',
+ 'import_failed_not_emlog'	=> 'Import failed! The backup file is not the emlog backup file!',//'导入失败！该备份文件不是 emlog的备份文件!',
+ 'import_failed_not_emlog_ver'	=> 'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',//'导入失败！该备份文件不是emlog ' . Option::EMLOG_VERSION . '  生成的备份!',
+ 'import_failed_bad_prefix'	=> 'Import failed! The database backup file prefix does not match the current system database prefix ',//'导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配 ',
 
 //---------------------------
 //admin/globals.php
-[44]// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 
 //---------------------------
 //admin/index.php
-[25] 'supported'	=> 'Supported',//'支持',
-[28] 'not_supported'	=> 'NOT supported',//'不支持',
-[94] 'phpinfo_disabled'	=> 'phpinfo function is disabled!',//'phpinfo函数被禁用!',
+ 'supported'		=> 'Supported',//'支持',
+ 'not_supported'	=> 'NOT supported',//'不支持',
+ 'phpinfo_disabled'	=> 'phpinfo function is disabled!',//'phpinfo函数被禁用!',
 
 //---------------------------
 //admin/plugin.php
-[95] 'plugin_upload_error'	=> 'Plugin upload failed',//'插件上传失败',
+ 'plugin_upload_error'	=> 'Plugin upload failed',//'插件上传失败',
 
 //---------------------------
 //admin/store.php
-[20] 'template'		=> 'Template',//'模板',
-[21] 'template_view'	=> 'View template',//'查看模板',
-[30] 'plugins'		=> 'Plug-ins',//'插件',
-[31] 'plugin_view'	=> 'View Plugin',//'查看插件',
+ 'template'		=> 'Template',//'模板',
+ 'template_view'	=> 'View template',//'查看模板',
+ 'plugin'		=> 'Plugin',//'插件',
+ 'plugins'		=> 'Plug-ins',//'插件',
+ 'plugin_view'		=> 'View Plugin',//'查看插件',
 
 //---------------------------
 //admin/style.php
@@ -66,47 +67,49 @@ $lang = array(
 
 //---------------------------
 //admin/template.php
-[21] 'ok_for_emlog'		=> 'Suitable for emlog',//'适用于emlog',
-[24]// 'user'			=> 'User',//'作者'
-[24]// 'user'			=> 'User',//'作者',
-[205] 'template_upload_failed'	=> 'Template upload failed',//'模板上传失败',
+ 'ok_for_emlog'		=> 'Suitable for emlog: ',//'适用于emlog: ',
+// 'user'		=> 'User',//'作者'
+// 'user'		=> 'User',//'作者',
+ 'template_upload_failed'	=> 'Template upload failed',//'模板上传失败',
 
 //---------------------------
 //admin/views/add_page.php
-[4] 'add_page'			=> 'Add page',//'新建页面',
-[9] 'page_title_info'		=> 'Enter the page title',//'输入页面标题',
-[15]// 'upload_insert'		=> 'Insert upload',//'上传插入',
-[27] 'link_alias'		=> 'Link Alias',//'链接别名',
-[27] 'link_alias_info'		=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
-[27] 'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
-[32] 'page_enable_comments'	=> 'Page accepted comments',//'页面接受评论'
-[38] 'page_publish'		=> 'Publish Page',//'发布页面',
-[39] 'save'			=> 'Save',//'保存',
+ 'add_page'		=> 'Add page',//'新建页面',
+ 'page_title_info'	=> 'Enter the page title',//'输入页面标题',
+// 'upload_insert'	=> 'Insert upload',//'上传插入',
+ 'link_alias'		=> 'Link Alias',//'链接别名',
+ 'link_alias_info'	=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
+ 'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
+ 'page_template'	=> 'Page template: ',//'页面模板：',
+ 'page_template_info'	=> '(For custom page template, use the corresponding .php file under the template directory)',//'（用于自定义页面模板，对应模板目录下.php文件）',
+ 'page_enable_comments'	=> 'Page accepted comments',//'页面接受评论'
+ 'page_publish'		=> 'Publish Page',//'发布页面',
+ 'save'			=> 'Save',//'保存',
 
 //---------------------------
 //admin/views/admin_page.php
-[2] 'page_management'	=> 'Page management',//'页面管理',
-[3] 'page_deleted_ok'	=> 'Page has been removed successfully',//'删除页面成功',
-[4] 'page_published_ok'	=> 'Page has been published successfully',//'发布页面成功',
-[5] 'page_disabled_ok'	=> 'Page has been disabled successfully',//'禁用页面成功',
-[6] 'page_saved_ok'	=> 'Page has been saved successfully',//'页面保存成功',
-[13]// 'title'		=> 'Title',//'标题',
-[14]// 'comments'	=> 'Comments',//'评论',
-[15]// 'time'		=> 'Date',//'时间',
-[27]// 'draft'		=> 'Draft',//'草稿',
-[28] 'page_view'	=> 'View page',//'查看页面',
-[35]// 'attachment'	=> 'Attachment',//'附件',
-[41] 'no_pages'		=> 'No pages',//'还没有页面',
-[48]// 'select_all'	=> 'Select all',//'全选',
-[48]// 'selected_items'	=> 'Selected items',//'选中项',
-[49]// 'delete'		=> 'Delete',//'删除',
-[50] 'make_draft'	=> 'Convert to draft',//'转为草稿',
-[51]// 'publish'	=> 'Publish',//'发布',
-[53]// 'add_page'	=> 'Add page',//'新建页面',
-[54]// 'have'		=> 'Have',//'有',
-[54] '_pages'		=> ' pages',//'个页面',
-[66] 'select_page_to_operate'	=> 'Please, select the page to operate',//'请选择要操作的页面',
-[68] 'sure_delete_selected_pages'	=> 'Are you sure you want to delete selected pages?',//'你确定要删除所选页面吗？',
+ 'page_management'	=> 'Page management',//'页面管理',
+ 'page_deleted_ok'	=> 'Page has been removed successfully',//'删除页面成功',
+ 'page_published_ok'	=> 'Page has been published successfully',//'发布页面成功',
+ 'page_disabled_ok'	=> 'Page has been disabled successfully',//'禁用页面成功',
+ 'page_saved_ok'	=> 'Page has been saved successfully',//'页面保存成功',
+// 'title'		=> 'Title',//'标题',
+// 'comments'		=> 'Comments',//'评论',
+// 'time'		=> 'Date',//'时间',
+// 'draft'		=> 'Draft',//'草稿',
+ 'page_view'		=> 'View page',//'查看页面',
+// 'attachments'	=> 'Attachments',//'附件',
+ 'no_pages'		=> 'No pages',//'还没有页面',
+// 'select_all'		=> 'Select all',//'全选',
+// 'selected_items'	=> 'Selected items',//'选中项',
+// 'delete'		=> 'Delete',//'删除',
+ 'make_draft'		=> 'Convert to draft',//'转为草稿',
+// 'publish'		=> 'Publish',//'发布',
+// 'add_page'		=> 'Add page',//'新建页面',
+// 'have'		=> 'Have ',//'有',
+ '_pages'		=> ' pages',//'个页面',
+ 'select_page_to_operate'	=> 'Please, select the page to operate',//'请选择要操作的页面',
+ 'sure_delete_selected_pages'	=> 'Are you sure you want to delete selected pages?',//'你确定要删除所选页面吗？',
 
 //---------------------------
 //admin/views/attlib.php
@@ -285,7 +288,7 @@ $lang = array(
 [82] 'user'			=> 'User',//'用户',
 [83] 'data'			=> 'Data',//'数据',
 [84]// 'plugins'		=> 'Plug-ins',//'插件',
-[85]// 'template'		=> 'Template',//'模板',
+// 'template'		=> 'Template',//'模板',
 [86] 'app_center'		=> 'App center',//'应用中心',
 [88] 'extensions'		=> 'Extensions',//'扩展功能',
 [102]// '<!--Sidebar folded-->',//'<!--边栏折叠-->'

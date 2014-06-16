@@ -30,7 +30,7 @@ if ($action == 'active') {
 	}
 }
 
-//Deactivate
+//Disable
 if ($action == 'inactive') {
     LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -61,7 +61,7 @@ if ($action == 'setting') {
 	}
 }
 
-//Install plugin
+//Install plug-in
 if ($action == 'install') {
 	include View::getView('header');
 	require_once View::getView('plugin_install');
@@ -69,7 +69,7 @@ if ($action == 'install') {
 	View::output();
 }
 
-//Remove plugin
+//Delete Plugin
 if ($action == 'del') {
     LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -83,7 +83,7 @@ if ($action == 'del') {
 	}
 }
 
-//Upload plugin as zip archive
+//Upload zipped plugin
 if ($action == 'upload_zip') {
     LoginAuth::checkToken();
 	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
@@ -92,7 +92,7 @@ if ($action == 'upload_zip') {
 		emDirect("./plugin.php?action=install&error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-		emMsg($lang['plugin_upload_failed']);
+/*vot*/		emMsg(lang('plugin_upload_error'));
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./plugin.php?action=install&error_a=1");

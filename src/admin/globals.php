@@ -6,8 +6,8 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//Background current template path
-define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official service host
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//AdminCP current template path
+define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official Service Domain
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
@@ -33,7 +33,6 @@ if ($action == 'login') {
 		LoginAuth::loginPage($loginAuthRet);
 	}
 }
-
 //Logout
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
@@ -46,5 +45,5 @@ if (ISLOGIN === false) {
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log'))) {
-	emMsg($lang['access_disabled'],'./');
+/*vot*/	emMsg(lang('no_permission'),'./');
 }

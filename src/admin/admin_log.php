@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 
-//Published/Drafts posts management page
+//Show Posts (draft) management page
 if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$User_Model = new User_Model();
@@ -53,11 +53,11 @@ if ($action == '') {
 	if ($pid == 'draft') {
 		$hide_state = 'y';
 		$sorturl = '&pid=draft';
-		$pwd = $lang['drafts'];
+/*vot*/		$pwd = lang('drafts');
 	} else{
 		$hide_state = 'n';
 		$sorturl = '';
-		$pwd = $lang['published'];
+/*vot*/		$pwd = lang('post_manage');
 	}
 
 	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
@@ -163,7 +163,7 @@ if ($action == 'operate_log') {
 		case 'change_author':
 			if (ROLE != ROLE_ADMIN)
 			{
-				emMsg($lang['access_disabled'],'./');
+/*vot*/				emMsg(lang('no_permission'),'./');
 			}
 			foreach ($logs as $val)
 			{
@@ -175,7 +175,7 @@ if ($action == 'operate_log') {
         case 'check':
             if (ROLE != ROLE_ADMIN)
 			{
-				emMsg($lang['access_disabled'],'./');
+/*vot*/				emMsg(lang('no_permission'),'./');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
@@ -184,7 +184,7 @@ if ($action == 'operate_log') {
         case 'uncheck':
             if (ROLE != ROLE_ADMIN)
 			{
-				emMsg($lang['access_disabled'],'./');
+/*vot*/				emMsg(lang('no_permission'),'./');
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();

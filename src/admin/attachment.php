@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $DB = Database::getInstance();
 
-//Show Upload Form
+//Display Upload Form
 if ($action == 'selectFile') {
 	$attachnum = 0;
 	$logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
@@ -20,7 +20,6 @@ if ($action == 'selectFile') {
 		$attachnum = (int)$row['attnum'];
 	}
 	$maxsize = changeFileSize(Option::getAttMaxSize());
-
 	//Allowed attachment type
 	$att_type_str = '';
     $att_type_for_muti = '';
@@ -77,7 +76,7 @@ if ($action == 'upload_multi') {
 			$isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
 			$attach['name'] = Database::getInstance()->escape_string($attach['name']);
 			$file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
-			//Write attachment information
+			// Write additional information
 			$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
 			$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
 			$DB->query($query);
@@ -130,14 +129,14 @@ if ($action == 'del_attach') {
 	$attach = $DB->fetch_array($query);
 	$logid = $attach['blogid'];
 	if (file_exists($attach['filepath'])) {
-		@unlink($attach['filepath']) or emMsg($lang['attachment_delete_error']);
+/*vot*/		@unlink($attach['filepath']) or emMsg(lang('attachment_delete_error'));
 	}
 
 	$query = $DB->query("SELECT * FROM ".DB_PREFIX."attachment WHERE thumfor = ".$attach['aid']);
 	$thum_attach = $DB->fetch_array($query);
 	if ($thum_attach) {
 		if (file_exists($thum_attach['filepath'])) {
-			@unlink($thum_attach['filepath']) or emMsg($lang['attachment_delete_error']);
+/*vot*/			@unlink($thum_attach['filepath']) or emMsg(lang('attachment_delete_error'));
 		}
 		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
 	}
@@ -147,7 +146,7 @@ if ($action == 'del_attach') {
 	emDirect("attachment.php?action=attlib&logid=$logid");
 }
 
-//Twitter image upload
+//Twitter upload picture
 if ($action == 'upload_tw_img') {
 	$attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
 	if ($attach) {
@@ -168,7 +167,7 @@ if ($action == 'upload_tw_img') {
 	exit;
 }
 
-//Twitter image deletion
+//Twitter delete picture
 if ($action == 'del_tw_img') {
 	$filepath = isset($_GET['filepath']) ? $_GET['filepath'] : '';
 	if ($filepath && file_exists($filepath)) {

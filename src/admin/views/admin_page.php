@@ -1,19 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b><? echo $lang['page_management'];?></b>
-<?php if(isset($_GET['active_del'])):?><span class="actived"><? echo $lang['page_deleted_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_hide_n'])):?><span class="actived"><? echo $lang['page_published_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_hide_y'])):?><span class="actived"><? echo $lang['page_unpublished_ok'];?></span><?php endif;?>
-<?php if(isset($_GET['active_pubpage'])):?><span class="actived"><? echo $lang['post_saved_ok']; ?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('page_management')?></b>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('page_deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_hide_n'])):?><span class="actived"><?=lang('page_published_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_hide_y'])):?><span class="actived"><?=lang('page_disabled_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_pubpage'])):?><span class="actived"><?=lang('page_saved_ok')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
   <table width="100%" id="adm_comment_list" class="item_list">
   	<thead>
       <tr>
-        <th width="461" colspan="2"><b><? echo $lang['title']; ?></b></th>
-        <th width="140"><b><? echo $lang['template']; ?></b></th>
-        <th width="50" class="tdcenter"><b><? echo $lang['comments']; ?></b></th>
-        <th width="140"><b><? echo $lang['time'];?></b></th>
+<!--vot--><th width="461" colspan="2"><b><?=lang('title')?></b></th>
+<!--vot--><th width="140"><b><?=lang('template')?></b></th>
+<!--vot--><th width="50" class="tdcenter"><b><?=lang('comments')?></b></th>
+<!--vot--><th width="140"><b><?=lang('time')?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -24,23 +24,23 @@
 	{
 		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 	}
-	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red"> - '.$lang['draft'].'</font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.$lang['page_new_window'].'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+/*vot*/	$isHide = $value['hide'] == 'y' ? 
+	'<font color="red"> - <?=lang('draft')?></font>' : 
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="<?=lang('page_view')?>"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
         <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
    		<?php echo $isHide; ?>    
-		<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<? echo $lang['attachments']; ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+<!--vot-->	<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
         <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="5"><? echo $lang['no_pages_yet']; ?></td></tr>
+<!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('no_pages')?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
@@ -48,13 +48,13 @@
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">
-<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do'];?>:
-<a href="javascript:pageact('del');" class="care"><? echo $lang['remove'];?></a> | 
-<a href="javascript:pageact('hide');"><? echo $lang['hide'];?></a> | 
-<a href="javascript:pageact('pub');"><? echo $lang['publish'];?></a>
+<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
+<!--vot--><a href="javascript:pageact('del');" class="care"><?=lang('delete')?></a> | 
+<!--vot--><a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> | 
+<!--vot--><a href="javascript:pageact('pub');"><?=lang('publish')?></a>
 </div>
-<div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new"><? echo $lang['page_add']; ?>+</a></div>
-<div class="page"><?php echo $pageurl; ?> (<? echo $lang['with'];?> <?php echo $pageNum; ?><? echo $lang['_pages']; ?>)</div>
+<!--vot--><div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new"><?=lang('add_page')?>+</a></div>
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $pageNum; ?><?=lang('_pages')?>)</div>
 <script>
 $(document).ready(function(){
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
@@ -66,9 +66,9 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function pageact(act){
 	if (getChecked('ids') == false) {
-		alert(l_page_select);
+/*vot*/		alert('<?=lang('select_page_to_operate')?>');
 		return;}
-	if(act == 'del' && !confirm(l_sure_delete_page)){return;}
+/*vot*/	if(act == 'del' && !confirm('<?=lang('sure_delete_selected_pages')?>')){return;}
 	$("#operate").val(act);
 	$("#form_page").submit();
 }

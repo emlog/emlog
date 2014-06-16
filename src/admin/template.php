@@ -18,10 +18,10 @@ if ($action == '') {
 	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
 	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
 	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-	$tplForEm = !empty($tplForEmlog[1]) ? $lang['applicable_for_emlog'] . $tplForEmlog[1] : '';
+/*vot*/	$tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
 
 	if (isset($tplAuthor[1])) {
-		$tplAuthor = !empty($tplUrl[1]) ? $lang['author'].": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : $lang['author'].": {$tplAuthor[1]}";
+/*vot*/		$tplAuthor = !empty($tplUrl[1]) ? lang('user').": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user').": {$tplAuthor[1]}";
 	} else{
 		$tplAuthor = '';
 	}
@@ -50,7 +50,7 @@ if ($action == '') {
 	View::output();
 }
 
-//Use template
+//Using a template
 if ($action == 'usetpl')
 {
     LoginAuth::checkToken();
@@ -63,7 +63,7 @@ if ($action == 'usetpl')
 	emDirect("./template.php?activated=1");
 }
 
-//Blog post saved successfully
+//Remove Template
 if ($action == 'del')
 {
     LoginAuth::checkToken();
@@ -76,7 +76,7 @@ if ($action == 'del')
 	}
 }
 
-//Customize the top image page
+//Custom top picture page
 if ($action == 'custom-top')
 {
 	$topimg = Option::get('topimg');
@@ -101,7 +101,7 @@ if ($action == 'custom-top')
 	View::output();
 }
 
-//Use top image
+//Use the top picture
 if ($action == 'update_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
@@ -111,7 +111,7 @@ if ($action == 'update_top')
 	emDirect("./template.php?action=custom-top&activated=1");
 }
 
-//Delete custom top image
+//Delete a custom top pictures
 if ($action == 'del_top')
 {
 	$top = isset($_GET['top']) ? addslashes($_GET['top']) : '';
@@ -132,7 +132,7 @@ if ($action == 'del_top')
 	emDirect("./template.php?action=custom-top&active_del=1");
 }
 
-//Upload top image
+//Upload Top picture
 if ($action == 'upload_top') {
 	$photo_type = array('jpg', 'jpeg', 'png');
 	$topimg = '';
@@ -152,7 +152,7 @@ if ($action == 'upload_top') {
 	View::output();
 }
 
-//Crop image
+//Crop Image
 if ($action == 'crop') {
 	$x1 = isset($_POST['x1']) ? intval($_POST['x1']) : 0;
 	$y1 = isset($_POST['y1']) ? intval($_POST['y1']) : 140;
@@ -196,7 +196,7 @@ if ($action == 'install')
 	View::output();
 }
 
-//Upload zip template
+//Upload zip Template
 if ($action == 'upload_zip') {
     LoginAuth::checkToken();
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
@@ -205,7 +205,7 @@ if ($action == 'upload_zip') {
 		emDirect("./template.php?action=install&error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-		emMsg($lang['template_upload_failed']);
+/*vot*/		emMsg(lang('template_upload_failed'));
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?action=install&error_a=1");
