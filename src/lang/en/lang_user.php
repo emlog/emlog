@@ -15,7 +15,7 @@ $lang = array(
 //admin/views/blogger.php
  'basic_settings'		=> 'Basic Settings',//'基本设置',
  'seo_settings'			=> 'SEO Settings',//'SEO设置',
- 'backround_style'		=> 'Background style',//'后台风格',
+ 'background_style'		=> 'Background style',//'后台风格',
  'personal_settings'		=> 'Personal Settings',//'个人设置',
 // 'personal_settings'		=> 'Personal Settings',//'个人设置',
  'personal_data_modified_ok'	=> 'Personal data modified successfully',//'个人资料修改成功',

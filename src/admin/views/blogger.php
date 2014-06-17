@@ -3,7 +3,7 @@
 <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><a class="navi1" href="./configure.php"><?=lang('basic_settings')?></a>
 <!--vot--><a class="navi4" href="./seo.php"><?=lang('seo_settings')?></a>
-<!--vot--><a class="navi4" href="./style.php"><?=lang('backround_style')?></a>
+<!--vot--><a class="navi4" href="./style.php"><?=lang('background_style')?></a>
 <!--vot--><a class="navi2" href="./blogger.php"><?=lang('personal_settings')?></a>
 <?php else:?>
 <!--vot--><a class="navi3" href="./blogger.php"><?=lang('personal_settings')?></a>

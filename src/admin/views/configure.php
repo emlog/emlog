@@ -1,65 +1,66 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
-<a class="navi3" href="./configure.php"><? echo $lang['base_settings']; ?></a>
-<a class="navi4" href="./seo.php"><? echo $lang['seo_settings']; ?></a>
-<a class="navi4" href="./style.php"><? echo $lang['backstage_style']; ?></a>
-<a class="navi4" href="./blogger.php"><? echo $lang['personal_data']; ?></a>
-<?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['settings_saved_ok']; ?></span><?php endif;?>
+<!--vot--><a class="navi3" href="./configure.php"><?=lang('basic_settings')?></a>
+<!--vot--><a class="navi4" href="./seo.php"><?=lang('seo_settings')?></a>
+<!--vot--><a class="navi4" href="./style.php"><?=lang('background_style')?></a>
+<!--vot--><a class="navi4" href="./blogger.php"><?=lang('personal_settings')?></a>
+<!--vot--><?php if(isset($_GET['activated'])):?><span class="actived"><?=lang('settings_saved_ok')?></span><?php endif;?>
 </div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td width="18%" align="right"><? echo $lang['blog_name'];?>:</td>
+<!--vot--><td width="18%" align="right"><?=lang('site_title')?>:</td>
         <td width="82%"><input maxlength="200" style="width:390px;" class="input" value="<?php echo $blogname; ?>" name="blogname" /></td>
       </tr>
       <tr>
-        <td align="right" valign="top"><? echo $lang['blog_description'];?>:</td>
+<!--vot--><td align="right" valign="top"><?=lang('site_subtitle')?>:</td>
         <td><textarea name="bloginfo" cols="" rows="3" style="width:386px;" class="textarea"><?php echo $bloginfo; ?></textarea></td>
       </tr>
       <tr>
-        <td align="right"><? echo $lang['blog_url'];?>:</td>
+<!--vot--><td align="right"><?=lang('site_address')?>:</td>
         <td><input maxlength="200" style="width:390px;" class="input" value="<?php echo $blogurl; ?>" name="blogurl" /></td>
       </tr>
       <tr>
-        <td align="right"><? echo $lang['show_perpage']; ?>:</td>
-        <td><input maxlength="5" size="4" class="input" value="<?php echo $index_lognum; ?>" name="index_lognum" /><? echo $lang['keyword_perpage_max']; ?></td>
+<!--vot-->	<td align="right"><?=lang('per_page')?>:</td>
+<!--vot-->	<td><input maxlength="5" size="4" class="input" value="<?php echo $index_lognum; ?>" name="index_lognum" /><?=lang('_posts')?></td>
       </tr>
 	  <tr>
-        <td valign="top" align="right"><? echo $lang['server_tz'];?>:<br /></td>
+<!--vot-->	<td valign="top" align="right"><?=lang('your_timezone')?>:<br /></td>
         <td>
 		<select name="timezone" style="width:390px;" class="input">
 <?php
-		$tzlist = array('-12'=> $lang['tz-12:00'],
-			'-11'=> $lang['tz-11:00'],
-			'-10'=> $lang['tz-10:00'],
-			'-9'=>  $lang['tz-09:00'],
-			'-8'=>  $lang['tz-08:00'],
-			'-7'=>  $lang['tz-07:00'],
-			'-6'=>  $lang['tz-06:00'],
-			'-5'=>  $lang['tz-05:00'],
-			'-4'=>  $lang['tz-04:00'],
-			'-3.5'=>$lang['tz-03:30'],
-			'-3'=>  $lang['tz-03:00'],
-			'-2'=>  $lang['tz-02:00'],
-			'-1'=>  $lang['tz-01:00'],
-			'0'=>   $lang['tz 00:00'],
-			'1'=>   $lang['tz+01:00'],
-			'2'=>   $lang['tz+02:00'],
-			'3'=>   $lang['tz+03:00'],
-			'3.5'=> $lang['tz+03:30'],
-			'4'=>   $lang['tz+04:00'],
-			'4.5'=> $lang['tz+04:30'],
-			'5'=>   $lang['tz+05:00'],
-			'5.5'=> $lang['tz+05:30'],
-			'6'=>   $lang['tz+06:00'],
-			'7'=>   $lang['tz+07:00'],
-			'8'=>   $lang['tz+08:00'],
-			'9'=>   $lang['tz+09:00'],
-			'9.5'=> $lang['tz+09:30'],
-			'10'=>  $lang['tz+10:00'],
-			'11'=>  $lang['tz+11:00'],
-			'12'=>  $lang['tz+12:00']
+/*vot*/		$tzlist = array(
+/*vot*/				'-12'=>lang('tz-12'),
+				'-11'=>lang('tz-11'),
+				'-10'=>lang('tz-10'),
+				'-9'=>lang('tz-9'),
+				'-8'=>lang('tz-8'),
+				'-7'=>lang('tz-7'),
+				'-6'=>lang('tz-6'),
+				'-5'=>lang('tz-5'),
+				'-4'=>lang('tz-4'),
+				'-3.5'=>lang('tz-3.5'),
+				'-3'=>lang('tz-3'),
+				'-2'=>lang('tz-2'),
+				'-1'=>lang('tz-1'),
+				'0'=>lang('tz0'),
+				'1'=>lang('tz1'),
+				'2'=>lang('tz2'),
+				'3'=>lang('tz3'),
+				'3.5'=>lang('tz3.5'),
+				'4'=>lang('tz4'),
+				'4.5'=>lang('tz4.5'),
+				'5'=>lang('tz5'),
+				'5.5'=>lang('tz5.5'),
+				'6'=>lang('tz6'),
+				'7'=>lang('tz7'),
+				'8'=>lang('tz8'),
+				'9'=>lang('tz9'),
+				'9.5'=>lang('tz9.5'),
+				'10'=>lang('tz10'),
+				'11'=>lang('tz11'),
+				'12'=>lang('tz12'),
 		);
 foreach($tzlist as $key=>$value):
 $ex = $key==$timezone?"selected=\"selected\"":'';
@@ -67,43 +68,43 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
 <?php endforeach;?>
         </select>
-        (<? echo $lang['time_local']; ?>: <?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
+<!--vot-->(<?=lang('local_time')?>: <?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
         </td>
       </tr>
       <tr>
-        <td align="right" width="18%" valign="top"><? echo $lang['function_switch']; ?>:<br /></td>
+<!--vot-->	<td align="right" width="18%" valign="top"><?=lang('function_switch')?>:<br /></td>
         <td width="82%">
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /><? echo $lang['login_captcha']; ?><br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><? echo $lang['gzip_compression']; ?><br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><? echo $lang['offline_writing']; ?><br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> /><? echo $lang['mobile_address']; ?>: <span id="m"><a title="<? echo $lang['mobile_use']; ?>"><?php echo BLOG_URL.'m'; ?></a></span><br />
-      	<input type="checkbox" style="vertical-align:middle;" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><? echo $lang['summary_auto']; ?>
-        <input type="text" name="excerpt_subnum" maxlength="3" value="<?php echo Option::get('excerpt_subnum'); ?>" class="input" style="width:25px;" />>? echo $lang['summary_prompt']; ?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> /><?=lang('login_verification_code')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isgzipenable" id="isgzipenable" <?php echo $conf_isgzipenable; ?> /><?=lang('gzip_compression')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isxmlrpcenable" id="isxmlrpcenable" <?php echo $conf_isxmlrpcenable; ?> /><?=lang('offline_writing')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="ismobile" id="ismobile" <?php echo $conf_ismobile; ?> /><?=lang('mobile_access_address')?>: <span id="m"><a title="<?=lang('access_site_by_mobile')?>"><?php echo BLOG_URL.'m'; ?></a></span><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><?=lang('auto_summary')?>
+<!--vot-->	<input type="text" name="excerpt_subnum" maxlength="3" value="<?php echo Option::get('excerpt_subnum'); ?>" class="input" style="width:25px;" /><?=lang('characters_as_summary')?><br />
         </td>
       <tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-<!--vot-->        <td align="right" width="18%" valign="top"><?=lang('twitters')?>:<br /></td>
+<!--vot--><td align="right" width="18%" valign="top"><?=lang('twitters')?>:<br /></td>
         <td width="82%">
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /><?=lang('twitters_enable')?>
-		<? echo $lang['show_perpage']; ?> <input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="input" style="width:25px;" /><? echo $lang['_twits']; ?><br />
+<!--vot-->	<?=lang('per_page')?> <input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="input" style="width:25px;" /><?=lang('_twitters')?><br />
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> /><?=lang('twitter_reply_enable')?>
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><? echo $lang['reply_captcha_enable']; ?>,
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><? echo $lang['reply_premoderate']; ?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><?=lang('reply_verification_code')?>
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><?=lang('reply_audit')?><br />
 		</td>
       </tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-<!--vot-->        <td align="right" width="18%">RSS:<br /></td>
+<!--vot--><td align="right" width="18%"><?=lang('rss')?>:<br /></td>
         <td width="82%">
-		<? echo $lang['output']; ?> <input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" class="input" name="rss_output_num" /><? echo $lang['posts_and_output']; ?>
+<!--vot-->	<?=lang('export')?><input maxlength="5" size="4" value="<?php echo $rss_output_num; ?>" class="input" name="rss_output_num" /><?=lang('_posts_and_output')?>
         <select name="rss_output_fulltext" class="input">
-		<option value="y" <?php echo $ex1; ?>><? echo $lang['full text']; ?></option>
-		<option value="n" <?php echo $ex2; ?>><? echo $lang['summary']; ?></option>
+<!--vot-->	<option value="y" <?php echo $ex1; ?>><?=lang('full_text')?></option>
+<!--vot-->	<option value="n" <?php echo $ex2; ?>><?=lang('summary')?></option>
         </select>
 		</td>
       </tr>
@@ -111,16 +112,16 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right" width="18%" valign="top"><? echo $lang['comments']; ?>:<br /></td>
+<!--vot--><td align="right" width="18%" valign="top"><?=lang('comments')?>:<br /></td>
         <td width="82%">
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><? echo $lang['comment_enable']; ?>, <? echo $lang['comment_delay']; ?>: <input maxlength="5" size="2" class="input" value="<?php echo $comment_interval; ?>" name=comment_interval /><? echo $lang['_seconds']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><? echo $lang['approved']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><? echo $lang['verification_code']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><? echo $lang['gr_avatar']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /><? echo $lang['comment_need_chinese']; ?><br />
-		<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><? echo $lang['comment_pagination']; ?><br />
-		<? echo $lang['show_perpage']; ?>: <input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><? echo $lang['_comments']; ?>,
-		<? echo $lang['show_first']; ?>: <select name="comment_order" class="input"><option value="newer" <?php echo $ex3; ?>><? echo $lang['newer']; ?></option><option value="older" <?php echo $ex4; ?>><? echo $lang['older']; ?></option></select><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><?=lang('enable_comment_interval')?><input maxlength="5" size="2" class="input" value="<?php echo $comment_interval; ?>" name=comment_interval /><?=lang('_seconds')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><?=lang('comment_moderation')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><?=lang('comment_verification_code')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><?=lang('comment_avatar')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /><?=lang('comment_must_contain_chinese')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><?=lang('comment_per_page')?>
+<!--vot-->	<?=lang('per_page')?><input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments_')?>
+<!--vot-->	<select name="comment_order" class="input"><option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option><option value="older" <?php echo $ex4; ?>><?=lang('older')?></option></select><?=lang('standing_in_front')?><br />
 		</td>
       </tr>
   </table>
