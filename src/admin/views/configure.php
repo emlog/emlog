@@ -128,25 +128,25 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right" width="18%" valign="top"><? echo $lang['attachments']; ?>:<br /></td>
+<!--vot--><td align="right" width="18%" valign="top"><?=lang('attachments')?>:<br /></td>
         <td width="82%">
-		<? echo $lang['attachment_max_upload']; ?>: <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<? echo $lang['attachment_php_info']; ?> <?php echo ini_get('upload_max_filesize'); ?> <? echo $lang['limit']; ?>)<br />
-        <? echo $lang['attachment_types']; ?>: <input maxlength="200" style="width:320px;" class="input" value="<?php echo $att_type; ?>" name="att_type" />(<? echo $lang['separate_by_comma']; ?>)<br />
-        <input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><? echo $lang['thumbnail_generate']; ?>, <? echo $lang['max_size']; ?>: <input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /> <? echo $lang['unit_pixel']; ?><br />
+<!--vot-->	<?=lang('upload_max_size')?> <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<?=lang('php_upload_max_size')?> <?php echo ini_get('upload_max_filesize'); ?> <?=lang('_limit')?>)<br />
+<!--vot-->	<?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="input" value="<?php echo $att_type; ?>" name="att_type" /><?=lang('separate_by_comma')?><br />
+<!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><?=lang('thumbnail_max_size')?><input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /><?=lang('unit_pixels')?><br />
 		</td>
       </tr>
   </table>
   <div class="setting_line"></div>
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
-        <td align="right"><? echo $lang['registration_number']; ?>:</td>
+<!--vot--><td align="right"><?=lang('icp_reg_no')?>:</td>
         <td><input maxlength="200" style="width:390px;" class="input" value="<?php echo $icp; ?>" name="icp" /></td>
       </tr>
       <tr>
-        <td align="right" width="18%" valign="top"><? echo $lang['footer_info'];?>:<br /></td>
+<!--vot--><td align="right" width="18%" valign="top"><?=lang('home_footer_info')?>:<br /></td>
         <td width="82%">
 		<textarea name="footer_info" cols="" rows="6" class="textarea" style="width:386px;"><?php echo $footer_info; ?></textarea><br />
-		<? echo $lang['footer_prompt']; ?>
+<!--vot-->	<?=lang('home_footer_info_html')?>
 		</td>
       </tr>
   </table>
@@ -155,7 +155,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="center" colspan="2">
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        	<input type="submit" value="<? echo $lang['save_settings'];?>" class="button" />
+<!--vot-->	<input type="submit" value="<?=lang('save_settings')?>" class="button" />
         </td>
       </tr>
   </table>
