@@ -1,17 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
-<a class="navi1" href="./template.php"><? echo $lang['template_current']; ?></a>
-<a class="navi2" href="./template.php?action=install"><? echo $lang['template_install']; ?></a>
-<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['template_zip_only']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="error"><? echo $lang['template_not_writable']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="error"><? echo $lang['template_zip_nosupport']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="error"><? echo $lang['template_select_zip']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="error"><? echo $lang['template_non_standard']; ?></span><?php endif;?>
+<!--vot--><a class="navi1" href="./template.php"><?=lang('template_current')?></a>
+<!--vot--><a class="navi2" href="./template.php?action=install"><?=lang('template_mount')?></a>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('template_zip_support')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="error"><?=lang('template_upload_failed_nonwritable')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="error"><?=lang('template_no_zip_install_manually')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="error"><?=lang('template_select_zip')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="error"><?=lang('template_non_standard')?></span><?php endif;?>
 </div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 20px;">
 <div class="des">
-<? echo $lang['template_install_manually']; ?>
+<!--vot--><?=lang('template_install_manual')?>:<br />
+<!--vot--><?=lang('template_install_prompt1')?> <br />
+<!--vot--><?=lang('template_install_prompt2')?> <br />
 </div>
 </div>
 <?php endif; ?>
@@ -20,11 +22,11 @@
 	<li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="tplzip" type="file" />
-	<input type="submit" value="<? echo $lang['upload']; ?>" class="submit" /> <? echo $lang['template_upload_zip']; ?>
+<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="submit" /> <?=lang('template_upload_prompt')?>
 	</li>
 </div>
 </form>
-<div style="margin:10px 20px;"><? echo $lang['templates_more']; ?>: <a href="store.php"><? echo $lang['app_center']; ?>&raquo;</a></div>
+<!--vot--><div style="margin:10px 20px;"><?=lang('template_get_more')?>: <a href="store.php"><?=lang('app_center')?>&raquo;</a></div>
 <script>
 setTimeout(hideActived,2600);
 $("#menu_tpl").addClass('sidebarsubmenu1');

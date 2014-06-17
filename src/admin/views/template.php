@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
-<a class="navi3" href="./template.php"><? echo $lang['template_current'];?></a>
-<a class="navi4" href="./template.php?action=install"><? echo $lang['template_install']; ?></a>
-<?php if(isset($_GET['activated'])):?><span class="actived"><? echo $lang['template_changed_successfully']; ?></span><?php endif;?>
+<!--vot--><a class="navi3" href="./template.php"><?=lang('template_current')?></a>
+<!--vot--><a class="navi4" href="./template.php?action=install"><?=lang('template_mount')?></a>
+<!--vot--><?php if(isset($_GET['activated'])):?><span class="actived"><?=lang('template_change_ok')?></span><?php endif;?>
 </div>
 <?php if(!$nonceTplData): ?>
-<div class="error_msg"><? echo $lang['template_current']; ?> (<?php echo $nonce_templet; ?>) <? echo $lang['template_not_found']; ?></div>
+<!--vot--><div class="error_msg"><?=lang('template_current_use')?> (<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></div>
 <?php else:?>
 <table cellspacing="20" cellpadding="0" width="80%" border="0">
     <tr>
@@ -16,18 +16,18 @@
 	  <?php echo $tplAuthor; ?><br>
 	  <?php echo $tplDes; ?>
 	  <?php if ('default' == $nonce_templet): ?>
-	  <div class="custom_top_button"><a href="./template.php?action=custom-top"><? echo $lang['top_image_customize']; ?></a></div>
+<!--vot--><div class="custom_top_button"><a href="./template.php?action=custom-top"><?=lang('template_top_image')?></a></div>
 	  <?php endif; ?>
 	  </td>
     </tr>
 </table>
 <?php endif;?>
 <div class="containertitle2">
-<span class="navi3"><? echo $lang['template_library']; ?> (<?php echo $tplnums; ?>)</span>
+<!--vot--><span class="navi3"><?=lang('template_library')?> (<?php echo $tplnums; ?>)</span>
 <a name="tpllib"></a>
-<?php if(isset($_GET['activate_install'])):?><span class="actived"><? echo $lang['template_upload_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['activate_del'])):?><span class="actived"><? echo $lang['template_del_ok']; ?></span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error"><? echo $lang['template_del_noperm']; ?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['activate_install'])):?><span class="actived"><?=lang('template_upload_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['activate_del'])):?><span class="actived"><?=lang('template_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('template_delete_failed')?></span><?php endif;?>
 </div>
 <table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
 <?php 
@@ -38,10 +38,10 @@ $i++;
 ?>
       <td align="center" width="300">
 	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-	  <img alt="<? echo $lang['template_click']; ?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
+<!--vot--><img alt="<?=lang('template_use_this')?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
 	  </a><br />
       <?php echo $value['tplname']; ?>
-      <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><? echo $lang['remove']; ?></a></span>
+<!--vot--><span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a></span>
       </td>
 <?php 
 if($i > 0 && $i % 3 == 0){echo "</tr>";}

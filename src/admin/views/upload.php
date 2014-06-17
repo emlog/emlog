@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
 <link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
-<script src="../lang/<? echo EMLOG_LANGUAGE; ?>/lang_js.js" type="text/javascript"></script>
 <script>
 function uploadfile(){
 	var as_logid = parent.document.getElementById('as_logid').value
@@ -30,19 +29,19 @@ function removeattachfrom() {
 </script>
 <body>
 <div id="media-upload-header">
-	<span id="curtab"><a href="javascript:showupload(0);"><? echo $lang['attachment_upload'];?></a></span>
-	<span><a href="javascript:showupload(1);"><? echo $lang['bulk_upload']; ?></a></span>
-	<span><a href="javascript:showattlib();"><? echo $lang['attachment_library'];?> ( <?php echo $attachnum; ?> )</a></span>
+<!--vot--><span id="curtab"><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
+<!--vot--><span><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
+	<span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?php echo $attachnum; ?>)</a></span>
 </div>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
-	<p>(<? echo $lang['attachment_max_size']; ?>: <?php echo $maxsize ;?>, <? echo $lang['attachment_types']; ?>: <?php echo $att_type_str; ?>)
+<!--vot--><p>(<?=lang('attach_max_size')?>: <?php echo $maxsize ;?>, <?=lang('types_allowed')?>: <?php echo $att_type_str; ?>)
 	<div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
 	<div id="attachbody"><span><input type="file" name="attach[]" /></span></div>
-	<input type="button" name="html-upload" value="<? echo $lang['upload'];?>" onclick="uploadfile();"/>
+<!--vot--><input type="button" name="html-upload" value="<?=lang('upload')?>" onclick="uploadfile();"/>
 	<span style="margin-left:10px">
-    <a id="attach" title="<? echo $lang['attachment_increase'];?>" onclick="addattachfrom()" href="javascript:;" name="attach">[ + ]</a> 
-    <a id="attach" title="<? echo $lang['attachment_decrease'];?>" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a>
+<!--vot--><a id="attach" title="<?=lang('attachment_add')?>" onclick="addattachfrom()" href="javascript:;" name="attach">[ + ]</a> 
+<!--vot--><a id="attach" title="<?=lang('attach_reduce')?>" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a>
     </span>
 	</p>
 </div>
