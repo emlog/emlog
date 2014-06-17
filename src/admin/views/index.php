@@ -9,7 +9,7 @@
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
 <!--vot--><div class="box_1"><textarea class="box2" name="t" placeholder="<?=lang('twitter_write_placeholder')?>"></textarea></div>
         <div class="tbutton" style="display:none;">
-            <input type="submit" value="<? echo $lang['publish']; ?>" onclick="return checkt();"/> <a href="javascript:closet();"><? echo $lang['cancel']; ?></a> <span>(<? echo $lang['twitter_length_max']; ?>)</span></div>
+<!--vot-->  <input type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> <a href="javascript:closet();"><?=lang('cancel')?></a> <span><?=lang('twitter_write_length')?></span>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         </div>
         </form>
@@ -20,32 +20,32 @@
 <div class="clear"></div>
 <div style="margin-top: 20px;">
 <div id="admindex_servinfo">
-<h3><? echo $lang['site_info']; ?></h3>
+<!--vot--><h3><?=lang('site_info')?></h3>
 <ul>
-	<li><? echo $lang['with']; ?> <b><?php echo $sta_cache['lognum'];?></b><? echo $lang['posted_blogs']; ?>, <b><?php echo $sta_cache['comnum_all'];?></b><? echo $lang['_comments']; ?>, <b><?php echo $sta_cache['twnum'];?></b><? echo $lang['twitter_number']; ?></li>
-	<li><? echo $lang['db_prefix']; ?>: <?php echo DB_PREFIX; ?></li>
-	<li><? echo $lang['php_version'];?>: <?php echo $php_ver; ?></li>
-	<li><? echo $lang['mysql_version'];?>: <?php echo $mysql_ver; ?></li>
-	<li><? echo $lang['server_environment'];?>: <?php echo $serverapp; ?></li>
-	<li><? echo $lang['gd_library'];?>: <?php echo $gd_ver; ?></li>
-	<li><? echo $lang['attachment_max_size'];?>: <?php echo $uploadfile_maxsize; ?></li>
-	<li><a href="index.php?action=phpinfo"><? echo $lang['php_info'];?> &raquo;</a></li>
+<!--vot--><li><?=lang('have')?><b><?php echo $sta_cache['lognum'];?></b><?=lang('_posts')?>, <b><?php echo $sta_cache['comnum_all'];?></b><?=lang('_comments')?>, <b><?php echo $sta_cache['twnum'];?></b><?=lang('_twitters')?></li>
+<!--vot--><li><?=lang('db_prefix')?>: <?php echo DB_PREFIX; ?></li>
+<!--vot--><li><?=lang('php_version')?>: <?php echo $php_ver; ?></li>
+<!--vot--><li><?=lang('mysql_version')?>: <?php echo $mysql_ver; ?></li>
+<!--vot--><li><?=lang('server_environment')?>: <?php echo $serverapp; ?></li>
+<!--vot--><li><?=lang('gd_library')?>: <?php echo $gd_ver; ?></li>
+<!--vot--><li><?=lang('server_max_upload_size')?>: <?php echo $uploadfile_maxsize; ?></li>
+<!--vot--><li><a href="index.php?action=phpinfo"><?=lang('more_php_info')?></a></li>
 </ul>
 </div>
 <div id="admindex_msg">
-<h3><? echo $lang['official_info'];?></h3>
+<!--vot--><h3><?=lang('official_source')?></h3>
 <ul></ul>
 </div>
 <div class="clear"></div>
 <div id="about">
-    <? echo $lang['emlog_using']; ?> <?php echo Option::EMLOG_VERSION; ?> <span><a id="ckup" href="javascript:void(0);"><? echo $lang['check_update']; ?></a></span><br />
+<!--vot--><?=lang('using_emlog')?> <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
     <span id="upmsg"></span>
 </div>
 </div>
 </div>
 <script>
 $(document).ready(function(){
-	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><? echo $lang['loading']; ?></span>");
+/*vot*/	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
 	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
 	function(data){
 		$("#admindex_msg ul").html("");
@@ -59,33 +59,33 @@ $(document).ready(function(){
 	});
 });
 $("#about #ckup").click(function(){
-    $("#about #upmsg").html(l_check_wait).addClass("ajaxload");
+/*vot*/  $("#about #upmsg").html("<?=lang('checking_wait')?>").addClass("ajaxload");
 	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         if (data.result.match("no")) {
-            $("#about #upmsg").html(l_update_no).removeClass();
-        } else if(data.result.match("yes")) {
-            $("#about #upmsg").html(l_update_exists + data.ver + ", " + l_update_backup + ", <a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\">" + l_update_now + "</a>").removeClass();
+/*vot*/   $("#about #upmsg").html("<?=lang('updates_no')?>").removeClass();
+        } else if(data.result.match("yes")) {
+/*vot*/   $("#about #upmsg").html("<?=lang('update_exists')?>"+data.ver+"<?=lang('backup_before_update')?><a id=\"doup\" href=\"javascript:doup('"+data.file+"','"+data.sql+"');\"><?=lang('update_now')?></a>").removeClass();
         } else{
-            $("#about #upmsg").html(l_check_error).removeClass();
+/*vot*/   $("#about #upmsg").html("<?=lang('update_check_failed')?>").removeClass();
         }
     });
 });
 function doup(source,upsql){
-    $("#about #upmsg").html(l_update_wait).addClass("ajaxload");
+/*vot*/  $("#about #upmsg").html("<?=lang('updating')?>").addClass("ajaxload");
     $.get('./index.php?action=update&source='+source+"&upsql="+upsql,
       function(data){
         $("#about #upmsg").removeClass();
         if (data.match("succ")) {
-            $("#about #upmsg").html(l_update_ok + ', ' + l_please + ' <a href="./">' + l_page_refresh + '</a> ' + l_start_new_ver);
+/*vot*/   $("#about #upmsg").html('<?=lang('update_completed')?><a href="./"><?=lang('page_refresh')?></a><?=lang('start_new_emlog')?>');
         } else if(data.match("error_down")){
-            $("#about #upmsg").html(l_download_error);
+/*vot*/   $("#about #upmsg").html('<?=lang('update_download_failed')?>');
         } else if(data.match("error_zip")){
-            $("#about #upmsg").html(l_unzip_error);
+/*vot*/   $("#about #upmsg").html('<?=lang('update_extract_failed')?>');
         } else if(data.match("error_dir")){
-            $("#about #upmsg").html(l_update_not_writeable);
+/*vot*/   $("#about #upmsg").html('<?=lang('update_failed_nonwritable')?>');
         }else{
-            $("#about #upmsg").html(l_update_error);
+/*vot*/   $("#about #upmsg").html('<?=lang('update_failed')?>');
         }
       });
 }
@@ -100,16 +100,16 @@ $(document).ready(function(){
        var t=$(this).val();
        var n = 140 - t.length;
        if (n>=0){
-         $(".tbutton span").html("(<? echo $lang['can_yet_enter']; ?>"+n+"<? echo $lang['characters']; ?>)");
+/*vot*/  $(".tbutton span").html("<?=lang('you_can_enter')?>"+n+"<?=lang('_characters')?>)");
        }else {
-         $(".tbutton span").html("<span style=\"color:#FF0000\">(<? echo $lang['length_exceed']; ?>"+Math.abs(n)+"<? echo $lang['characters']; ?>)</span>");
+         $(".tbutton span").html("<span style=\"color:#FF0000\">(<?=lang('exceeds')?>"+Math.abs(n)+"<?=lang('_characters')?>)</span>");
        }
     });
 });
 function closet(){
     $(".tbutton").hide();
-    $(".tbutton span").html("(<? echo $lang['twitter_length_max']; ?>)");
-    $(".box2").val('<? echo $lang['write_something']; ?>').css('height','17px').bind('focus',function(){
+/*vot*/ $(".tbutton span").html("<?=lang('twitter_write_length')?>");
+    $(".box2").val('<?=lang('twitter_write_placeholder')?>').css('height','17px').bind('focus',function(){
         $(this).val('').css('height','50px').unbind('focus');
         $(".tbutton").show();});
 }
@@ -121,7 +121,7 @@ function checkt(){
 </script>
 <?php else:?>
 <div id="admindex_main">
-<div id="about"><a href="blogger.php"><?php echo $name; ?></a> (<b><?php echo $sta_cache[UID]['lognum'];?></b><? echo $lang['_articles']; ?>, <b><?php echo $sta_cache[UID]['commentnum'];?></b><? echo $lang['_comments']; ?>)</div>
+<!--vot--><div id="about"><a href="blogger.php"><?php echo $name; ?></a> (<b><?php echo $sta_cache[UID]['lognum'];?></b><?=lang('_posts')?>, <b><?php echo $sta_cache[UID]['commentnum'];?></b><?=lang('_comments')?>)</div>
 </div>
 <div class="clear"></div>
 <?php endif; ?>
