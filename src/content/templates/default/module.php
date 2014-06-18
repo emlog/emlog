@@ -91,7 +91,7 @@ function widget_twitter($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="twitter">
 	<?php foreach($newtws_cache as $value): ?>
-<!--vot-->	<?php $img = empty($value['img']) ? "" : '<a title="<?=lang('view_image')?>" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
+<!--vot-->	<?php $img = empty($value['img']) ? "" : '<a title="'.lang('view_image').'" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
 	<li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
 	<?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
@@ -276,9 +276,9 @@ function blog_navi(){
 //blog:Top
 function topflg($top, $sortop='n', $sortid=null){
     if(blog_tool_ishome()) {
-/*vot*/       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"".lang('top_posts')?>."\" /> " : '';
+/*vot*/       echo $top == 'y' ? '<img src="'.TEMPLATE_URL.'/images/top.png" title="'.lang('top_posts').'" /> ' : '';
     } elseif($sortid){
-/*vot*/       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"".lang('cat_top_posts')."\" /> " : '';
+/*vot*/       echo $sortop == 'y' ? '<img src="'.TEMPLATE_URL.'/images/sortop.png" title="'.lang('cat_top_posts').'" /> ' : '';
     }
 }
 ?>
@@ -305,7 +305,7 @@ function blog_tag($blogid){
 	global $CACHE;
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])){
-/*vot*/		$tag = <?=lang('tags')?>.':';
+/*vot*/		$tag = lang('tags').': ';
 		foreach ($log_cache_tags[$blogid] as $value){
 			$tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
 		}

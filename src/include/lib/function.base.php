@@ -5,16 +5,13 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-// Load the core Lang File
-/*vot*/ load_language('core');
-
 function __autoload($class) {
 	$class = strtolower($class);
 //DEBUG
-echo '<pre>';
-echo '__autoload:', "\n";
-echo '	class=', $class, "\n";
-echo '</pre>';
+//echo '<pre>';
+//echo '__autoload:', "\n";
+//echo '	class=', $class, "\n";
+//echo '</pre>';
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
 /*vot*/		load_language($class);
 		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
@@ -888,7 +885,7 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 		header("HTTP/1.1 404 Not Found");
 /*vot*/		$msg = lang('404_description');
 	}
-/*vot*/	$lang = EMLOG_LANG;
+/*vot*/	$lang = EMLOG_LANGUAGE;
 /*vot*/	echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="$lang">
@@ -1101,24 +1098,30 @@ function udir($file='', $remove_drive = false) {
  */
 function load_language($model='') {
   global $LANGUAGE;
+  global $LANGLIST;
 
     $model = strtolower($model);
     $model = str_replace('_controller','',$model);
     $model = str_replace('_model','',$model);
 
 //DEBUG
-echo '<pre>';
-echo 'load_language:', "\n";
-echo '	model=', $model, "\n";
-echo '</pre>';
+//echo '<pre>';
+//echo 'load_language:', "\n";
+//echo '	model=', $model, "\n";
+//echo '</pre>';
 
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
+  if(!isset($LANGLIST)) {$LANGLIST = array();}
 
   if($model) {
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
+
 //DEBUG
 //echo '<pre>';
 //echo '	file=', $file, "\n";
+//if(!is_file($file)) {
+//  echo '	file NOT FOUND!', "\n";
+//}
 //echo '</pre>';
 
     if(is_file($file)) {
@@ -1130,8 +1133,20 @@ echo '</pre>';
       $LANGUAGE = array_merge($LANGUAGE, $lang);
 
       unset($lang);
+
+      $LANGLIST[] = $model;
+
+//DEBUG
+//echo '<pre>';
+//echo '	key number=', count($LANGUAGE), "\n";
+//echo 'LANGUAGE=';
+//print_r($LANGUAGE);
+//echo '</pre>';
+
     }
+
   }
+
 }
 
 /**
@@ -1146,3 +1161,5 @@ function lang($key='') {
   return isset($LANGUAGE[$key]) ? $LANGUAGE[$key] : '{'.$key.'}';
 }
 
+// Load the core Lang File
+/*vot*/ load_language('core');

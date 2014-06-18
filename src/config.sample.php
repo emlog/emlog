@@ -16,4 +16,6 @@ define('AUTH_KEY','emlog-key');
 define('AUTH_COOKIE_NAME','emlog-cookie');
 //blog language //vot
 define('EMLOG_LANGUAGE','en'); //'zh-CN', 'ru'
+//Version number //vot
+define('EMLOG_VERSION','5.3.0');
 
