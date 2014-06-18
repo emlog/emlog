@@ -1,6 +1,6 @@
 <?php
 /**
- * Load the plugin page in the foreground
+ * Front loading plugin page
  *
  * @copyright (c) Emlog All Rights Reserved
  */

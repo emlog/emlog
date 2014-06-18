@@ -1,27 +1,5 @@
 var LNG = {
 //---------------------------
-//admin/editor/plugins/image/image.js
-//[72] 'image_add' : 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
-
-//---------------------------
-//admin/editor/plugins/quickformat/quickformat.js
-//[32]: DO NOT TRANSLATE!!!	child.html(child.html().replace(/^(\s|&nbsp;|　)+/ig, ''));
-
-//---------------------------
-//admin/editor/plugins/table/table.js
-
-//---------------------------
-//admin/editor/plugins/image/image.js
-//[72] 'image_add' : 'Add photo from local drive. Just click on insert button.',//'（上传本地图片：请点击文章标题下方“上传插入”）',
-
-//---------------------------
-//admin/editor/plugins/quickformat/quickformat.js
-//[32] DO NOT TRANSLATE!!! child.html(child.html().replace(/^(\s|&nbsp;|　)+/ig, ''));
-
-//---------------------------
-//admin/editor/plugins/table/table.js
-
-//---------------------------
 //admin/views/js/common.js
  'twitter_del_sure'		: 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
  'comment_del_sure'		: 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',

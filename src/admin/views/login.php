@@ -4,7 +4,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="./views/css/css-login.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" media="screen" /> 
-<!--vot--><script src="../lang/<? echo EMLOG_LANGUAGE; ?>/lang_js.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <!--vot--><title><?=lang('login')?></title>
 </head>

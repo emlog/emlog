@@ -1,12 +1,12 @@
 <?php
 /**
- * Post writing, editing interface
+ * Show writing, editing, log in interface
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'globals.php';
 
-//Write post page
+//Display the Write blog page
 if ($action == '') {
 	$Tag_Model = new Tag_Model();
 	$Sort_Model = new Sort_Model();
@@ -23,7 +23,7 @@ if ($action == '') {
 	View::output();
 }
 
-//Edit blog page
+//Show edit blog page
 if ($action == 'edit') {
 	$Log_Model = new Log_Model();
 	$Tag_Model = new Tag_Model();

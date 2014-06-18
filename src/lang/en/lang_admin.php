@@ -35,7 +35,7 @@ $lang = array(
 // 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
  'import_failed_not_read'	=> 'Import failed! Can not read the file',//'导入失败！读取文件失败',
  'import_failed_not_emlog'	=> 'Import failed! The backup file is not the emlog backup file!',//'导入失败！该备份文件不是 emlog的备份文件!',
- 'import_failed_not_emlog_ver'	=> 'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',//'导入失败！该备份文件不是emlog ' . Option::EMLOG_VERSION . '  生成的备份!',
+ 'import_failed_not_emlog_ver'	=> 'Import failed! The backup file is not the emlog ' . EMLOG_VERSION . ' backup file!',//'导入失败！该备份文件不是emlog ' . EMLOG_VERSION . '  生成的备份!',
  'import_failed_bad_prefix'	=> 'Import failed! The database backup file prefix does not match the current system database prefix ',//'导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配 ',
 
 //---------------------------
@@ -487,7 +487,7 @@ $lang = array(
  'template_non_standard'	=> 'Installation failed, template installation package does not meet the standards',//'安装失败，模板安装包不符合标准',
  'template_install_manual'	=> 'Template manual installation',//'手动安装模板',
  'template_install_prompt1'	=> '1) After extracting the template files upload the template folder to the content/templates directory.',//'1、把解压后的模板文件夹上传到 content/templates目录下。,
- 'template_install_prompt2'	=> '2) Log in to the AdminCP to change a template. If template library already have a template you just added, then click on it to use this template'.,//'2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。',
+ 'template_install_prompt2'	=> '2) Log in to the AdminCP to change a template. If template library already have a template you just added, then click on it to use this template.',//'2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。',
 // 'upload_install'		=> 'Upload installation',//'上传安装',
  'template_upload_prompt'	=> '(Upload .zip file that contains installation package)',//'(上传一个zip压缩格式的模板安装包)',
  'template_get_more'		=> 'Get more templates',//'获取更多模板',

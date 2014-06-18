@@ -1,13 +1,12 @@
 <?php
 /**
- * View blog archive
+ * View Archive
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Record_Controller {
 	function display($params) {
-		global $lang;
 		$Log_Model = new Log_Model();
 		$options_cache = Option::getAll();
 		extract($options_cache);

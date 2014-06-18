@@ -1,6 +1,6 @@
 <?php
 /**
- * Links
+ * Model: Links
  * @copyright (c) Emlog All Rights Reserved
  */
 

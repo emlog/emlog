@@ -1,6 +1,6 @@
 <?php
 /**
- * Tag management
+ * Model: Tag Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -13,7 +13,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * Get Tags
+	 * Get Post Tags
 	 *
 	 * @param int $blogId
 	 * @return array
@@ -59,7 +59,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * Add tag
+	 * Add tags
 	 *
 	 * @param string $tagStr
 	 */
@@ -79,7 +79,7 @@ class Tag_Model {
 	}
 
 	/**
-	 * Update tags
+	 * Update Post Tags
 	 *
 	 * @param string $tagStr
 	 * @param int $blogId

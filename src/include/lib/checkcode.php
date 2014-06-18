@@ -1,6 +1,6 @@
 <?php
 /**
- * Generate verification code image
+ * Verification Code Image generation
  * @copyright (c) Emlog All Rights Reserved
  */
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget Sidebar Management
+ * Widgets sidebar Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -36,9 +36,9 @@ if ($action == '') {
 
 //Modify the widget settings
 if ($action == 'setwg') {
-	$widgetTitle = Option::get('widget_title'); //The current title of all the widgets
-	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';	        //The widget to modify
-	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';   //New widget name
+/*vot*/	$widgetTitle = Option::get('widget_title');		//Widget Title
+/*vot*/	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';	//Edit widget
+/*vot*/	$wgTitle = isset($_POST['title']) ? $_POST['title'] : ''; //New widget name
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
 	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
@@ -78,10 +78,10 @@ if ($action == 'setwg') {
 			$custom_widget = Option::get('custom_widget');
 			$title = isset($_POST['title']) ? $_POST['title'] : '';
 			$content = isset($_POST['content']) ? $_POST['content'] : '';
-			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//Widget id to modify
+/*vot*/			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//Edit widget id
 			$new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
 			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
-			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Widget id to remove
+/*vot*/			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id
 			//Add a new custom widget
 			if ($new_content) {
 				//Determine the widget index
@@ -129,16 +129,16 @@ if ($action == 'setwg') {
 	emDirect("./widgets.php?activated=1");
 }
 
-//Save widget sorting
+//Save component to sort
 if ($action == 'compages') {
-	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3...
+/*vot*/	$wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3 ...
 	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
 	Option::updateOption("widgets{$wgNum}", $widgets);
 	$CACHE->updateCache('options');
 	emDirect("./widgets.php?activated=true&wg=$wgNum");
 }
 
-//Reset widget settings
+//Reset Widget settings to the initial values
 if ($action == 'reset') {
     LoginAuth::checkToken();
 	$widget_title = serialize(Option::getWidgetTitle());

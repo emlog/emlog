@@ -1,5 +1,4 @@
 <?php
-require_once dirname(__FILE__).'/../_ToDo/my_func.php';
 /**
  * Load Global Items
  * @copyright (c) Emlog All Rights Reserved
@@ -13,9 +12,6 @@ header('Content-Type: text/html; charset=UTF-8');
 
 require_once EMLOG_ROOT.'/config.php';
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
-
-// Load the Lang File
-/*vot*/ load_language('all');
 
 doStripslashes();
 
@@ -44,7 +40,6 @@ define('DYNAMIC_BLOGURL', getBlogUrl());
 //Front template URL
 define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
 
-//Load plug-ins
 $active_plugins = Option::get('active_plugins');
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Permanent Links
+ * SEO Settings
  * @copyright (c) Emlog All Rights Reserved
  */
 

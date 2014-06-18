@@ -1,13 +1,12 @@
 <?php
 /**
- * Blog categories
+ * View Post Category
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Sort_Controller {
 	function display($params) {
-		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = Option::getAll();

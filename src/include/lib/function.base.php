@@ -399,7 +399,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			break;
 		case '103':
 			$ret = changeFileSize(Option::getAttMaxSize());
-/*vot*/			emMsg(lang('file_size_exceeds_') . {$ret} . lang('_of_limit'));
+/*vot*/			emMsg(lang('file_size_exceeds_') . $ret . lang('_of_limit'));
 			break;
 		case '104':
 /*vot*/			emMsg(lang('upload_folder_create_error'));
@@ -962,7 +962,7 @@ function show_404_page() {
  * @param $t
  */
 function emoFormat($t){
-/*vot*/	$emos = array('[Smile]'=>'0.gif', '[Disappoint]'=>'1.gif', '[Love]'=>'2.gif', '[Crazy]'=>'3.gif', '[Cool]'=>'4.gif', '[Tear]'=>'5.gif', '[Shy]'	=>'6.gif', '[Shutdown]'=>'7.gif', '[Sleep]'=>'8.gif', '[Cry]'	=>'9.gif', '[Confused]'=>'10.gif', '[Evil]'=>'11.gif', '[Tongue]'=>'12.gif', '[Lol]'	=>'13.gif', '[Amazed]'=>'14.gif', '[Sad]'	=>'15.gif', '[Displeased]'=>'16.gif', '[Weary]'=>'17.gif', '[Angry]'=>'18.gif', '[Vomit]'=>'19.gif', '[Giggle]'=>'20.gif', '[Happy]'=>'21.gif', '[Unsure]'=>'22.gif', '[Curvedlips]'=>'23.gif', '[Lick]'=>'24.gif', '[Sleepy]'=>'25.gif', '[Tired]'=>'26.gif', '[Sweaty]'=>'27.gif', '[Loud]'=>'28.gif', '[Martinet]'=>'29.gif', '[Pirate]'=>'30.gif', '[Swear]'=>'31.gif', '[Bemused]'=>'32.gif', '[Secret]'=>'33.gif', '[Bewitched]'=>'34.gif', '[Disagree]'=>'35.gif');
+/*vot*/	$emos = lang('emoticons');
 	if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
 		$matches = array_unique($matches[0]);
 		foreach ($matches as $data) {

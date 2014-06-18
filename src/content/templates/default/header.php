@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name: Default Template
-Description: This is the emlog the default template, a simple and neat ...
+Template Name: Default template
+Description: Default template, simple and elegant
 Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
@@ -23,7 +23,7 @@ require_once View::getView('module');
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
 <link href="<?php echo TEMPLATE_URL; ?>main.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
-<script src="<? echo BLOG_URL; ?>lang/<? echo EMLOG_LANGUAGE; ?>/lang_js.js" type="text/javascript"></script>
+<!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 <script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
 <script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
 <!--[if IE 6]>

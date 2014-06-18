@@ -1,6 +1,6 @@
 <?php
 /**
- * Database operation routing
+ * Route database operations
  *
  * @copyright (c) Emlog All Rights Reserved
  */

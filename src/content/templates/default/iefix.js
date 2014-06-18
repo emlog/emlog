@@ -1,5 +1,5 @@
 window.onload =  function() {
-	/** JS fix: hover class effect **/
+	/** Implement JS:hover effects **/
 	var nav_bar = document.getElementById('nav');
 	var ul = nav_bar.getElementsByTagName('ul')[0];
 	var childs = ul.childNodes;

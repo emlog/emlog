@@ -1,13 +1,12 @@
 <?php
 /**
- * Blog search
+ * Search Posts
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Search_Controller {
 	function display($params) {
-		global $lang;
 		$Log_Model = new Log_Model();
 		$options_cache = Option::getAll();
 		extract($options_cache);

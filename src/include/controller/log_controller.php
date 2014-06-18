@@ -1,13 +1,12 @@
 <?php
 /**
- * Show blog homepage, blog content
+ * Showing page content
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Log_Controller {
 	function display($params) {
-		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 
@@ -33,7 +32,6 @@ class Log_Controller {
 	}
 
 	function displayContent($params) {
-		global $lang;
 		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
 
 		$Log_Model = new Log_Model();
@@ -103,7 +101,7 @@ class Log_Controller {
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);
 			$neighborLog = $Log_Model->neighborLog($timestamp);
-            $tb = array();$tb_url = '';//Compatible with undeleted reference templates
+            $tb = array();$tb_url = '';//Compatible not delete references Templates
 			include View::getView('echo_log');
 		}elseif ($type == 'page') {
             $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';

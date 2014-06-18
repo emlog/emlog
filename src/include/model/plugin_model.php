@@ -1,6 +1,6 @@
 <?php
 /**
- * Plug-ins
+ * Model: Plug-in
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -14,7 +14,9 @@ class Plugin_Model {
 	}
 
 	/**
-	 * Activate plugin
+	 * Activate plug-in
+	 *
+	 * @param array $active_plugins //All the currently active plug-ins
 	 */
 	function activePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -46,7 +48,9 @@ class Plugin_Model {
 	}
 
 	/**
-	 * Deactivate plugin
+	 * Disable plug-ins
+	 *
+	 * @param string $active_plugins //All the currently active plug-ins
 	 */
 	function inactivePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -72,9 +76,9 @@ class Plugin_Model {
 	}
 
 	/**
-	 * Get a list of all plug-ins, plug-ins without a defined plug-in name will not be obtained
-	 * Plug-in directory: content/plugins
-	 * Only recognize plugins with the directory structure: "plugin_directory/plugin_name/plugin_name.php"
+	 * Get a list of all plug-ins, plug-defined plug-in name will not get
+	 *  plug-in directory: content/plugins
+	 * Recognized only plugins in the /plugin/ directory
 	 * @return array
 	 */
 	function getPlugins() {

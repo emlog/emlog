@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $User_Model = new User_Model();
 
-//User Management page
+//Load the User Management page
 if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	$users = $User_Model->getUsers($page);
@@ -98,7 +98,7 @@ if ($action=='update') {
 	if (UID == $uid) {
 		emDirect('./user.php');
 	}
-    //The founder account cannot be edited by others
+    //Founder account can not be edited by others
     if ($uid == 1) {
 		emDirect('./user.php?error_del_b=1');
 	}
@@ -143,7 +143,7 @@ if ($action== 'del') {
 		emDirect('./user.php');
 	}
 
-    //The founder account cannot be deleted
+    //Founder account can not be deleted
     if ($uid == 1) {
 		emDirect('./user.php?error_del_a=1');
 	}

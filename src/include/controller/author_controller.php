@@ -1,13 +1,12 @@
 <?php
 /**
- * View author posts
+ * View Post author
  *
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Author_Controller {
 	function display($params) {
-		global $lang;
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
 		$options_cache = Option::getAll();

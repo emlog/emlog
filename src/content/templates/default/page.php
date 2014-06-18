@@ -1,6 +1,6 @@
 <?php 
 /**
-* Self-built page template
+ * Self-built page template
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>

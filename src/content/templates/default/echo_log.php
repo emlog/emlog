@@ -1,6 +1,6 @@
 <?php 
 /**
-* Read the blog page
+ * Read the Post page
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
