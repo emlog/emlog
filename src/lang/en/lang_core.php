@@ -25,7 +25,7 @@ $lang = array(
  '_bytes'	=> ' bytes',//'字节',
  'first_page'	=> 'First',//'首页',
  'last_page'	=> 'Last',//'尾页',
- 'read_more'	=> 'Read more&gt;&gt;';//'阅读全文&gt;&gt;',
+ 'read_more'	=> 'Read more&gt;&gt;',//'阅读全文&gt;&gt;',
  '_sec_ago'	=> ' seconds ago.',//'秒前',
  '_min_ago'	=> ' minutes ago.',//'分钟前',
  'about_'	=> '~ ',//'约 ',
@@ -79,7 +79,7 @@ $lang = array(
 		'[Secret]'	=> '33.gif',
 		'[Bewitched]'	=> '34.gif',
 		'[Disagree]'	=> '35.gif',
-		);
+		),
 //[930] 'emoticons'	=> array(
 //		'[耶]'	=> '0.gif',
 //		'[呵呵]'	=> '1.gif',
