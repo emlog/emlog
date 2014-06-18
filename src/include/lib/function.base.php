@@ -120,7 +120,7 @@ function emLoadJQuery() {
 		$isJQueryLoaded = true;
 
 		function loadJQuery() {
-			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js?v=' . Option::EMLOG_VERSION . '" type="text/javascript"></script>';
+/*vot*/			echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
 		}
 
 	}
