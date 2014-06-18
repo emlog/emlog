@@ -8,8 +8,8 @@
 <li><input size="40" value="<?php echo $tagname; ?>" name="tagname" class="input" /></li>
 <li style="margin:10px 0px">
 <input type="hidden" value="<?php echo $tagid; ?>" name="tid" />
-<input type="submit" value="<? echo $lang['save'];?>" class="button" />
-<input type="button" value="<? echo $lang['cancel'];?>" class="button" onclick="javascript: window.location='tag.php';"/>
+<!--vot--><input type="submit" value="<?=lang('_save_')?>" class="button" />
+<!--vot--><input type="button" value="<?=lang('_cancel_')?>" class="button" onclick="javascript: window.location='tag.php';"/>
 </li>
 </div>
 </form>

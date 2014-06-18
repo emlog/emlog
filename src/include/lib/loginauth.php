@@ -226,7 +226,7 @@ class LoginAuth{
     public static function checkToken(){
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         if ($token != self::genToken()) {
-            emMsg('权限不足，token error');
+            emMsg(lang('no_permission').' '.lang('token_error'));
         }
     }
 }

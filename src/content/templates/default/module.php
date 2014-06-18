@@ -342,7 +342,6 @@ function neighbor_log($neighborLog){
 <?php
 //blog:Comment List
 function blog_comments($comments){
-    global $lang;
     extract($comments);
     if($commentStacks): ?>
 	<a name="comments"></a>
@@ -360,7 +359,7 @@ function blog_comments($comments){
 		<div class="comment-info">
 			<b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
 			<div class="comment-content"><?php echo $comment['content']; ?></div>
-			<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><? echo $lang['comment_reply']; ?></a></div>
+<!--vot-->		<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div>
 		</div>
 		<?php blog_comments_children($comments, $comment['children']); ?>
 	</div>

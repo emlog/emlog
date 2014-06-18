@@ -17,8 +17,8 @@ foreach($tags as $key=>$value): ?>
 </li>
 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <li style="margin:20px 0px">
-<a href="javascript:void(0);" id="select_all"><? echo $lang['select all']; ?></a> <? echo $lang['with_selected_do']; ?>:
-<a href="javascript:deltags();" class="care"><? echo $lang['remove']; ?></a>
+<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
+<!--vot--><a href="javascript:deltags();" class="care"><?=lang('delete')?></a>
 </li>
 <?php else:?>
 <!--vot--><li style="margin:20px 30px"><?=lang('tags_no_info')?></li>

@@ -32,33 +32,32 @@ class MySql {
 	private static $instance = null;
 
 	private function __construct() {
-		global $lang;
 		if (!function_exists('mysql_connect')) {
-			emMsg($lang['mysql_not_supported']);
+/*vot*/			emMsg(lang('php_mysql_not_supported'));
 		}
 		if (!$this->conn = @mysql_connect(DB_HOST, DB_USER, DB_PASSWD)) {
             switch ($this->geterrno()) {
                 case 2005:
-                    emMsg($lang['db_connect_error']);
+/*vot*/             emMsg(lang('db_database_unavailable'));
                     break;
                 case 2003:
-                    emMsg($lang['db_port_error']);
+/*vot*/             emMsg(lang('db_port_invalid'));
                     break;
                 case 2006:
-                    emMsg($lang['db_server_error']);
+/*vot*/             emMsg(lang('db_server_unavailable'));
                     break;
                 case 1045:
-                    emMsg($lang['db_user_error']);
+/*vot*/             emMsg(lang('db_credential_error'));
                     break;
                 default :
-                    emMsg($lang['db_error_code'] . $this->geterrno());
+/*vot*/             emMsg(lang('db_error_code') . $this->geterrno());
                     break;
             }
 		}
 		if ($this->getMysqlVersion() > '4.1') {
 			mysql_query("SET NAMES 'utf8'");
 		}
-/*vot*/		@mysql_select_db(DB_NAME, $this->conn) OR emMsg(lang('db_not_found'));//"连接数据库失败，未找到您填写的数据库"
+/*vot*/		@mysql_select_db(DB_NAME, $this->conn) OR emMsg(lang('db_not_found'));
 	}
 
 	/**
@@ -86,7 +85,7 @@ class MySql {
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
 		if (!$this->result) {
-/*vot*/			emMsg(lang('db_sql_error').": $sql <br />" . $this->geterror());//"SQL语句执行错误：$sql <br />"
+/*vot*/			emMsg(lang('db_sql_error').": $sql <br />" . $this->geterror());
 		}else {
 			return $this->result;
 		}
