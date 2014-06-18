@@ -3,10 +3,11 @@
 <div class=line></div>
 <form action="navbar.php?action=update" method="post">
 <div class="item_edit">
-<!--vot--> <li><input size="20" value="<?php echo $naviname; ?>" name="naviname" /> <?=lang('nav_name')?></li>
+<!--vot--><li><div style="float:left;width:16%;"><?=lang('nav_name')?>: </div><input size="40" value="<?php echo $naviname; ?>" name="naviname" /></li>
 	<li>
-<!--vot--> <input size="50" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <?=lang('nav_address')?>
-<!--vot--> <?=lang('open_new_win')?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> />
+<!--vot--><div style="float:left;width:16%;"><?=lang('nav_address')?>: </div><input size="100" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /></li>
+<!--vot--><li>
+<!--vot--><div style="float:left;width:16%;"><?=lang('open_new_win')?>: </div><input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> />
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>

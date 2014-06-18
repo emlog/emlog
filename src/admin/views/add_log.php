@@ -25,8 +25,21 @@
 </div>
 <div style="margin:10px 0px 5px 0px;">
 <!--vot--><label for="tag" id="tag_label"><?=lang('post_tags_separated')?></label>
+<br>
     <input name="tag" id="tag" maxlength="200"/>
 <!--vot--> <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
+<div id="tagbox">
+<?php
+    if ($tags) {
+        foreach ($tags as $val){
+            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+        }
+    } else {
+/*vot*/ echo lang('tag_not_set');
+    }
+?>
+</div>
+<!--vot--><br>
     <select name="sort" id="sort" style="width:130px;">
 <!--vot--><option value="-1"><?=lang('category_select')?></option>
         <?php 
@@ -49,17 +62,6 @@
     </select>
 <!--vot--><?=lang('post_time')?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
-</div>
-<div id="tagbox">
-<?php
-    if ($tags) {
-        foreach ($tags as $val){
-            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-        }
-    } else {
-/*vot*/ echo lang('tag_not_set');
-    }
-?>
 </div>
 <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
 <div id="advset">

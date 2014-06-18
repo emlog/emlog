@@ -11,13 +11,13 @@ $lang = array(
 //---------------------------
 //include/lib/calendar.php
 
- 'weekday1'	=> 'Monday',//'一',
- 'weekday2'	=> 'Tuesday',//'二',
- 'weekday3'	=> 'Wednesday',//'三',
- 'weekday4'	=> 'Thursday',//'四',
- 'weekday5'	=> 'Friday',//'五',
- 'weekday6'	=> 'Saturday',//'六',
- 'weekday7'	=> 'Sunday',//'日',
+ 'weekday1'	=> 'Mo',//'Monday',//'一',
+ 'weekday2'	=> 'Tu',//'Tuesday',//'二',
+ 'weekday3'	=> 'We',//'Wednesday',//'三',
+ 'weekday4'	=> 'Th',//'Thursday',//'四',
+ 'weekday5'	=> 'Fr',//'Friday',//'五',
+ 'weekday6'	=> 'Sa',//'Saturday',//'六',
+ 'weekday7'	=> 'Su',//'Sunday',//'日',
 
 //---------------------------
 //include/lib/function.base.php
@@ -200,7 +200,7 @@ $lang = array(
 // 'reply'		=> 'Reply',//'回复',
 // 'reply'		=> 'Reply',//'回复',
  'cancel_reply'		=> 'Cancel reply',//'取消回复',
-// 'comment_leave'	=> 'Leave a comment',//'发表评论',
+ 'comment_leave'	=> 'Leave a comment',//'发表评论',
 // 'nickname'		=> 'Nicname',//'昵称',
 // 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
 // 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',

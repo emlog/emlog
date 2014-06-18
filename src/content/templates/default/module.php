@@ -179,7 +179,6 @@ function widget_search($title){ ?>
 <?php
 //widget:Archive
 function widget_archive($title){
-	global $lang;
 	global $CACHE; 
 	$record_cache = $CACHE->readCache('record');
 	?>
@@ -187,13 +186,7 @@ function widget_archive($title){
 	<h3><span><?php echo $title; ?></span></h3>
 	<ul id="record">
 	<?php foreach($record_cache as $value): ?>
-<?php
-//2008年12月, 2008-12
-$sep = mb_substr($value['record'],4,1);
-$da = explode($sep,$value['record']);
-$m = $lang['month_'.intval($da[1])].' '.$da[0];
-?>
-	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $m; ?> (<?php echo $value['lognum']; ?>)</a></li>
+	<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 	<?php endforeach; ?>
 	</ul>
 	</li>

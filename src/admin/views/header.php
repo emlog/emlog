@@ -10,7 +10,7 @@
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
 <link href="./views/style/<?php echo Option::get('admin_style');?>/style.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
 <link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-<!--vot--><script src="<?=BLOG_URL?>lang/<? echo EMLOG_LANGUAGE ?>/lang_js.js" type="text/javascript"></script>
+<!--vot--><script src="<?=BLOG_URL?>lang/<?=EMLOG_LANGUAGE?>/lang_js.js" type="text/javascript"></script>
 <!--vot--><script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>

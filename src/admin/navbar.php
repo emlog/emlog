@@ -98,7 +98,7 @@ if ($action== 'mod') {
 	extract($naviData);
 
 	if ($type != Navi_Model::navitype_custom) {
-/*vot*/		$url = lang('addres_generated');
+/*vot*/		$url = lang('address_generated');
 	}
 
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';

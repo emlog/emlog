@@ -25,8 +25,8 @@
 		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 	}
 /*vot*/	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red"> - <?=lang('draft')?></font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="<?=lang('page_view')?>"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+	'<font color="red"> - '.lang('draft').'</font>' : 
+	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 	?>
      <tr>
      	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>

@@ -1113,7 +1113,8 @@ function load_language($model='') {
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
   if(!isset($LANGLIST)) {$LANGLIST = array();}
 
-  if($model) {
+/*vot*/  if($model && !isset($LANGLIST[$model])) {
+
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
 
 //DEBUG
@@ -1127,17 +1128,18 @@ function load_language($model='') {
     if(is_file($file)) {
 
       $lang = array();
-      @require_once $file;
+      $ok = @require_once $file;
 
       // Language file must contain $lang = array(...);
       $LANGUAGE = array_merge($LANGUAGE, $lang);
 
       unset($lang);
 
-      $LANGLIST[] = $model;
+      $LANGLIST[$model] = 1;
 
 //DEBUG
 //echo '<pre>';
+//echo '	require_ok=', intval($ok), "\n";
 //echo '	key number=', count($LANGUAGE), "\n";
 //echo 'LANGUAGE=';
 //print_r($LANGUAGE);

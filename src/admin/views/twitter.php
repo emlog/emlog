@@ -34,7 +34,7 @@
     $tid = (int)$val['id'];
     $replynum = $Reply_Model->getReplyNum($tid);
     $hidenum = $replynum - $val['replynum'];
-/*vot*/    $img = empty($val['img']) ? "" : '<a title="<?=lang('view_image')?>" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
+/*vot*/    $img = empty($val['img']) ? "" : '<a title="'.lang('view_image').'" href="'.BLOG_URL.str_replace('thum-', '', $val['img']).'" target="_blank"><img style="border: 1px solid #EFEFEF;" src="'.BLOG_URL.$val['img'].'"/></a>';
     ?>
     <li class="li">
     <div class="main_img"><img src="<?php echo $avatar; ?>" width="32px" height="32px" /></div>
@@ -92,7 +92,7 @@ $(document).ready(function(){
 		swf             : '../include/lib/js/uploadify/uploadify.swf',
 		uploader        : 'attachment.php?action=upload_tw_img',
 		cancelImage     : './views/images/cancel.png',
-/*vot*/		buttonText      : lang('image_select'),
+/*vot*/		buttonText      : '<?=lang('image_select')?>',
 		checkExisting   : "/",
 		auto            : true,
 		multi           : false,
@@ -103,7 +103,7 @@ $(document).ready(function(){
 		removeCompleted : false,
 		fileSizeLimit	: 20971520,
 		fileObjName     : 'attach',
-		postData		: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
+		postData	: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
 		onUploadSuccess : onUploadSuccess,
 		onUploadError   : onUploadError
 	});

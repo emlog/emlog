@@ -137,7 +137,7 @@ if($act == 'install' || $act == 'reinstall'){
 	$CACHE = Cache::getInstance();
 
 	if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
-		echo <<<EOT
+/*vot*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -152,24 +152,24 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </head><body>
 <form name="form1" method="post" action="install.php?action=reinstall">
 <div class="main">
-	<input name="hostname" type="hidden" class="input" value="$db_host">
-	<input name="dbuser" type="hidden" class="input" value="$db_user">
-	<input name="password" type="hidden" class="input" value="$db_pw">
-	<input name="dbname" type="hidden" class="input" value="$db_name">
-	<input name="dbprefix" type="hidden" class="input" value="$db_prefix">
-	<input name="admin" type="hidden" class="input" value="$admin">
-	<input name="adminpw" type="hidden" class="input" value="$adminpw">
-	<input name="adminpw2" type="hidden" class="input" value="$adminpw2">
+<!--vot--><input name="hostname" type="hidden" class="input" value="<?=$db_host?>">
+<!--vot--><input name="dbuser" type="hidden" class="input" value="<?=$db_user?>">
+<!--vot--><input name="password" type="hidden" class="input" value="<?=$db_pw?>">
+<!--vot--><input name="dbname" type="hidden" class="input" value="<?=$db_name?>">
+<!--vot--><input name="dbprefix" type="hidden" class="input" value="<?=$db_prefix?>">
+<!--vot--><input name="admin" type="hidden" class="input" value="<?=$admin?>">
+<!--vot--><input name="adminpw" type="hidden" class="input" value="<?=$adminpw?>">
+<!--vot--><input name="adminpw2" type="hidden" class="input" value="<?=$adminpw2?>">
 <p>
-<!--vot-->{lang('already_installed')}
-<!--vot--><input type="submit" value="{lang('continue')}">
+<!--vot--><?=lang('already_installed')?>
+<!--vot--><input type="submit" value="<?=lang('continue')?>">
 </p>
-<!--vot--><p><a href="javascript:history.back(-1);">{lang('return')}</a></p>
+<!--vot--><p><a href="javascript:history.back(-1);"><?=lang('return')?></a></p>
 </div>
 </form>
 </body>
 </html>
-EOT;
+<?php /*vot*/
 		exit;
 	}
 

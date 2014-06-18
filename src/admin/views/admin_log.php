@@ -203,7 +203,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<?php endif;?>
 	</div>
 </form>
-<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $logNum; ?><?=lang('number_of_items')?><?php echo $pid == 'draft' ? '<?=lang('draft')?>' : '<?=lang('posts')?>'; ?>)</div>
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $logNum; ?><?=lang('number_of_items')?><?php echo $pid == 'draft' ? lang('draft') : lang('posts'); ?>)</div>
 <script>
 $(document).ready(function(){
 	$("#adm_log_list tbody tr:odd").addClass("tralt_b");

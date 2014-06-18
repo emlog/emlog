@@ -20,7 +20,7 @@ foreach($logs as $value):
 	<?php echo $value['log_description']; ?>
 	<p class="tag"><?php blog_tag($value['logid']); ?></p>
 	<p class="count">
-<!--vot--><a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?> (<?php echo $value['comnum']; ?>)</a>
+<!--vot--><a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?> (<?php echo $value['comnum']; ?>)</a>,
 <!--vot--><a href="<?php echo $value['log_url']; ?>"><?=lang('_views')?> (<?php echo $value['views']; ?>)</a>
 	</p>
 	<div style="clear:both;"></div>

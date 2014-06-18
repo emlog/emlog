@@ -6,6 +6,15 @@
 
 require_once 'globals.php';
 
+//DEBUG
+echo '<pre>';
+echo 'widgets.php:', "\n";
+//echo '	LANGUAGE=';
+//print_r($LANGUAGE);
+echo '	LANGLIST=';
+print_r($LANGLIST);
+echo '</pre>';
+
 //Display widget management panel
 if ($action == '') {
 	$wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;

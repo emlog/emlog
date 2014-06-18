@@ -3,6 +3,12 @@
  * Calendar
  * @copyright (c) Emlog All Rights Reserved
  */
+//DEBUG
+//echo '<pre>';
+//echo 'Calendar.php:', "\n";
+//echo 'LANGUAGE=';
+//print_r($LANGUAGE);
+//echo '</pre>';
 
 class Calendar {
 

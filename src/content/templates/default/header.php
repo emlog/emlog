@@ -44,9 +44,9 @@ require_once View::getView('module');
 <div id="debug">
 <?php
 //DEBUG
-echo '<pre>';
-echo 'LANGLIST=';
-print_r($GLOBALS['LANGLIST']);
-echo '</pre>';
+//echo '<pre>';
+//echo 'LANGLIST=';
+//print_r($GLOBALS['LANGLIST']);
+//echo '</pre>';
 ?>
 </div>

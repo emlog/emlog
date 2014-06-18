@@ -28,10 +28,10 @@
 </div>
 <div style="margin-top:3px;">
 <!--vot--><?=lang('page_template')?><input maxlength="200" class="input" name="template" id="template" value="<?php echo $template;?>" /> <?=lang('page_template_info')?>
-    <span id="page_options">
+    <div id="page_options">
 <!--vot--><label for="allow_remark"><?=lang('page_enable_comments')?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-    </span>
+    </div>
 </div>
 <div id="post_button">
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />

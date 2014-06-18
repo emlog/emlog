@@ -120,7 +120,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><?=lang('comment_avatar')?><br />
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /><?=lang('comment_must_contain_chinese')?><br />
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><?=lang('comment_per_page')?>
-<!--vot-->	<?=lang('per_page')?><input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments_')?>
+<!--vot-->	<?=lang('per_page')?><input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments')?>
 <!--vot-->	<select name="comment_order" class="input"><option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option><option value="older" <?php echo $ex4; ?>><?=lang('older')?></option></select><?=lang('standing_in_front')?><br />
 		</td>
       </tr>
