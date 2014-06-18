@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="<?php echo EMLOG_LANGUAGE; ?>" />
+<!--vot--><meta http-equiv="Content-Language" content="<?=EMLOG_LANGUAGE?>" />
 <meta name="author" content="emlog" />
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
@@ -25,7 +25,7 @@
 <!--vot--><a href="../" target="_blank" title="<?=lang('to_site_new_window')?>">
     <?php 
     $blog_name = Option::get('blogname');
-<!--vot-->echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 24);
+/*vot*/ echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 24);
     ?>
     </a>
     </div>
@@ -63,7 +63,7 @@
 		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?> <?=lang('posts_pending')?>"><?php echo $n; ?></a></div>
 		<?php endif; ?>
 		<?php if (ROLE == ROLE_ADMIN):?>
-<!--vot--><li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><?=lang(tags)?></a></li>
+<!--vot--><li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><?=lang('tags')?></a></li>
 <!--vot--><li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><?=lang('categories')?></a></li>
     	<?php endif;?>
 <!--vot--><li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><?=lang('comments')?></a> </li>
