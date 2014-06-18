@@ -20,13 +20,13 @@ function showattlib(){
 }
 </script>
 <div id="media-upload-header">
-	<span><a href="javascript:showupload(0);"><? echo $lang['attachment_upload']; ?></a></span>
-	<span id="curtab"><a href="javascript:showupload(1);"><? echo $lang['bulk_upload']; ?></a></span>
-	<span><a href="javascript:showattlib();"><? echo $lang['attachment_library']; ?> (<?php echo $attachnum; ?>)</a></span>
+<!--vot--><span><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
+<!--vot--><span id="curtab"><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
+<!--vot--><span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?php echo $attachnum; ?>)</a></span>
 </div>
 <?php 
 if(true === isIE6Or7()): ?>
-<div class="ie_notice"><? echo $lang['upload_bad_browser']; ?></div>
+<!--vot--><div class="ie_notice"><?=lang('browser_upgrade')?></div>
 <?php else:?>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		uploader        : 'attachment.php?action=upload_multi&logid='+parent.document.getElementById('as_logid').value,
 		cancelImage     : './views/images/cancel.png',
 		checkExisting   : false,
-		buttonText      : '<? echo $lang['file_select']; ?>',
+/*vot*/		buttonText      : '<?=lang('file_select')?>',
 		auto            : true,
 		multi           : true,
 		buttonCursor    : 'pointer',

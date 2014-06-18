@@ -488,28 +488,28 @@ $lang = array(
 //---------------------------
 //admin/views/template_top.php
 // 'template_top_image'	=> 'Custom top image',//'自定义顶部图片',
- 'image_replace_ok'		=> 'Image has been replaced successfully.',//'顶部图片更换成功',
+ 'image_replace_ok'	=> 'Image has been replaced successfully.',//'顶部图片更换成功',
 // 'deleted_ok'		=> 'Deleted successfully',//'删除成功',
- 'image_crop_error'		=> 'Image crop error',//'裁剪图片失败',
+ 'image_crop_error'	=> 'Image crop error',//'裁剪图片失败',
  'top_image_unavailable'	=> 'Current top image is unused or deleted',//'当前未使用顶部图片或者使用中的顶部图片被删除',
- 'images_optional'		=> 'Optional images',//'可选图片',
+ 'images_optional'	=> 'Optional images',//'可选图片',
  'image_click_to_use'	=> 'Click on image to use it',//'点击使用该图片',
-// 'delete'			=> 'Delete',//'删除',
+// 'delete'		=> 'Delete',//'删除',
  'top_image_not_use'	=> 'Do not use the top image.',//'不使用顶部图片',
 // 'top_image_not_use'	=> 'Do not use the top image.',//'不使用顶部图片',
- 'top_image_custom'		=> 'Custom image',//'自定义图片',
- 'upload'			=> 'Upload',//'上传',
+ 'top_image_custom'	=> 'Custom image',//'自定义图片',
+ 'upload'		=> 'Upload',//'上传',
  'top_image_upload_prompt'	=> '(Upload your favourite picture to top. Supported formats: jpg, png.)',//'(上传一张你喜欢的顶部图片，支持JPG、PNG格式)',
 
 //---------------------------
 //admin/views/upload.php
 // 'attachment_upload'	=> 'Upload attachment',//'上传附件',
-// 'bulk_upload'		=> 'Bulk upload',//'批量上传',
+// 'bulk_upload'	=> 'Bulk upload',//'批量上传',
 // 'attachment_library'	=> 'Attachment Library',//'附件库',
-// '('		=> '(',//'（',
-// ')'		=> ' )',//' ）',
+// '('			=> '(',//'（',
+// ')'			=> ' )',//' ）',
  'attach_max_size'	=> 'Maximum size of single attachment',//'单个附件最大',
-// ','		=> ',',//'，',
+// ','			=> ',',//'，',
  'types_allowed'	=> 'Allowed types',//'允许类型',
 // 'upload'		=> 'Upload',//'上传',
  'attachment_add'	=> 'Add attachment',//'增加附件',
@@ -519,12 +519,12 @@ $lang = array(
 
 //---------------------------
 //admin/views/upload_multi.php
-[23]// 'attachment_upload'	=> 'Upload attachment',//'上传附件',
-[24]// 'bulk_upload'		=> 'Bulk upload',//'批量上传',
-[25]// 'attachment_library'	=> 'Attachment Library',//'附件库',
-[25]// ')'		=> ')',//'）',
-[29] 'browser_upgrade'	=> 'Your browser is too old to display this feature. You cannot use the bulk upload. Please, upgrade your web browser or switch to another.',//'您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。',
-[46] 'file_select'	=> 'Select the file',//'选择文件',
+// 'attachment_upload'	=> 'Upload attachment',//'上传附件',
+// 'bulk_upload'	=> 'Bulk upload',//'批量上传',
+// 'attachment_library'	=> 'Attachment Library',//'附件库',
+// ')'			=> ')',//'）',
+ 'browser_upgrade'	=> 'Your browser is too old to display this feature. You cannot use the bulk upload. Please, upgrade your web browser or switch to another.',//'您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。',
+ 'file_select'		=> 'Select the file',//'选择文件',
 
 //---------------------------
 //admin/views/widgets.php
