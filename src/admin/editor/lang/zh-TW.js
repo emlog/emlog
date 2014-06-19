@@ -43,7 +43,7 @@ KindEditor.lang({
 	flash : 'Flash',
 	media : '多媒體',
 	table : '表格',
-	tablecell : '单元格',
+	tablecell : '儲存格',
 	hr : '插入水平線',
 	emoticons : '插入表情',
 	link : '超連結',
@@ -233,11 +233,11 @@ KindEditor.lang({
 		'2.html' : '表格',
 		'3.html' : '项目清單'
 	}
-}, 'zh_TW');
+}, 'zh-TW');
 
 KindEditor.each(KindEditor.options.items, function(i, name) {
 	if (name == 'baidumap') {
 		KindEditor.options.items[i] = 'map';
 	}
 });
-KindEditor.options.langType = 'zh_TW';
+KindEditor.options.langType = 'zh-TW';

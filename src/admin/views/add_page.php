@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<!--vot--><script charset="utf-8" src="./editor/lang/<? echo str_replace('-','_', EMLOG_LANGUAGE); ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<!--vot--><script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<!--vot--><script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <!--vot--><div class=containertitle><b><?=lang('add_page')?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="page.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">

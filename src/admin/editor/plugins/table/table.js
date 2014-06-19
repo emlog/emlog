@@ -9,14 +9,14 @@
 
 KindEditor.plugin('table', function(K) {
 	var self = this, name = 'table', lang = self.lang(name + '.'), zeroborder = 'ke-zeroborder';
-	// Set color
+	// 设置颜色
 	function _setColor(box, color) {
 		color = color.toUpperCase();
 		box.css('background-color', color);
 		box.css('color', color === '#000000' ? '#FFFFFF' : '#000000');
 		box.html(color);
 	}
-	// Init the eyedropper
+	// 初始化取色器
 	var pickerList = [];
 	function _initColorPicker(dialogDiv, colorBox) {
 		colorBox.bind('click,mousedown', function(e){
@@ -52,7 +52,7 @@ KindEditor.plugin('table', function(K) {
 			dialogDiv.bind('click,mousedown', removePicker);
 		});
 	}
-	// Get the next row cell of index
+	// 取得下一行cell的index
 	function _getCellIndex(table, row, cell) {
 		var rowSpanCount = 0;
 		for (var i = 0, len = row.cells.length; i < len; i++) {
@@ -501,14 +501,14 @@ KindEditor.plugin('table', function(K) {
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
 				index = cell.cellIndex + offset;
-			// Get the first row index
+			// 取得第一行的index
 			index += table.rows[0].cells.length - row.cells.length;
 
 			for (var i = 0, len = table.rows.length; i < len; i++) {
 				var newRow = table.rows[i],
 					newCell = newRow.insertCell(index);
 				newCell.innerHTML = K.IE ? '' : '<br />';
-				// Adjust the next row of cell index
+				// 调整下一行的单元格index
 				index = _getCellIndex(table, newRow, newCell);
 			}
 			self.cmd.range.selectNodeContents(cell).collapse(true);
@@ -532,7 +532,7 @@ KindEditor.plugin('table', function(K) {
 			var newRow = table.insertRow(rowIndex);
 
 			for (var i = 0, len = row.cells.length; i < len; i++) {
-				// Adjust the number of cell
+				// 调整cell个数
 				if (row.cells[i].rowSpan > 1) {
 					len -= row.cells[i].rowSpan - 1;
 				}
@@ -543,7 +543,7 @@ KindEditor.plugin('table', function(K) {
 				}
 				newCell.innerHTML = K.IE ? '' : '<br />';
 			}
-			// Adjust rowspan
+			// 调整rowspan
 			for (var j = rowIndex; j >= 0; j--) {
 				var cells = table.rows[j].cells;
 				if (cells.length > i) {
@@ -569,19 +569,19 @@ KindEditor.plugin('table', function(K) {
 			var table = self.plugin.getSelectedTable()[0],
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
-				rowIndex = row.rowIndex, // Current row index
-				nextRowIndex = rowIndex + cell.rowSpan, // The next row index
-				nextRow = table.rows[nextRowIndex]; // The next row
-			// The last line can not be combined
+				rowIndex = row.rowIndex, // 当前行的index
+				nextRowIndex = rowIndex + cell.rowSpan, // 下一行的index
+				nextRow = table.rows[nextRowIndex]; // 下一行
+			// 最后一行不能合并
 			if (table.rows.length <= nextRowIndex) {
 				return;
 			}
-			var cellIndex = cell.cellIndex; // The next line of the cell index
+			var cellIndex = cell.cellIndex; // 下一行单元格的index
 			if (nextRow.cells.length <= cellIndex) {
 				return;
 			}
-			var nextCell = nextRow.cells[cellIndex]; // The next line of cells
-			// On next line can not be merged of inconsistent colspan
+			var nextCell = nextRow.cells[cellIndex]; // 下一行单元格
+			// 上下行的colspan不一致时不能合并
 			if (cell.colSpan !== nextCell.colSpan) {
 				return;
 			}
@@ -595,15 +595,15 @@ KindEditor.plugin('table', function(K) {
 			var table = self.plugin.getSelectedTable()[0],
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
-				rowIndex = row.rowIndex, // Current row index
+				rowIndex = row.rowIndex, // 当前行的index
 				cellIndex = cell.cellIndex,
 				nextCellIndex = cellIndex + 1;
-			// Finally, one can not be merged
+			// 最后一列不能合并
 			if (row.cells.length <= nextCellIndex) {
 				return;
 			}
 			var nextCell = row.cells[nextCellIndex];
-			// Left column rowspan inconsistent can not be merged
+			// 左右列的rowspan不一致时不能合并
 			if (cell.rowSpan !== nextCell.rowSpan) {
 				return;
 			}
@@ -618,7 +618,7 @@ KindEditor.plugin('table', function(K) {
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
 				rowIndex = row.rowIndex;
-			// Cell division is not available
+			// 不是可分割单元格
 			if (cell.rowSpan === 1) {
 				return;
 			}
@@ -630,7 +630,7 @@ KindEditor.plugin('table', function(K) {
 					newCell.colSpan = cell.colSpan;
 				}
 				newCell.innerHTML = K.IE ? '' : '<br />';
-				// Adjust the next line cells index
+				// 调整下一行的单元格index
 				cellIndex = _getCellIndex(table, newRow, newCell);
 			}
 			K(cell).removeAttr('rowSpan');
@@ -643,7 +643,7 @@ KindEditor.plugin('table', function(K) {
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
 				cellIndex = cell.cellIndex;
-			// Cell division is not available
+			// 不是可分割单元格
 			if (cell.colSpan === 1) {
 				return;
 			}
@@ -675,7 +675,7 @@ KindEditor.plugin('table', function(K) {
 				} else {
 					newRow.deleteCell(index);
 				}
-				// Skip need to delete a row
+				// 跳过不需要删除的行
 				if (newCell.rowSpan > 1) {
 					i += newCell.rowSpan - 1;
 				}
@@ -694,7 +694,7 @@ KindEditor.plugin('table', function(K) {
 				row = self.plugin.getSelectedRow()[0],
 				cell = self.plugin.getSelectedCell()[0],
 				rowIndex = row.rowIndex;
-			// Remove from the bottom to the top
+			// 从下到上删除
 			for (var i = cell.rowSpan - 1; i >= 0; i--) {
 				table.deleteRow(rowIndex + i);
 			}

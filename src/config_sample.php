@@ -18,5 +18,5 @@ define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_gSozFLFifPYsLA2MZC4lLv3d23jvbo7Q');
 //--------------------------------------------------------
 //blog language //vot
 //define('EMLOG_LANGUAGE','zh-CN');
-define('EMLOG_LANGUAGE','en-US');
-//define('EMLOG_LANGUAGE','ru-RU');
+define('EMLOG_LANGUAGE','en');
+//define('EMLOG_LANGUAGE','ru');
