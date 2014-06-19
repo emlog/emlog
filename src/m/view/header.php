@@ -1,9 +1,9 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-echo '<?xml version="1.0" encoding="UTF-8"?>';
+//vot echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <title><?php echo $site_title; ?></title>
 <style type="text/css" id="internalStyle">
