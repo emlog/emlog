@@ -959,7 +959,7 @@ function show_404_page() {
  * @param $t
  */
 function emoFormat($t){
-/*vot*/	$emos = lang('emoticons');
+/*vot*/	require_once(EMLOG_ROOT . '/admin/views/js/emo.php'); //$emos = array(code=>image,...);
 	if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
 		$matches = array_unique($matches[0]);
 		foreach ($matches as $data) {
