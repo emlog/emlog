@@ -4,6 +4,9 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
+// Load the core Lang File
+/*vot*/ load_language('core');
+
 class Option {
 	//Version number
 	const EMLOG_VERSION = '5.3.0';
