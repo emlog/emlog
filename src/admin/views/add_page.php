@@ -44,10 +44,9 @@
 </form>
 <div class=line></div>
 <script>
-KindEditor.ready(function(K) {
-	var editor1 = KindEditor.create('#content', {
+/*vot*/	$(function() {
+		KindEditor.create('textarea[name="content"]');
 	});
-});
 $("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});
 $("#title").focus(function(){$("#title_label").hide();});

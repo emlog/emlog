@@ -1,3 +1,4 @@
+<?php
 // Emoticon Code by vot
 // MUST BE THE SAME AS IN: /admin/views/js/emo.js
 $emos = array(

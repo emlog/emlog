@@ -92,12 +92,12 @@
 </form>
 <div class=line></div>
 <script>
-KindEditor.ready(function(K) {
-	var editor1 = KindEditor.create('#content', {
+/*vot*/	$(function() {
+		KindEditor.create('textarea[name="content"]');
 	});
-	var editor2 = KindEditor.create('#excerpt', {
+/*vot*/	$(function() {
+		KindEditor.create('textarea[name="excerpt"]');
 	});
-});
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 $("#alias").keyup(function(){checkalias();});

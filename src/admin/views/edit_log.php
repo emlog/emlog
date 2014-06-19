@@ -98,12 +98,12 @@ $isdraft = $hide == 'y' ? true : false;
 </form>
 <div class=line></div>
 <script>
-KindEditor.ready(function(K) {
-	var editor1 = KindEditor.create('#content', {
+/*vot*/	$(function() {
+		KindEditor.create('textarea[name="content"]');
 	});
-	var editor2 = KindEditor.create('#excerpt', {
+/*vot*/	$(function() {
+		KindEditor.create('textarea[name="excerpt"]');
 	});
-});
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
