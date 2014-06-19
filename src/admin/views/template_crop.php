@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=containertitle><b><?=lang('image_crop')?></b> <?php if(isset($_GET['activated'])):?><span class="actived"><?=lang('template_change_ok')?></span><?php endif;?></div>
 <div class=line></div>
-<link href="../include/lib/js/imgareaselect/imgareaselect.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-<script type="text/javascript" src="../include/lib/js/imgareaselect/jquery.imgareaselect.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<!--vot--><link href="../include/lib/js/imgareaselect/imgareaselect-animated.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+<!--vot--><script type="text/javascript" src="../include/lib/js/imgareaselect/jquery.imgareaselect.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <form method="post" action="./template.php?action=crop">
 <p class="submit">
 	<input type="hidden" name="x1" id="x1" value="0"/>
