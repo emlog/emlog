@@ -42,36 +42,47 @@ body {
 	color:#666666
 }
 .containertitle2 {
-	background-position:left 3px;
+/*vot	background-position:left 3px;*/
 	font-size:18px;
-	height:30px;
-	background:url(../images/yeka.gif) 10px -82px no-repeat;
+	height:26px;
+/*vot	background:url(../images/yeka.gif) 10px -82px no-repeat;*/
 	padding:0 0 0 20px;
 	margin:20px 0px 10px;
+border-bottom: 1px solid #999;
 }
 .containertitle2 .navi1,.containertitle2 .navi2,.containertitle2 .navi3,.containertitle2 .navi4 {
 	font-size:13px;
 	display:block;
-	width:86px;
+/*vot	width:86px;*/
 	float:left;
 	text-align:center;
 	height:25px;
 	line-height:24px;
+padding: 0 4px;
+border: 1px solid #ddd;
+border-bottom: 0px;
+border-radius: 5px 5px 0 0;
+margin: 0 1px 0 0;
+
 }
 .containertitle2 .navi1 {
-	background:url(../images/yeka.gif) no-repeat;
+/*vot	background:url(../images/yeka.gif) no-repeat;*/
 	color:#999;
+background: #EEE;
 }
 .containertitle2 .navi2 {
-	background:url(../images/yeka.gif) no-repeat -1px -29px;
-	line-height:24px;
+/*vot	background:url(../images/yeka.gif) no-repeat -1px -29px;*/
+/*vot	line-height:24px;*/
+border-color: #999;
 }
 .containertitle2 .navi3 {
-	background:url(../images/yeka.gif) no-repeat 0px -29px;
-	line-height:24px;
+/*vot	background:url(../images/yeka.gif) no-repeat 0px -29px;*/
+/*vot	line-height:24px;*/
+border-color: #999;
+background: #EEE;
 }
 .containertitle2 .navi4 {
-	background:url(../images/yeka.gif) no-repeat -1px 0px;
+/*vot	background:url(../images/yeka.gif) no-repeat -1px 0px;*/
 	color:#999;
 }
 .containertitle2 .actived {
