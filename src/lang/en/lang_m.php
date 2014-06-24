@@ -100,7 +100,7 @@ $lang = array(
 
 //---------------------------
 //m/view/twitter.php
- 'twitter_content'		=> 'Twitter content',//'微语内容',
+ 'twitter_content'	=> 'Twitter content',//'微语内容',
  'image_upload_select'	=> 'Select an image to upload',//'选择要上传的图片',
 // 'publish'		=> 'Publish',//'发布',
 // 'view_image'		=> 'View image',//'查看图片',
