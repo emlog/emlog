@@ -52,6 +52,7 @@ $lang = array(
  'supported'		=> 'Supported',//'支持',
  'not_supported'	=> 'NOT supported',//'不支持',
  'phpinfo_disabled'	=> 'phpinfo function is disabled!',//'phpinfo函数被禁用!',
+ 'released'		=> ' released',
 
 //---------------------------
 //admin/plugin.php

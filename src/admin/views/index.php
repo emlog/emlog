@@ -54,6 +54,15 @@ $(document).ready(function(){
 			if (item.image != ''){
 				image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
 			}
+/*vot*/			item.title = item.title.replace(
+					new RegExp('发布', 'g'),
+					'<?=lang('released')?>'
+				);
+/*vot*/			item.date = item.date.replace(
+					new RegExp('(^\\d+)年(\\d+)月(\\d+)日', 'g'),
+					'20'+'$1'+'-'+'$2'+'-'+'$3'
+				);
+
 			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
 		});
 	});
