@@ -31,8 +31,10 @@ foreach ($widgets as $val)
 }
 ?>
 <?php if (Option::get('rss_output_num')):?>
+<li style="padding-left:0;background:none;">
 <div class="rss">
 <a href="<?php echo BLOG_URL; ?>rss.php" title="RSS订阅"><img src="<?php echo TEMPLATE_URL; ?>images/rss.gif" alt="订阅Rss"/></a>
 </div>
+</li>
 <?php endif;?>
 </ul><!--end #siderbar-->
