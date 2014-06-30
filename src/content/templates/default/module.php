@@ -74,8 +74,8 @@ function widget_sort($title){
 		</li>
 		<?php endforeach; ?>
 		</ul>
-    </li>
 	<?php endif; ?>
+	</li>
 	<?php endforeach; ?>
 	</ul>
 	</li>
