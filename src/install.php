@@ -225,18 +225,18 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	$sql = $setchar."
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid int(10) unsigned NOT NULL auto_increment,
+  gid int(11) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
   excerpt longtext NOT NULL,
-  alias VARCHAR(200) NOT NULL DEFAULT '',
-  author int(10) NOT NULL default '1',
-  sortid int(10) NOT NULL default '-1',
-  type varchar(20) NOT NULL default 'blog',
-  views int(10) unsigned NOT NULL default '0',
-  comnum int(10) unsigned NOT NULL default '0',
-  attnum int(10) unsigned NOT NULL default '0',
+  alias VARCHAR(255) NOT NULL DEFAULT '',
+  author int(11) NOT NULL default '1',
+  sortid int(11) NOT NULL default '-1',
+  type varchar(64) NOT NULL default 'blog',
+  views int(11) unsigned NOT NULL default '0',
+  comnum int(11) unsigned NOT NULL default '0',
+  attnum int(11) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
   sortop enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
@@ -256,29 +256,29 @@ CREATE TABLE {$db_prefix}blog (
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".lang('emlog_welcome')."', '".time()."', '".lang('emlog_install_congratulation')."', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid int(10) unsigned NOT NULL auto_increment,
-  blogid int(10) unsigned NOT NULL default '0',
+  aid int(11) unsigned NOT NULL auto_increment,
+  blogid int(11) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
-  filesize int(10) NOT NULL default '0',
+  filesize int(11) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
   addtime bigint(20) NOT NULL default '0',
-  width int(10) NOT NULL default '0',
-  height int(10) NOT NULL default '0',
-  mimetype varchar(40) NOT NULL default '',
-  thumfor int(10) NOT NULL default 0,
+  width int(11) NOT NULL default '0',
+  height int(11) NOT NULL default '0',
+  mimetype varchar(64) NOT NULL default '',
+  thumfor int(11) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid int(10) unsigned NOT NULL auto_increment,
-  gid int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  cid int(11) unsigned NOT NULL auto_increment,
+  gid int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
-  poster varchar(20) NOT NULL default '',
+  poster varchar(255) NOT NULL default '',
   comment text NOT NULL,
-  mail varchar(60) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
+  mail varchar(255) NOT NULL default '',
+  url varchar(255) NOT NULL default '',
   ip varchar(128) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
@@ -288,11 +288,11 @@ CREATE TABLE {$db_prefix}comment (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
-option_name VARCHAR( 255 ) NOT NULL ,
-option_value LONGTEXT NOT NULL ,
-PRIMARY KEY (option_id),
-KEY option_name (option_name)
+  option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
+  option_name VARCHAR( 255 ) NOT NULL ,
+  option_value LONGTEXT NOT NULL ,
+  PRIMARY KEY (option_id),
+  KEY option_name (option_name)
 )".$add."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','".lang('my_blog')."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','".lang('emlog_powered')."');
@@ -356,27 +356,27 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id int(10) unsigned NOT NULL auto_increment,
-  sitename varchar(30) NOT NULL default '',
-  siteurl varchar(75) NOT NULL default '',
+  id int(11) unsigned NOT NULL auto_increment,
+  sitename varchar(255) NOT NULL default '',
+  siteurl varchar(255) NOT NULL default '',
   description varchar(255) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
+  taxis int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', '".lang('emlog_official_site')."', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id int(10) unsigned NOT NULL auto_increment,
-  naviname varchar(30) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
+  id int(11) unsigned NOT NULL auto_increment,
+  naviname varchar(255) NOT NULL default '',
+  url varchar(255) NOT NULL default '',
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  taxis int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
-  type_id int(10) unsigned NOT NULL default '0',
+  type_id int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$add."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '".lang('home')."', '', 1, 'y', 1);
@@ -384,41 +384,41 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '".lang('login')."', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(10) unsigned NOT NULL auto_increment,
-  tagname varchar(60) NOT NULL default '',
+  tid int(11) unsigned NOT NULL auto_increment,
+  tagname varchar(255) NOT NULL default '',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid int(10) unsigned NOT NULL auto_increment,
+  sid int(11) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
-  alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  alias VARCHAR(255) NOT NULL DEFAULT '',
+  taxis int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   description text NOT NULL,
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT,
-content text NOT NULL,
-img varchar(200) DEFAULT NULL,
-author int(10) NOT NULL default '1',
-date bigint(20) NOT NULL,
-replynum int(10) unsigned NOT NULL default '0',
-PRIMARY KEY (id),
-KEY author (author)
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  content text NOT NULL,
+  img varchar(255) DEFAULT NULL,
+  author int(11) NOT NULL default '1',
+  date bigint(20) NOT NULL,
+  replynum int(101 unsigned NOT NULL default '0',
+  PRIMARY KEY (id),
+  KEY author (author)
 )".$add."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '".lang('test_tweet')."', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
-  id int(10) unsigned NOT NULL auto_increment,
-  tid int(10) unsigned NOT NULL default '0',
+  id int(11) unsigned NOT NULL auto_increment,
+  tid int(11) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
-  name varchar(20) NOT NULL default '',
+  name varchar(255) NOT NULL default '',
   content text NOT NULL,
   hide enum('n','y') NOT NULL default 'n',
   ip varchar(128) NOT NULL default '',
@@ -428,14 +428,14 @@ CREATE TABLE {$db_prefix}reply (
 )".$add."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid int(10) unsigned NOT NULL auto_increment,
-  username varchar(32) NOT NULL default '',
-  password varchar(64) NOT NULL default '',
-  nickname varchar(20) NOT NULL default '',
-  role varchar(60) NOT NULL default '',
+  uid int(11) unsigned NOT NULL auto_increment,
+  username varchar(255) NOT NULL default '',
+  password varchar(255) NOT NULL default '',
+  nickname varchar(255) NOT NULL default '',
+  role varchar(255) NOT NULL default '',
   ischeck enum('n','y') NOT NULL default 'n',
   photo varchar(255) NOT NULL default '',
-  email varchar(60) NOT NULL default '',
+  email varchar(255) NOT NULL default '',
   description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid),
 KEY username (username)
