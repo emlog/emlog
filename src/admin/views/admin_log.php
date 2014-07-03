@@ -26,7 +26,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<div style="float:left; margin-top:8px;">
 <!--vot--><span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>"><?=lang('all')?></a></span>
         <span id="f_t_sort">
-            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;">
+<!--vot-->  <select name="bysort" id="bysort" onChange="selectSort(this);" style="max-width:220px;">
             <option value="" selected="selected"><?=lang('category_view')?>...</option>
             <?php 
             foreach($sorts as $key=>$value):
@@ -52,7 +52,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         </span>
         <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
         <span id="f_t_user">
-            <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:110px;">
+<!--vot-->      <select name="byuser" id="byuser" onChange="selectUser(this);" style="max-width:220px;">
 <!--vot-->      <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
                 <?php 
                 foreach($user_cache as $key=>$value):
