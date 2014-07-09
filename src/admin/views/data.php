@@ -68,8 +68,10 @@
         </select>
     </p>
     <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
-	<p id="server_bakfname" style="display:none;">备份文件名：<input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-	<p><input type="submit" value="开始备份" class="button" /></p>
+	<p>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="submit" value="开始备份" class="button" />
+    </p>
 </div>
 </form>
 

@@ -11,7 +11,6 @@ if ($action == '') {
 	$bakfiles = $retval ? $retval : array();
 	$timezone = Option::get('timezone');
 	$tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'reply', 'sort', 'link','tag','twitter','user');
-	$defname = 'emlog_'. gmdate('Ymd', time() + $timezone * 3600) . '_' . substr(md5(gmdate('YmdHis', time() + $timezone * 3600)),0,18);
 	doAction('data_prebakup');
 
 	include View::getView('header');
@@ -21,11 +20,12 @@ if ($action == '') {
 }
 
 if ($action == 'bakstart') {
-	$bakfname = isset($_POST['bakfname']) ? $_POST['bakfname'] : '';
+    LoginAuth::checkToken();
 	$table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
 	$bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
 	$zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
+    $bakfname = 'emlog_'. gmdate('Ymd', time() + $timezone * 3600) . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
 	$timezone = Option::get('timezone');
 	$filename = '';
 	$sqldump = '';
