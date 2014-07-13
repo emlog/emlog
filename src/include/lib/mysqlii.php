@@ -91,13 +91,13 @@ class MySqlii {
 	/**
 	 * 发送查询语句
 	 */
-	function query($sql) {
+	function query($sql, $ignore_err = FALSE) {
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
-        if (1046 == $this->geterrno()) {
+        if (!$ignore_err && 1046 == $this->geterrno()) {
             emMsg("连接数据库失败，请填写数据库名");
         }
-		if (!$this->result) {
+		if (!$ignore_err && !$this->result) {
 			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
 		} else {
 			return $this->result;

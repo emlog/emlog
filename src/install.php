@@ -202,9 +202,11 @@ EOT;
 
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
-	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
-	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
-    
+	$table_charset_sql = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';' : 'ENGINE='.$type.';';
+    if ($DB->getMysqlVersion() > '4.1' ){
+        $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;", true);
+    }
+
     $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 
@@ -213,7 +215,7 @@ EOT;
 
 	define('BLOG_URL', getBlogUrl());
 
-	$sql = $setchar."
+	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(10) unsigned NOT NULL auto_increment,
@@ -243,7 +245,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY views (views),
   KEY comnum (comnum),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
@@ -259,7 +261,7 @@ CREATE TABLE {$db_prefix}attachment (
   thumfor int(10) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(10) unsigned NOT NULL auto_increment,
@@ -276,7 +278,7 @@ CREATE TABLE {$db_prefix}comment (
   KEY gid (gid),
   KEY date (date),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
@@ -284,7 +286,7 @@ option_name VARCHAR( 255 ) NOT NULL ,
 option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','点滴记忆');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
@@ -354,7 +356,7 @@ CREATE TABLE {$db_prefix}link (
   hide enum('n','y') NOT NULL default 'n',
   taxis int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
@@ -369,7 +371,7 @@ CREATE TABLE {$db_prefix}navi (
   type tinyint(3) unsigned NOT NULL default '0',
   type_id int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (2, '微语', 't', 2, 'y', 2);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
@@ -380,7 +382,7 @@ CREATE TABLE {$db_prefix}tag (
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid int(10) unsigned NOT NULL auto_increment,
@@ -391,7 +393,7 @@ CREATE TABLE {$db_prefix}sort (
   description text NOT NULL,
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT,
@@ -402,7 +404,7 @@ date bigint(20) NOT NULL,
 replynum int(10) unsigned NOT NULL default '0',
 PRIMARY KEY (id),
 KEY author (author)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
@@ -416,7 +418,7 @@ CREATE TABLE {$db_prefix}reply (
   PRIMARY KEY  (id),
   KEY gid (tid),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid int(10) unsigned NOT NULL auto_increment,
@@ -430,7 +432,7 @@ CREATE TABLE {$db_prefix}user (
   description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid),
 KEY username (username)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);

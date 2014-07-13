@@ -81,10 +81,10 @@ class MySql {
 	 * 发送查询语句
 	 *
 	 */
-	function query($sql) {
+	function query($sql, $ignore_err = FALSE) {
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
-		if (!$this->result) {
+		if (!$ignore_err && !$this->result) {
 			emMsg("SQL语句执行错误：$sql <br />" . $this->geterror());
 		}else {
 			return $this->result;
