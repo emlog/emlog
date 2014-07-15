@@ -4,64 +4,64 @@ $lang = array(
 
 //---------------------------
 //admin/twitter.php
-// 'image_share'	=> 'Share Image',//'分享图片',
- 'hide'			=> 'Hide',//'隐藏',
- 'approve'		=> 'Approve',//'审核',
- 'delete'		=> 'Delete',//'删除',
- 'reply'		=> 'Reply',//'回复',
-// 'hide'		=> 'Hide',//'隐藏',
-// 'delete'		=> 'Delete',//'删除',
-// 'reply'		=> 'Reply',//'回复',
+// 'image_share'	=> 'Поделиться изображением',//'分享图片',
+ 'hide'			=> 'Скрыть',//'隐藏',
+ 'approve'		=> 'Одобрить',//'审核',
+ 'delete'		=> 'Удалить',//'删除',
+ 'reply'		=> 'Ответить',//'回复',
+// 'hide'		=> 'Скрыть',//'隐藏',
+// 'delete'		=> 'Удалить',//'删除',
+// 'reply'		=> 'Ответить',//'回复',
 
 //---------------------------
 //admin/views/configure.php
- 'twitter'		=> 'Twitter',//'微语',
- 'twitters'		=> 'Twitters',//'微语',
- 'twitters_enable'	=> 'Enable twitters, ',//'开启微语，',
- '_twitters'		=> ' twitters',//'条微语',
- 'twitter_reply_enable'	=> 'Enable twitter reply, ',//'开启微语回复，',
+ 'twitter'		=> 'Твит',//'微语',
+ 'twitters'		=> 'Твиты',//'微语',
+ 'twitters_enable'	=> 'Разрешить твиты, ',//'开启微语，',
+ '_twitters'		=> ' твитов',//'条微语',
+ 'twitter_reply_enable'	=> 'Разрешить комментировать твиты, ',//'开启微语回复，',
 
 //---------------------------
 //admin/views/index.php
- 'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活 ……',
- 'twitter_write_length'		=> '(You can enter 140 characters maximum)',//'(你还可以输入140字)',
+ 'twitter_write_placeholder'	=> 'Черкните пару слов в твит...',//'用微语记录生活 ……',
+ 'twitter_write_length'		=> '(Можно ввести не более 140 символов)',//'(你还可以输入140字)',
 
 //---------------------------
 //admin/views/twitter.php
-// 'twitter'		=> 'Twitter',//'微语',
-// 'twitters'		=> 'Twitters',//'微语',
-// 'published_ok'	=> 'Entry has been publised successfully',//'发布成功',
+// 'twitter'		=> 'Твит',//'微语',
+// 'twitters'		=> 'Твиты',//'微语',
+// 'published_ok'	=> 'Опубликовано ОК',//'发布成功',
 // 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
- 'twitter_delete_ok'	=> 'Twitter has been deleted successfully',//'微语删除成功',
- 'twitter_empty'	=> 'Twitter content cannot be empty',//'微语内容不能为空',
- 'can_enter_max_140'	=> 'You can enter up to 140 characters',//'你还可以输入140字',
-// 'publish'		=> 'Publish',//'发布',
- 'image_title'		=> 'Image title',//'图片名称',
-// 'cancel'		=> 'Cancel',//'取消',
- 'view_image'		=> 'View image',//'查看图片',
-// 'reply'		=> 'Reply',//'回复',
-// 'delete'		=> 'Delete',//'删除',
-// 'reply'		=> 'Reply',//'回复',
-// 'have'		=> 'Have ',//'有',
-// '_twitters'		=> ' twitters',//'条微语',
-// 'you_can_enter'	=> 'You can enter ',//'你还可以输入',
- '_characters'		=> ' characters',//' 字',
- 'exceeded_'		=> 'Exceeded ',//'已超出',
-// '_characters'	=> ' characters',//' 字',
- 'image_select'		=> 'Select image',//'选择图片',
- 'upload_failed'	=> 'Upload failed!',//'上传失败！',
-// 'image_title'	=> 'Image title',//'图片名称',
- 'reply_length_max_140'	=> 'Reply length should be within 140 characters',//'回复长度需在140个字内',
- 'replied_already'	=> 'The reply already exists',//'该回复已经存在',
- 'reply_delete_sure'	=> 'Are you sure you want to delete the post reply?',//'你确定要删除该条回复吗？',
+ 'twitter_delete_ok'	=> 'Твит успешно удалён',//'微语删除成功',
+ 'twitter_empty'	=> 'Твит не может быть пустым',//'微语内容不能为空',
+ 'can_enter_max_140'	=> 'Можно ввести не более 140 символов',//'你还可以输入140字',
+// 'publish'		=> 'Опубликовать',//'发布',
+ 'image_title'		=> 'Заголовок изображения',//'图片名称',
+// 'cancel'		=> 'Отмена',//'取消',
+ 'view_image'		=> 'Показать изображение',//'查看图片',
+// 'reply'		=> 'Ответить',//'回复',
+// 'delete'		=> 'Удалить',//'删除',
+// 'reply'		=> 'Ответить',//'回复',
+// 'have'		=> 'Имеет ',//'有',
+// '_twitters'		=> ' твитов',//'条微语',
+// 'you_can_enter'	=> 'Вы можете ввести ',//'你还可以输入',
+ '_characters'		=> ' символов',//' 字',
+ 'exceeded_'		=> 'Превышение ',//'已超出',
+// '_characters'	=> ' символов',//' 字',
+ 'image_select'		=> 'Выберите изображение',//'选择图片',
+ 'upload_failed'	=> 'Ошибка загрузки!',//'上传失败！',
+// 'image_title'	=> 'Заголовок изображения',//'图片名称',
+ 'reply_length_max_140'	=> 'Длина твита не должна превышать 140 символов',//'回复长度需在140个字内',
+ 'replied_already'	=> 'Ответ уже существует',//'该回复已经存在',
+ 'reply_delete_sure'	=> 'Уверены, что следут удалить данный ответ?',//'你确定要删除该条回复吗？',
 // 'approve'		=> 'Approve',//'审核',
 // 'approve'		=> 'Approve',//'审核',
 // 'hide'		=> 'Hide',//'隐藏',
 
 //---------------------------
 //admin/views/widgets.php
- 'twitter_latest'	=> 'Latest twits',//'最新微语',
- 'twitter_latest_num'	=> 'Number of latest twits',//'首页显示最新微语数',
+ 'twitter_latest'	=> 'Свежие твиты',//'最新微语',
+ 'twitter_latest_num'	=> 'Кол-во сежих твитов',//'首页显示最新微语数',
 
 //---------------------------
 //content/templates/default/t.php
@@ -77,9 +77,9 @@ $lang = array(
 
 //---------------------------
 //t/index.php
- 'twitter_access_disabled'	=> 'Sorry, twitter access is not enabled!',//'抱歉，微语未开启前台访问！',
+ 'twitter_access_disabled'	=> 'Извините, доступ к твитам запрещён!',//'抱歉，微语未开启前台访问！',
 // 'reply'			=> 'Reply',//'回复',
- 'no_replies'			=> 'No replies',//'还没有回复！',
+ 'no_replies'			=> 'Нет ответов',//'还没有回复！',
 // 'reply'			=> 'Reply',//'回复',
 
 );

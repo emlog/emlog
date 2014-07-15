@@ -9,8 +9,8 @@
 *******************************************************************************/
 
 KindEditor.lang({
-	source : 'Source',
-	preview : 'Preview',
+	source : 'Код',
+	preview : 'Предпросмотр',
 	undo : 'Отмена(Ctrl+Z)',
 	redo : 'Повтор(Ctrl+Y)',
 	cut : 'Вырезать(Ctrl+X)',

@@ -4,8 +4,8 @@ $lang = array(
 //---------------------------
 //install.php
 
- 'php5_required'	=> 'For normal functioning Emlog requires PHP5 or higher',//'您的php版本过低，请选用支持PHP5的环境安装emlog。',
- 'install'		=> 'instal',//'安装程序',
+ 'php5_required'	=> 'Для нормальной работы Emlog требуется PHP5+.',//'For normal functioning Emlog requires PHP5 or higher',//'您的php版本过低，请选用支持PHP5的环境安装emlog。',
+ 'installation'		=> 'Установка Emlog v.',//'Install Emlog v.',//'安装程序emlog ',
  'mysql_settings'	=> 'MySQL settings',//'MySQL数据库设置',
  'db_hostname'		=> 'Database Hostname',//'数据库地址',
  'db_hostname_info'	=> '(default: localhost)',//'(通常为 localhost， 不必修改)',
