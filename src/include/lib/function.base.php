@@ -1163,5 +1163,20 @@ function lang($key='') {
   return isset($LANGUAGE[$key]) ? $LANGUAGE[$key] : '{'.$key.'}';
 }
 
+/**
+ * Return the date/time formatted
+ *
+ * @param integer $date Source date
+ * @param boolean $show_time Show time or not
+ * @return string Formatted date
+ * @author Valery Votintsev, codersclub.org
+ */
+function emdate($date=0, $show_time=0) {
+
+  $format = $show_time ? 'date_time_format' : 'date_format';
+
+  return gmdate(lang($format), $date);
+}
+
 // Load the core Lang File
 /*vot*/ load_language('core');

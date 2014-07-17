@@ -2,7 +2,7 @@
 <div id="m">
 <?php foreach($logs as $value): ?>
 <div class="title"><a href="<?php echo BLOG_URL; ?>m/?post=<?php echo $value['logid'];?>"><?php echo $value['log_title']; ?></a></div>
-<div class="info"><?php echo gmdate('Y-n-j', $value['date']); ?></div>
+<!--vot--><div class="info"><?=emdate($value['date'])?></div>
 <div class="info2">
 <!--vot--><?=lang('comments')?>: <?php echo $value['comnum']; ?>, <?=lang('views')?>: <?php echo $value['views']; ?> 
 <?php if(ROLE == ROLE_ADMIN || $value['author'] == UID): ?>

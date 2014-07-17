@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
-	<div class="postinfo"><?php echo gmdate('Y-m-d', $date); ?> <?php echo $user_cache[$author]['name'];?></div>
+	<div class="postinfo"><?=emdate($date)?> <?php echo $user_cache[$author]['name'];?></div>
 	<div class="postcont"><?php echo $log_content; ?></div>
     <?php if(!empty($commentStacks)): ?>
 <!--vot-->	<div class="t"><?=lang('delete')?>:</div>
