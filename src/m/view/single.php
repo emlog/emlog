@@ -2,7 +2,7 @@
 <div id="m">
 	<div class="posttitle"><?php echo $log_title; ?></div>
 	<div class="postinfo"><?php echo gmdate('Y-n-j', $date); ?> <?php echo $user_cache[$author]['name'];?></div>
-	<div class="postcont"><?php echo $log_content; ?></div>
+	<div class="postcont"><?php echo nl2br($log_content); ?></div>
     <?php if(!empty($commentStacks)): ?>
 	<div class="t">评论：</div>
 	<div class="c">
