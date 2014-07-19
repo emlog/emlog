@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');}
-//vot echo '<?xml version="1.0" encoding="UTF-8"?>';
+//vot echo '<?xml version="1.0" encoding="UTF-8"?\>';
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
