@@ -5,7 +5,8 @@ $lang = array(
 //---------------------------
 //content/templates/default/echo_log.php
 //ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
-  'date_format_hm'	=> 'Y-m-d H:i', //'Y-n-j G:i',
+  'date_hms_format'	=> 'Y-m-d H:i:s', //'Y-n-j G:i:s',
+  'date_hm_format'	=> 'Y-m-d H:i', //'Y-n-j G:i',
   'date_format'		=> 'Y-m-d', //'Y-n-j',
 // 'user'		=> 'User',//'作者',
 // 'post_time'		=> 'Posted on',//'发布于',

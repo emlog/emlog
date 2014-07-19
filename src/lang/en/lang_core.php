@@ -23,6 +23,7 @@ $lang = array(
 //include/lib/function.base.php
  '_load_failed'	=> ' load failed.',//'加载失败。',
  '_bytes'	=> ' bytes',//'字节',
+ 'home'		=> 'Home',//'首页',
  'first_page'	=> 'First',//'首页',
  'last_page'	=> 'Last',//'尾页',
  'read_more'	=> 'Read more&gt;&gt;',//'阅读全文&gt;&gt;',
@@ -66,6 +67,7 @@ $lang = array(
  'links'		=> 'Links',//'链接',
  'search'		=> 'Search',//'搜索',
  'widget_custom'	=> 'Custom widget',//'自定义组件',
+ 'search_placeholder'	=> 'Search...and Enter',//'Search...and Enter',
 
 //---------------------------
 //include/lib/view.php
