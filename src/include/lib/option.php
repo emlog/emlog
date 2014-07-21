@@ -9,7 +9,7 @@
 
 class Option {
 	//Version number
-	const EMLOG_VERSION = '5.3.0';
+	const EMLOG_VERSION = '5.3.1';
 	//MySQL default link mode: mysql or mysqli
 	const DEFAULT_MYSQLCONN = 'mysql';
 	//Maximum avatar thumbnail width

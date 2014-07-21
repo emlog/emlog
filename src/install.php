@@ -211,9 +211,11 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 
 	$dbcharset = 'utf8';
 	$type = 'MYISAM';
-	$add = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';':'TYPE='.$type.';';
-	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
-    
+	$table_charset_sql = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';' : 'ENGINE='.$type.';';
+    if ($DB->getMysqlVersion() > '4.1' ){
+        $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;", true);
+    }
+
     $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 
@@ -222,7 +224,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 
 	define('BLOG_URL', getBlogUrl());
 
-	$sql = $setchar."
+	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment,
@@ -252,7 +254,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY views (views),
   KEY comnum (comnum),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".lang('emlog_welcome')."', '".time()."', '".lang('emlog_install_congratulation')."', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
@@ -268,7 +270,7 @@ CREATE TABLE {$db_prefix}attachment (
   thumfor int(11) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(11) unsigned NOT NULL auto_increment,
@@ -285,7 +287,7 @@ CREATE TABLE {$db_prefix}comment (
   KEY gid (gid),
   KEY date (date),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
   option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
@@ -293,7 +295,7 @@ CREATE TABLE {$db_prefix}options (
   option_value LONGTEXT NOT NULL ,
   PRIMARY KEY (option_id),
   KEY option_name (option_name)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','".lang('my_blog')."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','".lang('emlog_powered')."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
@@ -363,7 +365,7 @@ CREATE TABLE {$db_prefix}link (
   hide enum('n','y') NOT NULL default 'n',
   taxis int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', '".lang('emlog_official_site')."', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
@@ -378,7 +380,7 @@ CREATE TABLE {$db_prefix}navi (
   type tinyint(3) unsigned NOT NULL default '0',
   type_id int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '".lang('home')."', '', 1, 'y', 1);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (2, '".lang('twits')."', 't', 2, 'y', 2);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '".lang('login')."', 'admin', 3, 'y', 3);
@@ -389,7 +391,7 @@ CREATE TABLE {$db_prefix}tag (
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid int(11) unsigned NOT NULL auto_increment,
@@ -400,7 +402,7 @@ CREATE TABLE {$db_prefix}sort (
   description text NOT NULL,
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
   id INT(11) NOT NULL AUTO_INCREMENT,
@@ -411,7 +413,7 @@ CREATE TABLE {$db_prefix}twitter (
   replynum int(101 unsigned NOT NULL default '0',
   PRIMARY KEY (id),
   KEY author (author)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '".lang('test_tweet')."', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
@@ -425,7 +427,7 @@ CREATE TABLE {$db_prefix}reply (
   PRIMARY KEY  (id),
   KEY gid (tid),
   KEY hide (hide)
-)".$add."
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid int(11) unsigned NOT NULL auto_increment,
@@ -439,7 +441,7 @@ CREATE TABLE {$db_prefix}user (
   description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid),
 KEY username (username)
-)".$add."
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);

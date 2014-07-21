@@ -1,4 +1,5 @@
 # 相关程序生成的文件
+/src/.htaccess
 /src/config.php
 /src/content/backup/*.sql
 /src/content/cache/*.php

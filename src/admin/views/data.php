@@ -68,8 +68,10 @@
         </select>
     </p>
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
-<!--vot--><p id="server_bakfname" style="display:none;"><?=lang('backup_file_name')?>: <input maxlength="200" size="35" value="<?php echo $defname; ?>" name="bakfname" /><b>.sql</b></p>
-<!--vot--><p><input type="submit" value="<?=lang('backup_start')?>" class="button" /></p>
+	<p>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+<!--vot--><input type="submit" value="<?=lang('backup_start')?>" class="button" />
+    </p>
 </div>
 </form>
 

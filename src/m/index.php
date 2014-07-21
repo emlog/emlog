@@ -108,7 +108,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
-	$content = isset($_POST['content']) ? nl2br(addslashes(trim($_POST['content']))) : '';
+	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
 	$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 	$tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 	$blogid = isset($_POST['gid']) ? intval(trim($_POST['gid'])) : -1;
@@ -116,7 +116,8 @@ if (ISLOGIN === true && $action == 'savelog') {
 	$author = isset($_POST['author']) ? intval(trim($_POST['author'])) : UID;
 	$postTime = $Log_Model->postDate(Option::get('timezone'), $date);	
 
-	$logData = array('title' => $title,
+	$logData = array(
+		'title' => $title,
 		'content' => $content,
 		'excerpt' => $excerpt,
 		'author' => $author,
@@ -124,7 +125,8 @@ if (ISLOGIN === true && $action == 'savelog') {
 		'date' => $postTime,
 		'allow_remark' => 'y',
 		'hide' => 'n',
-		'password' => ''
+		'password' => '',
+		'checked' => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',
 		);
 
 	if ($blogid > 0) {
@@ -135,6 +137,9 @@ if (ISLOGIN === true && $action == 'savelog') {
 		$Tag_Model->addTag($tagstring, $blogid);
 	}
 	$CACHE->updateCache();
+	if ('n' == $logData['checked']) {
+		mMsg('文章发布成功，请等待管理员审核', './');
+	}
 	emDirect("./");
 }
 // Add Comment

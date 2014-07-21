@@ -147,6 +147,7 @@ function autosave(act){
 		var url = "page.php?action=autosave";
 		var title = $.trim($("#title").val());
 		var alias = $.trim($("#alias").val());
+		var template = $.trim($("#template").val());
 		var logid = $("#as_logid").val();
 		var content = $('#content').val();
 		var pageurl = $.trim($("#url").val());
@@ -158,6 +159,7 @@ function autosave(act){
 		var querystr = "content="+encodeURIComponent(content)
 					+"&title="+encodeURIComponent(title)
 					+"&alias="+encodeURIComponent(alias)
+					+"&template="+encodeURIComponent(template)
 					+"&allow_remark="+allow_remark
 					+"&is_blank="+is_blank
 					+"&url="+pageurl

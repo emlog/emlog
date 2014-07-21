@@ -91,13 +91,13 @@ class MySqlii {
 	/**
 	 * Send query statement
 	 */
-	function query($sql) {
+	function query($sql, $ignore_err = FALSE) {
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
-        if (1046 == $this->geterrno()) {
+        if (!$ignore_err && 1046 == $this->geterrno()) {
 /*vot*/		emMsg(lang('db_error_name'));
         }
-		if (!$this->result) {
+		if (!$ignore_err && !$this->result) {
 /*vot*/			emMsg(lang('db_sql_error'). ": {$sql}<br />" . $this->geterror());
 		} else {
 			return $this->result;

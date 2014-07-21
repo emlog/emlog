@@ -81,10 +81,10 @@ class MySql {
 	 * Send query
 	 *
 	 */
-	function query($sql) {
+	function query($sql, $ignore_err = FALSE) {
 		$this->result = @mysql_query($sql, $this->conn);
 		$this->queryCount++;
-		if (!$this->result) {
+		if (!$ignore_err && !$this->result) {
 /*vot*/			emMsg(lang('db_sql_error').": $sql <br />" . $this->geterror());
 		}else {
 			return $this->result;
