@@ -850,7 +850,7 @@ textarea {
 		linear-gradient(linear, 0 0, 0 100%, from(#FFF), to(#CCC));
 	height:22px;
 	display:inline-block;
-	padding:4px 8px 0px 25px;
+	padding:4px 8px 0 25px;
 	color:#000000;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -871,7 +871,6 @@ textarea {
 }
 .add_plugin a:active {
 	text-decoration:none;
-	padding:4px 0px 0px 26px
 }
 #post{
     width: 866px;
