@@ -190,6 +190,7 @@ function loadEditor(id) {
 		allowPreviewEmoticons:false,
 		filterMode:false,
 		urlType:'domain',
+        newlineTag:'br',
 		items:['bold','italic','underline','strikethrough','forecolor','hilitecolor','fontname','fontsize','lineheight','|','removeformat','plainpaste','quickformat','clearhtml','selectall','|','insertorderedlist','insertunorderedlist','indent','outdent','subscript',
         'superscript','justifyleft','justifycenter','justifyright','|','link','unlink','image','flash','table','emoticons','code','fullscreen','source','|','about']
 	});
