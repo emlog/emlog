@@ -83,7 +83,7 @@ if($act == 'chpwd'){
 		<p><b>用户名</b>：{$user_name}</p>
 		<p><b>新的密码</b>：$adminpw</p>";
 
-	if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
+	if (DEL_INSTALLER === 1 && !@unlink('./passwd.php') || DEL_INSTALLER === 0) {
 	    $result .= '<p style="color:red;margin:10px 20px;">警告：请手动删除根目录下安装文件：passwd.php</p> ';
 	}
 	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
