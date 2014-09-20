@@ -886,9 +886,10 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 /*vot*/		$msg = lang('404_description');
 	}
 /*vot*/	$lang = EMLOG_LANGUAGE;
+/*vot*/	$dir  = EMLOG_LANGUAGE_DIR;
 /*vot*/	echo <<<EOT
 <!DOCTYPE html>
-<html dir="ltr" lang="$lang">
+<html dir="$dir" lang="$lang">
 <head>
 EOT;
 	if ($isAutoGo) {

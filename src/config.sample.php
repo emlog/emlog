@@ -24,3 +24,4 @@ define('AUTH_COOKIE_NAME','emlog-cookie');
 
 //blog language //vot
 define('EMLOG_LANGUAGE','en'); //'en', 'ru', 'sc', 'tc', etc.
+define('EMLOG_LANGUAGE_DIR','ltr'); //'ltr', 'rtl'

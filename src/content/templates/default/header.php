@@ -11,7 +11,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
+<html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php echo $site_title; ?></title>

@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!DOCTYPE html>
-<!--vot--><html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>

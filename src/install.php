@@ -9,11 +9,10 @@
 
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
-//Blog language //vot
-//define('EMLOG_LANGUAGE','zh-CN');
-//define('EMLOG_LANGUAGE','zh-TW');
-define('EMLOG_LANGUAGE','en');
-//define('EMLOG_LANGUAGE','ru');
+/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, 
+/*vot*/ //define('EMLOG_LANGUAGE','sc');
+/*vot*/ //define('EMLOG_LANGUAGE','ru');
+/*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
 /*vot*/ load_language('install');
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -28,7 +27,7 @@ if (PHP_VERSION < '5.0'){
 if(!$act){
 ?>
 <!DOCTYPE html>
-<!--vot--><html dir="ltr" lang="<?= EMLOG_LANGUAGE ?>">
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>emlog</title>
@@ -215,7 +214,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     if ($DB->getMysqlVersion() > '4.1' ){
         $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;", true);
     }
-
+    
     $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 

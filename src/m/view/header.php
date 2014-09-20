@@ -3,7 +3,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 //vot echo '<?xml version="1.0" encoding="UTF-8"?\>';
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
+<html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <title><?php echo $site_title; ?></title>
 <style type="text/css" id="internalStyle">

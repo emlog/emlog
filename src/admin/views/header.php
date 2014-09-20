@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
+<html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--vot--><meta http-equiv="Content-Language" content="<?=EMLOG_LANGUAGE?>" />

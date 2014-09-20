@@ -5,7 +5,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 ?>
 <!DOCTYPE html>
-<!--vot--><html dir="ltr" lang="<?=EMLOG_LANGUAGE?>">
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--vot--><title><?=lang('404_error')?></title>
