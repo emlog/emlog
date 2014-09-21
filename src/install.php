@@ -171,6 +171,11 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 		exit;
 	}
 
+	// Create config.php
+/*vot*/	if ( $fp = @fopen('config.php', 'w') ){
+/*vot*/		fclose($fp);
+/*vot*/	}
+
 	if(!is_writable('config.php')){
 /*vot*/		emMsg(lang('config_not_writable'));
 	}
