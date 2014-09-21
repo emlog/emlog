@@ -409,7 +409,7 @@ CREATE TABLE {$db_prefix}twitter (
   img varchar(255) DEFAULT NULL,
   author int(11) NOT NULL default '1',
   date bigint(20) NOT NULL,
-  replynum int(101 unsigned NOT NULL default '0',
+  replynum int(11) unsigned NOT NULL default '0',
   PRIMARY KEY (id),
   KEY author (author)
 )".$table_charset_sql."
