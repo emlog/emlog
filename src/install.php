@@ -9,10 +9,9 @@
 
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 
-/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, 
-/*vot*/ //define('EMLOG_LANGUAGE','sc');
-/*vot*/ //define('EMLOG_LANGUAGE','ru');
+/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
+
 /*vot*/ load_language('install');
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -194,7 +193,9 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 	."\n//cookie name\n"
 	."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
 /*vot*/	."\n//blog language //vot\n"
-/*vot*/	."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."');"
+/*vot*/	."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
+/*vot*/	."\n//blog language direction //vot\n"
+/*vot*/	."define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
 	."\n";
 
 	$fp = @fopen('config.php', 'w');
