@@ -7,7 +7,7 @@
 
 require_once '../init.php';
 
-/*vot*/ load_language('m');//mobile language
+/*vot*/ load_language('mobile');//mobile language
 
 define ('TEMPLATE_PATH', EMLOG_ROOT . '/m/view/');
 
@@ -138,7 +138,7 @@ if (ISLOGIN === true && $action == 'savelog') {
 	}
 	$CACHE->updateCache();
 	if ('n' == $logData['checked']) {
-		mMsg('文章发布成功，请等待管理员审核', './');
+/*vot*/		mMsg(lang('blog_saved_wait_approve'), './');
 	}
 	emDirect("./");
 }

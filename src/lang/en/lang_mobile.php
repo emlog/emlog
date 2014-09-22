@@ -20,6 +20,7 @@ $lang = array(
 // 'comment_parameter_error'		=> 'Parameter error',//'参数错误',
 //// 'image_share'			=> 'Share Image',//'分享图片',
 // 'captcha'				=> 'Captcha',//'验证码',
+ 'blog_saved_wait_approve'				=> 'Articles published successfully, please wait for administrator verification',//'文章发布成功，请等待管理员审核',
 
 //---------------------------
 //m/index.php (All Blog/Comment/Twitter Actions)
