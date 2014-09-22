@@ -6,6 +6,8 @@
 
 require_once '../init.php';
 
+/*vot*/ load_language('twitter');
+
 define('TEMPLATE_PATH', TPLS_PATH.Option::get('nonce_templet').'/');//Front template path
 
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
