@@ -247,7 +247,7 @@ if($i == $wgNum):
 <?php endforeach;?>
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-<!--vot--><div style="margin:20px 40px;"><input type="submit" value="<?=lang('widget_category')?>" class="button" /></div>
+<!--vot--><div style="margin:20px 40px;"><input type="submit" value="<?=lang('widget_order_save')?>" class="button" /></div>
 <!--vot--><div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('widget_setting_reset')?></a></div>
 </div>
 </form>

@@ -795,7 +795,7 @@ $lang = array(
  'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'widget_untitled'	=> 'Untitled widget',//'未命名组件',
- 'widget_category'	=> 'Save widget in category',//'保存组件排序',
+ 'widget_order_save'	=> 'Save widget order',//'保存组件排序',
  'widget_setting_reset'	=> 'Reset widget settings to initial values',//'恢复组件设置到初始安装状态',
 
 );
