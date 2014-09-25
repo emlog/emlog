@@ -1,5 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script type="text/javascript" src="../include/lib/js/jquery/plugin-interface.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery.sortable.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+
 <script>setTimeout(hideActived,2600);</script>
 <!--vot--><div class=containertitle><b><?=lang('widget_manage')?></b>
 <!--vot--><?php if(isset($_GET['activated'])):?><span class="actived"><?=lang('settings_saved_ok')?></span><?php endif;?></div>
@@ -270,7 +271,7 @@ $(document).ready(function(){
 		var wgnum = $("#wgnum").val();
 		var title = $(this).prevAll(".widget-title").html();
 		var widget_id = $(this).parent().parent().attr("id");
-		var widget_element = "<li class=\"sortableitem\" id=\"em_"+widget_id+"\">"+title+"<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" /></li>";
+/*vot*/		var widget_element = '<li class="sortableitem" id="em_'+widget_id+'">'+title+'<input type="hidden" name="widgets[]" value="'+widget_id+'" /></li>';
 		$("#adm_widget_box ul").append(widget_element);
 		$(this).hide();
 		$(this).next(".widget-act-del").show();
@@ -283,11 +284,7 @@ $(document).ready(function(){
 		$(this).prev(".widget-act-add").show();
 	});
 	//move
-	$("#adm_widget_box ul").mouseover(function(){
-		$("#adm_widget_box ul").Sortable({
-			accept: 'sortableitem'
-		});
-	});
+/*vot*/	$("#adm_widget_box ul").sortable();
 	$("#wg_select").change(function(){
 		window.location = "widgets.php?wg="+$(this).val();
 	});

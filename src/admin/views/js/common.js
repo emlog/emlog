@@ -23,7 +23,7 @@ function em_confirm (id, property, token) {
 /*vot*/			var msg = lang('comment_ip_del_sure');break;
 		case 'link':
 			var urlreturn="link.php?action=dellink&linkid="+id;
-/*vot*/			var msg = ['link_del_sure'];break;
+/*vot*/			var msg = lang('link_del_sure');break;
 		case 'navi':
 			var urlreturn="navbar.php?action=del&id="+id;
 /*vot*/			var msg = lang('navi_del_sure');break;
@@ -116,15 +116,15 @@ function checkalias(){
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
 	if (editorMap['content'].designMode === false){
 /*vot*/		alert(lang('wysiwyg_switch'));
-	}else if (imgsrc != "") {
-/*vot*/		editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+lang('click_view_fullsize')+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
+/*vot*/	}else if (imgsrc != '') {
+/*vot*/		editorMap['content'].insertHtml('<a target="_blank" href="'+fileurl+'" id="ematt:'+aid+'"><img src="'+imgsrc+'" title="'+lang('click_view_fullsize')+'" alt="'+alt+'" border="0" width="'+width+'" height="'+height+'"></a>');
 	}
 }
 function addattach_file(fileurl,filename,aid){
 	if (editorMap['content'].designMode === false){
 /*vot*/		alert(lang('wysiwyg_switch'));
 	} else {
-		editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
+/*vot*/		editorMap['content'].insertHtml('<span class="attachment"><a target="_blank" href="'+fileurl+'" >'+filename+'</a></span>');
 	}
 }
 function insertTag (tag, boxId){
@@ -209,7 +209,7 @@ function autosave(act){
 	//check alias
 	if(alias != '') {
 		if (0 != isalias(alias)){
-/*vot*/			$("#msg").html("<span class=\"msg_autosave_error\">"+lang('alis_link_error_not_saved')+"</span>");
+/*vot*/			$("#msg").html('<span class="msg_autosave_error">'+lang('alis_link_error_not_saved')+'</span>');
 			if(act == 0){setTimeout("autosave(0)",60000);}
 			return;
 		}
@@ -225,7 +225,7 @@ function autosave(act){
 		var gid = $("#"+nodeid).val();
 		if (gid != -1){return;}
 	}
-/*vot*/	$("#msg").html("<span class=\"msg_autosave_do\">"+lang('saving')+"...</span>");
+/*vot*/	$("#msg").html('<span class="msg_autosave_do">'+lang('saving')+'...</span>');
 	var btname = $("#savedf").val();
 /*vot*/	$("#savedf").val(lang('saving'));
 	$("#savedf").attr("disabled", "disabled");
@@ -244,14 +244,14 @@ function autosave(act){
     		var hours = digital.getHours();
     		var mins = digital.getMinutes();
     		var secs = digital.getSeconds();
-/*vot*/		$("#msg_2").html("<span class=\"ajax_remind_1\">"+lang('saved_ok_time')+hours+":"+mins+":"+secs+" </span>");
+/*vot*/		$("#msg_2").html('<span class="ajax_remind_1">'+lang('saved_ok_time')+hours+':'+mins+':'+secs+' </span>');
     		$("#savedf").attr("disabled", false);
     		$("#savedf").val(btname);
     		$("#msg").html("");
 		}else{
 		    $("#savedf").attr("disabled", false);
 		    $("#savedf").val(btname);
-/*vot*/		    $("#msg").html("<span class=\"msg_autosave_error\">"+lang('save_system_error')+"</span>");
+/*vot*/		    $("#msg").html('<span class="msg_autosave_error">'+lang('save_system_error')+'</span>');
 	    }
 	});
 	if(act == 0){

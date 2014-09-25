@@ -282,6 +282,11 @@ textarea {
 	margin-left:35px;
 	padding:5px
 }
+/*vot*/ #adm_widget_box li.sortable-placeholder {
+	border: 1px dashed #CCC;
+	background: none;
+	height: 29px;
+}
 .sortableitem {
 	background-color:#F7F7F7;
 	border:1px solid #F0F0F0;
