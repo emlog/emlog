@@ -43,7 +43,7 @@
 <div id="side">
 	<div id="sidebartop"></div>
     <div id="log_mg">
-<!--vot--><li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span><?=lang('post_write')?></a></li>
+<!--vot--><li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><?=lang('post_write')?></a></li>
 		<li class="sidebarsubmenu" id="menu_draft">
 <!--vot-->    	<a href="admin_log.php?pid=draft"><?=lang('draft')?><span id="dfnum">
 		<?php 
