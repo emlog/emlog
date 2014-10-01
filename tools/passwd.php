@@ -15,7 +15,7 @@ doStripslashes();
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
-$DB = Database::getInstance();
+$DB = MySql::getInstance();
 $CACHE = Cache::getInstance();
 $sql = "SELECT username FROM ".DB_PREFIX."user  WHERE uid=1";
 $row = $DB->once_fetch_array($sql);
