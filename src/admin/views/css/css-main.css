@@ -841,12 +841,36 @@ textarea {
 	margin-top:60px;
 }
 .custom_top_button a {
-	background:url(../images/custom_top.gif) no-repeat;
-	width:90px;
+/*	width:90px;
 	height:24px;
-	display:block;
-	padding:2px 0px 0px 20px;
+*/
+	display:inline-block;
+	padding:3px 8px 2px 22px;
 	color:#000000;
+	border: 1px solid #999999;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #EEE;
+	background: url(../images/skin.gif) 3px 4px no-repeat;
+	background: url(../images/skin.gif) 3px 4px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC)); /* Saf4+, Chrome */
+	background: url(../images/skin.gif) 3px 4px no-repeat, -webkit-linear-gradient(top, #FFF, #CCC); /* Chrome 10+, Saf5.1+ */
+	background: url(../images/skin.gif) 3px 4px no-repeat,    -moz-linear-gradient(0 100% 90deg, #FFF, #CCC); /* FF3.6+ */
+	background: url(../images/skin.gif) 3px 4px no-repeat,     -ms-linear-gradient(top, #FFF, #CCC); /* IE10 */
+	background: url(../images/skin.gif) 3px 4px no-repeat,      -o-linear-gradient(top, #FFF, #CCC); /* Opera 11.10+ */
+	background: url(../images/skin.gif) 3px 4px no-repeat,         linear-gradient(to bottom, #FFF, #CCC); /* W3C */
+	-moz-box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
 }
 .custom_top_button a:active {
 	text-decoration:none;
@@ -856,6 +880,12 @@ textarea {
 	margin:16px 0px;
 }
 .add_plugin a {
+	height:22px;
+	display:inline-block;
+	padding:4px 8px 0 25px;
+	color:#000000;
+	border: 1px solid #999999;
+	border-radius: 5px;
 	background: url(../images/add.png) no-repeat 5px center;
 	background: 
 		url(../images/add.png) 5px 5px no-repeat,
@@ -866,14 +896,8 @@ textarea {
 	background: 
 		url(../images/add.png) 5px 5px no-repeat,
 		linear-gradient(linear, 0 0, 0 100%, from(#FFF), to(#CCC));
-	height:22px;
-	display:inline-block;
-	padding:4px 8px 0 25px;
-	color:#000000;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	border: 1px solid #999999;
 	-moz-box-shadow:
 		1px 1px 1px rgba(000,000,000,0.5),
 		inset 0px 0px 0px rgba(255,255,255,1);
