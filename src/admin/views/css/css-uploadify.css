@@ -1,61 +1,87 @@
-/*
-Uploadify
-Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
-*/
-
-.uploadify {
-	position: relative;
-	margin-bottom: 1em;
-}
-.uploadify-button {
+.uploadifyButton {
     background: url("../images/add_bg.gif") no-repeat scroll 0 0 transparent;
     color: #000000;
     display: block;
     height: 24px;
-    padding: 0px 0 0 25px;
+    padding: 4px 0 0 25px;
     width: 90px;
 }
-.uploadify:hover .uploadify-button {
-    padding: 1px 0 0 25px;
-}
-.uploadify-button.disabled {
-	background-color: #D0D0D0;
+.uploadify:hover .uploadifyButton {
 	color: #808080;
 }
-.uploadify-queue {
-	margin-bottom: 1em;
-}
-.uploadify-queue-item {
+.uploadifyQueueItem {
 	background-color: #F5F5F5;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	font: 11px Verdana, Geneva, sans-serif;
-	margin-top: 5px;
-	max-width: 350px;
-	padding: 10px;
 }
-.uploadify-error {
+.uploadifyError {
 	background-color: #FDE5DD !important;
 }
-.uploadify-queue-item .cancel a {
-	background: url('../img/uploadify-cancel.png') 0 0 no-repeat;
+.uploadifyQueueItem .cancel {
 	float: right;
-	height:	16px;
-	text-indent: -9999px;
-	width: 16px;
 }
-.uploadify-queue-item.completed {
+.uploadifyQueue .completed {
 	background-color: #E5E5E5;
 }
-.uploadify-progress {
+.uploadifyProgress {
 	background-color: #E5E5E5;
 	margin-top: 10px;
 	width: 100%;
 }
-.uploadify-progress-bar {
+.uploadifyProgressBar {
 	background-color: #0099FF;
 	height: 3px;
 	width: 1px;
+}
+
+.uploadifyQueueItem {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+	border:#E5E5E5 solid 1px;
+    font: 11px Verdana,Geneva,sans-serif;
+    height: 30px;
+    margin: 1px;
+    padding: 2px;
+    width: 339px;
+	float:left;
+}
+.uploadifyError {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background-color: #FDE5DD !important;
+    border-color: -moz-use-text-color -moz-use-text-color #FBCBBC !important;
+    border-style: none none solid !important;
+    border-width: medium medium 1px !important;
+}
+.uploadifyQueueItem .cancel {
+    float: right;
+}
+.uploadifyQueue .completed {
+    color: #C5C5C5;
+}
+.uploadifyProgress {
+    background-color: #E5E5E5;
+    margin-top: 10px;
+    width: 100%;
+}
+.uploadifyProgressBar {
+    background-color: #0099FF;
+    height: 3px;
+    width: 1px;
+}
+#custom-queue {
+    height: 192px;
+    width: 695px;
+}
+#custom-bt{
+	margin:5px 0px;
 }

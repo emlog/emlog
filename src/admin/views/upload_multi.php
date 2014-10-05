@@ -34,7 +34,7 @@ if(true === isIE6Or7()): ?>
 <div id="custom-queue" class="uploadifyQueue"></div>
 </div>
 </form>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo time() . rand(0, 9999999); ?>"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
 $(document).ready(function() {
 	$("#custom_file_upload").uploadify({
