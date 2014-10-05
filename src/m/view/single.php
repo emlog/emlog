@@ -34,7 +34,7 @@
 <!--vot-->	<?=lang('homepage_optional')?><br /><input type="text" name="comurl" value="" /><br />
 		<?php endif; ?>
 <!--vot-->	<?=lang('content')?><br /><textarea name="comment" rows="10"></textarea><br />
-<!--vot-->	<?php echo $verifyCode; ?><br /><input type="submit" value="<?=lang('comment_leave')?>" />
+<!--vot-->	<?php echo $verifyCode; ?><br /><input type="submit" value="<?=lang('comment_leave')?>" class="button" />
 		</form>
 	</div>
     <?php endif;?>

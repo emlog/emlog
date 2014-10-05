@@ -61,7 +61,7 @@
 <!--vot--><li><input maxlength="200" style="width:232px;" class="input" name="siteurl" /> <?=lang('address')?><span class="required">*</span></li>
 <!--vot--><li><?=lang('description')?></li>
 	<li><textarea name="description" type="text" class="textarea" style="width:230px;height:60px;overflow:auto;"></textarea></li>
-<!--vot--><li><input type="submit" name="" value="<?=lang('link_add')?>" /></li>
+<!--vot--><li><input class="button" type="submit" name="" value="<?=lang('link_add')?>" /></li>
 </div>
 </form>
 <script>

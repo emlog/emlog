@@ -20,6 +20,6 @@
 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <input type="hidden" name="author" value=<?php echo $author; ?> />
 <input name="date" type="hidden" value="<?php print !empty($date) ? gmdate('Y-m-d H:i:s', $date) : ''; ?>" />
-<!--vot--><input type="submit" value="<?=lang('post_publish')?>" />
+<!--vot--><input type="submit" value="<?=lang('post_publish')?>" class="button" />
 </form>
 </div>

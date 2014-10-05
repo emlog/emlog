@@ -16,7 +16,7 @@
 	  <?php echo $tplAuthor; ?><br>
 	  <?php echo $tplDes; ?>
 	  <?php if ('default' == $nonce_templet): ?>
-<!--vot--><div class="custom_top_button"><a href="./template.php?action=custom-top"><?=lang('template_top_image')?></a></div>
+<!--vot--><div class="custom_top_button"><a class="button" href="./template.php?action=custom-top"><i class="custom_top"></i><?=lang('template_top_image')?></a></div>
 	  <?php endif; ?>
 	  </td>
     </tr>

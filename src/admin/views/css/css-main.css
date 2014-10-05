@@ -180,9 +180,35 @@ background: #EEE;
 	_cursor:hand;
 }
 .button {
-	font-size:12px;
+	display: inline-block;
 	cursor:pointer;
-	padding:4px 10px
+	color: #000;
+	padding:4px 10px;
+	border: 1px solid #999999;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	line-height: 20px;
+	vertical-align: middle;
+	background: #EEE;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC)); /* Saf4+, Chrome */
+	background: -webkit-linear-gradient(top, #FFF, #CCC); /* Chrome 10+, Saf5.1+ */
+	background:    -moz-linear-gradient(0 100% 90deg, #FFF, #CCC); /* FF3.6+ */
+	background:     -ms-linear-gradient(top, #FFF, #CCC); /* IE10 */
+	background:      -o-linear-gradient(top, #FFF, #CCC); /* Opera 11.10+ */
+	background:         linear-gradient(to bottom, #FFF, #CCC); /* W3C */
+	-moz-box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	box-shadow:
+		1px 1px 1px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
 }
 .notice {
 	padding:10px 5px;
@@ -643,7 +669,7 @@ textarea {
 	z-index: 120;
 }
 #tw .tbutton input {
-	background:url(../images/weibe_button.gif) no-repeat;
+/*	background:url(../images/weibe_button.gif) no-repeat;*/
 	border:0;
 	cursor:pointer;
 	_cursor:hand;
@@ -651,7 +677,7 @@ textarea {
 	height:25px;
 }
 #tw .tbutton input:active,#tw ul .button_p:active,#tw .sz_box .tbutton:active {
-	background:url(../images/weibe_button.gif) no-repeat 1px 1px;
+/*	background:url(../images/weibe_button.gif) no-repeat 1px 1px;*/
 }
 #tw ul {
 	margin:5px 0px 3px 65px;
@@ -840,11 +866,10 @@ textarea {
 .custom_top_button {
 	margin-top:60px;
 }
-.custom_top_button a {
+.custom_top {
 /*	width:90px;
 	height:24px;
-*/
-	display:inline-block;
+
 	padding:3px 8px 2px 22px;
 	color:#000000;
 	border: 1px solid #999999;
@@ -852,68 +877,32 @@ textarea {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	background: #EEE;
-	background: url(../images/skin.gif) 3px 4px no-repeat;
-	background: url(../images/skin.gif) 3px 4px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC)); /* Saf4+, Chrome */
-	background: url(../images/skin.gif) 3px 4px no-repeat, -webkit-linear-gradient(top, #FFF, #CCC); /* Chrome 10+, Saf5.1+ */
-	background: url(../images/skin.gif) 3px 4px no-repeat,    -moz-linear-gradient(0 100% 90deg, #FFF, #CCC); /* FF3.6+ */
-	background: url(../images/skin.gif) 3px 4px no-repeat,     -ms-linear-gradient(top, #FFF, #CCC); /* IE10 */
-	background: url(../images/skin.gif) 3px 4px no-repeat,      -o-linear-gradient(top, #FFF, #CCC); /* Opera 11.10+ */
-	background: url(../images/skin.gif) 3px 4px no-repeat,         linear-gradient(to bottom, #FFF, #CCC); /* W3C */
-	-moz-box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	-webkit-box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.2),
-		0px 1px 0px rgba(255,255,255,1);
+*/
+	display:block;
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background: url(../images/skin.gif) 0 0 no-repeat;
 }
 .custom_top_button a:active {
 	text-decoration:none;
 	padding:2px 0px 0px 21px
 }
-.add_plugin {
+/*.add_plugin {
 	margin:16px 0px;
+}*/
+.add_plugin {
+	display:block;
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+	background: url(../images/add.png) 0 0 no-repeat;
 }
-.add_plugin a {
-	height:22px;
-	display:inline-block;
-	padding:4px 8px 0 25px;
-	color:#000000;
-	border: 1px solid #999999;
-	border-radius: 5px;
-	background: url(../images/add.png) no-repeat 5px center;
-	background: 
-		url(../images/add.png) 5px 5px no-repeat,
-		-webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#CCC));
-	background: 
-		url(../images/add.png) 5px 5px no-repeat,
-		-moz-linear-gradient(#FFF, #CCC);
-	background: 
-		url(../images/add.png) 5px 5px no-repeat,
-		linear-gradient(linear, 0 0, 0 100%, from(#FFF), to(#CCC));
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	-webkit-box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	box-shadow:
-		1px 1px 1px rgba(000,000,000,0.5),
-		inset 0px 0px 0px rgba(255,255,255,1);
-	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.2),
-		0px 1px 0px rgba(255,255,255,1);
-}
-.add_plugin a:active {
+/*.add_plugin a:active {
 	text-decoration:none;
-}
+}*/
 #post{
     width: 866px;
 }

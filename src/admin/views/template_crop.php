@@ -10,7 +10,7 @@
 	<input type="hidden" name="width" id="width" value="960"/>
 	<input type="hidden" name="height" id="height" value="705"/>
 	<input type="hidden" name="img" id="img" value="<?php echo $topimg; ?>"/>
-<!--vot--><input type="submit" value="<?=lang('crop_and_save')?>" /><span style="margin-left:15px;"><a href="./template.php?action=custom-top" ><?=lang('crop_cancel')?></a> <?=lang('crop_load_prompt')?></span>
+<!--vot--><input type="submit" value="<?=lang('crop_and_save')?>" class="button" /><span style="margin-left:15px;"><a href="./template.php?action=custom-top" ><?=lang('crop_cancel')?></a> <?=lang('crop_load_prompt')?></span>
 </p>
 <div id="crop_image" style="position: relative">
 	<img src="<?php echo $topimg; ?>" id="upload" />

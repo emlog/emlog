@@ -14,9 +14,9 @@
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--> <div class="msg"><?=lang('can_enter_max_140')?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
-<!--vot--> <div class="tbutton"><input type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> </div>
+<!--vot--> <div class="tbutton"><input class="button" type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> </div>
 	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
-    <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
+    <div class="twImg" id="img_select"><input  width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
 <!--vot--><a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{<?=lang('image_title')?>}</a>
 <!--vot--><a href="javascript:;" onclick="unSelectFile()"> [<?=lang('cancel')?>]</a>

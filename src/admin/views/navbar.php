@@ -134,7 +134,7 @@
 <!--vot-->   <?=lang('nav_parent')?>
     </li>
 <!--vot--> <li><?=lang('open_new_win')?> <input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
-<!--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
+<!--vot--> <li><input class="button" type="submit" name="" value="<?=lang('add')?>"  /></li>
 	</ul>
 </div>
 </form>
@@ -166,7 +166,7 @@
         endforeach;
    endforeach;
    ?>
-<!--vot--> <li><input type="submit" name="" value="<?=lang('add')?>"  /></li>
+<!--vot--> <li><input class="button" type="submit" name="" value="<?=lang('add')?>"  /></li>
 	<?php else:?>
 <!--vot--> <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
 	<?php endif;?> 

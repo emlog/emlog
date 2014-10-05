@@ -21,7 +21,7 @@
 	</div>
 	<div class="login-button">
 <!--vot--><div class="checkbox"> <input type="checkbox" name="ispersis" id="ispersis" value="1" /><span><label for="ispersis"><?=lang('remember_me')?></label></span></div>
-<!--vot--><div class="button"><input type="submit" value="<?=lang('log_in')?>" class="submit"></div>
+<!--vot--><div><input type="submit" value="<?=lang('log_in')?>" class="button"></div>
 	</div>
 	<div style=" clear:both;"></div>
 	<div class="login-ext"><?php doAction('login_ext'); ?></div>

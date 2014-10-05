@@ -9,7 +9,7 @@
         <div class="msg2"><a href="blogger.php"><?php echo $name; ?></a></div>
 <!--vot--><div class="box_1"><textarea class="box2" name="t" placeholder="<?=lang('twitter_write_placeholder')?>"></textarea></div>
         <div class="tbutton" style="display:none;">
-<!--vot-->  <input type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> <a href="javascript:closet();"><?=lang('cancel')?></a> <span><?=lang('twitter_write_length')?></span>
+<!--vot-->  <input class="button" type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> <a class="button" href="javascript:closet();"><?=lang('cancel')?></a> <span><?=lang('twitter_write_length')?></span>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         </div>
         </form>

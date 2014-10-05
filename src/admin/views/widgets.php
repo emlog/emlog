@@ -16,7 +16,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -29,7 +29,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -44,7 +44,7 @@
 <!--vot-->		<li><?=lang('title')?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
 <!--vot-->		<li><?=lang('twitter_latest_num')?></li>
-<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -70,7 +70,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -83,7 +83,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -100,7 +100,7 @@
 <!--vot-->		<li><?=lang('new_comments_home')?></li>
 			<li><input maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum" /></li>
 <!--vot-->		<li><?=lang('new_comments_length')?></li>
-<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -115,7 +115,7 @@
 <!--vot-->		<li><?=lang('title')?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
 <!--vot-->		<li><?=lang('new_posts_home')?></li>
-<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -130,7 +130,7 @@
 <!--vot-->		<li><?=lang('title')?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
 <!--vot-->		<li><?=lang('hot_posts_home')?></li>
-<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -145,7 +145,7 @@
 <!--vot-->		<li><?=lang('title')?></li>
 			<li><input type="text" name="title" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
 <!--vot-->		<li><?=lang('random_post_home')?></li>
-<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -158,7 +158,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -171,7 +171,7 @@
 		</div>
 		<div class="widget-control">
 <!--vot-->		<li><?=lang('title')?></li>
-<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="submit" /></li>
+<!--vot-->		<li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="button" /></li>
 		</div>
 	</div>
 	</form>
@@ -194,7 +194,7 @@
 			<input type="text" name="title" style="width:345px;" value="<?php echo $val['title']; ?>" />
 			</li>
 			<li><textarea name="content" rows="8" style="width:345px;overflow:auto;"><?php echo $val['content']; ?></textarea></li>
-<!--vot-->		<li><input type="submit" name="" value="<?=lang('change')?>" />
+<!--vot-->		<li><input type="submit" name="" value="<?=lang('change')?>" class="button" />
 <!--vot-->		<span style="margin-left:235px;"><a href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a></span></li>
 		</div>
 	</div>
@@ -207,7 +207,7 @@
 		<li><input type="text" class="input" name="new_title" style="width:384px;" value="" /></li>
 <!--vot-->	<li><?=lang('widget_content_info')?></li>
 		<li><textarea name="new_content" class="textarea" rows="10" style="width:380px;overflow:auto;"></textarea></li>
-<!--vot-->	<li><input type="submit" name="" value="<?=lang('widget_add')?>"  /></li>
+<!--vot-->	<li><input type="submit" name="" value="<?=lang('widget_add')?>" class="button" /></li>
 	</div>
 	</form>
 </div>
@@ -249,7 +249,7 @@ if($i == $wgNum):
 </ul>
 <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
 <!--vot--><div style="margin:20px 40px;"><input type="submit" value="<?=lang('widget_order_save')?>" class="button" style="width:260px;"/></div>
-<!--vot--><div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('widget_setting_reset')?></a></div>
+<!--vot--><div style="margin:10px 40px;"><a href="javascript: em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>'); class="button""><?=lang('widget_setting_reset')?></a></div>
 </div>
 </form>
 </div>

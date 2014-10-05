@@ -68,7 +68,7 @@
 	<?php endif;?>
 	</tbody>
   </table>
-<!--vot--><div class="add_plugin"><a href="./plugin.php?action=install"><?=lang('plugin_install')?></a></div>
+<!--vot--><div><a href="./plugin.php?action=install" class="button"><i class="add_plugin"></i><?=lang('plugin_install')?></a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")

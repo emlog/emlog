@@ -6,6 +6,6 @@
 <!--vot-->  <?=lang('password')?><br />
 	    <input type="password" name="pw" /><br />
 	    <?php echo $ckcode; ?>
-<!--vot-->  <br /><input type="submit" value="<?=lang('log_in')?>" />
+<!--vot-->  <br /><input type="submit" value="<?=lang('log_in')?>" class="button" />
 	</form>
 </div>

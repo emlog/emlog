@@ -80,7 +80,7 @@
 <!--vot--><p class="des"><?=lang('backup_version_tip')?><?php echo DB_PREFIX; ?></p>
 	<p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-<!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="submit" />
+<!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="button" />
     </p>
 </div>
 </form>

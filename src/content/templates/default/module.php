@@ -406,7 +406,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 			</p>
 			<?php endif; ?>
 			<p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->		<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
+<!--vot-->		<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" class="button" /></p>
 			<input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
 		</form>
 	</div>

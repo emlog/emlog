@@ -51,7 +51,7 @@
 	<li></li>
 	<li>
 	<input name="topimg" type="file" />
-<!--vot--><input type="submit" value="<?=lang('upload')?>" class="submit" /> <?=lang('top_image_upload_prompt')?>
+<!--vot--><input type="submit" value="<?=lang('upload')?>" class="button" /> <?=lang('top_image_upload_prompt')?>
 	</li>
 </div>
 </form>

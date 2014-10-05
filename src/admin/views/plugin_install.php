@@ -22,7 +22,7 @@
 	<li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="pluzip" type="file" />
-<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="submit" /> <?=lang('upload_install_info')?>
+<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="button" /> <?=lang('upload_install_info')?>
 	</li>
 </div>
 </form>

@@ -7,7 +7,7 @@
 <!--vot--><?=lang('image_upload_select')?>:<br />
 <input type="file" name="img" /><br />
 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-<!--vot--><input type="submit" value="<?=lang('publish')?>" />
+<!--vot--><input type="submit" value="<?=lang('publish')?>" class="button" />
 </form>
 <?php endif;?>
 <?php 

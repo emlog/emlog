@@ -22,7 +22,7 @@
 	<li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="tplzip" type="file" />
-<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="submit" /> <?=lang('template_upload_prompt')?>
+<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="button" /> <?=lang('template_upload_prompt')?>
 	</li>
 </div>
 </form>
