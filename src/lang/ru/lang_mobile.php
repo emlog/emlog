@@ -20,7 +20,6 @@ $lang = array(
 // 'comment_parameter_error'		=> 'Parameter error',//'参数错误',
 //// 'image_share'			=> 'Share Image',//'分享图片',
 // 'captcha'				=> 'Captcha',//'验证码',
- 'blog_saved_wait_approve'				=> 'Articles published successfully, please wait for administrator verification',//'文章发布成功，请等待管理员审核',
 
 //---------------------------
 //m/index.php (All Blog/Comment/Twitter Actions)
@@ -48,7 +47,7 @@ $lang = array(
 //---------------------------
 //m/view/header.php
 // 'home'		=> 'Home',//'首页',
-'twitters'		=> 'Twitters',//'微语',
+ 'twitters'		=> 'Twitters',//'微语',
 // 'comments'		=> 'Comments',//'评论',
 'post_write'		=> 'Write post',//'写文章',
 // 'logout'		=> 'Logout',//'退出',
