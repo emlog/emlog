@@ -1,7 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<div class=containertitle><b>写文章</b><span id="msg_2"></span></div>
+<div class="containertitle">
+    <b>写文章</b><span id="msg_2"></span>
+</div>
 <div id="msg"></div>
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <div id="post">
@@ -21,7 +23,7 @@
     </div>
 </div>
 <div>
-    <textarea id="content" name="content" style="width:845px; height:460px;"></textarea>
+    <textarea id="content" name="content" style="width:100%; height:460px;"></textarea>
 </div>
 <div style="margin:10px 0px 5px 0px;">
     <label for="tag" id="tag_label">文章标签，逗号或空格分隔，过多的标签会影响系统运行效率</label>

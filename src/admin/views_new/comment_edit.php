@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>编辑评论</b>
+<div class="container_title"><b>编辑评论</b>
 </div>
 <div class=line></div>
 <form action="comment.php?action=doedit" method="post">

@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <script>setTimeout(hideActived,2600);</script>
-<div class=containertitle><b>分类管理</b>
+<div class="containertitle"><b>分类管理</b>
 <?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除分类成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">修改分类成功</span><?php endif;?>

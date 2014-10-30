@@ -3,7 +3,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="error">别名格式错误</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="error">别名不能重复</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="error">别名不得包含系统保留关键字</span><?php endif;?>
-<div class=containertitle><b>编辑分类</b></div>
+<div class="containertitle"><b>编辑分类</b></div>
 <div class=line></div>
 <form action="sort.php?action=update" method="post">
 <div class="item_edit">

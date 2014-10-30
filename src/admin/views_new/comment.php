@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>评论管理</b>
+<div class="containertitle"><b>评论管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="actived">审核评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="actived">隐藏评论成功</span><?php endif;?>

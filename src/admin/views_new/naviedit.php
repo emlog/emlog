@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>修改导航</b></div>
+<div class="containertitle"><b>修改导航</b></div>
 <div class=line></div>
 <form action="navbar.php?action=update" method="post">
 <div class="item_edit">

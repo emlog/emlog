@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>标签修改</b>
+<div class="containertitle"><b>标签修改</b>
 <?php if(isset($_GET['error_a'])):?><span class="error">标签不能为空</span><?php endif;?>
 </div>
 <div class=line></div>

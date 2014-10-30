@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>插件管理</b><div id="msg"></div>
+<div class="containertitle"><b>插件管理</b><div id="msg"></div>
 <?php if(isset($_GET['activate_install'])):?><span class="actived">插件上传成功，请激活使用</span><?php endif;?>
 <?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
 <?php if(isset($_GET['activate_del'])):?><span class="actived">删除成功</span><?php endif;?>

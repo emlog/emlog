@@ -5,7 +5,7 @@ $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
-<div class=containertitle><b><?php echo $pwd; ?></b>
+<div class="containertitle"><b><?php echo $pwd; ?></b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_up'])):?><span class="actived">置顶成功</span><?php endif;?>
 <?php if(isset($_GET['active_down'])):?><span class="actived">取消置顶成功</span><?php endif;?>
@@ -93,7 +93,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
-  <table width="100%" id="adm_log_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
       <tr>
         <th width="511" colspan="2"><b>标题</b></th>
@@ -206,12 +206,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $logNum; ?>篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
 <script>
 $(document).ready(function(){
-	$("#adm_log_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_log_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
-		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();});
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+	//$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function logact(act){

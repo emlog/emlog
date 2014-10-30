@@ -192,6 +192,6 @@ function loadEditor(id) {
 		urlType:'domain',
         newlineTag:'br',
 		items:['bold','italic','underline','strikethrough','forecolor','hilitecolor','fontname','fontsize','lineheight','|','removeformat','plainpaste','quickformat','clearhtml','selectall','|','insertorderedlist','insertunorderedlist','indent','outdent','subscript',
-        'superscript','justifyleft','justifycenter','justifyright','|','link','unlink','image','flash','table','emoticons','code','fullscreen','source','|','about']
+        'superscript','justifyleft','justifycenter','justifyright','justifyfull','|','anchor','link','unlink','image','flash','media','table','emoticons','code','fullscreen','source','|','about']
 	});
 }

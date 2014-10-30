@@ -36,14 +36,12 @@ body {
 .menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
 .menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
 .containertitle {
-	background-position:left 3px;
-	font-size:14px;
-	margin:5px 0px 15px 0px;
+	font-size:16px;
+    padding: 20px 0px 20px;
 	color:#666666
 }
 .containertitle2 {
-	background-position:left 3px;
-	font-size:18px;
+	font-size:16px;
 	height:30px;
 	background:url(../images/yeka.gif) 10px -82px no-repeat;
 	padding:0 0 0 20px;
@@ -1021,3 +1019,16 @@ textarea {
     padding:0px 40px 0px 30px;
 }
 .required{color: red; font-size: 16px; margin-left: 2px;}
+.page{text-align:center;margin:10px 0px;}
+.page span{
+	background-color: #CC3300;
+	color:#FFF;
+	padding:5px 8px;
+	border-radius: 4px;
+}
+.page a{
+	background-color: #68aee1;
+	color:#FFF;
+	padding:2px 8px;
+	border-radius: 4px;
+}

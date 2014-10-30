@@ -1,7 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<div class=containertitle><b>编辑页面</b><span id="msg_2"></span></div>
+<div class="containertitle"><b>编辑页面</b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="page.php?action=edit" method="post" id="addlog" name="addlog">
 <div id="post">

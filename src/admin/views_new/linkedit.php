@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>编辑链接</b></div>
+<div class="containertitle"><b>编辑链接</b></div>
 <div class=line></div>
 <form action="link.php?action=update_link" method="post">
 <div class="item_edit">

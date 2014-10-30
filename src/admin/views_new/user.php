@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>用户管理</b>
+<div class="containertitle"><b>用户管理</b>
 <?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_update'])):?><span class="actived">修改用户资料成功</span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="actived">添加用户成功</span><?php endif;?>
