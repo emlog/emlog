@@ -8,7 +8,7 @@
 <?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
 </div>
 <div class=line></div>
-  <table width="100%" id="adm_plugin_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
       <tr>
         <th width="200"></th>

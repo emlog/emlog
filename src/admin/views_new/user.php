@@ -12,7 +12,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
-  <table width="100%" id="adm_comment_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   	<thead>
       <tr>
         <th width="60"></th>

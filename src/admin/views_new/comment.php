@@ -29,7 +29,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
-  <table width="100%" id="adm_comment_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   	<thead>
       <tr>
         <th width="369" colspan="2"><b>内容</b></th>

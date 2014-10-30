@@ -7,7 +7,7 @@
 <?php if(!$nonceTplData): ?>
 <div class="error_msg">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div>
 <?php else:?>
-<table cellspacing="20" cellpadding="0" width="80%" border="0">
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
     <tr>
       <td width="42%">
 	  <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
@@ -29,7 +29,7 @@
 <?php if(isset($_GET['activate_del'])):?><span class="actived">删除模板成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查模板文件权限</span><?php endif;?>
 </div>
-<table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
 <?php 
 $i = 0;
 foreach($tpls as $key=>$value):

@@ -7,7 +7,7 @@
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table width="100%" id="adm_comment_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   	<thead>
       <tr>
         <th width="461" colspan="2"><b>标题</b></th>

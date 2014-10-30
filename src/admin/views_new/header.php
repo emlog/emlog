@@ -67,8 +67,8 @@
                                     </a>
                                 </div>
                             </li>
-                            <li><a href="write_log.php"><i class="fa fa-edit fa-fw"></i> 写文章</a></li>
-                            <li><a href="admin_log.php?pid=draft"><i class="fa fa-files-o fa-fw"></i> 草稿 <?php
+                            <li><a href="write_log.php" id="menu_tw"><i class="fa fa-edit fa-fw"></i> 写文章</a></li>
+                            <li><a href="admin_log.php?pid=draft" id="menu_tw"><i class="fa fa-files-o fa-fw"></i> 草稿 <?php
                                     if (ROLE == ROLE_ADMIN) {
                                         echo $sta_cache['draftnum'] == 0 ? '' : '(' . $sta_cache['draftnum'] . ')';
                                     } else {
@@ -76,7 +76,7 @@
                                     }
                                     ?> 
                             </a></li>
-                            <li><a href="admin_log.php"><i class="fa fa-list-alt fa-fw"></i> 文章</a>
+                            <li><a href="admin_log.php" id="menu_tw"><i class="fa fa-list-alt fa-fw"></i> 文章</a>
                                     <?php
                                     $checknum = $sta_cache['checknum'];
                                     if (ROLE == ROLE_ADMIN && $checknum > 0):
@@ -86,10 +86,10 @@
                                     <?php endif; ?>
                             </li>
                             <?php if (ROLE == ROLE_ADMIN):?>
-                            <li><a href="tag.php"><i class="fa fa-tags fa-fw"></i> 标签</a></li>
-                            <li><a href="sort.php"><i class="fa fa-flag fa-fw"></i> 分类</a></li>
+                            <li><a href="tag.php" id="menu_tw"><i class="fa fa-tags fa-fw"></i> 标签</a></li>
+                            <li><a href="sort.php" id="menu_tw"><i class="fa fa-flag fa-fw"></i> 分类</a></li>
                             <?php endif;?>
-                            <li><a href="comment.php"><i class="fa fa-comments fa-fw"></i> 评论</a></li>
+                            <li><a href="comment.php" id="menu_tw"><i class="fa fa-comments fa-fw"></i> 评论</a></li>
                             <?php
                             $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                             if ($hidecmnum > 0):
@@ -98,15 +98,15 @@
                             <a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a>
                             <?php endif; ?>
                             <?php if (ROLE == ROLE_ADMIN):?>
-                            <li><a href="twitter.php"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
-                            <li><a href="widgets.php"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
-                            <li><a href="navbar.php"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
-                            <li><a href="page.php"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
-                            <li><a href="user.php"><i class="fa fa-user fa-fw"></i> 用户</a></li>
-                            <li><a href="data.php"><i class="fa fa-database fa-fw"></i> 数据</a></li>
-                            <li><a href="plugin.php"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
-                            <li><a href="template.php"><i class="fa fa-eye fa-fw"></i> 模板</a></li>
-                            <li><a href="store.php"><i class="fa fa-shopping-cart fa-fw"></i> 应用</a></li>
+                            <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
+                            <li><a href="widgets.php" id="menu_tw"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
+                            <li><a href="navbar.php" id="menu_tw"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
+                            <li><a href="page.php" id="menu_tw"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
+                            <li><a href="user.php" id="menu_tw"><i class="fa fa-user fa-fw"></i> 用户</a></li>
+                            <li><a href="data.php" id="menu_tw"><i class="fa fa-database fa-fw"></i> 数据</a></li>
+                            <li><a href="plugin.php" id="menu_tw"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
+                            <li><a href="template.php" id="menu_tw"><i class="fa fa-eye fa-fw"></i> 模板</a></li>
+                            <li><a href="store.php" id="menu_tw"><i class="fa fa-shopping-cart fa-fw"></i> 应用</a></li>
                             <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
                             <li class="">
                                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 扩展功能<span class="fa arrow"></span></a>

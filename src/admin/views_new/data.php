@@ -13,7 +13,7 @@
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
-<table width="100%" id="adm_bakdata_list" class="item_list">
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
     <tr>
       <th width="683" colspan="2"><b>备份文件</b></th>

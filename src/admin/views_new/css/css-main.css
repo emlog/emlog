@@ -1,4 +1,4 @@
-html {overflow-y:scroll;}
+adhtml {overflow-y:scroll;}
 fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 	margin:0;
 	padding:0;
@@ -105,25 +105,6 @@ body {
 	font-size:12px;
 	height:1%;
 	padding:0px;
-}
-.item_list {
-	border:1px solid #f0f0f0;
-	color:#808080;
-	border-collapse:collapse;
-	border-spacing:0;
-}
-.item_list th {
-	height:23px;
-	line-height:23px;
-	background:url(../images/admindex_itembg.gif) repeat-x bottom;
-	border:1px solid #dfdfdf;
-	padding-left:5px;
-	color:#666;
-	border-top:none;
-}
-.item_list td {
-	padding:10px 0px 10px 5px;
-	vertical-align:middle;
 }
 .tdcenter {
 	text-align:center;

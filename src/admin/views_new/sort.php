@@ -13,7 +13,7 @@
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
-	<table width="100%" id="adm_sort_list" class="item_list">
+	<table class="table table-striped table-bordered table-hover dataTable no-footer">
 		<thead>
 			<tr>
 			<th width="55"><b>序号</b></th>
