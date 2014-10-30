@@ -8,17 +8,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-<!-- Bootstrap Core CSS -->
-<link href="./views_new/css/bootstrap.css" rel="stylesheet">
-<!-- MetisMenu CSS -->
+<link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+<link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
 <link href="./views_new/css/plugins/metisMenu/metisMenu.css" rel="stylesheet">
-<!-- Timeline CSS -->
-<link href="./views_new/css/plugins/timeline.css" rel="stylesheet">
-<!-- Custom CSS -->
 <link href="./views_new/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="./views_new/css/plugins/morris.css" rel="stylesheet">
-<!-- Custom Fonts -->
 <link href="./views_new/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -32,7 +25,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./">emlog</a>
+                    <a class="navbar-brand" href="../" target="_blank" title="在新窗口浏站点">
+                    <?php 
+                    $blog_name = Option::get('blogname');
+                    echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 24);
+                    ?>
+                    </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -58,66 +56,73 @@
                         <li class="sidebar-avatar">
                             <div style="text-align: center;">
                                 <a href="./blogger.php">
-                                <img class="img-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" width="55" height="55" />
+                                <img class="img-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" />
                                 </a>
                             </div>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 写文章</a>
+                            <a href="write_log.php"><i class="fa fa-edit fa-fw"></i> 写文章</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 草稿</a>
+                            <a href="admin_log.php?pid=draft"><i class="fa fa-dashboard fa-fw"></i> 草稿 <?php 
+                            if (ROLE == ROLE_ADMIN){
+                                echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
+                            }else{
+                                echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
+                            }
+                            ?> 
+                            </a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 文章</a>
+                            <a href="admin_log.php"><i class="fa fa-dashboard fa-fw"></i> 文章</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 标签</a>
+                            <a href="tag.php"><i class="fa fa-dashboard fa-fw"></i> 标签</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 分类</a>
+                            <a href="sort.php"><i class="fa fa-dashboard fa-fw"></i> 分类</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 评论</a>
+                            <a href="comment.php"><i class="fa fa-dashboard fa-fw"></i> 评论</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 微语</a>
+                            <a href="twitter.php"><i class="fa fa-dashboard fa-fw"></i> 微语</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 侧边栏</a>
+                            <a href="widgets.php"><i class="fa fa-dashboard fa-fw"></i> 侧边栏</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 导航</a>
+                            <a href="navbar.php"><i class="fa fa-dashboard fa-fw"></i> 导航</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 页面</a>
+                            <a href="page.php"><i class="fa fa-dashboard fa-fw"></i> 页面</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 用户</a>
+                            <a href="user.php"><i class="fa fa-dashboard fa-fw"></i> 用户</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 数据</a>
+                            <a href="data.php"><i class="fa fa-dashboard fa-fw"></i> 数据</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 插件</a>
+                            <a href="plugin.php"><i class="fa fa-dashboard fa-fw"></i> 插件</a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 模板</a>
+                            <a href="template.php"><i class="fa"></i> 模板</a>
                         </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 应用</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                                                <li class="">
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" style="height: 0px;">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="blank.html">Blank Page</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="login.html">Login Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="store.php"><i class="fa fa-dashboard fa-fw"></i> 应用</a>
                         </li>
                     </ul>
                 </div>
@@ -125,3 +130,4 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+<div id="page-wrapper">
