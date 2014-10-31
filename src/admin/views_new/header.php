@@ -10,16 +10,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
+		<link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
         <link href="./views_new/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-        <link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
-        <link href="./views_new/css/plugins/metisMenu/metisMenu.css" rel="stylesheet">
-        <link href="./views_new/css/sb-admin-2.css" rel="stylesheet">
         <link href="./views_new/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <script src="../include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="./views_new/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="./views_new/js/bootstrap.min.js"></script>
-        <script src="./views_new/js/plugins/metisMenu/metisMenu.min.js"></script>
+        <script src="./views_new/js/metisMenu.min.js"></script>
         <script src="./views_new/js/sb-admin-2.js"></script>
     </head>
     <body>
@@ -77,13 +75,6 @@
                                     ?> 
                             </a></li>
                             <li><a href="admin_log.php" id="menu_tw"><i class="fa fa-list-alt fa-fw"></i> 文章</a>
-                                    <?php
-                                    $checknum = $sta_cache['checknum'];
-                                    if (ROLE == ROLE_ADMIN && $checknum > 0):
-                                    $n = $checknum > 999 ? '...' : $checknum;
-                                    ?>
-                                    <a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a>
-                                    <?php endif; ?>
                             </li>
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="tag.php" id="menu_tw"><i class="fa fa-tags fa-fw"></i> 标签</a></li>
@@ -99,14 +90,26 @@
                             <?php endif; ?>
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
-                            <li><a href="widgets.php" id="menu_tw"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
-                            <li><a href="navbar.php" id="menu_tw"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
                             <li><a href="page.php" id="menu_tw"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
-                            <li><a href="user.php" id="menu_tw"><i class="fa fa-user fa-fw"></i> 用户</a></li>
-                            <li><a href="data.php" id="menu_tw"><i class="fa fa-database fa-fw"></i> 数据</a></li>
-                            <li><a href="plugin.php" id="menu_tw"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
-                            <li><a href="template.php" id="menu_tw"><i class="fa fa-eye fa-fw"></i> 模板</a></li>
-                            <li><a href="store.php" id="menu_tw"><i class="fa fa-shopping-cart fa-fw"></i> 应用</a></li>
+							<li class="">
+                                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 外观<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse" style="height: 0px;">
+									<li><a href="widgets.php" id="menu_tw"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
+									<li><a href="navbar.php" id="menu_tw"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
+                                    <li><a href="template.php" id="menu_tw"><i class="fa fa-eye fa-fw"></i> 模板</a></li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+							<li class="">
+                                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 系统<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse" style="height: 0px;">
+									<li><a href="user.php" id="menu_tw"><i class="fa fa-user fa-fw"></i> 用户</a></li>
+									<li><a href="data.php" id="menu_tw"><i class="fa fa-database fa-fw"></i> 数据</a></li>
+									<li><a href="plugin.php" id="menu_tw"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
+                                    <li><a href="store.php" id="menu_tw"><i class="fa fa-shopping-cart fa-fw"></i> 应用</a></li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                             <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
                             <li class="">
                                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 扩展功能<span class="fa arrow"></span></a>
