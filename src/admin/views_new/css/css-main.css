@@ -1,9 +1,3 @@
-/*!
- * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
 body {
     background-color: #f8f8f8;
 	font-family:"微软雅黑",Arial,Helvetica,sans-serif;
@@ -446,106 +440,13 @@ li {list-style:none;}
 .containertitle {
 	font-size:16px;
     padding: 20px 0px 20px;
-	color:#666666
-}
-.containertitle2 {
-	font-size:16px;
-	height:30px;
-	background:url(../images/yeka.gif) 10px -82px no-repeat;
-	padding:0 0 0 20px;
-	margin:20px 0px 10px;
-}
-.containertitle2 .navi1,.containertitle2 .navi2,.containertitle2 .navi3,.containertitle2 .navi4 {
-	font-size:13px;
-	display:block;
-	width:86px;
-	float:left;
-	text-align:center;
-	height:25px;
-	line-height:24px;
-}
-.containertitle2 .navi1 {
-	background:url(../images/yeka.gif) no-repeat;
-	color:#999;
-}
-.containertitle2 .navi2 {
-	background:url(../images/yeka.gif) no-repeat -1px -29px;
-	line-height:24px;
-}
-.containertitle2 .navi3 {
-	background:url(../images/yeka.gif) no-repeat 0px -29px;
-	line-height:24px;
-}
-.containertitle2 .navi4 {
-	background:url(../images/yeka.gif) no-repeat -1px 0px;
-	color:#999;
-}
-.containertitle2 .actived {
-	margin:0px 60px;
-	background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
-	font-size:12px;
-	padding:3px 12px 4px 30px;
-	border:1px #FFBA43 solid
-}
-.containertitle2 .error {
-	margin:0px 20px;
-	background:url(../images/icon_error.gif) no-repeat 10px #FDFFCE;
-	font-size:12px;
-	padding:3px 12px 4px 30px;
-	border:1px #FFBA43 solid
-}
-.line {
-	border-top:#EFEFEF 1px solid;
-	margin:5px 0px 15px;
-	font-size:0px;
-	height:1%;
-}
-.line2 {
-	border-top:#999 1px dotted;
-	margin:5px 20px;
-	width:70%;
-	font-size:0px;
-}
-.template_line {
-	border-top:#CCC 1px solid;
-	margin:5px 0px 15px;
-	width:100%;
-	font-size:12px;
-	height:1%;
-	padding:0px;
+	color:#666666;
+	border-bottom:#eee 1px solid;
+    margin-bottom: 20px;
 }
 .tdcenter {
 	text-align:center;
 	padding-left:0;
-}
-.input {
-    background: #FFF;
-    border: 1px solid #D9D9D6;
-    padding: 5px;
-    border-radius: 2px;
-}
-.textarea{
-    background: #FFF;
-    border: 1px solid #D9D9D6;
-    padding: 7px;
-    border-radius: 2px;
-    overflow-y:hidden;
-}
-.num_input {
-	border:1px dotted #EFEFEF;
-	overflow-y:hidden;
-	width:43px;
-	height:16px;
-}
-.submit {
-	font-size:12px;
-	cursor:pointer;
-	_cursor:hand;
-}
-.button {
-	font-size:12px;
-	cursor:pointer;
-	padding:4px 10px
 }
 .notice {
 	padding:10px 5px;
@@ -681,21 +582,9 @@ textarea {
 	color:#999999;
 	font-size:10px;
 }
-.actived {
+.alert {
 	margin:0px 200px;
-	background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
-	font-size:12px;
-	padding:4px 12px 4px 30px;
-	border:1px #FFBA43 solid;
-	border-radius:3px;
-}
-.error {
-	margin:0px 200px;
-	background:url(../images/icon_error.gif) no-repeat 10px #FDFFCE;
-	font-size:12px;
-	padding:4px 12px 4px 30px;
-	border:1px #FFBA43 solid;
-	border-radius:3px;
+	font-size:14px;
 }
 .error_msg {
 	margin:0px 200px;
@@ -940,13 +829,10 @@ textarea {
 	border:1px #fff solid
 }
 #tw .box_1 {
-	background:url(../images/weibe_bl.gif) no-repeat;
 	padding-left:7px;
 }
 #tw .box {
 	width:460px;
-	border:1px #bcbcbc solid;
-	border-left:0;
 	padding:5px;
 	height:70px;
 	overflow:auto;
@@ -1305,7 +1191,6 @@ textarea {
 	line-height:1.2em;
 	padding:4px 10px 4px 28px;
 }
-.item_edit li{margin:12px 0px;}
 #navi_add{
 	margin:20px 0px 120px 0px;
 }
@@ -1421,3 +1306,9 @@ textarea {
 	padding:2px 8px;
 	border-radius: 4px;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+ .form-group li{margin:12px 0px;}
+ .em-small {width: 50px;}

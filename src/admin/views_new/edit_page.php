@@ -47,7 +47,7 @@
 loadEditor('content');
 checkalias();
 $("#alias").keyup(function(){checkalias();});
-$("#menu_page").addClass('sidebarsubmenu1');
+$("#menu_page").addClass('active');
 $("#title").focus(function(){$("#title_label").hide();});
 $("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});
 if ($("#title").val() != '')$("#title_label").hide();

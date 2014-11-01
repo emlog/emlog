@@ -205,5 +205,6 @@ $(document).ready(function(){
 		.mouseout(function(){$(this).removeClass("trover")})
 });
 setTimeout(hideActived,2600);
-$("#menu_navbar").addClass('sidebarsubmenu1');
+$("#menu_view").addClass('in');
+$("#menu_navi").addClass('active');
 </script>

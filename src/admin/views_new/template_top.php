@@ -56,6 +56,6 @@
 </div>
 </form>
 <script>
-$("#menu_tpl").addClass('sidebarsubmenu1');
+$("#menu_tpl").addClass('active');
 setTimeout(hideActived,2600);
 </script>

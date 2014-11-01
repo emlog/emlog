@@ -18,7 +18,7 @@
 </form>
 <script type="text/javascript">
 setTimeout(hideActived,2600);
-$("#menu_tpl").addClass('sidebarsubmenu1');
+$("#menu_tpl").addClass('active');
 	function onEndCrop( coords ) {
 		jQuery( '#x1' ).val(coords.x);
 		jQuery( '#y1' ).val(coords.y);

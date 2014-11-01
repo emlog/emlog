@@ -29,5 +29,5 @@
 <div style="margin:10px 20px;">获取更多模板：<a href="store.php">应用中心&raquo;</a></div>
 <script>
 setTimeout(hideActived,2600);
-$("#menu_tpl").addClass('sidebarsubmenu1');
+$("#menu_tpl").addClass('active');
 </script>

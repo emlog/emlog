@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived,2600);</script>
 <div class="containertitle2">
 <a class="navi3" href="./configure.php">基本设置</a>
 <a class="navi4" href="./seo.php">SEO设置</a>
 <a class="navi4" href="./blogger.php">个人设置</a>
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 </div>
+<div>
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
   <table cellspacing="8" cellpadding="4" width="95%" align="center" border="0">
       <tr>
@@ -158,3 +158,8 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       </tr>
   </table>
 </form>
+<script>
+setTimeout(hideActived,2600);
+$("#menu_sys").addClass('in');
+$("#menu_setting").addClass('active');
+</script>

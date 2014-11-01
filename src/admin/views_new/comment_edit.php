@@ -14,5 +14,5 @@
 </div>
 </form>
 <script>
-$("#menu_cm").addClass('sidebarsubmenu1');
+$("#menu_cm").addClass('active');
 </script>

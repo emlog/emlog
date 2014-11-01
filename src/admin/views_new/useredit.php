@@ -36,7 +36,7 @@
 </form>
 <script>
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('sidebarsubmenu1');
+$("#menu_user").addClass('active');
 if($("#role").val() == 'admin') $("#ischeck").hide();
 $("#role").change(function(){$("#ischeck").toggle()})
 </script>

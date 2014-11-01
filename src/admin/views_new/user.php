@@ -86,5 +86,6 @@ $(document).ready(function(){
     $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('sidebarsubmenu1');
+$("#menu_sys").addClass('in');
+$("#menu_user").addClass('active');
 </script>

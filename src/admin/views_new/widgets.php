@@ -291,6 +291,7 @@ $(document).ready(function(){
 	$("#wg_select").change(function(){
 		window.location = "widgets.php?wg="+$(this).val();
 	});
-	$("#menu_widget").addClass('sidebarsubmenu1');
+	$("#menu_view").addClass('in');
+    $("#menu_widget").addClass('active');
 });
 </script>

@@ -45,7 +45,7 @@
 <div class=line></div>
 <script>
 loadEditor('content');
-$("#menu_page").addClass('sidebarsubmenu1');
+$("#menu_page").addClass('active');
 $("#alias").keyup(function(){checkalias();});
 $("#title").focus(function(){$("#title_label").hide();});
 $("#title").blur(function(){if($("#title").val() == '') {$("#title_label").show();}});

@@ -7,7 +7,6 @@
 </div>
 <div class=line></div>
 <div id="tw">
-    <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
     <div class="right">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
@@ -84,7 +83,7 @@ $(document).ready(function(){
     });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
-    $("#menu_tw").addClass('sidebarsubmenu1');
+    $("#menu_tw").addClass('active');
     $(".box").focus();
 	
 	$("#custom_file_upload").uploadify({

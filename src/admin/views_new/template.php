@@ -50,5 +50,6 @@ endforeach;
 </table>
 <script>
 setTimeout(hideActived,2600);
-$("#menu_tpl").addClass('sidebarsubmenu1');
+$("#menu_view").addClass('in');
+$("#menu_tpl").addClass('active');
 </script>

@@ -5,7 +5,7 @@
 <div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?>正在下载安装中</span></div>
 </div>
 <script>
-$("#menu_store").addClass('sidebarsubmenu1');
+$("#menu_store").addClass('active');
 $(document).ready(function(){
     $.get('./store.php', {action:'addon', source:"<?php echo $source;?>", type:"<?php echo $source_type;?>" },
       function(data){

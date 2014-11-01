@@ -72,5 +72,5 @@ function pageact(act){
 	$("#operate").val(act);
 	$("#form_page").submit();
 }
-$("#menu_page").addClass('sidebarsubmenu1');
+$("#menu_page").addClass('active');
 </script>
