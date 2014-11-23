@@ -22,11 +22,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div class=line></div>
 <div class="filters">
-<div id="f_title">
+<div id="f_title" class="form-inline">
 	<div style="float:left; margin-top:8px;">
-		<span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>">全部</a></span>
         <span id="f_t_sort">
-            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;">
+            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;" class="form-control">
             <option value="" selected="selected">按分类查看...</option>
             <?php 
             foreach($sorts as $key=>$value):
@@ -69,7 +68,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</div>
 	<div style="float:right;">
 		<form action="admin_log.php" method="get">
-		<input type="text" id="input_s" name="keyword">
+            <input type="text" name="keyword" class="form-control" placeholder="搜索文章">
 		<?php if($pid):?>
 		<input type="hidden" id="pid" name="pid" value="draft">
 		<?php endif;?>
@@ -149,7 +148,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</table>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input name="operate" id="operate" value="" type="hidden" />
-	<div class="list_footer">
+	<div class="list_footer form-inline">
 	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:logact('del');" class="care">删除</a> | 
 	<?php if($pid == 'draft'): ?>
@@ -158,7 +157,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<a href="javascript:logact('hide');">放入草稿箱</a> | 
 
 	<?php if (ROLE == ROLE_ADMIN):?>
-    <select name="top" id="top" onChange="changeTop(this);" style="width:90px;">
+    <select name="top" id="top" onChange="changeTop(this);" style="width:90px;" class="form-control">
         <option value="" selected="selected">置顶操作...</option>
         <option value="top">首页置顶</option>
         <option value="sortop">分类置顶</option>
@@ -166,7 +165,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </select>
     <?php endif;?>
 
-	<select name="sort" id="sort" onChange="changeSort(this);" style="width:110px;">
+	<select name="sort" id="sort" onChange="changeSort(this);" style="width:110px;" class="form-control">
 	<option value="" selected="selected">移动到分类...</option>
 
     <?php 
@@ -190,7 +189,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</select>
 
 	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
-	<select name="author" id="author" onChange="changeAuthor(this);" style="width:110px;">
+	<select name="author" id="author" onChange="changeAuthor(this);" style="width:110px;" class="form-control">
 	<option value="" selected="selected">更改作者为...</option>
 	<?php foreach($user_cache as $key => $val):
 	$val['name'] = $val['name'];

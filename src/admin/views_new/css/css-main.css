@@ -647,7 +647,7 @@ textarea {
 	border-radius:3px;
 }
 .filters {
-	margin:0px 0px 1px 0px;
+	margin:0px 0px 10px 0px;
 }
 .filter {
 	background-color:#6edffb;
@@ -1182,14 +1182,6 @@ textarea {
 #post_options input {
 	vertical-align:middle;
 	margin:3px 0px 3px 15px
-}
-#input_s {
-	background:url("../images/search.png") no-repeat scroll 5px 3px transparent;
-	border-radius:3px;
-	border:1px solid #CCC;
-	font-size:12px;
-	line-height:1.2em;
-	padding:4px 10px 4px 28px;
 }
 #navi_add{
 	margin:20px 0px 120px 0px;
