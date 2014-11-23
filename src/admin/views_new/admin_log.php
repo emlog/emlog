@@ -207,7 +207,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <script>
 $(document).ready(function(){
 	$("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
-	//$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+	selectAllToggle();
 });
 setTimeout(hideActived,2600);
 function logact(act){

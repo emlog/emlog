@@ -360,3 +360,16 @@ function autosave(act){
 		setTimeout("autosave(0)",60000);
 	}
 }
+//toggle plugin
+$.fn.toggleClick = function(){
+    var functions = arguments ;
+    return this.click(function(){
+            var iteration = $(this).data('iteration') || 0;
+            functions[iteration].apply(this, arguments);
+            iteration = (iteration + 1) % functions.length ;
+            $(this).data('iteration', iteration);
+    });
+};
+function selectAllToggle(){
+    $("#select_all").toggleClick(function () {$(".ids").prop("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+}

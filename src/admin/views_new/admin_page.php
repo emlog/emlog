@@ -61,7 +61,7 @@ $(document).ready(function(){
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")});
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+	selectAllToggle();
 });
 setTimeout(hideActived,2600);
 function pageact(act){

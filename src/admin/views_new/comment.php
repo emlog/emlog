@@ -85,7 +85,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </form>
 <script>
 $(document).ready(function(){
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+	selectAllToggle();
 	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_comment_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})

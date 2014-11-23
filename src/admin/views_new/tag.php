@@ -26,7 +26,7 @@ foreach($tags as $key=>$value): ?>
 </div>
 </form>
 <script>
-$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+selectAllToggle();
 function deltags(){
 	if (getChecked('ids') == false) {
 		alert('请选择要删除的标签');

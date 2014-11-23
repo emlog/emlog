@@ -93,7 +93,7 @@
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+	selectAllToggle();
 	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
 	$("#adm_bakdata_list tbody tr")
 		.mouseover(function(){$(this).addClass("trover")})
