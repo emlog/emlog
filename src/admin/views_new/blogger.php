@@ -1,11 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
 <?php if (ROLE == ROLE_ADMIN):?>
-<a class="navi1" href="./configure.php">基本设置</a>
-<a class="navi4" href="./seo.php">SEO设置</a>
-<a class="navi2" href="./blogger.php">个人设置</a>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation"><a href="./configure.php">基本设置</a></li>
+  <li role="presentation"><a href="./seo.php">SEO设置</a></li>
+  <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+</ul>
 <?php else:?>
-<a class="navi3" href="./blogger.php">个人设置</a>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+</ul>
 <?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="actived">个人资料修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="actived">头像删除成功</span><?php endif;?>

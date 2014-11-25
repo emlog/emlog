@@ -1,8 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle2">
-<a class="navi3" href="./configure.php">基本设置</a>
-<a class="navi4" href="./seo.php">SEO设置</a>
-<a class="navi4" href="./blogger.php">个人设置</a>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="./configure.php">基本设置</a></li>
+  <li role="presentation"><a href="./seo.php">SEO设置</a></li>
+  <li role="presentation"><a href="./blogger.php">个人设置</a></li>
+</ul>
+
 <?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?>
 </div>
 <div>
