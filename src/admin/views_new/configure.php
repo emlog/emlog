@@ -153,7 +153,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
         <td align="center" colspan="2">
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-            <input type="submit" value="保存设置" class="button" />
+            <input type="submit" value="保存设置" class="btn btn-primary" />
         </td>
       </tr>
   </table>

@@ -31,7 +31,7 @@
 	<li><input type="password" maxlength="200" class="input" style="width:200px;" value="" name="repeatpass" /> 再输入一次新密码</li>
     <li>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" value="保存资料" class="button" />
+        <input type="submit" value="保存资料" class="btn btn-primary" />
     </li>
 </div>
 </form>

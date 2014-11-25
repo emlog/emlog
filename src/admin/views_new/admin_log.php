@@ -25,7 +25,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_title" class="form-inline">
 	<div style="float:left; margin-top:8px;">
         <span id="f_t_sort">
-            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:110px;" class="form-control">
+            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:120px;" class="form-control">
             <option value="" selected="selected">按分类查看...</option>
             <?php 
             foreach($sorts as $key=>$value):
@@ -51,7 +51,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         </span>
         <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
         <span id="f_t_user">
-            <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:110px;">
+            <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:120px;" class="form-control">
                 <option value="" selected="selected">按作者查看...</option>
                 <?php 
                 foreach($user_cache as $key=>$value):
@@ -97,12 +97,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <tr>
         <th width="511" colspan="2"><b>标题</b></th>
 		<?php if ($pid != 'draft'): ?>
-		<th width="40" class="tdcenter"><b>查看</b></th>
+		<th width="50" class="tdcenter"><b>查看</b></th>
 		<?php endif; ?>
 		<th width="100"><b>作者</b></th>
         <th width="146"><b>分类</b></th>
         <th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>">时间</a></b></th>
-		<th width="39" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
+		<th width="49" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>">评论</a></b></th>
 		<th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>">阅读</a></b></th>
       </tr>
 	</thead>
@@ -137,7 +137,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	  <?php endif; ?>
       <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
       <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
-      <td><?php echo $value['date']; ?></td>
+      <td class="small"><?php echo $value['date']; ?></td>
 	  <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
 	  <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
@@ -157,7 +157,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	<a href="javascript:logact('hide');">放入草稿箱</a> | 
 
 	<?php if (ROLE == ROLE_ADMIN):?>
-    <select name="top" id="top" onChange="changeTop(this);" style="width:90px;" class="form-control">
+    <select name="top" id="top" onChange="changeTop(this);" style="width:120px;" class="form-control">
         <option value="" selected="selected">置顶操作...</option>
         <option value="top">首页置顶</option>
         <option value="sortop">分类置顶</option>
@@ -165,7 +165,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </select>
     <?php endif;?>
 
-	<select name="sort" id="sort" onChange="changeSort(this);" style="width:110px;" class="form-control">
+	<select name="sort" id="sort" onChange="changeSort(this);" style="width:120px;" class="form-control">
 	<option value="" selected="selected">移动到分类...</option>
 
     <?php 
@@ -189,8 +189,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 	</select>
 
 	<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
-	<select name="author" id="author" onChange="changeAuthor(this);" style="width:110px;" class="form-control">
-	<option value="" selected="selected">更改作者为...</option>
+	<select name="author" id="author" onChange="changeAuthor(this);" style="width:120px;" class="form-control">
+	<option value="" selected="selected">更改作者...</option>
 	<?php foreach($user_cache as $key => $val):
 	$val['name'] = $val['name'];
 	?>

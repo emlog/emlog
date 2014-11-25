@@ -1114,26 +1114,6 @@ textarea {
 #post{
     width: 866px;
 }
-#post #title {
-	border-radius:3px 3px 3px 3px;
-	border-style:solid;
-	border-width:1px;
-	border-color:#CCCCCC;
-	font-size:1.5em;
-	line-height:100%;
-	outline:medium none;
-	padding:3px 4px;
-	width:837px;
-	margin:0px 0px 10px 0px;
-}
-#post #title_label {
-	vertical-align:middle;
-	color:#BBBBBB;
-	font-size:14px;
-	padding:3px;
-	position:absolute;
-	cursor:text;
-}
 #post #tag{
     width:414px;
 }

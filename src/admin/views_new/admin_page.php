@@ -37,7 +37,7 @@
         </td>
         <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td><?php echo $value['date']; ?></td>
+        <td class="small"><?php echo $value['date']; ?></td>
      </tr>
 	<?php endforeach;else:?>
 	  <tr><td class="tdcenter" colspan="5">还没有页面</td></tr>

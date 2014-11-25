@@ -38,7 +38,7 @@
     </li>
     <li style="margin-top:10px;">
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" value="保存设置" class="button" />
+        <input type="submit" value="保存设置" class="btn btn-primary" />
     </li>
 </div>
 </form>

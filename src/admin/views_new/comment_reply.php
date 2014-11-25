@@ -12,11 +12,11 @@
 	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
 	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />
 	<input type="hidden" value="<?php echo $hide; ?>" name="hide" />
-	<input type="submit" value="回复" class="button" />
+	<input type="submit" value="回复" class="btn btn-primary" />
 	<?php if ($hide == 'y'): ?>
-	    <input type="submit" value="回复并审核" name="pub_it" class="button" />
+	    <input type="submit" value="回复并审核" name="pub_it" class="btn btn-primary" />
 	<?php endif; ?>
-	<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();"/></li>
+	<input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();"/></li>
 </div>
 </form>
 <script>

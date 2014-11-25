@@ -88,10 +88,10 @@ $isdraft = $hide == 'y' ? true : false;
     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
     <input type="hidden" name="gid" value=<?php echo $logid; ?> />
     <input type="hidden" name="author" id="author" value=<?php echo $author; ?> />
-    <input type="submit" value="保存并返回" onclick="return checkform();" class="button" />
-    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="button" />
+    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-primary" />
+    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-success" />
     <?php if ($isdraft) :?>
-    <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="button" />
+    <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-success" />
     <?php endif;?>
 </div>
 </div>

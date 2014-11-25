@@ -30,8 +30,8 @@
 	<li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
-	<input type="submit" value="保 存" class="button" />
-	<input type="button" value="取 消" class="button" onclick="window.location='user.php';" /></li>
+	<input type="submit" value="保 存" class="btn btn-primary" />
+	<input type="button" value="取 消" class="btn btn-default" onclick="window.location='user.php';" /></li>
 </div>
 </form>
 <script>

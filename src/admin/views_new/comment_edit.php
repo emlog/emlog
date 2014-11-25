@@ -9,8 +9,8 @@
 	<li><input type="text"  value="<?php echo $url; ?>" name="url" style="width:200px;" class="input" /> 主页</li>
     <li>评论内容：<br /><textarea name="comment" rows="8" cols="60" class="textarea"><?php echo $comment; ?></textarea></li>
 	<input type="hidden" value="<?php echo $cid; ?>" name="cid" />
-	<input type="submit" value="保 存" class="button" />
-	<input type="button" value="取 消" class="button" onclick="javascript: window.history.back();" /></li>
+	<input type="submit" value="保 存" class="btn btn-primary" />
+	<input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
 <script>

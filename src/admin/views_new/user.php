@@ -73,7 +73,7 @@
 	</select>
 	</li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<li><input type="submit" name="" value="添加用户" class="button" /></li>
+	<li><input type="submit" name="" value="添加用户" class="btn btn-primary" /></li>
 </div>
 </form>
 <script>

@@ -53,7 +53,7 @@
     
 	?>  
       <tr>
-		<td><input class="num_input" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+		<td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
 		<td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
 		<td class="tdcenter"><?php echo $value['type_name'];?></td>
 		<td class="tdcenter">
@@ -80,7 +80,7 @@
 		foreach ($value['childnavi'] as $val):
 	?>
         <tr>
-		<td><input class="num_input" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
+		<td><input class="form-control em-small" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
 		<td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
 		<td class="tdcenter"><?php echo $value['type_name'];?></td>
 		<td class="tdcenter">
@@ -108,7 +108,7 @@
 	<?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="改变排序" class="button" /></div>
+  <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-primary" /></div>
 </form>
 <div id="navi_add">
 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
