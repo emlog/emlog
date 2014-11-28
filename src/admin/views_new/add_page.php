@@ -25,10 +25,10 @@
 <div style="margin-top: 5px;">
     <span id="alias_msg_hook"></span>
     链接别名：(用于自定义该页面的链接地址。需要<a href="./seo.php" target="_blank">启用链接别名</a>)<br />
-    <input name="alias" id="alias" class="input" />
+    <input name="alias" id="alias" class="form-control" />
 </div>
 <div style="margin-top:3px;">
-    页面模板：<input maxlength="200" class="input" name="template" id="template" value="page" /> （用于自定义页面模板，对应模板目录下.php文件）
+    页面模板：<input maxlength="200" class="form-control" name="template" id="template" value="page" /> （用于自定义页面模板，对应模板目录下.php文件）
     <span id="page_options">
         <label for="allow_remark">页面接受评论</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />

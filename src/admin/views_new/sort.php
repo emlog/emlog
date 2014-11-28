@@ -94,7 +94,7 @@
 <form action="sort.php?action=add" method="post" class="form-inline">
     <div id="sort_new" class="form-group">
         <li>
-            <input maxlength="4" style="width:50px;" name="taxis" class="form-control"  />
+            <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
             <label>序号</label>
         </li>
         <li>

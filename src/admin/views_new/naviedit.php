@@ -10,7 +10,7 @@
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>
-            <select name="pid" id="pid" class="input">
+            <select name="pid" id="pid" class="form-control">
                 <option value="0">无</option>
                 <?php
                     foreach($navis as $key=>$value):

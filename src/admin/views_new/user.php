@@ -54,20 +54,20 @@
   </table>
 </form>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位用户)</div> 
-<form action="user.php?action=new" method="post">
-<div style="margin:30px 0px 10px 0px;"><a href="javascript:displayToggle('user_new', 2);">添加用户+</a></div>
-<div id="user_new" class="item_edit">
+<form action="user.php?action=new" method="post" class="form-inline">
+<div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success">添加用户+</a></div>
+<div id="user_new" class="form-group">
     <li>
-	<select name="role" id="role" class="input">
+	<select name="role" id="role" class="form-control">
 		<option value="writer">作者（投稿人）</option>
 		<option value="admin">管理员</option>
 	</select>
 	</li>
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="input" /> 用户名</li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="input" /> 密码 (大于6位)</li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="input" /> 重复密码</li>
+	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control" /> 用户名</li>
+	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="form-control" /> 密码 (大于6位)</li>
+	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="form-control" /> 重复密码</li>
 	<li id="ischeck">
-	<select name="ischeck" class="input">
+	<select name="ischeck" class="form-control">
         <option value="n">文章不需要审核</option>
 		<option value="y">文章需要审核</option>
 	</select>

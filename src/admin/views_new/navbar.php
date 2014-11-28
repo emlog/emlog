@@ -120,7 +120,7 @@
 	<li>
 	<input maxlength="200" style="width:168px;" name="url" id="url" /> 地址(带http)<span class="required">*</sapn></li>
     <li>
-            <select name="pid" id="pid" class="input">
+            <select name="pid" id="pid" class="form-control">
                 <option value="0">无</option>
                 <?php
                     foreach($navis as $key=>$value):
