@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
-<div class="containertitle2">
+<div class="panel-heading">
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation"><a href="./configure.php">基本设置</a></li>
   <li role="presentation" class="active"><a href="./seo.php">SEO设置</a></li>
@@ -30,7 +30,7 @@
 <div class="item_edit" style="margin-left:10px;">
     <li>站点浏览器标题(title)<br /><input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_title; ?>" name="site_title" /></li>
     <li>站点关键字(keywords)<br /><input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_key; ?>" name="site_key" /></li>
-    <li>站点浏览器描述(description)<br /><textarea name="site_description" class="textarea" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea></li>
+    <li>站点浏览器描述(description)<br /><textarea name="site_description" class="form-control" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea></li>
     <li>文章浏览器标题方案：
         <select name="log_title_style" class="form-control">
 		<option value="0" <?php echo $opt0; ?>>文章标题</option>

@@ -68,7 +68,7 @@
 	<?php endif;?>
 	</tbody>
   </table>
-<div class="add_plugin"><a href="./plugin.php?action=install">安装插件</a></div>
+<div><a href="./plugin.php?action=install" class="btn btn-success">安装插件</a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")

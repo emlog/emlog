@@ -60,7 +60,7 @@
 	<li><input maxlength="200" style="width:232px;" class="form-control" name="sitename" /> 名称<span class="required">*</sapn></li>
 	<li><input maxlength="200" style="width:232px;" class="form-control" name="siteurl" /> 地址<span class="required">*</sapn></li>
 	<li>描述</li>
-	<li><textarea name="description" type="text" class="textarea" style="width:230px;height:60px;overflow:auto;"></textarea></li>
+	<li><textarea name="description" type="text" class="form-control" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 	<li><input type="submit" name="" value="添加链接"  /></li>
 </div>
 </form>

@@ -205,7 +205,7 @@
 		<li>组件名</li>
 		<li><input type="text" class="form-control" name="new_title" style="width:384px;" value="" /></li>
 		<li>内容 （支持html）</li>
-		<li><textarea name="new_content" class="textarea" rows="10" style="width:380px;overflow:auto;"></textarea></li>
+		<li><textarea name="new_content" class="form-control" rows="10" style="width:380px;overflow:auto;"></textarea></li>
 		<li><input type="submit" name="" value="添加组件"  /></li>
 	</div>
 	</form>
