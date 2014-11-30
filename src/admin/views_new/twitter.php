@@ -7,13 +7,13 @@
 </div>
 <div class=line></div>
 <div id="tw">
-    <div class="right">
+    <div class="form-group">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <div class="msg">你还可以输入140字</div>
-    <div class="box_1"><textarea class="box" name="t"></textarea></div>
-    <div class="tbutton"><input type="submit" value="发布" onclick="return checkt();"/> </div>
+    <div class="box_1"><textarea name="t" class="box form-control"></textarea></div>
+    <div class="tbutton btn btn-primary"><input type="submit" value="发布" onclick="return checkt();"/></div>
 	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
@@ -45,9 +45,9 @@
     </div>
 	<div class="clear"></div>
    	<div id="r_<?php echo $tid;?>" class="r"></div>
-    <div class="huifu" id="rp_<?php echo $tid;?>">
-	<textarea name="reply"></textarea>
-    <div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="回复" /> <span style="color:#FF0000"></span></div>
+    <div class="huifu form-inline" id="rp_<?php echo $tid;?>">
+        <textarea class="form-control" name="reply"></textarea>
+        <input class="btn btn-default" type="button" onclick="doreply(<?php echo $tid;?>);" value="回复" /> <span style="color:#FF0000"></span>
     </div>
     </li>
     <?php endforeach;?>
@@ -59,7 +59,7 @@
 <script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>""></script>
 <script>
 $(document).ready(function(){
-    $(".post a").toggle(
+    $(".post a").toggleClick(
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('<p class="loading"></p>');

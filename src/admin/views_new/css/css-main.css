@@ -785,8 +785,7 @@ textarea {
 	padding:8px 0px 8px 23px;
 }
 #tw {
-	float:left;
-	width:560px;
+	width:600px;
 }
 #tw .main_img {
 	border:1px #2772ae solid;
@@ -799,19 +798,9 @@ textarea {
 	padding-left:7px;
 }
 #tw .box {
-	width:460px;
+	width:600px;
 	padding:5px;
-	height:70px;
-	overflow:auto;
-	line-height:1.4;
-}
-#tw .box2 {
-	width:420px;
-	border:1px #bcbcbc solid;
-	border-left:0;
-	padding:5px;
-	height:17px;
-	overflow:auto;
+	height:90px;
 	line-height:1.4;
 }
 #tw .msg {
@@ -831,6 +820,8 @@ textarea {
 #tw .tbutton {
 	margin:5px 0px 0px 5px;
 	float:left;
+    width: 100px;
+    height: 36px;
 }
 #tw .twImg{
 	float:left;
@@ -865,8 +856,7 @@ textarea {
 	background:url(../images/weibe_button.gif) no-repeat 1px 1px;
 }
 #tw ul {
-	margin:5px 0px 3px 65px;
-	width:480px;
+	margin:25px 0px 3px 5px;
 	line-height:1.8;
 	padding:0px;
 }
@@ -957,7 +947,7 @@ textarea {
 }
 #tw ul .huifu textarea {
 	margin:5px;
-	width:410px;
+	width:470px;
 	border:#CCCCCC solid 1px;
 	overflow:auto;
 }
