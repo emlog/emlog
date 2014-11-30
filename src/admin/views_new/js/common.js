@@ -161,7 +161,8 @@ function em_confirm (id, property, token) {
 }
 function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
-	$(".alert").hide();
+	$(".alert-success").hide();
+    $(".alert-danger").hide();
 	//$(".error").hide();
 }
 function displayToggle(id, keep){

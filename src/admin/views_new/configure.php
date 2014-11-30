@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 	</ul>
 <?php if (isset($_GET['activated'])): ?><span class="actived">设置保存成功</span><?php endif; ?>
 </div>
-<div class="panel-body">
+<div class="panel-body" style="margin-left:30px;">
 	<form action="configure.php?action=mod_config" method="post" name="input" id="input">
         <div class="form-group">
             <label>站点标题：</label><input style="width:390px;" class="form-control" value="<?php echo $blogname; ?>" name="blogname" />
@@ -23,7 +23,7 @@ if (!defined('EMLOG_ROOT')) {
 			<label>站点地址：</label><input style="width:390px;" class="form-control" value="<?php echo $blogurl; ?>" name="blogurl" />
         </div>
         <div class="form-group form-inline">
-			<label>每页显示 </label><input style="width:60px;" class="form-control" value="<?php echo $index_lognum; ?>" name="index_lognum" />篇文章
+			<label>每页显示 </label><input style="width:50px;" class="form-control" value="<?php echo $index_lognum; ?>" name="index_lognum" />篇文章
         </div>
         <div class="form-group form-inline">
 			<label>你所在时区：</label>
@@ -91,16 +91,13 @@ if (!defined('EMLOG_ROOT')) {
             </div>
             <div class="checkbox form-inline">
                 <label><input type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />自动摘要</label>，
-                截取文章的前<input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:55px;" />个字作为摘要
+                截取文章的前<input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" />个字作为摘要
             </div>          
-        </div>     
-			
-			
-			
+        </div>
 		<div class="form-group">
             <div class="checkbox form-inline">
                 <label><input type="checkbox" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启微语</label>，
-                每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="form-control" style="width:25px;" />条微语
+                每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="form-control" style="width:50px;" />条微语
             </div>
             <div class="checkbox form-inline">
                 <label><input type="checkbox" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启微语回复，</label>
@@ -108,7 +105,6 @@ if (!defined('EMLOG_ROOT')) {
                 <label><input type="checkbox" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核</label>
             </div>
         </div>
-
         <div class="form-group form-inline">
             RSS输出 <input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num" /> 篇文章（0为关闭），且输出
 			<select name="rss_output_fulltext" class="form-control">
@@ -118,7 +114,7 @@ if (!defined('EMLOG_ROOT')) {
         </div>
 		<div class="form-group">
 			<div class="checkbox form-inline">
-                <label><input type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />开启评论</label>，发表评论间隔<input maxlength="5" size="2" class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval />秒
+                <label><input type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />开启评论</label>，发表评论间隔<input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval />秒
             </div>
             <div class="checkbox">
                 <label>
@@ -142,32 +138,29 @@ if (!defined('EMLOG_ROOT')) {
             </div>
             <div class="checkbox form-inline">
                 <label><input type="checkbox" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />评论分页，</label>
-                每页显示<input maxlength="5" size="4" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />条评论，
+                每页显示<input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum" />条评论，
                 <select name="comment_order" class="form-control"><option value="newer" <?php echo $ex3; ?>>较新的</option><option value="older" <?php echo $ex4; ?>>较旧的</option></select>排在前面
             </div>
         </div>
-
         <div class="form-group form-inline">
-            <label>附件上传最大限制</label><input maxlength="10" size="8" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB（上传文件还受到服务器空间PHP配置最大上传 <?php echo ini_get('upload_max_filesize'); ?> 限制）
+            <label>附件上传最大限制</label><input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB（上传文件还受到服务器空间PHP配置最大上传 <?php echo ini_get('upload_max_filesize'); ?> 限制）
         </div>
         <div class="form-group form-inline">
             <label>允许上传的附件类型</label><input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" />（多个用半角逗号分隔）
         </div>
         <div class="form-group form-inline">
-			<input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，最大尺寸：<input maxlength="5" size="4" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" />（单位：像素）
+			<input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，最大尺寸：<input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" /> x <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" />（单位：像素）
         </div>
         <div class="form-group">
 			ICP备案号：
 			<input maxlength="200" style="width:390px;" class="form-control" value="<?php echo $icp; ?>" name="icp" />
         </div>
         <div class="form-group">
-            <label>首页底部信息：</label>
+            <label>首页底部信息(支持html，可用于添加流量统计代码)：</label>
 			<textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?php echo $footer_info; ?></textarea>
-			(支持html，可用于添加流量统计代码)
         </div>
-
-            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-            <input type="submit" value="保存设置" class="btn btn-primary" />
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="submit" value="保存设置" class="btn btn-primary" />
 	</form>
 </div>
 <script>

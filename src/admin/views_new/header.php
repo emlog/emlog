@@ -35,8 +35,29 @@
                         ?>
                     </a>
                 </div>
-
                 <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="./comment.php?hide=y">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> 待审核评论
+                                    <span class="pull-right text-muted small">
+                                    <?php
+                                    $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+                                    $n = $hidecmnum > 999 ? '...' : $hidecmnum;
+                                    echo $n;
+                                    ?>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                    </li>
                     <li><a href="./"><i class="fa fa-home fa-fw"></i>管理首页</a></li>
                     <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
                     <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i>退出</a></li>
@@ -68,13 +89,6 @@
                             <li><a href="sort.php" id="menu_sort"><i class="fa fa-flag fa-fw"></i> 分类</a></li>
                             <?php endif;?>
                             <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> 评论</a></li>
-                            <?php
-                            $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-                            if ($hidecmnum > 0):
-                            $n = $hidecmnum > 999 ? '...' : $hidecmnum;
-                            ?>
-                            <a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a>
-                            <?php endif; ?>
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>

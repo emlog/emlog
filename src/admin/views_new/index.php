@@ -1,36 +1,149 @@
-<?php if (!defined('EMLOG_ROOT')) {
+<?php
+if (!defined('EMLOG_ROOT')) {
     exit('error!');
-} ?>
-<!-- Page Content -->
+}
+?>
+<script>setTimeout(hideActived, 2600);</script>
+<div class="containertitle"><b>管理首页</b></div>
 <div class="row">
-    <div class="col-lg-12">
-        <h3 class="page-header">首页</h3>
-        <div id="admindex">
-<?php if (ROLE == ROLE_ADMIN): ?>
-                <div style="margin-top: 20px;">
-                    <div id="admindex_servinfo">
-                        <h3>站点信息</h3>
-                        <ul>
-                            <li>有<b><?php echo $sta_cache['lognum']; ?></b>篇文章，<b><?php echo $sta_cache['comnum_all']; ?></b>条评论，<b><?php echo $sta_cache['twnum']; ?></b>条微语</li>
-                            <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
-                            <li>PHP版本：<?php echo $php_ver; ?>，MySQL版本：<?php echo $mysql_ver; ?></li>
-                            <li>服务器环境：<?php echo $serverapp; ?></li>
-                            <li>GD图形处理库：<?php echo $gd_ver; ?></li>
-                            <li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
-                            <li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
-                        </ul>
+    <div class="col-lg-2 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-list-alt fa-5x"></i>
                     </div>
-                    <div id="admindex_msg">
-                        <h3>官方消息</h3>
-                        <ul></ul>
-                    </div>
-                    <div class="clear"></div>
-                    <div id="about">
-                        您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
-                        <span id="upmsg"></span>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $sta_cache['lognum']; ?></div>
+                        <div>文章数量</div>
                     </div>
                 </div>
             </div>
+            <a href="admin_log.php">
+                <div class="panel-footer">
+                    <span class="pull-left">文章管理</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $sta_cache['comnum_all']; ?></div>
+                        <div>评论数量</div>
+                    </div>
+                </div>
+            </div>
+            <a href="comment.php">
+                <div class="panel-footer">
+                    <span class="pull-left">评论管理</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comment fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $sta_cache['twnum']; ?></div>
+                        <div>微语数量</div>
+                    </div>
+                </div>
+            </div>
+            <a href="twitter.php">
+                <div class="panel-footer">
+                    <span class="pull-left">管理微语</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>点赞数量</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">查看所有点赞</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+<?php if (ROLE == ROLE_ADMIN): ?>
+        <div class="col-lg-4">
+            <!-- /.panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-laptop fa-fw"></i> 服务器信息
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" id="admindex_servinfo">
+                    <ul class="timeline">
+                        <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
+                        <li>PHP版本：<?php echo $php_ver; ?></li>
+                        <li>MySQL版本：<?php echo $mysql_ver; ?></li>
+                        <li>服务器环境：<?php echo $serverapp; ?></li>
+                        <li>GD图形处理库：<?php echo $gd_ver; ?></li>
+                        <li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
+                        <li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-4">
+            <!-- /.panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-volume-down fa-fw"></i> 官方消息
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" id="admindex_msg">
+                    <ul class="timeline"></ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="admindex">
+                <div id="about" class="alert alert-warning">
+                  您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
+                  <span id="upmsg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
             <script>
                 $(document).ready(function() {
                     $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
@@ -79,12 +192,12 @@
                 }
             </script>
 <?php else: ?>
+<div class="row">
+        <div class="col-lg-12">
             <div id="admindex_main">
                 <div id="about"><a href="blogger.php"><?php echo $name; ?></a> （<b><?php echo $sta_cache[UID]['lognum']; ?></b>篇文章，<b><?php echo $sta_cache[UID]['commentnum']; ?></b>条评论）</div>
             </div>
             <div class="clear"></div>
-<?php endif; ?>
-    </div>
-    <!-- /.col-lg-12 -->
+        </div>
 </div>
-<!-- /.row -->
+<?php endif; ?>
