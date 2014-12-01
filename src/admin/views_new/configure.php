@@ -27,7 +27,7 @@ if (!defined('EMLOG_ROOT')) {
         </div>
         <div class="form-group form-inline">
 			<label>你所在时区：</label>
-			<select name="timezone" style="width:390px;" class="form-control">
+			<select name="timezone" style="width:320px;" class="form-control">
 				<?php
 				$tzlist = array('-12' => '(标准时-12) 日界线西',
 					'-11' => '(标准时-11) 中途岛、萨摩亚群岛',

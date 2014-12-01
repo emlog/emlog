@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
 <script>setTimeout(hideActived, 2600);</script>
 <div class="containertitle"><b>管理首页</b></div>
 <div class="row">
-    <div class="col-lg-2 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
@@ -28,7 +28,7 @@ if (!defined('EMLOG_ROOT')) {
             </a>
         </div>
     </div>
-    <div class="col-lg-2 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
@@ -50,7 +50,7 @@ if (!defined('EMLOG_ROOT')) {
             </a>
         </div>
     </div>
-    <div class="col-lg-2 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
             <div class="panel-heading">
                 <div class="row">
@@ -72,7 +72,7 @@ if (!defined('EMLOG_ROOT')) {
             </a>
         </div>
     </div>
-    <div class="col-lg-2 col-md-6">
+    <div class="col-lg-3 col-md-6">
         <div class="panel panel-red">
             <div class="panel-heading">
                 <div class="row">
@@ -97,7 +97,7 @@ if (!defined('EMLOG_ROOT')) {
 </div>
 <div class="row">
 <?php if (ROLE == ROLE_ADMIN): ?>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <!-- /.panel -->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -119,7 +119,7 @@ if (!defined('EMLOG_ROOT')) {
             </div>
             <!-- /.panel -->
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <!-- /.panel -->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -135,7 +135,7 @@ if (!defined('EMLOG_ROOT')) {
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div id="admindex">
                 <div id="about" class="alert alert-warning">
                   您正在使用emlog <?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
