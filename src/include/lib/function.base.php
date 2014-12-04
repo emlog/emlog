@@ -58,7 +58,7 @@ function htmlClean($content, $nl2br = true) {
  */
 function getIp() {
 	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-	if (!ip2long($ip)) {
+	if (!filter_var($ip, FILTER_VALIDATE_IP)) {
 		$ip = '';
 	}
 	return $ip;
