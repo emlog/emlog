@@ -49,8 +49,8 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <p class="title2">MySQL数据库设置</p>
 <li>
 	数据库地址： <br />
-    <input name="hostname" type="text" class="input" value="localhost">
-	<span class="care">(通常为 localhost， 不必修改)</span>
+    <input name="hostname" type="text" class="input" value="127.0.0.1">
+	<span class="care">(通常为 localhost/127.0.0.1， 不必修改)</span>
 </li>
 <li>
     数据库用户名：<br /><input name="dbuser" type="text" class="input" value="">
