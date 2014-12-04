@@ -433,7 +433,19 @@ CREATE TABLE {$db_prefix}user (
 PRIMARY KEY  (uid),
 KEY username (username)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');";
+INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');
+DROP TABLE IF EXISTS {$db_prefix}storage;
+CREATE TABLE {$db_prefix}storage (
+  `sid` int(8) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(32) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `type` varchar(8) NOT NULL,
+  `value` text NOT NULL,
+  `createdate` int(11) NOT NULL,
+  `lastupdate` int(11) NOT NULL,
+  PRIMARY KEY (`sid`),
+  UNIQUE KEY `plugin` (`plugin`,`name`)
+)".$table_charset_sql;
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);
 	foreach($array_sql as $sql){
