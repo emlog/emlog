@@ -76,6 +76,40 @@ function getBlogUrl() {
 	}
 }
 
+/**
+ * 获取当前访问的base url
+ */
+function realUrl() {
+    $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
+    $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
+    $script_path = str_replace('\\', '/', $script_path);
+    $path_element = explode('/', $script_path);
+    
+	$this_match = '';
+    $best_match = '';
+    
+	$current_deep = 0;
+    $max_deep = count($path_element);
+    
+    while($current_deep < $max_deep) {
+        $this_match = $this_match . $path_element[$current_deep] . DIRECTORY_SEPARATOR;
+        
+        if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
+            $best_match = $this_match;
+        }
+        
+        $current_deep++;
+    }
+    
+    $best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
+    $real_url  = $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $real_url .= $_SERVER["SERVER_NAME"];
+    $real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
+    $real_url .= $best_match;
+    
+    return $real_url;
+}
+
 function isIE6Or7() {
 	if (isset($_SERVER['HTTP_USER_AGENT'])) {
 		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")) {
