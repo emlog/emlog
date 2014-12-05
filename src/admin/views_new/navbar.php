@@ -204,7 +204,8 @@ $(document).ready(function(){
 		.mouseover(function(){$(this).addClass("trover")})
 		.mouseout(function(){$(this).removeClass("trover")})
 });
-setTimeout(hideActived,2600);
+setTimeout(hideActived, 2600);
+$("#menu_category_view").addClass('active');
 $("#menu_view").addClass('in');
 $("#menu_navi").addClass('active');
 </script>

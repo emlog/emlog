@@ -109,6 +109,7 @@ function bakact(act){
 	$("#operate").val(act);
 	$("#form_bak").submit();
 }
+$("#menu_category_sys").addClass('active');
 $("#menu_sys").addClass('in');
 $("#menu_data").addClass('active');
 </script>

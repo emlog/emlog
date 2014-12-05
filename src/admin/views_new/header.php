@@ -92,7 +92,7 @@
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
-							<li class="">
+							<li id="menu_category_view" class="">
                                 <a href="#"><i class="fa fa-windows fa-fw"></i> 外观<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_view">
 									<li><a href="widgets.php" id="menu_widget"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
@@ -101,7 +101,7 @@
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-							<li class="">
+							<li id="menu_category_sys" class="">
                                 <a href="#"><i class="fa fa-cog fa-fw"></i> 系统<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_sys">
                                     <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
@@ -113,7 +113,7 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
-                            <li class="">
+                            <li id="menu_category_ext" class="">
                                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 扩展功能<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_ext">
                                     <li><?php doAction('adm_sidebar_ext'); ?></li>

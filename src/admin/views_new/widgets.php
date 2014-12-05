@@ -292,6 +292,7 @@ $(document).ready(function(){
 	$("#wg_select").change(function(){
 		window.location = "widgets.php?wg="+$(this).val();
 	});
+	$("#menu_category_view").addClass('active');
 	$("#menu_view").addClass('in');
     $("#menu_widget").addClass('active');
 });
