@@ -59,7 +59,7 @@
                     <!-- /.dropdown-alerts -->
                     </li>
                     <li><a href="./"><i class="fa fa-home fa-fw"></i>管理首页</a></li>
-                    <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
+                    <li><a href="./configure.php" id="top_menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
                     <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i>退出</a></li>
                 </ul>
 
