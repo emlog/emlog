@@ -28,5 +28,8 @@
 </form>
 <div style="margin:10px 20px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></div>
 <script>
+setTimeout(hideActived, 2600);
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
 $("#menu_plug").addClass('active');
 </script>

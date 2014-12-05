@@ -41,5 +41,8 @@
 </form>
 <script>
 $("#chpwd").css('display', $.cookie('em_chpwd') ? $.cookie('em_chpwd') : 'none');
-setTimeout(hideActived,2600);
+setTimeout(hideActived, 2600);
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_setting").addClass('active');
 </script>
