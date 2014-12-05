@@ -1043,11 +1043,11 @@ textarea {
 	margin-top:60px;
 }
 .custom_top_button a {
-	background:url(../images/custom_top.gif) no-repeat;
-	width:90px;
-	height:24px;
+	background:url(../images/custom_top.png) no-repeat;
+	width:130px;
+	height:23px;
 	display:block;
-	padding:2px 0px 0px 20px;
+	padding:1px 0px 0px 23px;
 	color:#000000;
 }
 .custom_top_button a:active {
