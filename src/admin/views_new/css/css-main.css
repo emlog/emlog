@@ -5,6 +5,7 @@ body {
 
 #wrapper {
     width: 100%;
+	overflow:hidden;
 }
 
 #page-wrapper {
