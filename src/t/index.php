@@ -19,7 +19,7 @@ if ($action == 'cal') {
 }
 
 if ($action == '') {
-	$user_cache = $CACHE->readCache('user');
+    $user_cache = $CACHE->readCache('user');
     $options_cache = Option::getAll();
     extract($options_cache);
     
@@ -49,16 +49,16 @@ if ($action == 'getr') {
 
     $response = '';
     if ($replys) {
-	    foreach($replys as $val){
-	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a>" : '';
-	    	$response .= "
-	         <li>
-	         <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
-	         <em>$sub_reply</em>
-	         </li>";
-	    }
+        foreach($replys as $val){
+            $sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name'])."：');\">回复</a>" : '';
+            $response .= "
+             <li>
+             <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
+             <em>$sub_reply</em>
+             </li>";
+        }
     } else{
-    	$response .= "<li>还没有回复！</li>";
+        $response .= "<li>还没有回复！</li>";
     }
     echo $response;
 }
@@ -73,7 +73,7 @@ if ($action == 'reply') {
     $user_cache = $CACHE->readCache('user');
 
     if (Option::get('istreply') == 'n' ) {
-    	exit('err0');
+        exit('err0');
     } elseif (!$r || strlen($r) > 420){
         exit('err1');
     } elseif (ROLE == ROLE_VISITOR && empty($rname)) {
