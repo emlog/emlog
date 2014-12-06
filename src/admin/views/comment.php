@@ -30,76 +30,76 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
   <table width="100%" id="adm_comment_list" class="item_list">
-  	<thead>
+    <thead>
       <tr>
         <th width="369" colspan="2"><b>内容</b></th>
-		<th width="300"><b>评论者</b></th>
+        <th width="300"><b>评论者</b></th>
         <th width="250"><b>所属文章</b></th>
       </tr>
     </thead>
     <tbody>
-	<?php
-	if($comment):
-	foreach($comment as $key=>$value):
-	$ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
-	$mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-	$ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
-	$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
-	$value['content'] = str_replace('<br>',' ',$value['content']);
-	$sub_content = subString($value['content'], 0, 50);
-	$value['title'] = subString($value['title'], 0, 42);
-	doAction('adm_comment_display');
-	?>
+    <?php
+    if($comment):
+    foreach($comment as $key=>$value):
+    $ishide = $value['hide']=='y'?'<font color="red">[待审]</font>':'';
+    $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
+    $ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
+    $poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
+    $value['content'] = str_replace('<br>',' ',$value['content']);
+    $sub_content = subString($value['content'], 0, 50);
+    $value['title'] = subString($value['title'], 0, 42);
+    doAction('adm_comment_display');
+    ?>
      <tr>
         <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
-		<span style="display:none; margin-left:8px;">    
+        <span style="display:none; margin-left:8px;">    
             <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
-		<?php if($value['hide'] == 'y'):?>
-		<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
-		<?php else: ?>
-		<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
-		<?php endif;?>
-		<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
+        <?php if($value['hide'] == 'y'):?>
+        <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
+        <?php else: ?>
+        <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
+        <?php endif;?>
+        <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
         <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
-		</span>
-		</td>
-		<td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
+        </span>
+        </td>
+        <td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
             <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="删除来自该IP的所有评论" class="care">(X)</a><?php endif;?></td>
         <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
      </tr>
-	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="4">还没有收到评论</td></tr>
-	<?php endif;?>
-	</tbody>
+    <?php endforeach;else:?>
+      <tr><td class="tdcenter" colspan="4">还没有收到评论</td></tr>
+    <?php endif;?>
+    </tbody>
   </table>
-	<div class="list_footer">
-	<a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+    <div class="list_footer">
+    <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:commentact('del');" class="care">删除</a>
-	<a href="javascript:commentact('hide');">隐藏</a>
-	<a href="javascript:commentact('pub');">审核</a>
-	<input name="operate" id="operate" value="" type="hidden" />
-	</div>
+    <a href="javascript:commentact('hide');">隐藏</a>
+    <a href="javascript:commentact('pub');">审核</a>
+    <input name="operate" id="operate" value="" type="hidden" />
+    </div>
     <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div> 
 </form>
 <script>
 $(document).ready(function(){
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
-	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
-		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
+    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
+    $("#adm_comment_list tbody tr")
+        .mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
+        .mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
 });
 setTimeout(hideActived,2600);
 function commentact(act){
-	if (getChecked('ids') == false) {
-		alert('请选择要操作的评论');
-		return;
-	}
-	if(act == 'del' && !confirm('你确定要删除所选评论吗？')){return;}
-	$("#operate").val(act);
-	$("#form_com").submit();
+    if (getChecked('ids') == false) {
+        alert('请选择要操作的评论');
+        return;
+    }
+    if(act == 'del' && !confirm('你确定要删除所选评论吗？')){return;}
+    $("#operate").val(act);
+    $("#form_com").submit();
 }
 $("#menu_cm").addClass('sidebarsubmenu1');
 </script>

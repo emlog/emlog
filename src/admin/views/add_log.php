@@ -10,11 +10,11 @@
     <input type="text" maxlength="200" name="title" id="title"/>
 </div>
 <div id="post_bar">
-	<div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
-	    <?php doAction('adm_writelog_head'); ?>
-	    <span id="asmsg"></span>
-	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
+    <div>
+        <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+        <?php doAction('adm_writelog_head'); ?>
+        <span id="asmsg"></span>
+        <input type="hidden" name="as_logid" id="as_logid" value="-1">
     </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
@@ -72,7 +72,7 @@
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
         <label for="top">首页置顶</label>
-		<input type="checkbox" value="y" name="sortop" id="sortop" />
+        <input type="checkbox" value="y" name="sortop" id="sortop" />
         <label for="sortop">分类置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
         <label for="allow_remark">允许评论</label>
