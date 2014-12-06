@@ -36,7 +36,7 @@ define('TPLS_URL', BLOG_URL.'content/templates/');
 //模板库路径
 define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 //解决前台多域名ajax跨域
-define('DYNAMIC_BLOGURL', getBlogUrl());
+define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //前台模板URL
 define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
 
