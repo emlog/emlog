@@ -21,6 +21,11 @@ if (!defined('EMLOG_ROOT')) {
         </div>
         <div class="form-group">
 			<label>站点地址：</label><input style="width:390px;" class="form-control" value="<?php echo $blogurl; ?>" name="blogurl" />
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="y" name="detect_url" id="detect_url" <?php echo $conf_detect_url; ?> />自动检测站点地址 (用于支持多域名/HTTPS，少数空间商可能不支持)
+                </label>
+            </div>
         </div>
         <div class="form-group form-inline">
 			<label>每页显示 </label><input style="width:50px;" class="form-control" value="<?php echo $index_lognum; ?>" name="index_lognum" />篇文章

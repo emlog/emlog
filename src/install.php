@@ -347,6 +347,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets2','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment,

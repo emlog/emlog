@@ -26,6 +26,7 @@ if ($action == '') {
 	$conf_istreply = $istreply == 'y' ? 'checked="checked"' : '';
 	$conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
 	$conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
+    $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
 	if ($rss_output_fulltext == 'y') {
@@ -82,6 +83,7 @@ if ($action == 'mod_config') {
     'att_type' => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
     'att_imgmaxw' => isset($_POST['att_imgmaxw']) ? intval($_POST['att_imgmaxw']) : 420,
     'att_imgmaxh' => isset($_POST['att_imgmaxh']) ? intval($_POST['att_imgmaxh']) : 460,
+    'detect_url' => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n',
 	);
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {

@@ -40,6 +40,14 @@ class Option {
 						return array();
 					}
 					break;
+                case 'blogurl':
+                    if ($options_cache['detect_url'] == 'y') {
+                        return realUrl();
+                    }
+                    else {
+                        return $options_cache['blogurl'];
+                    }
+                    break;
 				default:
 					return $options_cache[$option];
 					break;
