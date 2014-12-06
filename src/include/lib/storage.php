@@ -81,33 +81,33 @@ class Storage {
      */
     public function setValue($name, $value = NULL, $type = NULL) {
         $name = $this->_filterName($name);
-		$type = $this->_filterType($type);
+        $type = $this->_filterType($type);
 
-		switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
-			case "number":
-				$db_value = (string)$value;
-				break;
-			case "boolean":
-				$db_value = ((bool)$value) === TRUE ? "TRUE" : "FALSE";
-				break;
-			case "array":
-				$db_value = serialize($value);
-				break;
-		}
+        switch ($type) {
+            case "string":
+                $db_value = (string)$value;
+                break;
+            case "number":
+                $db_value = (string)$value;
+                break;
+            case "boolean":
+                $db_value = ((bool)$value) === TRUE ? "TRUE" : "FALSE";
+                break;
+            case "array":
+                $db_value = serialize($value);
+                break;
+        }
 
-		if ($this->checkNameExist($name)) {
-			$sql  = "UPDATE " . DB_PREFIX . "storage SET ";
-			$sql .= "`value` = '" . $this->db_conn->escape_string($db_value) . "', ";
-			$sql .= "`type` = '{$type}', ";
-			$sql .= "`lastupdate` = " . time() . " ";
-			$sql .= "WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' ";
-			$sql .= "AND `name` = '" . $this->db_conn->escape_string($name) . "'";
+        if ($this->checkNameExist($name)) {
+            $sql  = "UPDATE " . DB_PREFIX . "storage SET ";
+            $sql .= "`value` = '" . $this->db_conn->escape_string($db_value) . "', ";
+            $sql .= "`type` = '{$type}', ";
+            $sql .= "`lastupdate` = " . time() . " ";
+            $sql .= "WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' ";
+            $sql .= "AND `name` = '" . $this->db_conn->escape_string($name) . "'";
 
-			$this->db_conn->query($sql);
-		}
+            $this->db_conn->query($sql);
+        }
         else {
             $sql  = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUE (";
             $sql .= "'" . $this->db_conn->escape_string($this->plugin_name) . "', ";
@@ -143,19 +143,19 @@ class Storage {
         }
 
         switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
-			case "number":
-				$db_value = (string)$value;
-				break;
-			case "boolean":
-				$db_value = (bool)$value === TRUE ? "TRUE" : "FALSE";
-				break;
-			case "array":
-				$db_value = serialize($value);
-				break;
-		}
+            case "string":
+                $db_value = (string)$value;
+                break;
+            case "number":
+                $db_value = (string)$value;
+                break;
+            case "boolean":
+                $db_value = (bool)$value === TRUE ? "TRUE" : "FALSE";
+                break;
+            case "array":
+                $db_value = serialize($value);
+                break;
+        }
 
         $sql  = "UPDATE " . DB_PREFIX . "storage SET ";
         $sql .= "`value` = '" . $this->db_conn->escape_string($db_value) . "', ";
@@ -168,15 +168,15 @@ class Storage {
         return TRUE;
     }
 
-	/**
-	 * 获取数据的值
+    /**
+     * 获取数据的值
      * 当数据存在时，返回数据的值（自动类型转换）
      * 当数据不存在是，返回FALSE
-	 * @param string $name 数据名称
-	 * @return mixed/FALSE 数据值
-	 */
-	public function getValue($name) {
-	    $name = $this->_filterName($name);
+     * @param string $name 数据名称
+     * @return mixed/FALSE 数据值
+     */
+    public function getValue($name) {
+        $name = $this->_filterName($name);
 
         $sql = "SELECT `type`, `value` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
@@ -189,20 +189,20 @@ class Storage {
         $value = $result['value'];
 
         switch ($type) {
-			case "string":
-				return (string)$value;
-				break;
-			case "number":
-				return (float)$value;
-				break;
-			case "boolean":
-				return $value === "TRUE";
-				break;
-			case "array":
-				return unserialize($value);
-				break;
-		}
-	}
+            case "string":
+                return (string)$value;
+                break;
+            case "number":
+                return (float)$value;
+                break;
+            case "boolean":
+                return $value === "TRUE";
+                break;
+            case "array":
+                return unserialize($value);
+                break;
+        }
+    }
 
     /**
      * 获取数据类型
@@ -333,56 +333,56 @@ class Storage {
         return TRUE;
     }
 
-	/**
-	 * 内部函数：过滤插件名
-	 * @param string $plugin 插件名
+    /**
+     * 内部函数：过滤插件名
+     * @param string $plugin 插件名
      * @return string 插件名
-	 */
-	public static function _filterPlugin($plugin) {
-		$plugin = trim($plugin);
+     */
+    public static function _filterPlugin($plugin) {
+        $plugin = trim($plugin);
 
-		if (strlen($plugin) > 16) {
-			$plugin = substr($plugin, 0, 16);
-		}
+        if (strlen($plugin) > 16) {
+            $plugin = substr($plugin, 0, 16);
+        }
 
-		if (!preg_match("/^[\w_]+$/", $plugin)) {
-			$plugin = "DefaultPlugin";
-		}
+        if (!preg_match("/^[\w_]+$/", $plugin)) {
+            $plugin = "DefaultPlugin";
+        }
 
-		return $plugin;
-	}
+        return $plugin;
+    }
 
     /**
      * 内部函数：过滤数据名
      * @param string $plugin 数据名
      * @return string 数据名
      */
-	public function _filterName($name) {
-		$name = trim($name);
+    public function _filterName($name) {
+        $name = trim($name);
 
-		if (strlen($name) > 16) {
-			$name = substr($name, 0, 16);
-		}
+        if (strlen($name) > 16) {
+            $name = substr($name, 0, 16);
+        }
 
-		if (!preg_match("/^[\w_]+$/", $name)) {
-			$name = "DefaultName";
-		}
+        if (!preg_match("/^[\w_]+$/", $name)) {
+            $name = "DefaultName";
+        }
 
-		return $name;
-	}
+        return $name;
+    }
 
     /**
      * 内部函数：过滤类型名
      * @param string $plugin 类型名
      * @return string 类型名
      */
-	public function _filterType($type) {
-		$type = strtolower(trim($type));
+    public function _filterType($type) {
+        $type = strtolower(trim($type));
 
-		if (!in_array($type, self::$available_storage_type)) {
-			$type = self::$default_storage_type;
-		}
+        if (!in_array($type, self::$available_storage_type)) {
+            $type = self::$default_storage_type;
+        }
 
-		return $type;
-	}
+        return $type;
+    }
 }
