@@ -10,15 +10,15 @@
 <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <tr>
       <td width="42%">
-	  <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
-	  <td width="58%">
-	  <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
-	  <?php echo $tplAuthor; ?><br>
-	  <?php echo $tplDes; ?>
-	  <?php if ('default' == $nonce_templet): ?>
-	  <div class="custom_top_button"><a href="./template.php?action=custom-top">自定义顶部图片</a></div>
-	  <?php endif; ?>
-	  </td>
+      <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
+      <td width="58%">
+      <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
+      <?php echo $tplAuthor; ?><br>
+      <?php echo $tplDes; ?>
+      <?php if ('default' == $nonce_templet): ?>
+      <div class="custom_top_button"><a href="./template.php?action=custom-top">自定义顶部图片</a></div>
+      <?php endif; ?>
+      </td>
     </tr>
 </table>
 <?php endif;?>
@@ -37,9 +37,9 @@ if($i % 3 == 0){echo "<tr>";}
 $i++;
 ?>
       <td align="center" width="300">
-	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-	  <img alt="点击使用该模板" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
-	  </a><br />
+      <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+      <img alt="点击使用该模板" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
+      </a><br />
       <?php echo $value['tplname']; ?>
       <span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a></span>
       </td>

@@ -17,34 +17,34 @@
     <br />启用链接别名后可以自定义文章和页面的链接地址。
 </div>
 <div class="form-group">
-			<div class="radio">
+            <div class="radio">
                 <label>
                     <input type="radio" name="permalink" value="0" <?php echo $ex0; ?>>默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span>
                 </label>
             </div>
-			<div class="radio">
+            <div class="radio">
                 <label>
                     <input type="radio" name="permalink" value="1" <?php echo $ex1; ?>>文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span>
                 </label>
             </div>
-			<div class="radio">
+            <div class="radio">
                 <label>
                     <input type="radio" name="permalink" value="2" <?php echo $ex2; ?>>目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span>
                 </label>
             </div>
-			<div class="radio">
+            <div class="radio">
                 <label>
                     <input type="radio" name="permalink" value="3" <?php echo $ex3; ?>>分类形式：<span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span>
                 </label>
             </div>
 </div>
 <div class="form-group">
-    			<div class="checkbox">
+                <div class="checkbox">
                 <label>
                     <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />启用文章链接别名
                 </label>
             </div>
-    			<div class="checkbox">
+                <div class="checkbox">
                 <label>
                     <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />启用文章链接别名html后缀
                 </label>
@@ -68,8 +68,8 @@
     <li>
         <label>文章浏览器标题方案：</label>
         <select name="log_title_style" class="form-control" style="width: 120px;">
-		<option value="0" <?php echo $opt0; ?>>文章标题</option>
-		<option value="1" <?php echo $opt1; ?>>文章标题 - 站点标题</option>
+        <option value="0" <?php echo $opt0; ?>>文章标题</option>
+        <option value="1" <?php echo $opt1; ?>>文章标题 - 站点标题</option>
         <option value="2" <?php echo $opt2; ?>>文章标题 - 站点浏览器标题</option>
         </select>
     </li>

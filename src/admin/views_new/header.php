@@ -10,14 +10,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-		<link href="./views_new/css/cssreset-min.css" rel="stylesheet">
-		<link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
-		<link href="./views_new/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="./views_new/css/cssreset-min.css" rel="stylesheet">
+        <link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./views_new/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="./views_new/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
         <script src="../include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="./views_new/js/bootstrap.min.js"></script>
-		<script src="./views_new/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+        <script src="./views_new/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -93,22 +93,22 @@
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
-							<li id="menu_category_view" class="">
+                            <li id="menu_category_view" class="">
                                 <a href="#"><i class="fa fa-windows fa-fw"></i> 外观<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_view">
-									<li><a href="widgets.php" id="menu_widget"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
-									<li><a href="navbar.php" id="menu_navi"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
+                                    <li><a href="widgets.php" id="menu_widget"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
+                                    <li><a href="navbar.php" id="menu_navi"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
                                     <li><a href="template.php" id="menu_tpl"><i class="fa fa-eye fa-fw"></i> 模板</a></li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
-							<li id="menu_category_sys" class="">
+                            <li id="menu_category_sys" class="">
                                 <a href="#"><i class="fa fa-cog fa-fw"></i> 系统<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_sys">
                                     <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
-									<li><a href="user.php" id="menu_user"><i class="fa fa-user fa-fw"></i> 用户</a></li>
-									<li><a href="data.php" id="menu_data"><i class="fa fa-database fa-fw"></i> 数据</a></li>
-									<li><a href="plugin.php" id="menu_plug"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
+                                    <li><a href="user.php" id="menu_user"><i class="fa fa-user fa-fw"></i> 用户</a></li>
+                                    <li><a href="data.php" id="menu_data"><i class="fa fa-database fa-fw"></i> 数据</a></li>
+                                    <li><a href="plugin.php" id="menu_plug"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
                                     <li><a href="store.php" id="menu_store"><i class="fa fa-shopping-cart fa-fw"></i> 应用</a></li>
                                 </ul>
                                 <!-- /.nav-second-level -->
