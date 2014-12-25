@@ -80,6 +80,12 @@ function getBlogUrl() {
  * 获取当前访问的base url
  */
 function realUrl() {
+    static $real_url = NULL;
+    
+    if ($real_url !== NULL) {
+        return $real_url;
+    }
+    
     $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
     $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
     $script_path = str_replace('\\', '/', $script_path);
