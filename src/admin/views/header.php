@@ -35,66 +35,66 @@
     </a><span>|</span>
     <?php if (ROLE == ROLE_ADMIN):?>
     <a href="configure.php"> 设置</a><span>|</span>
-	<?php endif;?>
-	<a href="./?action=logout">退出</a>
+    <?php endif;?>
+    <a href="./?action=logout">退出</a>
     </div>
 </div>
 <div id="side">
-	<div id="sidebartop"></div>
+    <div id="sidebartop"></div>
     <div id="log_mg">
-		<li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
-		<li class="sidebarsubmenu" id="menu_draft">
-    	<a href="admin_log.php?pid=draft">草稿<span id="dfnum">
-		<?php 
-		if (ROLE == ROLE_ADMIN){
-			echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
-		}else{
-			echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
-		}
-		?>
-		</span></a></li>
-		<li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
+        <li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><span class="ico16"></span>写文章</a></li>
+        <li class="sidebarsubmenu" id="menu_draft">
+        <a href="admin_log.php?pid=draft">草稿<span id="dfnum">
+        <?php 
+        if (ROLE == ROLE_ADMIN){
+            echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
+        }else{
+            echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
+        }
+        ?>
+        </span></a></li>
+        <li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php">文章</a></li>
         <?php
         $checknum = $sta_cache['checknum'];
-		if (ROLE == ROLE_ADMIN && $checknum > 0):
-		$n = $checknum > 999 ? '...' : $checknum;
-		?>
-		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
-		<?php endif; ?>
-		<?php if (ROLE == ROLE_ADMIN):?>
+        if (ROLE == ROLE_ADMIN && $checknum > 0):
+        $n = $checknum > 999 ? '...' : $checknum;
+        ?>
+        <div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?>篇文章待审"><?php echo $n; ?></a></div>
+        <?php endif; ?>
+        <?php if (ROLE == ROLE_ADMIN):?>
         <li class="sidebarsubmenu" id="menu_tag"><a href="tag.php">标签</a></li>
         <li class="sidebarsubmenu" id="menu_sort"><a href="sort.php">分类</a></li>
-    	<?php endif;?>
+        <?php endif;?>
         <li class="sidebarsubmenu" id="menu_cm"><a href="comment.php">评论</a> </li>
-   		<?php
-		$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-		if ($hidecmnum > 0):
-		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
-		?>
-		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
-		<?php endif; ?>
-		<?php if (ROLE == ROLE_ADMIN):?>
+        <?php
+        $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+        if ($hidecmnum > 0):
+        $n = $hidecmnum > 999 ? '...' : $hidecmnum;
+        ?>
+        <div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?>条评论待审"><?php echo $n; ?></a></div>
+        <?php endif; ?>
+        <?php if (ROLE == ROLE_ADMIN):?>
         <li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php">微语</a></li>
-    	<li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
-   	 	<li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
-    	<li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
-    	<li class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></li>
-    	<li class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></li>
-    	<li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
-    	<li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
+        <li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" >侧边栏</a></li>
+        <li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" >导航</a></li>
+        <li class="sidebarsubmenu" id="menu_page"><a href="page.php" >页面</a></li>
+        <li class="sidebarsubmenu" id="menu_link"><a href="link.php">链接</a></li>
+        <li class="sidebarsubmenu" id="menu_user"><a href="user.php" >用户</a></li>
+        <li class="sidebarsubmenu" id="menu_data"><a href="data.php">数据</a></li>
+        <li class="sidebarsubmenu" id="menu_plug"><a href="plugin.php">插件</a></li>
         <li class="sidebarsubmenu" id="menu_tpl"><a href="template.php">模板</a></li>
         <li class="sidebarsubmenu" id="menu_store"><a href="store.php">应用</a></li>
         <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
         <li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus">扩展功能</a></li>
         <?php endif;?>
-		<?php endif;?>
+        <?php endif;?>
     </div>
     <?php if (ROLE == ROLE_ADMIN):?>
     <div id="extend_mg">
-		<?php doAction('adm_sidebar_ext'); ?>
+        <?php doAction('adm_sidebar_ext'); ?>
     </div>
     <?php endif;?>
-	<div id="sidebarBottom"></div>
+    <div id="sidebarBottom"></div>
 </div>
 <div id="container">
 <?php doAction('adm_main_top'); ?>
@@ -102,20 +102,20 @@
 <!--边栏折叠-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
 if ($.cookie('em_extend_ext')) {
-	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
+    $("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
 }
 $("#menu_ext").toggle(
-	  function () {
-		displayToggle('extend_mg', 1)
-		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
-		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass, {expires:365});
-	  },
-	  function () {
-		displayToggle('extend_mg', 1)
-		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
-		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass, {expires:365});
-	  }
+      function () {
+        displayToggle('extend_mg', 1)
+        exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+        $(this).find("a").removeClass().addClass(exClass);
+        $.cookie('em_extend_ext', exClass, {expires:365});
+      },
+      function () {
+        displayToggle('extend_mg', 1)
+        exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+        $(this).find("a").removeClass().addClass(exClass);
+        $.cookie('em_extend_ext', exClass, {expires:365});
+      }
 );
 </script>

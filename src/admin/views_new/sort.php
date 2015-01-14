@@ -87,9 +87,9 @@
         </tbody>
     </table>
     <div class="list_footer">
-		<input type="submit" value="改变排序" class="btn btn-primary" /> 
-		<a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
-	</div>
+        <input type="submit" value="改变排序" class="btn btn-primary" /> 
+        <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
+    </div>
 </form>
 <form action="sort.php?action=add" method="post" class="form-inline">
     <div id="sort_new" class="form-group">

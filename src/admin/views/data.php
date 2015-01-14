@@ -23,13 +23,13 @@
     </tr>
   </head>
   <tbody>
-	<?php
-		if($bakfiles):
-		foreach($bakfiles  as $value):
-		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
-		$size =  changeFileSize(filesize($value));
-		$bakname = substr(strrchr($value,'/'),1);
-	?>
+    <?php
+        if($bakfiles):
+        foreach($bakfiles  as $value):
+        $modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
+        $size =  changeFileSize(filesize($value));
+        $bakname = substr(strrchr($value,'/'),1);
+    ?>
     <tr>
       <td width="22"><input type="checkbox" value="<?php echo $value; ?>" name="bak[]" class="ids" /></td>
       <td width="661"><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
@@ -37,10 +37,10 @@
       <td><?php echo $size; ?></td>
       <td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup', '<?php echo LoginAuth::genToken(); ?>');">导入</a></td>
     </tr>
-	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
-	<?php endif;?>
-	</tbody>
+    <?php endforeach;else:?>
+      <tr><td class="tdcenter" colspan="5">还没有备份</td></tr>
+    <?php endif;?>
+    </tbody>
 </table>
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：<a href="javascript:bakact('del');" class="care">删除</a></div>
@@ -56,19 +56,19 @@
 <div id="backup">
     <p>可备份的数据库表：<br />
         <select multiple="multiple" size="12" name="table_box[]">
-		<?php foreach($tables  as $value): ?>
-		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
-		<?php endforeach; ?>
-      	</select>
+        <?php foreach($tables  as $value): ?>
+        <option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
+        <?php endforeach; ?>
+        </select>
     </p>
-	<p>将站点内容数据库备份到：
+    <p>将站点内容数据库备份到：
         <select name="bakplace" id="bakplace">
             <option value="local" selected="selected">本地（自己电脑）</option>
             <option value="server">服务器空间</option>
         </select>
     </p>
     <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
-	<p>
+    <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         <input type="submit" value="开始备份" class="button" />
     </p>
@@ -78,7 +78,7 @@
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
     <p class="des">仅可导入相同版本emlog导出的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
-	<p>
+    <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         <input type="file" name="sqlfile" /> <input type="submit" value="导入" class="submit" />
     </p>
@@ -86,28 +86,28 @@
 </form>
 
 <div id="cache">
-	<p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
-	<p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="button" /></p>
+    <p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
+    <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="button" /></p>
 </div>
 
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
-	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_bakdata_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")});
-	$("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
+    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    $("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
+    $("#adm_bakdata_list tbody tr")
+        .mouseover(function(){$(this).addClass("trover")})
+        .mouseout(function(){$(this).removeClass("trover")});
+    $("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
 });
 function bakact(act){
-	if (getChecked('ids') == false) {
-		alert('请选择要操作的备份文件');
-		return;
-	}
-	if(act == 'del' && !confirm('你确定要删除所选备份文件吗？')){return;}
-	$("#operate").val(act);
-	$("#form_bak").submit();
+    if (getChecked('ids') == false) {
+        alert('请选择要操作的备份文件');
+        return;
+    }
+    if(act == 'del' && !confirm('你确定要删除所选备份文件吗？')){return;}
+    $("#operate").val(act);
+    $("#form_bak").submit();
 }
 $("#menu_data").addClass('sidebarsubmenu1');
 </script>

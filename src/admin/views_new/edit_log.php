@@ -12,11 +12,11 @@ $isdraft = $hide == 'y' ? true : false;
     <input type="text" maxlength="200" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
-	<div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
-	    <?php doAction('adm_writelog_head'); ?>
-	    <span id="asmsg"></span>
-	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+    <div>
+        <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+        <?php doAction('adm_writelog_head'); ?>
+        <span id="asmsg"></span>
+        <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
     </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
@@ -72,11 +72,11 @@ $isdraft = $hide == 'y' ? true : false;
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义该篇文章的链接地址。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)</div>
 <div><input name="alias" id="alias" value="<?php echo $alias;?>"/></div>
 <div style="margin-top:3px;">
-	文章访问密码：<input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
+    文章访问密码：<input type="text" value="<?php echo $password; ?>" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
         <label for="top">首页置顶</label>
-		<input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
         <label for="sortop">分类置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
         <label for="allow_remark">允许评论</label>

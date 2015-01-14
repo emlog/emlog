@@ -26,13 +26,13 @@
     <li>
     <label>头像(支持JPG、PNG格式图片)</label>
     <input name="photo" type="file" />
-	</li>
+    </li>
     <li><label>昵称</label><input maxlength="50" style="width:200px;" class="form-control" value="<?php echo $nickname; ?>" name="name" /> </li>
-	<li><label>邮箱</label><input name="email" class="form-control" value="<?php echo $email; ?>" style="width:200px;" maxlength="200" /></li>
-	<li><label>个人描述</label><textarea name="description" class="form-control" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
-	<li><label>登陆名</label><input maxlength="200" style="width:200px;" class="form-control" value="<?php echo $username; ?>" name="username" /></li>
+    <li><label>邮箱</label><input name="email" class="form-control" value="<?php echo $email; ?>" style="width:200px;" maxlength="200" /></li>
+    <li><label>个人描述</label><textarea name="description" class="form-control" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>
+    <li><label>登陆名</label><input maxlength="200" style="width:200px;" class="form-control" value="<?php echo $username; ?>" name="username" /></li>
     <li><label>新密码（不小于6位，不修改请留空）</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="newpass" /></li>
-	<li><label>再输入一次新密码</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass" /></li>
+    <li><label>再输入一次新密码</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass" /></li>
     <li>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         <input type="submit" value="保存资料" class="btn btn-primary" />
@@ -41,5 +41,8 @@
 </form>
 <script>
 $("#chpwd").css('display', $.cookie('em_chpwd') ? $.cookie('em_chpwd') : 'none');
-setTimeout(hideActived,2600);
+setTimeout(hideActived, 2600);
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_setting").addClass('active');
 </script>

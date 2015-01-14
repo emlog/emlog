@@ -11,11 +11,11 @@
     <input type="text" name="title" id="title" class="form-control" placeholder="文章标题" />
 </div>
 <div id="post_bar">
-	<div>
-	    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
-	    <?php doAction('adm_writelog_head'); ?>
-	    <span id="asmsg"></span>
-	    <input type="hidden" name="as_logid" id="as_logid" value="-1">
+    <div>
+        <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+        <?php doAction('adm_writelog_head'); ?>
+        <span id="asmsg"></span>
+        <input type="hidden" name="as_logid" id="as_logid" value="-1">
     </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=selectFile"></iframe>
@@ -68,11 +68,11 @@
 <div><span id="alias_msg_hook"></span>文章链接别名：(用于自定义文章链接。需要<a href="./seo.php" target="_blank">启用文章链接别名</a>)<span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" class="form-control" /></div>
 <div style="margin-top:3px;">
-	<input type="text" value="" name="password" id="password" style="width:120px;" class="form-control" placeholder="文章访问密码" />
+    <input type="text" value="" name="password" id="password" style="width:120px;" class="form-control" placeholder="文章访问密码" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
         <label for="top">首页置顶</label>
-		<input type="checkbox" value="y" name="sortop" id="sortop" />
+        <input type="checkbox" value="y" name="sortop" id="sortop" />
         <label for="sortop">分类置顶</label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" />
         <label for="allow_remark">允许评论</label>

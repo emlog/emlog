@@ -19,14 +19,17 @@
 <?php endif; ?>
 <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div style="margin:50px 0px 50px 20px;">
-	<li>
+    <li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<input name="pluzip" type="file" />
-	<input type="submit" value="上传安装" class="submit" /> （上传一个zip压缩格式的插件安装包）
-	</li>
+    <input name="pluzip" type="file" />
+    <input type="submit" value="上传安装" class="submit" /> （上传一个zip压缩格式的插件安装包）
+    </li>
 </div>
 </form>
 <div style="margin:10px 20px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></div>
 <script>
+setTimeout(hideActived, 2600);
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
 $("#menu_plug").addClass('active');
 </script>

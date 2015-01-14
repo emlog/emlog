@@ -3,14 +3,14 @@
 <div class=line></div>
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
-	<li>
-		<input size="20" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label>导航名称</label>
-	</li>
-	<li>
-		<input size="50" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label>导航地址</label>
-	</li>
-	<li class="checkbox">
-		<label><input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> /> 在新窗口打开</label>
+    <li>
+        <input size="20" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label>导航名称</label>
+    </li>
+    <li>
+        <input size="50" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label>导航地址</label>
+    </li>
+    <li class="checkbox">
+        <label><input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> /> 在新窗口打开</label>
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>
@@ -29,12 +29,12 @@
             父导航
     </li>
     <?php endif; ?>
-	<li>
-	<input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
-	<input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
-	<input type="submit" value="保 存" class="btn btn-primary" />
-	<input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" />
-	</li>
+    <li>
+    <input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
+    <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
+    <input type="submit" value="保 存" class="btn btn-primary" />
+    <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" />
+    </li>
 </div>
 </form>
 <script>

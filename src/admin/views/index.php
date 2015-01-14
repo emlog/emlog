@@ -14,7 +14,7 @@
         </div>
         </form>
         </div>
-		<div class="clear"></div>
+        <div class="clear"></div>
     </div>
 </div>
 <div class="clear"></div>
@@ -22,13 +22,13 @@
 <div id="admindex_servinfo">
 <h3>站点信息</h3>
 <ul>
-	<li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条微语</li>
-	<li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
+    <li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条微语</li>
+    <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
     <li>PHP版本：<?php echo $php_ver; ?>，MySQL版本：<?php echo $mysql_ver; ?></li>
-	<li>服务器环境：<?php echo $serverapp; ?></li>
-	<li>GD图形处理库：<?php echo $gd_ver; ?></li>
-	<li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
-	<li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
+    <li>服务器环境：<?php echo $serverapp; ?></li>
+    <li>GD图形处理库：<?php echo $gd_ver; ?></li>
+    <li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
+    <li><a href="index.php?action=phpinfo">更多信息&raquo;</a></li>
 </ul>
 </div>
 <div id="admindex_msg">
@@ -44,22 +44,22 @@
 </div>
 <script>
 $(document).ready(function(){
-	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
-	function(data){
-		$("#admindex_msg ul").html("");
-		$.each(data.items, function(i,item){
-			var image = '';
-			if (item.image != ''){
-				image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
-			}
-			$("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
-		});
-	});
+    $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+    $.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+    function(data){
+        $("#admindex_msg ul").html("");
+        $.each(data.items, function(i,item){
+            var image = '';
+            if (item.image != ''){
+                image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
+            }
+            $("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
+        });
+    });
 });
 $("#about #ckup").click(function(){
     $("#about #upmsg").html("正在检查，请稍后").addClass("ajaxload");
-	$.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+    $.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         if (data.result.match("no")) {
             $("#about #upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
