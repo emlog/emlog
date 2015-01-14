@@ -12,7 +12,7 @@
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
+    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="adm_comment_list">
   	<thead>
       <tr>
         <th width="60"></th>
@@ -35,7 +35,8 @@
 		<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
         <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
 		<span style="display:none; margin-left:8px;">
-		<?php if (UID != $val['uid']): ?>
+		<?php 
+        if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
 		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		<?php else:?>
