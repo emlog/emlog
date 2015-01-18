@@ -10,15 +10,15 @@
 <table cellspacing="20" cellpadding="0" width="80%" border="0">
     <tr>
       <td width="42%">
-	  <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
-	  <td width="58%">
-	  <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
-	  <?php echo $tplAuthor; ?><br>
-	  <?php echo $tplDes; ?>
-	  <?php if ('default' == $nonce_templet): ?>
-<!--vot--><div class="custom_top_button"><a class="button" href="./template.php?action=custom-top"><i class="custom_top"></i><?=lang('template_top_image')?></a></div>
-	  <?php endif; ?>
-	  </td>
+      <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />	  </td>
+      <td width="58%">
+      <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
+      <?php echo $tplAuthor; ?><br>
+      <?php echo $tplDes; ?>
+      <?php if ('default' == $nonce_templet): ?>
+<!--vot--><div class="custom_top_button"><a href="./template.php?action=custom-top"><i class="custom_top"></i><?=lang('template_top_image')?></a></div>
+      <?php endif; ?>
+      </td>
     </tr>
 </table>
 <?php endif;?>
@@ -37,9 +37,9 @@ if($i % 3 == 0){echo "<tr>";}
 $i++;
 ?>
       <td align="center" width="300">
-	  <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+      <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
 <!--vot--><img alt="<?=lang('template_use_this')?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
-	  </a><br />
+      </a><br />
       <?php echo $value['tplname']; ?>
 <!--vot--><span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a></span>
       </td>

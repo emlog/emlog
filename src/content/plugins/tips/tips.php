@@ -36,23 +36,23 @@ $array_tips = array(
 );
 
 function tips() {
-	global $array_tips;
-	$i = mt_rand(0, count($array_tips) - 1);
-	$tip = $array_tips[$i];	
-	echo "<div id=\"tip\"> $tip</div>";
+    global $array_tips;
+    $i = mt_rand(0, count($array_tips) - 1);
+    $tip = $array_tips[$i];	
+    echo "<div id=\"tip\"> $tip</div>";
 }
 
 addAction('adm_main_top', 'tips');
 
 function tips_css() {
-	echo "<style type='text/css'>
-	#tip{
-		background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
-		padding:3px 18px;
-		margin:5px 0px;
-		font-size:12px;
-		color:#999999;
-	}
+    echo "<style type='text/css'>
+    #tip{
+        background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
+        padding:3px 18px;
+        margin:5px 0px;
+        font-size:12px;
+        color:#999999;
+    }
     </style>\n";
 }
 

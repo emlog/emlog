@@ -25,10 +25,10 @@
 <!--vot-->	<td align="right"><?=lang('per_page')?>:</td>
 <!--vot-->	<td><input maxlength="5" size="4" class="input" value="<?php echo $index_lognum; ?>" name="index_lognum" /><?=lang('_posts')?></td>
       </tr>
-	  <tr>
+      <tr>
 <!--vot-->	<td valign="top" align="right"><?=lang('your_timezone')?>:<br /></td>
         <td>
-		<select name="timezone" style="width:390px;" class="input">
+        <select name="timezone" style="width:390px;" class="input">
 <?php
 /*vot*/		$tzlist = array(
 /*vot*/				'-12'=>lang('tz-12'),
@@ -61,11 +61,11 @@
 				'10'=>lang('tz10'),
 				'11'=>lang('tz11'),
 				'12'=>lang('tz12'),
-		);
+        );
 foreach($tzlist as $key=>$value):
 $ex = $key==$timezone?"selected=\"selected\"":'';
 ?>
-		<option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
+        <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
 <?php endforeach;?>
         </select>
 <!--vot-->(<?=lang('local_time')?>: <?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
@@ -93,7 +93,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> /><?=lang('twitter_reply_enable')?>
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><?=lang('reply_verification_code')?>
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><?=lang('reply_audit')?><br />
-		</td>
+        </td>
       </tr>
   </table>
   <div class="setting_line"></div>
@@ -106,7 +106,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <!--vot-->	<option value="y" <?php echo $ex1; ?>><?=lang('full_text')?></option>
 <!--vot-->	<option value="n" <?php echo $ex2; ?>><?=lang('summary')?></option>
         </select>
-		</td>
+        </td>
       </tr>
   </table>
   <div class="setting_line"></div>
@@ -122,7 +122,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><?=lang('comment_per_page')?>
 <!--vot-->	<?=lang('per_page')?><input maxlength="5" size="4" class="input" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments')?>
 <!--vot-->	<select name="comment_order" class="input"><option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option><option value="older" <?php echo $ex4; ?>><?=lang('older')?></option></select><?=lang('standing_in_front')?><br />
-		</td>
+        </td>
       </tr>
   </table>
 <div class="setting_line"></div>
@@ -133,7 +133,7 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
 <!--vot-->	<?=lang('upload_max_size')?> <input maxlength="10" size="8" class="input" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<?=lang('php_upload_max_size')?> <?php echo ini_get('upload_max_filesize'); ?> <?=lang('_limit')?>)<br />
 <!--vot-->	<?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="input" value="<?php echo $att_type; ?>" name="att_type" /><?=lang('separate_by_comma')?><br />
 <!--vot-->	<input type="checkbox" style="vertical-align:middle;" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><?=lang('thumbnail_max_size')?><input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" />x<input maxlength="5" size="4" class="input" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /><?=lang('unit_pixels')?><br />
-		</td>
+        </td>
       </tr>
   </table>
   <div class="setting_line"></div>
@@ -145,9 +145,9 @@ $ex = $key==$timezone?"selected=\"selected\"":'';
       <tr>
 <!--vot--><td align="right" width="18%" valign="top"><?=lang('home_footer_info')?>:<br /></td>
         <td width="82%">
-		<textarea name="footer_info" cols="" rows="6" class="textarea" style="width:386px;"><?php echo $footer_info; ?></textarea><br />
+        <textarea name="footer_info" cols="" rows="6" class="textarea" style="width:386px;"><?php echo $footer_info; ?></textarea><br />
 <!--vot-->	<?=lang('home_footer_info_html')?>
-		</td>
+        </td>
       </tr>
   </table>
   <div class="setting_line"></div>

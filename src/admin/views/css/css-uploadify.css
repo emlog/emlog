@@ -31,33 +31,33 @@
 		0px 1px 0px rgba(255,255,255,1);
 }
 .uploadify:hover .uploadifyButton {
-	color: #808080;
+    color: #808080;
 }
 .uploadifyQueueItem {
-	background-color: #F5F5F5;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	font: 11px Verdana, Geneva, sans-serif;
+    background-color: #F5F5F5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font: 11px Verdana, Geneva, sans-serif;
 }
 .uploadifyError {
-	background-color: #FDE5DD !important;
+    background-color: #FDE5DD !important;
 }
 .uploadifyQueueItem .cancel {
-	float: right;
+    float: right;
 }
 .uploadifyQueue .completed {
-	background-color: #E5E5E5;
+    background-color: #E5E5E5;
 }
 .uploadifyProgress {
-	background-color: #E5E5E5;
-	margin-top: 10px;
-	width: 100%;
+    background-color: #E5E5E5;
+    margin-top: 10px;
+    width: 100%;
 }
 .uploadifyProgressBar {
-	background-color: #0099FF;
-	height: 3px;
-	width: 1px;
+    background-color: #0099FF;
+    height: 3px;
+    width: 1px;
 }
 
 .uploadifyQueueItem {
@@ -67,13 +67,13 @@
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #FFFFFF;
-	border:#E5E5E5 solid 1px;
+    border:#E5E5E5 solid 1px;
     font: 11px Verdana,Geneva,sans-serif;
     height: 30px;
     margin: 1px;
     padding: 2px;
     width: 339px;
-	float:left;
+    float:left;
 }
 .uploadifyError {
     -moz-border-bottom-colors: none !important;
@@ -107,5 +107,5 @@
     width: 695px;
 }
 #custom-bt{
-	margin:5px 0px;
+    margin:5px 0px;
 }

@@ -8,7 +8,7 @@
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
   <table width="100%" id="adm_comment_list" class="item_list">
-  	<thead>
+    <thead>
       <tr>
 <!--vot--><th width="461" colspan="2"><b><?=lang('title')?></b></th>
 <!--vot--><th width="140"><b><?=lang('template')?></b></th>
@@ -17,32 +17,32 @@
       </tr>
     </thead>
     <tbody>
-	<?php
-	if($pages):
-	foreach($pages as $key => $value):
-	if (empty($navibar[$value['gid']]['url']))
-	{
-		$navibar[$value['gid']]['url'] = Url::log($value['gid']);
-	}
+    <?php
+    if($pages):
+    foreach($pages as $key => $value):
+    if (empty($navibar[$value['gid']]['url']))
+    {
+        $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+    }
 /*vot*/	$isHide = $value['hide'] == 'y' ? 
 	'<font color="red"> - '.lang('draft').'</font>' : 
 	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
-	?>
+    ?>
      <tr>
-     	<td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+        <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
         <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
-   		<?php echo $isHide; ?>    
+        <?php echo $isHide; ?>    
 <!--vot-->	<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
         <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
         <td><?php echo $value['date']; ?></td>
      </tr>
-	<?php endforeach;else:?>
+    <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('no_pages')?></td></tr>
-	<?php endif;?>
-	</tbody>
+    <?php endif;?>
+    </tbody>
   </table>
   <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
   <input name="operate" id="operate" value="" type="hidden" />
@@ -57,20 +57,20 @@
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $pageNum; ?><?=lang('_pages')?>)</div>
 <script>
 $(document).ready(function(){
-	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")});
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
+    $("#adm_comment_list tbody tr")
+        .mouseover(function(){$(this).addClass("trover")})
+        .mouseout(function(){$(this).removeClass("trover")});
+    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 });
 setTimeout(hideActived,2600);
 function pageact(act){
-	if (getChecked('ids') == false) {
+    if (getChecked('ids') == false) {
 /*vot*/		alert('<?=lang('select_page_to_operate')?>');
-		return;}
+        return;}
 /*vot*/	if(act == 'del' && !confirm('<?=lang('sure_delete_selected_pages')?>')){return;}
-	$("#operate").val(act);
-	$("#form_page").submit();
+    $("#operate").val(act);
+    $("#form_page").submit();
 }
 $("#menu_page").addClass('sidebarsubmenu1');
 </script>

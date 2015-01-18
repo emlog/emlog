@@ -36,7 +36,7 @@ define('TPLS_URL', BLOG_URL.'content/templates/');
 //Template Library Path
 define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 //Resolve the front domain for ajax
-define('DYNAMIC_BLOGURL', getBlogUrl());
+define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //Front template URL
 define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
 

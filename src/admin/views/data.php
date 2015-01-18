@@ -23,13 +23,13 @@
     </tr>
   </thead>
   <tbody>
-	<?php
-		if($bakfiles):
-		foreach($bakfiles  as $value):
-		$modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
-		$size =  changeFileSize(filesize($value));
-		$bakname = substr(strrchr($value,'/'),1);
-	?>
+    <?php
+        if($bakfiles):
+        foreach($bakfiles  as $value):
+        $modtime = smartDate(filemtime($value),'Y-m-d H:i:s');
+        $size =  changeFileSize(filesize($value));
+        $bakname = substr(strrchr($value,'/'),1);
+    ?>
     <tr>
       <td width="22"><input type="checkbox" value="<?php echo $value; ?>" name="bak[]" class="ids" /></td>
       <td width="661"><a href="../content/backup/<?php echo $bakname; ?>"><?php echo $bakname; ?></a></td>
@@ -37,10 +37,10 @@
       <td><?php echo $size; ?></td>
 <!--vot--><td><a href="javascript: em_confirm('<?php echo $value; ?>', 'backup', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('import')?></a></td>
     </tr>
-	<?php endforeach;else:?>
+    <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('backup_no')?></td></tr>
-	<?php endif;?>
-	</tbody>
+    <?php endif;?>
+    </tbody>
 </table>
 <div class="list_footer">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>: <a href="javascript:bakact('del');" class="care"><?=lang('delete')?></a></div>
@@ -56,10 +56,10 @@
 <div id="backup">
 <!--vot--><p><?=lang('backup_choose_table')?>:<br />
         <select multiple="multiple" size="12" name="table_box[]">
-		<?php foreach($tables  as $value): ?>
-		<option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
-		<?php endforeach; ?>
-      	</select>
+        <?php foreach($tables  as $value): ?>
+        <option value="<?php echo DB_PREFIX; ?><?php echo $value; ?>" selected="selected"><?php echo DB_PREFIX; ?><?php echo $value; ?></option>
+        <?php endforeach; ?>
+        </select>
     </p>
 <!--vot--><p><?=lang('backup_export_to')?>:
         <select name="bakplace" id="bakplace">
@@ -68,7 +68,7 @@
         </select>
     </p>
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
-	<p>
+    <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--><input type="submit" value="<?=lang('backup_start')?>" class="button" />
     </p>
@@ -78,7 +78,7 @@
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
 <!--vot--><p class="des"><?=lang('backup_version_tip')?><?php echo DB_PREFIX; ?></p>
-	<p>
+    <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="button" />
     </p>
@@ -93,21 +93,21 @@
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
-	$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
-	$("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_bakdata_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover")})
-		.mouseout(function(){$(this).removeClass("trover")});
-	$("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
+    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    $("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
+    $("#adm_bakdata_list tbody tr")
+        .mouseover(function(){$(this).addClass("trover")})
+        .mouseout(function(){$(this).removeClass("trover")});
+    $("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
 });
 function bakact(act){
-	if (getChecked('ids') == false) {
+    if (getChecked('ids') == false) {
 /*vot*/		alert('<?=lang('backup_file_select')?>');
-		return;
-	}
+        return;
+    }
 /*vot*/	if(act == 'del' && !confirm('<?=lang('backup_delete_sure')?>')){return;}
-	$("#operate").val(act);
-	$("#form_bak").submit();
+    $("#operate").val(act);
+    $("#form_bak").submit();
 }
 $("#menu_data").addClass('sidebarsubmenu1');
 </script>

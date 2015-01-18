@@ -12,11 +12,11 @@ $isdraft = $hide == 'y' ? true : false;
     <input type="text" maxlength="200" name="title" id="title" value="<?php echo $title; ?>" />
 </div>
 <div id="post_bar">
-	<div>
+    <div>
 <!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
-	    <?php doAction('adm_writelog_head'); ?>
-	    <span id="asmsg"></span>
-	    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+        <?php doAction('adm_writelog_head'); ?>
+        <span id="asmsg"></span>
+        <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
     </div>
     <div id="FrameUpload" style="display: none;">
         <iframe width="860" height="330" frameborder="0" src="attachment.php?action=attlib&logid=<?php echo $logid; ?>"></iframe>
@@ -76,7 +76,7 @@ $isdraft = $hide == 'y' ? true : false;
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
 <!--vot--><label for="top"><?=lang('home_top')?></label>
-		<input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
 <!--vot--><label for="sortop"><?=lang('category_top')?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
 <!--vot--><label for="allow_remark"><?=lang('allow_comments')?></label>

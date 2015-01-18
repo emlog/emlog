@@ -21,28 +21,28 @@ if(empty($navibar)) {
 
 //Login authentication
 if ($action == 'login') {
-	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
-	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-	$ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
-	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
+    $username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
+    $password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
+    $ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
+    $img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
     $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
     
-	if ($loginAuthRet === true) {
-		LoginAuth::setAuthCookie($username, $ispersis);
-		emDirect("./");
-	} else{
-		LoginAuth::loginPage($loginAuthRet);
-	}
+    if ($loginAuthRet === true) {
+        LoginAuth::setAuthCookie($username, $ispersis);
+        emDirect("./");
+    } else{
+        LoginAuth::loginPage($loginAuthRet);
+    }
 }
 //Logout
 if ($action == 'logout') {
-	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
-	emDirect("../");
+    setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
+    emDirect("../");
 }
 
 if (ISLOGIN === false) {
-	LoginAuth::loginPage();
+    LoginAuth::loginPage();
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));

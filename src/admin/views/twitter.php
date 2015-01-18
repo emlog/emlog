@@ -15,7 +15,7 @@
 <!--vot--> <div class="msg"><?=lang('can_enter_max_140')?></div>
     <div class="box_1"><textarea class="box" name="t"></textarea></div>
 <!--vot--> <div class="tbutton"><input class="button" type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> </div>
-	<img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
+    <img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input  width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
 <!--vot--><a id="img_name_a" class="imgicon" href="javascript:;" onmouseover="$('#img_pop').show();" onmouseout="$('#img_pop').hide();">{<?=lang('image_title')?>}</a>
@@ -44,10 +44,10 @@
 <!--vot--><p class="post" id="<?php echo $tid;?>"><a href="javascript:void(0);"><?=lang('reply')?></a> ( <span><?php echo $replynum;?></span> <small><?php echo $hidenum > 0 ? $hidenum : '';?></small> )</p>
 <!--vot--><p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a> </p>
     </div>
-	<div class="clear"></div>
-   	<div id="r_<?php echo $tid;?>" class="r"></div>
+    <div class="clear"></div>
+    <div id="r_<?php echo $tid;?>" class="r"></div>
     <div class="huifu" id="rp_<?php echo $tid;?>">
-	<textarea name="reply"></textarea>
+    <textarea name="reply"></textarea>
 <!--vot--><div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="<?=lang('reply')?>" /> <span style="color:#FF0000"></span></div>
     </div>
     </li>
@@ -86,83 +86,83 @@ $(document).ready(function(){
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
     $("#menu_tw").addClass('sidebarsubmenu1');
     $(".box").focus();
-	
-	$("#custom_file_upload").uploadify({
-		id              : jQuery(this).attr('id'),
-		swf             : '../include/lib/js/uploadify/uploadify.swf',
-		uploader        : 'attachment.php?action=upload_tw_img',
-		cancelImage     : './views/images/cancel.png',
+    
+    $("#custom_file_upload").uploadify({
+        id              : jQuery(this).attr('id'),
+        swf             : '../include/lib/js/uploadify/uploadify.swf',
+        uploader        : 'attachment.php?action=upload_tw_img',
+        cancelImage     : './views/images/cancel.png',
 /*vot*/		buttonText      : '<?=lang('image_select')?>',
-		checkExisting   : "/",
-		auto            : true,
-		multi           : false,
-		buttonCursor    : 'pointer',
-		fileTypeExts    : '*.jpg;*.png;*.gif;*.jpeg',
-		queueID         : 'custom-queue',
-		queueSizeLimit	: 100,
-		removeCompleted : false,
-		fileSizeLimit	: 20971520,
-		fileObjName     : 'attach',
+        checkExisting   : "/",
+        auto            : true,
+        multi           : false,
+        buttonCursor    : 'pointer',
+        fileTypeExts    : '*.jpg;*.png;*.gif;*.jpeg',
+        queueID         : 'custom-queue',
+        queueSizeLimit	: 100,
+        removeCompleted : false,
+        fileSizeLimit	: 20971520,
+        fileObjName     : 'attach',
 		postData	: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
-		onUploadSuccess : onUploadSuccess,
-		onUploadError   : onUploadError
-	});
-	
-	$("#face").click(function(e){
-		var wrap = $("#faceWraps");
-		if(!wrap.html()){
-			var emotionsStr = [];
-			$.each(emo,function(k,v){
-				emotionsStr.push('<img style="cursor: pointer;padding: 3px;" title="'+k+'" src="./editor/plugins/emoticons/images/'+v+'"/>');
-			});
-			wrap.html(emotionsStr.join(""));
-		}
-		
-		wrap.children().unbind('click').click(function () {
-			var val= $("textarea").val();
-			$("textarea").val((val||"")+$(this).attr("title"));
-			$("textarea").focus();
-		});
+        onUploadSuccess : onUploadSuccess,
+        onUploadError   : onUploadError
+    });
+    
+    $("#face").click(function(e){
+        var wrap = $("#faceWraps");
+        if(!wrap.html()){
+            var emotionsStr = [];
+            $.each(emo,function(k,v){
+                emotionsStr.push('<img style="cursor: pointer;padding: 3px;" title="'+k+'" src="./editor/plugins/emoticons/images/'+v+'"/>');
+            });
+            wrap.html(emotionsStr.join(""));
+        }
+        
+        wrap.children().unbind('click').click(function () {
+            var val= $("textarea").val();
+            $("textarea").val((val||"")+$(this).attr("title"));
+            $("textarea").focus();
+        });
 
-		var offset = $(this).offset();
-		wrap.css({
-			left : offset.left,
-			top : offset.top
-		});
-		wrap.show();
-		e.stopPropagation();
-		e.preventDefault();
-		$(document.body).unbind('click').click(function (e) {
-			wrap.hide();
-		});
-		$(document).unbind('click').scroll(function (e) {
-			wrap.hide();
-		});
-	});
+        var offset = $(this).offset();
+        wrap.css({
+            left : offset.left,
+            top : offset.top
+        });
+        wrap.show();
+        e.stopPropagation();
+        e.preventDefault();
+        $(document.body).unbind('click').click(function (e) {
+            wrap.hide();
+        });
+        $(document).unbind('click').scroll(function (e) {
+            wrap.hide();
+        });
+    });
 });
 
 function onUploadSuccess(file, data, response){
-	var data = eval("("+data+")");
-	if(data.filePath){
-		$("#imgPath").val(data.filePath);
-		$("#img_select").hide();
-		$("#img_name").show();
-		$("#img_name_a").text(file.name);
-		$("#img_pop").html("<img src='"+data.filePath+"'/>");
-	}else{
+    var data = eval("("+data+")");
+    if(data.filePath){
+        $("#imgPath").val(data.filePath);
+        $("#img_select").hide();
+        $("#img_name").show();
+        $("#img_name_a").text(file.name);
+        $("#img_pop").html("<img src='"+data.filePath+"'/>");
+    }else{
 /*vot*/		alert("<?=lang('upload_failed')?>");	
-	}
+    }
 }
 function onUploadError(file, errorCode, errorMsg, errorString){
-	alert(errorString);
+    alert(errorString);
 }
 function unSelectFile(){
-	$.get("attachment.php?action=del_tw_img",{filepath:$("#imgPath").val()});
-	$("#imgPath").val("");
-	$("#img_select").show();
-	$("#img_name").hide();
+    $.get("attachment.php?action=del_tw_img",{filepath:$("#imgPath").val()});
+    $("#imgPath").val("");
+    $("#img_select").show();
+    $("#img_name").hide();
 /*vot*/	$("#img_name_a").text("{<?=lang('image_title')?>}");
-	$("#img_pop").empty();
+    $("#img_pop").empty();
 }
 function reply(tid, rp){
     $("#rp_"+tid+" textarea").val(rp);
@@ -171,19 +171,19 @@ function reply(tid, rp){
 function doreply(tid){
     var r = $("#rp_"+tid+" textarea").val();
     var post = "r="+encodeURIComponent(r);
-	$.post('twitter.php?action=reply&tid='+tid+"&stamp="+timestamp(), post, function(data){
-		data = $.trim(data);
-		if (data == 'err1'){
+    $.post('twitter.php?action=reply&tid='+tid+"&stamp="+timestamp(), post, function(data){
+        data = $.trim(data);
+        if (data == 'err1'){
 /*vot*/		  $(".huifu span").text('<?=lang('reply_length_max_140')?>');
-		}else if(data == 'err2'){
+        }else if(data == 'err2'){
 /*vot*/		  $(".huifu span").text('<?=lang('replied_already')?>');
-		}else{
-    		$("#r_"+tid).append(data);
-    		var rnum = Number($("#"+tid+" span").text());
-    		$("#"+tid+" span").html(rnum+1);
-    		$(".huifu span").text('')
-    	}
-	});
+        }else{
+            $("#r_"+tid).append(data);
+            var rnum = Number($("#"+tid+" span").text());
+            $("#"+tid+" span").html(rnum+1);
+            $(".huifu span").text('')
+        }
+    });
 }
 function delreply(rid,tid){
 /*vot*/ if(confirm('<?=lang('reply_delete_sure')?>')){
@@ -217,7 +217,7 @@ function pubreply(rid,tid){
         });
 }
 function checkt(){
-	var t=$(".box").val();
+    var t=$(".box").val();
     if (t.length > 140){return false;}
 }
 </script>

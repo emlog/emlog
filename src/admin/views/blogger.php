@@ -19,11 +19,11 @@
 </div>
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
 <div class="item_edit" style="margin-left:30px;">
-	<li>
-	<?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/><br />
+    <li>
+    <?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/><br />
 <!--vot--><?=lang('avatar')?><br />
 <!--vot--><input name="photo" type="file" /> <?=lang('avatar_format_supported')?>
-	</li>
+    </li>
 <!--vot--><li><?=lang('nickname')?><br /><input maxlength="50" style="width:200px;" class="input" value="<?php echo $nickname; ?>" name="name" /> </li>
 <!--vot--><li><?=lang('email')?><br /><input name="email" class="input" value="<?php echo $email; ?>" style="width:200px;" maxlength="200" /></li>
 <!--vot--><li><?=lang('personal_description')?><br /><textarea name="description" class="textarea" style="width:300px; height:65px;" type="text" maxlength="500"><?php echo $description; ?></textarea></li>

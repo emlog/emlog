@@ -9,7 +9,7 @@
 
 KindEditor.plugin('media', function(K) {
 	var self = this, name = 'media', lang = self.lang(name + '.'),
-		allowMediaUpload = K.undef(self.allowMediaUpload, true),
+		allowMediaUpload = K.undef(self.allowMediaUpload, false),
 		allowFileManager = K.undef(self.allowFileManager, false),
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		extraParams = K.undef(self.extraFileUploadParams, {}),

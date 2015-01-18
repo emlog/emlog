@@ -36,45 +36,45 @@
     </a><span>|</span>
     <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><a href="configure.php"><?=lang('settings')?></a><span>|</span>
-	<?php endif;?>
+    <?php endif;?>
 <!--vot--><a href="./?action=logout"><?=lang('logout')?></a>
     </div>
 </div>
 <div id="side">
-	<div id="sidebartop"></div>
+    <div id="sidebartop"></div>
     <div id="log_mg">
 <!--vot--><li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><?=lang('post_write')?></a></li>
-		<li class="sidebarsubmenu" id="menu_draft">
+        <li class="sidebarsubmenu" id="menu_draft">
 <!--vot-->    	<a href="admin_log.php?pid=draft"><?=lang('draft')?><span id="dfnum">
-		<?php 
-		if (ROLE == ROLE_ADMIN){
-			echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
-		}else{
-			echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
-		}
-		?>
-		</span></a></li>
+        <?php 
+        if (ROLE == ROLE_ADMIN){
+            echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
+        }else{
+            echo $sta_cache[UID]['draftnum'] == 0 ? '' : '('.$sta_cache[UID]['draftnum'].')';
+        }
+        ?>
+        </span></a></li>
 <!--vot--><li class="sidebarsubmenu" id="menu_log"><a href="admin_log.php"><?=lang('posts')?></a></li>
         <?php
         $checknum = $sta_cache['checknum'];
-		if (ROLE == ROLE_ADMIN && $checknum > 0):
-		$n = $checknum > 999 ? '...' : $checknum;
-		?>
+        if (ROLE == ROLE_ADMIN && $checknum > 0):
+        $n = $checknum > 999 ? '...' : $checknum;
+        ?>
 		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?> <?=lang('posts_pending')?>"><?php echo $n; ?></a></div>
-		<?php endif; ?>
-		<?php if (ROLE == ROLE_ADMIN):?>
+        <?php endif; ?>
+        <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><?=lang('tags')?></a></li>
 <!--vot--><li class="sidebarsubmenu" id="menu_sort"><a href="sort.php"><?=lang('categories')?></a></li>
-    	<?php endif;?>
+        <?php endif;?>
 <!--vot--><li class="sidebarsubmenu" id="menu_cm"><a href="comment.php"><?=lang('comments')?></a> </li>
-   		<?php
-		$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-		if ($hidecmnum > 0):
-		$n = $hidecmnum > 999 ? '...' : $hidecmnum;
-		?>
+        <?php
+        $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+        if ($hidecmnum > 0):
+        $n = $hidecmnum > 999 ? '...' : $hidecmnum;
+        ?>
 		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?><?=lang('comments_pending')?>"><?php echo $n; ?></a></div>
-		<?php endif; ?>
-		<?php if (ROLE == ROLE_ADMIN):?>
+        <?php endif; ?>
+        <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><?=lang('twitters')?></a></li>
 <!--vot--><li class="sidebarsubmenu" id="menu_widget"><a href="widgets.php" ><?=lang('sidebar')?></a></li>
 <!--vot--><li class="sidebarsubmenu" id="menu_navbar"><a href="navbar.php" ><?=lang('navigation')?></a></li>
@@ -88,14 +88,14 @@
         <?php if (!empty($emHooks['adm_sidebar_ext'])): ?>
 <!--vot--><li class="sidebarsubmenu" id="menu_ext"><a class="menu_ext_minus"><?=lang('extensions')?></a></li>
         <?php endif;?>
-		<?php endif;?>
+        <?php endif;?>
     </div>
     <?php if (ROLE == ROLE_ADMIN):?>
     <div id="extend_mg">
-		<?php doAction('adm_sidebar_ext'); ?>
+        <?php doAction('adm_sidebar_ext'); ?>
     </div>
     <?php endif;?>
-	<div id="sidebarBottom"></div>
+    <div id="sidebarBottom"></div>
 </div>
 <div id="container">
 <?php doAction('adm_main_top'); ?>
@@ -103,20 +103,20 @@
 <!--Sidebar Toggle-->
 $("#extend_mg").css('display', $.cookie('em_extend_mg') ? $.cookie('em_extend_mg') : '');
 if ($.cookie('em_extend_ext')) {
-	$("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
+    $("#menu_ext a").removeClass().addClass($.cookie('em_extend_ext'));
 }
 $("#menu_ext").toggle(
-	  function () {
-		displayToggle('extend_mg', 1)
-		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
-		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass, {expires:365});
-	  },
-	  function () {
-		displayToggle('extend_mg', 1)
-		exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
-		$(this).find("a").removeClass().addClass(exClass);
-		$.cookie('em_extend_ext', exClass, {expires:365});
-	  }
+      function () {
+        displayToggle('extend_mg', 1)
+        exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+        $(this).find("a").removeClass().addClass(exClass);
+        $.cookie('em_extend_ext', exClass, {expires:365});
+      },
+      function () {
+        displayToggle('extend_mg', 1)
+        exClass = $(this).find("a").attr("class") == "menu_ext_plus" ? "menu_ext_minus" : "menu_ext_plus";
+        $(this).find("a").removeClass().addClass(exClass);
+        $.cookie('em_extend_ext', exClass, {expires:365});
+      }
 );
 </script>

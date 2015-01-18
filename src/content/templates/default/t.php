@@ -25,11 +25,11 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 <!--vot--><p class="post"><a href="javascript:loadr('<?php echo DYNAMIC_BLOGURL; ?>?action=getr&tid=<?php echo $tid;?>','<?php echo $tid;?>');"><?=lang('reply')?> (<span id="rn_<?php echo $tid;?>"><?php echo $val['replynum'];?></span>)</a></p>
         <p class="time"><?php echo $val['date'];?> </p>
     </div>
-	<div class="clear"></div>
-   	<ul id="r_<?php echo $tid;?>" class="r"></ul>
+    <div class="clear"></div>
+    <ul id="r_<?php echo $tid;?>" class="r"></ul>
     <?php if ($istreply == 'y'):?>
     <div class="huifu" id="rp_<?php echo $tid;?>">
-	<textarea id="rtext_<?php echo $tid; ?>"></textarea>
+    <textarea id="rtext_<?php echo $tid; ?>"></textarea>
     <div class="tbutton">
         <div class="tinfo" style="display:<?php if(ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER){echo 'none';}?>">
 <!--vot--> <?=lang('nickname')?>: <input type="text" id="rname_<?php echo $tid; ?>" value="" />
@@ -42,7 +42,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
     <?php endif;?>
     </li>
     <?php endforeach;?>
-	<li id="pagenavi"><?php echo $pageurl;?><span></span></li>
+    <li id="pagenavi"><?php echo $pageurl;?><span></span></li>
     </ul>
 </div><!--end #tw-->
 </div><!--end #contentleft-->

@@ -19,11 +19,11 @@
 <?php endif; ?>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div style="margin:50px 0px 50px 20px;">
-	<li>
+    <li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<input name="tplzip" type="file" />
+    <input name="tplzip" type="file" />
 <!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="button" /> <?=lang('template_upload_prompt')?>
-	</li>
+    </li>
 </div>
 </form>
 <!--vot--><div style="margin:10px 20px;"><?=lang('template_get_more')?>: <a href="store.php"><?=lang('app_center')?>&raquo;</a></div>
