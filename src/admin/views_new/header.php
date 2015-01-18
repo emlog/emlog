@@ -75,13 +75,15 @@
                                 </div>
                             </li>
                             <li><a href="write_log.php" id="menu_wt"><i class="fa fa-edit fa-fw"></i> 写文章</a></li>
-                            <li><a href="admin_log.php?pid=draft" id="menu_draft"><i class="fa fa-files-o fa-fw"></i> 草稿 <?php
+                            <li><a href="admin_log.php?pid=draft" id="menu_draft"><i class="fa fa-files-o fa-fw"></i> 草稿 <span id="dfnum">
+                                <?php
                                     if (ROLE == ROLE_ADMIN) {
                                         echo $sta_cache['draftnum'] == 0 ? '' : '(' . $sta_cache['draftnum'] . ')';
                                     } else {
                                         echo $sta_cache[UID]['draftnum'] == 0 ? '' : '(' . $sta_cache[UID]['draftnum'] . ')';
                                     }
-                                    ?> 
+                                ?>
+                                </span>
                             </a></li>
                             <li><a href="admin_log.php" id="menu_log"><i class="fa fa-list-alt fa-fw"></i> 文章</a>
                             </li>
