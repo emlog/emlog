@@ -338,7 +338,7 @@ function autosave(act){
         if(isrespone.test(data)){
             var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
             var logid = getvar[1];
-            if (act != 3){
+            if (act == 0 || act == 1 || act == 2){
                 var dfnum = getvar[2];
                 if(dfnum > 0){$("#dfnum").html("("+dfnum+")")};
             }

@@ -92,11 +92,13 @@
             </div>
             
             <div class="form-group">
-                <input name="alias" id="alias" class="form-control" value="<?php echo $alias;?>" placeholder="文章链接别名" />
+                <label>链接别名：</label>
+                <input name="alias" id="alias" class="form-control" value="<?php echo $alias;?>" />
             </div>
             
             <div class="form-group">
-                <input type="text" value="" name="password" id="password" class="form-control" value="<?php echo $password; ?>" placeholder="文章访问密码" />
+                <label>访问密码：</label>
+                <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>" />
             </div>
             
             <div class="form-group">
