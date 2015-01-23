@@ -27,7 +27,7 @@ if ($action == '') {
     extract($blogData);
 
     $isdraft = false;
-    $containertitle = '写文章';
+/*vot*/    $containertitle = lang('post_write');
     $orig_date = '';
 	$sorts = $CACHE->readCache('sort');
 	$tagStr = '';
@@ -56,7 +56,7 @@ if ($action == 'edit') {
 	extract($blogData);
 
     $isdraft = $hide == 'y' ? true : false;
-    $containertitle = $isdraft ? '编辑草稿' : '编辑文章';
+/*vot*/    $containertitle = $isdraft ? lang('draft_edit') : lang('post_edit');
     $postDate = gmdate('Y-m-d H:i:s', $date);
 	$orig_date = $date - Option::get('timezone') * 3600;
 	$sorts = $CACHE->readCache('sort');
