@@ -52,7 +52,7 @@ if ($action == 'getr') {
     $response = '';
     if ($replys) {
         foreach($replys as $val){
-/*vot*/	    	$sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">".lang('reply')."</a>" : '';
+/*vot*/            $sub_reply = Option::get('istreply') == 'y' ? "<a href=\"javascript:re({$tid}, '@".addslashes($val['name']).":');\">".lang('reply')."</a>" : '';
             $response .= "
              <li>
              <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>
@@ -60,7 +60,7 @@ if ($action == 'getr') {
              </li>";
         }
     } else{
-/*vot*/	$response .= "<li>".lang('no_replies')."</li>";
+/*vot*/    $response .= "<li>".lang('no_replies')."</li>";
     }
     echo $response;
 }

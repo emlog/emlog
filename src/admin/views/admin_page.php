@@ -24,16 +24,16 @@
     {
         $navibar[$value['gid']]['url'] = Url::log($value['gid']);
     }
-/*vot*/	$isHide = $value['hide'] == 'y' ? 
-	'<font color="red"> - '.lang('draft').'</font>' : 
-	'<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+/*vot*/    $isHide = $value['hide'] == 'y' ? 
+    '<font color="red"> - '.lang('draft').'</font>' : 
+    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
     ?>
      <tr>
         <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
         <td width="440">
         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
         <?php echo $isHide; ?>    
-<!--vot-->	<?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
         </td>
         <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -66,9 +66,9 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function pageact(act){
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('select_page_to_operate')?>');
+/*vot*/ alert('<?=lang('select_page_to_operate')?>');
         return;}
-/*vot*/	if(act == 'del' && !confirm('<?=lang('sure_delete_selected_pages')?>')){return;}
+/*vot*/ if(act == 'del' && !confirm('<?=lang('sure_delete_selected_pages')?>')){return;}
     $("#operate").val(act);
     $("#form_page").submit();
 }

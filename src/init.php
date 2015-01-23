@@ -4,7 +4,7 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-/*vot*/ error_reporting(E_ALL);
+error_reporting(E_ALL);
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 

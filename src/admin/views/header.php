@@ -45,7 +45,7 @@
     <div id="log_mg">
 <!--vot--><li class="sidebarsubmenu" id="menu_wt"><a href="write_log.php"><?=lang('post_write')?></a></li>
         <li class="sidebarsubmenu" id="menu_draft">
-<!--vot-->    	<a href="admin_log.php?pid=draft"><?=lang('draft')?><span id="dfnum">
+<!--vot--><a href="admin_log.php?pid=draft"><?=lang('draft')?><span id="dfnum">
         <?php 
         if (ROLE == ROLE_ADMIN){
             echo $sta_cache['draftnum'] == 0 ? '' : '('.$sta_cache['draftnum'].')'; 
@@ -60,7 +60,7 @@
         if (ROLE == ROLE_ADMIN && $checknum > 0):
         $n = $checknum > 999 ? '...' : $checknum;
         ?>
-		<div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?> <?=lang('posts_pending')?>"><?php echo $n; ?></a></div>
+<!--vot--><div class="notice_number"><a href="./admin_log.php?checked=n" title="<?php echo $checknum; ?><?=lang('posts_pending')?>"><?php echo $n; ?></a></div>
         <?php endif; ?>
         <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><li class="sidebarsubmenu" id="menu_tag"><a href="tag.php"><?=lang('tags')?></a></li>
@@ -72,7 +72,7 @@
         if ($hidecmnum > 0):
         $n = $hidecmnum > 999 ? '...' : $hidecmnum;
         ?>
-		<div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?><?=lang('comments_pending')?>"><?php echo $n; ?></a></div>
+<!--vot--><div class="notice_number"><a href="./comment.php?hide=y" title="<?php echo $hidecmnum; ?><?=lang('comments_pending')?>"><?php echo $n; ?></a></div>
         <?php endif; ?>
         <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot--><li class="sidebarsubmenu" id="menu_tw"><a href="twitter.php"><?=lang('twitters')?></a></li>

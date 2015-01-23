@@ -31,7 +31,7 @@ if ($action == 'post') {
     LoginAuth::checkToken();
 
     if ($img && !$t) {
-/*vot*/		$t = lang('image_share');
+/*vot*/ $t = lang('image_share');
     }
 
     if (!$t) {
@@ -68,16 +68,16 @@ if ($action == 'getreply') {
     foreach ($replys as $val) {
          if ($val['hide'] == 'n') {
             $style = "background-color:#FFF";
-/*vot*/			$act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">".lang('hide')."</a></span> ";
+/*vot*/     $act = "<span><a href=\"javascript: hidereply({$val['id']},{$tid});\">".lang('hide')."</a></span> ";
          } else {
             $style = "background-color:#FEE0E4";
-/*vot*/			$act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">".lang('approve')."</a></span> ";
+/*vot*/     $act = "<span><a href=\"javascript: pubreply({$val['id']},{$tid});\">".lang('approve')."</a></span> ";
          }
          $response .= "
          <li id=\"reply_{$val['id']}\" style=\"{$style}\">
          <span class=\"name\">{$val['name']}</span> {$val['content']}<span class=\"time\">{$val['date']}</span>{$act}
-<!--vot-->	 <a href=\"javascript: delreply({$val['id']},{$tid});\">".lang('delete')."</a> 
-<!--vot-->	 <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">".lang('reply')."</a></em>
+<!--vot-->     <a href=\"javascript: delreply({$val['id']},{$tid});\">".lang('delete')."</a> 
+<!--vot-->     <em><a href=\"javascript:reply({$tid}, '@{$val['name']}:');\">".lang('reply')."</a></em>
          </li>";
     }
     echo $response;
@@ -87,7 +87,7 @@ if ($action == 'reply') {
     $r = isset($_POST['r']) ? addslashes(trim($_POST['r'])) : '';
     $tid = isset($_GET['tid']) ? intval($_GET['tid']) : null;
 
-	if (!$r || mb_strlen($r) > 420) {
+/*vot*/ if (!$r || mb_strlen($r) > 420) {
         exit('err1');
     }
 
@@ -114,9 +114,9 @@ if ($action == 'reply') {
     $response = "
          <li id=\"reply_{$rid}\" style=\"background-color:#FFEEAA\">
          <span class=\"name\">{$name}</span> {$r}<span class=\"time\">{$date}</span>
-<!--vot-->	 <span><a href=\"javascript: hidereply({$rid},{$tid});\">".lang('hide')."</a></span> 
-<!--vot-->	 <a href=\"javascript: delreply({$rid},{$tid});\">".lang('delete')."</a> 
-<!--vot-->	 <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">".lang('reply')."</a></em>
+<!--vot-->     <span><a href=\"javascript: hidereply({$rid},{$tid});\">".lang('hide')."</a></span> 
+<!--vot-->     <a href=\"javascript: delreply({$rid},{$tid});\">".lang('delete')."</a> 
+<!--vot-->     <em><a href=\"javascript:reply({$tid}, '@{$name}:');\">".lang('reply')."</a></em>
          </li>";
     echo $response;
 }

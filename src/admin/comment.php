@@ -41,7 +41,7 @@ if ($action== 'del') {
 if ($action== 'delbyip') {
     LoginAuth::checkToken();
     if (ROLE != ROLE_ADMIN) {
-/*vot*/		emMsg(lang('no_permission'), './');
+/*vot*/ emMsg(lang('no_permission'), './');
     }
     $ip = isset($_GET['ip']) ? $_GET['ip'] : '';
     $Comment_Model->delCommentByIp($ip);
@@ -104,7 +104,7 @@ if ($action== 'edit_comment') {
     $commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
     $commentArray = $Comment_Model->getOneComment($commentId, FALSE);
     if (!$commentArray) {
-/*vot*/		emMsg(lang('comment_not_exist'), './comment.php');
+/*vot*/ emMsg(lang('comment_not_exist'), './comment.php');
     }
     extract($commentArray);
 
@@ -122,7 +122,7 @@ if ($action=='doreply') {
     if ($reply == '') {
         emDirect("./comment.php?error_c=1");
     }
-	if (mb_strlen($reply) > 2000) {
+/*vot*/ if (mb_strlen($reply) > 2000) {
         emDirect("./comment.php?error_d=1");
     }
     if (isset($_POST['pub_it'])) {
@@ -146,7 +146,7 @@ if ($action=='doedit') {
     if ($comment == '') {
         emDirect("./comment.php?error_e=1");
     }
-	if (mb_strlen($comment) > 2000) {
+/*vot*/ if (mb_strlen($comment) > 2000) {
         emDirect("./comment.php?error_d=1");
     }
 

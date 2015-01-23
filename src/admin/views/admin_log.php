@@ -27,7 +27,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot--><span <?php echo !$sid && !$tagId && !$uid && !$keyword ? "class=\"filter\"" : ''; ?>><a href="./admin_log.php?<?php echo $isdraft; ?>"><?=lang('all')?></a></span>
         <span id="f_t_sort">
 <!--vot-->  <select name="bysort" id="bysort" onChange="selectSort(this);" style="max-width:220px;">
-            <option value="" selected="selected"><?=lang('category_view')?>...</option>
+<!--vot-->  <option value="" selected="selected"><?=lang('category_view')?>...</option>
             <?php 
             foreach($sorts as $key=>$value):
             if ($value['pid'] != 0) {
@@ -52,8 +52,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         </span>
         <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
         <span id="f_t_user">
-<!--vot-->      <select name="byuser" id="byuser" onChange="selectUser(this);" style="max-width:220px;">
-<!--vot-->      <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
+<!--vot-->  <select name="byuser" id="byuser" onChange="selectUser(this);" style="max-width:220px;">
+<!--vot-->  <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
                 <?php 
                 foreach($user_cache as $key=>$value):
                 $flg = $key == $uid ? 'selected' : '';
@@ -65,7 +65,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             </select>
         </span>
         <?php endif;?>
-<!--vot--> <span id="f_t_tag"><a href="javascript:void(0);"><?=lang('tag_by_view')?></a></span>
+<!--vot--><span id="f_t_tag"><a href="javascript:void(0);"><?=lang('tag_by_view')?></a></span>
     </div>
     <div style="float:right;">
         <form action="admin_log.php" method="get">
@@ -78,7 +78,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div style="clear:both"></div>
 </div>
 <div id="f_tag" <?php echo $isDisplayTag ?>>
-<!--vot--> <?=lang('tags')?>:
+<!--vot--><?=lang('tags')?>:
     <?php 
 /*vot*/ if(empty($tags)) echo lang('tags_no');
     foreach($tags as $val):
@@ -111,7 +111,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <?php
     if($logs):
     foreach($logs as $key=>$value):
-/*vot*/	$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
+/*vot*/    $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
     $author = $user_cache[$value['author']]['name'];
     $author_role = $user_cache[$value['author']]['role'];
     ?>
@@ -124,15 +124,15 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot--><?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
       <span style="display:none; margin-left:8px;">
         <?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-<!--vot-->	<a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('approve')?></a> 
+<!--vot--><a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('approve')?></a> 
         <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-<!--vot-->	<a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('reject')?></a> 
+<!--vot--><a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('reject')?></a> 
         <?php endif;?>
       </span>
       </td>
       <?php if ($pid != 'draft'): ?>
       <td class="tdcenter">
-<!--vot-->  <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?=lang('open_new_window')?>">
+<!--vot--><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?=lang('open_new_window')?>">
       <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
       </td>
       <?php endif; ?>
@@ -143,19 +143,19 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <td class="tdcenter"><?php echo $value['views']; ?></a></td>
       </tr>
     <?php endforeach;else:?>
-<!--vot-->  <tr><td class="tdcenter" colspan="8"><?=lang('yet_no_posts')?></td></tr>
+<!--vot--><tr><td class="tdcenter" colspan="8"><?=lang('yet_no_posts')?></td></tr>
     <?php endif;?>
     </tbody>
     </table>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input name="operate" id="operate" value="" type="hidden" />
     <div class="list_footer">
-<!--vot-->	<a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
-<!--vot-->	<a href="javascript:logact('del');" class="care"><?=lang('delete')?></a> | 
+<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
+<!--vot--><a href="javascript:logact('del');" class="care"><?=lang('delete')?></a> | 
     <?php if($pid == 'draft'): ?>
-<!--vot-->	<a href="javascript:logact('pub');"><?=lang('publish')?></a>
+<!--vot--><a href="javascript:logact('pub');"><?=lang('publish')?></a>
     <?php else: ?>
-<!--vot-->	<a href="javascript:logact('hide');"><?=lang('add_draft')?></a> | 
+<!--vot--><a href="javascript:logact('hide');"><?=lang('add_draft')?></a> | 
 
     <?php if (ROLE == ROLE_ADMIN):?>
     <select name="top" id="top" onChange="changeTop(this);" style="width:90px;">
@@ -216,15 +216,15 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function logact(act){
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('select_post_to_operate_please')?>');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
-/*vot*/	if(act == 'del' && !confirm('<?=lang('sure_delete_selected_posts')?>')){return;}
+/*vot*/ if(act == 'del' && !confirm('<?=lang('sure_delete_selected_posts')?>')){return;}
     $("#operate").val(act);
     $("#form_log").submit();
 }
 function changeSort(obj) {
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('select_post_to_operate_please')?>');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#sort').val() == '')return;
     $("#operate").val('move');
@@ -232,7 +232,7 @@ function changeSort(obj) {
 }
 function changeAuthor(obj) {
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('select_post_to_operate_please')?>');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#author').val() == '')return;
     $("#operate").val('change_author');
@@ -240,7 +240,7 @@ function changeAuthor(obj) {
 }
 function changeTop(obj) {
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('select_post_to_operate_please')?>');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#top').val() == '')return;
     $("#operate").val(obj.value);

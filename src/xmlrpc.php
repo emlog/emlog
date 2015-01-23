@@ -15,14 +15,14 @@ require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
 $api_methods = array(
-	// metaWeblog Interface
+    // metaWeblog Interface
     'metaWeblog.newPost' => 'mw_newPost',
     'metaWeblog.editPost' => 'mw_editPost',
     'metaWeblog.getPost' => 'mw_getPost',
     'metaWeblog.getRecentPosts' => 'mw_getRecentPosts',
     'metaWeblog.getCategories' => 'mw_getCategories',
     'metaWeblog.newMediaObject' => 'mw_newMediaObject',
-	// blogger Interface
+    // blogger Interface
     'blogger.deletePost' => 'mw_deletePost',
     'blogger.getUsersBlogs' => 'blogger_getUsersBlogs'
     );
@@ -57,10 +57,10 @@ if (isset($_GET['rsd'])) {
     exit;
 }
 if ($options_cache['isxmlrpcenable'] == 'n') {
-/*vot*/	error_message(500, lang('xmlrpc_is_off'));
+/*vot*/    error_message(500, lang('xmlrpc_is_off'));
 }
 if (!$HTTP_RAW_POST_DATA) {
-/*vot*/	error_message(500, lang('xmlrpc_only_post'));
+/*vot*/    error_message(500, lang('xmlrpc_only_post'));
 }
 $data = $HTTP_RAW_POST_DATA;
 
@@ -69,7 +69,7 @@ $array_structs_types = $array_structs = $current_struct_name_array = $params = a
 
 $data = preg_replace('/<\?xml.*?\?' . '>/', '', $data);
 if (trim($data) == '') {
-/*vot*/	error_message(500, lang('error_data_empty'));
+/*vot*/    error_message(500, lang('error_data_empty'));
 }
 // Compatible php libxml library 2.7.0-2.7.3 Version parsing xml lose html Tag brackets bug
 if (in_array(LIBXML_DOTTED_VERSION, array('2.7.0', '2.7.1', '2.7.2', '2.7.3'))) {
@@ -156,7 +156,7 @@ function mw_newPost($args) {
     $update_data['author'] = UID;
     $update_data['hide'] = $publish == 1 ? 'n' : 'y';
     $update_data['excerpt'] = '';
-	// Just take the first category
+    // Just take the first category
     $sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
     $Sort_Model = new Sort_Model();
     $sorts = $Sort_Model->getSorts();
@@ -168,22 +168,22 @@ function mw_newPost($args) {
             break;
         }
     }
-	// Post Time
+    // Post Time
     if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
         $update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
     }else {
         $update_data['date'] = time();
     }
-	// Update data
+    // Update data
     $Log_Model = new Log_Model();
     $new_id = $Log_Model->addlog($update_data);
-	// Update tags
+    // Update tags
     if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
         $Tag_Model = new Tag_Model();
         $Tag_Model->addTag($data['mt_keywords'], $new_id);
         unset($Tag_Model);
     }
-	// Update the cache
+    // Update the cache
     Cache::getInstance()->updateCache();
     response("<i4>$new_id</i4>");
 }
@@ -197,7 +197,7 @@ function mw_editPost($args) {
     $password = $args[2];
     $user = login($username, $password);
     define('UID', $user['uid']);
-	// Accept parameters
+    // Accept parameters
     $id = intval($args[0]);
     $username = $args[1];
     $password = $args[2];
@@ -208,7 +208,7 @@ function mw_editPost($args) {
     $update_data['content'] = htmlspecialchars_decode($data['description']);
     $update_data['author'] = UID;
     $update_data['hide'] = $publish == 1 ? 'n' : 'y';
-	// Check the category id according to the category name, Note that just take the first category
+    // Check the category id according to the category name, Note that just take the first category
     $sort_name = isset($data['categories']) && isset($data['categories'][0]) ? $data['categories'][0] : '';
     $Sort_Model = new Sort_Model();
     $sorts = $Sort_Model->getSorts();
@@ -220,19 +220,19 @@ function mw_editPost($args) {
             break;
         }
     }
-	// Post Time
+    // Post Time
     if (isset($data['dateCreated']) && is_object($data['dateCreated'])) {
         $update_data['date'] = @gmmktime($data['dateCreated']->hour, $data['dateCreated']->minute , $data['dateCreated']->second , $data['dateCreated']->month , $data['dateCreated']->day , $data['dateCreated']->year) - $options_cache['timezone'] * 3600;
     }
-	// Update data
+    // Update data
     $Log_Model = new Log_Model();
     $Log_Model->updateLog($update_data, $id);
-	// Update Tags
+    // Update Tags
     if (isset($data['mt_keywords']) && !empty($data['mt_keywords'])) {
         $Tag_Model = new Tag_Model();
         $Tag_Model->updateTag($data['mt_keywords'], $id);
     }
-	// Update cache
+    // Update cache
     Cache::getInstance()->updateCache();
     response('<boolean>1</boolean>');
 }
@@ -287,7 +287,7 @@ function mw_getPost($args) {
     $Log_Model = new Log_Model();
     define('UID', $user['uid']);
     $post = $Log_Model->getOneLogForAdmin($post_ID);
-/*vot*/	if (empty($post)) return error_message(404, lang('post_no_access'));
+/*vot*/    if (empty($post)) return error_message(404, lang('post_no_access'));
     $log_cache_tags = Cache::getInstance()->readCache('logtags');
     $tags = '';
     if (!empty($log_cache_tags[$post['gid']])) {
@@ -443,7 +443,7 @@ function mw_getRecentPosts($args) {
     }
 
     if (empty($xml)) {
-/*vot*/		error_massage(404, lang('no_posts'));
+/*vot*/        error_massage(404, lang('no_posts'));
     }
     $xml = "<array><data>$xml</data></array>";
     response($xml);
@@ -458,7 +458,7 @@ function mw_newMediaObject($args) {
     $user = login($username, $password);
     $file = $args[3];
     if (!preg_match('/([^\/\:\*\?<>\|]+\.\w{2,6})|(\\{2}[^\/\:\*\?<>\|]+\.\w{2,6})/', $file['name'], $matches))
-/*vot*/		error_message(500, lang('file_error'));
+/*vot*/        error_message(500, lang('file_error'));
     $filename = $matches[0];
 
     $bits = $file['bits'];
@@ -469,12 +469,12 @@ function mw_newMediaObject($args) {
     $att_type = Option::getAttType();
 
     if (empty($filename))
-/*vot*/		error_message(500, lang('file_name_error'));
+/*vot*/        error_message(500, lang('file_name_error'));
 
     $extension = strtolower(substr(strrchr($filename, "."), 1));
-	// File type detection
+    // File type detection
     if (!in_array($extension, $att_type)) {
-/*vot*/		error_message(500, lang('file_type_error'));
+/*vot*/        error_message(500, lang('file_type_error'));
     }
     $uppath_root = substr(Option::UPLOADFILE_PATH, 1);
     $uppath = $uppath_root . gmdate('Ym') . '/';
@@ -484,20 +484,20 @@ function mw_newMediaObject($args) {
         umask(0);
         $ret = @mkdir($uppath_root, 0777);
         if ($ret === false) {
-/*vot*/			error_message(500, lang('upload_folder_create_error'));
+/*vot*/            error_message(500, lang('upload_folder_create_error'));
         }
     }
     if (!is_dir($uppath)) {
         umask(0);
         $ret = @mkdir($uppath, 0777);
         if ($ret === false) {
-/*vot*/			error_message(500, lang('upload_folder_unwritable'));
+/*vot*/            error_message(500, lang('upload_folder_unwritable'));
         }
     }
 
     $fp = @fopen($attachpath, 'wb');
     if (!$fp)
-/*vot*/		error_message(500, lang('file_write_error'));
+/*vot*/        error_message(500, lang('file_write_error'));
     fwrite($fp, $bits);
     fclose($fp);
 
@@ -595,12 +595,12 @@ function getIso($utctimestamp) {
 function login($username, $password) {
     $username = addslashes($username);
     $password = addslashes($password);
-	// Check user rights
+    // Check user rights
     if (true !== LoginAuth::checkUser($username, $password , '', 'n')) {
-/*vot*/		error_message(403, lang('username_password_error'));
+/*vot*/        error_message(403, lang('username_password_error'));
         return false;
     }
-	// Return user information
+    // Return user information
     return LoginAuth::getUserDataByLogin($username);
 }
 
@@ -659,7 +659,7 @@ function error_message($code, $message) {
 
 function output($xml) {
     $xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n" . $xml;
-	$length = mb_strlen($xml);
+    $length = mb_strlen($xml);
     header('Connection: close');
     header('Content-Length: ' . $length);
     header('Content-Type: text/xml');

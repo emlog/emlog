@@ -113,18 +113,18 @@ if($act == 'install' || $act == 'reinstall'){
     $result = '';
 
     if($db_prefix == ''){
-/*vot*/		emMsg(lang('db_prefix_empty'));
+/*vot*/        emMsg(lang('db_prefix_empty'));
     }elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
-/*vot*/		emMsg(lang('db_prefix_empty'));
+/*vot*/        emMsg(lang('db_prefix_empty'));
     }elseif($admin == '' || $adminpw == ''){
-/*vot*/		emMsg(lang('username_password_empty'));
-/*vot*/	}elseif(mb_strlen($adminpw) < 5){
-/*vot*/		emMsg(lang('password_short'));
+/*vot*/        emMsg(lang('username_password_empty'));
+/*vot*/    }elseif(mb_strlen($adminpw) < 5){
+/*vot*/        emMsg(lang('password_short'));
     }elseif($adminpw!=$adminpw2)	 {
-/*vot*/		emMsg(lang('password_not_equal'));
+/*vot*/        emMsg(lang('password_not_equal'));
     }
 
-	//Initialize the database class
+    //Initialize the database class
     define('DB_HOST',   $db_host);
     define('DB_USER',   $db_user);
     define('DB_PASSWD', $db_pw);
@@ -171,16 +171,16 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
         exit;
     }
 
-	// Create config.php
-/*vot*/	if ( $fp = @fopen('config.php', 'w') ){
-/*vot*/		fclose($fp);
-/*vot*/	}
+    // Create config.php
+/*vot*/    if ( $fp = @fopen('config.php', 'w') ){
+/*vot*/        fclose($fp);
+/*vot*/    }
 
     if(!is_writable('config.php')){
-/*vot*/		emMsg(lang('config_not_writable'));
+/*vot*/        emMsg(lang('config_not_writable'));
     }
     if(!is_writable(EMLOG_ROOT.'/content/cache')){
-/*vot*/		emMsg(lang('cache_not_writable'));
+/*vot*/        emMsg(lang('cache_not_writable'));
     }
     $config = "<?php\n"
     ."//mysql database address\n"
@@ -197,20 +197,20 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     ."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
     ."\n//cookie name\n"
     ."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
-/*vot*/	."\n//blog language //vot\n"
-/*vot*/	."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
-/*vot*/	."\n//blog language direction //vot\n"
-/*vot*/	."define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
+/*vot*/    ."\n//blog language //vot\n"
+/*vot*/    ."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
+/*vot*/    ."\n//blog language direction //vot\n"
+/*vot*/    ."define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
     ."\n";
 
     $fp = @fopen('config.php', 'w');
     $fw = @fwrite($fp, $config);
     if (!$fw){
-/*vot*/		emMsg(lang('config_not_writable'));
+/*vot*/        emMsg(lang('config_not_writable'));
     }
     fclose($fp);
 
-	//Encrypt Password
+    //Encrypt Password
     $PHPASS = new PasswordHash(8, true);
     $adminpw = $PHPASS->HashPassword($adminpw);
 
@@ -220,7 +220,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     if ($DB->getMysqlVersion() > '4.1' ){
         $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;", true);
     }
-    
+
     $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
 
@@ -229,7 +229,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 
     define('BLOG_URL', getBlogUrl());
 
-    $sql = "
+/*vot*/    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment,
@@ -295,11 +295,11 @@ CREATE TABLE {$db_prefix}comment (
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-  option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
-  option_name VARCHAR( 255 ) NOT NULL ,
-  option_value LONGTEXT NOT NULL ,
-  PRIMARY KEY (option_id),
-  KEY option_name (option_name)
+option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
+option_name VARCHAR( 255 ) NOT NULL ,
+option_value LONGTEXT NOT NULL ,
+PRIMARY KEY (option_id),
+KEY option_name (option_name)
 )".$table_charset_sql."
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','".lang('my_blog')."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','".lang('emlog_powered')."');
@@ -411,14 +411,14 @@ CREATE TABLE {$db_prefix}sort (
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  content text NOT NULL,
-  img varchar(255) DEFAULT NULL,
-  author int(11) NOT NULL default '1',
-  date bigint(20) NOT NULL,
-  replynum int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY (id),
-  KEY author (author)
+id INT(11) NOT NULL AUTO_INCREMENT,
+content text NOT NULL,
+img varchar(255) DEFAULT NULL,
+author int(11) NOT NULL default '1',
+date bigint(20) NOT NULL,
+replynum int(11) unsigned NOT NULL default '0',
+PRIMARY KEY (id),
+KEY author (author)
 )".$table_charset_sql."
 INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '".lang('test_tweet')."', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
@@ -451,10 +451,10 @@ KEY username (username)
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
-  `sid` int(8) NOT NULL AUTO_INCREMENT,
-  `plugin` varchar(32) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `type` varchar(8) NOT NULL,
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(64) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
   `createdate` int(11) NOT NULL,
   `lastupdate` int(11) NOT NULL,
@@ -469,16 +469,16 @@ CREATE TABLE {$db_prefix}storage (
             $DB->query($sql);
         }
     }
-	//Rebuild cache
+    //Rebuild cache
     $CACHE->updateCache();
-/*vot*/	$result .= "
-		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
-		<p>".lang('emlog_installed_info')."</p>
-		<p><b>".lang('user_name')."</b>: {$admin}</p>
-		<p><b>".lang('password')."</b>: ".lang('password_entered')."</p>";
+/*vot*/    $result .= "
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
+        <p>".lang('emlog_installed_info')."</p>
+        <p><b>".lang('user_name')."</b>: {$admin}</p>
+        <p><b>".lang('password')."</b>: ".lang('password_entered')."</p>";
     if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
-/*vot*/	    $result .= '<p style="color:red;margin:10px 20px;">'.lang('delete_install').'</p> ';
+/*vot*/        $result .= '<p style="color:red;margin:10px 20px;">'.lang('delete_install').'</p> ';
     }
-/*vot*/	$result .= "<p style=\"text-align:right;\"><a href=\"./\">".lang('go_to_front')."</a> | <a href=\"./admin/\">".lang('go_to_admincp')."</a></p>";
+/*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">".lang('go_to_front')."</a> | <a href=\"./admin/\">".lang('go_to_admincp')."</a></p>";
     emMsg($result, 'none');
 }

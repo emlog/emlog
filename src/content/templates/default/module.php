@@ -95,7 +95,7 @@ function widget_twitter($title){
     <li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
     <?php endforeach; ?>
     <?php if ($istwitter == 'y') :?>
-<!--vot-->	<p><a href="<?php echo BLOG_URL . 't/'; ?>"><?=lang('more')?></a></p>
+<!--vot-->    <p><a href="<?php echo BLOG_URL . 't/'; ?>"><?=lang('more')?></a></p>
     <?php endif;?>
     </ul>
     </li>
@@ -206,7 +206,7 @@ function widget_custom_text($title, $content){ ?>
 function widget_link($title){
     global $CACHE; 
     $link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#only at Home show Friends chain to remove double slash comment
+    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
     ?>
     <li>
     <h3><span><?php echo $title; ?></span></h3>
@@ -233,8 +233,8 @@ function blog_navi(){
 
         if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
             ?>
-<!--vot-->		<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><?=lang('site_management')?></a></li>
-<!--vot-->		<li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><?=lang('logout')?></a></li>
+<!--vot-->  <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/"><?=lang('site_management')?></a></li>
+<!--vot-->  <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout"><?=lang('logout')?></a></li>
             <?php 
             continue;
         endif;
@@ -298,7 +298,7 @@ function blog_tag($blogid){
     global $CACHE;
     $log_cache_tags = $CACHE->readCache('logtags');
     if (!empty($log_cache_tags[$blogid])){
-/*vot*/		$tag = lang('tags').': ';
+/*vot*/ $tag = lang('tags').': ';
         foreach ($log_cache_tags[$blogid] as $value){
             $tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
         }
@@ -338,7 +338,7 @@ function blog_comments($comments){
     extract($comments);
     if($commentStacks): ?>
     <a name="comments"></a>
-<!--vot-->	<p class="comment-header"><b><?=lang('comments')?>:</b></p>
+<!--vot-->    <p class="comment-header"><b><?=lang('comments')?>:</b></p>
     <?php endif; ?>
     <?php
     $isGravatar = Option::get('isgravatar');
@@ -352,7 +352,7 @@ function blog_comments($comments){
         <div class="comment-info">
             <b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
             <div class="comment-content"><?php echo $comment['content']; ?></div>
-<!--vot-->		<div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div>
+<!--vot-->  <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div>
         </div>
         <?php blog_comments_children($comments, $comment['children']); ?>
     </div>
@@ -375,7 +375,7 @@ function blog_comments_children($comments, $children){
         <div class="comment-info">
             <b><?php echo $comment['poster']; ?> </b><br /><span class="comment-time"><?php echo $comment['date']; ?></span>
             <div class="comment-content"><?php echo $comment['content']; ?></div>
-<!--vot-->		<?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
+<!--vot-->  <?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
         </div>
         <?php blog_comments_children($comments, $comment['children']);?>
     </div>
@@ -387,26 +387,26 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
     if($allow_remark == 'y'): ?>
     <div id="comment-place">
     <div class="comment-post" id="comment-post">
-<!--vot-->	<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
-<!--vot-->		<p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
+<!--vot-->    <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
+<!--vot-->    <p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
         <form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
             <input type="hidden" name="gid" value="<?php echo $logid; ?>" />
             <?php if(ROLE == ROLE_VISITOR): ?>
             <p>
                 <input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-<!--vot-->			<label for="author"><small><?=lang('nickname')?></small></label>
+<!--vot-->      <label for="author"><small><?=lang('nickname')?></small></label>
             </p>
             <p>
                 <input type="text" name="commail"  maxlength="128"  value="<?php echo $ckmail; ?>" size="22" tabindex="2">
-<!--vot-->			<label for="email"><small><?=lang('email_optional')?></small></label>
+<!--vot-->      <label for="email"><small><?=lang('email_optional')?></small></label>
             </p>
             <p>
                 <input type="text" name="comurl" maxlength="128"  value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-<!--vot-->			<label for="url"><small><?=lang('homepage_optional')?></small></label>
+<!--vot-->      <label for="url"><small><?=lang('homepage_optional')?></small></label>
             </p>
             <?php endif; ?>
             <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->		<p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" class="button" /></p>
+<!--vot-->  <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" class="button" /></p>
             <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
         </form>
     </div>
@@ -422,4 +422,3 @@ function blog_tool_ishome(){
         return FALSE;
     }
 }
-

@@ -13,11 +13,11 @@ function uploadfile(){
 }
 function showupload(multi){
     var as_logid = parent.document.getElementById('as_logid').value
-    window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;	
+    window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;    
 }
 function showattlib(){
     var as_logid = parent.document.getElementById('as_logid').value
-    window.location.href="attachment.php?action=attlib&logid="+as_logid;	
+    window.location.href="attachment.php?action=attlib&logid="+as_logid;    
 }
 function addattachfrom() {
     var newnode = document.getElementById('attachbodyhidden').firstChild.cloneNode(true);
@@ -31,7 +31,7 @@ function removeattachfrom() {
 <div id="media-upload-header">
 <!--vot--><span id="curtab"><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
 <!--vot--><span><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
-	<span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?php echo $attachnum; ?>)</a></span>
+    <span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?php echo $attachnum; ?>)</a></span>
 </div>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">

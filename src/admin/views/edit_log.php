@@ -13,7 +13,7 @@ $isdraft = $hide == 'y' ? true : false;
 </div>
 <div id="post_bar">
     <div>
-<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot--><span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
         <?php doAction('adm_writelog_head'); ?>
         <span id="asmsg"></span>
         <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
@@ -98,12 +98,10 @@ $isdraft = $hide == 'y' ? true : false;
 </form>
 <div class=line></div>
 <script>
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="content"]');
-	});
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="excerpt"]');
-	});
+/*vot*/$(function() {
+/*vot*/  KindEditor.create('textarea[name="content"]');
+/*vot*/  KindEditor.create('textarea[name="excerpt"]');
+/*vot*/});
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');

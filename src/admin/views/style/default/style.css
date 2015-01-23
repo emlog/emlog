@@ -59,7 +59,6 @@ a:hover{color:#333;text-decoration:none}
 	color:#333;
 	text-decoration:none;
 	display:block;
-	text-indent: 23px;
 }
 #side a:hover{
 	color:#2A9DDB;
@@ -103,7 +102,10 @@ a:hover{color:#333;text-decoration:none}
 .sidebarsubmenu{
 	background:url(./images/sidebar_menubg.gif) repeat-x;
 	width:104px;
-	padding-top:3px;height:22px;margin:auto;
+	padding-top:3px;
+	height:22px;
+	margin:auto;
+/*vot*/	text-indent: 20px;
 }
 .sidebarsubmenu1{
 	background: url(./images/sidebar_current_menubg.gif) repeat-x;

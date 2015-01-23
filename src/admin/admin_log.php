@@ -51,13 +51,13 @@ if ($action == '') {
 
     $hide_state = $pid ? 'y' : 'n';
     if ($pid == 'draft') {
-		$hide_state = 'y';
+        $hide_state = 'y';
         $sorturl = '&pid=draft';
-/*vot*/		$pwd = lang('drafts');
+/*vot*/ $pwd = lang('drafts');
     } else{
-		$hide_state = 'n';
+        $hide_state = 'n';
         $sorturl = '';
-/*vot*/		$pwd = lang('post_manage');
+/*vot*/ $pwd = lang('post_manage');
     }
 
     $logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
@@ -163,7 +163,7 @@ if ($action == 'operate_log') {
         case 'change_author':
             if (ROLE != ROLE_ADMIN)
             {
-/*vot*/				emMsg(lang('no_permission'),'./');
+/*vot*/         emMsg(lang('no_permission'),'./');
             }
             foreach ($logs as $val)
             {
@@ -175,7 +175,7 @@ if ($action == 'operate_log') {
         case 'check':
             if (ROLE != ROLE_ADMIN)
             {
-/*vot*/				emMsg(lang('no_permission'),'./');
+/*vot*/         emMsg(lang('no_permission'),'./');
             }
             $Log_Model->checkSwitch($gid, 'y');
             $CACHE->updateCache();
@@ -184,7 +184,7 @@ if ($action == 'operate_log') {
         case 'uncheck':
             if (ROLE != ROLE_ADMIN)
             {
-/*vot*/				emMsg(lang('no_permission'),'./');
+/*vot*/         emMsg(lang('no_permission'),'./');
             }
             $Log_Model->checkSwitch($gid, 'n');
             $CACHE->updateCache();

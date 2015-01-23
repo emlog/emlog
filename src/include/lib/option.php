@@ -8,19 +8,19 @@
 /*vot*/ load_language('core');
 
 class Option {
-	//Version number
+    //Version number
     const EMLOG_VERSION = '5.3.1';
-	//MySQL default link mode: mysql or mysqli
+    //MySQL default link mode: mysql or mysqli
     const DEFAULT_MYSQLCONN = 'mysql';
-	//Maximum avatar thumbnail width
+    //Maximum avatar thumbnail width
     const ICON_MAX_W = 140;
-	//Maximum avatar thumbnail height
+    //Maximum avatar thumbnail height
     const ICON_MAX_H = 220;
-	//Maximum width of twitter image thumbnail
+    //Maximum width of twitter image thumbnail
     const T_IMG_MAX_W = 180;
-	//Maximum height of twitter image thumbnail
+    //Maximum height of twitter image thumbnail
     const T_IMG_MAX_H = 136;
-	//Attachments upload path
+    //Attachments upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
     static function get($option){
@@ -143,43 +143,43 @@ class Option {
     }
 
     /**
-	 * Get attachment types allowed to upload
+     * Get attachment types allowed to upload
      */
     static function getAttType() {
         return explode(',', self::get('att_type'));
     }
 
     /**
-	 * Get attachment maximum limit, in bytes
+     * Get attachment maximum limit, in bytes
      */
     static function getAttMaxSize() {
         return self::get('att_maxsize') * 1024;
     }
     
     /**
-	 * Get widget module title
+     * Get widget module title
      */
     static function getWidgetTitle() {
         $widget_title = array(
-/*vot*/			'blogger' => lang('blogger'),
-/*vot*/			'calendar' => lang('calendar'),
-/*vot*/			'twitter' => lang('twitter_latest'),
-/*vot*/			'tag' => lang('tags'),
-/*vot*/			'sort' => lang('category'),
-/*vot*/			'archive' => lang('archive'),
-/*vot*/			'newcomm' => lang('new_comments'),
-/*vot*/			'newlog' => lang('new_posts'),
-/*vot*/			'random_log' => lang('random_post'),
-/*vot*/			'hotlog' => lang('hot_posts'),
-/*vot*/			'link' => lang('links'),
-/*vot*/			'search' => lang('search'),
-/*vot*/			'custom_text' => lang('widget_custom')
+/*vot*/            'blogger' => lang('blogger'),
+/*vot*/            'calendar' => lang('calendar'),
+/*vot*/            'twitter' => lang('twitter_latest'),
+/*vot*/            'tag' => lang('tags'),
+/*vot*/            'sort' => lang('category'),
+/*vot*/            'archive' => lang('archive'),
+/*vot*/            'newcomm' => lang('new_comments'),
+/*vot*/            'newlog' => lang('new_posts'),
+/*vot*/            'random_log' => lang('random_post'),
+/*vot*/            'hotlog' => lang('hot_posts'),
+/*vot*/            'link' => lang('links'),
+/*vot*/            'search' => lang('search'),
+/*vot*/            'custom_text' => lang('widget_custom')
         );
         return $widget_title;
     }
 
     /**
-	 * Get a list of widgets installed by default
+     * Get a list of widgets installed by default
      */
     static function getDefWidget() {
         $default_widget = array('calendar','archive','newcomm','link','search');
@@ -187,10 +187,10 @@ class Option {
     }
 
     /**
-	 * Update configuration option
+     * Update configuration option
      * @param $name
      * @param $value
-	 * @param $isSyntax Update whether the value is an expression
+     * @param $isSyntax Update whether the value is an expression
      */
     static function updateOption($name, $value, $isSyntax = false){
         $DB = Database::getInstance();

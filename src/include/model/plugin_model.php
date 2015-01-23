@@ -14,9 +14,9 @@ class Plugin_Model {
     }
 
     /**
-	 * Activate plug-in
-	 *
-	 * @param array $active_plugins //All the currently active plug-ins
+     * Activate plug-in
+     *
+     * @param array $active_plugins //All the currently active plug-ins
      */
     function activePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');
@@ -48,9 +48,9 @@ class Plugin_Model {
     }
 
     /**
-	 * Disable plug-ins
-	 *
-	 * @param string $active_plugins //All the currently active plug-ins
+     * Disable plug-ins
+     *
+     * @param string $active_plugins //All the currently active plug-ins
      */
     function inactivePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');
@@ -76,9 +76,9 @@ class Plugin_Model {
     }
 
     /**
-	 * Get a list of all plug-ins, plug-defined plug-in name will not get
-	 *  plug-in directory: content/plugins
-	 * Recognized only plugins in the /plugin/ directory
+     * Get a list of all plug-ins, plug-defined plug-in name will not get
+     *  plug-in directory: content/plugins
+     * Recognized only plugins in the /plugin/ directory
      * @return array
      */
     function getPlugins() {
@@ -125,7 +125,7 @@ class Plugin_Model {
     }
 
     /**
-	 * Get plug-in information
+     * Get plug-in information
      *
      * @param string $pluginFile
      * @return array

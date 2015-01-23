@@ -11,7 +11,7 @@
 </div>
 <div id="post_bar">
     <div>
-<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot--><span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
         <?php doAction('adm_writelog_head'); ?>
         <span id="asmsg"></span>
         <input type="hidden" name="as_logid" id="as_logid" value="-1">
@@ -25,20 +25,9 @@
 </div>
 <div style="margin:10px 0px 5px 0px;">
 <!--vot--><label for="tag" id="tag_label"><?=lang('post_tags_separated')?></label>
-<br>
+<!--vot--><br>
     <input name="tag" id="tag" maxlength="200"/>
-<!--vot--> <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
-<div id="tagbox">
-<?php
-    if ($tags) {
-        foreach ($tags as $val){
-            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-        }
-    } else {
-/*vot*/ echo lang('tag_not_set');
-    }
-?>
-</div>
+<!--vot--><span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
 <!--vot--><br>
     <select name="sort" id="sort" style="width:130px;">
 <!--vot--><option value="-1"><?=lang('category_select')?></option>
@@ -63,14 +52,25 @@
 <!--vot--><?=lang('post_time')?>: <input maxlength="200" style="width:139px;" name="postdate" id="postdate" value="<?php echo $postDate; ?>"/>
     <input name="date" id="date" type="hidden" value="" >
 </div>
-<div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
+<div id="tagbox">
+<?php
+    if ($tags) {
+        foreach ($tags as $val){
+            echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+        }
+    } else {
+/*vot*/ echo lang('tag_not_set');
+    }
+?>
+</div>
+<!--vot--><div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
 <div id="advset">
 <!--vot--><div><?=lang('post_description')?>:</div>
 <div><textarea id="excerpt" name="excerpt" style="width:845px; height:260px;"></textarea></div>
 <!--vot--><div><span id="alias_msg_hook"></span><?=lang('post_alias')?>: (<?=lang('post_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('post_alias_enable')?></a>) <span id="alias_msg_hook"></span></div>
 <div><input name="alias" id="alias" /></div>
 <div style="margin-top:3px;">
-<!--vot-->    <?=lang('post_access_password')?>: <input type="text" value="" name="password" id="password" style="width:80px;" />
+<!--vot--><?=lang('post_access_password')?>: <input type="text" value="" name="password" id="password" style="width:80px;" />
     <span id="post_options">
         <input type="checkbox" value="y" name="top" id="top" />
 <!--vot--><label for="top"><?=lang('home_top')?></label>
@@ -92,12 +92,10 @@
 </form>
 <div class=line></div>
 <script>
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="content"]');
-	});
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="excerpt"]');
-	});
+/*vot*/  $(function() {
+/*vot*/    KindEditor.create('textarea[name="content"]');
+/*vot*/    KindEditor.create('textarea[name="excerpt"]');
+/*vot*/  });
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 $("#alias").keyup(function(){checkalias();});

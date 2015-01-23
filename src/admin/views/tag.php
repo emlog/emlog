@@ -10,7 +10,7 @@
 <li>
 <?php 
 if($tags):
-foreach($tags as $key=>$value): ?>	
+foreach($tags as $key=>$value): ?>    
 <input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" class="ids" value="1" >
 <a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
 <?php endforeach; ?>
@@ -28,12 +28,12 @@ foreach($tags as $key=>$value): ?>
 <script>
 $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
 function deltags(){
-	if (getChecked('ids') == false) {
-/*vot*/		alert(lang('tag_select_to_delete'));
-		return;
-	}
-/*vot*/	if(!confirm(lang('tag_delete_sure'))){return;}
-	$("#form_tag").submit();
+    if (getChecked('ids') == false) {
+/*vot*/        alert(lang('tag_select_to_delete'));
+        return;
+    }
+/*vot*/    if(!confirm(lang('tag_delete_sure'))){return;}
+    $("#form_tag").submit();
 }
 setTimeout(hideActived,2600);
 $("#menu_tag").addClass('sidebarsubmenu1');

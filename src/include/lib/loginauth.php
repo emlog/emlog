@@ -67,7 +67,7 @@ class LoginAuth{
      */
     public static function loginPage($errorCode = NULL) {
         Option::get('login_code') == 'y' ?
-        $ckcode = "<span>".lang('captcha')."</span>
+/*vot*/ $ckcode = "<span>".lang('captcha')."</span>
         <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
@@ -226,7 +226,7 @@ class LoginAuth{
     public static function checkToken(){
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         if ($token != self::genToken()) {
-            emMsg(lang('no_permission').' '.lang('token_error'));
+/*vot*/     emMsg(lang('no_permission').' '.lang('token_error'));
         }
     }
 }

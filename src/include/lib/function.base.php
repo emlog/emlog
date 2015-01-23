@@ -4,23 +4,22 @@
  * Basic Function library
  * @copyright (c) Emlog All Rights Reserved
  */
-
 function __autoload($class) {
     $class = strtolower($class);
 //DEBUG
 //echo '<pre>';
 //echo '__autoload:', "\n";
-//echo '	class=', $class, "\n";
+//echo '    class=', $class, "\n";
 //echo '</pre>';
     if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
-/*vot*/		load_language($class);
+/*vot*/        load_language($class);
         require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
     } elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
         require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
     } elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
         require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
     } else {
-/*vot*/		emMsg($class . lang('_load_failed'));
+/*vot*/        emMsg($class . lang('_load_failed'));
     }
 }
 
@@ -84,7 +83,7 @@ function getBlogUrl() {
 }
 
 /**
- * 获取当前访问的base url
+ * Get the current access base url
  */
 function realUrl() {
     static $real_url = NULL;
@@ -157,7 +156,7 @@ function emLoadJQuery() {
         $isJQueryLoaded = true;
 
         function loadJQuery() {
-/*vot*/			echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
+/*vot*/     echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
         }
 
     }
@@ -167,7 +166,7 @@ function emLoadJQuery() {
  * Validate email address format
  */
 function checkMail($email) {
-	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60) {
+/*vot*/ if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60) {
         return true;
     } else {
         return false;
@@ -189,26 +188,26 @@ function subString($strings, $start, $length) {
     }
     $str = substr($strings, $start, $length);
     $char = 0;
-	for ($i = 0; $i < mb_strlen($str); $i++) {
+/*vot*/ for ($i = 0; $i < mb_strlen($str); $i++) {
         if (ord($str[$i]) >= 128)
             $char++;
     }
     $str2 = substr($strings, $start, $length + 1);
     $str3 = substr($strings, $start, $length + 2);
     if ($char % 3 == 1) {
-		if ($length <= mb_strlen($strings)) {
+/*vot*/ if ($length <= mb_strlen($strings)) {
             $str3 = $str3 .= '...';
         }
         return $str3;
     }
     if ($char % 3 == 2) {
-		if ($length <= mb_strlen($strings)) {
+/*vot*/ if ($length <= mb_strlen($strings)) {
             $str2 = $str2 .= '...';
         }
         return $str2;
     }
     if ($char % 3 == 0) {
-		if ($length <= mb_strlen($strings)) {
+/*vot*/ if ($length <= mb_strlen($strings)) {
             $str = $str .= '...';
         }
         return $str;
@@ -223,8 +222,8 @@ function subString($strings, $start, $length) {
  */
 function extractHtmlData($data, $len) {
     $data = strip_tags(subString($data, 0, $len + 30));
-	$search = array("/([\r\n])[\s]+/", // Remove whitespace characters
-		"/&(quot|#34);/i", // Replace HTML entities
+    $search = array("/([\r\n])[\s]+/", // Remove whitespace characters
+        "/&(quot|#34);/i", // Replace HTML entities
         "/&(amp|#38);/i",
         "/&(lt|#60);/i",
         "/&(gt|#62);/i",
@@ -253,7 +252,7 @@ function changeFileSize($fileSize) {
     } elseif ($fileSize >= 1024) {
         $fileSize = round($fileSize / 1024, 2) . 'KB';
     } else {
-/*vot*/		$fileSize = $fileSize . lang('_bytes');//Bytes
+/*vot*/        $fileSize = $fileSize . lang('_bytes');//Bytes
     }
     return $fileSize;
 }
@@ -289,9 +288,9 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
         }
     }
     if ($page > 6)
-/*vot*/		$re = "<a href=\"{$urlHome}$anchor\" title=\"".lang('first_page')."\">&laquo;</a><em>...</em>$re";
+/*vot*/        $re = "<a href=\"{$urlHome}$anchor\" title=\"".lang('first_page')."\">&laquo;</a><em>...</em>$re";
     if ($page + 5 < $pnums)
-/*vot*/		$re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"".lang('last_page')."\">&raquo;</a>";
+/*vot*/        $re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"".lang('last_page')."\">&raquo;</a>";
     if ($pnums <= 1)
         $re = '';
     return $re;
@@ -325,7 +324,7 @@ function doAction($hook) {
 //DEBUG
 //echo '<pre>';
 //echo '__doAction:', "\n";
-//echo '	function=', $function, "\n";
+//echo '    function=', $function, "\n";
 //echo '</pre>';
 
             $string = call_user_func_array($function, $args);
@@ -342,7 +341,7 @@ function doAction($hook) {
 function breakLog($content, $lid) {
     $ret = explode('[break]', $content, 2);
     if (!empty($ret[1])) {
-/*vot*/		$ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
+/*vot*/        $ret[0].='<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
         return $ret[0];
     } elseif(Option::get('isexcerpt') == 'y') {
 /*vot*/        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
@@ -377,12 +376,12 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
     if ($hover == 0) {
         $min = floor($sec / 60);
         if ($min == 0) {
-/*vot*/			$op = $sec . lang('_sec_ago');
+/*vot*/     $op = $sec . lang('_sec_ago');
         } else {
-/*vot*/			$op = $min . lang('_min_ago');
+/*vot*/     $op = $min . lang('_min_ago');
         }
     } elseif ($hover < 24) {
-		$op = lang('about_') . $hover . lang('_hour_ago');
+        $op = lang('about_') . $hover . lang('_hour_ago');
     } else {
         $op = gmdate($dstr, $datetemp + $timezone * 3600);
     }
@@ -403,7 +402,7 @@ function getRandStr($length = 12, $special_chars = true) {
     }
     $randStr = '';
     for ($i = 0; $i < $length; $i++) {
-		$randStr .= substr($chars, mt_rand(0, mb_strlen($chars) - 1), 1);
+/*vot*/ $randStr .= substr($chars, mt_rand(0, mb_strlen($chars) - 1), 1);
     }
     return $randStr;
 }
@@ -426,23 +425,23 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
     $result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
     switch ($result) {
         case '100':
-/*vot*/			emMsg(lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit'));
+/*vot*/     emMsg(lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit'));
             break;
         case '101':
-/*vot*/			emMsg(lang('upload_failed_error_code') . $errorNum);
+/*vot*/     emMsg(lang('upload_failed_error_code') . $errorNum);
             break;
         case '102':
-/*vot*/			emMsg(lang('file_type_not_supported'));
+/*vot*/     emMsg(lang('file_type_not_supported'));
             break;
         case '103':
             $ret = changeFileSize(Option::getAttMaxSize());
-/*vot*/			emMsg(lang('file_size_exceeds_') . $ret . lang('_of_limit'));
+/*vot*/     emMsg(lang('file_size_exceeds_') . $ret . lang('_of_limit'));
             break;
         case '104':
-/*vot*/			emMsg(lang('upload_folder_create_error'));
+/*vot*/     emMsg(lang('upload_folder_create_error'));
             break;
         case '105':
-/*vot*/			emMsg(lang('upload_folder_unwritable'));
+/*vot*/     emMsg(lang('upload_folder_unwritable'));
             break;
         default:
             return $result;
@@ -496,16 +495,16 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
     if ($errorNum == 1) {
-		return '100'; //File size exceeds the system limit
+        return '100'; //File size exceeds the system limit
     } elseif ($errorNum > 1) {
-		return '101'; //File upload failed
+        return '101'; //File upload failed
     }
     $extension = getFileSuffix($fileName);
     if (!in_array($extension, $type)) {
-		return '102'; //Incorrect file type
+        return '102'; //Incorrect file type
     }
     if ($fileSize > Option::getAttMaxSize()) {
-		return '103'; //File size exceeds the emlog limit
+        return '103'; //File size exceeds the emlog limit
     }
     $file_info = array();
     $file_info['file_name'] = $fileName;
@@ -521,19 +520,19 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
         @umask(0);
         $ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
         if ($ret === false) {
-			return '104'; //Create the file upload directory failed
+            return '104'; //Create the file upload directory failed
         }
     }
     if (!is_dir($uppath)) {
         @umask(0);
         $ret = @mkdir($uppath, 0777);
         if ($ret === false) {
-			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
+            return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
         }
     }
     doAction('attach_upload', $tmpFile);
 
-	// Generate thumbnail
+    // Generate thumbnail
     $thum = $uppath . 'thum-' . $fname;
     if ($is_thumbnail) {
         if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
@@ -559,12 +558,12 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
     if (@is_uploaded_file($tmpFile)) {
         if (@!move_uploaded_file($tmpFile, $attachpath)) {
             @unlink($tmpFile);
-			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
+            return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
         }
         @chmod($attachpath, 0777);
     }
     
-	// If the attachment is an image, then need to extract the width and height
+    // If the attachment is an image, then need to extract the width and height
     if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
         $size = getimagesize($file_info['file_path']);
         if ($size) {
@@ -675,10 +674,10 @@ function chImageSize($img, $max_w, $max_h) {
     $size = @getimagesize($img);
     $w = $size[0];
     $h = $size[1];
-	//Calculate zoom ratio
+    //Calculate zoom ratio
     @$w_ratio = $max_w / $w;
     @$h_ratio = $max_h / $h;
-	//Verify the Image width and height
+    //Verify the Image width and height
     if (($w <= $max_w) && ($h <= $max_h)) {
         $tn['w'] = $w;
         $tn['h'] = $h;
@@ -744,14 +743,14 @@ function emStrtotime($timeStr) {
             } else {
                 if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
                     /*
-					 * If the server is configured by default to the time zone, So PHP will put the time to identify the incoming local time zone
-					 * But if we passed the time actually Local blog configurable time zone, it is not the server time zone Local Time
-					 * Therefore, We need to strtotime Get time to remove /Plus the difference of two time zones, Get utc time
+                     * If the server is configured by default to the time zone, So PHP will put the time to identify the incoming local time zone
+                     * But if we passed the time actually Local blog configurable time zone, it is not the server time zone Local Time
+                     * Therefore, We need to strtotime Get time to remove /Plus the difference of two time zones, Get utc time
                      */
                     $offset = getTimeZoneOffset($serverTimeZone);
-					// First subtract/Plus the local time zone configuration difference
+                    // First subtract/Plus the local time zone configuration difference
                     $unixPostDate -= $timezone * 3600;
-					// Minus/Plus the server zone and time difference utc, Get utc time
+                    // Minus/Plus the server zone and time difference utc, Get utc time
                     $unixPostDate -= $offset;
                 }
             }
@@ -799,11 +798,11 @@ function getMonthDayNum($month, $year) {
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
     if (!class_exists('ZipArchive', FALSE)) {
-		return 3;//zip Module problem
+        return 3;//zip Module problem
     }
     $zip = new ZipArchive();
     if (@$zip->open($zipfile) !== TRUE) {
-		return 2;//File permissions problem
+        return 2;//File permissions problem
     }
     $r = explode('/', $zip->getNameIndex(0), 2);
     $dir = isset($r[0]) ? $r[0] . '/' : '';
@@ -831,7 +830,7 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
         $zip->close();
         return 0;
     } else {
-		return 1;//File permissions problem
+        return 1;//File permissions problem
     }
 }
 
@@ -923,11 +922,11 @@ function emDirect($directUrl) {
 function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
     if ($msg == '404') {
         header("HTTP/1.1 404 Not Found");
-/*vot*/		$msg = lang('404_description');
+/*vot*/        $msg = lang('404_description');
     }
-/*vot*/	$lang = EMLOG_LANGUAGE;
-/*vot*/	$dir  = EMLOG_LANGUAGE_DIR;
-/*vot*/	echo <<<EOT
+/*vot*/    $lang = EMLOG_LANGUAGE;
+/*vot*/    $dir  = EMLOG_LANGUAGE_DIR;
+/*vot*/    echo <<<EOT
 <!DOCTYPE html>
 <html dir="$dir" lang="$lang">
 <head>
@@ -970,7 +969,7 @@ body {
 <p>$msg</p>
 EOT;
     if ($url != 'none') {
-/*vot*/		echo '<p><a href="' . $url . '">'. lang('click_return').'</a></p>';
+/*vot*/        echo '<p><a href="' . $url . '">'. lang('click_return').'</a></p>';
     }
     echo <<<EOT
 </div>
@@ -1000,7 +999,7 @@ function show_404_page() {
  * @param $t
  */
 function emoFormat($t){
-/*vot*/	require_once(EMLOG_ROOT . '/admin/views/js/emo.php'); //$emos = array(code=>image,...);
+/*vot*/    require_once(EMLOG_ROOT . '/admin/views/js/emo.php'); //$emos = array(code=>image,...);
     if(!empty($t) && preg_match_all('/\[.+?\]/',$t,$matches)){
         $matches = array_unique($matches[0]);
         foreach ($matches as $data) {
@@ -1148,7 +1147,7 @@ function load_language($model='') {
 //DEBUG
 //echo '<pre>';
 //echo 'load_language:', "\n";
-//echo '	model=', $model, "\n";
+//echo '    model=', $model, "\n";
 //echo '</pre>';
 
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
@@ -1160,9 +1159,9 @@ function load_language($model='') {
 
 //DEBUG
 //echo '<pre>';
-//echo '	file=', $file, "\n";
+//echo '    file=', $file, "\n";
 //if(!is_file($file)) {
-//  echo '	file NOT FOUND!', "\n";
+//  echo '    file NOT FOUND!', "\n";
 //}
 //echo '</pre>';
 
@@ -1180,8 +1179,8 @@ function load_language($model='') {
 
 //DEBUG
 //echo '<pre>';
-//echo '	require_ok=', intval($ok), "\n";
-//echo '	key number=', count($LANGUAGE), "\n";
+//echo '    require_ok=', intval($ok), "\n";
+//echo '    key number=', count($LANGUAGE), "\n";
 //echo 'LANGUAGE=';
 //print_r($LANGUAGE);
 //echo '</pre>';

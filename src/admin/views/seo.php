@@ -32,9 +32,9 @@
 <!--vot--><li><?=lang('meta_description')?><br /><textarea name="site_description" class="textarea" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea></li>
 <!--vot--><li><?=lang('meta_title_scheme')?>:
         <select name="log_title_style" class="input">
-<!--vot-->	<option value="0" <?php echo $opt0; ?>><?=lang('post_title')?></option>
-<!--vot-->	<option value="1" <?php echo $opt1; ?>><?=lang('post_title_site_title')?></option>
-<!--vot-->	<option value="2" <?php echo $opt2; ?>><?=lang('post_title_site_meta_title')?></option>
+<!--vot-->    <option value="0" <?php echo $opt0; ?>><?=lang('post_title')?></option>
+<!--vot-->    <option value="1" <?php echo $opt1; ?>><?=lang('post_title_site_title')?></option>
+<!--vot-->    <option value="2" <?php echo $opt2; ?>><?=lang('post_title_site_meta_title')?></option>
         </select>
     </li>
     <li style="margin-top:10px;">

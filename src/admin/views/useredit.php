@@ -14,22 +14,22 @@
 <!--vot--><li><input type="password" value="" name="password2" style="width:200px;" class="input" /> <?=lang('password_new_repeat')?></li>
 <!--vot--><li><input type="text"  value="<?php echo $email; ?>" name="email" style="width:200px;" class="input" /> <?=lang('email')?></li>
     <li>
-	<select name="role" id="role" class="input">
-<!--vot-->	<option value="writer" <?php echo $ex1; ?>><?=lang('user')?></option>
-<!--vot-->	<option value="admin" <?php echo $ex2; ?>><?=lang('admin')?></option>
-	</select>
-	</li>
+    <select name="role" id="role" class="input">
+<!--vot-->    <option value="writer" <?php echo $ex1; ?>><?=lang('user')?></option>
+<!--vot-->    <option value="admin" <?php echo $ex2; ?>><?=lang('admin')?></option>
+    </select>
+    </li>
     <li id="ischeck">
-	<select name="ischeck" class="input">
-<!--vot-->	<option value="n" <?php echo $ex3; ?>><?=lang('posts_not_need_audit')?></option>
-<!--vot-->	<option value="y" <?php echo $ex4; ?>><?=lang('posts_need_audit')?></option>
-	</select>
-	</li>
+    <select name="ischeck" class="input">
+<!--vot-->    <option value="n" <?php echo $ex3; ?>><?=lang('posts_not_need_audit')?></option>
+<!--vot-->    <option value="y" <?php echo $ex4; ?>><?=lang('posts_need_audit')?></option>
+    </select>
+    </li>
 <!--vot--><li><?=lang('personal_description')?><br />
-	<textarea name="description" rows="5" style="width:260px;" class="textarea"><?php echo $description; ?></textarea></li>
-	<li>
+    <textarea name="description" rows="5" style="width:260px;" class="textarea"><?php echo $description; ?></textarea></li>
+    <li>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<input type="hidden" value="<?php echo $uid; ?>" name="uid" />
+    <input type="hidden" value="<?php echo $uid; ?>" name="uid" />
 <!--vot--><input type="submit" value="<?=lang('save')?>" class="button" />
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="button" onclick="window.location='user.php';" /></li>
 </div>

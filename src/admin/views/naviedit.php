@@ -4,7 +4,7 @@
 <form action="navbar.php?action=update" method="post">
 <div class="item_edit">
 <!--vot--><li><div style="float:left;width:16%;"><?=lang('nav_name')?>: </div><input size="40" value="<?php echo $naviname; ?>" name="naviname" /></li>
-	<li>
+    <li>
 <!--vot--><div style="float:left;width:16%;"><?=lang('nav_address')?>: </div><input size="100" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /></li>
 <!--vot--><li>
 <!--vot--><div style="float:left;width:16%;"><?=lang('open_new_win')?>: </div><input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" <?php echo $conf_newtab; ?> />
@@ -12,7 +12,7 @@
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>
             <select name="pid" id="pid" class="input">
-<!--vot-->	<option value="0"><?=lang('no')?></option>
+<!--vot-->    <option value="0"><?=lang('no')?></option>
                 <?php
                     foreach($navis as $key=>$value):
                         if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -26,12 +26,12 @@
 <!--vot-->   <?=lang('nav_parent')?>
     </li>
     <?php endif; ?>
-	<li>
-	<input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
-	<input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
+    <li>
+    <input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
+    <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
 <!--vot--> <input type="submit" value="<?=lang('save')?>" class="button" />
 <!--vot--> <input type="button" value="<?=lang('cancel')?>" class="button" onclick="javascript: window.history.back();" />
-	</li>
+    </li>
 </div>
 </form>
 <script>

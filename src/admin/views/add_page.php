@@ -12,7 +12,7 @@
 </div>
 <div id="post_bar">
     <div>
-<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot--><span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
         <?php doAction('adm_writelog_head'); ?>
         <span id="asmsg"></span>
         <input type="hidden" name="as_logid" id="as_logid" value="-1">
@@ -24,15 +24,15 @@
 <div><textarea id="content" name="content" style="width:845px; height:460px;"></textarea></div>
 <div style="margin-top: 5px;">
     <span id="alias_msg_hook"></span>
-<!--vot-->    <?=lang('link_alias')?>: (<?=lang('link_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('link_alias_enable')?></a>)<br />
+<!--vot--><?=lang('link_alias')?>: (<?=lang('link_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('link_alias_enable')?></a>)<br />
     <input name="alias" id="alias" class="input" />
 </div>
 <div style="margin-top:3px;">
 <!--vot--><?=lang('page_template')?><input maxlength="200" class="input" name="template" id="template" value="page" /> <?=lang('page_template_info')?>
-    <div id="page_options">
+    <span id="page_options">
 <!--vot--><label for="allow_remark"><?=lang('page_enable_comments')?></label>
         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" />
-    </div>
+    </span>
 </div>
 <div id="post_button">
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
@@ -44,9 +44,9 @@
 </form>
 <div class=line></div>
 <script>
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="content"]');
-	});
+/*vot*/  $(function() {
+/*vot*/    KindEditor.create('textarea[name="content"]');
+/*vot*/  });
 $("#menu_page").addClass('sidebarsubmenu1');
 $("#alias").keyup(function(){checkalias();});
 $("#title").focus(function(){$("#title_label").hide();});

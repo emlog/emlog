@@ -16,7 +16,7 @@ $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 if(empty($navibar)) {
-	$navibar = array();
+    $navibar = array();
 }
 
 //Login authentication
@@ -47,5 +47,5 @@ if (ISLOGIN === false) {
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log'))) {
-/*vot*/	emMsg(lang('no_permission'),'./');
+/*vot*/    emMsg(lang('no_permission'),'./');
 }

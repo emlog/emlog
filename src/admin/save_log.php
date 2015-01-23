@@ -78,9 +78,9 @@ switch ($action) {
             emDirect("./admin_log.php?pid=draft&active_savedraft=1");
         } else {
             if ($action == 'add' || isset($_POST['pubdf'])) {
-/*vot*/				emDirect("./admin_log.php?active_post=1");//Post publishing success
+/*vot*/         emDirect("./admin_log.php?active_post=1");//Post publishing success
             } else {
-/*vot*/				emDirect("./admin_log.php?active_savelog=1");//Post successfully saved
+/*vot*/         emDirect("./admin_log.php?active_savelog=1");//Post successfully saved
             }
         }
         break;

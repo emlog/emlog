@@ -63,8 +63,8 @@
     </p>
 <!--vot--><p><?=lang('backup_export_to')?>:
         <select name="bakplace" id="bakplace">
-<!--vot-->	<option value="local" selected="selected"><?=lang('backup_local')?></option>
-<!--vot-->	<option value="server"><?=lang('backup_server')?></option>
+<!--vot-->    <option value="local" selected="selected"><?=lang('backup_local')?></option>
+<!--vot-->    <option value="server"><?=lang('backup_server')?></option>
         </select>
     </p>
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
@@ -102,10 +102,10 @@ $(document).ready(function(){
 });
 function bakact(act){
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('backup_file_select')?>');
+/*vot*/ alert('<?=lang('backup_file_select')?>');
         return;
     }
-/*vot*/	if(act == 'del' && !confirm('<?=lang('backup_delete_sure')?>')){return;}
+/*vot*/ if(act == 'del' && !confirm('<?=lang('backup_delete_sure')?>')){return;}
     $("#operate").val(act);
     $("#form_bak").submit();
 }

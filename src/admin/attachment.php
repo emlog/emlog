@@ -20,14 +20,14 @@ if ($action == 'selectFile') {
         $attachnum = (int)$row['attnum'];
     }
     $maxsize = changeFileSize(Option::getAttMaxSize());
-	//Allowed attachment type
+    //Allowed attachment type
     $att_type_str = '';
     $att_type_for_muti = '';
     foreach (Option::getAttType() as $val) {
-		$att_type_str .= " $val,";
+        $att_type_str .= " $val,";
         $att_type_for_muti .= '*.'.$val.';';
     }
-	$att_type_str = rtrim($att_type_str, ',');
+    $att_type_str = rtrim($att_type_str, ',');
 
     $view_tpl = $multi ? 'upload_multi' : 'upload';
     require_once(View::getView($view_tpl));
@@ -49,13 +49,13 @@ if ($action == 'upload') {
                 $file_size = $attach['size'][$i];
 
                 $file_info = uploadFile($file_name, $file_error, $file_tmp_name, $file_size, Option::getAttType(), false, $isthumbnail);
-				//Save Attachment Information
+                //Save Attachment Information
                 $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s', 0)";
                 $query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
                 $DB->query($query);
                 $aid = $DB->insert_id();
                 $DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
-				// Write thumbnail information
+                // Write thumbnail information
                 if (isset($file_info['thum_file'])) {
                     $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
                     $query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
@@ -76,13 +76,13 @@ if ($action == 'upload_multi') {
             $isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
             $attach['name'] = Database::getInstance()->escape_string($attach['name']);
             $file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
-			// Write additional information
+            // Write additional information
             $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
             $query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
             $DB->query($query);
             $aid = $DB->insert_id();
             $DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
-			// Write thumbnail information
+            // Write thumbnail information
             if (isset($file_info['thum_file'])) {
                 $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
                 $query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
@@ -129,14 +129,14 @@ if ($action == 'del_attach') {
     $attach = $DB->fetch_array($query);
     $logid = $attach['blogid'];
     if (file_exists($attach['filepath'])) {
-/*vot*/		@unlink($attach['filepath']) or emMsg(lang('attachment_delete_error'));
+/*vot*/ @unlink($attach['filepath']) or emMsg(lang('attachment_delete_error'));
     }
 
     $query = $DB->query("SELECT * FROM ".DB_PREFIX."attachment WHERE thumfor = ".$attach['aid']);
     $thum_attach = $DB->fetch_array($query);
     if ($thum_attach) {
         if (file_exists($thum_attach['filepath'])) {
-/*vot*/			@unlink($thum_attach['filepath']) or emMsg(lang('attachment_delete_error'));
+/*vot*/     @unlink($thum_attach['filepath']) or emMsg(lang('attachment_delete_error'));
         }
         $DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
     }

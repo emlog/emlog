@@ -41,9 +41,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     <?php
     if($comment):
     foreach($comment as $key=>$value):
-	$ishide = $value['hide']=='y'?'<font color="red">['. lang('pending') .']</font>':'';
+/*vot*/ $ishide = $value['hide']=='y'?'<font color="red">['.lang('pending').']</font>':'';
     $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-/*vot*/ 	$ip = !empty($value['ip']) ? "<br />{lang('from')}: {$value['ip']}" : '';
+/*vot*/ $ip = !empty($value['ip']) ? "<br />{lang('from')}: {$value['ip']}" : '';
     $poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
     $value['content'] = str_replace('<br>',' ',$value['content']);
     $sub_content = subString($value['content'], 0, 50);
@@ -52,33 +52,33 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     ?>
      <tr>
         <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
+        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a>     <?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
         <span style="display:none; margin-left:8px;">    
-<!--vot-->	<a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->  <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
         <?php if($value['hide'] == 'y'):?>
-<!--vot-->	<a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?=lang('approve')?></a>
+<!--vot-->  <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?=lang('approve')?></a>
         <?php else: ?>
-<!--vot-->	<a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?=lang('hide')?></a>
+<!--vot-->  <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?=lang('hide')?></a>
         <?php endif;?>
-<!--vot-->	<a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('reply')?></a>
-<!--vot-->	<a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('edit')?></a>
+<!--vot-->  <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('reply')?></a>
+<!--vot-->  <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('edit')?></a>
         </span>
         </td>
         <td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
-<!--vot-->	<?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<?=lang('delete_comments_from_ip')?>" class="care">(X)</a><?php endif;?></td>
-<!--vot-->	<td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?=lang('show_post')?>"><?php echo $value['title']; ?></a></td>
+<!--vot-->  <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<?=lang('delete_comments_from_ip')?>" class="care">(X)</a><?php endif;?></td>
+<!--vot--><td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?=lang('show_post')?>"><?php echo $value['title']; ?></a></td>
      </tr>
     <?php endforeach;else:?>
-<!--vot-->  <tr><td class="tdcenter" colspan="4"><?=lang('no_comments_yet')?></td></tr>
+<!--vot--><tr><td class="tdcenter" colspan="4"><?=lang('no_comments_yet')?></td></tr>
     <?php endif;?>
     </tbody>
   </table>
     <div class="list_footer">
-<!--vot-->	<a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
-<!--vot-->	<a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
-<!--vot-->	<a href="javascript:commentact('hide');"><?=lang('hide')?></a>
-<!--vot-->	<a href="javascript:commentact('pub');"><?=lang('approve')?></a>
+<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
+<!--vot--><a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
+<!--vot--><a href="javascript:commentact('hide');"><?=lang('hide')?></a>
+<!--vot--><a href="javascript:commentact('pub');"><?=lang('approve')?></a>
     <input name="operate" id="operate" value="" type="hidden" />
     </div>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $cmnum; ?><?=lang('_comments')?>)</div> 
@@ -94,10 +94,10 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function commentact(act){
     if (getChecked('ids') == false) {
-/*vot*/		alert('<?=lang('comment_operation_select')?>');
+/*vot*/ alert('<?=lang('comment_operation_select')?>');
         return;
     }
-/*vot*/	if(act == 'del' && !confirm('<?=lang('comment_selected_delete_sure')?>')){return;}
+/*vot*/ if(act == 'del' && !confirm('<?=lang('comment_selected_delete_sure')?>')){return;}
     $("#operate").val(act);
     $("#form_com").submit();
 }

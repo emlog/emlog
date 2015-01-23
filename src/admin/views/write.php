@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<!--vot--><script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<!--vot--><script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <div class=containertitle><b><?=lang('post_write')?></b><span id="msg_2"></span></div>
 <div id="msg"></div>
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -57,7 +57,7 @@
             echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
         }
     } else {
-/*vot*/ echo <?=lang('tag_not_set')?>;
+/*vot*/ echo lang('tag_not_set');
     }
 ?>
 </div>
@@ -90,8 +90,10 @@
 </form>
 <div class=line></div>
 <script>
-loadEditor('content');
-loadEditor('excerpt');
+/*vot*/  $(function() {
+/*vot*/    KindEditor.create('textarea[name="content"]');
+/*vot*/    KindEditor.create('textarea[name="excerpt"]');
+/*vot*/  });
 $("#menu_wt").addClass('sidebarsubmenu1');
 $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
 $("#alias").keyup(function(){checkalias();});

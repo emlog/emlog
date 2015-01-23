@@ -14,7 +14,7 @@ class Log_Model {
     }
 
     /**
-	 * Add a new post to the database
+     * Add a new post to the database
      *
      * @param array $logData
      * @return int
@@ -34,7 +34,7 @@ class Log_Model {
     }
 
     /**
-	 * Update the post content
+     * Update the post content
      *
      * @param array $logData
      * @param int $blogId
@@ -50,9 +50,9 @@ class Log_Model {
     }
 
     /**
-	 * Get the number of posts with specified conditions
+     * Get the number of posts with specified conditions
      *
-	 * @param int $spot //0: foreground 1: Background
+     * @param int $spot //0: foreground 1: Background
      * @param string $hide
      * @param string $condition
      * @param string $type
@@ -72,7 +72,7 @@ class Log_Model {
     }
 
     /**
-	 * Get a Single post by ID for Admin
+     * Get a Single post by ID for Admin
      */
     function getOneLogForAdmin($blogId) {
         $timezone = Option::get('timezone');
@@ -80,7 +80,7 @@ class Log_Model {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
         $res = $this->db->query($sql);
         if ($this->db->affected_rows() < 1) {
-/*vot*/			emMsg(lang('no_permission'), './');
+/*vot*/     emMsg(lang('no_permission'), './');
         }
         $row = $this->db->fetch_array($res);
         if ($row) {
@@ -98,7 +98,7 @@ class Log_Model {
     }
 
     /**
-	 * Get a Single post by ID for homepage
+     * Get a Single post by ID for homepage
      */
     function getOneLogForHome($blogId) {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
@@ -130,7 +130,7 @@ class Log_Model {
     }
 
     /**
-	 * Get posts by conditions for Admin
+     * Get posts by conditions for Admin
      *
      * @param string $condition
      * @param string $hide_state
@@ -150,7 +150,7 @@ class Log_Model {
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
-/*vot*/			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -161,7 +161,7 @@ class Log_Model {
     }
 
     /**
-	 * Get posts by conditions for Homepage
+     * Get posts by conditions for Homepage
      *
      * @param string $condition
      * @param int $page
@@ -182,23 +182,23 @@ class Log_Model {
             $row['logid'] = $row['gid'];
             $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
             if (!empty($row['password']) && $cookiePassword != $row['password']) {
-/*vot*/				$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
+/*vot*/         $row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
             } else {
                 if (!empty($row['excerpt'])) {
-/*vot*/					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></p>';
+/*vot*/             $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></p>';
                 }
             }
             $row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
             $row['attachment'] = '';
             $row['tag'] = '';
-            $row['tbcount'] = 0;//Compatible not deleted Quote of template
+/*vot*/     $row['tbcount'] = 0;//Compatible not deleted Quote of template
             $logs[] = $row;
         }
         return $logs;
     }
 
     /**
-	 * Get a list of all pages
+     * Get a list of all pages
      *
      */
     function getAllPageList() {
@@ -207,7 +207,7 @@ class Log_Model {
         $pages = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
-/*vot*/			$row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -218,7 +218,7 @@ class Log_Model {
     }
 
     /**
-	 * Delete the post by ID
+     * Delete the post by ID
      *
      * @param int $blogId
      */
@@ -226,14 +226,14 @@ class Log_Model {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         $this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
-/*vot*/			emMsg(lang('no_permission'), './');
+/*vot*/     emMsg(lang('no_permission'), './');
         }
-		// Comments
+        // Comments
         $this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-		// Tags
+        // Tags
         $this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
         $this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-		// Attachments
+        // Attachments
         $query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
         while ($attach = $this->db->fetch_array($query)) {
             if (file_exists($attach['filepath'])) {
@@ -248,7 +248,7 @@ class Log_Model {
     }
 
     /**
-	 * Hide/Show the post by ID
+     * Hide/Show the post by ID
      *
      * @param int $blogId
      * @param string $state
@@ -262,7 +262,7 @@ class Log_Model {
     }
 
     /**
-	 * Audit/Reject the post author
+     * Audit/Reject the post author
      *
      * @param int $blogId
      * @param string $state
@@ -276,7 +276,7 @@ class Log_Model {
     }
 
     /**
-	 * Make the post date/time
+     * Make the post date/time
      *
      * @param int $timezone
      * @param string $postDate
@@ -300,7 +300,7 @@ class Log_Model {
     }
 
     /**
-	 * Update the post view count
+     * Update the post view count
      *
      * @param int $blogId
      */
@@ -309,7 +309,7 @@ class Log_Model {
     }
 
     /**
-	 * Determine whether the repeated posting
+     * Determine whether the repeated posting
      */
     function isRepeatPost($title, $time) {
         $sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -319,9 +319,9 @@ class Log_Model {
     }
 
     /**
-	 * Make Link to the nearest posts
+     * Make Link to the nearest posts
      *
-	 * @param int $date //unix Timestamp
+     * @param int $date //unix Timestamp
      * @return array
      */
     function neighborLog($date) {
@@ -338,10 +338,10 @@ class Log_Model {
     }
 
     /**
-	 * Get Random Post
-	 *
-	 * @param int $num
-	 * @return array
+     * Get Random Post
+     *
+     * @param int $num
+     * @return array
      */
     function getRandLog($num) {
         global $CACHE;
@@ -360,7 +360,7 @@ class Log_Model {
     }
 
     /**
-	 * Get Hot Posts
+     * Get Hot Posts
      */
     function getHotLog($num) {
         $sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -375,7 +375,7 @@ class Log_Model {
     }
 
     /**
-	 * Process Post alias, Prevent alias duplicated
+     * Process Post alias, Prevent alias duplicated
      *
      * @param string $alias
      * @param array $logalias_cache
@@ -397,7 +397,7 @@ class Log_Model {
     }
 
     /**
-	 * Encrypted Post access authentication
+     * Encrypted Post access authentication
      *
      * @param string $pwd
      * @param string $pwd2

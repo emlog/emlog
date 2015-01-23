@@ -18,14 +18,14 @@ if ($action == '') {
     $tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
     $tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
     $tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-/*vot*/	$tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
+/*vot*/    $tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
 
     if (isset($tplAuthor[1])) {
-/*vot*/		$tplAuthor = !empty($tplUrl[1]) ? lang('user').": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user').": {$tplAuthor[1]}";
+/*vot*/        $tplAuthor = !empty($tplUrl[1]) ? lang('user').": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user').": {$tplAuthor[1]}";
     } else{
         $tplAuthor = '';
     }
-	//Template List
+    //Template List
     $handle = @opendir(TPLS_PATH) OR die('emlog template path error!');
     $tpls = array();
     while ($file = @readdir($handle)) {
@@ -205,7 +205,7 @@ if ($action == 'upload_zip') {
         emDirect("./template.php?action=install&error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-/*vot*/		emMsg(lang('template_upload_failed'));
+/*vot*/ emMsg(lang('template_upload_failed'));
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
         emDirect("./template.php?action=install&error_a=1");

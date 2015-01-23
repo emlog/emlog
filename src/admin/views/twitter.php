@@ -45,7 +45,7 @@
 <!--vot--><p class="time"><?php echo $val['date'];?> <a href="javascript: em_confirm(<?php echo $tid;?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a> </p>
     </div>
     <div class="clear"></div>
-    <div id="r_<?php echo $tid;?>" class="r"></div>
+       <div id="r_<?php echo $tid;?>" class="r"></div>
     <div class="huifu" id="rp_<?php echo $tid;?>">
     <textarea name="reply"></textarea>
 <!--vot--><div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="<?=lang('reply')?>" /> <span style="color:#FF0000"></span></div>
@@ -57,7 +57,7 @@
 </div>
 <div id="faceWraps"></div>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>""></script>
+<script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
 $(document).ready(function(){
     $(".post a").toggle(
@@ -92,18 +92,18 @@ $(document).ready(function(){
         swf             : '../include/lib/js/uploadify/uploadify.swf',
         uploader        : 'attachment.php?action=upload_tw_img',
         cancelImage     : './views/images/cancel.png',
-/*vot*/		buttonText      : '<?=lang('image_select')?>',
+/*vot*/        buttonText      : '<?=lang('image_select')?>',
         checkExisting   : "/",
         auto            : true,
         multi           : false,
         buttonCursor    : 'pointer',
         fileTypeExts    : '*.jpg;*.png;*.gif;*.jpeg',
         queueID         : 'custom-queue',
-        queueSizeLimit	: 100,
+        queueSizeLimit    : 100,
         removeCompleted : false,
-        fileSizeLimit	: 20971520,
+        fileSizeLimit    : 20971520,
         fileObjName     : 'attach',
-		postData	: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
+        postData    : {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
         onUploadSuccess : onUploadSuccess,
         onUploadError   : onUploadError
     });
@@ -150,7 +150,7 @@ function onUploadSuccess(file, data, response){
         $("#img_name_a").text(file.name);
         $("#img_pop").html("<img src='"+data.filePath+"'/>");
     }else{
-/*vot*/		alert("<?=lang('upload_failed')?>");	
+/*vot*/        alert("<?=lang('upload_failed')?>");    
     }
 }
 function onUploadError(file, errorCode, errorMsg, errorString){
@@ -161,7 +161,7 @@ function unSelectFile(){
     $("#imgPath").val("");
     $("#img_select").show();
     $("#img_name").hide();
-/*vot*/	$("#img_name_a").text("{<?=lang('image_title')?>}");
+/*vot*/    $("#img_name_a").text("{<?=lang('image_title')?>}");
     $("#img_pop").empty();
 }
 function reply(tid, rp){
@@ -174,9 +174,9 @@ function doreply(tid){
     $.post('twitter.php?action=reply&tid='+tid+"&stamp="+timestamp(), post, function(data){
         data = $.trim(data);
         if (data == 'err1'){
-/*vot*/		  $(".huifu span").text('<?=lang('reply_length_max_140')?>');
+/*vot*/          $(".huifu span").text('<?=lang('reply_length_max_140')?>');
         }else if(data == 'err2'){
-/*vot*/		  $(".huifu span").text('<?=lang('replied_already')?>');
+/*vot*/          $(".huifu span").text('<?=lang('replied_already')?>');
         }else{
             $("#r_"+tid).append(data);
             var rnum = Number($("#"+tid+" span").text());

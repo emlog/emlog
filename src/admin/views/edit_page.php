@@ -11,7 +11,7 @@
 </div>
 <div id="post_bar">
     <div>
-<!--vot-->  <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot--><span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
         <?php doAction('adm_writelog_head'); ?>
         <span id="asmsg"></span>
         <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
@@ -23,7 +23,7 @@
 <div><textarea id="content" name="content" style="width:845px; height:460px;"><?php echo $content; ?></textarea></div>
 <div style="margin-top: 5px;">
     <span id="alias_msg_hook"></span>
-<!--vot--> <?=lang('link_alias')?>: (<?=lang('link_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('link_alias_enable')?></a>)<br />
+<!--vot--><?=lang('link_alias')?>: (<?=lang('link_alias_info')?> <a href="./seo.php" target="_blank"><?=lang('link_alias_enable')?></a>)<br />
     <input name="alias" id="alias" value="<?php echo $alias; ?>" class="input" />
 </div>
 <div style="margin-top:3px;">
@@ -44,9 +44,9 @@
 </form>
 <div class=line></div>
 <script>
-/*vot*/	$(function() {
-		KindEditor.create('textarea[name="content"]');
-	});
+/*vot*/$(function() {
+/*vot*/  KindEditor.create('textarea[name="content"]');
+/*vot*/});
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#menu_page").addClass('sidebarsubmenu1');

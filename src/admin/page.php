@@ -56,7 +56,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
     $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
     $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
     $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-/*vot*/	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft there blog id number
+/*vot*/    $pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft there blog id number
     $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
@@ -83,7 +83,7 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
     'template' => $template,
     );
 
-/*vot*/	if ($pageId > 0) {//auto-save, add into update
+/*vot*/    if ($pageId > 0) {//auto-save, add into update
         $emPage->updateLog($logData, $pageId);
     } else{
         $pageId = $emPage->addlog($logData);
@@ -98,9 +98,9 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
         case 'add':
         case 'edit':
             if ($action == 'add') {
-/*vot*/				emDirect("./page.php?active_hide_n=1");//Page publishing success
+/*vot*/         emDirect("./page.php?active_hide_n=1");//Page publishing success
             } else {
-/*vot*/				emDirect("./page.php?active_savepage=1");//Page saved successfully
+/*vot*/         emDirect("./page.php?active_savepage=1");//Page saved successfully
             }
             break;
     }

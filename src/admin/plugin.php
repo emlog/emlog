@@ -92,7 +92,7 @@ if ($action == 'upload_zip') {
         emDirect("./plugin.php?action=install&error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-/*vot*/		emMsg(lang('plugin_upload_error'));
+/*vot*/ emMsg(lang('plugin_upload_error'));
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
         emDirect("./plugin.php?action=install&error_a=1");

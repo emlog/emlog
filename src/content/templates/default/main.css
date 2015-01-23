@@ -189,4 +189,6 @@ a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
 #tw ul li .bttome .post{ font-size:12px;line-height:14px;margin:0; text-align:right; float:none;clear:both; width:610px; background:0; border:0;}
 #tw ul li .bttome .time{ float:none; margin-top:-25px;}
 #tw p .t_img{background:url(images/img.gif) no-repeat;padding: 0 7px;margin: 0 0 0 10px;}
-/*vot*/.wrap { word-wrap: break-word; white-space: pre-wrap; }
+
+/* Added by Valery Votintsev*/
+.wrap { word-wrap: break-word; white-space: pre-wrap; }

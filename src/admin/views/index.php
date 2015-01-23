@@ -45,7 +45,7 @@
 </div>
 <script>
 $(document).ready(function(){
-/*vot*/	$("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
+/*vot*/    $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
     $.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
     function(data){
         $("#admindex_msg ul").html("");
@@ -55,15 +55,15 @@ $(document).ready(function(){
                 image = "<a href=\""+item.url+"\" target=\"_blank\" title=\""+item.title+"\"><img src=\""+item.image+"\"></a><br />";
             }
 //vot: Translate Title
-/*vot*/			item.title = item.title.replace(
-					new RegExp('发布', 'g'),
-					'<?=lang('released')?>'
-				);
+/*vot*/            item.title = item.title.replace(
+/*vot*/             new RegExp('发布', 'g'),
+/*vot*/             '<?=lang('released')?>'
+/*vot*/         );
 //vot: Translate Date
-/*vot*/			item.date = item.date.replace(
-					new RegExp('(^\\d+)年(\\d+)月(\\d+)日', 'g'),
-					'20'+'$1'+'-'+'$2'+'-'+'$3'
-				);
+/*vot*/            item.date = item.date.replace(
+/*vot*/             new RegExp('(^\\d+)年(\\d+)月(\\d+)日', 'g'),
+/*vot*/             '20'+'$1'+'-'+'$2'+'-'+'$3'
+/*vot*/         );
 
             $("#admindex_msg ul").append("<li class=\"msg_type_"+item.type+"\">"+image+"<span>"+item.date+"</span><a href=\""+item.url+"\" target=\"_blank\">"+item.title+"</a></li>");
         });

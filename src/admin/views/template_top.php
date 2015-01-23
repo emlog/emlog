@@ -13,46 +13,46 @@
 <form action="configure.php?action=mod_config" method="post" name="input" id="input">
 <!--vot--><div class="topimg_line"><?=lang('images_optional')?></div>
 <div id="topimg_default">
-	<?php 
-	foreach ($topimgs as $val): 
-	$imgpath = $val;
-	if(is_array($val)) {
-		$imgpath = $val['path'];
-	}
-	$imgpath_url = urlencode($imgpath);
-	$mini_imgpath = str_replace('.jpg', '_mini.jpg', $imgpath);
-	if (!file_exists('../' . $mini_imgpath)) {
-		continue;
-	}
-	?>
-	<div>
+    <?php 
+    foreach ($topimgs as $val): 
+    $imgpath = $val;
+    if(is_array($val)) {
+        $imgpath = $val['path'];
+    }
+    $imgpath_url = urlencode($imgpath);
+    $mini_imgpath = str_replace('.jpg', '_mini.jpg', $imgpath);
+    if (!file_exists('../' . $mini_imgpath)) {
+        continue;
+    }
+    ?>
+    <div>
 <!--vot--><a href="./template.php?action=update_top&top=<?php echo $imgpath_url; ?>" title="<?=lang('image_click_to_use')?>" >
-	<img src="../<?php echo $mini_imgpath; ?>" width="230px" height="48px" class="topTH" />
-	</a>
-	<?php if (!is_array($val)):?>
-	<li class="admin_style_info" >
+    <img src="../<?php echo $mini_imgpath; ?>" width="230px" height="48px" class="topTH" />
+    </a>
+    <?php if (!is_array($val)):?>
+    <li class="admin_style_info" >
 <!--vot--><a href="./template.php?action=del_top&top=<?php echo $imgpath_url; ?>" class="care"><?=lang('delete')?></a>
-	</li>
-	<?php endif;?>
-	</div>
-	<?php endforeach; ?>
+    </li>
+    <?php endif;?>
+    </div>
+    <?php endforeach; ?>
 
     <div>
 <!--vot--><a href="./template.php?action=update_top" title="<?=lang('top_image_not_use')?>" >
-	<img src="../content/templates/default/images/null.jpg" width="230px" height="48px" class="topTH" />
-	</a>
+    <img src="../content/templates/default/images/null.jpg" width="230px" height="48px" class="topTH" />
+    </a>
 <!--vot--><li class="admin_style_info" ><?=lang('top_image_not_use')?></li>
-	</div>
+    </div>
 </div>
 </form>
 <!--vot--><div class="topimg_line"><?=lang('top_image_custom')?></div>
 <form action="./template.php?action=upload_top" method="post" enctype="multipart/form-data" >
 <div id="topimg_custom">
-	<li></li>
-	<li>
-	<input name="topimg" type="file" />
+    <li></li>
+    <li>
+    <input name="topimg" type="file" />
 <!--vot--><input type="submit" value="<?=lang('upload')?>" class="button" /> <?=lang('top_image_upload_prompt')?>
-	</li>
+    </li>
 </div>
 </form>
 <script>

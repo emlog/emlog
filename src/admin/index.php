@@ -22,10 +22,10 @@ if ($action == '') {
 			$ver_info = gd_info();
 			$gd_ver = $ver_info['GD Version'];
 		} else{
-/*vot*/			$gd_ver = lang('supported');
-		}
+/*vot*/            $gd_ver = lang('supported');
+        }
 	} else{
-/*vot*/		$gd_ver = lang('not_supported');
+/*vot*/        $gd_ver = lang('not_supported');
 	}
 
 	include View::getView('header');
@@ -91,5 +91,5 @@ if ($action == 'update' && ROLE == ROLE_ADMIN) {
 }
 //phpinfo()
 if ($action == 'phpinfo') {
-/*vot*/	@phpinfo() OR emMsg(lang('phpinfo_disabled'));
+/*vot*/    @phpinfo() OR emMsg(lang('phpinfo_disabled'));
 }
