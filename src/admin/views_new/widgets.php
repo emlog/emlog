@@ -2,7 +2,7 @@
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-ui.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>setTimeout(hideActived,2600);</script>
 <div class="containertitle"><b>侧边栏组件管理</b>
-<?php if(isset($_GET['activated'])):?><span class="actived">设置保存成功</span><?php endif;?></div>
+<?php if(isset($_GET['activated'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?></div>
 <div class=line></div>
 <div class="widgetpage">
 <div id="adm_widget_list">

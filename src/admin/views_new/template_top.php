@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle"><b>自定义顶部图片</b>
-<?php if(isset($_GET['activated'])):?><span class="actived">顶部图片更换成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">裁剪图片失败</span><?php endif;?>
+<?php if(isset($_GET['activated'])):?><span class="alert alert-success">顶部图片更换成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">裁剪图片失败</span><?php endif;?>
 </div>
 <div class=line></div>
 <?php if(!$topimg || !file_exists('../' . $topimg)): ?>

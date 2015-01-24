@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle"><b>微语</b>
-<?php if(isset($_GET['active_t'])):?><span class="actived">发布成功</span><?php endif;?>
-<?php if(isset($_GET['active_set'])):?><span class="actived">设置保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="actived">微语删除成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">微语内容不能为空</span><?php endif;?>
+<?php if(isset($_GET['active_t'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
+<?php if(isset($_GET['active_set'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">微语删除成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
 <div id="tw">

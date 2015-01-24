@@ -1,9 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle"><b>页面管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除页面成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide_n'])):?><span class="actived">发布页面成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide_y'])):?><span class="actived">禁用页面成功</span><?php endif;?>
-<?php if(isset($_GET['active_pubpage'])):?><span class="actived">页面保存成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除页面成功</span><?php endif;?>
+<?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success">发布页面成功</span><?php endif;?>
+<?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success">禁用页面成功</span><?php endif;?>
+<?php if(isset($_GET['active_pubpage'])):?><span class="alert alert-success">页面保存成功</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
@@ -53,7 +53,7 @@
 <a href="javascript:pageact('hide');">转为草稿</a> | 
 <a href="javascript:pageact('pub');">发布</a>
 </div>
-<div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new">新建页面+</a></div>
+<div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new" class="btn btn-success">新建页面+</a></div>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>个页面)</div>
 <script>
 $(document).ready(function(){

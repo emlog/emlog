@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle"><b>标签管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除标签成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改标签成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的标签</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除标签成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改标签成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的标签</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">

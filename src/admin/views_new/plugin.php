@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle"><b>插件管理</b><div id="msg"></div>
-<?php if(isset($_GET['activate_install'])):?><span class="actived">插件上传成功，请激活使用</span><?php endif;?>
-<?php if(isset($_GET['active'])):?><span class="actived">插件激活成功</span><?php endif;?>
-<?php if(isset($_GET['activate_del'])):?><span class="actived">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_error'])):?><span class="error">插件激活失败</span><?php endif;?>
-<?php if(isset($_GET['inactive'])):?><span class="actived">插件禁用成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查插件文件权限</span><?php endif;?>
+<?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif;?>
+<?php if(isset($_GET['active'])):?><span class="alert alert-success">插件激活成功</span><?php endif;?>
+<?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+<?php if(isset($_GET['active_error'])):?><span class="alert alert-danger">插件激活失败</span><?php endif;?>
+<?php if(isset($_GET['inactive'])):?><span class="alert alert-success">插件禁用成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">删除失败，请检查插件文件权限</span><?php endif;?>
 </div>
 <div class=line></div>
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
