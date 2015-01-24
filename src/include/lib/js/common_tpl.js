@@ -95,7 +95,7 @@ function reply(url, tid) {
 			case 'succ1':
 				rp = '(回复成功，等待管理员审核)';
 				break;
-			case default:
+			default:
 				r.innerHTML += obj.responseText;
 				rn.innerHTML = Number(rn.innerHTML) + 1;
 				break;
