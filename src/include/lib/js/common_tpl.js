@@ -139,21 +139,18 @@ function reply(url, tid) {
 }
 
 function re(tid, rp) {
-	var rtext=id('rtext_' + tid).value = rp;
+	id('rtext_' + tid).value = rp;
 	focusEle('rtext_' + tid);
 }
 
 function commentReply(pid, c) {
-	var response = id('comment-post');
 	id('comment-pid').value = pid;
 	id('cancel-reply').style.display = '';
-	c.parentNode.parentNode.appendChild(response);
+	c.parentNode.parentNode.appendChild(id('comment-post'));
 }
 
 function cancelReply() {
-	var commentPlace = id('comment-place'),
-		response = id('comment-post');
 	id('comment-pid').value = 0;
 	id('cancel-reply').style.display = 'none';
-	commentPlace.appendChild(response);
+	id('comment-place').appendChild(id('comment-post'));
 }
