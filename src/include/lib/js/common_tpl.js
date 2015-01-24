@@ -1,14 +1,17 @@
+function id(id) {
+	return document.getElementById(id) || null;
+}
 function focusEle(ele){
-	try {document.getElementById(ele).focus();}
+	try {id(ele).focus();}
 	catch(e){}
 }
 function updateEle(ele,content){
-	document.getElementById(ele).innerHTML = content;
+	id(ele).innerHTML = content;
 }
 function timestamp(){
 	return new Date().getTime();
 }
-var XMLHttp = {  
+var XMLHttp = {
 	_objPool: [],
 	_getInstance: function () {
 		for (var i = 0; i < this._objPool.length; i ++) {
@@ -35,7 +38,7 @@ var XMLHttp = {
 			objXMLHttp.readyState = 0;
 			objXMLHttp.addEventListener('load',function(){
 				objXMLHttp.readyState = 4;
-				if (typeof objXMLHttp.onreadystatechange == "function") {  
+				if (typeof objXMLHttp.onreadystatechange == "function") {
 					objXMLHttp.onreadystatechange();
 				}
 			}, false);
@@ -54,8 +57,8 @@ var XMLHttp = {
 				open(method, url, true);
 				setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 				send(data);
-				onreadystatechange = function () {  
-					if (objXMLHttp.readyState == 4 && (objXMLHttp.status == 200 || objXMLHttp.status == 304)) {  
+				onreadystatechange = function () {
+					if (objXMLHttp.readyState == 4 && (objXMLHttp.status == 200 || objXMLHttp.status == 304)) {
 						callback(objXMLHttp);
 					}
 				}
@@ -71,8 +74,8 @@ function sendinfo(url,node){
 }
 function loadr(url,tid){
 	url = url+"&stamp="+timestamp();
-	var r=document.getElementById("r_"+tid);
-	var rp=document.getElementById("rp_"+tid);
+	var r=id("r_"+tid);
+	var rp=id("rp_"+tid);
 	if (r.style.display=="block"){
 		r.style.display="none";
 		rp.style.display="none";
@@ -83,12 +86,12 @@ function loadr(url,tid){
 	}
 }
 function reply(url,tid){
-	var rtext=document.getElementById("rtext_"+tid).value;
-	var rname=document.getElementById("rname_"+tid).value;
-	var rcode=document.getElementById("rcode_"+tid).value;
-	var rmsg=document.getElementById("rmsg_"+tid);
-	var rn=document.getElementById("rn_"+tid);
-	var r=document.getElementById("r_"+tid);
+	var rtext=id("rtext_"+tid).value;
+	var rname=id("rname_"+tid).value;
+	var rcode=id("rcode_"+tid).value;
+	var rmsg=id("rmsg_"+tid);
+	var rn=id("rn_"+tid);
+	var r=id("r_"+tid);
 	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
 	XMLHttp.sendReq('POST',url,data,function(obj){
 		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
@@ -101,18 +104,18 @@ function reply(url,tid){
 		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){
-	var rtext=document.getElementById("rtext_"+tid).value = rp;
+	var rtext=id("rtext_"+tid).value = rp;
 	focusEle("rtext_"+tid);
 }
 function commentReply(pid,c){
-	var response = document.getElementById('comment-post');
-	document.getElementById('comment-pid').value = pid;
-	document.getElementById('cancel-reply').style.display = '';
+	var response = id('comment-post');
+	id('comment-pid').value = pid;
+	id('cancel-reply').style.display = '';
 	c.parentNode.parentNode.appendChild(response);
 }
 function cancelReply(){
-	var commentPlace = document.getElementById('comment-place'),response = document.getElementById('comment-post');
-	document.getElementById('comment-pid').value = 0;
-	document.getElementById('cancel-reply').style.display = 'none';
+	var commentPlace = id('comment-place'),response = id('comment-post');
+	id('comment-pid').value = 0;
+	id('cancel-reply').style.display = 'none';
 	commentPlace.appendChild(response);
 }
