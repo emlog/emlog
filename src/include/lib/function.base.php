@@ -81,38 +81,38 @@ function getBlogUrl() {
  */
 function realUrl() {
     static $real_url = NULL;
-    
+
     if ($real_url !== NULL) {
         return $real_url;
     }
-    
+
     $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
     $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
     $script_path = str_replace('\\', '/', $script_path);
     $path_element = explode('/', $script_path);
-    
+
     $this_match = '';
     $best_match = '';
-    
+
     $current_deep = 0;
     $max_deep = count($path_element);
-    
+
     while($current_deep < $max_deep) {
         $this_match = $this_match . $path_element[$current_deep] . DIRECTORY_SEPARATOR;
-        
+
         if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
             $best_match = $this_match;
         }
-        
+
         $current_deep++;
     }
-    
+
     $best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
     $real_url  = $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $real_url .= $_SERVER["SERVER_NAME"];
     $real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
     $real_url .= $best_match;
-    
+
     return $real_url;
 }
 
@@ -150,7 +150,7 @@ function emLoadJQuery() {
         $isJQueryLoaded = true;
 
         function loadJQuery() {
-            echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
+            echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.11.2.js" type="text/javascript"></script>';
         }
 
     }
@@ -473,8 +473,8 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
- * @return array 文件数据 索引 
- * 
+ * @return array 文件数据 索引
+ *
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
     if ($errorNum == 1) {
@@ -545,7 +545,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
         }
         @chmod($attachpath, 0777);
     }
-    
+
     // 如果附件是图片需要提取宽高
     if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
         $size = getimagesize($file_info['file_path']);
@@ -750,7 +750,7 @@ function emStrtotime($timeStr) {
 function getMonthDayNum($month, $year) {
     $month = (int)$month;
     $year = (int)$year;
-    
+
     $months_map = array(1=>31, 3=>31, 4=>30, 5=>31, 6=>30, 7=>31, 8=>31, 9=>30, 10=>31, 11=>30, 12=>31);
     if (array_key_exists($month, $months_map)) {
         return $months_map[$month];
@@ -961,7 +961,7 @@ EOT;
 
 /**
  * 显示404错误页面
- * 
+ *
  */
 function show_404_page() {
     if (is_file(TEMPLATE_PATH . '404.php')) {
@@ -1085,6 +1085,6 @@ if(!function_exists('hash_hmac')) {
     $ct['wmls'] = 'text/vnd.wap.wmlscript';
     $ct['xsl'] = 'text/xml';
     $ct['xml'] = 'text/xml';
-    
+
     return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }
