@@ -74,8 +74,8 @@ function sendinfo(url,node){
 }
 function loadr(url,tid){
 	url = url+"&stamp="+timestamp();
-	var r=id("r_"+tid);
-	var rp=id("rp_"+tid);
+	var r=id("r_"+tid),
+		rp=id("rp_"+tid);
 	if (r.style.display=="block"){
 		r.style.display="none";
 		rp.style.display="none";
@@ -86,13 +86,13 @@ function loadr(url,tid){
 	}
 }
 function reply(url,tid){
-	var rtext=id("rtext_"+tid).value;
-	var rname=id("rname_"+tid).value;
-	var rcode=id("rcode_"+tid).value;
-	var rmsg=id("rmsg_"+tid);
-	var rn=id("rn_"+tid);
-	var r=id("r_"+tid);
-	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+	var rtext=id("rtext_"+tid).value,
+		rname=id("rname_"+tid).value,
+		rcode=id("rcode_"+tid).value,
+		rmsg=id("rmsg_"+tid),
+		rn=id("rn_"+tid),
+		r=id("r_"+tid),
+		data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
 	XMLHttp.sendReq('POST',url,data,function(obj){
 		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
 		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
