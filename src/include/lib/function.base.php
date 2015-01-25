@@ -33,8 +33,7 @@ function doStripslashes() {
  * 递归去除转义字符
  */
 function stripslashesDeep($value) {
-    $value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
-    return $value;
+    return is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
 }
 
 /**
@@ -45,11 +44,8 @@ function stripslashesDeep($value) {
  */
 function htmlClean($content, $nl2br = true) {
     $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
-    if ($nl2br) {
-        $content = nl2br($content);
-    }
-    $content = str_replace('  ', '&nbsp;&nbsp;', $content);
-    $content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
+	$nl2br && $content = nl2br($content);
+    $content = str_replace(array('  ', "\t"), array('&nbsp;&nbsp;', '&nbsp;&nbsp;&nbsp;&nbsp;'), $content);
     return $content;
 }
 
