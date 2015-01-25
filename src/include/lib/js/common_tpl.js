@@ -49,7 +49,7 @@ function sendinfo(url, node) {
 function loadr(url, tid) {
 	url = url + '&stamp=' + timestamp();
 	var r = id('r_' + tid),
-		rp = id('rp_' + tid);
+		rp = id('rp_' + tid) || r;
 	if(r.style.display == 'block') {
 		r.style.display = 'none';
 		rp.style.display = 'none';
