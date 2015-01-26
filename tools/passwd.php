@@ -1,7 +1,8 @@
 <?php
 /**
- * emlog密码重置工具
+ * emlog Password Reset Tool
  * @copyright (c) Emlog All Rights Reserved
+ * Modified by Valery Votintsev, codersclub.org
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));
@@ -45,14 +46,14 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 14px;line-height:15
 <body>
 <form name="form1" method="post" action="passwd.php?action=chpwd">
 <div class="main">
-<p class="title">管理员密码重置</p>
+<p class="title">Reset Administrator Password</p>
 <div class="b">
 <p class="title2"></p>
-<p class="center">你确定要将管理员 <span class="notice"><?php echo $user_name;?></span> 的密码重置为<span class="notice"><input name="passwd" type="text" class="input" value="123456"></span> 吗？</p>
+<p class="center">Are you sure you want the administrator <span class="notice"><?php echo $user_name;?></span> password must be reset to <span class="notice"><input name="passwd" type="text" class="input" value="123456"></span> ?</p>
 </div>
 <div>
 <p class="center">
-<input type="submit" class="submit" value="确定重置">
+<input type="submit" class="submit" value="OK Reset">
 </p>
 </div>
 <p class="title2"></p>
@@ -67,9 +68,9 @@ if($act == 'chpwd'){
 	$adminpw = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 
 	if($adminpw == ''){
-		emMsg('密码不能为空!');
-	}elseif(strlen($adminpw) < 6){
-		emMsg('登录密码不得小于6位');
+/*vot*/		emMsg('Password can not be empty!');
+/*vot*/	}elseif(strlen($adminpw) < 5){
+/*vot*/		emMsg('Password should not be less than 5 characters');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
@@ -78,15 +79,14 @@ if($act == 'chpwd'){
 	$sql = "update ".DB_PREFIX."user set password='$adminpw_hash'  WHERE uid=1";
 	$DB->query($sql);
 
-	$result = "
-		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜！你的管理员密码已重置!</p>
-		<p><b>用户名</b>：{$user_name}</p>
-		<p><b>新的密码</b>：$adminpw</p>";
+/*vot*/	$result = "
+		<p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">Congratulations! Your administrator password has been reset!</p>
+		<p><b>Username</b>: {$user_name}</p>
+		<p><b>New password</b>: $adminpw</p>";
 
 	if (DEL_INSTALLER === 1 && !@unlink('./passwd.php') || DEL_INSTALLER === 0) {
-	    $result .= '<p style="color:red;margin:10px 20px;">警告：请手动删除根目录下安装文件：passwd.php</p> ';
+/*vot*/	    $result .= '<p style="color:red;margin:10px 20px;">Warning: Please delete manually the files in the installation root directory: passwd.php</p> ';
 	}
-	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+/*vot*/	$result .= "<p style=\"text-align:right;\"><a href=\"./\">Go to Home</a> | <a href=\"./admin/\">Go to AdminCP</a></p>";
 	emMsg($result, 'none');
 }
-?>
