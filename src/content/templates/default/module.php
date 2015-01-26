@@ -5,7 +5,7 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 <?php
-//widget：blogger
+//widget: blogger
 function widget_blogger($title){
     global $CACHE;
     $user_cache = $CACHE->readCache('user');
