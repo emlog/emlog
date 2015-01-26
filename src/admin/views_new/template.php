@@ -2,7 +2,7 @@
 <div class="containertitle2">
 <a class="navi3" href="./template.php">当前模板</a>
 <a class="navi4" href="./template.php?action=install">安装模板</a>
-<?php if(isset($_GET['activated'])):?><span class="actived">模板更换成功</span><?php endif;?>
+<?php if(isset($_GET['activated'])):?><span class="alert alert-success">模板更换成功</span><?php endif;?>
 </div>
 <?php if(!$nonceTplData): ?>
 <div class="error_msg">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div>
@@ -25,9 +25,9 @@
 <div class="containertitle2">
 <span class="navi3">模板库 (<?php echo $tplnums; ?>)</span>
 <a name="tpllib"></a>
-<?php if(isset($_GET['activate_install'])):?><span class="actived">模板上传成功</span><?php endif;?>
-<?php if(isset($_GET['activate_del'])):?><span class="actived">删除模板成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">删除失败，请检查模板文件权限</span><?php endif;?>
+<?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">模板上传成功</span><?php endif;?>
+<?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除模板成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">删除失败，请检查模板文件权限</span><?php endif;?>
 </div>
 <table class="table table-striped table-bordered table-hover dataTable no-footer">
 <?php 

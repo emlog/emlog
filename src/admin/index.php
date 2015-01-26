@@ -89,7 +89,3 @@ if ($action == 'update' && ROLE == ROLE_ADMIN) {
 	$CACHE->updateCache();
 	exit('succ');
 }
-//phpinfo()
-if ($action == 'phpinfo') {
-/*vot*/    @phpinfo() OR emMsg(lang('phpinfo_disabled'));
-}

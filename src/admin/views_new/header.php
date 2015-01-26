@@ -95,6 +95,7 @@
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="twitter.php" id="menu_tw"><i class="fa fa-comment fa-fw"></i> 微语</a></li>
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
+                            <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> 链接</a></li>
                             <li id="menu_category_view" class="">
                                 <a href="#"><i class="fa fa-windows fa-fw"></i> 外观<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_view">

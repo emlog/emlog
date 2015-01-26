@@ -24,8 +24,21 @@ if ($action == '') {
 }
 //Display a new page form 
 if ($action == 'new') {
+
+    $pageData = array(
+        'containertitle' => '新建页面',
+        'pageId' => -1,
+        'title' => '',
+        'content' => '',
+        'alias' => '', 
+        'hide' => '',
+        'template' => 'page',
+        'is_allow_remark' => 'n',
+    );
+    extract($pageData);
+    
     include View::getView('header');
-    require_once(View::getView('add_page'));
+    require_once(View::getView('page'));
     include View::getView('footer');
     View::output();
 }
@@ -33,23 +46,20 @@ if ($action == 'new') {
 if ($action == 'mod') {
     $emPage = new Log_Model();
 
+    $containertitle = '编辑页面';
     $pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
     $pageData = $emPage->getOneLogForAdmin($pageId);
     extract($pageData);
 
-    $pageUrl = isset($navibar[$pageId]['url']) ? $navibar[$pageId]['url'] : '' ;
-    $blank = isset($navibar[$pageId]['is_blank']) ? $navibar[$pageId]['is_blank'] : '' ;
-
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
-    $is_blank = $blank == '_blank' ? 'checked="checked"' : '';
 
     include View::getView('header');
-    require_once(View::getView('edit_page'));
+    require_once(View::getView('page'));
     include View::getView('footer');
     View::output();
 }
 //Save Page
-if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
+if ($action == 'save' || $action == 'autosave') {
     $emPage = new Log_Model();
     $Navi_Model = new Navi_Model();
 
@@ -65,7 +75,6 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
 
     $postTime = $emPage->postDate(Option::get('timezone'));
 
-    //check alias
     if (!empty($alias)) {
         $logalias_cache = $CACHE->readCache('logalias');
         $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
@@ -83,10 +92,13 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
     'template' => $template,
     );
 
-/*vot*/    if ($pageId > 0) {//auto-save, add into update
+    $directUrl = '';
+    if ($pageId > 0) {
         $emPage->updateLog($logData, $pageId);
+        $directUrl = './page.php?active_pubpage=1';
     } else{
         $pageId = $emPage->addlog($logData);
+        $directUrl = './page.php?active_hide_n=1';
     }
 
     $CACHE->updateCache(array('options', 'logalias'));
@@ -95,13 +107,8 @@ if ($action == 'add' || $action == 'edit' || $action == 'autosave') {
         case 'autosave':
             echo "autosave_gid:{$pageId}_df:0_";
             break;
-        case 'add':
-        case 'edit':
-            if ($action == 'add') {
-/*vot*/         emDirect("./page.php?active_hide_n=1");//Page publishing success
-            } else {
-/*vot*/         emDirect("./page.php?active_savepage=1");//Page saved successfully
-            }
+        case 'save':
+            emDirect($directUrl);
             break;
     }
 }
