@@ -1,10 +1,11 @@
 <?php
 /**
- * emlog在线安装脚本
+ * emlog Online installation script
  * @copyright (c) Emlog All Rights Reserved
+ * Modified by Valery Votintsev, codersclub.org
  */
 if (version_compare(phpversion(), '5.2', '<')) {
-	die('PHP版本必须高于5.2才能使用本安装程序.');
+/*vot*/	die('PHP Version must be higher than 5.2 to use this installer.');
 }
 header('Content-Type: text/html; charset=utf-8');
 error_reporting(E_ALL);
@@ -16,7 +17,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 if ($action == 'go') {
 	$emlog_zip = $_POST['emlog_zip'];
 	if (empty($emlog_zip)) {
-		die('压缩包地址为空');
+/*vot*/		die('Compressed packet address is empty');
 	}
 	$http = null;
 	try {
@@ -28,17 +29,17 @@ if ($action == 'go') {
 			try {
 				$http = Http::factory($emlog_zip, Http::TYPE_STREAM);
 			} catch (Exception $e) {
-				die('您空间的PHP不支持远程下载.');
+/*vot*/				die('Your PHP does not support remote downloading.');
 			}
 		}
 	}
 	if (!$http) {
-		die('您空间的PHP不支持远程下载.');
+/*vot*/		die('Your PHP does not support remote downloading.');
 	}
 	try {
 		$data = $http->send();
 	} catch (Exception $e) {
-		echo '下载EMLOG压缩包时出现错误: <br>';
+/*vot*/		echo 'An error occurred while downloading EMLOG archive: <br>';
 		echo $e->getMessage();
 		die;
 	}
@@ -55,7 +56,7 @@ if ($action == 'go') {
 			unlink(__FILE__);
 			header('Location: install.php');
 		} else {
-			die('压缩包解压缩失败，请尝试重新下载安装.');
+/*vot*/			die('Decompress compressed file failed, Please try to download and install again.');
 		}
 	}
 	exit();
@@ -65,7 +66,7 @@ if ($action == 'go') {
 <html lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>emlog在线安装工具</title>
+		<title>emlog Online Installation Tool</title>
 		<style type="text/css">
 			<!--
 			body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
@@ -86,18 +87,18 @@ if ($action == 'go') {
 	<body>
 		<form id="submit_form" method="post" action="?action=go">
 			<div class="main">
-				<p class="title">EMLOG在线安装程序</p>
+				<p class="title">EMLOG Online Installer</p>
 				<div id="loading_panel">
-					正在加载EMLOG版本信息......
+					Loading EMLOG version......
 				</div>
 				<div id="download_panel">
-					<p class="title2">EMLOG安装包下载点选择</p>
+					<p class="title2">Select the EMLOG installation package to download</p>
 					<?php
 					$can_go = true;
 					if ( !is_writable(DOC_ROOT)):
 						$can_go = false;
 					?>
-					<p style="color:red">您当前目录<?php echo DOC_ROOT?>没有写入权限，程序无法安装.</p>
+					<p style="color:red">Your current directory <?php echo DOC_ROOT?> have no write permission, Program can not be installed.</p>
 					<?php
 					endif;
 					?>
@@ -105,18 +106,18 @@ if ($action == 'go') {
 					if ( !class_exists('ZipArchive')):
 						$can_go = false;
 					?>
-					<p style="color:red">PHP的Zip文件支持没有开启，程序无法安装.</p>
+					<p style="color:red">PHP Zip support is not turned on, Program can not be installed.</p>
 					<?php
 					endif;
 					?>
-					<p>当前EMLOG版本: <span id="latest_version"></span></p>
+					<p>EMLOG current version: <span id="latest_version"></span></p>
 					<div id="versions">
 					
 					</div>
 				</div>
 				<div>
 					<p class="foot">
-						<input type="submit" class="submit" id="start" value="开始安装emlog" <?php ! $can_go AND print 'disabled'?>>
+						<input type="submit" class="submit" id="start" value="Start the emlog installation" <?php ! $can_go AND print 'disabled'?>>
 					</p>
 				</div>
 			</div>
@@ -140,12 +141,12 @@ if ($action == 'go') {
 		}
 		$('start').onclick = function() {
 			this.setAttribute('disabled', true);
-			this.value = '正在下载emlog....';
+/*vot*/			this.value = 'Downloading emlog....';
 			$('submit_form').submit();
 		}; 
 		
 		timeout = window.setTimeout(function() {
-			$('loading_panel').innerHTML = '<span>EMLOG版本获取失败, 请刷新页面再试.</span>';
+/*vot*/			$('loading_panel').innerHTML = '<span>Getting EMLOG version failed, Please refresh the page and try again.</span>';
 		}, <?php echo TIMEOUT * 1000?>);
 		</script>
 		<script src="http://www.emlog.net/services/version.php"></script>
@@ -178,43 +179,43 @@ function rrmdir($dir) {
 
 class Http {
 	/**
-	 * @var 使用 CURL 
+	 * @var Use CURL 
 	 */
 
 	const TYPE_CURL = 1;
 	/**
-	 * @var 使用 Socket 
+	 * @var Use Socket 
 	 */
 	const TYPE_SOCK = 2;
 	/**
-	 * @var 使用 Stream 
+	 * @var Use Stream 
 	 */
 	const TYPE_STREAM = 3;
 
 	/**
-	 * http 静态实例
+	 * http Static instance
 	 */
 	protected static $_instance = null;
 
 	/**
-	 * 保证对象不被clone 
+	 * Ensure that the object is not cloned
 	 */
 	protected function __clone() {
 		
 	}
 
 	/**
-	 * 构造函数 
+	 * Constructor
 	 */
 	protected function __construct() {
 		
 	}
 
 	/**
-	 * HTTP工厂操作方法 
+	 * HTTP Factory operation method
 	 * 
-	 * @param string $url 需要访问的URL 
-	 * @param int $type 需要使用的HTTP类 
+	 * @param string $url Need to access URL 
+	 * @param int $type Need to access HTTP type 
 	 * @return object 
 	 */
 	public static function factory($url = '', $type = self::TYPE_SOCK) {
@@ -270,7 +271,7 @@ class Http {
 abstract class Http_Basic {
 
 	/**
-	 * @var object 对象单例 
+	 * @var object Singleton object
 	 */
 	static $_instance = NULL;
 
@@ -501,7 +502,7 @@ class Http_Curl extends Http_Basic {
 		$data = curl_exec($ch);
 		if ($err = curl_error($ch)) {
 			curl_close($ch);
-			throw new Exception(__CLASS__ . " 请求错误: " . $err);
+/*vot*/			throw new Exception(__CLASS__ . " Request Error: " . $err);
 		}
 		curl_close($ch);
 		return $data;
@@ -580,7 +581,7 @@ class Http_Sock extends Http_Basic {
 		// 连接服务器发送请求数据  
 		$ip = gethostbyname($host);
 		if (!($fp = fsockopen($ip, $port, $errno, $errstr, $timeout))) {
-			throw new Exception(__CLASS__ . ": 无法连接到 $host:$port, 错误代码:$errno, 调试信息:$errstr");
+/*vot*/			throw new Exception(__CLASS__ . ": Unable to connect to $host:$port, Error Code: $errno, Debug info: $errstr");
 		}
 
 		fputs($fp, $header);
@@ -693,10 +694,9 @@ class Http_Stream extends Http_Basic {
 		// 发送数据返回  
 		$context = stream_context_create($opts);
 		if (($buf = file_get_contents($this->uri, null, $context)) === false) {
-			throw new Exception(__CLASS__ . ": file_get_contents(" . $this->uri . ") 失败");
+/*vot*/			throw new Exception(__CLASS__ . ": file_get_contents(" . $this->uri . ") Failure");
 		}
 		return $buf;
 	}
 
 }
-?>
