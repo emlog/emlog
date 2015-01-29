@@ -13,7 +13,7 @@ if (!defined('EMLOG_ROOT')) {
                     <i class="fa fa-laptop fa-fw"></i> 站点信息
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
-                    <ul class="timeline">
+                    <ul>
                         <li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条微语</li>
                         <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
                         <li>PHP版本：<?php echo $php_ver; ?></li>
@@ -31,7 +31,7 @@ if (!defined('EMLOG_ROOT')) {
                     <i class="fa fa-volume-down fa-fw"></i> 官方消息
                 </div>
                 <div class="panel-body" id="admindex_msg">
-                    <ul class="timeline"></ul>
+                    <ul></ul>
                 </div>
             </div>
         </div>
