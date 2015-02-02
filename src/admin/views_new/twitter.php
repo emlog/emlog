@@ -6,14 +6,15 @@
 <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
 </div>
 <div class=line></div>
-<div id="tw">
+<div class="row">
+<div id="tw" class="row col-lg-6">
     <div class="form-group">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <div class="msg">你还可以输入140字</div>
     <div class="box_1"><textarea name="t" class="box form-control"></textarea></div>
-    <div class="tbutton btn btn-primary"><input type="submit" value="发布" onclick="return checkt();"/></div>
+    <div class="tbutton"><input type="submit" value="发布" class="btn btn-primary" onclick="return checkt();"/></div>
     <img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
@@ -53,6 +54,7 @@
     <?php endforeach;?>
      <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
     </ul>
+</div>
 </div>
 <div id="faceWraps"></div>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>

@@ -413,8 +413,6 @@ table.dataTable thead .sorting:after {
 
 
 
-
-
 /*main.css*/
 li {list-style:none;}
 #mainpage {
@@ -785,9 +783,7 @@ textarea {
     letter-spacing:1px;
     padding:8px 0px 8px 23px;
 }
-#tw {
-    width:600px;
-}
+//微语
 #tw .main_img {
     border:1px #2772ae solid;
     float:left;
@@ -799,7 +795,6 @@ textarea {
     padding-left:7px;
 }
 #tw .box {
-    width:600px;
     padding:5px;
     height:90px;
     line-height:1.4;
@@ -821,8 +816,6 @@ textarea {
 #tw .tbutton {
     margin:5px 0px 0px 5px;
     float:left;
-    width: 100px;
-    height: 36px;
 }
 #tw .twImg{
     float:left;
@@ -844,17 +837,6 @@ textarea {
     position: absolute;
     bottom: 10px;
     z-index: 120;
-}
-#tw .tbutton input {
-    background:url(../images/weibe_button.gif) no-repeat;
-    border:0;
-    cursor:pointer;
-    _cursor:hand;
-    width:63px;
-    height:25px;
-}
-#tw .tbutton input:active,#tw ul .button_p:active,#tw .sz_box .tbutton:active {
-    background:url(../images/weibe_button.gif) no-repeat 1px 1px;
 }
 #tw ul {
     margin:25px 0px 3px 5px;
@@ -974,31 +956,7 @@ textarea {
     background:url(../images/loading.gif) no-repeat 200px 2px;
     height:20px;
 }
-/*后台风格*/
-#admin_style {
-    margin:10px 10px 10px 10px;
-}
-#admin_style div {
-    float:left;
-    margin:12px;
-    width:235px;
-    height:120px;
-}
-#admin_style .styleTH {
-    border:1px solid #CCCCCC;
-    padding:1px;
-}
-#admin_style div li {
-    text-align:center;
-    margin:10px;
-}
-#admin_style div li a {
-    color:#999999
-}
-#admin_style div span {
-    font-size:11px;
-    color:#999999
-}
+
 .topimg_line {
     clear:both;
     width:794px;
@@ -1216,4 +1174,12 @@ textarea {
 .em-small {width: 50px;}
 .container-side{
     margin-top:85px; 
+}
+/*模板管理*/
+.tpl div{
+    float: left;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    width: 418px;
+    height: 314px;
 }
