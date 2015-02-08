@@ -37,7 +37,7 @@ $(function() {
         defaults = {
             toggle: true
         };
-        
+
     function Plugin(element, options) {
         this.element = element;
         this.settings = $.extend({}, defaults, options);
@@ -109,53 +109,54 @@ function timestamp(){
     return new Date().getTime();
 }
 function em_confirm (id, property, token) {
+	var urlreturn = '', msg = '';
     switch (property){
         case 'tw':
-            var urlreturn="twitter.php?action=del&id="+id;
-            var msg = "你确定要删除该条微语吗？";break;
+            urlreturn='twitter.php?action=del&id='+id;
+            msg = '你确定要删除该条微语吗？';break;
         case 'comment':
-            var urlreturn="comment.php?action=del&id="+id;
-            var msg = "你确定要删除该评论吗？";break;
+            urlreturn='comment.php?action=del&id='+id;
+            msg = '你确定要删除该评论吗？';break;
         case 'commentbyip':
-            var urlreturn="comment.php?action=delbyip&ip="+id;
-            var msg = "你确定要删除来自该IP的所有评论吗？";break;
+            urlreturn='comment.php?action=delbyip&ip='+id;
+            msg = '你确定要删除来自该IP的所有评论吗？';break;
         case 'link':
-            var urlreturn="link.php?action=dellink&linkid="+id;
-            var msg = "你确定要删除该链接吗？";break;
+            urlreturn='link.php?action=dellink&linkid='+id;
+            msg = '你确定要删除该链接吗？';break;
         case 'navi':
-            var urlreturn="navbar.php?action=del&id="+id;
-            var msg = "你确定要删除该导航吗？";break;
+            urlreturn='navbar.php?action=del&id='+id;
+            msg = '你确定要删除该导航吗？';break;
         case 'backup':
-            var urlreturn="data.php?action=renewdata&sqlfile="+id;
-            var msg = "你确定要导入该备份文件吗？";break;
+            urlreturn='data.php?action=renewdata&sqlfile='+id;
+            msg = '你确定要导入该备份文件吗？';break;
         case 'attachment':
-            var urlreturn="attachment.php?action=del_attach&aid="+id;
-            var msg = "你确定要删除该附件吗？";break;
+            urlreturn='attachment.php?action=del_attach&aid='+id;
+            msg = '你确定要删除该附件吗？';break;
         case 'avatar':
-            var urlreturn="blogger.php?action=delicon";
-            var msg = "你确定要删除头像吗？";break;
+            urlreturn='blogger.php?action=delicon';
+            msg = '你确定要删除头像吗？';break;
         case 'sort':
-            var urlreturn="sort.php?action=del&sid="+id;
-            var msg = "你确定要删除该分类吗？";break;
+            urlreturn='sort.php?action=del&sid='+id;
+            msg = '你确定要删除该分类吗？';break;
         case 'page':
-            var urlreturn="page.php?action=del&gid="+id;
-            var msg = "你确定要删除该页面吗？";break;
+            urlreturn='page.php?action=del&gid='+id;
+            msg = '你确定要删除该页面吗？';break;
         case 'user':
-            var urlreturn="user.php?action=del&uid="+id;
-            var msg = "你确定要删除该用户吗？";break;
+            urlreturn='user.php?action=del&uid='+id;
+            msg = '你确定要删除该用户吗？';break;
         case 'tpl':
-            var urlreturn="template.php?action=del&tpl="+id;
-            var msg = "你确定要删除该模板吗？";break;
+            urlreturn='template.php?action=del&tpl='+id;
+            msg = '你确定要删除该模板吗？';break;
         case 'reset_widget':
-            var urlreturn="widgets.php?action=reset";
-            var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+            urlreturn='widgets.php?action=reset';
+            msg = '你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';break;
         case 'plu':
-            var urlreturn="plugin.php?action=del&plugin="+id;
-            var msg = "你确定要删除该插件吗？";break;
+            urlreturn='plugin.php?action=del&plugin='+id;
+            msg = '你确定要删除该插件吗？';break;
     }
     if(confirm(msg)){window.location = urlreturn + "&token="+token;}else {return;}
 }
-function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
+function focusEle(id){try{$('#'+id).focus();}catch(e){}}
 function hideActived(){
     $(".alert-success").hide();
     $(".alert-danger").hide();
@@ -167,24 +168,23 @@ function displayToggle(id, keep){
     if (keep == 2){$.cookie('em_'+id,$("#"+id).css('display'));}
 }
 function isalias(a){
-    var reg1=/^[\u4e00-\u9fa5\w-]*$/;
-    var reg2=/^[\d]+$/;
-    var reg3=/^post(-\d+)?$/;
-    if(!reg1.test(a)) {
-        return 1;
-    }else if(reg2.test(a)){
-        return 2;
-    }else if(reg3.test(a)){
-        return 3;
-    }else if(a=='t' || a=='m' || a=='admin'){
-        return 4;
-    } else {
-        return 0;
-    }
+    var reg1=/^[\u4e00-\u9fa5\w-]*$/, reg2=/^[\d]+$/, reg3=/^post(-\d+)?$/;
+	switch(true) {
+		case !reg1.test(a):
+			return 1;
+		case reg2.test(a):
+			return 2;
+		case reg3.test(a):
+			return 3;
+		case a=='t' || a=='m' || a=='admin':
+			return 4;
+		default:
+			return 0;
+	}
 }
 function checkform(){
-    var a = $.trim($("#alias").val());
-    var t = $.trim($("#title").val());
+    var a = $.trim($("#alias").val()),
+		t = $.trim($("#title").val());
     if (t==""){
         alert("标题不能为空");
         $("#title").focus();
@@ -194,8 +194,8 @@ function checkform(){
     }else {
         alert("链接别名错误");
         $("#alias").focus();
-        return false
-    };
+        return false;
+    }
 }
 function checkalias(){
     var a = $.trim($("#alias").val());
