@@ -75,8 +75,8 @@ function sendinfo(url,node){
 }
 function loadr(url,tid){
 	url = url+"&stamp="+timestamp();
-	var r=$Id("r_"+tid);
-	var rp=$Id("rp_"+tid);
+	var r=$Id("r_"+tid),
+		rp=$Id("rp_"+tid) || r;;
 	if (r.style.display=="block"){
 		r.style.display="none";
 		rp.style.display="none";
@@ -87,13 +87,13 @@ function loadr(url,tid){
 	}
 }
 function reply(url,tid){
-	var rtext=$Id("rtext_"+tid).value;
-	var rname=$Id("rname_"+tid).value;
-	var rcode=$Id("rcode_"+tid).value;
-	var rmsg=$Id("rmsg_"+tid);
-	var rn=$Id("rn_"+tid);
-	var r=$Id("r_"+tid);
-	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
+	var rtext=$Id("rtext_"+tid).value,
+		rname=$Id("rname_"+tid).value,
+		rcode=$Id("rcode_"+tid).value,
+		rmsg=$Id("rmsg_"+tid),
+		rn=$Id("rn_"+tid),
+		r=$Id("r_"+tid),
+		data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
 	XMLHttp.sendReq('POST',url,data,function(obj){
 		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
 		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
@@ -105,18 +105,16 @@ function reply(url,tid){
 		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){
-	var rtext=$Id("rtext_"+tid).value = rp;
+	$Id("rtext_"+tid).value = rp;
 	focusEle("rtext_"+tid);
 }
 function commentReply(pid,c){
-	var response = $Id('comment-post');
 	$Id('comment-pid').value = pid;
 	$Id('cancel-reply').style.display = '';
-	c.parentNode.parentNode.appendChild(response);
+	c.parentNode.parentNode.appendChild($Id('comment-post'));
 }
 function cancelReply(){
-	var commentPlace = $Id('comment-place'),response = $Id('comment-post');
 	$Id('comment-pid').value = 0;
 	$Id('cancel-reply').style.display = 'none';
-	commentPlace.appendChild(response);
+	$Id('comment-place').appendChild($Id('comment-post'));
 }
