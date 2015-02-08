@@ -31,7 +31,4 @@ require_once View::getView('module');
     <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
     <h3><?php echo $bloginfo; ?></h3>
   </div>
-  <?php if(Option::get('topimg')): ?>
-  <div id="banner"><a href="<?php echo BLOG_URL; ?>"><img src="<?php echo BLOG_URL.Option::get('topimg'); ?>" height="134" width="960" /></a></div>
-  <?php endif;?>
   <div id="nav"><?php blog_navi();?></div>

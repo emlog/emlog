@@ -8,8 +8,8 @@ if (!defined('EMLOG_ROOT')) {
         <li role="presentation" class="active"><a href="./configure.php">基本设置</a></li>
         <li role="presentation"><a href="./seo.php">SEO设置</a></li>
         <li role="presentation"><a href="./blogger.php">个人设置</a></li>
+        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
     </ul>
-<?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
 </div>
 <div class="panel-body" style="margin-left:30px;">
     <form action="configure.php?action=mod_config" method="post" name="input" id="input">

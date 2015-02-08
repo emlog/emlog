@@ -53,11 +53,9 @@ if ($action == '') {
     if ($pid == 'draft') {
         $hide_stae = 'y';
         $sorturl = '&pid=draft';
-        $pwd = '草稿箱';
     } else{
         $hide_stae = 'n';
         $sorturl = '';
-        $pwd = '文章管理';
     }
 
     $logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
