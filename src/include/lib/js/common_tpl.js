@@ -92,17 +92,39 @@ function reply(url,tid){
 		rcode=$Id("rcode_"+tid).value,
 		rmsg=$Id("rmsg_"+tid),
 		rn=$Id("rn_"+tid),
+		rp = '',
 		r=$Id("r_"+tid),
 		data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
-	XMLHttp.sendReq('POST',url,data,function(obj){
-		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
-		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
-		}else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
-		}else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
-		}else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
-		}else if(obj.responseText == 'err0'){rmsg.innerHTML = '(禁止回复)';
-		}else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
-		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
+	XMLHttp.sendReq('POST', url, data, function(obj) {
+		switch(obj.responseText) {
+			case 'err1':
+				rp = '(回复长度需在140个字内)';
+				break;
+			case 'err2':
+				rp = '(昵称不能为空)';
+				break;
+			case 'err3':
+				rp = '(验证码错误)';
+				break;
+			case 'err4':
+				rp = '(不允许使用该昵称)';
+				break;
+			case 'err5':
+				rp = '(已存在该回复)';
+				break;
+			case 'err0':
+				rp = '(禁止回复)';
+				break;
+			case 'succ1':
+				rp = '(回复成功，等待管理员审核)';
+				break;
+			default:
+				r.innerHTML += obj.responseText;
+				rn.innerHTML = Number(rn.innerHTML) + 1;
+				break;
+		}
+		rmsg.innerHTML = rp;
+	});
 }
 function re(tid, rp){
 	$Id("rtext_"+tid).value = rp;
