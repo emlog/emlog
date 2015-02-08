@@ -330,9 +330,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgzipenable','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isxmlrpcenable','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ismobile','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
