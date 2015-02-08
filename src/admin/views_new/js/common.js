@@ -198,19 +198,25 @@ function checkform(){
     }
 }
 function checkalias(){
-    var a = $.trim($("#alias").val());
-    if (1 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
-    }else if (2 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
-    }else if (3 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
-    }else if (4 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
-    }else {
-        $("#alias_msg_hook").html('');
-        $("#msg").html('');
-    }
+	var a = $.trim($("#alias").val()),
+		m = '';
+	switch(isalias(a)) {
+		case 1:
+			m = '<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>';
+			break;
+		case 2:
+			m = '<span id="input_error">别名错误，不能为纯数字</span>';
+			break;
+		case 3:
+			m = '<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>';
+			break;
+		case 4:
+			m = '<span id="input_error">别名错误，与系统链接冲突</span>';
+			break;
+		default:
+			$("#msg").html('');
+	}
+	$("#alias_msg_hook").html(m);
 }
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
     if (editorMap['content'].designMode === false){
@@ -227,35 +233,29 @@ function addattach_file(fileurl,filename,aid){
     }
 }
 function insertTag (tag, boxId){
+	tag = tag || '';
     var targetinput = $("#"+boxId).val();
-    if(targetinput == ''){
-        targetinput += tag;
-    }else{
-        var n = ',' + tag;
-        targetinput += n;
-    }
-    $("#"+boxId).val(targetinput);
-    if (boxId == "tag")
-        $("#tag_label").hide();
+    $("#"+boxId).val(targetinput == '' ? tag : targetinput + ',' + tag);
+    boxId == "tag" && $("#tag_label").hide();
 }
 //act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
 function autosave(act){
     var nodeid = "as_logid";
     if (act == 3 || act == 4){
         editorMap['content'].sync();
-        var url = "page.php?action=autosave";
-        var title = $.trim($("#title").val());
-        var alias = $.trim($("#alias").val());
-        var template = $.trim($("#template").val());
-        var logid = $("#as_logid").val();
-        var content = $('#content').val();
-        var pageurl = $.trim($("#url").val());
-        var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
-        var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
-        var token = $.trim($("#token").val());
-        var ishide = $.trim($("#ishide").val());
-        var ishide = ishide == "" ? "y" : ishide;
-        var querystr = "content="+encodeURIComponent(content)
+        var url = "page.php?action=autosave",
+			title = $.trim($("#title").val()),
+			alias = $.trim($("#alias").val()),
+			template = $.trim($("#template").val()),
+			logid = $("#as_logid").val(),
+			content = $('#content').val(),
+			pageurl = $.trim($("#url").val()),
+			allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n',
+			is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n',
+			token = $.trim($("#token").val()),
+			ishide = $.trim($("#ishide").val()),
+			ishide = ishide == "" ? "y" : ishide,
+			querystr = "content="+encodeURIComponent(content)
                     +"&title="+encodeURIComponent(title)
                     +"&alias="+encodeURIComponent(alias)
                     +"&template="+encodeURIComponent(template)
@@ -268,26 +268,26 @@ function autosave(act){
     }else{
         editorMap['content'].sync();
         editorMap['excerpt'].sync();
-        var url = "save_log.php?action=autosave";
-        var title = $.trim($("#title").val());
-        var alias = $.trim($("#alias").val());
-        var sort = $.trim($("#sort").val());
-        var postdate = $.trim($("#postdate").val());
-        var date = $.trim($("#date").val());
-        var logid = $("#as_logid").val();
-        var author = $("#author").val();
-        var content = $('#content').val();
-        var excerpt = $('#excerpt').val();
-        var tag = $.trim($("#tag").val());
-        var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
-        var sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n';
-        var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
-        var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
-        var password = $.trim($("#password").val());
-        var ishide = $.trim($("#ishide").val());
-        var token = $.trim($("#token").val());
-        var ishide = ishide == "" ? "y" : ishide;
-        var querystr = "content="+encodeURIComponent(content)
+        var url = "save_log.php?action=autosave",
+			title = $.trim($("#title").val()),
+			alias = $.trim($("#alias").val()),
+			sort = $.trim($("#sort").val()),
+			postdate = $.trim($("#postdate").val()),
+			date = $.trim($("#date").val()),
+			logid = $("#as_logid").val(),
+			author = $("#author").val(),
+			content = $('#content').val(),
+			excerpt = $('#excerpt').val(),
+			tag = $.trim($("#tag").val()),
+			top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n',
+			sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n',
+			allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n',
+			allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n',
+			password = $.trim($("#password").val()),
+			ishide = $.trim($("#ishide").val()),
+			token = $.trim($("#token").val()),
+			ishide = ishide == "" ? "y" : ishide,
+			querystr = "content="+encodeURIComponent(content)
                     +"&excerpt="+encodeURIComponent(excerpt)
                     +"&title="+encodeURIComponent(title)
                     +"&alias="+encodeURIComponent(alias)
@@ -332,17 +332,17 @@ function autosave(act){
         data = $.trim(data);
         var isrespone=/autosave\_gid\:\d+\_df\:\d*\_/;
         if(isrespone.test(data)){
-            var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
-            var logid = getvar[1];
+            var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/),
+				logid = getvar[1];
             if (act == 0 || act == 1 || act == 2){
                 var dfnum = getvar[2];
                 if(dfnum > 0){$("#dfnum").html("("+dfnum+")")};
             }
             $("#"+nodeid).val(logid);
-            var digital = new Date();
-            var hours = digital.getHours();
-            var mins = digital.getMinutes();
-            var secs = digital.getSeconds();
+            var digital = new Date(),
+				hours = digital.getHours(),
+				mins = digital.getMinutes(),
+				secs = digital.getSeconds();
             $("#msg_2").html("<span class=\"ajax_remind_1\">成功保存于 "+hours+":"+mins+":"+secs+" </span>");
             $("#savedf").attr("disabled", false);
             $("#savedf").val(btname);
@@ -359,7 +359,7 @@ function autosave(act){
 }
 //toggle plugin
 $.fn.toggleClick = function(){
-    var functions = arguments ;
+    var functions = arguments;
     return this.click(function(){
             var iteration = $(this).data('iteration') || 0;
             functions[iteration].apply(this, arguments);
