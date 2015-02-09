@@ -53,11 +53,9 @@ if ($action == '') {
     if ($pid == 'draft') {
         $hide_state = 'y';
         $sorturl = '&pid=draft';
-/*vot*/ $pwd = lang('drafts');
     } else{
         $hide_state = 'n';
         $sorturl = '';
-/*vot*/ $pwd = lang('post_manage');
     }
 
     $logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);

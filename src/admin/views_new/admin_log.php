@@ -5,21 +5,26 @@ $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
-<div class="containertitle"><b><?php echo $pwd; ?></b>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_up'])):?><span class="alert alert-success">置顶成功</span><?php endif;?>
-<?php if(isset($_GET['active_down'])):?><span class="alert alert-success">取消置顶成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要处理的文章</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
-<?php if(isset($_GET['active_post'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
-<?php if(isset($_GET['active_move'])):?><span class="alert alert-success">移动成功</span><?php endif;?>
-<?php if(isset($_GET['active_change_author'])):?><span class="alert alert-success">更改作者成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">转入草稿箱成功</span><?php endif;?>
-<?php if(isset($_GET['active_savedraft'])):?><span class="alert alert-success">草稿保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_savelog'])):?><span class="alert alert-success">保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_ck'])):?><span class="alert alert-success">文章审核成功</span><?php endif;?>
-<?php if(isset($_GET['active_unck'])):?><span class="alert alert-success">文章驳回成功</span><?php endif;?>
+<div class="panel-heading">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" <?php if ($pid != 'draft'){echo 'class="active"';}?>><a href="admin_log.php">文章管理</a></li>
+        <li role="presentation" <?php if ($pid == 'draft'){echo 'class="active"';}?>><a href="admin_log.php?pid=draft">草稿管理</a></li>
+        <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+        <?php if(isset($_GET['active_up'])):?><span class="alert alert-success">置顶成功</span><?php endif;?>
+        <?php if(isset($_GET['active_down'])):?><span class="alert alert-success">取消置顶成功</span><?php endif;?>
+        <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要处理的文章</span><?php endif;?>
+        <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
+        <?php if(isset($_GET['active_post'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
+        <?php if(isset($_GET['active_move'])):?><span class="alert alert-success">移动成功</span><?php endif;?>
+        <?php if(isset($_GET['active_change_author'])):?><span class="alert alert-success">更改作者成功</span><?php endif;?>
+        <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">转入草稿箱成功</span><?php endif;?>
+        <?php if(isset($_GET['active_savedraft'])):?><span class="alert alert-success">草稿保存成功</span><?php endif;?>
+        <?php if(isset($_GET['active_savelog'])):?><span class="alert alert-success">保存成功</span><?php endif;?>
+        <?php if(isset($_GET['active_ck'])):?><span class="alert alert-success">文章审核成功</span><?php endif;?>
+        <?php if(isset($_GET['active_unck'])):?><span class="alert alert-success">文章驳回成功</span><?php endif;?>
+    </ul>
 </div>
+<div style="margin: 0px 15px;">
 <div class=line></div>
 <div class="filters">
 <div id="f_title" class="form-inline">
@@ -203,6 +208,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
 </form>
 <div class="page"><?php echo $pageurl; ?> (有<?php echo $logNum; ?>篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
+</div>
 <script>
 $(document).ready(function(){
     $("#f_t_tag").click(function(){$("#f_tag").toggle();$("#f_sort").hide();$("#f_user").hide();});
