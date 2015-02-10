@@ -11,7 +11,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
 ?>
 <!DOCTYPE html>
-<html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php echo $site_title; ?></title>
@@ -33,12 +33,11 @@ require_once View::getView('module');
     <h3><?php echo $bloginfo; ?></h3>
   </div>
   <div id="nav"><?php blog_navi();?></div>
-<div id="debug">
 <?php
 //DEBUG
+//<div id="debug">
 //echo '<pre>';
 //echo 'LANGLIST=';
 //print_r($GLOBALS['LANGLIST']);
 //echo '</pre>';
-?>
-</div>
+//</div>
