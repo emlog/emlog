@@ -53,8 +53,10 @@ if ($action == '') {
     if ($pid == 'draft') {
         $hide_state = 'y';
         $sorturl = '&pid=draft';
+/*vot*/ $pwd = lang('drafts');
     } else{
         $hide_state = 'n';
+/*vot*/ $pwd = lang('post_manage');
         $sorturl = '';
     }
 
