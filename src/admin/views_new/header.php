@@ -14,7 +14,7 @@
         <link href="./views_new/css/bootstrap.min.css" rel="stylesheet">
         <link href="./views_new/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="./views_new/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-        <script src="../include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+        <script src="../include/lib/js/jquery/jquery-1.11.2.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="./views_new/js/bootstrap.min.js"></script>
         <script src="./views_new/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
