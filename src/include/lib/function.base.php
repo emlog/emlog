@@ -433,8 +433,8 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param array $type 允许上传的文件类型
  * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
- * @return array 文件数据 索引 
- * 
+ * @return array 文件数据 索引
+ *
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if ($errorNum == 1) {
@@ -505,7 +505,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		}
 		@chmod($attachpath, 0777);
 	}
-	
+
 	// 如果附件是图片需要提取宽高
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
@@ -646,7 +646,7 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
 	$hash = md5($email);
-	$avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
+	$avatar = "http://cn.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
 	return $avatar;
 }
 
@@ -909,7 +909,7 @@ EOT;
 
 /**
  * 显示404错误页面
- * 
+ *
  */
 function show_404_page() {
 	if (is_file(TEMPLATE_PATH . '404.php')) {
@@ -1033,6 +1033,6 @@ if(!function_exists('hash_hmac')) {
 	$ct['wmls'] = 'text/vnd.wap.wmlscript';
 	$ct['xsl'] = 'text/xml';
 	$ct['xml'] = 'text/xml';
-	
+
 	return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }
