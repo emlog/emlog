@@ -8,23 +8,21 @@
 <div class=line></div>
 
 <div class="row">
-    <div class="col-lg-4" id="adm_widget_list">
+    <div class="col-lg-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                系统组件
+                可选组件
             </div>
             <div class="panel-body">
                 <div class="panel-group" id="accordion">
 
-                    <div id="blogger" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".blogger" aria-expanded="false" class="widget-title">个人资料</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#blogger" aria-expanded="false" class="collapsed">个人资料</a>
                             </h4>
                         </div>
-                        <div class="blogger panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div id="blogger" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -33,15 +31,13 @@
                         </div>
                     </div>
 
-                    <div id="calendar" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".calendar" class="widget-title" aria-expanded="false">日历</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#cal" class="collapsed" aria-expanded="false">日历</a>
                             </h4>
                         </div>
-                        <div class="calendar panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div id="cal" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -50,15 +46,13 @@
                         </div>
                     </div>
 
-                    <div id="twitter" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".twitter" class="widget-title" aria-expanded="false">最新微语</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#newtw" class="collapsed" aria-expanded="false">最新微语</a>
                             </h4>
                         </div>
-                        <div class="twitter panel-collapse collapse" aria-expanded="false">
+                        <div id="newtw" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=twitter" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
@@ -69,15 +63,13 @@
                         </div>
                     </div>
 
-                    <div id="tag" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".tag" class="widget-title" aria-expanded="false">标签</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#tag" class="collapsed" aria-expanded="false">标签</a>
                             </h4>
                         </div>
-                        <div class="tag panel-collapse collapse" aria-expanded="false">
+                        <div id="tag" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -86,15 +78,13 @@
                         </div>
                     </div>
 
-                    <div id="sort" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".sort" class="widget-title" aria-expanded="false">分类</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#cate" class="collapsed" aria-expanded="false">分类</a>
                             </h4>
                         </div>
-                        <div class="sort panel-collapse collapse" aria-expanded="false">
+                        <div id="cate" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -103,15 +93,13 @@
                         </div>
                     </div>                                
 
-                    <div id="archive" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".archive" class="widget-title" aria-expanded="false">存档</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#archive" class="collapsed" aria-expanded="false">存档</a>
                             </h4>
                         </div>
-                        <div class="archive panel-collapse collapse" aria-expanded="false">
+                        <div id="archive" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -120,15 +108,13 @@
                         </div>
                     </div>                                
 
-                    <div id="newcomm" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".newcomm" class="widget-title" aria-expanded="false">最新评论</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#comment" class="collapsed" aria-expanded="false">最新评论</a>
                             </h4>
                         </div>
-                        <div class="newcomm panel-collapse collapse" aria-expanded="false">
+                        <div id="comment" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post" class="form-inline">
                                     <li>标题</li>
@@ -142,15 +128,13 @@
                         </div>
                     </div>  
 
-                    <div id="newlog" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".newlog" class="widget-title" aria-expanded="false">最新文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#newpost" class="collapsed" aria-expanded="false">最新文章</a>
                             </h4>
                         </div>
-                        <div class="newlog panel-collapse collapse" aria-expanded="false">
+                        <div id="newpost" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post" class="form-inline">
                                     <li>标题</li>
@@ -162,15 +146,13 @@
                         </div>
                     </div>  
 
-                    <div id="hotlog" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".hotlog" class="widget-title" aria-expanded="false">热门文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#hot" class="collapsed" aria-expanded="false">热门文章</a>
                             </h4>
                         </div>
-                        <div class="hotlog panel-collapse collapse" aria-expanded="false">
+                        <div id="hot" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post" class="form-inline">
                                     <li>标题</li>
@@ -182,15 +164,13 @@
                         </div>
                     </div>  
 
-                    <div id="random_log" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".random_log" class="widget-title" aria-expanded="false">随机文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#radom" class="collapsed" aria-expanded="false">随机文章</a>
                             </h4>
                         </div>
-                        <div class="random_log panel-collapse collapse" aria-expanded="false">
+                        <div id="radom" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=random_log" method="post" class="form-inline">
                                     <li>标题</li>
@@ -202,15 +182,13 @@
                         </div>
                     </div>
 
-                    <div id="link" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".link" class="widget-title" aria-expanded="false">链接</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#links" class="collapsed" aria-expanded="false">链接</a>
                             </h4>
                         </div>
-                        <div class="link panel-collapse collapse" aria-expanded="false">
+                        <div id="links" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -219,15 +197,13 @@
                         </div>
                     </div> 
 
-                    <div id="search" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".search" class="widget-title" aria-expanded="false">搜索</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#search" class="collapsed" aria-expanded="false">搜索</a>
                             </h4>
                         </div>
-                        <div class="search panel-collapse collapse" aria-expanded="false">
+                        <div id="search" class="panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                                     <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -238,7 +214,48 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                使用中的组件
+            </div>
+            <form action="widgets.php?action=compages" method="post" class="form-inline">
+                <div class="panel-body">
+                    <div class="panel-group adm_widget_box" id="accordion">
+                        <?php
+                        foreach ($widgets as $widget):
+                            $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //是否为自定义组件
+                            $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
+                            if ($flg && empty($title)) {
+                                preg_match("/^custom_wg_(\d+)/", $widget, $matches);
+                                $title = '未命名组件(' . $matches[1] . ')';
+                            }
+                            ?>
+
+                            <div class="sortableitem panel panel-default" id="em_<?php echo $widget; ?>">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <?php if ($flg) {
+                                            echo $title;
+                                        } else {
+                                            echo $widgetTitle[$widget];
+                                        } ?>
+                                    </h4>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
+                <div style="margin:20px 40px;"><input type="submit" value="保存组件排序" class="btn btn-primary" /> <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger" >恢复出厂设置</a></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">    
+    <div class="col-lg-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 自定义组件
@@ -250,22 +267,20 @@
                         preg_match("/^custom_wg_(\d+)/", $key, $matches);
                         $custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
                         ?>
-                        <div class="panel panel-default" id="<?php echo $key; ?>">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $key; ?>" aria-expanded="false" class="widget-title"><?php echo $custom_wg_title; ?></a>
-                                    <li class="widget-act-add"></li>
-                                    <li class="widget-act-del"></li>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed"><?php echo $custom_wg_title; ?></a>
                                 </h4>
                             </div>
-                            <div id="collapse_<?php echo $key; ?>" class="panel-collapse collapse" aria-expanded="false">
+                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
                                 <div class="panel-body" class="form-group">
                                     <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                         <li>
                                             <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
                                             <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>" /><br />
                                         </li>
-                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br /></li>
+                                        <li><textarea class="form-control" name="content" style="overflow:auto; height: 260px;"><?php echo $val['content']; ?></textarea><br /></li>
                                         <li>
                                             <input type="submit" class="btn btn-primary" name="" value="更改" />
                                             <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a>
@@ -291,83 +306,14 @@
             </div>
         </div>
     </div>
-
-    <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                使用中的组件
-            </div>
-            <form action="widgets.php?action=compages" method="post" class="form-inline">
-                <div class="panel-body">
-                    <div class="panel-group adm_widget_box" id="sortable">
-                        <?php
-                        foreach ($widgets as $widget):
-                            $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //是否为自定义组件
-                            $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
-                            if ($flg && empty($title)) {
-                                preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-                                $title = '未命名组件(' . $matches[1] . ')';
-                            }
-                            ?>
-                        <div class="panel panel-default active_widget" id="em_<?php echo $widget; ?>" style="cursor:move;">
-                                <div class="panel-heading">
-                                    <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
-                                    <h4 class="panel-title">
-                                        <?php if ($flg) {
-                                            echo $title;
-                                        } else {
-                                            echo $widgetTitle[$widget];
-                                        } ?>
-                                    </h4>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-                <div style="margin:20px 40px;"><input type="submit" value="保存组件排序" class="btn btn-primary" /> <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger" >恢复出厂设置</a></div>
-            </form>
-        </div>
-    </div>
 </div>
 <script>
     $(document).ready(function () {
-
-        var widgets = $(".active_widget").map(function(){return $(this).attr("id");});
-        $.each(widgets,function(i,widget_id){
-            var widget_id = widget_id.substring(3);
-            $("#"+widget_id+" .widget-act-add").hide();
-            $("#"+widget_id+" .widget-act-del").show();
+        //拖动排序
+        $(function () {
+            $(".sortableitem").sortable();
+            $(".sortableitem").disableSelection();
         });
-
-        //添加组件
-        $("#adm_widget_list .widget-act-add").click(function(){
-            var title = $(this).prevAll(".widget-title").html();
-            var widget_id = $(this).parent().parent().parent().attr("id");
-            var widget_element = "<div class=\"panel panel-default active_widget\" id=\"em_"+widget_id+"\">";
-                widget_element += "<div class=\"panel-heading\">";
-                widget_element += "<input type=\"hidden\" name=\"widgets[]\" value=\""+widget_id+"\" />";
-                widget_element += "<h4 class=\"panel-title\">"+title+"</h4>";
-                widget_element += "</div>";
-                widget_element += "</div>";
-            $(".adm_widget_box").append(widget_element);
-            $(this).hide();
-            $(this).next(".widget-act-del").show();
-        });
-        //删除组件
-        $("#adm_widget_list .widget-act-del").click(function(){
-            var widget_id = $(this).parent().parent().parent().attr("id");
-            $(".adm_widget_box #em_" + widget_id).remove();
-            $(this).hide();
-            $(this).prev(".widget-act-add").show();
-        });
-
-        //拖动
-        $( "#sortable" ).sortable();
-        $( "#sortable" ).disableSelection();
-        
-        //自定义组件记忆
-        $("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 
         $("#menu_view").addClass('in');
         $("#menu_widget").addClass('active');

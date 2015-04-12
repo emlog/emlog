@@ -141,5 +141,10 @@
         checkalias();
     });
     setTimeout("autosave(0)", 60000);
-    $("#menu_wt").addClass('active');
+    
+    <?php if ($isdraft) :?>
+    $("#menu_draft").addClass('active');
+    <?php else:?>
+    $("#menu_log").addClass('active');
+    <?php endif;?>
 </script>

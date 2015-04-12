@@ -1099,21 +1099,3 @@ textarea {
 .tpl .add a{
     color: #ccc;
 }
-
-.widget-act-del {
-    background:url(../images/icon_del.gif) no-repeat center;
-    margin:5px;
-    display:none;
-    width:15px;
-    height:15px;
-    cursor:pointer;
-    float: right;
-}
-.widget-act-add {
-    background:url(../images/icon_add.gif) no-repeat center;
-    margin:5px;
-    width:15px;
-    cursor:pointer;
-    height:15px;
-    float: right;
-}
