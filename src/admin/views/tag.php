@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class=containertitle><b>标签管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="actived">删除标签成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="actived">修改标签成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的标签</span><?php endif;?>
+<div class="containertitle"><b>标签管理</b>
+<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除标签成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改标签成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的标签</span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
@@ -26,7 +26,7 @@ foreach($tags as $key=>$value): ?>
 </div>
 </form>
 <script>
-$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+selectAllToggle();
 function deltags(){
 	if (getChecked('ids') == false) {
 		alert('请选择要删除的标签');
@@ -36,5 +36,5 @@ function deltags(){
 	$("#form_tag").submit();
 }
 setTimeout(hideActived,2600);
-$("#menu_tag").addClass('sidebarsubmenu1');
+$("#menu_tag").addClass('active');
 </script>
