@@ -1,0 +1,127 @@
+/*
+Style Name:默认风格
+Author:emlog
+Url:http://www.emlog.net
+*/
+a{color:#2A9DDB;text-decoration:none;}
+a:hover{color:#333;text-decoration:none}
+#header a{color:#FFF;text-decoration:none}
+#header a:hover{color:#CCC;text-decoration:none}
+
+#header{
+	background:url(./images/top_mid.gif) repeat-x;
+	color:#FFFFFF;
+	height:40px;
+	margin-bottom:10px;
+}
+#header_left{
+	background: url(./images/top_left.png) no-repeat;
+	width:9px;
+	height:40px;
+	float:left;
+}
+#header_right{
+	background: url(./images/top_right.png) no-repeat right top;
+	width:9px;
+	height:40px;
+	float:right;
+}
+#header_logo a{
+	text-indent:-9999px;
+	height:40px;
+	width:168px;
+	background:url(./images/logo.png) no-repeat;
+	display:block;
+	outline: none;
+	float:left;
+}
+#header_title{
+	font-size:15px;
+	float:left;
+	width:486px;
+	padding:8px 0px 0px 15px;
+}
+#header_menu{
+	padding:9px 10px 0px 0px;
+	float:right;
+}
+#header_menu span{margin: 0px 6px;color:#F1F1F1;}
+#header_menu img{border:1px #FFFFFF solid;}
+
+#side{
+	background-position:left top;
+	background-image:url(./images/sidebar_bg.gif);width:114px;
+	background-repeat:repeat-y;
+	text-align:center;
+	float:left;
+}
+#side a{
+	color:#333;
+	text-decoration:none;
+	display:block;
+}
+#side a:hover{
+	color:#2A9DDB;
+	text-decoration:none;
+}
+#side a:active{
+	text-decoration:none;
+	padding:1px 0px 0px 1px;
+}
+#sidebartop{
+	background:url(./images/sidebar_bg_t.gif) no-repeat;
+	width:114px;
+	font-size:4px;
+	height:4px;
+}
+#sidebarBottom{
+	font-size:5px;
+	background:url(./images/sidebar_bg_b.gif) no-repeat bottom;
+	width:114px;height:5px}
+#side .notice_number{
+	background: url(./images/coment_numbg.gif) no-repeat 1px 1px;font-size:9px;position: relative;
+	margin-top:-32px;
+	height:30px;
+	width:20px;
+	float:right;
+	margin-right:20px;_margin-right:10px;
+}
+#side .notice_number a ,#sidebar .notice_number a:hover{
+	color:#FFFFFF;
+	height:20px;
+	font-weight:bold;
+}
+.sidebarmenu{
+	background:url(./images/sidebar_bg_a.png) center no-repeat;
+	width:114px;
+	padding-top:4px;
+	letter-spacing:0.2em;
+	height:24px;
+	cursor:pointer;
+}
+.sidebarsubmenu{
+	background:url(./images/sidebar_menubg.gif) repeat-x;
+	width:104px;
+	padding-top:3px;height:22px;margin:auto;
+}
+.sidebarsubmenu1{
+	background: url(./images/sidebar_current_menubg.gif) repeat-x;
+	width:103px;
+	padding-top:3px;
+	height:22px;
+	margin:auto;
+}
+
+.page{text-align:center;margin:10px 0px;}
+.page span{
+	background-color: #CC3300;
+	color:#FFF;
+	padding:3px 6px;
+	border-radius: 4px;
+}
+.page a{
+	background-color: #68aee1;
+	color:#FFF;
+	padding:1px 5px;
+	border-radius: 4px;
+}

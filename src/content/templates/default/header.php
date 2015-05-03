@@ -5,6 +5,7 @@ Description:默认模板，简洁优雅
 Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
+Sidebar Amount:1
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
@@ -19,20 +20,15 @@ require_once View::getView('module');
 <meta name="generator" content="emlog" />
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
 <link href="<?php echo TEMPLATE_URL; ?>main.css" rel="stylesheet" type="text/css" />
-<link href="<?php echo BLOG_URL; ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
 <?php doAction('index_head'); ?>
 </head>
 <body>
-<!--导航-->
-<?php blog_navi();?>
-
-<header class="sb-page-header">
-	<div class="container">
-		<h1><?php echo $blogname; ?></h1>
-		<p><?php echo $bloginfo; ?></p>
-	</div>
-</header>
-    
-<div class="container">
-	<div class="row">
+<div id="wrap">
+  <div id="header">
+    <h1><a href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a></h1>
+    <h3><?php echo $bloginfo; ?></h3>
+  </div>
+  <div id="nav"><?php blog_navi();?></div>
