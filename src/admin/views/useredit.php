@@ -1,11 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>修改作者资料</b>
-<?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
-<?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
-<?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>修改作者资料</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
+    <?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
+    <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form action="user.php?action=update" method="post">
 <div class="form-group">
 	<li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="form-control" /> 用户名</li>
@@ -34,9 +37,10 @@
 	<input type="button" value="取 消" class="btn btn-default" onclick="window.location='user.php';" /></li>
 </div>
 </form>
+</section>
 <script>
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('active');
 if($("#role").val() == 'admin') $("#ischeck").hide();
 $("#role").change(function(){$("#ischeck").toggle()})
+$("#menu_user").addClass('active').parent().parent().addClass('active');
 </script>

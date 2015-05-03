@@ -1,7 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="container_title"><b>编辑评论</b>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>编辑评论</h1>
+</section>
+<section class="content">
 <form action="comment.php?action=doedit" method="post">
 <div class="item_edit">
     <li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" class="form-control" /> 评论人</li>
@@ -13,6 +14,7 @@
     <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
+</section>
 <script>
 $("#menu_cm").addClass('active');
 </script>

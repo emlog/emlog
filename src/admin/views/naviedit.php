@@ -1,6 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>修改导航</b></div>
 <div class=line></div>
+<section class="content-header">
+    <h1>修改导航</h1>
+</section>
+<section class="content">
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
     <li>
@@ -37,6 +40,7 @@
     </li>
 </div>
 </form>
+</section>
 <script>
-$("#menu_navbar").addClass('active');
+$("#menu_navi").addClass('active').parent().parent().addClass('active');
 </script>

@@ -1,16 +1,21 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>评论管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除评论成功</span><?php endif;?>
-<?php if(isset($_GET['active_show'])):?><span class="alert alert-success">审核评论成功</span><?php endif;?>
-<?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">隐藏评论成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改评论成功</span><?php endif;?>
-<?php if(isset($_GET['active_rep'])):?><span class="alert alert-success">回复评论成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">回复内容不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
-</div>
+
+<section class="content-header">
+    <h1>评论管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_show'])):?><span class="alert alert-success">审核评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">隐藏评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_rep'])):?><span class="alert alert-success">回复评论成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">回复内容不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
 $hide_ = $hide_y = $hide_n = '';
@@ -83,6 +88,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     </div>
     <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div> 
 </form>
+</section>
 <script>
 $(document).ready(function(){
     selectAllToggle();

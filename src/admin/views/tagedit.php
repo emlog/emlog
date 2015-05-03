@@ -1,8 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>标签修改</b>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">标签不能为空</span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>标签修改</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">标签不能为空</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form  method="post" action="tag.php?action=update_tag" class="form-inline">
 <div class="form-group">
     <li><input size="40" value="<?php echo $tagname; ?>" name="tagname" class="form-control" /></li>
@@ -13,6 +16,7 @@
     </li>
 </div>
 </form>
+</section>
 <script>
 $("#menu_tag").addClass('active');
 </script>

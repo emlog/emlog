@@ -35,7 +35,5 @@
 </div>
 <script>
     setTimeout(hideActived, 2600);
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('in');
-    $("#menu_tpl").addClass('active');
+    $("#menu_tpl").addClass('active').parent().parent().addClass('active');
 </script>

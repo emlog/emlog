@@ -2,11 +2,13 @@
     exit('error!');
 } ?>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-ui.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle"><b>侧边栏组件管理</b>
-<?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?></div>
-<div class=line></div>
-
+<section class="content-header">
+    <h1>侧边栏管理</h1>
+    <div class="containertitle">
+    <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>    
+    </div>
+</section>
+<section class="content">
 <div class="row">
     <div class="col-lg-4" id="adm_widget_list">
         <div class="panel panel-default">
@@ -330,9 +332,9 @@
         </div>
     </div>
 </div>
+</section>
 <script>
     $(document).ready(function () {
-
         var widgets = $(".active_widget").map(function(){return $(this).attr("id");});
         $.each(widgets,function(i,widget_id){
             var widget_id = widget_id.substring(3);
@@ -369,7 +371,7 @@
         //自定义组件记忆
         $("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 
-        $("#menu_view").addClass('in');
-        $("#menu_widget").addClass('active');
+        $("#menu_widget").addClass('active').parent().parent().addClass('active');
+        setTimeout(hideActived, 2600);
     });
 </script>

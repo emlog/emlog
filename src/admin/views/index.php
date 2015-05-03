@@ -4,7 +4,10 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle"><b>管理首页</b></div>
+<section class="content-header">
+    <h1>管理首页</h1>
+</section>
+<section class="content">
 <div class="row">
 <?php if (ROLE == ROLE_ADMIN): ?>
         <div class="col-lg-6">
@@ -103,3 +106,4 @@ if (!defined('EMLOG_ROOT')) {
         </div>
 </div>
 <?php endif; ?>
+</section>

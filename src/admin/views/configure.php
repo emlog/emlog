@@ -155,7 +155,5 @@ if (!defined('EMLOG_ROOT')) {
 </div>
 <script>
     setTimeout(hideActived, 2600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('in');
-    $("#menu_setting").addClass('active');
+    $("#menu_setting").addClass('active').parent().parent().addClass('active');
 </script>

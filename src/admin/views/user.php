@@ -1,16 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>用户管理</b>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_update'])):?><span class="alert alert-success">修改用户资料成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加用户成功</span><?php endif;?>
-<?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
-<?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
-<?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
-<?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger">不能删除创始人</span><?php endif;?>
-<?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger">不能修改创始人信息</span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>用户管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+    <?php if(isset($_GET['active_update'])):?><span class="alert alert-success">修改用户资料成功</span><?php endif;?>
+    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加用户成功</span><?php endif;?>
+    <?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
+    <?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
+    <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
+    <?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger">不能删除创始人</span><?php endif;?>
+    <?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger">不能修改创始人信息</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
     <table class="table table-striped table-bordered table-hover dataTable no-footer" id="adm_comment_list">
   	<thead>
@@ -77,6 +80,7 @@
 	<li><input type="submit" name="" value="添加用户" class="btn btn-primary" /></li>
 </div>
 </form>
+</section>
 <script>
 $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
 $(document).ready(function(){
@@ -87,6 +91,5 @@ $(document).ready(function(){
     $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);
-$("#menu_sys").addClass('in');
-$("#menu_user").addClass('active');
+$("#menu_user").addClass('active').parent().parent().addClass('active');
 </script>

@@ -1,12 +1,12 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>微语</b>
-<?php if(isset($_GET['active_t'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
-<?php if(isset($_GET['active_set'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">微语删除成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
-</div>
-<div class=line></div>
-<div class="row">
+<section class="content-header">
+    <h1>微语</h1>
+    <?php if(isset($_GET['active_t'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
+    <?php if(isset($_GET['active_set'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">微语删除成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
+</section>
+<section class="content">
 <div id="tw" class="row col-lg-6">
     <div class="form-group">
     <form method="post" action="twitter.php?action=post">
@@ -55,8 +55,8 @@
      <li class="page"><?php echo $pageurl;?> (有<?php echo $twnum; ?>条微语)</li>
     </ul>
 </div>
-</div>
 <div id="faceWraps"></div>
+</section>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>""></script>
 <script>

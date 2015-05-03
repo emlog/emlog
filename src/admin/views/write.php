@@ -6,10 +6,14 @@
 
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--文章内容-->
-<div class="col-lg-8">
+<section class="content-header">
+    <h1><?php echo $containertitle; ?></h1>
     <div class="containertitle">
-        <b><?php echo $containertitle; ?></b><span id="msg_2"></span>
+        <span id="msg_2"></span>
     </div>
+</section>
+<section class="content">
+<div class="col-lg-8">
     <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
@@ -131,7 +135,7 @@
         
     </div>
 </div>
-</form>
+</section>
 <script>
     loadEditor('content');
     loadEditor('excerpt');

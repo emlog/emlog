@@ -1,13 +1,16 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle"><b>友情链接管理</b>
-<?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>友链管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
+    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form action="link.php?action=link_taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
@@ -75,6 +78,7 @@
     <li><input type="submit" class="btn btn-primary" name="" value="添加链接"  /></li>
 </div>
 </form>
+</section>
 <script>
 $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
 $(document).ready(function(){

@@ -1,8 +1,9 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle"><b>分类管理</b>
+<section class="content-header">
+    <h1>分类管理</h1>
+    <div class="containertitle">
     <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success">排序更新成功</span><?php endif; ?>
     <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除分类成功</span><?php endif; ?>
     <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改分类成功</span><?php endif; ?>
@@ -12,8 +13,9 @@
     <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">别名格式错误</span><?php endif; ?>
     <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">别名不能重复</span><?php endif; ?>
     <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif; ?>
-</div>
-<div class=line></div>
+    </div>
+</section>
+<section class="content">
 <form  method="post" action="sort.php?action=taxis">
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
@@ -129,7 +131,9 @@
         <li><input type="submit" id="addsort" value="添加新分类" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
     </div>
 </form>
+</section>
 <script>
+    setTimeout(hideActived, 2600);
     $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
     $("#alias").keyup(function() {
         checksortalias();

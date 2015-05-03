@@ -1,9 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">分类名称不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">别名格式错误</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">别名不能重复</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif;?>
-<div class=containertitle><b>编辑分类</b></div>
+<section class="content-header">
+    <h1>编辑分类</h1>
+    <div class="containertitle">
+    <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">分类名称不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">别名格式错误</span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">别名不能重复</span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form action="sort.php?action=update" method="post" class="form-inline">
 <div class="form-group">
     <li>
@@ -40,6 +46,7 @@
     </li>
 </div>
 </form>
+</section>
 <script>
 $("#menu_sort").addClass('active');
 $("#alias").keyup(function(){checksortalias();});

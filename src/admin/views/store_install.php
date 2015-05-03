@@ -1,11 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle">
-<b>安装<?php echo $source_typename;?></b>
-<div class=line></div>
+<section class="content-header">
+    <h1>安装<?php echo $source_typename;?></h1>
+</section>
+<section class="content">
 <div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?>正在下载安装中</span></div>
 </div>
+</section>
 <script>
-$("#menu_store").addClass('active');
+$("#menu_store").addClass('active').parent().parent().addClass('active');
 $(document).ready(function(){
     $.get('./store.php', {action:'addon', source:"<?php echo $source;?>", type:"<?php echo $source_type;?>" },
       function(data){
