@@ -1,0 +1,21 @@
+@charset "utf-8"; 
+body{background-color:#fff; padding:0px; font-family:Arial,Helvetica,sans-serif; font-size:12px}
+.login-main{background:url(../images/login_back.gif) repeat-y; width:294px; margin:100px auto 0}
+.login-top{background:url(../images/login_top.png) no-repeat; height:14px}
+.login-bottom{background:url(../images/login_bottom.png) no-repeat; height:17px}
+.login-logo{_margin-top:-1px}
+.login-logo img{border:0}
+.login-main small{font-size:10px; text-align:right; display:block; padding:0 12px 0 0; color:#999}
+.login-input{padding:3px 12px; color:#999}
+.login-input div{margin:3px 0px}
+.login-input input{background: #FFF;border: 1px solid #D9D9D6;padding: 5px;border-radius: 2px;font-size:16px; font-weight:bold; color:#333; width:256px}
+.login-main .val input{width:80px}
+.login-button{padding:3px 12px; color:#333}
+.login-button .checkbox{float:left}
+.login-button .button{float:right}
+.login-button .button input{background:url(../images/login_button.gif) no-repeat; border:0; color:#FFF; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
+.login-main .back{padding:5px; background-color:#FFF; background-image:none; color: #CCC;}
+.login-main .back a{color:#09C; text-decoration:none}
+.login-ext{padding:10px 12px 0;}
+.login-error{background-color:#FFEBE8; border: 1px solid #CC0000; margin: 8px auto 0px; padding: 8px 11px; width:266px;border-radius: 4px;}
+label{cursor:pointer;}
