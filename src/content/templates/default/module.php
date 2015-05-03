@@ -223,7 +223,19 @@ function blog_navi(){
     global $CACHE; 
     $navi_cache = $CACHE->readCache('navi');
     ?>
-    <ul class="bar">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">首页</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
     <?php
     foreach($navi_cache as $value):
 
@@ -242,10 +254,10 @@ function blog_navi(){
         $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
         $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
         ?>
-        <li class="item <?php echo $current_tab;?>">
-            <a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a>
+        <li class="dropdown">
             <?php if (!empty($value['children'])) :?>
-            <ul class="sub-nav">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
                 <?php foreach ($value['children'] as $row){
                         echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
                 }?>
@@ -253,7 +265,8 @@ function blog_navi(){
             <?php endif;?>
 
             <?php if (!empty($value['childnavi'])) :?>
-            <ul class="sub-nav">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
                 <?php foreach ($value['childnavi'] as $row){
                         $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
                         echo '<li><a href="' . $row['url'] . "\" $newtab >" . $row['naviname'].'</a></li>';
@@ -264,6 +277,9 @@ function blog_navi(){
         </li>
     <?php endforeach; ?>
     </ul>
+        </div>
+    </div>
+</nav>
 <?php }?>
 <?php
 //blog：置顶

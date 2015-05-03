@@ -1,0 +1,191 @@
+body {background: #FFFFFF; color: #323232; text-align:center; 
+      font-family:"微软雅黑",Arial,Helvetica,sans-serif;
+      font-size: 14px;
+      margin: 0px auto 0px; padding: 0px;}
+#wrap {background: #FFFFFF; width: 960px; text-align:left; margin: 0px auto 0px; padding: 0px;}
+img{ border:none;}
+
+a:link, a:active, a:visited {color:#886353; text-decoration:none;}
+a:hover {color:#886353; text-decoration:underline;}
+
+#header h1 {color: #1F1F1F; font-size: 30px; font-weight: normal; letter-spacing: 0px; margin: 10px 0px 3px 0px; padding: 20px 0px 0px 0px; font-family: Georgia, "Times New Roman", Times, serif; line-height:normal;}
+#header h1 a:link {color: #1F1F1F; text-decoration: none;}
+#header h1 a:active {color: #1F1F1F; text-decoration: none;}
+#header h1 a:visited {color: #1F1F1F; text-decoration: none;}
+#header h1 a:hover {color: #1F1F1F; text-decoration: none;}
+#header h3 {color: #525252; font-style: italic; font-size: 15px; font-weight: normal; margin: 0px 0px 0px 40px; padding: 10px 0px 10px 0px;}
+
+#nav {margin: 10px 0px 0px 0px;border: 1px solid #eee;}
+#nav .bar {margin: 0px; padding: 0px;height: 30px;}
+#nav .bar .item {height: 30px;line-height: 30px;display: block;float: left;padding: 0 18px; position: relative}
+#nav a:link {color:#1F1F1F; text-decoration:none;}
+#nav a:active {color:#1F1F1F; text-decoration:none;}
+#nav a:visited {color:#1F1F1F; text-decoration:none;}
+#nav a:hover {color:#1F1F1F; text-decoration:underline;}
+#nav .current {background-color: #EFEFEF;}
+#nav .item:hover .sub-nav, 
+#nav .li-hover .sub-nav { display: block;}
+#nav .sub-nav {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    margin: 0px; 
+    padding: 0px;
+    list-style: none;
+    border: 1px solid #eee;
+    top: 30px;
+    left: 0px;
+}
+#nav .sub-nav li {
+    min-width: 120px;
+    white-space: nowrap;
+}
+#nav .sub-nav a {
+    display: block;
+    padding: 0 18px;
+}
+* html #nav .sub-nav a {
+    display:inline;
+    zoom:1;
+    width: 120px;
+}
+
+#nav .sub-nav a:hover {
+    background-color: #EEE;
+}
+
+#banner {height:134px;}
+
+#pagenavi{text-align:center; font-size:14px}
+#pagenavi a{ padding:0px 3px;}
+#pagenavi a:hover{text-decoration:overline }
+#pagenavi span{font-size:16px; color:#999999;}
+
+#content {width: 960px; margin: 0px auto 0px; padding: 0px;}
+#content p {padding: 0px 0px 15px 0px; margin: 0px; line-height: 20px;}
+#content h1 {display:none;}
+#content h2 {color: #1F1F1F; font-size: 18px; font-weight:bold; padding: 0px 0px 0px 0px; margin: 25px 0px 10px 0px;}
+#content h2 a:link {color:#1F1F1F; text-decoration:none;}
+#content h2 a:active {color:#1F1F1F; text-decoration:none;}
+#content h2 a:visited {color:#1F1F1F; text-decoration:none;}
+#content h2 a:hover {color:#1F1F1F; text-decoration:underline;}
+#content h2.widgettitle {color: #444444; font-size: 12px; font-weight: bold; margin: 25px 0px 0px 0px; padding: 10px 0px 10px 0px;}
+#content h3 {color: #444444; font-size: 14px; font-weight: bold; margin: 15px 0px 0px 0px; padding: 8px 0px 8px 0px;}
+#contentleft {float: left; width: 678px; margin: 0px 0px 0px 0px; padding: 0px 20px 20px 20px; border-left: 1px solid #eee; border-right: 1px solid #eee;word-wrap:break-word;}
+blockquote {margin: 0px 20px 20px 20px; padding: 25px 20px 25px 20px; background: #EFEFEF; border-left: 5px solid #696969; border-right: 5px solid #696969;}
+#contentleft .date {color:#8c8c8c; font-size:12px;}
+#contentleft .att {color:#A97965; font-size:12px; margin:5px 0px 0px 0px;}
+#contentleft .tag {color:#A97965; font-size:12px; margin:0px 0px 0px 0px;}
+#contentleft .count { text-align:right; font-size:12px;}
+#contentleft img{max-width:690px;}
+
+img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
+img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
+img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
+a img.alignright {float:right; border:none; margin:0px 0px 10px 10px;}
+a img.alignleft {float:left; border:none; margin:0px 10px 10px 0px;}
+a img.aligncenter {display: block; border:none; margin:10px auto 10px auto;}
+
+#sidebar {float: right; width: 200px; margin: 0px 0px 0px 0px; padding: 0px 19px 20px 19px; border-right: 1px solid #eee; font:12px/18px Verdana, Arial, Helvetica, sans-serif;overflow:hidden}
+#sidebar ul {list-style-type: none; margin: 0px; padding: 0px;}
+#sidebar ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
+#sidebar ul li ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
+#sidebar li {list-style-type:none;}
+#sidebar .search {background: url("images/search.png") no-repeat scroll 5px 3px transparent;border: 1px solid #CCCCCC;border-radius: 3px 3px 3px 3px;font-size: 12px;line-height: 1.2em;padding: 4px 10px 4px 28px;}
+
+#footerbar {margin: 40px auto 30px; padding: 10px 0px; width: 960px; text-align: center; overflow: hidden; border-top: 1px solid #eee;}
+.footerbox {float:left; width: 31%; float: left; margin: 5px 0px 0px 0px; padding: 0px 10px 20px 10px;}
+.footerbox ul {list-style-type: none; margin: 0px; padding: 0px;}
+.footerbox ul li {background:transparent url("images/bullet.png") 0px 3px no-repeat; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 18px;}
+
+#contentleft .nextlog{text-align:center; margin:5px 0; font-size:12px}
+#contentleft .comment-header{margin:15px 0px 5px 0px}
+#contentleft .comment-post {clear:both}
+#contentleft .comment-post p{margin:5px 0px}
+#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;padding-right:10%}
+#contentleft .comment-post .cancel-reply:hover{text-decoration:underline}
+#contentleft .comment-post small{font-size:12px; color:#999}
+#contentleft .comment-post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:40%}
+#contentleft .comment-post #comment{ width:90%; border:1px #b6b6b6 solid; font-size:12px; color:#333}
+#contentleft .comment-post #comment_submit{background:url(images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
+#contentleft .comment-post .input{width:100px}
+#contentleft .comment{margin:10px 0; padding:10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333; height:100%; zoom:1}
+#contentleft .comment span{color:#ff7a15;}
+#contentleft .comment .comment-time{color:#999999; display:inline; font-size:10px;}
+#contentleft .comment .avatar{float:left;margin:5px}
+#contentleft .comment .comment-info{float:left;width:90%}
+#contentleft .comment .comment-content{margin:8px 0px 0px 0px;}
+#contentleft .comment .comment-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
+#contentleft .comment .comment-reply:hover{text-decoration:underline}
+#contentleft .comment-children{width:95%;margin:auto;clear:both;border:none;padding:0}
+#contentleft .comment .comment-post{width:90%;margin:15px auto}
+
+.calendartop{text-align:center; font-size:12px; margin-left:30px}
+.calendar{margin-bottom:10px;}
+.calendar td{font-size:11px; text-align:center; padding:1px 5px; line-height:1.6;}
+.calendar td a:link{color:#886353; text-decoration:none;}
+.calendar td a:hover{color:#886353; text-decoration:none}
+.day{background:url(images/bg_cal_today.gif)  no-repeat 2px 1px}
+.day2{font-weight:bold}
+.sun{color:#333; font-weight:bold}
+.week{color:#333}
+
+.rss{ margin:20px 0px;}
+
+.attachment{
+    margin: 0px 3px;
+    padding: 0px 0px 0px 20px;
+    font-weight: bold;
+    background:url(images/att.png)  no-repeat 2px -1px;
+}
+
+#twitter li {border-bottom: dotted #CCCCCC 1px;list-style:none;}
+#twitter li p {font-size: 10px;padding-left: 68px; text-align:right; padding:5px 0px 2px;}
+#twitter p {font-size: 12px;text-align:right;}
+#twitter li small {font-size: 10px;padding: 0px 10px;}
+#twitter li .t_img{background:url(images/img.gif) no-repeat;padding: 0 7px;margin: 0 0 0 10px;}
+
+#tw .main_img{ border:1px #2772ae solid; float:left;}
+#tw .main_img img{ border:1px #fff solid}
+#tw .op{ float:left; height:18px;margin:6px 5px 3px;}
+#tw ul{ margin:5px 0px 3px 25px; width:520px; line-height:1.8;padding:0px;}
+#tw ul .li{ margin:10px 0px;padding:5px 0px;border-bottom: #F7F7F7 1px solid;}
+#tw ul li{margin:0px 0px; padding:0;}
+#tw ul li .main_img{ margin-top:5px;}
+#tw ul li .post1{ float:left;font-size:13px; padding:0px;margin:0; width:470px; padding:0px 0px 0px 8px;}
+#tw ul li .post1 span{color:#886353; font-weight:bold;}
+#tw ul li{ clear:both; padding:0px; margin:0px;}
+#tw ul li .bttome {margin:3px 0;vertical-align:middle}
+#tw ul li .bttome .time{ float:left;line-height:14px;margin:0;}
+#tw ul li .bttome .post{ float: right;font-size:12px;line-height:14px;margin:0;}
+#tw .time{ font-size:12px; color:#999999; padding-left:43px}
+#tw ul .r{ margin:5px 0px 0px 40px;color:#666666; border:0; padding:0px;}
+#tw ul .r li{padding:5px 3px 3px;border-bottom: #F7F7F7 1px solid; width:475px}
+#tw ul .r .num{ font-size:16px; font-weight:bold; color:#0079b7;padding:0px 5px; float:left; width:20px;}
+#tw ul .r .time{ padding:0px 5px;}
+#tw ul .r .name{ padding:0px 0px 0px 0px; font-size:12px; color:#336699;}
+#tw ul .r em a{ font-style:normal;}
+#tw ul .huifu{margin:5px 0px 0px 43px; background:#F5F5F5;border:#CCCCCC solid 1px;text-align:center;display:none;}
+#tw ul .huifu textarea{ margin:5px; width:460px; border:#CCCCCC solid 1px;overflow:auto;}
+#tw ul .huifu input{ margin:0px 5px;}
+#tw ul .huifu div{ text-align:left; padding:0px 5px; text-align:center}
+#tw ul .huifu .text{ width:60px;}
+#tw ul .button_p{background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:63px; height:25px;}
+#tw .tbutton{ font-size:12px;float:none; margin-bottom:3px;}
+#tw .tbutton input{ width:90px; border:#CCCCCC solid 1px; }
+#tw .tbutton .button_p{ background:url(images/weibe_button.gif) no-repeat; border:0;cursor:pointer; _cursor:hand; width:60px; height:25px;}
+#tw .tbutton .tinfo{ float:left; }
+#tw .msg{ clear:both}
+#tw li{list-style:none;}
+#tw ul .huifu textarea{background-color:#FFFFFF;}
+#tw ul .huifu input{background-color:#FFFFFF;}
+#tw ul li ul{ line-height:0;font-size:0;}
+#tw ul li ul li{ font-size:12px; line-height:22px;}
+#tw .top{width:650px;}
+#tw ul li .post1{ width:560px;}
+#tw ul{ width:610px;}
+#tw ul .r li{width:565px}
+#tw ul .huifu textarea{width:550px;}
+#tw ul li .bttome .post{ font-size:12px;line-height:14px;margin:0; text-align:right; float:none;clear:both; width:610px; background:0; border:0;}
+#tw ul li .bttome .time{ float:none; margin-top:-25px;}
+#tw p .t_img{background:url(images/img.gif) no-repeat;padding: 0 7px;margin: 0 0 0 10px;}
