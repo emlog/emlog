@@ -1,54 +1,39 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle2">
-<!--vot--><a class="navi3" href="./template.php"><?=lang('template_current')?></a>
-<!--vot--><a class="navi4" href="./template.php?action=install"><?=lang('template_mount')?></a>
-<!--vot--><?php if(isset($_GET['activated'])):?><span class="actived"><?=lang('template_change_ok')?></span><?php endif;?>
+<?php if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+} ?>
+<div class="panel-heading">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="./template.php">模板管理</a></li>
+        <li role="presentation"><a href="template.php?action=install">安装模板</a></li>
+        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">模板更换成功</span><?php endif; ?>
+        <?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success">模板上传成功</span><?php endif; ?>
+        <?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success">删除模板成功</span><?php endif; ?>
+        <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">删除失败，请检查模板文件权限</span><?php endif; ?>
+        <?php if (!$nonceTplData): ?><span class="alert alert-danger">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</span><?php endif; ?>
+    </ul>
 </div>
-<?php if(!$nonceTplData): ?>
-<!--vot--><div class="error_msg"><?=lang('template_current_use')?> (<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></div>
-<?php else:?>
-<table cellspacing="20" cellpadding="0" width="80%" border="0">
-    <tr>
-      <td width="42%">
-      <img src="<?php echo TPLS_URL.$nonce_templet; ?>/preview.jpg" width="240" height="180"  border="1" />      </td>
-      <td width="58%">
-      <?php echo $tplName; ?> <em><?php echo $tplVer; ?></em><br>
-      <?php echo $tplAuthor; ?><br>
-      <?php echo $tplDes; ?>
-      <?php if ('default' == $nonce_templet): ?>
-<!--vot--><div class="custom_top_button"><a href="./template.php?action=custom-top"><i class="custom_top"></i><?=lang('template_top_image')?></a></div>
-      <?php endif; ?>
-      </td>
-    </tr>
-</table>
-<?php endif;?>
-<div class="containertitle2">
-<!--vot--><span class="navi3"><?=lang('template_library')?> (<?php echo $tplnums; ?>)</span>
-<a name="tpllib"></a>
-<!--vot--><?php if(isset($_GET['activate_install'])):?><span class="actived"><?=lang('template_upload_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['activate_del'])):?><span class="actived"><?=lang('template_delete_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('template_delete_failed')?></span><?php endif;?>
+
+<div class="tpl">
+    <?php
+    foreach ($tpls as $key => $value):
+    ?>
+        <ul class="item">
+            <li>
+                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+                    <img alt="<?=lang('template_use_this')?>" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
+                </a>
+            </li>
+            <li class="title <?php if($nonce_templet == $value['tplfile']){echo "active";} ?>">
+                <span class="name"><b><?php echo $value['tplname']; ?></b></span>
+                <span class="act"> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a></span>
+            </li>
+        </ul>
+    <?php endforeach;?>
+        <ul class="add">
+            <li><a href="template.php?action=install">添加模板+</a></li>
+        </ul>
 </div>
-<table cellspacing="0" cellpadding="0" width="99%" border="0" class="adm_tpl_list">
-<?php 
-$i = 0;
-foreach($tpls as $key=>$value):
-if($i % 3 == 0){echo "<tr>";}
-$i++;
-?>
-      <td align="center" width="300">
-      <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-<!--vot--><img alt="<?=lang('template_use_this')?>" src="<?php echo TPLS_URL.$value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
-      </a><br />
-      <?php echo $value['tplname']; ?>
-<!--vot--><span> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a></span>
-      </td>
-<?php 
-if($i > 0 && $i % 3 == 0){echo "</tr>";}
-endforeach; 
-?>
-</table>
 <script>
-setTimeout(hideActived,2600);
-$("#menu_tpl").addClass('sidebarsubmenu1');
+    setTimeout(hideActived, 2600);
+    $("#menu_tpl").addClass('active').parent().parent().addClass('active');
 </script>

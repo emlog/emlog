@@ -1,13 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('page_management')?></b>
-<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('page_deleted_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_hide_n'])):?><span class="actived"><?=lang('page_published_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_hide_y'])):?><span class="actived"><?=lang('page_disabled_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_pubpage'])):?><span class="actived"><?=lang('page_saved_ok')?></span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>页面管理</h1>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除页面成功</span><?php endif;?>
+    <?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success">发布页面成功</span><?php endif;?>
+    <?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success">禁用页面成功</span><?php endif;?>
+    <?php if(isset($_GET['active_pubpage'])):?><span class="alert alert-success">页面保存成功</span><?php endif;?>
+</section>
+<section class="content">
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table width="100%" id="adm_comment_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
       <tr>
 <!--vot--><th width="461" colspan="2"><b><?=lang('title')?></b></th>
@@ -37,7 +38,7 @@
         </td>
         <td><?php echo $value['template']; ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td><?php echo $value['date']; ?></td>
+        <td class="small"><?php echo $value['date']; ?></td>
      </tr>
     <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('no_pages')?></td></tr>
@@ -53,15 +54,16 @@
 <!--vot--><a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> | 
 <!--vot--><a href="javascript:pageact('pub');"><?=lang('publish')?></a>
 </div>
-<!--vot--><div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new"><?=lang('add_page')?>+</a></div>
+<!--vot--><div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new" class="btn btn-success"><?=lang('add_page')?>+</a></div>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $pageNum; ?><?=lang('_pages')?>)</div>
+</section>
 <script>
 $(document).ready(function(){
     $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
     $("#adm_comment_list tbody tr")
         .mouseover(function(){$(this).addClass("trover")})
         .mouseout(function(){$(this).removeClass("trover")});
-    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    selectAllToggle();
 });
 setTimeout(hideActived,2600);
 function pageact(act){
@@ -72,5 +74,5 @@ function pageact(act){
     $("#operate").val(act);
     $("#form_page").submit();
 }
-$("#menu_page").addClass('sidebarsubmenu1');
+$("#menu_page").addClass('active');
 </script>

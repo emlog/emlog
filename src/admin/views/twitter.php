@@ -1,20 +1,20 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('twitters')?></b>
-<!--vot--><?php if(isset($_GET['active_t'])):?><span class="actived"><?=lang('published_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_set'])):?><span class="actived"><?=lang('settings_saved_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('twitter_delete_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('twitter_empty')?></span><?php endif;?>
-</div>
-<div class=line></div>
-<div id="tw">
-    <div class="main_img"><a href="./blogger.php"><img src="<?php echo $avatar; ?>" height="52" width="52" /></a></div>
-    <div class="right">
+<section class="content-header">
+    <h1>微语</h1>
+    <?php if(isset($_GET['active_t'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
+    <?php if(isset($_GET['active_set'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">微语删除成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
+</section>
+<section class="content">
+<div id="tw" class="row col-lg-6">
+    <div class="form-group">
     <form method="post" action="twitter.php?action=post">
     <input type="hidden" name="img" id="imgPath" />
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--> <div class="msg"><?=lang('can_enter_max_140')?></div>
-    <div class="box_1"><textarea class="box" name="t"></textarea></div>
-<!--vot--> <div class="tbutton"><input class="button" type="submit" value="<?=lang('publish')?>" onclick="return checkt();"/> </div>
+    <div class="box_1"><textarea name="t" class="box form-control"></textarea></div>
+    <div class="tbutton"><input type="submit" value="<?=lang('publish')?>" class="btn btn-primary" onclick="return checkt();"/></div>
     <img class="twImg" id="face" style="margin-right: 10px;cursor: pointer;" src="./views/images/face.png">
     <div class="twImg" id="img_select"><input  width="120" type="file" height="30" name="Filedata" id="custom_file_upload" style="display: none;"></div>
     <div id="img_name" class="twImg" style="display:none;">
@@ -46,9 +46,9 @@
     </div>
     <div class="clear"></div>
        <div id="r_<?php echo $tid;?>" class="r"></div>
-    <div class="huifu" id="rp_<?php echo $tid;?>">
-    <textarea name="reply"></textarea>
-<!--vot--><div><input class="button_p" type="button" onclick="doreply(<?php echo $tid;?>);" value="<?=lang('reply')?>" /> <span style="color:#FF0000"></span></div>
+    <div class="huifu form-inline" id="rp_<?php echo $tid;?>">
+        <textarea class="form-control" name="reply"></textarea>
+        <input class="btn btn-default" type="button" onclick="doreply(<?php echo $tid;?>);" value="<?=lang('reply')?>" /> <span style="color:#FF0000"></span>
     </div>
     </li>
     <?php endforeach;?>
@@ -56,11 +56,12 @@
     </ul>
 </div>
 <div id="faceWraps"></div>
+</section>
 <script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script type="text/javascript" src="./views/js/emo.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
 $(document).ready(function(){
-    $(".post a").toggle(
+    $(".post a").toggleClick(
       function () {
         tid = $(this).parent().attr('id');
         $("#r_" + tid).html('<p class="loading"></p>');
@@ -84,7 +85,7 @@ $(document).ready(function(){
     });
     setTimeout(hideActived,2600);
     $("#sz_box").css('display', $.cookie('em_sz_box') ? $.cookie('em_sz_box') : '');
-    $("#menu_tw").addClass('sidebarsubmenu1');
+    $("#menu_tw").addClass('active');
     $(".box").focus();
     
     $("#custom_file_upload").uploadify({

@@ -1,174 +1,21 @@
-html {overflow-y:scroll;}
-fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
-    margin:0;
-    padding:0;
-    border:0;
-}
-th {text-align:left;}
+/*main.css*/
 li {list-style:none;}
-body {
-    font-size:12px;
-    color:#000;
-    line-height:1.6;
-/*vot*/    font-family:Arial,Helvetica,sans-serif;
-    padding:0;
-    margin:0;
-}
-#mainpage {
-    margin:5px auto 0px;
-    width:996px;
-}
 #container {
     padding-left:30px;
     float:left;
-/*vot*/    width:852px;
+    width:840px;
 }
-#footer{
-    clear:both;
-    margin:0px auto;
-    padding:18px 0px 12px;
-    text-align:center;
-}
-/*vot*/ #menu_wt a {background:url(../images/pencil.png) no-repeat left 1px;}
-/*vot*/ #menu_plug a {background:url(../images/plugin.gif) no-repeat left 1px;}
-/*vot*/ #menu_store a {background:url(../images/store.gif) no-repeat left 1px;}
-#menu_ext { cursor:pointer;}
-.menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
-.menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
 .containertitle {
-    background-position:left 3px;
-    font-size:14px;
-    margin:5px 0px 15px 0px;
-    color:#666666
-}
-.containertitle2 {
-/*vot    background-position:left 3px;*/
-    font-size:18px;
-    height:30px;
-/*vot    background:url(../images/yeka.gif) 10px -82px no-repeat;*/
-    padding:0 0 0 20px;
-    margin:20px 0px 10px;
-/*vot*/ border-bottom: 1px solid #999;
-}
-.containertitle2 .navi1,.containertitle2 .navi2,.containertitle2 .navi3,.containertitle2 .navi4 {
-    font-size:13px;
-    display:block;
-/*vot    width:86px;*/
-    float:left;
-    text-align:center;
-    height:25px;
-    line-height:24px;
-/*vot*/ padding: 0 4px;
-/*vot*/ border: 1px solid #ddd;
-/*vot*/ border-bottom: 0px;
-/*vot*/ border-radius: 5px 5px 0 0;
-/*vot*/ margin: 0 1px 0 0;
-}
-.containertitle2 .navi1 {
-/*vot    background:url(../images/yeka.gif) no-repeat;*/
-    color:#999;
-/*vot*/ background: #EEE;
-}
-.containertitle2 .navi2 {
-/*vot    background:url(../images/yeka.gif) no-repeat -1px -29px;*/
-/*vot    line-height:24px;*/
-border-color: #999;
-}
-.containertitle2 .navi3 {
-/*vot    background:url(../images/yeka.gif) no-repeat 0px -29px;*/
-/*vot    line-height:24px;*/
-/*vot*/ border-color: #999;
-/*vot*/ background: #EEE;
-}
-.containertitle2 .navi4 {
-/*vot    background:url(../images/yeka.gif) no-repeat -1px 0px;*/
-    color:#999;
-}
-.containertitle2 .actived {
-    margin:0px 60px;
-    background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
-    font-size:12px;
-    padding:3px 12px 4px 30px;
-    border:1px #FFBA43 solid
-}
-.containertitle2 .error {
-    margin:0px 20px;
-    background:url(../images/icon_error.gif) no-repeat 10px #FDFFCE;
-    font-size:12px;
-    padding:3px 12px 4px 30px;
-    border:1px #FFBA43 solid
-}
-.line {
-    border-top:#EFEFEF 1px solid;
-    margin:5px 0px 15px;
-    font-size:0px;
-    height:1%;
-}
-.line2 {
-    border-top:#999 1px dotted;
-    margin:5px 20px;
-    width:70%;
-    font-size:0px;
-}
-.template_line {
-    border-top:#CCC 1px solid;
-    margin:5px 0px 15px;
-    width:100%;
-    font-size:12px;
-    height:1%;
-    padding:0px;
-}
-.item_list {
-    border:1px solid #f0f0f0;
-    color:#808080;
-    border-collapse:collapse;
-    border-spacing:0;
-}
-.item_list th {
-    height:23px;
-    line-height:23px;
-    background:url(../images/admindex_itembg.gif) repeat-x bottom;
-    border:1px solid #dfdfdf;
-    padding-left:5px;
-    color:#666;
-    border-top:none;
-}
-.item_list td {
-    padding:10px 0px 10px 5px;
-    vertical-align:middle;
+    font-size:16px;
+    padding: 20px 0px 20px;
+    color:#666666;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 100px;
 }
 .tdcenter {
     text-align:center;
     padding-left:0;
-}
-.input {
-    background: #FFF;
-    border: 1px solid #D9D9D6;
-    padding: 5px;
-    border-radius: 2px;
-}
-.textarea{
-    background: #FFF;
-    border: 1px solid #D9D9D6;
-    padding: 7px;
-    border-radius: 2px;
-    overflow-y:hidden;
-}
-.num_input {
-    border:1px dotted #EFEFEF;
-    overflow-y:hidden;
-    width:43px;
-    height:16px;
-}
-.submit {
-    font-size:12px;
-    cursor:pointer;
-    _cursor:hand;
-}
-.button {
-    font-size:12px;
-    cursor:pointer;
-/*vot*/ padding:4px 10px;
 }
 .notice {
     padding:10px 5px;
@@ -196,129 +43,6 @@ textarea {
 }
 .trover {
     background-color:#E9F1FA
-}
-.widgetpage {
-    width:750px;
-    cursor:default;
-    margin-left:20px
-}
-#adm_widget_list {
-    width:450px;
-    float:left
-}
-#adm_widget_list li {
-    list-style-type:none
-}
-.widget-line {
-    margin:0px
-}
-.widget-top {
-    float:left;
-    padding:0px 0px 0px 0px;
-    margin:5px 0px 0px 0px;
-    background-color:#F7F7F7;
-    border:1px solid #F0F0F0;
-    width:403px
-}
-.widget-top li {
-    float:left;
-    margin:0px;
-    padding:5px;
-    list-style-type:none
-}
-.widget-title {
-    cursor:pointer;
-    width:360px
-}
-.widget-control {
-    float:left;
-    width:383px;
-    padding:10px 10px;
-    display:none;
-    margin:0px 0px 5px 0px;
-    border-left:1px solid #F3F3F3;
-    border-right:1px solid #F3F3F3;
-    border-bottom:1px solid #F3F3F3;
-}
-.widget-act-del {
-    background:url(../images/icon_del.gif) no-repeat center;
-    margin:5px;
-    display:none;
-    width:10px;
-    height:15px;
-    cursor:pointer
-}
-.widget-act-add {
-    background:url(../images/icon_add.gif) no-repeat center;
-    margin:5px;
-    width:10px;
-    cursor:pointer;
-    height:15px
-}
-.wg_line {
-    float:left;
-    width:408px;
-    font-weight:bold;
-    padding:15px 0px 0px 0px;
-    margin:0px 0px 5px 0px;
-    border-bottom:1px dotted #CCC
-}
-.wg_line2 {
-    float:left;
-    width:408px;
-    padding:15px 0px 0px 0px;
-    margin:0px 0px 5px 0px
-}
-#custom_text_new {
-    float:left;
-    display:none
-}
-#adm_widget_box {
-    width:300px;
-    float:right
-}
-#adm_widget_box p {
-    margin-left:35px;
-    padding:5px
-}
-.sortableitem {
-    background-color:#F7F7F7;
-    border:1px solid #F0F0F0;
-    list-style:none;
-    margin:5px 0px;
-    padding:5px;
-    cursor:move
-}
-.wg_hd {
-    cursor:move;
-    font-size:12px
-}
-.adm_tpl_list td {
-    border-bottom:#CCC 1px dotted;
-    padding:10px
-}
-.adm_tpl_list img {
-    border:#CCC 1px solid
-}
-.adm_tpl_list span {
-    color:#999999;
-    font-size:10px;
-}
-.actived {
-    margin:0px 200px;
-    background:url(../images/icon_succ.gif) no-repeat 10px #FDFFCE;
-    font-size:12px;
-    padding:4px 12px 4px 30px;
-    border:1px #FFBA43 solid;
-    border-radius:3px;
-}
-.error {
-    margin:0px 200px;
-    background:url(../images/icon_error.gif) no-repeat 10px #FDFFCE;
-    font-size:12px;
-    padding:4px 12px 4px 30px;
-    border:1px #FFBA43 solid;
-    border-radius:3px;
 }
 .error_msg {
     margin:0px 200px;
@@ -381,7 +105,7 @@ textarea {
     border-radius:3px;
 }
 .filters {
-    margin:0px 0px 1px 0px;
+    margin:0px 0px 10px 0px;
 }
 .filter {
     background-color:#6edffb;
@@ -416,7 +140,7 @@ textarea {
     margin:10px 0px 5px 32px
 }
 #page_options {
-/*vot*//*    float:right;*/
+    float:right;
     margin-right: 5px;
 }
 #page_options label {
@@ -438,25 +162,18 @@ textarea {
 #log_pass {
     display:none
 }
-#admindex_main {
-    width:600px;
-    margin:5px 5px 8px;
-    padding:10px 0px 5px;
-}
-#admindex_servinfo {
-    float:left;
-    width:410px;
-    margin-right:20px
-}
-#admindex_msg {
-    width:410px;
-    float:left
+#admindex_servinfo li {
+    line-height:1.6;
+    border-bottom: 1px solid #E4E4E4;
+    padding: 10px;
 }
 #admindex_msg img {
     border:none
 }
 #admindex_msg ul li {
-    line-height:1.6
+    line-height:1.6;
+    border-bottom: 1px solid #E4E4E4;
+    padding: 10px;
 }
 #admindex_msg ul li img {
     margin:5px
@@ -481,14 +198,6 @@ textarea {
     list-style:none;
     margin:0px;
     padding:3px 1px
-}
-#about{
-    text-align: center;
-    background-color: #f9f9f9;
-    padding: 10px 0px;
-    margin:12px 0px 0px 0px;
-    width: 842px;
-    border-radius: 5px;
 }
 .clear {
     clear:both;
@@ -525,20 +234,6 @@ textarea {
     display:none;
     margin:0px 0px 20px 0px;
 }
-.title_des {
-    font-size:12px;
-    color:#999999;
-    margin-left:5px;
-}
-.des {
-    margin:5px 0;
-    width:500px;
-    background-color:#FFFFE5;
-    padding:5px 10px;
-    border:1px #CCCCCC solid;
-    clear:both;
-    border-radius:4px;
-}
 .permalink_url {
     color:#939393;
     letter-spacing:2px;
@@ -551,10 +246,7 @@ textarea {
     letter-spacing:1px;
     padding:8px 0px 8px 23px;
 }
-#tw {
-    float:left;
-    width:560px;
-}
+//微语
 #tw .main_img {
     border:1px #2772ae solid;
     float:left;
@@ -563,25 +255,11 @@ textarea {
     border:1px #fff solid
 }
 #tw .box_1 {
-    background:url(../images/weibe_bl.gif) no-repeat;
     padding-left:7px;
 }
 #tw .box {
-    width:460px;
-    border:1px #bcbcbc solid;
-    border-left:0;
     padding:5px;
-    height:70px;
-    overflow:auto;
-    line-height:1.4;
-}
-#tw .box2 {
-    width:420px;
-    border:1px #bcbcbc solid;
-    border-left:0;
-    padding:5px;
-    height:17px;
-    overflow:auto;
+    height:90px;
     line-height:1.4;
 }
 #tw .msg {
@@ -623,20 +301,8 @@ textarea {
     bottom: 10px;
     z-index: 120;
 }
-#tw .tbutton input {
-/*vot    background:url(../images/weibe_button.gif) no-repeat;*/
-    border:0;
-    cursor:pointer;
-    _cursor:hand;
-    width:63px;
-    height:25px;
-}
-#tw .tbutton input:active,#tw ul .button_p:active,#tw .sz_box .tbutton:active {
-/*vot    background:url(../images/weibe_button.gif) no-repeat 1px 1px;*/
-}
 #tw ul {
-    margin:5px 0px 3px 65px;
-    width:480px;
+    margin:25px 0px 3px 5px;
     line-height:1.8;
     padding:0px;
 }
@@ -727,7 +393,7 @@ textarea {
 }
 #tw ul .huifu textarea {
     margin:5px;
-    width:410px;
+    width:470px;
     border:#CCCCCC solid 1px;
     overflow:auto;
 }
@@ -753,31 +419,7 @@ textarea {
     background:url(../images/loading.gif) no-repeat 200px 2px;
     height:20px;
 }
-/*AdminCP style*/
-#admin_style {
-    margin:10px 10px 10px 10px;
-}
-#admin_style div {
-    float:left;
-    margin:12px;
-    width:235px;
-    height:120px;
-}
-#admin_style .styleTH {
-    border:1px solid #CCCCCC;
-    padding:1px;
-}
-#admin_style div li {
-    text-align:center;
-    margin:10px;
-}
-#admin_style div li a {
-    color:#999999
-}
-#admin_style div span {
-    font-size:11px;
-    color:#999999
-}
+
 .topimg_line {
     clear:both;
     width:794px;
@@ -821,70 +463,32 @@ textarea {
 .custom_top_button {
     margin-top:60px;
 }
-/*vot*/ .custom_top {
-/*vot
-    background:url(../images/custom_top.gif) no-repeat;
-    width:90px;
-    height:24px;
+.custom_top_button a {
+    background:url(../images/custom_top.png) no-repeat;
+    width:130px;
+    height:23px;
     display:block;
-    padding:2px 0px 0px 20px;
+    padding:1px 0px 0px 23px;
     color:#000000;
-*/
-    display:block;
-    float: left;
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-    background: url(../images/skin.gif) 0 0 no-repeat;
 }
 .custom_top_button a:active {
     text-decoration:none;
     padding:2px 0px 0px 21px
 }
-.add_plugin {
-/*vot    margin:16px 0px;*/
-/*vot
-    background:url(../images/add_bg.gif) no-repeat;
-    width:90px;
-    height:24px;
-*/
-    display:block;
-/*vot*/
-    float: left;
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-    background: url(../images/add.png) 0 0 no-repeat;
-}
-.add_plugin a:active {
-/*vot    text-decoration:none;*/
-/*vot    padding:4px 0px 0px 26px*/
-}
 #post{
-    width: 866px;
-}
-#post #tag{
-    width:414px;
+    width: auto;
 }
 #post #tag_label {
     vertical-align:middle;
     color:#BBBBBB;
     font-size:12px;
     padding:3px;
-/*vot    position:absolute;*/
+    position:absolute;
     cursor:text;
 }
-#post #tagbox {
-    width:860px;
-    margin:0px;
-    display:none;
-}
 #post #advset {
-    display:none;
-    width: 845px;
-}
-#post #alias{
-    width: 835px;
+    margin: 20px 0px;
+    margin: 20px 0px;
 }
 #post_bar {
     margin:5px 0px;
@@ -892,13 +496,12 @@ textarea {
 .show_advset {
     margin:3px 10px 0px 0px;
     padding:0px 20px 0px 0px;
-/*vot*/    background:url(../images/advset.gif) no-repeat right 4px;
+    background:url(../images/advset.gif) no-repeat 54px 4px;
     cursor:pointer;
     width:76px;
     font-weight:bold;
 }
 #post_button{
-    text-align: center;
     margin:10px 0px;
 }
 #post_options {
@@ -912,15 +515,6 @@ textarea {
     vertical-align:middle;
     margin:3px 0px 3px 15px
 }
-#input_s {
-    background:url("../images/search.png") no-repeat scroll 5px 3px transparent;
-    border-radius:3px;
-    border:1px solid #CCC;
-    font-size:12px;
-    line-height:1.2em;
-    padding:4px 10px 4px 28px;
-}
-.item_edit li{margin:12px 0px;}
 #navi_add{
     margin:20px 0px 120px 0px;
 }
@@ -1023,54 +617,74 @@ textarea {
     padding:0px 40px 0px 30px;
 }
 .required{color: red; font-size: 16px; margin-left: 2px;}
-
-/*---- Added by Valery Votintsev -------------*/
-/*vot*/ #menu_tpl a {background:url(../images/skin.gif) no-repeat left 1px;}
-/*vot*/ #menu_data a {background:url(../images/db.gif) no-repeat left 1px;}
-/*vot*/ #menu_user a {background:url(../images/group.png) no-repeat left 1px;}
-/*vot*/ #menu_link a {background:url(../images/url.png) no-repeat left 1px;}
-/*vot*/ #menu_page a {background:url(../images/page.png) no-repeat left 1px;}
-/*vot*/ #menu_navbar a {background:url(../images/menu.png) no-repeat left 1px;}
-/*vot*/ #menu_widget a {background:url(../images/widget.png) no-repeat left 1px;}
-/*vot*/ #menu_tw a {background:url(../images/twit.png) no-repeat left 1px;}
-/*vot*/ #menu_cm a {background:url(../images/comments.png) no-repeat left 1px;}
-/*vot*/ #menu_sort a {background:url(../images/folder.png) no-repeat left 1px;}
-/*vot*/ #menu_tag a {background:url(../images/tag.png) no-repeat left 1px;}
-/*vot*/ #menu_log a {background:url(../images/article.png) no-repeat left 1px;}
-/*vot*/ #menu_draft a {background:url(../images/hourglass.png) no-repeat left 1px;}
-
-/*vot*/    .button {
-    display: inline-block;
-    color: #000;
-    border: 1px solid #999999;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    line-height: 20px;
-    vertical-align: middle;
-    background: #EEE;
-    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC)); /* Saf4+, Chrome */
-    background: -webkit-linear-gradient(top, #FFF, #CCC); /* Chrome 10+, Saf5.1+ */
-    background:    -moz-linear-gradient(0 100% 90deg, #FFF, #CCC); /* FF3.6+ */
-    background:     -ms-linear-gradient(top, #FFF, #CCC); /* IE10 */
-    background:      -o-linear-gradient(top, #FFF, #CCC); /* Opera 11.10+ */
-    background:         linear-gradient(to bottom, #FFF, #CCC); /* W3C */
-    -moz-box-shadow:
-        1px 1px 1px rgba(000,000,000,0.5),
-        inset 0px 0px 0px rgba(255,255,255,1);
-    -webkit-box-shadow:
-        1px 1px 1px rgba(000,000,000,0.5),
-        inset 0px 0px 0px rgba(255,255,255,1);
-    box-shadow:
-        1px 1px 1px rgba(000,000,000,0.5),
-        inset 0px 0px 0px rgba(255,255,255,1);
-    text-shadow:
-        0px -1px 0px rgba(000,000,000,0.2),
-        0px 1px 0px rgba(255,255,255,1);
+.page{text-align:center;margin:10px 0px;}
+.page span{
+    background-color: #CC3300;
+    color:#FFF;
+    padding:5px 8px;
+    border-radius: 4px;
+}
+.page a{
+    background-color: #68aee1;
+    color:#FFF;
+    padding:2px 8px;
+    border-radius: 4px;
 }
 
-/*vot*/ #adm_widget_box li.sortable-placeholder {
-    border: 1px dashed #CCC;
-    background: none;
-    height: 29px;
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+.form-group li{margin:12px 0px;}
+.em-small {width: 50px;}
+.container-side{
+    margin-top:85px; 
+}
+/*模板管理*/
+.tpl{
+    margin: 5px;
+}
+.tpl ul{
+    float: left;
+    margin: 10px;
+    width: 340px;
+    height: 280px;
+}
+.tpl .item{
+    border: 1px solid #dedede;
+}
+.tpl img{
+    width: 100%;
+    height: 240px;
+}
+.tpl .title{
+    padding: 10px;
+    border-top: 1px solid #dedede;
+}
+.tpl .active{
+    background: #dff0d8;
+}
+.tpl .add{
+    border: 5px #E5E5E5 dashed;
+    padding: 120px 130px;
+}
+.tpl .add a{
+    color: #ccc;
+}
+
+.widget-act-del {
+    background:url(../images/icon_del.gif) no-repeat center;
+    margin:5px;
+    display:none;
+    width:15px;
+    height:15px;
+    cursor:pointer;
+    float: right;
+}
+.widget-act-add {
+    background:url(../images/icon_add.gif) no-repeat center;
+    margin:5px;
+    width:15px;
+    cursor:pointer;
+    height:15px;
+    float: right;
 }

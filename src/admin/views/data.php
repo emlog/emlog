@@ -1,19 +1,22 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<!--vot--><div class=containertitle><b><?=lang('data_backup')?></b>
-<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('backup_delete_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_backup'])):?><span class="actived"><?=lang('backup_create_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_import'])):?><span class="actived"><?=lang('backup_import_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('backup_file_select')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_b'])):?><span class="error"><?=lang('backup_file_invalid')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_c'])):?><span class="error"><?=lang('backup_import_zip_unsupported')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_d'])):?><span class="error"><?=lang('backup_upload_failed')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_e'])):?><span class="error"><?=lang('backup_file_wrong')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_f'])):?><span class="error"><?=lang('backup_export_zip_unsupported')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_mc'])):?><span class="actived"><?=lang('cache_update_ok')?></span><?php endif;?>
-</div>
-<div class=line></div>
+<section class="content-header">
+    <h1>数据库备份</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">备份文件删除成功</span><?php endif;?>
+    <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success">数据备份成功</span><?php endif;?>
+    <?php if(isset($_GET['active_import'])):?><span class="alert alert-success">备份导入成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的备份文件</span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导入zip备份</span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">上传备份失败</span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">错误的备份文件</span><?php endif;?>
+    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导出zip备份</span><?php endif;?>
+    <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success">缓存更新成功</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
-<table width="100%" id="adm_bakdata_list" class="item_list">
+<table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
     <tr>
 <!--vot--><th width="683" colspan="2"><b><?=lang('backup_file')?></b></th>
@@ -70,7 +73,7 @@
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
     <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-<!--vot--><input type="submit" value="<?=lang('backup_start')?>" class="button" />
+        <input type="submit" value="开始备份" class="btn btn-primary" />
     </p>
 </div>
 </form>
@@ -87,13 +90,13 @@
 
 <div id="cache">
 <!--vot--><p class="des"><?=lang('cache_update_info')?></p>
-<!--vot--><p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="button" /></p>
+<!--vot--><p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="btn btn-primary" /></p>
 </div>
-
+</section>
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
-    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    selectAllToggle();
     $("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
     $("#adm_bakdata_list tbody tr")
         .mouseover(function(){$(this).addClass("trover")})
@@ -109,5 +112,5 @@ function bakact(act){
     $("#operate").val(act);
     $("#form_bak").submit();
 }
-$("#menu_data").addClass('sidebarsubmenu1');
+$("#menu_data").addClass('active').parent().parent().addClass('active');
 </script>

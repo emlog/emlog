@@ -1,16 +1,21 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('comment_management')?></b>
-<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('comment_delete_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_show'])):?><span class="actived"><?=lang('comment_audit_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_hide'])):?><span class="actived"><?=lang('comment_hide_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="actived"><?=lang('comment_edit_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_rep'])):?><span class="actived"><?=lang('comment_reply_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('comment_choose_operation')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_b'])):?><span class="error"><?=lang('select_action_to_perform')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_c'])):?><span class="error"><?=lang('reply_is_empty')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_d'])):?><span class="error"><?=lang('comment_too_long')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_e'])):?><span class="error"><?=lang('comment_is_empty')?></span><?php endif;?>
-</div>
+
+<section class="content-header">
+    <h1>评论管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_show'])):?><span class="alert alert-success">审核评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">隐藏评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改评论成功</span><?php endif;?>
+    <?php if(isset($_GET['active_rep'])):?><span class="alert alert-success">回复评论成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">回复内容不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
 $hide_ = $hide_y = $hide_n = '';
@@ -29,7 +34,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
-  <table width="100%" id="adm_comment_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
       <tr>
 <!--vot--><th width="369" colspan="2"><b><?=lang('content')?></b></th>
@@ -83,9 +88,10 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     </div>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $cmnum; ?><?=lang('_comments')?>)</div> 
 </form>
+</section>
 <script>
 $(document).ready(function(){
-    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+    selectAllToggle();
     $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
     $("#adm_comment_list tbody tr")
         .mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
@@ -101,5 +107,5 @@ function commentact(act){
     $("#operate").val(act);
     $("#form_com").submit();
 }
-$("#menu_cm").addClass('sidebarsubmenu1');
+$("#menu_cm").addClass('active');
 </script>

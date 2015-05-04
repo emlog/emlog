@@ -1,14 +1,18 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('plugin_manage')?></b><div id="msg"></div>
-<!--vot--><?php if(isset($_GET['activate_install'])):?><span class="actived"><?=lang('plugin_upload_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active'])):?><span class="actived"><?=lang('plugin_active_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['activate_del'])):?><span class="actived"><?=lang('deleted_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_error'])):?><span class="error"><?=lang('plugin_active_failed')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['inactive'])):?><span class="actived"><?=lang('plugin_disable_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('plugin_delete_failed')?></span><?php endif;?>
-</div>
+<section class="content-header">
+    <h1>插件管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif;?>
+    <?php if(isset($_GET['active'])):?><span class="alert alert-success">插件激活成功</span><?php endif;?>
+    <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
+    <?php if(isset($_GET['active_error'])):?><span class="alert alert-danger">插件激活失败</span><?php endif;?>
+    <?php if(isset($_GET['inactive'])):?><span class="alert alert-success">插件禁用成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">删除失败，请检查插件文件权限</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <div class=line></div>
-  <table width="100%" id="adm_plugin_list" class="item_list">
+  <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
       <tr>
         <th width="200"></th>
@@ -68,12 +72,13 @@
     <?php endif;?>
     </tbody>
   </table>
-<!--vot--><div><a href="./plugin.php?action=install" class="button"><i class="add_plugin"></i><?=lang('plugin_install')?></a></div>
+<div><a href="./plugin.php?action=install" class="btn btn-success"><?=lang('plugin_install')?></a></div>
 <script>
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
 $("#adm_plugin_list tbody tr")
     .mouseover(function(){$(this).addClass("trover")})
     .mouseout(function(){$(this).removeClass("trover")})
 setTimeout(hideActived,2600);
-$("#menu_plug").addClass('sidebarsubmenu1');
+$("#menu_category_sys").addClass('active');
+$("#menu_plug").addClass('active').parent().parent().addClass('active');
 </script>

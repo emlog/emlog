@@ -1,17 +1,28 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('category_name_empty')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_c'])):?><span class="error"><?=lang('alias_format_invalid')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_d'])):?><span class="error"><?=lang('alias_unique')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_e'])):?><span class="error"><?=lang('alias_no_keywords')?></span><?php endif;?>
-<!--vot--><div class=containertitle><b><?=lang('category_edit')?></b></div>
-<div class=line></div>
-<form action="sort.php?action=update" method="post">
-<div class="item_edit">
-<!--vot--> <li><input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="input" /> <?=lang('name')?> <span class="required">*</span></li>
-<!--vot--> <li><input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="input" /> <?=lang('alias')?> <span id="alias_msg_hook"></span></li>
+<section class="content-header">
+    <h1>编辑分类</h1>
+    <div class="containertitle">
+    <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">分类名称不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">别名格式错误</span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">别名不能重复</span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
+<form action="sort.php?action=update" method="post" class="form-inline">
+<div class="form-group">
+    <li>
+        <input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="form-control" />
+        <label>名称</label>
+    </li>
+    <li>
+        <input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="form-control" />
+        <label>别名</label>
+    </li>
     <?php if (empty($sorts[$sid]['children'])): ?>
     <li>
-        <select name="pid" id="pid" class="input">
+        <select name="pid" id="pid" class="form-control" style="width:200px;">
 <!--vot-->        <option value="0"<?php if($pid == 0):?> selected="selected"<?php endif; ?>><?=lang('no')?></option>
             <?php
                 foreach($sorts as $key=>$value):
@@ -20,21 +31,24 @@
             <option value="<?php echo $key; ?>"<?php if($pid == $key):?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
             <?php endforeach; ?>
         </select>
-<!--vot-->      <span><?=lang('category_parent')?></span>
+        <label>父分类</label>
     </li>
     <?php endif; ?>
-<!--vot--> <li><input maxlength="200" style="width:168px;" class="input" name="template" id="template" value="<?php echo $template; ?>" /> <?=lang('template')?> <?=lang('template_info2')?></li>
-<!--vot--> <li><?=lang('category_description')?><br />
-        <textarea name="description" type="text" style="width:230px;height:60px;overflow:auto;" class="textarea"><?php echo $description; ?></textarea></li>
+    <li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?php echo $template; ?>" /> 模板 (用于自定义分类页面模板，对应模板目录下.php文件)</li>
+    <li>
+        <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="分类描述"><?php echo $description; ?></textarea>
+    </li>
     <li>
     <input type="hidden" value="<?php echo $sid; ?>" name="sid" />
-<!--vot--> <input type="submit" value="<?=lang('save')?>" class="button" id="save"  />
-<!--vot--> <input type="button" value="<?=lang('cancel')?>" class="button" onclick="javascript: window.history.back();" />
+<!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" id="save"  />
+<!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" />
+    <span id="alias_msg_hook"></span>
     </li>
 </div>
 </form>
+</section>
 <script>
-$("#menu_sort").addClass('sidebarsubmenu1');
+$("#menu_sort").addClass('active');
 $("#alias").keyup(function(){checksortalias();});
 function issortalias(a){
     var reg1=/^[\w-]*$/;

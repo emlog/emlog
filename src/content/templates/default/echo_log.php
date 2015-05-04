@@ -4,8 +4,8 @@
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
-<div id="content">
-<div id="contentleft">
+
+<div class="col-lg-7 col-md-6 preview-page-window">
 	<h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
 <!--vot--> <p class="date"><?=emdate($date)?>  <?php blog_author($author); ?> <?php blog_sort($logid); ?> <?php editflg($logid,$author); ?></p>
 	<?php echo $log_content; ?>
@@ -15,7 +15,8 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 	<?php blog_comments($comments); ?>
 	<?php blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_remark); ?>
 	<div style="clear:both;"></div>
-</div><!--end #contentleft-->
+</div>
+
 <?php
  include View::getView('side');
  include View::getView('footer');

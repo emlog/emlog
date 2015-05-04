@@ -1,9 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('tag_manage')?></b>
-<!--vot--><?php if(isset($_GET['active_del'])):?><span class="actived"><?=lang('tag_delete_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="actived"><?=lang('tag_modify_ok')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_a'])):?><span class="error"><?=lang('tag_select_to_delete')?></span><?php endif;?>
-</div>
+<section class="content-header">
+    <h1>标签管理</h1>
+    <div class="containertitle">
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除标签成功</span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改标签成功</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的标签</span><?php endif;?>
+    </div>
+</section>
+<section class="content">
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
 <div>
@@ -25,8 +29,9 @@ foreach($tags as $key=>$value): ?>
 <?php endif;?>
 </div>
 </form>
+</section>
 <script>
-$("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
+selectAllToggle();
 function deltags(){
     if (getChecked('ids') == false) {
 /*vot*/        alert(lang('tag_select_to_delete'));
@@ -36,5 +41,5 @@ function deltags(){
     $("#form_tag").submit();
 }
 setTimeout(hideActived,2600);
-$("#menu_tag").addClass('sidebarsubmenu1');
+$("#menu_tag").addClass('active');
 </script>
