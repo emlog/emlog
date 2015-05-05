@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>微语</h1>
-    <?php if(isset($_GET['active_t'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
-    <?php if(isset($_GET['active_set'])):?><span class="alert alert-success">设置保存成功</span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">微语删除成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">微语内容不能为空</span><?php endif;?>
+    <h1><?=lang('twitters')?></h1>
+    <?php if(isset($_GET['active_t'])):?><span class="alert alert-success"><?=lang('published_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_set'])):?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('twitter_delete_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('twitter_empty')?></span><?php endif;?>
 </section>
 <section class="content">
 <div id="tw" class="row col-lg-6">

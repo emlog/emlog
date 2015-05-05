@@ -1,13 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>插件管理</h1>
+    <h1><?=lang('plugin_manage')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif;?>
-    <?php if(isset($_GET['active'])):?><span class="alert alert-success">插件激活成功</span><?php endif;?>
-    <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-    <?php if(isset($_GET['active_error'])):?><span class="alert alert-danger">插件激活失败</span><?php endif;?>
-    <?php if(isset($_GET['inactive'])):?><span class="alert alert-success">插件禁用成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">删除失败，请检查插件文件权限</span><?php endif;?>
+    <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success"><?=lang('plugin_upload_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active'])):?><span class="alert alert-success"><?=lang('plugin_active_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_error'])):?><span class="alert alert-danger"><?=lang('plugin_active_failed')?></span><?php endif;?>
+    <?php if(isset($_GET['inactive'])):?><span class="alert alert-success"><?=lang('plugin_disable_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('plugin_delete_failed')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">

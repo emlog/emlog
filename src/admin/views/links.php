@@ -1,13 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <section class="content-header">
-    <h1>友链管理</h1>
+    <h1><?=lang('link_management')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
+    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('order_update_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('edit_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('add_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('site_and_url_empty')?></span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('no_link_order')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">
@@ -55,23 +55,23 @@
     </tbody>
   </table>
   <div class="list_footer">
-      <input type="submit" value="改变排序" class="btn btn-primary" /> 
-      <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success">添加链接+</a>
+      <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
+      <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?>+</a>
   </div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link" class="form-inline">
 <div id="link_new" class="form-group">
     <li>
         <input maxlength="4" style="width:30px;" class="form-control" name="taxis" />
-        <label>序号</label>
+        <label><?=lang('order_num')?></label>
     </li>
     <li>
         <input maxlength="200" style="width:232px;" class="form-control" name="sitename" />
-        <label>名称<span class="required">*</sapn></label>
+        <label><?=lang('name')?><span class="required">*</sapn></label>
     </li>
     <li>
         <input maxlength="200" style="width:232px;" class="form-control" name="siteurl" />
-        <label>地址<span class="required">*</sapn></label>
+        <label><?=lang('address')?><span class="required">*</sapn></label>
     </li>
     <li><textarea name="description" type="text" class="form-control" style="width:230px;height:60px;overflow:auto;"></textarea></li>
 <!--vot--><li><input type="submit" class="btn btn-primary" name="" value="<?=lang('link_add')?>" /></li>

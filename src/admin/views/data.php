@@ -1,17 +1,17 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <section class="content-header">
-    <h1>数据库备份</h1>
+    <h1><?=lang('data_backup')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">备份文件删除成功</span><?php endif;?>
-    <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success">数据备份成功</span><?php endif;?>
-    <?php if(isset($_GET['active_import'])):?><span class="alert alert-success">备份导入成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的备份文件</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导入zip备份</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">上传备份失败</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">错误的备份文件</span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导出zip备份</span><?php endif;?>
-    <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success">缓存更新成功</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('backup_delete_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success"><?=lang('backup_create_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_import'])):?><span class="alert alert-success"><?=lang('backup_import_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('backup_file_select')?></span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('backup_file_invalid')?></span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('backup_import_zip_unsupported')?></span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('backup_upload_failed')?></span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('backup_file_wrong')?></span><?php endif;?>
+    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('backup_export_zip_unsupported')?></span><?php endif;?>
+    <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success"><?=lang('cache_update_ok')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">
@@ -73,7 +73,7 @@
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
     <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" value="开始备份" class="btn btn-primary" />
+        <input type="submit" value="<?=lang('backup_start')?>" class="btn btn-primary" />
     </p>
 </div>
 </form>

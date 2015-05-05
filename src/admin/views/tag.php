@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>标签管理</h1>
+    <h1><?=lang('tag_manage')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除标签成功</span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改标签成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的标签</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('tag_delete_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('tag_modify_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('tag_select_to_delete')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">

@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>编辑链接</h1>
+    <h1><?=lang('link_edit')?></h1>
 </section>
 <section class="content">
 <form action="link.php?action=update_link" method="post">

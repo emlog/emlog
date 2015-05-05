@@ -1,17 +1,17 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <section class="content-header">
-    <h1>导航管理</h1>
-    <div class="containertitle"><b>导航管理</b>
-    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除导航成功</span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改导航成功</span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加导航成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">导航名称和地址不能为空</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的导航</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">默认导航不能删除</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">请选择要添加的分类</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">请选择要添加的页面</span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
+    <h1><?=lang('nav_manage')?></h1>
+    <div class="containertitle"><b><?=lang('nav_manage')?></b>
+    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('nav_delete_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('nav_edit_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('nav_add_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('nav_name_url_empty')?></span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('nav_no_order')?></span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('nav_default_nodelete')?></span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('select_category')?></span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('select_page')?></span><?php endif;?>
+    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nav_url_invalid')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">
@@ -117,14 +117,14 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    添加自定义导航
+                    	<?=lang('nav_add_custom')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                     <ul>
-                        <li><input maxlength="4" class="form-control" placeholder="序号" name="taxis" /></li>
-                        <li><input class="form-control" name="naviname" placeholder="导航名称" /></li>
-                        <li><input maxlength="200" class="form-control" placeholder="地址(带http)" name="url" id="url" /></li>
+                        <li><input maxlength="4" class="form-control" placeholder="<?=lang('order_num')?>" name="taxis" /></li>
+                        <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" /></li>
+                        <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" /></li>
                         <li class="form-inline">
                             <select name="pid" id="pid" class="form-control">
 <!--vot-->    <option value="0"><?=lang('no')?></option>
@@ -150,7 +150,7 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    添加分类到导航
+                    	<?=lang('nav_add_category')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
@@ -191,7 +191,7 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    添加页面到导航
+                    	<?=lang('nav_page_add')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
@@ -205,7 +205,7 @@
                             <?php echo $value['title']; ?>
                         </li>
                         <?php endforeach;?>
-                        <li><input type="submit" class="btn btn-primary" name="" value="添加"  /></li>
+                        <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
                         <?php else:?>
 <!--vot--> <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
                     <?php endif;?>

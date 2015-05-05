@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>编辑评论</h1>
+    <h1><?=lang('comment_edit')?></h1>
 </section>
 <section class="content">
 <form action="comment.php?action=doedit" method="post">

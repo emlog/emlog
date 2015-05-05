@@ -5,7 +5,7 @@ if (!defined('EMLOG_ROOT')) {
 ?>
 <script>setTimeout(hideActived, 2600);</script>
 <section class="content-header">
-    <h1>管理首页</h1>
+    <h1><?=lang('admin_center')?></h1>
 </section>
 <section class="content">
 <div class="row">
@@ -13,7 +13,7 @@ if (!defined('EMLOG_ROOT')) {
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-laptop fa-fw"></i> 站点信息
+                    <i class="fa fa-laptop fa-fw"></i> <?=lang('site_info')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <ul>
@@ -31,7 +31,7 @@ if (!defined('EMLOG_ROOT')) {
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-volume-down fa-fw"></i> 官方消息
+                    <i class="fa fa-volume-down fa-fw"></i> <?=lang('official_source')?>
                 </div>
                 <div class="panel-body" id="admindex_msg">
                     <ul></ul>
@@ -43,7 +43,7 @@ if (!defined('EMLOG_ROOT')) {
         <div class="col-lg-12">
             <div id="admindex">
                 <div id="about" class="alert alert-warning">
-                  欢迎使用 &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);">检查更新</a></span><br />
+                  <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?php echo Option::EMLOG_VERSION; ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
                   <span id="upmsg"></span>
                 </div>
             </div>

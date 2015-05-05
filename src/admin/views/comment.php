@@ -1,18 +1,18 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 
 <section class="content-header">
-    <h1>评论管理</h1>
+<!--vot--><h1><?=lang('comment_management')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除评论成功</span><?php endif;?>
-    <?php if(isset($_GET['active_show'])):?><span class="alert alert-success">审核评论成功</span><?php endif;?>
-    <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">隐藏评论成功</span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改评论成功</span><?php endif;?>
-    <?php if(isset($_GET['active_rep'])):?><span class="alert alert-success">回复评论成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">回复内容不能为空</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('comment_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_show'])):?><span class="alert alert-success"><?=lang('comment_audit_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_hide'])):?><span class="alert alert-success"><?=lang('comment_hide_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('comment_edit_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_rep'])):?><span class="alert alert-success"><?=lang('comment_reply_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('comment_choose_operation')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('select_action_to_perform')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('reply_is_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('comment_too_long')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('comment_is_empty')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">

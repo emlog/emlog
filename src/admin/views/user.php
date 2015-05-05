@@ -1,16 +1,16 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>用户管理</h1>
+    <h1><?=lang('user_management')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-    <?php if(isset($_GET['active_update'])):?><span class="alert alert-success">修改用户资料成功</span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加用户成功</span><?php endif;?>
-    <?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
-    <?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
-    <?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
-    <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
-    <?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger">不能删除创始人</span><?php endif;?>
-    <?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger">不能修改创始人信息</span><?php endif;?>
+    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_update'])):?><span class="alert alert-success"><?=lang('user_modify_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('user_add_ok')?></span><?php endif;?>
+    <?php if(isset($_GET['error_login'])):?><span class="alert alert-danger"><?=lang('user_name_empty')?></span><?php endif;?>
+    <?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger"><?=lang('user_name_exists')?></span><?php endif;?>
+    <?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>
+    <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger"><?=lang('passwords_not_equal')?></span><?php endif;?>
+    <?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger"><?=lang('founder_not_delete')?></span><?php endif;?>
+    <?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger"><?=lang('founder_not_edit')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">

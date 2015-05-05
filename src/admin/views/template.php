@@ -3,13 +3,13 @@
 } ?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="./template.php">模板管理</a></li>
-        <li role="presentation"><a href="template.php?action=install">安装模板</a></li>
-        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">模板更换成功</span><?php endif; ?>
-        <?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success">模板上传成功</span><?php endif; ?>
-        <?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success">删除模板成功</span><?php endif; ?>
-        <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">删除失败，请检查模板文件权限</span><?php endif; ?>
-        <?php if (!$nonceTplData): ?><span class="alert alert-danger">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</span><?php endif; ?>
+        <li role="presentation" class="active"><a href="./template.php"><?=lang('template_current')?></a></li>
+        <li role="presentation"><a href="template.php?action=install"><?=lang('template_mount')?></a></li>
+        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success"><?=lang('template_change_ok')?></span><?php endif; ?>
+        <?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success"><?=lang('template_upload_ok')?></span><?php endif; ?>
+        <?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success"><?=lang('template_delete_ok')?></span><?php endif; ?>
+        <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('template_delete_failed')?></span><?php endif; ?>
+        <?php if (!$nonceTplData): ?><span class="alert alert-danger"><?=lang('template_current_use')?> (<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></span><?php endif; ?>
     </ul>
 </div>
 
@@ -25,12 +25,12 @@
             </li>
             <li class="title <?php if($nonce_templet == $value['tplfile']){echo "active";} ?>">
                 <span class="name"><b><?php echo $value['tplname']; ?></b></span>
-                <span class="act"> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a></span>
+                <span class="act"> | <a href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a></span>
             </li>
         </ul>
     <?php endforeach;?>
         <ul class="add">
-            <li><a href="template.php?action=install">添加模板+</a></li>
+            <li><a href="template.php?action=install"><?=lang('template_add')?>+</a></li>
         </ul>
 </div>
 <script>

@@ -35,7 +35,7 @@ $lang = array(
  'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
  'info_illegal'			=> 'Submitted information is illegal',//'非法提交的信息',
  'attachment_exceed_system_limit'	=> 'Attachment size exceeds the system limit ',//'附件大小超过系统 ',//+end space
-// '_limit'			=> ' ',//' limit',//'限制',//LEAVE THIS EMPTY???
+ '_limit'			=> '',//' limit',//'限制',//LEAVE THIS EMPTY for NON-Chinese
  'upload_failed_code'		=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
  'import_only_emlog_no_change'	=> 'You can only import emlog backup archive, and the archive file name can not be changed!',//'只能导入emlog备份的压缩包，且不能修改压缩包文件名！',
 // 'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
@@ -94,7 +94,7 @@ $lang = array(
  'post_alias'		=> 'Post Link Alias',//'文章链接别名',
  'post_alias_info'	=> 'Used to customize the post link. Required',//'用于自定义文章链接。需要',
  'post_alias_enable'	=> 'Enable post link alias',//'启用文章链接别名',
- 'post_access_password'	=> 'Post Access Password',//'文章访问密码',
+ 'post_access_password'	=> 'Access password',//'访问密码',
 // 'top_posts'		=> 'Top Posts',//'文章置顶',
  'home_top'		=> 'Home Top',//'首页置顶',
  'category_top'		=> 'Category Top',//'分类置顶',
@@ -110,7 +110,7 @@ $lang = array(
  'link_alias'		=> 'Link Alias',//'链接别名',
  'link_alias_info'	=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
  'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
- 'page_template'	=> 'Page template: ',//'页面模板：',
+ 'page_template'	=> 'Page template',//'页面模板',
  'page_template_info'	=> '(For custom page template, use the corresponding .php file under the template directory)',//'（用于自定义页面模板，对应模板目录下.php文件）',
  'page_enable_comments'	=> 'Page accepted comments',//'页面接受评论'
  'page_publish'		=> 'Publish Page',//'发布页面',
@@ -296,22 +296,24 @@ $lang = array(
  'offline_writing'		=> 'Offline Writing (Support the use of tools such as Windows Live Writer to write articles)',//'离线写作（支持用Windows Live Writer等工具写文章）',
  'mobile_access_address'	=> 'Mobile Access version, address',//'手机访问版，地址',
  'access_site_by_mobile'	=> 'Access to your site using a mobile phone',//'用手机访问你的站点',
- 'auto_summary'			=> 'Automatic summary, intercept from the post',//'自动摘要，截取文章的前',
+ 'auto_summary'			=> 'Automatic summary',//'自动摘要',
+ 'auto_summary_get'		=> 'Intercept from the post',//'截取文章的前',
  'characters_as_summary'	=> ' characters as the summary',//'个字作为摘要',
  'twitters'			=> 'Twitters',//'微语',
- 'twitters_enable'		=> 'Enable twitters, ',//'开启微语，',
+ 'twitters_enable'		=> 'Enable twitters',//'开启微语，',
 // 'per_page'			=> 'Show per page',//'每页显示',
  '_twitters'			=> ' twitter(s)',//'条微语',
- 'twitter_reply_enable'		=> 'Enable twitter reply, ',//'开启微语回复，',
- 'reply_verification_code'	=> 'Reply verification code, ',//'回复验证码，',
+ 'twitter_reply_enable'		=> 'Enable twitter reply',//'开启微语回复',
+ 'reply_verification_code'	=> 'Reply verification code',//'回复验证码',
  'reply_audit'			=> 'Reply audit',//'回复审核',
  'rss'				=> 'RSS',//'RSS',
  'export'			=> 'Export ',//'输出',
- '_posts_and_output'		=> ' posts, and output',//'篇文章，且输出',
+ '_posts_and_output'		=> ' posts (0 means disable), and output',//'篇文章（0为关闭），且输出',
  'full_text'			=> 'Full Text',//'全文',
  'summary'			=> 'Summary',//'摘要',
 // 'comments'			=> 'Comments',//'评论',
- 'enable_comment_interval'	=> ' Enable comments, comment interval ',//'开启评论，发表评论间隔',
+ 'enable_comments'		=> 'Enable comments',//'开启评论',
+ 'comment_interval'		=> 'Comment interval',//'发表评论间隔',
  '_seconds'			=> ' seconds',//'秒',
  'comment_moderation'		=> 'Comment moderation',//'评论审核',
  'comment_verification_code'	=> 'Comments Verification Code',//'评论验证码',
@@ -333,6 +335,8 @@ $lang = array(
  'home_footer_info'		=> 'Footer info at the Home',//'首页底部信息',
  'home_footer_info_html'	=> '(HTML supported, can be used to add a traffic statistics code)',//'(支持html，可用于添加流量统计代码)',
  'save_settings'		=> 'Save Settings',//'保存设置',
+ 'auto_site_url'		=> 'Automatic detection of site address',//'自动检测站点地址',
+ 'auto_site_url_info'		=> '(Used to support multiple domain names/HTTPS, a few space providers may not support it)',//'(用于支持多域名/HTTPS，少数空间商可能不支持)',
 
 //---------------------------
 //admin/views/data.php
@@ -419,9 +423,9 @@ $lang = array(
 
 //---------------------------
 //admin/views/header.php
- 'admin_center'		=> 'AdminCP',//'管理中心',
+ 'system'		=> 'System',//'系统',
  'return_to_admin_center'	=> 'Return to AdminCP',//'返回管理首页',
- 'to_site_new_window'	=> 'Visit the site in a new window',//'在新窗口浏站点',
+ 'to_site_new_window'	=> 'Go to the site',//'查看站点',
  'to_site'		=> 'View My site',//'查看我的站点',
  'settings'		=> 'Settings',//'设置',
  'logout'		=> 'Logout',//'退出',
@@ -429,7 +433,7 @@ $lang = array(
  'draft'		=> 'Draft',//'草稿',
  'posts'		=> 'Posts',//'文章',
  'posts_pending'	=> ' Pending posts',//'篇文章待审',
-// 'tags'		=> 'Tags',//'标签',
+ 'tags'			=> 'Tags',//'标签',
  'categories'		=> 'Categories',//'分类',
 // 'comments'		=> 'Comments',//'评论',
  'comments_pending'	=> ' Pending comments',//'条评论待审',
@@ -439,15 +443,17 @@ $lang = array(
  'pages'		=> 'Pages',//'页面',
  'links'		=> 'Links',//'链接',
  'users'		=> 'Users',//'用户',
- 'data'			=> 'Data Backup',//'数据',
+ 'data'			=> 'Data',//'数据',
 // 'plugins'		=> 'Plug-ins',//'插件',
  'templates'		=> 'Templates',//'模板',
  'applications'		=> 'Apps',//'应用',
- 'extensions'		=> 'Extensions',//'扩展功能',
+ 'extensions'		=> 'Extensions',//'扩展',
 // '<!--Sidebar Toggle-->',//'<!--边栏折叠-->'
+ 'exterior'		=> 'Exterior',//'外观',
 
 //---------------------------
 //admin/views/index.php
+ 'admin_center'			=> 'AdminCP',//'管理中心',//'管理首页',
  'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活 ……',
 // 'publish'			=> 'Publish',//'发布',
  'cancel'			=> 'Cancel',//'取消',
@@ -494,6 +500,14 @@ $lang = array(
 // ')'				=> ')',//'）',
 
 //---------------------------
+//admin/views/links.php
+ 'order_change'		=> 'Change order',//'改变排序',
+ 'link_add'		=> 'Add a link',//'添加链接',
+ 'order_num'		=> 'Order number',//'序号',
+ 'name'			=> 'Name',//'名称',
+ 'address'		=> 'Address',//'地址',
+
+//---------------------------
 //admin/views/login.php
  'login'		=> 'Login',//'登录',
  'user_name'		=> 'User name',//'用户名',
@@ -502,6 +516,10 @@ $lang = array(
  'log_in'		=> ' Log in ',//' 登 录 ',
  'back_home'		=> '&laquo; Back to home',//'&laquo;返回首页',
  'password_forget'	=> 'Forgot Password?',//'忘记密码?',
+
+//---------------------------
+//admin/views/page.php
+ 'page_title'		=> 'Page title',//'页面标题',
 
 //---------------------------
 //admin/views/plugin.php
@@ -617,6 +635,7 @@ $lang = array(
  'template_delete_ok'		=> 'Template have been removed successfully',//'删除模板成功',
  'template_delete_failed'	=> 'Delete failed, check the template file permissions',//'删除失败，请检查模板文件权限',
  'template_use_this'		=> 'Click to use this template',//'点击使用该模板',
+ 'template_add'			=> 'Add template',//'添加模板',
 // 'delete'			=> 'Delete',//'删除',
 
 //---------------------------
@@ -753,7 +772,7 @@ $lang = array(
 // 'change'		=> 'Change',//'更改',
  'twitter_latest'	=> 'Latest twits',//'最新微语',
 // 'title'		=> 'Title',//'标题',
- 'twitter_latest_num'	=> 'Number of latest twits',//'首页显示最新微语数',
+ 'twitter_latest_num'	=> 'Number of latest twits',//'显示最新微语数',
 // 'change'		=> 'Change',//'更改',
 // 'tags'		=> 'Tags',//'标签',
 // 'title'		=> 'Title',//'标题',
@@ -800,6 +819,12 @@ $lang = array(
 // 'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'widget_untitled'	=> 'Untitled widget',//'未命名组件',
  'widget_order_save'	=> 'Save widget order',//'保存组件排序',
- 'widget_setting_reset'	=> 'Reset widget settings to initial values',//'恢复组件设置到初始安装状态',
+ 'widget_setting_reset'	=> 'Reset widget settings',//'恢复出厂设置',
+ 'widgets_system'	=> 'System widgets',//'系统组件',
+ 'widgets_used'		=> 'Used widgets',//'使用中的组件',
 
+//---------------------------
+//admin/views/write.php
+ 'item_settings'	=> 'Item settings',//'设置项',
+ 'publish_time'		=> 'Publish time',//'发布时间',
 );

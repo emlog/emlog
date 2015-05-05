@@ -1,6 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>回复评论</h1>
+    <h1><?=lang('comment_reply')?></h1>
 </section>
 <section class="content">
 <form action="comment.php?action=doreply" method="post">

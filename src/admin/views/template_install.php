@@ -1,14 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation"><a href="./template.php">模板管理</a></li>
-        <li role="presentation" class="active"><a href="template.php?action=install">安装模板</a></li>
+        <li role="presentation"><a href="./template.php"><?=lang('template_current')?></a></li>
+        <li role="presentation" class="active"><a href="template.php?action=install"><?=lang('template_mount')?></a></li>
     </ul>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">只支持zip压缩格式的模板包</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">上传失败，模板目录(content/templates)不可写</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">空间不支持zip模块，请按照提示手动安装模板</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">请选择一个zip模板安装包</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">安装失败，模板安装包不符合标准</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('template_zip_support')?></span><?php endif;?>
+    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('template_upload_failed_nonwritable')?></span><?php endif;?>
+    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('template_no_zip_install_manually')?></span><?php endif;?>
+    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('template_select_zip')?></span><?php endif;?>
+    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('template_non_standard')?></span><?php endif;?>
 </div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 20px;">

@@ -23,7 +23,7 @@ if ($action == '') {
 			$gd_ver = $ver_info['GD Version'];
 		} else{
 /*vot*/            $gd_ver = lang('supported');
-        }
+		}
 	} else{
 /*vot*/        $gd_ver = lang('not_supported');
 	}

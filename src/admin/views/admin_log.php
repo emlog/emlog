@@ -7,21 +7,21 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" <?php if ($pid != 'draft'){echo 'class="active"';}?>><a href="admin_log.php">文章管理</a></li>
-        <li role="presentation" <?php if ($pid == 'draft'){echo 'class="active"';}?>><a href="admin_log.php?pid=draft">草稿管理</a></li>
-        <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-        <?php if(isset($_GET['active_up'])):?><span class="alert alert-success">置顶成功</span><?php endif;?>
-        <?php if(isset($_GET['active_down'])):?><span class="alert alert-success">取消置顶成功</span><?php endif;?>
-        <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要处理的文章</span><?php endif;?>
-        <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">请选择要执行的操作</span><?php endif;?>
-        <?php if(isset($_GET['active_post'])):?><span class="alert alert-success">发布成功</span><?php endif;?>
-        <?php if(isset($_GET['active_move'])):?><span class="alert alert-success">移动成功</span><?php endif;?>
-        <?php if(isset($_GET['active_change_author'])):?><span class="alert alert-success">更改作者成功</span><?php endif;?>
-        <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">转入草稿箱成功</span><?php endif;?>
-        <?php if(isset($_GET['active_savedraft'])):?><span class="alert alert-success">草稿保存成功</span><?php endif;?>
-        <?php if(isset($_GET['active_savelog'])):?><span class="alert alert-success">保存成功</span><?php endif;?>
-        <?php if(isset($_GET['active_ck'])):?><span class="alert alert-success">文章审核成功</span><?php endif;?>
-        <?php if(isset($_GET['active_unck'])):?><span class="alert alert-success">文章驳回成功</span><?php endif;?>
+<!--vot--><li role="presentation" <?php if ($pid != 'draft'){echo 'class="active"';}?>><a href="admin_log.php"><?=lang('post_manage')?></a></li>
+<!--vot--><li role="presentation" <?php if ($pid == 'draft'){echo 'class="active"';}?>><a href="admin_log.php?pid=draft"><?=lang('draft_manage')?></a></li>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_up'])):?><span class="alert alert-success"><?=lang('sticked_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_down'])):?><span class="alert alert-success"><?=lang('unsticked_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('select_post_to_operate')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('select_action_to_perform')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_post'])):?><span class="alert alert-success"><?=lang('published_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_move'])):?><span class="alert alert-success"><?=lang('moved_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_change_author'])):?><span class="alert alert-success"><?=lang('author_modified_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_hide'])):?><span class="alert alert-success"><?=lang('draft_moved_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_savedraft'])):?><span class="alert alert-success"><?=lang('draft_saved_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_savelog'])):?><span class="alert alert-success"><?=lang('saved_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_ck'])):?><span class="alert alert-success"><?=lang('audited_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_unck'])):?><span class="alert alert-success"><?=lang('rejected_ok')?></span><?php endif;?>
     </ul>
 </div>
 <div style="margin: 0px 15px;">
@@ -73,7 +73,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
     <div style="float:right;">
         <form action="admin_log.php" method="get">
-            <input type="text" name="keyword" class="form-control" placeholder="搜索文章">
+<!--vot-->  <input type="text" name="keyword" class="form-control" placeholder="<?-lang('article_search')?>">
         <?php if($pid):?>
         <input type="hidden" id="pid" name="pid" value="draft">
         <?php endif;?>

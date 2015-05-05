@@ -1,8 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <section class="content-header">
-    <h1>标签修改</h1>
+    <h1><?=lang('tag_edit')?></h1>
     <div class="containertitle">
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">标签不能为空</span><?php endif;?>
+    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('tag_empty')?></span><?php endif;?>
     </div>
 </section>
 <section class="content">

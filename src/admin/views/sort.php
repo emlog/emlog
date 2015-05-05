@@ -2,17 +2,17 @@
     exit('error!');
 } ?>
 <section class="content-header">
-    <h1>分类管理</h1>
+    <h1><?=lang('category_manage')?></h1>
     <div class="containertitle">
-    <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success">排序更新成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><span class="alert alert-success">添加分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">分类名称不能为空</span><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">没有可排序的分类</span><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">别名格式错误</span><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">别名不能重复</span><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif; ?>
+    <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif; ?>
+    <?php if (isset($_GET['active_add'])): ?><span class="alert alert-success"><?=lang('category_add_ok')?></span><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger"><?=lang('category_no_order')?></span><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif; ?>
     </div>
 </section>
 <section class="content">
@@ -84,32 +84,32 @@
                     <?php endforeach; ?>
                 <?php endforeach;
             else: ?>
-                <tr><td class="tdcenter" colspan="8">还没有添加分类</td></tr>
+                <tr><td class="tdcenter" colspan="8"><?=lang('categories_no')?></td></tr>
 <?php endif; ?>  
         </tbody>
     </table>
     <div class="list_footer">
-        <input type="submit" value="改变排序" class="btn btn-primary" /> 
-        <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
+        <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
+        <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>
     </div>
 </form>
 <form action="sort.php?action=add" method="post" class="form-inline">
     <div id="sort_new" class="form-group">
         <li>
             <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
-            <label>序号</label>
+            <label><?=lang('order_num')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
-            <label>名称</label>
+            <label><?=name('name')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="alias" id="alias" />
-            <label>别名 (用于URL的友好显示)</label>
+            <label><?=lang('alias_info')?></label>
         </li>
         <li>
             <select name="pid" id="pid" class="form-control" style="width:243px;">
-                <option value="0">无</option>
+                <option value="0"><?=lang('no')?></option>
                 <?php
                 foreach ($sorts as $key => $value):
                     if ($value['pid'] != 0) {
@@ -119,14 +119,14 @@
                     <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
 <?php endforeach; ?>
             </select>
-            <label>父分类</label>
+            <label><?=lang('category_parent')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="template" id="template" value="log_list" />
-            <label>模板 (用于自定义分类页面模板，对应模板目录下.php文件，默认为log_list.php)</label>
+            <label><?=lang('template')?> <?=lang('template_info')?></label>
         </li>
         <li>
-            <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="分类描述"></textarea></li>
+            <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"></textarea></li>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
     </div>

@@ -57,7 +57,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 14px;line-height:15
 </p>
 </div>
 <p class="title2"></p>
-<div class="center">© emlog</div>
+<div class="center">&copy; emlog</div>
 </div>
 </form>
 </body>

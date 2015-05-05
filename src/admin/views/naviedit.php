@@ -1,19 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class=line></div>
 <section class="content-header">
-    <h1>修改导航</h1>
+    <h1><?=lang('nav_modify')?></h1>
 </section>
 <section class="content">
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
     <li>
-        <input size="20" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label>导航名称</label>
+        <input size="20" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label><?=lang('nav_name')?></label>
     </li>
     <li>
-        <input size="50" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label>导航地址</label>
+        <input size="50" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label><?=lang('nav_address')?>
     </li>
     <li class="checkbox">
-        <label><input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> /> 在新窗口打开</label>
+        <label><input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> /> <?=lang('open_new_win')?>
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>

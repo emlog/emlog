@@ -25,7 +25,7 @@ require_once View::getView('module');
 <?php doAction('index_head'); ?>
 </head>
 <body>
-<!--导航-->
+<!--Navigation-->
 <?php blog_navi();?>
 
 <header class="sb-page-header">
