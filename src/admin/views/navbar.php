@@ -1,22 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<section class="content-header">
-    <h1>导航管理</h1>
-    <div class="containertitle"><b>导航管理</b>
-    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除导航成功</span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改导航成功</span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加导航成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">导航名称和地址不能为空</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的导航</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">默认导航不能删除</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">请选择要添加的分类</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">请选择要添加的页面</span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+<div class=containertitle><b>导航管理</b>
+<?php if(isset($_GET['active_taxis'])):?><span class="actived">排序更新成功</span><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><span class="actived">删除导航成功</span><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><span class="actived">修改导航成功</span><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><span class="actived">添加导航成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">导航名称和地址不能为空</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">没有可排序的导航</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">默认导航不能删除</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">请选择要添加的分类</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">请选择要添加的页面</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
+</div>
+<div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
+  <table width="100%" id="adm_navi_list" class="item_list">
     <thead>
       <tr>
         <th width="50"><b>序号</b></th>
@@ -56,7 +53,7 @@
     
     ?>  
       <tr>
-        <td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+        <td><input class="num_input" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
         <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
         <td class="tdcenter"><?php echo $value['type_name'];?></td>
         <td class="tdcenter">
@@ -83,7 +80,7 @@
         foreach ($value['childnavi'] as $val):
     ?>
         <tr>
-        <td><input class="form-control em-small" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
+        <td><input class="num_input" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4" /></td>
         <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
         <td class="tdcenter"><?php echo $value['type_name'];?></td>
         <td class="tdcenter">
@@ -111,111 +108,92 @@
     <?php endif;?>
     </tbody>
   </table>
-  <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-primary" /></div>
+  <div class="list_footer"><input type="submit" value="改变排序" class="button" /></div>
 </form>
-<div id="row" style="margin-top: 30px;">
-    <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    添加自定义导航
-                </div>
-                <div class="panel-body" id="admindex_servinfo">
-                    <form action="navbar.php?action=add" method="post" name="navi" id="navi">
-                    <ul>
-                        <li><input maxlength="4" class="form-control" placeholder="序号" name="taxis" /></li>
-                        <li><input class="form-control" name="naviname" placeholder="导航名称" /></li>
-                        <li><input maxlength="200" class="form-control" placeholder="地址(带http)" name="url" id="url" /></li>
-                        <li class="form-inline">
-                            <select name="pid" id="pid" class="form-control">
-                                <option value="0">无</option>
-                                <?php
-                                    foreach($navis as $key=>$value):
-                                        if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
-                                            continue;
-                                        }
-                                ?>
-                                <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            父导航
-                        </li>
-                        <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab" /> 在新窗口打开</li>
-                        <li><input type="submit" class="btn btn-primary" name="" value="添加"  /></li>
-                    </ul>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
-    <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    添加分类到导航
-                </div>
-                <div class="panel-body" id="admindex_servinfo">
-                    <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
-                    <ul>
-                    <?php 
-                    if($sorts):
-                    foreach($sorts as $key=>$value):
-                    if ($value['pid'] != 0) {
-                        continue;
-                    }
-                    ?>
-                    <li>
-                        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
-                        <?php echo $value['sortname']; ?>
-                    </li>
-                    <?php
-                        $children = $value['children'];
-                        foreach ($children as $key):
-                        $value = $sorts[$key];
-                    ?>
-                    <li>
-                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
-                        <?php echo $value['sortname']; ?>
-                    </li>
-                    <?php 
-                        endforeach;
-                   endforeach;
-                   ?>
-                    <li><input type="submit" name="" class="btn btn-primary" value="添加" /></li>
-                    <?php else:?>
-                    <li>还没有分类，<a href="sort.php">新建分类</a></li>
-                    <?php endif;?> 
-                    </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    添加页面到导航
-                </div>
-                <div class="panel-body" id="admindex_servinfo">
-                    <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
-                    <ul>
-                    <?php 
-                        if($pages):
-                        foreach($pages as $key=>$value): 
-                        ?>
-                        <li>
-                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
-                            <?php echo $value['title']; ?>
-                        </li>
-                        <?php endforeach;?>
-                        <li><input type="submit" class="btn btn-primary" name="" value="添加"  /></li>
-                        <?php else:?>
-                        <li>还没页面，<a href="page.php">新建页面</a></li>
-                    <?php endif;?>
-                    </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div id="navi_add">
+<form action="navbar.php?action=add" method="post" name="navi" id="navi">
+<div>
+    <h1 onclick="displayToggle('navi_add_custom', 2);">添加自定义导航+</h1>
+    <ul id="navi_add_custom">
+    <li><input maxlength="4" style="width:30px;" name="taxis" /> 序号</li>
+    <li><input maxlength="200" style="width:100px;" name="naviname" /> 导航名称<span class="required">*</sapn></li>
+    <li>
+    <input maxlength="200" style="width:168px;" name="url" id="url" /> 地址(带http)<span class="required">*</sapn></li>
+    <li>
+            <select name="pid" id="pid" class="input">
+                <option value="0">无</option>
+                <?php
+                    foreach($navis as $key=>$value):
+                        if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
+                            continue;
+                        }
+                ?>
+                <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
+                <?php endforeach; ?>
+            </select>
+            父导航
+    </li>
+    <li>在新窗口打开<input type="checkbox" style="vertical-align:middle;" value="y" name="newtab" /></li>
+    <li><input type="submit" name="" value="添加"  /></li>
+    </ul>
 </div>
-</section>
+</form>
+<form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
+<div>
+    <h1 onclick="displayToggle('navi_add_sort', 2);">添加分类到导航+</h1>
+    <ul id="navi_add_sort">
+    <?php 
+    if($sorts):
+    foreach($sorts as $key=>$value):
+    if ($value['pid'] != 0) {
+        continue;
+    }
+    ?>
+    <li>
+        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <?php echo $value['sortname']; ?>
+    </li>
+    <?php
+        $children = $value['children'];
+        foreach ($children as $key):
+        $value = $sorts[$key];
+    ?>
+    <li>
+        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+        <?php echo $value['sortname']; ?>
+    </li>
+    <?php 
+        endforeach;
+   endforeach;
+   ?>
+    <li><input type="submit" name="" value="添加"  /></li>
+    <?php else:?>
+    <li>还没有分类，<a href="sort.php">新建分类</a></li>
+    <?php endif;?> 
+    </ul>
+</div>
+</form>
+<form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
+<div>
+    <h1 onclick="displayToggle('navi_add_page', 2);">添加页面到导航+</h1>
+    <ul id="navi_add_page">
+    <?php 
+    if($pages):
+    foreach($pages as $key=>$value): 
+    ?>
+    <li>
+        <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
+        <?php echo $value['title']; ?>
+    </li>
+    <?php endforeach;?>
+    <li><input type="submit" name="" value="添加"  /></li>
+    <?php else:?>
+    <li>还没页面，<a href="page.php">新建页面</a></li>
+    <?php endif;?> 
+    </ul>
+</div>
+</form>
+</div>
 <script>
 $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
 $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
@@ -226,6 +204,6 @@ $(document).ready(function(){
         .mouseover(function(){$(this).addClass("trover")})
         .mouseout(function(){$(this).removeClass("trover")})
 });
-setTimeout(hideActived, 2600);
-$("#menu_navi").addClass('active').parent().parent().addClass('active');
+setTimeout(hideActived,2600);
+$("#menu_navbar").addClass('sidebarsubmenu1');
 </script>

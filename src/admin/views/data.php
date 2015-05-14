@@ -1,22 +1,19 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<section class="content-header">
-    <h1>数据库备份</h1>
-    <div class="containertitle">
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">备份文件删除成功</span><?php endif;?>
-    <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success">数据备份成功</span><?php endif;?>
-    <?php if(isset($_GET['active_import'])):?><span class="alert alert-success">备份导入成功</span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的备份文件</span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导入zip备份</span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">上传备份失败</span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">错误的备份文件</span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">服务器空间不支持zip，无法导出zip备份</span><?php endif;?>
-    <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success">缓存更新成功</span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+<div class=containertitle><b>数据库备份</b>
+<?php if(isset($_GET['active_del'])):?><span class="actived">备份文件删除成功</span><?php endif;?>
+<?php if(isset($_GET['active_backup'])):?><span class="actived">数据备份成功</span><?php endif;?>
+<?php if(isset($_GET['active_import'])):?><span class="actived">备份导入成功</span><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><span class="error">请选择要删除的备份文件</span><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><span class="error">备份文件名错误(应由英文字母、数字、下划线组成)</span><?php endif;?>
+<?php if(isset($_GET['error_c'])):?><span class="error">服务器空间不支持zip，无法导入zip备份</span><?php endif;?>
+<?php if(isset($_GET['error_d'])):?><span class="error">上传备份失败</span><?php endif;?>
+<?php if(isset($_GET['error_e'])):?><span class="error">错误的备份文件</span><?php endif;?>
+<?php if(isset($_GET['error_f'])):?><span class="error">服务器空间不支持zip，无法导出zip备份</span><?php endif;?>
+<?php if(isset($_GET['active_mc'])):?><span class="actived">缓存更新成功</span><?php endif;?>
+</div>
+<div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
-<table class="table table-striped table-bordered table-hover dataTable no-footer">
+<table width="100%" id="adm_bakdata_list" class="item_list">
   <thead>
     <tr>
       <th width="683" colspan="2"><b>备份文件</b></th>
@@ -73,7 +70,7 @@
     <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
     <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" value="开始备份" class="btn btn-primary" />
+        <input type="submit" value="开始备份" class="button" />
     </p>
 </div>
 </form>
@@ -90,13 +87,13 @@
 
 <div id="cache">
     <p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
-    <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-primary" /></p>
+    <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="button" /></p>
 </div>
-</section>
+
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
-    selectAllToggle();
+    $("#select_all").toggle(function () {$(".ids").attr("checked", "checked");},function () {$(".ids").removeAttr("checked");});
     $("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
     $("#adm_bakdata_list tbody tr")
         .mouseover(function(){$(this).addClass("trover")})
@@ -112,5 +109,5 @@ function bakact(act){
     $("#operate").val(act);
     $("#form_bak").submit();
 }
-$("#menu_data").addClass('active').parent().parent().addClass('active');
+$("#menu_data").addClass('sidebarsubmenu1');
 </script>

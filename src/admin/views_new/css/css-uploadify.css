@@ -1,0 +1,87 @@
+.uploadifyButton {
+    background: url("../images/add_bg.gif") no-repeat scroll 0 0 transparent;
+    color: #000000;
+    display: block;
+    height: 24px;
+    padding: 4px 0 0 25px;
+    width: 90px;
+}
+.uploadify:hover .uploadifyButton {
+	color: #808080;
+}
+.uploadifyQueueItem {
+	background-color: #F5F5F5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: 11px Verdana, Geneva, sans-serif;
+}
+.uploadifyError {
+	background-color: #FDE5DD !important;
+}
+.uploadifyQueueItem .cancel {
+	float: right;
+}
+.uploadifyQueue .completed {
+	background-color: #E5E5E5;
+}
+.uploadifyProgress {
+	background-color: #E5E5E5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadifyProgressBar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}
+
+.uploadifyQueueItem {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+	border:#E5E5E5 solid 1px;
+    font: 11px Verdana,Geneva,sans-serif;
+    height: 30px;
+    margin: 1px;
+    padding: 2px;
+    width: 339px;
+	float:left;
+}
+.uploadifyError {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background-color: #FDE5DD !important;
+    border-color: -moz-use-text-color -moz-use-text-color #FBCBBC !important;
+    border-style: none none solid !important;
+    border-width: medium medium 1px !important;
+}
+.uploadifyQueueItem .cancel {
+    float: right;
+}
+.uploadifyQueue .completed {
+    color: #C5C5C5;
+}
+.uploadifyProgress {
+    background-color: #E5E5E5;
+    margin-top: 10px;
+    width: 100%;
+}
+.uploadifyProgressBar {
+    background-color: #0099FF;
+    height: 3px;
+    width: 1px;
+}
+#custom-queue {
+    height: 192px;
+    width: 695px;
+}
+#custom-bt{
+	margin:5px 0px;
+}

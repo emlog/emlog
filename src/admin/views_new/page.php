@@ -3,16 +3,13 @@
 } ?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<section class="content-header">
-    <h1><?php echo $containertitle; ?></h1>
-    <div class="containertitle">
-        <span id="msg_2"></span>
-    </div>
-</section>
-<section class="content">
+
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--文章内容-->
 <div class="col-lg-8">
+    <div class="containertitle">
+        <b><?php echo $containertitle; ?></b><span id="msg_2"></span>
+    </div>
     <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
@@ -75,7 +72,6 @@
     </div>
 </div>
 </form>
-</section>
 <script>
 loadEditor('content');
 checkalias();

@@ -6,7 +6,7 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//后台当前模板路径
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views_new/');//后台当前模板路径
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//官方服务域名
 
 $sta_cache = $CACHE->readCache('sta');
