@@ -332,7 +332,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istwitter','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
@@ -390,18 +389,6 @@ CREATE TABLE {$db_prefix}sort (
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$table_charset_sql."
-DROP TABLE IF EXISTS {$db_prefix}twitter;
-CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT,
-content text NOT NULL,
-img varchar(200) DEFAULT NULL,
-author int(10) NOT NULL default '1',
-date bigint(20) NOT NULL,
-replynum int(10) unsigned NOT NULL default '0',
-PRIMARY KEY (id),
-KEY author (author)
-)".$table_charset_sql."
-INSERT INTO {$db_prefix}twitter (id, content, img, author, date, replynum) VALUES (1, '使用微语记录您身边的新鲜事', '', 1, '".time()."', 0);
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
   id int(10) unsigned NOT NULL auto_increment,
