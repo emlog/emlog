@@ -50,25 +50,6 @@
                         </div>
                     </div>
 
-                    <div id="twitter" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".twitter" class="widget-title" aria-expanded="false">最新微语</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="twitter panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=twitter" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-                                    <li>显示最新微语数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
                     <div id="tag" class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">

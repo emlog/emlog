@@ -14,7 +14,7 @@ if (!defined('EMLOG_ROOT')) {
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <ul>
-                        <li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论，<b><?php echo $sta_cache['twnum'];?></b>条微语</li>
+                        <li>有<b><?php echo $sta_cache['lognum'];?></b>篇文章，<b><?php echo $sta_cache['comnum_all'];?></b>条评论</li>
                         <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
                         <li>PHP版本：<?php echo $php_ver; ?></li>
                         <li>MySQL版本：<?php echo $mysql_ver; ?></li>

@@ -84,17 +84,6 @@ if (!defined('EMLOG_ROOT')) {
                 截取文章的前<input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" />个字作为摘要
             </div>          
         </div>
-        <div class="form-group">
-            <div class="checkbox form-inline">
-                <label><input type="checkbox" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> />开启微语</label>，
-                每页显示<input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="form-control" style="width:50px;" />条微语
-            </div>
-            <div class="checkbox form-inline">
-                <label><input type="checkbox" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> />开启微语回复，</label>
-                <label><input type="checkbox" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> />回复验证码，</label>
-                <label><input type="checkbox" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> />回复审核</label>
-            </div>
-        </div>
         <div class="form-group form-inline">
             RSS输出 <input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num" /> 篇文章（0为关闭），且输出
             <select name="rss_output_fulltext" class="form-control">

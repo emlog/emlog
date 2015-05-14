@@ -368,7 +368,6 @@ CREATE TABLE {$db_prefix}navi (
   PRIMARY KEY  (id)
 )".$table_charset_sql."
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (2, '微语', 't', 2, 'y', 2);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
@@ -388,19 +387,6 @@ CREATE TABLE {$db_prefix}sort (
   description text NOT NULL,
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
-)".$table_charset_sql."
-DROP TABLE IF EXISTS {$db_prefix}reply;
-CREATE TABLE {$db_prefix}reply (
-  id int(10) unsigned NOT NULL auto_increment,
-  tid int(10) unsigned NOT NULL default '0',
-  date bigint(20) NOT NULL,
-  name varchar(20) NOT NULL default '',
-  content text NOT NULL,
-  hide enum('n','y') NOT NULL default 'n',
-  ip varchar(128) NOT NULL default '',
-  PRIMARY KEY  (id),
-  KEY gid (tid),
-  KEY hide (hide)
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (

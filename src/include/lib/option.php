@@ -13,10 +13,6 @@ class Option {
     const ICON_MAX_W = 140;
     //头像缩略图最大高
     const ICON_MAX_H = 220;
-    //微语图片缩略图最大宽
-    const T_IMG_MAX_W = 180;
-    //微语图片缩略图最大高
-    const T_IMG_MAX_H = 136;
     //附件上传路径
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
@@ -160,7 +156,6 @@ class Option {
         $widget_title = array(
             'blogger' => '个人资料',
             'calendar' => '日历',
-            'twitter' => '最新微语',
             'tag' => '标签',
             'sort' => '分类',
             'archive' => '存档',
