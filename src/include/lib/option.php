@@ -161,7 +161,6 @@ class Option {
             'archive' => '存档',
             'newcomm' => '最新评论',
             'newlog' => '最新文章',
-            'random_log' => '随机文章',
             'hotlog' => '热门文章',
             'link' => '链接',
             'search' => '搜索',

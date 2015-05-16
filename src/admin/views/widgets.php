@@ -161,26 +161,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>  
-
-                    <div id="random_log" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".random_log" class="widget-title" aria-expanded="false">随机文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="random_log panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=random_log" method="post" class="form-inline">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
-                                    <li>显示随机文章数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
                     </div>
 
                     <div id="link" class="panel panel-default">

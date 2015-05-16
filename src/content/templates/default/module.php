@@ -130,21 +130,6 @@ function widget_hotlog($title){
     </li>
 <?php }?>
 <?php
-//widget：随机文章
-function widget_random_log($title){
-    $index_randlognum = Option::get('index_randlognum');
-    $Log_Model = new Log_Model();
-    $randLogs = $Log_Model->getRandLog($index_randlognum);?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="randlog">
-    <?php foreach($randLogs as $value): ?>
-    <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
-    <?php endforeach; ?>
-    </ul>
-    </li>
-<?php }?>
-<?php
 //widget：搜索
 function widget_search($title){ ?>
     <li>
