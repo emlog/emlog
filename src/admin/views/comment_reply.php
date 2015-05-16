@@ -1,8 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('comment_reply')?></h1>
-</section>
-<section class="content">
+<div class="containertitle"><b><?=lang('comment_reply')?></b>
+</div>
+<div class=line></div>
 <form action="comment.php?action=doreply" method="post">
 <div class="item_edit">
 <!--vot-->    <li><?=lang('commentator')?>: <?php echo $poster; ?></li>
@@ -20,7 +19,6 @@
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();"/></li>
 </div>
 </form>
-</section>
 <script>
 $("#menu_cm").addClass('active');
 </script>

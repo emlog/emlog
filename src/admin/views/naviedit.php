@@ -1,9 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<div class="containertitle"><b><?=lang('nav_modify')?></b></div>
 <div class=line></div>
-<section class="content-header">
-    <h1><?=lang('nav_modify')?></h1>
-</section>
-<section class="content">
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
     <li>
@@ -40,7 +37,6 @@
     </li>
 </div>
 </form>
-</section>
 <script>
-$("#menu_navi").addClass('active').parent().parent().addClass('active');
+$("#menu_navbar").addClass('active');
 </script>

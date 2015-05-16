@@ -1,12 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-<!--vot--><h1><?=lang('page_management')?></h1>
+<div class="containertitle"><b><?=lang('page_management')?></b>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('page_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success"><?=lang('page_published_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success"><?=lang('page_disabled_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_pubpage'])):?><span class="alert alert-success"><?=lang('page_saved_ok')?></span><?php endif;?>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
@@ -56,7 +55,6 @@
 </div>
 <!--vot--><div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new" class="btn btn-success"><?=lang('add_page')?>+</a></div>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $pageNum; ?><?=lang('_pages')?>)</div>
-</section>
 <script>
 $(document).ready(function(){
     $("#adm_comment_list tbody tr:odd").addClass("tralt_b");

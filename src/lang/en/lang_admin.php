@@ -425,7 +425,7 @@ $lang = array(
 //admin/views/header.php
  'system'		=> 'System',//'系统',
  'return_to_admin_center'	=> 'Return to AdminCP',//'返回管理首页',
- 'to_site_new_window'	=> 'Go to the site',//'查看站点',
+ 'to_site_new_window'	=> 'Browse the site in a new window',//'在新窗口浏站点',
  'to_site'		=> 'View My site',//'查看我的站点',
  'settings'		=> 'Settings',//'设置',
  'logout'		=> 'Logout',//'退出',
@@ -447,7 +447,7 @@ $lang = array(
 // 'plugins'		=> 'Plug-ins',//'插件',
  'templates'		=> 'Templates',//'模板',
  'applications'		=> 'Apps',//'应用',
- 'extensions'		=> 'Extensions',//'扩展',
+ 'extensions'		=> 'Extensions',//'扩展功能',
 // '<!--Sidebar Toggle-->',//'<!--边栏折叠-->'
  'exterior'		=> 'Exterior',//'外观',
 

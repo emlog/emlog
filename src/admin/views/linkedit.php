@@ -1,8 +1,6 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('link_edit')?></h1>
-</section>
-<section class="content">
+<div class="containertitle"><b><?=lang('link_edit')?></b></div>
+<div class=line></div>
 <form action="link.php?action=update_link" method="post">
 <div class="item_edit">
 <!--vot--><li><input size="40" value="<?php echo $sitename; ?>" class="form-control" name="sitename" /> <?=lang('name')?><span class="required">*</span></li>
@@ -14,7 +12,6 @@
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
-</section>
 <script>
 $("#menu_link").addClass('active');
 </script>

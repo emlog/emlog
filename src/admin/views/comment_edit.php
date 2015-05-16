@@ -1,8 +1,7 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('comment_edit')?></h1>
-</section>
-<section class="content">
+<div class="container_title"><b><?=lang('comment_edit')?></b>
+</div>
+<div class=line></div>
 <form action="comment.php?action=doedit" method="post">
 <div class="item_edit">
 <!--vot--><li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" class="form-control" /> <?=lang('commentator')?></li>
@@ -14,7 +13,6 @@
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
-</section>
 <script>
 $("#menu_cm").addClass('active');
 </script>

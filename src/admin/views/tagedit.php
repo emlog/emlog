@@ -1,11 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('tag_edit')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('tag_edit')?></b>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('tag_empty')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form  method="post" action="tag.php?action=update_tag" class="form-inline">
 <div class="form-group">
     <li><input size="40" value="<?php echo $tagname; ?>" name="tagname" class="form-control" /></li>
@@ -16,7 +13,6 @@
     </li>
 </div>
 </form>
-</section>
 <script>
 $("#menu_tag").addClass('active');
 </script>

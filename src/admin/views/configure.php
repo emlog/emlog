@@ -84,17 +84,6 @@ if (!defined('EMLOG_ROOT')) {
                 <?=lang('auto_summary_get')?> <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" /><?=lang('characters_as_summary')?>
             </div>          
         </div>
-        <div class="form-group">
-            <div class="checkbox form-inline">
-                <label><input type="checkbox" value="y" name="istwitter" id="istwitter" <?php echo $conf_istwitter; ?> /><?=lang('twitters_enable')?></label>,
-                <?=lang('per_page')?> <input type="text" name="index_twnum" maxlength="3" value="<?php echo Option::get('index_twnum'); ?>" class="form-control" style="width:50px;" /><?lang('_twitters')?>
-            </div>
-            <div class="checkbox form-inline">
-                <label><input type="checkbox" value="y" name="istreply" id="istreply" <?php echo $conf_istreply; ?> /><?=lang('twitter_reply_enable')?>, </label>
-                <label><input type="checkbox" value="y" name="reply_code" id="reply_code" <?php echo $conf_reply_code; ?> /><?=lang('reply_verification_code')?>, </label>
-                <label><input type="checkbox" value="y" name="ischkreply" id="ischkreply" <?php echo $conf_ischkreply; ?> /><?=lang('reply_audit')?></label>
-            </div>
-        </div>
         <div class="form-group form-inline">
             RSS <?=lang('export')?> <input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num" /> <?=lang('_posts_and_output')?>
             <select name="rss_output_fulltext" class="form-control">
@@ -155,5 +144,7 @@ if (!defined('EMLOG_ROOT')) {
 </div>
 <script>
     setTimeout(hideActived, 2600);
-    $("#menu_setting").addClass('active').parent().parent().addClass('active');
+    $("#menu_category_sys").addClass('active');
+    $("#menu_sys").addClass('in');
+    $("#menu_setting").addClass('active');
 </script>

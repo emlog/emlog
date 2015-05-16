@@ -1,13 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('tag_manage')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('tag_manage')?></b>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('tag_delete_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('tag_modify_ok')?></span><?php endif;?>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('tag_select_to_delete')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
 <div>
@@ -29,7 +25,6 @@ foreach($tags as $key=>$value): ?>
 <?php endif;?>
 </div>
 </form>
-</section>
 <script>
 selectAllToggle();
 function deltags(){

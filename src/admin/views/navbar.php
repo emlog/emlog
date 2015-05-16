@@ -1,6 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<section class="content-header">
-    <h1><?=lang('nav_manage')?></h1>
     <div class="containertitle"><b><?=lang('nav_manage')?></b>
     <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('nav_delete_ok')?></span><?php endif;?>
@@ -12,9 +10,8 @@
     <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('select_category')?></span><?php endif;?>
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('select_page')?></span><?php endif;?>
     <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nav_url_invalid')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
@@ -215,7 +212,7 @@
             </div>
         </div>
 </div>
-</section>
+
 <script>
 $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
 $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
@@ -227,5 +224,7 @@ $(document).ready(function(){
         .mouseout(function(){$(this).removeClass("trover")})
 });
 setTimeout(hideActived, 2600);
-$("#menu_navi").addClass('active').parent().parent().addClass('active');
+$("#menu_category_view").addClass('active');
+$("#menu_view").addClass('in');
+$("#menu_navi").addClass('active');
 </script>

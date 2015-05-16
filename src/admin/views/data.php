@@ -1,7 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<section class="content-header">
-    <h1><?=lang('data_backup')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('data_backup')?></b>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('backup_delete_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success"><?=lang('backup_create_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_import'])):?><span class="alert alert-success"><?=lang('backup_import_ok')?></span><?php endif;?>
@@ -12,9 +10,8 @@
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('backup_file_wrong')?></span><?php endif;?>
     <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('backup_export_zip_unsupported')?></span><?php endif;?>
     <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success"><?=lang('cache_update_ok')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
 <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
@@ -92,7 +89,7 @@
 <!--vot--><p class="des"><?=lang('cache_update_info')?></p>
 <!--vot--><p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="btn btn-primary" /></p>
 </div>
-</section>
+
 <script>
 setTimeout(hideActived,2600);
 $(document).ready(function(){
@@ -112,5 +109,7 @@ function bakact(act){
     $("#operate").val(act);
     $("#form_bak").submit();
 }
-$("#menu_data").addClass('active').parent().parent().addClass('active');
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_data").addClass('active');
 </script>

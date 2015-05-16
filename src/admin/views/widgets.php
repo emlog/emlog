@@ -2,13 +2,11 @@
     exit('error!');
 } ?>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery.sortable.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<section class="content-header">
-    <h1><?=lang('widget_manage')?></h1>
-    <div class="containertitle">
-    <?php if (isset($_GET['activated'])): ?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif; ?>    
-    </div>
-</section>
-<section class="content">
+<script>setTimeout(hideActived, 2600);</script>
+<div class="containertitle"><b><?=lang('widget_manage')?></b>
+<?php if (isset($_GET['activated'])): ?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif; ?></div>
+<div class=line></div>
+
 <div class="row">
     <div class="col-lg-4" id="adm_widget_list">
         <div class="panel panel-default">
@@ -47,25 +45,6 @@
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="twitter" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".twitter" class="widget-title" aria-expanded="false"><?=lang('twitter_latest')?></a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="twitter panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=twitter" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['twitter']; ?>"  /></li>
-                                    <li><?=lang('twitter_latest_num')?></li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -179,26 +158,6 @@
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
                                     <li><?=lang('hot_posts_home')?></li>
                                     <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>  
-
-                    <div id="random_log" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".random_log" class="widget-title" aria-expanded="false"><?=lang('random_post')?></a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="random_log panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=random_log" method="post" class="form-inline">
-                                    <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['random_log']; ?>"  /></li>
-                                    <li><?=lang('random_post_home')?></li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_randlognum'); ?>" name="index_randlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -332,9 +291,9 @@
         </div>
     </div>
 </div>
-</section>
 <script>
     $(document).ready(function () {
+
         var widgets = $(".active_widget").map(function(){return $(this).attr("id");});
         $.each(widgets,function(i,widget_id){
             var widget_id = widget_id.substring(3);
@@ -371,7 +330,7 @@
         //Custom widget memory
         $("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 
-        $("#menu_widget").addClass('active').parent().parent().addClass('active');
-        setTimeout(hideActived, 2600);
+        $("#menu_view").addClass('in');
+        $("#menu_widget").addClass('active');
     });
 </script>

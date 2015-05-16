@@ -1,13 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('install')?> <?php echo $source_typename;?></h1>
-</section>
-<section class="content">
+<div class="containertitle">
+<b><?=lang('install')?> <?php echo $source_typename;?></b>
+<div class=line></div>
 <!--vot--><div id="addon_ins"><span class="ajaxload"><?php echo $source_typename;?><?=lang('package_downloading')?></span></div>
 </div>
-</section>
 <script>
-$("#menu_store").addClass('active').parent().parent().addClass('active');
+$("#menu_store").addClass('active');
 $(document).ready(function(){
     $.get('./store.php', {action:'addon', source:"<?php echo $source;?>", type:"<?php echo $source_type;?>" },
       function(data){

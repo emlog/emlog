@@ -110,9 +110,6 @@ function timestamp(){
 }
 function em_confirm (id, property, token) {
     switch (property){
-        case 'tw':
-            var urlreturn="twitter.php?action=del&id="+id;
-/*vot*/     var msg = lang('twitter_del_sure');break;
         case 'comment':
             var urlreturn="comment.php?action=del&id="+id;
 /*vot*/     var msg = lang('comment_del_sure');break;

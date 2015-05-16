@@ -1,9 +1,8 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<section class="content-header">
-    <h1><?=lang('category_manage')?></h1>
-    <div class="containertitle">
+<script>setTimeout(hideActived, 2600);</script>
+<div class="containertitle"><b><?=lang('category_manage')?></b>
     <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif; ?>
     <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif; ?>
     <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif; ?>
@@ -13,9 +12,8 @@
     <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif; ?>
     <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif; ?>
     <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif; ?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
@@ -131,9 +129,7 @@
 <!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
     </div>
 </form>
-</section>
 <script>
-    setTimeout(hideActived, 2600);
     $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
     $("#alias").keyup(function() {
         checksortalias();

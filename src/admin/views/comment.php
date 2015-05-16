@@ -1,8 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-
-<section class="content-header">
-<!--vot--><h1><?=lang('comment_management')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('comment_management')?></b>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('comment_delete_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_show'])):?><span class="alert alert-success"><?=lang('comment_audit_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide'])):?><span class="alert alert-success"><?=lang('comment_hide_ok')?></span><?php endif;?>
@@ -13,9 +10,7 @@
 <!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('reply_is_empty')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('comment_too_long')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('comment_is_empty')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
 <div class=line></div>
 <?php if ($hideCommNum > 0) : 
 $hide_ = $hide_y = $hide_n = '';
@@ -88,7 +83,6 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     </div>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $cmnum; ?><?=lang('_comments')?>)</div> 
 </form>
-</section>
 <script>
 $(document).ready(function(){
     selectAllToggle();

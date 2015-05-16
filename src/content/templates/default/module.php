@@ -81,26 +81,6 @@ function widget_sort($title){
     </li>
 <?php }?>
 <?php
-//widget:Latest twitters
-function widget_twitter($title){
-    global $CACHE; 
-    $newtws_cache = $CACHE->readCache('newtw');
-    $istwitter = Option::get('istwitter');
-    ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="twitter">
-    <?php foreach($newtws_cache as $value): ?>
-<!--vot-->	<?php $img = empty($value['img']) ? "" : '<a title="'.lang('view_image').'" class="t_img" href="'.BLOG_URL.str_replace('thum-', '', $value['img']).'" target="_blank">&nbsp;</a>';?>
-    <li><?php echo $value['t']; ?><?php echo $img;?><p><?php echo smartDate($value['date']); ?></p></li>
-    <?php endforeach; ?>
-    <?php if ($istwitter == 'y') :?>
-<!--vot-->    <p><a href="<?php echo BLOG_URL . 't/'; ?>"><?=lang('more')?></a></p>
-    <?php endif;?>
-    </ul>
-    </li>
-<?php }?>
-<?php
 //widget:Latest Comments
 function widget_newcomm($title){
     global $CACHE; 
@@ -143,21 +123,6 @@ function widget_hotlog($title){
     <li>
     <h3><span><?php echo $title; ?></span></h3>
     <ul id="hotlog">
-    <?php foreach($randLogs as $value): ?>
-    <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
-    <?php endforeach; ?>
-    </ul>
-    </li>
-<?php }?>
-<?php
-//widget:Random Post
-function widget_random_log($title){
-    $index_randlognum = Option::get('index_randlognum');
-    $Log_Model = new Log_Model();
-    $randLogs = $Log_Model->getRandLog($index_randlognum);?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="randlog">
     <?php foreach($randLogs as $value): ?>
     <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
     <?php endforeach; ?>

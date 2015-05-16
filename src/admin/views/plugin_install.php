@@ -1,15 +1,13 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('plugin_install')?></h1>
-    <div class="containertitle"><b><?=lang('plugin_install')?></b>
+<script>setTimeout(hideActived,2600);</script>
+<div class="containertitle"><b>?=lang('plugin_install')?></b><div id="msg"></div>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('plugin_zipped_only')?></span><?php endif;?>
     <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('plugin_upload_failed_nonwritable')?></span><?php endif;?>
     <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('plugin_zip_nonsupport')?></span><?php endif;?>
     <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('plugin_zip_select')?></span><?php endif;?>
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('plugin_install_failed_wrong_format')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 10px;">
 <div class="des">
@@ -29,8 +27,9 @@
 </div>
 </form>
 <!--vot--><div style="margin:10px 20px;"><?=lang('plugin_get_more')?>: <a href="store.php"><?=lang('app_center')?></a></div>
-</section>
 <script>
 setTimeout(hideActived, 2600);
-$("#menu_plug").addClass('active').parent().parent().addClass('active');
+$("#menu_category_sys").addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_plug").addClass('active');
 </script>

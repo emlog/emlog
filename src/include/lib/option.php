@@ -16,10 +16,6 @@ class Option {
     const ICON_MAX_W = 140;
     //Maximum avatar thumbnail height
     const ICON_MAX_H = 220;
-    //Maximum width of twitter image thumbnail
-    const T_IMG_MAX_W = 180;
-    //Maximum height of twitter image thumbnail
-    const T_IMG_MAX_H = 136;
     //Attachments upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
@@ -163,13 +159,11 @@ class Option {
         $widget_title = array(
 /*vot*/            'blogger' => lang('blogger'),
 /*vot*/            'calendar' => lang('calendar'),
-/*vot*/            'twitter' => lang('twitter_latest'),
 /*vot*/            'tag' => lang('tags'),
 /*vot*/            'sort' => lang('category'),
 /*vot*/            'archive' => lang('archive'),
 /*vot*/            'newcomm' => lang('new_comments'),
 /*vot*/            'newlog' => lang('new_posts'),
-/*vot*/            'random_log' => lang('random_post'),
 /*vot*/            'hotlog' => lang('hot_posts'),
 /*vot*/            'link' => lang('links'),
 /*vot*/            'search' => lang('search'),

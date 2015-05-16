@@ -1,7 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('user_management')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('user_management')?></b>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_update'])):?><span class="alert alert-success"><?=lang('user_modify_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('user_add_ok')?></span><?php endif;?>
@@ -11,12 +9,11 @@
     <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger"><?=lang('passwords_not_equal')?></span><?php endif;?>
     <?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger"><?=lang('founder_not_delete')?></span><?php endif;?>
     <?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger"><?=lang('founder_not_edit')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
+<div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
     <table class="table table-striped table-bordered table-hover dataTable no-footer" id="adm_comment_list">
-      <thead>
+  	<thead>
       <tr>
         <th width="60"></th>
 <!--vot--><th width="220"><b><?=lang('user')?></b></th>
@@ -80,7 +77,6 @@
 <!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="btn btn-primary" /></li>
 </div>
 </form>
-</section>
 <script>
 $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
 $(document).ready(function(){
@@ -91,5 +87,6 @@ $(document).ready(function(){
     $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);
-$("#menu_user").addClass('active').parent().parent().addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_user").addClass('active');
 </script>

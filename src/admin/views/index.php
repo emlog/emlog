@@ -4,10 +4,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <script>setTimeout(hideActived, 2600);</script>
-<section class="content-header">
-    <h1><?=lang('admin_center')?></h1>
-</section>
-<section class="content">
+<div class="containertitle"><b><?=lang('admin_center')?></b></div>
 <div class="row">
 <?php if (ROLE == ROLE_ADMIN): ?>
         <div class="col-lg-6">
@@ -117,4 +114,3 @@ if (!defined('EMLOG_ROOT')) {
         </div>
 </div>
 <?php endif; ?>
-</section>

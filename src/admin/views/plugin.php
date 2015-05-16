@@ -1,16 +1,12 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('plugin_manage')?></h1>
-    <div class="containertitle">
+<div class="containertitle"><b><?=lang('plugin_manage')?></b><div id="msg"></div>
     <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success"><?=lang('plugin_upload_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active'])):?><span class="alert alert-success"><?=lang('plugin_active_ok')?></span><?php endif;?>
     <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
     <?php if(isset($_GET['active_error'])):?><span class="alert alert-danger"><?=lang('plugin_active_failed')?></span><?php endif;?>
     <?php if(isset($_GET['inactive'])):?><span class="alert alert-success"><?=lang('plugin_disable_ok')?></span><?php endif;?>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('plugin_delete_failed')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+</div>
 <div class=line></div>
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
@@ -80,5 +76,6 @@ $("#adm_plugin_list tbody tr")
     .mouseout(function(){$(this).removeClass("trover")})
 setTimeout(hideActived,2600);
 $("#menu_category_sys").addClass('active');
-$("#menu_plug").addClass('active').parent().parent().addClass('active');
+$("#menu_sys").addClass('in');
+$("#menu_plug").addClass('active');
 </script>

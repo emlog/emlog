@@ -1,15 +1,9 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<section class="content-header">
-    <h1><?=lang('category_edit')?></h1>
-    <div class="containertitle">
-    <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif;?>
     <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif;?>
     <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif;?>
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif;?>
-    </div>
-</section>
-<section class="content">
+<div class=containertitle><b><?=lang('category_edit')?></b></div>
 <form action="sort.php?action=update" method="post" class="form-inline">
 <div class="form-group">
     <li>
@@ -46,7 +40,6 @@
     </li>
 </div>
 </form>
-</section>
 <script>
 $("#menu_sort").addClass('active');
 $("#alias").keyup(function(){checksortalias();});

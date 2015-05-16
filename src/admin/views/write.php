@@ -7,14 +7,10 @@
 
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--Article content-->
-<section class="content-header">
-    <h1><?php echo $containertitle; ?></h1>
-    <div class="containertitle">
-        <span id="msg_2"></span>
-    </div>
-</section>
-<section class="content">
 <div class="col-lg-8">
+    <div class="containertitle">
+        <b><?php echo $containertitle; ?></b><span id="msg_2"></span>
+    </div>
     <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
@@ -136,7 +132,7 @@
         
     </div>
 </div>
-</section>
+</form>
 <script>
 /*vot*/  $(function() {
 /*vot*/    KindEditor.create('textarea[name="content"]');
