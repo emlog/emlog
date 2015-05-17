@@ -28,7 +28,10 @@
         </ul>
     <?php endforeach;?>
         <ul class="add">
-            <li><a href="template.php?action=install">添加模板+</a></li>
+            <a href="template.php?action=install">
+                <div class="theme-screenshot"><span></span></div>
+                <h3 class="theme-name">添加模板</h3>
+            </a>
         </ul>
 </div>
 <script>
