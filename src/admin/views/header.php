@@ -67,7 +67,7 @@
                                     )
                                 </a></li>
                             <?php if (ROLE == ROLE_ADMIN):?>
-                            <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> ?=lang('pages')?></a></li>
+                            <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> <?=lang('pages')?></a></li>
                             <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> <?=lang('links')?></a></li>
                             <li id="menu_category_view" class="">
                                 <a href="#"><i class="fa fa-windows fa-fw"></i> <?=lang('exterior')?><span class="fa arrow"></span></a>

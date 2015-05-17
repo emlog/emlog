@@ -99,7 +99,7 @@
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
-            <label><?=name('name')?></label>
+            <label><?=lang('name')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="alias" id="alias" />

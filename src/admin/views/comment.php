@@ -43,7 +43,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     foreach($comment as $key=>$value):
 /*vot*/ $ishide = $value['hide']=='y'?'<font color="red">['.lang('pending').']</font>':'';
     $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-/*vot*/ $ip = !empty($value['ip']) ? "<br />{lang('from')}: {$value['ip']}" : '';
+/*vot*/ $ip = !empty($value['ip']) ? '<br />'.lang('from').': '.$value['ip'] : '';
     $poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
     $value['content'] = str_replace('<br>',' ',$value['content']);
     $sub_content = subString($value['content'], 0, 50);
