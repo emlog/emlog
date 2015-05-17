@@ -7,7 +7,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 
-<div class="col-lg-7 col-md-6 preview-page-window">
+<div class="col-md-7 content">
     <?php
     if (!empty($logs)):
         foreach ($logs as $value):

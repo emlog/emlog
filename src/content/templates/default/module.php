@@ -10,75 +10,68 @@ function widget_blogger($title){
     global $CACHE;
     $user_cache = $CACHE->readCache('user');
     $name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="bloggerinfo">
-    <div id="bloggerinfoimg">
-    <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-    <img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
-    <?php endif;?>
-    </div>
-    <p><b><?php echo $name; ?></b>
-    <?php echo $user_cache[1]['des']; ?></p>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <div id="bloggerinfoimg">
+        <?php if (!empty($user_cache[1]['photo']['src'])): ?>
+        <img src="<?php echo BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>" height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger" />
+        <?php endif;?>
+        </div>
+        <p><b><?php echo $name; ?></b>
+        <?php echo $user_cache[1]['des']; ?></p>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：日历
 function widget_calendar($title){ ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <div id="calendar">
-    </div>
-    <script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
-    </li>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <div id="calendar"></div>
+        <script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
+    </ul>
 <?php }?>
 <?php
 //widget：标签
 function widget_tag($title){
     global $CACHE;
     $tag_cache = $CACHE->readCache('tags');?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="blogtags">
-    <?php foreach($tag_cache as $value): ?>
-        <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-        <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇文章"><?php echo $value['tagname']; ?></a></span>
-    <?php endforeach; ?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php foreach($tag_cache as $value): ?>
+            <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
+            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇文章"><?php echo $value['tagname']; ?></a></span>
+        <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：分类
 function widget_sort($title){
     global $CACHE;
     $sort_cache = $CACHE->readCache('sort'); ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="blogsort">
-    <?php
-    foreach($sort_cache as $value):
-        if ($value['pid'] != 0) continue;
-    ?>
-    <li>
-    <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
-    <?php if (!empty($value['children'])): ?>
-        <ul>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
         <?php
-        $children = $value['children'];
-        foreach ($children as $key):
-            $value = $sort_cache[$key];
+        foreach($sort_cache as $value):
+            if ($value['pid'] != 0) continue;
         ?>
         <li>
-            <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+        <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+        <?php if (!empty($value['children'])): ?>
+            <ul>
+            <?php
+            $children = $value['children'];
+            foreach ($children as $key):
+                $value = $sort_cache[$key];
+            ?>
+            <li>
+                <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
         </li>
         <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-    </li>
-    <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：最新评论
@@ -86,18 +79,16 @@ function widget_newcomm($title){
     global $CACHE; 
     $com_cache = $CACHE->readCache('comment');
     ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="newcomment">
-    <?php
-    foreach($com_cache as $value):
-    $url = Url::comment($value['gid'], $value['page'], $value['cid']);
-    ?>
-    <li id="comment"><?php echo $value['name']; ?>
-    <br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
-    <?php endforeach; ?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php
+        foreach($com_cache as $value):
+        $url = Url::comment($value['gid'], $value['page'], $value['cid']);
+        ?>
+        <li id="comment"><?php echo $value['name']; ?>
+        <br /><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
+        <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：最新文章
@@ -105,41 +96,35 @@ function widget_newlog($title){
     global $CACHE; 
     $newLogs_cache = $CACHE->readCache('newlog');
     ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="newlog">
-    <?php foreach($newLogs_cache as $value): ?>
-    <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
-    <?php endforeach; ?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php foreach($newLogs_cache as $value): ?>
+        <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+        <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：热门文章
 function widget_hotlog($title){
     $index_hotlognum = Option::get('index_hotlognum');
     $Log_Model = new Log_Model();
-    $randLogs = $Log_Model->getHotLog($index_hotlognum);?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="hotlog">
-    <?php foreach($randLogs as $value): ?>
-    <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
-    <?php endforeach; ?>
+    $hotLogs = $Log_Model->getHotLog($index_hotlognum);?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php foreach($hotLogs as $value): ?>
+        <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+        <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?>
 <?php
 //widget：搜索
 function widget_search($title){ ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="logsearch">
-    <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
-    <input name="keyword" class="search" type="text" />
-    </form>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
+        <input name="keyword" class="search" type="text" />
+        </form>
     </ul>
-    </li>
 <?php } ?>
 <?php
 //widget：归档
@@ -147,24 +132,21 @@ function widget_archive($title){
     global $CACHE; 
     $record_cache = $CACHE->readCache('record');
     ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="record">
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
     <?php foreach($record_cache as $value): ?>
     <li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
     <?php endforeach; ?>
     </ul>
-    </li>
 <?php } ?>
 <?php
 //widget：自定义组件
 function widget_custom_text($title, $content){ ?>
     <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul>
-    <?php echo $content; ?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php echo $content; ?>
     </ul>
-    </li>
 <?php } ?>
 <?php
 //widget：链接
@@ -173,14 +155,12 @@ function widget_link($title){
     $link_cache = $CACHE->readCache('link');
     //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
     ?>
-    <li>
-    <h3><span><?php echo $title; ?></span></h3>
-    <ul id="link">
-    <?php foreach($link_cache as $value): ?>
-    <li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
-    <?php endforeach; ?>
+    <h4><?php echo $title; ?></h4>
+    <ul class="list-unstyled">
+        <?php foreach($link_cache as $value): ?>
+        <li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+        <?php endforeach; ?>
     </ul>
-    </li>
 <?php }?> 
 <?php
 //blog：导航
@@ -197,51 +177,50 @@ function blog_navi(){
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">首页</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-    <?php
-    foreach($navi_cache as $value):
-
-        if ($value['pid'] != 0) {
-            continue;
-        }
-
-        if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
+            <?php
+            foreach($navi_cache as $value):
+            if ($value['pid'] != 0) {
+                continue;
+            }
+            if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
             ?>
-            <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
-            <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+                <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
+                <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
             <?php 
-            continue;
-        endif;
-        $newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
-        $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
-        $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
-        ?>
-        <li class="dropdown">
-            <?php if (!empty($value['children'])) :?>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <?php foreach ($value['children'] as $row){
-                        echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
-                }?>
-            </ul>
+                continue;
+            endif;
+            $newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
+            $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
+            $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'current' : 'common';
+            ?>
+            <?php if (!empty($value['children']) || !empty($value['childnavi'])) :?>
+            <li class="dropdown">
+                <?php if (!empty($value['children'])):?>
+                <a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <?php foreach ($value['children'] as $row){
+                            echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
+                    }?>
+                </ul>
+                <?php endif;?>
+                <?php if (!empty($value['childnavi'])) :?>
+                <a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <?php foreach ($value['childnavi'] as $row){
+                            $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
+                            echo '<li><a href="' . $row['url'] . "\" $newtab >" . $row['naviname'].'</a></li>';
+                    }?>
+                </ul>
+                <?php endif;?>
+            </li>
+            <?php else:?>
+            <li><a href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?></a></li>
             <?php endif;?>
-
-            <?php if (!empty($value['childnavi'])) :?>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $value['url']; ?>" <?php echo $newtab;?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <?php foreach ($value['childnavi'] as $row){
-                        $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
-                        echo '<li><a href="' . $row['url'] . "\" $newtab >" . $row['naviname'].'</a></li>';
-                }?>
+            <?php endforeach; ?>
             </ul>
-            <?php endif;?>
-
-        </li>
-    <?php endforeach; ?>
-    </ul>
         </div>
     </div>
 </nav>

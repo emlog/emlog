@@ -122,10 +122,10 @@ if (!defined('EMLOG_ROOT')) {
             </div>
         </div>
         <div class="form-group form-inline">
-            <label>附件上传最大限制</label><input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB（上传文件还受到服务器空间PHP配置最大上传 <?php echo ini_get('upload_max_filesize'); ?> 限制）
+            <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" /> <label>附件上传最大限制</label>，单位KB（上传文件还受到服务器空间PHP配置最大上传 <?php echo ini_get('upload_max_filesize'); ?> 限制）
         </div>
         <div class="form-group form-inline">
-            <label>允许上传的附件类型</label><input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" />（多个用半角逗号分隔）
+            <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" /> <label>允许上传的附件类型</label>（多个用半角逗号分隔）
         </div>
         <div class="form-group form-inline">
             <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，最大尺寸：<input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" /> x <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" />（单位：像素）

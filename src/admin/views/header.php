@@ -70,7 +70,7 @@
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
                             <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> 友链</a></li>
                             <li id="menu_category_view" class="">
-                                <a href="#"><i class="fa fa-windows fa-fw"></i> 外观<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-eye fa-fw"></i> 外观<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_view">
                                     <li><a href="widgets.php" id="menu_widget"><i class="fa fa-columns fa-fw"></i> 侧边栏</a></li>
                                     <li><a href="navbar.php" id="menu_navi"><i class="fa fa-bars fa-fw"></i> 导航</a></li>
@@ -80,7 +80,7 @@
                             <li id="menu_category_sys" class="">
                                 <a href="#"><i class="fa fa-cog fa-fw"></i> 系统<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_sys">
-                                    <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i>设置</a></li>
+                                    <li><a href="./configure.php" id="menu_setting"><i class="fa fa-wrench fa-fw"></i> 设置</a></li>
                                     <li><a href="user.php" id="menu_user"><i class="fa fa-user fa-fw"></i> 用户</a></li>
                                     <li><a href="data.php" id="menu_data"><i class="fa fa-database fa-fw"></i> 数据</a></li>
                                     <li><a href="plugin.php" id="menu_plug"><i class="fa fa-plug fa-fw"></i> 插件</a></li>
