@@ -15,6 +15,7 @@ button#login{
 #checkcode{
   width: 70px;
   height: 22px;
-  margin-left: -10px;
+  margin-left: 15px;
+  margin-right: -90px;
   margin-top: 6px;
 }

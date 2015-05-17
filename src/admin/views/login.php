@@ -43,7 +43,7 @@
 			?>
 			<div class="form-group">
 				<label for="imgcode" class="col-sm-2 control-label"></label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					<input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required="required">
 				</div>
 				<img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode">
