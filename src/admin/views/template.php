@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="./template.php">模板管理</a></li>

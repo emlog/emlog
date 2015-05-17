@@ -1,8 +1,4 @@
-<?php
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
-?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="./configure.php">基本设置</a></li>
@@ -69,7 +65,7 @@ if (!defined('EMLOG_ROOT')) {
                     $ex = $key == $timezone ? "selected=\"selected\"" : '';
                     ?>
                     <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
-<?php endforeach; ?>
+                <?php endforeach; ?>
             </select>
             (本地时间：<?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
         </div>

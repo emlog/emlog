@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 
@@ -16,8 +14,8 @@
                 <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" />
             </div>
             <div id="post_bar">
-                <div>
-                    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+                <div class="show_advset">
+                    <span onclick="displayToggle('FrameUpload', 0);autosave(1);">上传插入<i class="fa fa-caret-right fa-fw"></i></span>
                     <?php doAction('adm_writelog_head'); ?>
                     <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
@@ -29,7 +27,7 @@
             <div>
                 <textarea id="content" name="content" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
             </div>
-            <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项</div>
+            <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项<i class="fa fa-caret-right fa-fw"></i></div>
             <div id="advset">
                 <div>文章摘要：</div>
                 <div><textarea id="excerpt" name="excerpt" style="width:100%; height:260px;"><?php echo $excerpt; ?></textarea></div>

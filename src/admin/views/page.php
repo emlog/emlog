@@ -1,9 +1,6 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--文章内容-->
 <div class="col-lg-8">

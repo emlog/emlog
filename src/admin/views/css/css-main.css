@@ -496,7 +496,7 @@ textarea {
     font-weight:bold
 }
 #msg_2 {
-    margin:0px 200px;
+    margin:0px 50px;
     font-size:12px
 }
 .msg_autosave_do {
@@ -510,8 +510,9 @@ textarea {
 }
 .ajax_remind_1 {
     padding:3px 5px;
-    background-color:#FDFFCE;
-    color:#CCCCCC;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
 #user,#pw {
     height:28px;
@@ -749,11 +750,9 @@ textarea {
     margin:5px 0px;
 }
 .show_advset {
-    margin:3px 10px 0px 0px;
+    margin:20px 10px 10px 0px;
     padding:0px 20px 0px 0px;
-    background:url(../images/advset.gif) no-repeat 54px 4px;
     cursor:pointer;
-    width:76px;
     font-weight:bold;
 }
 #post_button{

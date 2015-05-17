@@ -108,7 +108,7 @@ function realUrl() {
     }
     
     $best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
-    $real_url  = $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $real_url  = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $real_url .= $_SERVER["SERVER_NAME"];
     $real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
     $real_url .= $best_match;
