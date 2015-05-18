@@ -6,7 +6,7 @@
 <div class=line></div>
 
 <div class="row">
-    <div class="col-lg-4" id="adm_widget_list">
+    <div class="col-lg-6" id="adm_widget_list">
         <div class="panel panel-default">
             <div class="panel-heading">
                 系统组件
@@ -251,7 +251,7 @@
         </div>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 使用中的组件
