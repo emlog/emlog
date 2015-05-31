@@ -12,7 +12,7 @@
 </div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 20px;">
-<div class="des">
+<div class="alert alert-danger">
 <!--vot--><?=lang('template_install_manual')?>:<br />
 <!--vot--><?=lang('template_install_prompt1')?> <br />
 <!--vot--><?=lang('template_install_prompt2')?> <br />
@@ -21,6 +21,7 @@
 <?php endif; ?>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div style="margin:50px 0px 50px 20px;">
+    <p>上传一个zip压缩格式的模板安装包</p>
     <p>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input name="tplzip" type="file" />

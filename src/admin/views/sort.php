@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
 <div class="containertitle"><b><?=lang('category_manage')?></b>
     <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif; ?>

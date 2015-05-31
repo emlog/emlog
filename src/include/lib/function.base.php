@@ -114,7 +114,7 @@ function realUrl() {
     }
     
     $best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
-    $real_url  = $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $real_url  = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
     $real_url .= $_SERVER["SERVER_NAME"];
     $real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
     $real_url .= $best_match;
@@ -703,7 +703,7 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
     $hash = md5($email);
-    $avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
+    $avatar = "http://cn.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
     return $avatar;
 }
 

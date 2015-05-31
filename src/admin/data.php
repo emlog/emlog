@@ -10,7 +10,7 @@ if ($action == '') {
     $retval = glob('../content/backup/*.sql');
     $bakfiles = $retval ? $retval : array();
     $timezone = Option::get('timezone');
-    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'reply', 'sort', 'link','tag','twitter','user');
+    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link','tag','user');
     doAction('data_prebakup');
 
     include View::getView('header');

@@ -11,7 +11,6 @@
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('select_page')?></span><?php endif;?>
     <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nav_url_invalid')?></span><?php endif;?>
 </div>
-<div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>

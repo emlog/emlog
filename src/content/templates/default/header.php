@@ -2,7 +2,6 @@
 /*
 Template Name: Default template
 Description: Default template, simple and elegant
-Version:1.2
 Author:emlog
 Author Url:http://www.emlog.net
 */
@@ -17,11 +16,16 @@ require_once View::getView('module');
 <meta name="keywords" content="<?php echo $site_key; ?>" />
 <meta name="description" content="<?php echo $site_description; ?>" />
 <meta name="generator" content="emlog" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?php echo BLOG_URL; ?>rss.php" />
 <link href="<?php echo TEMPLATE_URL; ?>main.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo BLOG_URL; ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
 <!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
+<script src="<?php echo BLOG_URL; ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script src="<?php echo BLOG_URL; ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
+<script src="<?php echo BLOG_URL; ?>admin/views/js/bootstrap.min.js" type="text/javascript"></script>
 <?php doAction('index_head'); ?>
 </head>
 <body>

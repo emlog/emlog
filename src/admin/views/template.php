@@ -1,18 +1,11 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
-<div class="panel-heading">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="./template.php"><?=lang('template_current')?></a></li>
-        <li role="presentation"><a href="template.php?action=install"><?=lang('template_mount')?></a></li>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
+<div class="containertitle"><b>模板管理</b>
         <?php if (isset($_GET['activated'])): ?><span class="alert alert-success"><?=lang('template_change_ok')?></span><?php endif; ?>
         <?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success"><?=lang('template_upload_ok')?></span><?php endif; ?>
         <?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success"><?=lang('template_delete_ok')?></span><?php endif; ?>
         <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('template_delete_failed')?></span><?php endif; ?>
         <?php if (!$nonceTplData): ?><span class="alert alert-danger"><?=lang('template_current_use')?> (<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></span><?php endif; ?>
-    </ul>
 </div>
-
 <div class="tpl">
     <?php
     foreach ($tpls as $key => $value):
@@ -30,7 +23,10 @@
         </ul>
     <?php endforeach;?>
         <ul class="add">
-            <li><a href="template.php?action=install"><?=lang('template_add')?>+</a></li>
+            <a href="template.php?action=install">
+                <div class="theme-screenshot"><span></span></div>
+                <h3 class="theme-name">添加模板</h3>
+            </a>
         </ul>
 </div>
 <script>

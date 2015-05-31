@@ -6,8 +6,8 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
-<div class="col-lg-5 col-md-6 preview-page-content">
-    <ul>
+<div class="col-md-4 col-md-push-1 sidebar">
+    <ul class="well">
         <?php
         $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
         doAction('diff_side');

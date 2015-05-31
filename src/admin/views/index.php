@@ -1,8 +1,4 @@
-<?php
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
-?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
 <div class="containertitle"><b><?=lang('admin_center')?></b></div>
 <div class="row">

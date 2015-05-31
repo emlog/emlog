@@ -65,11 +65,6 @@ if ($action == 'setwg') {
             Option::updateOption('comment_subnum', $comment_subnum);
             $CACHE->updateCache('comment');
             break;
-        case 'twitter':
-            $index_newtwnum = isset($_POST['index_newtwnum']) ? intval($_POST['index_newtwnum']) : 10;
-            Option::updateOption('index_newtwnum', $index_newtwnum);
-            $CACHE->updateCache('newtw');
-            break;
         case 'newlog':
             $index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 5;
             Option::updateOption('index_newlognum', $index_newlog);
@@ -78,10 +73,6 @@ if ($action == 'setwg') {
         case 'hotlog':
             $index_hotlognum = isset($_POST['index_hotlognum']) ? intval($_POST['index_hotlognum']) : 5;
             Option::updateOption('index_hotlognum', $index_hotlognum);
-            break;
-        case 'random_log':
-            $index_randlognum = isset($_POST['index_randlognum']) ? intval($_POST['index_randlognum']) : 5;
-            Option::updateOption('index_randlognum', $index_randlognum);
             break;
         case 'custom_text':
             $custom_widget = Option::get('custom_widget');

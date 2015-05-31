@@ -5,9 +5,9 @@
   <li role="presentation"><a href="./configure.php"><?=lang('basic_settings')?></a></li>
   <li role="presentation" class="active"><a href="./seo.php"><?=lang('seo_settings')?></a></li>
   <li role="presentation"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
-</ul>
 <?php if(isset($_GET['activated'])):?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif;?>
 <?php if(isset($_GET['error'])):?><span class="alert alert-danger"><?=lang('htaccess_not_writable')?></span><?php endif;?>
+</ul>
 </div>
 <div class="panel-body" style="margin-left:30px;">
 <form action="seo.php?action=update" method="post">

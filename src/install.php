@@ -251,14 +251,12 @@ CREATE TABLE {$db_prefix}blog (
   allow_remark enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
   template varchar(255) NOT NULL default '',
-  PRIMARY KEY  (gid),
-  KEY date (date),
+  PRIMARY KEY (gid),
   KEY author (author),
-  KEY sortid (sortid),
-  KEY type (type),
   KEY views (views),
   KEY comnum (comnum),
-  KEY hide (hide)
+  KEY sortid (sortid),
+  KEY top (top,date)
 )".$table_charset_sql."
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".lang('emlog_welcome')."', '".time()."', '".lang('emlog_install_congratulation')."', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;

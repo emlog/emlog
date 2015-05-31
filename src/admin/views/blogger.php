@@ -5,12 +5,6 @@
 <!--vot--><li role="presentation"><a href="./configure.php"><?=lang('basic_settings')?></a></li>
 <!--vot--><li role="presentation"><a href="./seo.php"><?=lang('seo_settings')?></a></li>
 <!--vot--><li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
-</ul>
-<?php else:?>
-<ul class="nav nav-tabs" role="tablist">
-<!--vot--><li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
-</ul>
-<?php endif;?>
 <!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('personal_data_modified_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('avatar_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('nickname_too_long')?></span><?php endif;?>
@@ -19,6 +13,12 @@
 <!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('password_not_equal')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('username_exists')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">'nickname_exists'</span><?php endif;?>
+</ul>
+<?php else:?>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+</ul>
+<?php endif;?>
 </div>
 <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
 <div class="form-group" style="margin-left:30px;">

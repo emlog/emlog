@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <!--vot--><script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <!--vot--><script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 
@@ -17,8 +15,8 @@
                 <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>" />
             </div>
             <div id="post_bar">
-                <div>
-        <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
+                <div class="show_advset">
+                    <span onclick="displayToggle('FrameUpload', 0);autosave(1);"><?=lang('upload_insert')?><i class="fa fa-caret-right fa-fw"></i></span>
                     <?php doAction('adm_writelog_head'); ?>
                     <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
@@ -30,7 +28,7 @@
             <div>
                 <textarea id="content" name="content" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
             </div>
-            <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?></div>
+            <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="fa fa-caret-right fa-fw"></i></div>
             <div id="advset">
                 <div><?=lang('post_description')?>:</div>
                 <div><textarea id="excerpt" name="excerpt" style="width:100%; height:260px;"><?php echo $excerpt; ?></textarea></div>

@@ -19,7 +19,6 @@ class Cache {
     private $link_cache;
     private $navi_cache;
     private $newlog_cache;
-    private $newtw_cache;
     private $record_cache;
     private $logtags_cache;
     private $logsort_cache;
@@ -144,15 +143,11 @@ class Cache {
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
         $hidecom = $data['total'];
 
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter ");
-        $twnum = $data['total'];
-
         $sta_cache = array(
             'lognum' => $lognum,
             'draftnum' => $draftnum,
             'comnum' => $comnum,
             'comnum_all' => $comnum + $hidecom,
-            'twnum' => $twnum,
             'hidecomnum' => $hidecom,
             'checknum' => $checknum,
         );
@@ -171,15 +166,11 @@ class Cache {
             $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid and a.hide='y' AND b.author={$row['uid']}");
             $hidecommentNum = $data['total'];			
             
-            $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE author={$row['uid']}");
-            $twnum = $data['total'];
-            
             $sta_cache[$row['uid']] = array(
                 'lognum' => $logNum,
                 'draftnum' => $draftNum,
                 'commentnum' => $commentNum,
                 'hidecommentnum' => $hidecommentNum,
-                'twnum' => $twnum
             );
         }
 

@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <!DOCTYPE html>
 <html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
     <head>
@@ -38,7 +36,6 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li><a href="./"><i class="fa fa-home fa-fw"></i><?=lang('admin_center')?></a></li>
-                    <li><a href="./configure.php" id="top_menu_setting"><i class="fa fa-wrench fa-fw"></i><?=lang('settings')?></a></li>
                     <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i><?=lang('logout')?></a></li>
                 </ul>
 
@@ -70,7 +67,7 @@
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> <?=lang('pages')?></a></li>
                             <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> <?=lang('links')?></a></li>
                             <li id="menu_category_view" class="">
-                                <a href="#"><i class="fa fa-windows fa-fw"></i> <?=lang('exterior')?><span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-eye fa-fw"></i> <?=lang('exterior')?><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" id="menu_view">
                                     <li><a href="widgets.php" id="menu_widget"><i class="fa fa-columns fa-fw"></i> <?=lang('sidebar')?></a></li>
                                     <li><a href="navbar.php" id="menu_navi"><i class="fa fa-bars fa-fw"></i> <?=lang('navigation')?></a></li>

@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery.sortable.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>setTimeout(hideActived, 2600);</script>
 <div class="containertitle"><b><?=lang('widget_manage')?></b>
@@ -8,7 +6,7 @@
 <div class=line></div>
 
 <div class="row">
-    <div class="col-lg-4" id="adm_widget_list">
+    <div class="col-lg-6" id="adm_widget_list">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <?=lang('widgets_system')?>
@@ -253,7 +251,7 @@
         </div>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 	<?=lang('widgets_used')?>

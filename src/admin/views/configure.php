@@ -1,8 +1,4 @@
-<?php
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
-?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="./configure.php"><?=lang('basic_settings')?></a></li>
@@ -69,7 +65,7 @@ if (!defined('EMLOG_ROOT')) {
                     $ex = $key == $timezone ? "selected=\"selected\"" : '';
                     ?>
                     <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
-<?php endforeach; ?>
+                <?php endforeach; ?>
             </select>
 <!--vot-->(<?=lang('local_time')?>: <?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
         </div>
@@ -122,11 +118,10 @@ if (!defined('EMLOG_ROOT')) {
             </div>
         </div>
         <div class="form-group form-inline">
-            <label><?=lang('upload_max_size')?></label> <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<?=lang('php_upload_max_size')?> <?php echo ini_get('upload_max_filesize'); ?> <?=lang('_limit')?>)
+            <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" /> KB, <?=lang('upload_max_size')?>
         </div>
         <div class="form-group form-inline">
-            <label><?=lang('allow_attach_type')?> </label> <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" /> <?=lang('separate_by_comma')?>
-        </div>
+            <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" /> <?=lang('allow_attach_type')?> <?=lang('separate_by_comma')?>            
         <div class="form-group form-inline">
             <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?> <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" /> x <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /> <?=lang('unit_pixels')?>
         </div>
