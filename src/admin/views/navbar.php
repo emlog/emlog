@@ -11,7 +11,6 @@
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">请选择要添加的页面</span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
 </div>
-<div class=line></div>
 <form action="navbar.php?action=taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>

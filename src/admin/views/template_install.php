@@ -12,7 +12,7 @@
 </div>
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 20px;">
-<div class="des">
+<div class="alert alert-danger">
 手动安装模板： <br />
 1、把解压后的模板文件夹上传到 content/templates目录下。 <br />
 2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。 <br />
@@ -21,12 +21,13 @@
 <?php endif; ?>
 <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data" >
 <div style="margin:50px 0px 50px 20px;">
+    <p>上传一个zip压缩格式的模板安装包</p>
     <p>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
     <input name="tplzip" type="file" />
     </p>
     <p>
-    <input type="submit" value="上传安装" class="btn btn-primary" /> (上传一个zip压缩格式的模板安装包)
+    <input type="submit" value="上传安装" class="btn btn-primary" />
     </p>
 </div>
 </form>

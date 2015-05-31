@@ -61,14 +61,6 @@ if ($action == 'setting') {
     }
 }
 
-//安装插件
-if ($action == 'install') {
-    include View::getView('header');
-    require_once View::getView('plugin_install');
-    include View::getView('footer');
-    View::output();
-}
-
 //删除插件
 if ($action == 'del') {
     LoginAuth::checkToken();
@@ -89,13 +81,13 @@ if ($action == 'upload_zip') {
     $zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
     if ($zipfile['error'] == 4) {
-        emDirect("./plugin.php?action=install&error_d=1");
+        emDirect("./plugin.php?error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
         emMsg('插件上传失败');
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./plugin.php?action=install&error_a=1");
+        emDirect("./plugin.php?error_f=1");
     }
 
     $ret = emUnZip($zipfile['tmp_name'], '../content/plugins/', 'plugin');
@@ -104,14 +96,14 @@ if ($action == 'upload_zip') {
             emDirect("./plugin.php?activate_install=1#tpllib");
             break;
         case -1:
-            emDirect("./plugin.php?action=install&error_e=1");
+            emDirect("./plugin.php?error_e=1");
             break;
         case 1:
         case 2:
-            emDirect("./plugin.php?action=install&error_b=1");
+            emDirect("./plugin.php?error_b=1");
             break;
         case 3:
-            emDirect("./plugin.php?action=install&error_c=1");
+            emDirect("./plugin.php?error_c=1");
             break;
     }
 }
