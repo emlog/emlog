@@ -1,15 +1,15 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle"><b><?=lang('category_manage')?></b>
-    <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><span class="alert alert-success"><?=lang('category_add_ok')?></span><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger"><?=lang('category_no_order')?></span><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif; ?>
+<!--vot--><div class=containertitle><b><?=lang('category_manage')?></b>
+<!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('category_add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('category_no_order')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
@@ -50,8 +50,8 @@
                         </td>
                         <td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                         <td>
-<!--vot-->        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->                  <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                  <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                         </td>
                     </tr>
                     <?php
@@ -73,39 +73,39 @@
                             </td>
                             <td class="tdcenter"><a href="./admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                             <td>
-<!--vot-->        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->                      <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endforeach;
             else: ?>
-                <tr><td class="tdcenter" colspan="8"><?=lang('categories_no')?></td></tr>
+<!--vot-->      <tr><td class="tdcenter" colspan="8"><?=lang('categories_no')?></td></tr>
 <?php endif; ?>  
         </tbody>
     </table>
     <div class="list_footer">
-        <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
-        <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
+<!--vot--><a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>
     </div>
 </form>
 <form action="sort.php?action=add" method="post" class="form-inline">
     <div id="sort_new" class="form-group">
         <li>
             <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
-            <label><?=lang('order_num')?></label>
+<!--vot-->  <label><?=lang('id')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
-            <label><?=lang('name')?></label>
+<!--vot-->  <label><?=lang('name')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="alias" id="alias" />
-            <label><?=lang('alias_info')?></label>
+<!--vot-->  <label><?=lang('alias_info')?></label>
         </li>
         <li>
             <select name="pid" id="pid" class="form-control" style="width:243px;">
-                <option value="0"><?=lang('no')?></option>
+<!--vot-->      <option value="0"><?=lang('no')?></option>
                 <?php
                 foreach ($sorts as $key => $value):
                     if ($value['pid'] != 0) {
@@ -115,11 +115,11 @@
                     <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
 <?php endforeach; ?>
             </select>
-            <label><?=lang('category_parent')?></label>
+<!--vot-->  <label><?=lang('category_parent')?></label>
         </li>
         <li>
             <input style="width:243px;" class="form-control" name="template" id="template" value="log_list" />
-            <label><?=lang('template')?> <?=lang('template_info')?></label>
+<!--vot-->  <label><?=lang('template')?> <?=lang('template_info')?></label>
         </li>
         <li>
             <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"></textarea></li>
@@ -149,13 +149,13 @@
         var a = $.trim($("#alias").val());
         if (1 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->    $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
         } else if (2 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->    $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
         } else if (3 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->    $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
         } else {
             $("#alias_msg_hook").html('');
             $("#msg").html('');

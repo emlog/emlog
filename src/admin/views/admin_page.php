@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b><?=lang('page_management')?></b>
+<!--vot--><div class=containertitle><b><?=lang('page_management')?></b>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('page_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success"><?=lang('page_published_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success"><?=lang('page_disabled_ok')?></span><?php endif;?>
@@ -24,9 +24,9 @@
     {
         $navibar[$value['gid']]['url'] = Url::log($value['gid']);
     }
-/*vot*/    $isHide = $value['hide'] == 'y' ? 
-    '<font color="red"> - '.lang('draft').'</font>' : 
-    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+    $isHide = $value['hide'] == 'y' ? 
+/*vot*/    '<font color="red"> - '.lang('draft').'</font>' : 
+/*vot*/    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
     ?>
      <tr>
         <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>

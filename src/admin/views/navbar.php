@@ -1,15 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-    <div class="containertitle"><b><?=lang('nav_manage')?></b>
-    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('nav_delete_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('nav_edit_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('nav_add_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('nav_name_url_empty')?></span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('nav_no_order')?></span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('nav_default_nodelete')?></span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('select_category')?></span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('select_page')?></span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nav_url_invalid')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('nav_manage')?></b>
+<!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('nav_cat_update_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('nav_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('nav_edit_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('nav_add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('nav_name_url_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('nav_no_order')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('nav_default_nodelete')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('nav_select_category')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('nav_select_page')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nav_url_invalid')?></span><?php endif;?>
 </div>
 <form action="navbar.php?action=taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
@@ -63,9 +63,9 @@
         <?php endif;?>
         </td>
         <td class="tdcenter">
-          <a href="<?php echo $value['url']; ?>" target="_blank">
-          <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
-          </td>
+        <a href="<?php echo $value['url']; ?>" target="_blank">
+        <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        </td>
         <td><?php echo $value['url']; ?></td>
         <td>
 <!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><?=lang('edit')?></a>
@@ -90,9 +90,9 @@
         <?php endif;?>
         </td>
         <td class="tdcenter">
-          <a href="<?php echo $val['url']; ?>" target="_blank">
-          <img src="./views/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
-          </td>
+        <a href="<?php echo $val['url']; ?>" target="_blank">
+        <img src="./views/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        </td>
         <td><?php echo $val['url']; ?></td>
         <td>
 <!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><?=lang('edit')?></a>
@@ -113,17 +113,17 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    	<?=lang('nav_add_custom')?>
+<!--vot-->          <?=lang('nav_add_custom')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                     <ul>
                         <li><input maxlength="4" class="form-control" placeholder="<?=lang('order_num')?>" name="taxis" /></li>
-                        <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" /></li>
-                        <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" /></li>
+<!--vot-->              <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" /></li>
+<!--vot-->              <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" /></li>
                         <li class="form-inline">
                             <select name="pid" id="pid" class="form-control">
-<!--vot-->    <option value="0"><?=lang('no')?></option>
+<!--vot-->                      <option value="0"><?=lang('no')?></option>
                                 <?php
                                     foreach($navis as $key=>$value):
                                         if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -133,10 +133,10 @@
                                 <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-<!--vot-->   <?=lang('nav_parent')?>
+<!--vot-->                  <?=lang('nav_parent')?>
                         </li>
-                        <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab" /> <?=lang('open_new_win')?></li>
-                        <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
+<!--vot-->              <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab" /> <?=lang('open_new_win')?></li>
+<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
                     </ul>
                     </form>
                 </div>
@@ -146,7 +146,7 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    	<?=lang('nav_add_category')?>
+<!--vot-->          <?=lang('nav_add_category')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
@@ -175,9 +175,9 @@
                         endforeach;
                    endforeach;
                    ?>
-                    <li><input type="submit" name="" class="btn btn-primary" value="<?=lang('add')?>" /></li>
+<!--vot-->          <li><input type="submit" name="" class="btn btn-primary" value="<?=lang('add')?>"  /></li>
                     <?php else:?>
-<!--vot--> <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
+<!--vot-->          <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
                     <?php endif;?> 
                     </ul>
                     </form>
@@ -187,7 +187,7 @@
     <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    	<?=lang('nav_page_add')?>
+<!--vot-->          <?=lang('nav_page_add')?>
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
@@ -201,9 +201,9 @@
                             <?php echo $value['title']; ?>
                         </li>
                         <?php endforeach;?>
-                        <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
+<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
                         <?php else:?>
-<!--vot--> <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
+<!--vot-->              <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
                     <?php endif;?>
                     </ul>
                     </form>

@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b><?=lang('comment_management')?></b>
+<!--vot--><div class=containertitle><b><?=lang('comment_management')?></b>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('comment_delete_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_show'])):?><span class="alert alert-success"><?=lang('comment_audit_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide'])):?><span class="alert alert-success"><?=lang('comment_hide_ok')?></span><?php endif;?>
@@ -52,7 +52,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     ?>
      <tr>
         <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a>     <?php echo $ishide; ?>
+        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
         <br /><?php echo $value['date']; ?>
         <span style="display:none; margin-left:8px;">    
 <!--vot-->  <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>

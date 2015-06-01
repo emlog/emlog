@@ -153,7 +153,7 @@ function widget_custom_text($title, $content){ ?>
 function widget_link($title){
     global $CACHE; 
     $link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
+    //if (!blog_tool_ishome()) return;#Only in Home Display Friends chain can be Remove Double slash comments
     ?>
     <h4><?php echo $title; ?></h4>
     <ul class="list-unstyled">
@@ -229,9 +229,9 @@ function blog_navi(){
 //blog:Top
 function topflg($top, $sortop='n', $sortid=null){
     if(blog_tool_ishome()) {
-/*vot*/       echo $top == 'y' ? '<img src="'.TEMPLATE_URL.'/images/top.png" title="'.lang('top_posts').'" /> ' : '';
+/*vot*/       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"".lang('top_posts')."\" /> " : '';
     } elseif($sortid){
-/*vot*/       echo $sortop == 'y' ? '<img src="'.TEMPLATE_URL.'/images/sortop.png" title="'.lang('cat_top_posts').'" /> ' : '';
+/*vot*/       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"".lang('cat_top_posts')."\" /> " : '';
     }
 }
 ?>
@@ -366,7 +366,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
             </p>
             <?php endif; ?>
             <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->  <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" class="button" /></p>
+<!--vot-->  <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
             <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
         </form>
     </div>

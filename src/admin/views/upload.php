@@ -13,11 +13,11 @@ function uploadfile(){
 }
 function showupload(multi){
     var as_logid = parent.document.getElementById('as_logid').value
-    window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;    
+    window.location.href="attachment.php?action=selectFile&logid="+as_logid+"&multi="+multi;	
 }
 function showattlib(){
     var as_logid = parent.document.getElementById('as_logid').value
-    window.location.href="attachment.php?action=attlib&logid="+as_logid;    
+    window.location.href="attachment.php?action=attlib&logid="+as_logid;	
 }
 function addattachfrom() {
     var newnode = document.getElementById('attachbodyhidden').firstChild.cloneNode(true);

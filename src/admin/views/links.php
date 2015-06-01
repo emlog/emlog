@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle"><b><?=lang('link_management')?></b>
-    <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('order_update_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('edit_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('add_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('site_and_url_empty')?></span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('no_link_order')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('link_management')?></b>
+<!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('order_update_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('edit_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('site_and_url_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('no_link_order')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
@@ -38,8 +38,8 @@
         </td>
         <td class="tdcenter">
 <!--vot-->      <a href="<?php echo $value['siteurl']; ?>" target="_blank" title="<?=lang('view_link')?>">
-          <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
-          </td>
+        <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+        </td>
         <td><?php echo $value['description']; ?></td>
         <td>
 <!--vot--> <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"><?=lang('edit')?></a>
@@ -52,26 +52,27 @@
     </tbody>
   </table>
   <div class="list_footer">
-      <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
-      <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?>+</a>
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
+<!--vot--><a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?>+</a>
   </div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link" class="form-inline">
 <div id="link_new" class="form-group">
     <li>
         <input maxlength="4" style="width:30px;" class="form-control" name="taxis" />
-        <label><?=lang('order_num')?></label>
+<!--vot--><label><?=lang('order_num')?></label>
     </li>
     <li>
         <input maxlength="200" style="width:232px;" class="form-control" name="sitename" />
-        <label><?=lang('name')?><span class="required">*</sapn></label>
+<!--vot--><label><?=lang('name')?><span class="required">*</sapn></label>
     </li>
     <li>
         <input maxlength="200" style="width:232px;" class="form-control" name="siteurl" />
-        <label><?=lang('address')?><span class="required">*</sapn></label>
+<!--vot--><label><?=lang('address')?><span class="required">*</sapn></label>
     </li>
+<!--vot--><li><?=lang('description')?></li>
     <li><textarea name="description" type="text" class="form-control" style="width:230px;height:60px;overflow:auto;"></textarea></li>
-<!--vot--><li><input type="submit" class="btn btn-primary" name="" value="<?=lang('link_add')?>" /></li>
+<!--vot--><li><input type="submit" class="btn btn-primary" name="" value="<?=lang('link_add')?>"  /></li>
 </div>
 </form>
 <script>

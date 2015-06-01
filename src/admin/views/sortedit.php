@@ -1,18 +1,18 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif;?>
-<div class=containertitle><b><?=lang('category_edit')?></b></div>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('category_edit')?></b></div>
 <form action="sort.php?action=update" method="post" class="form-inline">
 <div class="form-group">
     <li>
         <input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="form-control" />
-        <label><?=lang('name')?></label>
+<!--vot--><label><?=lang('name')?></label>
     </li>
     <li>
         <input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="form-control" />
-        <label><?=lang('alias')?></label>
+<!--vot--><label><?=lang('alias')?></label>
     </li>
     <?php if (empty($sorts[$sid]['children'])): ?>
     <li>
@@ -25,10 +25,10 @@
             <option value="<?php echo $key; ?>"<?php if($pid == $key):?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
             <?php endforeach; ?>
         </select>
-        <label><?=lang('category_parent')?></label>
+<!--vot--><label><?=lang('category_parent')?></label>
     </li>
     <?php endif; ?>
-    <li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?php echo $template; ?>" /> <?=lang('template')?> <?=lang('template_info2')?></li>
+<!--vot--><li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?php echo $template; ?>" /> <?=lang('template')?> <?=lang('template_info2')?></li>
     <li>
         <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"><?php echo $description; ?></textarea>
     </li>

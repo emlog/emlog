@@ -156,7 +156,7 @@ function emLoadJQuery() {
         $isJQueryLoaded = true;
 
         function loadJQuery() {
-/*vot*/     echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
+/*vot*/     echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.11.0.js" type="text/javascript"></script>';
         }
 
     }
@@ -381,7 +381,7 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 /*vot*/     $op = $min . lang('_min_ago');
         }
     } elseif ($hover < 24) {
-        $op = lang('about_') . $hover . lang('_hour_ago');
+/*vot*/     $op = lang('about_') . $hover . lang('_hour_ago');
     } else {
         $op = gmdate($dstr, $datetemp + $timezone * 3600);
     }
@@ -703,7 +703,7 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
     $hash = md5($email);
-    $avatar = "http://cn.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
+/*vot*/ $avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
     return $avatar;
 }
 

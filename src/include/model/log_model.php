@@ -409,7 +409,7 @@ class Log_Model {
 /*vot*/ $page_pass = lang('page_password_enter');
 /*vot*/ $submit_pass = lang('submit_password');
 /*vot*/ $back = lang('back_home');
-            echo <<<EOT
+/*vot*/     echo <<<EOT
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

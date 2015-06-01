@@ -1,21 +1,21 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b><?=lang('comment_reply')?></b>
+<!--vot--><div class=containertitle><b><?=lang('comment_reply')?></b>
 </div>
 <div class=line></div>
 <form action="comment.php?action=doreply" method="post">
 <div class="item_edit">
-<!--vot-->    <li><?=lang('commentator')?>: <?php echo $poster; ?></li>
-<!--vot-->    <li><?=lang('time')?>: <?php echo $date; ?></li>
-<!--vot-->    <li><?=lang('content')?>: <?php echo $comment; ?></li>
-<!--vot-->    <li><textarea name="reply" rows="5" cols="60" class="form-control"></textarea></li>
-    <li>
-    <input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
-    <input type="hidden" value="<?php echo $gid; ?>" name="gid" />
-    <input type="hidden" value="<?php echo $hide; ?>" name="hide" />
+<!--vot--> <li><?=lang('commentator')?>: <?php echo $poster; ?></li>
+<!--vot--> <li><?=lang('time')?>: <?php echo $date; ?></li>
+<!--vot--> <li><?=lang('content')?>: <?php echo $comment; ?></li>
+	<li><textarea name="reply" rows="5" cols="60" class="form-control"></textarea></li>
+	<li>
+	<input type="hidden" value="<?php echo $commentId; ?>" name="cid" />
+	<input type="hidden" value="<?php echo $gid; ?>" name="gid" />
+	<input type="hidden" value="<?php echo $hide; ?>" name="hide" />
 <!--vot--><input type="submit" value="<?=lang('reply')?>" class="btn btn-primary" />
-    <?php if ($hide == 'y'): ?>
+	<?php if ($hide == 'y'): ?>
 <!--vot--><input type="submit" value="<?=lang('reply_and_audit')?>" name="pub_it" class="btn btn-primary" />
-    <?php endif; ?>
+	<?php endif; ?>
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();"/></li>
 </div>
 </form>

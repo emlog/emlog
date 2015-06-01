@@ -12,11 +12,11 @@
 <!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('password_not_equal')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('username_exists')?></span><?php endif;?>
-<!--vot--><?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">'nickname_exists'</span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('nickname_exists')?></span><?php endif;?>
 </ul>
 <?php else:?>
 <ul class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+<!--vot--><li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
 </ul>
 <?php endif;?>
 </div>
@@ -35,7 +35,7 @@
 <!--vot--><li><label><?=lang('new_password_repeat')?></label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass" /></li>
     <li>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-<!--vot--><input type="submit" value="?=lang('save_data')?>" class="btn btn-primary" />
+<!--vot--><input type="submit" value="<?=lang('save_data')?>" class="btn btn-primary" />
     </li>
 </div>
 </form>

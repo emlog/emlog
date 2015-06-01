@@ -45,9 +45,9 @@ if ($action == '') {
 
 //Modify the widget settings
 if ($action == 'setwg') {
-/*vot*/    $widgetTitle = Option::get('widget_title');        //Widget Title
+/*vot*/    $widgetTitle = Option::get('widget_title'); //Widget Title
 /*vot*/    $widget = isset($_GET['wg']) ? $_GET['wg'] : '';    //Edit widget
-/*vot*/    $wgTitle = isset($_POST['title']) ? $_POST['title'] : ''; //New widget name
+/*vot*/    $wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//New widget name
 
     preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
     $realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];

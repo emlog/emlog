@@ -1,15 +1,15 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle"><b><?=lang('data_backup')?></b>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('backup_delete_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_backup'])):?><span class="alert alert-success"><?=lang('backup_create_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_import'])):?><span class="alert alert-success"><?=lang('backup_import_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('backup_file_select')?></span><?php endif;?>
-    <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('backup_file_invalid')?></span><?php endif;?>
-    <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('backup_import_zip_unsupported')?></span><?php endif;?>
-    <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('backup_upload_failed')?></span><?php endif;?>
-    <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('backup_file_wrong')?></span><?php endif;?>
-    <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('backup_export_zip_unsupported')?></span><?php endif;?>
-    <?php if(isset($_GET['active_mc'])):?><span class="alert alert-success"><?=lang('cache_update_ok')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('data_backup')?></b>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('backup_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_backup'])):?><span class="alert alert-success"><?=lang('backup_create_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_import'])):?><span class="alert alert-success"><?=lang('backup_import_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('backup_file_select')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_b'])):?><span class="alert alert-danger"><?=lang('backup_file_invalid')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('backup_import_zip_unsupported')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('backup_upload_failed')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('backup_file_wrong')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_f'])):?><span class="alert alert-danger"><?=lang('backup_export_zip_unsupported')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_mc'])):?><span class="alert alert-success"><?=lang('cache_update_ok')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
@@ -70,7 +70,7 @@
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
     <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" value="<?=lang('backup_start')?>" class="btn btn-primary" />
+<!--vot--><input type="submit" value="<?=lang('backup_start')?>" class="btn btn-primary" />
     </p>
 </div>
 </form>
@@ -80,7 +80,7 @@
 <!--vot--><p class="des"><?=lang('backup_version_tip')?><?php echo DB_PREFIX; ?></p>
     <p>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-<!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="button" />
+<!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="submit" />
     </p>
 </div>
 </form>

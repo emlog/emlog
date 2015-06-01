@@ -1,14 +1,14 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b><?=lang('user_management')?></b>
-    <?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_update'])):?><span class="alert alert-success"><?=lang('user_modify_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('user_add_ok')?></span><?php endif;?>
-    <?php if(isset($_GET['error_login'])):?><span class="alert alert-danger"><?=lang('user_name_empty')?></span><?php endif;?>
-    <?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger"><?=lang('user_name_exists')?></span><?php endif;?>
-    <?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>
-    <?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger"><?=lang('passwords_not_equal')?></span><?php endif;?>
-    <?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger"><?=lang('founder_not_delete')?></span><?php endif;?>
-    <?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger"><?=lang('founder_not_edit')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('user_management')?></b>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_update'])):?><span class="alert alert-success"><?=lang('user_modify_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('user_add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_login'])):?><span class="alert alert-danger"><?=lang('user_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger"><?=lang('user_name_exists')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger"><?=lang('passwords_not_equal')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger"><?=lang('founder_not_delete')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger"><?=lang('founder_not_edit')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -32,7 +32,7 @@
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
 		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
-<!--vot-->    <?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder'):lang('admin') : lang('user'); ?>
+<!--vot-->      <?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder'):lang('admin') : lang('user'); ?>
 <!--vot-->      <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit');?>
 		<span style="display:none; margin-left:8px;">
 		<?php 
@@ -56,12 +56,12 @@
 </form>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $usernum; ?><?=lang('_users')?>)</div> 
 <form action="user.php?action=new" method="post" class="form-inline">
-<div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success"><?=lang('user_add')?>+</a></div>
+<!--vot--><div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success"><?=lang('user_add')?>+</a></div>
 <div id="user_new" class="form-group">
     <li>
 	<select name="role" id="role" class="form-control">
-<!--vot-->    <option value="writer"><?=lang('author_contributor')?></option>
-<!--vot-->    <option value="admin"><?=lang('admin')?></option>
+<!--vot-->      <option value="writer"><?=lang('author_contributor')?></option>
+<!--vot-->      <option value="admin"><?=lang('admin')?></option>
 	</select>
 	</li>
 <!--vot--><li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control" /> <?=lang('user_name')?></li>

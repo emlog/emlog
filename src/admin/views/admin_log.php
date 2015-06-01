@@ -30,7 +30,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div id="f_title" class="form-inline">
     <div style="float:left; margin-top:8px;">
         <span id="f_t_sort">
-<!--vot-->  <select name="bysort" id="bysort" onChange="selectSort(this);" style="max-width:220px;" class="form-control">
+            <select name="bysort" id="bysort" onChange="selectSort(this);" style="width:120px;" class="form-control">
 <!--vot-->  <option value="" selected="selected"><?=lang('category_view')?>...</option>
             <?php 
             foreach($sorts as $key=>$value):
@@ -56,7 +56,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         </span>
         <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1):?>
         <span id="f_t_user">
-<!--vot-->  <select name="byuser" id="byuser" onChange="selectUser(this);" style="max-width:220px;" class="form-control">
+            <select name="byuser" id="byuser" onChange="selectUser(this);" style="width:120px;" class="form-control">
 <!--vot-->  <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
                 <?php 
                 foreach($user_cache as $key=>$value):
@@ -73,7 +73,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
     <div style="float:right;">
         <form action="admin_log.php" method="get">
-<!--vot-->  <input type="text" name="keyword" class="form-control" placeholder="<?-lang('article_search')?>">
+<!--vot-->  <input type="text" name="keyword" class="form-control" placeholder="<?=lang('article_search')?>">
         <?php if($pid):?>
         <input type="hidden" id="pid" name="pid" value="draft">
         <?php endif;?>

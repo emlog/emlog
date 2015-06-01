@@ -11,7 +11,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div class="row">
             <div class="col-lg-12 footer-below">
                 <hr>
-                Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+<!--vot-->      <?=lang('powered_by')?> <a href="http://www.emlog.net" title="<?=lang('powered_by_emlog')?>">emlog</a> v.<?= Option::EMLOG_VERSION ?>
                 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
                 <?php doAction('index_footer'); ?>
             </div>
@@ -20,7 +20,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
 </footer>
 <script>
 $(document).ready(function(){
-	dropdownOpen();//鼠标划过就展开子菜单，免得需要点击才能展开
+	dropdownOpen();//Expand the submenu mouse across it, so need to click to expand
     prettyPrint();
 });
 function dropdownOpen() {

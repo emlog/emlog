@@ -40,7 +40,7 @@ class Option {
                     }
                     break;
                 case 'blogurl':
-                    if ($options_cache['detect_url'] == 'y') {
+/*vot*/                 if (@$options_cache['detect_url'] == 'y') {
                         return realUrl();
                     }
                     else {
