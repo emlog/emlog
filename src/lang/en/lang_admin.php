@@ -868,7 +868,7 @@ $lang = array(
  'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'widget_untitled'	=> 'Untitled widget',//'未命名组件',
- 'widget_use'		=> 'Use widgets',//'使用中的组件',
+ 'widget_use'		=> 'Used widgets',//'使用中的组件',
  'widget_order_save'	=> 'Save widget order',//'保存组件排序',
  'widget_setting_reset'	=> 'Reset default widget settings',//'恢复出厂设置',
 
