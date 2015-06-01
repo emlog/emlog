@@ -1,73 +1,59 @@
-//emlog Simplified Chinese JS language file
+var LNG = {
+//---------------------------
+//admin/views/js/common.js
+ 'twitter_del_sure'	: 'Are you sure you want to delete this twitt?',//'你确定要删除该条微语吗？',
+ 'comment_del_sure'	: 'Are you sure you want to delete this comment?',//'你确定要删除该评论吗？',
+ 'comment_ip_del_sure'	: 'Are you sure you want to delete all comments from that IP?',//'你确定要删除来自该IP的所有评论吗？',
+ 'link_del_sure'	: 'Are you sure you want to delete this link?',//'你确定要删除该链接吗？',
+ 'navi_del_sure'	: 'Are you sure you want to delete this navigation?',//'你确定要删除该导航吗？',
+ 'backup_import_sure'	: 'Are you sure you want to import the backup files?',//'你确定要导入该备份文件吗？',
+ 'attach_del_sure'	: 'Are you sure you want to delete this attachment?',//'你确定要删除该附件吗？',
+ 'avatar_del_sure'	: 'Are you sure you want to delete this avatar?',//'你确定要删除头像吗？',
+ 'category_del_sure'	: 'Are you sure you want to delete this category?',//'你确定要删除该分类吗？',
+ 'page_del_sure'	: 'Are you sure you want to delete this page?',//'你确定要删除该页面吗？',
+ 'user_del_sure'	: 'Are you sure you want to delete this user?',//'你确定要删除该用户吗？',
+ 'template_del_sure'	: 'Are you sure you want to delete default template?',//'你确定要删除该模板吗？',
+ 'plugin_reset_sure'	: 'Are you sure you want to restore default plugin settings? This operation will lose your custom plugin configuration.',//'你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。',
+ 'plugin_del_sure'	: 'Are you sure you want to delete this plugin?',//'你确定要删除该插件吗？',
+ 'title_empty'		: 'Title can not be empty',//'标题不能为空',
+ 'alis_link_error'	: 'Link Alias error',//'链接别名错误',
+ 'alias_invalid_chars'	: 'Alias should contain only latin letters, numbers, underscores and dashes',//'别名错误，应由字母、数字、下划线、短横线组成',
+ 'alias_digital'	: 'Alias cannot contain numbers only',//'别名错误，不能为纯数字',
+ 'alias_format_must_be'	: 'Invalid alias. It can not contain \'post\' or \'post-digits\'',//'别名错误，不能为\'post\'或\'post-数字\'',
+ 'alias_system_conflict'	: 'Alias error (system conflict)',//'别名错误，与系统链接冲突',
+ 'wysiwyg_switch'		: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
+ 'click_view_fullsize'		: 'Click to view full size',//'点击查看原图',
+// 'wysiwyg_switch'		: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
+ 'alis_link_error_not_saved'	: 'Invalid Link Alias. Can not be saved automatically.',//'链接别名错误，自动保存失败',
+ 'saving'		: 'Saving',//'正在保存',
+// 'saving'		: 'Saving',//'正在保存',
+ 'saved_ok_time'	: 'Successfully saved at ',//'成功保存于',
+ 'save_system_error'	: 'Error while saving... Unable to save.',//'网络或系统出现异常...保存可能失败',
 
-var l_keyword_empty	='请输入要搜索的关键字';//'Keyword should not be empty';
-var l_keyword_short	='关键字太短';//'Keyword is too short';
-var l_keyword_long	='关键字太长';//'Keyword is too long';
-var l_name_empty	='名字不能为空';//'Names should not be empty';
-var l_key_too_long	='名字太长';//'The name is too long';
-var l_comment_empty	='评论内容不能为空';//'Your Comment can not be empty';
-var l_comment_too_long	='评论内容太长';//'Your Comment is too long (max 2000 chars)';
-var l_email_long	='邮件地址长度超出系统接受范围';//'E-mail is too long (max 60 chars)';
-var l_email_invalid	='邮件地址格式错误！';//'E-mail address format is not valid!';
-var l_not_supported	='不能创建XMLHttpRequest对象实例.';//'Can not create XMLHttpRequest object instance.';
-var l_loading		='加载中';//'Loading';
-var l_processing	='处理中...请稍候!';//'Processing... Please wait!';
-var l_sure_delete	='你确定要删除吗？';//'Are you sure you want to delete this?';
-var l_sure_delete_link	='你确定要删除该链接吗？';//'Are you sure you want to delete this link?';
-var l_sure_import	='你确定要导入该备份文件吗？';//'Are you sure you want to import this backup file?';
-var l_sure_delete_attach	='你确定要删除该附件吗？';//'Are you sure you want to delete this attachment?';
-var l_sure_delete_image		='你确定要删除头像吗？';//'Are you sure you want to delete this image?';
-var l_sure_delete_category	='你确定要删除该分类吗？';//'Are you sure you want to delete this category?';
-var l_sure_delete_page	='你确定要删除该页面吗？';//'Are you sure you want to delete this page?';
-var l_sure_delete_user	='你确定要删除该用户吗？';//'Are you sure you want to delete this user?';
-var l_title_empty	='标题不能为空';//'The title can not be empty ';
-var l_switch_wysiwyg	='请先转换到所见即所得模式';//'Please switch to WYSIWYG mode';
-var l_show_orig_img	='点击查看原图';//'Click to show original image';
-var l_saving		='正在保存';//'Saving';
-var l_saved_at		='成功保存于 ';//'Successfully saved at ';
-var l_comment_length_max_140	= '回复长度需在140个字内';//'(The reply length must be within 140 characters)';
-var l_username_empty		= '(昵称不能为空)';//'(Username can not be blank)';
-var l_captcha_invalid		= '(验证码错误)';//'(Verification code error)';
-var l_nickname_disabled		= '(不允许使用该昵称)';//'(This nickname is not allowed)';
-var l_comment_exists		= '(已存在该回复)';//'(This reply already exists)';
-var l_comment_ok_premod		= '(回复成功，等待管理员审核)';//'(Successful reply, waiting for administrator review)';
-var l_sure_del_twitter	= '你确定要删除该条碎语吗？';//'Are you sure you want to delete this twit?';
-var l_sure_del_comment	= '你确定要删除该评论吗？';//'Are you sure you want to delete this comment?';
-var l_sure_reset_plugin	= '你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';//'Are you sure you want to restore the component settings to the initial state? This will lose your custom components.';
-var l_sure_disable_all_plugins	= '你确定要禁用所有插件吗？';//'Are you sure you want to disable all plugins?';
-var l_network_error	= '网络或系统出现异常...保存可能失败';//'The network or system is abnormal...save may fail';
-var l_sure_del_template	= '你确定要删除该模板吗？';//'Are you sure you want to delete this template?';
-var l_sure_del_plugin	= '你确定要删除该插件吗？';//'Are you sure you want to delete this plugin?';
-var l_alias_error	= '链接别名错误';//'Link alias error';
-var l_alias_invalid	= '别名错误，应由字母、数字、下划线、短横线组成';//'The alias is wrong, it should be composed of letters, numbers, underscores, and dashes';
-var l_alias_numeric	= '别名错误，不能为纯数字';//'Alias error, cannot be a pure number';
-var l_alias_not_post	= '别名错误，不能为\'post\'或\'post-数字\'';//'Alias error, cannot be &quot;post&quot; or &quot;post-number&quot;';
-var l_alias_not_system	= '别名错误，与系统链接冲突';//'Alias error, conflict with system link';
-var l_wysiwyg_first	= '请先切换到所见所得模式';//'Please switch to WYSIWYG mode first';
-var l_alias_failed	= '链接别名错误，自动保存失败';//'Link alias error, automatic save failed';
-var l_navigation_del_sure	= '你确定要删除该导航吗？';//'Are you sure you want to delete this navigation?';
-var l_author		= '作者';//'Author';
-var l_reply_disabled	= '(禁止回复)';//'(Replies are disabled)';
-var l_tag_select_del	= '请选择要删除的标签';//'Please select the label to delete';
-var l_tag_del_sure	= '你确定要删除所选标签吗？';//'Are you sure you want to delete the selected tags?';
-var l_image_select	= '选择图片';//'Select Image';
-var l_upload_failed	= '上传失败！';//'Upload failed!';
-var l_image_name	= '图片名称';//'Image name';
-var l_sure_comment_del_from_ip	= '你确定要删除来自该IP的所有评论吗？';//'Are you sure you want to delete all comments from this IP?';
-var l_check_wait	= '正在检查，请稍后';//'Checking, please wait';
-var l_update_no		= '目前还没有适合您当前版本的更新！';//'There is currently no update for your current version!';
-var l_update_exists	= '有可用的emlog更新版本 ';//'There is available an updated version of emlog ';
-var l_update_backup	= '更新之前请您做好数据备份工作';//'Please backup yor data before updating';
-var l_update_now	= '现在更新';//'Update now';
-var l_check_error	= '检查失败，可能是网络问题';//'Check failed, it may be a network problem';
-var l_update_wait	= '系统正在更新中，请耐心等待';//'The system is being updated, please wait patiently';
-var l_update_ok		= '恭喜您！更新成功了';//'Congratulations! The update was successful.';
-var l_please		= '请';//'Please';
-var l_page_refresh	= '刷新页面';//'Refresh the page';
-var l_start_new_ver	= '开始体验新版emlog';//'Start to experience the new version of emlog';
-var l_download_error	= '下载更新失败，可能是服务器网络问题';//'Update download failed, it may be a server network problem';
-var l_unzip_error	= '解压更新失败，可能是服务器不支持zip模块';//'Failed to unzip and update, it may be that the server does not support the zip module';
-var l_update_not_writeable	= '更新失败，目录不可写';//'Update failed, directory is not writable';
-var l_update_error	= '更新失败';//'Update failed';
-var l_article_select	= '请选择要操作的文章';//'Please select the article to be operated';
-var l_page_select	= '请选择要操作的页面';//'Please select the page to deal with';
+//---------------------------
+//include/lib/js/common_tpl.js
+ 'loading'		: 'Loading...',//'加载中...',
+// 'loading'		: 'Loading...',//'加载中...',
+ 'max_140_bytes'	: '(Up to 140 characters)',//'(回复长度需在140个字内)',
+ 'nickname_empty'	: '(Nickname cannot be empty)',//'(昵称不能为空)',
+ 'captcha_error'	: '(Verification code error)',//'(验证码错误)',
+ 'nickname_disabled'	: '(This nickname is not allowed)',//'(不允许使用该昵称)',
+ 'nickname_exists'	: '(This nickname already exists)',//'(已存在该回复)',
+ 'comments_disabled'	: '(Comments disabled)',//'(禁止回复)',
+ 'comment_ok_moderation'	: '(Your comment saved successfully and is awaiting for moderation.)',//'(回复成功，等待管理员审核)',
+
+//----------------
+// The LAST key. DO NOT EDIT!!!
+  '@' : '@'
+};
+
+//------------------------------
+// Return the language var value
+function lang(key) {
+  if(LNG[key]) {
+    val = LNG[key];
+  } else {
+    val = '{'+key+'}';
+  }
+  return val;
+}

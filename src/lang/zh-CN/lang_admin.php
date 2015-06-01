@@ -4,35 +4,34 @@ $lang = array(
 
 //---------------------------
 //admin/admin_log.php
- 'drafts'		=> 'Drafts',//'草稿箱',
- '_drafts'		=> ' drafts',//'草稿箱',
- 'post_manage'		=> 'Post Manage',//'文章管理',
- 'draft_manage'		=> 'Draft Manage',//'草稿管理',
- 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+ 'drafts'		=> '草稿箱',
+ '_drafts'		=> '草稿箱',
+ 'post_manage'		=> '文章管理',
+ 'draft_manage'		=> '草稿管理',
+ 'no_permission'	=> '权限不足！',
+// 'no_permission'	=> '权限不足！',
+// 'no_permission'	=> '权限不足！',
 
 //---------------------------
 //admin/attachment.php
- 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
-// 'attachment_delete_error'	=> 'Attachment delete failed!',//'删除附件失败!',
+ 'attachment_delete_error'	=> '删除附件失败!',
+// 'attachment_delete_error'	=> '删除附件失败!',
 
 //---------------------------
 //admin/blogger.php
- 'photo_delete'	=> 'Delete image',//'删除头像',
+ 'photo_delete'	=> '删除头像',
 
 //---------------------------
 //admin/configure.php
- 'site_address'	=> 'Site address',//'站点地址：',
- 'verification_code_not_supported' => 'Open verification Code failed! Server does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
- 'verification_code_comment_not_supported' =>'Open verification code for comments failed! Server does not support the GD graphics library.',//'开启评论验证码失败!服务器空间不支持GD图形库',
- 'detect_url' => 'Detect site URL automatically (Supported multi-domain/HTTPS, few spaces may not support)',//'自动检测站点地址 (用于支持多域名/HTTPS，少数空间商可能不支持)',
+ 'verification_code_not_supported' => '开启登录验证码失败!服务器空间不支持GD图形库',
+ 'verification_code_comment_not_supported' =>'开启评论验证码失败!服务器空间不支持GD图形库',
+ 'detect_url' => '自动检测站点地址 (用于支持多域名/HTTPS，少数空间商可能不支持)',
 
 //---------------------------
 //admin/data.php
- 'backup_directory_not_writable'	=> 'Backup failed. Backup directory (content/backup) is not writable.',//'备份失败。备份目录(content/backup)不可写',
- 'backup_create_file_error'	=> 'Create a backup file failed. Backup directory (content/backup) is not writable.',//'创建备份文件失败。备份目录(content/backup)不可写',
- 'backup_empty' 		=> 'Nothing to backup. Database tables have no any content.',//'数据表没有任何内容',
+ 'backup_directory_not_writable'	=> '备份失败。备份目录(content/backup)不可写',
+ 'backup_create_file_error'	=> '创建备份文件失败。备份目录(content/backup)不可写',
+ 'backup_empty' 		=> '数据表没有任何内容',
  'file_not_exists'		=> 'File does not exist',//'文件不存在',
  'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
  'info_illegal'			=> 'Submitted information is illegal',//'非法提交的信息',

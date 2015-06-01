@@ -6,7 +6,8 @@ $lang = array(
 //admin/admin_log.php
  'drafts'		=> 'Drafts',//'草稿箱',
  '_drafts'		=> ' drafts',//'草稿箱',
- 'post_manage'		=> 'Post Manager',//'文章管理',
+ 'post_manage'		=> 'Post Manage',//'文章管理',
+ 'draft_manage'		=> 'Draft Manage',//'草稿管理',
  'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 // 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 // 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
@@ -22,8 +23,10 @@ $lang = array(
 
 //---------------------------
 //admin/configure.php
+ 'site_address'	=> 'Site address',//'站点地址：',
  'verification_code_not_supported' => 'Open verification Code failed! Server does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
  'verification_code_comment_not_supported' =>'Open verification code for comments failed! Server does not support the GD graphics library.',//'开启评论验证码失败!服务器空间不支持GD图形库',
+ 'detect_url' => 'Detect site URL automatically (Supported multi-domain/HTTPS, few spaces may not support)',//'自动检测站点地址 (用于支持多域名/HTTPS，少数空间商可能不支持)',
 
 //---------------------------
 //admin/data.php
@@ -132,7 +135,7 @@ $lang = array(
  'rejected_ok'		=> 'Entry has been rejected successfully',//'文章驳回成功',
  'all'			=> 'All',//'全部',
  'category_view'	=> 'View by Category',//'按分类查看',
-// 'category'		=> 'Category',//'分类',
+ 'category'		=> 'Category',//'分类',
 // 'tags'		=> 'Tags',//'标签',
 // 'user'		=> 'User',//'作者',
 // 'category'		=> 'Category',//'分类',
@@ -141,13 +144,15 @@ $lang = array(
 // 'tags'		=> 'Tags',//'标签',
 // 'user'		=> 'User',//'作者',
 // 'tag_by_view'	=> 'View by tags',//'按标签查看',
+ 'article_search'	=> 'Search Article',//'搜索文章',
  'title'		=> 'Title',//'标题',
  'view'			=> 'View',//'查看',
+ 'views'		=> 'Views',//'查看',
+ 'reads'		=> 'Reads',//'阅读',
 // 'user'		=> 'User',//'作者',
 // 'category'		=> 'Category',//'分类',
  'time'			=> 'Date',//'时间',
  'comments'		=> 'Comments',//'评论',
- 'views'		=> 'Views',//'阅读',
 // 'uncategorized'	=> 'Uncategorized',//'未分类',
 // 'stick'		=> 'Stick',//'置顶',
  'attachment_num'	=> 'Attachments',//'附件',
@@ -170,6 +175,7 @@ $lang = array(
  'have'			=> 'Have ',//'有',
  'number_of_items'	=> ' ',//'篇',//LEAVE THIS EMPTY! It is just a number of "Items", "Pieces", etc..
  'draft'		=> 'Draft',//'草稿',
+ 'drafts'		=> 'drafts',//'草稿',
  'posts'		=> 'posts',//'文章',
  'select_post_to_operate_please'	=> 'Please, select the entry to operate',//'请选择要操作的文章',
  'sure_delete_selected_posts'	=> 'Are you sure to want delete selected entries?',//'你确定要删除所选文章吗？',
@@ -184,7 +190,7 @@ $lang = array(
  'page_disabled_ok'	=> 'Page has been disabled successfully',//'禁用页面成功',
  'page_saved_ok'	=> 'Page has been saved successfully',//'页面保存成功',
 // 'title'		=> 'Title',//'标题',
- 'comments'		=> 'Comments',//'评论',
+// 'comments'		=> 'Comments',//'评论',
 // 'time'		=> 'Date',//'时间',
 // 'draft'		=> 'Draft',//'草稿',
  'page_view'		=> 'View page',//'查看页面',
@@ -329,6 +335,7 @@ $lang = array(
  'home_footer_info'		=> 'Footer info at the Home',//'首页底部信息',
  'home_footer_info_html'	=> '(HTML supported, can be used to add a traffic statistics code)',//'(支持html，可用于添加流量统计代码)',
  'save_settings'		=> 'Save Settings',//'保存设置',
+ 'before_intercept'		=> 'Intercept before article ',//'截取文章的前',
 
 //---------------------------
 //admin/views/data.php
@@ -430,10 +437,12 @@ $lang = array(
 // 'comments'		=> 'Comments',//'评论',
  'comments_pending'	=> ' Pending comments',//'条评论待审',
 // 'twitters'		=> 'Twitters',//'微语',
+ 'exterior'		=> 'Exterior',//'外观',
  'sidebar'		=> 'Sidebar',//'侧边栏',
  'navigation'		=> 'Navigation',//'导航',
  'pages'		=> 'Pages',//'页面',
  'links'		=> 'Links',//'链接',
+ 'friend_links'		=> 'Friend links',//'友链',
  'users'		=> 'Users',//'用户',
  'data'			=> 'Data Backup',//'数据',
 // 'plugins'		=> 'Plug-ins',//'插件',
@@ -444,6 +453,8 @@ $lang = array(
 
 //---------------------------
 //admin/views/index.php
+ 'admincp'		=> 'AdminCP',//'管理首页',
+ 'system'		=> 'System',//'系统',
  'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活 ……',
 // 'publish'			=> 'Publish',//'发布',
  'cancel'			=> 'Cancel',//'取消',
@@ -490,6 +501,10 @@ $lang = array(
 // ')'				=> ')',//'）',
 
 //---------------------------
+//admin/views/links.php
+ 'link_add'		=> 'Add Link+',//'添加链接+',
+
+//---------------------------
 //admin/views/login.php
  'login'		=> 'Login',//'登录',
  'user_name'		=> 'User name',//'用户名',
@@ -498,6 +513,45 @@ $lang = array(
  'log_in'		=> ' Log in ',//' 登 录 ',
  'back_home'		=> '&laquo; Back to home',//'&laquo;返回首页',
  'password_forget'	=> 'Forgot Password?',//'忘记密码?',
+
+//---------------------------
+//admin/views/navbar.php
+ 'nav_manage'		=> 'Navigation Management',//'导航管理',
+ 'nav_cat_update_ok'	=> 'Category updated successfully',//'排序更新成功',
+ 'nav_delete_ok'	=> 'Navigation deleted successfully',//'删除导航成功',
+ 'nav_edit_ok'		=> 'Navigation modified successfully',//'修改导航成功',
+ 'nav_add_ok'		=> 'Navigation added successfully',//'添加导航成',
+ 'nav_name_url_empty'	=> 'Navigation name and address can not be empty',//'导航名称和地址不能为空',
+ 'nav_no_order'		=> 'There is no navigation categories',//'没有可排序的导航',
+ 'nav_default_nodelete'	=> 'You can not delete the default navigation',//'默认导航不能删除',
+ 'nav_select_category'	=> 'Please choose the category to add in',//'请选择要添加的分类',
+ 'nav_select_page'	=> 'Please select the page you want to add',//'请选择要添加的页面',
+ 'nav_url_invalid'	=> 'Navigation address format error (must include the prefix http, etc.)',//'导航地址格式错误(需包含http等前缀)',
+ 'nav_edit'		=> 'Edit navigation',//'编辑导航',
+ 'nav_hide_click'	=> 'Click to hide navigation',//'点击隐藏导航',
+ 'nav_show_click'	=> 'Click to show navigation',//'点击显示导航',
+ 'nav_no'		=> 'Has not yet added navigation',//'还没有添加导航',
+ 'nav_add_custom'	=> 'Add custom navigation',//'添加自定义导航',
+ 'nav_name'		=> 'Navigation Name',//'导航名称',
+ 'nav_url_http'		=> 'Address (with http)',//'地址(带http)',
+ 'nav_parent'		=> 'Parent navigation',//'父导航',
+ 'nav_add_category'	=> 'Add categories to navigation',//'添加分类到导航',
+ 'nav_page_add'		=> 'Add pages to navigation',//'添加页面到导航',
+ 'id'			=> 'ID',//'序号',
+ 'navigation'		=> 'Navigation',//'导航',
+ 'type'			=> 'Type',//'类型',
+ 'status'		=> 'Status',//'状态',
+ 'view'			=> 'View',//'查看',
+ 'address'		=> 'Address',//'地址',
+
+//---------------------------
+//admin/views/naviedit.php
+// 'nav_name'		=> 'Navigation Name',//'导航名称',
+
+//---------------------------
+//admin/views/page.php
+ 'page_title'		=> 'Page title',//'页面标题',
+ 'setting_items'	=> 'Setting items',//'设置项',
 
 //---------------------------
 //admin/views/plugin.php
@@ -514,7 +568,7 @@ $lang = array(
  'plugin_active_ok'		=> 'Click to activate the plug-in',//'点击激活插件',
  'plugin_disable_ok'		=> 'Click to disable the plug-in',//'点击禁用插件',
  'plugin_settings_click'	=> 'Click to plug-in settings',//'点击设置插件',
-// 'more_info'			=> 'More Info&raquo;',//'更多信息&raquo;',
+ 'more_info'			=> 'More Info&raquo;',//'更多信息&raquo;',
 // 'ok_for_emlog'		=> 'Suitable for emlog',//'适用于emlog',
 // 'user'			=> 'User',//'作者',
 // 'delete'			=> 'Delete',//'删除',
@@ -533,7 +587,7 @@ $lang = array(
  'install_promt_1'		=> '1) Unzip the plugin file and upload it to the content/plugins directory.',//'1、把解压后的插件文件夹上传到 content/plugins 目录下。',
  'install_prompt2'		=> '2) Log in to AdminCP, go to Plug-in management, and if the plug-in is already listed, you can click on it to activate it.',//'2、登录后台进入插件管理,插件管理里已经有了该插件，点击激活即可。',
  'upload_install'		=> 'Upload installation',//'上传安装',
- 'upload_install_info'		=> '(Upload a plug-in installation package in zip compressed format)',//'（上传一个zip压缩格式的插件安装包）',
+ 'upload_install_info'		=> 'Upload a plug-in installation package in zip compressed format',//'（上传一个zip压缩格式的插件安装包）',
  'plugin_get_more'		=> 'Get More Plugins',//'获取更多插件',
  'app_center'			=> 'App center &raquo;',//'应用中心&raquo;',
 
@@ -602,6 +656,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/template.php
+ 'template_manager'		=> 'Template Manager',//'模板管理',
  'template_current'		=> 'Current template',//'当前模板',
  'template_mount'		=> 'Mounting template',//'安装模板',
  'template_change_ok'		=> 'Template have been replaced successfully',//'模板更换成功',
@@ -614,6 +669,7 @@ $lang = array(
  'template_delete_failed'	=> 'Delete failed, check the template file permissions',//'删除失败，请检查模板文件权限',
  'template_use_this'		=> 'Click to use this template',//'点击使用该模板',
 // 'delete'			=> 'Delete',//'删除',
+ 'template_add'			=> 'Add Template',//'添加模板+',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -636,7 +692,7 @@ $lang = array(
  'template_install_prompt1'	=> '1) After extracting the template files upload the template folder to the content/templates directory.',//'1、把解压后的模板文件夹上传到 content/templates目录下。,
  'template_install_prompt2'	=> '2) Log in to the AdminCP to change a template. If template library already have a template you just added, then click on it to use this template.',//'2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。',
 // 'upload_install'		=> 'Upload installation',//'上传安装',
- 'template_upload_prompt'	=> '(Upload .zip file that contains installation package)',//'(上传一个zip压缩格式的模板安装包)',
+ 'template_upload_prompt'	=> 'Upload .zip file that contains installation package',//'上传一个zip压缩格式的模板安装包',
  'template_get_more'		=> 'Get more templates',//'获取更多模板',
 // 'app_center'			=> 'App center &raquo;',//'应用中心&raquo;',
 
@@ -741,6 +797,7 @@ $lang = array(
 //admin/views/widgets.php
  'widget_manage'	=> 'Sidebar widget management',//'侧边栏组件管理',
 // 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
+ 'system_widgets'	=> 'System widgets',//'系统组件',
  'blogger'		=> 'Personal information',//'个人资料',
 // 'title'		=> 'Title',//'标题',
  'change'		=> 'Change',//'更改',
@@ -762,16 +819,18 @@ $lang = array(
 // 'change'		=> 'Change',//'更改',
 // 'new_comments'	=> 'Latest comments',//'最新评论',
 // 'title'		=> 'Title',//'标题',
+ 'last_comments_num'	=> 'Last comments number',//'最新评论数',
  'new_comments_home'	=> 'Home Latest comments',//'首页最新评论数',
  'new_comments_length'	=> 'Summary length for latest comments',//'新近评论截取字节数',
 // 'change'		=> 'Change',//'更改',
 // 'new_posts'		=> 'Latest entries',//'最新文章',
 // 'title'		=> 'Title',//'标题',
+ 'new_posts_show'	=> 'Show Latest Posts',//'显示最新文章数',
  'new_posts_home'	=> 'Show Latest Posts at Home',//'首页显示最新文章数',
 // 'change'		=> 'Change',//'更改',
 // 'hot_posts'		=> 'Popular posts',//'热门文章',
 // 'title'		=> 'Title',//'标题',
- 'hot_posts_home'	=> 'Show popular entries at Home',//'首页显示热门文章数',
+ 'hot_posts_home'	=> 'Show popular posts',//'显示热门文章数',
 // 'change'		=> 'Change',//'更改',
 // 'random_post'	=> 'Random post',//'随机文章',
 // 'title'		=> 'Title',//'标题',
@@ -795,7 +854,14 @@ $lang = array(
  'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'sidebar'		=> 'Sidebar',//'侧边栏',
 // 'widget_untitled'	=> 'Untitled widget',//'未命名组件',
+ 'widget_use'		=> 'Used widgets',//'使用中的组件',
  'widget_order_save'	=> 'Save widget order',//'保存组件排序',
- 'widget_setting_reset'	=> 'Reset widget settings to initial values',//'恢复组件设置到初始安装状态',
+ 'widget_setting_reset'	=> 'Reset default widget settings',//'恢复出厂设置',
+
+//---------------------------
+//admin/views/write.php
+ 'publish_time'		=> 'Publish time:',//'发布时间：',
+ 'access_password'	=> 'Access Password',//'访问密码',
+
 
 );
