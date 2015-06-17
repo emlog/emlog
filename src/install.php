@@ -213,7 +213,7 @@ EOT;
     $widget_title = serialize($widgets);
     $widgets = serialize($sider_wg);
 
-    define('BLOG_URL', getBlogUrl());
+    define('BLOG_URL', realUrl());
 
     $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
