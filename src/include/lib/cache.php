@@ -183,7 +183,7 @@ class Cache {
     private function mc_comment() {
         $query = $this->db->query("SELECT option_value,option_name FROM " . DB_PREFIX . "options WHERE option_name IN('index_comnum','comment_subnum','comment_paging','comment_pnum','comment_order')");
         while($row = $this->db->fetch_array($query)) {
-            $$row['option_name'] = $row['option_value'];
+            ${$row['option_name']} = $row['option_value'];
         }
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
         $com_cache = array();
