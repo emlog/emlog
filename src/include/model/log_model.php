@@ -271,31 +271,6 @@ class Log_Model {
     }
 
     /**
-     * TODO: To be delete
-     * 获取文章发布时间
-     *
-     * @param int $timezone
-     * @param string $postDate
-     * @param string $oldDate
-     * @return date
-     */
-    function postDate($timezone = 8, $postDate = null, $oldDate = null) {
-        $timezone = Option::get('timezone');
-        $localtime = time();
-        $logDate = $oldDate ? $oldDate : $localtime;
-        $unixPostDate = '';
-        if ($postDate) {
-            $unixPostDate = emStrtotime($postDate);
-            if ($unixPostDate === false) {
-                $unixPostDate = $logDate;
-            }
-        } else {
-            return $localtime;
-        }
-        return $unixPostDate;
-    }
-
-    /**
      * 增加阅读次数
      *
      * @param int $blogId
