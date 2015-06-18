@@ -9,7 +9,6 @@ require_once 'globals.php';
 if ($action == '') {
     $retval = glob('../content/backup/*.sql');
     $bakfiles = $retval ? $retval : array();
-    $timezone = Option::get('timezone');
     $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link','tag','user');
     doAction('data_prebakup');
 
@@ -25,8 +24,7 @@ if ($action == 'bakstart') {
     $bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
     $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
-    $bakfname = 'emlog_'. gmdate('Ymd', time() + $timezone * 3600) . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
-    $timezone = Option::get('timezone');
+    $bakfname = 'emlog_'. date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
     $filename = '';
     $sqldump = '';
     foreach ($table_box as $table) {
@@ -34,12 +32,12 @@ if ($action == 'bakstart') {
     }
     if (trim($sqldump)) {
         $dumpfile = '#version:emlog '. Option::EMLOG_VERSION . "\n";
-        $dumpfile .= '#date:' . gmdate('Y-m-d H:i', time() + $timezone * 3600) . "\n";
+        $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";
         $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
         $dumpfile .= $sqldump;
         $dumpfile .= "\n#the end of backup";
         if ($bakplace == 'local') {
-            $filename = 'emlog_'. gmdate('Ymd_His', time() + $timezone * 3600);
+            $filename = 'emlog_'. date('Ymd_His');
             if ($zipbak == 'y') {
                 if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false ) {
                     emDirect('./data.php?error_f=1');
@@ -55,9 +53,9 @@ if ($action == 'bakstart') {
                 header('Pragma: public');
             } else {
                 header('Pragma: no-cache');
-                header('Last-Modified: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
+                header('Last-Modified: '. gmdate('D, d M Y H:i:s') . ' GMT');
             }
-            header('Expires: '. gmdate('D, d M Y H:i:s', time() + $timezone * 3600) . ' GMT');
+            header('Expires: '. gmdate('D, d M Y H:i:s') . ' GMT');
             echo $dumpfile;
         } else {
             if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {

@@ -8,14 +8,14 @@
 class Database {
 
     public static function getInstance() {
-        switch (Option::DEFAULT_MYSQLCONN) {
-            case 'mysqli':
-                return MySqlii::getInstance();
-                break;
-            case 'mysql':
-            default :
-                return MySql::getInstance();
-                break;
+        if (class_exists('mysqli')) {
+            return MySqlii::getInstance();
+        }
+        else if (class_exists('mysql')) {
+            return MySql::getInstance();
+        }
+        else {
+            emMsg('服务器空间PHP不支持MySql数据库');
         }
     }
 

@@ -75,7 +75,6 @@ class Log_Model {
      * Get a Single post by ID for Admin
      */
     function getOneLogForAdmin($blogId) {
-        $timezone = Option::get('timezone');
         $author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
         $res = $this->db->query($sql);
@@ -84,7 +83,6 @@ class Log_Model {
         }
         $row = $this->db->fetch_array($res);
         if ($row) {
-            $row['date'] = $row['date'] + $timezone * 3600;
             $row['title'] = htmlspecialchars($row['title']);
             $row['content'] = htmlspecialchars($row['content']);
             $row['excerpt'] = htmlspecialchars($row['excerpt']);
@@ -108,7 +106,7 @@ class Log_Model {
             $logData = array(
                 'log_title' => htmlspecialchars($row['title']),
                 'timestamp' => $row['date'],
-                'date' => $row['date'] + Option::get('timezone') * 3600,
+                'date' => $row['date'],
                 'logid' => intval($row['gid']),
                 'sortid' => intval($row['sortid']),
                 'type' => $row['type'],
@@ -139,7 +137,6 @@ class Log_Model {
      * @return array
      */
     function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
-        $timezone = Option::get('timezone');
         $perpage_num = Option::get('admin_perpage_num');
         $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
@@ -149,7 +146,7 @@ class Log_Model {
         $res = $this->db->query($sql);
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
-            $row['date']	= gmdate("Y-m-d H:i", $row['date'] + $timezone * 3600);
+            $row['date']	= date("Y-m-d H:i", $row['date']);
 /*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
@@ -169,14 +166,12 @@ class Log_Model {
      * @return array
      */
     function getLogsForHome($condition = '', $page = 1, $perPageNum) {
-        $timezone = Option::get('timezone');
         $start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
         $limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
         $res = $this->db->query($sql);
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
-            $row['date'] += $timezone * 3600;
             $row['log_title'] = htmlspecialchars(trim($row['title']));
             $row['log_url'] = Url::log($row['gid']);
             $row['logid'] = $row['gid'];
@@ -206,7 +201,7 @@ class Log_Model {
         $res = $this->db->query($sql);
         $pages = array();
         while ($row = $this->db->fetch_array($res)) {
-            $row['date']	= gmdate("Y-m-d H:i", $row['date'] + Option::get('timezone') * 3600);
+            $row['date']	= date("Y-m-d H:i", $row['date']);
 /*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
@@ -273,30 +268,6 @@ class Log_Model {
         $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
         $Comment_Model = new Comment_Model();
         $Comment_Model->updateCommentNum($blogId);
-    }
-
-    /**
-     * Make the post date/time
-     *
-     * @param int $timezone
-     * @param string $postDate
-     * @param string $oldDate
-     * @return date
-     */
-    function postDate($timezone = 8, $postDate = null, $oldDate = null) {
-        $timezone = Option::get('timezone');
-        $localtime = time();
-        $logDate = $oldDate ? $oldDate : $localtime;
-        $unixPostDate = '';
-        if ($postDate) {
-            $unixPostDate = emStrtotime($postDate);
-            if ($unixPostDate === false) {
-                $unixPostDate = $logDate;
-            }
-        } else {
-            return $localtime;
-        }
-        return $unixPostDate;
     }
 
     /**

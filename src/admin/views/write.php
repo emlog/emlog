@@ -86,7 +86,6 @@
             <div class="form-group">
 <!--vot-->  <label><?=lang('publish_time')?></label>
             <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control" />
-            <input name="date" id="date" type="hidden" value="<?php echo $orig_date; ?>" >
             </div>
             
             <div class="form-group">

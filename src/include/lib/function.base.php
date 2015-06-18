@@ -369,7 +369,6 @@ function rmBreak($content) {
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-    $timezone = Option::get('timezone');
     $op = '';
     $sec = time() - $datetemp;
     $hover = floor($sec / 3600);
@@ -383,7 +382,7 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
     } elseif ($hover < 24) {
 /*vot*/     $op = lang('about_') . $hover . lang('_hour_ago');
     } else {
-        $op = gmdate($dstr, $datetemp + $timezone * 3600);
+        $op = date($dstr, $datetemp);
     }
     return $op;
 }
@@ -725,40 +724,6 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
     $remote_dt = new DateTime('now', $remote_dtz);
     $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
     return $offset;
-}
-
-/**
- * Convert a string Time zone to UNIX timestamp
- */
-function emStrtotime($timeStr) {
-    $timezone = Option::get('timezone');
-    if ($timeStr) {
-        $unixPostDate = @strtotime($timeStr);
-        if ($unixPostDate === false) {
-            return false;
-        } else {
-            $serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
-            if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
-                $unixPostDate -= $timezone * 3600;
-            } else {
-                if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
-                    /*
-                     * If the server is configured by default to the time zone, So PHP will put the time to identify the incoming local time zone
-                     * But if we passed the time actually Local blog configurable time zone, it is not the server time zone Local Time
-                     * Therefore, We need to strtotime Get time to remove /Plus the difference of two time zones, Get utc time
-                     */
-                    $offset = getTimeZoneOffset($serverTimeZone);
-                    // First subtract/Plus the local time zone configuration difference
-                    $unixPostDate -= $timezone * 3600;
-                    // Minus/Plus the server zone and time difference utc, Get utc time
-                    $unixPostDate -= $offset;
-                }
-            }
-        }
-        return $unixPostDate;
-    } else {
-        return false;
-    }
 }
 
 /**

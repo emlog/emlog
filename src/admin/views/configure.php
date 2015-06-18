@@ -60,7 +60,6 @@
                 '10'=>lang('tz10'),
                 '11'=>lang('tz11'),
                 '12'=>lang('tz12'),
-                );
                 foreach ($tzlist as $key => $value):
                     $ex = $key == $timezone ? "selected=\"selected\"" : '';
                     ?>

@@ -24,10 +24,10 @@ class Record_Controller {
 
         if (preg_match("/^([\d]{4})([\d]{2})$/", $record, $match)) {
             $days = getMonthDayNum($match[2], $match[1]);
-            $record_stime = emStrtotime($record . '01');
+            $record_stime = strtotime($record . '01');
             $record_etime = $record_stime + 3600 * 24 * $days;
         } else {
-            $record_stime = emStrtotime($record);
+            $record_stime = strtotime($record);
             $record_etime = $record_stime + 3600 * 24;
         }
         $sqlSegment = "and date>=$record_stime and date<$record_etime order by date desc";

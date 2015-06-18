@@ -73,7 +73,7 @@ if ($action == 'save' || $action == 'autosave') {
 
     LoginAuth::checkToken();
 
-    $postTime = $emPage->postDate(Option::get('timezone'));
+    $postTime = time();
 
     if (!empty($alias)) {
         $logalias_cache = $CACHE->readCache('logalias');

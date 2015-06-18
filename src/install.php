@@ -227,7 +227,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     $widget_title = serialize($widgets);
     $widgets = serialize($sider_wg);
 
-    define('BLOG_URL', getBlogUrl());
+    define('BLOG_URL', realUrl());
 
 /*vot*/    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
@@ -345,7 +345,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','8');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');

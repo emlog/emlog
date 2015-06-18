@@ -35,8 +35,7 @@ if ($action == '') {
 	$is_top = '';
 	$is_sortop = '';
 	$is_allow_remark = '';
-	$localtime = time() + Option::get('timezone') * 3600;
-	$postDate = gmdate('Y-m-d H:i:s', $localtime);
+	$postDate = date('Y-m-d H:i:s');
     $att_frame_url = 'attachment.php?action=selectFile';
 
 	include View::getView('header');
@@ -57,8 +56,7 @@ if ($action == 'edit') {
 
     $isdraft = $hide == 'y' ? true : false;
 /*vot*/    $containertitle = $isdraft ? lang('draft_edit') : lang('post_edit');
-    $postDate = gmdate('Y-m-d H:i:s', $date);
-	$orig_date = $date - Option::get('timezone') * 3600;
+    $postDate = date('Y-m-d H:i:s', $date);
 	$sorts = $CACHE->readCache('sort');
 	//log tag
 	$tags = array();
