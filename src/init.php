@@ -21,6 +21,9 @@ $userData = array();
 
 define('ISLOGIN',	LoginAuth::isLogin());
 
+//站点时区
+date_default_timezone_set(Option::get('timezone'));
+
 //用户组:admin管理员, writer联合撰写人, visitor访客
 define('ROLE_ADMIN', 'admin');
 define('ROLE_WRITER', 'writer');
