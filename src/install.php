@@ -345,7 +345,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');

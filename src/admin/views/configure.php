@@ -19,7 +19,7 @@
 <!--vot--><label><?=lang('site_address')?>:</label><input style="width:390px;" class="form-control" value="<?php echo $blogurl; ?>" name="blogurl" />
             <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" value="y" name="detect_url" id="detect_url" <?php echo $conf_detect_url; ?> /><?=lang('auto_site_url')?> <?=lang('auto_site_url_info')?>
+<!--vot-->          <input type="checkbox" value="y" name="detect_url" id="detect_url" <?php echo $conf_detect_url; ?> /> <?=lang('detect_url')?>
                 </label>
             </div>
         </div>
@@ -30,43 +30,13 @@
 <!--vot--><label><?=lang('your_timezone')?>:</label>
             <select name="timezone" style="width:320px;" class="form-control">
                 <?php
-/*vot*/ $tzlist = array('-12'=>lang('tz-12'),
-                '-11'=>lang('tz-11'),
-                '-10'=>lang('tz-10'),
-                '-9'=>lang('tz-9'),
-                '-8'=>lang('tz-8'),
-                '-7'=>lang('tz-7'),
-                '-6'=>lang('tz-6'),
-                '-5'=>lang('tz-5'),
-                '-4'=>lang('tz-4'),
-                '-3.5'=>lang('tz-3.5'),
-                '-3'=>lang('tz-3'),
-                '-2'=>lang('tz-2'),
-                '-1'=>lang('tz-1'),
-                '0'=>lang('tz0'),
-                '1'=>lang('tz1'),
-                '2'=>lang('tz2'),
-                '3'=>lang('tz3'),
-                '3.5'=>lang('tz3.5'),
-                '4'=>lang('tz4'),
-                '4.5'=>lang('tz4.5'),
-                '5'=>lang('tz5'),
-                '5.5'=>lang('tz5.5'),
-                '6'=>lang('tz6'),
-                '7'=>lang('tz7'),
-                '8'=>lang('tz8'),
-                '9'=>lang('tz9'),
-                '9.5'=>lang('tz9.5'),
-                '10'=>lang('tz10'),
-                '11'=>lang('tz11'),
-                '12'=>lang('tz12'),
                 foreach ($tzlist as $key => $value):
                     $ex = $key == $timezone ? "selected=\"selected\"" : '';
                     ?>
                     <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
                 <?php endforeach; ?>
             </select>
-<!--vot-->(<?=lang('local_time')?>: <?php echo gmdate('Y-m-d H:i:s', time() + $timezone * 3600); ?>)
+<!--vot-->  (<?=lang('local_time')?>: <?php echo date('Y-m-d H:i:s'); ?>)
         </div>
         <div class="form-group">
             <div class="checkbox">
@@ -76,7 +46,7 @@
             </div>
             <div class="checkbox form-inline">
 <!--vot-->      <label><input type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><?=lang('auto_summary')?></label>,
-<!--vot-->      <?=lang('auto_summary_get')?> <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" /><?=lang('characters_as_summary')?>
+<!--vot-->      <?=lang('before_intercept')?><input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" /><?=lang('characters_as_summary')?>
             </div>          
         </div>
         <div class="form-group form-inline">
@@ -88,49 +58,49 @@
         </div>
         <div class="form-group">
             <div class="checkbox form-inline">
-<!--vot-->      <label><input type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><?=lang('enable_comments')?></label>, <?=lang('comment_interval')?> <input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval /><?=lang('_seconds')?>
+<!--vot-->      <label><input type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> /><?=lang('enable_comment_interval')?><input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval /><?=lang('_seconds')?>
             </div>
             <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /> <?=lang('comment_moderation')?>
+<!--vot-->          <input type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> /><?=lang('comment_moderation')?>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /> <?=lang('comment_verification_code')?>
+<!--vot-->          <input type="checkbox" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> /><?=lang('comment_verification_code')?>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /> <?=lang('comment_avatar')?>
+<!--vot-->          <input type="checkbox" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> /><?=lang('comment_avatar')?>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /> <?=lang('comment_must_contain_chinese')?>
+<!--vot-->          <input type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> /><?=lang('comment_must_contain_chinese')?>
                 </label>
             </div>
             <div class="checkbox form-inline">
 <!--vot-->      <label><input type="checkbox" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> /><?=lang('comment_per_page')?>,</label>
-<!--vot-->      <?=lang('per_page')?> <input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments')?>,
-<!--vot-->      <select name="comment_order" class="form-control"><option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option><option value="older" <?php echo $ex4; ?>><?=lang('older')?></option></select> <?=lang('standing_in_front')?>
+<!--vot-->      <?=lang('per_page')?><input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum" /><?=lang('_comments')?>,
+<!--vot-->      <select name="comment_order" class="form-control"><option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option><option value="older" <?php echo $ex4; ?>><?=lang('older')?></option></select><?=lang('standing_in_front')?>
             </div>
         </div>
         <div class="form-group form-inline">
-<!--vot-->  <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" /> KB, <?=lang('upload_max_size')?>
+<!--vot-->  <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize" />KB (<?=lang('php_upload_max_size')?>
         </div>
         <div class="form-group form-inline">
 <!--vot-->  <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type" /> <?=lang('allow_attach_type')?> <?=lang('separate_by_comma')?>
         </div>
         <div class="form-group form-inline">
-<!--vot-->  <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?> <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" /> x <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /> <?=lang('unit_pixels')?>
+<!--vot-->  <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /><?=lang('thumbnail_max_size')?><input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw" /> x <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh" /><?=lang('unit_pixels')?>
         </div>
         <div class="form-group">
 <!--vot-->  <?=lang('icp_reg_no')?>:
             <input maxlength="200" style="width:390px;" class="form-control" value="<?php echo $icp; ?>" name="icp" />
         </div>
         <div class="form-group">
-<!--vot-->  <label><?=lang('home_footer_info')?> <?=lang('home_footer_info_html')?>:</label>
+<!--vot-->  <label><?=lang('home_footer_info')?>:</label>
             <textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?php echo $footer_info; ?></textarea>
         </div>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />

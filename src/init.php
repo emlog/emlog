@@ -21,7 +21,7 @@ $userData = array();
 
 define('ISLOGIN',	LoginAuth::isLogin());
 
-//Site time zone
+//Site Time Zone
 date_default_timezone_set(Option::get('timezone'));
 
 //User Groups: admin=Administrator, writer=Co-Author, visitor=Guest
