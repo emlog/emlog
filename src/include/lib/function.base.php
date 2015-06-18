@@ -356,7 +356,6 @@ function rmBreak($content) {
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-    $timezone = Option::get('timezone');
     $op = '';
     $sec = time() - $datetemp;
     $hover = floor($sec / 3600);
@@ -370,7 +369,7 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
     } elseif ($hover < 24) {
         $op = "约 {$hover} 小时前";
     } else {
-        $op = gmdate($dstr, $datetemp + $timezone * 3600);
+        $op = date($dstr, $datetemp);
     }
     return $op;
 }
@@ -711,6 +710,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
+ * TODO: To be delete
  * 将字符串转换为时区无关的UNIX时间戳
  */
 function emStrtotime($timeStr) {
