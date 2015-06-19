@@ -53,7 +53,7 @@ class Comment_Controller {
             emMsg('评论失败：内容不符合规范');
         } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
             emMsg('评论失败：评论内容需包含中文');
-        } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && strlen($imgcode) > 0 && session_start() && $imgcode !== $_SESSION['code']) {
             emMsg('评论失败：验证码错误');
         } else {
             $_SESSION['code'] = null;
