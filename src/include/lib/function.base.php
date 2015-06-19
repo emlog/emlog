@@ -214,7 +214,7 @@ function subString($strings, $start, $length) {
  * @param int $len
  */
 function extractHtmlData($data, $len) {
-    $data = strip_tags(subString($data, 0, $len + 30));
+    $data = subString(strip_tags($data), 0, $len + 30);
     $search = array("/([\r\n])[\s]+/", // 去掉空白字符
         "/&(quot|#34);/i", // 替换 HTML 实体
         "/&(amp|#38);/i",
