@@ -69,6 +69,12 @@ if ($action == 'del')
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
+    $nonce_templet = Option::get('nonce_templet');
+    if ($tplName === $nonce_templet)
+    {
+        emMsg('您不能正在使用的模板');
+    }
+
     if (true === emDeleteFile(TPLS_PATH . $tplName)) {
         emDirect("./template.php?activate_del=1#tpllib");
     } else {
