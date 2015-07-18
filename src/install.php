@@ -375,6 +375,12 @@ CREATE TABLE {$db_prefix}tag (
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$table_charset_sql."
+DROP TABLE IF EXISTS {$db_prefix}tagmap;
+CREATE TABLE {$db_prefix}tagmap (
+  `gid` int(10) NOT NULL,
+  `tags` text,
+  PRIMARY KEY (`gid`)
+)".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid int(10) unsigned NOT NULL auto_increment,
