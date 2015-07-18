@@ -125,4 +125,40 @@ class Tag_Model {
 		$this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
 	}
 
+    /**
+     * 从标签名查找标签ID
+     * @param string $tagName 标签名
+     * @return int|bool 标签ID | FALSE(未找到标签)
+     */
+    function getIdFromName($tagName)
+    {
+        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = " . $this->db->excape_string($tagName);
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) === 0)
+        {
+            return FALSE;
+        }
+
+        $result = $this->db->fetch_array($query);
+        return $result['tagname'];
+    }
+
+    /**
+     * 创建一个新的标签
+     * @param string $tagName 标签名
+     * @return int 标签ID
+     */
+    function createTag($tagName)
+    {
+        $existTag = $this->getIdFromName($tagName);
+        
+        if ( ! $existTag)
+        {
+            $this->db->query("INSERT INTO `".DB_PREFIX."tag` (`tagname`) VALUES('" . $this->db->escape_string($tagName) . "')");
+            $existTag = $this->db->insert_id();
+        }
+
+        return $existTag;
+    }
 }
