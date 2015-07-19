@@ -6,11 +6,11 @@
 
 class Tag_Model {
 
-	private $db;
+    private  $db;
 
-	function __construct() {
-		$this->db = Database::getInstance();
-	}
+    function __construct() {
+        $this->db = Database::getInstance();
+    }
 
     /**
      * 获取标签
@@ -35,13 +35,13 @@ class Tag_Model {
         return $tags;
     }
 
-	function getOneTag($tagId) {
-		$tag = array();
-		$row = $this->db->once_fetch_array("SELECT tagname,tid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
-		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
-		$tag['tagid'] = intval($row['tid']);
-		return $tag;
-	}
+    function getOneTag($tagId) {
+        $tag = array();
+        $row = $this->db->once_fetch_array("SELECT tagname,tid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
+        $tag['tagname'] = htmlspecialchars(trim($row['tagname']));
+        $tag['tagid'] = intval($row['tid']);
+        return $tag;
+    }
 
     function getTagByName($tagName) {
         $tag = $this->getIdFromName($tagName);
@@ -166,10 +166,10 @@ class Tag_Model {
         }
     }
 
-	function updateTagName($tagId, $tagName) {
-		$sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
-		$this->db->query($sql);
-	}
+    function updateTagName($tagId, $tagName) {
+        $sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
+        $this->db->query($sql);
+    }
 
     function deleteTag($tagId) {
         // 要删除一个标签，需要先检查哪些文章有引用这个标签，并把这个标签从那些引用中删除
