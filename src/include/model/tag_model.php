@@ -18,7 +18,7 @@ class Tag_Model {
      * @param int $blogId
      * @return array
      */
-    function getTag($blogId = '') {
+    function getTag($blogId = NULL) {
         $tags = array();
 
         $tag_ids = $this->getTagIdsFromBlogId($blogId);
@@ -310,20 +310,24 @@ class Tag_Model {
     {
         $tags = array();
 
+        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap`";
+
         if ( ! empty($blogId))
         {
-            $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap` WHERE `gid` = " . $blogId;
-            $query = $this->db->query($sql);
+            $sql .= " WHERE `gid` = " . $blogId;
+        }
 
-            if ($this->db->num_rows($query) > 0)
-            {
-                $result = $this->db->fetch_array($query);
-                $tags = explode(',', $result['tags']);
-            }
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) > 0)
+        {
+            $result = $this->db->fetch_array($query);
+            $tags = explode(',', $result['tags']);
         }
 
         return $tags;
     }
+
 
     /**
      * 从TagId获取到BlogId列表 (获取到一个Tag下所有的文章)
