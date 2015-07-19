@@ -24,11 +24,11 @@ class Tag_Model {
         $tag_ids = $this->getTagIdsFromBlogId($blogId);
         $tag_names = $this->getNamesFromIds($tag_ids);
         
-        foreach ($tag_names as $tag)
+        foreach ($tag_names as $key => $value)
         {
             $row = array();
-            $row['tagname'] = htmlspecialchars($tag['tagname']);
-            $row['tid'] = intval($tag['tid']);
+            $row['tagname'] = htmlspecialchars($value);
+            $row['tid'] = intval($key);
             $tags[] = $row;
         }
 
@@ -162,6 +162,11 @@ class Tag_Model {
                 $this->addBlogIntoTag($each_tag, $blogId);
             }
         }
+
+        // 更新文章Tag映射
+        $new_tag_string = implode(',', $new_tags);
+        $sql = "UPDATE `" . DB_PREFIX . "tagmap` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
+        $this->db->query($sql);
     }
 
     function updateTagName($tagId, $tagName) {
@@ -188,7 +193,7 @@ class Tag_Model {
      */
     function getIdFromName($tagName)
     {
-        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = " . $this->db->excape_string($tagName);
+        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $this->db->escape_string($tagName) . "'";
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) === 0)
@@ -197,7 +202,7 @@ class Tag_Model {
         }
 
         $result = $this->db->fetch_array($query);
-        return $result['tagname'];
+        return $result['tid'];
     }
 
     /**
@@ -235,19 +240,22 @@ class Tag_Model {
      * @param array $tagIds 标签ID
      * @return array
      */
-    function getNamesFromIds($tagIds)
+    function getNamesFromIds($tagIds = NULL)
     {
         $names = array();
 
-        $tag_string = implode(',', $tagIds);
-        $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
-        $query = $this->db->query($sql);
-
-        if ($this->db->num_rows($query) > 0)
+        if ( ! empty($tagIds))
         {
-            while ($result = $this->db->fetch_array($query))
+            $tag_string = implode(',', $tagIds);
+            $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
+            $query = $this->db->query($sql);
+
+            if ($this->db->num_rows($query) > 0)
             {
-                $names[$result['tid']] = $result['tagname'];
+                while ($result = $this->db->fetch_array($query))
+                {
+                    $names[$result['tid']] = $result['tagname'];
+                }
             }
         }
 
@@ -298,17 +306,20 @@ class Tag_Model {
      * @param int $blogId 文章ID
      * @return array 标签ID列表
      */
-    function getTagIdsFromBlogId($blogId)
+    function getTagIdsFromBlogId($blogId = NULL)
     {
         $tags = array();
 
-        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap` WHERE `gid` = " . $blogId;
-        $query = $this->db->query($sql);
-
-        if ($this->db->num_rows($query) > 0)
+        if ( ! empty($blogId))
         {
-            $result = $this->db->fetch_array($query);
-            $tags = explode(',', $result['tags']);
+            $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap` WHERE `gid` = " . $blogId;
+            $query = $this->db->query($sql);
+
+            if ($this->db->num_rows($query) > 0)
+            {
+                $result = $this->db->fetch_array($query);
+                $tags = explode(',', $result['tags']);
+            }
         }
 
         return $tags;
@@ -323,13 +334,17 @@ class Tag_Model {
     {
         $blogs = array();
 
-        $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `gid` = " . $tagId;
+        $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0)
         {
             $result = $this->db->fetch_array($query);
-            $blogs = explode(',', $result['gid']);
+
+            if ( ! empty($result['gid']))
+            {
+                $blogs = explode(',', $result['gid']);
+            }
         }
 
         return $blogs;
