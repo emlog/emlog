@@ -12,23 +12,28 @@ class Tag_Model {
 		$this->db = Database::getInstance();
 	}
 
-	/**
-	 * 获取标签
-	 *
-	 * @param int $blogId
-	 * @return array
-	 */
-	function getTag($blogId = '') {
-		$tags = array();
-		$condition = $blogId ? "WHERE gid LIKE '%,$blogId,%'" : '';
-		$query = $this->db->query("select tagname,tid from ".DB_PREFIX."tag $condition");
-		while ($row = $this->db->fetch_array($query)) {
-			$row['tagname'] = htmlspecialchars($row['tagname']);
-			$row['tid'] = intval($row['tid']);
-			$tags[] = $row;
-		}
-		return $tags;
-	}
+    /**
+     * 获取标签
+     *
+     * @param int $blogId
+     * @return array
+     */
+    function getTag($blogId = '') {
+        $tags = array();
+
+        $tag_ids = $this->getTagIdsFromBlogId($blogId);
+        $tag_names = $this->getNamesFromIds($tag_ids);
+        
+        foreach ($tag_names as $tag)
+        {
+            $row = array();
+            $row['tagname'] = htmlspecialchars($tag['tagname']);
+            $row['tid'] = intval($tag['tid']);
+            $tags[] = $row;
+        }
+
+        return $tags;
+    }
 
 	function getOneTag($tagId) {
 		$tag = array();
@@ -38,25 +43,18 @@ class Tag_Model {
 		return $tag;
 	}
 
-	function getTagByName($tagName) {
-		$tag = array();
-		$row = $this->db->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
-		if (empty($row)) {
-			return false;
-		}
-		$blogIdStr  = substr(trim($row['gid']),1,-1);
-		return $blogIdStr;
-	}
+    function getTagByName($tagName) {
+        $tag = $this->getIdFromName($tagName);
+        $blogs = $this->getBlogIdsFromTagId($tag);
+        $blogIdStr = implode(',', $blogs);
+        return $blogIdStr;
+    }
 
-	function getTagById($tagId) {
-		$tag = array();
-		$row = $this->db->once_fetch_array("SELECT tagname,gid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
-		if (empty($row)) {
-			return false;
-		}
-		$blogIdStr  = substr(trim($row['gid']),1,-1);
-		return $blogIdStr;
-	}
+    function getTagById($tagId) {
+        $blogs = $this->getBlogIdsFromTagId($tagId);
+        $blogIdStr = implode(',', $blogs);
+        return $blogIdStr;
+    }
 
     /**
      * 添加标签
