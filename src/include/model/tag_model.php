@@ -58,72 +58,132 @@ class Tag_Model {
 		return $blogIdStr;
 	}
 
-	/**
-	 * 添加标签
-	 *
-	 * @param string $tagStr
-	 */
-	function addTag($tagStr, $blogId) {
-		$tag = !empty($tagStr) ? preg_split ("/[,\s]|(，)/", $tagStr) : array();
-		$tag = array_filter(array_unique($tag));
-		foreach ($tag as $tagName) {
-			$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='$tagName'");
-			if (empty($result)) {
-				$query="INSERT INTO ".DB_PREFIX."tag (tagname,gid) VALUES('".$tagName."',',$blogId,')";
-				$this->db->query($query);
-			} else {
-				$query="UPDATE ".DB_PREFIX."tag SET gid=concat(gid,'$blogId,') where tagname = '$tagName'";
-				$this->db->query($query);
-			}
-		}
-	}
+    /**
+     * 添加标签
+     *
+     * @param string $tagStr
+     */
+    function addTag($tagStr, $blogId) {
+        $tagStr = trim($tagStr);
+        $tagStr = str_replace('，', ',', $tagStr);
+        
+        if (empty($tagStr))
+        {
+            return;
+        }
 
-	/**
-	 * 更新标签
-	 *
-	 * @param string $tagStr
-	 * @param int $blogId
-	 */
-	function updateTag($tagStr, $blogId) {
-		$tag = !empty($tagStr) ? preg_split ("/[,\s]|(，)/", $tagStr) : array();
-		$query = $this->db->query("SELECT tagname FROM ".DB_PREFIX."tag WHERE gid LIKE '%".$blogId."%' ");
-		$old_tag = array();
-		while ($row = $this->db->fetch_array($query)) {
-			$old_tag[] = addslashes($row['tagname']);
-		}
-		if (empty($old_tag)) {
-			$old_tag = array('');
-		}
-		$dif_tag = findArray(array_filter(array_unique($tag)),$old_tag);
-		for ($n = 0; $n < count($dif_tag); $n++) {
-			$a = 0;
-			for ($j=0 ; $j<count($old_tag);$j++) {
-				if ($dif_tag[$n] == $old_tag[$j]) {
-					$this->db->query("UPDATE ".DB_PREFIX."tag SET gid= REPLACE(gid,',$blogId,',',') WHERE tagname='".$dif_tag[$n]."' ");
-					$this->db->query("DELETE FROM ".DB_PREFIX."tag WHERE gid=',' ");
-					break;
-				} elseif($j == count($old_tag)-1) {
-					$result = $this->db->once_fetch_array("SELECT tagname FROM ".DB_PREFIX."tag WHERE tagname='".trim($dif_tag[$n])."' ");
-					if (empty($result)) {
-						$query="INSERT INTO ".DB_PREFIX."tag (tagname,gid) VALUES('".$dif_tag[$n]."',',$blogId,')";
-						$this->db->query($query);
-					} else {
-						$query="UPDATE ".DB_PREFIX."tag SET gid=concat(gid,'$blogId,') where tagname = '".$dif_tag[$n]."' ";
-						$this->db->query($query);
-					}
-				}
-			}
-		}
-	}
+        // 将标签string切割成标签array，并且去重
+        $tagNameArray = explode(',', $tagStr);
+        $tagNameArray = array_unique($tagNameArray);
+
+        $tags = array();
+        foreach ($tagNameArray as $tagName)
+        {
+            $tagName = trim($tagName);
+
+            if (empty($tagName))
+            {
+                continue;
+            }
+
+            // 从标签名获取到标签Id，如果标签不存在，则创建标签
+            $tagId = $this->getIdFromName($tagName);
+            
+            if ( ! $tagId)
+            {
+                $tagId = $this->createTag($tagName);
+            }
+
+            // 将当前文章Id插入到标签里
+            $this->addBlogIntoTag($tagId, $blogId);
+
+            $tags[] = $tagId;
+        }
+
+        // 保存当前文章关联的标签Id列表
+        $tag_string = implode(',', $tags);
+        $this->db->query("INSERT INTO `".DB_PREFIX."tagmap` (`gid`, `tags`) VALUES(" . $blogId . ", '" . $this->db->escape_string($tag_string) . "')");
+    }
+
+    /**
+     * 更新标签
+     *
+     * @param string $tagStr
+     * @param int $blogId
+     */
+    function updateTag($tagStr, $blogId) {
+        $tagStr = trim($tagStr);
+        $tagStr = str_replace('，', ',', $tagStr);
+        
+        // 旧的标签Id列表
+        $old_tags = $this->getTagIdsFromBlogId($blogId);
+
+        // 新的标签Id列表
+        $new_tags = array();
+
+        // 建立新的标签id数组
+        if ( ! empty($tagStr))
+        {
+            // 将标签string切割成标签array，并且去重
+            $tagNameArray = explode(',', $tagStr);
+            $tagNameArray = array_unique($tagNameArray);
+
+            foreach ($tagNameArray as $tagName)
+            {
+                $tagName = trim($tagName);
+
+                if (empty($tagName))
+                {
+                    continue;
+                }
+
+                // 从标签名获取到标签Id，如果标签不存在，则创建标签
+                $tagId = $this->getIdFromName($tagName);
+                
+                if ( ! $tagId)
+                {
+                    $tagId = $this->createTag($tagName);
+                }
+
+                $new_tags[] = $tagId;
+            }
+        }
+
+        // 如果旧的标签Id在新的标签Id数组里不存在，则从Tag表里删除掉映射
+        foreach ($old_tags as $each_tag)
+        {
+            if ( ! in_array($each_tag, $new_tags))
+            {
+                $this->removeBlogIdFromTag($each_tag, $blogId);
+            }
+        }
+
+        // 如果新的标签Id在旧的标签Id数组里不存在，则在Tag表里建立映射
+        foreach ($new_tags as $each_tag)
+        {
+            if ( ! in_array($each_tag, $old_tags))
+            {
+                $this->addBlogIntoTag($each_tag, $blogId);
+            }
+        }
+    }
 
 	function updateTagName($tagId, $tagName) {
 		$sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
 		$this->db->query($sql);
 	}
 
-	function deleteTag($tagId) {
-		$this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
-	}
+    function deleteTag($tagId) {
+        // 要删除一个标签，需要先检查哪些文章有引用这个标签，并把这个标签从那些引用中删除
+        $linked_blogs = $this->getBlogIdsFromTagId($tagId);
+
+        foreach ($linked_blogs as $blogId)
+        {
+            $this->removeTagIdFromBlog($blogId, $tagId);
+        }
+
+        $this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
+    }
 
     /**
      * 从标签名查找标签ID
@@ -172,6 +232,30 @@ class Tag_Model {
         }
 
         return $result;
+    }
+
+    /**
+     * 从一堆标签ID查找一堆标签名
+     * @param array $tagIds 标签ID
+     * @return array
+     */
+    function getNamesFromIds($tagIds)
+    {
+        $names = array();
+
+        $tag_string = implode(',', $tagIds);
+        $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) > 0)
+        {
+            while ($result = $this->db->fetch_array($query))
+            {
+                $names[$result['tid']] = $result['tagname'];
+            }
+        }
+
+        return $names;
     }
 
     /**
