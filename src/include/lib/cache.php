@@ -417,22 +417,29 @@ class Cache {
      * 文章标签缓存
      */
     private function mc_logtags() {
-        $query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where type='blog'");
+        $tag_model = new Tag_Model();
+        $newlog = $this->readCache("newlog");
+
         $log_cache_tags = array();
-        while ($row = $this->db->fetch_array($query)) {
-            $logid = $row['gid'];
+        foreach ($newlog as $each)
+        {
+            $gid = $each['gid'];
+            $tag_ids = $tag_model->getTagIdsFromBlogId($gid);
+            $tag_names = $tag_model->getNamesFromIds($tag_ids);
+
             $tags = array();
-            $tquery = "SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE gid LIKE '%,$logid,%' " ;
-            $result = $this->db->query($tquery);
-            while ($trow = $this->db->fetch_array($result)) {
-                $trow['tagurl'] = urlencode($trow['tagname']);
-                $trow['tagname'] = htmlspecialchars($trow['tagname']);
-                $trow['tid'] = intval($trow['tid']);
-                $tags[] = $trow;
+            foreach ($tag_names as $key => $value)
+            {
+                $tag = array();
+                $tag['tagurl'] = rawurlencode($value);
+                $tag['tagname'] = htmlspecialchars($value);
+                $tag['tid'] = intval($key);
+                $tags[] = $tag;
             }
-            $log_cache_tags[$logid] = $tags;
-            unset($tags);
+
+            $log_cache_tags[$gid] = $tags;
         }
+
         $cacheData = serialize($log_cache_tags);
         $this->cacheWrite($cacheData, 'logtags');
     }
