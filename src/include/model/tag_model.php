@@ -44,10 +44,8 @@ class Tag_Model {
     }
 
     function getTagByName($tagName) {
-        $tag = $this->getIdFromName($tagName);
-        $blogs = $this->getBlogIdsFromTagId($tag);
-        $blogIdStr = implode(',', $blogs);
-        return $blogIdStr;
+        $tagId = $this->getIdFromName($tagName);
+        return $this->getTagById($tagId);
     }
 
     function getTagById($tagId) {
