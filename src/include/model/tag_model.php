@@ -308,14 +308,14 @@ class Tag_Model {
      */
     function getTagIdsFromBlogId($blogId = NULL)
     {
+        if (empty($blogId))
+        {
+            return $this->getAllTagIds();
+        }
+        
         $tags = array();
 
-        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap`";
-
-        if ( ! empty($blogId))
-        {
-            $sql .= " WHERE `gid` = " . $blogId;
-        }
+        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap` WHERE `gid` = " . $blogId;
 
         $query = $this->db->query($sql);
 
@@ -323,6 +323,24 @@ class Tag_Model {
         {
             $result = $this->db->fetch_array($query);
             $tags = explode(',', $result['tags']);
+        }
+
+        return $tags;
+    }
+
+    function getAllTagIds()
+    {
+        $tags = array();
+
+        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) > 0)
+        {
+            while ($result = $this->db->fetch_array($query))
+            {
+                $tags [] = $result['tid'];
+            }
         }
 
         return $tags;
