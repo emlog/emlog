@@ -68,7 +68,7 @@
             
             <div class="form-group">
             <label>标签：</label>
-            <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，逗号或空格分隔，过多的标签会影响系统运行效率" />
+            <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔" />
             <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
             <div id="tagbox" style="display: none;">
                 <?php
