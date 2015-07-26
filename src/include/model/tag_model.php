@@ -98,7 +98,8 @@ class Tag_Model {
 
         // 保存当前文章关联的标签Id列表
         $tag_string = implode(',', $tags);
-        $this->db->query("INSERT INTO `".DB_PREFIX."tagmap` (`gid`, `tags`) VALUES(" . $blogId . ", '" . $this->db->escape_string($tag_string) . "')");
+        $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
+        $this->db->query($sql);
     }
 
     /**
@@ -165,7 +166,7 @@ class Tag_Model {
 
         // 更新文章Tag映射
         $new_tag_string = implode(',', $new_tags);
-        $sql = "UPDATE `" . DB_PREFIX . "tagmap` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
+        $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
         $this->db->query($sql);
     }
 
@@ -315,14 +316,18 @@ class Tag_Model {
         
         $tags = array();
 
-        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "tagmap` WHERE `gid` = " . $blogId;
+        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "blog` WHERE `gid` = " . $blogId;
 
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0)
         {
             $result = $this->db->fetch_array($query);
-            $tags = explode(',', $result['tags']);
+
+            if ( ! empty($result['tags']))
+            {
+                $tags = explode(',', $result['tags']);
+            }
         }
 
         return $tags;
@@ -432,7 +437,7 @@ class Tag_Model {
                 }
 
                 $tag_string = implode(',', $new_tags);
-                $sql = "UPDATE `" . DB_PREFIX . "tagmap` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
+                $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
                 $this->db->query($sql);
             }
         }
