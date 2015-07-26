@@ -237,6 +237,7 @@ CREATE TABLE {$db_prefix}blog (
   allow_remark enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
   template varchar(255) NOT NULL default '',
+  tags text,
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),
@@ -374,12 +375,6 @@ CREATE TABLE {$db_prefix}tag (
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
-)".$table_charset_sql."
-DROP TABLE IF EXISTS {$db_prefix}tagmap;
-CREATE TABLE {$db_prefix}tagmap (
-  `gid` int(10) NOT NULL,
-  `tags` text,
-  PRIMARY KEY (`gid`)
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
