@@ -256,6 +256,8 @@ function blog_sort($blogid){
 //blog:Post Tags
 function blog_tag($blogid){
     global $CACHE;
+    $tag_model = new Tag_Model();
+
     $log_cache_tags = $CACHE->readCache('logtags');
     if (!empty($log_cache_tags[$blogid])){
 /*vot*/ $tag = lang('tags').': ';
@@ -263,6 +265,23 @@ function blog_tag($blogid){
             $tag .= "	<a href=\"".Url::tag($value['tagurl'])."\">".$value['tagname'].'</a>';
         }
         echo $tag;
+    }
+    else
+    {
+        $tag_ids = $tag_model->getTagIdsFromBlogId($blogid);
+        $tag_names = $tag_model->getNamesFromIds($tag_ids);
+
+        if ( ! empty($tag_names))
+        {
+            $tag = '标签:';
+
+            foreach ($tag_names as $key => $value)
+            {
+                $tag .= "	<a href=\"".Url::tag(rawurlencode($value))."\">".htmlspecialchars($value).'</a>';
+            }
+
+            echo $tag;
+        }
     }
 }
 ?>

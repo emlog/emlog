@@ -251,6 +251,7 @@ CREATE TABLE {$db_prefix}blog (
   allow_remark enum('n','y') NOT NULL default 'y',
   password varchar(255) NOT NULL default '',
   template varchar(255) NOT NULL default '',
+  tags text,
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),

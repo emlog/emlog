@@ -53,7 +53,7 @@ class Comment_Controller {
 /*vot*/            emMsg(lang('comment_error_content_invalid'));
         } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 /*vot*/            emMsg(lang('comment_error_national_chars'));
-        } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && $imgcode != $_SESSION['code']) {
+        } elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
 /*vot*/            emMsg(lang('comment_error_captcha_invalid'));
         } else {
             $_SESSION['code'] = null;

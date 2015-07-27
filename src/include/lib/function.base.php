@@ -221,7 +221,7 @@ function subString($strings, $start, $length) {
  * @param int $len
  */
 function extractHtmlData($data, $len) {
-    $data = strip_tags(subString($data, 0, $len + 30));
+    $data = subString(strip_tags($data), 0, $len + 30);
     $search = array("/([\r\n])[\s]+/", // Remove whitespace characters
         "/&(quot|#34);/i", // Replace HTML entities
         "/&(amp|#38);/i",
