@@ -8,10 +8,10 @@
 class Database {
 
     public static function getInstance() {
-        if (class_exists('mysqli')) {
+        if (class_exists('mysqli', FALSE)) {
             return MySqlii::getInstance();
         }
-        else if (class_exists('mysql')) {
+        else if (class_exists('mysql', FALSE)) {
             return MySql::getInstance();
         }
         else {
