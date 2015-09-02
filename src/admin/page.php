@@ -34,6 +34,7 @@ if ($action == 'new') {
         'hide' => '',
         'template' => 'page',
         'is_allow_remark' => 'n',
+        'att_frame_url' => 'attachment.php?action=selectFile',
     );
     extract($pageData);
     
@@ -49,6 +50,7 @@ if ($action == 'mod') {
     $containertitle = '编辑页面';
     $pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
     $pageData = $emPage->getOneLogForAdmin($pageId);
+    $att_frame_url = "attachment.php?action=attlib&logid=$pageId";
     extract($pageData);
 
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';

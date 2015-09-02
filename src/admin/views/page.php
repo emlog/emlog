@@ -14,7 +14,7 @@
             </div>
             <div id="post_bar">
                 <div>
-                    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset">上传插入</span>
+                    <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset">上传插入</span>
                     <?php doAction('adm_writelog_head'); ?>
                     <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
