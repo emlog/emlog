@@ -171,7 +171,7 @@ class Option {
      * 获取初始安装时的widget列表
      */
     static function getDefWidget() {
-        $default_widget = array('calendar','archive','newcomm','link','search');
+        $default_widget = array('archive','link','search');
         return $default_widget;
     }
 

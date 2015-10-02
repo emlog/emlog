@@ -36,6 +36,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li><a href="./"><i class="fa fa-home fa-fw"></i>管理首页</a></li>
+                    <li><a href="./configure.php"><i class="fa fa-wrench fa-fw"></i> 设置</a></li>
                     <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i>退出</a></li>
                 </ul>
 
@@ -55,14 +56,13 @@
                             <li><a href="tag.php" id="menu_tag"><i class="fa fa-tags fa-fw"></i> 标签</a></li>
                             <li><a href="sort.php" id="menu_sort"><i class="fa fa-flag fa-fw"></i> 分类</a></li>
                             <?php endif;?>
-                            <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> 评论(
+                            <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> 评论
                                     <?php
                                     $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                                     $n = $hidecmnum > 999 ? '...' : $hidecmnum;
-                                    echo $n;
+                                    echo $n > 0 ? "({$n})" : '';
                                     ?>
-                                    )
-                                </a></li>
+                                    </a></li>
                             <?php if (ROLE == ROLE_ADMIN):?>
                             <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> 页面</a></li>
                             <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> 友链</a></li>

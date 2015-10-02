@@ -351,7 +351,7 @@ CREATE TABLE {$db_prefix}link (
   taxis int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog', 'http://www.emlog.net', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(10) unsigned NOT NULL auto_increment,
