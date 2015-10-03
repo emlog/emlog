@@ -10,6 +10,10 @@ header('Content-Type: text/html; charset=UTF-8');
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 
+if (extension_loaded('mbstring')) {
+	mb_internal_encoding('UTF-8');
+}
+
 require_once EMLOG_ROOT.'/config.php';
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
 

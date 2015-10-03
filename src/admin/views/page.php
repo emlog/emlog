@@ -14,10 +14,10 @@
             </div>
             <div id="post_bar">
                 <div>
-                    <span onclick="displayToggle('FrameUpload', 0);autosave(1);" class="show_advset"><?=lang('upload_insert')?></span>
+                    <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
                     <?php doAction('adm_writelog_head'); ?>
                     <span id="asmsg"></span>
-                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
                 </div>
                 <div id="FrameUpload" style="display: none;">
                     <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url;?>"></iframe>

@@ -36,6 +36,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
 <!--vot-->          <li><a href="./"><i class="fa fa-home fa-fw"></i><?=lang('admincp')?></a></li>
+                    <li><a href="./configure.php"><i class="fa fa-wrench fa-fw"></i> 设置</a></li>
 <!--vot-->          <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i><?=lang('logout')?></a></li>
                 </ul>
 
@@ -59,10 +60,9 @@
                                     <?php
                                     $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                                     $n = $hidecmnum > 999 ? '...' : $hidecmnum;
-                                    echo $n;
+                                    echo $n > 0 ? "({$n})" : '';
                                     ?>
-                                    )
-                                </a></li>
+                                    </a></li>
                             <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot-->                  <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> <?=lang('pages')?></a></li>
 <!--vot-->                  <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> <?=lang('friend_links')?></a></li>

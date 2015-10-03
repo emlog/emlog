@@ -9,7 +9,7 @@
 
 class Option {
     //Version number
-    const EMLOG_VERSION = '5.3.1';
+    const EMLOG_VERSION = '6.0.0-Beta';
     //Maximum avatar thumbnail width
     const ICON_MAX_W = 140;
     //Maximum avatar thumbnail height
@@ -174,7 +174,7 @@ class Option {
      * Get a list of widgets installed by default
      */
     static function getDefWidget() {
-        $default_widget = array('calendar','archive','newcomm','link','search');
+        $default_widget = array('archive','link','search');
         return $default_widget;
     }
 
