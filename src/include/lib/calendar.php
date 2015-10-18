@@ -25,19 +25,21 @@ class Calendar {
 	 */
 	static function generate() {
 		$DB = Database::getInstance();
+		$timezone = Option::get('timezone');
+		$timestamp = time() + $timezone * 3600;
 
 		//Array of post create time
 		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
-			$logdate[] = date("Ymd", $date['date']);
+			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
 		}
 		//Get the current date
-		$n_year  = date("Y");
-		$n_year2 = date("Y");
-		$n_month = date("m");
-		$n_day   = date("d");
-		$time    = date("Ymd");
-		$year_month = date("Ym");
+		$n_year  = gmdate("Y", $timestamp);
+		$n_year2 = gmdate("Y", $timestamp);
+		$n_month = gmdate("m", $timestamp);
+		$n_day   = gmdate("d", $timestamp);
+		$time    = gmdate("Ymd", $timestamp);
+		$year_month = gmdate("Ym", $timestamp);
 
 		if (isset($_GET['record'])) {
 			$n_year = substr(intval($_GET['record']),0,4);

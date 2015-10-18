@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class="containertitle"><b><?=lang('author_info_manage')?></b>
+<!--vot--><div class=containertitle><b><?=lang('author_info_manage')?></b>
 <!--vot--><?php if(isset($_GET['error_login'])):?><span class="alert alert-danger"><?=lang('user_name_empty')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger"><?=lang('user_name_exists')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>

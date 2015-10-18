@@ -4,10 +4,10 @@
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
     <li>
-<!--vot--><input size="20" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label><?=lang('nav_name')?></label>
+<!--vot--><input size="40" class="form-control" value="<?php echo $naviname; ?>" name="naviname" /> <label><?=lang('nav_name')?></label>
     </li>
     <li>
-<!--vot--><input size="50" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label><?=lang('nav_address')?>
+<!--vot--><input size="100" class="form-control" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?> /> <label><?=lang('nav_address')?></label>
     </li>
     <li class="checkbox">
 <!--vot--><label><input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> /> <?=lang('open_new_win')?></label>

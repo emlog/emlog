@@ -36,7 +36,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
 <!--vot-->          <li><a href="./"><i class="fa fa-home fa-fw"></i><?=lang('admincp')?></a></li>
-                    <li><a href="./configure.php"><i class="fa fa-wrench fa-fw"></i> 设置</a></li>
+                    <li><a href="./configure.php"><i class="fa fa-wrench fa-fw"></i> <?=lang('settings')?></a></li>
 <!--vot-->          <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i><?=lang('logout')?></a></li>
                 </ul>
 
@@ -54,15 +54,16 @@
 <!--vot-->                  <li><a href="admin_log.php" id="menu_log"><i class="fa fa-list-alt fa-fw"></i> <?=lang('posts')?></a></li>
                             <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot-->                  <li><a href="tag.php" id="menu_tag"><i class="fa fa-tags fa-fw"></i> <?=lang('tags')?></a></li>
-                            <li><a href="sort.php" id="menu_sort"><i class="fa fa-flag fa-fw"></i> <?=lang('categories')?></a></li>
+<!--vot-->                  <li><a href="sort.php" id="menu_sort"><i class="fa fa-flag fa-fw"></i> <?=lang('category')?></a></li>
                             <?php endif;?>
-<!--vot-->                  <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> <?=lang('comments')?> (
+<!--vot-->                  <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> <?=lang('comments')?>
                                     <?php
                                     $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                                     $n = $hidecmnum > 999 ? '...' : $hidecmnum;
-                                    echo $n > 0 ? "({$n})" : '';
+                                    echo $n;
                                     ?>
-                                    </a></li>
+                                    )
+                                </a></li>
                             <?php if (ROLE == ROLE_ADMIN):?>
 <!--vot-->                  <li><a href="page.php" id="menu_page"><i class="fa fa-file-o fa-fw"></i> <?=lang('pages')?></a></li>
 <!--vot-->                  <li><a href="link.php" id="menu_link"><i class="fa fa-link fa-fw"></i> <?=lang('friend_links')?></a></li>

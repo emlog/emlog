@@ -1,6 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<!--vot--><script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/en.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--Article Content-->
 <div class="col-lg-8">
@@ -14,7 +14,7 @@
             </div>
             <div id="post_bar">
                 <div>
-                    <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot-->          <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
                     <?php doAction('adm_writelog_head'); ?>
                     <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
@@ -70,10 +70,9 @@
 </div>
 </form>
 <script>
-/*vot*/$(function() {
-/*vot*/  KindEditor.create('textarea[name="content"]');
-/*vot*/  KindEditor.create('textarea[name="excerpt"]');
-/*vot*/});
+/*vot*/	$(function() {
+/*vot*/		KindEditor.create('textarea[name="content"]');
+/*vot*/	});
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#menu_page").addClass('active');

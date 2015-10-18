@@ -6,14 +6,14 @@
 
 class Tag_Model {
 
-    private  $db;
+    private $db;
 
     function __construct() {
         $this->db = Database::getInstance();
     }
 
     /**
-	 * Get Post Tags
+     * Get Post Tags
      *
      * @param int $blogId
      * @return array
@@ -55,20 +55,21 @@ class Tag_Model {
     }
 
     /**
-	 * Add tags
+     * Add tags
      *
      * @param string $tagStr
      */
     function addTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
-/*NOT translate!*/ $tagStr = str_replace('，', ',', $tagStr);
+	// DO NOT TRANSLATE BELOW LINE!!
+        $tagStr = str_replace('，', ',', $tagStr);
         
         if (empty($tagStr))
         {
             return;
         }
 
-        // Split the tags string into a tag array and remove duplicates
+        // Split the Tag string into the Tag array, and remove duplications
         $tagNameArray = explode(',', $tagStr);
         $tagNameArray = array_unique($tagNameArray);
 
@@ -82,7 +83,7 @@ class Tag_Model {
                 continue;
             }
 
-            // Get the tag ID from the tag name, if the tag does not exist, create the tag
+            // Get from the tag name to Tag Id, If the tag does not exist, Create Tag
             $tagId = $this->getIdFromName($tagName);
             
             if ( ! $tagId)
@@ -90,38 +91,39 @@ class Tag_Model {
                 $tagId = $this->createTag($tagName);
             }
 
-            // Insert the current article Id into the tag
+            // insert the current blog Id into the tag
             $this->addBlogIntoTag($tagId, $blogId);
 
             $tags[] = $tagId;
         }
 
-        // Save the list of tag IDs associated with the current article
+        // Save the current blog associated Tag Id list
         $tag_string = implode(',', $tags);
         $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
         $this->db->query($sql);
     }
 
     /**
-	 * Update Post Tags
+     * Update Post Tags
      *
      * @param string $tagStr
      * @param int $blogId
      */
     function updateTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
-/*NOT translate!*/ $tagStr = str_replace('，', ',', $tagStr);
+	// DO NOT TRANSLATE BELOW LINE!!
+        $tagStr = str_replace('，', ',', $tagStr);
         
-        // List of old tag IDs
+        // The old Tag Id list
         $old_tags = $this->getTagIdsFromBlogId($blogId);
 
-        // New tag ID list
+        // The new Tag Id list
         $new_tags = array();
 
-        // Create a new tag id array
+        // Establish new tag id array
         if ( ! empty($tagStr))
         {
-            // Split the tag string into a tag array and remove duplicates
+            // split the label string Tag array, and remove duplications
             $tagNameArray = explode(',', $tagStr);
             $tagNameArray = array_unique($tagNameArray);
 
@@ -134,7 +136,7 @@ class Tag_Model {
                     continue;
                 }
 
-                // Get the tag ID from the tag name, if the tag does not exist, create the tag
+                // Get from the tag name to Tag Id, If the tag does not exist, Create Tag
                 $tagId = $this->getIdFromName($tagName);
                 
                 if ( ! $tagId)
@@ -146,7 +148,7 @@ class Tag_Model {
             }
         }
 
-        // If the old tag ID does not exist in the new tag ID array, delete the mapping from the Tag table
+        // If the old in a new tab Tag Id Id array does not exist, delete Tag from the list mapping
         foreach ($old_tags as $each_tag)
         {
             if ( ! in_array($each_tag, $new_tags))
@@ -155,7 +157,7 @@ class Tag_Model {
             }
         }
 
-        // If the new tag ID does not exist in the old tag ID array, create a mapping in the Tag table
+        // If the new Tag in the old Tag Id Id array does not exist, then establish the Tag mapping table
         foreach ($new_tags as $each_tag)
         {
             if ( ! in_array($each_tag, $old_tags))
@@ -164,7 +166,7 @@ class Tag_Model {
             }
         }
 
-        // Update article Tag mapping
+        // Update Article Tag Mapping
         $new_tag_string = implode(',', $new_tags);
         $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
         $this->db->query($sql);
@@ -176,7 +178,7 @@ class Tag_Model {
     }
 
     function deleteTag($tagId) {
-        // To delete a tag, you need to check which articles have cited this tag first, and remove this tag from those references
+        // To remove a Tag, You need to check which Article have cited this tag, And to delete the label from those references
         $linked_blogs = $this->getBlogIdsFromTagId($tagId);
 
         foreach ($linked_blogs as $blogId)
@@ -188,7 +190,7 @@ class Tag_Model {
     }
 
     /**
-     * Find tag ID from tag name
+     * Find Tag ID from the tag name
      * @param string $tagName Tag name
      * @return int|bool Tag ID | FALSE (Tag not found)
      */
@@ -207,9 +209,9 @@ class Tag_Model {
     }
 
     /**
-     * Find a bunch of tag IDs from a bunch of tag names
-     * @param string $tagNames Tag name (separated by commas)
-     * @return array Tag ID
+     * Find Tag IDs from a bunch of Tag ID
+     * @param string $tagNames Tag names (comma separated)
+     * @return array Tag ID list
      */
     function getIdsFromNames($tagNames)
     {
@@ -237,8 +239,8 @@ class Tag_Model {
     }
 
     /**
-     * Find a bunch of tag names from a bunch of tag IDs
-     * @param array $tagIds Tag ID
+     * Find a bunch of Tag names from a bunch Tag ID
+     * @param array $tagIds Tag ID list
      * @return array
      */
     function getNamesFromIds($tagIds = NULL)
@@ -264,9 +266,9 @@ class Tag_Model {
     }
 
     /**
-     * 创建一个新的标签
-     * @param string $tagName 标签名
-     * @return int 标签ID
+     * Create a new tag
+     * @param string $tagName Tag name
+     * @return int Tag ID
      */
     function createTag($tagName)
     {
@@ -282,8 +284,8 @@ class Tag_Model {
     }
 
     /**
-     * 创建一堆新标签
-     * @param mixed $tagNames 标签名 (以半角逗号分隔)
+     * Create a bunch of new Tags
+     * @param mixed $tagNames Tag names (in comma separated)
      */
     function createTags($tagNames)
     {
@@ -303,9 +305,9 @@ class Tag_Model {
     }
 
     /**
-     * 从BlogId获取到TagId列表 (获取到文章所使用的Tag列表)
-     * @param int $blogId 文章ID
-     * @return array 标签ID列表
+     * Get TagId list from BlogId (Get the Tag List used in the Article)
+     * @param int $blogId Article ID
+     * @return array Tag ID list
      */
     function getTagIdsFromBlogId($blogId = NULL)
     {
@@ -323,11 +325,7 @@ class Tag_Model {
         if ($this->db->num_rows($query) > 0)
         {
             $result = $this->db->fetch_array($query);
-
-            if ( ! empty($result['tags']))
-            {
-                $tags = explode(',', $result['tags']);
-            }
+            $tags = explode(',', $result['tags']);
         }
 
         return $tags;
@@ -353,9 +351,9 @@ class Tag_Model {
 
 
     /**
-     * 从TagId获取到BlogId列表 (获取到一个Tag下所有的文章)
-     * @param int $tagId 标签ID
-     * @return array 文章ID列表
+     * Get BlogId list from TagId (Get all articles from a Tag ID)
+     * @param int $tagId Tag ID
+     * @return array Article ID list
      */
     function getBlogIdsFromTagId($tagId)
     {
@@ -378,7 +376,7 @@ class Tag_Model {
     }
 
     /**
-     * 从Tag表的Tag删除掉一篇文章引用
+     * Remove from Tag Tag out the article referenced table
      * @param int $tagId 
      * @param int $blogId 
      */
@@ -391,7 +389,7 @@ class Tag_Model {
             return;
         }
 
-        // 如果blogId存在，则构建一个新的不包含这个blogId的Blog数组，并保存到数据库
+        // If blogId exist, then build a new does not contain this blogId array of Blog, and save to the database
         if (in_array($blogId, $blogs))
         {
             $new_blogs = array();
@@ -411,7 +409,7 @@ class Tag_Model {
     }
 
     /**
-     * 从TagMap表里的gid删除掉一个标签引用
+     * Ddelete a reference to a Tag from the list of TagMap
      * @param int $blogId 
      * @param int $tagId 
      */
@@ -424,7 +422,7 @@ class Tag_Model {
             return;
         }
 
-        // 如果tagId存在，则构建一个新的不包含这个TagId的Tag数组，并保存到数据库
+        // If tagId exist, then build a new array that does not contain this TagId of Tag, and save to the database
         if (in_array($tagId, $tags))
         {
             $new_tags = array();
@@ -444,9 +442,9 @@ class Tag_Model {
     }
 
     /**
-     * 将BlogId插入到Tag表里
-     * @param int $tagId 标签ID
-     * @param int $blogId 文章ID
+     * Insert BlogId into the Tag table
+     * @param int $tagId Tag ID
+     * @param int $blogId Blog ID
      */
     function addBlogIntoTag($tagId, $blogId)
     {

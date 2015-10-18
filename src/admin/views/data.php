@@ -21,7 +21,7 @@
 <!--vot--><th width="149"><b><?=lang('file_size')?></b></th>
       <th width="87"></th>
     </tr>
-  </thead>
+  </head>
   <tbody>
     <?php
         if($bakfiles):

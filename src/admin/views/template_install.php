@@ -27,11 +27,11 @@
     <input name="tplzip" type="file" />
     </p>
     <p>
-<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary" /> <?=lang('template_upload_prompt')?>
+<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary" />
     </p>
 </div>
 </form>
-<!--vot--><div style="margin:10px 20px;"><?=lang('template_get_more')?>: <a href="store.php"><?=lang('app_center')?>&raquo;</a></div>
+<!--vot--><div style="margin:10px 20px;"><?=lang('template_get_more')?>: <a href="store.php"><?=lang('app_center')?></a></div>
 <script>
 setTimeout(hideActived,2600);
 $("#menu_category_view").addClass('active');

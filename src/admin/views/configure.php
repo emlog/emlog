@@ -45,12 +45,12 @@
                 </label>
             </div>
             <div class="checkbox form-inline">
-<!--vot-->      <label><input type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><?=lang('auto_summary')?></label>,
+<!--vot-->      <input type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> /><?=lang('auto_summary')?>,
 <!--vot-->      <?=lang('before_intercept')?><input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;" /><?=lang('characters_as_summary')?>
             </div>          
         </div>
         <div class="form-group form-inline">
-<!--vot-->  RSS <?=lang('export')?> <input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num" /> <?=lang('_posts_and_output')?>
+<!--vot-->  <?=lang('export')?><input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num" /><?=lang('_posts_and_output')?>
             <select name="rss_output_fulltext" class="form-control">
 <!--vot-->      <option value="y" <?php echo $ex1; ?>><?=lang('full_text')?></option>
 <!--vot-->      <option value="n" <?php echo $ex2; ?>><?=lang('summary')?></option>

@@ -118,7 +118,7 @@
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                     <ul>
-                        <li><input maxlength="4" class="form-control" placeholder="<?=lang('order_num')?>" name="taxis" /></li>
+<!--vot-->              <li><input maxlength="4" class="form-control" placeholder="<?=lang('id')?>" name="taxis" /></li>
 <!--vot-->              <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" /></li>
 <!--vot-->              <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" /></li>
                         <li class="form-inline">

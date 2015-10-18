@@ -77,6 +77,7 @@ if ($action == 'save' || $action == 'autosave') {
 
     $postTime = time();
 
+    //check alias
     if (!empty($alias)) {
         $logalias_cache = $CACHE->readCache('logalias');
         $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
@@ -95,7 +96,7 @@ if ($action == 'save' || $action == 'autosave') {
     );
 
     $directUrl = '';
-    if ($pageId > 0) {
+/*vot*/    if ($pageId > 0) {//auto-save, add into update
         $emPage->updateLog($logData, $pageId);
         $directUrl = './page.php?active_pubpage=1';
     } else{

@@ -48,16 +48,16 @@ $lang = array(
 //---------------------------
 //m/view/header.php
 // 'home'		=> 'Home',//'首页',
-'twitters'		=> 'Twitters',//'微语',
+// 'twitters'		=> 'Twitters',//'微语',
 // 'comments'		=> 'Comments',//'评论',
-'post_write'		=> 'Write post',//'写文章',
+// 'post_write'		=> 'Write post',//'写文章',
 // 'logout'		=> 'Logout',//'退出',
 // 'login'		=> 'Login',//'登录',
 
 //---------------------------
 //m/view/log.php (Blog)
 // 'comments'	=> 'Comments',//'评论',
-'views'	=> 'Views',//'阅读',
+// 'views'	=> 'Views',//'阅读',
 // 'edit'	=> 'Edit',//'编辑',
 
 //---------------------------

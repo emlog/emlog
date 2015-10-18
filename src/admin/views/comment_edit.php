@@ -4,13 +4,13 @@
 <div class=line></div>
 <form action="comment.php?action=doedit" method="post">
 <div class="item_edit">
-<!--vot--><li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" class="form-control" /> <?=lang('commentator')?></li>
-<!--vot--><li><input type="text"  value="<?php echo $mail; ?>" name="mail" style="width:200px;" class="form-control" /> <?=lang('email')?></li>
-<!--vot--><li><input type="text"  value="<?php echo $url; ?>" name="url" style="width:200px;" class="form-control" /> <?=lang('home_page')?></li>
-<!--vot--><li><?=lang('comment_content')?>:<br /><textarea name="comment" rows="8" cols="60" class="form-control"><?php echo $comment; ?></textarea></li>
+    <li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" class="form-control" /> <?=lang('commentator')?></li>
+    <li><input type="text"  value="<?php echo $mail; ?>" name="mail" style="width:200px;" class="form-control" /> <?=lang('email')?></li>
+    <li><input type="text"  value="<?php echo $url; ?>" name="url" style="width:200px;" class="form-control" /> <?=lang('home_page')?></li>
+    <li><?=lang('comment_content')?>:<br /><textarea name="comment" rows="8" cols="60" class="form-control"><?php echo $comment; ?></textarea></li>
     <input type="hidden" value="<?php echo $cid; ?>" name="cid" />
-<!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-primary" />
-<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
+    <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" />
+    <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
 <script>

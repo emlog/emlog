@@ -1,6 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<!--vot--><script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/kindeditor-all-min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/en.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 
 <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
 <!--Article Content-->
@@ -130,11 +130,14 @@
 </div>
 </form>
 <script>
-/*vot*/  $(function() {
-/*vot*/    KindEditor.create('textarea[name="content"]');
-/*vot*/    KindEditor.create('textarea[name="excerpt"]');
-/*vot*/  });
-$("#menu_wt").addClass('active');
+/*vot*/	$(function() {
+/*vot*/		KindEditor.create('textarea[name="content"]');
+/*vot*/	});
+/*vot*/	$(function() {
+/*vot*/		KindEditor.create('textarea[name="excerpt"]');
+/*vot*/	});
+
+    $("#menu_wt").addClass('active');
     $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
     $("#alias").keyup(function () {
         checkalias();

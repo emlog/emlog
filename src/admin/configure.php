@@ -36,6 +36,38 @@ if ($action == '') {
         $ex4 = 'selected="selected"';
     }
 
+/*vot*/ $tzlist = array('-12'=>lang('tz-12'),
+                '-11'=>lang('tz-11'),
+                '-10'=>lang('tz-10'),
+                '-9'=>lang('tz-9'),
+                '-8'=>lang('tz-8'),
+                '-7'=>lang('tz-7'),
+                '-6'=>lang('tz-6'),
+                '-5'=>lang('tz-5'),
+                '-4'=>lang('tz-4'),
+                '-3.5'=>lang('tz-3.5'),
+                '-3'=>lang('tz-3'),
+                '-2'=>lang('tz-2'),
+                '-1'=>lang('tz-1'),
+                '0'=>lang('tz0'),
+                '1'=>lang('tz1'),
+                '2'=>lang('tz2'),
+                '3'=>lang('tz3'),
+                '3.5'=>lang('tz3.5'),
+                '4'=>lang('tz4'),
+                '4.5'=>lang('tz4.5'),
+                '5'=>lang('tz5'),
+                '5.5'=>lang('tz5.5'),
+                '6'=>lang('tz6'),
+                '7'=>lang('tz7'),
+                '8'=>lang('tz8'),
+                '9'=>lang('tz9'),
+                '9.5'=>lang('tz9.5'),
+                '10'=>lang('tz10'),
+                '11'=>lang('tz11'),
+                '12'=>lang('tz12'),
+                );
+
     $tzlist = array(
         'Etc/GMT'		=>	lang('Etc/GMT'),
         'Africa/Casablanca'	=>	lang('Africa/Casablanca'),

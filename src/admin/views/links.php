@@ -53,14 +53,14 @@
   </table>
   <div class="list_footer">
 <!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
-<!--vot--><a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?>+</a>
+<!--vot--><a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?></a>
   </div>
 </form>
 <form action="link.php?action=addlink" method="post" name="link" id="link" class="form-inline">
 <div id="link_new" class="form-group">
     <li>
         <input maxlength="4" style="width:30px;" class="form-control" name="taxis" />
-<!--vot--><label><?=lang('order_num')?></label>
+<!--vot--><label><?=lang('id')?></label>
     </li>
     <li>
         <input maxlength="200" style="width:232px;" class="form-control" name="sitename" />

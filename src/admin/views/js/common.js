@@ -28,7 +28,7 @@ $(function() {
  * Easy menu jQuery plugin for Twitter Bootstrap 3
  * https://github.com/onokumus/metisMenu
  *
- * Made by Osman Nuri Okumuş
+ * Made by Osman Nuri Okumush
  * Under MIT License
  */
 ;(function ($, window, document, undefined) {
@@ -212,15 +212,15 @@ function checkalias(){
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
     if (editorMap['content'].designMode === false){
 /*vot*/ alert(lang('wysiwyg_switch'));
-/*vot*/ }else if (imgsrc != '') {
-/*vot*/ editorMap['content'].insertHtml('<a target="_blank" href="'+fileurl+'" id="ematt:'+aid+'"><img src="'+imgsrc+'" title="'+lang('click_view_fullsize')+'" alt="'+alt+'" border="0" width="'+width+'" height="'+height+'"></a>');
+    }else if (imgsrc != "") {
+/*vot*/ editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+lang('click_view_fullsize')+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
     }
 }
 function addattach_file(fileurl,filename,aid){
     if (editorMap['content'].designMode === false){
 /*vot*/ alert(lang('wysiwyg_switch'));
     } else {
-/*vot*/ editorMap['content'].insertHtml('<span class="attachment"><a target="_blank" href="'+fileurl+'" >'+filename+'</a></span>');
+        editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
     }
 }
 function insertTag (tag, boxId){

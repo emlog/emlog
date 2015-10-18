@@ -117,7 +117,7 @@ function widget_hotlog($title){
     </ul>
 <?php }?>
 <?php
-//widget:Search
+//widget:Random Post
 function widget_search($title){ ?>
     <h4><?php echo $title; ?></h4>
     <ul class="list-unstyled">
@@ -273,7 +273,7 @@ function blog_tag($blogid){
 
         if ( ! empty($tag_names))
         {
-            $tag = '标签:';
+/*vot*/     $tag = lang('tags').':';
 
             foreach ($tag_names as $key => $value)
             {

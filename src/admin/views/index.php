@@ -36,7 +36,7 @@
         <div class="col-lg-12">
             <div id="admindex">
                 <div id="about" class="alert alert-warning">
-<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?php echo Option::EMLOG_VERSION; ?>  <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
+<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?php echo Option::EMLOG_VERSION; ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
                   <span id="upmsg"></span>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                             function(data) {
                                 if (data.result.match("no")) {
 /*vot*/                             $("#about #upmsg").html("<?=lang('updates_no')?>").removeClass();
-                                } else if (data.result.match("yes")) {
+                                } else if (data.result.match("yes")) {
 /*vot*/                             $("#about #upmsg").html("<?=lang('update_exists')?>" + data.ver + "<?=lang('backup_before_update')?> <a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                                 } else {
 /*vot*/                             $("#about #upmsg").html("<?=lang('update_check_failed')?>").removeClass();

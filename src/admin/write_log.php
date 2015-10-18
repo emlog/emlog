@@ -35,7 +35,7 @@ if ($action == '') {
 	$is_top = '';
 	$is_sortop = '';
 	$is_allow_remark = '';
-	$postDate = date('Y-m-d H:i:s');
+	$postDate = gmdate('Y-m-d H:i:s', $localtime);
     $att_frame_url = 'attachment.php?action=selectFile';
 
 	include View::getView('header');

@@ -80,6 +80,7 @@ $lang = array(
 // 'user'		=> 'User',//'作者'
 // 'user'		=> 'User',//'作者',
  'template_upload_failed'	=> 'Template upload failed',//'模板上传失败',
+ 'template_used'	=> 'You can not delete a template being used',//'您不能删除正在使用的模板',
 
 //---------------------------
 //admin/views/add_log.php
@@ -260,7 +261,6 @@ $lang = array(
  'per_page'		=> 'Show per page',//'每页显示',
  '_posts'		=> 'posts',//'篇文章',
  'your_timezone'	=> 'Your time zone',//'你所在时区',
- 'Etc/GMT'		=>	'(UTC) Coordinated Universal Time',
  'Africa/Casablanca'	=>	'(UTC) Casablanca',//'(UTC)卡萨布兰卡',
  'Atlantic/Reykjavik'	=>	'(UTC) Monrovia, Reykjavik',//'(UTC)蒙罗维亚，雷克雅未克',
  'Europe/London'	=>	'(UTC) Dublin, Edinburgh, Lisbon, London',//'(UTC)都柏林，爱丁堡，里斯本，伦敦',

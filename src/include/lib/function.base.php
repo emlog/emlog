@@ -166,7 +166,7 @@ function emLoadJQuery() {
  * Validate email address format
  */
 function checkMail($email) {
-/*vot*/ if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && mb_strlen($email) <= 60) {
+    if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
         return true;
     } else {
         return false;
@@ -188,26 +188,26 @@ function subString($strings, $start, $length) {
     }
     $str = substr($strings, $start, $length);
     $char = 0;
-/*vot*/ for ($i = 0; $i < mb_strlen($str); $i++) {
+    for ($i = 0; $i < strlen($str); $i++) {
         if (ord($str[$i]) >= 128)
             $char++;
     }
     $str2 = substr($strings, $start, $length + 1);
     $str3 = substr($strings, $start, $length + 2);
     if ($char % 3 == 1) {
-/*vot*/ if ($length <= mb_strlen($strings)) {
+        if ($length <= strlen($strings)) {
             $str3 = $str3 .= '...';
         }
         return $str3;
     }
     if ($char % 3 == 2) {
-/*vot*/ if ($length <= mb_strlen($strings)) {
+        if ($length <= strlen($strings)) {
             $str2 = $str2 .= '...';
         }
         return $str2;
     }
     if ($char % 3 == 0) {
-/*vot*/ if ($length <= mb_strlen($strings)) {
+        if ($length <= strlen($strings)) {
             $str = $str .= '...';
         }
         return $str;
@@ -401,7 +401,7 @@ function getRandStr($length = 12, $special_chars = true) {
     }
     $randStr = '';
     for ($i = 0; $i < $length; $i++) {
-/*vot*/ $randStr .= substr($chars, mt_rand(0, mb_strlen($chars) - 1), 1);
+        $randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
     }
     return $randStr;
 }

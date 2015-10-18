@@ -39,7 +39,7 @@ class Comment_Controller {
 /*vot*/            emMsg(lang('comment_error_flood_control'));
         } elseif (empty($name)) {
 /*vot*/            emMsg(lang('comment_error_name_enter'));
-        } elseif (mb_strlen($name) > 20) {
+        } elseif (strlen($name) > 20) {
 /*vot*/            emMsg(lang('comment_error_name_invalid'));
         } elseif ($mail != '' && !checkMail($mail)) {
 /*vot*/            emMsg(lang('comment_error_email_invalid'));
@@ -49,7 +49,7 @@ class Comment_Controller {
 /*vot*/            emMsg(lang('comment_error_url_invalid'),'javascript:history.back(-1);');
         } elseif (empty($content)) {
 /*vot*/            emMsg(lang('comment_error_empty'));
-        } elseif (mb_strlen($content) > 8000) {
+        } elseif (strlen($content) > 8000) {
 /*vot*/            emMsg(lang('comment_error_content_invalid'));
         } elseif (ROLE == ROLE_VISITOR && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 /*vot*/            emMsg(lang('comment_error_national_chars'));
