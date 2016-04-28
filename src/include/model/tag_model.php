@@ -246,7 +246,17 @@ class Tag_Model {
     function getNamesFromIds($tagIds = NULL)
     {
         $names = array();
+/*vot*/	foreach ($tagIds AS $i => $tag) {
+/*vot*/		if(empty($tag)) {
+/*vot*/			unset($tagIds[$i]);
+/*vot*/		}
+/*vot*/	}
 
+//DEBUG
+//echo '<pre>';
+//echo 'tagIds=';
+//print_r($tagIds);
+//echo '</pre>';
         if ( ! empty($tagIds))
         {
             $tag_string = implode(',', $tagIds);
