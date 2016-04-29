@@ -12,6 +12,7 @@ require_once EMLOG_ROOT.'/include/lib/function.base.php';
 /*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
 
+/*vot*/ load_language('core');
 /*vot*/ load_language('install');
 
 header('Content-Type: text/html; charset=UTF-8');
