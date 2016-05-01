@@ -42,7 +42,14 @@
             </div>
         </div>
     </div>
-            <script>
+    <script>
+	var em_lang = '<?=EMLOG_LANGUAGE?>';
+	function mkdate(str, y, m, d, offset, s) {
+	  y = '20' + y;
+	  m = m.replace( /^([0-9])$/, '0$1' );
+	  d = d.replace( /^([0-9])$/, '0$1' );
+	  return (y + '-' + m + '-' + d);
+	}
                 $(document).ready(function() {
 /*vot*/             $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
                     $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
@@ -53,6 +60,13 @@
                                     if (item.image != '') {
                                         image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
                                     }
+//14年5月1日
+/*vot*/				    if(em_lang != 'cn') {
+/*vot*/					item.date = item.date.replace(/(\d+)年(\d+)月(\d+)日/, mkdate);
+/*vot*/					//alert(item.date);
+/*vot*/					item.title = item.title.replace("发布", "<?=lang('release')?>");
+/*vot*/				    }
+
                                     $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
                                 });
                             });

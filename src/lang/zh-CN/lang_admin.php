@@ -594,6 +594,7 @@ $lang = array(
  'you_can_enter'		=> '(You can enter ',//'(你还可以输入',
  '_characters'			=> ' characters',//'字',
  'exceeds'			=> 'has been exceeded ',//'已超出',
+ 'release'			=> '发布',//,' release',
 // '_characters'		=> ' characters',//'字',
 // 'twitter_write_length'	=> '(You can enter 140 characters maximum)',//'(你还可以输入140字)',
 // 'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活……',
