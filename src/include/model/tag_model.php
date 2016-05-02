@@ -365,22 +365,31 @@ class Tag_Model {
      * @param int $tagId Tag ID
      * @return array Article ID list
      */
-    function getBlogIdsFromTagId($tagId)
+    function getBlogIdsFromTagId($tagId = null)
     {
         $blogs = array();
 
-        $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
-        $query = $this->db->query($sql);
+//DEBUG
+//echo '<pre>';
+//echo 'tagId=';
+//print_r($tagId);
+//echo '</pre>';
 
-        if ($this->db->num_rows($query) > 0)
-        {
-            $result = $this->db->fetch_array($query);
+/*vot*/	if(!empty($tagId)) {
 
-            if ( ! empty($result['gid']))
+            $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
+            $query = $this->db->query($sql);
+
+            if ($this->db->num_rows($query) > 0)
             {
-                $blogs = explode(',', $result['gid']);
+                $result = $this->db->fetch_array($query);
+
+                if ( ! empty($result['gid']))
+                {
+                    $blogs = explode(',', $result['gid']);
+                }
             }
-        }
+/*vot*/	}
 
         return $blogs;
     }
