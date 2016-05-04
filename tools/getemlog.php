@@ -98,7 +98,7 @@ if ($action == 'go') {
 					if ( !is_writable(DOC_ROOT)):
 						$can_go = false;
 					?>
-					<p style="color:red">Your current directory <?php echo DOC_ROOT?> have no write permission, Program can not be installed.</p>
+					<p style="color:red">Your current directory <?= DOC_ROOT?> have no write permission, Program can not be installed.</p>
 					<?php
 					endif;
 					?>
@@ -147,7 +147,7 @@ if ($action == 'go') {
 		
 		timeout = window.setTimeout(function() {
 /*vot*/			$('loading_panel').innerHTML = '<span>Getting EMLOG version failed, Please refresh the page and try again.</span>';
-		}, <?php echo TIMEOUT * 1000?>);
+		}, <?= TIMEOUT * 1000?>);
 		</script>
 		<script src="http://www.emlog.net/services/version.php"></script>
 	</body>

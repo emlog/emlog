@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
+<link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
 <script>
 function uploadfile(){
     var as_logid = parent.document.getElementById('as_logid').value
@@ -31,11 +31,11 @@ function removeattachfrom() {
 <div id="media-upload-header">
 <!--vot--><span id="curtab"><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
 <!--vot--><span><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
-    <span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?php echo $attachnum; ?>)</a></span>
+    <span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?= $attachnum; ?>)</a></span>
 </div>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
-<!--vot--><p>(<?=lang('attach_max_size')?>: <?php echo $maxsize ;?>, <?=lang('types_allowed')?>: <?php echo $att_type_str; ?>)
+<!--vot--><p>(<?=lang('attach_max_size')?>: <?= $maxsize ;?>, <?=lang('types_allowed')?>: <?= $att_type_str; ?>)
     <div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
     <div id="attachbody"><span><input type="file" name="attach[]" /></span></div>
 <!--vot--><input type="button" name="html-upload" value="<?=lang('upload')?>" onclick="uploadfile();"/>

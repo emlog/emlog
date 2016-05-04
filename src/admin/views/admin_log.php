@@ -39,14 +39,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             }
             $flg = $value['sid'] == $sid ? 'selected' : '';
             ?>
-            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+            <option value="<?= $value['sid']; ?>" <?= $flg; ?>><?= $value['sortname']; ?></option>
             <?php
                 $children = $value['children'];
                 foreach ($children as $key):
                 $value = $sorts[$key];
                 $flg = $value['sid'] == $sid ? 'selected' : '';
             ?>
-            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+            <option value="<?= $value['sid']; ?>" <?= $flg; ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname']; ?></option>
             <?php
             endforeach;
             endforeach;
@@ -62,7 +62,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 foreach($user_cache as $key=>$value):
                 $flg = $key == $uid ? 'selected' : '';
                 ?>
-                <option value="<?php echo $key; ?>" <?php echo $flg; ?>><?php echo $value['name']; ?></option>
+                <option value="<?= $key; ?>" <?= $flg; ?>><?= $value['name']; ?></option>
                 <?php
                 endforeach;
                 ?>
@@ -81,7 +81,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
     <div style="clear:both"></div>
 </div>
-<div id="f_tag" <?php echo $isDisplayTag ?>>
+<div id="f_tag" <?= $isDisplayTag ?>>
 <!--vot--><?=lang('tags')?>:
     <?php 
 /*vot*/ if(empty($tags)) echo lang('tags_no');
@@ -91,12 +91,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $b = 'tag_'.$tagId;
         $$b = "class=\"filter\"";
     ?>
-    <span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'].$isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
+    <span <?= $$a; ?>><a href="./admin_log.php?tagid=<?= $val['tid'].$isdraft; ?>"><?= $val['tagname']; ?></a></span>
     <?php endforeach;?>
 </div>
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
-  <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+  <input type="hidden" name="pid" value="<?= $pid; ?>">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
       <tr>
@@ -106,9 +106,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         <?php endif; ?>
 <!--vot--><th width="100"><b><?=lang('user')?></b></th>
 <!--vot--><th width="146"><b><?=lang('category')?></b></th>
-<!--vot--><th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate.$sorturl; ?>"><?=lang('time')?></a></b></th>
-<!--vot--><th width="49" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm.$sorturl; ?>"><?=lang('comments')?></a></b></th>
-<!--vot--><th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView.$sorturl; ?>"><?=lang('views')?></a></b></th>
+<!--vot--><th width="130"><b><a href="./admin_log.php?sortDate=<?= $sortDate.$sorturl; ?>"><?=lang('time')?></a></b></th>
+<!--vot--><th width="49" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?= $sortComm.$sorturl; ?>"><?=lang('comments')?></a></b></th>
+<!--vot--><th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?= $sortView.$sorturl; ?>"><?=lang('views')?></a></b></th>
       </tr>
     </thead>
     <tbody>
@@ -120,38 +120,38 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     $author_role = $user_cache[$value['author']]['role'];
     ?>
       <tr>
-      <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-      <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+      <td width="21"><input type="checkbox" name="blog[]" value="<?= $value['gid']; ?>" class="ids" /></td>
+      <td width="490"><a href="write_log.php?action=edit&gid=<?= $value['gid']; ?>"><?= $value['title']; ?></a>
 <!--vot--><?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>" /><?php endif; ?>
 <!--vot--><?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>" /><?php endif; ?>
-<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachment_num')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachment_num')?>: <?= $value['attnum']; ?>" /><?php endif; ?>
 <!--vot--><?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
       <span style="display:none; margin-left:8px;">
         <?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-<!--vot--><a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('approve')?></a> 
+<!--vot--><a href="./admin_log.php?action=operate_log&operate=check&gid=<?= $value['gid']?>&token=<?= LoginAuth::genToken(); ?>"><?=lang('approve')?></a> 
         <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-<!--vot--><a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('reject')?></a> 
+<!--vot--><a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?= $value['gid']?>&token=<?= LoginAuth::genToken(); ?>"><?=lang('reject')?></a> 
         <?php endif;?>
       </span>
       </td>
       <?php if ($pid != 'draft'): ?>
       <td class="tdcenter">
-<!--vot--><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?=lang('open_new_window')?>">
+<!--vot--><a href="<?= Url::log($value['gid']); ?>" target="_blank" title="<?=lang('open_new_window')?>">
       <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
       </td>
       <?php endif; ?>
-      <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
-      <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
-      <td class="small"><?php echo $value['date']; ?></td>
-      <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-      <td class="tdcenter"><?php echo $value['views']; ?></a></td>
+      <td><a href="./admin_log.php?uid=<?= $value['author'].$isdraft;?>"><?= $author; ?></a></td>
+      <td><a href="./admin_log.php?sid=<?= $value['sortid'].$isdraft;?>"><?= $sortName; ?></a></td>
+      <td class="small"><?= $value['date']; ?></td>
+      <td class="tdcenter"><a href="comment.php?gid=<?= $value['gid']; ?>"><?= $value['comnum']; ?></a></td>
+      <td class="tdcenter"><?= $value['views']; ?></a></td>
       </tr>
     <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="8"><?=lang('yet_no_posts')?></td></tr>
     <?php endif;?>
     </tbody>
     </table>
-    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+    <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
     <input name="operate" id="operate" value="" type="hidden" />
     <div class="list_footer form-inline">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
@@ -179,13 +179,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         continue;
     }
     ?>
-    <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+    <option value="<?= $value['sid']; ?>"><?= $value['sortname']; ?></option>
     <?php
         $children = $value['children'];
         foreach ($children as $key):
         $value = $sorts[$key];
     ?>
-    <option value="<?php echo $value['sid']; ?>">&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+    <option value="<?= $value['sid']; ?>">&nbsp; &nbsp; &nbsp; <?= $value['sortname']; ?></option>
     <?php
     endforeach;
     endforeach;
@@ -199,7 +199,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <?php foreach($user_cache as $key => $val):
     $val['name'] = $val['name'];
     ?>
-    <option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
+    <option value="<?= $key; ?>"><?= $val['name']; ?></option>
     <?php endforeach;?>
     </select>
     <?php endif;?>
@@ -207,7 +207,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <?php endif;?>
     </div>
 </form>
-<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $logNum; ?><?=lang('number_of_items')?><?php echo $pid == 'draft' ? lang('_drafts') : lang('_posts'); ?>)</div>
+<!--vot--><div class="page"><?= $pageurl; ?> (<?=lang('have')?><?= $logNum; ?><?=lang('number_of_items')?><?= $pid == 'draft' ? lang('_drafts') : lang('_posts'); ?>)</div>
 </div>
 <script>
 $(document).ready(function(){
@@ -248,10 +248,10 @@ function changeTop(obj) {
     $("#form_log").submit();
 }
 function selectSort(obj) {
-    window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+    window.open("./admin_log.php?sid=" + obj.value + "<?= $isdraft?>", "_self");
 }
 function selectUser(obj) {
-    window.open("./admin_log.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
+    window.open("./admin_log.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
 }
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('active');

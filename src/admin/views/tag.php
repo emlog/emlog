@@ -11,11 +11,11 @@
 <?php 
 if($tags):
 foreach($tags as $key=>$value): ?>	
-<input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" class="ids" value="1" >
-<a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>"><?php echo $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="tag[<?= $value['tid']; ?>]" class="ids" value="1" >
+<a href="tag.php?action=mod_tag&tid=<?= $value['tid']; ?>"><?= $value['tagname']; ?></a> &nbsp;&nbsp;&nbsp;
 <?php endforeach; ?>
 </li>
-<input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+<input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
 <li style="margin:20px 0px">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
 <!--vot--><a href="javascript:deltags();" class="care"><?=lang('delete')?></a>

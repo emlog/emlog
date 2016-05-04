@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script type="text/javascript" src="../include/lib/js/jquery/jquery-ui.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="../include/lib/js/jquery/jquery-ui.min.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
 <script>setTimeout(hideActived, 2600);</script>
 <!--vot--><div class="containertitle"><b><?=lang('widget_manage')?></b>
 <!--vot--><?php if (isset($_GET['activated'])): ?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif; ?></div>
@@ -25,7 +25,7 @@
                         <div class="blogger panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="calendar panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                         <div class="tag panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         <div class="sort panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <div class="archive panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -111,11 +111,11 @@
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post" class="form-inline">
 <!--vot-->                          <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"  /></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm']; ?>"  /></li>
 <!--vot-->                          <li><?=lang('last_comments_num')?></li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum" /></li>
+                                    <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum'); ?>" name="index_comnum" /></li>
 <!--vot-->                          <li><?=lang('new_comments_length')?></li>
-<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -133,9 +133,9 @@
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post" class="form-inline">
 <!--vot-->                          <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog']; ?>"  /></li>
 <!--vot-->                          <li><?=lang('new_posts_show')?></li>
-<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -153,9 +153,9 @@
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post" class="form-inline">
 <!--vot-->                          <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog']; ?>"  /></li>
 <!--vot-->                          <li><?=lang('hot_posts_home')?></li>
-<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                         <div class="link panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                         <div class="search panel-collapse collapse" aria-expanded="false">
                             <div class="panel-body">
                                 <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
-<!--vot-->                          <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
+<!--vot-->                          <li><input type="text" name="title" value="<?= $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm" /></li>
                                 </form>
                             </div>
                         </div>
@@ -209,25 +209,25 @@
                         preg_match("/^custom_wg_(\d+)/", $key, $matches);
 /*vot*/                 $custom_wg_title = empty($val['title']) ? lang('widget_untitled'). ' (' . $matches[1] . ')' : $val['title'];
                         ?>
-                        <div class="panel panel-default" id="<?php echo $key; ?>">
+                        <div class="panel panel-default" id="<?= $key; ?>">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $key; ?>" aria-expanded="false" class="widget-title"><?php echo $custom_wg_title; ?></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<?= $key; ?>" aria-expanded="false" class="widget-title"><?= $custom_wg_title; ?></a>
                                     <li class="widget-act-add"></li>
                                     <li class="widget-act-del"></li>
                                 </h4>
                             </div>
-                            <div id="collapse_<?php echo $key; ?>" class="panel-collapse collapse" aria-expanded="false">
+                            <div id="collapse_<?= $key; ?>" class="panel-collapse collapse" aria-expanded="false">
                                 <div class="panel-body" class="form-group">
                                     <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                         <li>
-                                            <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
-                                            <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>" /><br />
+                                            <input type="hidden" name="custom_wg_id" value="<?= $key; ?>" />
+                                            <input type="text" name="title" class="form-control" value="<?= $val['title']; ?>" /><br />
                                         </li>
-                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br /></li>
+                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?= $val['content']; ?></textarea><br /></li>
                                         <li>
 <!--vot-->                                  <input type="submit" class="btn btn-primary" name="" value="<?=lang('change')?>" />
-<!--vot-->                                  <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a>
+<!--vot-->                                  <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?= $key; ?>"><?=lang('widget_delete')?></a>
                                         </li>
                                     </form>
                                 </div>
@@ -268,9 +268,9 @@
 /*vot*/                         $title = lang('widget_untitled'). ' (' . $matches[1] . ')';
                             }
                             ?>
-                        <div class="panel panel-default active_widget" id="em_<?php echo $widget; ?>" style="cursor:move;">
+                        <div class="panel panel-default active_widget" id="em_<?= $widget; ?>" style="cursor:move;">
                                 <div class="panel-heading">
-                                    <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
+                                    <input type="hidden" name="widgets[]" value="<?= $widget; ?>" />
                                     <h4 class="panel-title">
                                         <?php if ($flg) {
                                             echo $title;
@@ -283,8 +283,8 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-<!--vot-->      <div style="margin:20px 40px;"><input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-primary" /> <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger" ><?=lang('widget_setting_reset')?></a></div>
+                <input type="hidden" name="wgnum" id="wgnum" value="<?= $wgNum; ?>" />
+<!--vot-->      <div style="margin:20px 40px;"><input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-primary" /> <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken(); ?>');" class="btn btn-danger" ><?=lang('widget_setting_reset')?></a></div>
             </form>
         </div>
     </div>

@@ -7,15 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-<!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
+<!--vot--><title><?=lang('admin_center')?> - <?= Option::get('blogname'); ?></title>
         <link href="./views/css/cssreset-min.css" rel="stylesheet">
         <link href="./views/css/bootstrap.min.css" rel="stylesheet">
         <link href="./views/css/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-        <script src="../include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-        <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+        <link href="./views/css/css-main.css?v=<?= Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+        <script src="../include/lib/js/jquery/jquery-1.11.0.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
+        <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
         <script src="./views/js/bootstrap.min.js"></script>
-        <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+        <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -46,7 +46,7 @@
                             <li class="sidebar-avatar">
                                 <div style="text-align: center;">
                                     <a href="./blogger.php">
-                                        <img class="img-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" />
+                                        <img class="img-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" />
                                     </a>
                                 </div>
                             </li>

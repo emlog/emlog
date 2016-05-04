@@ -29,22 +29,22 @@
 /*vot*/    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
     ?>
      <tr>
-        <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+        <td width="21"><input type="checkbox" name="page[]" value="<?= $value['gid']; ?>" class="ids" /></td>
         <td width="440">
-        <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
-        <?php echo $isHide; ?>    
-<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+        <a href="page.php?action=mod&id=<?= $value['gid']?>"><?= $value['title']; ?></a> 
+        <?= $isHide; ?>    
+<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?= $value['attnum']; ?>" /><?php endif; ?>
         </td>
-        <td><?php echo $value['template']; ?></td>
-        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td class="small"><?php echo $value['date']; ?></td>
+        <td><?= $value['template']; ?></td>
+        <td class="tdcenter"><a href="comment.php?gid=<?= $value['gid']; ?>"><?= $value['comnum']; ?></a></td>
+        <td class="small"><?= $value['date']; ?></td>
      </tr>
     <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('no_pages')?></td></tr>
     <?php endif;?>
     </tbody>
   </table>
-  <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+  <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
   <input name="operate" id="operate" value="" type="hidden" />
 </form>
 <div class="list_footer">
@@ -54,7 +54,7 @@
 <!--vot--><a href="javascript:pageact('pub');"><?=lang('publish')?></a>
 </div>
 <!--vot--><div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new" class="btn btn-success"><?=lang('add_page')?>+</a></div>
-<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $pageNum; ?><?=lang('_pages')?>)</div>
+<!--vot--><div class="page"><?= $pageurl; ?> (<?=lang('have')?><?= $pageNum; ?><?=lang('_pages')?>)</div>
 <script>
 $(document).ready(function(){
     $("#adm_comment_list tbody tr:odd").addClass("tralt_b");

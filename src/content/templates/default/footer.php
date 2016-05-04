@@ -12,7 +12,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
             <div class="col-lg-12 footer-below">
                 <hr>
 <!--vot-->      <?=lang('powered_by')?> <a href="http://www.emlog.net" title="<?=lang('powered_by_emlog')?>">emlog</a> v.<?= Option::EMLOG_VERSION ?>
-                <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
+                <a href="http://www.miibeian.gov.cn" target="_blank"><?= $icp; ?></a> <?= $footer_info; ?>
                 <?php doAction('index_footer'); ?>
             </div>
         </div>

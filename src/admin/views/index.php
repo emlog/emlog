@@ -10,13 +10,13 @@
                 </div>
                 <div class="panel-body" id="admindex_servinfo">
                     <ul>
-<!--vot-->              <li><?=lang('have')?><b><?php echo $sta_cache['lognum'];?></b><?=lang('_posts')?>, <b><?php echo $sta_cache['comnum_all'];?></b><?=lang('_comments')?></li>
-<!--vot-->              <li><?=lang('db_prefix')?>: <?php echo DB_PREFIX; ?></li>
-<!--vot-->              <li><?=lang('php_version')?>: <?php echo $php_ver; ?></li>
-<!--vot-->              <li><?=lang('mysql_version')?>: <?php echo $mysql_ver; ?></li>
-<!--vot-->              <li><?=lang('server_environment')?>: <?php echo $serverapp; ?></li>
-<!--vot-->              <li><?=lang('gd_library')?>: <?php echo $gd_ver; ?></li>
-<!--vot-->              <li><?=lang('server_max_upload_size')?>: <?php echo $uploadfile_maxsize; ?></li>
+<!--vot-->              <li><?=lang('have')?><b><?= $sta_cache['lognum'];?></b><?=lang('_posts')?>, <b><?= $sta_cache['comnum_all'];?></b><?=lang('_comments')?></li>
+<!--vot-->              <li><?=lang('db_prefix')?>: <?= DB_PREFIX; ?></li>
+<!--vot-->              <li><?=lang('php_version')?>: <?= $php_ver; ?></li>
+<!--vot-->              <li><?=lang('mysql_version')?>: <?= $mysql_ver; ?></li>
+<!--vot-->              <li><?=lang('server_environment')?>: <?= $serverapp; ?></li>
+<!--vot-->              <li><?=lang('gd_library')?>: <?= $gd_ver; ?></li>
+<!--vot-->              <li><?=lang('server_max_upload_size')?>: <?= $uploadfile_maxsize; ?></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="col-lg-12">
             <div id="admindex">
                 <div id="about" class="alert alert-warning">
-<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?php echo Option::EMLOG_VERSION; ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
+<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?= Option::EMLOG_VERSION; ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
                   <span id="upmsg"></span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
 	}
                 $(document).ready(function() {
 /*vot*/             $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
-                    $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+                    $.getJSON("<?= OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?= Option::EMLOG_VERSION; ?>&callback=?",
                             function(data) {
                                 $("#admindex_msg ul").html("");
                                 $.each(data.items, function(i, item) {
@@ -73,7 +73,7 @@
                 });
                 $("#about #ckup").click(function() {
 /*vot*/             $("#about #upmsg").html("<?=lang('checking_wait')?>").addClass("ajaxload");
-                    $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+                    $.getJSON("<?= OFFICIAL_SERVICE_HOST; ?>services/check_update.php?ver=<?= Option::EMLOG_VERSION; ?>&callback=?",
                             function(data) {
                                 if (data.result.match("no")) {
 /*vot*/                             $("#about #upmsg").html("<?=lang('updates_no')?>").removeClass();
@@ -107,7 +107,7 @@
 <div class="row">
         <div class="col-lg-12">
             <div id="admindex_main">
-<!--vot--><div id="about"><a href="blogger.php"><?php echo $name; ?></a> (<b><?php echo $sta_cache[UID]['lognum'];?></b><?=lang('_posts')?>, <b><?php echo $sta_cache[UID]['commentnum'];?></b><?=lang('_comments')?>)</div>
+<!--vot--><div id="about"><a href="blogger.php"><?= $name; ?></a> (<b><?= $sta_cache[UID]['lognum'];?></b><?=lang('_posts')?>, <b><?= $sta_cache[UID]['commentnum'];?></b><?=lang('_comments')?>)</div>
             </div>
             <div class="clear"></div>
         </div>

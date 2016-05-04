@@ -50,7 +50,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <p class="logo"></p>
-<!--vot--><p class="title"><?= lang('installation')?><?php echo Option::EMLOG_VERSION ?></p>
+<!--vot--><p class="title"><?= lang('installation')?><?= Option::EMLOG_VERSION ?></p>
 <div class="b">
 <!--vot--><p class="title2"><?= lang('mysql_settings')?></p>
 <li>

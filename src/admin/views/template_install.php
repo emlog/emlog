@@ -23,7 +23,7 @@
 <div style="margin:50px 0px 50px 20px;">
 <!--vot--><p><?=lang('template_upload_prompt')?></p>
     <p>
-    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+    <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
     <input name="tplzip" type="file" />
     </p>
     <p>

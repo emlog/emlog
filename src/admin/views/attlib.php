@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./views/js/common.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
 </head>
 <script>
 function showupload(multi){
@@ -21,7 +21,7 @@ function showattlib(){
 <div id="media-upload-header">
 <!--vot--><span><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
 <!--vot--><span><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
-<!--vot--><span id="curtab"><a href="javascript:showattlib();"><?=lang('attachment_library')?><?php echo $attachnum; ?></a></span>
+<!--vot--><span id="curtab"><a href="javascript:showattlib();"><?=lang('attachment_library')?><?= $attachnum; ?></a></span>
 </div>
 <div id="media-upload-body">
 <?php if(!$attach): ?>
@@ -46,15 +46,15 @@ foreach($attach as $key=>$value):
 /*vot*/		$embedlink = "<a href=\"javascript: parent.addattach_file('$atturl', '{$value['filename']}', {$value['aid']});\">".lang('insert')."</a>";
 	}
 ?>
-	<li id="attlist"><a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $value['filename']; ?>"><img src="<?php echo $imgpath; ?>" width="90" height="90" border="0" align="absmiddle"/></a>
+	<li id="attlist"><a href="<?= $atturl; ?>" target="_blank" title="<?= $value['filename']; ?>"><img src="<?= $imgpath; ?>" width="90" height="90" border="0" align="absmiddle"/></a>
 	<?php if ($value['width'] && $value['height']): ?>
 	<br />
-	<?php echo $value['width']?>x<?php echo $value['height']?>
+	<?= $value['width']?>x<?= $value['height']?>
 	<?php else:?>
 	<br />
-	<?php echo subString($value['filename'], 0, 6) ?>
+	<?= subString($value['filename'], 0, 6) ?>
 	<?php endif;?>
-<!--vot--><br /><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a> <?php echo $embedlink; ?></li>
+<!--vot--><br /><a href="javascript: em_confirm(<?= $value['aid']; ?>, 'attachment', '<?= LoginAuth::genToken(); ?>');"><?=lang('delete')?></a> <?= $embedlink; ?></li>
 <?php endforeach; endif; ?>
 </div>
 </body>
