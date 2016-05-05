@@ -103,7 +103,7 @@
 <!--vot-->  <label><?=lang('home_footer_info')?>:</label>
             <textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?= $footer_info; ?></textarea>
         </div>
-        <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
 <!--vot--><input type="submit" value="<?=lang('save_settings')?>" class="btn btn-primary" />
     </form>
 </div>

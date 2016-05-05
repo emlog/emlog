@@ -31,11 +31,11 @@
         $bakname = substr(strrchr($value,'/'),1);
     ?>
     <tr>
-      <td width="22"><input type="checkbox" value="<?= $value; ?>" name="bak[]" class="ids" /></td>
-      <td width="661"><a href="../content/backup/<?= $bakname; ?>"><?= $bakname; ?></a></td>
-      <td><?= $modtime; ?></td>
-      <td><?= $size; ?></td>
-<!--vot--><td><a href="javascript: em_confirm('<?= $value; ?>', 'backup', '<?= LoginAuth::genToken(); ?>');"><?=lang('import')?></a></td>
+      <td width="22"><input type="checkbox" value="<?= $value ?>" name="bak[]" class="ids" /></td>
+      <td width="661"><a href="../content/backup/<?= $bakname ?>"><?= $bakname ?></a></td>
+      <td><?= $modtime ?></td>
+      <td><?= $size ?></td>
+<!--vot--><td><a href="javascript: em_confirm('<?= $value ?>', 'backup', '<?= LoginAuth::genToken() ?>');"><?=lang('import')?></a></td>
     </tr>
     <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('backup_no')?></td></tr>
@@ -57,7 +57,7 @@
 <!--vot--><p><?=lang('backup_choose_table')?>:<br />
         <select multiple="multiple" size="12" name="table_box[]">
         <?php foreach($tables  as $value): ?>
-        <option value="<?= DB_PREFIX; ?><?= $value; ?>" selected="selected"><?= DB_PREFIX; ?><?= $value; ?></option>
+        <option value="<?= DB_PREFIX ?><?= $value ?>" selected="selected"><?= DB_PREFIX ?><?= $value ?></option>
         <?php endforeach; ?>
         </select>
     </p>
@@ -69,7 +69,7 @@
     </p>
 <!--vot--><p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
     <p>
-        <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
 <!--vot--><input type="submit" value="<?=lang('backup_start')?>" class="btn btn-primary" />
     </p>
 </div>
@@ -77,9 +77,9 @@
 
 <form action="data.php?action=import" enctype="multipart/form-data" method="post">
 <div id="import">
-<!--vot--><p class="des"><?=lang('backup_version_tip')?><?= DB_PREFIX; ?></p>
+<!--vot--><p class="des"><?=lang('backup_version_tip')?><?= DB_PREFIX ?></p>
     <p>
-        <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
 <!--vot--><input type="file" name="sqlfile" /> <input type="submit" value="<?=lang('import')?>" class="submit" />
     </p>
 </div>

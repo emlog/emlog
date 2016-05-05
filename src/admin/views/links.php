@@ -27,23 +27,23 @@
     doAction('adm_link_display');
     ?>  
       <tr>
-        <td><input class="form-control em-small" name="link[<?= $value['id']; ?>]" value="<?= $value['taxis']; ?>" maxlength="4" /></td>
-<!--vot-->    <td><a href="link.php?action=mod_link&amp;linkid=<?= $value['id']; ?>" title="<?=lang('edit_link')?>"><?= $value['sitename']; ?></a></td>
+        <td><input class="form-control em-small" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4" /></td>
+<!--vot-->    <td><a href="link.php?action=mod_link&amp;linkid=<?= $value['id'] ?>" title="<?=lang('edit_link')?>"><?= $value['sitename'] ?></a></td>
         <td class="tdcenter">
         <?php if ($value['hide'] == 'n'): ?>
-<!--vot-->    <a href="link.php?action=hide&amp;linkid=<?= $value['id']; ?>" title="<?=lang('link_hide')?>"><?=lang('visible')?></a>
+<!--vot-->    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" title="<?=lang('link_hide')?>"><?=lang('visible')?></a>
         <?php else: ?>
-<!--vot-->    <a href="link.php?action=show&amp;linkid=<?= $value['id']; ?>" title="<?=lang('link_show')?>" style="color:red;"><?=lang('hidden')?></a>
+<!--vot-->    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" title="<?=lang('link_show')?>" style="color:red;"><?=lang('hidden')?></a>
         <?php endif;?>
         </td>
         <td class="tdcenter">
-<!--vot-->      <a href="<?= $value['siteurl']; ?>" target="_blank" title="<?=lang('view_link')?>">
+<!--vot-->      <a href="<?= $value['siteurl'] ?>" target="_blank" title="<?=lang('view_link')?>">
         <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
         </td>
-        <td><?= $value['description']; ?></td>
+        <td><?= $value['description'] ?></td>
         <td>
-<!--vot--> <a href="link.php?action=mod_link&amp;linkid=<?= $value['id']; ?>"><?=lang('edit')?></a>
-<!--vot--> <a href="javascript: em_confirm(<?= $value['id']; ?>, 'link', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot--> <a href="link.php?action=mod_link&amp;linkid=<?= $value['id'] ?>"><?=lang('edit')?></a>
+<!--vot--> <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         </td>
       </tr>
     <?php endforeach;else:?>

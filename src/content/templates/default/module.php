@@ -10,24 +10,24 @@ function widget_blogger($title){
     global $CACHE;
     $user_cache = $CACHE->readCache('user');
     $name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:".$user_cache[1]['mail']."\">".$user_cache[1]['name']."</a>" : $user_cache[1]['name'];?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <div id="bloggerinfoimg">
         <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-        <img src="<?= BLOG_URL.$user_cache[1]['photo']['src']; ?>" width="<?= $user_cache[1]['photo']['width']; ?>" height="<?= $user_cache[1]['photo']['height']; ?>" alt="blogger" />
+        <img src="<?= BLOG_URL.$user_cache[1]['photo']['src'] ?>" width="<?= $user_cache[1]['photo']['width'] ?>" height="<?= $user_cache[1]['photo']['height'] ?>" alt="blogger" />
         <?php endif;?>
         </div>
-        <p><b><?= $name; ?></b>
-        <?= $user_cache[1]['des']; ?></p>
+        <p><b><?= $name ?></b>
+        <?= $user_cache[1]['des'] ?></p>
     </ul>
 <?php }?>
 <?php
 //widget:Calendar
 function widget_calendar($title){ ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <div id="calendar"></div>
-        <script>sendinfo('<?= Calendar::url(); ?>','calendar');</script>
+        <script>sendinfo('<?= Calendar::url() ?>','calendar');</script>
     </ul>
 <?php }?>
 <?php
@@ -35,11 +35,11 @@ function widget_calendar($title){ ?>
 function widget_tag($title){
     global $CACHE;
     $tag_cache = $CACHE->readCache('tags');?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php foreach($tag_cache as $value): ?>
-            <span style="font-size:<?= $value['fontsize']; ?>pt; line-height:30px;">
-<!--vot-->	<a href="<?= Url::tag($value['tagurl']); ?>" title="<?= $value['usenum']; ?> <?=lang('_posts')?>"><?= $value['tagname']; ?></a></span>
+            <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
+<!--vot-->	<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> <?=lang('_posts')?>"><?= $value['tagname'] ?></a></span>
         <?php endforeach; ?>
     </ul>
 <?php }?>
@@ -48,14 +48,14 @@ function widget_tag($title){
 function widget_sort($title){
     global $CACHE;
     $sort_cache = $CACHE->readCache('sort'); ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php
         foreach($sort_cache as $value):
             if ($value['pid'] != 0) continue;
         ?>
         <li>
-        <a href="<?= Url::sort($value['sid']); ?>"><?= $value['sortname']; ?>(<?= $value['lognum'] ?>)</a>
+        <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>(<?= $value['lognum'] ?>)</a>
         <?php if (!empty($value['children'])): ?>
             <ul>
             <?php
@@ -64,7 +64,7 @@ function widget_sort($title){
                 $value = $sort_cache[$key];
             ?>
             <li>
-                <a href="<?= Url::sort($value['sid']); ?>"><?= $value['sortname']; ?>(<?= $value['lognum'] ?>)</a>
+                <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>(<?= $value['lognum'] ?>)</a>
             </li>
             <?php endforeach; ?>
             </ul>
@@ -79,14 +79,14 @@ function widget_newcomm($title){
     global $CACHE; 
     $com_cache = $CACHE->readCache('comment');
     ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php
         foreach($com_cache as $value):
         $url = Url::comment($value['gid'], $value['page'], $value['cid']);
         ?>
-        <li id="comment"><?= $value['name']; ?>
-        <br /><a href="<?= $url; ?>"><?= $value['content']; ?></a></li>
+        <li id="comment"><?= $value['name'] ?>
+        <br /><a href="<?= $url ?>"><?= $value['content'] ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php }?>
@@ -96,10 +96,10 @@ function widget_newlog($title){
     global $CACHE; 
     $newLogs_cache = $CACHE->readCache('newlog');
     ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php foreach($newLogs_cache as $value): ?>
-        <li><a href="<?= Url::log($value['gid']); ?>"><?= $value['title']; ?></a></li>
+        <li><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php }?>
@@ -109,19 +109,19 @@ function widget_hotlog($title){
     $index_hotlognum = Option::get('index_hotlognum');
     $Log_Model = new Log_Model();
     $hotLogs = $Log_Model->getHotLog($index_hotlognum);?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php foreach($hotLogs as $value): ?>
-        <li><a href="<?= Url::log($value['gid']); ?>"><?= $value['title']; ?></a></li>
+        <li><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php }?>
 <?php
 //widget:Random Post
 function widget_search($title){ ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
-        <form name="keyform" method="get" action="<?= BLOG_URL; ?>index.php">
+        <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
         <input name="keyword" class="search" type="text" />
         </form>
     </ul>
@@ -132,10 +132,10 @@ function widget_archive($title){
     global $CACHE; 
     $record_cache = $CACHE->readCache('record');
     ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
     <?php foreach($record_cache as $value): ?>
-    <li><a href="<?= Url::record($value['date']); ?>"><?= $value['record']; ?>(<?= $value['lognum']; ?>)</a></li>
+    <li><a href="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>(<?= $value['lognum'] ?>)</a></li>
     <?php endforeach; ?>
     </ul>
 <?php } ?>
@@ -143,9 +143,9 @@ function widget_archive($title){
 //widget:Custom Component
 function widget_custom_text($title, $content){ ?>
     <li>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title;?></h4>
     <ul class="list-unstyled">
-        <?= $content; ?>
+        <?= $content ?>
     </ul>
 <?php } ?>
 <?php
@@ -155,10 +155,10 @@ function widget_link($title){
     $link_cache = $CACHE->readCache('link');
     //if (!blog_tool_ishome()) return;#Only in Home Display Friends chain can be Remove Double slash comments
     ?>
-    <h4><?= $title; ?></h4>
+    <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <?php foreach($link_cache as $value): ?>
-        <li><a href="<?= $value['url']; ?>" title="<?= $value['des']; ?>" target="_blank"><?= $value['link']; ?></a></li>
+        <li><a href="<?= $value['url'] ?>" title="<?= $value['des'] ?>" target="_blank"><?= $value['link'] ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php }?> 
@@ -187,8 +187,8 @@ function blog_navi(){
             }
             if($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
             ?>
-<!--vot-->  <li class="item common"><a href="<?= BLOG_URL; ?>admin/"><?=lang('site_management')?></a></li>
-<!--vot-->  <li class="item common"><a href="<?= BLOG_URL; ?>admin/?action=logout"><?=lang('logout')?></a></li>
+<!--vot-->  <li class="item common"><a href="<?= BLOG_URL ?>admin/"><?=lang('site_management')?></a></li>
+<!--vot-->  <li class="item common"><a href="<?= BLOG_URL ?>admin/?action=logout"><?=lang('logout')?></a></li>
             <?php 
                 continue;
             endif;
@@ -199,7 +199,7 @@ function blog_navi(){
             <?php if (!empty($value['children']) || !empty($value['childnavi'])) :?>
             <li class="dropdown">
                 <?php if (!empty($value['children'])):?>
-                <a href="<?= $value['url']; ?>" <?= $newtab;?>><?= $value['naviname']; ?> <b class="caret"></b></a>
+                <a href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <?php foreach ($value['children'] as $row){
                             echo '<li><a href="'.Url::sort($row['sid']).'">'.$row['sortname'].'</a></li>';
@@ -207,7 +207,7 @@ function blog_navi(){
                 </ul>
                 <?php endif;?>
                 <?php if (!empty($value['childnavi'])) :?>
-                <a href="<?= $value['url']; ?>" <?= $newtab;?>><?= $value['naviname']; ?> <b class="caret"></b></a>
+                <a href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <?php foreach ($value['childnavi'] as $row){
                             $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
@@ -217,7 +217,7 @@ function blog_navi(){
                 <?php endif;?>
             </li>
             <?php else:?>
-            <li><a href="<?= $value['url']; ?>" <?= $newtab;?>><?= $value['naviname']; ?></a></li>
+            <li><a href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?></a></li>
             <?php endif;?>
             <?php endforeach; ?>
             </ul>
@@ -249,7 +249,7 @@ function blog_sort($blogid){
     $log_cache_sort = $CACHE->readCache('logsort');
     ?>
     <?php if(!empty($log_cache_sort[$blogid])): ?>
-    <a href="<?= Url::sort($log_cache_sort[$blogid]['id']); ?>"><?= $log_cache_sort[$blogid]['name']; ?></a>
+    <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
     <?php endif;?>
 <?php }?>
 <?php
@@ -302,13 +302,13 @@ function blog_author($uid){
 function neighbor_log($neighborLog){
     extract($neighborLog);?>
     <?php if($prevLog):?>
-    &laquo; <a href="<?= Url::log($prevLog['gid']) ?>"><?= $prevLog['title'];?></a>
+    &laquo; <a href="<?= Url::log($prevLog['gid']) ?>"><?= $prevLog['title'] ?></a>
     <?php endif;?>
     <?php if($nextLog && $prevLog):?>
         |
     <?php endif;?>
     <?php if($nextLog):?>
-         <a href="<?= Url::log($nextLog['gid']) ?>"><?= $nextLog['title'];?></a>&raquo;
+         <a href="<?= Url::log($nextLog['gid']) ?>"><?= $nextLog['title'] ?></a>&raquo;
     <?php endif;?>
 <?php }?>
 <?php
@@ -325,19 +325,19 @@ function blog_comments($comments){
     $comment = $comments[$cid];
     $comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
     ?>
-    <div class="comment" id="comment-<?= $comment['cid']; ?>">
-        <a name="<?= $comment['cid']; ?>"></a>
-        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']); ?>" /></div><?php endif; ?>
+    <div class="comment" id="comment-<?= $comment['cid'] ?>">
+        <a name="<?= $comment['cid'] ?>"></a>
+        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" /></div><?php endif; ?>
         <div class="comment-info">
-            <b><?= $comment['poster']; ?> </b><br /><span class="comment-time"><?= $comment['date']; ?></span>
-            <div class="comment-content"><?= $comment['content']; ?></div>
-<!--vot-->  <div class="comment-reply"><a href="#comment-<?= $comment['cid']; ?>" onclick="commentReply(<?= $comment['cid']; ?>,this)"><?=lang('reply')?></a></div>
+            <b><?= $comment['poster'] ?> </b><br /><span class="comment-time"><?= $comment['date'] ?></span>
+            <div class="comment-content"><?= $comment['content'] ?></div>
+<!--vot-->  <div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div>
         </div>
         <?php blog_comments_children($comments, $comment['children']); ?>
     </div>
     <?php endforeach; ?>
     <div id="pagenavi">
-        <?= $commentPageUrl;?>
+        <?= $commentPageUrl ?>
     </div>
 <?php }?>
 <?php
@@ -348,13 +348,13 @@ function blog_comments_children($comments, $children){
     $comment = $comments[$child];
     $comment['poster'] = $comment['url'] ? '<a href="'.$comment['url'].'" target="_blank">'.$comment['poster'].'</a>' : $comment['poster'];
     ?>
-    <div class="comment comment-children" id="comment-<?= $comment['cid']; ?>">
-        <a name="<?= $comment['cid']; ?>"></a>
-        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']); ?>" /></div><?php endif; ?>
+    <div class="comment comment-children" id="comment-<?= $comment['cid'] ?>">
+        <a name="<?= $comment['cid'] ?>"></a>
+        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" /></div><?php endif; ?>
         <div class="comment-info">
-            <b><?= $comment['poster']; ?> </b><br /><span class="comment-time"><?= $comment['date']; ?></span>
-            <div class="comment-content"><?= $comment['content']; ?></div>
-<!--vot-->  <?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?= $comment['cid']; ?>" onclick="commentReply(<?= $comment['cid']; ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
+            <b><?= $comment['poster'] ?> </b><br /><span class="comment-time"><?= $comment['date'] ?></span>
+            <div class="comment-content"><?= $comment['content'] ?></div>
+<!--vot-->  <?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
         </div>
         <?php blog_comments_children($comments, $comment['children']);?>
     </div>
@@ -368,24 +368,24 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
     <div class="comment-post" id="comment-post">
 <!--vot-->    <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
 <!--vot-->    <p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
-        <form method="post" name="commentform" action="<?= BLOG_URL; ?>index.php?action=addcom" id="commentform">
-            <input type="hidden" name="gid" value="<?= $logid; ?>" />
+        <form method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform">
+            <input type="hidden" name="gid" value="<?= $logid ?>" />
             <?php if(ROLE == ROLE_VISITOR): ?>
             <p>
-                <input type="text" name="comname" maxlength="49" value="<?= $ckname; ?>" size="22" tabindex="1">
+                <input type="text" name="comname" maxlength="49" value="<?= $ckname ?>" size="22" tabindex="1">
 <!--vot-->      <label for="author"><small><?=lang('nickname')?></small></label>
             </p>
             <p>
-                <input type="text" name="commail"  maxlength="128"  value="<?= $ckmail; ?>" size="22" tabindex="2">
+                <input type="text" name="commail"  maxlength="128"  value="<?= $ckmail ?>" size="22" tabindex="2">
 <!--vot-->      <label for="email"><small><?=lang('email_optional')?></small></label>
             </p>
             <p>
-                <input type="text" name="comurl" maxlength="128"  value="<?= $ckurl; ?>" size="22" tabindex="3">
+                <input type="text" name="comurl" maxlength="128"  value="<?= $ckurl ?>" size="22" tabindex="3">
 <!--vot-->      <label for="url"><small><?=lang('homepage_optional')?></small></label>
             </p>
             <?php endif; ?>
             <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->  <p><?= $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
+<!--vot-->  <p><?= $verifyCode ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
             <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
         </form>
     </div>

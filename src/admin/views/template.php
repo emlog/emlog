@@ -4,7 +4,7 @@
 <!--vot--><?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success"><?=lang('template_upload_ok')?></span><?php endif; ?>
 <!--vot--><?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success"><?=lang('template_delete_ok')?></span><?php endif; ?>
 <!--vot--><?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('template_delete_failed')?></span><?php endif; ?>
-<!--vot--><?php if (!$nonceTplData): ?><span class="alert alert-danger"><?=lang('template_current_use')?>(<?= $nonce_templet; ?>) <?=lang('template_damaged')?></span><?php endif; ?>
+<!--vot--><?php if (!$nonceTplData): ?><span class="alert alert-danger"><?=lang('template_current_use')?>(<?= $nonce_templet ?>) <?=lang('template_damaged')?></span><?php endif; ?>
 </div>
 <div class="tpl">
     <?php
@@ -12,13 +12,13 @@
     ?>
         <ul class="item">
             <li>
-                <a href="template.php?action=usetpl&tpl=<?= $value['tplfile']; ?>&side=<?= $value['sidebar']; ?>&token=<?= LoginAuth::genToken(); ?>">
-<!--vot-->          <img alt="<?=lang('template_use_this')?>" src="<?= TPLS_URL . $value['tplfile']; ?>/preview.jpg" width="180" height="150" border="0" />
+                <a href="template.php?action=usetpl&tpl=<?= $value['tplfile'] ?>&side=<?= $value['sidebar'] ?>&token=<?= LoginAuth::genToken() ?>">
+<!--vot-->          <img alt="<?=lang('template_use_this')?>" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" width="180" height="150" border="0" />
                 </a>
             </li>
             <li class="title <?php if($nonce_templet == $value['tplfile']){echo "active";} ?>">
-                <span class="name"><b><?= $value['tplname']; ?></b></span>
-<!--vot-->      <span class="act"> | <a href="javascript: em_confirm('<?= $value['tplfile']; ?>', 'tpl', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a></span>
+                <span class="name"><b><?= $value['tplname'] ?></b></span>
+<!--vot-->      <span class="act"> | <a href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a></span>
             </li>
         </ul>
     <?php endforeach;?>

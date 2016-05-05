@@ -52,25 +52,25 @@
     
     ?>  
       <tr>
-        <td><input class="form-control em-small" name="navi[<?= $value['id']; ?>]" value="<?= $value['taxis']; ?>" maxlength="4" /></td>
-<!--vot-->    <td><a href="navbar.php?action=mod&amp;navid=<?= $value['id']; ?>" title="<?=lang('nav_edit')?>"><?= $value['naviname']; ?></a></td>
-        <td class="tdcenter"><?= $value['type_name'];?></td>
+        <td><input class="form-control em-small" name="navi[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4" /></td>
+<!--vot-->    <td><a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>" title="<?=lang('nav_edit')?>"><?= $value['naviname'] ?></a></td>
+        <td class="tdcenter"><?= $value['type_name'] ?></td>
         <td class="tdcenter">
         <?php if ($value['hide'] == 'n'): ?>
-<!--vot-->    <a href="navbar.php?action=hide&amp;id=<?= $value['id']; ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
+<!--vot-->    <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
         <?php else: ?>
-<!--vot-->    <a href="navbar.php?action=show&amp;id=<?= $value['id']; ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
+<!--vot-->    <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
         <?php endif;?>
         </td>
         <td class="tdcenter">
-        <a href="<?= $value['url']; ?>" target="_blank">
-        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        <a href="<?= $value['url'] ?>" target="_blank">
+        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0" /></a>
         </td>
-        <td><?= $value['url']; ?></td>
+        <td><?= $value['url'] ?></td>
         <td>
-<!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?= $value['id']; ?>"><?=lang('edit')?></a>
+<!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?=lang('edit')?></a>
         <?php if($value['isdefault'] == 'n'):?>
-<!--vot-->    <a href="javascript: em_confirm(<?= $value['id']; ?>, 'navi', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->    <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -79,25 +79,25 @@
         foreach ($value['childnavi'] as $val):
     ?>
         <tr>
-        <td><input class="form-control em-small" name="navi[<?= $val['id']; ?>]" value="<?= $val['taxis']; ?>" maxlength="4" /></td>
-<!--vot-->    <td>---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id']; ?>" title="<?=lang('nav_edit')?>"><?= $val['naviname']; ?></a></td>
-        <td class="tdcenter"><?= $value['type_name'];?></td>
+        <td><input class="form-control em-small" name="navi[<?= $val['id'] ?>]" value="<?= $val['taxis'] ?>" maxlength="4" /></td>
+<!--vot-->    <td>---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>" title="<?=lang('nav_edit')?>"><?= $val['naviname'] ?></a></td>
+        <td class="tdcenter"><?= $value['type_name'] ?></td>
         <td class="tdcenter">
         <?php if ($val['hide'] == 'n'): ?>
-<!--vot-->    <a href="navbar.php?action=hide&amp;id=<?= $val['id']; ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
+<!--vot-->    <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>" title="<?=lang('nav_hide_click')?>"><?=lang('show')?></a>
         <?php else: ?>
-<!--vot-->    <a href="navbar.php?action=show&amp;id=<?= $val['id']; ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
+<!--vot-->    <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>" title="<?=lang('nav_show_click')?>" style="color:red;"><?=lang('hide')?></a>
         <?php endif;?>
         </td>
         <td class="tdcenter">
-        <a href="<?= $val['url']; ?>" target="_blank">
-        <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        <a href="<?= $val['url'] ?>" target="_blank">
+        <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0" /></a>
         </td>
-        <td><?= $val['url']; ?></td>
+        <td><?= $val['url'] ?></td>
         <td>
-<!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?= $val['id']; ?>"><?=lang('edit')?></a>
+<!--vot-->    <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?=lang('edit')?></a>
         <?php if($val['isdefault'] == 'n'):?>
-<!--vot-->    <a href="javascript: em_confirm(<?= $val['id']; ?>, 'navi', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->    <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         <?php endif;?>
         </td>
       </tr>
@@ -130,7 +130,7 @@
                                             continue;
                                         }
                                 ?>
-                                <option value="<?= $value['id']; ?>"><?= $value['naviname']; ?></option>
+                                <option value="<?= $value['id'] ?>"><?= $value['naviname'] ?></option>
                                 <?php endforeach; ?>
                             </select>
 <!--vot-->                  <?=lang('nav_parent')?>
@@ -159,8 +159,8 @@
                     }
                     ?>
                     <li>
-                        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid']; ?>" class="ids" />
-                        <?= $value['sortname']; ?>
+                        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids" />
+                        <?= $value['sortname'] ?>
                     </li>
                     <?php
                         $children = $value['children'];
@@ -168,8 +168,8 @@
                         $value = $sorts[$key];
                     ?>
                     <li>
-                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid']; ?>" class="ids" />
-                        <?= $value['sortname']; ?>
+                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids" />
+                        <?= $value['sortname'] ?>
                     </li>
                     <?php 
                         endforeach;
@@ -197,8 +197,8 @@
                         foreach($pages as $key=>$value): 
                         ?>
                         <li>
-                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid']; ?>]" value="<?= $value['title']; ?>" class="ids" />
-                            <?= $value['title']; ?>
+                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" class="ids" />
+                            <?= $value['title'] ?>
                         </li>
                         <?php endforeach;?>
 <!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>

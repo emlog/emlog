@@ -43,27 +43,27 @@
         }
     ?>	
       <tr>
-        <td class="tdcenter"><?= $val['Name']; ?></td>
-        <td class="tdcenter" id="plugin_<?= $i;?>">
-        <a href="./plugin.php?action=<?= $plug_action;?>&plugin=<?= $key;?>&token=<?= LoginAuth::genToken(); ?>"><img src="./views/images/plugin_<?= $plug_state; ?>.gif" title="<?= $plug_state_des; ?>" align="absmiddle" border="0"></a>
+        <td class="tdcenter"><?= $val['Name'] ?></td>
+        <td class="tdcenter" id="plugin_<?= $i ?>">
+        <a href="./plugin.php?action=<?= $plug_action ?>&plugin=<?= $key ?>&token=<?= LoginAuth::genToken() ?>"><img src="./views/images/plugin_<?= $plug_state ?>.gif" title="<?= $plug_state_des ?>" align="absmiddle" border="0"></a>
         </td>
-        <td class="tdcenter"><?= $val['Version']; ?></td>
+        <td class="tdcenter"><?= $val['Version'] ?></td>
         <td>
-        <?= $val['Description']; ?>
-<!--vot-->    <?php if ($val['Url'] != ''):?><a href="<?= $val['Url'];?>" target="_blank"><?=lang('more_info')?></a><?php endif;?>
+        <?= $val['Description'] ?>
+<!--vot-->    <?php if ($val['Url'] != ''):?><a href="<?= $val['Url'] ?>" target="_blank"><?=lang('more_info')?></a><?php endif;?>
         <div style="margin-top:5px;">
-<!--vot-->        <?php if ($val['ForEmlog'] != ''):?><?=lang('ok_for_emlog')?>: <?= $val['ForEmlog'];?>&nbsp | &nbsp<?php endif;?>
+<!--vot-->        <?php if ($val['ForEmlog'] != ''):?><?=lang('ok_for_emlog')?>: <?= $val['ForEmlog'] ?>&nbsp | &nbsp<?php endif;?>
         <?php if ($val['Author'] != ''):?>
 <!--vot--> <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''):?>
-            <a href="<?= $val['AuthorUrl'];?>" target="_blank"><?= $val['Author'];?></a>
+            <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
             <?php else:?>
-            <?= $val['Author'];?>
+            <?= $val['Author'] ?>
             <?php endif;?>
         <?php endif;?>
         </div>
         </td>
         <td class="tdcenter">
-<!--vot-->  <a href="javascript: em_confirm('<?= $key; ?>', 'plu', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->  <a href="javascript: em_confirm('<?= $key ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         </td>
       </tr>
     <?php endforeach;else: ?>
@@ -82,7 +82,7 @@
         </li>
         <li>
 <!--vot-->  <input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary" />
-            <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
         </li>
 <!--vot--><li style="margin:10px 0px;"><?=lang('plugin_get_more')?>:<a href="store.php"><?=lang('app_center')?></a></li>
     </div>

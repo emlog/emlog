@@ -4,13 +4,13 @@
 <form action="navbar.php?action=update" method="post">
 <div class="form-group form-inline">
     <li>
-<!--vot--><input size="40" class="form-control" value="<?= $naviname; ?>" name="naviname" /> <label><?=lang('nav_name')?></label>
+<!--vot--><input size="40" class="form-control" value="<?= $naviname ?>" name="naviname" /> <label><?=lang('nav_name')?></label>
     </li>
     <li>
-<!--vot--><input size="100" class="form-control" value="<?= $url; ?>" name="url" <?= $conf_isdefault; ?> /> <label><?=lang('nav_address')?></label>
+<!--vot--><input size="100" class="form-control" value="<?= $url ?>" name="url" <?= $conf_isdefault ?> /> <label><?=lang('nav_address')?></label>
     </li>
     <li class="checkbox">
-<!--vot--><label><input type="checkbox" value="y" name="newtab" <?= $conf_newtab; ?> /> <?=lang('open_new_win')?></label>
+<!--vot--><label><input type="checkbox" value="y" name="newtab" <?= $conf_newtab ?> /> <?=lang('open_new_win')?></label>
     </li>
     <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
     <li>
@@ -23,15 +23,15 @@
                         }
                         $flg = $value['id'] == $pid ? 'selected' : '';
                 ?>
-                <option value="<?= $value['id']; ?>" <?= $flg;?>><?= $value['naviname']; ?></option>
+                <option value="<?= $value['id'] ?>" <?= $flg ?>><?= $value['naviname'] ?></option>
                 <?php endforeach; ?>
             </select>
 <!--vot-->  <?=lang('nav_parent')?>
     </li>
     <?php endif; ?>
     <li>
-    <input type="hidden" value="<?= $naviId; ?>" name="navid" />
-    <input type="hidden" value="<?= $isdefault; ?>" name="isdefault" />
+    <input type="hidden" value="<?= $naviId ?>" name="navid" />
+    <input type="hidden" value="<?= $isdefault ?>" name="isdefault" />
 <!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" />
 <!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" />
     </li>

@@ -29,24 +29,24 @@
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
-        <td style="padding:3px; text-align:center;"><img src="<?= $avatar; ?>" height="40" width="40" /></td>
+        <td style="padding:3px; text-align:center;"><img src="<?= $avatar ?>" height="40" width="40" /></td>
 		<td>
-		<?= empty($val['name']) ? $val['login'] : $val['name']; ?><br />
-<!--vot-->      <?= $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder'):lang('admin') : lang('user'); ?>
+		<?= empty($val['name']) ? $val['login'] : $val['name'] ?><br />
+<!--vot-->      <?= $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder') : lang('admin') : lang('user') ?>
 <!--vot-->      <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit');?>
 		<span style="display:none; margin-left:8px;">
 		<?php 
         if (UID != $val['uid']): ?>
-<!--vot-->    <a href="user.php?action=edit&uid=<?= $val['uid']?>"><?=lang('edit')?></a> 
-<!--vot-->    <a href="javascript: em_confirm(<?= $val['uid']; ?>, 'user', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->    <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?=lang('edit')?></a> 
+<!--vot-->    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'user', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
 		<?php else:?>
 <!--vot-->    <a href="blogger.php"><?=lang('edit')?></a>
 		<?php endif;?>
 		</span>
 		</td>
-		<td><?= $val['description']; ?></td>
-		<td><?= $val['email']; ?></td>
-		<td class="tdcenter"><a href="./admin_log.php?uid=<?= $val['uid'];?>"><?= $sta_cache[$val['uid']]['lognum']; ?></a></td>
+		<td><?= $val['description'] ?></td>
+		<td><?= $val['email'] ?></td>
+		<td class="tdcenter"><a href="./admin_log.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
      </tr>
 	<?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="6"><?=lang('no_authors_yet')?></td></tr>
@@ -54,7 +54,7 @@
 	</tbody>
   </table>
 </form>
-<!--vot--><div class="page"><?= $pageurl; ?> (<?=lang('have')?><?= $usernum; ?><?=lang('_users')?>)</div> 
+<!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?><?= $usernum ?><?=lang('_users')?>)</div> 
 <form action="user.php?action=new" method="post" class="form-inline">
 <!--vot--><div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success"><?=lang('user_add')?>+</a></div>
 <div id="user_new" class="form-group">
@@ -73,7 +73,7 @@
 <!--vot-->    <option value="y"><?=lang('posts_need_audit')?></option>
 	</select>
 	</li>
-    <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
 <!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="btn btn-primary" /></li>
 </div>
 </form>

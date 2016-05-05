@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
-<link href="./views/css/css-uploadify.css?v=<?= Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
+<link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
+<link href="./views/css/css-uploadify.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.11.0.js"></script>
 </head>
 <body>
@@ -22,7 +22,7 @@ function showattlib(){
 <div id="media-upload-header">
 <!--vot--><span><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
 <!--vot--><span id="curtab"><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
-<!--vot--><span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?= $attachnum; ?>)</a></span>
+<!--vot--><span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?= $attachnum ?>)</a></span>
 </div>
 <?php 
 if(true === isIE6Or7()): ?>
@@ -34,7 +34,7 @@ if(true === isIE6Or7()): ?>
 <div id="custom-queue" class="uploadifyQueue"></div>
 </div>
 </form>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?= Option::EMLOG_VERSION ?>"></script>
 <script>
 $(document).ready(function() {
 	$("#custom_file_upload").uploadify({
@@ -47,13 +47,13 @@ $(document).ready(function() {
 		auto            : true,
 		multi           : true,
 		buttonCursor    : 'pointer',
-		fileTypeExts    : '<?= $att_type_for_muti;?>',
+		fileTypeExts    : '<?= $att_type_for_muti ?>',
 		queueID         : 'custom-queue',
 		queueSizeLimit	: 100,
 		removeCompleted : false,
 		fileSizeLimit	: 20971520,
 		fileObjName     : 'attach',
-		postData		: {<?= AUTH_COOKIE_NAME;?>:'<?= $_COOKIE[AUTH_COOKIE_NAME];?>'},
+		postData		: {<?= AUTH_COOKIE_NAME ?>:'<?= $_COOKIE[AUTH_COOKIE_NAME] ?>'},
 		onQueueComplete : function() { showattlib();},
 	});
 });

@@ -4,11 +4,11 @@
 <!--vot--><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./views/css/css-login.css?v=<?= Option::EMLOG_VERSION; ?>" type="text/css" media="screen" />
-<link href="<?= BLOG_URL; ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="<?= BLOG_URL; ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
-<script src="<?= BLOG_URL; ?>admin/views/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="./views/js/common.js?v=<?= Option::EMLOG_VERSION; ?>"></script>
+<link rel="stylesheet" href="./views/css/css-login.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" media="screen" />
+<link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="<?= BLOG_URL ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?= Option::EMLOG_VERSION ?>"></script>
+<script src="<?= BLOG_URL ?>admin/views/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
 <!--vot--><title><?=lang('login')?></title>
 </head>
 <body>
@@ -21,7 +21,7 @@
 			<?php if ($error_msg): ?>
 				<div class="alert alert-danger alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  <?= $error_msg; ?>
+				  <?= $error_msg ?>
 				</div>
 			<?php endif;?>
 			</div>

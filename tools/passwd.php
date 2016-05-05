@@ -49,7 +49,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 14px;line-height:15
 <p class="title">Reset Administrator Password</p>
 <div class="b">
 <p class="title2"></p>
-<p class="center">Are you sure you want the administrator <span class="notice"><?= $user_name;?></span> password must be reset to <span class="notice"><input name="passwd" type="text" class="input" value="123456"></span> ?</p>
+<p class="center">Are you sure you want the administrator <span class="notice"><?= $user_name ?></span> password must be reset to <span class="notice"><input name="passwd" type="text" class="input" value="123456"></span> ?</p>
 </div>
 <div>
 <p class="center">

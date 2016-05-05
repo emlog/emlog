@@ -36,22 +36,22 @@
                     ?>
                     <tr>
                         <td>
-                            <input type="hidden" value="<?= $value['sid']; ?>" class="sort_id" />
-                            <input class="form-control em-small" name="sort[<?= $value['sid']; ?>]" value="<?= $value['taxis']; ?>" />
+                            <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
+                            <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>" />
                         </td>
                         <td class="sortname">
-                            <a href="sort.php?action=mod_sort&sid=<?= $value['sid']; ?>"><?= $value['sortname']; ?></a>
+                            <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                         </td>
-                        <td><?= $value['description']; ?></td>
-                        <td class="alias"><?= $value['alias']; ?></td>
-                        <td class="alias"><?= $value['template']; ?></td>
+                        <td><?= $value['description'] ?></td>
+                        <td class="alias"><?= $value['alias'] ?></td>
+                        <td class="alias"><?= $value['template'] ?></td>
                         <td class="tdcenter">
-                            <a href="<?= Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                            <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
                         </td>
-                        <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid']; ?>"><?= $value['lognum']; ?></a></td>
+                        <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                         <td>
-<!--vot-->                  <a href="sort.php?action=mod_sort&sid=<?= $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                  <a href="javascript: em_confirm(<?= $value['sid']; ?>, 'sort', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->                  <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?=lang('edit')?></a>
+<!--vot-->                  <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
                         </td>
                     </tr>
                     <?php
@@ -61,20 +61,20 @@
                         ?>
                         <tr>
                             <td>
-                                <input type="hidden" value="<?= $value['sid']; ?>" class="sort_id" />
-                                <input class="form-control em-small" name="sort[<?= $value['sid']; ?>]" value="<?= $value['taxis']; ?>" />
+                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
+                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>" />
                             </td>
-                            <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid']; ?>"><?= $value['sortname']; ?></a></td>
-                            <td><?= $value['description']; ?></td>
-                            <td class="alias"><?= $value['alias']; ?></td>
-                            <td class="alias"><?= $value['template']; ?></td>
+                            <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
+                            <td><?= $value['description'] ?></td>
+                            <td class="alias"><?= $value['alias'] ?></td>
+                            <td class="alias"><?= $value['template'] ?></td>
                             <td class="tdcenter">
-                                <a href="<?= Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
                             </td>
-                            <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid']; ?>"><?= $value['lognum']; ?></a></td>
+                            <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
-<!--vot-->                      <a href="sort.php?action=mod_sort&sid=<?= $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                      <a href="javascript: em_confirm(<?= $value['sid']; ?>, 'sort', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->                      <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?=lang('edit')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -112,7 +112,7 @@
                         continue;
                     }
                     ?>
-                    <option value="<?= $key; ?>"><?= $value['sortname']; ?></option>
+                    <option value="<?= $key ?>"><?= $value['sortname'] ?></option>
 <?php endforeach; ?>
             </select>
 <!--vot-->  <label><?=lang('category_parent')?></label>
@@ -123,7 +123,7 @@
         </li>
         <li>
             <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"></textarea></li>
-        <input name="token" id="token" value="<?= LoginAuth::genToken(); ?>" type="hidden" />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
 <!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
     </div>
 </form>

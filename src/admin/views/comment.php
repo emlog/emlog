@@ -18,14 +18,14 @@ $a = "hide_$hide";
 $$a = "class=\"filter\"";
 ?>
 <div class="filters">
-<!--vot--><span <?= $hide_; ?>><a href="./comment.php?<?= $addUrl_1 ?>"><?=lang('all')?></a></span>
-<!--vot--><span <?= $hide_y; ?>><a href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?>
+<!--vot--><span <?= $hide_ ?>><a href="./comment.php?<?= $addUrl_1 ?>"><?=lang('all')?></a></span>
+<!--vot--><span <?= $hide_y ?>><a href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?>
 <?php
 $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 ?>
 </a></span>
-<!--vot--><span <?= $hide_n; ?>><a href="comment.php?hide=n&<?= $addUrl_1 ?>"><?=lang('audited')?></a></span>
+<!--vot--><span <?= $hide_n ?>><a href="comment.php?hide=n&<?= $addUrl_1 ?>"><?=lang('audited')?></a></span>
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
@@ -51,23 +51,23 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     doAction('adm_comment_display');
     ?>
      <tr>
-        <td width="19"><input type="checkbox" value="<?= $value['cid']; ?>" name="com[]" class="ids" /></td>
-        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid']; ?>" title="<?= $value['content']; ?>"><?= $sub_content; ?></a> 	<?= $ishide; ?>
-        <br /><?= $value['date']; ?>
+        <td width="19"><input type="checkbox" value="<?= $value['cid'] ?>" name="com[]" class="ids" /></td>
+        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid'] ?>" title="<?= $value['content'] ?>"><?= $sub_content ?></a> 	<?= $ishide ?>
+        <br /><?= $value['date'] ?>
         <span style="display:none; margin-left:8px;">    
-<!--vot-->  <a href="javascript: em_confirm(<?= $value['cid']; ?>, 'comment', '<?= LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->  <a href="javascript: em_confirm(<?= $value['cid'] ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         <?php if($value['hide'] == 'y'):?>
-<!--vot-->  <a href="comment.php?action=show&amp;id=<?= $value['cid']; ?>"><?=lang('approve')?></a>
+<!--vot-->  <a href="comment.php?action=show&amp;id=<?= $value['cid'] ?>"><?=lang('approve')?></a>
         <?php else: ?>
-<!--vot-->  <a href="comment.php?action=hide&amp;id=<?= $value['cid']; ?>"><?=lang('hide')?></a>
+<!--vot-->  <a href="comment.php?action=hide&amp;id=<?= $value['cid'] ?>"><?=lang('hide')?></a>
         <?php endif;?>
-<!--vot-->  <a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid']; ?>"><?=lang('reply')?></a>
-<!--vot-->  <a href="comment.php?action=edit_comment&amp;cid=<?= $value['cid']; ?>"><?=lang('edit')?></a>
+<!--vot-->  <a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid'] ?>"><?=lang('reply')?></a>
+<!--vot-->  <a href="comment.php?action=edit_comment&amp;cid=<?= $value['cid'] ?>"><?=lang('edit')?></a>
         </span>
         </td>
-        <td><?= $poster;?> <?= $mail;?> <?= $ip;?> 
-<!--vot-->  <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?= $value['ip']; ?>', 'commentbyip', '<?= LoginAuth::genToken(); ?>');" title="<?=lang('delete_comments_from_ip')?>" class="care">(X)</a><?php endif;?></td>
-<!--vot--><td><a href="<?= Url::log($value['gid']); ?>" target="_blank" title="<?=lang('show_post')?>"><?= $value['title']; ?></a></td>
+        <td><?= $poster ?> <?= $mail ?> <?= $ip ?> 
+<!--vot-->  <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?= $value['ip'] ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" title="<?=lang('delete_comments_from_ip')?>" class="care">(X)</a><?php endif;?></td>
+<!--vot--><td><a href="<?= Url::log($value['gid']) ?>" target="_blank" title="<?=lang('show_post')?>"><?= $value['title'] ?></a></td>
      </tr>
     <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="4"><?=lang('no_comments_yet')?></td></tr>
@@ -81,7 +81,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 <!--vot--><a href="javascript:commentact('pub');"><?=lang('approve')?></a>
     <input name="operate" id="operate" value="" type="hidden" />
     </div>
-<!--vot--><div class="page"><?= $pageurl; ?> (<?=lang('have')?><?= $cmnum; ?><?=lang('_comments')?>)</div> 
+<!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?><?= $cmnum ?><?=lang('_comments')?>)</div> 
 </form>
 <script>
 $(document).ready(function(){
