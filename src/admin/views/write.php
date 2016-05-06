@@ -11,7 +11,7 @@
     <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
-<!--vot-->      <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>" />
+<!--vot-->      <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>">
             </div>
             <div id="post_bar">
                 <div class="show_advset">
@@ -68,7 +68,7 @@
             
             <div class="form-group">
 <!--vot-->  <label><?=lang('tags')?>:</label>
-<!--vot-->  <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>" />
+<!--vot-->  <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>">
 <!--vot-->  <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
             <div id="tagbox" style="display: none;">
                 <?php
@@ -85,44 +85,44 @@
 
             <div class="form-group">
 <!--vot-->  <label><?=lang('publish_time')?></label>
-            <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control" />
+            <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control">
             </div>
             
             <div class="form-group">
 <!--vot-->      <label><?=lang('link_alias')?>:</label>
-                <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
+                <input name="alias" id="alias" class="form-control" value="<?= $alias ?>">
             </div>
             
             <div class="form-group">
 <!--vot-->      <label><?=lang('access_password')?>:</label>
-                <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>" />
+                <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>">
             </div>
             
             <div class="form-group">
-            <input type="checkbox" value="y" name="top" id="top" <?= $is_top ?> />
+            <input type="checkbox" value="y" name="top" id="top" <?= $is_top ?>>
 <!--vot-->  <label for="top"><?=lang('home_top')?></label>
-            <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop ?> />
+            <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop ?>>
 <!--vot-->  <label for="sortop"><?=lang('category_top')?></label>
-            <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?= $is_allow_remark ?> />
+            <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?= $is_allow_remark ?>>
 <!--vot-->  <label for="allow_remark"><?=lang('allow_comments')?></label>
             </div>
         </div>
     </div>
 
     <div id="post_button">
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-        <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
-        <input type="hidden" name="gid" value=<?= $logid ?> />
-        <input type="hidden" name="author" id="author" value=<?= $author ?> />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+        <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>">
+        <input type="hidden" name="gid" value=<?= $logid ?>>
+        <input type="hidden" name="author" id="author" value=<?= $author ?>>
 
         <?php if ($logid < 0):?>
-<!--vot--><input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-primary" />
-<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success" />
+<!--vot--><input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success">
         <?php else:?>
-<!--vot--><input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary" />
-<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success" />
+<!--vot--><input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success">
         <?php if ($isdraft) :?>
-<!--vot--><input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success" />
+<!--vot--><input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success">
         <?php endif;?>
         <?php endif;?>
         

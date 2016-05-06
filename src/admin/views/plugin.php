@@ -39,7 +39,7 @@
         }
         $i++;
         if (TRUE === $val['Setting']) {
-/*vot*/        $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\" /></a>";
+/*vot*/        $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']} <img src=\"./views/images/set.png\" border=\"0\"></a>";
         }
     ?>	
       <tr>
@@ -78,11 +78,11 @@
     <div id="plugin_new" class="form-group" style="margin:50px 0px;">
 <!--vot--><li><?=lang('upload_install_info')?></li>
         <li>
-            <input name="pluzip" type="file" />
+            <input name="pluzip" type="file">
         </li>
         <li>
-<!--vot-->  <input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary" />
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+<!--vot-->  <input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
         </li>
 <!--vot--><li style="margin:10px 0px;"><?=lang('plugin_get_more')?>:<a href="store.php"><?=lang('app_center')?></a></li>
     </div>

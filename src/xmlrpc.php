@@ -48,8 +48,8 @@ if (isset($_GET['rsd'])) {
                     <engineLink>http://emlog.net/</engineLink>
                     <homePageLink>' . $options_cache['blogurl'] . '</homePageLink>
                     <apis>
-                        <api name="MetaWeblog" blogID="1" preferred="true" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php" />
-                        <api name="Blogger" blogID="1" preferred="false" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php" />
+                        <api name="MetaWeblog" blogID="1" preferred="true" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php">
+                        <api name="Blogger" blogID="1" preferred="false" apiLink="' . $options_cache['blogurl'] . 'xmlrpc.php">
                     </apis>
                 </service>
             </rsd>

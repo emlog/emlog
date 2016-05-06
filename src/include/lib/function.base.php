@@ -897,11 +897,11 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 <head>
 EOT;
     if ($isAutoGo) {
-        echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
+        echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\">";
     }
 /*vot*/ $title = lang('prompt');
     echo <<<EOT
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>$title</title>
 <style type="text/css">
 <!--
@@ -969,7 +969,7 @@ function emoFormat($t){
         $matches = array_unique($matches[0]);
         foreach ($matches as $data) {
             if(isset($emos[$data]))
-                $t = str_replace($data,'<img title="'.$data.'" src="'.BLOG_URL.'admin/editor/plugins/emoticons/images/'.$emos[$data].'"/>',$t);
+                $t = str_replace($data,'<img title="'.$data.'" src="'.BLOG_URL.'admin/editor/plugins/emoticons/images/'.$emos[$data].'">',$t);
         }
     }
     return $t;

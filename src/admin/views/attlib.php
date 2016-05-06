@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>upload</title>
 <link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION ?>" type=text/css rel=stylesheet>
 <script type="text/javascript" src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
@@ -46,15 +46,15 @@ foreach($attach as $key=>$value):
 /*vot*/		$embedlink = "<a href=\"javascript: parent.addattach_file('$atturl', '{$value['filename']}', {$value['aid']});\">".lang('insert')."</a>";
 	}
 ?>
-	<li id="attlist"><a href="<?= $atturl ?>" target="_blank" title="<?= $value['filename'] ?>"><img src="<?= $imgpath ?>" width="90" height="90" border="0" align="absmiddle"/></a>
+	<li id="attlist"><a href="<?= $atturl ?>" target="_blank" title="<?= $value['filename'] ?>"><img src="<?= $imgpath ?>" width="90" height="90" border="0" align="absmiddle"></a>
 	<?php if ($value['width'] && $value['height']): ?>
-	<br />
+	<br>
 	<?= $value['width']?>x<?= $value['height']?>
 	<?php else:?>
-	<br />
+	<br>
 	<?= subString($value['filename'], 0, 6) ?>
 	<?php endif;?>
-<!--vot--><br /><a href="javascript: em_confirm(<?= $value['aid'] ?>, 'attachment', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a> <?= $embedlink ?></li>
+<!--vot--><br><a href="javascript: em_confirm(<?= $value['aid'] ?>, 'attachment', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a> <?= $embedlink ?></li>
 <?php endforeach; endif; ?>
 </div>
 </body>

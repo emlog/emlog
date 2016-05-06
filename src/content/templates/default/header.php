@@ -11,16 +11,16 @@ require_once View::getView('module');
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?= $site_title ?></title>
-<meta name="keywords" content="<?= $site_key ?>" />
-<meta name="description" content="<?= $site_description ?>" />
-<meta name="generator" content="emlog" />
+<meta name="keywords" content="<?= $site_key ?>">
+<meta name="description" content="<?= $site_description ?>">
+<meta name="generator" content="emlog">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?= BLOG_URL ?>rss.php" />
-<link href="<?= TEMPLATE_URL ?>main.css" rel="stylesheet" type="text/css" />
-<link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="<?= BLOG_URL ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS"  href="<?= BLOG_URL ?>rss.php">
+<link href="<?= TEMPLATE_URL ?>main.css" rel="stylesheet" type="text/css">
+<link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="<?= BLOG_URL ?>admin/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
 <script src="<?= BLOG_URL ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?= Option::EMLOG_VERSION ?>"></script>
 <script src="<?= BLOG_URL ?>admin/editor/plugins/code/prettify.js" type="text/javascript"></script>
 <script src="<?= BLOG_URL ?>include/lib/js/common_tpl.js" type="text/javascript"></script>

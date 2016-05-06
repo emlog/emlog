@@ -85,7 +85,7 @@ class MySql {
         $this->result = @mysql_query($sql, $this->conn);
         $this->queryCount++;
         if (!$ignore_err && !$this->result) {
-/*vot*/     emMsg(lang('db_sql_error').": $sql <br />" . $this->geterror());
+/*vot*/     emMsg(lang('db_sql_error').": $sql <br>" . $this->geterror());
         }else {
             return $this->result;
         }

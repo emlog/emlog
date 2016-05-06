@@ -120,11 +120,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     $author_role = $user_cache[$value['author']]['role'];
     ?>
       <tr>
-      <td width="21"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids" /></td>
+      <td width="21"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"></td>
       <td width="490"><a href="write_log.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
-<!--vot--><?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>" /><?php endif; ?>
-<!--vot--><?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>" /><?php endif; ?>
-<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachment_num')?>: <?= $value['attnum'] ?>" /><?php endif; ?>
+<!--vot--><?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"><?php endif; ?>
+<!--vot--><?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"><?php endif; ?>
+<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachment_num')?>: <?= $value['attnum'] ?>"><?php endif; ?>
 <!--vot--><?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
       <span style="display:none; margin-left:8px;">
         <?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
@@ -137,7 +137,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
       <?php if ($pid != 'draft'): ?>
       <td class="tdcenter">
 <!--vot--><a href="<?= Url::log($value['gid']) ?>" target="_blank" title="<?=lang('open_new_window')?>">
-      <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+      <img src="./views/images/vlog.gif" align="absbottom" border="0"></a>
       </td>
       <?php endif; ?>
       <td><a href="./admin_log.php?uid=<?= $value['author'].$isdraft ?>"><?= $author ?></a></td>
@@ -151,8 +151,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <?php endif;?>
     </tbody>
     </table>
-    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-    <input name="operate" id="operate" value="" type="hidden" />
+    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+    <input name="operate" id="operate" value="" type="hidden">
     <div class="list_footer form-inline">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
 <!--vot--><a href="javascript:logact('del');" class="care"><?=lang('delete')?></a> | 

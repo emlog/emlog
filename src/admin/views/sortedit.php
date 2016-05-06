@@ -7,11 +7,11 @@
 <form action="sort.php?action=update" method="post" class="form-inline">
 <div class="form-group">
     <li>
-        <input style="width:200px;" value="<?= $sortname ?>" name="sortname" id="sortname" class="form-control" />
+        <input style="width:200px;" value="<?= $sortname ?>" name="sortname" id="sortname" class="form-control">
 <!--vot--><label><?=lang('name')?></label>
     </li>
     <li>
-        <input style="width:200px;" value="<?= $alias ?>" name="alias" id="alias" class="form-control" />
+        <input style="width:200px;" value="<?= $alias ?>" name="alias" id="alias" class="form-control">
 <!--vot--><label><?=lang('alias')?></label>
     </li>
     <?php if (empty($sorts[$sid]['children'])): ?>
@@ -28,14 +28,14 @@
 <!--vot--><label><?=lang('category_parent')?></label>
     </li>
     <?php endif; ?>
-<!--vot--><li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?= $template ?>" /> <?=lang('template')?> <?=lang('template_info2')?></li>
+<!--vot--><li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?= $template ?>"> <?=lang('template')?> <?=lang('template_info2')?></li>
     <li>
         <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"><?= $description ?></textarea>
     </li>
     <li>
-    <input type="hidden" value="<?= $sid ?>" name="sid" />
-<!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" id="save"  />
-<!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();" />
+    <input type="hidden" value="<?= $sid ?>" name="sid">
+<!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" id="save">
+<!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();">
     <span id="alias_msg_hook"></span>
     </li>
 </div>

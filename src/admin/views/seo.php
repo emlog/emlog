@@ -14,7 +14,7 @@
 <!--vot--><h4><?=lang('post_url_settings')?></h4>
 <div class="alert alert-info" style="width: 100%">
 <!--vot--><?=lang('post_url_rewriting')?>
-<!--vot--><br /><?=lang('post_url_custom')?>
+<!--vot--><br><?=lang('post_url_custom')?>
 </div>
 <div class="form-group">
             <div class="radio">
@@ -41,12 +41,12 @@
 <div class="form-group">
                 <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?= $isalias ?> /> <?=lang('post_alias_enable')?>
+<!--vot-->          <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?= $isalias ?>> <?=lang('post_alias_enable')?>
                 </label>
             </div>
                 <div class="checkbox">
                 <label>
-<!--vot-->          <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?> /> <?=lang('enable_html_suffix')?>
+<!--vot-->          <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?>> <?=lang('enable_html_suffix')?>
                 </label>
             </div>
 </div>
@@ -55,11 +55,11 @@
 <div class="form-group">
     <li>
 <!--vot--><label><?=lang('meta_title')?></label>
-        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_title ?>" name="site_title" />
+        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_title ?>" name="site_title">
     </li>
     <li>
 <!--vot--><label><?=lang('meta_keywords')?></label>
-        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_key ?>" name="site_key" />
+        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_key ?>" name="site_key">
     </li>
     <li>
 <!--vot--><label><?=lang('meta_description')?></label>
@@ -74,8 +74,8 @@
         </select>
     </li>
     <li style="margin-top:10px;">
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-<!--vot--><input type="submit" value="<?=lang('save_settings')?>" class="btn btn-primary" />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+<!--vot--><input type="submit" value="<?=lang('save_settings')?>" class="btn btn-primary">
     </li>
 </div>
 </form>

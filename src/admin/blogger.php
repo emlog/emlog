@@ -14,10 +14,10 @@ if ($action == '') {
     if ($photo) {
         $imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
         $token = LoginAuth::genToken();
-/*vot*/ $icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
-        <br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">".lang('photo_delete')."</a>";
+/*vot*/ $icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\">
+        <br><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">".lang('photo_delete')."</a>";
     } else {
-        $icon = '<img src="./views/images/avatar.jpg" />';
+        $icon = '<img src="./views/images/avatar.jpg">';
     }
     include View::getView('header');
     require_once(View::getView('blogger'));

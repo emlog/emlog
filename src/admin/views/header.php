@@ -46,7 +46,7 @@
                             <li class="sidebar-avatar">
                                 <div style="text-align: center;">
                                     <a href="./blogger.php">
-                                        <img class="img-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>" />
+                                        <img class="img-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
                                     </a>
                                 </div>
                             </li>

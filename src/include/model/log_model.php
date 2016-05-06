@@ -383,7 +383,7 @@ class Log_Model {
 /*vot*/     echo <<<EOT
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>emlog message</title>
 <style type="text/css">
 <!--
@@ -396,8 +396,8 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <div class="main">
 <form action="" method="post">
 {$page_pass}<br>
-<input type="password" name="logpwd" /><input type="submit" value="{$submit_pass}" class="button" />
-<br /><br /><a href="$url">{$back}</a>
+<input type="password" name="logpwd"><input type="submit" value="{$submit_pass}" class="button">
+<br><br><a href="$url">{$back}</a>
 </form>
 </div>
 </body>

@@ -5,11 +5,11 @@
 <div class=line></div>
 <form  method="post" action="tag.php?action=update_tag" class="form-inline">
 <div class="form-group">
-    <li><input size="40" value="<?= $tagname ?>" name="tagname" class="form-control" /></li>
+    <li><input size="40" value="<?= $tagname ?>" name="tagname" class="form-control"></li>
     <li style="margin:10px 0px">
-    <input type="hidden" value="<?= $tagid ?>" name="tid" />
-    <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" />
-    <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.location='tag.php';"/>
+    <input type="hidden" value="<?= $tagid ?>" name="tid">
+    <input type="submit" value="<?=lang('save')?>" class="btn btn-primary">
+    <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.location='tag.php';">
     </li>
 </div>
 </form>

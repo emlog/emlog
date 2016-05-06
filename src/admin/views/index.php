@@ -36,7 +36,7 @@
         <div class="col-lg-12">
             <div id="admindex">
                 <div id="about" class="alert alert-warning">
-<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?= Option::EMLOG_VERSION ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br />
+<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?= Option::EMLOG_VERSION ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br>
                   <span id="upmsg"></span>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                                 $.each(data.items, function(i, item) {
                                     var image = '';
                                     if (item.image != '') {
-                                        image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
+                                        image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br>";
                                     }
 
 /*vot*/				    if(em_lang != 'cn') {

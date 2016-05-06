@@ -10,7 +10,7 @@
     <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
-<!--vot-->       <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('page_title')?>" />
+<!--vot-->       <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('page_title')?>">
             </div>
             <div id="post_bar">
                 <div>
@@ -38,16 +38,16 @@
 
             <div class="form-group">
 <!--vot-->      <label><?=lang('link_alias')?>:</label>
-                <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
+                <input name="alias" id="alias" class="form-control" value="<?= $alias ?>">
             </div>
             
             <div class="form-group">
 <!--vot-->      <label><?=lang('page_template')?></label>
-                <input name="template" id="template" class="form-control" value="<?= $template ?>" />
+                <input name="template" id="template" class="form-control" value="<?= $template ?>">
             </div>
             
             <div class="form-group">
-            <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
+            <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?>>
 <!--vot-->  <label for="allow_remark"><?=lang('allow_comments')?></label>
             </div>
            
@@ -55,15 +55,15 @@
     </div>
 
     <div id="post_button">
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-        <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
-        <input type="hidden" name="gid" value=<?= $pageId ?> />
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+        <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>">
+        <input type="hidden" name="gid" value=<?= $pageId ?>>
         <?php if ($pageId < 0):?>
-<!--vot--><input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-primary" />
-<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success" />
+<!--vot--><input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
         <?php else:?>
-<!--vot--><input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary" />
-<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success" />
+<!--vot--><input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot--><input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
         <?php endif;?>
         
     </div>

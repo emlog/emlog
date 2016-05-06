@@ -36,8 +36,8 @@
                     ?>
                     <tr>
                         <td>
-                            <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
-                            <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>" />
+                            <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id">
+                            <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>">
                         </td>
                         <td class="sortname">
                             <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
@@ -46,7 +46,7 @@
                         <td class="alias"><?= $value['alias'] ?></td>
                         <td class="alias"><?= $value['template'] ?></td>
                         <td class="tdcenter">
-                            <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                            <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"></a>
                         </td>
                         <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                         <td>
@@ -61,15 +61,15 @@
                         ?>
                         <tr>
                             <td>
-                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
-                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>" />
+                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id">
+                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>">
                             </td>
                             <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
                             <td><?= $value['description'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
                             <td class="alias"><?= $value['template'] ?></td>
                             <td class="tdcenter">
-                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"></a>
                             </td>
                             <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
@@ -85,22 +85,22 @@
         </tbody>
     </table>
     <div class="list_footer">
-<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /> 
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"> 
 <!--vot--><a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>
     </div>
 </form>
 <form action="sort.php?action=add" method="post" class="form-inline">
     <div id="sort_new" class="form-group">
         <li>
-            <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
+            <input maxlength="4" style="width:50px;" name="taxis" class="form-control">
 <!--vot-->  <label><?=lang('id')?></label>
         </li>
         <li>
-            <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
+            <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required">
 <!--vot-->  <label><?=lang('name')?></label>
         </li>
         <li>
-            <input style="width:243px;" class="form-control" name="alias" id="alias" />
+            <input style="width:243px;" class="form-control" name="alias" id="alias">
 <!--vot-->  <label><?=lang('alias_info')?></label>
         </li>
         <li>
@@ -118,13 +118,13 @@
 <!--vot-->  <label><?=lang('category_parent')?></label>
         </li>
         <li>
-            <input style="width:243px;" class="form-control" name="template" id="template" value="log_list" />
+            <input style="width:243px;" class="form-control" name="template" id="template" value="log_list">
 <!--vot-->  <label><?=lang('template')?> <?=lang('template_info')?></label>
         </li>
         <li>
             <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"></textarea></li>
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-<!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
+        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+<!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"><span id="alias_msg_hook"></span></li>
     </div>
 </form>
 <script>

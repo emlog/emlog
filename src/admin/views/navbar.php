@@ -52,7 +52,7 @@
     
     ?>  
       <tr>
-        <td><input class="form-control em-small" name="navi[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4" /></td>
+        <td><input class="form-control em-small" name="navi[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"></td>
 <!--vot-->    <td><a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>" title="<?=lang('nav_edit')?>"><?= $value['naviname'] ?></a></td>
         <td class="tdcenter"><?= $value['type_name'] ?></td>
         <td class="tdcenter">
@@ -64,7 +64,7 @@
         </td>
         <td class="tdcenter">
         <a href="<?= $value['url'] ?>" target="_blank">
-        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0" /></a>
+        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"></a>
         </td>
         <td><?= $value['url'] ?></td>
         <td>
@@ -79,7 +79,7 @@
         foreach ($value['childnavi'] as $val):
     ?>
         <tr>
-        <td><input class="form-control em-small" name="navi[<?= $val['id'] ?>]" value="<?= $val['taxis'] ?>" maxlength="4" /></td>
+        <td><input class="form-control em-small" name="navi[<?= $val['id'] ?>]" value="<?= $val['taxis'] ?>" maxlength="4"></td>
 <!--vot-->    <td>---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>" title="<?=lang('nav_edit')?>"><?= $val['naviname'] ?></a></td>
         <td class="tdcenter"><?= $value['type_name'] ?></td>
         <td class="tdcenter">
@@ -91,7 +91,7 @@
         </td>
         <td class="tdcenter">
         <a href="<?= $val['url'] ?>" target="_blank">
-        <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0" /></a>
+        <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"></a>
         </td>
         <td><?= $val['url'] ?></td>
         <td>
@@ -107,7 +107,7 @@
     <?php endif;?>
     </tbody>
   </table>
-<!--vot-->  <div class="list_footer"><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary" /></div>
+<!--vot-->  <div class="list_footer"><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"></div>
 </form>
 <div id="row" style="margin-top: 30px;">
     <div class="col-lg-4">
@@ -118,9 +118,9 @@
                 <div class="panel-body" id="admindex_servinfo">
                     <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                     <ul>
-<!--vot-->              <li><input maxlength="4" class="form-control" placeholder="<?=lang('id')?>" name="taxis" /></li>
-<!--vot-->              <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" /></li>
-<!--vot-->              <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" /></li>
+<!--vot-->              <li><input maxlength="4" class="form-control" placeholder="<?=lang('id')?>" name="taxis"></li>
+<!--vot-->              <li><input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>"></li>
+<!--vot-->              <li><input maxlength="200" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url"></li>
                         <li class="form-inline">
                             <select name="pid" id="pid" class="form-control">
 <!--vot-->                      <option value="0"><?=lang('no')?></option>
@@ -135,8 +135,8 @@
                             </select>
 <!--vot-->                  <?=lang('nav_parent')?>
                         </li>
-<!--vot-->              <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab" /> <?=lang('open_new_win')?></li>
-<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
+<!--vot-->              <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab"> <?=lang('open_new_win')?></li>
+<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"></li>
                     </ul>
                     </form>
                 </div>
@@ -159,7 +159,7 @@
                     }
                     ?>
                     <li>
-                        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids" />
+                        <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids">
                         <?= $value['sortname'] ?>
                     </li>
                     <?php
@@ -168,14 +168,14 @@
                         $value = $sorts[$key];
                     ?>
                     <li>
-                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids" />
+                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids">
                         <?= $value['sortname'] ?>
                     </li>
                     <?php 
                         endforeach;
                    endforeach;
                    ?>
-<!--vot-->          <li><input type="submit" name="" class="btn btn-primary" value="<?=lang('add')?>"  /></li>
+<!--vot-->          <li><input type="submit" name="" class="btn btn-primary" value="<?=lang('add')?>"></li>
                     <?php else:?>
 <!--vot-->          <li><?=lang('no_categories')?>, <a href="sort.php"><?=lang('new_category')?></a></li>
                     <?php endif;?> 
@@ -197,11 +197,11 @@
                         foreach($pages as $key=>$value): 
                         ?>
                         <li>
-                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" class="ids" />
+                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" class="ids">
                             <?= $value['title'] ?>
                         </li>
                         <?php endforeach;?>
-<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"  /></li>
+<!--vot-->              <li><input type="submit" class="btn btn-primary" name="" value="<?=lang('add')?>"></li>
                         <?php else:?>
 <!--vot-->              <li><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></li>
                     <?php endif;?>

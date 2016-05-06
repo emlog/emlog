@@ -43,7 +43,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     foreach($comment as $key=>$value):
 /*vot*/ $ishide = $value['hide']=='y'?'<font color="red">['.lang('pending').']</font>':'';
     $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-/*vot*/ $ip = !empty($value['ip']) ? "<br /><?=lang('from')?>: {$value['ip']}" : '';
+/*vot*/ $ip = !empty($value['ip']) ? "<br><?=lang('from')?>: {$value['ip']}" : '';
     $poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
     $value['content'] = str_replace('<br>',' ',$value['content']);
     $sub_content = subString($value['content'], 0, 50);
@@ -51,9 +51,9 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     doAction('adm_comment_display');
     ?>
      <tr>
-        <td width="19"><input type="checkbox" value="<?= $value['cid'] ?>" name="com[]" class="ids" /></td>
+        <td width="19"><input type="checkbox" value="<?= $value['cid'] ?>" name="com[]" class="ids"></td>
         <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid'] ?>" title="<?= $value['content'] ?>"><?= $sub_content ?></a> 	<?= $ishide ?>
-        <br /><?= $value['date'] ?>
+        <br><?= $value['date'] ?>
         <span style="display:none; margin-left:8px;">    
 <!--vot-->  <a href="javascript: em_confirm(<?= $value['cid'] ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
         <?php if($value['hide'] == 'y'):?>
@@ -79,7 +79,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 <!--vot--><a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
 <!--vot--><a href="javascript:commentact('hide');"><?=lang('hide')?></a>
 <!--vot--><a href="javascript:commentact('pub');"><?=lang('approve')?></a>
-    <input name="operate" id="operate" value="" type="hidden" />
+    <input name="operate" id="operate" value="" type="hidden">
     </div>
 <!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?><?= $cmnum ?><?=lang('_comments')?>)</div> 
 </form>

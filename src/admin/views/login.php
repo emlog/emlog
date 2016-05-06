@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <!--vot--><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./views/css/css-login.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" media="screen" />
-<link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="./views/css/css-login.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" media="screen">
+<link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <script src="<?= BLOG_URL ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?= Option::EMLOG_VERSION ?>"></script>
 <script src="<?= BLOG_URL ?>admin/views/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>

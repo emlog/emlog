@@ -68,7 +68,7 @@ class LoginAuth{
     public static function loginPage($errorCode = NULL) {
         Option::get('login_code') == 'y' ?
 /*vot*/ $ckcode = "<span>".lang('captcha')."</span>
-        <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
+        <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\">
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
         $error_msg = '';

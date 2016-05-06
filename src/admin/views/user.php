@@ -29,9 +29,9 @@
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
-        <td style="padding:3px; text-align:center;"><img src="<?= $avatar ?>" height="40" width="40" /></td>
+        <td style="padding:3px; text-align:center;"><img src="<?= $avatar ?>" height="40" width="40"></td>
 		<td>
-		<?= empty($val['name']) ? $val['login'] : $val['name'] ?><br />
+		<?= empty($val['name']) ? $val['login'] : $val['name'] ?><br>
 <!--vot-->      <?= $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder') : lang('admin') : lang('user') ?>
 <!--vot-->      <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit');?>
 		<span style="display:none; margin-left:8px;">
@@ -64,17 +64,17 @@
 <!--vot-->      <option value="admin"><?=lang('admin')?></option>
 	</select>
 	</li>
-<!--vot--><li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control" /> <?=lang('user_name')?></li>
-<!--vot--><li><input name="password" type="password" id="password" value="" style="width:180px;" class="form-control" /> <?=lang('password_min_length')?></li>
-<!--vot--><li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="form-control" /> <?=lang('password_repeat')?></li>
+<!--vot--><li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control"> <?=lang('user_name')?></li>
+<!--vot--><li><input name="password" type="password" id="password" value="" style="width:180px;" class="form-control"> <?=lang('password_min_length')?></li>
+<!--vot--><li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="form-control"> <?=lang('password_repeat')?></li>
 	<li id="ischeck">
 	<select name="ischeck" class="form-control">
 <!--vot-->    <option value="n"><?=lang('posts_not_need_audit')?></option>
 <!--vot-->    <option value="y"><?=lang('posts_need_audit')?></option>
 	</select>
 	</li>
-    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-<!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="btn btn-primary" /></li>
+    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+<!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="btn btn-primary"></li>
 </div>
 </form>
 <script>

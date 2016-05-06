@@ -29,7 +29,7 @@ if(!$act){
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>emlog</title>
 <style type="text/css">
 <!--
@@ -54,23 +54,23 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <div class="b">
 <!--vot--><p class="title2"><?= lang('mysql_settings')?></p>
 <li>
-<!--vot--> <?= lang('db_hostname')?>:<br />
+<!--vot--> <?= lang('db_hostname')?>:<br>
     <input name="hostname" type="text" class="input" value="127.0.0.1">
 <!--vot--> <span class="care"><?= lang('db_hostname_info')?></span>
 </li>
 <li>
-<!--vot--> <?= lang('db_user')?>:<br /><input name="dbuser" type="text" class="input" value="">
+<!--vot--> <?= lang('db_user')?>:<br><input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-<!--vot--> <?= lang('db_password')?>:<br /><input name="password" type="password" class="input">
+<!--vot--> <?= lang('db_password')?>:<br><input name="password" type="password" class="input">
 </li>
 <li>
-<!--vot--> <?= lang('db_name')?>:<br />
+<!--vot--> <?= lang('db_name')?>:<br>
       <input name="dbname" type="text" class="input" value="">
 <!--vot--> <span class="care"><?= lang('db_name_info')?></span>
 </li>
 <li>
-<!--vot--> <?= lang('db_prefix')?>:<br />
+<!--vot--> <?= lang('db_prefix')?>:<br>
   <input name="dbprefix" type="text" class="input" value="emlog_">
 <!--vot--> <span class="care"><?= lang('db_prefix_info')?></span>
 </li>
@@ -78,16 +78,16 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <div class="c">
 <!--vot--><p class="title2"><?= lang('admin_settings')?></p>
 <li>
-<!--vot--> <?= lang('admin_name')?>:<br />
+<!--vot--> <?= lang('admin_name')?>:<br>
 <input name="admin" type="text" class="input">
 </li>
 <li>
-<!--vot--><?= lang('admin_password')?>:<br />
+<!--vot--><?= lang('admin_password')?>:<br>
 <input name="adminpw" type="password" class="input">
 <!--vot--><span class="care"><?= lang('admin_password_info')?></span>
 </li>
 <li>
-<!--vot--><?= lang('admin_password_repeat')?>:<br />
+<!--vot--><?= lang('admin_password_repeat')?>:<br>
 <input name="adminpw2" type="password" class="input">
 </li>
 </div>
@@ -139,7 +139,7 @@ if($act == 'install' || $act == 'reinstall'){
 /*vot*/ ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>emlog system message</title>
 <style type="text/css">
 <!--

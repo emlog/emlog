@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>upload</title>
 <link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
 <link href="./views/css/css-uploadify.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">

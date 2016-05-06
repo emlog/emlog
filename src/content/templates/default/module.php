@@ -14,7 +14,7 @@ function widget_blogger($title){
     <ul class="list-unstyled">
         <div id="bloggerinfoimg">
         <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-        <img src="<?= BLOG_URL.$user_cache[1]['photo']['src'] ?>" width="<?= $user_cache[1]['photo']['width'] ?>" height="<?= $user_cache[1]['photo']['height'] ?>" alt="blogger" />
+        <img src="<?= BLOG_URL.$user_cache[1]['photo']['src'] ?>" width="<?= $user_cache[1]['photo']['width'] ?>" height="<?= $user_cache[1]['photo']['height'] ?>" alt="blogger">
         <?php endif;?>
         </div>
         <p><b><?= $name ?></b>
@@ -86,7 +86,7 @@ function widget_newcomm($title){
         $url = Url::comment($value['gid'], $value['page'], $value['cid']);
         ?>
         <li id="comment"><?= $value['name'] ?>
-        <br /><a href="<?= $url ?>"><?= $value['content'] ?></a></li>
+        <br><a href="<?= $url ?>"><?= $value['content'] ?></a></li>
         <?php endforeach; ?>
     </ul>
 <?php }?>
@@ -122,7 +122,7 @@ function widget_search($title){ ?>
     <h4><?= $title ?></h4>
     <ul class="list-unstyled">
         <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
-        <input name="keyword" class="search" type="text" />
+        <input name="keyword" class="search" type="text">
         </form>
     </ul>
 <?php } ?>
@@ -229,9 +229,9 @@ function blog_navi(){
 //blog:Top
 function topflg($top, $sortop='n', $sortid=null){
     if(blog_tool_ishome()) {
-/*vot*/       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"".lang('top_posts')."\" /> " : '';
+/*vot*/       echo $top == 'y' ? "<img src=\"".TEMPLATE_URL."/images/top.png\" title=\"".lang('top_posts')."\"> " : '';
     } elseif($sortid){
-/*vot*/       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"".lang('cat_top_posts')."\" /> " : '';
+/*vot*/       echo $sortop == 'y' ? "<img src=\"".TEMPLATE_URL."/images/sortop.png\" title=\"".lang('cat_top_posts')."\"> " : '';
     }
 }
 ?>
@@ -327,9 +327,9 @@ function blog_comments($comments){
     ?>
     <div class="comment" id="comment-<?= $comment['cid'] ?>">
         <a name="<?= $comment['cid'] ?>"></a>
-        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" /></div><?php endif; ?>
+        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"></div><?php endif; ?>
         <div class="comment-info">
-            <b><?= $comment['poster'] ?> </b><br /><span class="comment-time"><?= $comment['date'] ?></span>
+            <b><?= $comment['poster'] ?> </b><br><span class="comment-time"><?= $comment['date'] ?></span>
             <div class="comment-content"><?= $comment['content'] ?></div>
 <!--vot-->  <div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div>
         </div>
@@ -350,9 +350,9 @@ function blog_comments_children($comments, $children){
     ?>
     <div class="comment comment-children" id="comment-<?= $comment['cid'] ?>">
         <a name="<?= $comment['cid'] ?>"></a>
-        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" /></div><?php endif; ?>
+        <?php if($isGravatar == 'y'): ?><div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"></div><?php endif; ?>
         <div class="comment-info">
-            <b><?= $comment['poster'] ?> </b><br /><span class="comment-time"><?= $comment['date'] ?></span>
+            <b><?= $comment['poster'] ?> </b><br><span class="comment-time"><?= $comment['date'] ?></span>
             <div class="comment-content"><?= $comment['content'] ?></div>
 <!--vot-->  <?php if($comment['level'] < 4): ?><div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
         </div>
@@ -369,7 +369,7 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
 <!--vot-->    <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
 <!--vot-->    <p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
         <form method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform">
-            <input type="hidden" name="gid" value="<?= $logid ?>" />
+            <input type="hidden" name="gid" value="<?= $logid ?>">
             <?php if(ROLE == ROLE_VISITOR): ?>
             <p>
                 <input type="text" name="comname" maxlength="49" value="<?= $ckname ?>" size="22" tabindex="1">
@@ -385,8 +385,8 @@ function blog_comments_post($logid,$ckname,$ckmail,$ckurl,$verifyCode,$allow_rem
             </p>
             <?php endif; ?>
             <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->  <p><?= $verifyCode ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6" /></p>
-            <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
+<!--vot-->  <p><?= $verifyCode ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"></p>
+            <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1">
         </form>
     </div>
     </div>

@@ -13,9 +13,9 @@
 <?php if(isset($_GET['error_c'])): ?>
 <div style="margin:20px 20px;">
 <div class="alert alert-danger">
-<!--vot--><?=lang('template_install_manual')?>:<br />
-<!--vot--><?=lang('template_install_prompt1')?> <br />
-<!--vot--><?=lang('template_install_prompt2')?> <br />
+<!--vot--><?=lang('template_install_manual')?>:<br>
+<!--vot--><?=lang('template_install_prompt1')?> <br>
+<!--vot--><?=lang('template_install_prompt2')?> <br>
 </div>
 </div>
 <?php endif; ?>
@@ -23,11 +23,11 @@
 <div style="margin:50px 0px 50px 20px;">
 <!--vot--><p><?=lang('template_upload_prompt')?></p>
     <p>
-    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-    <input name="tplzip" type="file" />
+    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+    <input name="tplzip" type="file">
     </p>
     <p>
-<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary" />
+<!--vot--><input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary">
     </p>
 </div>
 </form>

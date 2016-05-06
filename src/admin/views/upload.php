@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>upload</title>
 <link href="./views/css/css-att.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
 <script>
@@ -37,8 +37,8 @@ function removeattachfrom() {
 <div id="media-upload-body">
 <!--vot--><p>(<?=lang('attach_max_size')?>: <?= $maxsize ?>, <?=lang('types_allowed')?>: <?= $att_type_str ?>)
     <div id="attachbodyhidden" style="display:none"><span><input type="file" name="attach[]"></span></div>
-    <div id="attachbody"><span><input type="file" name="attach[]" /></span></div>
-<!--vot--><input type="button" name="html-upload" value="<?=lang('upload')?>" onclick="uploadfile();"/>
+    <div id="attachbody"><span><input type="file" name="attach[]"></span></div>
+<!--vot--><input type="button" name="html-upload" value="<?=lang('upload')?>" onclick="uploadfile();">
     <span style="margin-left:10px">
 <!--vot--><a id="attach" title="<?=lang('attachment_add')?>" onclick="addattachfrom()" href="javascript:;" name="attach">[ + ]</a> 
 <!--vot--><a id="attach" title="<?=lang('attach_reduce')?>" onclick="removeattachfrom()" href="javascript:;" name="attach">[ - ]</a>

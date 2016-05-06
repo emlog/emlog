@@ -9,14 +9,14 @@
 <!--vot--> <li><?=lang('content')?>: <?= $comment ?></li>
 	<li><textarea name="reply" rows="5" cols="60" class="form-control"></textarea></li>
 	<li>
-	<input type="hidden" value="<?= $commentId ?>" name="cid" />
-	<input type="hidden" value="<?= $gid ?>" name="gid" />
-	<input type="hidden" value="<?= $hide ?>" name="hide" />
-<!--vot--><input type="submit" value="<?=lang('reply')?>" class="btn btn-primary" />
+	<input type="hidden" value="<?= $commentId ?>" name="cid">
+	<input type="hidden" value="<?= $gid ?>" name="gid">
+	<input type="hidden" value="<?= $hide ?>" name="hide">
+<!--vot--><input type="submit" value="<?=lang('reply')?>" class="btn btn-primary">
 	<?php if ($hide == 'y'): ?>
-<!--vot--><input type="submit" value="<?=lang('reply_and_audit')?>" name="pub_it" class="btn btn-primary" />
+<!--vot--><input type="submit" value="<?=lang('reply_and_audit')?>" name="pub_it" class="btn btn-primary">
 	<?php endif; ?>
-<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();"/></li>
+<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();"></li>
 </div>
 </form>
 <script>

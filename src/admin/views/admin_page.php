@@ -26,14 +26,14 @@
     }
     $isHide = $value['hide'] == 'y' ? 
 /*vot*/    '<font color="red"> - '.lang('draft').'</font>' : 
-/*vot*/    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+/*vot*/    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0"></a>';
     ?>
      <tr>
-        <td width="21"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids" /></td>
+        <td width="21"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"></td>
         <td width="440">
         <a href="page.php?action=mod&id=<?= $value['gid']?>"><?= $value['title'] ?></a> 
         <?= $isHide ?>    
-<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?= $value['attnum'] ?>" /><?php endif; ?>
+<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?= $value['attnum'] ?>"><?php endif; ?>
         </td>
         <td><?= $value['template'] ?></td>
         <td class="tdcenter"><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
@@ -44,8 +44,8 @@
     <?php endif;?>
     </tbody>
   </table>
-  <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-  <input name="operate" id="operate" value="" type="hidden" />
+  <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+  <input name="operate" id="operate" value="" type="hidden">
 </form>
 <div class="list_footer">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:

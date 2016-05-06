@@ -13,7 +13,7 @@
         <ul class="item">
             <li>
                 <a href="template.php?action=usetpl&tpl=<?= $value['tplfile'] ?>&side=<?= $value['sidebar'] ?>&token=<?= LoginAuth::genToken() ?>">
-<!--vot-->          <img alt="<?=lang('template_use_this')?>" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" width="180" height="150" border="0" />
+<!--vot-->          <img alt="<?=lang('template_use_this')?>" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" width="180" height="150" border="0">
                 </a>
             </li>
             <li class="title <?php if($nonce_templet == $value['tplfile']){echo "active";} ?>">
