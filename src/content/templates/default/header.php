@@ -11,7 +11,7 @@ require_once View::getView('module');
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title><?= $site_title ?></title>
 <meta name="keywords" content="<?= $site_key ?>">
 <meta name="description" content="<?= $site_description ?>">

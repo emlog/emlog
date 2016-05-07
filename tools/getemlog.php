@@ -63,9 +63,9 @@ if ($action == 'go') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="UTF-8">
 		<title>emlog Online Installation Tool</title>
 		<style type="text/css">
 			<!--
@@ -132,7 +132,7 @@ if ($action == 'go') {
 			var version_htmls = [];
 			for (var index = 0; index < data.versions.length; index++) {
 			
-				version_htmls.push('<p><input type="radio" name="emlog_zip" value="'+ data.versions[index]['url'] +'" '+ (index == 0 ? 'checked' : '')+'/>'+ data.versions[index]['name'] + '<br></p>');
+				version_htmls.push('<p><input type="radio" name="emlog_zip" value="'+ data.versions[index]['url'] +'" '+ (index == 0 ? 'checked' : '')+'>'+ data.versions[index]['name'] + '<br></p>');
 			}
 			$('versions').innerHTML = version_htmls.join("\n");
 			$('latest_version').innerHTML = data.latest_version;

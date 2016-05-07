@@ -29,7 +29,7 @@ if(!$act){
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>emlog</title>
 <style type="text/css">
 <!--
@@ -137,9 +137,10 @@ if($act == 'install' || $act == 'reinstall'){
 
     if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
 /*vot*/ ?>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
 <title>emlog system message</title>
 <style type="text/css">
 <!--

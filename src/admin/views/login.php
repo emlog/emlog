@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <!--vot--><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./views/css/css-login.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" media="screen">
 <link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css">
