@@ -56,7 +56,7 @@
 <!--vot-->                  <li><a href="tag.php" id="menu_tag"><i class="fa fa-tags fa-fw"></i> <?=lang('tags')?></a></li>
 <!--vot-->                  <li><a href="sort.php" id="menu_sort"><i class="fa fa-flag fa-fw"></i> <?=lang('category')?></a></li>
                             <?php endif;?>
-<!--vot-->                  <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> <?=lang('comments')?>
+<!--vot-->                  <li><a href="comment.php" id="menu_cm"><i class="fa fa-comments fa-fw"></i> <?=lang('comments')?> (
                                     <?php
                                     $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                                     $n = $hidecmnum > 999 ? '...' : $hidecmnum;
