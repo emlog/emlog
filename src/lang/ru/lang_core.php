@@ -126,10 +126,10 @@ $lang = array(
 // 'reply'		=> 'Reply',//'回复',
  'cancel_reply'		=> 'Cancel reply',//'取消回复',
  'comment_leave'	=> 'Leave a comment',//'发表评论',
-// 'nickname'		=> 'Nicname',//'昵称',
-// 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
-// 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
-// 'comment_leave'	=> 'Leave a comment',//'发表评论',
+ 'nickname'		=> 'Nicname',//'昵称',
+ 'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
+ 'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
+ 'comment_leave'	=> 'Leave a comment',//'发表评论',
 
 //---------------------------
 //content/templates/default/side.php
