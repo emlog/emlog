@@ -29,6 +29,43 @@ if ($action == 'login') {
         LoginAuth::loginPage($loginAuthRet);
     }
 }
+
+//提交来源验证
+$referer_url = filter_var($_SERVER['HTTP_REFERER'], FILTER_VALIDATE_URL);
+
+//如果POST提交没有任何来源，则直接拒绝
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($referer_url)) {
+	header('HTTP/1.0 403 Forbidden');
+	echo '<h1>Forbidden</h1>';
+	exit();
+}
+
+//只验证POST提交，不验证GET提交
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$referer_host = parse_url($referer_url, PHP_URL_HOST);
+	$referer_path = parse_url($referer_url, PHP_URL_PATH);
+	if (substr($referer_path, -1) === '/') {
+		$referer_path .= 'index.php';
+	}
+	$referer_path = dirname($referer_path);
+	
+	$admin_url = '//' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+	$admin_host = parse_url($admin_url, PHP_URL_HOST);
+	$admin_path = parse_url($admin_url, PHP_URL_PATH);
+	if (substr($admin_path, -1) === '/') {
+		$admin_path .= 'index.php';
+	}
+	$admin_path = dirname($admin_path);
+	
+	//如果来源地址和后台地址不符，则拒绝
+	if ($admin_host != $referer_host ||
+		$admin_path != $referer_path) {
+		header('HTTP/1.0 403 Forbidden');
+		echo '<h1>Forbidden</h1>';
+		exit();
+	}
+}
+
 //退出
 if ($action == 'logout') {
     setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
