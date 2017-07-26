@@ -26,6 +26,9 @@ if ($action == 'login') {
         LoginAuth::setAuthCookie($username, $ispersis);
         emDirect("./");
     } else{
+        if(isset($_SESSION['code'])){
+            unset($_SESSION['code']);
+        }
         LoginAuth::loginPage($loginAuthRet);
     }
 }

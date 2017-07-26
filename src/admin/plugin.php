@@ -7,6 +7,7 @@
 require_once 'globals.php';
 
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
+if(!preg_match("/\w+/i",$plugin)) emMsg('插件名称有误，请修改插件！');
 
 if ($action == '' && !$plugin) {
     $Plugin_Model = new Plugin_Model();
