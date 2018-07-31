@@ -6,4 +6,4 @@ emlog 是一款基于PHP和MySQL的博客及CMS建站系统。致力于提供快
 
 [下载页面](https://github.com/emlog/emlog/releases)
 
-[最新稳定版本 5.3.1 下载](https://github.com/emlog/emlog/archive/5.3.1.zip)
+[最新稳定版本 5.3.1 下载]( https://bbs.emlog.net/thread-36585-1-1.html)
