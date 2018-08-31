@@ -4,7 +4,7 @@
  * 基础函数库
  * @copyright (c) Emlog All Rights Reserved
  */
-function __autoload($class) {
+spl_autoload_register(function ($class) {
     $class = strtolower($class);
     if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
         require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
@@ -15,7 +15,7 @@ function __autoload($class) {
     } else {
         emMsg($class . '加载失败。');
     }
-}
+});
 
 /**
  * 去除多余的转义字符
