@@ -137,6 +137,7 @@ if ($action == 'import') {
 }
 
 if ($action == 'dell_all_bak') {
+    LoginAuth::checkToken();
     if (!isset($_POST['bak'])) {
         emDirect('./data.php?error_a=1');
     } else{
