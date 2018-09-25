@@ -30,14 +30,14 @@
                     <a class="navbar-brand" href="../" target="_blank" title="在新窗口浏站点">
                         <?php
                         $blog_name = Option::get('blogname');
-                        echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 24);
+                        echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
                         ?>
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <li><a href="./"><i class="fa fa-home fa-fw"></i>管理首页</a></li>
-                    <li><a href="./configure.php"><i class="fa fa-wrench fa-fw"></i> 设置</a></li>
-                    <li><a href="./?action=logout"><i class="fa fa-power-off fa-fw"></i>退出</a></li>
+                    <li><a href="./" title="后台首页"><i class="fa fa-home fa-fw"></i></a></li>
+                    <li><a href="./configure.php" title="设置"><i class="fa fa-wrench fa-fw"></i></a></li>
+                    <li><a href="./?action=logout" title="退出"><i class="fa fa-power-off fa-fw"></i></a></li>
                 </ul>
 
                 <div class="navbar-default sidebar" role="navigation">
