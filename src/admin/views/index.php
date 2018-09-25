@@ -1,6 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
 <div class="containertitle"><b>管理首页</b></div>
+<?php doAction('adm_main_top'); ?>
 <div class="row">
 <?php if (ROLE == ROLE_ADMIN): ?>
         <div class="col-lg-6">

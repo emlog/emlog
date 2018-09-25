@@ -16,6 +16,7 @@
         <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
         <script src="./views/js/bootstrap.min.js"></script>
         <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+        <?php doAction('adm_head');?>
     </head>
     <body>
         <div id="wrapper">
