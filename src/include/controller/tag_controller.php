@@ -14,7 +14,6 @@ class Tag_Controller {
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
         $tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
 
-        
         $pageurl = '';
 
         //page meta
