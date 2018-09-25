@@ -17,7 +17,7 @@
   <thead>
       <tr>
         <th width="200"></th>
-        <th width="40" class="tdcenter"><b>状态</b></th>
+        <th width="80" class="tdcenter"><b>开启/禁用</b></th>
         <th width="60" class="tdcenter"><b>版本</b></th>
         <th width="450" class="tdcenter"><b>描述</b></th>
         <th width="60" class="tdcenter"></th>
