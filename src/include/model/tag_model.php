@@ -63,8 +63,7 @@ class Tag_Model {
         $tagStr = trim($tagStr);
         $tagStr = str_replace('，', ',', $tagStr);
         
-        if (empty($tagStr))
-        {
+        if (empty($tagStr)) {
             return;
         }
 
@@ -73,21 +72,18 @@ class Tag_Model {
         $tagNameArray = array_unique($tagNameArray);
 
         $tags = array();
-        foreach ($tagNameArray as $tagName)
-        {
+        foreach ($tagNameArray as $tagName)  {
             $tagName = trim($tagName);
 
-            if (empty($tagName))
-            {
+            if (empty($tagName)) {
                 continue;
             }
 
             // 从标签名获取到标签Id，如果标签不存在，则创建标签
             $tagId = $this->getIdFromName($tagName);
             
-            if ( ! $tagId)
-            {
-                $tagId = $this->createTag($tagName);
+            if ( ! $tagId) {
+                $tagId = $this->createTag($tagName, $blogId);
             }
 
             // 将当前文章Id插入到标签里
@@ -266,15 +262,16 @@ class Tag_Model {
     /**
      * 创建一个新的标签
      * @param string $tagName 标签名
+     * @param string $blogId
      * @return int 标签ID
      */
-    function createTag($tagName)
+    function createTag($tagName, $blogId = '')
     {
         $existTag = $this->getIdFromName($tagName);
         
         if ( ! $existTag)
         {
-            $this->db->query("INSERT INTO `".DB_PREFIX."tag` (`tagname`) VALUES('" . $this->db->escape_string($tagName) . "')");
+            $this->db->query("INSERT INTO `".DB_PREFIX."tag` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
             $existTag = $this->db->insert_id();
         }
 

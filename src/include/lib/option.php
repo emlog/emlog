@@ -8,9 +8,9 @@ class Option {
     //版本编号
     const EMLOG_VERSION = '6.0.0';
     //头像缩略图最大宽
-    const ICON_MAX_W = 140;
+    const ICON_MAX_W = 200;
     //头像缩略图最大高
-    const ICON_MAX_H = 220;
+    const ICON_MAX_H = 200;
     //附件上传路径
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
