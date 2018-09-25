@@ -54,11 +54,6 @@ class Tag_Model {
         return $blogIdStr;
     }
 
-    /**
-     * 添加标签
-     *
-     * @param string $tagStr
-     */
     function addTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
         $tagStr = str_replace('，', ',', $tagStr);
@@ -98,12 +93,6 @@ class Tag_Model {
         $this->db->query($sql);
     }
 
-    /**
-     * 更新标签
-     *
-     * @param string $tagStr
-     * @param int $blogId
-     */
     function updateTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
         $tagStr = str_replace('，', ',', $tagStr);
@@ -115,26 +104,22 @@ class Tag_Model {
         $new_tags = array();
 
         // 建立新的标签id数组
-        if ( ! empty($tagStr))
-        {
+        if ( ! empty($tagStr)) {
             // 将标签string切割成标签array，并且去重
             $tagNameArray = explode(',', $tagStr);
             $tagNameArray = array_unique($tagNameArray);
 
-            foreach ($tagNameArray as $tagName)
-            {
+            foreach ($tagNameArray as $tagName) {
                 $tagName = trim($tagName);
 
-                if (empty($tagName))
-                {
+                if (empty($tagName)) {
                     continue;
                 }
 
                 // 从标签名获取到标签Id，如果标签不存在，则创建标签
                 $tagId = $this->getIdFromName($tagName);
                 
-                if ( ! $tagId)
-                {
+                if ( ! $tagId) {
                     $tagId = $this->createTag($tagName);
                 }
 
@@ -143,19 +128,15 @@ class Tag_Model {
         }
 
         // 如果旧的标签Id在新的标签Id数组里不存在，则从Tag表里删除掉映射
-        foreach ($old_tags as $each_tag)
-        {
-            if ( ! in_array($each_tag, $new_tags))
-            {
+        foreach ($old_tags as $each_tag) {
+            if ( ! in_array($each_tag, $new_tags)) {
                 $this->removeBlogIdFromTag($each_tag, $blogId);
             }
         }
 
         // 如果新的标签Id在旧的标签Id数组里不存在，则在Tag表里建立映射
-        foreach ($new_tags as $each_tag)
-        {
-            if ( ! in_array($each_tag, $old_tags))
-            {
+        foreach ($new_tags as $each_tag) {
+            if ( ! in_array($each_tag, $old_tags)) {
                 $this->addBlogIntoTag($each_tag, $blogId);
             }
         }
@@ -175,8 +156,7 @@ class Tag_Model {
         // 要删除一个标签，需要先检查哪些文章有引用这个标签，并把这个标签从那些引用中删除
         $linked_blogs = $this->getBlogIdsFromTagId($tagId);
 
-        foreach ($linked_blogs as $blogId)
-        {
+        foreach ($linked_blogs as $blogId) {
             $this->removeTagIdFromBlog($blogId, $tagId);
         }
 
@@ -188,13 +168,11 @@ class Tag_Model {
      * @param string $tagName 标签名
      * @return int|bool 标签ID | FALSE(未找到标签)
      */
-    function getIdFromName($tagName)
-    {
+    function getIdFromName($tagName){
         $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $this->db->escape_string($tagName) . "'";
         $query = $this->db->query($sql);
 
-        if ($this->db->num_rows($query) === 0)
-        {
+        if ($this->db->num_rows($query) === 0) {
             return FALSE;
         }
 
@@ -207,28 +185,23 @@ class Tag_Model {
      * @param string $tagNames 标签名 (以半角逗号分隔)
      * @return array 标签ID
      */
-    function getIdsFromNames($tagNames)
-    {
+    function getIdsFromNames($tagNames) {
         $result = array();
         $tagNameArray = explode(',', $tagNames);
 
-        foreach ($tagNameArray as $each)
-        {
+        foreach ($tagNameArray as $each) {
             $each = trim($each);
 
-            if (empty($each))
-            {
+            if (empty($each)) {
                 continue;
             }
 
             $each_id = $this->getIdFromName($each);
 
-            if ($each_id !== FALSE)
-            {
+            if ($each_id !== FALSE) {
                 $result[] = $each_id;
             }
         }
-
         return $result;
     }
 
@@ -237,18 +210,15 @@ class Tag_Model {
      * @param array $tagIds 标签ID
      * @return array
      */
-    function getNamesFromIds($tagIds = NULL)
-    {
+    function getNamesFromIds($tagIds = NULL) {
         $names = array();
 
-        if ( ! empty($tagIds))
-        {
+        if ( ! empty($tagIds)) {
             $tag_string = implode(',', $tagIds);
             $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
             $query = $this->db->query($sql);
 
-            if ($this->db->num_rows($query) > 0)
-            {
+            if ($this->db->num_rows($query) > 0) {
                 while ($result = $this->db->fetch_array($query))
                 {
                     $names[$result['tid']] = $result['tagname'];
@@ -265,12 +235,10 @@ class Tag_Model {
      * @param string $blogId
      * @return int 标签ID
      */
-    function createTag($tagName, $blogId = '')
-    {
+    function createTag($tagName, $blogId = ''){
         $existTag = $this->getIdFromName($tagName);
         
-        if ( ! $existTag)
-        {
+        if ( ! $existTag) {
             $this->db->query("INSERT INTO `".DB_PREFIX."tag` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
             $existTag = $this->db->insert_id();
         }
@@ -282,16 +250,13 @@ class Tag_Model {
      * 创建一堆新标签
      * @param mixed $tagNames 标签名 (以半角逗号分隔)
      */
-    function createTags($tagNames)
-    {
+    function createTags($tagNames) {
         $tagNameArray = explode(',', $tagNames);
 
-        foreach ($tagNameArray as $each)
-        {
+        foreach ($tagNameArray as $each) {
             $each = trim($each);
 
-            if (empty($each))
-            {
+            if (empty($each)) {
                 continue;
             }
 
@@ -304,10 +269,8 @@ class Tag_Model {
      * @param int $blogId 文章ID
      * @return array 标签ID列表
      */
-    function getTagIdsFromBlogId($blogId = NULL)
-    {
-        if (empty($blogId))
-        {
+    function getTagIdsFromBlogId($blogId = NULL) {
+        if (empty($blogId)) {
             return $this->getAllTagIds();
         }
         
@@ -317,8 +280,7 @@ class Tag_Model {
 
         $query = $this->db->query($sql);
 
-        if ($this->db->num_rows($query) > 0)
-        {
+        if ($this->db->num_rows($query) > 0) {
             $result = $this->db->fetch_array($query);
 
             if ( ! empty($result['tags']))
@@ -330,8 +292,7 @@ class Tag_Model {
         return $tags;
     }
 
-    function getAllTagIds()
-    {
+    function getAllTagIds() {
         $tags = array();
 
         $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
@@ -354,15 +315,13 @@ class Tag_Model {
      * @param int $tagId 标签ID
      * @return array 文章ID列表
      */
-    function getBlogIdsFromTagId($tagId)
-    {
+    function getBlogIdsFromTagId($tagId) {
         $blogs = array();
 
         $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
         $query = $this->db->query($sql);
 
-        if ($this->db->num_rows($query) > 0)
-        {
+        if ($this->db->num_rows($query) > 0) {
             $result = $this->db->fetch_array($query);
 
             if ( ! empty($result['gid']))
@@ -379,24 +338,19 @@ class Tag_Model {
      * @param int $tagId 
      * @param int $blogId 
      */
-    function removeBlogIdFromTag($tagId, $blogId)
-    {
+    function removeBlogIdFromTag($tagId, $blogId) {
         $blogs = $this->getBlogIdsFromTagId($tagId);
 
-        if (empty($blogs))
-        {
+        if (empty($blogs)) {
             return;
         }
 
         // 如果blogId存在，则构建一个新的不包含这个blogId的Blog数组，并保存到数据库
-        if (in_array($blogId, $blogs))
-        {
+        if (in_array($blogId, $blogs)) {
             $new_blogs = array();
 
-            foreach ($blogs as $each)
-            {
-                if ($each != $blogId)
-                {
+            foreach ($blogs as $each) {
+                if ($each != $blogId) {
                     $new_blogs[] = $each;
                 }
             }
@@ -412,24 +366,19 @@ class Tag_Model {
      * @param int $blogId 
      * @param int $tagId 
      */
-    function removeTagIdFromBlog($blogId, $tagId)
-    {
+    function removeTagIdFromBlog($blogId, $tagId) {
         $tags = $this->getTagIdsFromBlogId($blogId);
 
-        if (empty($tags))
-        {
+        if (empty($tags)) {
             return;
         }
 
         // 如果tagId存在，则构建一个新的不包含这个TagId的Tag数组，并保存到数据库
-        if (in_array($tagId, $tags))
-        {
+        if (in_array($tagId, $tags)) {
             $new_tags = array();
 
-            foreach ($tags as $each)
-            {
-                if ($each != $tagId)
-                {
+            foreach ($tags as $each) {
+                if ($each != $tagId) {
                     $new_tags[] = $each;
                 }
 
@@ -445,12 +394,10 @@ class Tag_Model {
      * @param int $tagId 标签ID
      * @param int $blogId 文章ID
      */
-    function addBlogIntoTag($tagId, $blogId)
-    {
+    function addBlogIntoTag($tagId, $blogId) {
         $exist_blogs = $this->getBlogIdsFromTagId($tagId);
         
-        if ( ! in_array($blogId, $exist_blogs))
-        {
+        if ( ! in_array($blogId, $exist_blogs)) {
             $exist_blogs[] = $blogId;
 
             $blog_string = implode(',', $exist_blogs);
