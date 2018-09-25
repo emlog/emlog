@@ -525,7 +525,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
                 $file_info['thum_width'] = $size[0];
                 $file_info['thum_height'] = $size[1];
             }
-            resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+            resizeImage($tmpFile, $uppath . 'thum70-' . $fname, 70, 70);
         } elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
             $file_info['thum_file'] = $thum;
             $file_info['thum_size'] = filesize($thum);

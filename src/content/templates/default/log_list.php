@@ -12,7 +12,7 @@ if (!defined('EMLOG_ROOT')) {
     if (!empty($logs)):
         foreach ($logs as $value):
             ?>
-            <h2><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?><a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a></h2>
+            <h2><a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?></h2>
             <p class="date"><?php echo gmdate('Y-n-j', $value['date']); ?> <?php blog_author($value['author']); ?> 
             <?php blog_sort($value['logid']); ?> 
             <?php editflg($value['logid'], $value['author']); ?>

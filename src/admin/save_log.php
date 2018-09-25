@@ -58,8 +58,8 @@ if ($blogid > 0) {//自动保存草稿后,添加变为更新
 } else{
     if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
         $blogid = $Log_Model->addlog($logData);
+        $Tag_Model->addTag($tagstring, $blogid);
     }
-    $Tag_Model->addTag($tagstring, $blogid);
     $dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
