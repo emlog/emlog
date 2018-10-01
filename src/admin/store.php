@@ -35,7 +35,7 @@ if ($action == 'insplu') {
 }
 
 if ($action == 'addon') {
-	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
+	$source = isset($_GET['source']) ? trim($_GET['source'],"/") : '';
 	$source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
 	if (empty($source)) {
 		exit('error');
