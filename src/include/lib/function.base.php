@@ -4,7 +4,7 @@
  * Basic Function library
  * @copyright (c) Emlog All Rights Reserved
  */
-function __autoload($class) {
+function emAutoload($class) {
     $class = strtolower($class);
 //DEBUG
 //echo '<pre>';
@@ -542,7 +542,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
                 $file_info['thum_width'] = $size[0];
                 $file_info['thum_height'] = $size[1];
             }
-            resizeImage($tmpFile, $uppath . 'thum52-' . $fname, 52, 52);
+            resizeImage($tmpFile, $uppath . 'thum70-' . $fname, 70, 70);
         } elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
             $file_info['thum_file'] = $thum;
             $file_info['thum_size'] = filesize($thum);
@@ -1072,6 +1072,40 @@ if(!function_exists('hash_hmac')) {
     $ct['xml'] = 'text/xml';
     
     return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
+}
+
+/**
+ * 将字符串转换为时区无关的UNIX时间戳
+ */
+function emStrtotime($timeStr) {
+	$timezone = Option::get('timezone');
+	if ($timeStr) {
+		$unixPostDate = @strtotime($timeStr);
+		if ($unixPostDate === false) {
+			return false;
+		} else {
+			$serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
+			if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+				$unixPostDate -= $timezone * 3600;
+			} else {
+				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
+					/*
+					 * 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
+					 * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
+					 * 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+					 */
+					$offset = getTimeZoneOffset($serverTimeZone);
+					// 首先减去/加上本地时区配置的时差
+					$unixPostDate -= $timezone * 3600;
+					// 再减去/加上服务器时区与utc的时差，得到utc时间
+					$unixPostDate -= $offset;
+				}
+			}
+		}
+		return $unixPostDate;
+	} else {
+		return false;
+	}
 }
 
 //------------------------------------------------------------------

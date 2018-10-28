@@ -58,8 +58,8 @@ $logData = array(
 } else{
     if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
         $blogid = $Log_Model->addlog($logData);
+        $Tag_Model->addTag($tagstring, $blogid);
     }
-    $Tag_Model->addTag($tagstring, $blogid);
     $dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 

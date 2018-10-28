@@ -16,6 +16,7 @@
         <script src="../include/lib/js/jquery/plugin-cookie.js?v=<?= Option::EMLOG_VERSION ?>"></script>
         <script src="./views/js/bootstrap.min.js"></script>
         <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
+        <?php doAction('adm_head');?>
     </head>
     <body>
         <div id="wrapper">
@@ -44,9 +45,9 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li class="sidebar-avatar">
-                                <div style="text-align: center;">
+                                <div>
                                     <a href="./blogger.php">
-                                        <img class="img-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
+                                        <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
                                     </a>
                                 </div>
                             </li>

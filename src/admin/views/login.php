@@ -67,7 +67,6 @@
 	<div class="login-ext"><?php doAction('login_ext'); ?></div>
 	<div id="small-buttons">
 <!--vot-->	<a href="../" class="btn btn-link btn-xs" role="button"><?=lang('back_home')?></a>
-<!--vot-->	<a href="http://wiki.emlog.net/doku.php?id=chpwd" class="btn btn-link btn-xs" role="button" target="_blank"><?=lang('password_forget')?></a>
 	</div>
 </div>
 

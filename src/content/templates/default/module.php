@@ -142,7 +142,6 @@ function widget_archive($title){
 <?php
 //widget:Custom Component
 function widget_custom_text($title, $content){ ?>
-    <li>
     <h4><?= $title;?></h4>
     <ul class="list-unstyled">
         <?= $content ?>

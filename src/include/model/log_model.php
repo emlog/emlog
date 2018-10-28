@@ -194,7 +194,6 @@ class Log_Model {
 
     /**
      * Get a list of all pages
-     *
      */
     function getAllPageList() {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
@@ -347,10 +346,6 @@ class Log_Model {
 
     /**
      * Process Post alias, Prevent alias duplicated
-     *
-     * @param string $alias
-     * @param array $logalias_cache
-     * @param int $logid
      */
     function checkAlias($alias, $logalias_cache, $logid) {
         static $i=2;
@@ -369,9 +364,6 @@ class Log_Model {
 
     /**
      * Encrypted Post access authentication
-     *
-     * @param string $pwd
-     * @param string $pwd2
      */
     function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
         $url = BLOG_URL;

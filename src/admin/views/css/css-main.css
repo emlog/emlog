@@ -83,12 +83,23 @@ body {
 }
 
 .sidebar .sidebar-avatar {
+    text-align: center;
     padding: 15px;
 }
+.sidebar .sidebar-avatar div{
+    display:inline-block;
+    position:relative;
+    width:70px;
+    height:70px;
+    overflow:hidden;
+    border-radius:10%;
+}
 
-.sidebar .sidebar-avatar img {
+.sidebar .sidebar-avatar img{
+    width:auto;
+    height:100%;
     border: 2px solid #ccc;
-    width: 70px;
+    border-radius:10%;
 }
 
 .sidebar ul li {

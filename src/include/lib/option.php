@@ -9,11 +9,11 @@
 
 class Option {
     //Version number
-    const EMLOG_VERSION = '6.0.0-Beta';
+    const EMLOG_VERSION = '6.0.0';
     //Maximum avatar thumbnail width
-    const ICON_MAX_W = 140;
+    const ICON_MAX_W = 200;
     //Maximum avatar thumbnail height
-    const ICON_MAX_H = 220;
+    const ICON_MAX_H = 200;
     //Attachments upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
