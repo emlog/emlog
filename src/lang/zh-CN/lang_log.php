@@ -5,32 +5,32 @@ $lang = array(
 //---------------------------
 //content/templates/default/echo_log.php
 //ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
-  'date_hms_format'	=> 'Y-m-d H:i:s', //'Y-n-j G:i:s',
-  'date_hm_format'	=> 'Y-m-d H:i', //'Y-n-j G:i',
-  'date_format'		=> 'Y-m-d', //'Y-n-j',
-// 'user'		=> 'User',//'作者',
-// 'post_time'		=> 'Posted on',//'发布于',
-
+  'date_hms_format'	=> 'Y-n-j G:i:s',//'Y-m-d H:i:s', 
+  'date_hm_format'	=> 'Y-n-j G:i',//'Y-m-d H:i',
+  'date_format'		=> 'Y-n-j',//'Y-m-d',
+// 'user'		=> '作者',//'User',
+// 'post_time'		=> '发布于',//'Posted on',
+                                   
 //---------------------------
 //content/templates/default/log_list.php
-// 'user'		=> 'User',//'作者',
-// 'post_time'		=> 'Posted on',//'发布于',
- 'comments'		=> 'Comments',//'评论',
- '_views'		=> ' views',//'浏览',
- 'not_found'		=> 'Not found.',//'未找到',
- 'sorry_no_results'	=> 'Sorry, no results found.',//'抱歉，没有符合您查询条件的结果。',
-
+// 'user'		=> '作者',//'User',
+// 'post_time'		=> '发布于',//'Posted on',
+ 'comments'		=> '评论',//'Comments',
+ '_views'		=> '浏览',//' views',
+ 'not_found'		=> '未找到',//'Not found.',
+ 'sorry_no_results'	=> '抱歉，没有符合您查询条件的结果。',//'Sorry, no results found.',
+                                                
 //---------------------------
 //include/model/log_model.php
-// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
- 'no_title'		=> 'Untitled',//'无标题',
- 'post_protected_by_password_click_title'	=> 'This entry is protected. Click on title and enter the password to access this page.',//'该文章已设置加密，请点击标题输入密码访问',
-// 'read_more'		=> 'Read more&gt;&gt;';//'阅读全文&gt;&gt;',
-// 'no_title'		=> 'Untitled',//'无标题',
-// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
-// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
- 'page_password_enter'	=> 'Please enter password to access this page.',//'请输入该文章的访问密码',
- 'submit_password'	=> 'Enter..',//'进入..',
- 'back_home'		=> '&laquo; Back to home',//'&laquo;返回首页',
-
+// 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
+ 'no_title'		=> '无标题',//'Untitled',
+ 'post_protected_by_password_click_title'	=> '该文章已设置加密，请点击标题输入密码访问',//'This entry is protected. Click on title and enter the password to access this page.',
+// 'read_more'		=> '阅读全文&gt;&gt;',//'Read more&gt;&gt;';
+// 'no_title'		=> '无标题',//'Untitled',
+// 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
+// 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
+ 'page_password_enter'	=> '请输入该文章的访问密码',//'Please enter password to access this page.',
+ 'submit_password'	=> '进入..',//'Enter..',
+ 'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
+                                           
 );
