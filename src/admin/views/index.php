@@ -1,64 +1,240 @@
-<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
-<script>setTimeout(hideActived, 2600);</script>
-<!--vot--><div class="containertitle"><b><?=lang('admincp')?></b></div>
-<?php doAction('adm_main_top'); ?>
-<div class="row">
-<?php if (ROLE == ROLE_ADMIN): ?>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-laptop fa-fw"></i> <?=lang('site_info')?>
+<?php if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+} ?>
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <div class="topbar-divider d-none d-sm-block"></div>
+
+                <!-- Nav Item - User Information -->
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">е¤§дјџ</span>
+                        <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="./configure.php">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            дёЄдєєи®ѕзЅ®
+                        </a>
+                        <a class="dropdown-item" href="./configure.php">
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                            зі»з»џи®ѕзЅ®
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./?action=logout" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            йЂЂе‡є
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">жЋ§е€¶еЏ°й¦–йЎµ</h1>
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        ж–‡з« ж•°й‡Џ</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sta_cache['lognum']; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body" id="admindex_servinfo">
-                    <ul>
-<!--vot-->              <li><?=lang('have')?><b><?= $sta_cache['lognum'] ?></b><?=lang('_posts')?>, <b><?= $sta_cache['comnum_all'] ?></b><?=lang('_comments')?></li>
-<!--vot-->              <li><?=lang('db_prefix')?>: <?= DB_PREFIX ?></li>
-<!--vot-->              <li><?=lang('php_version')?>: <?= $php_ver ?></li>
-<!--vot-->              <li><?=lang('mysql_version')?>: <?= $mysql_ver ?></li>
-<!--vot-->              <li><?=lang('server_environment')?>: <?= $serverapp ?></li>
-<!--vot-->              <li><?=lang('server_max_upload_size')?>: <?= $uploadfile_maxsize ?></li>
-                    </ul>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        иЇ„и®єж•°й‡Џ</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sta_cache['comnum_all']; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Pending Requests</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Content Column -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">з«™з‚№дїЎжЃЇ</h6>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">е®ж–№ж¶€жЃЇ</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="panel-body" id="admindex_msg">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-<!--vot-->          <i class="fa fa-volume-down fa-fw"></i> <?=lang('official_source')?>
-                </div>
-                <div class="panel-body" id="admindex_msg">
-                    <ul></ul>
-                </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Powered by <a href="http://www.emlog.net" title="й‡‡з”Ёemlogзі»з»џ">emlog</a> </span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Г—</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div id="admindex">
-                <div id="about" class="alert alert-warning">
-<!--vot-->        <?=lang('welcome_using')?> &copy; <a href="http://www.emlog.net" target="_blank">emlog</a> v<?= Option::EMLOG_VERSION ?> <span><a id="ckup" href="javascript:void(0);"><?=lang('update_check')?></a></span><br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-	var em_lang = '<?=EMLOG_LANGUAGE?>';
-	function mkdate(str, y, m, d, offset, s) {
-	  y = '20' + y;
-	  m = m.replace( /^([0-9])$/, '0$1' );
-	  d = d.replace( /^([0-9])$/, '0$1' );
-	  return (y + '-' + m + '-' + d);
-	}
-        $(document).ready(function() {
+</div>
+
+<script>
+    var em_lang = '<?=EMLOG_LANGUAGE?>';
+    $(document).ready(function() {
 /*vot*/             $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
                     $.getJSON("<?= OFFICIAL_SERVICE_HOST ?>services/messenger.php?v=<?= Option::EMLOG_VERSION ?>&callback=?",
-                    function(data) {
-                        $("#admindex_msg ul").html("");
-                        $.each(data.items, function(i, item) {
-                            var image = '';
-                            if (item.image != '') {
-                                image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br>";
-                            }
+            function(data) {
+                $("#admindex_msg ul").html("");
+                $.each(data.items, function(i, item) {
+                    var image = '';
+                    if (item.image != '') {
+                        image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
+                    }
 
 /*vot*/				    if(em_lang != 'cn') {
 /*vot*/	/* DO NOT TRANSLATE!! */	item.date = item.date.replace(/(\d+)年(\d+)月(\d+)日/, mkdate);
@@ -66,18 +242,8 @@
 /*vot*/	/* DO NOT TRANSLATE!! */	item.title = item.title.replace("发布", "<?=lang('release')?>");
 /*vot*/				    }
 
-                            $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
-                        });
-                    });
-        });
-    </script>
-<?php else: ?>
-<div class="row">
-        <div class="col-lg-12">
-            <div id="admindex_main">
-<!--vot--><div id="about"><a href="blogger.php"><?= $name ?></a> (<b><?= $sta_cache[UID]['lognum'] ?></b><?=lang('_posts')?>, <b><?= $sta_cache[UID]['commentnum'] ?></b><?=lang('_comments')?>)</div>
-            </div>
-            <div class="clear"></div>
-        </div>
-</div>
-<?php endif; ?>
+                    $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
+                });
+            });
+    });
+</script>
