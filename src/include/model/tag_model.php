@@ -54,6 +54,12 @@ class Tag_Model {
         return $blogIdStr;
     }
 
+    /**
+     * Add tags
+     *
+     * @param string $tagStr
+     * @param int $blogId
+     */
     function addTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
 	// DO NOT TRANSLATE BELOW LINE!!
@@ -94,6 +100,12 @@ class Tag_Model {
         $this->db->query($sql);
     }
 
+    /**
+     * Update Post Tags
+     *
+     * @param string $tagStr
+     * @param int $blogId
+     */
     function updateTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
 	// DO NOT TRANSLATE BELOW LINE!!
@@ -289,7 +301,11 @@ class Tag_Model {
 
         if ($this->db->num_rows($query) > 0) {
             $result = $this->db->fetch_array($query);
-            $tags = explode(',', $result['tags']);
+
+            if ( ! empty($result['tags']))
+            {
+                $tags = explode(',', $result['tags']);
+            }
         }
 
         return $tags;
@@ -321,25 +337,19 @@ class Tag_Model {
     function getBlogIdsFromTagId($tagId) {
         $blogs = array();
 
-//DEBUG
-//echo '<pre>';
-//echo 'tagId=';
-//print_r($tagId);
-//echo '</pre>';
-
 /*vot*/	if(!empty($tagId)) {
 
-            $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
-            $query = $this->db->query($sql);
+        $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
+        $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0) {
-                $result = $this->db->fetch_array($query);
+            $result = $this->db->fetch_array($query);
 
-                if ( ! empty($result['gid']))
-                {
-                    $blogs = explode(',', $result['gid']);
-                }
+            if ( ! empty($result['gid']))
+            {
+                $blogs = explode(',', $result['gid']);
             }
+        }
 /*vot*/	}
 
         return $blogs;
@@ -374,7 +384,7 @@ class Tag_Model {
     }
 
     /**
-     * Ddelete a reference to a Tag from the list of TagMap
+     * Delete a reference to a Tag from the list of TagMap
      * @param int $blogId 
      * @param int $tagId 
      */

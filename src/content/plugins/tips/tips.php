@@ -14,12 +14,10 @@ Author URL: http://www.emlog.net
 
 $array_tips = array(
 /*vot*/ lang('attach_upload_tip'),
-/*vot*/ lang('change_style_tip'),
 /*vot*/ lang('tag_tip'),
 /*vot*/ lang('indent_tip'),
 /*vot*/ lang('summary_tip'),
 /*vot*/ lang('autosave_tip'),
-/*vot*/ lang('flash_tip'),
 /*vot*/ lang('emoticon_tip'),
 /*vot*/ lang('draft_tip'),
 /*vot*/ lang('thumbnail_tip'),

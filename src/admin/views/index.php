@@ -24,23 +24,23 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">е¤§дјџ</span>
+<!--vot-->              <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= lang('user_info') ?></span>
                         <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="./configure.php">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            дёЄдєєи®ѕзЅ®
+<!--vot-->                  <?= lang('personal_settings') ?>
                         </a>
                         <a class="dropdown-item" href="./configure.php">
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                            зі»з»џи®ѕзЅ®
+<!--vot-->                  <?= lang('system_settings') ?>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./?action=logout" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            йЂЂе‡є
+<!--vot-->                  <?= lang('logout') ?>
                         </a>
                     </div>
                 </li>
@@ -55,7 +55,7 @@
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">жЋ§е€¶еЏ°й¦–йЎµ</h1>
+<!--vot-->      <h1 class="h3 mb-0 text-gray-800"><?= lang('control_panel') ?></h1>
             </div>
 
             <!-- Content Row -->
@@ -68,7 +68,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        ж–‡з« ж•°й‡Џ</div>
+<!--vot-->                              <?= lang('post_number') ?></div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sta_cache['lognum']; ?></div>
                                 </div>
                                 <div class="col-auto">
@@ -86,7 +86,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        иЇ„и®єж•°й‡Џ</div>
+<!--vot-->                              <?= lang('comment_number') ?></div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sta_cache['comnum_all']; ?></div>
                                 </div>
                                 <div class="col-auto">
@@ -103,7 +103,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+<!--vot-->                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><?= lang('tasks') ?>
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
@@ -131,7 +131,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Pending Requests</div>
+<!--vot-->                              <?= lang('pending_requests') ?></div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                 </div>
                                 <div class="col-auto">
@@ -150,13 +150,13 @@
                 <div class="col-lg-6 mb-4">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">з«™з‚№дїЎжЃЇ</h6>
+<!--vot-->                  <h6 class="m-0 font-weight-bold text-primary"><?= lang('site_info') ?></h6>
                         </div>
                         <div class="card-body">
-                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
-                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
-                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
-                            <h4 class="small font-weight-bold">ж•°жЌ®еє“иЎЁе‰ЌзјЂпјљ<span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+<!--vot-->                  <h4 class="small font-weight-bold"><?= lang('db_prefix') ?>: <span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+<!--vot-->                  <h4 class="small font-weight-bold"><?= lang('db_prefix') ?>: <span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+<!--vot-->                  <h4 class="small font-weight-bold"><?= lang('db_prefix') ?>: <span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
+<!--vot-->                  <h4 class="small font-weight-bold"><?= lang('db_prefix') ?>: <span class="float-right"><?php echo DB_PREFIX; ?></span></h4>
 
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                 <div class="col-lg-6 mb-4">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">е®ж–№ж¶€жЃЇ</h6>
+<!--vot-->                  <h6 class="m-0 font-weight-bold text-primary"><?= lang('official_news') ?></h6>
                         </div>
                         <div class="card-body">
                             <div class="panel-body" id="admindex_msg">
@@ -187,7 +187,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Powered by <a href="http://www.emlog.net" title="й‡‡з”Ёemlogзі»з»џ">emlog</a> </span>
+<!--vot-->      <span>Powered by <a href="http://www.emlog.net" title="<?= lang('emlog_official') ?>">emlog</a> </span>
             </div>
         </div>
     </footer>
@@ -209,25 +209,25 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">Г—</span>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?= lang('logout_sure') ?></h5>
+<!--vot-->      <button class="close" type="button" data-dismiss="modal" aria-label="<?= lang('close') ?>">
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+<!--vot-->  <div class="modal-body"><?= lang('logout_prompt') ?></div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+<!--vot-->      <button class="btn btn-secondary" type="button" data-dismiss="modal"><?= lang('cancel') ?></button>
+<!--vot-->      <a class="btn btn-primary" href="login.html"><?= lang('logout') ?></a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var em_lang = '<?=EMLOG_LANGUAGE?>';
+/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';
     $(document).ready(function() {
-/*vot*/             $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?=lang('reading')?></span>");
-                    $.getJSON("<?= OFFICIAL_SERVICE_HOST ?>services/messenger.php?v=<?= Option::EMLOG_VERSION ?>&callback=?",
+/*vot*/ $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?= lang('reading') ?></span>");
+        $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
             function(data) {
                 $("#admindex_msg ul").html("");
                 $.each(data.items, function(i, item) {
@@ -235,13 +235,6 @@
                     if (item.image != '') {
                         image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
                     }
-
-/*vot*/				    if(em_lang != 'cn') {
-/*vot*/	/* DO NOT TRANSLATE!! */	item.date = item.date.replace(/(\d+)年(\d+)月(\d+)日/, mkdate);
-/*vot*/					//alert(item.date);
-/*vot*/	/* DO NOT TRANSLATE!! */	item.title = item.title.replace("发布", "<?=lang('release')?>");
-/*vot*/				    }
-
                     $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
                 });
             });

@@ -38,7 +38,6 @@ define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Site fixed address
-/*vot*/define('SCHEME', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://');
 define('BLOG_URL', Option::get('blogurl'));
 //Template Library URL
 define('TPLS_URL', BLOG_URL.'content/templates/');
@@ -48,6 +47,8 @@ define('TPLS_PATH', EMLOG_ROOT.'/content/templates/');
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //Front template URL
 define('TEMPLATE_URL', 	TPLS_URL.Option::get('nonce_templet').'/');
+//Access Scheme
+/*vot*/define('SCHEME', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://');
 
 $active_plugins = Option::get('active_plugins');
 $emHooks = array();

@@ -6,11 +6,6 @@
  */
 function emAutoload($class) {
     $class = strtolower($class);
-//DEBUG
-//echo '<pre>';
-//echo '__autoload:', "\n";
-//echo '    class=', $class, "\n";
-//echo '</pre>';
     if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
 /*vot*/        load_language($class);
         require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
@@ -1075,7 +1070,7 @@ if(!function_exists('hash_hmac')) {
 }
 
 /**
- * 将字符串转换为时区无关的UNIX时间戳
+ * Convert a string to a time zone independent UNIX timestamp
  */
 function emStrtotime($timeStr) {
 	$timezone = Option::get('timezone');
@@ -1090,14 +1085,14 @@ function emStrtotime($timeStr) {
 			} else {
 				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
 					/*
-					 * 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
-					 * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
-					 * 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+					 * If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
+					 * But the time we pass in is actually the local time of the time zone configured by the blog, not the local time of the server time zone
+					 * Therefore, we need to subtract / add the time difference between the two time zones to get the UTC time.
 					 */
 					$offset = getTimeZoneOffset($serverTimeZone);
-					// 首先减去/加上本地时区配置的时差
+					// First subtract/add the time difference configured by the local time zone
 					$unixPostDate -= $timezone * 3600;
-					// 再减去/加上服务器时区与utc的时差，得到utc时间
+					// Then subtract/add the time difference between the server time zone and UTC to get the UTC time.
 					$unixPostDate -= $offset;
 				}
 			}

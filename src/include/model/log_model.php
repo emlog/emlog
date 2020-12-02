@@ -346,6 +346,10 @@ class Log_Model {
 
     /**
      * Process Post alias, Prevent alias duplicated
+     *
+     * @param string $alias
+     * @param array $logalias_cache
+     * @param int $logid
      */
     function checkAlias($alias, $logalias_cache, $logid) {
         static $i=2;
@@ -364,6 +368,11 @@ class Log_Model {
 
     /**
      * Encrypted Post access authentication
+     *
+     * @param string $postPwd
+     * @param string $cookiePwd
+     * @param string $logPwd
+     * @param int $logid
      */
     function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
         $url = BLOG_URL;

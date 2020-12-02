@@ -17,7 +17,7 @@
   <thead>
       <tr>
         <th width="200"></th>
-<!--vot--><th width="80" class="tdcenter"><b><?=lang('status')?></b></th>
+<!--vot--><th width="40" class="tdcenter"><b><?=lang('status')?></b></th>
 <!--vot--><th width="60" class="tdcenter"><b><?=lang('version')?></b></th>
 <!--vot--><th width="450" class="tdcenter"><b><?=lang('description')?></b></th>
         <th width="60" class="tdcenter"></th>

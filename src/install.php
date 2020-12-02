@@ -6,7 +6,9 @@
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 /*vot*/ define('DEL_INSTALLER', 0);
+
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
+
 /*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
 

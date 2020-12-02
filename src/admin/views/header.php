@@ -17,10 +17,11 @@
     <!-- Bootstrap core JavaScript-->
     <script src="./views/vendor/jquery/jquery.min.js"></script>
     <script src="./views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
+    <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
     <?php doAction('adm_head'); ?>
 </head>
 
+<!--vot--><body>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -40,44 +41,43 @@
         <li class="nav-item active">
             <a class="nav-link" href="./write_log.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>е†™ж–‡з« </span></a>
+<!--vot-->      <span><?= lang('post_write') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./admin_log.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>ж–‡з« </span></a>
-                                    )
+<!--vot-->      <span><?= lang('posts') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./page.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>йЎµйќў</span></a>
+<!--vot-->      <span><?= lang('pages') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="comment.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>иЇ„и®є</span></a>
+<!--vot-->      <span><?= lang('comments') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="tag.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>ж ‡з­ѕ</span></a>
+<!--vot-->      <span><?= lang('tags') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./sort.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>е€†з±»</span></a>
+<!--vot-->      <span><?= lang('category') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./link.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>й“ѕжЋҐ</span></a>
+<!--vot-->      <span><?= lang('friend_links') ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
@@ -85,13 +85,13 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>е¤–и§‚</span>
+<!--vot-->      <span><?= lang('exterior') ?></span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./template.php">жЁЎжќї</a>
-                    <a class="collapse-item" href="./navbar.php">еЇји€Є</a>
-                    <a class="collapse-item" href="./widgets.php">дѕ§иѕ№ж Џ</a>
+<!--vot-->          <a class="collapse-item" href="./template.php"><?= lang('templates') ?></a>
+<!--vot-->          <a class="collapse-item" href="./navbar.php"><?= lang('navigation') ?></a>
+<!--vot-->          <a class="collapse-item" href="./widgets.php"><?= lang('sidebar') ?></a>
                 </div>
             </div>
         </li>
@@ -99,14 +99,14 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>зі»з»џ</span>
+                <span>系统</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./configure.php">и®ѕзЅ®</a>
-                    <a class="collapse-item" href="./user.php">з”Ёж€·</a>
-                    <a class="collapse-item" href="./data.php">ж•°жЌ®</a>
-                    <a class="collapse-item" href="./plugin.php">жЏ’д»¶</a>
+<!--vot-->          <a class="collapse-item" href="./configure.php"><?= lang('settings') ?></a>
+<!--vot-->          <a class="collapse-item" href="./user.php"><?= lang('users') ?></a>
+<!--vot-->          <a class="collapse-item" href="./data.php"><?= lang('data') ?></a>
+<!--vot-->          <a class="collapse-item" href="./plugin.php"><?= lang('plugins') ?></a>
                 </div>
             </div>
         </li>

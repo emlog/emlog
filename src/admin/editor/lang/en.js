@@ -141,6 +141,7 @@ KindEditor.lang({
 	'image.rightAlign' : 'Right',
 	'image.imgTitle' : 'Title',
 	'image.upload' : 'Browse',
+/*vot*/	'image.uploadPrompt' : 'Upload a local image: please click "Upload Insert" under the article title',//'（上传本地图片：请点击文章标题下方“上传插入”）',
 	'image.viewServer' : 'Browse',
 	'multiimage.uploadDesc' : 'Allows users to upload <%=uploadLimit%> images, single image size not exceeding <%=sizeLimit%>',
 	'multiimage.startUpload' : 'Start upload',
