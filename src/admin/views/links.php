@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle"><b>友情链接管理</b>
+<div class="containertitle">
 <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
@@ -9,48 +9,65 @@
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
-    <thead>
-      <tr>
-        <th width="50"><b>序号</b></th>
-        <th width="230"><b>链接</b></th>
-        <th width="80" class="tdcenter"><b>状态</b></th>
-        <th width="80" class="tdcenter"><b>查看</b></th>
-        <th width="400"><b>描述</b></th>
-        <th width="100"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php 
-    if($links):
-    foreach($links as $key=>$value):
-    doAction('adm_link_display');
-    ?>  
-      <tr>
-        <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
-        <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
-        <td class="tdcenter">
-        <?php if ($value['hide'] == 'n'): ?>
-        <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
-        <?php else: ?>
-        <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
-        <?php endif;?>
-        </td>
-        <td class="tdcenter">
-        <a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
-        <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
-        </td>
-        <td><?php echo $value['description']; ?></td>
-        <td>
-        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
-        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
-        </td>
-      </tr>
-    <?php endforeach;else:?>
-      <tr><td class="tdcenter" colspan="6">还没有添加链接</td></tr>
-    <?php endif;?>
-    </tbody>
-  </table>
+  <!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">链接管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>排序</th>
+                            <th>链接</th>
+                            <th>状态</th>
+                            <th>查看</th>
+                            <th>描述</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                    if($links):
+                    foreach($links as $key=>$value):
+                    doAction('adm_link_display');
+                    ?>  
+                      <tr>
+                        <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
+                        <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>" title="修改链接"><?php echo $value['sitename']; ?></a></td>
+                        <td class="tdcenter">
+                        <?php if ($value['hide'] == 'n'): ?>
+                        <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
+                        <?php else: ?>
+                        <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
+                        <?php endif;?>
+                        </td>
+                        <td class="tdcenter">
+                        <a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
+                        <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                        </td>
+                        <td><?php echo $value['description']; ?></td>
+                        <td>
+                        <a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>">编辑</a>
+                        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                        </td>
+                      </tr>
+                    <?php endforeach;else:?>
+                      <tr><td class="tdcenter" colspan="6">还没有添加链接</td></tr>
+                    <?php endif;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
   <div class="list_footer">
       <input type="submit" value="改变排序" class="btn btn-primary" /> 
       <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success">添加链接+</a>

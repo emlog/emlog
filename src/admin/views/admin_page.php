@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>页面管理</b>
+<div class="containertitle">
 <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除页面成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success">发布页面成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success">禁用页面成功</span><?php endif;?>
@@ -7,45 +7,61 @@
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
-    <thead>
-      <tr>
-        <th width="461" colspan="2"><b>标题</b></th>
-        <th width="140"><b>模板</b></th>
-        <th width="50" class="tdcenter"><b>评论</b></th>
-        <th width="140"><b>时间</b></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-    if($pages):
-    foreach($pages as $key => $value):
-    if (empty($navibar[$value['gid']]['url']))
-    {
-        $navibar[$value['gid']]['url'] = Url::log($value['gid']);
-    }
-    $isHide = $value['hide'] == 'y' ? 
-    '<font color="red"> - 草稿</font>' : 
-    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
-    ?>
-     <tr>
-        <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
-        <td width="440">
-        <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
-        <?php echo $isHide; ?>    
-        <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
-        </td>
-        <td><?php echo $value['template']; ?></td>
-        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-        <td class="small"><?php echo $value['date']; ?></td>
-     </tr>
-    <?php endforeach;else:?>
-      <tr><td class="tdcenter" colspan="5">还没有页面</td></tr>
-    <?php endif;?>
-    </tbody>
-  </table>
-  <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-  <input name="operate" id="operate" value="" type="hidden" />
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">页面管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">页面管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                        <th></th>
+                        <th>标题</th>
+                        <th>模板</th>
+                        <th>评论</th>
+                        <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if($pages):
+                    foreach($pages as $key => $value):
+                    if (empty($navibar[$value['gid']]['url']))
+                    {
+                        $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+                    }
+                    $isHide = $value['hide'] == 'y' ? 
+                    '<font color="red"> - 草稿</font>' : 
+                    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+                    ?>
+                    <tr>
+                        <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+                        <td width="440">
+                        <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
+                        <?php echo $isHide; ?>    
+                        <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+                        </td>
+                        <td><?php echo $value['template']; ?></td>
+                        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                        <td class="small"><?php echo $value['date']; ?></td>
+                    </tr>
+                    <?php endforeach;else:?>
+                      <tr><td class="tdcenter" colspan="5">还没有页面</td></tr>
+                    <?php endif;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
 </form>
 <div class="list_footer">
 <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
