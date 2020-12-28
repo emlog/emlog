@@ -1,6 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle">
+<!--vot--><div class=containertitle><b><?=lang('category_manage')?></b>
 <!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif;?>
@@ -28,13 +28,13 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>序号</th>
-                            <th>名称</th>
-                            <th>描述</th>
-                            <th>别名</th>
-                            <th>模板</th>
-                            <th>查看</th>
-                            <th>文章</th>
+                            <th><?=lang('id')?></th>
+                            <th><?=lang('name')?></th>
+                            <th><?=lang('description')?></th>
+                            <th><?=lang('alias')?></th>
+                            <th><?=lang('template')?></th>
+                            <th><?=lang('views')?></th>
+                            <th><?=lang('posts')?></th>
                         </tr>
                     </thead>
                     <tbody>

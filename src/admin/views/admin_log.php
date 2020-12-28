@@ -8,11 +8,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">文章管理</h1>
+    <h1 class="h3 mb-2 text-gray-800"><?= lang('post_manage') ?></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">文章管理</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?= lang('post_manage') ?></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,52 +20,52 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <thead>
                         <tr>
                             <th></th>
-                            <th>标题</th>
-                            <th>查看</th>
-                            <th>作者</th>
-                            <th>分类</th>
-                            <th>时间</th>
-                            <th>评论</th>
-                            <th>阅读</th>
+                            <th><?= lang('title') ?></th>
+                            <th><?= lang('views') ?></th>
+                            <th><?= lang('user') ?></th>
+                            <th><?= lang('category') ?></th>
+                            <th><?= lang('time') ?></th>
+                            <th><?= lang('comments') ?></th>
+                            <th><?= lang('reads') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                         if($logs):
                         foreach($logs as $key=>$value):
-/*vot*/    $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
+                        $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
                         $author = $user_cache[$value['author']]['name'];
                         $author_role = $user_cache[$value['author']]['role'];
                         ?>
                         <tr>
-      <td width="21"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"></td>
-      <td width="490"><a href="write_log.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
-<!--vot--><?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"><?php endif; ?>
-<!--vot--><?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"><?php endif; ?>
-<!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachment_num')?>: <?= $value['attnum'] ?>"><?php endif; ?>
-<!--vot--><?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
+                        <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+                        <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+                        <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?= lang('home_top') ?>" /><?php endif; ?>
+                        <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?= lang('category_top') ?>" /><?php endif; ?>
+                        <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+                        <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?= lang('pending') ?></span><?php endif; ?>
                         <span style="display:none; margin-left:8px;">
                             <?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-<!--vot--><a href="./admin_log.php?action=operate_log&operate=check&gid=<?= $value['gid']?>&token=<?= LoginAuth::genToken() ?>"><?=lang('approve')?></a> 
+                            <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('check') ?></a> 
                             <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-<!--vot--><a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?= $value['gid']?>&token=<?= LoginAuth::genToken() ?>"><?=lang('reject')?></a> 
+                            <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('uncheck') ?></a> 
                             <?php endif;?>
                         </span>
                         </td>
                         <?php if ($pid != 'draft'): ?>
                         <td class="tdcenter">
-<!--vot--><a href="<?= Url::log($value['gid']) ?>" target="_blank" title="<?=lang('open_new_window')?>">
-      <img src="./views/images/vlog.gif" align="absbottom" border="0"></a>
+                        <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?= lang('open_new_window') ?>">
+                        <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
                         </td>
                         <?php endif; ?>
-      <td><a href="./admin_log.php?uid=<?= $value['author'].$isdraft ?>"><?= $author ?></a></td>
-      <td><a href="./admin_log.php?sid=<?= $value['sortid'].$isdraft ?>"><?= $sortName ?></a></td>
-      <td class="small"><?= $value['date'] ?></td>
-      <td class="tdcenter"><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
-      <td class="tdcenter"><?= $value['views'] ?></a></td>
+                        <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
+                        <td><a href="./admin_log.php?sid=<?php echo $value['sortid'].$isdraft;?>"><?php echo $sortName; ?></a></td>
+                        <td class="small"><?php echo $value['date']; ?></td>
+                        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                        <td class="tdcenter"><?php echo $value['views']; ?></a></td>
                         </tr>
                         <?php endforeach;else:?>
-<!--vot--><tr><td class="tdcenter" colspan="8"><?=lang('yet_no_posts')?></td></tr>
+                        <tr><td class="tdcenter" colspan="8"><?= lang('yet_no_posts') ?></td></tr>
                         <?php endif;?>
                     </tbody>
                 </table>

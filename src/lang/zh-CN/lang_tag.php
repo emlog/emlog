@@ -26,9 +26,9 @@ $lang = array(
  'tag_manage'		=> '标签管理',//'Tag management',
  'tag_delete_ok'	=> '删除标签成功',//'Tag has been removed successfully',
  'tag_modify_ok'	=> '修改标签成功',//'Tag has been modified successfully',
- 'tag_select_to_delete'	=> '请选择要删除的标签',//'请选择要删除的标签'//'Please, select tab that you want to delete',
+ 'tag_select_to_delete'	=> '请选择要删除的标签',//'请选择要删除的标签'//'Please, select tag that you want to delete',
  'tags_no_info'		=> '还没有标签，写文章的时候可以给文章打标签',//'No tags yet! You can play with tags when writing a post',
- 'tag_select_to_delete'	=> '请选择要删除的标签',//'请选择要删除的标签'//'Please, select tab that you want to delete',
+// 'tag_select_to_delete'	=> '请选择要删除的标签',//'请选择要删除的标签'//'Please, select tag that you want to delete',
  'tag_delete_sure'	=> '你确定要删除所选标签吗？',//'Are you sure you want delete this tag?',
                                             
 //---------------------------

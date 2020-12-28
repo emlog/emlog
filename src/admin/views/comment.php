@@ -32,11 +32,11 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
   <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">评论管理</h1>
+    <h1 class="h3 mb-2 text-gray-800"><?= lang('comment_management') ?></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">评论管理</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?= lang('comment_management') ?></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -44,18 +44,18 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
                     <thead>
                         <tr>
                             <th></th>
-                            <th>内容</th>
-                            <th>评论人</th>
-                            <th>所属文章</th>
+                            <th><?= lang('content') ?></th>
+                            <th><?= lang('comment_author') ?></th>
+                            <th><?= lang('belongs_to_article') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                     if($comment):
                     foreach($comment as $key=>$value):
-/*vot*/ $ishide = $value['hide']=='y'?'<font color="red">['.lang('pending').']</font>':'';
+                    $ishide = $value['hide']=='y'?'<font color="red">[' . lang('pending') . ']</font>':'';
                     $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-/*vot*/ $ip = !empty($value['ip']) ? "<br><?=lang('from')?>: {$value['ip']}" : '';
+                    $ip = !empty($value['ip']) ? '<br />' . lang('from') . ': ' . $value['ip'] : '';
                     $poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
                     $value['content'] = str_replace('<br>',' ',$value['content']);
                     $sub_content = subString($value['content'], 0, 50);
@@ -63,26 +63,26 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
                     doAction('adm_comment_display');
                     ?>
                     <tr>
-        <td width="19"><input type="checkbox" value="<?= $value['cid'] ?>" name="com[]" class="ids"></td>
-        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid'] ?>" title="<?= $value['content'] ?>"><?= $sub_content ?></a> 	<?= $ishide ?>
-        <br><?= $value['date'] ?>
+                        <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids" /></td>
+                        <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>" title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> 	<?php echo $ishide; ?>
+                        <br /><?php echo $value['date']; ?>
                         <span style="display:none; margin-left:8px;">    
-<!--vot-->  <a href="javascript: em_confirm(<?= $value['cid'] ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
+                            <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?= lang('delete') ?></a>
                         <?php if($value['hide'] == 'y'):?>
-<!--vot-->  <a href="comment.php?action=show&amp;id=<?= $value['cid'] ?>"><?=lang('approve')?></a>
+                        <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?= lang('check') ?></a>
                         <?php else: ?>
-<!--vot-->  <a href="comment.php?action=hide&amp;id=<?= $value['cid'] ?>"><?=lang('hide')?></a>
+                        <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?= lang('hide') ?></a>
                         <?php endif;?>
-<!--vot-->  <a href="comment.php?action=reply_comment&amp;cid=<?= $value['cid'] ?>"><?=lang('reply')?></a>
-<!--vot-->  <a href="comment.php?action=edit_comment&amp;cid=<?= $value['cid'] ?>"><?=lang('edit')?></a>
+                        <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?= lang('reply') ?></a>
+                        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><?= lang('edit') ?></a>
                         </span>
                         </td>
-        <td><?= $poster ?> <?= $mail ?> <?= $ip ?> 
-<!--vot-->  <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?= $value['ip'] ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" title="<?=lang('delete_comments_from_ip')?>" class="care">(X)</a><?php endif;?></td>
-<!--vot--><td><a href="<?= Url::log($value['gid']) ?>" target="_blank" title="<?=lang('show_post')?>"><?= $value['title'] ?></a></td>
+                        <td><?php echo $poster;?> <?php echo $mail;?> <?php echo $ip;?> 
+                            <?php if (ROLE == ROLE_ADMIN): ?><a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<?= lang('del_comments_from_ip') ?>" class="care">(X)</a><?php endif;?></td>
+                        <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?= lang('view_article') ?>"><?php echo $value['title']; ?></a></td>
                     </tr>
                     <?php endforeach;else:?>
-<!--vot--><tr><td class="tdcenter" colspan="4"><?=lang('no_comments_yet')?></td></tr>
+                      <tr><td class="tdcenter" colspan="4"><?= lang('no_comments_yet') ?></td></tr>
                     <?php endif;?>
                     </tbody>
                 </table>

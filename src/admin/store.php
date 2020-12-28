@@ -7,8 +7,7 @@
 require_once 'globals.php';
 
 if ($action == '') {
-/*vot*/ $site_url_encode = rawurlencode(base64_encode(rtrim(BLOG_URL, '/')));
-/*vot*/ $site_url_encode = preg_replace('/%3D/', '', $site_url_encode);
+	$site_url_encode = rawurlencode(base64_encode(BLOG_URL));
 	include View::getView('header');
 	require_once(View::getView('store'));
 	include View::getView('footer');
