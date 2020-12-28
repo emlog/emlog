@@ -1,6 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
-<!--vot--><div class=containertitle><b><?=lang('category_manage')?></b>
+<div class="containertitle">
 <!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('category_update_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('category_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('category_modify_ok')?></span><?php endif;?>
@@ -13,26 +13,37 @@
 </div>
 <div class=line></div>
 <form  method="post" action="sort.php?action=taxis">
-    <table class="table table-striped table-bordered table-hover dataTable no-footer">
-        <thead>
-            <tr>
-<!--vot-->        <th width="55"><b><?=lang('id')?></b></th>
-<!--vot-->        <th width="160"><b><?=lang('name')?></b></th>
-<!--vot-->        <th width="180"><b><?=lang('description')?></b></th>
-<!--vot-->        <th width="130"><b><?=lang('alias')?></b></th>
-<!--vot-->        <th width="100"><b><?=lang('template')?></b></th>
-<!--vot-->        <th width="40" class="tdcenter"><b><?=lang('views')?></b></th>
-<!--vot-->        <th width="40" class="tdcenter"><b><?=lang('posts')?></b></th>
-                <th width="60"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($sorts):
-                foreach ($sorts as $key => $value):
-                    if ($value['pid'] != 0) {
-                        continue;
-                    }
+    <!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">分类管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">分类管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>序号</th>
+                            <th>名称</th>
+                            <th>描述</th>
+                            <th>别名</th>
+                            <th>模板</th>
+                            <th>查看</th>
+                            <th>文章</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if ($sorts):
+                    foreach ($sorts as $key => $value):
+                        if ($value['pid'] != 0) {
+                            continue;
+                        }
                     ?>
                     <tr>
                         <td>
@@ -81,9 +92,15 @@
                 <?php endforeach;
             else: ?>
 <!--vot-->      <tr><td class="tdcenter" colspan="8"><?=lang('categories_no')?></td></tr>
-<?php endif; ?>  
-        </tbody>
-    </table>
+            <?php endif; ?> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
     <div class="list_footer">
 <!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"> 
 <!--vot--><a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>

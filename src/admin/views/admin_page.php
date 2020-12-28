@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('page_management')?></b>
+<div class="containertitle">
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('page_deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success"><?=lang('page_published_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success"><?=lang('page_disabled_ok')?></span><?php endif;?>
@@ -7,45 +7,61 @@
 </div>
 <div class=line></div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
-    <thead>
-      <tr>
-<!--vot--><th width="461" colspan="2"><b><?=lang('title')?></b></th>
-<!--vot--><th width="140"><b><?=lang('template')?></b></th>
-<!--vot--><th width="50" class="tdcenter"><b><?=lang('comments')?></b></th>
-<!--vot--><th width="140"><b><?=lang('time')?></b></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-    if($pages):
-    foreach($pages as $key => $value):
-    if (empty($navibar[$value['gid']]['url']))
-    {
-        $navibar[$value['gid']]['url'] = Url::log($value['gid']);
-    }
-    $isHide = $value['hide'] == 'y' ? 
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">页面管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">页面管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                        <th></th>
+                        <th>标题</th>
+                        <th>模板</th>
+                        <th>评论</th>
+                        <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if($pages):
+                    foreach($pages as $key => $value):
+                    if (empty($navibar[$value['gid']]['url']))
+                    {
+                        $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+                    }
+                    $isHide = $value['hide'] == 'y' ? 
 /*vot*/    '<font color="red"> - '.lang('draft').'</font>' : 
 /*vot*/    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="'.lang('page_view').'"><img src="./views/images/vlog.gif" align="absbottom" border="0"></a>';
-    ?>
-     <tr>
-        <td width="21"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"></td>
-        <td width="440">
+                    ?>
+                    <tr>
+                        <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
+                        <td width="440">
         <a href="page.php?action=mod&id=<?= $value['gid']?>"><?= $value['title'] ?></a> 
         <?= $isHide ?>    
 <!--vot--><?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?= $value['attnum'] ?>"><?php endif; ?>
-        </td>
-        <td><?= $value['template'] ?></td>
-        <td class="tdcenter"><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
-        <td class="small"><?= $value['date'] ?></td>
-     </tr>
-    <?php endforeach;else:?>
+                        </td>
+                        <td><?php echo $value['template']; ?></td>
+                        <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                        <td class="small"><?php echo $value['date']; ?></td>
+                    </tr>
+                    <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="5"><?=lang('no_pages')?></td></tr>
-    <?php endif;?>
-    </tbody>
-  </table>
-  <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
-  <input name="operate" id="operate" value="" type="hidden">
+                    <?php endif;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
 </form>
 <div class="list_footer">
 <!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:

@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<!--vot--><div class=containertitle><b><?=lang('link_management')?></b>
+<div class="containertitle">
 <!--vot--><?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success"><?=lang('order_update_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('edit_ok')?></span><?php endif;?>
@@ -9,48 +9,65 @@
 </div>
 <div class=line></div>
 <form action="link.php?action=link_taxis" method="post">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
-    <thead>
-      <tr>
+  <!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">链接管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
 <!--vot--><th width="50"><b><?=lang('id')?></b></th>
 <!--vot--><th width="230"><b><?=lang('link')?></b></th>
 <!--vot--><th width="80" class="tdcenter"><b><?=lang('status')?></b></th>
 <!--vot--><th width="80" class="tdcenter"><b><?=lang('views')?></b></th>
 <!--vot--><th width="400"><b><?=lang('description')?></b></th>
-        <th width="100"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php 
-    if($links):
-    foreach($links as $key=>$value):
-    doAction('adm_link_display');
-    ?>  
-      <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                    if($links):
+                    foreach($links as $key=>$value):
+                    doAction('adm_link_display');
+                    ?>  
+                      <tr>
         <td><input class="form-control em-small" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"></td>
 <!--vot-->    <td><a href="link.php?action=mod_link&amp;linkid=<?= $value['id'] ?>" title="<?=lang('edit_link')?>"><?= $value['sitename'] ?></a></td>
-        <td class="tdcenter">
-        <?php if ($value['hide'] == 'n'): ?>
+                        <td class="tdcenter">
+                        <?php if ($value['hide'] == 'n'): ?>
 <!--vot-->    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" title="<?=lang('link_hide')?>"><?=lang('visible')?></a>
-        <?php else: ?>
+                        <?php else: ?>
 <!--vot-->    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" title="<?=lang('link_show')?>" style="color:red;"><?=lang('hidden')?></a>
-        <?php endif;?>
-        </td>
-        <td class="tdcenter">
+                        <?php endif;?>
+                        </td>
+                        <td class="tdcenter">
 <!--vot-->      <a href="<?= $value['siteurl'] ?>" target="_blank" title="<?=lang('view_link')?>">
         <img src="./views/images/vlog.gif" align="absbottom" border="0"></a>
-        </td>
+                        </td>
         <td><?= $value['description'] ?></td>
-        <td>
+                        <td>
 <!--vot--> <a href="link.php?action=mod_link&amp;linkid=<?= $value['id'] ?>"><?=lang('edit')?></a>
 <!--vot--> <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
-        </td>
-      </tr>
-    <?php endforeach;else:?>
+                        </td>
+                      </tr>
+                    <?php endforeach;else:?>
 <!--vot--><tr><td class="tdcenter" colspan="6"><?=lang('no_links')?></td></tr>
-    <?php endif;?>
-    </tbody>
-  </table>
+                    <?php endif;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
   <div class="list_footer">
 <!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"> 
 <!--vot--><a href="javascript:displayToggle('link_new', 2);" class="btn btn-success"><?=lang('link_add')?></a>

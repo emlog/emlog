@@ -1,12 +1,24 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<!--vot--><div class=containertitle><b><?=lang('tag_manage')?></b>
+<div class="containertitle">
 <!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('tag_delete_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['active_edit'])):?><span class="alert alert-success"><?=lang('tag_modify_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('tag_select_to_delete')?></span><?php endif;?>
 </div>
 <div class=line></div>
 <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
-<div>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">标签管理</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">标签管理</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+			<div>
 <li>
 <?php 
 if($tags):
@@ -24,6 +36,13 @@ foreach($tags as $key=>$value): ?>
 <!--vot--><li style="margin:20px 30px"><?=lang('tags_no_info')?></li>
 <?php endif;?>
 </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
 </form>
 <script>
 selectAllToggle();
