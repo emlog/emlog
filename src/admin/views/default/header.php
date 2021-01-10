@@ -11,13 +11,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link href="./views/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="./views/css/fonts.css" rel="stylesheet">
-    <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/css/fonts.css" rel="stylesheet">
+    <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Bootstrap core JavaScript-->
-    <script src="./views/vendor/jquery/jquery.min.js"></script>
-    <script src="./views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+    <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/jquery/jquery.min.js"></script>
+    <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     <?php doAction('adm_head'); ?>
 </head>
 
@@ -134,7 +134,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">大伟</span>
-                    <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
+                    <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/classsic/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'] ?>">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

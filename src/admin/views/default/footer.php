@@ -16,10 +16,10 @@
 </div>
 <!-- End of Content Wrapper -->
 <div id="footer"><?php doAction('adm_footer'); ?></div>
-<script src="./views/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="./views/js/sb-admin-2.min.js"></script>
-<script src="./views/vendor/chart.js/Chart.min.js"></script>
-<script src="./views/js/demo/chart-area-demo.js"></script>
-<script src="./views/js/demo/chart-pie-demo.js"></script>
+<script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/sb-admin-2.min.js"></script>
+<script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/chart.js/Chart.min.js"></script>
+<script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/demo/chart-area-demo.js"></script>
+<script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>
