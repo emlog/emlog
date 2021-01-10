@@ -6,8 +6,9 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//后台当前模板路径
-define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//官方服务域名
+define('ADMIN_TEMPLATE', 'default'); //后台模板
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TEMPLATE.'/');    //后台当前模板路径
+define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');       //官方服务域名
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
@@ -29,6 +30,7 @@ if ($action == 'login') {
         LoginAuth::loginPage($loginAuthRet);
     }
 }
+
 //退出
 if ($action == 'logout') {
     setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
