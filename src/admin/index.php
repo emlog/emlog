@@ -7,7 +7,7 @@
 require_once 'globals.php';
 
 if ($action == '') {
-	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'];
 	$name =  $user_cache[UID]['name'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
