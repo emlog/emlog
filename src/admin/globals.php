@@ -8,7 +8,8 @@ require_once '../init.php';
 
 /*vot*/ load_language('admin');
 
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/');//AdminCP current template path
+define('ADMIN_TEMPLATE', 'default'); //Background template
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TEMPLATE.'/');//AdminCP current template path
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official Service Domain
 
 $sta_cache = $CACHE->readCache('sta');
@@ -31,6 +32,7 @@ if ($action == 'login') {
         LoginAuth::loginPage($loginAuthRet);
     }
 }
+
 //Logout
 if ($action == 'logout') {
     setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
