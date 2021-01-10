@@ -5,7 +5,7 @@ body {
 }
 
 a:link, a:active, a:visited {color:#777; text-decoration:none;}
-a:hover {color: #2b542c !important; text-decoration:underline !important;}
+a:hover {color: #4e73df !important; text-decoration:underline !important;}
 
 h1,h2,h3,h4,h5,h6,.navbar-brand,.brand-name {
 	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -104,7 +104,7 @@ header.marquee .btn-cta:hover {
     padding-bottom: 60px;
 	text-align: center;
 	color: rgba(255,255,255,.8);
-	background-color: #2b542c;
+	background-color: #4e73df;
 	background-image: url(./images/bg.png);
 	margin-bottom: 40px;
 	font-size: 20px
