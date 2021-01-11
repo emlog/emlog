@@ -1,41 +1,41 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">分类名称不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">别名格式错误</span><?php endif;?>
-<?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">别名不能重复</span><?php endif;?>
-<?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif;?>
-<div class=containertitle><b>编辑分类</b></div>
+<!--vot--><?php if(isset($_GET['error_a'])):?><span class="alert alert-danger"><?=lang('category_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_c'])):?><span class="alert alert-danger"><?=lang('alias_format_invalid')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_d'])):?><span class="alert alert-danger"><?=lang('alias_unique')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_e'])):?><span class="alert alert-danger"><?=lang('alias_no_keywords')?></span><?php endif;?>
+<!--vot--><div class=containertitle><b><?=lang('category_edit')?></b></div>
 <form action="sort.php?action=update" method="post" class="form-inline">
 <div class="form-group">
     <li>
-        <input style="width:200px;" value="<?php echo $sortname; ?>" name="sortname" id="sortname" class="form-control" />
-        <label>名称</label>
+        <input style="width:200px;" value="<?= $sortname ?>" name="sortname" id="sortname" class="form-control">
+<!--vot--><label><?=lang('name')?></label>
     </li>
     <li>
-        <input style="width:200px;" value="<?php echo $alias; ?>" name="alias" id="alias" class="form-control" />
-        <label>别名</label>
+        <input style="width:200px;" value="<?= $alias ?>" name="alias" id="alias" class="form-control">
+<!--vot--><label><?=lang('alias')?></label>
     </li>
     <?php if (empty($sorts[$sid]['children'])): ?>
     <li>
         <select name="pid" id="pid" class="form-control" style="width:200px;">
-            <option value="0"<?php if($pid == 0):?> selected="selected"<?php endif; ?>>无</option>
+<!--vot-->        <option value="0"<?php if($pid == 0):?> selected="selected"<?php endif; ?>><?=lang('no')?></option>
             <?php
                 foreach($sorts as $key=>$value):
                     if ($key == $sid || $value['pid'] != 0) continue;
             ?>
-            <option value="<?php echo $key; ?>"<?php if($pid == $key):?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
+            <option value="<?= $key ?>"<?php if($pid == $key):?> selected="selected"<?php endif; ?>><?= $value['sortname'] ?></option>
             <?php endforeach; ?>
         </select>
-        <label>父分类</label>
+<!--vot--><label><?=lang('category_parent')?></label>
     </li>
     <?php endif; ?>
-    <li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?php echo $template; ?>" /> 模板 (用于自定义分类页面模板，对应模板目录下.php文件)</li>
+<!--vot--><li><input maxlength="200" style="width:200px;" class="form-control" name="template" id="template" value="<?= $template ?>"> <?=lang('template')?> <?=lang('template_info2')?></li>
     <li>
-        <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="分类描述"><?php echo $description; ?></textarea>
+        <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"><?= $description ?></textarea>
     </li>
     <li>
-    <input type="hidden" value="<?php echo $sid; ?>" name="sid" />
-    <input type="submit" value="保 存" class="btn btn-primary" id="save"  />
-    <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" />
+    <input type="hidden" value="<?= $sid ?>" name="sid">
+<!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" id="save">
+<!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();">
     <span id="alias_msg_hook"></span>
     </li>
 </div>
@@ -60,13 +60,13 @@ function checksortalias(){
     var a = $.trim($("#alias").val());
     if (1 == issortalias(a)){
         $("#save").attr("disabled", "disabled");
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+/*vot*/        $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
     }else if (2 == issortalias(a)){
         $("#save").attr("disabled", "disabled");
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+/*vot*/        $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
     }else if (3 == issortalias(a)){
         $("#save").attr("disabled", "disabled");
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+/*vot*/        $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
     }else {
         $("#alias_msg_hook").html('');
         $("#msg").html('');

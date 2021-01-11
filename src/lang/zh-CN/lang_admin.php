@@ -504,6 +504,7 @@ $lang = array(
  '_characters'			=> '字',//' characters',
  'exceeds'			=> '已超出',//'has been exceeded ',
  'release'			=> '发布',//,' release',
+ 'write_article'		=> '去写文章',//'Write an article',
 
 //---------------------------
 //admin/views/links.php

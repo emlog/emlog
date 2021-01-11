@@ -8,11 +8,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">文章管理</h1>
+    <h1 class="h3 mb-2 text-gray-800"><?= lang('post_manage') ?></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">文章管理</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><?= lang('post_manage') ?></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,42 +20,42 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <thead>
                         <tr>
                             <th></th>
-                            <th>标题</th>
-                            <th>查看</th>
-                            <th>作者</th>
-                            <th>分类</th>
-                            <th>时间</th>
-                            <th>评论</th>
-                            <th>阅读</th>
+                            <th><?= lang('title') ?></th>
+                            <th><?= lang('views') ?></th>
+                            <th><?= lang('user') ?></th>
+                            <th><?= lang('category') ?></th>
+                            <th><?= lang('time') ?></th>
+                            <th><?= lang('comments') ?></th>
+                            <th><?= lang('reads') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                         if($logs):
                         foreach($logs as $key=>$value):
-                        $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
+                        $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
                         $author = $user_cache[$value['author']]['name'];
                         $author_role = $user_cache[$value['author']]['role'];
                         ?>
                         <tr>
                         <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
                         <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-                        <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶" /><?php endif; ?>
-                        <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶" /><?php endif; ?>
-                        <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
-                        <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><sapn style="color:red;"> - 待审</sapn><?php endif; ?>
+                        <?php if($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?= lang('home_top') ?>" /><?php endif; ?>
+                        <?php if($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?= lang('category_top') ?>" /><?php endif; ?>
+                        <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+                        <?php if($pid != 'draft' && $value['checked'] == 'n'): ?><span style="color:red;"> - <?= lang('pending') ?></span><?php endif; ?>
                         <span style="display:none; margin-left:8px;">
                             <?php if($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-                            <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a> 
+                            <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('check') ?></a> 
                             <?php elseif($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER):?>
-                            <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a> 
+                            <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid']?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('uncheck') ?></a> 
                             <?php endif;?>
                         </span>
                         </td>
                         <?php if ($pid != 'draft'): ?>
                         <td class="tdcenter">
-                        <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="在新窗口查看">
-                        <img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>
+                        <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?= lang('open_new_window') ?>">
+                        <img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
                         </td>
                         <?php endif; ?>
                         <td><a href="./admin_log.php?uid=<?php echo $value['author'].$isdraft;?>"><?php echo $author; ?></a></td>
@@ -65,7 +65,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <td class="tdcenter"><?php echo $value['views']; ?></a></td>
                         </tr>
                         <?php endforeach;else:?>
-                        <tr><td class="tdcenter" colspan="8">还没有文章</td></tr>
+                        <tr><td class="tdcenter" colspan="8"><?= lang('yet_no_posts') ?></td></tr>
                         <?php endif;?>
                     </tbody>
                 </table>
@@ -84,15 +84,15 @@ $(document).ready(function(){
 setTimeout(hideActived,2600);
 function logact(act){
     if (getChecked('ids') == false) {
-        alert('请选择要操作的文章');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
-    if(act == 'del' && !confirm('你确定要删除所选文章吗？')){return;}
+/*vot*/ if(act == 'del' && !confirm('<?=lang('sure_delete_selected_posts')?>')){return;}
     $("#operate").val(act);
     $("#form_log").submit();
 }
 function changeSort(obj) {
     if (getChecked('ids') == false) {
-        alert('请选择要操作的文章');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#sort').val() == '')return;
     $("#operate").val('move');
@@ -100,7 +100,7 @@ function changeSort(obj) {
 }
 function changeAuthor(obj) {
     if (getChecked('ids') == false) {
-        alert('请选择要操作的文章');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#author').val() == '')return;
     $("#operate").val('change_author');
@@ -108,17 +108,17 @@ function changeAuthor(obj) {
 }
 function changeTop(obj) {
     if (getChecked('ids') == false) {
-        alert('请选择要操作的文章');
+/*vot*/ alert('<?=lang('select_post_to_operate_please')?>');
         return;}
     if($('#top').val() == '')return;
     $("#operate").val(obj.value);
     $("#form_log").submit();
 }
 function selectSort(obj) {
-    window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+    window.open("./admin_log.php?sid=" + obj.value + "<?= $isdraft?>", "_self");
 }
 function selectUser(obj) {
-    window.open("./admin_log.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
+    window.open("./admin_log.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
 }
 <?php if ($isdraft) :?>
 $("#menu_draft").addClass('active');

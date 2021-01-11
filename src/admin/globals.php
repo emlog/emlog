@@ -6,11 +6,11 @@
 
 require_once '../init.php';
 
-/*vot*/ load_language('admin');
-
-define('ADMIN_TEMPLATE', 'default'); //Background template
+define('ADMIN_TEMPLATE', 'default'); //Admin Template
 define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TEMPLATE.'/');//AdminCP current template path
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official Service Domain
+
+/*vot*/ load_language('admin');
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');

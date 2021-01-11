@@ -10,17 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
+<!--vot--><title><?=lang('admin_center')?> - <?= Option::get('blogname') ?></title>
     <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/css/fonts.css" rel="stylesheet">
     <link href="./views/<?php echo ADMIN_TEMPLATE; ?>/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Bootstrap core JavaScript-->
     <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/jquery/jquery.min.js"></script>
     <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+    <script src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?= Option::EMLOG_VERSION ?>"></script>
     <?php doAction('adm_head'); ?>
 </head>
 
+<!--vot--><body>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -39,43 +40,43 @@
         <li class="nav-item active">
             <a class="nav-link" href="./write_log.php">
                 <i class="far fa-edit"></i>
-                <span>写文章</span></a>
+<!--vot-->      <span><?= lang('post_write') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./admin_log.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>文章</span></a>
+<!--vot-->      <span><?= lang('posts') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./page.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>页面</span></a>
+<!--vot-->      <span><?= lang('pages') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="comment.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>评论</span></a>
+<!--vot-->      <span><?= lang('comments') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="tag.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>标签</span></a>
+<!--vot-->      <span><?= lang('tags') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./sort.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>分类</span></a>
+<!--vot-->      <span><?= lang('category') ?></span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./link.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>链接</span></a>
+<!--vot-->      <span><?= lang('friend_links') ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
@@ -83,13 +84,13 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-wrench"></i>
-                <span>外观</span>
+<!--vot-->      <span><?= lang('exterior') ?></span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./template.php">模板</a>
-                    <a class="collapse-item" href="./navbar.php">导航</a>
-                    <a class="collapse-item" href="./widgets.php">侧边栏</a>
+<!--vot-->          <a class="collapse-item" href="./template.php"><?= lang('templates') ?></a>
+<!--vot-->          <a class="collapse-item" href="./navbar.php"><?= lang('navigation') ?></a>
+<!--vot-->          <a class="collapse-item" href="./widgets.php"><?= lang('sidebar') ?></a>
                 </div>
             </div>
         </li>
@@ -101,10 +102,10 @@
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./configure.php">设置</a>
-                    <a class="collapse-item" href="./user.php">用户</a>
-                    <a class="collapse-item" href="./data.php">数据</a>
-                    <a class="collapse-item" href="./plugin.php">插件</a>
+<!--vot-->          <a class="collapse-item" href="./configure.php"><?= lang('settings') ?></a>
+<!--vot-->          <a class="collapse-item" href="./user.php"><?= lang('users') ?></a>
+<!--vot-->          <a class="collapse-item" href="./data.php"><?= lang('data') ?></a>
+<!--vot-->          <a class="collapse-item" href="./plugin.php"><?= lang('plugins') ?></a>
                 </div>
             </div>
         </li>
@@ -131,10 +132,10 @@
 
 
                 <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link" href="../" target="_blank" title="在新窗口浏站点" role="button" >
+                    <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
                         <?php
                         $blog_name = Option::get('blogname');
-                        echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
+                        echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
                         ?>
                     </a>
                 </li>
@@ -143,20 +144,20 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">大伟</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= lang('user_info') ?></span>
                         <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/default/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="./configure.php">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>个人设置
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('personal_settings') ?>
                         </a>
                         <a class="dropdown-item" href="./configure.php">
-                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>系统设置
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('system_settings') ?>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./?action=logout" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>退出
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('logout') ?>
                         </a>
                     </div>
                 </li>
