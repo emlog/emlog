@@ -38,14 +38,14 @@
                     }
                     $isHide = $value['hide'] == 'y' ? 
                     '<font color="red"> - 草稿</font>' : 
-                    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>';
+                    '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>';
                     ?>
                     <tr>
                         <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
                         <td width="440">
                         <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
                         <?php echo $isHide; ?>    
-                        <?php if($value['attnum'] > 0): ?><img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+                        <?php if($value['attnum'] > 0): ?><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
                         </td>
                         <td><?php echo $value['template']; ?></td>
                         <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>

@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>upload</title>
-<link href="./views/<?php echo ADMIN_TEMPLATE; ?>/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-<script type="text/javascript" src="./views/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./templates/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 </head>
 <script>
 function showupload(multi){
