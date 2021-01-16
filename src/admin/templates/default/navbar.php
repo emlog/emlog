@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle"><b>导航管理</b>
+<div class="containertitle">
 <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除导航成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改导航成功</span><?php endif;?>
@@ -11,6 +11,9 @@
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">请选择要添加的页面</span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">导航地址格式错误(需包含http等前缀)</span><?php endif;?>
 </div>
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">导航管理</h1>
 <form action="navbar.php?action=taxis" method="post">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
     <thead>
@@ -211,7 +214,8 @@
             </div>
         </div>
 </div>
-
+</div>
+<!-- /.container-fluid -->
 <script>
 $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
 $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');

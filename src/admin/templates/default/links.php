@@ -7,12 +7,11 @@
 <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
 </div>
-<div class=line></div>
-<form action="link.php?action=link_taxis" method="post">
-  <!-- Begin Page Content -->
+<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+<form action="link.php?action=link_taxis" method="post">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -65,9 +64,6 @@
             </div>
         </div>
     </div>
-
-</div>
-<!-- /.container-fluid -->
   <div class="list_footer">
       <input type="submit" value="改变排序" class="btn btn-primary" /> 
       <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success">添加链接+</a>
@@ -92,6 +88,8 @@
     <li><input type="submit" class="btn btn-primary" name="" value="添加链接"  /></li>
 </div>
 </form>
+</div>
+<!-- /.container-fluid -->
 <script>
 $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
 $(document).ready(function(){

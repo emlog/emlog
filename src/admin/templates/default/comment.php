@@ -11,7 +11,10 @@
 <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
 </div>
-<div class=line></div>
+  <!-- Begin Page Content -->
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">评论管理</h1>
 <?php if ($hideCommNum > 0) : 
 $hide_ = $hide_y = $hide_n = '';
 $a = "hide_$hide";
@@ -29,10 +32,6 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </div>
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
-  <!-- Begin Page Content -->
-<div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">评论管理</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -90,8 +89,6 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
     <div class="list_footer">
     <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
     <a href="javascript:commentact('del');" class="care">删除</a>
@@ -101,6 +98,8 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
     </div>
     <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div> 
 </form>
+</div>
+<!-- /.container-fluid -->
 <script>
 $(document).ready(function(){
     selectAllToggle();

@@ -11,12 +11,11 @@
     <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">别名不能重复</span><?php endif; ?>
     <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif; ?>
 </div>
-<div class=line></div>
-<form  method="post" action="sort.php?action=taxis">
-    <!-- Begin Page Content -->
+<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">分类管理</h1>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">分类管理</h1>
+<form  method="post" action="sort.php?action=taxis">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -98,9 +97,6 @@
             </div>
         </div>
     </div>
-
-</div>
-<!-- /.container-fluid -->
     <div class="list_footer">
         <input type="submit" value="改变排序" class="btn btn-primary" /> 
         <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
@@ -144,6 +140,8 @@
         <li><input type="submit" id="addsort" value="添加新分类" class="btn btn-primary"/><span id="alias_msg_hook"></span></li>
     </div>
 </form>
+</div>
+<!-- /.container-fluid -->
 <script>
     $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
     $("#alias").keyup(function() {

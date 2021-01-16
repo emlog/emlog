@@ -4,13 +4,11 @@
 <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改标签成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">请选择要删除的标签</span><?php endif;?>
 </div>
-<div class=line></div>
-<form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">标签管理</h1>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">标签管理</h1>
+<form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -39,11 +37,9 @@ foreach($tags as $key=>$value): ?>
             </div>
         </div>
     </div>
-
+</form>
 </div>
 <!-- /.container-fluid -->
-
-</form>
 <script>
 selectAllToggle();
 function deltags(){
