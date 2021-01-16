@@ -9,7 +9,7 @@
 
 class Option {
     //Version number
-    const EMLOG_VERSION = '6.0.0';
+    const EMLOG_VERSION = '6.1.0';
     //Maximum avatar thumbnail width
     const ICON_MAX_W = 200;
     //Maximum avatar thumbnail height

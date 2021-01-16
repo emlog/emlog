@@ -7,7 +7,7 @@
 require_once '../init.php';
 
 define('ADMIN_TEMPLATE', 'default'); //Admin Template
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TEMPLATE.'/');//AdminCP current template path
+define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/templates/'.ADMIN_TEMPLATE.'/');//AdminCP current template path
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official Service Domain
 
 /*vot*/ load_language('admin');
