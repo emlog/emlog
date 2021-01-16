@@ -14,6 +14,7 @@
     <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/fonts.css" rel="stylesheet">
     <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
     <!-- Bootstrap core JavaScript-->
     <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/jquery/jquery.min.js"></script>
     <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -148,14 +149,11 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="./configure.php">
+                        <a class="dropdown-item" href="./blogger.php">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>个人设置
                         </a>
-                        <a class="dropdown-item" href="./configure.php">
-                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>系统设置
-                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="./?action=logout" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" href="./?action=logout">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>退出
                         </a>
                     </div>
