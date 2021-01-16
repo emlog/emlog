@@ -26,13 +26,13 @@
 	<?php
 	if($users):
 	foreach($users as $key => $val):
-		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/default/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './templates/default/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
 		<td>
 		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
-		<?php echo $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? '创始人':'管理员' : '作者'; ?>
+		<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人':'管理员') : '作者'; ?>
         <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
 		<span style="display:none; margin-left:8px;">
 		<?php 

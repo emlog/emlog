@@ -64,7 +64,7 @@
         </td>
         <td class="tdcenter">
         <a href="<?php echo $value['url']; ?>" target="_blank">
-        <img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        <img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
         </td>
         <td><?php echo $value['url']; ?></td>
         <td>
@@ -91,7 +91,7 @@
         </td>
         <td class="tdcenter">
         <a href="<?php echo $val['url']; ?>" target="_blank">
-        <img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
+        <img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif';?>" align="absbottom" border="0" /></a>
         </td>
         <td><?php echo $val['url']; ?></td>
         <td>
