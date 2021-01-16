@@ -112,43 +112,43 @@ function em_confirm (id, property, token) {
     switch (property){
         case 'comment':
             var urlreturn="comment.php?action=del&id="+id;
-            var msg = "你确定要删除该评论吗？";break;
+/*vot*/     var msg = lang('comment_del_sure');break;
         case 'commentbyip':
             var urlreturn="comment.php?action=delbyip&ip="+id;
-            var msg = "你确定要删除来自该IP的所有评论吗？";break;
+/*vot*/     var msg = lang('comment_ip_del_sure');break;
         case 'link':
             var urlreturn="link.php?action=dellink&linkid="+id;
-            var msg = "你确定要删除该链接吗？";break;
+/*vot*/     var msg = lang('link_del_sure');break;
         case 'navi':
             var urlreturn="navbar.php?action=del&id="+id;
-            var msg = "你确定要删除该导航吗？";break;
+/*vot*/     var msg = lang('navi_del_sure');break;
         case 'backup':
             var urlreturn="data.php?action=renewdata&sqlfile="+id;
-            var msg = "你确定要导入该备份文件吗？";break;
+/*vot*/     var msg = lang('backup_import_sure');break;
         case 'attachment':
             var urlreturn="attachment.php?action=del_attach&aid="+id;
-            var msg = "你确定要删除该附件吗？";break;
+/*vot*/     var msg = lang('attach_del_sure');break;
         case 'avatar':
             var urlreturn="blogger.php?action=delicon";
-            var msg = "你确定要删除头像吗？";break;
+/*vot*/     var msg = lang('avatar_del_sure');break;
         case 'sort':
             var urlreturn="sort.php?action=del&sid="+id;
-            var msg = "你确定要删除该分类吗？";break;
+/*vot*/     var msg = lang('category_del_sure');break;
         case 'page':
             var urlreturn="page.php?action=del&gid="+id;
-            var msg = "你确定要删除该页面吗？";break;
+/*vot*/     var msg = lang('page_del_sure');break;
         case 'user':
             var urlreturn="user.php?action=del&uid="+id;
-            var msg = "你确定要删除该用户吗？";break;
+/*vot*/     var msg = lang('user_del_sure');break;
         case 'tpl':
             var urlreturn="template.php?action=del&tpl="+id;
-            var msg = "你确定要删除该模板吗？";break;
+/*vot*/     var msg = lang('template_del_sure');break;
         case 'reset_widget':
             var urlreturn="widgets.php?action=reset";
-            var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";break;
+/*vot*/     var msg = lang('plugin_reset_sure');break;
         case 'plu':
             var urlreturn="plugin.php?action=del&plugin="+id;
-            var msg = "你确定要删除该插件吗？";break;
+/*vot*/     var msg = lang('plugin_del_sure');break;
     }
     if(confirm(msg)){window.location = urlreturn + "&token="+token;}else {return;}
 }
@@ -183,13 +183,13 @@ function checkform(){
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
     if (t==""){
-        alert("标题不能为空");
+/*vot*/ alert(lang('title_empty'));
         $("#title").focus();
         return false;
     }else if(0 == isalias(a)){
         return true;
     }else {
-        alert("链接别名错误");
+/*vot*/ alert(lang('alis_link_error'));
         $("#alias").focus();
         return false
     };
@@ -197,13 +197,13 @@ function checkform(){
 function checkalias(){
     var a = $.trim($("#alias").val());
     if (1 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_invalid_chars')+'</span>');
     }else if (2 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_digital')+'</span>');
     }else if (3 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_format_must_be')+'</span>');
     }else if (4 == isalias(a)){
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_system_conflict')+'</span>');
     }else {
         $("#alias_msg_hook").html('');
         $("#msg").html('');
@@ -211,14 +211,14 @@ function checkalias(){
 }
 function addattach_img(fileurl,imgsrc,aid, width, height, alt){
     if (editorMap['content'].designMode === false){
-        alert('请先切换到所见所得模式');
+/*vot*/ alert(lang('wysiwyg_switch'));
     }else if (imgsrc != "") {
-        editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="点击查看原图" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
+/*vot*/ editorMap['content'].insertHtml('<a target=\"_blank\" href=\"'+fileurl+'\" id=\"ematt:'+aid+'\"><img src=\"'+imgsrc+'\" title="'+lang('click_view_fullsize')+'" alt=\"'+alt+'\" border=\"0\" width="'+width+'" height="'+height+'"/></a>');
     }
 }
 function addattach_file(fileurl,filename,aid){
     if (editorMap['content'].designMode === false){
-        alert('请先切换到所见所得模式');
+/*vot*/ alert(lang('wysiwyg_switch'));
     } else {
         editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"'+fileurl+'\" >'+filename+'</a></span>');
     }
@@ -305,7 +305,7 @@ function autosave(act){
     //check alias
     if(alias != '') {
         if (0 != isalias(alias)){
-            $("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失败</span>");
+/*vot*/     $("#msg").html('<span class="msg_autosave_error">'+lang('alis_link_error_not_saved')+'</span>');
             if(act == 0){setTimeout("autosave(0)",60000);}
             return;
         }
@@ -321,9 +321,9 @@ function autosave(act){
         var gid = $("#"+nodeid).val();
         if (gid != -1){return;}
     }
-    $("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
+/*vot*/ $("#msg").html('<span class="msg_autosave_do">'+lang('saving')+'...</span>');
     var btname = $("#savedf").val();
-    $("#savedf").val("正在保存");
+/*vot*/ $("#savedf").val(lang('saving'));
     $("#savedf").attr("disabled", "disabled");
     $.post(url, querystr, function(data){
         data = $.trim(data);
@@ -340,14 +340,14 @@ function autosave(act){
             var hours = digital.getHours();
             var mins = digital.getMinutes();
             var secs = digital.getSeconds();
-            $("#msg_2").html("<span class=\"ajax_remind_1\">自动保存于"+hours+":"+mins+":"+secs+" </span>");
+/*vot*/     $("#msg_2").html('<span class="ajax_remind_1">'+lang('saved_ok_time')+hours+':'+mins+':'+secs+' </span>');
             $("#savedf").attr("disabled", false);
             $("#savedf").val(btname);
             $("#msg").html("");
         }else{
             $("#savedf").attr("disabled", false);
             $("#savedf").val(btname);
-            $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+/*vot*/     $("#msg").html('<span class="msg_autosave_error">'+lang('save_system_error')+'</span>');
         }
     });
     if(act == 0){

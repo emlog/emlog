@@ -11,6 +11,7 @@ $lang = array(
  'no_permission'	=> '权限不足！',
  'check'		=> '审核',//'Check',
  'uncheck'		=> '驳回',//'Uncheck',
+ 'view_by_tag'		=> '按标签查看',//'View by tag',
 
 //---------------------------
 //admin/attachment.php
@@ -119,11 +120,12 @@ $lang = array(
  'select_action_to_perform'	=> '请选择要执行的操作',//'Please, select an action to perform',
  'published_ok'		=> '发布成功',//'Entry has been publised successfully',
  'moved_ok'		=> '移动成功',//'Moved successfully',
- 'author_modified_ok'	=> '更改作者成功',//'Entry author has been modified successfully',
+ 'user_edit'		=> '更改作者',//'Change author',
+ 'user_modified_ok'	=> '更改作者成功',//'Entry author has been modified successfully',
  'draft_moved_ok'	=> '转入草稿箱成功',//'Moved to Draft successfully',
  'draft_saved_ok'	=> '草稿保存成功',//'Draft has been saved successfully',
  'saved_ok'		=> '保存成功',//'Entry has been saved successfully',
- 'audited_ok'		=> '文章审核成功',//'Entry has been audited successfully',
+ 'verified_ok'		=> '文章审核成功',//'Entry has been verified successfully',
  'rejected_ok'		=> '文章驳回成功',//'Entry has been rejected successfully',
  'all'			=> '全部',//'All',
  'category_view'	=> '按分类查看',//'View by Category',
@@ -157,6 +159,11 @@ $lang = array(
  'posts'		=> '文章',//'posts',
  'select_post_to_operate_please'	=> '请选择要操作的文章',//'Please, select the entry to operate',
  'sure_delete_selected_posts'	=> '你确定要删除所选文章吗？',//'Are you sure to want delete selected entries?',
+ 'tags'			=> 'Tags',//'标签',
+ 'tags_no'		=> 'No tags',//'还没有标签',
+ 'tag_by_view'		=> 'View by tags',//'按标签查看',
+
+
 
 //---------------------------
 //admin/views/admin_page.php
@@ -380,7 +387,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/data.php
- 'data_backup'			=> '数据备份',//'Data Backup',
+ 'data_backup'			=> '数据库备份',//'Database Backup',
  'backup_delete_ok'		=> '备份文件删除成功',//'Backup file deleted successfully',
  'backup_create_ok'		=> '数据备份成功',//'Data backup created successfully',
  'backup_import_ok'		=> '备份导入成功',//'Backup imported successfully',
@@ -503,7 +510,7 @@ $lang = array(
  'you_can_enter'		=> '(你还可以输入',//'(You can enter ',
  '_characters'			=> '字',//' characters',
  'exceeds'			=> '已超出',//'has been exceeded ',
- 'release'			=> '发布',//,' release',
+ 'publish'			=> '发布',//,'Publish',
  'write_article'		=> '去写文章',//'Write an article',
 
 //---------------------------
@@ -623,6 +630,10 @@ $lang = array(
  'post_title_site_meta_title'	=> '文章标题 - 站点浏览器标题',//'Post title - Site browser title',
 
 //---------------------------
+//admin/views/sort.php
+ 'category_management'	=> '分类管理',//'Category Management',
+
+//---------------------------
 //admin/views/store.php
 
 //---------------------------
@@ -735,9 +746,9 @@ $lang = array(
 
 //---------------------------
 //admin/views/useredit.php
- 'author_info_manage'		=> '修改作者资料',//'Author Info management',
- 'password_new'			=> '新密码(不修改请留空)',//'New password (leave blank, if you do not want to modify)',
- 'password_new_repeat'		=> '重复新密码',//'Repeat new password',
+ 'user_manage'		=> '修改作者资料',//'User management',
+ 'password_new'		=> '新密码(不修改请留空)',//'New password (leave blank, if you do not want to modify)',
+ 'password_new_repeat'	=> '重复新密码',//'Repeat new password',
 
 //---------------------------
 //admin/views/widgets.php

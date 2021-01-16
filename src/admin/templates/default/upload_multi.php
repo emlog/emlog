@@ -1,11 +1,11 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="zh-CN">
+<!DOCTYPE html>
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8">
 <title>upload</title>
-<link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-att.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
-<link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-uploadify.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" rel="stylesheet">
+<link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-att.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
+<link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-uploadify.css?v=<?= Option::EMLOG_VERSION ?>" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-1.11.0.js"></script>
 </head>
 <body>
@@ -20,13 +20,13 @@ function showattlib(){
 }
 </script>
 <div id="media-upload-header">
-	<span><a href="javascript:showupload(0);">上传附件</a></span>
-	<span id="curtab"><a href="javascript:showupload(1);">批量上传</a></span>
-	<span><a href="javascript:showattlib();">附件库（<?php echo $attachnum; ?>）</a></span>
+<!--vot--><span><a href="javascript:showupload(0);"><?=lang('attachment_upload')?></a></span>
+<!--vot--><span id="curtab"><a href="javascript:showupload(1);"><?=lang('bulk_upload')?></a></span>
+<!--vot--><span><a href="javascript:showattlib();"><?=lang('attachment_library')?> (<?= $attachnum ?>)</a></span>
 </div>
 <?php 
 if(true === isIE6Or7()): ?>
-<div class="ie_notice">您正在使用的浏览器版本太低，无法使用批量上传功能。为了更好的使用emlog，建议您升级浏览器或者换用其他浏览器。</div>
+<!--vot--><div class="ie_notice"><?=lang('browser_upgrade')?></div>
 <?php else:?>
 <form enctype="multipart/form-data" method="post" name="upload" action="">
 <div id="media-upload-body">
@@ -34,7 +34,7 @@ if(true === isIE6Or7()): ?>
 <div id="custom-queue" class="uploadifyQueue"></div>
 </div>
 </form>
-<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script type="text/javascript" src="../include/lib/js/uploadify/jquery.uploadify.min.js?v=<?= Option::EMLOG_VERSION ?>"></script>
 <script>
 $(document).ready(function() {
 	$("#custom_file_upload").uploadify({
@@ -43,17 +43,17 @@ $(document).ready(function() {
 		uploader        : 'attachment.php?action=upload_multi&logid='+parent.document.getElementById('as_logid').value,
 		cancelImage     : './views/images/cancel.png',
 		checkExisting   : false,
-		buttonText      : '选择文件',
+/*vot*/		buttonText      : '<?=lang('file_select')?>',
 		auto            : true,
 		multi           : true,
 		buttonCursor    : 'pointer',
-		fileTypeExts    : '<?php echo $att_type_for_muti;?>',
+		fileTypeExts    : '<?= $att_type_for_muti ?>',
 		queueID         : 'custom-queue',
 		queueSizeLimit	: 100,
 		removeCompleted : false,
 		fileSizeLimit	: 20971520,
 		fileObjName     : 'attach',
-		postData		: {<?php echo AUTH_COOKIE_NAME;?>:'<?php echo $_COOKIE[AUTH_COOKIE_NAME];?>'},
+		postData		: {<?= AUTH_COOKIE_NAME ?>:'<?= $_COOKIE[AUTH_COOKIE_NAME] ?>'},
 		onQueueComplete : function() { showattlib();},
 	});
 });

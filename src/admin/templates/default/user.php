@@ -1,27 +1,27 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="containertitle">
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_update'])):?><span class="alert alert-success">修改用户资料成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加用户成功</span><?php endif;?>
-<?php if(isset($_GET['error_login'])):?><span class="alert alert-danger">用户名不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger">该用户名已存在</span><?php endif;?>
-<?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif;?>
-<?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger">两次输入密码不一致</span><?php endif;?>
-<?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger">不能删除创始人</span><?php endif;?>
-<?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger">不能修改创始人信息</span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_del'])):?><span class="alert alert-success"><?=lang('deleted_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_update'])):?><span class="alert alert-success"><?=lang('user_modify_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['active_add'])):?><span class="alert alert-success"><?=lang('user_add_ok')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_login'])):?><span class="alert alert-danger"><?=lang('user_name_empty')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_exist'])):?><span class="alert alert-danger"><?=lang('user_name_exists')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd_len'])):?><span class="alert alert-danger"><?=lang('password_length_short')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_pwd2'])):?><span class="alert alert-danger"><?=lang('passwords_not_equal')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_a'])):?><span class="alert alert-danger"><?=lang('founder_not_delete')?></span><?php endif;?>
+<!--vot--><?php if(isset($_GET['error_del_b'])):?><span class="alert alert-danger"><?=lang('founder_not_edit')?></span><?php endif;?>
 </div>
 <div class="container-fluid">
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">用户管理</h1>
+<h1 class="h3 mb-4 text-gray-800"><?=lang('user_management')?></h1>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
     <table class="table table-striped table-bordered table-hover dataTable no-footer" id="adm_comment_list">
   	<thead>
       <tr>
         <th width="60"></th>
-        <th width="220"><b>用户</b></th>
-        <th width="250"><b>描述</b></th>
-        <th width="240"><b>电子邮件</b></th>
-		<th width="30" class="tdcenter"><b>文章</b></th>
+<!--vot--><th width="220"><b><?=lang('user')?></b></th>
+<!--vot--><th width="250"><b><?=lang('description')?></b></th>
+<!--vot--><th width="240"><b><?=lang('email')?></b></th>
+<!--vot--><th width="30" class="tdcenter"><b><?=lang('posts')?></b></th>
       </tr>
     </thead>
     <tbody>
@@ -31,52 +31,52 @@
 		$avatar = empty($user_cache[$val['uid']]['avatar']) ? './templates/default/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
 	?>
      <tr>
-        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40" /></td>
+        <td style="padding:3px; text-align:center;"><img src="<?= $avatar ?>" height="40" width="40"></td>
 		<td>
-		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
-		<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人':'管理员') : '作者'; ?>
-        <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
+		<?= empty($val['name']) ? $val['login'] : $val['name'] ?><br>
+<!--vot-->      <?= $val['role'] == ROLE_ADMIN ? $val['uid'] == 1 ? lang('founder') : lang('admin') : lang('user') ?>
+<!--vot-->      <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit');?>
 		<span style="display:none; margin-left:8px;">
 		<?php 
         if (UID != $val['uid']): ?>
-		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
-		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->    <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?=lang('edit')?></a> 
+<!--vot-->    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'user', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
 		<?php else:?>
-		<a href="blogger.php">编辑</a>
+<!--vot-->    <a href="blogger.php"><?=lang('edit')?></a>
 		<?php endif;?>
 		</span>
 		</td>
-		<td><?php echo $val['description']; ?></td>
-		<td><?php echo $val['email']; ?></td>
-		<td class="tdcenter"><a href="./admin_log.php?uid=<?php echo $val['uid'];?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+		<td><?= $val['description'] ?></td>
+		<td><?= $val['email'] ?></td>
+		<td class="tdcenter"><a href="./admin_log.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
      </tr>
 	<?php endforeach;else:?>
-	  <tr><td class="tdcenter" colspan="6">还没有添加作者</td></tr>
+<!--vot--><tr><td class="tdcenter" colspan="6"><?=lang('no_authors_yet')?></td></tr>
 	<?php endif;?>
 	</tbody>
   </table>
 </form>
-<div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位用户)</div> 
+<!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?><?= $usernum ?><?=lang('_users')?>)</div> 
 <form action="user.php?action=new" method="post" class="form-inline">
-<div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success">添加用户+</a></div>
+<!--vot--><div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);" class="btn btn-success"><?=lang('user_add')?>+</a></div>
 <div id="user_new" class="form-group">
     <li>
 	<select name="role" id="role" class="form-control">
-		<option value="writer">作者（投稿人）</option>
-		<option value="admin">管理员</option>
+<!--vot-->      <option value="writer"><?=lang('author_contributor')?></option>
+<!--vot-->      <option value="admin"><?=lang('admin')?></option>
 	</select>
 	</li>
-	<li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control" /> 用户名</li>
-	<li><input name="password" type="password" id="password" value="" style="width:180px;" class="form-control" /> 密码 (大于6位)</li>
-	<li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="form-control" /> 重复密码</li>
+<!--vot--><li><input name="login" type="text" id="login" value="" style="width:180px;" class="form-control"> <?=lang('user_name')?></li>
+<!--vot--><li><input name="password" type="password" id="password" value="" style="width:180px;" class="form-control"> <?=lang('password_min_length')?></li>
+<!--vot--><li><input name="password2" type="password" id="password2" value="" style="width:180px;" class="form-control"> <?=lang('password_repeat')?></li>
 	<li id="ischeck">
 	<select name="ischeck" class="form-control">
-        <option value="n">文章不需要审核</option>
-		<option value="y">文章需要审核</option>
+<!--vot-->    <option value="n"><?=lang('posts_not_need_audit')?></option>
+<!--vot-->    <option value="y"><?=lang('posts_need_audit')?></option>
 	</select>
 	</li>
-    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-	<li><input type="submit" name="" value="添加用户" class="btn btn-primary" /></li>
+    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+<!--vot--><li><input type="submit" name="" value="<?=lang('user_add')?>" class="btn btn-primary"></li>
 </div>
 </form>
 </div>

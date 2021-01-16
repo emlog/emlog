@@ -1,16 +1,16 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="container_title"><b>编辑评论</b>
+<div class="container_title"><b><?=lang('comment_edit')?></b>
 </div>
 <div class=line></div>
 <form action="comment.php?action=doedit" method="post">
 <div class="item_edit">
-    <li><input type="text" value="<?php echo $poster; ?>" name="name" style="width:200px;" class="form-control" /> 评论人</li>
-    <li><input type="text"  value="<?php echo $mail; ?>" name="mail" style="width:200px;" class="form-control" /> 电子邮件</li>
-    <li><input type="text"  value="<?php echo $url; ?>" name="url" style="width:200px;" class="form-control" /> 主页</li>
-    <li>评论内容：<br /><textarea name="comment" rows="8" cols="60" class="form-control"><?php echo $comment; ?></textarea></li>
-    <input type="hidden" value="<?php echo $cid; ?>" name="cid" />
-    <input type="submit" value="保 存" class="btn btn-primary" />
-    <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
+    <li><input type="text" value="<?= $poster ?>" name="name" style="width:200px;" class="form-control"> <?=lang('commentator')?></li>
+    <li><input type="text"  value="<?= $mail ?>" name="mail" style="width:200px;" class="form-control"> <?=lang('email')?></li>
+    <li><input type="text"  value="<?= $url ?>" name="url" style="width:200px;" class="form-control"> <?=lang('home_page')?></li>
+    <li><?=lang('comment_content')?>:<br><textarea name="comment" rows="8" cols="60" class="form-control"><?= $comment ?></textarea></li>
+    <input type="hidden" value="<?= $cid ?>" name="cid">
+    <input type="submit" value="<?=lang('save')?>" class="btn btn-primary">
+    <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();"></li>
 </div>
 </form>
 <script>

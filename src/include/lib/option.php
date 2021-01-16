@@ -157,13 +157,11 @@ class Option {
         $widget_title = array(
 /*vot*/            'blogger' => lang('blogger'),
 /*vot*/            'calendar' => lang('calendar'),
-/*vot*/            'twitter' => lang('twitter_latest'),
 /*vot*/            'tag' => lang('tags'),
 /*vot*/            'sort' => lang('category'),
 /*vot*/            'archive' => lang('archive'),
 /*vot*/            'newcomm' => lang('new_comments'),
 /*vot*/            'newlog' => lang('new_posts'),
-/*vot*/            'random_log' => lang('random_post'),
 /*vot*/            'hotlog' => lang('hot_posts'),
 /*vot*/            'link' => lang('links'),
 /*vot*/            'search' => lang('search'),

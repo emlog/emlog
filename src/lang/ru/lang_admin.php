@@ -117,11 +117,11 @@ $lang = array(
  'select_action_to_perform'	=> 'Please, select an action to perform',//'请选择要执行的操作',
  'published_ok'		=> 'Entry has been publised successfully',//'发布成功',
  'moved_ok'		=> 'Moved successfully',//'移动成功',
- 'author_modified_ok'	=> 'Entry author has been modified successfully',//'更改作者成功',
+ 'user_modified_ok'	=> 'Entry author has been modified successfully',//'更改作者成功',
  'draft_moved_ok'	=> 'MOved to Draft successfully',//'转入草稿箱成功',
  'draft_saved_ok'	=> 'Draft has been saved successfully',//'草稿保存成功',
  'saved_ok'		=> 'Entry has been saved successfully',//'保存成功',
- 'audited_ok'		=> 'Entry has been audited successfully',//'文章审核成功',
+ 'verified_ok'		=> 'Entry has been verified successfully',//'文章审核成功',
  'rejected_ok'		=> 'Entry has been rejected successfully',//'文章驳回成功',
  'all'			=> 'All',//'全部',
  'category_view'	=> 'View by Category',//'按分类查看',
@@ -488,7 +488,7 @@ $lang = array(
  'you_can_enter'		=> '(You can enter ',//'(你还可以输入',
  '_characters'			=> ' characters',//'字',
  'exceeds'			=> 'has been exceeded ',//'已超出',
- 'release'			=> ' release',//'发布',
+ 'publish'			=> 'Publish',//'发布',
 
 //---------------------------
 //admin/views/links.php
@@ -709,9 +709,9 @@ $lang = array(
 
 //---------------------------
 //admin/views/useredit.php
- 'author_info_manage'		=> 'Author Info management',//'修改作者资料',
- 'password_new'			=> 'New password (leave blank, if you do not want to modify)',//'新密码(不修改请留空)',
- 'password_new_repeat'		=> 'Repeat new password',//'重复新密码',
+ 'user_manage'		=> 'User management',//'修改作者资料',
+ 'password_new'		=> 'New password (leave blank, if you do not want to modify)',//'新密码(不修改请留空)',
+ 'password_new_repeat'	=> 'Repeat new password',//'重复新密码',
 
 //---------------------------
 //admin/views/widgets.php

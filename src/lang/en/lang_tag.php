@@ -10,12 +10,6 @@ $lang = array(
  'tag_not_set'		=> 'Tags have not been set!',//'还没有设置过标签！',
 
 //---------------------------
-//admin/views/admin_log.php
- 'tags'			=> 'Tags',//'标签',
- 'tags_no'		=> 'No tags',//'还没有标签',
- 'tag_by_view'		=> 'View by tags',//'按标签查看',
-
-//---------------------------
 //admin/views/edit_log.php
 
 //---------------------------

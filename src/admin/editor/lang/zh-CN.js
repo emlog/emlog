@@ -141,6 +141,7 @@ KindEditor.lang({
 	'image.rightAlign' : '右对齐',
 	'image.imgTitle' : '图片说明',
 	'image.upload' : '浏览...',
+/*vot*/	'image.uploadPrompt' : '（上传本地图片：请点击文章标题下方“上传插入”）',//'Upload a local image: please click "Upload Insert" under the article title',
 	'image.viewServer' : '图片空间',
 	'multiimage.uploadDesc' : '允许用户同时上传<%=uploadLimit%>张图片，单张图片容量不超过<%=sizeLimit%>',
 	'multiimage.startUpload' : '开始上传',
@@ -233,4 +234,6 @@ KindEditor.lang({
 		'2.html' : '表格',
 		'3.html' : '项目编号'
 	}
-}, 'zh_CN');
+}, 'zh-CN');
+
+KindEditor.options.langType = 'zh-CN';
