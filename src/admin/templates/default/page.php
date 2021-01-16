@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div>
-                <textarea id="content" name="content" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
+                <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
             </div>
         </div>
     <div class=line></div>
@@ -70,7 +70,7 @@
 </div>
 </form>
 <script>
-loadEditor('content');
+loadEditor('logcontent');
 checkalias();
 $("#alias").keyup(function(){checkalias();});
 $("#menu_page").addClass('active');

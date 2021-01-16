@@ -10,13 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/fonts.css" rel="stylesheet">
     <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/fonts.css" rel="stylesheet">
     <link href="./templates/<?php echo ADMIN_TEMPLATE; ?>/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
     <!-- Bootstrap core JavaScript-->
-    <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/jquery/jquery.min.js"></script>
-    <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/js/jquery.min.js"></script>
+    <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/js/bootstrap.bundle.min.js"></script>
     <script src="./templates/<?php echo ADMIN_TEMPLATE; ?>/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     <?php doAction('adm_head'); ?>
 </head>
