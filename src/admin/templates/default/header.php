@@ -3,7 +3,6 @@
 } ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +31,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">emlog <sup>pro</sup></div>
+            <div class="sidebar-brand-text mx-3">emlog <sup>6.1.0</sup></div>
         </a>
 
         <hr class="sidebar-divider my-0">
@@ -45,37 +44,37 @@
 
         <li class="nav-item">
             <a class="nav-link" href="./admin_log.php">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="fas fa-table"></i>
                 <span>文章</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./page.php">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="far fa-file"></i>
                 <span>页面</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="comment.php">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="far fa-comment"></i>
                 <span>评论</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="tag.php">
-                <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fas fa-tags"></i>
                 <span>标签</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./sort.php">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="fas fa-table"></i>
                 <span>分类</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="./link.php">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="fas fa-link"></i>
                 <span>链接</span></a>
         </li>
 
@@ -83,7 +82,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-wrench"></i>
+                <i class="fas fa-palette"></i>
                 <span>外观</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

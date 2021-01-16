@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>插件管理</b><div id="msg"></div>
+<div class="containertitle"><div id="msg"></div>
 <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif;?>
 <?php if(isset($_GET['active'])):?><span class="alert alert-success">插件激活成功</span><?php endif;?>
 <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
@@ -12,7 +12,9 @@
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">安装失败，插件安装包不符合标准</span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">只支持zip压缩格式的插件包</span><?php endif;?>
 </div>
-<div class=line></div>
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">插件管理</h1>
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
       <tr>
@@ -87,6 +89,8 @@
         <li style="margin:10px 0px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></li>
     </div>
 </form>
+</div>
+<!-- /.container-fluid -->
 <script>
 $("#plugin_new").css('display', $.cookie('em_plugin_new') ? $.cookie('em_plugin_new') : 'none');
 $("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
