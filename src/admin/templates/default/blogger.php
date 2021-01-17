@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
 <?php if (ROLE == ROLE_ADMIN):?>
-<ul class="nav nav-tabs" role="tablist">
-    <li role="presentation"><a href="./configure.php">基本设置</a></li>
-    <li role="presentation"><a href="./seo.php">SEO设置</a></li>
-    <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
+    <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
+    <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人设置</a></li>
     <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">个人资料修改成功</span><?php endif;?>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">头像删除成功</span><?php endif;?>
     <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">昵称不能太长</span><?php endif;?>
@@ -14,6 +14,7 @@
     <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">该登录名已存在</span><?php endif;?>
     <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">该昵称已存在</span><?php endif;?>
 </ul>
+
 <?php else:?>
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
