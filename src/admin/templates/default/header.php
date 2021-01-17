@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php if (!defined('EMLOG_ROOT')) {exit('error!');} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +21,6 @@
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
@@ -35,47 +32,32 @@
         </a>
 
         <hr class="sidebar-divider my-0">
-
         <li class="nav-item active">
-            <a class="nav-link" href="./write_log.php">
-                <i class="far fa-edit"></i>
-                <span>写文章</span></a>
+            <a class="nav-link" href="./write_log.php"><i class="far fa-edit"></i><span>写文章</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./admin_log.php">
-                <i class="fas fa-table"></i>
-                <span>文章</span></a>
+            <a class="nav-link" href="./admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./page.php">
-                <i class="far fa-file"></i>
-                <span>页面</span></a>
+            <a class="nav-link" href="./page.php"><i class="far fa-file"></i><span>页面</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="comment.php">
-                <i class="far fa-comment"></i>
-                <span>评论</span></a>
+            <a class="nav-link" href="comment.php"><i class="far fa-comment"></i><span>评论</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="tag.php">
-                <i class="fas fa-tags"></i>
-                <span>标签</span></a>
+            <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span>标签</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./sort.php">
-                <i class="fas fa-table"></i>
-                <span>分类</span></a>
+            <a class="nav-link" href="./sort.php"><i class="fas fa-table"></i><span>分类</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./link.php">
-                <i class="fas fa-link"></i>
-                <span>链接</span></a>
+            <a class="nav-link" href="./link.php"><i class="fas fa-link"></i><span>链接</span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
@@ -110,7 +92,6 @@
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -118,7 +99,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-
+    
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -126,10 +107,12 @@
     <div id="content">
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                 <i class="fa fa-bars"></i>
+            </button>
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-
-
                 <li class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link" href="../" target="_blank" title="在新窗口浏站点" role="button" >
                         <?php
