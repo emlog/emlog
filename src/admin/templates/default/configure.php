@@ -1,9 +1,9 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" href="./configure.php">基本设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
+    <ul class="nav nav-tabs" role="tablist">
+<!--vot--><li class="nav-item"><a class="nav-link active" href="./configure.php"><?=lang('basic_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./seo.php"><?=lang('seo_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
 <!--vot--><?php if(isset($_GET['activated'])):?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif; ?>
     </ul>
 </div>
@@ -33,7 +33,7 @@
                 foreach ($tzlist as $key => $value):
                     $ex = $key == $timezone ? "selected=\"selected\"" : '';
                     ?>
-                    <option value="<?= $key; ?>" <?= $ex; ?>><?= $value; ?></option>
+                    <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
                 <?php endforeach; ?>
             </select>
 <!--vot-->  (<?=lang('local_time')?>: <?= date('Y-m-d H:i:s'); ?>)
@@ -101,9 +101,9 @@
         </div>
         <div class="form-group">
 <!--vot-->  <label><?=lang('home_footer_info')?>:</label>
-            <textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?= $footer_info; ?></textarea>
+            <textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?php echo $footer_info; ?></textarea>
         </div>
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--><input type="submit" value="<?=lang('save_settings')?>" class="btn btn-primary">
     </form>
 </div>

@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived,2600);</script>
 <div class="panel-heading">
-<ul class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
-    <li class="nav-item"><a class="nav-link active" href="./seo.php">SEO设置</a></li>
-    <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
+<ul class="nav nav-tabs" role="tablist">
+<!--vot--><li class="nav-item"><a class="nav-link" href="./configure.php"><?=lang('basic_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link active" href="./seo.php"><?=lang('seo_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
 <!--vot--><?php if(isset($_GET['activated'])):?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif;?>
 <!--vot--><?php if(isset($_GET['error'])):?><span class="alert alert-danger"><?=lang('htaccess_not_writable')?></span><?php endif;?>
 </ul>
@@ -55,15 +55,15 @@
 <div class="form-group">
     <li>
 <!--vot--><label><?=lang('meta_title')?></label>
-        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_title ?>" name="site_title">
+        <input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_title; ?>" name="site_title" />
     </li>
     <li>
 <!--vot--><label><?=lang('meta_keywords')?></label>
-        <input maxlength="200" style="width:300px;" class="form-control" value="<?= $site_key ?>" name="site_key">
+        <input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_key; ?>" name="site_key" />
     </li>
     <li>
 <!--vot--><label><?=lang('meta_description')?></label>
-        <textarea name="site_description" class="form-control" cols="" rows="4" style="width:300px;"><?= $site_description ?></textarea>
+        <textarea name="site_description" class="form-control" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea>
     </li>
     <li>
 <!--vot--><label><?=lang('meta_title_scheme')?>:</label>
@@ -74,7 +74,7 @@
         </select>
     </li>
     <li style="margin-top:10px;">
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
 <!--vot--><input type="submit" value="<?=lang('save_settings')?>" class="btn btn-primary">
     </li>
 </div>

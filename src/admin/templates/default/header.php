@@ -34,38 +34,31 @@
 
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
-            <a class="nav-link" href="./write_log.php"><i class="far fa-edit"></i><span>写文章</span></a>
-<!--vot-->      <span><?= lang('post_write') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./write_log.php"><i class="far fa-edit"></i><span><?= lang('post_write') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
-<!--vot-->      <span><?= lang('posts') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./admin_log.php"><i class="fas fa-table"></i><span><?= lang('posts') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./page.php"><i class="far fa-file"></i><span>页面</span></a>
-<!--vot-->      <span><?= lang('pages') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./page.php"><i class="far fa-file"></i><span><?= lang('pages') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="comment.php"><i class="far fa-comment"></i><span>评论</span></a>
-<!--vot-->      <span><?= lang('comments') ?></span></a>
+<!--vot-->  <a class="nav-link" href="comment.php"><i class="far fa-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span>标签</span></a>
-<!--vot-->      <span><?= lang('tags') ?></span></a>
+<!--vot-->  <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span><?= lang('tags') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./sort.php"><i class="fas fa-table"></i><span>分类</span></a>
-<!--vot-->      <span><?= lang('category') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./sort.php"><i class="fas fa-table"></i><span><?= lang('category') ?></span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./link.php"><i class="fas fa-link"></i><span>链接</span></a>
-<!--vot-->      <span><?= lang('friend_links') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./link.php"><i class="fas fa-link"></i><span><?= lang('friend_links') ?></span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
@@ -122,10 +115,10 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
+<!--vot-->          <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
                         <?php
                         $blog_name = Option::get('blogname');
-                        echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
+<!--vot-->              echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
                         ?>
                     </a>
                 </li>
@@ -134,17 +127,17 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= lang('user_info') ?></span>
+<!--vot-->              <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= lang('user_info') ?></span>
                         <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './templates/default/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="./blogger.php">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('personal_settings') ?>
+<!--vot-->                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('personal_settings') ?>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./?action=logout">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('logout') ?>
+<!--vot-->                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i><?= lang('logout') ?>
                         </a>
                     </div>
                 </li>
