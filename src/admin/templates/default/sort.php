@@ -15,18 +15,18 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?=lang('category_management')?></h1>
-<form  method="post" action="sort.php?action=taxis">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+    <form  method="post" action="sort.php?action=taxis">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><?=lang('category_management')?></h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th></th>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th></th>
                             <th><?=lang('id')?></th>
                             <th><?=lang('name')?></th>
                             <th><?=lang('description')?></th>
@@ -34,89 +34,88 @@
                             <th><?=lang('template')?></th>
                             <th><?=lang('views')?></th>
                             <th><?=lang('posts')?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    if ($sorts):
-                    foreach ($sorts as $key => $value):
-                        if ($value['pid'] != 0) {
-                            continue;
-                        }
-                    ?>
-                    <tr>
-                        <td>
-                            <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id">
-                            <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>">
-                        </td>
-                        <td class="sortname">
-                            <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
-                        </td>
-                        <td><?= $value['description'] ?></td>
-                        <td class="alias"><?= $value['alias'] ?></td>
-                        <td class="alias"><?= $value['template'] ?></td>
-                        <td class="tdcenter">
-                            <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0"></a>
-                        </td>
-                        <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
-                        <td>
-<!--vot-->                  <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?=lang('edit')?></a>
-<!--vot-->                  <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
-                        </td>
-                    </tr>
-                    <?php
-                    $children = $value['children'];
-                    foreach ($children as $key):
-                        $value = $sorts[$key];
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        if ($sorts):
+                        foreach ($sorts as $key => $value):
+                            if ($value['pid'] != 0) {
+                                continue;
+                            }
                         ?>
                         <tr>
                             <td>
+                            <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id">
+                            <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>">
+                            </td>
+                            <td class="sortname">
+                            <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
+                            </td>
+                        <td><?= $value['description'] ?></td>
+                        <td class="alias"><?= $value['alias'] ?></td>
+                        <td class="alias"><?= $value['template'] ?></td>
+                            <td class="tdcenter">
+                                <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
+                            </td>
+                        <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
+                            <td>
+<!--vot-->                  <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?=lang('edit')?></a>
+<!--vot-->                  <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
+                            </td>
+                        </tr>
+                        <?php
+                        $children = $value['children'];
+                        foreach ($children as $key):
+                            $value = $sorts[$key];
+                            ?>
+                            <tr>
+                                <td>
                                 <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id">
                                 <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>">
-                            </td>
+                                </td>
                             <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
                             <td><?= $value['description'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
                             <td class="alias"><?= $value['template'] ?></td>
-                            <td class="tdcenter">
-                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0"></a>
-                            </td>
+                                <td class="tdcenter">
+                                    <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>
+                                </td>
                             <td class="tdcenter"><a href="./admin_log.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
-                            <td>
+                                <td>
 <!--vot-->                      <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?=lang('edit')?></a>
 <!--vot-->                      <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="care"><?=lang('delete')?></a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endforeach;
-            else: ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endforeach;
+                else: ?>
 <!--vot-->      <tr><td class="tdcenter" colspan="8"><?=lang('categories_no')?></td></tr>
-            <?php endif; ?> 
-                    </tbody>
-                </table>
+                <?php endif; ?> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="list_footer">
+        <div class="list_footer">
 <!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"> 
 <!--vot--><a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success"><?=lang('category_add')?>+</a>
-    </div>
-</form>
-<form action="sort.php?action=add" method="post" class="form-inline">
-    <div id="sort_new" class="form-group">
-        <li>
-            <input maxlength="4" style="width:50px;" name="taxis" class="form-control">
+        </div>
+    </form>
+    <form action="sort.php?action=add" method="post" id="sort_new">
+        <div class="form-group row">
 <!--vot-->  <label><?=lang('id')?></label>
-        </li>
-        <li>
-            <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required">
+            <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
 <!--vot-->  <label><?=lang('name')?></label>
-        </li>
-        <li>
+        </div>
+        <div class="form-group">
             <input style="width:243px;" class="form-control" name="alias" id="alias">
 <!--vot-->  <label><?=lang('alias_info')?></label>
-        </li>
-        <li>
+        </div>
+        <div class="form-group">
             <select name="pid" id="pid" class="form-control" style="width:243px;">
 <!--vot-->      <option value="0"><?=lang('no')?></option>
                 <?php
@@ -126,20 +125,20 @@
                     }
                     ?>
                     <option value="<?= $key ?>"><?= $value['sortname'] ?></option>
-<?php endforeach; ?>
+                <?php endforeach; ?>
             </select>
 <!--vot-->  <label><?=lang('category_parent')?></label>
-        </li>
-        <li>
+        </div>
+        <div class="form-group">
             <input style="width:243px;" class="form-control" name="template" id="template" value="log_list">
 <!--vot-->  <label><?=lang('template')?> <?=lang('template_info')?></label>
-        </li>
-        <li>
-            <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="<?=lang('category_description')?>"></textarea></li>
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden">
-<!--vot--> <li><input type="submit" id="addsort" value="<?=lang('category_new_add')?>" class="btn btn-primary"><span id="alias_msg_hook"></span></li>
-    </div>
-</form>
+        </div>
+        <div class="form-group">
+            <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="分类描述"></textarea>
+        </div>
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+        <input type="submit" id="addsort" value="添加新分类" class="btn btn-primary"/><span id="alias_msg_hook"></span>
+    </form>
 </div>
 <!-- /.container-fluid -->
 <script>

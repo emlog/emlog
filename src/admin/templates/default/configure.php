@@ -1,9 +1,9 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <div class="panel-heading">
-    <ul class="nav nav-tabs" role="tablist">
-<!--vot--><li role="presentation" class="active"><a href="./configure.php"><?=lang('basic_settings')?></a></li>
-<!--vot--><li role="presentation"><a href="./seo.php"><?=lang('seo_settings')?></a></li>
-<!--vot--><li role="presentation"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
+    <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" href="./configure.php">基本设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
 <!--vot--><?php if(isset($_GET['activated'])):?><span class="alert alert-success"><?=lang('settings_saved_ok')?></span><?php endif; ?>
     </ul>
 </div>
