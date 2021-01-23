@@ -31,8 +31,8 @@ class Sort_Model {
         $this->db->query("update ".DB_PREFIX."sort set $upStr where sid=$sid");
     }
 
-    function addSort($name, $alias, $taxis, $pid, $description, $template) {
-        $sql="insert into ".DB_PREFIX."sort (sortname,alias,taxis,pid,description,template) values('$name','$alias',$taxis,$pid,'$description', '$template')";
+    function addSort($name, $alias, $pid, $description, $template) {
+        $sql="insert into ".DB_PREFIX."sort (sortname,alias,pid,description,template) values('$name','$alias',$pid,'$description', '$template')";
         $this->db->query($sql);
     }
 

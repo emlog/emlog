@@ -1,16 +1,14 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle">
-    <?php if (isset($_GET['active_taxis'])): ?><span class="alert alert-success">排序更新成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><span class="alert alert-success">添加分类成功</span><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">分类名称不能为空</span><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">没有可排序的分类</span><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">别名格式错误</span><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">别名不能重复</span><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif; ?>
-</div>
+<?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success">排序更新成功</div><?php endif; ?>
+<?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除分类成功</div><?php endif; ?>
+<?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改分类成功</div><?php endif; ?>
+<?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加分类成功</div><?php endif; ?>
+<?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+<?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">没有可排序的分类</div><?php endif; ?>
+<?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+<?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+<?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 <!-- Page Heading -->
@@ -19,21 +17,21 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">分类管理</h6>
+                <h6 class="m-0 font-weight-bold text-primary">管理文章的分类</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>序号</th>
+                                <th>排序</th>
                                 <th>名称</th>
                                 <th>描述</th>
                                 <th>别名</th>
                                 <th>模板</th>
                                 <th>查看</th>
                                 <th>文章</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,21 +100,19 @@
             <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
         </div>
     </form>
-    <form action="sort.php?action=add" method="post" id="sort_new">
-        <div class="form-group row">
-            <label>序号</label>
-            <input maxlength="4" style="width:50px;" name="taxis" class="form-control" />
+    <form action="sort.php?action=add" method="post" id="sort_new" style="margin-top: 30px;">
+        <div class="form-group">
+            <label for="sortname">分类名</label>
+            <input class="form-control" id="sortname" name="sortname">
         </div>
         <div class="form-group">
-            <input style="width:243px;" class="form-control" name="sortname" id="sortname" required="required" />
-            <label>名称</label>
+            <label for="alias">别名</label>
+            <input class="form-control" id="alias" name="alias">
+            <small class="form-text text-muted">用于URL的友好显示，可不填</small>
         </div>
         <div class="form-group">
-            <input style="width:243px;" class="form-control" name="alias" id="alias" />
-            <label>别名 (用于URL的友好显示)</label>
-        </div>
-        <div class="form-group">
-            <select name="pid" id="pid" class="form-control" style="width:243px;">
+            <label>父分类</label>
+            <select name="pid" id="pid" class="form-control">
                 <option value="0">无</option>
                 <?php
                 foreach ($sorts as $key => $value):
@@ -127,17 +123,14 @@
                     <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
                 <?php endforeach; ?>
             </select>
-            <label>父分类</label>
         </div>
         <div class="form-group">
-            <input style="width:243px;" class="form-control" name="template" id="template" value="log_list" />
-            <label>模板 (用于自定义分类页面模板，对应模板目录下.php文件，默认为log_list.php)</label>
-        </div>
-        <div class="form-group">
-            <textarea name="description" type="text" style="width:360px;height:80px;overflow:auto;" class="form-control" placeholder="分类描述"></textarea>
+            <label for="template">模板</label>
+            <input class="form-control" id="template" name="template">
+            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
         </div>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-        <input type="submit" id="addsort" value="添加新分类" class="btn btn-primary"/><span id="alias_msg_hook"></span>
+        <button type="submit" id="addsort" class="btn btn-primary">提交</button><span id="alias_msg_hook"></span>
     </form>
 </div>
 <!-- /.container-fluid -->

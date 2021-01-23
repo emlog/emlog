@@ -1,12 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<div class="containertitle">
 <?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
 <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
 <?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
 <?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加成功</span><?php endif;?>
 <?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
-</div>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 <!-- Page Heading -->

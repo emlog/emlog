@@ -1,5 +1,4 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle">
 <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_show'])):?><span class="alert alert-success">审核评论成功</span><?php endif;?>
 <?php if(isset($_GET['active_hide'])):?><span class="alert alert-success">隐藏评论成功</span><?php endif;?>
@@ -10,8 +9,7 @@
 <?php if(isset($_GET['error_c'])):?><span class="alert alert-danger">回复内容不能为空</span><?php endif;?>
 <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">内容过长</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">评论内容不能为空</span><?php endif;?>
-</div>
-  <!-- Begin Page Content -->
+<!-- Begin Page Content -->
 <div class="container-fluid">
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">评论管理</h1>

@@ -3,12 +3,10 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">页面管理</h1>
-    <div class="containertitle">
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除页面成功</span><?php endif;?>
     <?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success">发布页面成功</span><?php endif;?>
     <?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success">禁用页面成功</span><?php endif;?>
     <?php if(isset($_GET['active_pubpage'])):?><span class="alert alert-success">页面保存成功</span><?php endif;?>
-    </div>
     <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
