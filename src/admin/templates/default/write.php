@@ -6,7 +6,8 @@
     <span id="msg_2"></span>
     <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <!--文章内容-->
-    <div class="col-lg-8">
+    <div class="row">
+    <div class="col-xl-8">
         <div id="msg"></div>
             <div id="post" class="form-group">
                 <div>
@@ -36,7 +37,7 @@
     </div>
 
     <!--文章侧边栏-->
-    <div class="col-lg-4 container-side">
+    <div class="col-xl-4 container-side">
         <div class="panel panel-default">
             <div class="panel-heading">设置项</div>
             <div class="panel-body">
@@ -124,8 +125,8 @@
             <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-success" />
             <?php endif;?>
             <?php endif;?>
-            
         </div>
+    </div>
     </div>
     </form>
 </div>

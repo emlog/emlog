@@ -1,5 +1,5 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><div id="msg"></div>
+<div id="msg"></div>
 <?php if(isset($_GET['activate_install'])):?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif;?>
 <?php if(isset($_GET['active'])):?><span class="alert alert-success">插件激活成功</span><?php endif;?>
 <?php if(isset($_GET['activate_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
@@ -11,7 +11,6 @@
 <?php if(isset($_GET['error_d'])):?><span class="alert alert-danger">请选择一个zip插件安装包</span><?php endif;?>
 <?php if(isset($_GET['error_e'])):?><span class="alert alert-danger">安装失败，插件安装包不符合标准</span><?php endif;?>
 <?php if(isset($_GET['error_f'])):?><span class="alert alert-danger">只支持zip压缩格式的插件包</span><?php endif;?>
-</div>
 <div class="container-fluid">
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">插件管理</h1>
@@ -86,7 +85,7 @@
             <input type="submit" value="上传安装" class="btn btn-primary" />
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         </li>
-        <li style="margin:10px 0px;">获取更多插件：<a href="store.php">应用中心&raquo;</a></li>
+        <li style="margin:10px 0px;">获取更多插件：<a href="https://emlog.net/">应用中心&raquo;</a></li>
     </div>
 </form>
 </div>

@@ -20,18 +20,11 @@
                 <h6 class="m-0 font-weight-bold text-primary">管理文章的分类</h6>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive" id="adm_sort_list">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>排序</th>
-                                <th>名称</th>
-                                <th>描述</th>
-                                <th>别名</th>
-                                <th>模板</th>
-                                <th>查看</th>
-                                <th>文章</th>
-                                <th>操作</th>
+                                <th>排序</th><th>名称</th><th>描述</th><th>别名</th><th>模板</th><th>查看</th><th>文章</th><th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -128,6 +121,10 @@
             <label for="template">模板</label>
             <input class="form-control" id="template" name="template">
             <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
+        </div>
+        <div class="form-group">
+            <label for="alias">分类描述</label>
+            <textarea name="description" type="text" class="form-control"></textarea>
         </div>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
         <button type="submit" id="addsort" class="btn btn-primary">提交</button><span id="alias_msg_hook"></span>

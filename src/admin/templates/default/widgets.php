@@ -1,9 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
 <script type="text/javascript" src="../include/lib/js/jquery/jquery-ui.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>setTimeout(hideActived, 2600);</script>
-<div class="containertitle">
 <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
-</div>
 <div class="container-fluid">
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">侧边栏组件管理</h1>

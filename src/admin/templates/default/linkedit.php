@@ -1,6 +1,8 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
-<div class="containertitle"><b>编辑链接</b></div>
-<div class=line></div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">链接编辑</h1>
 <form action="link.php?action=update_link" method="post">
 <div class="item_edit">
 	<li><input size="40" value="<?php echo $sitename; ?>" class="form-control" name="sitename" /> 名称<span class="required">*</sapn></li>
@@ -12,6 +14,7 @@
 	<input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" /></li>
 </div>
 </form>
+</div>
 <script>
 $("#menu_link").addClass('active');
 </script>

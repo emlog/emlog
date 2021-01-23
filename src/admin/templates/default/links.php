@@ -1,10 +1,10 @@
 <?php if(!defined('EMLOG_ROOT')) {exit('error!');} ?>
-<?php if(isset($_GET['active_taxis'])):?><span class="alert alert-success">排序更新成功</span><?php endif;?>
-<?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除成功</span><?php endif;?>
-<?php if(isset($_GET['active_edit'])):?><span class="alert alert-success">修改成功</span><?php endif;?>
-<?php if(isset($_GET['active_add'])):?><span class="alert alert-success">添加成功</span><?php endif;?>
-<?php if(isset($_GET['error_a'])):?><span class="alert alert-danger">站点名称和地址不能为空</span><?php endif;?>
-<?php if(isset($_GET['error_b'])):?><span class="alert alert-danger">没有可排序的链接</span><?php endif;?>
+<?php if(isset($_GET['active_taxis'])):?><div class="alert alert-success">排序更新成功</div><?php endif;?>
+<?php if(isset($_GET['active_del'])):?><div class="alert alert-success">删除成功</div><?php endif;?>
+<?php if(isset($_GET['active_edit'])):?><div class="alert alert-success">修改成功</div><?php endif;?>
+<?php if(isset($_GET['active_add'])):?><div class="alert alert-success">添加成功</div><?php endif;?>
+<?php if(isset($_GET['error_a'])):?><div class="alert alert-danger">站点名称和地址不能为空</div><?php endif;?>
+<?php if(isset($_GET['error_b'])):?><div class="alert alert-danger">没有可排序的链接</div><?php endif;?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 <!-- Page Heading -->
