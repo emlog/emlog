@@ -448,7 +448,7 @@ li {list-style:none;}
 .menu_ext_minus {background:url(../images/minus.gif) no-repeat 15px 5px;}
 .menu_ext_plus {background:url(../images/plus.gif) no-repeat 15px 5px;}
 .containertitle {
-    font-size:16px;
+    font-size:14px;
     padding: 20px 0px 15px;
     color:#666666;
     margin-bottom: 15px;
