@@ -99,7 +99,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="<?php echo $pid; ?>">
-  <table class="table table-striped table-bordered table-hover dataTable no-footer">
+  <table class="table table-bordered table-striped table-hover dataTable no-footer">
   <thead>
       <tr>
         <th width="511" colspan="2"><b>标题</b></th>

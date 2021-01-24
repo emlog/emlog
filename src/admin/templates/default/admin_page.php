@@ -2,7 +2,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">页面管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">页面管理</h1>
+        <a href="./page.php?action=new" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="far fa-edit"></i> 新建页面</a>
+    </div>
     <?php if(isset($_GET['active_del'])):?><span class="alert alert-success">删除页面成功</span><?php endif;?>
     <?php if(isset($_GET['active_hide_n'])):?><span class="alert alert-success">发布页面成功</span><?php endif;?>
     <?php if(isset($_GET['active_hide_y'])):?><span class="alert alert-success">禁用页面成功</span><?php endif;?>
@@ -15,7 +18,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                             <th></th>
@@ -35,14 +38,14 @@
                         }
                         $isHide = $value['hide'] == 'y' ? 
                         '<font color="red"> - 草稿</font>' : 
-                        '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/vlog.gif" align="absbottom" border="0" /></a>';
+                        '<a href="'.$navibar[$value['gid']]['url'].'" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
                         ?>
                         <tr>
                             <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids" /></td>
                             <td width="440">
                             <a href="page.php?action=mod&id=<?php echo $value['gid']?>"><?php echo $value['title']; ?></a> 
                             <?php echo $isHide; ?>    
-                            <?php if($value['attnum'] > 0): ?><img src="./templates/<?php echo ADMIN_TEMPLATE; ?>/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+                            <?php if($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
                             </td>
                             <td><?php echo $value['template']; ?></td>
                             <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -63,18 +66,10 @@
     <a href="javascript:pageact('hide');">转为草稿</a> | 
     <a href="javascript:pageact('pub');">发布</a>
     </div>
-    <div style="margin:20px 0px 0px 0px;"><a href="page.php?action=new" class="btn btn-success">新建页面+</a></div>
     <div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>个页面)</div>
 </div>
 <!-- /.container-fluid -->
 <script>
-$(document).ready(function(){
-    $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-    $("#adm_comment_list tbody tr")
-        .mouseover(function(){$(this).addClass("trover")})
-        .mouseout(function(){$(this).removeClass("trover")});
-    selectAllToggle();
-});
 setTimeout(hideActived,2600);
 function pageact(act){
     if (getChecked('ids') == false) {

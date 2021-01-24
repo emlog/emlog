@@ -37,7 +37,7 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th></th>
@@ -99,13 +99,6 @@ if ($hidecmnum > 0) echo '('.$hidecmnum.')';
 </div>
 <!-- /.container-fluid -->
 <script>
-$(document).ready(function(){
-    selectAllToggle();
-    $("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-    $("#adm_comment_list tbody tr")
-        .mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
-        .mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
-});
 setTimeout(hideActived,2600);
 function commentact(act){
     if (getChecked('ids') == false) {
