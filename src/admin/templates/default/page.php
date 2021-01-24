@@ -34,22 +34,18 @@
         <div class="panel panel-default">
             <div class="panel-heading">设置项</div>
             <div class="panel-body">
-
                 <div class="form-group">
                     <label>链接别名：</label>
                     <input name="alias" id="alias" class="form-control" value="<?php echo $alias;?>" />
                 </div>
-
                 <div class="form-group">
                     <label>页面模板：</label>
                     <input name="template" id="template" class="form-control" value="<?php echo $template;?>" />
                 </div>
-
                 <div class="form-group">
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
                 <label for="allow_remark">允许评论</label>
                 </div>
-
             </div>
         </div>
 

@@ -12,7 +12,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">用户管理</h1>
 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
-    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="adm_comment_list">
+    <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
   	<thead>
       <tr>
         <th width="60"></th>

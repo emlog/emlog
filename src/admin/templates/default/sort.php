@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive" id="adm_sort_list">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>排序</th><th>名称</th><th>描述</th><th>别名</th><th>模板</th><th>查看</th><th>文章</th><th>操作</th>
@@ -166,15 +166,4 @@
             $("#addsort").attr("disabled", false);
         }
     }
-    $(document).ready(function() {
-        $("#adm_sort_list tbody tr:odd").addClass("tralt_b");
-        $("#adm_sort_list tbody tr")
-                .mouseover(function() {
-                    $(this).addClass("trover")
-                })
-                .mouseout(function() {
-                    $(this).removeClass("trover")
-                });
-        $("#menu_sort").addClass('active');
-    });
 </script>
