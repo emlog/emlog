@@ -28,7 +28,7 @@ class Search_Controller {
         
         $pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page=';
 
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($index_lognum, $sqlSegment, $page);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');

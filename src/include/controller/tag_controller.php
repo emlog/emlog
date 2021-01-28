@@ -33,7 +33,7 @@ class Tag_Controller {
         }
         $pageurl .= Url::tag(urlencode($tag), 'page');
 
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($index_lognum, $sqlSegment, $page);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');

@@ -165,7 +165,7 @@ class Log_Model {
      * @param int $perPageNum
      * @return array
      */
-    function getLogsForHome($condition = '', $page = 1, $perPageNum) {
+    function getLogsForHome($perPageNum, $condition = '', $page = 1) {
         $start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
         $limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";

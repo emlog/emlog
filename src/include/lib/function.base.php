@@ -21,7 +21,7 @@ function emAutoload($class) {
  * 去除多余的转义字符
  */
 function doStripslashes() {
-    if (get_magic_quotes_gpc()) {
+    if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
         $_GET = stripslashesDeep($_GET);
         $_POST = stripslashesDeep($_POST);
         $_COOKIE = stripslashesDeep($_COOKIE);
@@ -298,7 +298,7 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
  */
 function addAction($hook, $actionFunc) {
     global $emHooks;
-    if (!@in_array($actionFunc, $emHooks[$hook])) {
+    if (empty($emHooks[$hook])||!@in_array($actionFunc, $emHooks[$hook])) {
         $emHooks[$hook][] = $actionFunc;
     }
     return true;

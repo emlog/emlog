@@ -58,7 +58,7 @@ class Sort_Controller {
         }
         $pageurl .= Url::sort($sortid, 'page');
 
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($index_lognum, $sqlSegment, $page);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         $template = !empty($sort['template']) && file_exists(TEMPLATE_PATH . $sort['template'] . '.php') ? $sort['template'] : 'log_list';

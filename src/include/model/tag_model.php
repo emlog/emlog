@@ -45,6 +45,7 @@ class Tag_Model {
 
     function getTagByName($tagName) {
         $tagId = $this->getIdFromName($tagName);
+        if(empty($tagId)) return false;
         return $this->getTagById($tagId);
     }
 
