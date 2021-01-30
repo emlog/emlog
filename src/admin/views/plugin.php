@@ -92,10 +92,6 @@
 <!-- /.container-fluid -->
 <script>
 $("#plugin_new").css('display', $.cookie('em_plugin_new') ? $.cookie('em_plugin_new') : 'none');
-$("#adm_plugin_list tbody tr:odd").addClass("tralt_b");
-$("#adm_plugin_list tbody tr")
-    .mouseover(function(){$(this).addClass("trover")})
-    .mouseout(function(){$(this).removeClass("trover")})
 setTimeout(hideActived,2600);
 $("#menu_category_sys").addClass('active');
 $("#menu_sys").addClass('in');

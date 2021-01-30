@@ -21,7 +21,7 @@
       <th width="149"><b>文件大小</b></th>
       <th width="87"></th>
     </tr>
-  </head>
+  </thead>
   <tbody>
     <?php
         if($bakfiles):
@@ -95,10 +95,6 @@
 setTimeout(hideActived,2600);
 $(document).ready(function(){
     selectAllToggle();
-    $("#adm_bakdata_list tbody tr:odd").addClass("tralt_b");
-    $("#adm_bakdata_list tbody tr")
-        .mouseover(function(){$(this).addClass("trover")})
-        .mouseout(function(){$(this).removeClass("trover")});
     $("#bakplace").change(function(){$("#server_bakfname").toggle();$("#local_bakzip").toggle();});
 });
 function bakact(act){
