@@ -3,8 +3,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./views/css/css-login.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" media="screen" />
-<link href="./views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="./views/css/css-login.css?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/css" media="screen" />
+<link href="./views/css/bootstrap.min.css" rel="stylesheet" type="text/css" type="text/css"  />
 <script src="./views/js/jquery.min.js?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/javascript"></script>
 <script src="./views/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/javascript"></script>
