@@ -7,192 +7,176 @@
 <h1 class="h3 mb-4 text-gray-800">侧边栏组件管理</h1>
 <div class="row">
     <div class="col-lg-6" id="adm_widget_list">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                系统组件
+        <div class="accordion" id="accordionExample">
+            <div class="card" id="blogger">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            个人资料
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="panel-group" id="accordion">
 
-                    <div id="blogger" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".blogger" aria-expanded="false" class="widget-title">个人资料</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="blogger panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            日历
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
                     </div>
-
-                    <div id="calendar" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".calendar" class="widget-title" aria-expanded="false">日历</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="calendar panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            标签
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
                     </div>
-
-                    <div id="tag" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".tag" class="widget-title" aria-expanded="false">标签</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="tag panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            分类
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
                     </div>
-
-                    <div id="sort" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".sort" class="widget-title" aria-expanded="false">分类</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="sort panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>                                
-
-                    <div id="archive" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".archive" class="widget-title" aria-expanded="false">存档</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="archive panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>                                
-
-                    <div id="newcomm" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".newcomm" class="widget-title" aria-expanded="false">最新评论</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="newcomm panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=newcomm" method="post" class="form-inline">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"  /></li>
-                                    <li>最新评论数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum" /></li>
-                                    <li>新近评论截取字节数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>  
-
-                    <div id="newlog" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".newlog" class="widget-title" aria-expanded="false">最新文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="newlog panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=newlog" method="post" class="form-inline">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
-                                    <li>显示最新文章数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div>  
-
-                    <div id="hotlog" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".hotlog" class="widget-title" aria-expanded="false">热门文章</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="hotlog panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=hotlog" method="post" class="form-inline">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
-                                    <li>显示热门文章数</li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            存档
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
                     </div>
-
-                    <div id="link" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".link" class="widget-title" aria-expanded="false">链接</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="link panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div id="search" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href=".search" class="widget-title" aria-expanded="false">搜索</a>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h4>
-                        </div>
-                        <div class="search panel-collapse collapse" aria-expanded="false">
-                            <div class="panel-body">
-                                <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
-                                    <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
-                                </form>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            最新评论
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=newcomm" method="post" class="form-inline">
+                            <li>标题</li>
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"  /></li>
+                            <li>最新评论数</li>
+                            <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum" /></li>
+                            <li>新近评论截取字节数</li>
+                            <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            最新文章
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=newlog" method="post" class="form-inline">
+                            <li>标题</li>
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newlog']; ?>"  /></li>
+                            <li>显示最新文章数</li>
+                            <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            热门文章
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=hotlog" method="post" class="form-inline">
+                            <li>标题</li>
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"  /></li>
+                            <li>显示热门文章数</li>
+                            <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            链接
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
+                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            搜索
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
+                            <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
+                        </form>
                     </div>
                 </div>
             </div>
