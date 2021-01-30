@@ -82,10 +82,6 @@
 <script>
 $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
 $(document).ready(function(){
-	$("#adm_comment_list tbody tr:odd").addClass("tralt_b");
-	$("#adm_comment_list tbody tr")
-		.mouseover(function(){$(this).addClass("trover");$(this).find("span").show();})
-		.mouseout(function(){$(this).removeClass("trover");$(this).find("span").hide();})
     $("#role").change(function(){$("#ischeck").toggle()})
 });
 setTimeout(hideActived,2600);

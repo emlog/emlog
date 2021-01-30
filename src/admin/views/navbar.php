@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-    <?php 
+    <?php
     if($navis):
     foreach($navis as $key=>$value):
         if ($value['pid'] != 0) {
@@ -50,8 +50,8 @@
                 break;
         }
         doAction('adm_navi_display');
-    
-    ?>  
+
+    ?>
       <tr>
         <td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4" /></td>
         <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
@@ -110,119 +110,110 @@
   </table>
   <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-primary" /></div>
 </form>
-<div class="row" style="margin-top: 30px;">
-    <div class="col-xl-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                添加自定义导航
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">添加自定义导航</h6>
             </div>
-            <div class="panel-body" id="admindex_servinfo">
+            <div class="card-body">
                 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
-                <ul>
-                    <li><input maxlength="4" class="form-control" placeholder="序号" name="taxis" /></li>
-                    <li><input class="form-control" name="naviname" placeholder="导航名称" /></li>
-                    <li><input maxlength="200" class="form-control" placeholder="地址(带http)" name="url" id="url" /></li>
-                    <li class="form-inline">
+                    <div class="form-group">
+                        <input class="form-control" name="naviname" placeholder="导航名称" />
+                    </div>
+                    <div class="form-group">
+                        <input maxlength="200" class="form-control" placeholder="地址(带http)" name="url" id="url" />
+                    </div>
+                    <div class="form-group">
+                        <label>父导航</label>
                         <select name="pid" id="pid" class="form-control">
                             <option value="0">无</option>
                             <?php
-                                foreach($navis as $key=>$value):
-                                    if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
-                                        continue;
-                                    }
-                            ?>
-                            <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
+                            foreach($navis as $key=>$value):
+                                if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
+                                    continue;
+                                }
+                                ?>
+                                <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        父导航
-                    </li>
-                    <li class="form-inline"><input type="checkbox" style="vertical-align:middle;" class="form-control" value="y" name="newtab" /> 在新窗口打开</li>
-                    <li><input type="submit" class="btn btn-primary" name="" value="添加"  /></li>
-                </ul>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" value="y" name="newtab">
+                        <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
+                    </div>
+                    <button type="submit" id="addsort" class="btn btn-primary">提交</button><span id="alias_msg_hook"></span>
                 </form>
             </div>
+        </div>
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">添加分类到导航</h6>
             </div>
-    </div>
-    <div class="col-xl-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                添加分类到导航
-            </div>
-            <div class="panel-body" id="admindex_servinfo">
+            <div class="card-body">
                 <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
-                <ul>
-                <?php
-                if($sorts):
-                foreach($sorts as $key=>$value):
-                if ($value['pid'] != 0) {
-                    continue;
-                }
-                ?>
-                <li>
-                    <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
-                    <?php echo $value['sortname']; ?>
-                </li>
-                <?php
-                    $children = $value['children'];
-                    foreach ($children as $key):
-                    $value = $sorts[$key];
-                ?>
-                <li>
-                    &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
-                    <?php echo $value['sortname']; ?>
-                </li>
-                <?php
-                    endforeach;
-               endforeach;
-               ?>
-                <li><input type="submit" name="" class="btn btn-primary" value="添加" /></li>
-                <?php else:?>
-                <li>还没有分类，<a href="sort.php">新建分类</a></li>
-                <?php endif;?>
-                </ul>
+                    <div class="form-group">
+                        <?php
+                        if($sorts):
+                            foreach($sorts as $key=>$value):
+                                if ($value['pid'] != 0) {
+                                    continue;
+                                }
+                                ?>
+                                <div class="form-group"><input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+                                    <?php echo $value['sortname']; ?>
+                                </div>
+                                <?php
+                                $children = $value['children'];
+                                foreach ($children as $key):
+                                    $value = $sorts[$key];
+                                    ?>
+                                    <div class="form-group">
+                                        &nbsp; &nbsp; &nbsp;  <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids" />
+                                        <?php echo $value['sortname']; ?>
+                                    </div>
+                                <?php
+                                endforeach;
+                            endforeach;
+                            ?>
+                            <div class="form-group">
+                                <input type="submit" name="" class="btn btn-primary" value="添加" />
+                            </div>
+                        <?php else:?>
+                            还没有分类，<a href="sort.php">新建分类</a>
+                        <?php endif;?>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-xl-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                添加页面到导航
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">添加页面到导航</h6>
             </div>
-            <div class="panel-body" id="admindex_servinfo">
+            <div class="card-body">
                 <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">
-                <ul>
                 <?php
-                    if($pages):
+                if($pages):
                     foreach($pages as $key=>$value):
-                    ?>
-                    <li>
-                        <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
-                        <?php echo $value['title']; ?>
-                    </li>
+                        ?>
+                        <div class="form-group">
+                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids" />
+                            <?php echo $value['title']; ?>
+                        </div>
                     <?php endforeach;?>
-                    <li><input type="submit" class="btn btn-primary" name="" value="添加"  /></li>
-                    <?php else:?>
-                    <li>还没页面，<a href="page.php">新建页面</a></li>
+                    <div class="form-group"><input type="submit" class="btn btn-primary" name="" value="添加"  /></div>
+                <?php else:?>
+                    <div class="form-group">还没页面，<a href="page.php">新建页面</a></div>
                 <?php endif;?>
-                </ul>
                 </form>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- /.container-fluid -->
 <script>
 $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
 $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
 $("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : '');
-$(document).ready(function(){
-    $("#adm_navi_list tbody tr:odd").addClass("tralt_b");
-    $("#adm_navi_list tbody tr")
-        .mouseover(function(){$(this).addClass("trover")})
-        .mouseout(function(){$(this).removeClass("trover")})
-});
 setTimeout(hideActived, 2600);
 $("#menu_category_view").addClass('active');
 $("#menu_view").addClass('in');
