@@ -6,8 +6,7 @@
 
 require_once '../init.php';
 
-define('ADMIN_TEMPLATE', 'default'); //后台模板
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/templates/'.ADMIN_TEMPLATE.'/');    //后台当前模板路径
+define('TEMPLATE_PATH', EMLOG_ROOT . '/admin/views/');    //后台模板路径
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');       //官方服务域名
 
 $sta_cache = $CACHE->readCache('sta');
@@ -22,11 +21,11 @@ if ($action == 'login') {
     $img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
     $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
-    
+
     if ($loginAuthRet === true) {
         LoginAuth::setAuthCookie($username, $ispersis);
         emDirect("./");
-    } else{
+    } else {
         LoginAuth::loginPage($loginAuthRet);
     }
 }
@@ -42,6 +41,6 @@ if (ISLOGIN === false) {
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log'))) {
-    emMsg('权限不足！','./');
+if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log', 'admin_log', 'attachment', 'blogger', 'comment', 'index', 'save_log'))) {
+    emMsg('权限不足！', './');
 }
