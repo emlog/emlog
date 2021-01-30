@@ -34,15 +34,13 @@
 		<?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br />
 		<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人':'管理员') : '作者'; ?>
         <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)';?>
-		<span style="display:none; margin-left:8px;">
-		<?php 
+		<?php
         if (UID != $val['uid']): ?>
 		<a href="user.php?action=edit&uid=<?php echo $val['uid']?>">编辑</a> 
 		<a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
 		<?php else:?>
 		<a href="blogger.php">编辑</a>
 		<?php endif;?>
-		</span>
 		</td>
 		<td><?php echo $val['description']; ?></td>
 		<td><?php echo $val['email']; ?></td>
