@@ -1,4 +1,6 @@
-<?php if (!defined('EMLOG_ROOT')) {exit('error!');}?>
+<?php if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+} ?>
 <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">模板更换成功</span><?php endif; ?>
 <?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success">模板上传成功</span><?php endif; ?>
 <?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success">删除模板成功</span><?php endif; ?>
@@ -12,15 +14,16 @@
         <a href="./template.php?action=install" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="far fa-edit"></i> 安装新的模板</a>
     </div>
     <div class="card-columns">
-        <?php foreach ($tpls as $key => $value):?>
-        <div class="card">
-            <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $value['tplname']; ?></h5>
-                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>" class="btn btn-primary">使用该模板</a>
+        <?php foreach ($tpls as $key => $value): ?>
+            <div class="card">
+                <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $value['tplname']; ?></h5>
+                    <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>"
+                       class="btn btn-primary">使用该模板</a>
+                </div>
             </div>
-        </div>
-        <?php endforeach;?>
+        <?php endforeach; ?>
     </div>
 </div>
 <!-- /.container-fluid -->

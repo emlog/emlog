@@ -1,4 +1,6 @@
-<?php if(!defined('EMLOG_ROOT')) {exit('error!');}?>
+<?php if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+} ?>
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">修改导航</h1>
@@ -16,28 +18,28 @@
             <input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> />
         </div>
         <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
-        <div class="form-group">
-            <label>父导航</label>
-            <select name="pid" id="pid" class="form-control">
-                <option value="0">无</option>
-                <?php
-                foreach($navis as $key=>$value):
-                    if($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
-                        continue;
-                    }
-                    $flg = $value['id'] == $pid ? 'selected' : '';
-                    ?>
-                    <option value="<?php echo $value['id']; ?>" <?php echo $flg;?>><?php echo $value['naviname']; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+            <div class="form-group">
+                <label>父导航</label>
+                <select name="pid" id="pid" class="form-control">
+                    <option value="0">无</option>
+                    <?php
+                    foreach ($navis as $key => $value):
+                        if ($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
+                            continue;
+                        }
+                        $flg = $value['id'] == $pid ? 'selected' : '';
+                        ?>
+                        <option value="<?php echo $value['id']; ?>" <?php echo $flg; ?>><?php echo $value['naviname']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         <?php endif; ?>
-        <input type="hidden" value="<?php echo $naviId; ?>" name="navid" />
-        <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault" />
-        <input type="submit" value="保 存" class="btn btn-primary" />
-        <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();" />
+        <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
+        <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
+        <input type="submit" value="保 存" class="btn btn-primary"/>
+        <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();"/>
     </form>
 </div>
 <script>
-$("#menu_navbar").addClass('active');
+    $("#menu_navbar").addClass('active');
 </script>

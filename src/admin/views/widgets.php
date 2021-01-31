@@ -7,15 +7,15 @@
 <div class="row">
     <div class="col-lg-6" id="adm_widget_list">
         <div class="accordion" id="accordionExample">
-            <div class="card" id="blogger">
-                <div class="card-header" id="headingOne">
+            <div class="card">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            个人资料
-                        </button>
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#blogger" aria-expanded="true" aria-controls="collapseOne">个人资料</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="blogger" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -25,14 +25,14 @@
             </div>
 
             <div class="card">
-                <div class="card-header" id="headingTwo">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            日历
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#calendar" aria-expanded="false" aria-controls="collapseTwo">日历</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div id="calendar" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -41,14 +41,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            标签
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#tag" aria-expanded="false" aria-controls="collapseThree">标签</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="tag" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -57,14 +57,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            分类
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#sort" aria-expanded="false" aria-controls="collapseThree">分类</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="sort" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -73,14 +73,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            存档
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#archive" aria-expanded="false" aria-controls="collapseThree">存档</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="archive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -89,14 +89,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            最新评论
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#newcomm" aria-expanded="false" aria-controls="collapseThree">最新评论</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="newcomm" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=newcomm" method="post" class="form-inline">
                             <li>标题</li>
@@ -110,14 +110,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            最新文章
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#newlog" aria-expanded="false" aria-controls="collapseThree">最新文章</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="newlog" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=newlog" method="post" class="form-inline">
                             <li>标题</li>
@@ -129,14 +129,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            热门文章
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#hotlog" aria-expanded="false" aria-controls="collapseThree">热门文章</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="hotlog" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=hotlog" method="post" class="form-inline">
                             <li>标题</li>
@@ -148,14 +148,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            链接
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#link" aria-expanded="false" aria-controls="collapseThree">链接</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="link" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"  /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -164,14 +164,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header" id="headingThree">
+                <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            搜索
-                        </button>
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#search" aria-expanded="false" aria-controls="collapseThree">搜索</button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
                     </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div id="search" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                             <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control" /> <input type="submit" name="" value="更改" class="btn btn-primary btn-sm" /></li>
@@ -181,95 +181,86 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                自定义组件
-            </div>
-            <div class="panel-body">
-                <div class="panel-group" id="accordion">
-                        <?php
-                        foreach ($custom_widget as $key => $val):
-                        preg_match("/^custom_wg_(\d+)/", $key, $matches);
-                        $custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
-                        ?>
-                        <div class="panel panel-default" id="<?php echo $key; ?>">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<?php echo $key; ?>" aria-expanded="false" class="widget-title"><?php echo $custom_wg_title; ?></a>
-                                    <li class="widget-act-add"></li>
-                                    <li class="widget-act-del"></li>
-                                </h4>
-                            </div>
-                            <div id="collapse_<?php echo $key; ?>" class="panel-collapse collapse" aria-expanded="false">
-                                <div class="panel-body" class="form-group">
-                                    <form action="widgets.php?action=setwg&wg=custom_text" method="post">
-                                        <li>
-                                            <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
-                                            <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>" /><br />
-                                        </li>
-                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br /></li>
-                                        <li>
-                                            <input type="submit" class="btn btn-primary" name="" value="更改" />
-                                            <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a>
-                                        </li>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-
-                    <p style="margin:20px 0px;"><a class="btn btn-success" href="javascript:displayToggle('custom_text_new', 2);">添加组件+</a></p>
-
-                    <form action="widgets.php?action=setwg&wg=custom_text" method="post" class="form-inline">
-                        <div id="custom_text_new" style="display:none;" class="form-group">
-                            <li>组件名</li>
-                            <li><input type="text" class="form-control" name="new_title" style="width:384px;" value="" /></li>
-                            <li>内容 （支持html）</li>
-                            <li><textarea name="new_content" class="form-control" rows="10" style="width:380px;overflow:auto;"></textarea></li>
-                            <li><input type="submit" class="btn btn-primary btn-sm" name="" value="添加组件"  /></li>
-                        </div>
-                    </form>
+        <h3 class="h3 mb-4 text-gray-800">自定义组件</h3>
+        <div class="accordion" id="accordionExample">
+            <?php
+            foreach ($custom_widget as $key => $val):
+            preg_match("/^custom_wg_(\d+)/", $key, $matches);
+            $custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
+            ?>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>" aria-expanded="true" aria-controls="collapseOne"><?php echo $custom_wg_title; ?></button>
+                        <li class="widget-act-add"></li>
+                        <li class="widget-act-del"></li>
+                    </h2>
+                </div>
+                <div id="<?php echo $key; ?>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="widgets.php?action=setwg&wg=custom_text" method="post">
+                            <li>
+                                <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>" />
+                                <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>" /><br />
+                            </li>
+                            <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br /></li>
+                            <li>
+                                <input type="submit" class="btn btn-primary" name="" value="更改" />
+                                <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a>
+                            </li>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+            <p style="margin:20px 0px;"><a class="btn btn-success" href="javascript:displayToggle('custom_text_new', 2);">添加组件+</a></p>
+            <form action="widgets.php?action=setwg&wg=custom_text" method="post">
+                <div class="form-group">
+                    <label for="sortname">组件名</label>
+                    <input class="form-control" id="new_title" name="new_title">
+                </div>
+                <div class="form-group">
+                    <label for="alias">内容 （支持html）</label>
+                    <textarea name="new_content" class="form-control" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">添加组件</button><span id="alias_msg_hook"></span>
+            </form>
         </div>
     </div>
 
     <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                使用中的组件
-            </div>
-            <form action="widgets.php?action=compages" method="post" class="form-inline">
-                <div class="panel-body">
-                    <div class="panel-group adm_widget_box" id="sortable">
-                        <?php
-                        foreach ($widgets as $widget):
-                            $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //是否为自定义组件
-                            $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
-                            if ($flg && empty($title)) {
-                                preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-                                $title = '未命名组件(' . $matches[1] . ')';
-                            }
-                            ?>
-                        <div class="panel panel-default active_widget" id="em_<?php echo $widget; ?>" style="cursor:move;">
-                                <div class="panel-heading">
-                                    <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
-                                    <h4 class="panel-title">
-                                        <?php if ($flg) {
-                                            echo $title;
-                                        } else {
-                                            echo $widgetTitle[$widget];
-                                        } ?>
-                                    </h4>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+        <h1 class="h3 mb-4 text-gray-800">侧边栏组件管理</h1>
+        <form action="widgets.php?action=compages" method="post">
+        <div class="accordion" id="accordionExample">
+            <?php
+            foreach ($widgets as $widget):
+            $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //是否为自定义组件
+            $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
+            if ($flg && empty($title)) {
+                preg_match("/^custom_wg_(\d+)/", $widget, $matches);
+                $title = '未命名组件(' . $matches[1] . ')';
+            }
+            ?>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#blogger" aria-expanded="true" aria-controls="collapseOne">
+                            <?php if ($flg) {
+                                echo $title;
+                            } else {
+                                echo $widgetTitle[$widget];
+                            } ?>
+                        </button>
+                        <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>" />
+                    </h2>
                 </div>
-                <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
-                <div style="margin:20px 40px;"><input type="submit" value="保存组件排序" class="btn btn-primary" /> <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger" >恢复出厂设置</a></div>
-            </form>
+            </div>
+            <?php endforeach; ?>
+            <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>" />
+            <input type="submit" value="保存组件排序" class="btn btn-primary" />
+            <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger" >恢复出厂设置</a>
         </div>
+        </form>
     </div>
 </div>
 </div>
