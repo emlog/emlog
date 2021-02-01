@@ -1,22 +1,23 @@
 <?php
 /*
 Template Name: Default template
-Description: Default template, simple and elegant
+Description: emlog Default template
 Author:emlog
 Author Url:http://www.emlog.net
 */
 if(!defined('EMLOG_ROOT')) {exit('error!');}
 require_once View::getView('module');
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-<meta charset="UTF-8">
-<title><?= $site_title ?></title>
-<meta name="keywords" content="<?= $site_key ?>">
-<meta name="description" content="<?= $site_description ?>">
-<meta name="generator" content="emlog">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title><?php echo $site_title; ?></title>
+<meta name="keywords" content="<?php echo $site_key; ?>" />
+<meta name="description" content="<?php echo $site_description; ?>" />
+<meta name="generator" content="emlog" />
 <link rel="alternate" type="application/rss+xml" title="RSS"  href="<?= BLOG_URL ?>rss.php">
 <link href="<?= TEMPLATE_URL ?>main.css" rel="stylesheet" type="text/css">
 <link href="<?= BLOG_URL ?>admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css">

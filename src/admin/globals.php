@@ -6,8 +6,7 @@
 
 require_once '../init.php';
 
-define('ADMIN_TEMPLATE', 'default'); //Admin Template
-define('TEMPLATE_PATH', EMLOG_ROOT.'/admin/views/'.ADMIN_TEMPLATE.'/');//AdminCP current template path
+define('TEMPLATE_PATH', EMLOG_ROOT . '/admin/views/');    //AdminCP current template path
 define('OFFICIAL_SERVICE_HOST', 'http://www.emlog.net/');//Official Service Domain
 
 /*vot*/ load_language('admin');
@@ -24,11 +23,11 @@ if ($action == 'login') {
     $img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
     $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
-    
+
     if ($loginAuthRet === true) {
         LoginAuth::setAuthCookie($username, $ispersis);
         emDirect("./");
-    } else{
+    } else {
         LoginAuth::loginPage($loginAuthRet);
     }
 }
@@ -44,6 +43,6 @@ if (ISLOGIN === false) {
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log','admin_log','attachment','blogger','comment','index','save_log'))) {
+if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log', 'admin_log', 'attachment', 'blogger', 'comment', 'index', 'save_log'))) {
 /*vot*/    emMsg(lang('no_permission'),'./');
 }
