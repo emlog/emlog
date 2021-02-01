@@ -517,7 +517,7 @@ $lang = array(
 //admin/views/links.php
  'link_add'		=> '添加链接+',//'Add Link+',
  'link_management'	=> '链接管理',//'Link management',
- 'sort'			=> '排序',//'Sort',
+ 'order'		=> '排序',//'Order',
  'edit_link'		=> '修改链接',//'Edit link',
  'click_to_hide'	=> '点击隐藏链接',//'Click to hide',
  'visible'		=> '显示',//'Visible',
@@ -632,6 +632,10 @@ $lang = array(
 //---------------------------
 //admin/views/sort.php
  'category_management'	=> '分类管理',//'Category Management',
+ 'category_name'	=> '分类名',//'Category name',
+ 'alias_prompt'		=> '用于URL的友好显示，可不填',//'Used for friendly display of URL, optional',
+ 'category_parent'	=> '父分类',//'Parent category',
+ 'submit'		=> '提交',//'Submit',
 
 //---------------------------
 //admin/views/store.php
@@ -664,7 +668,7 @@ $lang = array(
 //admin/views/template.php
  'template_manager'		=> '模板管理',//'Template Manager',
  'template_current'		=> '当前模板',//'Current template',
- 'template_mount'		=> '安装模板',//'Mounting template',
+ 'template_install'		=> '安装模板',//'Install template',
  'template_change_ok'		=> '模板更换成功',//'Template have been replaced successfully',
  'template_current_use'		=> '当前使用的模板',//'Currently used template',
  'template_damaged'		=> '已被删除或损坏，请选择其他模板。',//'This template has been damaged! Please choose another template.',
@@ -673,8 +677,8 @@ $lang = array(
  'template_upload_ok'		=> '模板上传成功',//'Template have been uploaded successfully',
  'template_delete_ok'		=> '删除模板成功',//'Template have been removed successfully',
  'template_delete_failed'	=> '删除失败，请检查模板文件权限',//'Delete failed, check the template file permissions',
- 'template_use_this'		=> '点击使用该模板',//'Click to use this template',
- 'template_add'			=> '添加模板+',//'Add Template',
+ 'template_use_this'		=> '使用该模板',//'Use this template',
+ 'template_add'			=> '安装新的模板',//'Install a new template',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -739,10 +743,11 @@ $lang = array(
  '_users'		=> '位用户',//' users',
  'user_add'		=> '添加用户',//'Add user',
  'author_contributor'	=> '作者（投稿人）',//'Author (Contributor)',
- 'password_min_length'	=> '密码 (大于5位)',//'Password (not less than 5 characters)',
+ 'password_min_length'	=> '密码 (大于6位)',//'Password (not less than 6 characters)',
  'password_repeat'	=> '重复密码',//'Repeat password',
  'posts_not_need_audit'	=> '文章不需要审核',//'Posts not need to be verified',
  'posts_need_audit'	=> '文章需要审核',//'Posts need to be verified',
+ 'publish_permission'	=> '发布权限',//'Publishing permissions',
 
 //---------------------------
 //admin/views/useredit.php

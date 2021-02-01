@@ -7,17 +7,17 @@
     <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
     <span id="msg_2"></span>
     <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-        <!--文章内容-->
+    <!--Article Content-->
         <div class="row">
             <div class="col-xl-8">
                 <div id="msg"></div>
                 <div id="post" class="form-group">
                     <div>
-                        <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题"/>
+<!--vot-->              <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>">
                     </div>
                     <div id="post_bar">
                         <div class="show_advset">
-                            <span onclick="displayToggle('FrameUpload', 0);autosave(1);">上传插入<i class="fa fa-caret-right fa-fw"></i></span>
+<!--vot-->                  <span onclick="displayToggle('FrameUpload', 0);autosave(1);"><?=lang('upload_insert')?><i class="fa fa-caret-right fa-fw"></i></span>
                             <?php doAction('adm_writelog_head'); ?>
                             <span id="asmsg"></span>
                             <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
@@ -29,23 +29,23 @@
                     <div>
                         <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
                     </div>
-                    <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项<i class="fa fa-caret-right fa-fw"></i></div>
+<!--vot-->          <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="fa fa-caret-right fa-fw"></i></div>
                     <div id="advset">
-                        <div>文章摘要：</div>
+<!--vot-->              <div><?=lang('post_description')?>:</div>
                         <div><textarea id="logexcerpt" name="logexcerpt" style="width:100%; height:260px;"><?php echo $excerpt; ?></textarea></div>
                     </div>
                 </div>
                 <div class=line></div>
             </div>
 
-            <!--文章侧边栏-->
+            <!--Article sidebar-->
             <div class="col-xl-4 container-side">
                 <div class="panel panel-default">
-                    <div class="panel-heading">设置项</div>
+<!--vot-->          <div class="panel-heading"><?=lang('setting_items')?></div>
                     <div class="panel-body">
                         <div class="form-group">
                             <select name="sort" id="sort" class="form-control">
-                                <option value="-1">选择分类...</option>
+<!--vot-->                      <option value="-1"><?=lang('category_select')?></option>
                                 <?php
                                 foreach ($sorts as $key => $value):
                                     if ($value['pid'] != 0) {
@@ -69,9 +69,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label>标签：</label>
-                            <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
-                            <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
+<!--vot-->                  <label><?=lang('tags')?>:</label>
+<!--vot-->                  <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>">
+<!--vot-->                  <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
                             <div id="tagbox" style="display: none;">
                                 <?php
                                 if ($tags) {
@@ -79,34 +79,34 @@
                                         echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
                                     }
                                 } else {
-                                    echo '还没有设置过标签！';
+/*vot*/                             echo lang('tag_not_set');
                                 }
                                 ?>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>发布时间：</label>
-                            <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
+<!--vot-->              <label><?=lang('publish_time')?></label>
+                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
                         </div>
 
                         <div class="form-group">
-                            <label>链接别名：</label>
+<!--vot-->                  <label><?=lang('link_alias')?>:</label>
                             <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                         </div>
 
                         <div class="form-group">
-                            <label>访问密码：</label>
+<!--vot-->                  <label><?=lang('access_password')?>:</label>
                             <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
                         </div>
 
                         <div class="form-group">
                             <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                            <label for="top">首页置顶</label>
+<!--vot-->                  <label for="top"><?=lang('home_top')?></label>
                             <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                            <label for="sortop">分类置顶</label>
+<!--vot-->                  <label for="sortop"><?=lang('category_top')?></label>
                             <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
-                            <label for="allow_remark">允许评论</label>
+<!--vot-->                  <label for="allow_remark"><?=lang('allow_comments')?></label>
                         </div>
                     </div>
                 </div>
@@ -118,13 +118,13 @@
                     <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
                     <?php if ($logid < 0): ?>
-                        <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-primary"/>
-                        <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success">
                     <?php else: ?>
-                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-primary"/>
-                        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success">
                         <?php if ($isdraft) : ?>
-                            <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success">
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
@@ -134,7 +134,7 @@
 </div>
 <!-- /.container-fluid -->
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
     loadEditor('logcontent');
     loadEditor('logexcerpt');

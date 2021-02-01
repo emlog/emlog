@@ -2,7 +2,7 @@
     exit('error!');
 } ?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script charset="utf-8" src="./editor/lang/<?=EMLOG_LANGUAGE?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -13,11 +13,11 @@
                 <div id="msg"></div>
                 <div id="post" class="form-group">
                     <div>
-                        <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
+<!--vot-->              <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('page_title')?>">
                     </div>
                     <div id="post_bar">
                         <div>
-                            <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset">上传插入</span>
+<!--vot-->                  <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
                             <?php doAction('adm_writelog_head'); ?>
                             <span id="asmsg"></span>
                             <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
@@ -34,19 +34,19 @@
             </div>
             <div class="col-xl-4 container-side">
                 <div class="panel panel-default">
-                    <div class="panel-heading">设置项</div>
+<!--vot-->          <div class="panel-heading"><?=lang('setting_items')?></div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>链接别名：</label>
+<!--vot-->                  <label><?=lang('link_alias')?>:</label>
                             <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                         </div>
                         <div class="form-group">
-                            <label>页面模板：</label>
+<!--vot-->                  <label><?=lang('page_template')?></label>
                             <input name="template" id="template" class="form-control" value="<?php echo $template; ?>"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-                            <label for="allow_remark">允许评论</label>
+<!--vot-->                  <label for="allow_remark"><?=lang('allow_comments')?></label>
                         </div>
                     </div>
                 </div>
@@ -56,11 +56,11 @@
                     <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
                     <input type="hidden" name="gid" value=<?php echo $pageId; ?>/>
                     <?php if ($pageId < 0): ?>
-                        <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-primary"/>
-                        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
                     <?php else: ?>
-                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-primary"/>
-                        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary">
+<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
                     <?php endif; ?>
 
                 </div>

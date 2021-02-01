@@ -61,7 +61,7 @@ $lang = array(
 //admin/views/naviedit.php
  'nav_modify'		=> '修改导航',//'Modify navigation',
 // 'nav_name'		=> '导航名称',//'Navigation Name',
- 'nav_address'		=> '导航地址，',//'导航地址,'//'Navigation address',
+ 'nav_address'		=> '导航地址',//'导航地址',//'Navigation address',
 // 'open_new_win'	=> '在新窗口打开',//'Open in new window',
 // 'no'			=> '无',//'No',
 // 'save'		=> '保 存',//'Save',

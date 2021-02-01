@@ -1,41 +1,41 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_show'])): ?><span class="alert alert-success">审核评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_hide'])): ?><span class="alert alert-success">隐藏评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_rep'])): ?><span class="alert alert-success">回复评论成功</span><?php endif; ?>
-<?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">请选择要执行的操作</span><?php endif; ?>
-<?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">回复内容不能为空</span><?php endif; ?>
-<?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">内容过长</span><?php endif; ?>
-<?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">评论内容不能为空</span><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_del'])): ?><span class="alert alert-success"><?=lang('comment_delete_ok')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['active_show'])): ?><span class="alert alert-success"><?=lang('comment_audit_ok')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['active_hide'])): ?><span class="alert alert-success"><?=lang('comment_hide_ok')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success"><?=lang('comment_edit_ok')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['active_rep'])): ?><span class="alert alert-success"><?=lang('comment_reply_ok')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger"><?=lang('comment_choose_operation')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger"><?=lang('select_action_to_perform')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger"><?=lang('reply_is_empty')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger"><?=lang('comment_too_long')?></span><?php endif;?>
+<!--vot--><?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger"><?=lang('comment_is_empty')?></span><?php endif;?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">评论管理</h1>
+<!--vot--><h1 class="h3 mb-2 text-gray-800"><?= lang('comment_management') ?></h1>
     <?php if ($hideCommNum > 0) :
         $hide_ = $hide_y = $hide_n = '';
         $a = "hide_$hide";
         $$a = "class=\"filter\"";
         ?>
         <div class="filters">
-            <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
-            <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
+<!--vot--><span <?= $hide_ ?>><a href="./comment.php?<?= $addUrl_1 ?>"><?=lang('all')?></a></span>
+<!--vot--><span <?= $hide_y ?>><a href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?>
 <?php
 $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 ?>
 </a></span>
-            <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></span>
+<!--vot--><span <?= $hide_n ?>><a href="comment.php?hide=n&<?= $addUrl_1 ?>"><?=lang('audited')?></a></span>
         </div>
     <?php endif; ?>
     <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">评论管理</h6>
+<!--vot-->      <h6 class="m-0 font-weight-bold text-primary"><?= lang('comment_management') ?></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -43,18 +43,18 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
                         <thead>
                         <tr>
                             <th></th>
-                            <th>内容</th>
-                            <th>评论人</th>
-                            <th>所属文章</th>
+<!--vot-->                  <th><?= lang('content') ?></th>
+<!--vot-->                  <th><?= lang('comment_author') ?></th>
+<!--vot-->                  <th><?= lang('belongs_to_article') ?></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         if ($comment):
                             foreach ($comment as $key => $value):
-                                $ishide = $value['hide'] == 'y' ? '<font color="red">[待审]</font>' : '';
+/*vot*/                         $ishide = $value['hide']=='y'?'<font color="red">[' . lang('pending') . ']</font>':'';
                                 $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-                                $ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
+/*vot*/                         $ip = !empty($value['ip']) ? '<br />' . lang('from') . ': ' . $value['ip'] : '';
                                 $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
                                 $value['content'] = str_replace('<br>', ' ', $value['content']);
                                 $sub_content = subString($value['content'], 0, 50);
@@ -67,25 +67,25 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
                                                        title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?>
                                         <br/><?php echo $value['date']; ?>
                                         <span style="display:none; margin-left:8px;">
-                            <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->                  <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?= lang('delete') ?></a>
                         <?php if ($value['hide'] == 'y'): ?>
-                            <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
+<!--vot-->                  <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?= lang('check') ?></a>
                         <?php else: ?>
-                            <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
+<!--vot-->                  <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?= lang('hide') ?></a>
                         <?php endif; ?>
-                        <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
-                        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
+<!--vot-->              <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?= lang('reply') ?></a>
+<!--vot-->              <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>"><?= lang('edit') ?></a>
                         </span>
                                     </td>
                                     <td><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
-                                        <?php if (ROLE == ROLE_ADMIN): ?><a
-                                            href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="删除来自该IP的所有评论"
+<!--vot-->                              <?php if (ROLE == ROLE_ADMIN): ?><a
+                                            href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="<?= lang('del_comments_from_ip') ?>"
                                             class="care">(X)</a><?php endif; ?></td>
-                                    <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
+<!--vot-->                          <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="<?= lang('view_article') ?>"><?php echo $value['title']; ?></a></td>
                                 </tr>
                             <?php endforeach; else:?>
                             <tr>
-                                <td class="tdcenter" colspan="4">还没有收到评论</td>
+<!--vot-->                      <td class="tdcenter" colspan="4"><?= lang('no_comments_yet') ?></td>
                             </tr>
                         <?php endif; ?>
                         </tbody>
@@ -95,13 +95,13 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
         </div>
 
         <div class="list_footer">
-            <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-            <a href="javascript:commentact('del');" class="care">删除</a>
-            <a href="javascript:commentact('hide');">隐藏</a>
-            <a href="javascript:commentact('pub');">审核</a>
+<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
+<!--vot--><a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
+<!--vot--><a href="javascript:commentact('hide');"><?=lang('hide')?></a>
+<!--vot--><a href="javascript:commentact('pub');"><?=lang('approve')?></a>
             <input name="operate" id="operate" value="" type="hidden"/>
         </div>
-        <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div>
+<!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?><?= $cmnum ?><?=lang('_comments')?>)</div>
     </form>
 </div>
 <!-- /.container-fluid -->
@@ -110,10 +110,10 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 
     function commentact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的评论');
+/*vot*/     alert('<?=lang('comment_operation_select')?>');
             return;
         }
-        if (act == 'del' && !confirm('你确定要删除所选评论吗？')) {
+/*vot*/ if (act == 'del' && !confirm('<?=lang('comment_selected_delete_sure')?>')) {
             return;
         }
         $("#operate").val(act);

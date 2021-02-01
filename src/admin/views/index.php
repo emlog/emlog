@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">控制台首页</h1>
+<!--vot-->      <h1 class="h3 mb-0 text-gray-800"><?= lang('control_panel') ?></h1>
     </div>
 
     <!-- Content Row -->
@@ -15,16 +15,16 @@
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">站点信息</h6>
+<!--vot-->          <h6 class="m-0 font-weight-bold text-primary"><?= lang('site_info') ?></h6>
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>有<b><?php echo $sta_cache['lognum']; ?></b>篇文章，<b><?php echo $sta_cache['comnum_all']; ?></b>条评论</li>
-                        <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
-                        <li>PHP版本：<?php echo $php_ver; ?></li>
-                        <li>MySQL版本：<?php echo $mysql_ver; ?></li>
-                        <li>服务器环境：<?php echo $serverapp; ?></li>
-                        <li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
+<!--vot-->              <li><?=lang('have')?> <b><?php echo $sta_cache['lognum']; ?></b><?=lang('_posts')?>， <b><?php echo $sta_cache['comnum_all']; ?></b><?=lang('_comments')?></li>
+<!--vot-->              <li><?=lang('db_prefix')?>： <?php echo DB_PREFIX; ?></li>
+<!--vot-->              <li><?=lang('php_version')?>: <?php echo $php_ver; ?></li>
+<!--vot-->              <li><?=lang('mysql_version')?>： <?php echo $mysql_ver; ?></li>
+<!--vot-->              <li><?=lang('server_environment')?>： <?php echo $serverapp; ?></li>
+<!--vot-->              <li><?=lang('server_max_upload_size')?>： <?php echo $uploadfile_maxsize; ?></li>
                     </ul>
 
                 </div>
@@ -34,7 +34,7 @@
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">官方消息</h6>
+<!--vot-->          <h6 class="m-0 font-weight-bold text-primary"><?= lang('official_news') ?></h6>
                 </div>
                 <div class="card-body">
                     <div class="panel-body" id="admindex_msg">
@@ -51,7 +51,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+/*vot*/ $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?= lang('reading') ?></span>");
         $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
             function (data) {
                 $("#admindex_msg ul").html("");
