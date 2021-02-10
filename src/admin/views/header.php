@@ -7,24 +7,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- IE浏览器，IE8/9及以后的版本都会以最高版本IE来渲染页面。-->
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link href="./views/css/sb-admin-2.min.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet">
-    <link href="./views/css/fontawesome-free/css/all.min.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet" type="text/css">
-    <link href="./views/css/fonts.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet">
-    <link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
-    <!-- Bootstrap core JS-->
-    <script src="./views/js/jquery.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+    <!-- CSS -->
+    <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
+    <link href="./views/css/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/brands.css" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/solid.css" rel="stylesheet">
+    <!-- JS -->
+    <script src="./views/js/jquery.min.js"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
+    <script src="./views/js/common.js"></script>
+    <script src="./views/js/sb-admin-2.min.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
-
-<!-- Page Wrapper -->
 <div id="wrapper">
-    <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
@@ -91,28 +89,19 @@
                 </div>
             </div>
         </li>
-        <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-        <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
     </ul>
-    <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
         <div id="content">
-            <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link" href="../" target="_blank" title="在新窗口浏站点" role="button">
@@ -124,13 +113,11 @@
                     </li>
 
                     <div class="topbar-divider d-none d-sm-block"></div>
-                    <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">大伟</span>
                             <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
-                        <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="./blogger.php">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>个人设置
@@ -143,4 +130,3 @@
                     </li>
                 </ul>
             </nav>
-            <!-- End of Topbar -->
