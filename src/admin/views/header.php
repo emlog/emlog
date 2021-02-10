@@ -29,7 +29,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">emlog <sup>6.1.0</sup></div>
+            <div class="sidebar-brand-text mx-3">emlog <sup>PRO</sup></div>
         </a>
 
         <hr class="sidebar-divider my-0">
