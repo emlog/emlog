@@ -14,7 +14,7 @@ h1,h2,h3,h4,h5,h6,.navbar-brand,.brand-name {
 
 .well {
 	background-color: #fff;
-	background-image: url(./images/premium-bg.png)
+	background-image: url(../images/premium-bg.png)
 }
 
 header.marquee {
@@ -22,7 +22,7 @@ header.marquee {
 	text-align: center;
 	color: #fff;
 	background-color: #b84d45;
-	background-image: url(./images/bg.png)
+	background-image: url(../images/bg.png)
 }
 
 header.marquee .brand-name {
@@ -105,7 +105,7 @@ header.marquee .btn-cta:hover {
 	text-align: center;
 	color: rgba(255,255,255,.8);
 	background-color: #4e73df;
-	background-image: url(./images/bg.png);
+	background-image: url(../images/bg.png);
 	margin-bottom: 40px;
 	font-size: 20px
 }
@@ -217,7 +217,7 @@ footer .footer-left,footer .footer-right,footer .footer-below {
 .calendar td{font-size:11px; text-align:center; padding:1px 10px; line-height:1.6;}
 .calendar td a:link{color:#886353; text-decoration:none;}
 .calendar td a:hover{color:#886353; text-decoration:none}
-.day{background:url(images/bg_cal_today.gif)  no-repeat 2px 1px}
+.day{background:url(../images/bg_cal_today.gif)  no-repeat 2px 1px}
 .day2{font-weight:bold}
 .sun{color:#333; font-weight:bold}
 .week{color:#333}
@@ -230,7 +230,7 @@ footer .footer-left,footer .footer-right,footer .footer-below {
 .comment-post small{font-size:12px; color:#999}
 .comment-post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:40%}
 .comment-post #comment{ width:90%; border:1px #b6b6b6 solid; font-size:12px; color:#333}
-.comment-post #comment_submit{background:url(images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
+.comment-post #comment_submit{background:url(../images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
 .comment-post .input{width:100px}
 .comment{margin:10px 0; padding:10px 0px; font-size:12px; border-bottom:1px #f7f7f7  solid; overflow:hidden; color:#333; height:100%; zoom:1}
 .comment span{color:#ff7a15;}

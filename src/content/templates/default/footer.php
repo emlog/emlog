@@ -11,7 +11,7 @@ if(!defined('EMLOG_ROOT')) {exit('error!');}
         <div class="row">
             <div class="col-lg-12 footer-below">
                 <hr>
-                Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+                Powered by <a href="http://www.emlog.net">emlog</a>
                 <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
                 <?php doAction('index_footer'); ?>
             </div>
