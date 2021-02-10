@@ -12,5 +12,7 @@
 </div>
 </div>
 <div id="footer"><?php doAction('adm_footer'); ?></div>
+<!-- JS -->
+<script src="./views/js/sb-admin-2.min.js"></script>
 </body>
 </html>

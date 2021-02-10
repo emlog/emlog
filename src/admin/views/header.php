@@ -11,14 +11,13 @@
     <!-- CSS -->
     <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-    <link href="./views/css/fontawesome-free/css/fontawesome.css" rel="stylesheet">
-    <link href="./views/css/fontawesome-free/css/brands.css" rel="stylesheet">
-    <link href="./views/css/fontawesome-free/css/solid.css" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/brands.min.css" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/solid.min.css" rel="stylesheet">
     <!-- JS -->
-    <script src="./views/js/jquery.min.js"></script>
+    <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/common.js"></script>
-    <script src="./views/js/sb-admin-2.min.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
 <div id="wrapper">
@@ -32,7 +31,7 @@
 
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
-            <a class="nav-link" href="./write_log.php"><i class="far fa-edit"></i><span>写文章</span></a>
+            <a class="nav-link" href="./write_log.php"><i class="fas fa-edit"></i><span>写文章</span></a>
         </li>
 
         <li class="nav-item">
@@ -40,11 +39,11 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./page.php"><i class="far fa-file"></i><span>页面</span></a>
+            <a class="nav-link" href="./page.php"><i class="fas fa-file"></i><span>页面</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="comment.php"><i class="far fa-comment"></i><span>评论</span></a>
+            <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span>评论</span></a>
         </li>
 
         <li class="nav-item">
