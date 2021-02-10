@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="./views/css/bootstrap.min.4.6.css" rel="stylesheet" type="text/css" type="text/css"/>
-<script src="./views/js/jquery.min.js?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/javascript"></script>
+<script src="./views/js/jquery.min.3.5.1.js" type="text/javascript"></script>
 <script src="./views/js/bootstrap.bundle.min.4.6.js" type="text/javascript"></script>
 <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/javascript"></script>
 <title>登录</title>
