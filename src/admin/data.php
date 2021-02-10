@@ -9,7 +9,6 @@ require_once 'globals.php';
 if ($action == '') {
     $retval = glob('../content/backup/*.sql');
     $bakfiles = $retval ? $retval : array();
-    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link','tag','user');
     doAction('data_prebakup');
 
     include View::getView('header');
@@ -20,16 +19,18 @@ if ($action == '') {
 
 if ($action == 'bakstart') {
     LoginAuth::checkToken();
-    $table_box = isset($_POST['table_box']) ? array_map('addslashes', $_POST['table_box']) : array();
     $bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
     $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
+    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link','tag','user');
     $bakfname = 'emlog_'. date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
     $filename = '';
     $sqldump = '';
-    foreach ($table_box as $table) {
+
+    foreach ($tables as $table) {
         $sqldump .= dataBak($table);
     }
+
     if (trim($sqldump)) {
         $dumpfile = '#version:emlog '. Option::EMLOG_VERSION . "\n";
         $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";

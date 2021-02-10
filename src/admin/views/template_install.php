@@ -31,7 +31,6 @@
             </p>
         </div>
     </form>
-    <div style="margin:10px 20px;">获取更多模板：<a href="https://emlog.net/">访问emlog官方网站&raquo;</a></div>
 </div>
 <script>
     setTimeout(hideActived, 2600);
