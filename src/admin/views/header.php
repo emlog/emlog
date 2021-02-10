@@ -9,13 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- IE浏览器，IE8/9及以后的版本都会以最高版本IE来渲染页面。-->
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="./views/css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="./views/css/fonts.css" rel="stylesheet">
+    <link href="./views/css/sb-admin-2.min.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet">
+    <link href="./views/css/fontawesome-free/css/all.min.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet" type="text/css">
+    <link href="./views/css/fonts.css?v=<?php echo Option::EMLOG_VERSION; ?>" rel="stylesheet">
     <link href="./views/css/css-main.css?v=<?php echo Option::EMLOG_VERSION; ?>" type=text/css rel=stylesheet>
     <!-- Bootstrap core JS-->
-    <script src="./views/js/jquery.min.js"></script>
-    <script src="./views/js/bootstrap.bundle.min.js"></script>
+    <script src="./views/js/jquery.min.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     <?php doAction('adm_head'); ?>
 </head>
