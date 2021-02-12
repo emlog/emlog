@@ -4,9 +4,9 @@
 <script>setTimeout(hideActived, 2600);</script>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./seo.php">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="configure.php">基本设置</a></li>
+        <li class="nav-item"><a class="nav-link active" href="seo.php">SEO设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="blogger.php">个人设置</a></li>
         <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
         <?php if (isset($_GET['error'])): ?><span class="alert alert-danger">保存失败：根目录下的.htaccess不可写</span><?php endif; ?>
     </ul>

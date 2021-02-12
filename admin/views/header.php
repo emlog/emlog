@@ -22,7 +22,7 @@
 </head>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -35,11 +35,11 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
+            <a class="nav-link" href="admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./page.php"><i class="fas fa-file"></i><span>页面</span></a>
+            <a class="nav-link" href="page.php"><i class="fas fa-file"></i><span>页面</span></a>
         </li>
 
         <li class="nav-item">
@@ -51,7 +51,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="./sort.php"><i class="fas fa-table"></i><span>分类</span></a>
+            <a class="nav-link" href="sort.php"><i class="fas fa-table"></i><span>分类</span></a>
         </li>
 
         <li class="nav-item">
@@ -67,9 +67,9 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./template.php">模板</a>
-                    <a class="collapse-item" href="./navbar.php">导航</a>
-                    <a class="collapse-item" href="./widgets.php">侧边栏</a>
+                    <a class="collapse-item" href="template.php">模板</a>
+                    <a class="collapse-item" href="navbar.php">导航</a>
+                    <a class="collapse-item" href="widgets.php">侧边栏</a>
                 </div>
             </div>
         </li>
@@ -81,10 +81,10 @@
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="./configure.php">设置</a>
-                    <a class="collapse-item" href="./user.php">用户</a>
-                    <a class="collapse-item" href="./data.php">数据</a>
-                    <a class="collapse-item" href="./plugin.php">插件</a>
+                    <a class="collapse-item" href="configure.php">设置</a>
+                    <a class="collapse-item" href="user.php">用户</a>
+                    <a class="collapse-item" href="data.php">数据</a>
+                    <a class="collapse-item" href="plugin.php">插件</a>
                 </div>
             </div>
         </li>
@@ -103,7 +103,7 @@
                 </button>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link" href="../" target="_blank" title="在新窗口浏站点" role="button">
+                        <a class="nav-link" href=".." target="_blank" title="在新窗口浏站点" role="button">
                             <?php
                             $blog_name = Option::get('blogname');
                             echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
@@ -118,11 +118,11 @@
                             <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="./blogger.php">
+                            <a class="dropdown-item" href="blogger.php">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>个人设置
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./?action=logout">
+                            <a class="dropdown-item" href="?action=logout">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>退出
                             </a>
                         </div>

@@ -55,7 +55,7 @@
                                     <td><?php echo $val['description']; ?></td>
                                     <td><?php echo $val['email']; ?></td>
                                     <td class="tdcenter"><a
-                                                href="./admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a>
+                                                href="admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a>
                                     </td>
                                 </tr>
                             <?php endforeach; else: ?>

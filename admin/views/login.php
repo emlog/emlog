@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="main" class="container">
-    <form name="f" method="post" action="./index.php?action=login" class="form-horizontal">
+    <form name="f" method="post" action="index.php?action=login" class="form-horizontal">
         <br>
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
@@ -66,7 +66,7 @@
     </form>
     <div class="login-ext"><?php doAction('login_ext'); ?></div>
     <div id="small-buttons">
-        <a href="../" class="btn btn-link btn-xs" role="button">返回首页</a>
+        <a href=".." class="btn btn-link btn-xs" role="button">返回首页</a>
     </div>
 </div>
 
