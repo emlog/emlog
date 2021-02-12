@@ -1,53 +1,43 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">控制台首页</h1>
     </div>
-
-    <!-- Content Row -->
     <div class="row">
-        <!-- Content Column -->
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">站点信息</h6>
-                </div>
+                <h6 class="card-header">站点信息</h6>
                 <div class="card-body">
-                    <ul>
-                        <li>有<b><?php echo $sta_cache['lognum']; ?></b>篇文章，<b><?php echo $sta_cache['comnum_all']; ?></b>条评论</li>
-                        <li>数据库表前缀：<?php echo DB_PREFIX; ?></li>
-                        <li>PHP版本：<?php echo $php_ver; ?></li>
-                        <li>MySQL版本：<?php echo $mysql_ver; ?></li>
-                        <li>服务器环境：<?php echo $serverapp; ?></li>
-                        <li>服务器空间允许上传最大文件：<?php echo $uploadfile_maxsize; ?></li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">文章
+                            <span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">评论
+                            <span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center small">
+                            服务器环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
+                        </li>
                     </ul>
 
                 </div>
             </div>
         </div>
-
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">官方消息</h6>
-                </div>
+                <h6 class="card-header">官方消息</h6>
                 <div class="card-body">
                     <div class="panel-body" id="admindex_msg">
-                        <ul></ul>
+                        <ul class="list-group list-group-flush"></ul>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
 </div>
-<!-- /.container-fluid -->
 
 <script>
     $(document).ready(function () {

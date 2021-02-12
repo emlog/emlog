@@ -17,12 +17,13 @@
     <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
+<!--    <script src="./views/js/jquery.easing.min.js"></script>-->
     <script src="./views/js/common.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -60,15 +61,15 @@
 
         <hr class="sidebar-divider d-none d-md-block">
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-palette"></i>
                 <span>外观</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="template.php">模板</a>
-                    <a class="collapse-item" href="navbar.php">导航</a>
+                    <a class="collapse-item active" href="navbar.php">导航</a>
                     <a class="collapse-item" href="widgets.php">侧边栏</a>
                 </div>
             </div>
