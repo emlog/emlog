@@ -55,6 +55,6 @@ https://www.emlog.net/download
 
 
 ## 软件授权许可证（License）
-发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/LICENSE)。
+发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/license.txt)
 
 
