@@ -100,13 +100,13 @@
 </div>
 
 <script>
-    $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
+    // $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
     $(document).ready(function () {
         $("#role").change(function () {
             $("#ischeck").toggle()
         })
     });
     setTimeout(hideActived, 2600);
-    $("#menu_sys").addClass('in');
+    $("#menu_sys").addClass('show');
     $("#menu_user").addClass('active');
 </script>

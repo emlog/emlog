@@ -225,11 +225,11 @@
 </div>
 
 <script>
-    $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
-    $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
-    $("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : '');
+    // $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
+    // $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
+    // $("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : '');
     setTimeout(hideActived, 2600);
     $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('in');
+    $("#menu_view").addClass('show');
     $("#menu_navi").addClass('active');
 </script>

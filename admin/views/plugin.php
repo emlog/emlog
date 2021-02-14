@@ -100,9 +100,9 @@
 </div>
 
 <script>
-    $("#plugin_new").css('display', $.cookie('em_plugin_new') ? $.cookie('em_plugin_new') : 'none');
+    // $("#plugin_new").css('display', $.cookie('em_plugin_new') ? $.cookie('em_plugin_new') : 'none');
     setTimeout(hideActived, 2600);
     $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('in');
+    $("#menu_sys").addClass('show');
     $("#menu_plug").addClass('active');
 </script>

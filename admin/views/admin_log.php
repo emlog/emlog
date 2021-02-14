@@ -257,5 +257,5 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_page").submit();
     }
 
-    $("#menu_page").addClass('active');
+    $("#menu_log").addClass('active');
 </script>

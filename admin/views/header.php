@@ -17,7 +17,7 @@
     <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
-<!--    <script src="./views/js/jquery.easing.min.js"></script>-->
+    <!--    <script src="./views/js/jquery.easing.min.js"></script>-->
     <script src="./views/js/common.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
@@ -35,57 +35,57 @@
             <a class="nav-link" href="./write_log.php"><i class="fas fa-edit"></i><span>写文章</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_log">
             <a class="nav-link" href="admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_page">
             <a class="nav-link" href="page.php"><i class="fas fa-file"></i><span>页面</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_cm">
             <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span>评论</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_tag">
             <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span>标签</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_sort">
             <a class="nav-link" href="sort.php"><i class="fas fa-table"></i><span>分类</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="menu_link">
             <a class="nav-link" href="./link.php"><i class="fas fa-link"></i><span>链接</span></a>
         </li>
 
         <hr class="sidebar-divider d-none d-md-block">
 
-        <li class="nav-item active">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <li class="nav-item" id="menu_category_view">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                 <i class="fas fa-palette"></i>
                 <span>外观</span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="template.php">模板</a>
-                    <a class="collapse-item active" href="navbar.php">导航</a>
-                    <a class="collapse-item" href="widgets.php">侧边栏</a>
+                    <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
+                    <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
+                    <a class="collapse-item" id="menu_widget" href="widgets.php">侧边栏</a>
                 </div>
             </div>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <li class="nav-item" id="menu_category_sys">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>系统</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="configure.php">设置</a>
-                    <a class="collapse-item" href="user.php">用户</a>
-                    <a class="collapse-item" href="data.php">数据</a>
-                    <a class="collapse-item" href="plugin.php">插件</a>
+                    <a class="collapse-item" id="menu_setting" href="configure.php">设置</a>
+                    <a class="collapse-item" id="menu_user" href="user.php">用户</a>
+                    <a class="collapse-item" id="menu_data" href="data.php">数据</a>
+                    <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
                 </div>
             </div>
         </li>
@@ -93,7 +93,6 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
