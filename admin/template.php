@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 if ($action == '') {
     $nonce_templet = Option::get('nonce_templet');
-    $nonceTplData = @implode('', @file(TPLS_PATH.$nonce_templet.'/header.php'));
+    $nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
     preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
     preg_match("/Version:(.*)/i", $nonceTplData, $tplVersion);
     preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
@@ -22,15 +22,15 @@ if ($action == '') {
 
     if (isset($tplAuthor[1])) {
         $tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
-    } else{
+    } else {
         $tplAuthor = '';
     }
     //模板列表
-    $handle = @opendir(TPLS_PATH) OR die('emlog template path error!');
+    $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
     $tpls = array();
     while ($file = @readdir($handle)) {
-        if (@file_exists(TPLS_PATH.$file.'/header.php')) {
-            $tplData = implode('', @file(TPLS_PATH.$file.'/header.php'));
+        if (@file_exists(TPLS_PATH . $file . '/header.php')) {
+            $tplData = implode('', @file(TPLS_PATH . $file . '/header.php'));
             preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
             preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
             $tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
@@ -51,8 +51,7 @@ if ($action == '') {
 }
 
 //使用模板
-if ($action == 'usetpl')
-{
+if ($action == 'usetpl') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
     $tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
@@ -64,14 +63,12 @@ if ($action == 'usetpl')
 }
 
 //删除模板
-if ($action == 'del')
-{
+if ($action == 'del') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
     $nonce_templet = Option::get('nonce_templet');
-    if ($tplName === $nonce_templet)
-    {
+    if ($tplName === $nonce_templet) {
         emMsg('您不能删除正在使用的模板');
     }
 
@@ -83,8 +80,7 @@ if ($action == 'del')
 }
 
 //安装模板
-if ($action == 'install')
-{
+if ($action == 'install') {
     include View::getView('header');
     require_once View::getView('template_install');
     include View::getView('footer');

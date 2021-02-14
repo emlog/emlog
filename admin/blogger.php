@@ -41,27 +41,27 @@ if ($action == 'update') {
         emDirect("./blogger.php?error_a=1");
     } else if ($email != '' && !checkMail($email)) {
         emDirect("./blogger.php?error_b=1");
-    } elseif (strlen($newpass)>0 && strlen($newpass) < 6) {
+    } elseif (strlen($newpass) > 0 && strlen($newpass) < 6) {
         emDirect("./blogger.php?error_c=1");
     } elseif (!empty($newpass) && $newpass != $repeatpass) {
         emDirect("./blogger.php?error_d=1");
-    } elseif($User_Model->isUserExist($login, UID)) {
+    } elseif ($User_Model->isUserExist($login, UID)) {
         emDirect("./blogger.php?error_e=1");
-    } elseif($User_Model->isNicknameExist($nickname, UID)) {
+    } elseif ($User_Model->isNicknameExist($nickname, UID)) {
         emDirect("./blogger.php?error_f=1");
     }
 
     if (!empty($newpass)) {
         $PHPASS = new PasswordHash(8, true);
         $newpass = $PHPASS->HashPassword($newpass);
-        $User_Model->updateUser(array('password'=>$newpass), UID);
+        $User_Model->updateUser(array('password' => $newpass), UID);
     }
 
     if (!empty($login)) {
-        $User_Model->updateUser(array('username'=>$login), UID);
+        $User_Model->updateUser(array('username' => $login), UID);
     }
 
-    $photo_type = array('gif', 'jpg', 'jpeg','png');
+    $photo_type = array('gif', 'jpg', 'jpeg', 'png');
     $usericon = $photo;
     if ($_FILES['photo']['size'] > 0) {
         $file_info = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $photo_type, true);
@@ -69,7 +69,7 @@ if ($action == 'update') {
             $usericon = !empty($file_info['thum_file']) ? $file_info['thum_file'] : $file_info['file_path'];
         }
     }
-    $User_Model->updateUser(array('nickname'=>$nickname, 'email'=>$email, 'photo'=>$usericon, 'description'=>$description), UID);
+    $User_Model->updateUser(array('nickname' => $nickname, 'email' => $email, 'photo' => $usericon, 'description' => $description), UID);
     $CACHE->updateCache('user');
     emDirect("./blogger.php?active_edit=1");
 }
@@ -77,7 +77,7 @@ if ($action == 'update') {
 if ($action == 'delicon') {
     LoginAuth::checkToken();
     $DB = Database::getInstance();
-    $query = $DB->query("select photo from ".DB_PREFIX."user where uid=" . UID);
+    $query = $DB->query("select photo from " . DB_PREFIX . "user where uid=" . UID);
     $icon = $DB->fetch_array($query);
     $icon_1 = $icon['photo'];
     if (file_exists($icon_1)) {
@@ -91,7 +91,7 @@ if ($action == 'delicon') {
         }
         unlink($icon_1);
     }
-    $DB->query("UPDATE ".DB_PREFIX."user SET photo='' where uid=" . UID);
+    $DB->query("UPDATE " . DB_PREFIX . "user SET photo='' where uid=" . UID);
     $CACHE->updateCache('user');
     emDirect("./blogger.php?active_del=1");
 }

@@ -5,8 +5,10 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Search_Controller {
-    function display($params) {
+class Search_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $options_cache = Option::getAll();
         extract($options_cache);
@@ -16,7 +18,7 @@ class Search_Controller {
         $keyword = addslashes(htmlspecialchars(urldecode($keyword)));
         $keyword = str_replace(array('%', '_'), array('\%', '\_'), $keyword);
 
-        
+
         $pageurl = '';
 
         $sqlSegment = "and title like '%{$keyword}%' order by date desc";
@@ -25,8 +27,8 @@ class Search_Controller {
         if ($page > $total_pages) {
             $page = $total_pages;
         }
-        
-        $pageurl .= BLOG_URL.'?keyword='.urlencode($keyword).'&page=';
+
+        $pageurl .= BLOG_URL . '?keyword=' . urlencode($keyword) . '&page=';
 
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);

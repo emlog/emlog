@@ -5,8 +5,10 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Tag_Controller {
-    function display($params) {
+class Tag_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $options_cache = Option::getAll();
         extract($options_cache);

@@ -9,7 +9,7 @@ require_once 'globals.php';
 //显示组件管理面板
 if ($action == '') {
     $wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
-    $widgets = Option::get('widgets'.$wgNum);
+    $widgets = Option::get('widgets' . $wgNum);
     $widgetTitle = Option::get('widget_title');
     $custom_widget = Option::get('custom_widget');
     $widgetTitle = array_map('htmlspecialchars', $widgetTitle);
@@ -37,13 +37,13 @@ if ($action == '') {
 //修改组件设置
 if ($action == 'setwg') {
     $widgetTitle = Option::get('widget_title'); //当前所有组件标题
-    $widget = isset($_GET['wg']) ? $_GET['wg'] : '';			//要修改的组件
-    $wgTitle = isset($_POST['title']) ? $_POST['title'] : '';	//新组件名
+    $widget = isset($_GET['wg']) ? $_GET['wg'] : '';            //要修改的组件
+    $wgTitle = isset($_POST['title']) ? $_POST['title'] : '';    //新组件名
 
     preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
     $realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
 
-    $widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle.' ('.$wgTitle.')' : $realWgTitle;
+    $widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle . ' (' . $wgTitle . ')' : $realWgTitle;
     $widgetTitle = addslashes(serialize($widgetTitle));
 
     Option::updateOption('widget_title', $widgetTitle);
@@ -89,17 +89,17 @@ if ($action == 'setwg') {
                     }
                 }
                 $custom_wg_index = $maxKey + 1;
-                $custom_wg_index = 'custom_wg_'.$custom_wg_index;
-                $custom_widget[$custom_wg_index] = array('title'=>$new_title,'content'=>$new_content);
+                $custom_wg_index = 'custom_wg_' . $custom_wg_index;
+                $custom_widget[$custom_wg_index] = array('title' => $new_title, 'content' => $new_content);
                 $custom_widget_str = addslashes(serialize($custom_widget));
                 Option::updateOption('custom_widget', $custom_widget_str);
             } elseif ($content) {
-                $custom_widget[$custom_wg_id] = array('title'=>$title,'content'=>$content);
+                $custom_widget[$custom_wg_id] = array('title' => $title, 'content' => $content);
                 $custom_widget_str = addslashes(serialize($custom_widget));
                 Option::updateOption('custom_widget', $custom_widget_str);
             } elseif ($rmwg) {
-                for ($i=1; $i<5; $i++) {
-                    $widgets = Option::get('widgets'.$i);
+                for ($i = 1; $i < 5; $i++) {
+                    $widgets = Option::get('widgets' . $i);
                     if (is_array($widgets) && !empty($widgets)) {
                         foreach ($widgets as $key => $val) {
                             if ($val == $rmwg) {

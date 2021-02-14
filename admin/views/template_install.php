@@ -1,9 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">安装模板</h1>
     <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">只支持zip压缩格式的模板包</span><?php endif; ?>
     <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">上传失败，模板目录(content/templates)不可写</span><?php endif; ?>

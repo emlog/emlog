@@ -2,7 +2,6 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">回复评论</h1>
     <form action="comment.php?action=doreply" method="post">
         <div class="item_edit">

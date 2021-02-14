@@ -107,7 +107,7 @@
             <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-primary"/></p>
         </div>
 </div>
-<!-- /.container-fluid -->
+
 <script>
     setTimeout(hideActived, 2600);
     $(document).ready(function () {

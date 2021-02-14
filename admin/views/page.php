@@ -4,9 +4,7 @@
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-        <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1><span id="msg_2"></span>
         <div class="row">
             <div class="col-xl-8">

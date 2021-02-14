@@ -1,10 +1,8 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!-- Begin Page Content -->
 <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">标签不能为空</span><?php endif; ?>
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">标签修改</h1>
     <form method="post" action="tag.php?action=update_tag" class="form-inline">
         <div class="form-group">

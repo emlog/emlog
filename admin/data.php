@@ -22,8 +22,8 @@ if ($action == 'bakstart') {
     $bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
     $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
-    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link','tag','user');
-    $bakfname = 'emlog_'. date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
+    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link', 'tag', 'user');
+    $bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
     $filename = '';
     $sqldump = '';
 
@@ -32,15 +32,15 @@ if ($action == 'bakstart') {
     }
 
     if (trim($sqldump)) {
-        $dumpfile = '#version:emlog '. Option::EMLOG_VERSION . "\n";
+        $dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";
         $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";
         $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
         $dumpfile .= $sqldump;
         $dumpfile .= "\n#the end of backup";
         if ($bakplace == 'local') {
-            $filename = 'emlog_'. date('Ymd_His');
+            $filename = 'emlog_' . date('Ymd_His');
             if ($zipbak == 'y') {
-                if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false ) {
+                if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
                     emDirect('./data.php?error_f=1');
                 }
                 header('Content-Type: application/zip');
@@ -54,29 +54,29 @@ if ($action == 'bakstart') {
                 header('Pragma: public');
             } else {
                 header('Pragma: no-cache');
-                header('Last-Modified: '. gmdate('D, d M Y H:i:s') . ' GMT');
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
             }
-            header('Expires: '. gmdate('D, d M Y H:i:s') . ' GMT');
+            header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
             echo $dumpfile;
         } else {
             if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
                 emDirect('./data.php?error_b=1');
             }
-            $filename = '../content/backup/'.$bakfname.'.sql';
+            $filename = '../content/backup/' . $bakfname . '.sql';
             @$fp = fopen($filename, 'w+');
-            if ($fp){
+            if ($fp) {
                 @flock($fp, 3);
-                if (@!fwrite($fp, $dumpfile)){
+                if (@!fwrite($fp, $dumpfile)) {
                     @fclose($fp);
                     emMsg('备份失败。备份目录(content/backup)不可写');
-                } else{
+                } else {
                     emDirect('./data.php?active_backup=1');
                 }
-            } else{
+            } else {
                 emMsg('创建备份文件失败。备份目录(content/backup)不可写');
             }
         }
-    } else{
+    } else {
         emMsg('数据表没有任何内容');
     }
 }
@@ -106,9 +106,9 @@ if ($action == 'import') {
         emMsg('非法提交的信息');
     }
     if ($sqlfile['error'] == 1) {
-        emMsg('附件大小超过系统'.ini_get('upload_max_filesize').'限制');
+        emMsg('附件大小超过系统' . ini_get('upload_max_filesize') . '限制');
     } elseif ($sqlfile['error'] > 1) {
-        emMsg('上传文件失败,错误码：'.$sqlfile['error']);
+        emMsg('上传文件失败,错误码：' . $sqlfile['error']);
     }
     if (getFileSuffix($sqlfile['name']) == 'zip') {
         $ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
@@ -124,7 +124,7 @@ if ($action == 'import') {
                 emDirect('./data.php?error_c=1');
                 break;
         }
-        $sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' .str_replace('.zip', '.sql', $sqlfile['name']);
+        $sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
         if (!file_exists($sqlfile['tmp_name'])) {
             emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
         }
@@ -140,7 +140,7 @@ if ($action == 'import') {
 if ($action == 'dell_all_bak') {
     if (!isset($_POST['bak'])) {
         emDirect('./data.php?error_a=1');
-    } else{
+    } else {
         foreach ($_POST['bak'] as $val) {
             unlink($val);
         }
@@ -150,10 +150,11 @@ if ($action == 'dell_all_bak') {
 
 /**
  * 检查备份文件头信息
- * 
+ *
  * @param file $sqlfile
  */
-function checkSqlFileInfo($sqlfile) {
+function checkSqlFileInfo($sqlfile)
+{
     $fp = @fopen($sqlfile, 'r');
     if (!$fp) {
         emMsg('导入失败！读取文件失败');
@@ -169,10 +170,10 @@ function checkSqlFileInfo($sqlfile) {
     if (empty($dumpinfo)) {
         emMsg('导入失败！该备份文件不是 emlog的备份文件!');
     }
-    if (!preg_match('/#version:emlog '. Option::EMLOG_VERSION .'/', $dumpinfo[0])) {
+    if (!preg_match('/#version:emlog ' . Option::EMLOG_VERSION . '/', $dumpinfo[0])) {
         emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
     }
-    if (preg_match('/#tableprefix:'. DB_PREFIX .'/', $dumpinfo[2]) === 0) {
+    if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
         emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不匹配' . $dumpinfo[2]);
     }
 }
@@ -182,28 +183,29 @@ function checkSqlFileInfo($sqlfile) {
  *
  * @param string $filename
  */
-function bakindata($filename) {
+function bakindata($filename)
+{
     $DB = Database::getInstance();
     $setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
     $sql = file($filename);
     if (isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
         $sql[0] = substr($sql[0], 3);
     }
-    array_unshift($sql,$setchar);
+    array_unshift($sql, $setchar);
     $query = '';
     foreach ($sql as $value) {
         $value = trim($value);
-        if (!$value || $value[0]=='#') {
+        if (!$value || $value[0] == '#') {
             continue;
         }
         if (preg_match("/\;$/i", $value)) {
             $query .= $value;
             if (preg_match("/^CREATE/i", $query)) {
-                $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is",'',$query);
+                $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
             }
             $DB->query($query);
             $query = '';
-        } else{
+        } else {
             $query .= $value;
         }
     }
@@ -215,12 +217,13 @@ function bakindata($filename) {
  * @param string $table 数据库表名
  * @return string
  */
-function dataBak($table) {
+function dataBak($table)
+{
     $DB = Database::getInstance();
     $sql = "DROP TABLE IF EXISTS $table;\n";
     $createtable = $DB->query("SHOW CREATE TABLE $table");
     $create = $DB->fetch_row($createtable);
-    $sql .= $create[1].";\n\n";
+    $sql .= $create[1] . ";\n\n";
 
     $rows = $DB->query("SELECT * FROM $table");
     $numfields = $DB->num_fields($rows);
@@ -229,7 +232,7 @@ function dataBak($table) {
         $comma = '';
         $sql .= "INSERT INTO $table VALUES(";
         for ($i = 0; $i < $numfields; $i++) {
-            $sql .= $comma."'" . $DB->escape_string($row[$i]) . "'";
+            $sql .= $comma . "'" . $DB->escape_string($row[$i]) . "'";
             $comma = ',';
         }
         $sql .= ");\n";
@@ -241,7 +244,8 @@ function dataBak($table) {
 /**
  * 检查文件是否包含BOM(byte-order mark)
  */
-function checkBOM($contents) {
+function checkBOM($contents)
+{
     $charset[1] = substr($contents, 0, 1);
     $charset[2] = substr($contents, 1, 1);
     $charset[3] = substr($contents, 2, 1);

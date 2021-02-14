@@ -11,11 +11,11 @@ if ($action == '') {
     extract($options_cache);
 
     $ex0 = $ex1 = $ex2 = $ex3 = '';
-    $t = 'ex'.$isurlrewrite;
+    $t = 'ex' . $isurlrewrite;
     $$t = 'checked="checked"';
 
     $opt0 = $opt1 = $opt2 = '';
-    $t = 'opt'.$log_title_style;
+    $t = 'opt' . $log_title_style;
     $$t = 'selected="selected"';
 
     $isalias = $isalias == 'y' ? 'checked="checked"' : '';
@@ -32,9 +32,9 @@ if ($action == 'update') {
     $permalink = isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0';
     $isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
     $isalias_html = isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n';
-    
+
     $getData = array(
-        'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title'])  : '',
+        'site_title' => isset($_POST['site_title']) ? addslashes($_POST['site_title']) : '',
         'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
         'site_key' => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
         'isurlrewrite' => isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0',
@@ -44,7 +44,7 @@ if ($action == 'update') {
     );
 
     if ($permalink != '0' || $isalias == 'y') {
-        $fp = @fopen(EMLOG_ROOT.'/.htaccess', 'w');
+        $fp = @fopen(EMLOG_ROOT . '/.htaccess', 'w');
         $t = parse_url(BLOG_URL);
         $rw_rule = '<IfModule mod_rewrite.c>
                        RewriteEngine on

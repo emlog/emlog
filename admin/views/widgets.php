@@ -264,7 +264,7 @@
     </div>
 </div>
 </div>
-<!-- /.container-fluid -->
+
 <script>
     $(document).ready(function () {
 

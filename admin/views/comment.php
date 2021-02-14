@@ -15,7 +15,6 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
     </div>
-
     <?php if ($hideCommNum > 0) :
     $hide_ = $hide_y = $hide_n = '';
     $a = "hide_$hide";
@@ -33,7 +32,6 @@
     </div>
     <?php endif; ?>
     <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <span class="badge badge-secondary">已收到的评论</span>
@@ -106,7 +104,6 @@
 </div>
 <script>
     setTimeout(hideActived, 2600);
-
     function commentact(act) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的评论');

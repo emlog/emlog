@@ -98,7 +98,7 @@
         </div>
     </form>
 </div>
-<!-- /.container-fluid -->
+
 <script>
     $("#plugin_new").css('display', $.cookie('em_plugin_new') ? $.cookie('em_plugin_new') : 'none');
     setTimeout(hideActived, 2600);

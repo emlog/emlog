@@ -21,9 +21,9 @@ if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $checked = isset($_GET['checked']) ? addslashes($_GET['checked']) : '';
 
-    $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ?  'DESC' : 'ASC';
-    $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ?  'DESC' : 'ASC';
-    $sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ?  'ASC' : 'DESC';
+    $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ? 'DESC' : 'ASC';
+    $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ? 'DESC' : 'ASC';
+    $sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ? 'ASC' : 'DESC';
 
     $sqlSegment = '';
     if ($tagId) {
@@ -53,7 +53,7 @@ if ($action == '') {
     if ($pid == 'draft') {
         $hide_stae = 'y';
         $sorturl = '&pid=draft';
-    } else{
+    } else {
         $hide_stae = 'n';
         $sorturl = '';
     }
@@ -65,14 +65,15 @@ if ($action == '') {
     $tags = $Tag_Model->getTag();
 
     $subPage = '';
-    foreach ($_GET as $key=>$val) {
+    foreach ($_GET as $key => $val) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
     }
-    $pageurl =  pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
+    $pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
 
     include View::getView('header');
     require_once View::getView('admin_log');
-    include View::getView('footer');View::output();
+    include View::getView('footer');
+    View::output();
 }
 
 //操作文章
@@ -95,55 +96,47 @@ if ($action == 'operate_log') {
 
     switch ($operate) {
         case 'del':
-            foreach ($logs as $val)
-            {
+            foreach ($logs as $val) {
                 doAction('before_del_log', $val);
                 $Log_Model->deleteLog($val);
                 doAction('del_log', $val);
             }
             $CACHE->updateCache();
-            if ($pid == 'draft')
-            {
+            if ($pid == 'draft') {
                 emDirect("./admin_log.php?pid=draft&active_del=1");
-            } else{
+            } else {
                 emDirect("./admin_log.php?active_del=1");
             }
             break;
         case 'top':
-            foreach ($logs as $val)
-            {
-                $Log_Model->updateLog(array('top'=>'y'), $val);
+            foreach ($logs as $val) {
+                $Log_Model->updateLog(array('top' => 'y'), $val);
             }
             emDirect("./admin_log.php?active_up=1");
             break;
         case 'sortop':
-            foreach ($logs as $val)
-            {
-                $Log_Model->updateLog(array('sortop'=>'y'), $val);
+            foreach ($logs as $val) {
+                $Log_Model->updateLog(array('sortop' => 'y'), $val);
             }
             emDirect("./admin_log.php?active_up=1");
             break;
         case 'notop':
-            foreach ($logs as $val)
-            {
-                $Log_Model->updateLog(array('top'=>'n', 'sortop'=>'n'), $val);
+            foreach ($logs as $val) {
+                $Log_Model->updateLog(array('top' => 'n', 'sortop' => 'n'), $val);
             }
             emDirect("./admin_log.php?active_down=1");
             break;
         case 'hide':
-            foreach ($logs as $val)
-            {
+            foreach ($logs as $val) {
                 $Log_Model->hideSwitch($val, 'y');
             }
             $CACHE->updateCache();
             emDirect("./admin_log.php?active_hide=1");
             break;
         case 'pub':
-            foreach ($logs as $val)
-            {
+            foreach ($logs as $val) {
                 $Log_Model->hideSwitch($val, 'n');
-                if (ROLE == ROLE_ADMIN)
-                {
+                if (ROLE == ROLE_ADMIN) {
                     $Log_Model->checkSwitch($val, 'y');
                 }
             }
@@ -151,38 +144,33 @@ if ($action == 'operate_log') {
             emDirect("./admin_log.php?pid=draft&active_post=1");
             break;
         case 'move':
-            foreach ($logs as $val)
-            {
-                $Log_Model->updateLog(array('sortid'=>$sort), $val);
+            foreach ($logs as $val) {
+                $Log_Model->updateLog(array('sortid' => $sort), $val);
             }
             $CACHE->updateCache(array('sort', 'logsort'));
             emDirect("./admin_log.php?active_move=1");
             break;
         case 'change_author':
-            if (ROLE != ROLE_ADMIN)
-            {
-                emMsg('权限不足！','./');
+            if (ROLE != ROLE_ADMIN) {
+                emMsg('权限不足！', './');
             }
-            foreach ($logs as $val)
-            {
-                $Log_Model->updateLog(array('author'=>$author), $val);
+            foreach ($logs as $val) {
+                $Log_Model->updateLog(array('author' => $author), $val);
             }
             $CACHE->updateCache('sta');
             emDirect("./admin_log.php?active_change_author=1");
             break;
         case 'check':
-            if (ROLE != ROLE_ADMIN)
-            {
-                emMsg('权限不足！','./');
+            if (ROLE != ROLE_ADMIN) {
+                emMsg('权限不足！', './');
             }
             $Log_Model->checkSwitch($gid, 'y');
             $CACHE->updateCache();
             emDirect("./admin_log.php?active_ck=1");
             break;
         case 'uncheck':
-            if (ROLE != ROLE_ADMIN)
-            {
-                emMsg('权限不足！','./');
+            if (ROLE != ROLE_ADMIN) {
+                emMsg('权限不足！', './');
             }
             $Log_Model->checkSwitch($gid, 'n');
             $CACHE->updateCache();
