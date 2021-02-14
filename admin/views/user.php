@@ -98,7 +98,7 @@
             <span id="alias_msg_hook"></span>
         </form>
 </div>
-<!-- /.container-fluid -->
+
 <script>
     $("#user_new").css('display', $.cookie('em_user_new') ? $.cookie('em_user_new') : 'none');
     $(document).ready(function () {

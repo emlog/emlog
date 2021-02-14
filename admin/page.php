@@ -13,9 +13,9 @@ if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
     $pages = $emPage->getLogsForAdmin('', '', $page, 'page');
-    $pageNum = $emPage->getLogNum('','','page', 1);
+    $pageNum = $emPage->getLogNum('', '', 'page', 1);
 
-    $pageurl =  pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
+    $pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
     include View::getView('header');
     require_once(View::getView('admin_page'));
@@ -30,14 +30,14 @@ if ($action == 'new') {
         'pageId' => -1,
         'title' => '',
         'content' => '',
-        'alias' => '', 
+        'alias' => '',
         'hide' => '',
         'template' => 'page',
         'is_allow_remark' => 'n',
         'att_frame_url' => 'attachment.php?action=selectFile',
     );
     extract($pageData);
-    
+
     include View::getView('header');
     require_once(View::getView('page'));
     include View::getView('footer');
@@ -83,22 +83,22 @@ if ($action == 'save' || $action == 'autosave') {
     }
 
     $logData = array(
-    'title'=>$title,
-    'content'=>$content,
-    'excerpt'=>'',
-    'date'=>$postTime,
-    'allow_remark'=>$allow_remark,
-    'hide'=>$ishide,
-    'alias'=>$alias,
-    'type'=>'page',
-    'template' => $template,
+        'title' => $title,
+        'content' => $content,
+        'excerpt' => '',
+        'date' => $postTime,
+        'allow_remark' => $allow_remark,
+        'hide' => $ishide,
+        'alias' => $alias,
+        'type' => 'page',
+        'template' => $template,
     );
 
     $directUrl = '';
     if ($pageId > 0) {
         $emPage->updateLog($logData, $pageId);
         $directUrl = './page.php?active_pubpage=1';
-    } else{
+    } else {
         $pageId = $emPage->addlog($logData);
         $directUrl = './page.php?active_hide_n=1';
     }
@@ -145,7 +145,7 @@ if ($action == 'operate_page') {
             $navibar = addslashes(serialize($navibar));
             Option::updateOption('navibar', $navibar);
             $CACHE->updateCache(array('options', 'sta', 'comment'));
-            emDirect("./page.php?active_hide_".$ishide."=1");
+            emDirect("./page.php?active_hide_" . $ishide . "=1");
             break;
     }
 }

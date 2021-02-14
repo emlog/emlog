@@ -43,7 +43,7 @@
     </form>
     `
 </div>
-<!-- /.container-fluid -->
+
 <script>
     setTimeout(hideActived, 2600);
     $("#menu_user").addClass('active');

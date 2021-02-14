@@ -2,7 +2,6 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">修改导航</h1>
     <form action="navbar.php?action=update" method="post" id="sort_new" style="margin-top: 30px;">
         <div class="form-group">

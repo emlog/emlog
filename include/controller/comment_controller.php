@@ -5,8 +5,10 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Comment_Controller {
-    function addComment($params) {
+class Comment_Controller
+{
+    function addComment($params)
+    {
         $name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
         $content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';
         $mail = isset($_POST['commail']) ? addslashes(trim($_POST['commail'])) : '';
@@ -23,15 +25,15 @@ class Comment_Controller {
             $url = addslashes(BLOG_URL);
         }
 
-        if ($url && strncasecmp($url,'http',4)) {
-            $url = 'http://'.$url;
+        if ($url && strncasecmp($url, 'http', 4)) {
+            $url = 'http://' . $url;
         }
 
         doAction('comment_post');
 
         $Comment_Model = new Comment_Model();
-        $Comment_Model->setCommentCookie($name,$mail,$url);
-        if($Comment_Model->isLogCanComment($blogId) === false) {
+        $Comment_Model->setCommentCookie($name, $mail, $url);
+        if ($Comment_Model->isLogCanComment($blogId) === false) {
             emMsg('评论失败：该文章已关闭评论');
         } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
             emMsg('评论失败：已存在相同内容评论');
@@ -46,7 +48,7 @@ class Comment_Controller {
         } elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
             emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
         } elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
-            emMsg('评论失败：主页地址不符合规范','javascript:history.back(-1);');
+            emMsg('评论失败：主页地址不符合规范', 'javascript:history.back(-1);');
         } elseif (empty($content)) {
             emMsg('评论失败：请填写评论内容');
         } elseif (strlen($content) > 8000) {

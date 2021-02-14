@@ -5,18 +5,20 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Record_Controller {
-    function display($params) {
+class Record_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $options_cache = Option::getAll();
         extract($options_cache);
 
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
-        $record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '' ;
+        $record = isset($params[1]) && $params[1] == 'record' ? intval($params[2]) : '';
 
         $GLOBALS['record'] = $record;//for sidebar calendar
 
-        
+
         $pageurl = '';
 
         //page meta
@@ -32,13 +34,13 @@ class Record_Controller {
         }
         $sqlSegment = "and date>=$record_stime and date<$record_etime order by date desc";
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
-        
+
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
             $page = $total_pages;
         }
         $start_limit = ($page - 1) * $index_lognum;
-        
+
         $pageurl .= Url::record($record, 'page');
 
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);

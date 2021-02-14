@@ -223,7 +223,7 @@
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->
+
 <script>
     $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
     $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');

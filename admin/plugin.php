@@ -22,7 +22,7 @@ if ($action == '' && !$plugin) {
 if ($action == 'active') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
-    if ($Plugin_Model->activePlugin($plugin) ) {
+    if ($Plugin_Model->activePlugin($plugin)) {
         $CACHE->updateCache('options');
         emDirect("./plugin.php?active=1");
     } else {
@@ -53,10 +53,10 @@ if ($action == 'setting') {
         require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
         if (false === plugin_setting()) {
             emDirect("./plugin.php?plugin={$plugin}&error=1");
-        } else{
+        } else {
             emDirect("./plugin.php?plugin={$plugin}&setting=1");
         }
-    } else{
+    } else {
         emDirect("./plugin.php?plugin={$plugin}&error=1");
     }
 }

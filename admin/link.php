@@ -16,13 +16,13 @@ if ($action == '') {
     View::output();
 }
 
-if ($action== 'link_taxis') {
+if ($action == 'link_taxis') {
     $link = isset($_POST['link']) ? $_POST['link'] : '';
     if (!empty($link)) {
-        foreach ($link as $key=>$value) {
+        foreach ($link as $key => $value) {
             $value = intval($value);
             $key = intval($key);
-            $Link_Model->updateLink(array('taxis'=>$value), $key);
+            $Link_Model->updateLink(array('taxis' => $value), $key);
         }
         $CACHE->updateCache('link');
         emDirect("./link.php?active_taxis=1");
@@ -31,24 +31,24 @@ if ($action== 'link_taxis') {
     }
 }
 
-if ($action== 'addlink') {
+if ($action == 'addlink') {
     $taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
     $sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
     $siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
     $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
-    if ($sitename =='' || $siteurl =='') {
+    if ($sitename == '' || $siteurl == '') {
         emDirect("./link.php?error_a=1");
     }
     if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
-        $siteurl = 'http://'.$siteurl;
+        $siteurl = 'http://' . $siteurl;
     }
     $Link_Model->addLink($sitename, $siteurl, $description, $taxis);
     $CACHE->updateCache('link');
     emDirect("./link.php?active_add=1");
 }
 
-if ($action== 'mod_link') {
+if ($action == 'mod_link') {
     $linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 
     $linkData = $Link_Model->getOneLink($linkId);
@@ -56,20 +56,21 @@ if ($action== 'mod_link') {
 
     include View::getView('header');
     require_once(View::getView('linkedit'));
-    include View::getView('footer');View::output();
+    include View::getView('footer');
+    View::output();
 }
 
-if ($action=='update_link') {
+if ($action == 'update_link') {
     $sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
     $siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
     $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
     $linkId = isset($_POST['linkid']) ? intval($_POST['linkid']) : '';
 
     if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
-        $siteurl = 'http://'.$siteurl;
+        $siteurl = 'http://' . $siteurl;
     }
 
-    $Link_Model->updateLink(array('sitename'=>$sitename, 'siteurl'=>$siteurl, 'description'=>$description), $linkId);
+    $Link_Model->updateLink(array('sitename' => $sitename, 'siteurl' => $siteurl, 'description' => $description), $linkId);
 
     $CACHE->updateCache('link');
     emDirect("./link.php?active_edit=1");
@@ -86,7 +87,7 @@ if ($action == 'dellink') {
 if ($action == 'hide') {
     $linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 
-    $Link_Model->updateLink(array('hide'=>'y'), $linkId);
+    $Link_Model->updateLink(array('hide' => 'y'), $linkId);
 
     $CACHE->updateCache('link');
     emDirect('./link.php');
@@ -95,7 +96,7 @@ if ($action == 'hide') {
 if ($action == 'show') {
     $linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
 
-    $Link_Model->updateLink(array('hide'=>'n'), $linkId);
+    $Link_Model->updateLink(array('hide' => 'n'), $linkId);
 
     $CACHE->updateCache('link');
     emDirect('./link.php');

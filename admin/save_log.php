@@ -43,8 +43,8 @@ $logData = array(
     'author' => $author,
     'sortid' => $sort,
     'date' => $postTime,
-    'top '=> $top,
-    'sortop '=> $sortop,
+    'top ' => $top,
+    'sortop ' => $sortop,
     'allow_remark' => $allow_remark,
     'hide' => $ishide,
     'checked' => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',
@@ -55,7 +55,7 @@ if ($blogid > 0) {//自动保存草稿后,添加变为更新
     $Log_Model->updateLog($logData, $blogid);
     $Tag_Model->updateTag($tagstring, $blogid);
     $dftnum = '';
-} else{
+} else {
     if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
         $blogid = $Log_Model->addlog($logData);
         $Tag_Model->addTag($tagstring, $blogid);

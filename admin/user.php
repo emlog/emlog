@@ -13,7 +13,7 @@ if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $users = $User_Model->getUsers($page);
     $usernum = $User_Model->getUserNum();
-    $pageurl =  pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
+    $pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 
     include View::getView('header');
     require_once View::getView('user');
@@ -21,7 +21,7 @@ if ($action == '') {
     View::output();
 }
 
-if ($action== 'new') {
+if ($action == 'new') {
     $login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
     $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
     $password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
@@ -30,7 +30,7 @@ if ($action== 'new') {
 
     LoginAuth::checkToken();
 
-    if($role == ROLE_ADMIN) {
+    if ($role == ROLE_ADMIN) {
         $ischeck = 'n';
     }
 
@@ -51,11 +51,11 @@ if ($action== 'new') {
     $password = $PHPASS->HashPassword($password);
 
     $User_Model->addUser($login, $password, $role, $ischeck);
-    $CACHE->updateCache(array('sta','user'));
+    $CACHE->updateCache(array('sta', 'user'));
     emDirect('./user.php?active_add=1');
 }
 
-if ($action== 'edit') {
+if ($action == 'edit') {
     $uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
 
     $data = $User_Model->getOneUser($uid);
@@ -75,10 +75,11 @@ if ($action== 'edit') {
 
     include View::getView('header');
     require_once View::getView('useredit');
-    include View::getView('footer');View::output();
+    include View::getView('footer');
+    View::output();
 }
 
-if ($action=='update') {
+if ($action == 'update') {
     $login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
     $nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
     $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
@@ -91,7 +92,7 @@ if ($action=='update') {
 
     LoginAuth::checkToken();
 
-    if($role == ROLE_ADMIN) {
+    if ($role == ROLE_ADMIN) {
         $ischeck = 'n';
     }
 
@@ -116,12 +117,12 @@ if ($action=='update') {
     }
 
     $userData = array('username' => $login,
-                        'nickname' => $nickname,
-                        'email' => $email,
-                        'description' => $description,
-                        'role' => $role,
-                        'ischeck' => $ischeck,
-                        );
+        'nickname' => $nickname,
+        'email' => $email,
+        'description' => $description,
+        'role' => $role,
+        'ischeck' => $ischeck,
+    );
 
     if (!empty($password)) {
         $PHPASS = new PasswordHash(8, true);
@@ -134,7 +135,7 @@ if ($action=='update') {
     emDirect('./user.php?active_update=1');
 }
 
-if ($action== 'del') {
+if ($action == 'del') {
     LoginAuth::checkToken();
     $users = $User_Model->getUsers();
     $uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
@@ -149,6 +150,6 @@ if ($action== 'del') {
     }
 
     $User_Model->deleteUser($uid);
-    $CACHE->updateCache(array('sta','user'));
+    $CACHE->updateCache(array('sta', 'user'));
     emDirect('./user.php?active_del=1');
 }

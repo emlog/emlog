@@ -1,9 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
     <span id="msg_2"></span>
     <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -76,7 +74,7 @@
                                 <?php
                                 if ($tags) {
                                     foreach ($tags as $val) {
-                                        echo " <a href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+                                        echo " <a class='badge badge-pill badge-success' href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
                                     }
                                 } else {
                                     echo '还没有设置过标签！';
@@ -132,7 +130,7 @@
         </div>
     </form>
 </div>
-<!-- /.container-fluid -->
+
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>

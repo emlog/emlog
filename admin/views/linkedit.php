@@ -1,9 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">链接编辑</h1>
     <form action="link.php?action=update_link" method="post">
         <div class="item_edit">

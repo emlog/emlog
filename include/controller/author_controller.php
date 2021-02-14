@@ -5,17 +5,19 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Author_Controller {
-    function display($params) {
+class Author_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = Option::getAll();
         extract($options_cache);
 
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
-        $author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '' ;
+        $author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '';
 
-        
+
         $pageurl = '';
 
         $user_cache = $CACHE->readCache('user');
@@ -30,7 +32,7 @@ class Author_Controller {
         $sqlSegment = "and author=$author order by date desc";
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache[$author]['lognum'];
-        
+
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
             $page = $total_pages;

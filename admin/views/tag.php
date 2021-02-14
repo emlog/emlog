@@ -20,11 +20,9 @@
                         <li>
                             <?php
                             foreach ($tags as $key => $value): ?>
-                                <a href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>">
-                                    <span class="badge badge-pill badge-primary">
-                                        <input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" class="ids" value="1">
-                                        <?php echo $value['tagname']; ?>
-                                    </span>
+                                <a class="badge badge-pill badge-primary" href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>">
+                                    <input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" class="ids" value="1">
+                                    <?php echo $value['tagname']; ?>
                                 </a>
                             <?php endforeach; ?>
                         </li>
@@ -41,7 +39,6 @@
         </div>
     </form>
 </div>
-<!-- /.container-fluid -->
 <script>
     selectAllToggle();
 

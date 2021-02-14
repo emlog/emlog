@@ -242,7 +242,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         </div>
     </form>
 </div>
-<!-- /.container-fluid -->
 <script>
     setTimeout(hideActived, 2600);
 

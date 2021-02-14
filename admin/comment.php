@@ -15,12 +15,12 @@ if ($action == '') {
 
     $addUrl_1 = $blogId ? "gid={$blogId}&" : '';
     $addUrl_2 = $hide ? "hide=$hide&" : '';
-    $addUrl = $addUrl_1.$addUrl_2;
+    $addUrl = $addUrl_1 . $addUrl_2;
 
     $comment = $Comment_Model->getComments(1, $blogId, $hide, $page);
     $cmnum = $Comment_Model->getCommentNum($blogId, $hide);
     $hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
-    $pageurl =  pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
+    $pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
 
     include View::getView('header');
     require_once(View::getView('comment'));
@@ -28,41 +28,41 @@ if ($action == '') {
     View::output();
 }
 
-if ($action== 'del') {
+if ($action == 'del') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
 
     LoginAuth::checkToken();
 
     $Comment_Model->delComment($id);
-    $CACHE->updateCache(array('sta','comment'));
+    $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_del=1");
 }
 
-if ($action== 'delbyip') {
+if ($action == 'delbyip') {
     LoginAuth::checkToken();
     if (ROLE != ROLE_ADMIN) {
         emMsg('权限不足！', './');
     }
     $ip = isset($_GET['ip']) ? $_GET['ip'] : '';
     $Comment_Model->delCommentByIp($ip);
-    $CACHE->updateCache(array('sta','comment'));
+    $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_del=1");
 }
 
-if ($action=='hide') {
+if ($action == 'hide') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
     $Comment_Model->hideComment($id);
-    $CACHE->updateCache(array('sta','comment'));
+    $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_hide=1");
 }
-if ($action=='show') {
+if ($action == 'show') {
     $id = isset($_GET['id']) ? intval($_GET['id']) : '';
     $Comment_Model->showComment($id);
-    $CACHE->updateCache(array('sta','comment'));
+    $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_show=1");
 }
 
-if ($action== 'admin_all_coms') {
+if ($action == 'admin_all_coms') {
     $operate = isset($_POST['operate']) ? $_POST['operate'] : '';
     $comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : array();
 
@@ -74,12 +74,12 @@ if ($action== 'admin_all_coms') {
     }
     if ($operate == 'del') {
         $Comment_Model->batchComment('delcom', $comments);
-        $CACHE->updateCache(array('sta','comment'));
+        $CACHE->updateCache(array('sta', 'comment'));
         emDirect("./comment.php?active_del=1");
     }
     if ($operate == 'hide') {
         $Comment_Model->batchComment('hidecom', $comments);
-        $CACHE->updateCache(array('sta','comment'));
+        $CACHE->updateCache(array('sta', 'comment'));
         emDirect("./comment.php?active_hide=1");
     }
     if ($operate == 'pub') {
@@ -89,7 +89,7 @@ if ($action== 'admin_all_coms') {
     }
 }
 
-if ($action== 'reply_comment') {
+if ($action == 'reply_comment') {
     include View::getView('header');
     $commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
     $commentArray = $Comment_Model->getOneComment($commentId);
@@ -100,7 +100,7 @@ if ($action== 'reply_comment') {
     View::output();
 }
 
-if ($action== 'edit_comment') {
+if ($action == 'edit_comment') {
     $commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
     $commentArray = $Comment_Model->getOneComment($commentId, FALSE);
     if (!$commentArray) {
@@ -114,7 +114,7 @@ if ($action== 'edit_comment') {
     View::output();
 }
 
-if ($action=='doreply') {
+if ($action == 'doreply') {
     $reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
     $commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
     $blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
@@ -136,7 +136,7 @@ if ($action=='doreply') {
     emDirect("./comment.php?active_rep=1");
 }
 
-if ($action=='doedit') {
+if ($action == 'doedit') {
     $name = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
     $mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
     $url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';

@@ -5,8 +5,10 @@
  * @copyright (c) Emlog All Rights Reserved
  */
 
-class Sort_Controller {
-    function display($params) {
+class Sort_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = Option::getAll();
@@ -22,7 +24,7 @@ class Sort_Controller {
                 $sort_cache = $CACHE->readCache('sort');
                 foreach ($sort_cache as $key => $value) {
                     $alias = addslashes(urldecode(trim($params[2])));
-                    if (array_search($alias, $value, true)){
+                    if (array_search($alias, $value, true)) {
                         $sortid = $key;
                         break;
                     }
@@ -30,7 +32,7 @@ class Sort_Controller {
             }
         }
 
-        
+
         $pageurl = '';
 
         $sort_cache = $CACHE->readCache('sort');
@@ -50,7 +52,7 @@ class Sort_Controller {
             $sortids = array_merge(array($sortid), $sort['children']);
             $sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
         }
-        $sqlSegment .=  " order by sortop desc, date desc";
+        $sqlSegment .= " order by sortop desc, date desc";
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
