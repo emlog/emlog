@@ -11,7 +11,9 @@
 <?php if (isset($_GET['error_del_a'])): ?><span class="alert alert-danger">不能删除创始人</span><?php endif; ?>
 <?php if (isset($_GET['error_del_b'])): ?><span class="alert alert-danger">不能修改创始人信息</span><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">用户管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
+    </div>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">

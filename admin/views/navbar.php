@@ -12,7 +12,9 @@
 <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">请选择要添加的页面</span><?php endif; ?>
 <?php if (isset($_GET['error_f'])): ?><span class="alert alert-danger">导航地址格式错误(需包含http等前缀)</span><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">导航管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">导航管理</h1>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold">已创建的导航链接</h6>

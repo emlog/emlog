@@ -14,7 +14,9 @@
 <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">安装失败，插件安装包不符合标准</span><?php endif; ?>
 <?php if (isset($_GET['error_f'])): ?><span class="alert alert-danger">只支持zip压缩格式的插件包</span><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">插件管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">插件管理</h1>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold">插件管理</h6>

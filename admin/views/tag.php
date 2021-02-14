@@ -5,7 +5,9 @@
 <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改标签成功</span><?php endif; ?>
 <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">请选择要删除的标签</span><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">标签管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">标签管理</h1>
+    </div>
     <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
         <div class="card shadow mb-4">
             <div class="card-header py-3">

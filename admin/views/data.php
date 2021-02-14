@@ -22,7 +22,9 @@
 <?php if (isset($_GET['active_mc'])): ?>
     <div class="alert alert-success">缓存更新成功</div><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">数据库备份</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">数据库备份</h1>
+    </div>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">

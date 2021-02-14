@@ -20,12 +20,11 @@
     <div class="alert alert-danger">别名不能重复</div><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">分类管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">分类管理</h1>
+    </div>
     <form method="post" action="sort.php?action=taxis">
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold">已创建的分类</h6>
@@ -151,7 +150,6 @@
         <span id="alias_msg_hook"></span>
     </form>
 </div>
-<!-- /.container-fluid -->
 <script>
     $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
     $("#alias").keyup(function () {
