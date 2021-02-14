@@ -14,7 +14,9 @@
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">链接管理</h1>
+    </div>
     <p class="mb-4">友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。</p>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">

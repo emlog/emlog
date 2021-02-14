@@ -12,22 +12,25 @@
 <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">内容过长</span><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">评论内容不能为空</span><?php endif; ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">评论管理</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
+    </div>
+
     <?php if ($hideCommNum > 0) :
-        $hide_ = $hide_y = $hide_n = '';
-        $a = "hide_$hide";
-        $$a = "class=\"filter\"";
-        ?>
-        <div class="filters">
-            <span <?php echo $hide_; ?>><a href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></span>
-            <span <?php echo $hide_y; ?>><a href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审
-<?php
-$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
-?>
-</a></span>
-            <span <?php echo $hide_n; ?>><a href="comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></span>
-        </div>
+    $hide_ = $hide_y = $hide_n = '';
+    $a = "hide_$hide";
+    $$a = "class=\"filter\"";
+    ?>
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link <?php if ($hide == '') {echo 'active';} ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
+            <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {echo 'active';} ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
+                    $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+                    if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
+                    ?></a></li>
+            <li class="nav-item"><a class="nav-link <?php if ($hide == 'n') {echo 'active';} ?>" href="./comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></li>
+        </ul>
+    </div>
     <?php endif; ?>
     <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
         <!-- DataTales Example -->
