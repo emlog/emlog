@@ -15,7 +15,7 @@
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">用户管理</h6>
+                <h6 class="m-0 font-weight-bold">已创建的用户 (<?php echo $usernum; ?>)</h6>
             </div>
             <div class="card-body">
                 <form action="comment.php?action=admin_all_coms" method="post" name="form" id="form">
@@ -68,7 +68,7 @@
                 </form>
             </div>
         </div>
-        <div class="page"><?php echo $pageurl; ?> (有<?php echo $usernum; ?>位用户)</div>
+        <div class="page"><?php echo $pageurl; ?></div>
         <div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);"
                                                   class="btn btn-success">添加用户+</a></div>
         <form action="user.php?action=new" method="post">

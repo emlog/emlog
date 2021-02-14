@@ -15,7 +15,7 @@
     <h1 class="h3 mb-2 text-gray-800">导航管理</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">导航管理</h6>
+            <h6 class="m-0 font-weight-bold">已创建的导航链接</h6>
         </div>
         <div class="card-body">
             <form action="navbar.php?action=taxis" method="post">
@@ -123,7 +123,7 @@
     <div class="card-deck">
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">添加自定义导航</h6>
+                <h6 class="m-0 font-weight-bold">添加自定义导航</h6>
             </div>
             <div class="card-body">
                 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
@@ -158,7 +158,7 @@
         </div>
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">添加分类到导航</h6>
+                <h6 class="m-0 font-weight-bold">添加分类到导航</h6>
             </div>
             <div class="card-body">
                 <form action="navbar.php?action=add_sort" method="post" name="navi" id="navi">
@@ -199,7 +199,7 @@
         </div>
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">添加页面到导航</h6>
+                <h6 class="m-0 font-weight-bold">添加页面到导航</h6>
             </div>
             <div class="card-body">
                 <form action="navbar.php?action=add_page" method="post" name="navi" id="navi">

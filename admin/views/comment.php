@@ -11,9 +11,7 @@
 <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">回复内容不能为空</span><?php endif; ?>
 <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">内容过长</span><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">评论内容不能为空</span><?php endif; ?>
-<!-- Begin Page Content -->
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">评论管理</h1>
     <?php if ($hideCommNum > 0) :
         $hide_ = $hide_y = $hide_n = '';
@@ -35,7 +33,7 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">评论管理</h6>
+                <span class="badge badge-secondary">已收到的评论</span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -83,7 +81,7 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
                                             class="care">(X)</a><?php endif; ?></td>
                                     <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
                                 </tr>
-                            <?php endforeach; else:?>
+                            <?php endforeach; else: ?>
                             <tr>
                                 <td class="tdcenter" colspan="4">还没有收到评论</td>
                             </tr>
@@ -91,20 +89,18 @@ if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
                         </tbody>
                     </table>
                 </div>
+                <div class="list_footer">
+                    <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+                    <a href="javascript:commentact('del');" class="care">删除</a>
+                    <a href="javascript:commentact('hide');">隐藏</a>
+                    <a href="javascript:commentact('pub');">审核</a>
+                    <input name="operate" id="operate" value="" type="hidden"/>
+                </div>
+                <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div>
             </div>
         </div>
-
-        <div class="list_footer">
-            <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-            <a href="javascript:commentact('del');" class="care">删除</a>
-            <a href="javascript:commentact('hide');">隐藏</a>
-            <a href="javascript:commentact('pub');">审核</a>
-            <input name="operate" id="operate" value="" type="hidden"/>
-        </div>
-        <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div>
     </form>
 </div>
-<!-- /.container-fluid -->
 <script>
     setTimeout(hideActived, 2600);
 

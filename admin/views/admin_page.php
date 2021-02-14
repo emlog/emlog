@@ -11,7 +11,7 @@
     <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">页面管理</h6>
+                <span class="badge badge-secondary">已创建的页面 <?php echo $pageNum; ?></span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -54,16 +54,16 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="list_footer">
+                    <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+                    <a href="javascript:pageact('del');" class="care">删除</a> |
+                    <a href="javascript:pageact('hide');">转为草稿</a> |
+                    <a href="javascript:pageact('pub');">发布</a>
+                </div>
+                <div class="page"><?php echo $pageurl; ?></div>
             </div>
         </div>
     </form>
-    <div class="list_footer">
-    <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-    <a href="javascript:pageact('del');" class="care">删除</a> | 
-    <a href="javascript:pageact('hide');">转为草稿</a> | 
-    <a href="javascript:pageact('pub');">发布</a>
-    </div>
-    <div class="page"><?php echo $pageurl; ?> (有<?php echo $pageNum; ?>个页面)</div>
 </div>
 <!-- /.container-fluid -->
 <script>
