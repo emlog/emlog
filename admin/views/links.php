@@ -15,10 +15,11 @@
     <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">链接管理</h1>
+    <p class="mb-4">友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。</p>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">链接管理</h6>
+                <h6 class="m-0 font-weight-bold">已创建的链接</h6>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%"

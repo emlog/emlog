@@ -17,7 +17,7 @@
     <h1 class="h3 mb-2 text-gray-800">插件管理</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">插件管理</h6>
+            <h6 class="m-0 font-weight-bold">插件管理</h6>
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered table-hover dataTable no-footer">

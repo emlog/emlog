@@ -26,7 +26,7 @@
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">数据库备份</h6>
+                <h6 class="m-0 font-weight-bold">服务器空间上的备份</h6>
             </div>
             <div class="card-body">
                 <form method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
