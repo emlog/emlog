@@ -15,26 +15,26 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
     </div>
-    <?php if ($hideCommNum > 0) :
-    $hide_ = $hide_y = $hide_n = '';
-    $a = "hide_$hide";
-    $$a = "class=\"filter\"";
-    ?>
-    <div class="panel-heading">
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link <?php if ($hide == '') {echo 'active';} ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
-            <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {echo 'active';} ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
-                    $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-                    if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
-                    ?></a></li>
-            <li class="nav-item"><a class="nav-link <?php if ($hide == 'n') {echo 'active';} ?>" href="./comment.php?hide=n&<?php echo $addUrl_1 ?>">已审</a></li>
-        </ul>
-    </div>
+    <?php if ($hideCommNum > 0) :?>
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
+                        echo 'active';
+                    } ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
+                <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
+                        echo 'active';
+                    } ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
+                        $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+                        if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
+                        ?></a>
+                </li>
+            </ul>
+        </div>
     <?php endif; ?>
     <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <span class="badge badge-secondary">已收到的评论</span>
+                <span class="badge badge-secondary">有<?php echo $cmnum; ?>条评论</span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -53,7 +53,7 @@
                             foreach ($comment as $key => $value):
                                 $ishide = $value['hide'] == 'y' ? '<font color="red">[待审]</font>' : '';
                                 $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-                                $ip = !empty($value['ip']) ? "<br />来自：{$value['ip']}" : '';
+                                $ip = !empty($value['ip']) ? "<br />来自IP：{$value['ip']}" : '';
                                 $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
                                 $value['content'] = str_replace('<br>', ' ', $value['content']);
                                 $sub_content = subString($value['content'], 0, 50);
@@ -77,9 +77,11 @@
                         </span>
                                     </td>
                                     <td><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
-                                        <?php if (ROLE == ROLE_ADMIN): ?><a
-                                            href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" title="删除来自该IP的所有评论"
-                                            class="care">(X)</a><?php endif; ?></td>
+                                        <?php if (ROLE == ROLE_ADMIN): ?>
+                                            <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+                                               class="badge badge-pill badge-danger">按IP删除</a>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
                                 </tr>
                             <?php endforeach; else: ?>
@@ -97,13 +99,14 @@
                     <a href="javascript:commentact('pub');">审核</a>
                     <input name="operate" id="operate" value="" type="hidden"/>
                 </div>
-                <div class="page"><?php echo $pageurl; ?> (有<?php echo $cmnum; ?>条评论)</div>
+                <div class="page"><?php echo $pageurl; ?></div>
             </div>
         </div>
     </form>
 </div>
 <script>
     setTimeout(hideActived, 2600);
+
     function commentact(act) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的评论');

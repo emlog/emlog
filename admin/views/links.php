@@ -103,7 +103,7 @@
     </form>
 </div>
 <script>
-    $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
+    // $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
     setTimeout(hideActived, 2600);
     $("#menu_link").addClass('active');
 </script>

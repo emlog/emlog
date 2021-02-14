@@ -28,6 +28,6 @@
 <script>
     setTimeout(hideActived, 2600);
     $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('in');
+    $("#menu_view").addClass('show');
     $("#menu_tpl").addClass('active');
 </script>

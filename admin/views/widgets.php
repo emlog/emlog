@@ -304,7 +304,8 @@
         //自定义组件记忆
         $("#custom_text_new").css('display', $.cookie('em_custom_text_new') ? $.cookie('em_custom_text_new') : 'none');
 
-        $("#menu_view").addClass('in');
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
         $("#menu_widget").addClass('active');
     });
 </script>

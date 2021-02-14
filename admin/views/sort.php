@@ -151,11 +151,10 @@
     </form>
 </div>
 <script>
-    $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
-    $("#alias").keyup(function () {
+    // $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
+    $("#alias").keyup(function() {
         checksortalias();
     });
-
     function issortalias(a) {
         var reg1 = /^[\w-]*$/;
         var reg2 = /^[\d]+$/;
@@ -169,7 +168,6 @@
             return 0;
         }
     }
-
     function checksortalias() {
         var a = $.trim($("#alias").val());
         if (1 == issortalias(a)) {
@@ -187,4 +185,7 @@
             $("#addsort").attr("disabled", false);
         }
     }
+    $(document).ready(function() {
+        $("#menu_sort").addClass('active');
+    });
 </script>
