@@ -40,6 +40,7 @@
 </div>
 
 <script>
+    $("#menu_home").addClass('active');
     $(document).ready(function () {
         $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
         $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",

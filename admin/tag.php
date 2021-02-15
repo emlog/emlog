@@ -32,7 +32,7 @@ if ($action == 'update_tag') {
     $tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
 
     if (empty($tagName)) {
-        emDirect("tag.php?action=mod_tag&tid=$tagId&error_a=1");
+        emDirect("tag.php?error_a=1");
     }
 
     $Tag_Model->updateTagName($tagId, $tagName);
@@ -40,18 +40,18 @@ if ($action == 'update_tag') {
     emDirect("./tag.php?active_edit=1");
 }
 
-//批量删除标签
-if ($action == 'dell_all_tag') {
-    $tags = isset($_POST['tag']) ? $_POST['tag'] : '';
+//删除标签
+if ($action == 'del_tag') {
+    $tid = isset($_GET['tid']) ? $_GET['tid'] : '';
 
     LoginAuth::checkToken();
 
-    if (!$tags) {
+    if (!$tid) {
         emDirect("./tag.php?error_a=1");
     }
-    foreach ($tags as $key => $value) {
-        $Tag_Model->deleteTag($key);
-    }
+
+    $Tag_Model->deleteTag($tid);
+
     $CACHE->updateCache(array('tags', 'logtags'));
     emDirect("./tag.php?active_del=1");
 }

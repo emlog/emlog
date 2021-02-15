@@ -23,7 +23,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
-        <a href="./page.php?action=new" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-edit"></i> 写新文章</a>
+        <a href="./write_log.php" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-edit"></i> 写新文章</a>
     </div>
     <div class="panel-heading">
         <ul class="nav nav-tabs">

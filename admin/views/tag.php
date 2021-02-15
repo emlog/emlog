@@ -8,51 +8,69 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">标签管理</h1>
     </div>
-    <form action="tag.php?action=dell_all_tag" method="post" name="form_tag" id="form_tag">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <span class="badge badge-secondary">已创建的标签</span>
-            </div>
-            <div clas
-            <div class="card-body">
-                <div>
-                    <?php if ($tags): ?>
-                        <li>
-                            <?php
-                            foreach ($tags as $key => $value): ?>
-                                <a class="badge badge-pill badge-primary" href="tag.php?action=mod_tag&tid=<?php echo $value['tid']; ?>">
-                                    <input type="checkbox" name="tag[<?php echo $value['tid']; ?>]" class="ids" value="1">
-                                    <?php echo $value['tagname']; ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </li>
-                        <li style="margin:20px 0px">
-                            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                            <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
-                            <a href="javascript:deltags();" class="care">删除</a>
-                        </li>
-                    <?php else: ?>
-                        <li style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</li>
-                    <?php endif; ?>
-                </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <span class="badge badge-secondary">已创建的标签</span>
+        </div>
+        <div class="card-body">
+            <div>
+                <?php if ($tags): ?>
+                    <li>
+                        <?php foreach ($tags as $key => $value): ?>
+                            <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-tid="<?php echo $value['tid']; ?>"
+                               data-whatever="<?php echo $value['tagname']; ?>">
+                                <?php echo $value['tagname']; ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </li>
+                <?php else: ?>
+                    <li style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</li>
+                <?php endif; ?>
             </div>
         </div>
-    </form>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">修改标签</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="tag.php?action=update_tag">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="tagname" name="tagname">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" value="" id="tid" name="tid"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <a class="btn btn-outline-danger" href="javascript:deltags();">删除</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-    selectAllToggle();
-
-    function deltags() {
-        if (getChecked('ids') == false) {
-            alert('请选择要删除的标签');
-            return;
-        }
-        if (!confirm('你确定要删除所选标签吗？')) {
-            return;
-        }
-        $("#form_tag").submit();
-    }
-
     setTimeout(hideActived, 2600);
     $("#menu_tag").addClass('active');
+    //修改标签模态窗
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('whatever')
+        var tid = button.data('tid')
+        var modal = $(this)
+        modal.find('.modal-body input').val(recipient)
+        modal.find('.modal-footer input').val(tid)
+    })
+    function deltags(){
+        var tid = $('#tid').val()
+        if(!confirm('你确定要删除所选标签吗？')){return;}
+        window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");
+    }
 </script>
