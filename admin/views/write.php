@@ -136,11 +136,10 @@
 <script>
     loadEditor('logcontent');
     loadEditor('logexcerpt');
-    $("#menu_wt").addClass('active');
     $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
     $("#alias").keyup(function () {
         checkalias();
     });
     setTimeout("autosave(0)", 60000);
-    $("#menu_wt").addClass('active');
+    $("#menu_log").addClass('active');
 </script>

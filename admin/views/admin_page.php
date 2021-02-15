@@ -70,7 +70,6 @@
 </div>
 <script>
     setTimeout(hideActived, 2600);
-
     function pageact(act) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的页面');
