@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
     <!-- CSS -->
-    <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="./views/css/sb-admin-2.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
     <link href="./views/css/fontawesome-free/css/brands.min.css" rel="stylesheet">

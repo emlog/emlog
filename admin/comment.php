@@ -119,6 +119,7 @@ if ($action == 'doreply') {
     $commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
     $blogId = isset($_POST['gid']) ? intval($_POST['gid']) : '';
     $hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
+
     if ($reply == '') {
         emDirect("./comment.php?error_c=1");
     }

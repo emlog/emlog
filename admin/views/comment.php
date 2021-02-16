@@ -44,6 +44,8 @@
                             <th></th>
                             <th>内容</th>
                             <th>评论人</th>
+                            <th>时间</th>
+                            <th>操作</th>
                             <th>所属文章</th>
                         </tr>
                         </thead>
@@ -54,7 +56,7 @@
                                 $ishide = $value['hide'] == 'y' ? '<font color="red">[待审]</font>' : '';
                                 $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
                                 $ip = !empty($value['ip']) ? "<br />来自IP：{$value['ip']}" : '';
-                                $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
+                                $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '">' . $value['poster'] . '</a>' : $value['poster'];
                                 $value['content'] = str_replace('<br>', ' ', $value['content']);
                                 $sub_content = subString($value['content'], 0, 50);
                                 $value['title'] = subString($value['title'], 0, 42);
@@ -62,27 +64,30 @@
                                 ?>
                                 <tr>
                                     <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
-                                    <td width="350"><a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"
-                                                       title="<?php echo $value['content']; ?>"><?php echo $sub_content; ?></a> <?php echo $ishide; ?>
-                                        <br/><?php echo $value['date']; ?>
-                                        <span style="display:none; margin-left:8px;">
-                            <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
-                        <?php if ($value['hide'] == 'y'): ?>
-                            <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
-                        <?php else: ?>
-                            <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
-                        <?php endif; ?>
-                        <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
-                        <a href="comment.php?action=edit_comment&amp;cid=<?php echo $value['cid']; ?>">编辑</a>
-                        </span>
+                                    <td width="350">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal" data-cid="<?php echo $value['cid']; ?>"
+                                           data-comment="<?php echo $value['content']; ?>">
+                                        <?php echo $sub_content; ?>
+                                        </a>
+                                        <?php echo $ishide; ?>
                                     </td>
-                                    <td><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
+                                    <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
                                         <?php if (ROLE == ROLE_ADMIN): ?>
                                             <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
                                                class="badge badge-pill badge-danger">按IP删除</a>
                                         <?php endif; ?>
                                     </td>
-                                    <td><a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="查看该文章"><?php echo $value['title']; ?></a></td>
+                                    <td class="small"><?php echo $value['date']; ?></td>
+                                    <td>
+                                        <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                        <?php if ($value['hide'] == 'y'): ?>
+                                            <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
+                                        <?php else: ?>
+                                            <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
+                                        <?php endif; ?>
+                                        <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
+                                    </td>
+                                    <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
                                 </tr>
                             <?php endforeach; else: ?>
                             <tr>
@@ -103,6 +108,34 @@
             </div>
         </div>
     </form>
+    <!--  模态窗  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">回复评论</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="comment.php?action=doreply" method="post">
+                    <div class="modal-body">
+                        <p></p>
+                        <div class="form-group">
+                            <input type="hidden" value="<?php echo $commentId; ?>" name="cid"/>
+                            <input type="hidden" value="<?php echo $gid; ?>" name="gid"/>
+                            <input type="hidden" value="<?php echo $hide; ?>" name="hide"/>
+                            <textarea class="form-control" id="reply" name="reply"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">回复</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     setTimeout(hideActived, 2600);
@@ -120,4 +153,13 @@
     }
 
     $("#menu_cm").addClass('active');
+
+    //回复评论模态窗
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var comment = button.data('comment')
+        var modal = $(this)
+        modal.find('.modal-body p').html(comment)
+    })
+
 </script>
