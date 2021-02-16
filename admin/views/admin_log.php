@@ -135,10 +135,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                                 $author_role = $user_cache[$value['author']]['role'];
                                 ?>
                                 <tr>
-                                    <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>"
-                                                          class="ids"/></td>
-                                    <td width="490"><a
-                                                href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+                                    <td width="21"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                                    <td width="490"><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
                                         <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top"
                                                                                 title="首页置顶"/><?php endif; ?>
                                         <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top"
@@ -157,20 +155,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                                     </td>
                                     <?php if ($pid != 'draft'): ?>
                                         <td class="tdcenter">
-                                            <a href="<?php echo Url::log($value['gid']); ?>" target="_blank" title="在新窗口查看">
-                                                <img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                            <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                         </td>
                                     <?php endif; ?>
-                                    <td>
-                                        <a href="./admin_log.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a>
-                                    </td>
-                                    <td>
-                                        <a href="./admin_log.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a>
-                                    </td>
+                                    <td><a href="./admin_log.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
+                                    <td><a href="./admin_log.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
                                     <td class="small"><?php echo $value['date']; ?></td>
-                                    <td class="tdcenter"><a
-                                                href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a>
-                                    </td>
+                                    <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                                     <td class="tdcenter"><?php echo $value['views']; ?></a></td>
                                 </tr>
                             <?php endforeach; else: ?>

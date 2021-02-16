@@ -18,7 +18,7 @@
                     <li>
                         <?php foreach ($tags as $key => $value): ?>
                             <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#exampleModal" data-tid="<?php echo $value['tid']; ?>"
-                               data-whatever="<?php echo $value['tagname']; ?>">
+                               data-tagname="<?php echo $value['tagname']; ?>">
                                 <?php echo $value['tagname']; ?>
                             </a>
                         <?php endforeach; ?>
@@ -62,7 +62,7 @@
     //修改标签模态窗
     $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
-        var recipient = button.data('whatever')
+        var recipient = button.data('tagname')
         var tid = button.data('tid')
         var modal = $(this)
         modal.find('.modal-body input').val(recipient)
