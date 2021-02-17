@@ -16,6 +16,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">链接管理</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 新建链接</a>
     </div>
     <p class="mb-4">友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。</p>
     <form action="link.php?action=link_taxis" method="post">
@@ -47,7 +48,7 @@
                                            value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
                                 <td><a href="link.php?action=mod_link&amp;linkid=<?php echo $value['id']; ?>"
                                        title="修改链接"><?php echo $value['sitename']; ?></a></td>
-                                <td class="tdcenter">
+                                <td>
                                     <?php if ($value['hide'] == 'n'): ?>
                                         <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>"
                                            title="点击隐藏链接">显示</a>
@@ -56,7 +57,7 @@
                                            title="点击显示链接" style="color:red;">隐藏</a>
                                     <?php endif; ?>
                                 </td>
-                                <td class="tdcenter">
+                                <td>
                                     <a href="<?php echo $value['siteurl']; ?>" target="_blank" title="查看链接">
                                         <img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                 </td>
@@ -78,29 +79,46 @@
         </div>
         <div class="list_footer">
             <input type="submit" value="改变排序" class="btn btn-primary"/>
-            <a href="javascript:displayToggle('link_new', 2);" class="btn btn-success">添加链接+</a>
         </div>
     </form>
-    <form action="link.php?action=addlink" method="post" name="link" id="link" style="margin-top: 30px;">
-        <div class="form-group">
-            <label for="sortname">序号</label>
-            <input class="form-control" id="taxis" name="taxis">
+    <!--添加链接弹窗-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新建标签</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="link.php?action=addlink" method="post" name="link" id="link">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="sortname">序号</label>
+                            <input class="form-control" id="taxis" name="taxis">
+                        </div>
+                        <div class="form-group">
+                            <label for="alias">名称</label>
+                            <input class="form-control" id="sitename" name="sitename">
+                        </div>
+                        <div class="form-group">
+                            <label for="template">地址</label>
+                            <input class="form-control" id="siteurl" name="siteurl">
+                        </div>
+                        <div class="form-group">
+                            <label for="alias">描述</label>
+                            <textarea name="description" type="text" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
+                        <span id="alias_msg_hook"></span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="alias">名称</label>
-            <input class="form-control" id="sitename" name="sitename">
-        </div>
-        <div class="form-group">
-            <label for="template">地址</label>
-            <input class="form-control" id="siteurl" name="siteurl">
-        </div>
-        <div class="form-group">
-            <label for="alias">描述</label>
-            <textarea name="description" type="text" class="form-control"></textarea>
-        </div>
-        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
-        <span id="alias_msg_hook"></span>
-    </form>
+    </div>
 </div>
 <script>
     // $("#link_new").css('display', $.cookie('em_link_new') ? $.cookie('em_link_new') : 'none');
