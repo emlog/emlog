@@ -65,8 +65,11 @@
                                 <tr>
                                     <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
                                     <td width="350">
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal" data-cid="<?php echo $value['cid']; ?>"
-                                           data-comment="<?php echo $value['content']; ?>">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal"
+                                           data-cid="<?php echo $value['cid']; ?>"
+                                           data-comment="<?php echo $value['content']; ?>"
+                                           data-hide="<?php echo $value['hide']; ?>"
+                                           data-gid="<?php echo $value['gid']; ?> ">
                                         <?php echo $sub_content; ?>
                                         </a>
                                         <?php echo $ishide; ?>
@@ -108,7 +111,7 @@
             </div>
         </div>
     </form>
-    <!--  模态窗  -->
+    <!--  回复评论模态窗  -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -122,9 +125,9 @@
                     <div class="modal-body">
                         <p></p>
                         <div class="form-group">
-                            <input type="hidden" value="<?php echo $commentId; ?>" name="cid"/>
-                            <input type="hidden" value="<?php echo $gid; ?>" name="gid"/>
-                            <input type="hidden" value="<?php echo $hide; ?>" name="hide"/>
+                            <input type="hidden" value="" name="cid" id="cid" />
+                            <input type="hidden" value="" name="gid" id="gid" />
+                            <input type="hidden" value="" name="hide" id="hide" />
                             <textarea class="form-control" id="reply" name="reply"></textarea>
                         </div>
                     </div>
@@ -138,8 +141,8 @@
     </div>
 </div>
 <script>
+    $("#menu_cm").addClass('active');
     setTimeout(hideActived, 2600);
-
     function commentact(act) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的评论');
@@ -151,15 +154,17 @@
         $("#operate").val(act);
         $("#form_com").submit();
     }
-
-    $("#menu_cm").addClass('active');
-
     //回复评论模态窗
     $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var comment = button.data('comment')
+        var cid = button.data('cid')
+        var gid = button.data('gid')
+        var hide = button.data('hide')
         var modal = $(this)
         modal.find('.modal-body p').html(comment)
+        modal.find('.modal-body #cid').val(cid)
+        modal.find('.modal-body #gid').val(gid)
+        modal.find('.modal-body #hide').val(hide)
     })
-
 </script>
