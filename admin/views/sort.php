@@ -23,6 +23,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">分类管理</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 新建分类</a>
     </div>
     <form method="post" action="sort.php?action=taxis">
         <div class="card shadow mb-4">
@@ -109,52 +110,71 @@
         </div>
         <div class="list_footer">
             <input type="submit" value="改变排序" class="btn btn-primary"/>
-            <a href="javascript:displayToggle('sort_new', 2);" class="btn btn-success">添加分类+</a>
         </div>
     </form>
-    <form action="sort.php?action=add" method="post" id="sort_new" style="margin-top: 30px;">
-        <div class="form-group">
-            <label for="sortname">分类名</label>
-            <input class="form-control" id="sortname" name="sortname">
+    <!--添加分类弹窗-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新建标签</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="sort.php?action=add" method="post" id="sort_new">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="sortname">分类名</label>
+                            <input class="form-control" id="sortname" name="sortname">
+                        </div>
+                        <div class="form-group">
+                            <label for="alias">别名</label>
+                            <input class="form-control" id="alias" name="alias">
+                            <small class="form-text text-muted">用于URL的友好显示，可不填</small>
+                        </div>
+                        <div class="form-group">
+                            <label>父分类</label>
+                            <select name="pid" id="pid" class="form-control">
+                                <option value="0">无</option>
+                                <?php
+                                foreach ($sorts as $key => $value):
+                                    if ($value['pid'] != 0) {
+                                        continue;
+                                    }
+                                    ?>
+                                    <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="template">模板</label>
+                            <input class="form-control" id="template" name="template">
+                            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="alias">分类描述</label>
+                            <textarea name="description" type="text" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                        <span id="alias_msg_hook"></span>
+                        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="alias">别名</label>
-            <input class="form-control" id="alias" name="alias">
-            <small class="form-text text-muted">用于URL的友好显示，可不填</small>
-        </div>
-        <div class="form-group">
-            <label>父分类</label>
-            <select name="pid" id="pid" class="form-control">
-                <option value="0">无</option>
-                <?php
-                foreach ($sorts as $key => $value):
-                    if ($value['pid'] != 0) {
-                        continue;
-                    }
-                    ?>
-                    <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="template">模板</label>
-            <input class="form-control" id="template" name="template">
-            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
-        </div>
-        <div class="form-group">
-            <label for="alias">分类描述</label>
-            <textarea name="description" type="text" class="form-control"></textarea>
-        </div>
-        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
-        <span id="alias_msg_hook"></span>
-    </form>
+    </div>
+
 </div>
 <script>
     // $("#sort_new").css('display', $.cookie('em_sort_new') ? $.cookie('em_sort_new') : 'none');
-    $("#alias").keyup(function() {
+    $("#alias").keyup(function () {
         checksortalias();
     });
+
     function issortalias(a) {
         var reg1 = /^[\w-]*$/;
         var reg2 = /^[\d]+$/;
@@ -168,6 +188,7 @@
             return 0;
         }
     }
+
     function checksortalias() {
         var a = $.trim($("#alias").val());
         if (1 == issortalias(a)) {
@@ -185,7 +206,8 @@
             $("#addsort").attr("disabled", false);
         }
     }
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         $("#menu_sort").addClass('active');
     });
 </script>
