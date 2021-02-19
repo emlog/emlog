@@ -109,6 +109,10 @@
 </div>
 
 <script>
+    $("#menu_category_sys").addClass('active');
+    $("#menu_sys").addClass('show');
+    $("#menu_data").addClass('active');
+
     setTimeout(hideActived, 2600);
     $(document).ready(function () {
         selectAllToggle();
@@ -129,8 +133,4 @@
         $("#operate").val(act);
         $("#form_bak").submit();
     }
-
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
-    $("#menu_data").addClass('active');
 </script>
