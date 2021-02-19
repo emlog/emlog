@@ -234,6 +234,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </form>
 </div>
 <script>
+    $("#menu_log").addClass('active');
     setTimeout(hideActived, 2600);
 
     function pageact(act) {
@@ -247,6 +248,4 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#operate").val(act);
         $("#form_page").submit();
     }
-
-    $("#menu_log").addClass('active');
 </script>

@@ -57,8 +57,8 @@
     </div>
 </div>
 <script>
-    setTimeout(hideActived, 2600);
     $("#menu_tag").addClass('active');
+    setTimeout(hideActived, 2600);
     //修改标签模态窗
     $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)

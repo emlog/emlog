@@ -69,6 +69,7 @@
     </form>
 </div>
 <script>
+    $("#menu_page").addClass('active');
     setTimeout(hideActived, 2600);
     function pageact(act) {
         if (getChecked('ids') == false) {
@@ -81,6 +82,4 @@
         $("#operate").val(act);
         $("#form_page").submit();
     }
-
-    $("#menu_page").addClass('active');
 </script>
