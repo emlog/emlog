@@ -15,7 +15,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
     </div>
-    <?php if ($hideCommNum > 0) :?>
+    <?php if ($hideCommNum > 0) : ?>
         <div class="panel-heading">
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
@@ -70,7 +70,7 @@
                                            data-comment="<?php echo $value['content']; ?>"
                                            data-hide="<?php echo $value['hide']; ?>"
                                            data-gid="<?php echo $value['gid']; ?> ">
-                                        <?php echo $sub_content; ?>
+                                            <?php echo $sub_content; ?>
                                         </a>
                                         <?php echo $ishide; ?>
                                     </td>
@@ -94,7 +94,7 @@
                                 </tr>
                             <?php endforeach; else: ?>
                             <tr>
-                                <td class="tdcenter" colspan="4">还没有收到评论</td>
+                                <td class="tdcenter" colspan="6">还没有收到评论</td>
                             </tr>
                         <?php endif; ?>
                         </tbody>
@@ -125,9 +125,9 @@
                     <div class="modal-body">
                         <p></p>
                         <div class="form-group">
-                            <input type="hidden" value="" name="cid" id="cid" />
-                            <input type="hidden" value="" name="gid" id="gid" />
-                            <input type="hidden" value="" name="hide" id="hide" />
+                            <input type="hidden" value="" name="cid" id="cid"/>
+                            <input type="hidden" value="" name="gid" id="gid"/>
+                            <input type="hidden" value="" name="hide" id="hide"/>
                             <textarea class="form-control" id="reply" name="reply"></textarea>
                         </div>
                     </div>
@@ -143,6 +143,7 @@
 <script>
     $("#menu_cm").addClass('active');
     setTimeout(hideActived, 2600);
+
     function commentact(act) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的评论');
@@ -154,6 +155,7 @@
         $("#operate").val(act);
         $("#form_com").submit();
     }
+
     //回复评论模态窗
     $('#exampleModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
