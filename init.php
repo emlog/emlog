@@ -18,7 +18,6 @@ require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
 spl_autoload_register("emAutoload");
-doStripslashes();
 
 $CACHE = Cache::getInstance();
 
