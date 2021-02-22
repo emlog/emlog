@@ -25,7 +25,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">数据库备份</h1>
     </div>
-    <form action="link.php?action=link_taxis" method="post">
+    <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold">服务器空间上的备份</h6>
