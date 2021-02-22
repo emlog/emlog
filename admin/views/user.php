@@ -13,6 +13,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 添加用户</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -23,77 +24,95 @@
                    id="adm_comment_list">
                 <thead>
                 <tr>
-                    <th width="60"></th>
-                    <th width="220"><b>用户</b></th>
-                    <th width="250"><b>描述</b></th>
-                    <th width="240"><b>电子邮件</b></th>
-                    <th width="30" class="tdcenter"><b>文章</b></th>
+                    <th></th>
+                    <th>用户</th>
+                    <th><b>角色</th>
+                    <th>文章数</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                if ($users):
-                    foreach ($users as $key => $val):
-                        $avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-                        ?>
-                        <tr>
-                            <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>"
-                                                                             height="40" width="40"/></td>
-                            <td>
-                                <?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br/>
-                                <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
-                                <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
-                                <?php
-                                if (UID != $val['uid']): ?>
-                                    <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>">编辑</a>
-                                    <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');"
-                                       class="care">删除</a>
-                                <?php else: ?>
-                                    <a href="blogger.php">编辑</a>
-                                <?php endif; ?>
-                            </td>
-                            <td><?php echo $val['description']; ?></td>
-                            <td><?php echo $val['email']; ?></td>
-                            <td class="tdcenter"><a
-                                        href="admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a>
-                            </td>
-                        </tr>
-                    <?php endforeach; else: ?>
+                foreach ($users as $key => $val):
+                    $avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+                    ?>
                     <tr>
-                        <td class="tdcenter" colspan="6">还没有添加作者</td>
+                        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
+                        <td>
+                            <?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br/>
+                            <?php echo $val['description']; ?>
+                        </td>
+                        <td>
+                            <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
+                            <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
+                        </td>
+                        <td><a href="admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                        <td>
+                            <?php
+                            if (UID != $val['uid']): ?>
+                                <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>">编辑</a>
+                                <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');"
+                                   class="care">删除</a>
+                            <?php else: ?>
+                                <a href="blogger.php">编辑</a>
+                            <?php endif; ?>
+                        </td>
                     </tr>
-                <?php endif; ?>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="page"><?php echo $pageurl; ?></div>
-    <div style="margin:10px 0px 30px 0px;"><a href="javascript:displayToggle('user_new', 2);"
-                                              class="btn btn-success">添加用户+</a></div>
-    <form action="user.php?action=new" method="post">
-        <div class="form-group">
-            <label for="sortname">用户名</label>
-            <input class="form-control" id="login" name="login">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">添加用户</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="user.php?action=new" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="sortname">角色</label>
+                            <select name="role" id="role" class="form-control">
+                                <option value="writer">作者（投稿人）</option>
+                                <option value="admin">管理员</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sortname">用户名</label>
+                            <input class="form-control" id="login" name="login">
+                        </div>
+                        <div class="form-group">
+                            <label for="alias">密码 (大于6位)</label>
+                            <input class="form-control" id="password" name="password" type="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="template">重复密码</label>
+                            <input class="form-control" id="password2" name="password2" type="password">
+                        </div>
+                        <div class="form-group" id="ischeck">
+                            <label for="template">发布权限</label>
+                            <select name="ischeck" class="form-control">
+                                <option value="n">文章不需要审核</option>
+                                <option value="y">文章需要审核</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <span id="alias_msg_hook"></span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="alias">密码 (大于6位)</label>
-            <input class="form-control" id="password" name="password" type="password">
-        </div>
-        <div class="form-group">
-            <label for="template">重复密码</label>
-            <input class="form-control" id="password2" name="password2" type="password">
-        </div>
-        <div class="form-group">
-            <label for="template">发布权限</label>
-            <select name="ischeck" class="form-control">
-                <option value="n">文章不需要审核</option>
-                <option value="y">文章需要审核</option>
-            </select>
-        </div>
-        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
-        <span id="alias_msg_hook"></span>
-    </form>
+    </div>
 </div>
 
 <script>

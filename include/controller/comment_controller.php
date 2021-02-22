@@ -38,7 +38,7 @@ class Comment_Controller
         } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
             emMsg('评论失败：已存在相同内容评论');
         } elseif (ROLE == ROLE_VISITOR && $Comment_Model->isCommentTooFast() === true) {
-            emMsg('评论失败：您提交评论的速度太快了，请稍后再发表评论');
+            emMsg('评论失败：您写评论的速度太快了，请稍后再试');
         } elseif (empty($name)) {
             emMsg('评论失败：请填写姓名');
         } elseif (strlen($name) > 20) {

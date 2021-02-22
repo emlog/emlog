@@ -153,7 +153,7 @@
                         <input type="checkbox" class="form-check-input" value="y" name="newtab">
                         <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
                     </div>
-                    <button type="submit" id="addsort" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
                     <span id="alias_msg_hook"></span>
                 </form>
             </div>
