@@ -6,7 +6,7 @@
 
 class Option {
     //版本编号
-    const EMLOG_VERSION = 'Pro';
+    const EMLOG_VERSION = 'BETA';
     //头像缩略图最大宽
     const ICON_MAX_W = 200;
     //头像缩略图最大高

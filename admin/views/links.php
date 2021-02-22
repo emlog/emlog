@@ -86,7 +86,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">新建标签</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">新建链接</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,7 +112,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="addsort" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
