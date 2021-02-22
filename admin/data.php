@@ -22,62 +22,70 @@ if ($action == 'bakstart') {
     $bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
     $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
-    $tables = array('attachment', 'blog', 'comment', 'options', 'navi', 'sort', 'link', 'tag', 'user');
+    $tables = [
+        'attachment',
+        'blog',
+        'comment',
+        'options',
+        'navi',
+        'sort',
+        'link',
+        'storage',
+        'tag',
+        'user'
+    ];
+
     $bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
     $filename = '';
     $sqldump = '';
 
     foreach ($tables as $table) {
-        $sqldump .= dataBak($table);
+        $sqldump .= dataBak(DB_PREFIX . $table);
     }
 
-    if (trim($sqldump)) {
-        $dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";
-        $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";
-        $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
-        $dumpfile .= $sqldump;
-        $dumpfile .= "\n#the end of backup";
-        if ($bakplace == 'local') {
-            $filename = 'emlog_' . date('Ymd_His');
-            if ($zipbak == 'y') {
-                if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
-                    emDirect('./data.php?error_f=1');
-                }
-                header('Content-Type: application/zip');
-                header('Content-Disposition: attachment; filename=' . $filename . '.zip');
-            } else {
-                header('Content-Type: text/x-sql');
-                header('Content-Disposition: attachment; filename=' . $filename . '.sql');
+    $dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";
+    $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";
+    $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
+    $dumpfile .= $sqldump;
+    $dumpfile .= "\n#the end of backup";
+    if ($bakplace == 'local') {
+        $filename = 'emlog_' . date('Ymd_His');
+        if ($zipbak == 'y') {
+            if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
+                emDirect('./data.php?error_f=1');
             }
-            if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
-                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-                header('Pragma: public');
-            } else {
-                header('Pragma: no-cache');
-                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-            }
-            header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-            echo $dumpfile;
+            header('Content-Type: application/zip');
+            header('Content-Disposition: attachment; filename=' . $filename . '.zip');
         } else {
-            if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
-                emDirect('./data.php?error_b=1');
-            }
-            $filename = '../content/backup/' . $bakfname . '.sql';
-            @$fp = fopen($filename, 'w+');
-            if ($fp) {
-                @flock($fp, 3);
-                if (@!fwrite($fp, $dumpfile)) {
-                    @fclose($fp);
-                    emMsg('备份失败。备份目录(content/backup)不可写');
-                } else {
-                    emDirect('./data.php?active_backup=1');
-                }
-            } else {
-                emMsg('创建备份文件失败。备份目录(content/backup)不可写');
-            }
+            header('Content-Type: text/x-sql');
+            header('Content-Disposition: attachment; filename=' . $filename . '.sql');
         }
+        if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Pragma: public');
+        } else {
+            header('Pragma: no-cache');
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        }
+        header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        echo $dumpfile;
     } else {
-        emMsg('数据表没有任何内容');
+        if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
+            emDirect('./data.php?error_b=1');
+        }
+        $filename = '../content/backup/' . $bakfname . '.sql';
+        @$fp = fopen($filename, 'w+');
+        if ($fp) {
+            @flock($fp, 3);
+            if (@!fwrite($fp, $dumpfile)) {
+                @fclose($fp);
+                emMsg('备份失败。备份目录(content/backup)不可写');
+            } else {
+                emDirect('./data.php?active_backup=1');
+            }
+        } else {
+            emMsg('创建备份文件失败。备份目录(content/backup)不可写');
+        }
     }
 }
 
@@ -227,7 +235,6 @@ function dataBak($table)
 
     $rows = $DB->query("SELECT * FROM $table");
     $numfields = $DB->num_fields($rows);
-    $numrows = $DB->num_rows($rows);
     while ($row = $DB->fetch_row($rows)) {
         $comma = '';
         $sql .= "INSERT INTO $table VALUES(";

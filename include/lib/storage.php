@@ -3,7 +3,8 @@
 /**
  * 数据存储接口 - 数据类型枚举
  */
-class StorageType {
+class StorageType
+{
     /**
      * 字符串
      */
@@ -25,7 +26,8 @@ class StorageType {
     const ARRAY_OBJECT = "array";
 }
 
-class Storage {
+class Storage
+{
     const API_VERSION = 1;
 
     /**
@@ -56,7 +58,8 @@ class Storage {
      * 构造函数
      * @param string $plugin_name 插件名
      */
-    private function __construct($plugin_name) {
+    private function __construct($plugin_name)
+    {
         $this->plugin_name = $plugin_name;
         $this->db_conn = MySql::getInstance();
     }
@@ -66,7 +69,8 @@ class Storage {
      * @param string $plugin_name 插件名
      * @return Storage Storage实例
      */
-    public static function getInstance($plugin_name) {
+    public static function getInstance($plugin_name)
+    {
         $plugin_name = self::_filterPlugin($plugin_name);
         return new Storage($plugin_name);
     }
@@ -79,7 +83,8 @@ class Storage {
      * @param mixed $value 数据值
      * @param string $type 数据类型
      */
-    public function setValue($name, $value = NULL, $type = NULL) {
+    public function setValue($name, $value = NULL, $type = NULL)
+    {
         $name = $this->_filterName($name);
         $type = $this->_filterType($type);
 
@@ -99,7 +104,7 @@ class Storage {
         }
 
         if ($this->checkNameExist($name)) {
-            $sql  = "UPDATE " . DB_PREFIX . "storage SET ";
+            $sql = "UPDATE " . DB_PREFIX . "storage SET ";
             $sql .= "`value` = '" . $this->db_conn->escape_string($db_value) . "', ";
             $sql .= "`type` = '{$type}', ";
             $sql .= "`lastupdate` = " . time() . " ";
@@ -107,9 +112,8 @@ class Storage {
             $sql .= "AND `name` = '" . $this->db_conn->escape_string($name) . "'";
 
             $this->db_conn->query($sql);
-        }
-        else {
-            $sql  = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUE (";
+        } else {
+            $sql = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUE (";
             $sql .= "'" . $this->db_conn->escape_string($this->plugin_name) . "', ";
             $sql .= "'" . $this->db_conn->escape_string($name) . "', ";
             $sql .= "'{$type}', ";
@@ -129,7 +133,8 @@ class Storage {
      * @param string $value 数据值
      * @return bool 更新结果
      */
-    public function updateValue($name, $value = NULL) {
+    public function updateValue($name, $value = NULL)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT `type` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -137,8 +142,7 @@ class Storage {
 
         if ($result === FALSE) {
             return FALSE;
-        }
-        else {
+        } else {
             $type = $result['type'];
         }
 
@@ -157,7 +161,7 @@ class Storage {
                 break;
         }
 
-        $sql  = "UPDATE " . DB_PREFIX . "storage SET ";
+        $sql = "UPDATE " . DB_PREFIX . "storage SET ";
         $sql .= "`value` = '" . $this->db_conn->escape_string($db_value) . "', ";
         $sql .= "`lastupdate` = " . time() . " ";
         $sql .= "WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' ";
@@ -175,7 +179,8 @@ class Storage {
      * @param string $name 数据名称
      * @return mixed/FALSE 数据值
      */
-    public function getValue($name) {
+    public function getValue($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT `type`, `value` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -211,7 +216,8 @@ class Storage {
      * @param string $name 数据名称
      * @return string/FALSE 数据值
      */
-    public function getType($name) {
+    public function getType($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT `type` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -219,8 +225,7 @@ class Storage {
 
         if ($result === FALSE) {
             return FALSE;
-        }
-        else {
+        } else {
             return $result['type'];
         }
     }
@@ -230,7 +235,8 @@ class Storage {
      * 返回当前插件创建的所有数据名称
      * @return array 数据名称
      */
-    public function getAllName() {
+    public function getAllName()
+    {
         $names = array();
         $sql = "SELECT `name` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "'";
         $query = $this->db_conn->query($sql);
@@ -245,7 +251,8 @@ class Storage {
      * 返回当前插件创建的数据数量
      * @return integer 数据数量
      */
-    public function countStorage() {
+    public function countStorage()
+    {
         $sql = "SELECT count(`name`) as 'count' FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
         return (int)$result['count'];
@@ -256,7 +263,8 @@ class Storage {
      * @param string $name 数据名称
      * @return bool 检查结果
      */
-    public function checkNameExist($name) {
+    public function checkNameExist($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT count(`name`) as 'count' FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -272,7 +280,8 @@ class Storage {
      * @param mixed $name 数据名称
      * @return integer/FALSE 创建时间
      */
-    public function getNameCreateDate($name) {
+    public function getNameCreateDate($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT `createdate` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -280,8 +289,7 @@ class Storage {
 
         if ($result === FALSE) {
             return FALSE;
-        }
-        else {
+        } else {
             return $result['createdate'];
         }
     }
@@ -293,7 +301,8 @@ class Storage {
      * @param mixed $name 数据名称
      * @return integer/FALSE 修改时间
      */
-    public function getNameLastUpdateDate($name) {
+    public function getNameLastUpdateDate($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "SELECT `lastupdate` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -301,8 +310,7 @@ class Storage {
 
         if ($result === FALSE) {
             return FALSE;
-        }
-        else {
+        } else {
             return $result['lastupdate'];
         }
     }
@@ -311,7 +319,8 @@ class Storage {
      * 删除一个数据
      * @param mixed $name 数据名称
      */
-    public function deleteName($name) {
+    public function deleteName($name)
+    {
         $name = $this->_filterName($name);
 
         $sql = "DELETE FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
@@ -323,7 +332,8 @@ class Storage {
      * @param mixed $confirm 请传入大写的"YES"来确认删除
      * @return mixed 删除结果
      */
-    public function deleteAllName($confirm) {
+    public function deleteAllName($confirm)
+    {
         if ($confirm !== "YES") {
             return FALSE;
         }
@@ -338,7 +348,8 @@ class Storage {
      * @param string $plugin 插件名
      * @return string 插件名
      */
-    public static function _filterPlugin($plugin) {
+    public static function _filterPlugin($plugin)
+    {
         $plugin = trim($plugin);
 
         if (strlen($plugin) > 16) {
@@ -357,7 +368,8 @@ class Storage {
      * @param string $plugin 数据名
      * @return string 数据名
      */
-    public function _filterName($name) {
+    public function _filterName($name)
+    {
         $name = trim($name);
 
         if (strlen($name) > 16) {
@@ -376,7 +388,8 @@ class Storage {
      * @param string $plugin 类型名
      * @return string 类型名
      */
-    public function _filterType($type) {
+    public function _filterType($type)
+    {
         $type = strtolower(trim($type));
 
         if (!in_array($type, self::$available_storage_type)) {
