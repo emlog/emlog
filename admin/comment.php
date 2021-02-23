@@ -89,31 +89,6 @@ if ($action == 'admin_all_coms') {
     }
 }
 
-if ($action == 'reply_comment') {
-    include View::getView('header');
-    $commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-    $commentArray = $Comment_Model->getOneComment($commentId);
-    extract($commentArray);
-
-    require_once(View::getView('comment_reply'));
-    include View::getView('footer');
-    View::output();
-}
-
-if ($action == 'edit_comment') {
-    $commentId = isset($_GET['cid']) ? intval($_GET['cid']) : '';
-    $commentArray = $Comment_Model->getOneComment($commentId, FALSE);
-    if (!$commentArray) {
-        emMsg('不存在该评论！', './comment.php');
-    }
-    extract($commentArray);
-
-    include View::getView('header');
-    require_once(View::getView('comment_edit'));
-    include View::getView('footer');
-    View::output();
-}
-
 if ($action == 'doreply') {
     $reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
     $commentId = isset($_POST['cid']) ? intval($_POST['cid']) : '';
