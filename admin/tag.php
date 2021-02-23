@@ -16,16 +16,6 @@ if ($action == '') {
     View::output();
 }
 
-if ($action == "mod_tag") {
-    $tagId = isset($_GET['tid']) ? intval($_GET['tid']) : '';
-    $tag = $Tag_Model->getOneTag($tagId);
-    extract($tag);
-    include View::getView('header');
-    require_once View::getView('tagedit');
-    include View::getView('footer');
-    View::output();
-}
-
 //标签修改
 if ($action == 'update_tag') {
     $tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
