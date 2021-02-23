@@ -277,8 +277,9 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
  * @return boolearn
  */
 function addAction($hook, $actionFunc) {
+    // 通过全局变量来存储挂载点上挂载的插件函数
     global $emHooks;
-    if (!@in_array($actionFunc, $emHooks[$hook])) {
+    if (!isset($emHooks[$hook]) || !in_array($actionFunc, $emHooks[$hook])) {
         $emHooks[$hook][] = $actionFunc;
     }
     return true;
@@ -294,7 +295,7 @@ function doAction($hook) {
     $args = array_slice(func_get_args(), 1);
     if (isset($emHooks[$hook])) {
         foreach ($emHooks[$hook] as $function) {
-            $string = call_user_func_array($function, $args);
+            call_user_func_array($function, $args);
         }
     }
 }
