@@ -1,9 +1,9 @@
 # 相关程序生成的文件
-/src/.htaccess
-/src/config.php
-/src/content/backup/*.sql
-/src/content/cache/*.php
-/src/content/uploadfile/*
+.htaccess
+config.php
+/content/backup/*.sql
+/content/cache/*.php
+/content/uploadfile/*
 # 开发工具文件
 .project
 .settings
