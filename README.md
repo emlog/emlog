@@ -45,14 +45,6 @@ https://www.emlog.net/download
 <img width="50px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=50"/>
 </a>
 
-## Thanks
-
-| Main frameworks and projects used |
-| ---------------------------------------------------------------- |
-| [Bootstrap](https://getbootstrap.com/)                           |
-| [sb-admin-2](https://startbootstrap.com/theme/sb-admin-2)        |
-| [JQuery](https://jquery.com/)     |
-
 
 ## Software License
 The license under which Emlog software is released is GPLv3 (or higher) of the Free Software Foundation: [LICENSE](/license.txt)
