@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="list_footer">
-            <input type="submit" value="改变排序" class="btn btn-primary"/>
+            <input type="submit" value="改变排序" class="btn btn-success"/>
         </div>
     </form>
     <!--添加分类弹窗-->
@@ -152,7 +152,7 @@
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <span id="alias_msg_hook"></span>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                     </div>
                 </form>
             </div>

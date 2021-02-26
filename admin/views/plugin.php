@@ -117,7 +117,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">上传</button>
+                        <button type="submit" class="btn btn-success">上传</button>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                     </div>
                 </form>

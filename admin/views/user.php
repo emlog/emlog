@@ -106,7 +106,7 @@
                     <div class="modal-footer">
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
