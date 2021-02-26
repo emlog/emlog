@@ -1,18 +1,12 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['error_login'])): ?>
-    <div class="alert alert-danger">用户名不能为空</div><?php endif; ?>
-<?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger">该用户名已存在</div><?php endif; ?>
-<?php if (isset($_GET['error_pwd_len'])): ?>
-    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
-<?php if (isset($_GET['error_pwd2'])): ?>
-    <div class="alert alert-danger">两次输入密码不一致</div><?php endif; ?>
 <div class="container-fluid">
-    <!-- Page Heading -->
+    <?php if (isset($_GET['error_login'])): ?><div class="alert alert-danger">用户名不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger">该用户名已存在</div><?php endif; ?>
+    <?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+    <?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger">两次输入密码不一致</div><?php endif; ?>
     <h1 class="h3 mb-4 text-gray-800">修改作者资料</h1>
-    `
     <form action="user.php?action=update" method="post">
         <div class="form-group">
             <li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="form-control"/> 用户名</li>
@@ -41,7 +35,6 @@
                 <input type="button" value="取 消" class="btn btn-default" onclick="window.location='user.php';"/></li>
         </div>
     </form>
-    `
 </div>
 
 <script>

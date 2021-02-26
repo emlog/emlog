@@ -1,17 +1,17 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_show'])): ?><span class="alert alert-success">审核评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_hide'])): ?><span class="alert alert-success">隐藏评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改评论成功</span><?php endif; ?>
-<?php if (isset($_GET['active_rep'])): ?><span class="alert alert-success">回复评论成功</span><?php endif; ?>
-<?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">请选择要执行操作的评论</span><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">请选择要执行的操作</span><?php endif; ?>
-<?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">回复内容不能为空</span><?php endif; ?>
-<?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">内容过长</span><?php endif; ?>
-<?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">评论内容不能为空</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_show'])): ?><div class="alert alert-success">审核评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide'])): ?><div class="alert alert-success">隐藏评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_rep'])): ?><div class="alert alert-success">回复评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">请选择要执行操作的评论</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">回复内容不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">内容过长</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">评论内容不能为空</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
     </div>

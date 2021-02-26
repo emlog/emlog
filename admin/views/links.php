@@ -1,19 +1,13 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif; ?>
-<?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif; ?>
-<?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif; ?>
-<?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加成功</div><?php endif; ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">站点名称和地址不能为空</div><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success">排序更新成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">站点名称和地址不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">链接管理</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-edit"></i> 新建链接</a>
@@ -30,10 +24,9 @@
                     <tr>
                         <th>排序</th>
                         <th>链接</th>
-                        <th>状态</th>
-                        <th>查看</th>
                         <th>描述</th>
-                        <th></th>
+                        <th>状态</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,6 +38,7 @@
                             <tr>
                                 <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
                                 <td><a href="<?php echo $value['siteurl']; ?>" target="_blank"><?php echo $value['sitename']; ?></a></td>
+                                <td><?php echo $value['description']; ?></td>
                                 <td>
                                     <?php if ($value['hide'] == 'n'): ?>
                                         <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
@@ -52,7 +46,6 @@
                                         <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
                                     <?php endif; ?>
                                 </td>
-                                <td><?php echo $value['description']; ?></td>
                                 <td>
                                     <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal"
                                        data-linkid="<?php echo $value['id']; ?>"
@@ -152,7 +145,7 @@
 </div>
 <script>
     $("#menu_link").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var linkid = button.data('linkid')

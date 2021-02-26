@@ -18,21 +18,21 @@ if ($action == '') {
 
 if ($action == 'link_taxis') {
 	$link = isset($_POST['link']) ? $_POST['link'] : '';
-	if (!empty($link)) {
-		foreach ($link as $key => $value) {
-			$value = intval($value);
-			$key = intval($key);
-			$Link_Model->updateLink(array('taxis' => $value), $key);
-		}
-		$CACHE->updateCache('link');
-		emDirect("./link.php?active_taxis=1");
-	} else {
+
+	if (empty($link)) {
 		emDirect("./link.php?error_b=1");
 	}
+
+	foreach ($link as $key => $value) {
+		$value = intval($value);
+		$key = intval($key);
+		$Link_Model->updateLink(array('taxis' => $value), $key);
+	}
+	$CACHE->updateCache('link');
+	emDirect("./link.php?active_taxis=1");
 }
 
 if ($action == 'addlink') {
-	$taxis = isset($_POST['taxis']) ? intval(trim($_POST['taxis'])) : 0;
 	$sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
@@ -43,7 +43,7 @@ if ($action == 'addlink') {
 	if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
 		$siteurl = 'http://' . $siteurl;
 	}
-	$Link_Model->addLink($sitename, $siteurl, $description, $taxis);
+	$Link_Model->addLink($sitename, $siteurl, $description);
 	$CACHE->updateCache('link');
 	emDirect("./link.php?active_add=1");
 }

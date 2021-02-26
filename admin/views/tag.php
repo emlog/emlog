@@ -1,10 +1,10 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除标签成功</span><?php endif; ?>
-<?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">修改标签成功</span><?php endif; ?>
-<?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">请选择要删除的标签</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除标签成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改标签成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">请选择要删除的标签</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">标签管理</h1>
     </div>

@@ -1,14 +1,13 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<script>setTimeout(hideActived, 2600);</script>
+<?php if (isset($_GET['activated'])): ?><div class="alert alert-success">设置保存成功</div><?php endif; ?>
+<?php if (isset($_GET['error'])): ?><div class="alert alert-danger">保存失败：根目录下的.htaccess不可写</div><?php endif; ?>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link" href="configure.php">基本设置</a></li>
         <li class="nav-item"><a class="nav-link active" href="seo.php">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="blogger.php">个人设置</a></li>
-        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
-        <?php if (isset($_GET['error'])): ?><span class="alert alert-danger">保存失败：根目录下的.htaccess不可写</span><?php endif; ?>
     </ul>
 </div>
 <div class="panel-body" style="margin-left:30px;">

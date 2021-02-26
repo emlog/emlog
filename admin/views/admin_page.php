@@ -1,11 +1,11 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除页面成功</span><?php endif; ?>
-<?php if (isset($_GET['active_hide_n'])): ?><span class="alert alert-success">发布页面成功</span><?php endif; ?>
-<?php if (isset($_GET['active_hide_y'])): ?><span class="alert alert-success">禁用页面成功</span><?php endif; ?>
-<?php if (isset($_GET['active_pubpage'])): ?><span class="alert alert-success">页面保存成功</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide_n'])): ?><div class="alert alert-success">发布页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide_y'])): ?><div class="alert alert-success">禁用页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_pubpage'])): ?><div class="alert alert-success">页面保存成功</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">页面管理</h1>
         <a href="./page.php?action=new" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="fas fa-edit"></i> 新建页面</a>
