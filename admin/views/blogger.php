@@ -1,20 +1,20 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
+<?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">个人资料修改成功</div><?php endif; ?>
+<?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">头像删除成功</div><?php endif; ?>
+<?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">昵称不能太长</div><?php endif; ?>
+<?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">电子邮件格式错误</div><?php endif; ?>
+<?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+<?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">两次输入的密码不一致</div><?php endif; ?>
+<?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">该登录名已存在</div><?php endif; ?>
+<?php if (isset($_GET['error_f'])): ?><div class="alert alert-danger">该昵称已存在</div><?php endif; ?>
 <div class="panel-heading">
     <?php if (ROLE == ROLE_ADMIN): ?>
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
             <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
             <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人设置</a></li>
-            <?php if (isset($_GET['active_edit'])): ?><span class="alert alert-success">个人资料修改成功</span><?php endif; ?>
-            <?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">头像删除成功</span><?php endif; ?>
-            <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">昵称不能太长</span><?php endif; ?>
-            <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">电子邮件格式错误</span><?php endif; ?>
-            <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif; ?>
-            <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">两次输入的密码不一致</span><?php endif; ?>
-            <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">该登录名已存在</span><?php endif; ?>
-            <?php if (isset($_GET['error_f'])): ?><span class="alert alert-danger">该昵称已存在</span><?php endif; ?>
         </ul>
 
     <?php else: ?>

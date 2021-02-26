@@ -12,8 +12,8 @@ spl_autoload_register("emAutoload");
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
-if (PHP_VERSION < '5.0'){
-    emMsg('您的php版本过低，请选用支持PHP5的环境安装emlog。');
+if (PHP_VERSION < '7.0'){
+    emMsg('您的php版本过低，请选用支持PHP7以上的环境安装emlog。');
 }
 
 if(!$act){

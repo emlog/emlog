@@ -2,12 +2,11 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">安装模板</h1>
-    <?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">只支持zip压缩格式的模板包</span><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">上传失败，模板目录(content/templates)不可写</span><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">空间不支持zip模块，请按照提示手动安装模板</span><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">请选择一个zip模板安装包</span><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">安装失败，模板安装包不符合标准</span><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">只支持zip压缩格式的模板包</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">上传失败，模板目录(content/templates)不可写</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装模板</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">请选择一个zip模板安装包</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">安装失败，模板安装包不符合标准</div><?php endif; ?>
     <?php if (isset($_GET['error_c'])): ?>
         <div style="margin:20px 20px;">
             <div class="alert alert-danger">
@@ -17,6 +16,7 @@
             </div>
         </div>
     <?php endif; ?>
+    <h1 class="h3 mb-4 text-gray-800">安装模板</h1>
     <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data">
         <div style="margin:50px 0px 50px 20px;">
             <p>上传一个zip压缩格式的模板安装包</p>

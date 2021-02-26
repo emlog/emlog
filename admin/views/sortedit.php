@@ -1,11 +1,11 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">分类名称不能为空</span><?php endif; ?>
-<?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">别名格式错误</span><?php endif; ?>
-<?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">别名不能重复</span><?php endif; ?>
-<?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">别名不得包含系统保留关键字</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
     <h1 class="h3 mb-2 text-gray-800">编辑分类</h1>
     <form action="sort.php?action=add" method="post" id="sort_new" style="margin-top: 30px;">
         <div class="form-group">

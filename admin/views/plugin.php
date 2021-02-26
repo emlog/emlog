@@ -1,19 +1,18 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<div id="msg"></div>
-<?php if (isset($_GET['activate_install'])): ?><span class="alert alert-success">插件上传成功，请激活使用</span><?php endif; ?>
-<?php if (isset($_GET['active'])): ?><span class="alert alert-success">插件激活成功</span><?php endif; ?>
-<?php if (isset($_GET['activate_del'])): ?><span class="alert alert-success">删除成功</span><?php endif; ?>
-<?php if (isset($_GET['active_error'])): ?><span class="alert alert-danger">插件激活失败</span><?php endif; ?>
-<?php if (isset($_GET['inactive'])): ?><span class="alert alert-success">插件禁用成功</span><?php endif; ?>
-<?php if (isset($_GET['error_a'])): ?><span class="alert alert-danger">删除失败，请检查插件文件权限</span><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?><span class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</span><?php endif; ?>
-<?php if (isset($_GET['error_c'])): ?><span class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</span><?php endif; ?>
-<?php if (isset($_GET['error_d'])): ?><span class="alert alert-danger">请选择一个zip插件安装包</span><?php endif; ?>
-<?php if (isset($_GET['error_e'])): ?><span class="alert alert-danger">安装失败，插件安装包不符合标准</span><?php endif; ?>
-<?php if (isset($_GET['error_f'])): ?><span class="alert alert-danger">只支持zip压缩格式的插件包</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['activate_install'])): ?><div class="alert alert-success">插件上传成功，请激活使用</div><?php endif; ?>
+    <?php if (isset($_GET['active'])): ?><div class="alert alert-success">插件激活成功</div><?php endif; ?>
+    <?php if (isset($_GET['activate_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_error'])): ?><div class="alert alert-danger">插件激活失败</div><?php endif; ?>
+    <?php if (isset($_GET['inactive'])): ?><div class="alert alert-success">插件禁用成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">安装失败，插件安装包不符合标准</div><?php endif; ?>
+    <?php if (isset($_GET['error_f'])): ?><div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">插件管理</h1>
     </div>

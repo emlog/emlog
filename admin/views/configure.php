@@ -1,12 +1,12 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
+<?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link active" href="./configure.php">基本设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
-        <?php if (isset($_GET['activated'])): ?><span class="alert alert-success">设置保存成功</span><?php endif; ?>
     </ul>
 </div>
 <div class="panel-body" style="margin-left:30px;">

@@ -1,16 +1,16 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<?php if (isset($_GET['active_del'])): ?><span class="alert alert-success">删除成功</span><?php endif; ?>
-<?php if (isset($_GET['active_update'])): ?><span class="alert alert-success">修改用户资料成功</span><?php endif; ?>
-<?php if (isset($_GET['active_add'])): ?><span class="alert alert-success">添加用户成功</span><?php endif; ?>
-<?php if (isset($_GET['error_login'])): ?><span class="alert alert-danger">用户名不能为空</span><?php endif; ?>
-<?php if (isset($_GET['error_exist'])): ?><span class="alert alert-danger">该用户名已存在</span><?php endif; ?>
-<?php if (isset($_GET['error_pwd_len'])): ?><span class="alert alert-danger">密码长度不得小于6位</span><?php endif; ?>
-<?php if (isset($_GET['error_pwd2'])): ?><span class="alert alert-danger">两次输入密码不一致</span><?php endif; ?>
-<?php if (isset($_GET['error_del_a'])): ?><span class="alert alert-danger">不能删除创始人</span><?php endif; ?>
-<?php if (isset($_GET['error_del_b'])): ?><span class="alert alert-danger">不能修改创始人信息</span><?php endif; ?>
 <div class="container-fluid">
+    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_update'])): ?><div class="alert alert-success">修改用户资料成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加用户成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_login'])): ?><div class="alert alert-danger">用户名不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger">该用户名已存在</div><?php endif; ?>
+    <?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+    <?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger">两次输入密码不一致</div><?php endif; ?>
+    <?php if (isset($_GET['error_del_a'])): ?><div class="alert alert-danger">不能删除创始人</div><?php endif; ?>
+    <?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger">不能修改创始人信息</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 添加用户</a>

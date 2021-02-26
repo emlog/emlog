@@ -33,11 +33,8 @@ class Link_Model {
 		$this->db->query("update ".DB_PREFIX."link set $upStr where id=$linkId");
 	}
 
-	function addLink($name, $url, $des, $taxis) {
-		if ($taxis > 30000 || $taxis < 0) {
-			$taxis = 0;
-		}
-		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description,taxis) values('$name','$url','$des', $taxis)";
+	function addLink($name, $url, $des) {
+		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description) values('$name','$url','$des')";
 		$this->db->query($sql);
 	}
 
