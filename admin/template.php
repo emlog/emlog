@@ -75,7 +75,7 @@ if ($action == 'del') {
     if (true === emDeleteFile(TPLS_PATH . $tplName)) {
         emDirect("./template.php?activate_del=1#tpllib");
     } else {
-        emDirect("./template.php?error_a=1#tpllib");
+        emDirect("./template.php?error_f=1#tpllib");
     }
 }
 
@@ -93,29 +93,29 @@ if ($action == 'upload_zip') {
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
     if ($zipfile['error'] == 4) {
-        emDirect("./template.php?action=install&error_d=1");
+        emDirect("./template.php?error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
         emMsg('模板上传失败');
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./template.php?action=install&error_a=1");
+        emDirect("./template.php?error_a=1");
     }
 
     $ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
     switch ($ret) {
         case 0:
-            emDirect("./template.php?activate_install=1#tpllib");
+            emDirect("./template.php?tpllib");
             break;
         case -2:
-            emDirect("./template.php?action=install&error_e=1");
+            emDirect("./template.php?error_e=1");
             break;
         case 1:
         case 2:
-            emDirect("./template.php?action=install&error_b=1");
+            emDirect("./template.php?error_b=1");
             break;
         case 3:
-            emDirect("./template.php?action=install&error_c=1");
+            emDirect("./template.php?error_c=1");
             break;
     }
 }

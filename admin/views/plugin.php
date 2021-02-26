@@ -2,23 +2,35 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['activate_install'])): ?><div class="alert alert-success">插件上传成功，请激活使用</div><?php endif; ?>
-    <?php if (isset($_GET['active'])): ?><div class="alert alert-success">插件激活成功</div><?php endif; ?>
-    <?php if (isset($_GET['activate_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_error'])): ?><div class="alert alert-danger">插件激活失败</div><?php endif; ?>
-    <?php if (isset($_GET['inactive'])): ?><div class="alert alert-success">插件禁用成功</div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</div><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">安装失败，插件安装包不符合标准</div><?php endif; ?>
-    <?php if (isset($_GET['error_f'])): ?><div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif; ?>
+    <?php if (isset($_GET['activate_install'])): ?>
+        <div class="alert alert-success">插件上传成功，请激活使用</div><?php endif; ?>
+    <?php if (isset($_GET['active'])): ?>
+        <div class="alert alert-success">插件激活成功</div><?php endif; ?>
+    <?php if (isset($_GET['activate_del'])): ?>
+        <div class="alert alert-success">删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_error'])): ?>
+        <div class="alert alert-danger">插件激活失败</div><?php endif; ?>
+    <?php if (isset($_GET['inactive'])): ?>
+        <div class="alert alert-success">插件禁用成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?>
+        <div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?>
+        <div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?>
+        <div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?>
+        <div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?>
+        <div class="alert alert-danger">安装失败，插件安装包不符合标准</div><?php endif; ?>
+    <?php if (isset($_GET['error_f'])): ?>
+        <div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">插件管理</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i> 安装新的插件</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold">插件管理</h6>
+            <h6 class="m-0 font-weight-bold">已安装的插件</h6>
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
@@ -83,19 +95,36 @@
             </table>
         </div>
     </div>
-    <div><a href="javascript:displayToggle('plugin_new', 2);" class="btn btn-success">安装插件+</a></div>
-    <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data">
-        <div id="plugin_new" class="form-group" style="margin:50px 0px;">
-            <li>上传一个zip压缩格式的插件安装包</li>
-            <li>
-                <input name="pluzip" type="file"/>
-            </li>
-            <li>
-                <input type="submit" value="上传安装" class="btn btn-primary"/>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-            </li>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">安装插件</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div id="plugin_new" class="form-group">
+                            <li>上传一个zip压缩格式的插件安装包</li>
+                            <li>
+                                <input name="pluzip" type="file"/>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">上传</button>
+                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
+    </div>
+
 </div>
 
 <script>
