@@ -2,22 +2,22 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_update'])): ?><div class="alert alert-success">修改用户资料成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加用户成功</div><?php endif; ?>
-    <?php if (isset($_GET['error_login'])): ?><div class="alert alert-danger">用户名不能为空</div><?php endif; ?>
-    <?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger">该用户名已存在</div><?php endif; ?>
-    <?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
-    <?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger">两次输入密码不一致</div><?php endif; ?>
-    <?php if (isset($_GET['error_del_a'])): ?><div class="alert alert-danger">不能删除创始人</div><?php endif; ?>
-    <?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger">不能修改创始人信息</div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_update'])): ?><div class="alert alert-success"><?=lang('user_modify_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_add'])): ?><div class="alert alert-success"><?=lang('user_add_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_login'])): ?><div class="alert alert-danger"><?=lang('user_name_empty')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger"><?=lang('user_name_exists')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger"><?=lang('passwords_not_equal')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_del_a'])): ?><div class="alert alert-danger"><?=lang('founder_not_delete')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger"><?=lang('founder_not_edit')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 添加用户</a>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('user_management')?></h1>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> <?=lang('user_add')?></a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold">已创建的用户 (<?php echo $usernum; ?>)</h6>
+<!--vot-->  <h6 class="m-0 font-weight-bold"><?=lang('users_total')?> (<?php echo $usernum; ?>)</h6>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover dataTable no-footer"
@@ -25,10 +25,10 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>用户</th>
-                    <th><b>角色</th>
-                    <th>文章数</th>
-                    <th>操作</th>
+<!--vot-->          <th><?=lang('user')?></th>
+<!--vot-->          <th><?=lang('description')?></th>
+<!--vot-->          <th><?=lang('email')?></th>
+<!--vot-->          <th><?=lang('posts')?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,21 +40,22 @@
                         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
                         <td>
                             <?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br/>
-                            <?php echo $val['description']; ?>
+<!--vot-->                  <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user'); ?>
+<!--vot-->                  <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
                         </td>
                         <td>
-                            <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
-                            <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
+<!--vot-->                  <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user'); ?>
+<!--vot-->                  <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
                         </td>
                         <td><a href="admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
                         <td>
                             <?php
                             if (UID != $val['uid']): ?>
-                                <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>">编辑</a>
-                                <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');"
-                                   class="care">删除</a>
+<!--vot-->                      <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?=lang('edit')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');"
+                                   class="care"><?=lang('delete')?></a>
                             <?php else: ?>
-                                <a href="blogger.php">编辑</a>
+<!--vot-->                      <a href="blogger.php"><?=lang('edit')?></a>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -69,7 +70,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">添加用户</h5>
+<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('')?>添加用户</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -77,36 +78,36 @@
                 <form action="user.php?action=new" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="sortname">角色</label>
+<!--vot-->                  <label for="sortname"><?=lang('role')?></label>
                             <select name="role" id="role" class="form-control">
-                                <option value="writer">作者（投稿人）</option>
-                                <option value="admin">管理员</option>
+<!--vot-->                      <option value="writer"><?=lang('author_contributor')?></option>
+<!--vot-->                      <option value="admin"><?=lang('admin')?></option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="sortname">用户名</label>
+<!--vot-->                  <label for="sortname"><?=lang('user_name')?></label>
                             <input class="form-control" id="login" name="login">
                         </div>
                         <div class="form-group">
-                            <label for="alias">密码 (大于6位)</label>
+<!--vot-->                  <label for="alias"><?=lang('password_min_length')?></label>
                             <input class="form-control" id="password" name="password" type="password">
                         </div>
                         <div class="form-group">
-                            <label for="template">重复密码</label>
+<!--vot-->                  <label for="template"><?=lang('password_repeat')?></label>
                             <input class="form-control" id="password2" name="password2" type="password">
                         </div>
                         <div class="form-group" id="ischeck">
-                            <label for="template">发布权限</label>
+<!--vot-->                  <label for="template"><?=lang('publish_permission')?></label>
                             <select name="ischeck" class="form-control">
-                                <option value="n">文章不需要审核</option>
-                                <option value="y">文章需要审核</option>
+<!--vot-->                      <option value="n"><?=lang('posts_not_need_audit')?></option>
+<!--vot-->                      <option value="y"><?=lang('posts_need_audit')?></option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>

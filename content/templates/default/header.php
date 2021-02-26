@@ -1,7 +1,7 @@
 <?php
 /*
-Template Name:默认模板
-Description:emlog官方维护的自带默认模板
+Template Name: Default template
+Description: Default template, simple and elegant
 Author:emlog
 Author Url:http://www.emlog.net
 */
@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 require_once View::getView('module');
 ?>
 <!doctype html>
-<html lang="zh-cn">
+<!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,10 +26,11 @@ require_once View::getView('module');
     <script src="<?php echo BLOG_URL; ?>include/lib/js/jquery/jquery-1.11.0.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
     <script src="<?php echo BLOG_URL; ?>include/lib/js/common_tpl.js" type="text/javascript"></script>
     <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+<!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
     <?php doAction('index_head'); ?>
 </head>
 <body>
-<!--导航-->
+<!--Navigation-->
 <?php blog_navi(); ?>
 
 <header class="sb-page-header">

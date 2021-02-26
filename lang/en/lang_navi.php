@@ -51,7 +51,6 @@ $lang = array(
  'nav_add_category'	=> 'Add category navigation',//'添加分类到导航',
 // 'add'		=> 'Add',//'添加',
  'no_categories'	=> 'No categories',//'还没有分类',
- 'new_category'		=> 'New Category',//'新建分类',
  'nav_page_add'		=> 'Add pages to the navigation',//'添加页面到导航',
 // 'add'		=> 'Add',//'添加',
  'pages_no'		=> 'No pages',//'还没页面',

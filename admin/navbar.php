@@ -1,6 +1,6 @@
 <?php
 /**
- * 链接管理
+ * Link Manager
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -98,7 +98,7 @@ if ($action == 'mod') {
     extract($naviData);
 
     if ($type != Navi_Model::navitype_custom) {
-        $url = '该导航地址由系统生成，无法修改';
+/*vot*/ $url = lang('address_generated');
     }
 
     $conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';

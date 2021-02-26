@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据备份
+ * Data Backup
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -79,26 +79,26 @@ if ($action == 'bakstart') {
             @flock($fp, 3);
             if (@!fwrite($fp, $dumpfile)) {
                 @fclose($fp);
-                emMsg('备份失败。备份目录(content/backup)不可写');
+/*vot*/         emMsg(lang('backup_directory_not_writable'));
             } else {
                 emDirect('./data.php?active_backup=1');
             }
         } else {
-            emMsg('创建备份文件失败。备份目录(content/backup)不可写');
+/*vot*/     emMsg(lang('backup_create_file_error'));
         }
     }
 }
 
-//导入服务器备份文件
+//Import Backup Data
 if ($action == 'renewdata') {
     LoginAuth::checkToken();
     $sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
     if (!file_exists($sqlfile)) {
-        emMsg('文件不存在');
+/*vot*/ emMsg(lang('file_not_exists'));
     }
 
     if (getFileSuffix($sqlfile) !== 'sql') {
-        emMsg('只能导入emlog备份的SQL文件');
+/*vot*/ emMsg(lang('import_only_emlog'));
     }
     checkSqlFileInfo($sqlfile);
     bakindata($sqlfile);
@@ -106,17 +106,17 @@ if ($action == 'renewdata') {
     emDirect('./data.php?active_import=1');
 }
 
-//导入本地备份文件
+//Import local backup file
 if ($action == 'import') {
     LoginAuth::checkToken();
     $sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
     if (!$sqlfile) {
-        emMsg('非法提交的信息');
+/*vot*/ emMsg(lang('info_illegal'));
     }
     if ($sqlfile['error'] == 1) {
-        emMsg('附件大小超过系统' . ini_get('upload_max_filesize') . '限制');
+/*vot*/ emMsg(lang('attachment_exceed_system_limit') . ini_get('upload_max_filesize') . lang('_limit'));
     } elseif ($sqlfile['error'] > 1) {
-        emMsg('上传文件失败,错误码：' . $sqlfile['error']);
+/*vot*/ emMsg(lang('upload_failed_code') . $sqlfile['error']);
     }
     if (getFileSuffix($sqlfile['name']) == 'zip') {
         $ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
@@ -134,10 +134,10 @@ if ($action == 'import') {
         }
         $sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
         if (!file_exists($sqlfile['tmp_name'])) {
-            emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
+/*vot*/     emMsg(lang('import_only_emlog_no_change'));
         }
     } elseif (getFileSuffix($sqlfile['name']) != 'sql') {
-        emMsg('只能导入emlog备份的SQL文件');
+/*vot*/ emMsg(lang('import_only_emlog'));
     }
     checkSqlFileInfo($sqlfile['tmp_name']);
     bakindata($sqlfile['tmp_name']);
@@ -157,7 +157,7 @@ if ($action == 'dell_all_bak') {
 }
 
 /**
- * 检查备份文件头信息
+ * Check the backup file header information
  *
  * @param file $sqlfile
  */
@@ -165,7 +165,7 @@ function checkSqlFileInfo($sqlfile)
 {
     $fp = @fopen($sqlfile, 'r');
     if (!$fp) {
-        emMsg('导入失败！读取文件失败');
+/*vot*/ emMsg(lang('import_failed_not_read'));
     }
     $dumpinfo = array();
     $line = 0;
@@ -176,18 +176,18 @@ function checkSqlFileInfo($sqlfile)
     }
     fclose($fp);
     if (empty($dumpinfo)) {
-        emMsg('导入失败！该备份文件不是 emlog的备份文件!');
+/*vot*/        emMsg(lang('import_failed_not_emlog'));
     }
     if (!preg_match('/#version:emlog ' . Option::EMLOG_VERSION . '/', $dumpinfo[0])) {
-        emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+/*vot*/ emMsg(lang('import_failed_not_emlog_ver'));
     }
     if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-        emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不匹配' . $dumpinfo[2]);
+/*vot*/ emMsg(lang('import_failed_bad_prefix') . $dumpinfo[2]);
     }
 }
 
 /**
- * 执行备份文件的SQL语句
+ * Perform the backup file SQL statements
  *
  * @param string $filename
  */
@@ -220,9 +220,9 @@ function bakindata($filename)
 }
 
 /**
- * 备份数据库结构和所有数据
+ * Backup your database structure and all the data
  *
- * @param string $table 数据库表名
+ * @param string $table Database table name
  * @return string
  */
 function dataBak($table)
@@ -249,7 +249,7 @@ function dataBak($table)
 }
 
 /**
- * 检查文件是否包含BOM(byte-order mark)
+ * Check the file contains BOM (Byte-Order Mark)
  */
 function checkBOM($contents)
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户管理
+ * User Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $User_Model = new User_Model();
 
-//加载用户管理页面
+//Load the User Management page
 if ($action == '') {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $users = $User_Model->getUsers($page);
@@ -99,7 +99,7 @@ if ($action == 'update') {
     if (UID == $uid) {
         emDirect('./user.php');
     }
-    //创始人账户不能被他人编辑
+    //Founder account can not be edited by others
     if ($uid == 1) {
         emDirect('./user.php?error_del_b=1');
     }
@@ -144,7 +144,7 @@ if ($action == 'del') {
         emDirect('./user.php');
     }
 
-    //创始人账户不能被删除
+    //Founder account can not be deleted
     if ($uid == 1) {
         emDirect('./user.php?error_del_a=1');
     }

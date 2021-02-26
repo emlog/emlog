@@ -1,27 +1,35 @@
 <?php
 /**
- * 安装程序
+ * Install
  * @copyright (c) Emlog All Rights Reserved
  */
 
-define('EMLOG_ROOT', dirname(__FILE__));
-define('DEL_INSTALLER', 0);
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
+/*vot*/ define('DEL_INSTALLER', 0);
+
 require_once EMLOG_ROOT.'/include/lib/function.base.php';
+
+/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
+/*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
+
+/*vot*/ load_language('core');
+/*vot*/ load_language('install');
+
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 $act = isset($_GET['action'])? $_GET['action'] : '';
 
 if (PHP_VERSION < '7.0'){
-    emMsg('您的php版本过低，请选用支持PHP7以上的环境安装emlog。');
+/*vot*/    emMsg(lang('php_required'));
 }
 
 if(!$act){
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<!DOCTYPE html>
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8">
 <title>emlog</title>
 <style type="text/css">
 <!--
@@ -42,50 +50,50 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <form name="form1" method="post" action="install.php?action=install">
 <div class="main">
 <p class="logo"></p>
-<p class="title">emlog <?php echo Option::EMLOG_VERSION ?> 安装程序</p>
+<!--vot--><p class="title"><?= lang('installation')?><?= Option::EMLOG_VERSION ?></p>
 <div class="b">
-<p class="title2">MySQL数据库设置</p>
+<!--vot--><p class="title2"><?= lang('mysql_settings')?></p>
 <li>
-    数据库地址： <br />
+<!--vot--> <?= lang('db_hostname')?>:<br>
     <input name="hostname" type="text" class="input" value="127.0.0.1">
-    <span class="care">(通常为 localhost/127.0.0.1， 不必修改)</span>
+<!--vot--> <span class="care"><?= lang('db_hostname_info')?></span>
 </li>
 <li>
-    数据库用户名：<br /><input name="dbuser" type="text" class="input" value="">
+<!--vot--> <?= lang('db_user')?>:<br><input name="dbuser" type="text" class="input" value="">
 </li>
 <li>
-    数据库密码：<br /><input name="password" type="password" class="input">
+<!--vot--> <?= lang('db_password')?>:<br><input name="password" type="password" class="input">
 </li>
 <li>
-    数据库名：<br />
+<!--vot--> <?= lang('db_name')?>:<br>
       <input name="dbname" type="text" class="input" value="">
-      <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
+<!--vot--> <span class="care"><?= lang('db_name_info')?></span>
 </li>
 <li>
-    数据库表前缀：<br />
+<!--vot--> <?= lang('db_prefix')?>:<br>
   <input name="dbprefix" type="text" class="input" value="emlog_">
-  <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
+<!--vot--> <span class="care"><?= lang('db_prefix_info')?></span>
 </li>
 </div>
 <div class="c">
-<p class="title2">管理员设置</p>
+<!--vot--><p class="title2"><?= lang('admin_settings')?></p>
 <li>
-登录名：<br />
+<!--vot--> <?= lang('admin_name')?>:<br>
 <input name="admin" type="text" class="input">
 </li>
 <li>
-登录密码：<br />
+<!--vot--><?= lang('admin_password')?>:<br>
 <input name="adminpw" type="password" class="input">
-<span class="care">(不小于6位)</span>
+<!--vot--><span class="care"><?= lang('admin_password_info')?></span>
 </li>
 <li>
-再次输入登录密码：<br />
+<!--vot--><?= lang('admin_password_repeat')?>:<br>
 <input name="adminpw2" type="password" class="input">
 </li>
 </div>
 <div>
 <p class="foot">
-<input type="submit" class="submit" value="开始安装emlog">
+<!--vot--><input type="submit" class="submit" value="<?= lang('install_emlog')?>">
 </p>
 </div>
 </div>
@@ -106,18 +114,18 @@ if($act == 'install' || $act == 'reinstall'){
     $result = '';
 
     if($db_prefix == ''){
-        emMsg('数据库表前缀不能为空!');
+/*vot*/        emMsg(lang('db_prefix_empty'));
     }elseif(!preg_match("/^[\w_]+_$/",$db_prefix)){
-        emMsg('数据库表前缀格式错误!');
+/*vot*/        emMsg(lang('db_prefix_empty'));
     }elseif($admin == '' || $adminpw == ''){
-        emMsg('登录名和密码不能为空!');
-    }elseif(strlen($adminpw) < 6){
-        emMsg('登录密码不得小于6位');
+/*vot*/        emMsg(lang('username_password_empty'));
+/*vot*/    }elseif(strlen($adminpw) < 5){
+/*vot*/        emMsg(lang('password_short'));
     }elseif($adminpw!=$adminpw2)	 {
-        emMsg('两次输入的密码不一致');
+/*vot*/        emMsg(lang('password_not_equal'));
     }
 
-    //初始化数据库类
+    //Initialize the database class
     define('DB_HOST',   $db_host);
     define('DB_USER',   $db_user);
     define('DB_PASSWD', $db_pw);
@@ -128,10 +136,11 @@ if($act == 'install' || $act == 'reinstall'){
     $CACHE = Cache::getInstance();
 
     if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
-        echo <<<EOT
+/*vot*/ ?>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <title>emlog system message</title>
 <style type="text/css">
 <!--
@@ -143,32 +152,37 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </head><body>
 <form name="form1" method="post" action="install.php?action=reinstall">
 <div class="main">
-    <input name="hostname" type="hidden" class="input" value="$db_host">
-    <input name="dbuser" type="hidden" class="input" value="$db_user">
-    <input name="password" type="hidden" class="input" value="$db_pw">
-    <input name="dbname" type="hidden" class="input" value="$db_name">
-    <input name="dbprefix" type="hidden" class="input" value="$db_prefix">
-    <input name="admin" type="hidden" class="input" value="$admin">
-    <input name="adminpw" type="hidden" class="input" value="$adminpw">
-    <input name="adminpw2" type="hidden" class="input" value="$adminpw2">
+<!--vot--><input name="hostname" type="hidden" class="input" value="<?=$db_host?>">
+<!--vot--><input name="dbuser" type="hidden" class="input" value="<?=$db_user?>">
+<!--vot--><input name="password" type="hidden" class="input" value="<?=$db_pw?>">
+<!--vot--><input name="dbname" type="hidden" class="input" value="<?=$db_name?>">
+<!--vot--><input name="dbprefix" type="hidden" class="input" value="<?=$db_prefix?>">
+<!--vot--><input name="admin" type="hidden" class="input" value="<?=$admin?>">
+<!--vot--><input name="adminpw" type="hidden" class="input" value="<?=$adminpw?>">
+<!--vot--><input name="adminpw2" type="hidden" class="input" value="<?=$adminpw2?>">
 <p>
-你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
-<input type="submit" value="继续&raquo;">
+<!--vot--><?=lang('already_installed')?>
+<!--vot--><input type="submit" value="<?=lang('continue')?>">
 </p>
-<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+<!--vot--><p><a href="javascript:history.back(-1);"><?=lang('return')?></a></p>
 </div>
 </form>
 </body>
 </html>
-EOT;
+<?php /*vot*/
         exit;
     }
 
+    // Create config.php
+/*vot*/    if ( $fp = @fopen('config.php', 'w') ){
+/*vot*/        fclose($fp);
+/*vot*/    }
+
     if(!is_writable('config.php')){
-        emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
+/*vot*/        emMsg(lang('config_not_writable'));
     }
     if(!is_writable(EMLOG_ROOT.'/content/cache')){
-        emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
+/*vot*/        emMsg(lang('cache_not_writable'));
     }
     $config = "<?php\n"
     ."//mysql database address\n"
@@ -185,16 +199,20 @@ EOT;
     ."define('AUTH_KEY','".getRandStr(32).md5($_SERVER['HTTP_USER_AGENT'])."');"
     ."\n//cookie name\n"
     ."define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_".getRandStr(32,false)."');"
+/*vot*/    ."\n//blog language //vot\n"
+/*vot*/    ."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
+/*vot*/    ."\n//blog language direction //vot\n"
+/*vot*/    ."define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
     ."\n";
 
     $fp = @fopen('config.php', 'w');
     $fw = @fwrite($fp, $config);
     if (!$fw){
-        emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
+/*vot*/        emMsg(lang('config_not_writable'));
     }
     fclose($fp);
 
-    //密码加密存储
+    //Encrypt Password
     $PHPASS = new PasswordHash(8, true);
     $adminpw = $PHPASS->HashPassword($adminpw);
 
@@ -213,21 +231,21 @@ EOT;
 
     define('BLOG_URL', realUrl());
 
-    $sql = "
+/*vot*/    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid int(10) unsigned NOT NULL auto_increment,
+  gid int(11) unsigned NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
   date bigint(20) NOT NULL,
   content longtext NOT NULL,
   excerpt longtext NOT NULL,
-  alias VARCHAR(200) NOT NULL DEFAULT '',
-  author int(10) NOT NULL default '1',
-  sortid int(10) NOT NULL default '-1',
-  type varchar(20) NOT NULL default 'blog',
-  views int(10) unsigned NOT NULL default '0',
-  comnum int(10) unsigned NOT NULL default '0',
-  attnum int(10) unsigned NOT NULL default '0',
+  alias VARCHAR(255) NOT NULL DEFAULT '',
+  author int(11) NOT NULL default '1',
+  sortid int(11) NOT NULL default '-1',
+  type varchar(64) NOT NULL default 'blog',
+  views int(11) unsigned NOT NULL default '0',
+  comnum int(11) unsigned NOT NULL default '0',
+  attnum int(11) unsigned NOT NULL default '0',
   top enum('n','y') NOT NULL default 'n',
   sortop enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
@@ -243,32 +261,32 @@ CREATE TABLE {$db_prefix}blog (
   KEY sortid (sortid),
   KEY top (top,date)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '".time()."', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".lang('emlog_welcome')."', '".time()."', '".lang('emlog_install_congratulation')."', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid int(10) unsigned NOT NULL auto_increment,
-  blogid int(10) unsigned NOT NULL default '0',
+  aid int(11) unsigned NOT NULL auto_increment,
+  blogid int(11) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
-  filesize int(10) NOT NULL default '0',
+  filesize int(11) NOT NULL default '0',
   filepath varchar(255) NOT NULL default '',
   addtime bigint(20) NOT NULL default '0',
-  width int(10) NOT NULL default '0',
-  height int(10) NOT NULL default '0',
-  mimetype varchar(40) NOT NULL default '',
-  thumfor int(10) NOT NULL default 0,
+  width int(11) NOT NULL default '0',
+  height int(11) NOT NULL default '0',
+  mimetype varchar(64) NOT NULL default '',
+  thumfor int(11) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid int(10) unsigned NOT NULL auto_increment,
-  gid int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  cid int(11) unsigned NOT NULL auto_increment,
+  gid int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
-  poster varchar(20) NOT NULL default '',
+  poster varchar(255) NOT NULL default '',
   comment text NOT NULL,
-  mail varchar(60) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
+  mail varchar(255) NOT NULL default '',
+  url varchar(255) NOT NULL default '',
   ip varchar(128) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
   PRIMARY KEY  (cid),
@@ -284,8 +302,8 @@ option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','点滴记忆');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','".lang('my_blog')."');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','".lang('emlog_powered')."');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
@@ -330,7 +348,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_htm
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
@@ -341,60 +359,60 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id int(10) unsigned NOT NULL auto_increment,
-  sitename varchar(30) NOT NULL default '',
-  siteurl varchar(75) NOT NULL default '',
+  id int(11) unsigned NOT NULL auto_increment,
+  sitename varchar(255) NOT NULL default '',
+  siteurl varchar(255) NOT NULL default '',
   description varchar(255) NOT NULL default '',
   hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
+  taxis int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '".lang('emlog_official_site')."', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id int(10) unsigned NOT NULL auto_increment,
-  naviname varchar(30) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
+  id int(11) unsigned NOT NULL auto_increment,
+  naviname varchar(255) NOT NULL default '',
+  url varchar(255) NOT NULL default '',
   newtab enum('n','y') NOT NULL default 'n',
   hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  taxis int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   isdefault enum('n','y') NOT NULL default 'n',
   type tinyint(3) unsigned NOT NULL default '0',
-  type_id int(10) unsigned NOT NULL default '0',
+  type_id int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )".$table_charset_sql."
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '".lang('home')."', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '".lang('login')."', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(10) unsigned NOT NULL auto_increment,
-  tagname varchar(60) NOT NULL default '',
+  tid int(11) unsigned NOT NULL auto_increment,
+  tagname varchar(255) NOT NULL default '',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid int(10) unsigned NOT NULL auto_increment,
+  sid int(11) unsigned NOT NULL auto_increment,
   sortname varchar(255) NOT NULL default '',
-  alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
+  alias VARCHAR(255) NOT NULL DEFAULT '',
+  taxis int(11) unsigned NOT NULL default '0',
+  pid int(11) unsigned NOT NULL default '0',
   description text NOT NULL,
   template varchar(255) NOT NULL default '',
   PRIMARY KEY  (sid)
 )".$table_charset_sql."
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid int(10) unsigned NOT NULL auto_increment,
-  username varchar(32) NOT NULL default '',
-  password varchar(64) NOT NULL default '',
-  nickname varchar(20) NOT NULL default '',
-  role varchar(60) NOT NULL default '',
+  uid int(11) unsigned NOT NULL auto_increment,
+  username varchar(255) NOT NULL default '',
+  password varchar(255) NOT NULL default '',
+  nickname varchar(255) NOT NULL default '',
+  role varchar(255) NOT NULL default '',
   ischeck enum('n','y') NOT NULL default 'n',
   photo varchar(255) NOT NULL default '',
-  email varchar(60) NOT NULL default '',
+  email varchar(255) NOT NULL default '',
   description varchar(255) NOT NULL default '',
 PRIMARY KEY  (uid),
 KEY username (username)
@@ -402,10 +420,10 @@ KEY username (username)
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','".$adminpw."','admin');
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
-  `sid` int(8) NOT NULL AUTO_INCREMENT,
-  `plugin` varchar(32) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `type` varchar(8) NOT NULL,
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(64) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(32) NOT NULL,
   `value` text NOT NULL,
   `createdate` int(11) NOT NULL,
   `lastupdate` int(11) NOT NULL,
@@ -420,17 +438,16 @@ CREATE TABLE {$db_prefix}storage (
             $DB->query($sql);
         }
     }
-    //重建缓存
+    //Rebuild cache
     $CACHE->updateCache();
-    $result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
-        <p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
-        <p><b>用户名</b>：{$admin}</p>
-        <p><b>密 码</b>：您刚才设定的密码</p>";
+/*vot*/    $result .= "
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
+        <p>".lang('emlog_installed_info')."</p>
+        <p><b>".lang('user_name')."</b>: {$admin}</p>
+        <p><b>".lang('password')."</b>: ".lang('password_entered')."</p>";
     if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
-        $result .= '<p style="color:red;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
+/*vot*/        $result .= '<p style="color:red;margin:10px 20px;">'.lang('delete_install').'</p> ';
     }
-    $result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+/*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">".lang('go_to_front')."</a> | <a href=\"./admin/\">".lang('go_to_admincp')."</a></p>";
     emMsg($result, 'none');
 }
-?>

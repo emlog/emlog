@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户管理
+ * Model: User Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -12,6 +12,12 @@ class User_Model {
         $this->db = Database::getInstance();
     }
 
+    /**
+     * Get a list of users
+     *
+     * @param $role //User group
+     * @return array
+     */
     function getUsers($page = null) {
         $condition = '';
         if ($page) {
@@ -48,6 +54,12 @@ class User_Model {
         return $userData;
     }
 
+    /**
+     * Update User Information
+     *
+     * @param array $userData
+     * @param int $uid
+     */
     function updateUser($userData, $uid) {
         $Item = array();
         foreach ($userData as $key => $data) {
@@ -57,21 +69,33 @@ class User_Model {
         $this->db->query("update ".DB_PREFIX."user set $upStr where uid=$uid");
     }
 
+    /**
+     * Add a User
+     *
+     * @param string $login
+     * @param string $password
+     * @param string $role
+     */
     function addUser($login, $password,  $role, $ischeck) {
         $sql="insert into ".DB_PREFIX."user (username,password,role,ischeck) values('$login','$password','$role','$ischeck')";
         $this->db->query($sql);
     }
 
+    /**
+     * Delete User
+     *
+     * @param int $uid
+     */
     function deleteUser($uid) {
         $this->db->query("update ".DB_PREFIX."blog set author=1 and checked='y' where author=$uid");
         $this->db->query("delete from ".DB_PREFIX."user where uid=$uid");
     }
 
     /**
-     * 判断用户名是否存在
+     * Check the User name exists
      *
      * @param string $login
-     * @param int $uid 兼容更新作者资料时用户名未变更情况
+     * @param int $uid //Update user information is compatible with the user name does not change the situation
      * @return boolean
      */
     function isUserExist($login, $uid = '') {
@@ -85,10 +109,10 @@ class User_Model {
     }
 
     /**
-     * 判断用户昵称是否存在
+     * Check if Nickname exists
      *
      * @param string $nickname
-     * @param int $uid 兼容更新作者资料时用户名未变更情况
+     * @param int $uid Compatible Update data When the user name did not changed
      * @return boolean
      */
     function isNicknameExist($nickname, $uid = '') {

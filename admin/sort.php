@@ -1,6 +1,6 @@
 <?php
 /**
- * 分类管理
+ * Categories Management
  * @copyright (c) Emlog All Rights Reserved
  */
 

@@ -1,16 +1,16 @@
 <?php
 /**
- * 自定义404页面
+ * Custom 404 page
  */
 if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
 <!doctype html>
-<html lang="zh-cn">
+<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>错误提示-页面未找到</title>
+    <meta charset="utf-8">
+<!--vot--><title><?=lang('404_error')?></title>
     <style type="text/css">
         <!--
         body {
@@ -42,8 +42,8 @@ if (!defined('EMLOG_ROOT')) {
 </head>
 <body>
 <div class="main">
-    <p>抱歉，你所请求的页面不存在！</p>
-    <p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+<!--vot--><p><?=lang('404_description')?></p>
+<!--vot--><p><a href="javascript:history.back(-1);"><?=lang('click_return')?></a></p>
 </div>
 </body>
 </html>

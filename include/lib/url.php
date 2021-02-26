@@ -1,26 +1,26 @@
 <?php
 /**
- * URL处理
+ * URL Processing
  * @copyright (c) Emlog All Rights Reserved
  */
 
 class Url {
 
     /**
-     * 获取文章链接
+     * Get Post Link
      */
     static function log($blogId) {
         $urlMode = Option::get('isurlrewrite');
         $logUrl = '';
         $CACHE = Cache::getInstance();
 
-        //开启文章别名
+        //Open the Post alias
         if (Option::get('isalias') == 'y') {
             $logalias_cache = $CACHE->readCache('logalias');
             if (!empty($logalias_cache[$blogId])) {
                 $logsort_cache = $CACHE->readCache('logsort');
                 $sort = '';
-                //分类模式下的url
+                //Category Mode under the url
                 if (3 == $urlMode && isset($logsort_cache[$blogId])) {
                     $sort = !empty($logsort_cache[$blogId]['alias']) ? 
                         $logsort_cache[$blogId]['alias'] : 
@@ -28,7 +28,7 @@ class Url {
                     $sort .= '/';
                 }
                 $logUrl = BLOG_URL . $sort . urlencode($logalias_cache[$blogId]);
-                //开启别名html后缀
+                //Open the alias html suffix
                 if (Option::get('isalias_html') == 'y') {
                     $logUrl .= '.html';
                 }
@@ -37,16 +37,16 @@ class Url {
         }
 
         switch ($urlMode) {
-            case '0'://默认：动态
+            case '0'://Default: Dynamic
                 $logUrl = BLOG_URL . '?post=' . $blogId;
                 break;
-            case '1'://静态
+            case '1'://Static
                 $logUrl = BLOG_URL . 'post-' . $blogId . '.html';
                 break;
-            case '2'://目录
+            case '2'://Directory
                 $logUrl = BLOG_URL . 'post/' . $blogId;
                 break;
-            case '3'://分类
+            case '3'://Category
                 $log_sort = $CACHE->readCache('logsort');
                 if (!empty($log_sort[$blogId]['alias'])) {
                     $logUrl = BLOG_URL . $log_sort[$blogId]['alias'] . '/' . $blogId;
@@ -62,7 +62,7 @@ class Url {
     }
 
     /**
-     * 获取归档链接
+     * Get the archive link
      */
     static function record($record, $page = null) {
         $recordUrl = '';
@@ -82,7 +82,7 @@ class Url {
     }
 
     /**
-     * 获取分类链接
+     * Get Category Link
      */
     static function sort($sortId, $page = null) {
         $CACHE = Cache::getInstance();
@@ -105,7 +105,7 @@ class Url {
     }
 
     /**
-     * 获取作者链接
+     * Get author link
      */
     static function author($authorId, $page = null) {
         $authorUrl = '';
@@ -125,7 +125,7 @@ class Url {
     }
 
     /**
-     * 获取标签链接
+     * Get tag link
      */
     static function tag($tag, $page = null) {
         $tagUrl = '';
@@ -145,7 +145,7 @@ class Url {
     }
 
     /**
-     * 获取首页文章分页链接
+     * Get the Home Post pagination links
      */
     static function logPage() {
         $logPageUrl = '';
@@ -161,7 +161,7 @@ class Url {
     }
 
     /**
-     * 获取评论链接
+     * Get Comment Link
      */
     static function comment($blogId, $pageId, $cid) {
         $commentUrl = Url::log($blogId);
@@ -178,7 +178,7 @@ class Url {
     }
 
     /**
-     * 获取导航链接
+     * Get navigation link
      */
     static function navi($type, $typeId, $url) {
         $sorts = Cache::getInstance()->readCache('sort');

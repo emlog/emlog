@@ -1,6 +1,6 @@
 <?php
 /**
- * 阅读文章页面
+ * Read the Post page
  */
 if (!defined('EMLOG_ROOT')) {
     exit('error!');
@@ -8,7 +8,7 @@ if (!defined('EMLOG_ROOT')) {
 ?>
     <div class="col-md-7 content">
         <h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
-        <p class="date"><?php echo gmdate('Y-n-j', $date); ?><?php blog_author($author); ?><?php blog_sort($logid); ?><?php editflg($logid, $author); ?></p>
+<!--vot--> <p class="date"><?php echo gmdate('Y-m-d', $date); ?><?php blog_author($author); ?><?php blog_sort($logid); ?><?php editflg($logid, $author); ?></p>
         <?php echo $log_content; ?>
         <p class="tag"><?php blog_tag($logid); ?></p>
         <?php doAction('log_related', $logData); ?>

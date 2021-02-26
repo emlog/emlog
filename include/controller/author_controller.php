@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看作者文章
+ * View Post author
  *
  * @copyright (c) Emlog All Rights Reserved
  */

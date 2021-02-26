@@ -1,6 +1,6 @@
 <?php
 /**
- * 前台加载插件页面
+ * Front loading plugin page
  *
  * @copyright (c) Emlog All Rights Reserved
  */

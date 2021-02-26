@@ -4,7 +4,7 @@ $lang = array(
 //---------------------------
 //install.php
 
- 'php5_required'	=> '您的php版本过低，请选用支持PHP5的环境安装emlog。',//'For normal functioning Emlog requires PHP5 or higher',
+ 'php_required'		=> '您的php版本过低，请选用支持PHP7以上的环境安装emlog',//'Your php version is too low, please choose an environment that supports PHP7 or higher to install emlog.',
  'installation'		=> '安装程序emlog ',//'Install Emlog v.',
  'mysql_settings'	=> 'MySQL数据库设置',//'MySQL settings',
  'db_hostname'		=> '数据库地址',//'Database Hostname',

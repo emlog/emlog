@@ -1,6 +1,6 @@
 <?php
 /**
- * 插件管理
+ * Plugin management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -18,7 +18,7 @@ if ($action == '' && !$plugin) {
     View::output();
 }
 
-//激活
+//Activate
 if ($action == 'active') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
@@ -30,7 +30,7 @@ if ($action == 'active') {
     }
 }
 
-//禁用
+//Disable
 if ($action == 'inactive') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
@@ -39,7 +39,7 @@ if ($action == 'inactive') {
     emDirect("./plugin.php?inactive=1");
 }
 
-//加载插件配置页面
+//Load the plug-in configuration page
 if ($action == '' && $plugin) {
     include View::getView('header');
     require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
@@ -47,7 +47,7 @@ if ($action == '' && $plugin) {
     include View::getView('footer');
 }
 
-//保存插件设置
+//Save plug-in settings
 if ($action == 'setting') {
     if (!empty($_POST)) {
         require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
@@ -61,7 +61,7 @@ if ($action == 'setting') {
     }
 }
 
-//删除插件
+//Delete Plugin
 if ($action == 'del') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
@@ -75,7 +75,7 @@ if ($action == 'del') {
     }
 }
 
-//上传zip插件
+//Upload zipped plugin
 if ($action == 'upload_zip') {
     LoginAuth::checkToken();
     $zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
@@ -84,7 +84,7 @@ if ($action == 'upload_zip') {
         emDirect("./plugin.php?error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-        emMsg('插件上传失败');
+/*vot*/ emMsg(lang('plugin_upload_error'));
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
         emDirect("./plugin.php?error_f=1");

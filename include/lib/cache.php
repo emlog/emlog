@@ -1,6 +1,6 @@
 <?php
 /**
- * 生成文本缓存类
+ * Cache class
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -29,7 +29,7 @@ class Cache {
     }
 
     /**
-     * 静态方法，返回数据库连接实例
+     * Static method, Returns the database connection instance
      *
      * @return Cache
      */
@@ -40,20 +40,20 @@ class Cache {
         return self::$instance;
     }
     /**
-     * 更新缓存
+     * Update cache
      * 
-     * @param array/string $cacheMethodName 需要更新的缓存，更新多个采用数组方式：array('options', 'user'),单个采用字符串方式：'options',全部则留空
+     * @param array/string $cacheMethodName need to update the cache, Update multiple uses an array of methods: array('options', 'user'), Using a single string by:  'options', blank for All
      * @return unknown_type
      */
     function updateCache($cacheMethodName = null) {
-        // 更新单个缓存
+        // Update a single cache
         if (is_string($cacheMethodName)) {
             if (method_exists($this, 'mc_' . $cacheMethodName)) {
                 call_user_func(array($this, 'mc_' . $cacheMethodName));
             }
             return;
         }
-        // 更新多个缓存
+        // Update multiple cache
         if (is_array($cacheMethodName)) {
             foreach ($cacheMethodName as $name) {
                 if (method_exists($this, 'mc_' . $name)) {
@@ -62,9 +62,9 @@ class Cache {
             }
             return;
         }
-        // 更新全部缓存
+        // Update all cache
         if ($cacheMethodName == null) {
-            // 自动运行本类所有更新缓存的方法(此类方法的名称必须由mc_开头)
+            // Automatically run all the cache update methods (Such method name must start with the mc_)
             $cacheMethodNames = get_class_methods($this);
             foreach ($cacheMethodNames as $method) {
                 if (preg_match('/^mc_/', $method)) {
@@ -74,8 +74,8 @@ class Cache {
         }
     }
     /**
-     * 站点配置缓存
-     * 注意更新缓存的方法必须为mc开头
+     * Site Configuration Cache
+     * Note that the update cache method must begin with mc
      */
     private function mc_options() {
         $options_cache = array();
@@ -90,7 +90,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'options');
     }
     /**
-     * 用户信息缓存
+     * User Info Cache
      */
     private function mc_user() {
         $user_cache = array();
@@ -124,7 +124,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'user');
     }
     /**
-     * 站点统计缓存
+     * Site Statistics cache
      */
     private function mc_sta() {
         $sta_cache = array();
@@ -178,7 +178,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'sta');
     }
     /**
-     * 最新评论缓存
+     * Last comments cache
      */
     private function mc_comment() {
         $query = $this->db->query("SELECT option_value,option_name FROM " . DB_PREFIX . "options WHERE option_name IN('index_comnum','comment_subnum','comment_paging','comment_pnum','comment_order')");
@@ -222,7 +222,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'comment');
     }
     /**
-     * 侧边栏标签缓存
+     * Sidebar tags cache
      */
     private function mc_tags() {
         $tag_cache = array();
@@ -247,7 +247,7 @@ class Cache {
         $rank = $maxuse - $minuse;
         $rank = ($rank == 0?1:$rank);
         $rank = $spread / $rank;
-        // 获取草稿id
+        // Get draft id
         $hideGids = array();
         $query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
         while ($row = $this->db->fetch_array($query)) {
@@ -255,7 +255,7 @@ class Cache {
         }
         $query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag");
         while ($show_tag = $this->db->fetch_array($query)) {
-            // 排除草稿在tag文章数里的统计
+            // Exclude draft post tags from the statistics
             foreach ($hideGids as $val) {
                 $show_tag['gid'] = str_replace(',' . $val . ',', ',', $show_tag['gid']);
             }
@@ -275,7 +275,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'tags');
     }
     /**
-     * 侧边栏分类缓存
+     * Sidebar Categories cache
      */
     private function mc_sort() {
         $sort_cache = array();
@@ -304,7 +304,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'sort');
     }
     /**
-     * 友情链接缓存
+     * Friendly Links Cache
      */
     private function mc_link() {
         $link_cache = array();
@@ -320,7 +320,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'link');
     }
     /**
-     * 导航缓存
+     * Navigation Cache
      */
     private function mc_navi() {
         $navi_cache = array();
@@ -361,7 +361,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'navi');
     }
     /**
-     * 最新文章
+     * Latest Posts
      */
     private function mc_newlog() {
         $row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
@@ -378,7 +378,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'newlog');
     }
     /**
-     * 文章归档缓存
+     * Post Archive Cache
      */
     private function mc_record() {
         $query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC");
@@ -394,7 +394,7 @@ class Cache {
                     $record_cache[$h]['lognum'] = $lognum;
                 }
                 $record_cache[$p] = array(
-                    'record' => gmdate('Y年n月', $show_record['date']),
+/*vot*/             'record' => gmdate(lang('cache_date_format'), $show_record['date']),
                     'date' => gmdate('Ym', $show_record['date'])
                     );
                 $p++;
@@ -414,7 +414,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'record');
     }
     /**
-     * 文章标签缓存
+     * Post tags cache
      */
     private function mc_logtags() {
         $tag_model = new Tag_Model();
@@ -444,7 +444,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'logtags');
     }
     /**
-     * 文章分类缓存
+     * Blog Categories cache
      */
     private function mc_logsort() {
         $sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog'";
@@ -465,7 +465,7 @@ class Cache {
         $this->cacheWrite($cacheData, 'logsort');
     }
     /**
-     * 文章别名缓存
+     * Post aliases cache
      */
     private function mc_logalias() {
         $sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
@@ -479,26 +479,26 @@ class Cache {
     }
 
     /**
-     * 写入缓存
+     * Write cache
      */
     function cacheWrite ($cacheData, $cacheName) {
         $cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
         $cacheData = "<?php exit;//" . $cacheData;
-        @ $fp = fopen($cachefile, 'wb') OR emMsg('读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
-        @ $fw = fwrite($fp, $cacheData) OR emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+/*vot*/        @ $fp = fopen($cachefile, 'wb') OR emMsg(lang('cache_read_error'));
+/*vot*/        @ $fw = fwrite($fp, $cacheData) OR emMsg(lang('cache_not_writable'));
         $this->{$cacheName.'_cache'} = null;
         fclose($fp);
     }
 
     /**
-     * 读取缓存文件
+     * Read cache file
      */
     function readCache($cacheName) {
         if ($this->{$cacheName.'_cache'} != null) {
             return $this->{$cacheName.'_cache'};
         } else {
             $cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-            // 如果缓存文件不存在则自动生成缓存文件
+            // If the cache file does not exist, the cache file is automatically generated
             if (!is_file($cachefile) || filesize($cachefile) <= 0) {
                 if (method_exists($this, 'mc_' . $cacheName)) {
                     call_user_func(array($this, 'mc_' . $cacheName));

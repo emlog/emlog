@@ -70,7 +70,7 @@ $lang = array(
 //include/controller/comment_controller.php
  'comment_error_comment_disabled'	=> '评论失败：该文章已关闭评论',//'Comment error: The comments for this entry has been closed.',
  'comment_error_content_exists'		=> '评论失败：已存在相同内容评论',//'Comment error: The same content already exists.',
- 'comment_error_flood_control'		=> '评论失败：您提交评论的速度太快了，请稍后再发表评论',//'Comment error: You must wait before sending another comment.',
+ 'comment_error_flood_control'		=> '评论失败：您写评论的速度太快了，请稍后再试',//'Comment failed: You are writing comments too fast, please try again later',
  'comment_error_name_enter'		=> '评论失败：请填写姓名',//'Comment error: Please, enter your name.',
  'comment_error_name_invalid'		=> '评论失败：姓名不符合规范',//'Comment error: Name does not meet requirements.',
  'comment_error_email_invalid'		=> '评论失败：邮件地址不符合规范',//'Comment error: E-mail address does not meet requirements.',

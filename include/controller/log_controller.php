@@ -1,6 +1,6 @@
 <?php
 /**
- * 显示首页、内容
+ * Showing page content
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -105,7 +105,7 @@ class Log_Controller
             $Log_Model->updateViewCount($logid);
             $neighborLog = $Log_Model->neighborLog($timestamp);
             $tb = array();
-            $tb_url = '';//兼容未删除引用模板
+/*vot*/     $tb_url = '';//Compatible not delete references Templates
             include View::getView('echo_log');
         } elseif ($type == 'page') {
             $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';

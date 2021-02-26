@@ -3,23 +3,25 @@
 } ?>
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">管理后台</h1>
+<!--vot-->      <h1 class="h3 mb-0 text-gray-800"><?= lang('admincp') ?></h1>
         <?php doAction('adm_main_top'); ?>
     </div>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <h6 class="card-header">站点信息</h6>
+<!--vot-->      <h6 class="card-header"><?= lang('site_info') ?></h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">文章
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('posts')?>
                             <span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">评论
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('comments')?>
                             <span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center small">
-                            服务器环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
+<!--vot-->              <?=lang('php_version')?>: <?php echo $php_ver; ?>,
+<!--vot-->              <?=lang('mysql_version')?>： <?php echo $mysql_ver; ?>,
+<!--vot-->              <?=lang('server_environment')?>： <?php echo $serverapp; ?>,
                         </li>
                     </ul>
 
@@ -28,7 +30,7 @@
         </div>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <h6 class="card-header">官方消息</h6>
+<!--vot-->      <h6 class="card-header"><?= lang('official_news') ?></h6>
                 <div class="card-body">
                     <div class="panel-body" id="admindex_msg">
                         <ul class="list-group list-group-flush"></ul>
@@ -43,7 +45,7 @@
 <script>
     $("#menu_home").addClass('active');
     $(document).ready(function () {
-        $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
+/*vot*/ $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?= lang('reading') ?></span>");
         $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
             function (data) {
                 $("#admindex_msg ul").html("");

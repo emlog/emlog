@@ -9,9 +9,10 @@ $lang = array(
  'post_manage'		=> '文章管理',
  'draft_manage'		=> '草稿管理',
  'no_permission'	=> '权限不足！',
- 'check'		=> '审核',//'Check',
+ 'check'		=> '审核',//'Show',
  'uncheck'		=> '驳回',//'Uncheck',
  'view_by_tag'		=> '按标签查看',//'View by tag',
+ 'article_add'		=> '写新文章',//'Write a new article',
 
 //---------------------------
 //admin/attachment.php
@@ -180,7 +181,7 @@ $lang = array(
  '_pages'		=> '个页面',//' pages',
  'select_page_to_operate'	=> '请选择要操作的页面',//'Please, select the page to operate',
  'sure_delete_selected_pages'	=> '你确定要删除所选页面吗？',//'Are you sure you want to delete selected pages?',
-
+ 'pages_total'		=> '已创建的页面',//'Total pages:',
 //---------------------------
 //admin/views/attlib.php
  'attachment_upload'	=> '上传附件',//'Upload attachment',
@@ -224,12 +225,13 @@ $lang = array(
  'content'		=> '内容',//'Content',
  'comment_author'	=> '评论人',//'Comment author',
  'belongs_to_article'	=> '所属文章',//'Belongs to article',
- 'from'			=> '来自',//'From',
+ 'from_ip'		=> '来自IP',//'From IP',
  'hide'			=> '隐藏',//'Hide',
  'reply'		=> '回复',//'Reply',
- 'del_comments_from_ip'	=> '删除来自该IP的所有评论',//'Delete all comments from this IP ',
+ 'del_from_ip'		=> '按IP删除',//'Delete from this IP',
  'view_article'		=> '查看该文章',//'View the article',
  'no_comments_yet'	=> '还没有收到评论',//'Yet no comments',
+ 'operation'		=> '操作',//'Operation',
 
 //---------------------------
 //admin/views/configure.php
@@ -460,10 +462,14 @@ $lang = array(
  'templates'		=> '模板',//'Templates',
  'applications'		=> '应用',//'Apps',
  'extensions'		=> '扩展功能',//'Extensions',
+ 'search_for'		=> 'Search for...',//'Search for...',
+ 'search'		=> 'Search',//'Search',
 // '<!--Sidebar Toggle-->',//'<!--边栏折叠-->'
 
 //---------------------------
 //admin/views/index.php
+ 'admincp'		=> '管理后台',//'AdminCP',
+ 'link_manage_info'	=> '友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。',//'Friendship link management, you can display the added link in the sidebar of the homepage in the sidebar management.',
  'user_info'		=> '大伟',//'User info',
  'system_settings'	=> '系统设置',//'System settings',
  'control_panel'	=> '控制台首页',//'Control panel',
@@ -475,7 +481,6 @@ $lang = array(
  'logout_sure'		=> 'Ready to Leave?',
  'close'		=> 'Close',
  'logout_prompt'	=> 'Select "Logout" below if you are ready to end your current session.',
- 'admincp'		=> '管理首页',//'AdminCP',
  'system'		=> '系统',//'System',
  'twitter_write_placeholder'	=> '用微语记录生活 ……',//'Write some words to the twitter...',
  'cancel'			=> '取消',//'Cancel',
@@ -515,7 +520,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/links.php
- 'link_add'		=> '添加链接+',//'Add Link+',
+ 'link_add'		=> '新建链接',//'Add Link',
  'link_management'	=> '链接管理',//'Link management',
  'order'		=> '排序',//'Order',
  'edit_link'		=> '修改链接',//'Edit link',
@@ -525,6 +530,8 @@ $lang = array(
  'hidden'		=> '隐藏',//'Hidden',
  'view_link'		=> '查看链接',//'View link',
  'no_links'		=> '还没有添加链接',//'No link added yet',
+ 'name'			=> '名称',//'Name',
+ 'link_url'		=> '地址',//'Link URL',
 
 //---------------------------
 //admin/views/login.php
@@ -565,6 +572,7 @@ $lang = array(
  'status'		=> '状态',//'Status',
  'view'			=> '查看',//'View',
  'address'		=> '地址',//'Address',
+ 'add'			=> '添加',//'Add',
 
 //---------------------------
 //admin/views/naviedit.php
@@ -636,6 +644,8 @@ $lang = array(
  'alias_prompt'		=> '用于URL的友好显示，可不填',//'Used for friendly display of URL, optional',
  'category_parent'	=> '父分类',//'Parent category',
  'submit'		=> '提交',//'Submit',
+ 'category_add'		=> '添加分类',//'添加分类+',//'Add Category',
+ 'tag_add'		=> '新建标签',//'Add Tag',
 
 //---------------------------
 //admin/views/store.php
@@ -748,6 +758,8 @@ $lang = array(
  'posts_not_need_audit'	=> '文章不需要审核',//'Posts not need to be verified',
  'posts_need_audit'	=> '文章需要审核',//'Posts need to be verified',
  'publish_permission'	=> '发布权限',//'Publishing permissions',
+ 'users_total'		=> '已创建的用户',//'Users created',
+ 'role'			=> '角色',//'Role',
 
 //---------------------------
 //admin/views/useredit.php

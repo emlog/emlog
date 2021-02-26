@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理文章
+ * Posts Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -8,7 +8,7 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 
-//显示文章(草稿)管理页面
+//Show Posts (draft) management page
 if ($action == '') {
     $Tag_Model = new Tag_Model();
     $User_Model = new User_Model();
@@ -76,7 +76,7 @@ if ($action == '') {
     View::output();
 }
 
-//操作文章
+//Blog Operation
 if ($action == 'operate_log') {
     $operate = isset($_REQUEST['operate']) ? $_REQUEST['operate'] : '';
     $pid = isset($_POST['pid']) ? $_POST['pid'] : '';
@@ -152,7 +152,7 @@ if ($action == 'operate_log') {
             break;
         case 'change_author':
             if (ROLE != ROLE_ADMIN) {
-                emMsg('权限不足！', './');
+/*vot*/         emMsg(lang('no_permission'), './');
             }
             foreach ($logs as $val) {
                 $Log_Model->updateLog(array('author' => $author), $val);
@@ -162,7 +162,7 @@ if ($action == 'operate_log') {
             break;
         case 'check':
             if (ROLE != ROLE_ADMIN) {
-                emMsg('权限不足！', './');
+/*vot*/         emMsg(lang('no_permission'), './');
             }
             $Log_Model->checkSwitch($gid, 'y');
             $CACHE->updateCache();
@@ -170,7 +170,7 @@ if ($action == 'operate_log') {
             break;
         case 'uncheck':
             if (ROLE != ROLE_ADMIN) {
-                emMsg('权限不足！', './');
+/*vot*/         emMsg(lang('no_permission'), './');
             }
             $Log_Model->checkSwitch($gid, 'n');
             $CACHE->updateCache();

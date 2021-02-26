@@ -1,10 +1,12 @@
 <?php
 /**
- * RSS输出
+ * RSS Output
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once './init.php';
+
+/*vot*/ load_language('rss');
 
 header('Content-type: application/xml');
 
@@ -19,7 +21,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <title><![CDATA['.Option::get('blogname').']]></title> 
 <description><![CDATA['.Option::get('bloginfo').']]></description>
 <link>'.$URL.'</link>
-<language>zh-cn</language>
+<!--vot--><language>'.EMLOG_LANGUAGE.'</language>
 <generator>www.emlog.net</generator>';
 if (!empty($blog)) {
 $user_cache = $CACHE->readCache('user');
@@ -49,7 +51,7 @@ echo <<< END
 END;
 
 /**
- * 获取文章信息
+ * Get blog info
  *
  * @return array
  */
@@ -82,7 +84,7 @@ function getBlog($sortid = null) {
         $re['content']	= $re['content'];
         if(!empty($re['password']))
         {
-            $re['content'] = '<p>[该文章已设置加密]</p>';
+/*vot*/     $re['content'] = '<p>[' . lang('post_protected_by_password') . ']</p>';
         }
         elseif(Option::get('rss_output_fulltext') == 'n')
         {
@@ -91,7 +93,7 @@ function getBlog($sortid = null) {
             }else {
                 $re['content'] = extractHtmlData($re['content'], 330);
             }
-            $re['content'] .= ' <a href="'.Url::log($re['id']).'">阅读全文&gt;&gt;</a>';
+/*vot*/     $re['content'] .= ' <a href="'.Url::log($re['id']).'">'.lang('read_more').'</a>';
         }
 
         $blog[] = $re;

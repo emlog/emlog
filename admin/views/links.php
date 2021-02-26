@@ -2,31 +2,31 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success">排序更新成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加成功</div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">站点名称和地址不能为空</div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success"><?=lang('order_update_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success"><?=lang('edit_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_add'])): ?><div class="alert alert-success"><?=lang('add_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('site_and_url_empty')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">链接管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-edit"></i> 新建链接</a>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-edit"></i> <?= lang('link_add') ?></a>
     </div>
-    <p class="mb-4">友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。</p>
+<!--vot--><p class="mb-4"><?=lang('link_manage_info')?></p>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold">已创建的链接</h6>
+<!--vot-->      <h6 class="m-0 font-weight-bold"><?= lang('link_management') ?></h6>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>排序</th>
-                        <th>链接</th>
-                        <th>描述</th>
-                        <th>状态</th>
-                        <th>操作</th>
+<!--vot-->              <th><?= lang('order') ?></th>
+<!--vot-->              <th><?= lang('link') ?></th>
+<!--vot-->              <th><?= lang('description') ?></th>
+<!--vot-->              <th><?= lang('status') ?></th>
+<!--vot-->              <th><?= lang('operation') ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,9 +41,9 @@
                                 <td><?php echo $value['description']; ?></td>
                                 <td>
                                     <?php if ($value['hide'] == 'n'): ?>
-                                        <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="点击隐藏链接">显示</a>
+<!--vot-->                              <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_hide') ?>"><?= lang('visible') ?></a>
                                     <?php else: ?>
-                                        <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="点击显示链接" style="color:red;">隐藏</a>
+<!--vot-->                              <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_show') ?>" style="color:red;"><?= lang('hidden') ?></a>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -51,14 +51,14 @@
                                        data-linkid="<?php echo $value['id']; ?>"
                                        data-sitename="<?php echo $value['sitename']; ?>"
                                        data-siteurl="<?php echo $value['siteurl']; ?>"
-                                       data-description="<?php echo $value['description']; ?>">编辑
+<!--vot-->                             data-description="<?php echo $value['description']; ?>"><?=lang('edit')?>
                                     </a>
-                                    <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                                 </td>
                             </tr>
                         <?php endforeach; else:?>
                         <tr>
-                            <td class="tdcenter" colspan="6">还没有添加链接</td>
+<!--vot-->                  <td class="tdcenter" colspan="6"><?= lang('no_links') ?></td>
                         </tr>
                     <?php endif; ?>
                     </tbody>
@@ -66,15 +66,15 @@
             </div>
         </div>
         <div class="list_footer">
-            <input type="submit" value="改变排序" class="btn btn-primary"/>
+<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary">
         </div>
     </form>
-    <!--添加链接弹窗-->
+    <!--Add Link popup-->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">新建链接</h5>
+<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('add_link')?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,21 +83,21 @@
                 <form action="link.php?action=addlink" method="post" name="link" id="link">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="alias">名称</label>
+<!--vot-->                  <label for="alias"><?=lang('name')?></label>
                             <input class="form-control" id="sitename" name="sitename">
                         </div>
                         <div class="form-group">
-                            <label for="template">地址</label>
+<!--vot-->                  <label for="template"><?=lang('link_url')?></label>
                             <input class="form-control" id="siteurl" name="siteurl">
                         </div>
                         <div class="form-group">
-                            <label for="alias">描述</label>
+<!--vot-->                  <label for="alias"><?=lang('description')?></label>
                             <textarea name="description" type="text" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
@@ -105,12 +105,12 @@
         </div>
     </div>
 
-    <!--编辑链接弹窗-->
+    <!--Edit Link popup-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">编辑链接</h5>
+<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('')?>编辑链接</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -119,22 +119,22 @@
                 <form action="link.php?action=update_link" method="post" name="link" id="link">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="alias">名称</label>
+<!--vot-->                  <label for="alias"><?=lang('')?>名称</label>
                             <input class="form-control" id="sitename" name="sitename">
                         </div>
                         <div class="form-group">
-                            <label for="template">地址</label>
+<!--vot-->                  <label for="template"><?=lang('address')?></label>
                             <input class="form-control" id="siteurl" name="siteurl">
                         </div>
                         <div class="form-group">
-                            <label for="alias">描述</label>
+<!--vot-->                  <label for="alias"><?=lang('description')?></label>
                             <textarea name="description" id="description" type="text" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" value="" name="linkid" id="linkid" />
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('link_add')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>

@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看标签文章
+ * View Post Tags
  *
  * @copyright (c) Emlog All Rights Reserved
  */

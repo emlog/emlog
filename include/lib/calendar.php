@@ -1,13 +1,19 @@
 <?php
 /**
- * 日历
+ * Calendar
  * @copyright (c) Emlog All Rights Reserved
  */
+//DEBUG
+//echo '<pre>';
+//echo 'Calendar.php:', "\n";
+//echo 'LANGUAGE=';
+//print_r($LANGUAGE);
+//echo '</pre>';
 
 class Calendar {
 
 	/**
-	 * 日历调用地址
+	 * Calendar call address
 	 */
 	static function url() {
 		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL.'?action=cal&record='.intval($GLOBALS['record']) : DYNAMIC_BLOGURL.'?action=cal' ;
@@ -15,23 +21,25 @@ class Calendar {
 	}
 
 	/**
-	 * 生成日历
+	 * Generate calendar
 	 */
 	static function generate() {
 		$DB = Database::getInstance();
+		$timezone = Option::get('timezone');
+		$timestamp = time() + $timezone * 3600;
 
-		//建立文章时间写入数组
+		//Array of post create time
 		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
-			$logdate[] = date("Ymd", $date['date']);
+			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
 		}
-		//获取当前日期
-		$n_year  = date("Y");
-		$n_year2 = date("Y");
-		$n_month = date("m");
-		$n_day   = date("d");
-		$time    = date("Ymd");
-		$year_month = date("Ym");
+		//Get the current date
+		$n_year  = gmdate("Y", $timestamp);
+		$n_year2 = gmdate("Y", $timestamp);
+		$n_month = gmdate("m", $timestamp);
+		$n_day   = gmdate("d", $timestamp);
+		$time    = gmdate("Ymd", $timestamp);
+		$year_month = gmdate("Ym", $timestamp);
 
 		if (isset($_GET['record'])) {
 			$n_year = substr(intval($_GET['record']),0,4);
@@ -40,7 +48,7 @@ class Calendar {
 			$year_month = substr(intval($_GET['record']),0,6);
 		}
 
-		//年月跳转连接
+		//Month to jump links
 		$m  = $n_month - 1;
 		$mj = $n_month + 1;
 
@@ -58,23 +66,23 @@ class Calendar {
 			$m = '12';
 			$year_down = $n_year - 1;
 		}
-		$url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//上一年份
-		$url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//下一年份
-		$url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//上一月份
-		$url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//下一月份
+		$url = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year - 1) . $n_month;//Previous Year
+		$url2 = DYNAMIC_BLOGURL.'?action=cal&record=' . ($n_year + 1) . $n_month;//Next Year
+		$url3 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_down . $m;//Previous Month
+		$url4 = DYNAMIC_BLOGURL.'?action=cal&record=' . $year_up . $mj;//Next month
 
 		$calendar ="<table class=\"calendartop\" cellspacing=\"0\"><tr>
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
 		</tr></table>
 		<table class=\"calendar\" cellspacing=\"0\">
-		<tr><td class=\"week\">一</td><td class=\"week\">二</td><td class=\"week\">三</td><td class=\"week\">四</td><td class=\"week\">五</td><td class=\"week\">六</td><td class=\"sun\">日</td></tr>";
+<!--vot-->	<tr><td class=\"week\">".lang('weekday1')."</td><td class=\"week\">".lang('weekday2')."</td><td class=\"week\">".lang('weekday3')."</td><td class=\"week\">".lang('weekday4')."</td><td class=\"week\">".lang('weekday5')."</td><td class=\"week\">".lang('weekday6')."</td><td class=\"sun\">".lang('weekday7')."</td></tr>";
 
-		//获取给定年月的第一天是星期几
+		//Get a given date is the first day of the week
 		$week = @gmdate("w",gmmktime(0,0,0,$n_month,1,$n_year));
-		//获取给定年月的天数
+		//Gets the number of days in a given year and month
 		$lastday = @gmdate("t",gmmktime(0,0,0,$n_month,1,$n_year));
-		//获取给定年月的最后一天是星期几
+		//Get a given date is the last day of the week
 		$lastweek = @gmdate("w",gmmktime(0,0,0,$n_month,$lastday,$n_year));
 		if ($week == 0) {
 			$week = 7;
@@ -82,21 +90,21 @@ class Calendar {
 		$j = 1;
 		$w = 7;
 		$isend = false;
-		//外循环生成行
+		//Outer loop generates rows
 		for ($i = 1;$i <= 6;$i++) {
 			if ($isend || ($i == 6 && $lastweek==0)) {
 				break;
 			}
 			$calendar .= '<tr>';
-			//内循环生成列
+			//Inner loop generates columns
 			for ($j ; $j <= $w; $j++) {
 				if ($j < $week) {
 					$calendar.= '<td>&nbsp;</td>';
 				} elseif ( $j <= 7 ) {
 					$r = $j - $week + 1;
-					//如果该日有文章就显示url样式
+					//Format the date for url
 					$n_time = $n_year . $n_month . '0' . $r;
-					//有文章且为当天
+					//If there is an article for that day
 					if (@in_array($n_time,$logdate) && $n_time == $time) {
 						$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $r .'</a></td>';
 					} elseif (@in_array($n_time,$logdate)) {
@@ -112,7 +120,7 @@ class Calendar {
 						$isend = true;
 						$calendar .= '<td>&nbsp;</td>';
 					} else {
-						//如果该日有文章就显示url样式
+						//Format the date for url
 						$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
 						if (@in_array($n_time,$logdate) && $n_time == $time) {
 							$calendar .= '<td class="day"><a href="'.Url::record($n_time).'">'. $t .'</a></td>';
@@ -125,10 +133,10 @@ class Calendar {
 						}
 					}
 				}
-			}//内循环结束
+			}//End of inner loop
 			$calendar .= '</tr>';
 			$w += 7;
-		}//外循环结束
+		}//End of outer loop
 		$calendar .= '</table>';
 		echo $calendar;
 	}

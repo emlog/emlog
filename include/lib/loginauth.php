@@ -1,6 +1,6 @@
 <?php
 /**
- * 登录验证
+ * Login authentication
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -11,7 +11,7 @@ class LoginAuth{
     const LOGIN_ERROR_AUTHCODE = -3;
 
     /**
-     * 验证用户是否处于登录状态
+     * Verify that the user is logged on
      */
     public static function isLogin() {
         global $userData;
@@ -32,7 +32,7 @@ class LoginAuth{
     }
 
     /**
-     * 验证密码/用户
+     * Verify User/Password
      *
      * @param string $username
      * @param string $password
@@ -63,25 +63,25 @@ class LoginAuth{
     }
 
     /**
-     * 登录页面
+     * Login Page
      */
     public static function loginPage($errorCode = NULL) {
         Option::get('login_code') == 'y' ?
-        $ckcode = "<span>验证码</span>
-        <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\" />
+/*vot*/ $ckcode = "<span>".lang('captcha')."</span>
+        <div class=\"val\"><input name=\"imgcode\" id=\"imgcode\" type=\"text\">
         <img src=\"../include/lib/checkcode.php\" align=\"absmiddle\"></div>" :
         $ckcode = '';
         $error_msg = '';
         if ($errorCode) {
             switch ($errorCode) {
                 case self::LOGIN_ERROR_AUTHCODE:
-                    $error_msg = '验证错误，请重新输入';
+/*vot*/             $error_msg = lang('captcha_error_reenter');
                     break;
                 case self::LOGIN_ERROR_USER:
-                    $error_msg = '用户名错误，请重新输入';
+/*vot*/             $error_msg = lang('user_name_wrong_reenter');
                     break;
                 case self::LOGIN_ERROR_PASSWD:
-                    $error_msg = '密码错误，请重新输入';
+/*vot*/             $error_msg = lang('password_wrong_reenter');
                     break;
             }
         }
@@ -90,7 +90,7 @@ class LoginAuth{
     }
 
     /**
-     * 通过登录名查询管理员信息
+     * Check the User data by login name
      *
      * @param string $userLogin User's username
      * @return bool|object False on failure, User DB row object
@@ -110,7 +110,7 @@ class LoginAuth{
     }
 
     /**
-     * 将明文密码和数据库加密后的密码进行验证
+     * Compare the plaintext password and the database encrypted password
      *
      * @param string $password Plaintext user's password
      * @param string $hash Hash of the user's password to check against.
@@ -126,7 +126,7 @@ class LoginAuth{
     }
 
     /**
-     * 写用于登录验证cookie
+     * Write the login authentication cookie
      *
      * @param int $user_id User ID
      * @param bool $remember Whether to remember the user or not
@@ -143,7 +143,7 @@ class LoginAuth{
     }
 
     /**
-     * 生成登录验证cookie
+     * Generate the login authentication cookie
      *
      * @param int $user_id user login
      * @param int $expiration Cookie expiration in seconds
@@ -170,7 +170,7 @@ class LoginAuth{
     }
 
     /**
-     * 验证cookie
+     * Verify cookie
      * Validates authentication cookie.
      *
      * @param string $cookie Optional. If used, will validate contents instead of cookie's
@@ -207,7 +207,7 @@ class LoginAuth{
     }
 
     /**
-     * 生成token，防御CSRF攻击
+     * Generate token, defense CSRF attack
      */
     public static function genToken() {
         $token_cookie_name = 'EM_TOKENCOOKIE_' . md5(substr(AUTH_KEY, 16, 32) . UID);
@@ -221,12 +221,12 @@ class LoginAuth{
     }
 
     /**
-     * 检查token，防御CSRF攻击
+     * Check the token, defense CSRF attack
      */
     public static function checkToken(){
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         if ($token != self::genToken()) {
-            emMsg('权限不足，token error');
+/*vot*/     emMsg(lang('no_permission').' '.lang('token_error'));
         }
     }
 }

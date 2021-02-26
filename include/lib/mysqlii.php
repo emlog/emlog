@@ -1,6 +1,6 @@
 <?php
 /**
- * MySQLi数据库操作类
+ * MySQLi Database Operations
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -8,32 +8,32 @@
 class MySqlii {
 
     /**
-     * 查询次数
+     * Number of queries
      * @var int
      */
     private $queryCount = 0;
 
     /**
-     * 内部数据连接对象
+     * Internal data connection object
      * @var mysqli
      */
     private $conn;
 
     /**
-     * 内部数据结果
+     * Internal data result
      * @var mysqli_result
      */
     private $result;
 
     /**
-     * 内部实例对象
+     * Internal object instance
      * @var object MySql
      */
     private static $instance = null;
 
     private function __construct() {
         if (!class_exists('mysqli')) {
-            emMsg('服务器空间PHP不支持MySqli函数');
+/*vot*/     emMsg(lang('mysqli_not_supported'));
         }
 
         @$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
@@ -42,27 +42,27 @@ class MySqlii {
             switch ($this->conn->connect_errno) {
                 case 1044:
                 case 1045:
-                    emMsg("连接数据库失败，数据库用户名或密码错误");
+/*vot*/             emMsg(lang('db_credential_error'));
                     break;
 
                 case 1049:
-                    emMsg("连接数据库失败，未找到您填写的数据库");
+/*vot*/             emMsg(lang('db_not_found'));
                     break;
 
                 case 2003:
-                    emMsg("连接数据库失败，数据库端口错误");
+/*vot*/             emMsg(lang('db_port_invalid'));
                     break;
 
                 case 2005:
-                    emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
+/*vot*/             emMsg(lang('db_unavailable'));
                     break;
 
                 case 2006:
-                    emMsg("连接数据库失败，数据库服务器不可用");
+/*vot*/             emMsg(lang('db_server_unavailable'));
                     break;
 
                 default :
-                    emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+/*vot*/             emMsg(lang('db_error_code') . $this->conn->connect_errno);
                     break;
             }
         }
@@ -71,7 +71,7 @@ class MySqlii {
     }
 
     /**
-     * 静态方法，返回数据库连接实例
+     * Static method that returns the database connection instance
      */
     public static function getInstance() {
         if (self::$instance == null) {
@@ -82,30 +82,30 @@ class MySqlii {
     }
 
     /**
-     * 关闭数据库连接
+     * Close database connection
      */
     function close() {
         return $this->conn->close();
     }
 
     /**
-     * 发送查询语句
+     * Send query statement
      */
     function query($sql, $ignore_err = FALSE) {
         $this->result = $this->conn->query($sql);
         $this->queryCount++;
         if (!$ignore_err && 1046 == $this->geterrno()) {
-            emMsg("连接数据库失败，请填写数据库名");
+/*vot*/     emMsg(lang('db_error_name'));
         }
         if (!$ignore_err && !$this->result) {
-            emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
+/*vot*/     emMsg(lang('db_sql_error'). ": {$sql}<br>" . $this->geterror());
         } else {
             return $this->result;
         }
     }
 
     /**
-     * 从结果集中取得一行作为关联数组/数字索引数组
+     * Fetch a row as an associative array / array results from a numerical index
      */
     function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
         return $query->fetch_array($type);
@@ -117,14 +117,14 @@ class MySqlii {
     }
 
     /**
-     * 从结果集中取得一行作为数字索引数组
+     * Fetch a row as an array of results from a numerical index
      */
     function fetch_row(mysqli_result $query) {
         return $query->fetch_row();
     }
 
     /**
-     * 取得行的数目
+     * The number of rows obtained
      *
      */
     function num_rows(mysqli_result $query) {
@@ -132,28 +132,28 @@ class MySqlii {
     }
 
     /**
-     * 取得结果集中字段的数目
+     * Get the number of fields in the result set
      */
     function num_fields(mysqli_result $query) {
         return $query->field_count;
     }
 
     /**
-     * 取得上一步 INSERT 操作产生的 ID
+     * Get the last ID generated from the previous INSERT operation
      */
     function insert_id() {
         return $this->conn->insert_id;
     }
 
     /**
-     * 获取mysql错误
+     * Get mysql error
      */
     function geterror() {
         return $this->conn->error;
     }
 
     /**
-     * 获取mysql错误编码
+     * Get mysql error code
      */
     function geterrno() {
         return $this->conn->errno;
@@ -167,14 +167,14 @@ class MySqlii {
     }
 
     /**
-     * 取得数据库版本信息
+     * Get database version
      */
     function getMysqlVersion() {
         return $this->conn->server_info;
     }
 
     /**
-     * 取得数据库查询次数
+     * Get the number of database queries
      */
     function getQueryCount() {
         return $this->queryCount;

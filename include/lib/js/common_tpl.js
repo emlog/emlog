@@ -66,7 +66,7 @@ var XMLHttp = {
 	}
 };
 function sendinfo(url,node){
-	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">加载中...</span></div>");
+/*vot*/	updateEle(node,"<div><span style=\"background-color:#FFFFE5; color:#666666;\">"+lang('loading')+"</span></div>");
 	XMLHttp.sendReq('GET',url,'',function(obj){updateEle(node,obj.responseText);});
 }
 function loadr(url,tid){
@@ -78,7 +78,7 @@ function loadr(url,tid){
 		rp.style.display="none";
 	} else {
 		r.style.display="block";
-		r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">加载中...</span>';
+/*vot*/		r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">'+lang('loading')+'</span>';
 		XMLHttp.sendReq('GET',url,'',function(obj){r.innerHTML = obj.responseText;rp.style.display="block";});
 	}
 }
@@ -91,13 +91,13 @@ function reply(url,tid){
 	var r=document.getElementById("r_"+tid);
 	var data = "r="+rtext+"&rname="+rname+"&rcode="+rcode+"&tid="+tid;
 	XMLHttp.sendReq('POST',url,data,function(obj){
-		if(obj.responseText == 'err1'){rmsg.innerHTML = '(回复长度需在140个字内)';
-		}else if(obj.responseText == 'err2'){rmsg.innerHTML = '(昵称不能为空)';
-		}else if(obj.responseText == 'err3'){rmsg.innerHTML = '(验证码错误)';
-		}else if(obj.responseText == 'err4'){rmsg.innerHTML = '(不允许使用该昵称)';
-		}else if(obj.responseText == 'err5'){rmsg.innerHTML = '(已存在该回复)';
-		}else if(obj.responseText == 'err0'){rmsg.innerHTML = '(禁止回复)';
-		}else if(obj.responseText == 'succ1'){rmsg.innerHTML = '(回复成功，等待管理员审核)';
+/*vot*/		if(obj.responseText == 'err1'){rmsg.innerHTML = lang('max_140_bytes');
+/*vot*/		}else if(obj.responseText == 'err2'){rmsg.innerHTML = lang('nickname_empty');
+/*vot*/		}else if(obj.responseText == 'err3'){rmsg.innerHTML = lang('captcha_error');
+/*vot*/		}else if(obj.responseText == 'err4'){rmsg.innerHTML = lang('nickname_disabled');
+/*vot*/		}else if(obj.responseText == 'err5'){rmsg.innerHTML = lang('nickname_exists');
+/*vot*/		}else if(obj.responseText == 'err0'){rmsg.innerHTML = lang('comments_disabled');
+/*vot*/		}else if(obj.responseText == 'succ1'){rmsg.innerHTML = lang('comment_ok_moderation');
 		}else{r.innerHTML += obj.responseText;rn.innerHTML = Number(rn.innerHTML)+1;rmsg.innerHTML=''}});
 }
 function re(tid, rp){

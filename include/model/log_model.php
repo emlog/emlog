@@ -1,6 +1,6 @@
 <?php
 /**
- * 文章、页面管理
+ * Model: Blog Page Management
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -14,7 +14,7 @@ class Log_Model {
     }
 
     /**
-     * 添加文章、页面
+     * Add a new post to the database
      *
      * @param array $logData
      * @return int
@@ -34,7 +34,7 @@ class Log_Model {
     }
 
     /**
-     * 更新文章内容
+     * Update the post content
      *
      * @param array $logData
      * @param int $blogId
@@ -50,9 +50,9 @@ class Log_Model {
     }
 
     /**
-     * 获取指定条件的文章条数
+     * Get the number of posts with specified conditions
      *
-     * @param int $spot 0:前台 1:后台
+     * @param int $spot //0: foreground 1: Background
      * @param string $hide
      * @param string $condition
      * @param string $type
@@ -72,14 +72,14 @@ class Log_Model {
     }
 
     /**
-     * 后台获取单篇文章
+     * Get a Single post by ID for Admin
      */
     function getOneLogForAdmin($blogId) {
         $author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
         $res = $this->db->query($sql);
         if ($this->db->affected_rows() < 1) {
-            emMsg('权限不足！', './');
+/*vot*/     emMsg(lang('no_permission'), './');
         }
         $row = $this->db->fetch_array($res);
         if ($row) {
@@ -96,7 +96,7 @@ class Log_Model {
     }
 
     /**
-     * 前台获取单篇文章
+     * Get a Single post by ID for homepage
      */
     function getOneLogForHome($blogId) {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
@@ -128,7 +128,7 @@ class Log_Model {
     }
 
     /**
-     * 后台获取文章列表
+     * Get posts by conditions for Admin
      *
      * @param string $condition
      * @param string $hide_state
@@ -147,7 +147,7 @@ class Log_Model {
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date']	= date("Y-m-d H:i", $row['date']);
-            $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -158,7 +158,7 @@ class Log_Model {
     }
 
     /**
-     * 前台获取文章列表
+     * Get posts by conditions for Homepage
      *
      * @param string $condition
      * @param int $page
@@ -177,23 +177,23 @@ class Log_Model {
             $row['logid'] = $row['gid'];
             $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
             if (!empty($row['password']) && $cookiePassword != $row['password']) {
-                $row['excerpt'] = '<p>[该文章已设置加密，请点击标题输入密码访问]</p>';
+/*vot*/         $row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
             } else {
                 if (!empty($row['excerpt'])) {
-                    $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
+/*vot*/             $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></p>';
                 }
             }
             $row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
             $row['attachment'] = '';
             $row['tag'] = '';
-            $row['tbcount'] = 0;//兼容未删除引用的模板
+/*vot*/     $row['tbcount'] = 0;//Compatible not deleted Quote of template
             $logs[] = $row;
         }
         return $logs;
     }
 
     /**
-     * 获取全部页面列表
+     * Get a list of all pages
      */
     function getAllPageList() {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
@@ -201,7 +201,7 @@ class Log_Model {
         $pages = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date']	= date("Y-m-d H:i", $row['date']);
-            $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -212,7 +212,7 @@ class Log_Model {
     }
 
     /**
-     * 删除文章
+     * Delete the post by ID
      *
      * @param int $blogId
      */
@@ -220,14 +220,14 @@ class Log_Model {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         $this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
-            emMsg('权限不足！', './');
+/*vot*/     emMsg(lang('no_permission'), './');
         }
-        // 评论
+        // Comments
         $this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-        // 标签
+        // Tags
         $this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
         $this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-        // 附件
+        // Attachments
         $query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
         while ($attach = $this->db->fetch_array($query)) {
             if (file_exists($attach['filepath'])) {
@@ -242,7 +242,7 @@ class Log_Model {
     }
 
     /**
-     * 隐藏/显示文章
+     * Hide/Show the post by ID
      *
      * @param int $blogId
      * @param string $state
@@ -256,7 +256,7 @@ class Log_Model {
     }
 
     /**
-     * 审核/驳回作者文章
+     * Audit/Reject the post author
      *
      * @param int $blogId
      * @param string $state
@@ -270,7 +270,7 @@ class Log_Model {
     }
 
     /**
-     * 增加阅读次数
+     * Update the post view count
      *
      * @param int $blogId
      */
@@ -279,7 +279,7 @@ class Log_Model {
     }
 
     /**
-     * 判断是否重复发文
+     * Determine whether the repeated posting
      */
     function isRepeatPost($title, $time) {
         $sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -289,9 +289,9 @@ class Log_Model {
     }
 
     /**
-     * 获取相邻文章
+     * Make Link to the nearest posts
      *
-     * @param int $date unix时间戳
+     * @param int $date //unix Timestamp
      * @return array
      */
     function neighborLog($date) {
@@ -308,7 +308,10 @@ class Log_Model {
     }
 
     /**
-     * 随机获取指定数量文章
+     * Get Random Post
+     *
+     * @param int $num
+     * @return array
      */
     function getRandLog($num) {
         global $CACHE;
@@ -327,7 +330,7 @@ class Log_Model {
     }
 
     /**
-     * 获取热门文章
+     * Get Hot Posts
      */
     function getHotLog($num) {
         $sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -342,7 +345,11 @@ class Log_Model {
     }
 
     /**
-     * 处理文章别名，防止别名重复
+     * Process Post alias, Prevent alias duplicated
+     *
+     * @param string $alias
+     * @param array $logalias_cache
+     * @param int $logid
      */
     function checkAlias($alias, $logalias_cache, $logid) {
         static $i=2;
@@ -360,16 +367,24 @@ class Log_Model {
     }
 
     /**
-     * 加密文章访问验证
+     * Encrypted Post access authentication
+     *
+     * @param string $postPwd
+     * @param string $cookiePwd
+     * @param string $logPwd
+     * @param int $logid
      */
     function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
         $url = BLOG_URL;
         $pwd = $cookiePwd ? $cookiePwd : $postPwd;
         if ($pwd !== addslashes($logPwd)) {
-            echo <<<EOT
+/*vot*/ $page_pass = lang('page_password_enter');
+/*vot*/ $submit_pass = lang('submit_password');
+/*vot*/ $back = lang('back_home');
+/*vot*/     echo <<<EOT
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <title>emlog message</title>
 <style type="text/css">
 <!--
@@ -381,9 +396,9 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <body>
 <div class="main">
 <form action="" method="post">
-请输入该文章的访问密码<br>
-<input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="$url">&laquo;返回首页</a>
+{$page_pass}<br>
+<input type="password" name="logpwd"><input type="submit" value="{$submit_pass}" class="button">
+<br><br><a href="$url">{$back}</a>
 </form>
 </div>
 </body>

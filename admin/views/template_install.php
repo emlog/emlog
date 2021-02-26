@@ -2,30 +2,30 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">只支持zip压缩格式的模板包</div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">上传失败，模板目录(content/templates)不可写</div><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装模板</div><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">请选择一个zip模板安装包</div><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">安装失败，模板安装包不符合标准</div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('template_upload_failed_nonwritable')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('template_no_zip_install_manually')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('template_select_zip')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('template_non_standard')?></div><?php endif; ?>
     <?php if (isset($_GET['error_c'])): ?>
         <div style="margin:20px 20px;">
             <div class="alert alert-danger">
-                手动安装模板： <br/>
-                1、把解压后的模板文件夹上传到 content/templates目录下。 <br/>
-                2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。 <br/>
+<!--vot-->      <?=lang('template_install_manual')?>:<br/>
+<!--vot-->      <?=lang('template_install_prompt1')?><br/>
+<!--vot-->      <?=lang('template_install_prompt2')?><br/>
             </div>
         </div>
     <?php endif; ?>
-    <h1 class="h3 mb-4 text-gray-800">安装模板</h1>
+<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('template_install')?></h1>
     <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data">
         <div style="margin:50px 0px 50px 20px;">
-            <p>上传一个zip压缩格式的模板安装包</p>
+<!--vot-->  <p><?=lang('template_upload_prompt')?></p>
             <p>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="tplzip" type="file"/>
             </p>
             <p>
-                <input type="submit" value="上传安装" class="btn btn-primary"/>
+<!--vot-->      <input type="submit" value="<?=lang('upload_install')?>" class="btn btn-primary">
             </p>
         </div>
     </form>

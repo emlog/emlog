@@ -1,6 +1,6 @@
 <?php
 /**
- * 模板管理
+ * Template Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -18,14 +18,14 @@ if ($action == '') {
     $tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
     $tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
     $tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-    $tplForEm = !empty($tplForEmlog[1]) ? '适用于emlog：' . $tplForEmlog[1] : '';
+/*vot*/    $tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
 
     if (isset($tplAuthor[1])) {
-        $tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
+/*vot*/        $tplAuthor = !empty($tplUrl[1]) ? lang('user') . ": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user') . ": {$tplAuthor[1]}";
     } else {
         $tplAuthor = '';
     }
-    //模板列表
+    //Template List
     $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
     $tpls = array();
     while ($file = @readdir($handle)) {
@@ -50,7 +50,7 @@ if ($action == '') {
     View::output();
 }
 
-//使用模板
+//Using a template
 if ($action == 'usetpl') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
@@ -62,14 +62,14 @@ if ($action == 'usetpl') {
     emDirect("./template.php?activated=1");
 }
 
-//删除模板
+//Remove Template
 if ($action == 'del') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
     $nonce_templet = Option::get('nonce_templet');
     if ($tplName === $nonce_templet) {
-        emMsg('您不能删除正在使用的模板');
+/*vot*/ emMsg(lang('template_used'));
     }
 
     if (true === emDeleteFile(TPLS_PATH . $tplName)) {
@@ -79,7 +79,7 @@ if ($action == 'del') {
     }
 }
 
-//安装模板
+//Install template
 if ($action == 'install') {
     include View::getView('header');
     require_once View::getView('template_install');
@@ -87,7 +87,7 @@ if ($action == 'install') {
     View::output();
 }
 
-//上传zip模板
+//Upload zip Template
 if ($action == 'upload_zip') {
     LoginAuth::checkToken();
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
@@ -96,7 +96,7 @@ if ($action == 'upload_zip') {
         emDirect("./template.php?action=install&error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-        emMsg('模板上传失败');
+/*vot*/ emMsg(lang('template_upload_failed'));
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
         emDirect("./template.php?action=install&error_a=1");

@@ -1,12 +1,12 @@
 <?php
 /**
- * 显示撰写、编辑文章界面
+ * Show writing, editing, log in interface
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'globals.php';
 
-//显示撰写文章页面
+//Display the Write blog page
 if ($action == '') {
     $Tag_Model = new Tag_Model();
     $Sort_Model = new Sort_Model();
@@ -27,7 +27,7 @@ if ($action == '') {
     extract($blogData);
 
     $isdraft = false;
-    $containertitle = '写文章';
+/*vot*/    $containertitle = lang('post_write');
     $orig_date = '';
     $sorts = $CACHE->readCache('sort');
     $tagStr = '';
@@ -35,7 +35,7 @@ if ($action == '') {
     $is_top = '';
     $is_sortop = '';
     $is_allow_remark = '';
-    $postDate = date('Y-m-d H:i:s');
+/*vot*/	$postDate = date('Y-m-d H:i:s');
     $att_frame_url = 'attachment.php?action=selectFile';
 
     include View::getView('header');
@@ -44,7 +44,7 @@ if ($action == '') {
     View::output();
 }
 
-//显示编辑文章页面
+//Show edit blog page
 if ($action == 'edit') {
     $Log_Model = new Log_Model();
     $Tag_Model = new Tag_Model();
@@ -55,7 +55,7 @@ if ($action == 'edit') {
     extract($blogData);
 
     $isdraft = $hide == 'y' ? true : false;
-    $containertitle = $isdraft ? '编辑草稿' : '编辑文章';
+/*vot*/    $containertitle = $isdraft ? lang('draft_edit') : lang('post_edit');
     $postDate = date('Y-m-d H:i:s', $date);
     $sorts = $CACHE->readCache('sort');
     //log tag

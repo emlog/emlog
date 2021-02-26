@@ -1,6 +1,6 @@
 <?php
 /**
- * 个人资料
+ * Blogger Profile
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -15,7 +15,7 @@ if ($action == '') {
         $imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
         $token = LoginAuth::genToken();
         $icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" style=\"border:1px solid #CCCCCC;padding:1px;\" />
-        <br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">删除头像</a>";
+<!--vot--><br><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">".lang('photo_delete')."</a>";
     } else {
         $icon = '<img src="./views/images/avatar.svg" width="200" height="200" />';
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * 搜索文章
+ * Search Posts
  *
  * @copyright (c) Emlog All Rights Reserved
  */

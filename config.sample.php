@@ -1,7 +1,7 @@
 <?php
 header("location: ./install.php");exit;
 //mysql database address
-define('DB_HOST','127.0.0.1');
+define('DB_HOST','127.0.0.1');// or 'localhost'
 //mysql database user
 define('DB_USER','root');
 //database password
@@ -14,3 +14,9 @@ define('DB_PREFIX','emlog_');
 define('AUTH_KEY','emlog-key');
 //cookie name
 define('AUTH_COOKIE_NAME','emlog-cookie');
+
+//vot: blog language
+define('EMLOG_LANGUAGE','en'); //'en', 'ru', 'sc', 'tc', etc.
+
+//vot: blog language direction
+define('EMLOG_LANGUAGE_DIR','ltr'); //'ltr', 'rtl'

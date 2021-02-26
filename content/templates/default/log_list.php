@@ -1,6 +1,6 @@
 <?php
 /**
- * 站点首页模板
+ * Home Post List section
  */
 if (!defined('EMLOG_ROOT')) {
     exit('error!');
@@ -13,23 +13,23 @@ if (!defined('EMLOG_ROOT')) {
             foreach ($logs as $value):
                 ?>
                 <h3><a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?></h3>
-                <p class="date"><?php echo gmdate('Y-n-j', $value['date']); ?><?php blog_author($value['author']); ?>
+<!--vot-->  <p class="date"><?php echo gmdate('Y-m-d', $value['date']); ?><?php blog_author($value['author']); ?>
                     <?php blog_sort($value['logid']); ?>
                     <?php editflg($value['logid'], $value['author']); ?>
                 </p>
                 <?php echo $value['log_description']; ?>
                 <p class="tag"><?php blog_tag($value['logid']); ?></p>
                 <p class="count">
-                    <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
-                    <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+<!--vot-->          <a href="<?= $value['log_url'] ?>#comments"><?=lang('comments')?> (<?= $value['comnum'] ?>)</a>,
+<!--vot-->          <a href="<?= $value['log_url'] ?>"><?=lang('_views')?> (<?= $value['views'] ?>)</a>
                 </p>
                 <div style="clear:both;"></div>
             <?php
             endforeach;
         else:
             ?>
-            <h2>未找到</h2>
-            <p>抱歉，没有符合您查询条件的结果。</p>
+<!--vot-->  <h2><?=lang('not_found')?></h2>
+<!--vot-->  <p><?=lang('sorry_no_results')?></p>
         <?php endif; ?>
 
         <div id="pagenavi">

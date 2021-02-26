@@ -1,6 +1,6 @@
 <?php
 /**
- * 文章分类
+ * Model: Blog Categories
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -65,7 +65,7 @@ class Sort_Model {
             $row = $this->db->fetch_array($res);
             $sortName = htmlspecialchars($row['sortname']);
         } else {
-            $sortName = '未分类';
+/*vot*/     $sortName = lang('uncategorized');
         }
         return $sortName;
     }

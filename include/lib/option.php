@@ -1,17 +1,20 @@
 <?php
 /**
- * 前端控制
+ * Front Options
  * @copyright (c) Emlog All Rights Reserved
  */
 
+// Load the core Lang File
+/*vot*/ load_language('core');
+
 class Option {
-    //版本编号
+    //Version number
     const EMLOG_VERSION = 'BETA';
-    //头像缩略图最大宽
+    //Maximum avatar thumbnail width
     const ICON_MAX_W = 200;
-    //头像缩略图最大高
+    //Maximum avatar thumbnail height
     const ICON_MAX_H = 200;
-    //附件上传路径
+    //Attachments upload path
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
     static function get($option){
@@ -35,7 +38,7 @@ class Option {
                     }
                     break;
                 case 'blogurl':
-                    if ($options_cache['detect_url'] == 'y') {
+/*vot*/                 if (@$options_cache['detect_url'] == 'y') {
                         return realUrl();
                     }
                     else {
@@ -134,41 +137,41 @@ class Option {
     }
 
     /**
-     * 获取允许上传的附件类型
+     * Get attachment types allowed to upload
      */
     static function getAttType() {
         return explode(',', self::get('att_type'));
     }
 
     /**
-     * 获取附件最大限制,单位字节
+     * Get attachment maximum limit, in bytes
      */
     static function getAttMaxSize() {
         return self::get('att_maxsize') * 1024;
     }
     
     /**
-     * 获取widget组件标题
+     * Get widget module title
      */
     static function getWidgetTitle() {
         $widget_title = array(
-            'blogger' => '个人资料',
-            'calendar' => '日历',
-            'tag' => '标签',
-            'sort' => '分类',
-            'archive' => '存档',
-            'newcomm' => '最新评论',
-            'newlog' => '最新文章',
-            'hotlog' => '热门文章',
-            'link' => '链接',
-            'search' => '搜索',
-            'custom_text' => '自定义组件'
+/*vot*/            'blogger' => lang('blogger'),
+/*vot*/            'calendar' => lang('calendar'),
+/*vot*/            'tag' => lang('tags'),
+/*vot*/            'sort' => lang('category'),
+/*vot*/            'archive' => lang('archive'),
+/*vot*/            'newcomm' => lang('new_comments'),
+/*vot*/            'newlog' => lang('new_posts'),
+/*vot*/            'hotlog' => lang('hot_posts'),
+/*vot*/            'link' => lang('links'),
+/*vot*/            'search' => lang('search'),
+/*vot*/            'custom_text' => lang('widget_custom')
         );
         return $widget_title;
     }
 
     /**
-     * 获取初始安装时的widget列表
+     * Get a list of widgets installed by default
      */
     static function getDefWidget() {
         $default_widget = array('archive','link','search');
@@ -176,10 +179,10 @@ class Option {
     }
 
     /**
-     * 更新配置选项
+     * Update configuration option
      * @param $name
      * @param $value
-     * @param $isSyntax 更新值是否为一个表达式
+     * @param $isSyntax Update whether the value is an expression
      */
     static function updateOption($name, $value, $isSyntax = false){
         $DB = Database::getInstance();

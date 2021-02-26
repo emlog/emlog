@@ -1,6 +1,6 @@
 <?php
 /**
- * 自建页面模板
+ * Self-built page template
  */
 if (!defined('EMLOG_ROOT')) {
     exit('error!');

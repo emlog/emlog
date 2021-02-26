@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理中心
+ * Admin Center
  * @copyright (c) Emlog All Rights Reserved
  */
 
@@ -22,10 +22,10 @@ if ($action == '') {
             $ver_info = gd_info();
             $gd_ver = $ver_info['GD Version'];
         } else {
-            $gd_ver = '支持';
+/*vot*/     $gd_ver = lang('supported');
         }
     } else {
-        $gd_ver = '不支持';
+/*vot*/ $gd_ver = lang('not_supported');
     }
 
     include View::getView('header');

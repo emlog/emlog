@@ -1,6 +1,6 @@
 <?php
 /**
- * 侧边栏组件、页面模块
+ * Sidebar components, modules page
  */
 if (!defined('EMLOG_ROOT')) {
     exit('error!');
@@ -36,7 +36,7 @@ function widget_calendar($title)
     </ul>
 <?php } ?>
 <?php
-//widget：标签
+//widget:Tags
 function widget_tag($title)
 {
     global $CACHE;
@@ -45,12 +45,12 @@ function widget_tag($title)
     <ul class="list-unstyled">
         <?php foreach ($tag_cache as $value): ?>
             <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇文章"><?php echo $value['tagname']; ?></a></span>
+<!--vot-->	<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> <?=lang('_posts')?>"><?= $value['tagname'] ?></a></span>
         <?php endforeach; ?>
     </ul>
 <?php } ?>
 <?php
-//widget：分类
+//widget:Sort
 function widget_sort($title)
 {
     global $CACHE;
@@ -81,7 +81,7 @@ function widget_sort($title)
     </ul>
 <?php } ?>
 <?php
-//widget：最新评论
+//widget:Latest Comments
 function widget_newcomm($title)
 {
     global $CACHE;
@@ -99,7 +99,7 @@ function widget_newcomm($title)
     </ul>
 <?php } ?>
 <?php
-//widget：最新文章
+//widget:Latest Posts
 function widget_newlog($title)
 {
     global $CACHE;
@@ -113,7 +113,7 @@ function widget_newlog($title)
     </ul>
 <?php } ?>
 <?php
-//widget：热门文章
+//widget:Popular Posts
 function widget_hotlog($title)
 {
     $index_hotlognum = Option::get('index_hotlognum');
@@ -127,7 +127,7 @@ function widget_hotlog($title)
     </ul>
 <?php } ?>
 <?php
-//widget：搜索
+//widget:Random Post
 function widget_search($title)
 { ?>
     <h4><?php echo $title; ?></h4>
@@ -138,7 +138,7 @@ function widget_search($title)
     </ul>
 <?php } ?>
 <?php
-//widget：归档
+//widget:Archive
 function widget_archive($title)
 {
     global $CACHE;
@@ -152,7 +152,7 @@ function widget_archive($title)
     </ul>
 <?php } ?>
 <?php
-//widget：自定义组件
+//widget:Custom Component
 function widget_custom_text($title, $content)
 { ?>
     <h4><?php echo $title; ?></h4>
@@ -161,12 +161,12 @@ function widget_custom_text($title, $content)
     </ul>
 <?php } ?>
 <?php
-//widget：链接
+//widget:Links
 function widget_link($title)
 {
     global $CACHE;
     $link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
+    //if (!blog_tool_ishome()) return;#Only in Home Display Friends chain can be Remove Double slash comments
     ?>
     <h4><?php echo $title; ?></h4>
     <ul class="list-unstyled">
@@ -176,7 +176,7 @@ function widget_link($title)
     </ul>
 <?php } ?>
 <?php
-//blog：导航
+//blog:Navigation
 function blog_navi()
 {
     global $CACHE;
@@ -201,8 +201,8 @@ function blog_navi()
                         }
                         if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
                             ?>
-                            <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/">管理站点</a></li>
-                            <li class="item common"><a href="<?php echo BLOG_URL; ?>admin/?action=logout">退出</a></li>
+<!--vot-->                  <li class="item common"><a href="<?= BLOG_URL ?>admin/"><?=lang('site_management')?></a></li>
+<!--vot-->                  <li class="item common"><a href="<?= BLOG_URL ?>admin/?action=logout"><?=lang('logout')?></a></li>
                             <?php
                             continue;
                         endif;
@@ -240,28 +240,28 @@ function blog_navi()
     </nav>
 <?php } ?>
 <?php
-//blog：置顶
+//blog:Top
 function topflg($top, $sortop = 'n', $sortid = null)
 {
     if (blog_tool_ishome()) {
-        echo $top == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/top.png\" title=\"首页置顶文章\" /> " : '';
+/*vot*/ echo $top == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/top.png\" title=\"".lang('top_posts')."\"> " : '';
     } elseif ($sortid) {
-        echo $sortop == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/sortop.png\" title=\"分类置顶文章\" /> " : '';
+/*vot*/ echo $sortop == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/sortop.png\" title=\"".lang('cat_top_posts')."\"> " : '';
     }
 }
 
 ?>
 <?php
-//blog：编辑
-function editflg($logid, $author)
+//blog:Editor
+function editflg($logid,$author)
 {
-    $editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/write_log.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
+/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">' . lang('edit') . '</a>' : '';
     echo $editflg;
 }
 
 ?>
 <?php
-//blog：分类
+//blog:Category
 function blog_sort($blogid)
 {
     global $CACHE;
@@ -272,7 +272,7 @@ function blog_sort($blogid)
 <?php endif; ?>
 <?php } ?>
 <?php
-//blog：文章标签
+//blog:Post Tags
 function blog_tag($blogid)
 {
     global $CACHE;
@@ -280,7 +280,7 @@ function blog_tag($blogid)
 
     $log_cache_tags = $CACHE->readCache('logtags');
     if (!empty($log_cache_tags[$blogid])) {
-        $tag = '标签:';
+/*vot*/ $tag = lang('tags').': ';
         foreach ($log_cache_tags[$blogid] as $value) {
             $tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\">" . $value['tagname'] . '</a>';
         }
@@ -290,7 +290,7 @@ function blog_tag($blogid)
         $tag_names = $tag_model->getNamesFromIds($tag_ids);
 
         if (!empty($tag_names)) {
-            $tag = '标签:';
+/*vot*/     $tag = lang('tags').':';
 
             foreach ($tag_names as $key => $value) {
                 $tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\">" . htmlspecialchars($value) . '</a>';
@@ -303,7 +303,7 @@ function blog_tag($blogid)
 
 ?>
 <?php
-//blog：文章作者
+//blog:Post author
 function blog_author($uid)
 {
     global $CACHE;
@@ -317,7 +317,7 @@ function blog_author($uid)
 
 ?>
 <?php
-//blog：相邻文章
+//blog:Neighbor Post
 function neighbor_log($neighborLog)
 {
     extract($neighborLog); ?>
@@ -332,13 +332,13 @@ function neighbor_log($neighborLog)
 <?php endif; ?>
 <?php } ?>
 <?php
-//blog：评论列表
+//blog:Comment List
 function blog_comments($comments)
 {
     extract($comments);
     if ($commentStacks): ?>
         <a name="comments"></a>
-        <p class="comment-header"><b>评论：</b></p>
+<!--vot-->    <p class="comment-header"><b><?=lang('comments')?>:</b></p>
     <?php endif; ?>
     <?php
     $isGravatar = Option::get('isgravatar');
@@ -352,7 +352,7 @@ function blog_comments($comments)
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
             <div class="comment-info">
                 <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
-                <div class="comment-content"><?php echo $comment['content']; ?></div>
+<!--vot-->  <div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div>
                 <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
             </div>
             <?php blog_comments_children($comments, $comment['children']); ?>
@@ -363,7 +363,7 @@ function blog_comments($comments)
     </div>
 <?php } ?>
 <?php
-//blog：子评论列表
+//blog:sub-comment list
 function blog_comments_children($comments, $children)
 {
     $isGravatar = Option::get('isgravatar');
@@ -379,39 +379,39 @@ function blog_comments_children($comments, $children)
                 <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <?php if ($comment['level'] < 4): ?>
-                    <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div><?php endif; ?>
+<!--vot-->          <div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div><?php endif; ?>
             </div>
             <?php blog_comments_children($comments, $comment['children']); ?>
         </div>
     <?php endforeach; ?>
 <?php } ?>
 <?php
-//blog：发表评论表单
+//blog:Post a comment form
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark)
 {
     if ($allow_remark == 'y'): ?>
         <div id="comment-place">
             <div class="comment-post" id="comment-post">
-                <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
-                <p class="comment-header"><b>发表评论：</b><a name="respond"></a></p>
+<!--vot-->      <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()"><?=lang('cancel_reply')?></a></div>
+<!--vot-->      <p class="comment-header"><b><?=lang('comment_leave')?>:</b> <a name="respond"></a></p>
                 <form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
                     <?php if (ROLE == ROLE_VISITOR): ?>
                         <p>
                             <input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-                            <label for="author"><small>昵称</small></label>
+<!--vot-->                  <label for="author"><small><?=lang('nickname')?></small></label>
                         </p>
                         <p>
                             <input type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22" tabindex="2">
-                            <label for="email"><small>邮件地址 (选填)</small></label>
+<!--vot-->                  <label for="email"><small><?=lang('email_optional')?></small></label>
                         </p>
                         <p>
                             <input type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-                            <label for="url"><small>个人主页 (选填)</small></label>
+<!--vot-->                  <label for="url"><small><?=lang('homepage_optional')?></small></label>
                         </p>
                     <?php endif; ?>
                     <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-                    <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" tabindex="6"/></p>
+<!--vot-->          <p><?= $verifyCode ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"></p>
                     <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
                 </form>
             </div>
@@ -419,7 +419,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
     <?php endif; ?>
 <?php } ?>
 <?php
-//blog-tool:判断是否是首页
+//blog-tool: Determine whether it is the Home
 function blog_tool_ishome()
 {
     if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL) {

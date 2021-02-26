@@ -2,25 +2,25 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">修改导航</h1>
+<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('nav_modify')?></h1>
     <form action="navbar.php?action=update" method="post" id="sort_new" style="margin-top: 30px;">
         <div class="form-group">
-            <label for="sortname">导航名称</label>
+<!--vot-->  <label for="sortname"><?=lang('nav_name')?></label>
             <input class="form-control" id="naviname" value="<?php echo $naviname; ?>" name="naviname">
         </div>
         <div class="form-group">
-            <label for="alias">导航地址</label>
+<!--vot-->  <label for="alias"><?=lang('nav_address')?></label>
             <input class="form-control" id="url" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?>>
         </div>
         <div class="form-group">
-            <label>在新窗口打开</label>
+<!--vot-->  <label><?=lang('open_new_win')?></label>
             <input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> />
         </div>
         <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
             <div class="form-group">
-                <label>父导航</label>
+<!--vot-->      <label><?=lang('nav_parent')?></label>
                 <select name="pid" id="pid" class="form-control">
-                    <option value="0">无</option>
+<!--vot-->          <option value="0"><?=lang('no')?></option>
                     <?php
                     foreach ($navis as $key => $value):
                         if ($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
@@ -35,8 +35,8 @@
         <?php endif; ?>
         <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
         <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
-        <input type="submit" value="保 存" class="btn btn-primary"/>
-        <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();"/>
+<!--vot--><input type="submit" value="<?=lang('_save_')?>" class="btn btn-primary" />
+<!--vot--><input type="button" value="<?=lang('_cancel_')?>" class="btn btn-default" onclick="javascript: window.history.back();" />
     </form>
 </div>
 <script>

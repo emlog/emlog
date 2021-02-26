@@ -1,12 +1,12 @@
 <?php
 /**
- * 前端页面加载
+ * Front page loading
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'init.php';
 
-define('TEMPLATE_PATH', TPLS_PATH . Option::get('nonce_templet') . '/');//前台模板路径
+define('TEMPLATE_PATH', TPLS_PATH . Option::get('nonce_templet') . '/');//Front template path
 
 $emDispatcher = Dispatcher::getInstance();
 $emDispatcher->dispatch();

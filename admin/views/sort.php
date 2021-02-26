@@ -2,37 +2,37 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success">排序更新成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除分类成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success">修改分类成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?><div class="alert alert-success">添加分类成功</div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">没有可排序的分类</div><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger">别名格式错误</div><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger">别名不能重复</div><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['active_add'])): ?><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif; ?>
+<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">分类管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 新建分类</a>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> <?=lang('category_add')?></a>
     </div>
     <form method="post" action="sort.php?action=taxis">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold">已创建的分类</h6>
+<!--vot-->      <h6 class="m-0 font-weight-bold"><?=lang('category_management')?></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive" id="adm_sort_list">
                     <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>排序</th>
-                            <th>名称</th>
-                            <th>描述</th>
-                            <th>别名</th>
-                            <th>模板</th>
-                            <th>查看</th>
-                            <th>文章</th>
-                            <th>操作</th>
+<!--vot-->                  <th><?=lang('order')?></th>
+<!--vot-->                  <th><?=lang('id')?></th>
+<!--vot-->                  <th><?=lang('name')?></th>
+<!--vot-->                  <th><?=lang('description')?></th>
+<!--vot-->                  <th><?=lang('alias')?></th>
+<!--vot-->                  <th><?=lang('template')?></th>
+<!--vot-->                  <th><?=lang('views')?></th>
+<!--vot-->                  <th><?=lang('posts')?></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,8 +59,8 @@
                                     </td>
                                     <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                     <td>
-                                        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->                              <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -82,15 +82,15 @@
                                         </td>
                                         <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                         <td>
-                                            <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                            <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->                                  <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                                  <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endforeach;
                         else: ?>
                             <tr>
-                                <td class="tdcenter" colspan="8">还没有添加分类</td>
+<!--vot-->                      <td class="tdcenter" colspan="8"><?=lang('categories_no')?></td>
                             </tr>
                         <?php endif; ?>
                         </tbody>
@@ -99,15 +99,15 @@
             </div>
         </div>
         <div class="list_footer">
-            <input type="submit" value="改变排序" class="btn btn-primary"/>
+<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary">
         </div>
     </form>
-    <!--添加分类弹窗-->
+    <!--Add Category popup-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">新建分类</h5>
+<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('tag_add')?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -116,18 +116,18 @@
                 <form action="sort.php?action=add" method="post" id="sort_new">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="sortname">分类名</label>
+<!--vot-->                  <label for="sortname"><?=lang('category_name')?></label>
                             <input class="form-control" id="sortname" name="sortname">
                         </div>
                         <div class="form-group">
-                            <label for="alias">别名</label>
+<!--vot-->                  <label for="alias"><?=lang('alias_info')?></label>
                             <input class="form-control" id="alias" name="alias">
-                            <small class="form-text text-muted">用于URL的友好显示，可不填</small>
+<!--vot-->                  <small class="form-text text-muted"><?=lang('alias_prompt')?></small>
                         </div>
                         <div class="form-group">
-                            <label>父分类</label>
+<!--vot-->                  <label><?=lang('category_parent')?></label>
                             <select name="pid" id="pid" class="form-control">
-                                <option value="0">无</option>
+<!--vot-->                      <option value="0"><?=lang('no')?></option>
                                 <?php
                                 foreach ($sorts as $key => $value):
                                     if ($value['pid'] != 0) {
@@ -139,20 +139,20 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="template">模板</label>
+<!--vot-->                  <label for="template"><?=lang('template')?></label>
                             <input class="form-control" id="template" name="template">
-                            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
+<!--vot-->                  <small class="form-text text-muted"><?=lang('template_info')?></small>
                         </div>
                         <div class="form-group">
-                            <label for="alias">分类描述</label>
+<!--vot-->                  <label for="alias"><?=lang('category_description')?></label>
                             <textarea name="description" type="text" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <span id="alias_msg_hook"></span>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
                     </div>
                 </form>
             </div>
@@ -184,13 +184,13 @@
         var a = $.trim($("#alias").val());
         if (1 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-            $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
         } else if (2 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-            $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
         } else if (3 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-            $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
         } else {
             $("#alias_msg_hook").html('');
             $("#msg").html('');

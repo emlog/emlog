@@ -1,12 +1,12 @@
 <?php
 /**
- * 页面管理
+ * Page Management
  * @copyright (c) Emlog All Rights Reserved
  */
 
 require_once 'globals.php';
 
-//加载页面管理页面
+//Load the Page Management page
 if ($action == '') {
     $emPage = new Log_Model();
 
@@ -22,11 +22,11 @@ if ($action == '') {
     include View::getView('footer');
     View::output();
 }
-//显示新建页面表单
+//Display a new page form 
 if ($action == 'new') {
 
     $pageData = array(
-        'containertitle' => '新建页面',
+/*vot*/ 'containertitle' => lang('add_page'),
         'pageId' => -1,
         'title' => '',
         'content' => '',
@@ -43,11 +43,11 @@ if ($action == 'new') {
     include View::getView('footer');
     View::output();
 }
-//显示编辑页面表单
+//Show edit page form
 if ($action == 'mod') {
     $emPage = new Log_Model();
 
-    $containertitle = '编辑页面';
+/*vot*/    $containertitle = lang('page_edit');
     $pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
     $pageData = $emPage->getOneLogForAdmin($pageId);
     $att_frame_url = "attachment.php?action=attlib&logid=$pageId";
@@ -60,7 +60,7 @@ if ($action == 'mod') {
     include View::getView('footer');
     View::output();
 }
-//保存页面
+//Save Page
 if ($action == 'save' || $action == 'autosave') {
     $emPage = new Log_Model();
     $Navi_Model = new Navi_Model();
@@ -68,7 +68,7 @@ if ($action == 'save' || $action == 'autosave') {
     $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
     $content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
     $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-    $pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+/*vot*/    $pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft there blog id number
     $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
@@ -95,7 +95,7 @@ if ($action == 'save' || $action == 'autosave') {
     );
 
     $directUrl = '';
-    if ($pageId > 0) {
+/*vot*/    if ($pageId > 0) {//auto-save, add into update
         $emPage->updateLog($logData, $pageId);
         $directUrl = './page.php?active_pubpage=1';
     } else {
@@ -114,7 +114,7 @@ if ($action == 'save' || $action == 'autosave') {
             break;
     }
 }
-//操作页面
+//Page Operations
 if ($action == 'operate_page') {
     $operate = isset($_POST['operate']) ? $_POST['operate'] : '';
     $pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();

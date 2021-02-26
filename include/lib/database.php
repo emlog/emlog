@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库操作路由
+ * Route database operations
  *
  * @copyright (c) Emlog All Rights Reserved
  */
@@ -15,7 +15,7 @@ class Database {
             return MySql::getInstance();
         }
         else {
-            emMsg('服务器空间PHP不支持MySql数据库');
+/*vot*/     emMsg(lang('php_mysql_not_supported'));
         }
     }
 
