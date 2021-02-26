@@ -45,14 +45,6 @@ https://www.emlog.net/download
 <img width="50px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=50"/>
 </a>
 
-## 鸣谢
-
-| 使用的主要框架及项目                                                        |
-| ---------------------------------------------------------------- |
-| [Bootstrap](https://getbootstrap.com/)                           |
-| [sb-admin-2](https://startbootstrap.com/theme/sb-admin-2)        |
-| [JQuery](https://jquery.com/)     |
-
 
 ## 软件授权许可证（License）
 发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/license.txt)
