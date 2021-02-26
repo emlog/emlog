@@ -77,7 +77,7 @@
                 <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
                 <p>
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                    <input type="submit" value="开始备份" class="btn btn-primary"/>
+                    <input type="submit" value="开始备份" class="btn btn-success"/>
                 </p>
             </div>
         </form>
@@ -94,7 +94,7 @@
 
         <div id="cache">
             <p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
-            <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-primary"/></p>
+            <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-success"/></p>
         </div>
 </div>
 

@@ -133,7 +133,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">回复</button>
+                        <button type="submit" class="btn btn-success">回复</button>
                     </div>
                 </form>
             </div>

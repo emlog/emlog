@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $value['tplname']; ?></h5>
                     <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>"
-                       class="btn btn-primary">使用该模板</a>
+                       class="btn btn-success">使用该模板</a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-primary">上传</button>
+                    <button type="submit" class="btn btn-success">上传</button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

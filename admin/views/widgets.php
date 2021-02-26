@@ -20,7 +20,7 @@
                             <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/></li>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/></li>
                             </form>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -61,7 +61,7 @@
                             <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -81,7 +81,7 @@
                             <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -102,7 +102,7 @@
                             <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -128,7 +128,7 @@
                                 <li>新近评论截取字节数</li>
                                 <li>
                                     <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -152,7 +152,7 @@
                                 <li>显示最新文章数</li>
                                 <li>
                                     <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog"/>
-                                    <input type="submit" name="" value="更改" class="btn btn-primary btn-sm"/>
+                                    <input type="submit" name="" value="更改" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -175,7 +175,7 @@
                                 <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
                                 <li>显示热门文章数</li>
                                 <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
-                                            type="submit" name="" value="更改" class="btn btn-primary btn-sm"/></li>
+                                            type="submit" name="" value="更改" class="btn btn-success btn-sm"/></li>
                             </form>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                                 <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/> <input type="submit" name="" value="更改"
-                                                                                                                                                class="btn btn-primary btn-sm"/>
+                                                                                                                                                class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -213,7 +213,7 @@
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                                 <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="更改"
-                                                                                                                                                  class="btn btn-primary btn-sm"/>
+                                                                                                                                                  class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -246,7 +246,7 @@
                                     </li>
                                     <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
                                     <li>
-                                        <input type="submit" class="btn btn-primary" name="" value="更改"/>
+                                        <input type="submit" class="btn btn-success" name="" value="更改"/>
                                         <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除该组件</a>
                                     </li>
                                 </form>
@@ -264,7 +264,7 @@
                         <label for="alias">内容 （支持html）</label>
                         <textarea name="new_content" class="form-control" rows="10"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">添加组件</button>
+                    <button type="submit" class="btn btn-success">添加组件</button>
                     <span id="alias_msg_hook"></span>
                 </form>
             </div>
@@ -299,7 +299,7 @@
                         </div>
                     <?php endforeach; ?>
                     <input type="hidden" name="wgnum" id="wgnum" value="<?php echo $wgNum; ?>"/>
-                    <input type="submit" value="保存组件排序" class="btn btn-primary"/>
+                    <input type="submit" value="保存组件排序" class="btn btn-success"/>
                     <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger">恢复出厂设置</a>
                 </div>
             </form>

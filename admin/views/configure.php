@@ -119,7 +119,7 @@
             <textarea name="footer_info" cols="" rows="6" class="form-control" style="width:386px;"><?php echo $footer_info; ?></textarea>
         </div>
         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-        <input type="submit" value="保存设置" class="btn btn-primary"/>
+        <input type="submit" value="保存设置" class="btn btn-success"/>
     </form>
 </div>
 <script>

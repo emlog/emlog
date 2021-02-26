@@ -118,7 +118,7 @@
                     <?php endif; ?>
                     </tbody>
                 </table>
-                <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-primary"/></div>
+                <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-success"/></div>
             </form>
         </div>
     </div>
@@ -153,7 +153,7 @@
                         <input type="checkbox" class="form-check-input" value="y" name="newtab">
                         <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
                 </form>
             </div>
@@ -190,7 +190,7 @@
                             endforeach;
                             ?>
                             <div class="form-group">
-                                <input type="submit" name="" class="btn btn-primary" value="保存"/>
+                                <input type="submit" name="" class="btn btn-success" value="保存"/>
                             </div>
                         <?php else: ?>
                             还没有分类，<a href="sort.php">新建分类</a>
@@ -214,7 +214,7 @@
                                 <?php echo $value['title']; ?>
                             </div>
                         <?php endforeach; ?>
-                        <div class="form-group"><input type="submit" class="btn btn-primary" name="" value="保存"/></div>
+                        <div class="form-group"><input type="submit" class="btn btn-success" name="" value="保存"/></div>
                     <?php else: ?>
                         <div class="form-group">还没页面，<a href="page.php">新建页面</a></div>
                     <?php endif; ?>

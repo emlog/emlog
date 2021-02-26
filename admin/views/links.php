@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="list_footer">
-            <input type="submit" value="改变排序" class="btn btn-primary"/>
+            <input type="submit" value="改变排序" class="btn btn-success"/>
         </div>
     </form>
     <!--添加链接弹窗-->
@@ -97,7 +97,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
@@ -134,7 +134,7 @@
                     <div class="modal-footer">
                         <input type="hidden" value="" name="linkid" id="linkid" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
