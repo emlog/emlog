@@ -174,8 +174,8 @@
 <!--vot-->                      <li><?=lang('title')?></li>
                                 <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
 <!--vot-->                      <li><?=lang('hot_posts_home')?></li>
-                                <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
-<!--vot-->                                  type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm"/></li>
+<!--vot-->                      <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
+                                            type="submit" name="" value="<?=lang('change')?>" class="btn btn-primary btn-sm"/></li>
                             </form>
                         </div>
                     </div>
@@ -212,8 +212,8 @@
                     <div id="search" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
-<!--vot-->                      <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="
-                                                                                                                                                  <?=lang('change')?>" class="btn btn-primary btn-sm"/>
+<!--vot-->                      <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="<?=lang('change')?>"
+                                                                                                                                                  class="btn btn-primary btn-sm"/>
                                 </li>
                             </form>
                         </div>
