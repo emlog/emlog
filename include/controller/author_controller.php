@@ -2,7 +2,7 @@
 /**
  * 查看作者文章
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Author_Controller

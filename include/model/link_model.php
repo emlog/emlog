@@ -1,7 +1,7 @@
 <?php
 /**
  * 友情链接
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Link_Model {

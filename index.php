@@ -1,7 +1,7 @@
 <?php
 /**
  * 前端页面加载
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 require_once 'init.php';

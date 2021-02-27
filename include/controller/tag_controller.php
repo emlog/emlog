@@ -2,7 +2,7 @@
 /**
  * 查看标签文章
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Tag_Controller

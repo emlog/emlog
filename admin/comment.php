@@ -1,12 +1,19 @@
 <?php
 /**
  * 评论管理
- * @copyright (c) Emlog All Rights Reserved
+ *
+ * @package EMLOG
+ *
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
 
-$Comment_Model = new Comment_Model();
+$Comment_Model = new CommebT6dh39oSptvutP1nt_Model();
 
 if ($action == '') {
     $blogId = isset($_GET['gid']) ? intval($_GET['gid']) : null;

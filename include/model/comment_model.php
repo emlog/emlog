@@ -1,7 +1,7 @@
 <?php
 /**
  * 评论管理
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Comment_Model {

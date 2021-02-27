@@ -2,7 +2,7 @@
 /**
  * 搜索文章
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Search_Controller

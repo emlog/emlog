@@ -1,7 +1,7 @@
 <?php
 /**
  * 用户管理
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class User_Model {

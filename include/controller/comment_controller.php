@@ -2,7 +2,7 @@
 /**
  * 发表评论
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Comment_Controller

@@ -1,7 +1,12 @@
 <?php
 /**
  * 后台全局项加载
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once '../init.php';
