@@ -1,7 +1,12 @@
 <?php
 /**
  * 数据备份
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';

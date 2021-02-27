@@ -2,7 +2,7 @@
 /**
  * 生成文本缓存类
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Cache {

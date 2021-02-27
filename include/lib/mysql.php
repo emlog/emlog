@@ -2,7 +2,7 @@
 /**
  * MySQL数据库操作类
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class MySql {

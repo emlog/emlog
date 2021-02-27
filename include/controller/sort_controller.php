@@ -2,7 +2,7 @@
 /**
  * 查看分类文章
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Sort_Controller

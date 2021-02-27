@@ -1,7 +1,12 @@
 <?php
 /**
  * 保存文章（增加、修改）
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';

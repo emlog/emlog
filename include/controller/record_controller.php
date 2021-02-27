@@ -2,7 +2,7 @@
 /**
  * 查看归档文章
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Record_Controller

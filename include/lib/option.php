@@ -1,7 +1,7 @@
 <?php
 /**
  * 前端控制
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Option {

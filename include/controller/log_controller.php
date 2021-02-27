@@ -2,7 +2,7 @@
 /**
  * 显示首页、内容
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Log_Controller

@@ -2,7 +2,7 @@
 /**
  * 前台加载插件页面
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Plugin_Controller
