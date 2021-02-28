@@ -17,7 +17,7 @@
     <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
-    <!--    <script src="./views/js/jquery.easing.min.js"></script>-->
+    <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/common.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
