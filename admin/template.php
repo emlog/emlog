@@ -11,7 +11,7 @@
 
 require_once 'globals.php';
 
-if ($action == '') {
+if ($action === '') {
     $nonce_templet = Option::get('nonce_templet');
     $nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
     preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
@@ -30,6 +30,7 @@ if ($action == '') {
     } else {
         $tplAuthor = '';
     }
+    
     //模板列表
     $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
     $tpls = array();
@@ -56,7 +57,7 @@ if ($action == '') {
 }
 
 //使用模板
-if ($action == 'usetpl') {
+if ($action === 'usetpl') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
     $tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
@@ -68,7 +69,7 @@ if ($action == 'usetpl') {
 }
 
 //删除模板
-if ($action == 'del') {
+if ($action === 'del') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
@@ -85,7 +86,7 @@ if ($action == 'del') {
 }
 
 //安装模板
-if ($action == 'install') {
+if ($action === 'install') {
     include View::getView('header');
     require_once View::getView('template_install');
     include View::getView('footer');
@@ -93,7 +94,7 @@ if ($action == 'install') {
 }
 
 //上传zip模板
-if ($action == 'upload_zip') {
+if ($action === 'upload_zip') {
     LoginAuth::checkToken();
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 

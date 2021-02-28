@@ -13,7 +13,7 @@
     <?php if (isset($_GET['error_f'])): ?><div class="alert alert-danger">服务器空间不支持zip，无法导出zip备份</div><?php endif; ?>
     <?php if (isset($_GET['active_mc'])): ?><div class="alert alert-success">缓存更新成功</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">数据库备份</h1>
+        <h1 class="h3 mb-0 text-gray-800">数据管理</h1>
     </div>
     <form  method="post" action="data.php?action=dell_all_bak" name="form_bak" id="form_bak">
         <div class="card shadow mb-4">
