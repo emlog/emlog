@@ -10,11 +10,11 @@ require_once EMLOG_ROOT.'/include/lib/function.base.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
-$act = isset($_GET['action'])? $_GET['action'] : '';
-
 if (PHP_VERSION < '7.0'){
-    emMsg('您的php版本过低，请选用支持PHP7以上的环境安装emlog。');
+    emMsg('您的php版本过低，请选用支持PHP7及以上的环境安装emlog。');
 }
+
+$act = $_GET['action'] ?? '';
 
 if(!$act){
 ?>
@@ -127,6 +127,10 @@ if($act == 'install' || $act == 'reinstall'){
     $DB = Database::getInstance();
     $CACHE = Cache::getInstance();
 
+    if ($DB->getMysqlVersion() < '5.5.3') {
+        emMsg('您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。');
+    }
+
     if($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1){
         echo <<<EOT
 <html>
@@ -198,12 +202,8 @@ EOT;
     $PHPASS = new PasswordHash(8, true);
     $adminpw = $PHPASS->HashPassword($adminpw);
 
-    $dbcharset = 'utf8';
-    $type = 'MYISAM';
-    $table_charset_sql = $DB->getMysqlVersion() > '4.1' ? 'ENGINE='.$type.' DEFAULT CHARSET='.$dbcharset.';' : 'ENGINE='.$type.';';
-    if ($DB->getMysqlVersion() > '4.1' ){
-        $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;", true);
-    }
+    $table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
+    $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
 
     $widgets = Option::getWidgetTitle();
     $sider_wg = Option::getDefWidget();
@@ -335,9 +335,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plug
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets2','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets3','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets4','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
@@ -427,7 +424,7 @@ CREATE TABLE {$db_prefix}storage (
         <p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
         <p><b>用户名</b>：{$admin}</p>
         <p><b>密 码</b>：您刚才设定的密码</p>";
-    if (DEL_INSTALLER === 1 && !@unlink('./install.php') || DEL_INSTALLER === 0) {
+    if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
         $result .= '<p style="color:red;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
     }
     $result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";

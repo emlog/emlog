@@ -67,7 +67,7 @@ class MySqlii {
             }
         }
 
-        $this->conn->set_charset('utf8');
+        $this->conn->set_charset('utf8mb4');
     }
 
     /**
