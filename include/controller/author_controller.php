@@ -17,7 +17,6 @@ class Author_Controller
         $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
         $author = isset($params[1]) && $params[1] == 'author' ? intval($params[2]) : '';
 
-
         $pageurl = '';
 
         $user_cache = $CACHE->readCache('user');
