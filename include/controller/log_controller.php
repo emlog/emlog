@@ -15,7 +15,7 @@ class Log_Controller
         $options_cache = Option::getAll();
         extract($options_cache);
 
-        $page = isset($params[1]) && $params[1] == 'page' ? abs(intval($params[2])) : 1;
+        $page = isset($params[1]) && $params[1] == 'page' ? abs((int)$params[2]) : 1;
 
         $pageurl = '';
         $sqlSegment = 'ORDER BY top DESC ,date DESC';
@@ -46,9 +46,9 @@ class Log_Controller
         $logid = 0;
         if (isset($params[1])) {
             if ($params[1] == 'post') {
-                $logid = isset($params[2]) ? intval($params[2]) : 0;
+                $logid = isset($params[2]) ? (int)$params[2] : 0;
             } elseif (is_numeric($params[1])) {
-                $logid = intval($params[1]);
+                $logid = (int)$params[1];
             } else {
                 $logalias_cache = $CACHE->readCache('logalias');
                 if (!empty($logalias_cache)) {

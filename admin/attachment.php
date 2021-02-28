@@ -45,7 +45,7 @@ if ($action == 'upload') {
     $logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
     $attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
     if ($attach) {
-        for ($i = 0; $i < count($attach['name']); $i++) {
+        for ($i = 0, $iMax = count($attach['name']); $i < $iMax; $i++) {
             if ($attach['error'][$i] != 4) {
                 $isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
 
