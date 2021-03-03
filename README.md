@@ -41,6 +41,9 @@ https://www.emlog.net/download
 <a href="https://github.com/Baiqiang" target="_blank">
 <img width="50px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/2390434?s=50"/>
 </a>
+<a href="https://github.com/aweika" target="_blank">
+<img width="50px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4565941?s=50"/>
+</a>
 <a href="https://github.com/vibbow" target="_blank">
 <img width="50px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=50"/>
 </a>
