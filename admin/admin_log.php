@@ -19,12 +19,12 @@ if ($action == '') {
     $Tag_Model = new Tag_Model();
     $User_Model = new User_Model();
 
-    $pid = isset($_GET['pid']) ? $_GET['pid'] : '';
-    $tagId = isset($_GET['tagid']) ? intval($_GET['tagid']) : '';
-    $sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
-    $uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
+    $pid = $_GET['pid'] ?? '';
+    $tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
+    $sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
     $keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
-    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $checked = isset($_GET['checked']) ? addslashes($_GET['checked']) : '';
 
     $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ? 'DESC' : 'ASC';
@@ -84,12 +84,12 @@ if ($action == '') {
 
 //操作文章
 if ($action == 'operate_log') {
-    $operate = isset($_REQUEST['operate']) ? $_REQUEST['operate'] : '';
-    $pid = isset($_POST['pid']) ? $_POST['pid'] : '';
+    $operate = $_REQUEST['operate'] ?? '';
+    $pid = $_POST['pid'] ?? '';
     $logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
-    $sort = isset($_POST['sort']) ? intval($_POST['sort']) : '';
-    $author = isset($_POST['author']) ? intval($_POST['author']) : '';
-    $gid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
+    $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
+    $author = isset($_POST['author']) ? (int)$_POST['author'] : '';
+    $gid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
 
     LoginAuth::checkToken();
 

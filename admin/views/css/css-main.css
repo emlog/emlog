@@ -114,13 +114,6 @@ textarea {
     padding:10px;
     margin:10px 0px 5px 32px
 }
-#f_tag {
-    border:#FDF1E3 solid 1px;
-    background-color:#FEF8F1;
-    width:500px;
-    padding:10px;
-    margin:10px 0px 5px 32px
-}
 #f_user {
     border:#C1FBB7 solid 1px;
     background-color:#E1FDE2;
@@ -210,18 +203,6 @@ textarea {
 }
 #adm_plugin_list img {
     cursor:pointer
-}
-#backup {
-    display:none;
-    margin:0px 0px 20px 20px;
-}
-#import {
-    display:none;
-    margin:0px 0px 20px 20px;
-}
-#cache {
-    display:none;
-    margin:0px 0px 20px 0px;
 }
 .permalink_url {
     color:#939393;

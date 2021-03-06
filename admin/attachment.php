@@ -19,8 +19,8 @@ $DB = Database::getInstance();
 //上传表单显示
 if ($action == 'selectFile') {
     $attachnum = 0;
-    $logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
-    $multi = isset($_GET['multi']) ? intval($_GET['multi']) : 0;
+    $logid = isset($_GET['logid']) ? (int)$_GET['logid'] : '';
+    $multi = isset($_GET['multi']) ? (int)$_GET['multi'] : 0;
 
     if ($logid) {
         $Log_Model = new Log_Model();
@@ -42,7 +42,7 @@ if ($action == 'selectFile') {
 
 //上传附件
 if ($action == 'upload') {
-    $logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+    $logid = isset($_GET['logid']) ? (int)$_GET['logid'] : '';
     $attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
     if ($attach) {
         for ($i = 0, $iMax = count($attach['name']); $i < $iMax; $i++) {
