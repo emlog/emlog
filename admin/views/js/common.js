@@ -1,101 +1,3 @@
-$(function() {
-    $('#side-menu').metisMenu();
-});
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-$(function() {
-    $(window).bind("load resize", function() {
-        topOffset = 50;
-        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse')
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse')
-        }
-
-        height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    })
-})
-/*
- * metismenu - v1.0.3
- * Easy menu jQuery plugin for Twitter Bootstrap 3
- * https://github.com/onokumus/metisMenu
- *
- * Made by Osman Nuri Okumuş
- * Under MIT License
- */
-;(function ($, window, document, undefined) {
-
-    var pluginName = "metisMenu",
-        defaults = {
-            toggle: true
-        };
-        
-    function Plugin(element, options) {
-        this.element = element;
-        this.settings = $.extend({}, defaults, options);
-        this._defaults = defaults;
-        this._name = pluginName;
-        this.init();
-    }
-
-    Plugin.prototype = {
-        init: function () {
-
-            var $this = $(this.element),
-                $toggle = this.settings.toggle;
-
-            if (this.isIE() <= 9) {
-                $this.find("li.active").has("ul").children("ul").collapse("show");
-                $this.find("li").not(".active").has("ul").children("ul").collapse("hide");
-            } else {
-                $this.find("li.active").has("ul").children("ul").addClass("collapse in");
-                $this.find("li").not(".active").has("ul").children("ul").addClass("collapse");
-            }
-
-            $this.find("li").has("ul").children("a").on("click", function (e) {
-                e.preventDefault();
-
-                $(this).parent("li").toggleClass("active").children("ul").collapse("toggle");
-
-                if ($toggle) {
-                    $(this).parent("li").siblings().removeClass("active").children("ul.in").collapse("hide");
-                }
-            });
-        },
-
-        isIE: function() {//https://gist.github.com/padolsey/527683
-            var undef,
-                v = 3,
-                div = document.createElement("div"),
-                all = div.getElementsByTagName("i");
-
-            while (
-                div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->",
-                all[0]
-            ) {
-                return v > 4 ? v : undef;
-            }
-        }
-    };
-
-    $.fn[ pluginName ] = function (options) {
-        return this.each(function () {
-            if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName, new Plugin(this, options));
-            }
-        });
-    };
-
-})(jQuery, window, document);
-
 function getChecked(node) {
     var re = false;
     $('input.'+node).each(function(i){
@@ -364,6 +266,24 @@ $.fn.toggleClick = function(){
             $(this).data('iteration', iteration);
     });
 };
-function selectAllToggle(){
-    $("#select_all").toggleClick(function () {$(".ids").prop("checked", "checked");},function () {$(".ids").removeAttr("checked");});
-}
+
+$(function () {
+    // 表格全选
+    $('#checkAll').click(function (event) {
+        var tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
+        tr_checkbox.prop('checked', $(this).prop('checked'));
+        event.stopPropagation();
+    });
+
+    // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
+    $('table tbody tr').find('input[type=checkbox]').click(function (event) {
+        var tbr = $('table tbody tr');
+        $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
+        event.stopPropagation();
+    });
+
+    // 点击表格行(行内任意位置)，触发选中或取消选中该行的checkbox
+    $('table tbody tr').click(function () {
+        $(this).find('input[type=checkbox]').click();
+    });
+});
