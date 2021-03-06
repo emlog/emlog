@@ -13,15 +13,14 @@
     <?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger">不能修改创始人信息</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> 添加用户</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加用户</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold">已创建的用户 (<?php echo $usernum; ?>)</h6>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover dataTable no-footer"
-                   id="adm_comment_list">
+            <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
                 <thead>
                 <tr>
                     <th></th>

@@ -22,7 +22,7 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 if ($action == 'login') {
     $username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
     $password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-    $ispersis = isset($_POST['ispersis']) ? intval($_POST['ispersis']) : false;
+    $ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : false;
     $img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
     $loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
@@ -46,6 +46,6 @@ if (ISLOGIN === false) {
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE == ROLE_WRITER && !in_array($request_uri, array('write_log', 'admin_log', 'attachment', 'blogger', 'comment', 'index', 'save_log'))) {
+if (ROLE === ROLE_WRITER && !in_array($request_uri, array('write_log', 'admin_log', 'attachment', 'blogger', 'comment', 'index', 'save_log'))) {
     emMsg('权限不足！', './');
 }

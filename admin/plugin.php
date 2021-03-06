@@ -23,7 +23,7 @@ if ($action == '' && !$plugin) {
     View::output();
 }
 
-//激活
+//开启
 if ($action == 'active') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
