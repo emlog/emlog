@@ -14,7 +14,6 @@
     <link href="./views/css/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
     <link href="./views/css/fontawesome-free/css/brands.min.css" rel="stylesheet">
     <link href="./views/css/fontawesome-free/css/solid.min.css" rel="stylesheet">
-    <link href="./views/css/dropzone.min.css" rel="stylesheet">
     <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>

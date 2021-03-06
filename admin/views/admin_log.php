@@ -8,19 +8,32 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <div class="container-fluid">
-    <?php if (isset($_GET['active_del'])): ?><div class="alert alert-success">删除成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_up'])): ?><div class="alert alert-success">置顶成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_down'])): ?><div class="alert alert-success">取消置顶成功</div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger">请选择要处理的文章</div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
-    <?php if (isset($_GET['active_post'])): ?><div class="alert alert-success">发布成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_move'])): ?><div class="alert alert-success">移动成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_change_author'])): ?><div class="alert alert-success">更改作者成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_hide'])): ?><div class="alert alert-success">转入草稿箱成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_savedraft'])): ?><div class="alert alert-success">草稿保存成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_savelog'])): ?><div class="alert alert-success">保存成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_ck'])): ?><div class="alert alert-success">文章审核成功</div><?php endif; ?>
-    <?php if (isset($_GET['active_unck'])): ?><div class="alert alert-success">文章驳回成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?>
+        <div class="alert alert-success">删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_up'])): ?>
+        <div class="alert alert-success">置顶成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_down'])): ?>
+        <div class="alert alert-success">取消置顶成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?>
+        <div class="alert alert-danger">请选择要处理的文章</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?>
+        <div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
+    <?php if (isset($_GET['active_post'])): ?>
+        <div class="alert alert-success">发布成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_move'])): ?>
+        <div class="alert alert-success">移动成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_change_author'])): ?>
+        <div class="alert alert-success">更改作者成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide'])): ?>
+        <div class="alert alert-success">转入草稿箱成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_savedraft'])): ?>
+        <div class="alert alert-success">草稿保存成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_savelog'])): ?>
+        <div class="alert alert-success">保存成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_ck'])): ?>
+        <div class="alert alert-success">文章审核成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_unck'])): ?>
+        <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
         <a href="./write_log.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="fas fa-edit"></i> 写新文章</a>
@@ -100,8 +113,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             $b = 'tag_' . $tagId;
                             $$b = "class=\"filter\"";
                             ?>
-                            <span <?php echo $$a; ?>><a
-                                        href="./admin_log.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
+                            <span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -118,12 +130,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             <?php endif; ?>
                             <th width="100"><b>作者</b></th>
                             <th width="146"><b>分类</b></th>
-                            <th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></b>
-                            </th>
-                            <th width="49" class="tdcenter"><b><a
-                                            href="./admin_log.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></b></th>
-                            <th width="59" class="tdcenter"><b><a
-                                            href="./admin_log.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></b></th>
+                            <th width="130"><b><a href="./admin_log.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></b></th>
+                            <th width="49" class="tdcenter"><b><a href="./admin_log.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></b></th>
+                            <th width="59" class="tdcenter"><b><a href="./admin_log.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></b></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -237,15 +246,62 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     $("#menu_log").addClass('active');
     setTimeout(hideActived, 2600);
 
-    function pageact(act) {
+    $(document).ready(function () {
+        $("#f_t_tag").click(function () {
+            $("#f_tag").toggle();
+            $("#f_sort").hide();
+            $("#f_user").hide();
+        });
+        selectAllToggle();
+    });
+
+    function logact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的页面');
+            alert('请选择要操作的文章');
             return;
         }
-        if (act == 'del' && !confirm('你确定要删除所选页面吗？')) {
+        if (act == 'del' && !confirm('你确定要删除所选文章吗？')) {
             return;
         }
         $("#operate").val(act);
-        $("#form_page").submit();
+        $("#form_log").submit();
+    }
+
+    function changeSort(obj) {
+        if (getChecked('ids') == false) {
+            alert('请选择要操作的文章');
+            return;
+        }
+        if ($('#sort').val() == '') return;
+        $("#operate").val('move');
+        $("#form_log").submit();
+    }
+
+    function changeAuthor(obj) {
+        if (getChecked('ids') == false) {
+            alert('请选择要操作的文章');
+            return;
+        }
+        if ($('#author').val() == '') return;
+        $("#operate").val('change_author');
+        $("#form_log").submit();
+    }
+
+    function changeTop(obj) {
+        if (getChecked('ids') == false) {
+            alert('请选择要操作的文章');
+            return;
+        }
+        if ($('#top').val() == '') return;
+        $("#operate").val(obj.value);
+        $("#form_log").submit();
+    }
+
+    function selectSort(obj) {
+        window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+    }
+
+    function selectUser(obj) {
+        window.open("./admin_log.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
     }
 </script>
