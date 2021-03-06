@@ -14,7 +14,7 @@ class Plugin_Model {
     }
 
     /**
-     * 激活插件
+     * 开启插件
      */
     function activePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');

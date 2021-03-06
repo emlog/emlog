@@ -3,13 +3,13 @@
 } ?>
 <div class="container-fluid">
     <?php if (isset($_GET['activate_install'])): ?>
-        <div class="alert alert-success">插件上传成功，请激活使用</div><?php endif; ?>
+        <div class="alert alert-success">插件上传成功，请开启使用</div><?php endif; ?>
     <?php if (isset($_GET['active'])): ?>
-        <div class="alert alert-success">插件激活成功</div><?php endif; ?>
+        <div class="alert alert-success">插件开启成功</div><?php endif; ?>
     <?php if (isset($_GET['activate_del'])): ?>
         <div class="alert alert-success">删除成功</div><?php endif; ?>
     <?php if (isset($_GET['active_error'])): ?>
-        <div class="alert alert-danger">插件激活失败</div><?php endif; ?>
+        <div class="alert alert-danger">插件开启失败</div><?php endif; ?>
     <?php if (isset($_GET['inactive'])): ?>
         <div class="alert alert-success">插件禁用成功</div><?php endif; ?>
     <?php if (isset($_GET['error_a'])): ?>
@@ -26,7 +26,7 @@
         <div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">插件管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i> 安装新的插件</a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 安装插件</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -50,7 +50,7 @@
                     foreach ($plugins as $key => $val):
                         $plug_state = 'inactive';
                         $plug_action = 'active';
-                        $plug_state_des = '点击激活插件';
+                        $plug_state_des = '点击开启插件';
                         if (in_array($key, $active_plugins)) {
                             $plug_state = 'active';
                             $plug_action = 'inactive';
