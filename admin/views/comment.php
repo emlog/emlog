@@ -44,7 +44,7 @@
     <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <span class="badge badge-secondary">收到了 <?php echo $cmnum; ?> 条评论</span>
+                <span class="badge badge-secondary">有 <?php echo $cmnum; ?> 条评论</span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
