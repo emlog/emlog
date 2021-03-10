@@ -57,6 +57,8 @@
     </div>
 </div>
 <script>
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
     setTimeout(hideActived, 2600);
     //修改标签模态窗

@@ -19,6 +19,7 @@
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/dropzone.min.js"></script>
+    <script src="./views/js/ckeditor.js"></script>
     <script src="./views/js/common.js"></script>
     <?php doAction('adm_head'); ?>
 </head>
@@ -39,24 +40,30 @@
 
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item" id="menu_log">
-            <a class="nav-link" href="admin_log.php"><i class="fas fa-table"></i><span>文章</span></a>
+        <li class="nav-item" id="menu_category_content">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
+                <i class="fas fa-edit"></i><span>内容</span>
+            </a>
+            <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" id="menu_write" href="write_log.php">写文章</a>
+                    <a class="collapse-item" id="menu_log" href="admin_log.php">文章</a>
+                    <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
+                    <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+                </div>
+            </div>
         </li>
 
         <li class="nav-item" id="menu_page">
-            <a class="nav-link" href="page.php"><i class="fas fa-file"></i><span>页面</span></a>
+            <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>页面</span></a>
+        </li>
+
+        <li class="nav-item" id="menu_page">
+            <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>资源</span></a>
         </li>
 
         <li class="nav-item" id="menu_cm">
             <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span>评论</span></a>
-        </li>
-
-        <li class="nav-item" id="menu_tag">
-            <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span>标签</span></a>
-        </li>
-
-        <li class="nav-item" id="menu_sort">
-            <a class="nav-link" href="sort.php"><i class="fas fa-table"></i><span>分类</span></a>
         </li>
 
         <li class="nav-item" id="menu_link">

@@ -201,7 +201,7 @@
         }
     }
 
-    $(document).ready(function () {
-        $("#menu_sort").addClass('active');
-    });
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
+    $("#menu_sort").addClass('active');
 </script>

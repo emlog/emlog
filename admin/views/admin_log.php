@@ -223,6 +223,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </form>
 </div>
 <script>
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
     $("#menu_log").addClass('active');
     setTimeout(hideActived, 2600);
 
