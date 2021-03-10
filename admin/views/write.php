@@ -1,55 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<style>
-    /* Mimic table appearance */
-    div.table {
-        display: table;
-    }
-
-    div.table .file-row {
-        display: table-row;
-    }
-
-    div.table .file-row > div {
-        display: table-cell;
-        vertical-align: top;
-        border-top: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    div.table .file-row:nth-child(odd) {
-        background: #f9f9f9;
-    }
-
-    /* The total progress gets shown by event listeners */
-    #total-progress {
-        opacity: 0;
-        transition: opacity 0.3s linear;
-    }
-
-    /* Hide the progress bar when finished */
-    #previews .file-row.dz-success .progress {
-        opacity: 0;
-        transition: opacity 0.3s linear;
-    }
-
-    /* Hide the delete button initially */
-    #previews .file-row .delete {
-        display: none;
-    }
-
-    /* Hide the start and cancel buttons and show the delete button */
-
-    #previews .file-row.dz-success .start,
-    #previews .file-row.dz-success .cancel {
-        display: none;
-    }
-
-    #previews .file-row.dz-success .delete {
-        display: block;
-    }
-</style>
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
     <span id="msg_2"></span>
@@ -68,9 +19,10 @@
                             <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
                         </div>
                     </div>
-                    <div>
-                        <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
-                    </div>
+                    <div id="editor"></div>
+                    <!--                    <div>-->
+                    <!--                        <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;">--><?php //echo $content; ?><!--</textarea>-->
+                    <!--                    </div>-->
                     <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项<i class="fa fa-caret-right fa-fw"></i></div>
                     <div id="advset">
                         <div>文章摘要：</div>
@@ -185,12 +137,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
-
                 <!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
                 <div class="table table-striped" class="files" id="previews">
-
                     <div id="template" class="file-row">
                         <!-- This is used as the file preview template -->
                         <div>
@@ -230,14 +179,28 @@
     </div>
 </div>
 
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
     setTimeout("autosave(0)", 60000);
-    $("#menu_log").addClass('active');
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
+    $("#menu_write").addClass('active');
 
-    loadEditor('logcontent');
-    loadEditor('logexcerpt');
+
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            }
+        } )
+        .catch(error => {
+            console.error(error);
+        });
+
 
     $("#alias").keyup(function () {
         checkalias();
@@ -283,6 +246,4 @@
     myDropzone.on("queuecomplete", function (progress) {
         document.querySelector("#total-progress").style.opacity = "0";
     });
-
-
 </script>
