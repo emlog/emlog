@@ -58,8 +58,8 @@
             <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>页面</span></a>
         </li>
 
-        <li class="nav-item" id="menu_page">
-            <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>资源</span></a>
+        <li class="nav-item" id="menu_media">
+            <a class="nav-link" href="media.php"><i class="fas fa-sticky-note"></i><span>资源</span></a>
         </li>
 
         <li class="nav-item" id="menu_cm">
