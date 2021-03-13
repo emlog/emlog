@@ -293,7 +293,6 @@ textarea {
     margin:20px 10px 10px 0px;
     padding:0px 20px 0px 0px;
     cursor:pointer;
-    font-weight:bold;
 }
 #post_button{
     margin:10px 0px;
@@ -493,3 +492,6 @@ div.table .file-row:nth-child(odd) {
 #previews .file-row.dz-success .delete {
     display: block;
 }
+
+/* 编辑器默认高*/
+.ck-editor__editable {min-height: 390px;}
