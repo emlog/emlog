@@ -3,10 +3,10 @@
 } ?>
 <div class="container-fluid">
     <?php if (isset($_GET['active_del'])): ?>
-        <div class="alert alert-success">删除成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">资源管理</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 上传文件</a>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('resouce_manage')?></h1>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> <?=lang('upload_files')?></a>
     </div>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
@@ -15,10 +15,10 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
-                        <th>文件</th>
-                        <th>状态</th>
-                        <th>日期</th>
-                        <th>操作</th>
+<!--vot-->              <th><?=lang('file')?></th>
+<!--vot-->              <th><?=lang('status')?></th>
+<!--vot-->              <th><?=lang('date')?></th>
+<!--vot-->              <th><?=lang('operation')?></th>
                     </tr>
                     </thead>
                     <tbody
@@ -52,7 +52,7 @@
                                 <?php endif; ?>
                             </td>
                             <td><?php echo $value['addtime']; ?></td>
-                            <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');">删除</a></td>
+<!--vot-->                  <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('attachment_delete_error')?></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -66,7 +66,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a class="btn btn-success fileinput-button dz-clickable"><i class="glyphicon glyphicon-plus"></i>选择文件上传...</a>
+<!--vot-->          <a class="btn btn-success fileinput-button dz-clickable"><i class="glyphicon glyphicon-plus"></i><?=lang('choose_file')?></a>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -118,7 +118,7 @@
     $("#menu_media").addClass('active');
     setTimeout(hideActived, 3600);
 
-    //文件上传
+    //File Upload
     // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
     var previewNode = document.querySelector("#template");
     previewNode.id = "";

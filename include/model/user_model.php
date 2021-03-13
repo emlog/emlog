@@ -14,9 +14,6 @@ class User_Model {
 
     /**
      * Get a list of users
-     *
-     * @param $role //User group
-     * @return array
      */
     function getUsers($page = null) {
         $condition = '';
@@ -56,9 +53,6 @@ class User_Model {
 
     /**
      * Update User Information
-     *
-     * @param array $userData
-     * @param int $uid
      */
     function updateUser($userData, $uid) {
         $Item = array();
@@ -71,10 +65,6 @@ class User_Model {
 
     /**
      * Add a User
-     *
-     * @param string $login
-     * @param string $password
-     * @param string $role
      */
     function addUser($login, $password,  $role, $ischeck) {
         $sql="insert into ".DB_PREFIX."user (username,password,role,ischeck) values('$login','$password','$role','$ischeck')";
@@ -83,8 +73,6 @@ class User_Model {
 
     /**
      * Delete User
-     *
-     * @param int $uid
      */
     function deleteUser($uid) {
         $this->db->query("update ".DB_PREFIX."blog set author=1 and checked='y' where author=$uid");

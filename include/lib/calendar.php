@@ -3,12 +3,6 @@
  * Calendar
  * @package EMLOG
  */
-//DEBUG
-//echo '<pre>';
-//echo 'Calendar.php:', "\n";
-//echo 'LANGUAGE=';
-//print_r($LANGUAGE);
-//echo '</pre>';
 
 class Calendar {
 
@@ -25,13 +19,11 @@ class Calendar {
 	 */
 	static function generate() {
 		$DB = Database::getInstance();
-		$timezone = Option::get('timezone');
-		$timestamp = time() + $timezone * 3600;
 
 		//Array of post create time
 		$query = $DB->query("SELECT date FROM ".DB_PREFIX."blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
-			$logdate[] = gmdate("Ymd", $date['date'] + $timezone * 3600);
+			$logdate[] = date("Ymd", $date['date']);
 		}
 		//Get the current date
 		$n_year  = gmdate("Y", $timestamp);

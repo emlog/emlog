@@ -3,7 +3,7 @@
 } ?>
 <!doctype html>
 <html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
-<!--vot--><head>
+<head>
 <!--vot--><meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./views/css/bootstrap.min.4.6.css" rel="stylesheet" type="text/css" type="text/css"/>
@@ -21,28 +21,28 @@
                     <div class="p-5">
                         <form method="post" action="./index.php?action=login">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名">
+<!--vot-->                      <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="<?=lang('user_name')?>">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码">
+<!--vot-->                      <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>">
                             </div>
                             <?php if ($ckcode): ?>
                                 <div class="form-group">
-<!--vot-->          <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="<?=lang('captcha')?>" required="required">
+<!--vot-->                          <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="<?=lang('captcha')?>" required="required">
                                     <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode">
                                 </div>
                             <?php endif; ?>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox small">
                                     <input type="checkbox" class="custom-control-input" id="customCheck">
-                                    <label class="custom-control-label" for="customCheck">记住登录状态</label>
+<!--vot-->                          <label class="custom-control-label" for="customCheck"><?=lang('remember_me')?></label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">登录</button>
+<!--vot-->                  <button type="submit" class="btn btn-primary btn-user btn-block"><?=lang('login')?></button>
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a href="../" class="btn btn-link btn-xs" role="button">返回首页</a>
+<!--vot-->                  <a href="../" class="btn btn-link btn-xs" role="button"><?=lang('back_home')?></a>
                         </div>
                     </div>
                 </div>

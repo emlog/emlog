@@ -153,7 +153,7 @@ $lang = array(
  'draft'		=> 'Draft',//'草稿',
  'drafts'		=> 'drafts',//'草稿',
  'posts'		=> 'posts',//'文章',
- 'select_post_to_operate_please'	=> 'Please, select the entry to operate',//'请选择要操作的文章',
+ 'select_post_to_operate'	=> 'Please, select the entry to operate',//'请选择要操作的文章',
  'sure_delete_selected_posts'	=> 'Are you sure to want delete selected entries?',//'你确定要删除所选文章吗？',
 
 //---------------------------

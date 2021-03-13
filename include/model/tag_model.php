@@ -55,14 +55,11 @@ class Tag_Model {
     }
 
     /**
-     * Add tags
-     *
-     * @param string $tagStr
-     * @param int $blogId
+     * Add tag
      */
     function addTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
-	// DO NOT TRANSLATE BELOW LINE!!
+//vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
         
         if (empty($tagStr)) {
@@ -102,13 +99,10 @@ class Tag_Model {
 
     /**
      * Update Post Tags
-     *
-     * @param string $tagStr
-     * @param int $blogId
      */
     function updateTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
-	// DO NOT TRANSLATE BELOW LINE!!
+//vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
         
         // The old Tag Id list

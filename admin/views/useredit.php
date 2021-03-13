@@ -6,7 +6,7 @@
 <!--vot--><?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger"><?=lang('user_name_exists')?></div><?php endif; ?>
 <!--vot--><?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif; ?>
 <!--vot--><?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger"><?=lang('passwords_not_equal')?></div><?php endif; ?>
-    <h1 class="h3 mb-4 text-gray-800"><?=lang('user_manage')?></h1>
+<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('user_manage')?></h1>
     <form action="user.php?action=update" method="post">
         <div class="form-group">
 <!--vot-->  <li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="form-control"> <?=lang('user_name')?></li>
@@ -31,7 +31,7 @@
             <li>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
-                <input type="submit" value="保 存" class="btn btn-success"/>
+<!--vot-->      <input type="submit" value="<?=lang('save')?>" class="btn btn-success">
 <!--vot-->      <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="window.location='user.php';"></li>
         </div>
     </form>

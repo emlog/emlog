@@ -19,7 +19,7 @@ if (!$action) {
     View::output();
 }
 
-// 备份到本地
+// Backup to local
 if ($action == 'bakstart') {
     LoginAuth::checkToken();
     $zipbak = $_POST['zipbak'] ?? 'n';

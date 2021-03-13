@@ -35,8 +35,8 @@
         <?php endif; ?>
         <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
         <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
-        <input type="submit" value="保 存" class="btn btn-success"/>
-<!--vot--><input type="button" value="<?=lang('_cancel_')?>" class="btn btn-default" onclick="javascript: window.history.back();" />
+<!--vot--><input type="submit" value="<?=lang('_save_')?>" class="btn btn-success"/>
+<!--vot--><input type="button" value="<?=lang('_cancel_')?>" class="btn btn-default" onclick="javascript: window.history.back();"/>
     </form>
 </div>
 <script>

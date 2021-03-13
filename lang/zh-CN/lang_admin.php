@@ -4,11 +4,11 @@ $lang = array(
 
 //---------------------------
 //admin/admin_log.php
- 'drafts'		=> '草稿箱',
- '_drafts'		=> '草稿箱',
- 'post_manage'		=> '文章管理',
- 'draft_manage'		=> '草稿管理',
- 'no_permission'	=> '权限不足！',
+ 'drafts'		=> '草稿箱',//'Drafts',
+ '_drafts'		=> '草稿箱',//' drafts',
+ 'post_manage'		=> '文章管理',//'Post management',
+ 'draft_manage'		=> '草稿管理',//'Draft management',
+ 'no_permission'	=> '权限不足！',//'Insufficient permissions!', 
  'check'		=> '审核',//'Show',
  'uncheck'		=> '驳回',//'Uncheck',
  'view_by_tag'		=> '按标签查看',//'View by tag',
@@ -27,8 +27,8 @@ $lang = array(
  'site_address'	=> '站点地址：',//'Site address',
  'verification_code_not_supported' => '开启登录验证码失败!服务器空间不支持GD图形库',
  'verification_code_comment_not_supported' =>'开启评论验证码失败!服务器空间不支持GD图形库',
- 'detect_url' => '自动检测站点地址 (用于支持多域名/HTTPS，少数空间商可能不支持)',
-
+ 'detect_url' => '自动检测站点地址 (可能和部分CDN解决方案不兼容)',
+                  
 //---------------------------
 //admin/data.php
  'backup_directory_not_writable'	=> '备份失败。备份目录(content/backup)不可写',
@@ -83,7 +83,7 @@ $lang = array(
 //admin/views/add_log.php
  'post_write'		=> '写文章',//'Write post',
  'enter_post_title'	=> '输入文章标题',//'Enter the post title',
- 'upload_insert'	=> '上传插入',//'Insert upload',
+ 'upload_insert'	=> '上传文件\图片',//'Upload file/picture',
  'category_select'	=> '选择分类...',//'Select Category...',
  'post_time'		=> '发布于',//'Posted on',
  'advanced_options'	=> '高级选项',//'Advanced Options',
@@ -131,6 +131,7 @@ $lang = array(
  'all'			=> '全部',//'All',
  'category_view'	=> '按分类查看',//'View by Category',
  'category'		=> '分类',//'Category',
+ 'categories'		=> '分类',//'Categories',
  'uncategorized'	=> '未分类',//'Uncategorized',
  'view_by_author'	=> '按作者查看',//'View by author',
  'article_search'	=> '搜索文章',//'Search Article',
@@ -157,8 +158,10 @@ $lang = array(
  'number_of_items'	=> '篇',//' ',//LEAVE THIS EMPTY! It is just a number of "Items", "Pieces", etc..
  'draft'		=> '草稿',//'Draft',
  'drafts'		=> '草稿',//'drafts',
+ 'article'		=> '文章',//'article',
+ 'articles'		=> '文章',//'Articles',
  'posts'		=> '文章',//'posts',
- 'select_post_to_operate_please'	=> '请选择要操作的文章',//'Please, select the entry to operate',
+ 'select_post_to_operate'	=> '请选择要操作的文章',//'Please, select the entry to operate',
  'sure_delete_selected_posts'	=> '你确定要删除所选文章吗？',//'Are you sure to want delete selected entries?',
  'tags'			=> 'Tags',//'标签',
  'tags_no'		=> 'No tags',//'还没有标签',
@@ -181,7 +184,8 @@ $lang = array(
  '_pages'		=> '个页面',//' pages',
  'select_page_to_operate'	=> '请选择要操作的页面',//'Please, select the page to operate',
  'sure_delete_selected_pages'	=> '你确定要删除所选页面吗？',//'Are you sure you want to delete selected pages?',
- 'pages_total'		=> '已创建的页面',//'Total pages:',
+ 'pages_total'		=> '已创建了',//'Total pages:',
+
 //---------------------------
 //admin/views/attlib.php
  'attachment_upload'	=> '上传附件',//'Upload attachment',
@@ -240,6 +244,7 @@ $lang = array(
  'site_subtitle'	=> '站点副标题',//'Site subtitle',
  'site_address	'	=> '站点地址',//'Site address',
  'per_page'		=> '每页显示',//'Show per page',
+ 'posts_per_page'	=> '每页显示文章数量',//'Number of articles displayed per page',
  '_posts'		=> '篇文章',//' posts',
  'your_timezone'	=> '你所在时区',//'Your time zone',
  'Etc/GMT'		=> '(UTC)协调世界时',
@@ -345,14 +350,19 @@ $lang = array(
  'Pacific/Honolulu'	=> '(UTC-10:00)夏威夷',
  'Etc/GMT+11'		=> '(UTC-11:00)协调世界时-11',
  'Etc/GMT+12'		=> '(UTC-12:00)国际日期变更线西',
- 'local_time'			=> '本地时间',//'Local Time',
+ 'local_time'		=> '本地时间',//'Local Time',
+ 'export'		=> '输出',//'Export ',
+ 'rss_output_num'	=> '篇文章，且输出',//' posts, and output',
+ 'full_text'		=> '全文',//'Full Text',
+ 'summary'		=> '摘要',//'Summary',
+ 'rss_post_num'		=> '篇文章（0为关闭），且输出',//'articles (0 is closed), and output',
  'function_switch'		=> '功能开关',//'Function switch',
  'login_verification_code'	=> '登录验证码',//'Login verification code',
  'gzip_compression'		=> 'Gzip压缩',//'Gzip compression',
  'offline_writing'		=> '离线写作（支持用Windows Live Writer等工具写文章）',//'Offline Writing (Support the use of tools such as Windows Live Writer to write articles)',
  'mobile_access_address'	=> '手机访问版，地址',//'Mobile Access version, address',
  'access_site_by_mobile'	=> '用手机访问你的站点',//'Access to your site using a mobile phone',
- 'auto_summary'			=> '自动摘要，截取文章的前',//'Automatic summary, intercept from the post',
+ 'auto_summary'			=> '自动摘要, 且自动截取',//'Automatic summary, and automatic interception',
  'characters_as_summary'	=> '个字作为摘要',//' characters as the summary',
  'twitters'			=> '微语',//'Twitters',
  'twitters_enable'		=> '开启微语，',//'Enable twitters, ',
@@ -360,13 +370,9 @@ $lang = array(
  'twitter_reply_enable'		=> '开启微语回复，',//'Enable twitter reply, ',
  'reply_verification_code'	=> '回复验证码，',//'Reply verification code, ',
  'reply_audit'			=> '回复审核',//'Reply audit',
- 'rss'				=> 'RSS',//'RSS',
- 'export'			=> '输出',//'Export ',
- '_posts_and_output'		=> '篇文章，且输出',//' posts, and output',
- 'full_text'			=> '全文',//'Full Text',
- 'summary'			=> '摘要',//'Summary',
- 'enable_comment_interval'	=> '开启评论，发表评论间隔',//' Enable comments, comment interval ',
- '_seconds'			=> '秒',//' seconds',
+ 'enable_comments'		=> '开启评论',//'Enable comments',
+ 'comment_interval'		=> '发表评论间隔',//'comment interval',
+ 'seconds'			=> '秒',//'seconds',
  'comment_moderation'		=> '评论审核',//'Comment moderation',
  'comment_verification_code'	=> '评论验证码',//'Comments Verification Code',
  'comment_avatar'		=> '评论人头像',//'Comments author avatar',
@@ -389,7 +395,8 @@ $lang = array(
 
 //---------------------------
 //admin/views/data.php
- 'data_backup'			=> '数据库备份',//'Database Backup',
+ 'data_backup'			=> '数据管理',//'Data management',
+ 'backup_prompt'		=> '将站点内容数据库备份到自己电脑上',//'Back up the site content database to your computer',
  'backup_delete_ok'		=> '备份文件删除成功',//'Backup file deleted successfully',
  'backup_create_ok'		=> '数据备份成功',//'Data backup created successfully',
  'backup_import_ok'		=> '备份导入成功',//'Backup imported successfully',
@@ -449,7 +456,6 @@ $lang = array(
  'draft'		=> '草稿',//'Draft',
  'posts'		=> '文章',//'Posts',
  'posts_pending'	=> '篇文章待审',//' Pending posts',
- 'categories'		=> '分类',//'Categories',
  'comments_pending'	=> '条评论待审',//' Pending comments',
  'exterior'		=> '外观',//'Exterior',
  'sidebar'		=> '侧边栏',//'Sidebar',
@@ -464,7 +470,7 @@ $lang = array(
  'extensions'		=> '扩展功能',//'Extensions',
  'search_for'		=> 'Search for...',//'Search for...',
  'search'		=> 'Search',//'Search',
-// '<!--Sidebar Toggle-->',//'<!--边栏折叠-->'
+ 'resources'		=> '资源',//'Resources',
 
 //---------------------------
 //admin/views/index.php
@@ -522,6 +528,7 @@ $lang = array(
 //admin/views/links.php
  'link_add'		=> '新建链接',//'Add Link',
  'link_management'	=> '链接管理',//'Link management',
+ 'links_created'	=> '已创建的链接',//'Links created',
  'order'		=> '排序',//'Order',
  'edit_link'		=> '修改链接',//'Edit link',
  'click_to_hide'	=> '点击隐藏链接',//'Click to hide',
@@ -533,15 +540,23 @@ $lang = array(
  'name'			=> '名称',//'Name',
  'link_url'		=> '地址',//'Link URL',
 
+
 //---------------------------
 //admin/views/login.php
  'login'		=> '登录',//'Login',
  'user_name'		=> '用户名',//'User name',
  'password'		=> '密码',//'Password',
- 'remember_me'		=> '记住我',//'Remember Me',
+ 'remember_me'		=> '记住登录状态',//'Remember login status',
  'log_in'		=> ' 登 录 ',//' Log in ',
  'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
  'password_forget'	=> '忘记密码?',//'Forgot Password?',
+
+//---------------------------
+//admin/views/media.php
+ 'resouce_manage'	=> '资源管理',//'Resource management',
+ 'file'			=> '文件',//'File',
+ 'date'			=> '日期',//'Date',
+ 'upload_files'		=> '上传文件',//'Upload files',
 
 //---------------------------
 //admin/views/navbar.php
@@ -586,20 +601,21 @@ $lang = array(
 //---------------------------
 //admin/views/plugin.php
  'plugin_manage'		=> '插件管理',//'Plugin Management',
- 'plugin_upload_ok'		=> '插件上传成功，请激活使用',//'Plugin uploaded successfully, please activate it to use',
- 'plugin_active_ok'		=> '插件激活成功',//'Plug-in activated successfully',
- 'plugin_active_failed'		=> '插件激活失败',//'Plug-in activation failed',
+ 'plugin_upload_ok'		=> '插件上传成功，请开启使用',//'Plugin uploaded successfully, please activate it to use',
+ 'plugin_active_ok'		=> '插件开启成功',//'Plug-in activated successfully',
+ 'plugin_active_failed'		=> '插件开启失败',//'Plug-in activation failed',
  'plugin_disable_ok'		=> '插件禁用成功',//'Plug-in disabled successfully',
  'plugin_delete_failed'		=> '删除失败，请检查插件文件权限',//'Delete failed, check the plug-in file permissions',
  'status'			=> '状态',//'Status',
  'version'			=> '版本',//'Version',
  'description'			=> '描述',//'Description',
- 'plugin_active_ok'		=> '点击激活插件',//'Click to activate the plug-in',
+ 'plugin_active_ok'		=> '点击开启插件',//'Click to activate the plug-in',
  'plugin_disable_ok'		=> '点击禁用插件',//'Click to disable the plug-in',
  'plugin_settings_click'	=> '点击设置插件',//'Click to plug-in settings',
  'more_info'			=> '更多信息&raquo;',//'More Info&raquo;',
  'plugin_no_installed'		=> '还没有安装插件',//'No installed plugins',
  'plugin_install'		=> '安装插件',//'Install plugin',
+ 'plugin_new_install'		=> '安装插件',//'Install plugin',
 
 //---------------------------
 //admin/views/plugin_install.php
@@ -678,7 +694,6 @@ $lang = array(
 //admin/views/template.php
  'template_manager'		=> '模板管理',//'Template Manager',
  'template_current'		=> '当前模板',//'Current template',
- 'template_install'		=> '安装模板',//'Install template',
  'template_change_ok'		=> '模板更换成功',//'Template have been replaced successfully',
  'template_current_use'		=> '当前使用的模板',//'Currently used template',
  'template_damaged'		=> '已被删除或损坏，请选择其他模板。',//'This template has been damaged! Please choose another template.',
@@ -688,7 +703,8 @@ $lang = array(
  'template_delete_ok'		=> '删除模板成功',//'Template have been removed successfully',
  'template_delete_failed'	=> '删除失败，请检查模板文件权限',//'Delete failed, check the template file permissions',
  'template_use_this'		=> '使用该模板',//'Use this template',
- 'template_add'			=> '安装新的模板',//'Install a new template',
+ 'template_add'			=> '安装模板',//'Install template',
+ 'template_install'		=> '安装模板',//'Install template',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -701,12 +717,12 @@ $lang = array(
 //admin/views/template_install.php
  'template_zip_support'		=> '只支持zip压缩格式的模板包',//'Only supported for .zip files.',
  'template_upload_failed_nonwritable'	=> '上传失败，模板目录(content/templates)不可写',//'Upload failed. Template directory (content/templates) cannot be written.',
- 'template_no_zip_install_manually'	=> 'Server does not support zip module, follow the prompts to install the template manually',//'空间不支持zip模块，请按照提示手动安装模板',
+ 'template_no_zip_install_manually'	=> '空间不支持zip模块，请手动安装： <br/>',//'Server does not support zip module, please install it manually:<br>',
  'template_select_zip'		=> '请选择一个zip模板安装包',//'Please select a zipped template installation package',
  'template_non_standard'	=> '安装失败，模板安装包不符合标准',//'Installation failed, template installation package does not meet the standards',
  'template_install_manual'	=> '手动安装模板',//'Template manual installation',
- 'template_install_prompt1'	=> '1、把解压后的模板文件夹上传到 content/templates目录下。',//'1) After extracting the template files upload the template folder to the content/templates directory.',
- 'template_install_prompt2'	=> '2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。',//'2) Log in to the AdminCP to change a template. If template library already have a template you just added, then click on it to use this template.',
+ 'template_install_prompt1'	=> '1、把解压后的模板文件夹上传到 content/templates目录下。 <br/>',//'1. Upload the decompressed template folder to the content/templates directory. <br/>',
+ 'template_install_prompt2'	=> '2、登录后台换模板，模板库中已经有了你刚才添加的模板，点击使用即可。 <br/>',//'2. Log in to the admin panel to change the template. The template you just added is already in the template library, just click to use it. <br/> ',
  'template_upload_prompt'	=> '上传一个zip压缩格式的模板安装包',//'Upload .zip file that contains installation package',
  'template_get_more'		=> '获取更多模板',//'Get more templates',
 
@@ -799,6 +815,7 @@ $lang = array(
 //admin/views/write.php
  'publish_time'		=> '发布时间：',//'Publish time:',
  'access_password'	=> '访问密码',//'Access Password',
-
+ 'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
+ 'tags_have'		=> '已有标签+',//'Have tags+',
 
 );

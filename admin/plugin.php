@@ -23,7 +23,7 @@ if ($action == '' && !$plugin) {
     View::output();
 }
 
-//Activate
+//Enable
 if ($action == 'active') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();

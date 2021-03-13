@@ -13,7 +13,7 @@
 <!--vot--><?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger"><?=lang('founder_not_edit')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('user_management')?></h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加用户</a>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> <?=lang('user_add')?></a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -106,7 +106,7 @@
                     <div class="modal-footer">
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                        <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>

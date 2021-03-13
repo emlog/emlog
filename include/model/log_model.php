@@ -155,7 +155,7 @@ class Log_Model
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date'] = date("Y-m-d H:i", $row['date']);
-/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/     $row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -211,7 +211,7 @@ class Log_Model
         $pages = array();
         while ($row = $this->db->fetch_array($res)) {
             $row['date'] = date("Y-m-d H:i", $row['date']);
-/*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/     $row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
             //$row['top'] 	= $row['top'];
@@ -325,9 +325,6 @@ class Log_Model
 
     /**
      * Get Random Post
-     *
-     * @param int $num
-     * @return array
      */
     function getRandLog($num)
     {
@@ -364,10 +361,6 @@ class Log_Model
 
     /**
      * Process Post alias, Prevent alias duplicated
-     *
-     * @param string $alias
-     * @param array $logalias_cache
-     * @param int $logid
      */
     function checkAlias($alias, $logalias_cache, $logid)
     {
@@ -387,11 +380,6 @@ class Log_Model
 
     /**
      * Encrypted Post access authentication
-     *
-     * @param string $postPwd
-     * @param string $cookiePwd
-     * @param string $logPwd
-     * @param int $logid
      */
     function authPassword($postPwd, $cookiePwd, $logPwd, $logid)
     {
@@ -417,8 +405,8 @@ body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150
 <div class="main">
 <form action="" method="post">
 {$page_pass}<br>
-<input type="password" name="logpwd"><input type="submit" value="{$submit_pass}" class="button">
-<br><br><a href="$url">{$back}</a>
+<input type="password" name="logpwd" /><input type="submit" value="{$submit_pass}" />
+<br /><br /><a href="$url">{$back}</a>
 </form>
 </div>
 </body>

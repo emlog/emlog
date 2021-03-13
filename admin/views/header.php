@@ -44,28 +44,28 @@
 
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
-                <i class="fas fa-edit"></i><span>内容</span>
+<!--vot-->      <i class="fas fa-edit"></i><span><?=lang('content')?></span>
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_write" href="write_log.php">写文章</a>
-                    <a class="collapse-item" id="menu_log" href="admin_log.php">文章</a>
-                    <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
-                    <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+<!--vot-->          <a class="collapse-item" id="menu_write" href="write_log.php"><?=lang('post_write')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_log" href="admin_log.php"><?=lang('post_manage')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
                 </div>
             </div>
         </li>
 
         <li class="nav-item" id="menu_page">
-            <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>页面</span></a>
+<!--vot-->  <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span><?= lang('pages') ?></span></a>
         </li>
 
         <li class="nav-item" id="menu_media">
-            <a class="nav-link" href="media.php"><i class="fas fa-sticky-note"></i><span>资源</span></a>
+<!--vot-->  <a class="nav-link" href="media.php"><i class="fas fa-sticky-note"></i><span><?= lang('resources') ?></span></a>
         </li>
 
         <li class="nav-item" id="menu_cm">
-            <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span>评论</span></a>
+<!--vot-->  <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
 
         <li class="nav-item" id="menu_link">
@@ -115,7 +115,7 @@
                 </button>
                 <form action="admin_log.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="搜搜文章..." aria-label="Search" aria-describedby="basic-addon2">
+<!--vot-->              <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-success" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
@@ -128,7 +128,7 @@
 <!--vot-->          <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
                             <?php
                             $blog_name = Option::get('blogname');
-/*vot*/                     echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
+<!--vot-->                  echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
                             ?>
                         </a>
                     </li>

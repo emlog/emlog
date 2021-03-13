@@ -452,7 +452,7 @@ textarea {
 }
 
 /*
-图片上传样式
+Image upload style
  */
 /* Mimic table appearance */
 div.table {
@@ -493,5 +493,5 @@ div.table .file-row:nth-child(odd) {
     display: block;
 }
 
-/* 编辑器默认高*/
+/* Editor default height */
 .ck-editor__editable {min-height: 390px;}

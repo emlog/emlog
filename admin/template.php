@@ -30,7 +30,7 @@ if ($action === '') {
     } else {
         $tplAuthor = '';
     }
-    
+
     //Template List
     $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
     $tpls = array();

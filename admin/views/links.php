@@ -3,25 +3,25 @@
 } ?>
 <div class="container-fluid">
     <?php if (isset($_GET['active_taxis'])): ?>
-        <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('order_update_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_del'])): ?>
-        <div class="alert alert-success">删除成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_edit'])): ?>
-        <div class="alert alert-success">修改成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('edit_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_add'])): ?>
-        <div class="alert alert-success">添加成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('add_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['error_a'])): ?>
-        <div class="alert alert-danger">站点名称和地址不能为空</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('site_and_url_empty')?></div><?php endif; ?>
     <?php if (isset($_GET['error_b'])): ?>
-        <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-edit"></i> <?= lang('link_add') ?></a>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> <?= lang('link_add') ?></a>
     </div>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6  class="badge badge-secondary">已创建的链接</h6>
+<!--vot-->      <h6  class="badge badge-secondary"><?= lang('links_created') ?></h6>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -45,19 +45,19 @@
                             <td><?php echo $value['description']; ?></td>
                             <td>
                                 <?php if ($value['hide'] == 'n'): ?>
-<!--vot-->                              <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_hide') ?>"><?= lang('visible') ?></a>
+<!--vot-->                          <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_hide') ?>"><?= lang('visible') ?></a>
                                 <?php else: ?>
-<!--vot-->                              <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_show') ?>" style="color:red;"><?= lang('hidden') ?></a>
+<!--vot-->                          <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" title="<?= lang('click_to_show') ?>" style="color:red;"><?= lang('hidden') ?></a>
                                 <?php endif; ?>
                             </td>
                             <td>
-<!--vot-->                          <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal"
+                                <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal"
                                    data-linkid="<?php echo $value['id']; ?>"
                                    data-sitename="<?php echo $value['sitename']; ?>"
                                    data-siteurl="<?php echo $value['siteurl']; ?>"
-                                       data-description="<?php echo $value['description']; ?>"><?=lang('edit')?>
+<!--vot-->                         data-description="<?php echo $value['description']; ?>"><?=lang('edit')?>
                                 </a>
-<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="list_footer">
-<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary">
+<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
         </div>
     </form>
     <!--Add Link popup-->
@@ -97,7 +97,7 @@
                     </div>
                     <div class="modal-footer">
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                        <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>
@@ -134,7 +134,7 @@
                     <div class="modal-footer">
                         <input type="hidden" value="" name="linkid" id="linkid"/>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                        <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('link_add')?></button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>

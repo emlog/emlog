@@ -3,31 +3,31 @@
 } ?>
 <div class="container-fluid">
     <?php if (isset($_GET['active_taxis'])): ?>
-        <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_del'])): ?>
-        <div class="alert alert-success">删除分类成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_edit'])): ?>
-        <div class="alert alert-success">修改分类成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['active_add'])): ?>
-        <div class="alert alert-success">添加分类成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif; ?>
     <?php if (isset($_GET['error_a'])): ?>
-        <div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif; ?>
     <?php if (isset($_GET['error_b'])): ?>
-        <div class="alert alert-danger">没有可排序的分类</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif; ?>
     <?php if (isset($_GET['error_c'])): ?>
-        <div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif; ?>
     <?php if (isset($_GET['error_d'])): ?>
-        <div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif; ?>
     <?php if (isset($_GET['error_e'])): ?>
-        <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加分类</a>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> <?=lang('category_add')?></a>
     </div>
     <form method="post" action="sort.php?action=taxis">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="badge badge-secondary">已创建的分类</h6>
+<!--vot-->      <h6 class="badge badge-secondary"><?=lang('category_management')?></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive" id="adm_sort_list">
@@ -67,8 +67,8 @@
                                 </td>
                                 <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                 <td>
-                                    <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                    <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->                          <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                                 </td>
                             </tr>
                             <?php
@@ -90,8 +90,8 @@
                                     </td>
                                     <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                     <td>
-                                        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+<!--vot-->                              <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
+<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -102,7 +102,7 @@
             </div>
         </div>
         <div class="list_footer">
-            <input type="submit" value="改变排序" class="btn btn-success"/>
+<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
         </div>
     </form>
     <!--Add Category popup-->
@@ -155,7 +155,7 @@
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <span id="alias_msg_hook"></span>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                        <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
                     </div>
                 </form>
             </div>

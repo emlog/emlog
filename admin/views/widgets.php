@@ -3,8 +3,8 @@
 } ?>
 <div class="container-fluid">
     <?php if (isset($_GET['activated'])): ?>
-        <div class="alert alert-success">设置保存成功</div><?php endif; ?>
-    <h1 class="h3 mb-4 text-gray-800">侧边栏管理</h1>
+<!--vot--><div class="alert alert-success"><?=lang('settings_saved_ok')?></div><?php endif; ?>
+<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('widget_manage')?></h1>
     <div class="row">
         <div class="col-lg-6" id="adm_widget_list">
             <div class="accordion" id="accordionExample">
@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h2 class="mb-0">
                             <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#bloggerForm" aria-expanded="true" aria-controls="blogger">
-                                个人资料
+<!--vot-->                      <?=lang('blogger')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -23,7 +23,7 @@
                             <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -32,8 +32,8 @@
                 <div class="card" id="calendar">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
-                                    aria-controls="collapseTwo">日历
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false" aria-controls="collapseTwo">
+<!--vot-->                      <?=lang('calendar')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -44,7 +44,7 @@
                             <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -53,8 +53,8 @@
                 <div class="card" id="tag">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false"
-                                    aria-controls="collapseThree">标签
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('tags')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -65,7 +65,7 @@
                             <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -74,8 +74,8 @@
                 <div class="card" id="sort">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
-                                    aria-controls="collapseThree">分类
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('category')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -86,7 +86,7 @@
                             <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -95,8 +95,8 @@
                 <div class="card" id="archive">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
-                                    aria-controls="collapseThree">存档
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('archive')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -107,7 +107,7 @@
                             <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                 <li>
                                     <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -116,8 +116,8 @@
                 <div class="card" id="newcomm">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
-                                    aria-controls="collapseThree">最新评论
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('new_comments')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -126,14 +126,14 @@
                     <div id="newcommFrom" class="collapse" data-parent="#accordionExample">
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=newcomm" method="post">
-                                <label>标题</label>
+<!--vot-->                      <li><?=lang('title')?></li>
                                 <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"/></li>
-                                <label>最新评论数</label>
+<!--vot-->                      <li><?=lang('last_comments_num')?></li>
                                 <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum"/></li>
-                                <label>新近评论截取字节数</label>
+<!--vot-->                      <li><?=lang('new_comments_length')?></li>
                                 <li>
                                     <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -142,8 +142,8 @@
                 <div class="card" id="newlog">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
-                                    aria-controls="collapseThree">最新文章
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('new_posts')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -157,7 +157,7 @@
 <!--vot-->                      <li><?=lang('new_posts_show')?></li>
                                 <li>
                                     <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog"/>
-                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+<!--vot-->                          <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
                         </div>
@@ -166,8 +166,8 @@
                 <div class="card" id="hotlog">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
-                                    aria-controls="collapseThree">热门文章
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('hot_posts')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -179,8 +179,8 @@
 <!--vot-->                      <li><?=lang('title')?></li>
                                 <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
 <!--vot-->                      <li><?=lang('hot_posts_home')?></li>
-<!--vot-->                      <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
-                                            type="submit" name="" value="保存" class="btn btn-success btn-sm"/></li>
+                                <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
+<!--vot-->                                  type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/></li>
                             </form>
                         </div>
                     </div>
@@ -188,8 +188,8 @@
                 <div class="card" id="link">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
-                                    aria-controls="collapseThree">链接
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('links')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -198,7 +198,7 @@
                     <div id="linkForm" class="collapse" data-parent="#accordionExample">
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
-                                <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/> <input type="submit" name="" value="保存"
+<!--vot-->                      <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/> <input type="submit" name="" value="<?=lang('save')?>"
                                                                                                                                                 class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
@@ -208,8 +208,8 @@
                 <div class="card" id="search">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
-                                    aria-controls="collapseThree">搜索
+                            <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="collapseThree">
+<!--vot-->                      <?=lang('search')?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
@@ -218,7 +218,7 @@
                     <div id="searchForm" class="collapse" data-parent="#accordionExample">
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
-                                <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="保存"
+<!--vot-->                      <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="<?=lang('save')?>"
                                                                                                                                                   class="btn btn-success btn-sm"/>
                                 </li>
                             </form>
@@ -248,8 +248,8 @@
                                     </li>
                                     <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
                                     <li>
-                                        <input type="submit" class="btn btn-success" name="" value="保存"/>
-                                        <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除</a>
+<!--vot-->                              <input type="submit" class="btn btn-success" name="" value="<?=lang('save')?>">
+<!--vot-->                              <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a>
                                     </li>
                                 </form>
                             </div>
@@ -258,14 +258,14 @@
                 <?php endforeach; ?>
             </div>
             <div class="my-3">
-                <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 添加组件</a>
+<!--vot-->      <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> <?=lang('widget_add')?></a>
             </div>
-            <!--添加自定义组件-->
+            <!--Add custom plugin-->
             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">添加组件</h5>
+<!--vot-->                  <h5 class="modal-title" id="exampleModalLabel"><?=lang('widget_add')?></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -273,17 +273,17 @@
                         <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="sortname">组件名</label>
+<!--vot-->                          <label for="sortname"><?=lang('widget_title')?></label>
                                     <input class="form-control" id="new_title" name="new_title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="alias">内容 （支持html）</label>
+<!--vot-->                          <label for="alias"><?=lang('widget_content_info')?></label>
                                     <textarea name="new_content" class="form-control" rows="10"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->                      <button type="submit" class="btn btn-success"><?=lang('save')?></button>
                                 <span id="alias_msg_hook"></span>
                             </div>
                         </form>
@@ -293,7 +293,7 @@
         </div>
 
         <div class="col-lg-6">
-            <h1 class="h3 mb-4 text-gray-800">已添加的组件</h1>
+<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('widget_manage')?></h1>
             <form action="widgets.php?action=compages" method="post">
                 <div id="sortable" class="adm_widget_box">
                     <?php
@@ -322,8 +322,8 @@
                     <?php endforeach; ?>
                 </div>
                 <div class="my-3">
-                    <input type="submit" value="保存组件排序" class="btn btn-success"/>
-                    <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger">重置组件</a>
+<!--vot-->          <input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-success"/>
+<!--vot-->          <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger"><?=lang('widget_setting_reset')?></a>
                 </div>
             </form>
         </div>

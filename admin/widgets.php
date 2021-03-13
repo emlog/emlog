@@ -41,8 +41,8 @@ if ($action === '') {
 //Modify the widget settings
 if ($action === 'setwg') {
 /*vot*/    $widgetTitle = Option::get('widget_title'); //Widget Title
-    $widget = $_GET['wg'] ?? '';            //要修改的组件
-    $wgTitle = $_POST['title'] ?? '';    //新组件名
+/*vot*/    $widget = $_GET['wg'] ?? '';            //Edit widget
+/*vot*/    $wgTitle = $_POST['title'] ?? '';    //New widget name
 
     preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
     $realWgTitle = $matchs[1] ?? $widgetTitle[$widget];
@@ -73,7 +73,7 @@ if ($action === 'setwg') {
             $custom_widget = Option::get('custom_widget');
             $title = $_POST['title'] ?? '';
             $content = $_POST['content'] ?? '';
-            $custom_wg_id = $_POST['custom_wg_id'] ?? '';//要修改的组件id
+/*vot*/     $custom_wg_id = $_POST['custom_wg_id'] ?? '';//Edit widget id
             $new_title = $_POST['new_title'] ?? '';
             $new_content = $_POST['new_content'] ?? '';
 /*vot*/     $rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id

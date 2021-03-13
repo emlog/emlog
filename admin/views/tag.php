@@ -48,7 +48,7 @@
                     <div class="modal-footer">
                         <input type="hidden" value="" id="tid" name="tid"/>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                        <button type="submit" class="btn btn-success">保存</button>
+<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
 <!--vot-->              <a class="btn btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                     </div>
                 </form>

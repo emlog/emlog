@@ -14,7 +14,7 @@ class Plugin_Model {
     }
 
     /**
-     * Activate plug-in
+     * Enable plug-in
      */
     function activePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');
@@ -46,9 +46,7 @@ class Plugin_Model {
     }
 
     /**
-     * Disable plug-ins
-     *
-     * @param string $active_plugins //All the currently active plug-ins
+     * Disable plug-in
      */
     function inactivePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');

@@ -6,7 +6,6 @@
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
 /*vot*/ define('DEL_INSTALLER', 0);
-
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
 /*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
@@ -25,12 +24,12 @@ if (PHP_VERSION < '7.0') {
 $act = $_GET['action'] ?? '';
 
 if (!$act) {
-    ?>
+?>
 <!DOCTYPE html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
-    <head>
-<meta charset="UTF-8">
-        <title>emlog</title>
+<head>
+    <meta charset="UTF-8">
+    <title>emlog</title>
         <style type="text/css">
             <!--
             body {
@@ -101,62 +100,62 @@ if (!$act) {
 
             -->
         </style>
-    </head>
-    <body>
-    <form name="form1" method="post" action="install.php?action=install">
-        <div class="main">
-            <p class="logo"></p>
-<!--vot--><p class="title"><?= lang('installation')?><?= Option::EMLOG_VERSION ?></p>
-            <div class="b">
-<!--vot--><p class="title2"><?= lang('mysql_settings')?></p>
-                <li>
-<!--vot--> <?= lang('db_hostname')?>:<br>
-                    <input name="hostname" type="text" class="input" value="127.0.0.1">
-<!--vot--> <span class="care"><?= lang('db_hostname_info')?></span>
-                </li>
-                <li>
-<!--vot--> <?= lang('db_user')?>:<br><input name="dbuser" type="text" class="input" value="">
-                </li>
-                <li>
-<!--vot--> <?= lang('db_password')?>:<br><input name="password" type="password" class="input">
-                </li>
-                <li>
-<!--vot--> <?= lang('db_name')?>:<br>
-                    <input name="dbname" type="text" class="input" value="">
-<!--vot--> <span class="care"><?= lang('db_name_info')?></span>
-                </li>
-                <li>
-<!--vot--> <?= lang('db_prefix')?>:<br>
-                    <input name="dbprefix" type="text" class="input" value="emlog_">
-<!--vot--> <span class="care"><?= lang('db_prefix_info')?></span>
-                </li>
-            </div>
-            <div class="c">
-<!--vot--><p class="title2"><?= lang('admin_settings')?></p>
-                <li>
-<!--vot--> <?= lang('admin_name')?>:<br>
-                    <input name="admin" type="text" class="input">
-                </li>
-                <li>
-<!--vot--><?= lang('admin_password')?>:<br>
-                    <input name="adminpw" type="password" class="input">
-<!--vot--><span class="care"><?= lang('admin_password_info')?></span>
-                </li>
-                <li>
-<!--vot--><?= lang('admin_password_repeat')?>:<br>
-                    <input name="adminpw2" type="password" class="input">
-                </li>
-            </div>
-            <div>
-                <p class="foot">
-<!--vot--><input type="submit" class="submit" value="<?= lang('install_emlog')?>">
-                </p>
-            </div>
+</head>
+<body>
+<form name="form1" method="post" action="install.php?action=install">
+    <div class="main">
+        <p class="logo"></p>
+<!--vot--><p class="title"><?= lang('installation') ?><?= Option::EMLOG_VERSION ?></p>
+        <div class="b">
+<!--vot-->  <p class="title2"><?= lang('mysql_settings') ?></p>
+            <li>
+<!--vot-->      <?= lang('db_hostname') ?>:<br>
+                <input name="hostname" type="text" class="input" value="127.0.0.1">
+<!--vot-->      <span class="care"><?= lang('db_hostname_info') ?></span>
+            </li>
+            <li>
+<!--vot-->      <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
+            </li>
+            <li>
+<!--vot-->      <?= lang('db_password') ?>:<br><input name="password" type="password" class="input">
+            </li>
+            <li>
+<!--vot-->      <?= lang('db_name') ?>:<br>
+                <input name="dbname" type="text" class="input" value="">
+<!--vot-->      <span class="care"><?= lang('db_name_info') ?></span>
+            </li>
+            <li>
+<!--vot-->      <?= lang('db_prefix') ?>:<br>
+                <input name="dbprefix" type="text" class="input" value="emlog_">
+<!--vot-->      <span class="care"><?= lang('db_prefix_info') ?></span>
+            </li>
         </div>
-    </form>
-    </body>
-    </html>
-    <?php
+        <div class="c">
+<!--vot-->    <p class="title2"><?= lang('admin_settings') ?></p>
+            <li>
+<!--vot-->      <?= lang('admin_name') ?>:<br>
+                <input name="admin" type="text" class="input">
+            </li>
+            <li>
+<!--vot-->      <?= lang('admin_password') ?>:<br>
+                <input name="adminpw" type="password" class="input">
+<!--vot-->      <span class="care"><?= lang('admin_password_info') ?></span>
+            </li>
+            <li>
+<!--vot-->      <?= lang('admin_password_repeat') ?>:<br>
+                <input name="adminpw2" type="password" class="input">
+            </li>
+        </div>
+        <div>
+            <p class="foot">
+<!--vot-->      <input type="submit" class="submit" value="<?= lang('install_emlog') ?>">
+            </p>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+<?php
 }
 if ($act == 'install' || $act == 'reinstall') {
     $db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
@@ -175,7 +174,7 @@ if ($act == 'install' || $act == 'reinstall') {
 /*vot*/        emMsg(lang('db_prefix_empty'));
     } elseif ($admin == '' || $adminpw == '') {
 /*vot*/        emMsg(lang('username_password_empty'));
-/*vot*/    }elseif(strlen($adminpw) < 5){
+/*vot*/    } elseif (strlen($adminpw) < 5) {
 /*vot*/        emMsg(lang('password_short'));
     } elseif ($adminpw != $adminpw2) {
 /*vot*/        emMsg(lang('password_not_equal'));
@@ -192,11 +191,11 @@ if ($act == 'install' || $act == 'reinstall') {
     $CACHE = Cache::getInstance();
 
     if ($DB->getMysqlVersion() < '5.5.3') {
-        emMsg('您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。');
+/*vot*/ emMsg(lang('mysql_required'));
     }
 
     if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
-/*vot*/ ?>
+/*vot*/ echo <<<EOT
 <!DOCTYPE html>
 <html>
 <head>
@@ -259,10 +258,10 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
         . "define('AUTH_KEY','" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "');"
         . "\n//cookie name\n"
         . "define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_" . getRandStr(32, false) . "');"
-/*vot*/    ."\n//blog language //vot\n"
-/*vot*/    ."define('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
-/*vot*/    ."\n//blog language direction //vot\n"
-/*vot*/    ."define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
+/*vot*/ . "//blog language\n"
+/*vot*/ . "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
+/*vot*/ . "\n//blog language direction //vot\n"
+/*vot*/ . "define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
         . "\n";
 
     $fp = @fopen('config.php', 'w');
@@ -317,7 +316,7 @@ CREATE TABLE {$db_prefix}blog (
   KEY sortid (sortid),
   KEY top (top,date)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '".lang('emlog_welcome')."', '".time()."', '".lang('emlog_install_congratulation')."', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment,
@@ -332,7 +331,7 @@ CREATE TABLE {$db_prefix}attachment (
   thumfor int(11) NOT NULL default 0,
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
-)" . $table_charset_sql . "
+)" .$table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(11) unsigned NOT NULL auto_increment,
@@ -358,8 +357,8 @@ option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','".lang('my_blog')."');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','".lang('emlog_powered')."');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','" . lang('my_blog') . "');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','" . lang('emlog_powered') . "');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
@@ -420,7 +419,7 @@ CREATE TABLE {$db_prefix}link (
   taxis int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '".lang('emlog_official_site')."', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '" . lang('emlog_official_site') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(11) unsigned NOT NULL auto_increment,
@@ -435,8 +434,8 @@ CREATE TABLE {$db_prefix}navi (
   type_id int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '".lang('home')."', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '".lang('login')."', 'admin', 3, 'y', 3);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '" . lang('home') . "', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '" . lang('login') . "', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid int(11) unsigned NOT NULL auto_increment,
@@ -495,12 +494,12 @@ CREATE TABLE {$db_prefix}storage (
     $CACHE->updateCache();
 /*vot*/    $result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
-        <p>".lang('emlog_installed_info')."</p>
-        <p><b>".lang('user_name')."</b>: {$admin}</p>
-        <p><b>".lang('password')."</b>: ".lang('password_entered')."</p>";
+        <p>" . lang('emlog_installed_info') . "</p>
+        <p><b>" . lang('user_name') . "</b>: {$admin}</p>
+        <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
     if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
-/*vot*/        $result .= '<p style="color:red;margin:10px 20px;">'.lang('delete_install').'</p> ';
+/*vot*/        $result .= '<p style="color:red;margin:10px 20px;">' . lang('delete_install') . '</p> ';
     }
-/*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">".lang('go_to_front')."</a> | <a href=\"./admin/\">".lang('go_to_admincp')."</a></p>";
+/*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
     emMsg($result, 'none');
 }

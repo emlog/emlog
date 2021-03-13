@@ -90,7 +90,7 @@ function getBlog($sortid = null)
             } else {
                 $re['content'] = extractHtmlData($re['content'], 330);
             }
-/*vot*/     $re['content'] .= ' <a href="'.Url::log($re['id']).'">'.lang('read_more').'</a>';
+/*vot*/     $re['content'] .= ' <a href="' . Url::log($re['id']) . '">'.lang('read_more') . '</a>';
         }
 
         $blog[] = $re;

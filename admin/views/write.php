@@ -10,18 +10,18 @@
                 <div id="msg"></div>
                 <div id="post" class="form-group">
                     <div>
-<!--vot-->              <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>">
+<!--vot-->              <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>">
                     </div>
                     <div id="post_bar">
-                        <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 上传文件\图片</a>
+<!--vot-->              <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> <?=lang('upload_insert')?></a>
                         <div id="FrameUpload" style="display: none;">
                             <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
                         </div>
                     </div>
-                    <textarea id="logcontent" name="logcontent""><?php echo $content; ?></textarea>
-                    <div class="show_advset" onclick="displayToggle('advset', 1);">文章摘要<i class="fa fa-caret-right fa-fw"></i></div>
+                    <textarea id="logcontent" name="logcontent"><?php echo $content; ?></textarea>
+<!--vot-->          <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="fa fa-caret-right fa-fw"></i></div>
                     <div id="advset">
-A                        <textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea>
+                        <textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea>
                     </div>
                 </div>
                 <div class=line></div>
@@ -57,7 +57,7 @@ A                        <textarea id="logexcerpt" name="logexcerpt"><?php echo 
 
                         <div class="form-group">
 <!--vot-->                  <label><?=lang('tags')?>:</label>
-<!--vot-->                  <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>">
+<!--vot-->                  <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="<?=lang('post_tags_separated')?>">
 <!--vot-->                  <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);"><?=lang('tags_have')?></a></span>
                             <div id="tagbox" style="display: none;">
                                 <?php
@@ -105,10 +105,10 @@ A                        <textarea id="logexcerpt" name="logexcerpt"><?php echo 
                     <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
                     <?php if ($logid < 0): ?>
-                        <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-success">
 <!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success">
                     <?php else: ?>
-                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success">
 <!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success">
                         <?php if ($isdraft) : ?>
 <!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success">
@@ -119,12 +119,12 @@ A                        <textarea id="logexcerpt" name="logexcerpt"><?php echo 
         </div>
     </form>
 
-    <!--资源库-->
+    <!--Resource Library-->
     <div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">资源库</h5>
+<!--vot-->          <a class="btn btn-success fileinput-button dz-clickable"><i class="glyphicon glyphicon-plus"></i><?=lang('choose_file')?></a>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

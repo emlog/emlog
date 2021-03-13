@@ -1,6 +1,6 @@
 <?php
 /**
- * 链接管理
+ * Media management
  * @package EMLOG
  */
 

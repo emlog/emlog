@@ -210,12 +210,6 @@ class Comment_Model {
         }
     }
 
-    /**
-     * Batch Comments Actions
-     *
-     * @param string $action
-     * @param array $comments
-     */
     function batchComment($action, $comments) {
         switch ($action) {
             case 'delcom':
