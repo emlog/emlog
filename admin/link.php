@@ -1,7 +1,12 @@
 <?php
 /**
  * Link Management
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
@@ -17,7 +22,7 @@ if ($action == '') {
 }
 
 if ($action == 'link_taxis') {
-	$link = isset($_POST['link']) ? $_POST['link'] : '';
+	$link = $_POST['link'] ?? '';
 
 	if (empty($link)) {
 		emDirect("./link.php?error_b=1");

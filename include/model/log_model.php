@@ -2,14 +2,16 @@
 /**
  * Model: Blog Page Management
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
-class Log_Model {
+class Log_Model
+{
 
     private $db;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
     }
 
@@ -19,7 +21,8 @@ class Log_Model {
      * @param array $logData
      * @return int
      */
-    function addlog($logData) {
+    function addlog($logData)
+    {
         $kItem = array();
         $dItem = array();
         foreach ($logData as $key => $data) {
@@ -39,7 +42,8 @@ class Log_Model {
      * @param array $logData
      * @param int $blogId
      */
-    function updateLog($logData, $blogId) {
+    function updateLog($logData, $blogId)
+    {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         $Item = array();
         foreach ($logData as $key => $data) {
@@ -58,12 +62,13 @@ class Log_Model {
      * @param string $type
      * @return int
      */
-    function getLogNum($hide = 'n', $condition = '', $type = 'blog', $spot = 0) {
+    function getLogNum($hide = 'n', $condition = '', $type = 'blog', $spot = 0)
+    {
         $hide_state = $hide ? "and hide='$hide'" : '';
 
         if ($spot == 0) {
             $author = '';
-        }else {
+        } else {
             $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         }
 
@@ -74,8 +79,9 @@ class Log_Model {
     /**
      * Get a Single post by ID for Admin
      */
-    function getOneLogForAdmin($blogId) {
-        $author = ROLE == ROLE_ADMIN ? '' : 'AND author=' . UID;
+    function getOneLogForAdmin($blogId)
+    {
+        $author = ROLE === ROLE_ADMIN ? '' : 'AND author=' . UID;
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
         $res = $this->db->query($sql);
         if ($this->db->affected_rows() < 1) {
@@ -98,7 +104,8 @@ class Log_Model {
     /**
      * Get a Single post by ID for homepage
      */
-    function getOneLogForHome($blogId) {
+    function getOneLogForHome($blogId)
+    {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
@@ -120,7 +127,7 @@ class Log_Model {
                 'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
                 'password' => $row['password'],
                 'template' => $row['template'],
-                );
+            );
             return $logData;
         } else {
             return false;
@@ -136,7 +143,8 @@ class Log_Model {
      * @param string $type
      * @return array
      */
-    function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
+    function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog')
+    {
         $perpage_num = Option::get('admin_perpage_num');
         $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
@@ -146,7 +154,7 @@ class Log_Model {
         $res = $this->db->query($sql);
         $logs = array();
         while ($row = $this->db->fetch_array($res)) {
-            $row['date']	= date("Y-m-d H:i", $row['date']);
+            $row['date'] = date("Y-m-d H:i", $row['date']);
 /*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
@@ -165,7 +173,8 @@ class Log_Model {
      * @param int $perPageNum
      * @return array
      */
-    function getLogsForHome($condition = '', $page = 1, $perPageNum) {
+    function getLogsForHome($condition = '', $page = 1, int $perPageNum)
+    {
         $start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
         $limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
@@ -195,12 +204,13 @@ class Log_Model {
     /**
      * Get a list of all pages
      */
-    function getAllPageList() {
+    function getAllPageList()
+    {
         $sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
         $res = $this->db->query($sql);
         $pages = array();
         while ($row = $this->db->fetch_array($res)) {
-            $row['date']	= date("Y-m-d H:i", $row['date']);
+            $row['date'] = date("Y-m-d H:i", $row['date']);
 /*vot*/     $row['title'] 	= !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
             //$row['gid'] 	= $row['gid'];
             //$row['comnum'] 	= $row['comnum'];
@@ -216,7 +226,8 @@ class Log_Model {
      *
      * @param int $blogId
      */
-    function deleteLog($blogId) {
+    function deleteLog($blogId)
+    {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         $this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
@@ -247,7 +258,8 @@ class Log_Model {
      * @param int $blogId
      * @param string $state
      */
-    function hideSwitch($blogId, $state) {
+    function hideSwitch($blogId, $state)
+    {
         $author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
         $this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
         $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -261,7 +273,8 @@ class Log_Model {
      * @param int $blogId
      * @param string $state
      */
-    function checkSwitch($blogId, $state) {
+    function checkSwitch($blogId, $state)
+    {
         $this->db->query("UPDATE " . DB_PREFIX . "blog SET checked='$state' WHERE gid=$blogId");
         $state = $state == 'y' ? 'n' : 'y';
         $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -274,14 +287,16 @@ class Log_Model {
      *
      * @param int $blogId
      */
-    function updateViewCount($blogId) {
+    function updateViewCount($blogId)
+    {
         $this->db->query("UPDATE " . DB_PREFIX . "blog SET views=views+1 WHERE gid=$blogId");
     }
 
     /**
      * Determine whether the repeated posting
      */
-    function isRepeatPost($title, $time) {
+    function isRepeatPost($title, $time)
+    {
         $sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
@@ -294,7 +309,8 @@ class Log_Model {
      * @param int $date //unix Timestamp
      * @return array
      */
-    function neighborLog($date) {
+    function neighborLog($date)
+    {
         $neighborlog = array();
         $neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 1");
         $neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and checked='y' and type='blog' ORDER BY date LIMIT 1");
@@ -313,11 +329,12 @@ class Log_Model {
      * @param int $num
      * @return array
      */
-    function getRandLog($num) {
+    function getRandLog($num)
+    {
         global $CACHE;
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache['lognum'];
-        $start = $lognum > $num ? mt_rand(0, $lognum - $num): 0;
+        $start = $lognum > $num ? mt_rand(0, $lognum - $num) : 0;
         $sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
         $res = $this->db->query($sql);
         $logs = array();
@@ -332,7 +349,8 @@ class Log_Model {
     /**
      * Get Hot Posts
      */
-    function getHotLog($num) {
+    function getHotLog($num)
+    {
         $sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
         $res = $this->db->query($sql);
         $logs = array();
@@ -351,13 +369,14 @@ class Log_Model {
      * @param array $logalias_cache
      * @param int $logid
      */
-    function checkAlias($alias, $logalias_cache, $logid) {
-        static $i=2;
+    function checkAlias($alias, $logalias_cache, $logid)
+    {
+        static $i = 2;
         $key = array_search($alias, $logalias_cache);
         if (false !== $key && $key != $logid) {
-            if($i == 2) {
-                $alias .= '-'.$i;
-            }else{
+            if ($i == 2) {
+                $alias .= '-' . $i;
+            } else {
                 $alias = preg_replace("|(.*)-([\d]+)|", "$1-{$i}", $alias);
             }
             $i++;
@@ -374,7 +393,8 @@ class Log_Model {
      * @param string $logPwd
      * @param int $logid
      */
-    function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+    function authPassword($postPwd, $cookiePwd, $logPwd, $logid)
+    {
         $url = BLOG_URL;
         $pwd = $cookiePwd ? $cookiePwd : $postPwd;
         if ($pwd !== addslashes($logPwd)) {

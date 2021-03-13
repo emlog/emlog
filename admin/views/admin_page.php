@@ -2,10 +2,14 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-<!--vot--><?php if(isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('page_deleted_ok')?></div><?php endif; ?>
-<!--vot--><?php if(isset($_GET['active_hide_n'])): ?><div class="alert alert-success"><?=lang('page_published_ok')?></div><?php endif; ?>
-<!--vot--><?php if(isset($_GET['active_hide_y'])): ?><div class="alert alert-success"><?=lang('page_disabled_ok')?></div><?php endif; ?>
-<!--vot--><?php if(isset($_GET['active_pubpage'])): ?><div class="alert alert-success"><?=lang('page_saved_ok')?></div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?>
+        <div class="alert alert-success">删除页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide_n'])): ?>
+        <div class="alert alert-success">发布页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide_y'])): ?>
+        <div class="alert alert-success">禁用页面成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_pubpage'])): ?>
+        <div class="alert alert-success">页面保存成功</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('page_management') ?></h1>
 <!--vot--><a href="./page.php?action=new" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="fas fa-edit"></i> <?=lang('add_page')?></a>
@@ -20,7 +24,7 @@
                     <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->                  <th><?= lang('title') ?></th>
 <!--vot-->                  <th><?= lang('template') ?></th>
 <!--vot-->                  <th><?= lang('comments') ?></th>
@@ -28,40 +32,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        if ($pages):
-                            foreach ($pages as $key => $value):
-                                if (empty($navibar[$value['gid']]['url'])) {
-                                    $navibar[$value['gid']]['url'] = Url::log($value['gid']);
-                                }
-                                $isHide = $value['hide'] == 'y' ?
+                        <?php foreach ($pages as $key => $value):
+                            if (empty($navibar[$value['gid']]['url'])) {
+                                $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+                            }
+                            $isHide = $value['hide'] == 'y' ?
 /*vot*/                             '<font color="red"> - ' . lang('draft') . '</font>' :
 /*vot*/                             '<a href="'.$navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
-                                ?>
-                                <tr>
-                                    <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                                    <td width="440">
-                                        <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
-                                        <?php echo $isHide; ?>
-<!--vot-->                              <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
-                                    </td>
-                                    <td><?php echo $value['template']; ?></td>
-                                    <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                                    <td class="small"><?php echo $value['date']; ?></td>
-                                </tr>
-                            <?php endforeach; else:?>
+                            ?>
                             <tr>
-<!--vot-->                      <td class="tdcenter" colspan="5"><?= lang('no_pages') ?></td></tr>
+                                <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                                <td width="440">
+                                    <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
+                                    <?php echo $isHide; ?>
+<!--vot-->                              <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+                                </td>
+                                <td><?php echo $value['template']; ?></td>
+                                <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                                <td class="small"><?php echo $value['date']; ?></td>
                             </tr>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="list_footer">
-<!--vot--><a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
-<!--vot--><a href="javascript:pageact('del');" class="care"><?=lang('delete')?></a> | 
-<!--vot--><a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> | 
-<!--vot--><a href="javascript:pageact('pub');"><?=lang('publish')?></a>
+                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <input name="operate" id="operate" value="" type="hidden"/>
+                    <a href="javascript:pageact('del');" class="care">删除</a> |
+                    <a href="javascript:pageact('hide');">转为草稿</a> |
+                    <a href="javascript:pageact('pub');">发布</a>
                 </div>
 <!--vot-->      <div class="page"><?php echo $pageurl; ?></div>
             </div>
@@ -71,6 +70,7 @@
 <script>
     $("#menu_page").addClass('active');
     setTimeout(hideActived, 2600);
+
     function pageact(act) {
         if (getChecked('ids') == false) {
 /*vot*/     alert('<?=lang('select_page_to_operate')?>');

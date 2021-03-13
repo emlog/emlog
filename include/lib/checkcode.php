@@ -1,7 +1,7 @@
 <?php
 /**
  * Verification Code Image generation
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 session_start();

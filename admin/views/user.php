@@ -13,15 +13,14 @@
 <!--vot--><?php if (isset($_GET['error_del_b'])): ?><div class="alert alert-danger"><?=lang('founder_not_edit')?></div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('user_management')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> <?=lang('user_add')?></a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加用户</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
 <!--vot-->  <h6 class="m-0 font-weight-bold"><?=lang('users_total')?> (<?php echo $usernum; ?>)</h6>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover dataTable no-footer"
-                   id="adm_comment_list">
+            <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
                 <thead>
                 <tr>
                     <th></th>
@@ -107,7 +106,7 @@
                     <div class="modal-footer">
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
+                        <button type="submit" class="btn btn-success">保存</button>
                         <span id="alias_msg_hook"></span>
                     </div>
                 </form>

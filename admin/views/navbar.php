@@ -118,7 +118,7 @@
                     <?php endif; ?>
                     </tbody>
                 </table>
-<!--vot-->          <div class="list_footer"><input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary"/></div>
+                <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-success"/></div>
             </form>
         </div>
     </div>
@@ -153,7 +153,7 @@
                         <input type="checkbox" class="form-check-input" value="y" name="newtab">
 <!--vot-->              <label class="form-check-label" for="exampleCheck1"><?=lang('open_new_win')?></label>
                     </div>
-<!--vot-->          <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
+                    <button type="submit" class="btn btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
                 </form>
             </div>
@@ -190,7 +190,7 @@
                             endforeach;
                             ?>
                             <div class="form-group">
-<!--vot-->                      <input type="submit" name="" class="btn btn-primary" value="<?=lang('save')?>">
+                                <input type="submit" name="" class="btn btn-success" value="保存"/>
                             </div>
                         <?php else: ?>
 <!--vot-->                  <?=lang('no_categories')?>, <a href="sort.php"><?=lang('category_add')?></a>
@@ -214,7 +214,7 @@
                                 <?php echo $value['title']; ?>
                             </div>
                         <?php endforeach; ?>
-<!--vot-->              <div class="form-group"><input type="submit" class="btn btn-primary" name="" value="<?=lang('save')?>"></div>
+                        <div class="form-group"><input type="submit" class="btn btn-success" name="" value="保存"/></div>
                     <?php else: ?>
 <!--vot-->              <div class="form-group"><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></div>
                     <?php endif; ?>

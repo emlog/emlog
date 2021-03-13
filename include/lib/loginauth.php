@@ -1,7 +1,7 @@
 <?php
 /**
  * Login authentication
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class LoginAuth{

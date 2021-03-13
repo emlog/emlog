@@ -2,16 +2,26 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('comment_delete_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_show'])): ?><div class="alert alert-success"><?=lang('comment_audit_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_hide'])): ?><div class="alert alert-success"><?=lang('comment_hide_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success"><?=lang('comment_edit_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_rep'])): ?><div class="alert alert-success"><?=lang('comment_reply_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('comment_choose_operation')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('select_action_to_perform')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('reply_is_empty')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('comment_too_long')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('comment_is_empty')?></div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?>
+        <div class="alert alert-success">删除评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_show'])): ?>
+        <div class="alert alert-success">审核评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_hide'])): ?>
+        <div class="alert alert-success">隐藏评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?>
+        <div class="alert alert-success">修改评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_rep'])): ?>
+        <div class="alert alert-success">回复评论成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?>
+        <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?>
+        <div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?>
+        <div class="alert alert-danger">回复内容不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?>
+        <div class="alert alert-danger">内容过长</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?>
+        <div class="alert alert-danger">评论内容不能为空</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('comment_management') ?></h1>
     </div>
@@ -41,7 +51,7 @@
                     <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->                  <th><?= lang('content') ?></th>
 <!--vot-->                  <th><?= lang('comment_author') ?></th>
 <!--vot-->                  <th><?= lang('time') ?></th>
@@ -50,58 +60,51 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        if ($comment):
-                            foreach ($comment as $key => $value):
+                        <?php foreach ($comment as $key => $value):
 /*vot*/                         $ishide = $value['hide']=='y'?'<font color="red">[' . lang('pending') . ']</font>' : '';
-                                $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
+                            $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
 /*vot*/                         $ip = !empty($value['ip']) ? '<br />' . lang('from_ip') . ': ' . $value['ip'] : '';
-                                $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '">' . $value['poster'] . '</a>' : $value['poster'];
-                                $value['content'] = str_replace('<br>', ' ', $value['content']);
-                                $sub_content = subString($value['content'], 0, 50);
-                                $value['title'] = subString($value['title'], 0, 42);
-                                doAction('adm_comment_display');
-                                ?>
-                                <tr>
-                                    <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
-                                    <td width="350">
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal"
-                                           data-cid="<?php echo $value['cid']; ?>"
-                                           data-comment="<?php echo $value['content']; ?>"
-                                           data-hide="<?php echo $value['hide']; ?>"
-                                           data-gid="<?php echo $value['gid']; ?> ">
-                                            <?php echo $sub_content; ?>
-                                        </a>
-                                        <?php echo $ishide; ?>
-                                    </td>
-                                    <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
-                                        <?php if (ROLE == ROLE_ADMIN): ?>
-                                            <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
-<!--vot-->                                     class="badge badge-pill badge-danger"><?=lang('del_from_ip')?></a>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td class="small"><?php echo $value['date']; ?></td>
-                                    <td>
-<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
-                                        <?php if ($value['hide'] == 'y'): ?>
-<!--vot-->                                  <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?=lang('check')?></a>
-                                        <?php else: ?>
-<!--vot-->                                  <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?=lang('hide')?></a>
-                                        <?php endif; ?>
-<!--vot-->                              <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('reply')?></a>
-                                    </td>
-                                    <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
-                                </tr>
-                            <?php endforeach; else: ?>
+                            $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '">' . $value['poster'] . '</a>' : $value['poster'];
+                            $value['content'] = str_replace('<br>', ' ', $value['content']);
+                            $sub_content = subString($value['content'], 0, 50);
+                            $value['title'] = subString($value['title'], 0, 42);
+                            doAction('adm_comment_display');
+                            ?>
                             <tr>
-<!--vot-->                      <td class="tdcenter" colspan="6"><?= lang('no_comments_yet') ?></td>
+                                <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
+                                <td width="350">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"
+                                       data-cid="<?php echo $value['cid']; ?>"
+                                       data-comment="<?php echo $value['content']; ?>"
+                                       data-hide="<?php echo $value['hide']; ?>"
+                                       data-gid="<?php echo $value['gid']; ?> ">
+                                        <?php echo $sub_content; ?>
+                                    </a>
+                                    <?php echo $ishide; ?>
+                                </td>
+                                <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
+                                    <?php if (ROLE == ROLE_ADMIN): ?>
+                                        <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+<!--vot-->                                     class="badge badge-pill badge-danger"><?=lang('del_from_ip')?></a>
+                                    <?php endif; ?>
+                                </td>
+                                <td class="small"><?php echo $value['date']; ?></td>
+                                <td>
+<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+                                    <?php if ($value['hide'] == 'y'): ?>
+<!--vot-->                                  <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>"><?=lang('check')?></a>
+                                    <?php else: ?>
+<!--vot-->                                  <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>"><?=lang('hide')?></a>
+                                    <?php endif; ?>
+<!--vot-->                              <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>"><?=lang('reply')?></a>
+                                </td>
+                                <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
                             </tr>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="list_footer">
-<!--vot-->          <a href="javascript:void(0);" id="select_all"><?=lang('select_all')?></a> <?=lang('selected_items')?>:
 <!--vot-->          <a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
 <!--vot-->          <a href="javascript:commentact('hide');"><?=lang('hide')?></a>
 <!--vot-->          <a href="javascript:commentact('pub');"><?=lang('approve')?></a>

@@ -3,7 +3,6 @@
 } ?>
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
-    <span id="msg_2"></span>
     <form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
         <!--Article Content-->
         <div class="row">
@@ -14,32 +13,22 @@
 <!--vot-->              <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>">
                     </div>
                     <div id="post_bar">
-                        <div class="show_advset">
-<!--vot-->                  <span onclick="displayToggle('FrameUpload', 0);autosave(1);"><?=lang('upload_insert')?><i class="fa fa-caret-right fa-fw"></i></span>
-                            <?php doAction('adm_writelog_head'); ?>
-                            <span id="asmsg"></span>
-                            <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
-                        </div>
+                        <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 上传文件\图片</a>
                         <div id="FrameUpload" style="display: none;">
                             <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
                         </div>
                     </div>
-                    <div>
-                        <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
-                    </div>
-<!--vot-->          <div class="show_advset" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="fa fa-caret-right fa-fw"></i></div>
+                    <textarea id="logcontent" name="logcontent""><?php echo $content; ?></textarea>
+                    <div class="show_advset" onclick="displayToggle('advset', 1);">文章摘要<i class="fa fa-caret-right fa-fw"></i></div>
                     <div id="advset">
-<!--vot-->              <div><?=lang('post_description')?>:</div>
-                        <div><textarea id="logexcerpt" name="logexcerpt" style="width:100%; height:260px;"><?php echo $excerpt; ?></textarea></div>
+A                        <textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea>
                     </div>
                 </div>
                 <div class=line></div>
             </div>
-
             <!--Article sidebar-->
-            <div class="col-xl-4 container-side">
+            <div class="col-xl-4">
                 <div class="panel panel-default">
-<!--vot-->          <div class="panel-heading"><?=lang('setting_items')?></div>
                     <div class="panel-body">
                         <div class="form-group">
                             <select name="sort" id="sort" class="form-control">
@@ -116,10 +105,10 @@
                     <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
                     <?php if ($logid < 0): ?>
-<!--vot-->              <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-primary">
+                        <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
 <!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success">
                     <?php else: ?>
-<!--vot-->              <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-primary">
+                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
 <!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success">
                         <?php if ($isdraft) : ?>
 <!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success">
@@ -129,17 +118,74 @@
             </div>
         </div>
     </form>
+
+    <!--资源库-->
+    <div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">资源库</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/<?= EMLOG_LANGUAGE ?>.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script>
-    loadEditor('logcontent');
-    loadEditor('logexcerpt');
-    $("#advset").css('display', $.cookie('em_advset') ? $.cookie('em_advset') : '');
+    setTimeout("autosave(0)", 60000);
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
+    $("#menu_write").addClass('active');
+
+
+
+
+    ClassicEditor.create(document.querySelector('#logcontent'), {
+        toolbar: {
+            items: [
+                'heading', '|',
+                'fontfamily', 'fontsize', '|',
+                'alignment', '|',
+                'fontColor', 'fontBackgroundColor', '|',
+                'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+                'link', '|',
+                'outdent', 'indent', '|',
+                'bulletedList', 'numberedList', 'todoList', '|',
+                'code', 'codeBlock', '|',
+                'insertTable', '|',
+                'uploadImage', 'blockQuote', '|',
+                'undo', 'redo'
+            ],
+            shouldNotGroupWhenFull: true
+        }
+    }).catch(error => {
+        console.error(error);
+    });
+
+    ClassicEditor.create(document.querySelector('#logexcerpt'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        heading: {
+            options: [
+                {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
+            ]
+        }
+    }).catch(error => {
+        console.error(error);
+    });
+
+
     $("#alias").keyup(function () {
         checkalias();
     });
-    setTimeout("autosave(0)", 60000);
-    $("#menu_log").addClass('active');
+
 </script>

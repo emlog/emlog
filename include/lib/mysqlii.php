@@ -2,7 +2,7 @@
 /**
  * MySQLi Database Operations
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class MySqlii {
@@ -67,7 +67,7 @@ class MySqlii {
             }
         }
 
-        $this->conn->set_charset('utf8');
+        $this->conn->set_charset('utf8mb4');
     }
 
     /**

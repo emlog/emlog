@@ -2,8 +2,16 @@
 
 /**
  * Attachment Management
- * @copyright (c) Emlog All Rights Reserved
+ *
+ * @package EMLOG
+ *
  */
+
+/**
+ * @var string $action
+ * @var object $CACHE
+ */
+
 require_once 'globals.php';
 
 $DB = Database::getInstance();
@@ -11,8 +19,8 @@ $DB = Database::getInstance();
 //Display Upload Form
 if ($action == 'selectFile') {
     $attachnum = 0;
-    $logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
-    $multi = isset($_GET['multi']) ? intval($_GET['multi']) : 0;
+    $logid = isset($_GET['logid']) ? (int)$_GET['logid'] : '';
+    $multi = isset($_GET['multi']) ? (int)$_GET['multi'] : 0;
 
     if ($logid) {
         $Log_Model = new Log_Model();
@@ -34,10 +42,10 @@ if ($action == 'selectFile') {
 
 //Upload attachment
 if ($action == 'upload') {
-    $logid = isset($_GET['logid']) ? intval($_GET['logid']) : '';
+    $logid = isset($_GET['logid']) ? (int)$_GET['logid'] : '';
     $attach = isset($_FILES['attach']) ? $_FILES['attach'] : '';
     if ($attach) {
-        for ($i = 0; $i < count($attach['name']); $i++) {
+        for ($i = 0, $iMax = count($attach['name']); $i < $iMax; $i++) {
             if ($attach['error'][$i] != 4) {
                 $isthumbnail = Option::get('isthumbnail') == 'y' ? true : false;
 

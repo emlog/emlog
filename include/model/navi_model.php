@@ -1,7 +1,7 @@
 <?php
 /**
  * Navigation
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Navi_Model {

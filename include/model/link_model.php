@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Links
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Link_Model {

@@ -2,7 +2,7 @@
 /**
  * View Post Category
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Sort_Controller
@@ -14,12 +14,12 @@ class Sort_Controller
         $options_cache = Option::getAll();
         extract($options_cache);
 
-        $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
+        $page = isset($params[4]) && $params[4] == 'page' ? abs((int)$params[5]) : 1;
 
         $sortid = '';
         if (!empty($params[2])) {
             if (is_numeric($params[2])) {
-                $sortid = intval($params[2]);
+                $sortid = (int)$params[2];
             } else {
                 $sort_cache = $CACHE->readCache('sort');
                 foreach ($sort_cache as $key => $value) {

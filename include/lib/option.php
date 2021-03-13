@@ -1,7 +1,7 @@
 <?php
 /**
  * Front Options
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 // Load the core Lang File
@@ -27,9 +27,6 @@ class Option {
                 case 'widget_title':
                 case 'custom_widget':
                 case 'widgets1':
-                case 'widgets2':
-                case 'widgets3':
-                case 'widgets4':
                 case 'custom_topimgs':
                     if (!empty($options_cache[$option])) {
                         return @unserialize($options_cache[$option]);

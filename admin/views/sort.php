@@ -2,23 +2,32 @@
     exit('error!');
 } ?>
 <div class="container-fluid">
-<!--vot--><?php if (isset($_GET['active_taxis'])): ?><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_add'])): ?><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
+    <?php if (isset($_GET['active_taxis'])): ?>
+        <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?>
+        <div class="alert alert-success">删除分类成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_edit'])): ?>
+        <div class="alert alert-success">修改分类成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_add'])): ?>
+        <div class="alert alert-success">添加分类成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?>
+        <div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?>
+        <div class="alert alert-danger">没有可排序的分类</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?>
+        <div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?>
+        <div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?>
+        <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i> <?=lang('category_add')?></a>
+        <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加分类</a>
     </div>
     <form method="post" action="sort.php?action=taxis">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-<!--vot-->      <h6 class="m-0 font-weight-bold"><?=lang('category_management')?></h6>
+                <h6 class="badge badge-secondary">已创建的分类</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive" id="adm_sort_list">
@@ -37,20 +46,42 @@
                         </thead>
                         <tbody>
                         <?php
-                        if ($sorts):
-                            foreach ($sorts as $key => $value):
-                                if ($value['pid'] != 0) {
-                                    continue;
-                                }
+                        foreach ($sorts as $key => $value):
+                            if ($value['pid'] != 0) {
+                                continue;
+                            }
+                            ?>
+                            <tr>
+                                <td>
+                                    <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
+                                    <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                                </td>
+                                <td class="sortname">
+                                    <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
+                                </td>
+                                <td><?php echo $value['description']; ?></td>
+                                <td class="alias"><?php echo $value['alias']; ?></td>
+                                <td class="alias"><?php echo $value['template']; ?></td>
+                                <td class="tdcenter">
+                                    <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                </td>
+                                <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                                <td>
+                                    <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+                                    <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                </td>
+                            </tr>
+                            <?php
+                            $children = $value['children'];
+                            foreach ($children as $key):
+                                $value = $sorts[$key];
                                 ?>
                                 <tr>
                                     <td>
                                         <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
                                         <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
                                     </td>
-                                    <td class="sortname">
-                                        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
-                                    </td>
+                                    <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
                                     <td><?php echo $value['description']; ?></td>
                                     <td class="alias"><?php echo $value['alias']; ?></td>
                                     <td class="alias"><?php echo $value['template']; ?></td>
@@ -59,47 +90,19 @@
                                     </td>
                                     <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                     <td>
-<!--vot-->                              <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+                                        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
+                                        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
                                     </td>
                                 </tr>
-                                <?php
-                                $children = $value['children'];
-                                foreach ($children as $key):
-                                    $value = $sorts[$key];
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                            <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
-                                        </td>
-                                        <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
-                                        <td><?php echo $value['description']; ?></td>
-                                        <td class="alias"><?php echo $value['alias']; ?></td>
-                                        <td class="alias"><?php echo $value['template']; ?></td>
-                                        <td class="tdcenter">
-                                            <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
-                                        </td>
-                                        <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-                                        <td>
-<!--vot-->                                  <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                                  <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php endforeach;
-                        else: ?>
-                            <tr>
-<!--vot-->                      <td class="tdcenter" colspan="8"><?=lang('categories_no')?></td>
-                            </tr>
-                        <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="list_footer">
-<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-primary">
+            <input type="submit" value="改变排序" class="btn btn-success"/>
         </div>
     </form>
     <!--Add Category popup-->
@@ -152,7 +155,7 @@
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <span id="alias_msg_hook"></span>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
+                        <button type="submit" class="btn btn-success">保存</button>
                     </div>
                 </form>
             </div>
@@ -198,7 +201,7 @@
         }
     }
 
-    $(document).ready(function () {
-        $("#menu_sort").addClass('active');
-    });
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
+    $("#menu_sort").addClass('active');
 </script>

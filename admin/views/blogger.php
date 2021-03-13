@@ -1,47 +1,65 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<!--vot--><?php if (isset($_GET['active_edit'])): ?><div class="alert alert-success"><?=lang('personal_data_modified_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['active_del'])): ?><div class="alert alert-success"><?=lang('avatar_deleted_ok')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('nickname_too_long')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_b'])): ?><div class="alert alert-danger"><?=lang('email_format_invalid')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('password_not_equal')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('username_exists')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_f'])): ?><div class="alert alert-danger"><?=lang('nickname_exists')?></div><?php endif; ?>
-<div class="panel-heading">
-    <?php if (ROLE == ROLE_ADMIN): ?>
-        <ul class="nav nav-tabs">
+
+<div class="container-fluid">
+    <?php if (isset($_GET['active_edit'])): ?>
+        <div class="alert alert-success">个人资料修改成功</div><?php endif; ?>
+    <?php if (isset($_GET['active_del'])): ?>
+        <div class="alert alert-success">头像删除成功</div><?php endif; ?>
+    <?php if (isset($_GET['error_a'])): ?>
+        <div class="alert alert-danger">昵称不能太长</div><?php endif; ?>
+    <?php if (isset($_GET['error_b'])): ?>
+        <div class="alert alert-danger">电子邮件格式错误</div><?php endif; ?>
+    <?php if (isset($_GET['error_c'])): ?>
+        <div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+    <?php if (isset($_GET['error_d'])): ?>
+        <div class="alert alert-danger">两次输入的密码不一致</div><?php endif; ?>
+    <?php if (isset($_GET['error_e'])): ?>
+        <div class="alert alert-danger">该登录名已存在</div><?php endif; ?>
+    <?php if (isset($_GET['error_f'])): ?>
+        <div class="alert alert-danger">该昵称已存在</div><?php endif; ?>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">设置</h1>
+    </div>
+    <div class="panel-heading">
+        <?php if (ROLE == ROLE_ADMIN): ?>
+            <ul class="nav nav-pills">
 <!--vot--><li class="nav-item"><a class="nav-link" href="./configure.php"><?=lang('basic_settings')?></a></li>
 <!--vot--><li class="nav-item"><a class="nav-link" href="./seo.php"><?=lang('seo_settings')?></a></li>
 <!--vot--><li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
-        </ul>
-
-    <?php else: ?>
-        <ul class="nav nav-tabs" role="tablist">
+            </ul>
+        <?php else: ?>
+            <ul class="nav nav-tabs" role="tablist">
 <!--vot-->  <li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
-        </ul>
-    <?php endif; ?>
-</div>
-<form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
-    <div class="form-group" style="margin-left:30px;">
-        <li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
-        <li>
+            </ul>
+        <?php endif; ?>
+    </div>
+    <div class="card shadow mb-4 mt-2">
+        <div class="card-body">
+            <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
+                <div class="form-group" style="margin-left:30px;">
+                    <li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
+                    <li>
 <!--vot-->  <label><?=lang('avatar')?> <?=lang('avatar_format_supported')?></label>
-            <input name="photo" type="file"/>
-        </li>
+                        <input name="photo" type="file"/>
+                    </li>
 <!--vot--><li><label><?=lang('nickname')?></label><input maxlength="50" style="width:200px;" class="form-control" value="<?= $nickname ?>" name="name"> </li>
 <!--vot--><li><label><?=lang('email')?></label><input name="email" class="form-control" value="<?= $email ?>" style="width:200px;" maxlength="200"></li>
-<!--vot--><li><label><?=lang('personal_description')?></label><textarea name="description" class="form-control" style="width:300px; height:65px;" type="text" maxlength="500"><?= $description ?></textarea></li>
-<!--vot--><li><label><?=lang('login_name')?></label><input maxlength="200" style="width:200px;" class="form-control" value="<?= $username ?>" name="username"></li>
-<!--vot--><li><label><?=lang('new_password_info')?></label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="newpass"></li>
-<!--vot--><li><label><?=lang('new_password_repeat')?></label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass"></li>
-        <li>
-            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <li><label>个人描述</label><textarea name="description" class="form-control" style="width:300px; height:65px;" type="text"
+                                                     maxlength="500"><?php echo $description; ?></textarea></li>
+                    <li><label>登录用户名</label><input maxlength="200" style="width:200px;" class="form-control" value="<?php echo $username; ?>" name="username"/></li>
+                    <li><label>新密码（不小于6位，不修改请留空）</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="newpass"/></li>
+                    <li><label>再输入一次新密码</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass"/></li>
+                    <li>
+                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_data')?>" class="btn btn-primary">
-        </li>
+                    </li>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
 <script>
     $("#menu_category_sys").addClass('active');
     $("#menu_sys").addClass('show');

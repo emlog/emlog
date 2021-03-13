@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Plug-in
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Plugin_Model {
@@ -15,8 +15,6 @@ class Plugin_Model {
 
     /**
      * Activate plug-in
-     *
-     * @param array $active_plugins //All the currently active plug-ins
      */
     function activePlugin($plugin) {
         $active_plugins = Option::get('active_plugins');

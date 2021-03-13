@@ -17,7 +17,9 @@
     <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
-    <!--    <script src="./views/js/jquery.easing.min.js"></script>-->
+    <script src="./views/js/jquery-ui.min.js"></script>
+    <script src="./views/js/dropzone.min.js"></script>
+    <script src="./views/js/ckeditor.js"></script>
     <script src="./views/js/common.js"></script>
 <!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
     <?php doAction('adm_head'); ?>
@@ -40,24 +42,30 @@
 
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item" id="menu_log">
-<!--vot-->  <a class="nav-link" href="admin_log.php"><i class="fas fa-table"></i><span><?= lang('posts') ?></span></a>
+        <li class="nav-item" id="menu_category_content">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
+                <i class="fas fa-edit"></i><span>内容</span>
+            </a>
+            <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" id="menu_write" href="write_log.php">写文章</a>
+                    <a class="collapse-item" id="menu_log" href="admin_log.php">文章</a>
+                    <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
+                    <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+                </div>
+            </div>
         </li>
 
         <li class="nav-item" id="menu_page">
-<!--vot-->  <a class="nav-link" href="page.php"><i class="fas fa-file"></i><span><?= lang('pages') ?></span></a>
+            <a class="nav-link" href="page.php"><i class="fas fa-sticky-note"></i><span>页面</span></a>
+        </li>
+
+        <li class="nav-item" id="menu_media">
+            <a class="nav-link" href="media.php"><i class="fas fa-sticky-note"></i><span>资源</span></a>
         </li>
 
         <li class="nav-item" id="menu_cm">
-<!--vot-->  <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span><?= lang('comments') ?></span></a>
-        </li>
-
-        <li class="nav-item" id="menu_tag">
-<!--vot-->  <a class="nav-link" href="tag.php"><i class="fas fa-tags"></i><span><?= lang('tags') ?></span></a>
-        </li>
-
-        <li class="nav-item" id="menu_sort">
-<!--vot-->  <a class="nav-link" href="sort.php"><i class="fas fa-table"></i><span><?= lang('category') ?></span></a>
+            <a class="nav-link" href="comment.php"><i class="fas fa-comment"></i><span>评论</span></a>
         </li>
 
         <li class="nav-item" id="menu_link">
@@ -99,18 +107,17 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </ul>
-
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form action="admin_log.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-<!--vot-->              <input type="text" class="form-control bg-light border-0 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
+                        <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="搜搜文章..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-success" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -125,11 +132,10 @@
                             ?>
                         </a>
                     </li>
-
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--vot-->                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= lang('user_info') ?></span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_cache[UID]['name']  ?></span>
                             <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

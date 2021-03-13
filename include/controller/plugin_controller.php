@@ -2,7 +2,7 @@
 /**
  * Front loading plugin page
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Plugin_Controller

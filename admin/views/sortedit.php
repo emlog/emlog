@@ -39,7 +39,7 @@
             <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
         </div>
         <input type="hidden" value="<?php echo $sid; ?>" name="sid"/>
-<!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-primary" id="save">
+        <input type="submit" value="保 存" class="btn btn-success" id="save"/>
 <!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();">
         <span id="alias_msg_hook"></span>
     </form>

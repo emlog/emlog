@@ -2,7 +2,7 @@
 /**
  * View Post Tags
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Tag_Controller
@@ -13,7 +13,7 @@ class Tag_Controller
         $options_cache = Option::getAll();
         extract($options_cache);
 
-        $page = isset($params[4]) && $params[4] == 'page' ? abs(intval($params[5])) : 1;
+        $page = isset($params[4]) && $params[4] == 'page' ? abs((int)$params[5]) : 1;
         $tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
 
         $pageurl = '';

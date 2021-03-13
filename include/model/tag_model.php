@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Tag Management
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Tag_Model {

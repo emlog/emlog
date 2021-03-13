@@ -1,7 +1,7 @@
 <?php
 /**
  * Calendar
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 //DEBUG
 //echo '<pre>';

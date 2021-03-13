@@ -1,7 +1,12 @@
 <?php
 /**
  * Page Management
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
@@ -10,7 +15,7 @@ require_once 'globals.php';
 if ($action == '') {
     $emPage = new Log_Model();
 
-    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
     $pages = $emPage->getLogsForAdmin('', '', $page, 'page');
     $pageNum = $emPage->getLogNum('', '', 'page', 1);

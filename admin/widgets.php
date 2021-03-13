@@ -1,15 +1,19 @@
 <?php
 /**
  * Widgets sidebar Management
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
 
 //Display widget management panel
-if ($action == '') {
-    $wgNum = isset($_GET['wg']) ? intval($_GET['wg']) : 1;
-    $widgets = Option::get('widgets' . $wgNum);
+if ($action === '') {
+    $widgets = Option::get('widgets1');
     $widgetTitle = Option::get('widget_title');
     $custom_widget = Option::get('custom_widget');
     $widgetTitle = array_map('htmlspecialchars', $widgetTitle);
@@ -35,13 +39,13 @@ if ($action == '') {
 }
 
 //Modify the widget settings
-if ($action == 'setwg') {
+if ($action === 'setwg') {
 /*vot*/    $widgetTitle = Option::get('widget_title'); //Widget Title
-/*vot*/    $widget = isset($_GET['wg']) ? $_GET['wg'] : '';    //Edit widget
-/*vot*/    $wgTitle = isset($_POST['title']) ? $_POST['title'] : '';    //New widget name
+    $widget = $_GET['wg'] ?? '';            //要修改的组件
+    $wgTitle = $_POST['title'] ?? '';    //新组件名
 
     preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
-    $realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
+    $realWgTitle = $matchs[1] ?? $widgetTitle[$widget];
 
     $widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle . ' (' . $wgTitle . ')' : $realWgTitle;
     $widgetTitle = addslashes(serialize($widgetTitle));
@@ -50,28 +54,28 @@ if ($action == 'setwg') {
 
     switch ($widget) {
         case 'newcomm':
-            $index_comnum = isset($_POST['index_comnum']) ? intval($_POST['index_comnum']) : 10;
-            $comment_subnum = isset($_POST['comment_subnum']) ? intval($_POST['comment_subnum']) : 20;
+            $index_comnum = isset($_POST['index_comnum']) ? (int)$_POST['index_comnum'] : 10;
+            $comment_subnum = isset($_POST['comment_subnum']) ? (int)$_POST['comment_subnum'] : 20;
             Option::updateOption('index_comnum', $index_comnum);
             Option::updateOption('comment_subnum', $comment_subnum);
             $CACHE->updateCache('comment');
             break;
         case 'newlog':
-            $index_newlog = isset($_POST['index_newlog']) ? intval($_POST['index_newlog']) : 5;
+            $index_newlog = isset($_POST['index_newlog']) ? (int)$_POST['index_newlog'] : 5;
             Option::updateOption('index_newlognum', $index_newlog);
             $CACHE->updateCache('newlog');
             break;
         case 'hotlog':
-            $index_hotlognum = isset($_POST['index_hotlognum']) ? intval($_POST['index_hotlognum']) : 5;
+            $index_hotlognum = isset($_POST['index_hotlognum']) ? (int)$_POST['index_hotlognum'] : 5;
             Option::updateOption('index_hotlognum', $index_hotlognum);
             break;
         case 'custom_text':
             $custom_widget = Option::get('custom_widget');
-            $title = isset($_POST['title']) ? $_POST['title'] : '';
-            $content = isset($_POST['content']) ? $_POST['content'] : '';
-/*vot*/     $custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//Edit widget id
-            $new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
-            $new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
+            $title = $_POST['title'] ?? '';
+            $content = $_POST['content'] ?? '';
+            $custom_wg_id = $_POST['custom_wg_id'] ?? '';//要修改的组件id
+            $new_title = $_POST['new_title'] ?? '';
+            $new_content = $_POST['new_content'] ?? '';
 /*vot*/     $rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id
             //Add a new custom widget
             if ($new_content) {
@@ -98,17 +102,15 @@ if ($action == 'setwg') {
                 $custom_widget_str = addslashes(serialize($custom_widget));
                 Option::updateOption('custom_widget', $custom_widget_str);
             } elseif ($rmwg) {
-                for ($i = 1; $i < 5; $i++) {
-                    $widgets = Option::get('widgets' . $i);
-                    if (is_array($widgets) && !empty($widgets)) {
-                        foreach ($widgets as $key => $val) {
-                            if ($val == $rmwg) {
-                                unset($widgets[$key]);
-                            }
+                $widgets = Option::get('widgets1');
+                if (is_array($widgets) && !empty($widgets)) {
+                    foreach ($widgets as $key => $val) {
+                        if ($val == $rmwg) {
+                            unset($widgets[$key]);
                         }
-                        $widgets_str = addslashes(serialize($widgets));
-                        Option::updateOption("widgets$i", $widgets_str);
                     }
+                    $widgets_str = addslashes(serialize($widgets));
+                    Option::updateOption("widgets$i", $widgets_str);
                 }
                 unset($custom_widget[$rmwg]);
                 $custom_widget_str = addslashes(serialize($custom_widget));
@@ -121,16 +123,15 @@ if ($action == 'setwg') {
 }
 
 //Save component to sort
-if ($action == 'compages') {
-/*vot*/    $wgNum = isset($_POST['wgnum']) ? intval($_POST['wgnum']) : 1;//Sidebar No. 1,2,3 ...
+if ($action === 'compages') {
     $widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
-    Option::updateOption("widgets{$wgNum}", $widgets);
+    Option::updateOption("widgets1", $widgets);
     $CACHE->updateCache('options');
-    emDirect("./widgets.php?activated=true&wg=$wgNum");
+    emDirect("./widgets.php?activated=1");
 }
 
 //Reset Widget settings to the initial values
-if ($action == 'reset') {
+if ($action === 'reset') {
     LoginAuth::checkToken();
     $widget_title = serialize(Option::getWidgetTitle());
     $default_widget = serialize(Option::getDefWidget());

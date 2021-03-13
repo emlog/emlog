@@ -1,12 +1,17 @@
 <?php
 /**
  * Template Management
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
 
-if ($action == '') {
+if ($action === '') {
     $nonce_templet = Option::get('nonce_templet');
     $nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
     preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
@@ -25,6 +30,7 @@ if ($action == '') {
     } else {
         $tplAuthor = '';
     }
+    
     //Template List
     $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
     $tpls = array();
@@ -51,7 +57,7 @@ if ($action == '') {
 }
 
 //Using a template
-if ($action == 'usetpl') {
+if ($action === 'usetpl') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
     $tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
@@ -63,7 +69,7 @@ if ($action == 'usetpl') {
 }
 
 //Remove Template
-if ($action == 'del') {
+if ($action === 'del') {
     LoginAuth::checkToken();
     $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
@@ -75,12 +81,12 @@ if ($action == 'del') {
     if (true === emDeleteFile(TPLS_PATH . $tplName)) {
         emDirect("./template.php?activate_del=1#tpllib");
     } else {
-        emDirect("./template.php?error_a=1#tpllib");
+        emDirect("./template.php?error_f=1#tpllib");
     }
 }
 
 //Install template
-if ($action == 'install') {
+if ($action === 'install') {
     include View::getView('header');
     require_once View::getView('template_install');
     include View::getView('footer');
@@ -88,34 +94,34 @@ if ($action == 'install') {
 }
 
 //Upload zip Template
-if ($action == 'upload_zip') {
+if ($action === 'upload_zip') {
     LoginAuth::checkToken();
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
     if ($zipfile['error'] == 4) {
-        emDirect("./template.php?action=install&error_d=1");
+        emDirect("./template.php?error_d=1");
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
 /*vot*/ emMsg(lang('template_upload_failed'));
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./template.php?action=install&error_a=1");
+        emDirect("./template.php?error_a=1");
     }
 
     $ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
     switch ($ret) {
         case 0:
-            emDirect("./template.php?activate_install=1#tpllib");
+            emDirect("./template.php?tpllib");
             break;
         case -2:
-            emDirect("./template.php?action=install&error_e=1");
+            emDirect("./template.php?error_e=1");
             break;
         case 1:
         case 2:
-            emDirect("./template.php?action=install&error_b=1");
+            emDirect("./template.php?error_b=1");
             break;
         case 3:
-            emDirect("./template.php?action=install&error_c=1");
+            emDirect("./template.php?error_c=1");
             break;
     }
 }

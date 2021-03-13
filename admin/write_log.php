@@ -1,7 +1,12 @@
 <?php
 /**
  * Show writing, editing, log in interface
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
@@ -50,7 +55,7 @@ if ($action == 'edit') {
     $Tag_Model = new Tag_Model();
     $Sort_Model = new Sort_Model();
 
-    $logid = isset($_GET['gid']) ? intval($_GET['gid']) : '';
+    $logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
     $blogData = $Log_Model->getOneLogForAdmin($logid);
     extract($blogData);
 

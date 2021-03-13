@@ -1,14 +1,14 @@
 <?php
 /**
  * Load Global Items
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 error_reporting(E_ALL);
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
-/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
 
 if (extension_loaded('mbstring')) {
     mb_internal_encoding('UTF-8');

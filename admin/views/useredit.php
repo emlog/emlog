@@ -31,7 +31,7 @@
             <li>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
-<!--vot-->      <input type="submit" value="<?=lang('save')?>" class="btn btn-primary">
+                <input type="submit" value="保 存" class="btn btn-success"/>
 <!--vot-->      <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="window.location='user.php';"></li>
         </div>
     </form>

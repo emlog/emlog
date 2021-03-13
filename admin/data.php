@@ -1,26 +1,28 @@
 <?php
 /**
  * Data Backup
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
+ */
+
+/**
+ * @var string $action
+ * @var object $CACHE
  */
 
 require_once 'globals.php';
 
-if ($action == '') {
-    $retval = glob('../content/backup/*.sql');
-    $bakfiles = $retval ? $retval : array();
+if (!$action) {
     doAction('data_prebakup');
-
     include View::getView('header');
     require_once(View::getView('data'));
     include View::getView('footer');
     View::output();
 }
 
+// 备份到本地
 if ($action == 'bakstart') {
     LoginAuth::checkToken();
-    $bakplace = isset($_POST['bakplace']) ? $_POST['bakplace'] : 'local';
-    $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
+    $zipbak = $_POST['zipbak'] ?? 'n';
 
     $tables = [
         'attachment',
@@ -48,68 +50,33 @@ if ($action == 'bakstart') {
     $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
     $dumpfile .= $sqldump;
     $dumpfile .= "\n#the end of backup";
-    if ($bakplace == 'local') {
-        $filename = 'emlog_' . date('Ymd_His');
-        if ($zipbak == 'y') {
-            if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
-                emDirect('./data.php?error_f=1');
-            }
-            header('Content-Type: application/zip');
-            header('Content-Disposition: attachment; filename=' . $filename . '.zip');
-        } else {
-            header('Content-Type: text/x-sql');
-            header('Content-Disposition: attachment; filename=' . $filename . '.sql');
+
+    $filename = 'emlog_' . date('Ymd_His');
+    if ($zipbak == 'y') {
+        if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
+            emDirect('./data.php?error_f=1');
         }
-        if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Pragma: public');
-        } else {
-            header('Pragma: no-cache');
-            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        }
-        header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        echo $dumpfile;
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename=' . $filename . '.zip');
     } else {
-        if (!preg_match("/^[a-zA-Z0-9_]+$/", $bakfname)) {
-            emDirect('./data.php?error_b=1');
-        }
-        $filename = '../content/backup/' . $bakfname . '.sql';
-        @$fp = fopen($filename, 'w+');
-        if ($fp) {
-            @flock($fp, 3);
-            if (@!fwrite($fp, $dumpfile)) {
-                @fclose($fp);
-/*vot*/         emMsg(lang('backup_directory_not_writable'));
-            } else {
-                emDirect('./data.php?active_backup=1');
-            }
-        } else {
-/*vot*/     emMsg(lang('backup_create_file_error'));
-        }
+        header('Content-Type: text/x-sql');
+        header('Content-Disposition: attachment; filename=' . $filename . '.sql');
     }
-}
-
-//Import Backup Data
-if ($action == 'renewdata') {
-    LoginAuth::checkToken();
-    $sqlfile = isset($_GET['sqlfile']) ? $_GET['sqlfile'] : '';
-    if (!file_exists($sqlfile)) {
-/*vot*/ emMsg(lang('file_not_exists'));
+    if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", $_SERVER['HTTP_USER_AGENT'])) {
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+    } else {
+        header('Pragma: no-cache');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     }
-
-    if (getFileSuffix($sqlfile) !== 'sql') {
-/*vot*/ emMsg(lang('import_only_emlog'));
-    }
-    checkSqlFileInfo($sqlfile);
-    bakindata($sqlfile);
-    $CACHE->updateCache();
-    emDirect('./data.php?active_import=1');
+    header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    echo $dumpfile;
 }
 
 //Import local backup file
 if ($action == 'import') {
     LoginAuth::checkToken();
-    $sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
+    $sqlfile = $_FILES['sqlfile'] ?? '';
     if (!$sqlfile) {
 /*vot*/ emMsg(lang('info_illegal'));
     }
@@ -143,17 +110,6 @@ if ($action == 'import') {
     bakindata($sqlfile['tmp_name']);
     $CACHE->updateCache();
     emDirect('./data.php?active_import=1');
-}
-
-if ($action == 'dell_all_bak') {
-    if (!isset($_POST['bak'])) {
-        emDirect('./data.php?error_a=1');
-    } else {
-        foreach ($_POST['bak'] as $val) {
-            unlink($val);
-        }
-        emDirect('./data.php?active_del=1');
-    }
 }
 
 /**

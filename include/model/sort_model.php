@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Blog Categories
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Sort_Model {

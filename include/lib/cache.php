@@ -2,7 +2,7 @@
 /**
  * Cache class
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG
  */
 
 class Cache {

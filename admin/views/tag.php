@@ -48,7 +48,7 @@
                     <div class="modal-footer">
                         <input type="hidden" value="" id="tid" name="tid"/>
 <!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-primary"><?=lang('save')?></button>
+                        <button type="submit" class="btn btn-success">保存</button>
 <!--vot-->              <a class="btn btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                     </div>
                 </form>
@@ -57,6 +57,8 @@
     </div>
 </div>
 <script>
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
     setTimeout(hideActived, 2600);
     //Edit Tag modal window
