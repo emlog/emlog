@@ -17,12 +17,12 @@ $Tag_Model = new Tag_Model();
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
 $date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
-$sort = isset($_POST['sort']) ? intval($_POST['sort']) : -1;
+$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
-$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
-$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
-$author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? intval(trim($_POST['author'])) : UID;
-$blogid = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+$content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
+$excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
+$author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? (int)trim($_POST['author']) : UID;
+$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
 $sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
