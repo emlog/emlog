@@ -51,11 +51,11 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal"
+<!--vot-->                      <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal"
                                    data-linkid="<?php echo $value['id']; ?>"
                                    data-sitename="<?php echo $value['sitename']; ?>"
                                    data-siteurl="<?php echo $value['siteurl']; ?>"
-<!--vot-->                         data-description="<?php echo $value['description']; ?>"><?=lang('edit')?>
+                                   data-description="<?php echo $value['description']; ?>"><?=lang('edit')?>
                                 </a>
 <!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>

@@ -26,12 +26,12 @@ class Calendar {
 			$logdate[] = date("Ymd", $date['date']);
 		}
 		//Get the current date
-		$n_year  = gmdate("Y", $timestamp);
-		$n_year2 = gmdate("Y", $timestamp);
-		$n_month = gmdate("m", $timestamp);
-		$n_day   = gmdate("d", $timestamp);
-		$time    = gmdate("Ymd", $timestamp);
-		$year_month = gmdate("Ym", $timestamp);
+		$n_year  = date("Y");
+		$n_year2 = date("Y");
+		$n_month = date("m");
+		$n_day   = date("d");
+		$time    = date("Ymd");
+		$year_month = date("Ym");
 
 		if (isset($_GET['record'])) {
 			$n_year = substr(intval($_GET['record']),0,4);
