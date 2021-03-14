@@ -58,18 +58,6 @@
                         <div class="form-group">
                             <label>标签：</label>
                             <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
-                            <span style="color:#2A9DDB;cursor:pointer;margin-right: 40px;"><a href="javascript:displayToggle('tagbox', 0);">已有标签+</a></span>
-                            <div id="tagbox" style="display: none;">
-                                <?php
-                                if ($tags) {
-                                    foreach ($tags as $val) {
-                                        echo " <a class='badge badge-pill badge-success' href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
-                                    }
-                                } else {
-                                    echo '还没有设置过标签！';
-                                }
-                                ?>
-                            </div>
                         </div>
 
                         <div class="form-group">

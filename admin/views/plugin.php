@@ -29,9 +29,6 @@
         <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 安装插件</a>
     </div>
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold">已安装的插件</h6>
-        </div>
         <div class="card-body">
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>

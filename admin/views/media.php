@@ -52,7 +52,7 @@
                                 <?php endif; ?>
                             </td>
                             <td><?php echo $value['addtime']; ?></td>
-                            <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');">删除</a></td>
+                            <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'attachment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -60,7 +60,6 @@
             </div>
         </div>
     </form>
-
 
     <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

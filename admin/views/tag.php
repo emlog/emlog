@@ -9,9 +9,6 @@
         <h1 class="h3 mb-0 text-gray-800">标签管理</h1>
     </div>
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <span class="badge badge-secondary">已创建的标签</span>
-        </div>
         <div class="card-body">
             <div>
                 <?php if ($tags): ?>

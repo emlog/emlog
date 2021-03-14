@@ -20,9 +20,6 @@
     </div>
     <form action="link.php?action=link_taxis" method="post">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6  class="badge badge-secondary">已创建的链接</h6>
-            </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>

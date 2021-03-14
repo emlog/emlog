@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="card-footer">
-                    <a class="text-muted" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+                    <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -58,7 +58,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div>
