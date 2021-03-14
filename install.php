@@ -1,7 +1,7 @@
 <?php
 /**
  * 安装程序
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 define('EMLOG_ROOT', dirname(__FILE__));

@@ -1,7 +1,7 @@
 <?php
 /**
  * 后台全局项加载
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

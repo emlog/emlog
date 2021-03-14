@@ -38,7 +38,8 @@
                     <tr>
                         <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
                         <td>
-                            <?php echo empty($val['name']) ? $val['login'] : $val['name']; ?><br/>
+                            <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+                            <br/>
                             <?php echo $val['description']; ?>
                         </td>
                         <td>
@@ -49,11 +50,7 @@
                         <td>
                             <?php
                             if (UID != $val['uid']): ?>
-                                <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>">编辑</a>
-                                <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');"
-                                   class="care">删除</a>
-                            <?php else: ?>
-                                <a href="blogger.php">编辑</a>
+                                <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                             <?php endif; ?>
                         </td>
                     </tr>

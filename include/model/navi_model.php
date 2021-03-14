@@ -1,7 +1,7 @@
 <?php
 /**
  * 导航
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Navi_Model {

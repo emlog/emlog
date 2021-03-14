@@ -1,7 +1,7 @@
 <?php
 /**
  * 模板管理
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

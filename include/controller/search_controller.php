@@ -2,7 +2,7 @@
 /**
  * 搜索文章
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Search_Controller

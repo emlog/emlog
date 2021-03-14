@@ -2,7 +2,7 @@
 /**
  * 数据库操作路由
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Database {

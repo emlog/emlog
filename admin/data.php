@@ -1,7 +1,7 @@
 <?php
 /**
  * 数据备份
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

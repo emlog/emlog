@@ -1,7 +1,7 @@
 <?php
 /**
  * 登录验证
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class LoginAuth{

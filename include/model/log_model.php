@@ -2,7 +2,7 @@
 /**
  * 文章、页面管理
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Log_Model

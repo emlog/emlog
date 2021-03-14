@@ -2,7 +2,7 @@
 /**
  * 查看归档文章
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Record_Controller

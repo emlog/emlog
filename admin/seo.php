@@ -1,7 +1,7 @@
 <?php
 /**
  * seo设置
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

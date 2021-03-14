@@ -1,7 +1,7 @@
 <?php
 /**
  * 视图控制
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class View {

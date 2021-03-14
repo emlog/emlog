@@ -1,7 +1,7 @@
 <?php
 /**
  * 显示撰写、编辑文章界面
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

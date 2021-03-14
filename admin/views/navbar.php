@@ -24,13 +24,12 @@
                 <table class="table table-striped table-bordered table-hover dataTable no-footer">
                     <thead>
                     <tr>
-                        <th width="50"><b>序号</b></th>
-                        <th width="230"><b>导航</b></th>
-                        <th width="60" class="tdcenter"><b>类型</b></th>
-                        <th width="60" class="tdcenter"><b>状态</b></th>
-                        <th width="50" class="tdcenter"><b>查看</b></th>
-                        <th width="360"><b>地址</b></th>
-                        <th width="100"></th>
+                        <th><b>序号</b></th>
+                        <th><b>导航</b></th>
+                        <th><b>类型</b></th>
+                        <th><b>查看</b></th>
+                        <th><b>地址</b></th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,21 +64,18 @@
                                 <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
                                 <td class="tdcenter"><?php echo $value['type_name']; ?></td>
                                 <td class="tdcenter">
-                                    <?php if ($value['hide'] == 'n'): ?>
-                                        <a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" title="点击隐藏导航">显示</a>
-                                    <?php else: ?>
-                                        <a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" title="点击显示导航" style="color:red;">隐藏</a>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="tdcenter">
                                     <a href="<?php echo $value['url']; ?>" target="_blank">
                                         <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
                                 </td>
                                 <td><?php echo $value['url']; ?></td>
                                 <td>
-                                    <a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>">编辑</a>
+                                    <?php if ($value['hide'] == 'n'): ?>
+                                        <a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" class="badge badge-primary">显示</a>
+                                    <?php else: ?>
+                                        <a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" class="badge badge-warning">隐藏</a>
+                                    <?php endif; ?>
                                     <?php if ($value['isdefault'] == 'n'): ?>
-                                        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -92,21 +88,18 @@
                                         <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
                                         <td class="tdcenter"><?php echo $value['type_name']; ?></td>
                                         <td class="tdcenter">
-                                            <?php if ($val['hide'] == 'n'): ?>
-                                                <a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" title="点击隐藏导航">显示</a>
-                                            <?php else: ?>
-                                                <a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" title="点击显示导航" style="color:red;">隐藏</a>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class="tdcenter">
                                             <a href="<?php echo $val['url']; ?>" target="_blank">
                                                 <img src="./views/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
                                         </td>
                                         <td><?php echo $val['url']; ?></td>
                                         <td>
-                                            <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>">编辑</a>
+                                            <?php if ($val['hide'] == 'n'): ?>
+                                                <a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" class="badge badge-primary">显示</a>
+                                            <?php else: ?>
+                                                <a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" class="badge badge-warning">隐藏</a>
+                                            <?php endif; ?>
                                             <?php if ($val['isdefault'] == 'n'): ?>
-                                                <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                                <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
