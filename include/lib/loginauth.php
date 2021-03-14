@@ -36,17 +36,15 @@ class LoginAuth
     /**
      * 验证密码/用户
      */
-    public static function checkUser($username, $password, $imgcode, $logincode = false)
+    public static function checkUser($username, $password, $imgcode)
     {
         session_start();
-
         if (empty($username) || empty($password)) {
             return false;
         }
-
-        $sessionCode = isset($_SESSION['code']) ? $_SESSION['code'] : '';
-        $logincode = false === $logincode ? Option::get('login_code') : $logincode;
-        if ($logincode == 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
+        $sessionCode = $_SESSION['code'] ?? '';
+        if (Option::get('login_code') === 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
+            unset($_SESSION['code']);
             return self::LOGIN_ERROR_AUTHCODE;
         }
         $userData = self::getUserDataByLogin($username);
