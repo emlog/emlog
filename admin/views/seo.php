@@ -19,74 +19,60 @@
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">
             <form action="seo.php?action=update" method="post">
-                <h4>文章链接设置</h4>
-                <div class="alert alert-info" style="width: 100%">
-                    你可以在这里修改文章链接的形式，如果修改后文章无法访问，那可能是你的服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。
-                    <br/>启用链接别名后可以自定义文章和页面的链接地址。
+                <h5>文章链接设置</h5>
+                <div class="alert alert-info">
+                    如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。
                 </div>
-                <div class="form-group">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="permalink" value="0" <?php echo $ex0; ?>>默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="permalink" value="1" <?php echo $ex1; ?>>文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="permalink" value="2" <?php echo $ex2; ?>>目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span>
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="permalink" value="3" <?php echo $ex3; ?>>分类形式：<span
-                                    class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span>
-                        </label>
-                    </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
+                    <label class="form-check-label">默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />启用文章链接别名
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" style="vertical-align:middle;" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />启用文章链接别名html后缀
-                        </label>
-                    </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="permalink" value="1" <?php echo $ex1; ?>>
+                    <label class="form-check-label">文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="permalink" value="2" <?php echo $ex2; ?>>
+                    <label class="form-check-label">目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="permalink" value="3" <?php echo $ex3; ?>>
+                    <label class="form-check-label">分类形式：<span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span></label>
                 </div>
 
-                <h4>meta信息设置</h4>
-                <div class="form-group">
-                    <li>
-                        <label>站点浏览器标题(title)</label>
-                        <input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_title; ?>" name="site_title"/>
-                    </li>
-                    <li>
-                        <label>站点关键字(keywords)</label>
-                        <input maxlength="200" style="width:300px;" class="form-control" value="<?php echo $site_key; ?>" name="site_key"/>
-                    </li>
-                    <li>
-                        <label>站点浏览器描述(description)</label>
-                        <textarea name="site_description" class="form-control" cols="" rows="4" style="width:300px;"><?php echo $site_description; ?></textarea>
-                    </li>
-                    <li>
-                        <label>文章浏览器标题方案：</label>
-                        <select name="log_title_style" class="form-control" style="width: 120px;">
-                            <option value="0" <?php echo $opt0; ?>>文章标题</option>
-                            <option value="1" <?php echo $opt1; ?>>文章标题 - 站点标题</option>
-                            <option value="2" <?php echo $opt2; ?>>文章标题 - 站点浏览器标题</option>
-                        </select>
-                    </li>
-                    <li style="margin-top:10px;">
-                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                        <input type="submit" value="保存设置" class="btn btn-success"/>
-                    </li>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />
+                    <label>启用文章链接别名</label>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />
+                    <label>启用文章链接别名html后缀</label>
+                </div>
+
+                <h5 class="mt-4">页头信息设置</h5>
+                <div class="form-group">
+                    <label>站点浏览器标题(title)</label>
+                    <input class="form-control" value="<?php echo $site_title; ?>" name="site_title">
+                </div>
+                <div class="form-group">
+                    <label><label>站点关键字(keywords)</label></label>
+                    <input class="form-control" value="<?php echo $site_key; ?>" name="site_key">
+                </div>
+                <div class="form-group">
+                    <label><label>站点浏览器描述(description)</label></label>
+                    <textarea name="site_description" class="form-control"  ><?php echo $site_description; ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label>文章浏览器标题方案：</label>
+                    <select name="log_title_style" class="form-control">
+                        <option value="0" <?php echo $opt0; ?>>文章标题</option>
+                        <option value="1" <?php echo $opt1; ?>>文章标题 - 站点标题</option>
+                        <option value="2" <?php echo $opt2; ?>>文章标题 - 站点浏览器标题</option>
+                    </select>
+                </div>
+
+                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                <input type="submit" value="保存设置" class="btn btn-success"/>
             </form>
         </div>
     </div>

@@ -61,10 +61,10 @@
                         </thead>
                         <tbody>
                         <?php foreach ($comment as $key => $value):
-                            $ishide = $value['hide'] == 'y' ? '<font color="red">[待审]</font>' : '';
-                            $mail = !empty($value['mail']) ? "({$value['mail']})" : '';
-                            $ip = !empty($value['ip']) ? "<br />来自IP：{$value['ip']}" : '';
-                            $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '">' . $value['poster'] . '</a>' : $value['poster'];
+                            $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
+                            $mail = $value['mail'] ? "({$value['mail']})" : '';
+                            $ip = $value['ip'] ? "<br />来自IP：{$value['ip']}" : '';
+                            $poster = $value['poster'] ?: '';
                             $value['content'] = str_replace('<br>', ' ', $value['content']);
                             $sub_content = subString($value['content'], 0, 50);
                             $value['title'] = subString($value['title'], 0, 42);
@@ -90,13 +90,12 @@
                                 </td>
                                 <td class="small"><?php echo $value['date']; ?></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                    <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                                     <?php if ($value['hide'] == 'y'): ?>
-                                        <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>">审核</a>
+                                        <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>" class="badge badge-primary">审核</a>
                                     <?php else: ?>
-                                        <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>">隐藏</a>
+                                        <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>" class="badge badge-warning">隐藏</a>
                                     <?php endif; ?>
-                                    <a href="comment.php?action=reply_comment&amp;cid=<?php echo $value['cid']; ?>">回复</a>
                                 </td>
                                 <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
                             </tr>
