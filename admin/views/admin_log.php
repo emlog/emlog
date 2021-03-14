@@ -117,7 +117,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             <th><input type="checkbox" id="checkAll"/></th>
                             <th>标题</th>
                             <?php if ($pid != 'draft'): ?>
-                                <th><b>查看</b></th>
+                                <th>查看</th>
                             <?php endif; ?>
                             <th>作者</th>
                             <th>分类</th>
