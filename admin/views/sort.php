@@ -26,9 +26,6 @@
     </div>
     <form method="post" action="sort.php?action=taxis">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="badge badge-secondary">已创建的分类</h6>
-            </div>
             <div class="card-body">
                 <div class="table-responsive" id="adm_sort_list">
                     <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">

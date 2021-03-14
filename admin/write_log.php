@@ -12,11 +12,11 @@
 require_once 'globals.php';
 
 //显示撰写文章页面
-if ($action == '') {
+if (!$action) {
     $Tag_Model = new Tag_Model();
     $Sort_Model = new Sort_Model();
 
-    $blogData = array(
+    $blogData = [
         'logid' => -1,
         'title' => '',
         'content' => '',
@@ -28,7 +28,8 @@ if ($action == '') {
         'password' => '',
         'hide' => '',
         'author' => UID,
-    );
+    ];
+
     extract($blogData);
 
     $isdraft = false;
@@ -36,7 +37,6 @@ if ($action == '') {
     $orig_date = '';
     $sorts = $CACHE->readCache('sort');
     $tagStr = '';
-    $tags = $Tag_Model->getTag();
     $is_top = '';
     $is_sortop = '';
     $is_allow_remark = '';
