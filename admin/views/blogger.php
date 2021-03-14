@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <?php if (isset($_GET['active_edit'])): ?>
-        <div class="alert alert-success">个人资料修改成功</div><?php endif; ?>
+        <div class="alert alert-success">资料修改成功</div><?php endif; ?>
     <?php if (isset($_GET['active_del'])): ?>
         <div class="alert alert-success">头像删除成功</div><?php endif; ?>
     <?php if (isset($_GET['error_a'])): ?>
@@ -38,23 +38,41 @@
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">
             <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
-                <div class="form-group" style="margin-left:30px;">
-                    <li><?php echo $icon; ?><input type="hidden" name="photo" value="<?php echo $photo; ?>"/></li>
-                    <li>
+                <div class="form-group">
+                    <div class="form-group">
+                        <?php echo $icon; ?>
+                        <input type="hidden" name="photo" value="<?php echo $photo; ?>"/>
+                    </div>
+                    <div class="form-group">
                         <label>头像(支持JPG、PNG格式图片)</label>
-                        <input name="photo" type="file"/>
-                    </li>
-                    <li><label>昵称</label><input maxlength="50" style="width:200px;" class="form-control" value="<?php echo $nickname; ?>" name="name"/></li>
-                    <li><label>邮箱</label><input name="email" class="form-control" value="<?php echo $email; ?>" style="width:200px;" maxlength="200"/></li>
-                    <li><label>个人描述</label><textarea name="description" class="form-control" style="width:300px; height:65px;" type="text"
-                                                     maxlength="500"><?php echo $description; ?></textarea></li>
-                    <li><label>登录用户名</label><input maxlength="200" style="width:200px;" class="form-control" value="<?php echo $username; ?>" name="username"/></li>
-                    <li><label>新密码（不小于6位，不修改请留空）</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="newpass"/></li>
-                    <li><label>再输入一次新密码</label><input type="password" maxlength="200" class="form-control" style="width:200px;" value="" name="repeatpass"/></li>
-                    <li>
-                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                        <input type="submit" value="保存资料" class="btn btn-success"/>
-                    </li>
+                        <input type="file" name="photo" </input>
+                    </div>
+                    <div class="form-group">
+                        <label>昵称</label>
+                        <input class="form-control" value="<?php echo $nickname; ?>" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱</label>
+                        <input name="email" class="form-control" value="<?php echo $email; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>个人描述</label>
+                        <textarea name="description" class="form-control"><?php echo $description; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>登录用户名</label>
+                        <input class="form-control" value="<?php echo $username; ?>" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label>新密码（不小于6位，不修改请留空）</label>
+                        <input type="password" class="form-control" value="" name="newpass">
+                    </div>
+                    <div class="form-group">
+                        <label>再输入一次新密码</label>
+                        <input type="password" class="form-control" value="" name="repeatpass">
+                    </div>
+                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <input type="submit" value="保存资料" class="btn btn-success"/>
                 </div>
             </form>
         </div>
@@ -64,6 +82,5 @@
     $("#menu_category_sys").addClass('active');
     $("#menu_sys").addClass('show');
     $("#menu_setting").addClass('active');
-    // $("#chpwd").css('display', $.cookie('em_chpwd') ? $.cookie('em_chpwd') : 'none');
     setTimeout(hideActived, 2600);
 </script>
