@@ -36,11 +36,11 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                 <tr>
-                    <th width="200"></th>
-                    <th width="80" class="tdcenter"><b>开启/禁用</b></th>
-                    <th width="60" class="tdcenter"><b>版本</b></th>
-                    <th width="450" class="tdcenter"><b>描述</b></th>
-                    <th width="60" class="tdcenter"></th>
+                    <th>插件名</th>
+                    <th>版本</th>
+                    <th>描述</th>
+                    <th>开关</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,12 +62,8 @@
                         }
                         ?>
                         <tr>
-                            <td class="tdcenter"><?php echo $val['Name']; ?></td>
-                            <td class="tdcenter" id="plugin_<?php echo $i; ?>">
-                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
-                            </td>
-                            <td class="tdcenter"><?php echo $val['Version']; ?></td>
+                            <td><?php echo $val['Name']; ?></td>
+                            <td><?php echo $val['Version']; ?></td>
                             <td>
                                 <?php echo $val['Description']; ?>
                                 <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank">更多信息&raquo;</a><?php endif; ?>
@@ -82,8 +78,12 @@
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td class="tdcenter">
-                                <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                            <td id="plugin_<?php echo $i; ?>">
+                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
+                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
+                            </td>
+                            <td>
+                                <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                             </td>
                         </tr>
                     <?php endforeach; else: ?>

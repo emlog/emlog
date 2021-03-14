@@ -1,7 +1,7 @@
 <?php
 /**
  * Widgets 侧边栏目管理
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

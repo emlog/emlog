@@ -2,7 +2,7 @@
 /**
  * 显示首页、内容
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Log_Controller

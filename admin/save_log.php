@@ -1,7 +1,7 @@
 <?php
 /**
  * 保存文章（增加、修改）
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

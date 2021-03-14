@@ -1,7 +1,7 @@
 <?php
 /**
  * 插件
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Plugin_Model {

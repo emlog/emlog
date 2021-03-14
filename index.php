@@ -1,7 +1,7 @@
 <?php
 /**
  * 前端页面加载
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 require_once 'init.php';

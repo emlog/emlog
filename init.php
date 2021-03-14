@@ -1,7 +1,7 @@
 <?php
 /**
  * 全局项加载
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 error_reporting(E_ALL);

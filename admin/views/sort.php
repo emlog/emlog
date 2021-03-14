@@ -67,8 +67,7 @@
                                 </td>
                                 <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                 <td>
-                                    <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                    <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                    <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                                 </td>
                             </tr>
                             <?php
@@ -90,8 +89,7 @@
                                     </td>
                                     <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                     <td>
-                                        <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>">编辑</a>
-                                        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
+                                        <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

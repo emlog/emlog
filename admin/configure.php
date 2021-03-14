@@ -1,7 +1,7 @@
 <?php
 /**
  * 基本设置
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

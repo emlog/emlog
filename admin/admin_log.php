@@ -2,7 +2,7 @@
 /**
  * 管理文章
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

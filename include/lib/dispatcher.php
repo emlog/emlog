@@ -1,7 +1,7 @@
 <?php
 /**
  * 路由分发器
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Dispatcher {

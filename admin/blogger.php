@@ -2,7 +2,7 @@
 /**
  * 个人资料
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  *
  */
 

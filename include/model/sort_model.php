@@ -1,7 +1,7 @@
 <?php
 /**
  * 文章分类
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Sort_Model {

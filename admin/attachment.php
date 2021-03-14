@@ -3,7 +3,7 @@
 /**
  * 附件处理
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  *
  */
 

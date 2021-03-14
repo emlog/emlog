@@ -2,7 +2,7 @@
 
 /**
  * 基础函数库
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 function emAutoload($class) {
     $class = strtolower($class);

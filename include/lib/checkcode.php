@@ -1,7 +1,7 @@
 <?php
 /**
  * 图片验证码生成
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 session_start();

@@ -2,7 +2,7 @@
 /**
  * 查看作者文章
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Author_Controller
