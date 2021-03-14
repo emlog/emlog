@@ -24,11 +24,11 @@
                 <table class="table table-striped table-bordered table-hover dataTable no-footer">
                     <thead>
                     <tr>
-                        <th><b>序号</b></th>
-                        <th><b>导航</b></th>
-                        <th><b>类型</b></th>
-                        <th><b>查看</b></th>
-                        <th><b>地址</b></th>
+                        <th>序号</th>
+                        <th>导航</th>
+                        <th>类型</th>
+                        <th>查看</th>
+                        <th>地址</th>
                         <th>操作</th>
                     </tr>
                     </thead>

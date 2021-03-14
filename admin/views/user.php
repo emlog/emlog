@@ -25,7 +25,7 @@
                 <tr>
                     <th></th>
                     <th>用户</th>
-                    <th><b>角色</th>
+                    <th>角色</th>
                     <th>文章数</th>
                     <th>操作</th>
                 </tr>
@@ -36,11 +36,15 @@
                     $avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
                     ?>
                     <tr>
-                        <td style="padding:3px; text-align:center;"><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
+                        <td><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
                         <td>
-                            <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
-                            <br/>
-                            <?php echo $val['description']; ?>
+                            <?php
+                            if (UID != $val['uid']): ?>
+                                <a href="user.php?action=edit&uid=<?php echo $val['uid']?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+                            <?php else:?>
+                                <a href="blogger.php"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+                            <?php endif;?>
+                            <?php echo "<br/>".$val['description']; ?>
                         </td>
                         <td>
                             <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
