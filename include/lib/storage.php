@@ -61,7 +61,7 @@ class Storage
     private function __construct($plugin_name)
     {
         $this->plugin_name = $plugin_name;
-        $this->db_conn = MySql::getInstance();
+        $this->db_conn = Database::getInstance();
     }
 
     /**
