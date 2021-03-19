@@ -85,7 +85,7 @@
                         </tr>
                     <?php endforeach; else: ?>
                     <tr>
-                        <td class="tdcenter" colspan="5">还没有安装插件</td>
+                        <td colspan="5">还没有安装插件</td>
                     </tr>
                 <?php endif; ?>
                 </tbody>

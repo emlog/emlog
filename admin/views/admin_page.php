@@ -48,7 +48,7 @@
                                     <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
                                 </td>
                                 <td><?php echo $value['template']; ?></td>
-                                <td class="tdcenter"><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                                <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                                 <td class="small"><?php echo $value['date']; ?></td>
                             </tr>
                         <?php endforeach; ?>
