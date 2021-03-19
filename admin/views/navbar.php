@@ -59,8 +59,8 @@
                             <tr>
                                 <td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
                                 <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
-                                <td class="tdcenter"><?php echo $value['type_name']; ?></td>
-                                <td class="tdcenter">
+                                <td><?php echo $value['type_name']; ?></td>
+                                <td>
                                     <a href="<?php echo $value['url']; ?>" target="_blank">
                                         <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
                                 </td>
@@ -83,8 +83,8 @@
                                     <tr>
                                         <td><input class="form-control em-small" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4"/></td>
                                         <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
-                                        <td class="tdcenter"><?php echo $value['type_name']; ?></td>
-                                        <td class="tdcenter">
+                                        <td><?php echo $value['type_name']; ?></td>
+                                        <td>
                                             <a href="<?php echo $val['url']; ?>" target="_blank">
                                                 <img src="./views/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
                                         </td>
@@ -103,7 +103,7 @@
                                 <?php endforeach;endif; ?>
                         <?php endforeach; else: ?>
                         <tr>
-                            <td class="tdcenter" colspan="4">还没有添加导航</td>
+                            <td colspan="4">还没有添加导航</td>
                         </tr>
                     <?php endif; ?>
                     </tbody>

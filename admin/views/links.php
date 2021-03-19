@@ -11,7 +11,7 @@
     <?php if (isset($_GET['active_add'])): ?>
         <div class="alert alert-success">添加成功</div><?php endif; ?>
     <?php if (isset($_GET['error_a'])): ?>
-        <div class="alert alert-danger">站点名称和地址不能为空</div><?php endif; ?>
+        <div class="alert alert-danger">名称和地址不能为空</div><?php endif; ?>
     <?php if (isset($_GET['error_b'])): ?>
         <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
