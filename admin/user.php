@@ -14,7 +14,7 @@ require_once 'globals.php';
 $User_Model = new User_Model();
 
 //加载用户管理页面
-if ($action == '') {
+if (empty($action)) {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $users = $User_Model->getUsers($page);
     $usernum = $User_Model->getUserNum();

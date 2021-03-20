@@ -12,7 +12,7 @@
 require_once 'globals.php';
 
 //加载页面管理页面
-if ($action == '') {
+if (empty($action)) {
     $emPage = new Log_Model();
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

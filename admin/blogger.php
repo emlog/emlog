@@ -1,6 +1,6 @@
 <?php
 /**
- * 个人资料
+ *
  *
  * @package EMLOG (www.emlog.net)
  *
@@ -13,7 +13,7 @@
 
 require_once 'globals.php';
 
-if ($action == '') {
+if (empty($action)) {
     $User_Model = new User_Model();
     $row = $User_Model->getOneUser(UID);
     extract($row);

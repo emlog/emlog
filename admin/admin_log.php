@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理文章
+ * The article management
  *
  * @package EMLOG (www.emlog.net)
  */
@@ -14,8 +14,7 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 
-//显示文章(草稿)管理页面
-if ($action == '') {
+if (empty($action)) {
     $Tag_Model = new Tag_Model();
     $User_Model = new User_Model();
 
@@ -82,7 +81,6 @@ if ($action == '') {
     View::output();
 }
 
-//操作文章
 if ($action == 'operate_log') {
     $operate = $_REQUEST['operate'] ?? '';
     $pid = $_POST['pid'] ?? '';
