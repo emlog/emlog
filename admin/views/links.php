@@ -15,7 +15,7 @@
     <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">链接管理</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 添加链接</a>
+    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加链接</a>
 </div>
 <form action="link.php?action=link_taxis" method="post">
     <div class="card shadow mb-4">

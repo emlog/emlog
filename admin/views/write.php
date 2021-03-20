@@ -12,7 +12,7 @@
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题"/>
                 </div>
                 <div id="post_bar">
-                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 上传文件\图片</a>
+                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
                     <div id="FrameUpload" style="display: none;">
                         <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
                     </div>
