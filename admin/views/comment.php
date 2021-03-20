@@ -43,9 +43,6 @@
 <?php endif; ?>
 <form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <span class="badge badge-secondary">有 <?php echo $cmnum; ?> 条评论</span>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -109,7 +106,7 @@
                 <a href="javascript:commentact('pub');">审核</a>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?php echo $pageurl; ?></div>
+            <div class="page"><?php echo $pageurl; ?> （有 <?php echo $cmnum; ?> 条评论）</div>
         </div>
     </div>
 </form>
