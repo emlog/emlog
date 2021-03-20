@@ -261,9 +261,9 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
         }
     }
     if ($page > 6)
-        $re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em>...</em>$re";
+        $re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em> ... </em>$re";
     if ($page + 5 < $pnums)
-        $re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
+        $re .= "<em> ... </em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
     if ($pnums <= 1)
         $re = '';
     return $re;
