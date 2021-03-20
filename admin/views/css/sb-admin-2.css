@@ -10102,13 +10102,13 @@ a:focus {
   vertical-align: 0;
   border: 0;
   font-weight: 900;
-  content: '\efa2';
+  content: '\eab8';
   font-family: 'IcoFont';
 }
 
 .sidebar .nav-item.dropdown.show .dropdown-toggle::after,
 .topbar .nav-item.dropdown.show .dropdown-toggle::after {
-  content: '\efa2';
+  content: '\eab2';
 }
 
 .sidebar .nav-item .nav-link,
