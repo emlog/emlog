@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <textarea id="logcontent" name="logcontent""><?php echo $content; ?></textarea>
-                <div class="show_advset" onclick="displayToggle('advset', 1);">文章摘要<i class="fa fa-caret-right fa-fw"></i></div>
+                <div class="show_advset" onclick="displayToggle('advset', 1);">文章摘要<i class="icofont-simple-right"></i></div>
                 <div id="advset">
                     <textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea>
                 </div>
