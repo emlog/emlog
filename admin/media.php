@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 $DB = Database::getInstance();
 
-if ($action == '') {
+if (empty($action)) {
     $sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0";
     $query = $DB->query($sql);
     $attach = array();

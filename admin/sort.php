@@ -14,7 +14,7 @@ require_once 'globals.php';
 $Sort_Model = new Sort_Model();
 $sorts = $CACHE->readCache('sort');
 
-if ($action == '') {
+if (empty($action)) {
     include View::getView('header');
     require_once View::getView('sort');
     include View::getView('footer');

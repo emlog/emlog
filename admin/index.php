@@ -11,7 +11,7 @@
 
 require_once 'globals.php';
 
-if ($action == '') {
+if (empty($action)) {
     $avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'];
     $name = $user_cache[UID]['name'];
 
