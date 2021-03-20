@@ -35,7 +35,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
-    <a href="./write_log.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="fas fa-edit"></i> 写新文章</a>
+    <a href="./write_log.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
