@@ -15,9 +15,6 @@
 </div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <span class="badge badge-secondary">已创建了 <?php echo $pageNum; ?> 个页面</span>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -61,7 +58,7 @@
                 <a href="javascript:pageact('hide');">转为草稿</a> |
                 <a href="javascript:pageact('pub');">发布</a>
             </div>
-            <div class="page"><?php echo $pageurl; ?></div>
+            <div class="page"><?php echo $pageurl; ?> （有 <?php echo $pageNum; ?> 个页面）</div>
         </div>
     </div>
 </form>

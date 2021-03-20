@@ -206,15 +206,15 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <a href="javascript:logact('del');" class="badge badge-danger mx-1">删除</a>
+                <a href="javascript:logact('del');" class="text-danger mx-1">删除</a>
                 <?php if ($pid == 'draft'): ?>
-                    <a href="javascript:logact('pub');" class="badge badge-primary mx-1">发布</a>
+                    <a href="javascript:logact('pub');" class="mx-1">发布</a>
                 <?php else: ?>
-                    <a href="javascript:logact('hide');" class="badge badge-primary">放入草稿箱</a>
+                    <a href="javascript:logact('hide');" class="mx-1">放入草稿箱</a>
                 <?php endif; ?>
             </div>
         </form>
-        <div class="page"><?php echo $pageurl; ?> (有<?php echo $logNum; ?>篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
+        <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
     </div>
 </div>
 

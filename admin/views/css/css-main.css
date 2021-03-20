@@ -407,17 +407,17 @@ textarea {
     padding:0px 40px 0px 30px;
 }
 .required{color: red; font-size: 16px; margin-left: 2px;}
-.page{text-align:center;margin:10px 0px;}
+.page{text-align:right;margin:10px 0px;}
 .page span{
-    background-color: #CC3300;
+    background-color: #4e73df;
     color:#FFF;
-    padding:5px 8px;
+    padding:5px 12px;
     border-radius: 4px;
 }
 .page a{
-    background-color: #68aee1;
+    background-color: #c8cbcf;
     color:#FFF;
-    padding:2px 8px;
+    padding:3px 9px;
     border-radius: 4px;
 }
 
