@@ -16,7 +16,7 @@ class Log_Model
     }
 
     /**
-     * 添加文章、页面
+     * create article
      *
      * @param array $logData
      * @return int
@@ -37,7 +37,7 @@ class Log_Model
     }
 
     /**
-     * 更新文章内容
+     * update article
      *
      * @param array $logData
      * @param int $blogId
@@ -54,7 +54,7 @@ class Log_Model
     }
 
     /**
-     * 获取指定条件的文章条数
+     * Gets the number of articles for the specified condition
      *
      * @param int $spot 0:前台 1:后台
      * @param string $hide
@@ -77,7 +77,7 @@ class Log_Model
     }
 
     /**
-     * 后台获取单篇文章
+     * Get single article for admin
      */
     function getOneLogForAdmin($blogId)
     {
@@ -102,7 +102,7 @@ class Log_Model
     }
 
     /**
-     * 前台获取单篇文章
+     * get single article
      */
     function getOneLogForHome($blogId)
     {
@@ -114,16 +114,16 @@ class Log_Model
                 'log_title' => htmlspecialchars($row['title']),
                 'timestamp' => $row['date'],
                 'date' => $row['date'],
-                'logid' => intval($row['gid']),
-                'sortid' => intval($row['sortid']),
+                'logid' => (int)$row['gid'],
+                'sortid' => (int)$row['sortid'],
                 'type' => $row['type'],
                 'author' => $row['author'],
                 'log_content' => rmBreak($row['content']),
-                'views' => intval($row['views']),
-                'comnum' => intval($row['comnum']),
+                'views' => (int)$row['views'],
+                'comnum' => (int)$row['comnum'],
                 'top' => $row['top'],
                 'sortop' => $row['sortop'],
-                'attnum' => intval($row['attnum']),
+                'attnum' => (int)$row['attnum'],
                 'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
                 'password' => $row['password'],
                 'template' => $row['template'],
@@ -173,7 +173,7 @@ class Log_Model
      * @param int $perPageNum
      * @return array
      */
-    function getLogsForHome($condition = '', $page = 1, int $perPageNum)
+    function getLogsForHome($condition = '', $page = 1, $perPageNum = 10)
     {
         $start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
         $limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
@@ -222,7 +222,7 @@ class Log_Model
     }
 
     /**
-     * 删除文章
+     * delete article
      *
      * @param int $blogId
      */
@@ -233,9 +233,9 @@ class Log_Model
         if ($this->db->affected_rows() < 1) {
             emMsg('权限不足！', './');
         }
-        // 评论
+        // comment
         $this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
-        // 标签
+        // tag
         $this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
         $this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
         // 附件
