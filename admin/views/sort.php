@@ -21,7 +21,7 @@
     <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">分类管理</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> 添加分类</a>
+    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加分类</a>
 </div>
 <form method="post" action="sort.php?action=taxis">
     <div class="card shadow mb-4">

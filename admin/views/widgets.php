@@ -257,7 +257,7 @@
             <?php endforeach; ?>
         </div>
         <div class="my-3">
-            <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> 添加组件</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
         </div>
         <!--添加自定义组件-->
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

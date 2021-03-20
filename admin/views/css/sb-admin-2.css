@@ -10102,13 +10102,13 @@ a:focus {
   vertical-align: 0;
   border: 0;
   font-weight: 900;
-  content: '\f105';
-  font-family: 'Font Awesome 5 Free';
+  content: '\efa2';
+  font-family: 'IcoFont';
 }
 
 .sidebar .nav-item.dropdown.show .dropdown-toggle::after,
 .topbar .nav-item.dropdown.show .dropdown-toggle::after {
-  content: '\f107';
+  content: '\efa2';
 }
 
 .sidebar .nav-item .nav-link,
@@ -10384,8 +10384,8 @@ a:focus {
 
 .sidebar #sidebarToggle::after {
   font-weight: 900;
-  content: '\f104';
-  font-family: 'Font Awesome 5 Free';
+  content: '\eab5';
+  font-family: 'IcoFont';
   margin-right: 0.1rem;
 }
 
@@ -10403,8 +10403,8 @@ a:focus {
 }
 
 .sidebar.toggled #sidebarToggle::after {
-  content: '\f105';
-  font-family: 'Font Awesome 5 Free';
+  content: '\eab8';
+  font-family: 'IcoFont';
   margin-left: 0.25rem;
 }
 
@@ -10503,7 +10503,7 @@ a:focus {
     width: 14rem;
   }
   .sidebar .nav-item .nav-link i {
-    font-size: 0.85rem;
+    font-size: 1.25rem;
     margin-right: 0.25rem;
   }
   .sidebar .nav-item .nav-link span {
@@ -10517,11 +10517,11 @@ a:focus {
     vertical-align: 0;
     border: 0;
     font-weight: 900;
-    content: '\f107';
-    font-family: 'Font Awesome 5 Free';
+    content: '\eab2';
+    font-family: 'IcoFont';
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
-    content: '\f105';
+    content: '\eab8';
   }
   .sidebar .sidebar-brand .sidebar-brand-icon i {
     font-size: 2rem;
@@ -10775,8 +10775,8 @@ a:focus {
   padding-right: 1.725rem;
   line-height: 51px;
   font-weight: 900;
-  content: '\f107';
-  font-family: 'Font Awesome 5 Free';
+  content: '\eab5';
+  font-family: 'IcoFont';
   color: #d1d3e2;
 }
 
@@ -10785,7 +10785,7 @@ a:focus {
 }
 
 .card .card-header[data-toggle="collapse"].collapsed::after {
-  content: '\f105';
+  content: '\eab2';
 }
 
 .chart-area {
