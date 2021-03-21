@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
-    <div class="col-md-7 content">
+    <div class="col-lg-8 col-md-10 mx-auto">
         <h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
         <p class="date"><?php echo gmdate('Y-n-j', $date); ?><?php blog_author($author); ?><?php blog_sort($logid); ?><?php editflg($logid, $author); ?></p>
         <?php echo $log_content; ?>
@@ -18,6 +18,5 @@ if (!defined('EMLOG_ROOT')) {
         <div style="clear:both;"></div>
     </div>
 <?php
-include View::getView('side');
 include View::getView('footer');
 ?>

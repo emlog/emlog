@@ -4,33 +4,30 @@
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
-	</div>
+
 </div>
+</div>
+
+<hr>
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 footer-below">
-                <hr>
-                Powered by <a href="http://www.emlog.net">emlog</a>
-                <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
-                <?php doAction('index_footer'); ?>
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">
+                    Powered by <a href="http://www.emlog.net">emlog</a>
+                    <br>
+                    <a href="https://beian.miit.gov.cn" target="_blank"><?php echo $icp; ?>
+                    </a> <?php echo $footer_info; ?>
+                    <?php doAction('index_footer'); ?>
+                </p>
             </div>
         </div>
     </div>
 </footer>
-<script>
-$(document).ready(function(){
-	dropdownOpen();//鼠标划过就展开子菜单，免得需要点击才能展开
-    prettyPrint();
-});
-function dropdownOpen() {
-	var $dropdownLi = $('li.dropdown');
-	$dropdownLi.mouseover(function() {
-		$(this).addClass('open');
-	}).mouseout(function() {
-		$(this).removeClass('open');
-	});
-}
-</script>
+
+<script src="<?php echo TEMPLATE_URL; ?>js/jquery.min.3.5.1.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
+
 </body>
 </html>
