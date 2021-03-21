@@ -65,12 +65,13 @@
     </div>
 </form>
 <script>
-    loadEditor('logcontent');
+    $("#menu_page").addClass('active');
+    setTimeout(hideActived, 2600);
+
     checkalias();
     $("#alias").keyup(function () {
         checkalias();
     });
-    $("#menu_page").addClass('active');
     $("#title").focus(function () {
         $("#title_label").hide();
     });
