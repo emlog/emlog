@@ -10,7 +10,7 @@
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
 <h1 class="h3 mb-2 text-gray-800">编辑分类</h1>
-<form action="sort.php?action=add" method="post" id="sort_new" style="margin-top: 30px;">
+<form action="sort.php?action=update" method="post">
     <div class="form-group">
         <label for="sortname">分类名</label>
         <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname">
@@ -48,7 +48,10 @@
 </form>
 
 <script>
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
     $("#menu_sort").addClass('active');
+
     $("#alias").keyup(function () {
         checksortalias();
     });
