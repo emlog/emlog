@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
-<div class="col-md-4 col-md-push-1 sidebar">
+<div class="col-lg-4 col-md-4 sidebar">
     <ul class="well">
         <?php
         $widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
