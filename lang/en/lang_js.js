@@ -42,6 +42,10 @@ var LNG = {
  'comments_disabled'	: '(Comments disabled)',//'(禁止回复)',
  'comment_ok_moderation'	: '(Your comment saved successfully and is awaiting for moderation.)',//'(回复成功，等待管理员审核)',
 
+//---------------------------
+//admin/views/js/dropzone.min.js
+ 'drag_message'		: 'Drag the file here, or click to upload',//'拖动文件到这里，或者点击后选择上传',
+
 //----------------
 // The LAST key. DO NOT EDIT!!!
   '@' : '@'

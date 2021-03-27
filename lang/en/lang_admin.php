@@ -9,6 +9,10 @@ $lang = array(
  'post_manage'		=> 'Post Manage',//'文章管理',
  'draft_manage'		=> 'Draft Manage',//'草稿管理',
  'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+ 'check'		=> 'Show',//'审核',
+ 'uncheck'		=> 'Uncheck',//'驳回',
+ 'view_by_tag'		=> 'View by tag',//'按标签查看',
+ 'article_add'		=> 'Write a new article',//'写新文章',
 
 //---------------------------
 //admin/attachment.php
@@ -117,6 +121,7 @@ $lang = array(
  'select_action_to_perform'	=> 'Please, select an action to perform',//'请选择要执行的操作',
  'published_ok'		=> 'Entry has been publised successfully',//'发布成功',
  'moved_ok'		=> 'Moved successfully',//'移动成功',
+ 'user_edit'		=> 'Change author',//'更改作者',
  'user_modified_ok'	=> 'Entry author has been modified successfully',//'更改作者成功',
  'draft_moved_ok'	=> 'MOved to Draft successfully',//'转入草稿箱成功',
  'draft_saved_ok'	=> 'Draft has been saved successfully',//'草稿保存成功',
@@ -126,6 +131,7 @@ $lang = array(
  'all'			=> 'All',//'全部',
  'category_view'	=> 'View by Category',//'按分类查看',
  'category'		=> 'Category',//'分类',
+ 'categories'		=> 'Categories',//'分类',
  'uncategorized'	=> 'Uncategorized',//'未分类',
  'view_by_author'	=> 'View by author',//'按作者查看',
  'article_search'	=> 'Search Article',//'搜索文章',
@@ -152,9 +158,16 @@ $lang = array(
  'number_of_items'	=> ' ',//'篇',//LEAVE THIS EMPTY! It is just a number of "Items", "Pieces", etc..
  'draft'		=> 'Draft',//'草稿',
  'drafts'		=> 'drafts',//'草稿',
+ 'article'		=> 'article',//'文章',
+ 'articles'		=> 'Articles',//'文章',
  'posts'		=> 'posts',//'文章',
  'select_post_to_operate'	=> 'Please, select the entry to operate',//'请选择要操作的文章',
  'sure_delete_selected_posts'	=> 'Are you sure to want delete selected entries?',//'你确定要删除所选文章吗？',
+ 'tags'			=> 'Tags',//'标签',
+ 'tags_no'		=> 'No tags',//'还没有标签',
+ 'tag_by_view'		=> 'View by tags',//'按标签查看',
+
+
 
 //---------------------------
 //admin/views/admin_page.php
@@ -171,6 +184,7 @@ $lang = array(
  '_pages'		=> ' pages',//'个页面',
  'select_page_to_operate'	=> 'Please, select the page to operate',//'请选择要操作的页面',
  'sure_delete_selected_pages'	=> 'Are you sure you want to delete selected pages?',//'你确定要删除所选页面吗？',
+ 'pages_total'		=> 'Total pages:',//'已创建了',
 
 //---------------------------
 //admin/views/attlib.php
@@ -210,12 +224,26 @@ $lang = array(
  'save_data'			=> 'Save Data',//'保存资料',
 
 //---------------------------
+//admin/views/comment.php
+ 'comment_management'			=> 'Comment management',//'评论管理',
+ 'content'		=> 'Content',//'内容',
+ 'comment_author'	=> 'Comment author',//'评论人',
+ 'belongs_to_article'	=> 'Belongs to article',//'所属文章',
+ 'from_ip'		=> 'From IP',//'来自IP',
+ 'reply'		=> 'Reply',//'回复',
+ 'del_from_ip'		=> 'Delete from this IP',//'按IP删除',
+ 'view_article'		=> 'View the article',//'查看该文章',
+ 'no_comments_yet'	=> 'Yet no comments',//'还没有收到评论',
+ 'operation'		=> 'Operation',//'操作',
+
+//---------------------------
 //admin/views/configure.php
  'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
  'site_title'		=> 'Site title',//'站点标题',
  'site_subtitle'	=> 'Site subtitle',//'站点副标题',
  'site_address	'	=> 'Site address',//'站点地址',
  'per_page'		=> 'Show per page',//'每页显示',
+ 'posts_per_page'	=> 'Number of articles displayed per page',//'每页显示文章数量',
  '_posts'		=> 'posts',//'篇文章',
  'your_timezone'	=> 'Your time zone',//'你所在时区',
  'Etc/GMT'		=>	'(UTC) Universal Time Coordinated',
@@ -322,6 +350,11 @@ $lang = array(
  'Etc/GMT+11'		=>	'(UTC-11:00) Coordinated Universal Time -11',//'(UTC-11:00)协调世界时-11',
  'Etc/GMT+12'		=>	'(UTC-12:00) International Date Line West',//'(UTC-12:00)国际日期变更线西',
  'local_time'			=> 'Local Time',//'本地时间',
+ 'export'		=> 'Export ',//'输出',
+ 'rss_output_num'	=> ' posts, and output',//'篇文章，且输出',
+ 'full_text'		=> 'Full Text',//'全文',
+ 'summary'		=> 'Summary',//'摘要',
+ 'rss_post_num'		=> 'articles (0 is closed), and output',//'篇文章（0为关闭），且输出',
  'function_switch'		=> 'Function switch',//'功能开关',
  'login_verification_code'	=> 'Login verification code',//'登录验证码',
  'gzip_compression'		=> 'Gzip compression',//'Gzip压缩',
@@ -336,13 +369,9 @@ $lang = array(
  'twitter_reply_enable'		=> 'Enable twitter reply, ',//'开启微语回复，',
  'reply_verification_code'	=> 'Reply verification code, ',//'回复验证码，',
  'reply_audit'			=> 'Reply audit',//'回复审核',
- 'rss'				=> 'RSS',//'RSS',
- 'export'			=> 'Export ',//'输出',
- '_posts_and_output'		=> ' posts, and output',//'篇文章，且输出',
- 'full_text'			=> 'Full Text',//'全文',
- 'summary'			=> 'Summary',//'摘要',
- 'enable_comment_interval'	=> ' Enable comments, comment interval ',//'开启评论，发表评论间隔',
- '_seconds'			=> ' seconds',//'秒',
+ 'enable_comments'		=> 'Enable comments',//'开启评论',
+ 'comment_interval'		=> 'comment interval',//'发表评论间隔',
+ 'seconds'			=> ' seconds',//'秒',
  'comment_moderation'		=> 'Comment moderation',//'评论审核',
  'comment_verification_code'	=> 'Comments Verification Code',//'评论验证码',
  'comment_avatar'		=> 'Comments author avatar',//'评论人头像',
@@ -366,6 +395,7 @@ $lang = array(
 //---------------------------
 //admin/views/data.php
  'data_backup'			=> 'Data Backup',//'数据备份',
+ 'backup_prompt'		=> 'Back up the site content database to your computer',//'将站点内容数据库备份到自己电脑上',
  'backup_delete_ok'		=> 'Backup file deleted successfully',//'备份文件删除成功',
  'backup_create_ok'		=> 'Data backup created successfully',//'数据备份成功',
  'backup_import_ok'		=> 'Backup imported successfully',//'备份导入成功',
@@ -425,7 +455,6 @@ $lang = array(
  'draft'		=> 'Draft',//'草稿',
  'posts'		=> 'Posts',//'文章',
  'posts_pending'	=> ' Pending posts',//'篇文章待审',
- 'categories'		=> 'Categories',//'分类',
  'comments_pending'	=> ' Pending comments',//'条评论待审',
  'exterior'		=> 'Exterior',//'外观',
  'sidebar'		=> 'Sidebar',//'侧边栏',
@@ -438,10 +467,14 @@ $lang = array(
  'templates'		=> 'Templates',//'模板',
  'applications'		=> 'Apps',//'应用',
  'extensions'		=> 'Extensions',//'扩展功能',
-// '<!--Sidebar Toggle-->',//'<!--边栏折叠-->'
+ 'search_for'		=> 'Search for...',//'查找文章...',
+ 'search'		=> 'Search',//'Search',
+ 'resources'		=> 'Resources',//'资源',
 
 //---------------------------
 //admin/views/index.php
+ 'admincp'		=> 'AdminCP',//'管理后台',
+ 'link_manage_info'	=> 'Friendship link management, you can display the added link in the sidebar of the homepage in the sidebar management.',//'友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。',
  'user_info'		=> 'User info',//'大伟',
  'system_settings'	=> 'System settings',//'系统设置',
  'control_panel'	=> 'Control panel',//'控制台首页',
@@ -453,7 +486,6 @@ $lang = array(
  'logout_sure'		=> 'Ready to Leave?',
  'close'		=> 'Close',
  'logout_prompt'	=> 'Select "Logout" below if you are ready to end your current session.',
- 'admincp'		=> 'AdminCP',//'管理首页',
  'system'		=> 'System',//'系统',
  'twitter_write_placeholder'	=> 'Write some words to the twitter...',//'用微语记录生活 ……',
  'cancel'			=> 'Cancel',//'取消',
@@ -462,6 +494,8 @@ $lang = array(
  '_comments'			=> ' comments',//'条评论',
  'db_prefix'			=> 'Database table prefix',//'数据库表前缀',
  'php_version'			=> 'PHP version',//'PHP版本',
+ 'emlog_version'		=> 'EMLOG version',//'EMLOG版本',
+ 'unregistered'			=> 'unregistered',//'未注册',
  'mysql_version'		=> 'MySQL version',//'MySQL版本',
  'server_environment'		=> 'Server environment',//'服务器环境',
  'gd_library'			=> 'GD graphic library',//'GD图形处理库',
@@ -479,8 +513,6 @@ $lang = array(
  'update_check_failed'		=> 'Check failed, may be a network problem exists',//'检查失败，可能是网络问题',
  'updating'			=> 'Updating the system, please be patient',//'系统正在更新中，请耐心等待',
  'update_completed'		=> 'Congratulations! Update is successfully completed, please ',//'恭喜您！更新成功了，请',
- 'page_refresh'			=> 'Refresh the page',//'刷新页面',
- 'start_new_emlog'		=> ' Start experiencing the new emlog version',//'开始体验新版emlog',
  'update_download_failed'	=> 'Download the update failed, may be a network problem exists',//'下载更新失败，可能是服务器网络问题',
  'update_extract_failed'	=> 'Extract the update failed, may be the server does not support the zip extension',//'解压更新失败，可能是你的服务器空间不支持zip模块',
  'update_failed_nonwritable'	=> 'Update failed, the directory is not writable',//'更新失败，目录不可写',
@@ -489,10 +521,23 @@ $lang = array(
  '_characters'			=> ' characters',//'字',
  'exceeds'			=> 'has been exceeded ',//'已超出',
  'publish'			=> 'Publish',//'发布',
+ 'write_article'		=> 'Write an article',//'去写文章',
 
 //---------------------------
 //admin/views/links.php
- 'link_add'		=> 'Add Link+',//'添加链接+',
+ 'link_add'		=> 'Add Link',//'新建链接',
+ 'link_management'	=> 'Link management',//'链接管理',
+ 'links_created'	=> 'Links created',//'已创建的链接',
+ 'order'		=> 'Order',//'排序',
+ 'edit_link'		=> 'Edit link',//'编辑链接',
+ 'click_to_hide'	=> 'Click to hide',//'点击隐藏链接',
+ 'visible'		=> 'Visible',//'显示',
+ 'click_to_show'	=> 'Click to show',//'点击显示链接',
+ 'view_link'		=> 'View link',//'查看链接',
+ 'no_links'		=> 'No link added yet',//'还没有添加链接',
+ 'name'			=> 'Name',//'名称',
+ 'link_url'		=> 'Link URL',//'地址',
+ 'site_and_url_empty'	=> 'Site name and address can not be empty',//'名称和地址不能为空',
 
 //---------------------------
 //admin/views/login.php
@@ -503,6 +548,15 @@ $lang = array(
  'log_in'		=> ' Log in ',//' 登 录 ',
  'back_home'		=> '&laquo; Back to home',//'&laquo;返回首页',
  'password_forget'	=> 'Forgot Password?',//'忘记密码?',
+
+//---------------------------
+//admin/views/media.php
+ 'resouce_manage'	=> 'Media resource management',//'媒体资源管理',
+ 'file'			=> 'File',//'文件',
+ 'preview'		=> 'Preview',//'预览',
+ 'date'			=> 'Date',//'日期',
+ 'upload_files'		=> 'Upload image/file',//'上传图片/文件',
+ 'media_deleted_ok'	=> 'Media file deleted successfully',//'媒体文件删除成功',
 
 //---------------------------
 //admin/views/navbar.php
@@ -518,6 +572,8 @@ $lang = array(
  'nav_select_page'	=> 'Please select the page you want to add',//'请选择要添加的页面',
  'nav_url_invalid'	=> 'Navigation address format error (must include the prefix http, etc.)',//'导航地址格式错误(需包含http等前缀)',
  'nav_edit'		=> 'Edit navigation',//'编辑导航',
+ 'hide'			=> 'Hide',//'隐藏',
+ 'hidden'		=> 'Hidden',//'隐藏',
  'nav_hide_click'	=> 'Click to hide navigation',//'点击隐藏导航',
  'nav_show_click'	=> 'Click to show navigation',//'点击显示导航',
  'nav_no'		=> 'Has not yet added navigation',//'还没有添加导航',
@@ -533,6 +589,7 @@ $lang = array(
  'status'		=> 'Status',//'状态',
  'view'			=> 'View',//'查看',
  'address'		=> 'Address',//'地址',
+ 'add'			=> 'Add',//'添加',
 
 //---------------------------
 //admin/views/naviedit.php
@@ -551,7 +608,8 @@ $lang = array(
  'plugin_active_failed'		=> 'Plug-in activation failed',//'插件激活失败',
  'plugin_disable_ok'		=> 'Plug-in disabled successfully',//'插件禁用成功',
  'plugin_delete_failed'		=> 'Delete failed, check the plug-in file permissions',//'删除失败，请检查插件文件权限',
- 'status'			=> 'Status',//'状态',
+ 'plugin_name'			=> 'Plugin name',//'插件名',//'插件名',
+ 'plugin_status'		=> 'Status',//'开关',
  'version'			=> 'Version',//'版本',
  'description'			=> 'Description',//'描述',
  'plugin_active_ok'		=> 'Click to activate the plug-in',//'点击激活插件',
@@ -560,6 +618,7 @@ $lang = array(
  'more_info'			=> 'More Info&raquo;',//'更多信息&raquo;',
  'plugin_no_installed'		=> 'No installed plugins',//'还没有安装插件',
  'plugin_install'		=> 'Install plugin',//'安装插件',
+ 'plugin_new_install'		=> 'Install plugin',//'安装插件',
 
 //---------------------------
 //admin/views/plugin_install.php
@@ -582,7 +641,6 @@ $lang = array(
  'htaccess_not_writable'	=> 'Save failed: .htaccess file in the root directory is not writable',//'保存失败：根目录下的.htaccess不可写',
  'post_url_settings'		=> 'Post URL settings',//'文章链接设置',
  'post_url_rewriting'		=> 'Here you can modify the form of the post link. If the post URL can not be accessed, may be your server environment does not support the URL rewriting. Please restore back the default form, and disable the article post alias connection.',//'你可以在这里修改文章链接的形式，如果修改后文章无法访问，那可能是你的服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。',
- 'post_url_custom'		=> 'You can customize the of link enabled alias address for defined articles and pages.',//'启用链接别名后可以自定义文章和页面的链接地址。',
  'default_format'		=> 'Default format',//'默认形式',
  'file_format'			=> 'File format',//'文件形式',
  'directory_format'		=> 'Directory format',//'目录形式',
@@ -596,6 +654,16 @@ $lang = array(
  'post_title'			=> 'Post title',//'文章标题',
  'post_title_site_title'	=> 'Post title - Site title',//'文章标题 - 站点标题',
  'post_title_site_meta_title'	=> 'Post title - Site browser title',//'文章标题 - 站点浏览器标题',
+
+//---------------------------
+//admin/views/sort.php
+ 'category_management'	=> 'Category Management',//'分类管理',
+ 'category_name'	=> 'Category name',//'分类名',
+ 'alias_prompt'		=> 'Used for friendly display of URL, optional',//'用于URL的友好显示，可不填',
+ 'category_parent'	=> 'Parent category',//'父分类',
+ 'submit'		=> 'Submit',//'提交',
+ 'category_add'		=> 'Add Category',//'添加分类',//'添加分类+',
+ 'tag_add'		=> 'Add Tag',//'新建标签',
 
 //---------------------------
 //admin/views/store.php
@@ -617,6 +685,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/tag.php
+ 'tag_management'	=> 'Tag management',//'标签管理',
 
 //---------------------------
 //admin/views/tag.php
@@ -627,7 +696,6 @@ $lang = array(
 //admin/views/template.php
  'template_manager'		=> 'Template Manager',//'模板管理',
  'template_current'		=> 'Current template',//'当前模板',
- 'template_mount'		=> 'Mounting template',//'安装模板',
  'template_change_ok'		=> 'Template have been replaced successfully',//'模板更换成功',
  'template_current_use'		=> 'Currently used template',//'当前使用的模板',
  'template_damaged'		=> 'This template has been damaged! Please choose another template.',//'已被删除或损坏，请选择其他模板。',
@@ -638,6 +706,7 @@ $lang = array(
  'template_delete_failed'	=> 'Delete failed, check the template file permissions',//'删除失败，请检查模板文件权限',
  'template_use_this'		=> 'Click to use this template',//'点击使用该模板',
  'template_add'			=> 'Add Template',//'添加模板+',
+ 'template_install'		=> 'Install template',//'安装模板',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -706,6 +775,9 @@ $lang = array(
  'password_repeat'	=> 'Repeat password',//'重复密码',
  'posts_not_need_audit'	=> 'Posts not need to be verified',//'文章不需要审核',
  'posts_need_audit'	=> 'Posts need to be verified',//'文章需要审核',
+ 'publish_permission'	=> 'Publishing permissions',//'发布权限',
+ 'users_total'		=> 'Users created',//'已创建的用户',
+ 'role'			=> 'Role',//'角色',
 
 //---------------------------
 //admin/views/useredit.php
@@ -745,6 +817,13 @@ $lang = array(
 //admin/views/write.php
  'publish_time'		=> 'Publish time:',//'发布时间：',
  'access_password'	=> 'Access Password',//'访问密码',
+ 'choose_file'		=> 'Choose a file for upload...',//'选择文件上传...',
+ 'tags_have'		=> 'Have tags+',//'已有标签+',
+ 'post_tags_separated'	=> 'Post tags, separated by commas',//'文章标签，使用逗号分隔',
+ 'resource_library'	=> 'Resource Library',//'资源库',
 
+//---------------------------
+//include/lib/mysql.php
+ 'mysql_not_supported'	=> 'PHP does not support MySql database',//'服务器空间PHP不支持MySql数据库',
 
 );
