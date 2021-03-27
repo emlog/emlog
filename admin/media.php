@@ -14,7 +14,7 @@ require_once 'globals.php';
 $DB = Database::getInstance();
 
 if (empty($action)) {
-    $sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0";
+    $sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc";
     $query = $DB->query($sql);
     $attach = array();
     while ($row = $DB->fetch_array($query)) {
@@ -44,12 +44,11 @@ if (empty($action)) {
     View::output();
 }
 
-if ($action == 'upload_multi') {
+if ($action === 'upload_multi') {
     $logid = isset($_GET['logid']) ? (int)$_GET['logid'] : 0;
     $attach = $_FILES['file'] ?? '';
 
     if (!$attach || $attach['error'] == 4) {
-        echo "error ...";
         return;
     }
 
@@ -70,14 +69,12 @@ if ($action == 'upload_multi') {
         $query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
         $DB->query($query);
     }
-
-    echo "ok";
 }
 
 //删除附件
-if ($action == 'del_attach') {
+if ($action === 'delete') {
     LoginAuth::checkToken();
-    $aid = isset($_GET['aid']) ? intval($_GET['aid']) : '';
+    $aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
     $query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
     $attach = $DB->fetch_array($query);
     $logid = $attach['blogid'];
@@ -96,5 +93,5 @@ if ($action == 'del_attach') {
 
     $DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum-1 WHERE gid = {$attach['blogid']}");
     $DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$attach['aid']} ");
-    emDirect("attachment.php?action=attlib&logid=$logid");
+    emDirect("media.php?active_del=1");
 }
