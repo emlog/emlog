@@ -5,23 +5,12 @@
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
 
-</div>
-</div>
-
-<hr>
-<footer>
+<footer class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <p class="copyright text-muted">
-                    Powered by <a href="http://www.emlog.net">emlog</a>
-                    <br>
-                    <a href="https://beian.miit.gov.cn" target="_blank"><?php echo $icp; ?>
-                    </a> <?php echo $footer_info; ?>
-                    <?php doAction('index_footer'); ?>
-                </p>
-            </div>
-        </div>
+        <p class="m-0 text-center">Powered by <a href="http://www.emlog.net">emlog</a><br>
+            <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
+            <?php doAction('index_footer'); ?>
+        </p>
     </div>
 </footer>
 

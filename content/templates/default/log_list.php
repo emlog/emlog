@@ -6,43 +6,50 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
-    <div class="col-lg-8 col-md-10 mx-auto">
-        <?php
-        if (!empty($logs)):
-            foreach ($logs as $value):
-                ?>
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            <a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
-                        </h2>
-                        <h3 class="post-subtitle">
-                            <?php echo $value['log_description']; ?>
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <?php blog_author($value['author']); ?> on <?php echo gmdate('Y-n-j', $value['date']); ?></p>
-                    <p class="tag"><?php blog_tag($value['logid']); ?></p>
-                    <p class="count">
-                        <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
-                        <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
-                    </p>
-                </div>
-                <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <?php
+                if (!empty($logs)):
+                    foreach ($logs as $value):
+                        ?>
+                        <div class="shadow-theme mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a>
+                                    <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
+                                </h3>
+                                <p><?php echo $value['log_description']; ?></p>
+                                <p class="tag"><?php blog_tag($value['logid']); ?></p>
+                            </div>
+                            <div class="row p-3">
+                                <div class="col-md-8 text-muted ">
+                                    <?php echo gmdate('Y-n-j', $value['date']); ?><?php blog_author($value['author']); ?>
+                                </div>
+                                <div class="col-md-4 text-right text-muted">
+                                    <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
+                                    <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                else:
+                    ?>
+                    <h2>未找到</h2>
+                    <p>抱歉，没有符合您查询条件的结果。</p>
+                <?php endif; ?>
+
+                <ul class="pagination justify-content-center mb-4">
+                    <?php echo $page_url; ?>
+                </ul>
+            </div>
+
             <?php
-            endforeach;
-        else:
+            include View::getView('side');
             ?>
-            <h2>未找到</h2>
-            <p>抱歉，没有符合您查询条件的结果。</p>
-        <?php endif; ?>
-
-        <!-- Pager -->
-        <div class="clearfix">
-            <?php echo $page_url; ?>
-        </div>
-    </div>
-
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 <?php
-include View::getView('side');
 include View::getView('footer');
 ?>

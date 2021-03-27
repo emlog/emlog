@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="container">
         <h2><?php topflg($top); ?><?php echo $log_title; ?></h2>
         <p class="date"><?php echo gmdate('Y-n-j', $date); ?><?php blog_author($author); ?><?php blog_sort($logid); ?><?php editflg($logid, $author); ?></p>
         <?php echo $log_content; ?>
@@ -17,6 +17,7 @@ if (!defined('EMLOG_ROOT')) {
         <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
         <div style="clear:both;"></div>
     </div>
+    <!-- /.container -->
 <?php
 include View::getView('footer');
 ?>
