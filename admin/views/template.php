@@ -29,7 +29,7 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('template_manager')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i> <?=lang('template_add')?></a>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('template_add')?></a>
 </div>
 <div class="card-columns">
     <?php foreach ($tpls as $key => $value): ?>
@@ -45,7 +45,7 @@
                 </a>
             </div>
             <div class="card-footer">
-                <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+<!--vot-->      <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
             </div>
         </div>
     <?php endforeach; ?>

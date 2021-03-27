@@ -262,9 +262,9 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
         }
     }
     if ($page > 6)
-/*vot*/        $re = "<a href=\"{$urlHome}$anchor\" title=\"".lang('first_page')."\">&laquo;</a><em>...</em>$re";
+/*vot*/        $re = "<a href=\"{$urlHome}$anchor\" title=\"".lang('first_page')."\">&laquo;</a><em> ... </em>$re";
     if ($page + 5 < $pnums)
-/*vot*/        $re .= "<em>...</em> <a href=\"$url$pnums$anchor\" title=\"".lang('last_page')."\">&raquo;</a>";
+/*vot*/        $re .= "<em> ... </em> <a href=\"$url$pnums$anchor\" title=\"".lang('last_page')."\">&raquo;</a>";
     if ($pnums <= 1)
         $re = '';
     return $re;

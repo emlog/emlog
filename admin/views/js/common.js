@@ -27,8 +27,8 @@ function em_confirm (id, property, token) {
         case 'backup':
             var urlreturn="data.php?action=renewdata&sqlfile="+id;
 /*vot*/     var msg = lang('backup_import_sure');break;
-        case 'attachment':
-            var urlreturn="attachment.php?action=del_attach&aid="+id;
+        case 'media':
+            var urlreturn="media.php?action=delete&aid="+id;
 /*vot*/     var msg = lang('attach_del_sure');break;
         case 'avatar':
             var urlreturn="blogger.php?action=delicon";

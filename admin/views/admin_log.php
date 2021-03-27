@@ -41,10 +41,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link <?php if ($pid != 'draft') {
                 echo 'active';
-/*vot*/         } ?>" href="./admin_log.php"><?=lang('articles')?></a></li>
+/*vot*/     } ?>" href="./admin_log.php"><?=lang('articles')?></a></li>
         <li class="nav-item"><a class="nav-link <?php if ($pid == 'draft') {
                 echo 'active';
-/*vot*/         } ?>" href="./admin_log.php?pid=draft"><?=lang('drafts')?></a></li>
+/*vot*/     } ?>" href="./admin_log.php?pid=draft"><?=lang('drafts')?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4">
@@ -53,7 +53,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <div id="f_title" class="row form-inline">
                 <div id="f_t_sort" class="mx-1">
                     <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
-<!--vot-->                      <option value="" selected="selected"><?=lang('category_view')?></option>
+<!--vot-->              <option value="" selected="selected"><?=lang('category_view')?>...</option>
                         <?php
                         foreach ($sorts as $key => $value):
                             if ($value['pid'] != 0) {
@@ -73,13 +73,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             endforeach;
                         endforeach;
                         ?>
-<!--vot-->                      <option value="-1" <?php if ($sid == -1) echo 'selected'; ?>><?=lang('uncategorized')?></option>
+<!--vot-->              <option value="-1" <?php if ($sid == -1) echo 'selected'; ?>><?=lang('uncategorized')?></option>
                     </select>
                 </div>
                 <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
                     <div id="f_t_user" class="mx-1">
                         <select name="byuser" id="byuser" onChange="selectUser(this);" class="form-control">
-<!--vot-->                          <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
+<!--vot-->                  <option value="" selected="selected"><?=lang('view_by_author')?>...</option>
                             <?php
                             foreach ($user_cache as $key => $value):
                                 $flg = $key == $uid ? 'selected' : '';
@@ -89,12 +89,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         </select>
                     </div>
                 <?php endif; ?>
-<!--vot-->              <span id="f_t_tag"><a href="javascript:void(0);"><?=lang('view_by_tag')?></a></span>
+<!--vot-->      <span id="f_t_tag"><a href="javascript:void(0);"><?=lang('view_by_tag')?></a></span>
             </div>
             <div id="f_tag" class="my-3" <?php echo $isDisplayTag ?>>
-<!--vot-->              <?=lang('tags')?>:
+<!--vot-->      <?=lang('tags')?>:
                 <?php
-/*vot*/                 if (empty($tags)) echo lang('tags_no');
+/*vot*/         if (empty($tags)) echo lang('tags_no');
                 foreach ($tags as $val):
                     $a = 'tag_' . $val['tid'];
                     $$a = '';
@@ -113,35 +113,35 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"/></th>
-<!--vot-->                  <th><?= lang('title') ?></th>
+<!--vot-->          <th><?= lang('title') ?></th>
                     <?php if ($pid != 'draft'): ?>
-<!--vot-->                      <th><b><?= lang('views') ?></b></th>
+<!--vot-->              <th><?= lang('views') ?></th>
                     <?php endif; ?>
-<!--vot-->                  <th><?= lang('user') ?></th>
-<!--vot-->                  <th><?= lang('category') ?></th>
-<!--vot-->                  <th><a href="./admin_log.php?sortDate=<?php echo $sortDate . $sorturl; ?>"><?= lang('time') ?></a></th>
-<!--vot-->                  <th><a href="./admin_log.php?sortComm=<?php echo $sortComm . $sorturl; ?>"><?= lang('comments') ?></a></th>
-<!--vot-->                  <th><a href="./admin_log.php?sortView=<?php echo $sortView . $sorturl; ?>"><?= lang('reads') ?></a></th>
+<!--vot-->          <th><?= lang('user') ?></th>
+<!--vot-->          <th><?= lang('category') ?></th>
+<!--vot-->          <th><a href="./admin_log.php?sortDate=<?php echo $sortDate . $sorturl; ?>"><?= lang('time') ?></a></th>
+<!--vot-->          <th><a href="./admin_log.php?sortComm=<?php echo $sortComm . $sorturl; ?>"><?= lang('comments') ?></a></th>
+<!--vot-->          <th><a href="./admin_log.php?sortView=<?php echo $sortView . $sorturl; ?>"><?= lang('reads') ?></a></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($logs as $key => $value):
-/*vot*/                     $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
+/*vot*/             $sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
                     $author = $user_cache[$value['author']]['name'];
                     $author_role = $user_cache[$value['author']]['role'];
                     ?>
                     <tr>
                         <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                         <td><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-<!--vot-->                          <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?= lang('home_top') ?>" /><?php endif; ?>
-<!--vot-->                          <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?= lang('category_top') ?>" /><?php endif; ?>
-<!--vot-->                          <?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
-<!--vot-->                              <span style="color:red;"> - <?= lang('pending') ?></span><?php endif; ?>
+<!--vot-->                  <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?= lang('home_top') ?>"/><?php endif; ?>
+<!--vot-->                  <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?= lang('category_top') ?>"/><?php endif; ?>
+                            <?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
+<!--vot-->                      <span style="color:red;"> - <?= lang('pending') ?></span><?php endif; ?>
                             <div>
                                 <?php if ($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-<!--vot-->                                  <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('check') ?></a>
+<!--vot-->                          <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('check') ?></a>
                                 <?php elseif ($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-<!--vot-->                                  <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('uncheck') ?></a>
+<!--vot-->                          <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?= lang('uncheck') ?></a>
                                 <?php endif; ?>
                             </div>
                         </td>
@@ -166,14 +166,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 <?php if ($pid != 'draft'): ?>
                     <?php if (ROLE == ROLE_ADMIN): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control mx-1">
-<!--vot-->                          <option value="" selected="selected"><?=lang('top_action')?>...</option>
-<!--vot-->                          <option value="top"><?=lang('home_top')?></option>
-<!--vot-->                          <option value="sortop"><?=lang('category_top')?></option>
-<!--vot-->                          <option value="notop"><?=lang('unstick')?></option>
+<!--vot-->                  <option value="" selected="selected"><?=lang('top_action')?>...</option>
+<!--vot-->                  <option value="top"><?=lang('home_top')?></option>
+<!--vot-->                  <option value="sortop"><?=lang('category_top')?></option>
+<!--vot-->                  <option value="notop"><?=lang('unstick')?></option>
                         </select>
                     <?php endif; ?>
                     <select name="sort" id="sort" onChange="changeSort(this);" class="form-control mx-1">
-<!--vot-->                      <option value="" selected="selected"><?=lang('move_to_category')?>...</option>
+<!--vot-->              <option value="" selected="selected"><?=lang('move_to_category')?>...</option>
                         <?php
                         foreach ($sorts as $key => $value):
                             if ($value['pid'] != 0) {
@@ -192,11 +192,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             endforeach;
                         endforeach;
                         ?>
-<!--vot-->                      <option value="-1"><?=lang('uncategorized')?></option>
+<!--vot-->              <option value="-1"><?=lang('uncategorized')?></option>
                     </select>
                     <?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
                         <select name="author" id="author" onChange="changeAuthor(this);" class="form-control mx-1">
-<!--vot-->                          <option value="" selected="selected"><?=lang('user_edit')?>...</option>
+<!--vot-->                  <option value="" selected="selected"><?=lang('user_edit')?>...</option>
                             <?php foreach ($user_cache as $key => $val):
                                 $val['name'] = $val['name'];
                                 ?>
@@ -206,15 +206,15 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <?php endif; ?>
                 <?php endif; ?>
 
-                <a href="javascript:logact('del');" class="text-danger mx-1">删除</a>
+<!--vot-->      <a href="javascript:logact('del');" class="text-danger mx-1"><?=lang('delete')?></a>
                 <?php if ($pid == 'draft'): ?>
-                    <a href="javascript:logact('pub');" class="mx-1">发布</a>
+<!--vot-->          <a href="javascript:logact('pub');" class="mx-1"><?=lang('publish')?></a>
                 <?php else: ?>
-                    <a href="javascript:logact('hide');" class="mx-1">放入草稿箱</a>
+<!--vot-->          <a href="javascript:logact('hide');" class="mx-1"><?=lang('add_draft')?></a>
                 <?php endif; ?>
             </div>
         </form>
-<!--vot-->      <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?><?php echo $logNum; ?><?=lang('number_of_items')?><?php echo $pid == 'draft' ? lang('drafts') : lang('posts'); ?>)</div>
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $pid == 'draft' ? lang('drafts') : lang('posts'); ?>)</div>
     </div>
 </div>
 

@@ -28,8 +28,8 @@ if (!$act) {
 <!doctype html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>emlog</title>
         <style type="text/css">
             <!--
@@ -96,7 +96,7 @@ if (!$act) {
 <form name="form1" method="post" action="install.php?action=install">
     <div class="main">
         <p class="logo"></p>
-            <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
+<!--vot--><p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
         <div class="b">
 <!--vot-->  <p class="title2"><?= lang('mysql_settings') ?></p>
             <li>
@@ -138,7 +138,7 @@ if (!$act) {
             </li>
         </div>
         <div>
-                <p class="foot"><input type="submit" class="submit" value="开始安装emlog"></p>
+<!--vot-->  <p class="foot"><input type="submit" class="submit" value=<?= lang('install_emlog') ?>"></p>
         </div>
     </div>
 </form>
@@ -275,7 +275,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 
     define('BLOG_URL', realUrl());
 
-/*vot*/    $sql = "
+    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment,

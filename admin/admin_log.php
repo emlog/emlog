@@ -1,7 +1,5 @@
 <?php
 /**
-<?php
-/**
  * The article management
  *
  * @package EMLOG (www.emlog.net)

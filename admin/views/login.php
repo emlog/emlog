@@ -27,10 +27,10 @@
                                 </div>
                             <?php endif;?>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required="required">
+<!--vot-->                      <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="<?=lang('user_name')?>" required="required">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required="required">
+<!--vot-->                      <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>" required="required">
                             </div>
                             <?php if ($ckcode): ?>
                                 <div class="form-group">

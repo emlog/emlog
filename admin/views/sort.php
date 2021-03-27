@@ -1,168 +1,162 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<div class="container-fluid">
-    <?php if (isset($_GET['active_taxis'])): ?>
+<?php if (isset($_GET['active_taxis'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['active_del'])): ?>
+<?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['active_edit'])): ?>
+<?php if (isset($_GET['active_edit'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['active_add'])): ?>
+<?php if (isset($_GET['active_add'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?>
+<?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?>
+<?php if (isset($_GET['error_b'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?>
+<?php if (isset($_GET['error_c'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?>
+<?php if (isset($_GET['error_d'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?>
+<?php if (isset($_GET['error_e'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i> <?=lang('category_add')?></a>
-    </div>
-    <form method="post" action="sort.php?action=taxis">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-<!--vot-->      <h6 class="badge badge-secondary"><?=lang('category_management')?></h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive" id="adm_sort_list">
-                    <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('category_add')?></a>
+</div>
+<form method="post" action="sort.php?action=taxis">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive" id="adm_sort_list">
+                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+<!--vot-->              <th><?=lang('order')?></th>
+<!--vot-->              <th><?=lang('id')?></th>
+<!--vot-->              <th><?=lang('name')?></th>
+<!--vot-->              <th><?=lang('description')?></th>
+<!--vot-->              <th><?=lang('alias')?></th>
+<!--vot-->              <th><?=lang('template')?></th>
+<!--vot-->              <th><?=lang('views')?></th>
+<!--vot-->              <th><?=lang('posts')?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($sorts as $key => $value):
+                        if ($value['pid'] != 0) {
+                            continue;
+                        }
+                        ?>
                         <tr>
-<!--vot-->                  <th><?=lang('order')?></th>
-<!--vot-->                  <th><?=lang('id')?></th>
-<!--vot-->                  <th><?=lang('name')?></th>
-<!--vot-->                  <th><?=lang('description')?></th>
-<!--vot-->                  <th><?=lang('alias')?></th>
-<!--vot-->                  <th><?=lang('template')?></th>
-<!--vot-->                  <th><?=lang('views')?></th>
-<!--vot-->                  <th><?=lang('posts')?></th>
+                            <td>
+                                <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
+                                <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                            </td>
+                            <td class="sortname">
+                                <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
+                            </td>
+                            <td><?php echo $value['description']; ?></td>
+                            <td class="alias"><?php echo $value['alias']; ?></td>
+                            <td class="alias"><?php echo $value['template']; ?></td>
+                            <td>
+                                <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                            </td>
+                            <td><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                            <td>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
                         <?php
-                        foreach ($sorts as $key => $value):
-                            if ($value['pid'] != 0) {
-                                continue;
-                            }
+                        $children = $value['children'];
+                        foreach ($children as $key):
+                            $value = $sorts[$key];
                             ?>
                             <tr>
                                 <td>
                                     <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
                                     <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
                                 </td>
-                                <td class="sortname">
-                                    <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
-                                </td>
+                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
                                 <td><?php echo $value['description']; ?></td>
                                 <td class="alias"><?php echo $value['alias']; ?></td>
                                 <td class="alias"><?php echo $value['template']; ?></td>
-                                <td class="tdcenter">
+                                <td>
                                     <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                 </td>
-                                <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                                <td><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                 <td>
-<!--vot-->                          <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
+<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');"
+                                       class="badge badge-danger"><?=lang('delete')?></a>
                                 </td>
                             </tr>
-                            <?php
-                            $children = $value['children'];
-                            foreach ($children as $key):
-                                $value = $sorts[$key];
-                                ?>
-                                <tr>
-                                    <td>
-                                        <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                        <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
-                                    </td>
-                                    <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
-                                    <td><?php echo $value['description']; ?></td>
-                                    <td class="alias"><?php echo $value['alias']; ?></td>
-                                    <td class="alias"><?php echo $value['template']; ?></td>
-                                    <td class="tdcenter">
-                                        <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
-                                    </td>
-                                    <td class="tdcenter"><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
-                                    <td>
-<!--vot-->                              <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?=lang('edit')?></a>
-<!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="care"><?=lang('delete')?></a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
                         <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="list_footer">
-<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
-        </div>
-    </form>
-    <!--Add Category popup-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('tag_add')?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="sort.php?action=add" method="post" id="sort_new">
-                    <div class="modal-body">
-                        <div class="form-group">
-<!--vot-->                  <label for="sortname"><?=lang('category_name')?></label>
-                            <input class="form-control" id="sortname" name="sortname">
-                        </div>
-                        <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('alias_info')?></label>
-                            <input class="form-control" id="alias" name="alias">
-<!--vot-->                  <small class="form-text text-muted"><?=lang('alias_prompt')?></small>
-                        </div>
-                        <div class="form-group">
-<!--vot-->                  <label><?=lang('category_parent')?></label>
-                            <select name="pid" id="pid" class="form-control">
-<!--vot-->                      <option value="0"><?=lang('no')?></option>
-                                <?php
-                                foreach ($sorts as $key => $value):
-                                    if ($value['pid'] != 0) {
-                                        continue;
-                                    }
-                                    ?>
-                                    <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-<!--vot-->                  <label for="template"><?=lang('template')?></label>
-                            <input class="form-control" id="template" name="template">
-<!--vot-->                  <small class="form-text text-muted"><?=lang('template_info')?></small>
-                        </div>
-                        <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('category_description')?></label>
-                            <textarea name="description" type="text" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                        <span id="alias_msg_hook"></span>
-<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
-                    </div>
-                </form>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    <div class="list_footer">
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
+    </div>
+</form>
+<!--Add Category popup-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('tag_add')?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <form action="sort.php?action=add" method="post" id="sort_new">
+                <div class="modal-body">
+                    <div class="form-group">
+<!--vot-->              <label for="sortname"><?=lang('category_name')?></label>
+                        <input class="form-control" id="sortname" name="sortname">
+                    </div>
+                    <div class="form-group">
+<!--vot-->              <label for="alias"><?=lang('alias_info')?></label>
+                        <input class="form-control" id="alias" name="alias">
+<!--vot-->              <small class="form-text text-muted"><?=lang('alias_prompt')?></small>
+                    </div>
+                    <div class="form-group">
+<!--vot-->              <label><?=lang('category_parent')?></label>
+                        <select name="pid" id="pid" class="form-control">
+<!--vot-->                  <option value="0"><?=lang('no')?></option>
+                            <?php
+                            foreach ($sorts as $key => $value):
+                                if ($value['pid'] != 0) {
+                                    continue;
+                                }
+                                ?>
+                                <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+<!--vot-->              <label for="template"><?=lang('template')?></label>
+                        <input class="form-control" id="template" name="template">
+<!--vot-->              <small class="form-text text-muted"><?=lang('template_info')?></small>
+                    </div>
+                    <div class="form-group">
+<!--vot-->              <label for="alias"><?=lang('category_description')?></label>
+                        <textarea name="description" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <span id="alias_msg_hook"></span>
+<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
 <script>
     setTimeout(hideActived, 2600);
     $("#alias").keyup(function () {

@@ -7,12 +7,12 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <?php
-//widget：链接
+//widget：link
 function widget_link($title)
 {
     global $CACHE;
     $link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
+    //if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment
     ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
@@ -75,7 +75,7 @@ function widget_tag($title)
         <ul class="list-unstyled">
             <?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-<!--vot-->	<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> <?=lang('_posts')?>"><?= $value['tagname'] ?></a></span>
+<!--vot-->	<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> <?=lang('_posts')?>"><?php echo $value['tagname']; ?></a></span>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -235,8 +235,8 @@ function blog_navi()
                 }
                 if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
                     ?>
-                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理站点</a></li>
-                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link">退出</a></li>
+                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
+                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link"><?=lang('logout')?></a></li>
                     <?php
                     continue;
                 endif;
@@ -285,9 +285,9 @@ function topflg($top, $sortop = 'n', $sortid = null)
 ?>
 <?php
 //blog:Editor
-function editflg($logid,$author)
+function editflg($logid, $author)
 {
-/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/write_log.php?action=edit&gid='.$logid.'" target="_blank">' . lang('edit') . '</a>' : '';
+/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/write_log.php?action=edit&gid=' . $logid . '" target="_blank">' . lang('edit') . '</a>' : '';
     echo $editflg;
 }
 
@@ -312,7 +312,7 @@ function blog_tag($blogid)
 
     $log_cache_tags = $CACHE->readCache('logtags');
     if (!empty($log_cache_tags[$blogid])) {
-/*vot*/ $tag = lang('tags').': ';
+/*vot*/ $tag = lang('tags').':';
         foreach ($log_cache_tags[$blogid] as $value) {
             $tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\">" . $value['tagname'] . '</a>';
         }
@@ -384,8 +384,8 @@ function blog_comments($comments)
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
             <div class="comment-info">
                 <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
-<!--vot-->  <div class="comment-reply"><a href="#comment-<?= $comment['cid'] ?>" onclick="commentReply(<?= $comment['cid'] ?>,this)"><?=lang('reply')?></a></div>
-                <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
+                <div class="comment-content"><?php echo $comment['content']; ?></div>
+<!--vot-->      <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a></div>
             </div>
             <?php blog_comments_children($comments, $comment['children']); ?>
         </div>
@@ -411,7 +411,7 @@ function blog_comments_children($comments, $children)
                 <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <?php if ($comment['level'] < 4): ?>
-                    <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a>
+<!--vot-->          <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)"><?=lang('reply')?></a>
                     </div><?php endif; ?>
             </div>
             <?php blog_comments_children($comments, $comment['children']); ?>
@@ -444,7 +444,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         </p>
                     <?php endif; ?>
                     <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-<!--vot-->          <p><?= $verifyCode ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"></p>
+<!--vot-->          <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"></p>
                     <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
                 </form>
             </div>

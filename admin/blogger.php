@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Blogger Profile
  *
  * @package EMLOG (www.emlog.net)
  *

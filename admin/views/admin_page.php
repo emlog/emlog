@@ -21,10 +21,10 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
-<!--vot-->                  <th><?= lang('title') ?></th>
-<!--vot-->                  <th><?= lang('template') ?></th>
-<!--vot-->                  <th><?= lang('comments') ?></th>
-<!--vot-->                  <th><?= lang('time') ?></th>
+<!--vot-->              <th><?= lang('title') ?></th>
+<!--vot-->              <th><?= lang('template') ?></th>
+<!--vot-->              <th><?= lang('comments') ?></th>
+<!--vot-->              <th><?= lang('time') ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,15 +33,15 @@
                             $navibar[$value['gid']]['url'] = Url::log($value['gid']);
                         }
                         $isHide = $value['hide'] == 'y' ?
-/*vot*/                         '<font color="red"> - ' . lang('draft') . '</font>' :
-/*vot*/                         '<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+/*vot*/                     '<font color="red"> - <?= lang('draft') ?></font>' :
+/*vot*/                     '<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="<?= lang('page_view') ?>"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
                         ?>
                         <tr>
                             <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td width="440">
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
                                 <?php echo $isHide; ?>
-<!--vot-->                          <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
+<!--vot-->                      <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?= lang('attachment_num') ?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
                             </td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -54,11 +54,11 @@
             <div class="list_footer">
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
-<!--vot-->          <a href="javascript:pageact('del');" class="care"><?=lang('delete')?></a> |
-<!--vot-->          <a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> |
-<!--vot-->          <a href="javascript:pageact('pub');"><?=lang('publish')?></a>
+<!--vot-->      <a href="javascript:pageact('del');" class="care"><?=lang('delete')?></a> |
+<!--vot-->      <a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> |
+<!--vot-->      <a href="javascript:pageact('pub');"><?=lang('publish')?></a>
             </div>
-<!--vot-->  <div class="page"><?php echo $pageurl; ?> （有 <?php echo $pageNum; ?> 个页面）</div>
+<!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $pageNum; ?> <?=lang('_pages')?>)</div>
         </div>
     </div>
 </form>

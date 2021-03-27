@@ -61,7 +61,6 @@ class Tag_Model
 
     function addTag($tagStr, $blogId)
     {
-     */
         $tagStr = trim($tagStr);
 //vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
@@ -103,7 +102,6 @@ class Tag_Model
 
     function updateTag($tagStr, $blogId)
     {
-     */
         $tagStr = trim($tagStr);
 //vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
@@ -166,6 +164,7 @@ class Tag_Model
 
     function deleteTag($tagId)
     {
+        // To remove a Tag, You need to check which Article have cited this tag, And to delete the label from those references
         $linked_blogs = $this->getBlogIdsFromTagId($tagId);
 
         foreach ($linked_blogs as $blogId) {

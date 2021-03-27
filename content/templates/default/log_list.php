@@ -24,11 +24,11 @@ if (!defined('EMLOG_ROOT')) {
                             </div>
                             <div class="row p-3">
                                 <div class="col-md-8 text-muted ">
-                                    <?php echo gmdate('Y-n-j', $value['date']); ?><?php blog_author($value['author']); ?>
+<!--vot-->                          <?php echo gmdate('Y-m-d', $value['date']); ?><?php blog_author($value['author']); ?>
                                 </div>
                                 <div class="col-md-4 text-right text-muted">
-                                    <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
-                                    <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
+<!--vot-->                          <a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?>: (<?= $value['comnum']; ?>)</a>
+<!--vot-->                          <a href="<?php echo $value['log_url']; ?>"><?=lang('_views')?>: (<?= $value['views']; ?>)</a>
                                 </div>
                             </div>
                         </div>
@@ -36,8 +36,8 @@ if (!defined('EMLOG_ROOT')) {
                     endforeach;
                 else:
                     ?>
-<!--vot-->  <h2><?=lang('not_found')?></h2>
-<!--vot-->  <p><?=lang('sorry_no_results')?></p>
+<!--vot-->          <h2><?=lang('not_found')?></h2>
+<!--vot-->          <p><?=lang('sorry_no_results')?></p>
                 <?php endif; ?>
 
                 <ul class="pagination justify-content-center mb-4">

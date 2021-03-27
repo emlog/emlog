@@ -2,11 +2,11 @@
     exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除标签成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif;?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改标签成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_modify_ok')?></div><?php endif;?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择要删除的标签</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('tag_select_to_delete')?></div><?php endif;?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('tag_management')?></h1>
 </div>
@@ -23,7 +23,7 @@
                     <?php endforeach; ?>
                 </li>
             <?php else: ?>
-<!--vot-->          <li style="margin:20px 30px"><?=lang('tags_no_info')?></li>
+<!--vot-->      <li style="margin:20px 30px"><?=lang('tags_no_info')?></li>
             <?php endif; ?>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('tag_edit')?></h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('tag_edit')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -46,9 +46,9 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" id="tid" name="tid"/>
-<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
-<!--vot-->              <a class="btn btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
+<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->          <a class="btn btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                 </div>
             </form>
         </div>
@@ -72,7 +72,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        if (!confirm('你确定要删除所选标签吗？')) {
+/*vot*/ if(!confirm('<?=lang('tag_delete_sure')?>')) {
             return;
         }
         window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");

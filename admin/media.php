@@ -1,6 +1,6 @@
 <?php
 /**
- * media
+ * Media management
  * @package EMLOG (www.emlog.net)
  */
 
@@ -56,14 +56,14 @@ if ($action === 'upload_multi') {
     $attach['name'] = Database::getInstance()->escape_string($attach['name']);
     $file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 
-    // 写入附件信息
+    // Write attachment information
     $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
     $query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
     $DB->query($query);
     $aid = $DB->insert_id();
     $DB->query("UPDATE " . DB_PREFIX . "blog SET attnum=attnum+1 WHERE gid=$logid");
 
-    // 写入缩略图信息
+    // Write thumbnail information
     if (isset($file_info['thum_file'])) {
         $query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
         $query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
@@ -71,7 +71,7 @@ if ($action === 'upload_multi') {
     }
 }
 
-//删除附件
+//Delete attachment
 if ($action === 'delete') {
     LoginAuth::checkToken();
     $aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
@@ -79,14 +79,14 @@ if ($action === 'delete') {
     $attach = $DB->fetch_array($query);
     $logid = $attach['blogid'];
     if (file_exists($attach['filepath'])) {
-        @unlink($attach['filepath']) or emMsg("删除附件失败!");
+/*vot*/ @unlink($attach['filepath']) or emMsg(lang('attachment_delete_error'));
     }
 
     $query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = " . $attach['aid']);
     $thum_attach = $DB->fetch_array($query);
     if ($thum_attach) {
         if (file_exists($thum_attach['filepath'])) {
-            @unlink($thum_attach['filepath']) or emMsg("删除附件失败!");
+/*vot*/     @unlink($thum_attach['filepath']) or emMsg(lang('attachment_delete_error'));
         }
         $DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
     }

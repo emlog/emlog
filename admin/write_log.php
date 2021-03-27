@@ -40,7 +40,7 @@ if (!$action) {
     $is_top = '';
     $is_sortop = '';
     $is_allow_remark = '';
-/*vot*/	$postDate = date('Y-m-d H:i:s');
+    $postDate = date('Y-m-d H:i:s');
     $att_frame_url = 'attachment.php?action=selectFile';
 
     include View::getView('header');

@@ -15,7 +15,7 @@
 <!--vot--><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> <?= lang('link_add') ?></a>
+<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
 </div>
 <form action="link.php?action=link_taxis" method="post">
     <div class="card shadow mb-4">
@@ -23,11 +23,11 @@
             <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-<!--vot-->              <th><?= lang('order') ?></th>
-<!--vot-->              <th><?= lang('link') ?></th>
-<!--vot-->              <th><?= lang('description') ?></th>
-<!--vot-->              <th><?= lang('status') ?></th>
-<!--vot-->              <th><?= lang('operation') ?></th>
+<!--vot-->          <th><?= lang('order') ?></th>
+<!--vot-->          <th><?= lang('link') ?></th>
+<!--vot-->          <th><?= lang('description') ?></th>
+<!--vot-->          <th><?= lang('status') ?></th>
+<!--vot-->          <th><?= lang('operation') ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,11 +48,11 @@
                         </td>
                         <td>
                             <?php if ($value['hide'] == 'n'): ?>
-                                <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary">显示</a>
+<!--vot-->                      <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary"><?= lang('visible') ?></a>
                             <?php else: ?>
-                                <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning">隐藏</a>
+<!--vot-->                      <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
                             <?php endif; ?>
-<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                  <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -61,15 +61,15 @@
         </div>
     </div>
     <div class="list_footer">
-<!--vot-->  <input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
     </div>
 </form>
-    <!--Add Link popup-->
+<!--Add Link popup-->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('add_link')?></h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('add_link')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -78,21 +78,21 @@
             <form action="link.php?action=addlink" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('name')?></label>
+<!--vot-->              <label for="alias"><?=lang('name')?></label>
                         <input class="form-control" id="sitename" name="sitename">
                     </div>
                     <div class="form-group">
-<!--vot-->                  <label for="template"><?=lang('link_url')?></label>
+<!--vot-->              <label for="template"><?=lang('link_url')?></label>
                         <input class="form-control" id="siteurl" name="siteurl">
                     </div>
                     <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('description')?></label>
+<!--vot-->              <label for="alias"><?=lang('description')?></label>
                         <textarea name="description" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
@@ -100,12 +100,12 @@
     </div>
 </div>
 
-    <!--Edit Link popup-->
+<!--Edit Link popup-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->          <h5 class="modal-title" id="exampleModalLabel"><?=lang('')?>编辑链接</h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('edit_link')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -114,22 +114,22 @@
             <form action="link.php?action=update_link" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('')?>名称</label>
+<!--vot-->              <label for="alias"><?=lang('name')?></label>
                         <input class="form-control" id="sitename" name="sitename">
                     </div>
                     <div class="form-group">
-<!--vot-->                  <label for="template"><?=lang('address')?></label>
+<!--vot-->              <label for="template"><?=lang('address')?></label>
                         <input class="form-control" id="siteurl" name="siteurl">
                     </div>
                     <div class="form-group">
-<!--vot-->                  <label for="alias"><?=lang('description')?></label>
+<!--vot-->              <label for="alias"><?=lang('description')?></label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="linkid" id="linkid"/>
-<!--vot-->              <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->              <button type="submit" class="btn btn-success"><?=lang('link_add')?></button>
+<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('link_add')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

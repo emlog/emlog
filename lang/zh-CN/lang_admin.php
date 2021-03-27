@@ -205,7 +205,7 @@ $lang = array(
  'seo_settings'			=> 'SEO设置',//'SEO Settings',
  'background_style'		=> '后台风格',//'Background style',
  'personal_settings'		=> '个人设置',//'Personal Settings',
- 'personal_data_modified_ok'	=> '个人资料修改成功',//'Personal data modified successfully',
+ 'personal_data_modified_ok'	=> '资料修改成功',//'Data modified successfully',
  'avatar_deleted_ok'		=> '头像删除成功',//'Avatar deleted successfully',
  'nickname_too_long'		=> '昵称不能太长',//'Nickname can not be too long',
  'email_format_invalid'		=> '电子邮件格式错误',//'E-mail format invalid',
@@ -230,7 +230,6 @@ $lang = array(
  'comment_author'	=> '评论人',//'Comment author',
  'belongs_to_article'	=> '所属文章',//'Belongs to article',
  'from_ip'		=> '来自IP',//'From IP',
- 'hide'			=> '隐藏',//'Hide',
  'reply'		=> '回复',//'Reply',
  'del_from_ip'		=> '按IP删除',//'Delete from this IP',
  'view_article'		=> '查看该文章',//'View the article',
@@ -468,7 +467,7 @@ $lang = array(
  'templates'		=> '模板',//'Templates',
  'applications'		=> '应用',//'Apps',
  'extensions'		=> '扩展功能',//'Extensions',
- 'search_for'		=> 'Search for...',//'Search for...',
+ 'search_for'		=> '查找文章...',//'Search for...',
  'search'		=> 'Search',//'Search',
  'resources'		=> '资源',//'Resources',
 
@@ -495,6 +494,8 @@ $lang = array(
  '_comments'			=> '条评论',//' comments',
  'db_prefix'			=> '数据库表前缀',//'Database table prefix',
  'php_version'			=> 'PHP版本',//'PHP version',
+ 'emlog_version'		=> 'EMLOG版本',//'EMLOG version',
+ 'unregistered'			=> '未注册',//'unregistered',
  'mysql_version'		=> 'MySQL版本',//'MySQL version',
  'server_environment'		=> '服务器环境',//'Server environment',
  'gd_library'			=> 'GD图形处理库',//'GD graphic library',
@@ -507,13 +508,11 @@ $lang = array(
  'checking_wait'		=> '正在检查，请稍后',//'Is checking, please wait',
  'updates_no'			=> '目前还没有适合您当前版本的更新！',//'There is no updates for your current version!',
  'update_exists'		=> '有可用的emlog更新版本 ',//'It is available emlog updated version ',
- 'backup_before_update'		=> ' ，更新之前请您做好数据备份工作，',//' Do not forget to make a backup before updating job, ',
+ 'backup_before_update'		=> '，更新之前请您做好数据备份工作，',//' Do not forget to make a backup before updating job, ',
  'update_now'			=> '现在更新',//'Update now',
  'update_check_failed'		=> '检查失败，可能是网络问题',//'Check failed, may be a network problem exists',
  'updating'			=> '系统正在更新中，请耐心等待',//'Updating the system, please be patient',
- 'update_completed'		=> '恭喜您！更新成功了，请',//'Congratulations! Update is successfully completed, please ',
- 'page_refresh'			=> '刷新页面',//'Refresh the page',
- 'start_new_emlog'		=> '开始体验新版emlog',//' Start experiencing the new emlog version',
+ 'update_completed'		=> '恭喜您！更新成功了，请<a href="./">刷新页面</a> 开始体验新版emlog',//'Congratulations! The update is successful, please <a href="./">refresh the page</a> to start experiencing the new version of emlog',
  'update_download_failed'	=> '下载更新失败，可能是服务器网络问题',//'Download the update failed, may be a network problem exists',
  'update_extract_failed'	=> '解压更新失败，可能是你的服务器空间不支持zip模块',//'Extract the update failed, may be the server does not support the zip extension',
  'update_failed_nonwritable'	=> '更新失败，目录不可写',//'Update failed, the directory is not writable',
@@ -530,16 +529,15 @@ $lang = array(
  'link_management'	=> '链接管理',//'Link management',
  'links_created'	=> '已创建的链接',//'Links created',
  'order'		=> '排序',//'Order',
- 'edit_link'		=> '修改链接',//'Edit link',
+ 'edit_link'		=> '编辑链接',//'Edit link',
  'click_to_hide'	=> '点击隐藏链接',//'Click to hide',
  'visible'		=> '显示',//'Visible',
  'click_to_show'	=> '点击显示链接',//'Click to show',
- 'hidden'		=> '隐藏',//'Hidden',
  'view_link'		=> '查看链接',//'View link',
  'no_links'		=> '还没有添加链接',//'No link added yet',
  'name'			=> '名称',//'Name',
  'link_url'		=> '地址',//'Link URL',
-
+ 'site_and_url_empty'	=> '名称和地址不能为空',//'Site name and address can not be empty',
 
 //---------------------------
 //admin/views/login.php
@@ -553,10 +551,12 @@ $lang = array(
 
 //---------------------------
 //admin/views/media.php
- 'resouce_manage'	=> '资源管理',//'Resource management',
+ 'resouce_manage'	=> '媒体资源管理',//'Media resource management',
  'file'			=> '文件',//'File',
+ 'preview'		=> '预览',//'Preview',
  'date'			=> '日期',//'Date',
- 'upload_files'		=> '上传文件',//'Upload files',
+ 'upload_files'		=> '上传图片/文件',//'Upload image/file',
+ 'media_deleted_ok'	=> '媒体文件删除成功',//'Media file deleted successfully',
 
 //---------------------------
 //admin/views/navbar.php
@@ -572,6 +572,8 @@ $lang = array(
  'nav_select_page'	=> '请选择要添加的页面',//'Please select the page you want to add',
  'nav_url_invalid'	=> '导航地址格式错误(需包含http等前缀)',//'Navigation address format error (must include the prefix http, etc.)',
  'nav_edit'		=> '编辑导航',//'Edit navigation',
+ 'hide'			=> '隐藏',//'Hide',
+ 'hidden'		=> '隐藏',//'Hidden',
  'nav_hide_click'	=> '点击隐藏导航',//'Click to hide navigation',
  'nav_show_click'	=> '点击显示导航',//'Click to show navigation',
  'nav_no'		=> '还没有添加导航',//'Has not yet added navigation',
@@ -606,7 +608,8 @@ $lang = array(
  'plugin_active_failed'		=> '插件开启失败',//'Plug-in activation failed',
  'plugin_disable_ok'		=> '插件禁用成功',//'Plug-in disabled successfully',
  'plugin_delete_failed'		=> '删除失败，请检查插件文件权限',//'Delete failed, check the plug-in file permissions',
- 'status'			=> '状态',//'Status',
+ 'plugin_name'			=> '插件名',//'插件名',
+ 'plugin_status'		=> '开关',//'Status',
  'version'			=> '版本',//'Version',
  'description'			=> '描述',//'Description',
  'plugin_active_ok'		=> '点击开启插件',//'Click to activate the plug-in',
@@ -637,8 +640,7 @@ $lang = array(
 //admin/views/seo.php
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
  'post_url_settings'		=> '文章链接设置',//'Post URL settings',
- 'post_url_rewriting'		=> '你可以在这里修改文章链接的形式，如果修改后文章无法访问，那可能是你的服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。',//'Here you can modify the form of the post link. If the post URL can not be accessed, may be your server environment does not support the URL rewriting. Please restore back the default form, and disable the article post alias connection.',
- 'post_url_custom'		=> '启用链接别名后可以自定义文章和页面的链接地址。',//'You can customize the of link enabled alias address for defined articles and pages.',
+ 'post_url_rewriting'		=> '如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。',//'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias. After enabling link aliases, you can customize the link addresses of articles and pages.',
  'default_format'		=> '默认形式',//'Default format',
  'file_format'			=> '文件形式',//'File format',
  'directory_format'		=> '目录形式',//'Directory format',
@@ -817,5 +819,11 @@ $lang = array(
  'access_password'	=> '访问密码',//'Access Password',
  'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
  'tags_have'		=> '已有标签+',//'Have tags+',
+ 'post_tags_separated'	=> '文章标签，使用逗号分隔',//'Post tags, separated by commas',
+ 'resource_library'	=> '资源库',//'Resource Library',
+
+//---------------------------
+//include/lib/mysql.php
+ 'mysql_not_supported'	=> '服务器空间PHP不支持MySql数据库',//'PHP does not support MySql database',
 
 );

@@ -10,68 +10,68 @@
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-<!--vot-->  <li class="nav-item"><a class="nav-link" href="./configure.php"><?=lang('basic_settings')?></a></li>
-<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./seo.php"><?=lang('seo_settings')?></a></li>
-<!--vot-->  <li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./configure.php"><?=lang('basic_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link active" href="./seo.php"><?=lang('seo_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-<!--vot-->      <h4><?=lang('post_url_settings')?></h4>
+<!--vot-->  <h5><?=lang('post_url_settings')?></h5>
             <div class="alert alert-info">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。
+<!--vot-->      <?=lang('post_url_rewriting')?>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
-                <label class="form-check-label">默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
+<!--vot-->      <label class="form-check-label"><?=lang('default_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="1" <?php echo $ex1; ?>>
-                <label class="form-check-label">文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
+<!--vot-->      <label><?=lang('file_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="2" <?php echo $ex2; ?>>
-                <label class="form-check-label">目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
+<!--vot-->      <label><?=lang('directory_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="3" <?php echo $ex3; ?>>
-                <label class="form-check-label">分类形式：<span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span></label>
+<!--vot-->      <label class="form-check-label"><?=lang('category_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span></label>
             </div>
 
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />
-                <label>启用文章链接别名</label>
+<!--vot-->      <label><?=lang('post_alias_enable')?></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />
-                <label>启用文章链接别名html后缀</label>
+<!--vot-->      <label><?=lang('enable_html_suffix')?></label>
             </div>
 
-            <h5 class="mt-4">页头信息设置</h5>
+<!--vot-->  <h5 class="mt-4"><?=lang('meta_settings')?>:</h5>
             <div class="form-group">
-                <label>站点浏览器标题(title)</label>
+<!--vot-->      <label><?=lang('meta_title')?></label>
                 <input class="form-control" value="<?php echo $site_title; ?>" name="site_title">
             </div>
             <div class="form-group">
-                <label><label>站点关键字(keywords)</label></label>
+<!--vot-->      <label><?=lang('meta_keywords')?></label>
                 <input class="form-control" value="<?php echo $site_key; ?>" name="site_key">
             </div>
             <div class="form-group">
-                <label><label>站点浏览器描述(description)</label></label>
-                <textarea name="site_description" class="form-control"><?php echo $site_description; ?></textarea>
+<!--vot-->      <label><?=lang('meta_description')?></label>
+                <textarea name="site_description" class="form-control"  ><?php echo $site_description; ?></textarea>
             </div>
             <div class="form-group">
-<!--vot-->              <label><?=lang('meta_title_scheme')?>:</label>
+<!--vot-->      <label><?=lang('meta_title_scheme')?>:</label>
                 <select name="log_title_style" class="form-control">
-<!--vot-->                  <option value="0" <?php echo $opt0; ?>><?=lang('post_title')?></option>
-<!--vot-->                  <option value="1" <?php echo $opt1; ?>><?=lang('post_title_site_title')?></option>
-<!--vot-->                  <option value="2" <?php echo $opt2; ?>><?=lang('post_title_site_meta_title')?></option>
+<!--vot-->          <option value="0" <?php echo $opt0; ?>><?=lang('post_title')?></option>
+<!--vot-->          <option value="1" <?php echo $opt1; ?>><?=lang('post_title_site_title')?></option>
+<!--vot-->          <option value="2" <?php echo $opt2; ?>><?=lang('post_title_site_meta_title')?></option>
                 </select>
             </div>
 
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->              <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-success">
+<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-success"/>
         </form>
     </div>
 </div>

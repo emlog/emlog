@@ -10,11 +10,11 @@
             <div id="msg"></div>
             <div id="post" class="form-group">
                 <div>
-<!--vot-->              <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('page_title')?>">
+<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('page_title')?>">
                 </div>
                 <div id="post_bar">
                     <div>
-<!--vot-->                  <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
+<!--vot-->              <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset"><?=lang('upload_insert')?></span>
                         <?php doAction('adm_writelog_head'); ?>
                         <span id="asmsg"></span>
                         <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
@@ -31,19 +31,19 @@
         </div>
         <div class="col-xl-4 container-side">
             <div class="panel panel-default">
-<!--vot-->          <div class="panel-heading"><?=lang('setting_items')?></div>
+<!--vot-->      <div class="panel-heading"><?=lang('setting_items')?></div>
                 <div class="panel-body">
                     <div class="form-group">
-<!--vot-->                  <label><?=lang('link_alias')?>:</label>
+<!--vot-->              <label><?=lang('link_alias')?>:</label>
                         <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                     </div>
                     <div class="form-group">
-<!--vot-->                  <label><?=lang('page_template')?></label>
+<!--vot-->              <label><?=lang('page_template')?></label>
                         <input name="template" id="template" class="form-control" value="<?php echo $template; ?>"/>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-<!--vot-->                  <label for="allow_remark"><?=lang('allow_comments')?></label>
+<!--vot-->              <label for="allow_remark"><?=lang('allow_comments')?></label>
                     </div>
                 </div>
             </div>
@@ -53,11 +53,11 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
                 <input type="hidden" name="gid" value=<?php echo $pageId; ?>/>
                 <?php if ($pageId < 0): ?>
-<!--vot-->              <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-success">
-<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
+<!--vot-->          <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-success">
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
                 <?php else: ?>
-<!--vot-->              <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success">
-<!--vot-->              <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success">
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(3);" class="btn btn-success">
                 <?php endif; ?>
 
             </div>
