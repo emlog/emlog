@@ -2,7 +2,7 @@
 /**
  * Search Posts
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Search_Controller

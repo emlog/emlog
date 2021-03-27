@@ -1,7 +1,7 @@
 <?php
 /**
  * Route dispatcher
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Dispatcher {

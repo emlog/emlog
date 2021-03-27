@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: User Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class User_Model {

@@ -1,7 +1,7 @@
 <?php
 /**
  * Install
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
@@ -25,10 +25,11 @@ $act = $_GET['action'] ?? '';
 
 if (!$act) {
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-    <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>emlog</title>
         <style type="text/css">
             <!--
@@ -38,30 +39,26 @@ if (!$act) {
                 font-size: 12px;
                 line-height: 150%;
             }
-
             .main {
                 background-color: #FFFFFF;
                 font-size: 12px;
                 color: #666666;
                 width: 750px;
                 margin: 30px auto;
-                padding: 10px;
+                padding: 50px;
                 list-style: none;
                 border: #DFDFDF 1px solid;
                 border-radius: 4px;
             }
-
             .logo {
                 background: url(admin/views/images/logo.gif) no-repeat center;
                 padding: 30px 0px 30px 0px;
                 margin: 30px 0px;
             }
-
             .title {
                 text-align: center;
                 font-size: 14px;
             }
-
             .input {
                 border: 1px solid #CCCCCC;
                 font-family: Arial;
@@ -71,17 +68,14 @@ if (!$act) {
                 color: #666666;
                 margin: 0px 0px 0px 25px;
             }
-
             .submit {
                 cursor: pointer;
                 font-size: 12px;
                 padding: 4px 10px;
             }
-
             .care {
                 color: #0066CC;
             }
-
             .title2 {
                 font-size: 18px;
                 color: #666666;
@@ -89,15 +83,12 @@ if (!$act) {
                 margin: 40px 0px 20px 0px;
                 padding: 10px 0px;
             }
-
             .foot {
                 text-align: center;
             }
-
             .main li {
                 margin: 20px 0px;
             }
-
             -->
         </style>
 </head>
@@ -105,7 +96,7 @@ if (!$act) {
 <form name="form1" method="post" action="install.php?action=install">
     <div class="main">
         <p class="logo"></p>
-<!--vot--><p class="title"><?= lang('installation') ?><?= Option::EMLOG_VERSION ?></p>
+            <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
         <div class="b">
 <!--vot-->  <p class="title2"><?= lang('mysql_settings') ?></p>
             <li>
@@ -147,9 +138,7 @@ if (!$act) {
             </li>
         </div>
         <div>
-            <p class="foot">
-<!--vot-->      <input type="submit" class="submit" value="<?= lang('install_emlog') ?>">
-            </p>
+                <p class="foot"><input type="submit" class="submit" value="开始安装emlog"></p>
         </div>
     </div>
 </form>
@@ -357,7 +346,7 @@ option_value LONGTEXT NOT NULL ,
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','" . lang('my_blog') . "');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','EMLOG');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','" . lang('emlog_powered') . "');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');

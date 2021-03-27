@@ -1,7 +1,7 @@
 <?php
 /**
  * Views Handler
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class View {

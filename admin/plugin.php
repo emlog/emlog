@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -11,9 +11,9 @@
 
 require_once 'globals.php';
 
-$plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
+$plugin = $_GET['plugin'] ?? '';
 
-if ($action == '' && !$plugin) {
+if (empty($action) && empty($plugin)) {
     $Plugin_Model = new Plugin_Model();
     $plugins = $Plugin_Model->getPlugins();
 
@@ -45,9 +45,9 @@ if ($action == 'inactive') {
 }
 
 //Load the plug-in configuration page
-if ($action == '' && $plugin) {
-    include View::getView('header');
+if (empty($action) && $plugin) {
     require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
+    include View::getView('header');
     plugin_setting_view();
     include View::getView('footer');
 }

@@ -1,8 +1,10 @@
 <?php
 /**
- * Posts Management
+<?php
+/**
+ * The article management
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -14,8 +16,7 @@ require_once 'globals.php';
 
 $Log_Model = new Log_Model();
 
-//Show Posts (draft) management page
-if ($action == '') {
+if (empty($action)) {
     $Tag_Model = new Tag_Model();
     $User_Model = new User_Model();
 
@@ -82,7 +83,6 @@ if ($action == '') {
     View::output();
 }
 
-//Blog Operation
 if ($action == 'operate_log') {
     $operate = $_REQUEST['operate'] ?? '';
     $pid = $_POST['pid'] ?? '';

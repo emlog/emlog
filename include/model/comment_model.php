@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Comments Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Comment_Model {

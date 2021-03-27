@@ -1,7 +1,7 @@
 <?php
 /**
  * Load Global Items
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 error_reporting(E_ALL);

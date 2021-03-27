@@ -2,7 +2,7 @@
 /**
  * View Post Tags
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Tag_Controller

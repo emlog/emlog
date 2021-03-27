@@ -1,14 +1,16 @@
 <?php
 /**
  * Model: Tag Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
-class Tag_Model {
+class Tag_Model
+{
 
     private $db;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
     }
 
@@ -18,14 +20,14 @@ class Tag_Model {
      * @param int $blogId
      * @return array
      */
-    function getTag($blogId = NULL) {
+    function getTag($blogId = NULL)
+    {
         $tags = array();
 
         $tag_ids = $this->getTagIdsFromBlogId($blogId);
         $tag_names = $this->getNamesFromIds($tag_ids);
-        
-        foreach ($tag_names as $key => $value)
-        {
+
+        foreach ($tag_names as $key => $value) {
             $row = array();
             $row['tagname'] = htmlspecialchars($value);
             $row['tid'] = intval($key);
@@ -35,33 +37,35 @@ class Tag_Model {
         return $tags;
     }
 
-    function getOneTag($tagId) {
+    function getOneTag($tagId)
+    {
         $tag = array();
-        $row = $this->db->once_fetch_array("SELECT tagname,tid FROM ".DB_PREFIX."tag WHERE tid=$tagId");
+        $row = $this->db->once_fetch_array("SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
         $tag['tagname'] = htmlspecialchars(trim($row['tagname']));
         $tag['tagid'] = intval($row['tid']);
         return $tag;
     }
 
-    function getTagByName($tagName) {
+    function getTagByName($tagName)
+    {
         $tagId = $this->getIdFromName($tagName);
         return $this->getTagById($tagId);
     }
 
-    function getTagById($tagId) {
+    function getTagById($tagId)
+    {
         $blogs = $this->getBlogIdsFromTagId($tagId);
         $blogIdStr = implode(',', $blogs);
         return $blogIdStr;
     }
 
-    /**
-     * Add tag
+    function addTag($tagStr, $blogId)
+    {
      */
-    function addTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
 //vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
-        
+
         if (empty($tagStr)) {
             return;
         }
@@ -71,7 +75,7 @@ class Tag_Model {
         $tagNameArray = array_unique($tagNameArray);
 
         $tags = array();
-        foreach ($tagNameArray as $tagName)  {
+        foreach ($tagNameArray as $tagName) {
             $tagName = trim($tagName);
 
             if (empty($tagName)) {
@@ -80,8 +84,8 @@ class Tag_Model {
 
             // Get from the tag name to Tag Id, If the tag does not exist, Create Tag
             $tagId = $this->getIdFromName($tagName);
-            
-            if ( ! $tagId) {
+
+            if (!$tagId) {
                 $tagId = $this->createTag($tagName, $blogId);
             }
 
@@ -97,14 +101,13 @@ class Tag_Model {
         $this->db->query($sql);
     }
 
-    /**
-     * Update Post Tags
+    function updateTag($tagStr, $blogId)
+    {
      */
-    function updateTag($tagStr, $blogId) {
         $tagStr = trim($tagStr);
 //vot: DO NOT TRANSLATE BELOW LINE!!
         $tagStr = str_replace('，', ',', $tagStr);
-        
+
         // The old Tag Id list
         $old_tags = $this->getTagIdsFromBlogId($blogId);
 
@@ -112,7 +115,7 @@ class Tag_Model {
         $new_tags = array();
 
         // Establish new tag id array
-        if ( ! empty($tagStr)) {
+        if (!empty($tagStr)) {
             // split the label string Tag array, and remove duplications
             $tagNameArray = explode(',', $tagStr);
             $tagNameArray = array_unique($tagNameArray);
@@ -126,8 +129,8 @@ class Tag_Model {
 
                 // Get from the tag name to Tag Id, If the tag does not exist, Create Tag
                 $tagId = $this->getIdFromName($tagName);
-                
-                if ( ! $tagId) {
+
+                if (!$tagId) {
                     $tagId = $this->createTag($tagName);
                 }
 
@@ -137,14 +140,14 @@ class Tag_Model {
 
         // If the old in a new tab Tag Id Id array does not exist, delete Tag from the list mapping
         foreach ($old_tags as $each_tag) {
-            if ( ! in_array($each_tag, $new_tags)) {
+            if (!in_array($each_tag, $new_tags)) {
                 $this->removeBlogIdFromTag($each_tag, $blogId);
             }
         }
 
         // If the new Tag in the old Tag Id Id array does not exist, then establish the Tag mapping table
         foreach ($new_tags as $each_tag) {
-            if ( ! in_array($each_tag, $old_tags)) {
+            if (!in_array($each_tag, $old_tags)) {
                 $this->addBlogIntoTag($each_tag, $blogId);
             }
         }
@@ -155,20 +158,21 @@ class Tag_Model {
         $this->db->query($sql);
     }
 
-    function updateTagName($tagId, $tagName) {
-        $sql="UPDATE ".DB_PREFIX."tag SET tagname='$tagName' WHERE tid=$tagId";
+    function updateTagName($tagId, $tagName)
+    {
+        $sql = "UPDATE " . DB_PREFIX . "tag SET tagname='$tagName' WHERE tid=$tagId";
         $this->db->query($sql);
     }
 
-    function deleteTag($tagId) {
-        // To remove a Tag, You need to check which Article have cited this tag, And to delete the label from those references
+    function deleteTag($tagId)
+    {
         $linked_blogs = $this->getBlogIdsFromTagId($tagId);
 
         foreach ($linked_blogs as $blogId) {
             $this->removeTagIdFromBlog($blogId, $tagId);
         }
 
-        $this->db->query("DELETE FROM ".DB_PREFIX."tag where tid=$tagId");
+        $this->db->query("DELETE FROM " . DB_PREFIX . "tag where tid=$tagId");
     }
 
     /**
@@ -176,7 +180,8 @@ class Tag_Model {
      * @param string $tagName Tag name
      * @return int|bool Tag ID | FALSE (Tag not found)
      */
-    function getIdFromName($tagName){
+    function getIdFromName($tagName)
+    {
         $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $this->db->escape_string($tagName) . "'";
         $query = $this->db->query($sql);
 
@@ -193,7 +198,8 @@ class Tag_Model {
      * @param string $tagNames Tag names (comma separated)
      * @return array Tag ID list
      */
-    function getIdsFromNames($tagNames) {
+    function getIdsFromNames($tagNames)
+    {
         $result = array();
         $tagNameArray = explode(',', $tagNames);
 
@@ -218,7 +224,8 @@ class Tag_Model {
      * @param array $tagIds Tag ID list
      * @return array
      */
-    function getNamesFromIds($tagIds = NULL) {
+    function getNamesFromIds($tagIds = NULL)
+    {
         $names = array();
 /*vot*/	foreach ($tagIds AS $i => $tag) {
 /*vot*/		if(empty($tag)) {
@@ -226,14 +233,13 @@ class Tag_Model {
 /*vot*/		}
 /*vot*/	}
 
-        if ( ! empty($tagIds)) {
+        if (!empty($tagIds)) {
             $tag_string = implode(',', $tagIds);
             $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
             $query = $this->db->query($sql);
 
             if ($this->db->num_rows($query) > 0) {
-                while ($result = $this->db->fetch_array($query))
-                {
+                while ($result = $this->db->fetch_array($query)) {
                     $names[$result['tid']] = $result['tagname'];
                 }
             }
@@ -248,11 +254,12 @@ class Tag_Model {
      * @param string $blogId
      * @return int Tag ID
      */
-    function createTag($tagName, $blogId = ''){
+    function createTag($tagName, $blogId = '')
+    {
         $existTag = $this->getIdFromName($tagName);
-        
-        if ( ! $existTag) {
-            $this->db->query("INSERT INTO `".DB_PREFIX."tag` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
+
+        if (!$existTag) {
+            $this->db->query("INSERT INTO `" . DB_PREFIX . "tag` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
             $existTag = $this->db->insert_id();
         }
 
@@ -263,7 +270,8 @@ class Tag_Model {
      * Create a bunch of new Tags
      * @param mixed $tagNames Tag names (in comma separated)
      */
-    function createTags($tagNames) {
+    function createTags($tagNames)
+    {
         $tagNameArray = explode(',', $tagNames);
 
         foreach ($tagNameArray as $each) {
@@ -282,11 +290,12 @@ class Tag_Model {
      * @param int $blogId Article ID
      * @return array Tag ID list
      */
-    function getTagIdsFromBlogId($blogId = NULL) {
+    function getTagIdsFromBlogId($blogId = NULL)
+    {
         if (empty($blogId)) {
             return $this->getAllTagIds();
         }
-        
+
         $tags = array();
 
         $sql = "SELECT `tags` FROM `" . DB_PREFIX . "blog` WHERE `gid` = " . $blogId;
@@ -296,8 +305,7 @@ class Tag_Model {
         if ($this->db->num_rows($query) > 0) {
             $result = $this->db->fetch_array($query);
 
-            if ( ! empty($result['tags']))
-            {
+            if (!empty($result['tags'])) {
                 $tags = explode(',', $result['tags']);
             }
         }
@@ -305,16 +313,15 @@ class Tag_Model {
         return $tags;
     }
 
-    function getAllTagIds() {
+    function getAllTagIds()
+    {
         $tags = array();
 
         $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
         $query = $this->db->query($sql);
 
-        if ($this->db->num_rows($query) > 0)
-        {
-            while ($result = $this->db->fetch_array($query))
-            {
+        if ($this->db->num_rows($query) > 0) {
+            while ($result = $this->db->fetch_array($query)) {
                 $tags [] = $result['tid'];
             }
         }
@@ -328,7 +335,8 @@ class Tag_Model {
      * @param int $tagId Tag ID
      * @return array Article ID list
      */
-    function getBlogIdsFromTagId($tagId) {
+    function getBlogIdsFromTagId($tagId)
+    {
         $blogs = array();
 
 /*vot*/	if(!empty($tagId)) {
@@ -339,8 +347,7 @@ class Tag_Model {
         if ($this->db->num_rows($query) > 0) {
             $result = $this->db->fetch_array($query);
 
-            if ( ! empty($result['gid']))
-            {
+            if (!empty($result['gid'])) {
                 $blogs = explode(',', $result['gid']);
             }
         }
@@ -351,10 +358,11 @@ class Tag_Model {
 
     /**
      * Remove from Tag Tag out the article referenced table
-     * @param int $tagId 
-     * @param int $blogId 
+     * @param int $tagId
+     * @param int $blogId
      */
-    function removeBlogIdFromTag($tagId, $blogId) {
+    function removeBlogIdFromTag($tagId, $blogId)
+    {
         $blogs = $this->getBlogIdsFromTagId($tagId);
 
         if (empty($blogs)) {
@@ -372,17 +380,18 @@ class Tag_Model {
             }
 
             $blog_string = implode(',', $new_blogs);
-            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId; 
+            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
             $this->db->query($sql);
         }
     }
 
     /**
      * Delete a reference to a Tag from the list of TagMap
-     * @param int $blogId 
-     * @param int $tagId 
+     * @param int $blogId
+     * @param int $tagId
      */
-    function removeTagIdFromBlog($blogId, $tagId) {
+    function removeTagIdFromBlog($blogId, $tagId)
+    {
         $tags = $this->getTagIdsFromBlogId($blogId);
 
         if (empty($tags)) {
@@ -410,14 +419,15 @@ class Tag_Model {
      * @param int $tagId Tag ID
      * @param int $blogId Blog ID
      */
-    function addBlogIntoTag($tagId, $blogId) {
+    function addBlogIntoTag($tagId, $blogId)
+    {
         $exist_blogs = $this->getBlogIdsFromTagId($tagId);
-        
-        if ( ! in_array($blogId, $exist_blogs)) {
+
+        if (!in_array($blogId, $exist_blogs)) {
             $exist_blogs[] = $blogId;
 
             $blog_string = implode(',', $exist_blogs);
-            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId; 
+            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
             $this->db->query($sql);
         }
     }

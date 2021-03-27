@@ -2,7 +2,7 @@
 /**
  * Route database operations
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Database {

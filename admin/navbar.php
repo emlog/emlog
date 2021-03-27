@@ -1,7 +1,7 @@
 <?php
 /**
  * Link Manager
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 $Navi_Model = new Navi_Model();
 
-if ($action == '') {
+if (empty($action)) {
     $emPage = new Log_Model();
 
     $navis = $Navi_Model->getNavis();

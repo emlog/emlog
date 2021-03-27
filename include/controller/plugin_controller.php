@@ -2,7 +2,7 @@
 /**
  * Front loading plugin page
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Plugin_Controller

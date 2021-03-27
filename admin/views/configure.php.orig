@@ -1,0 +1,131 @@
+<?php if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+} ?>
+<?php if (isset($_GET['activated'])): ?>
+    <div class="alert alert-success">设置保存成功</div><?php endif; ?>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><?=lang('settings')?></h1>
+</div>
+<div class="panel-heading">
+    <ul class="nav nav-pills">
+<!--vot--><li class="nav-item"><a class="nav-link active" href="./configure.php"><?=lang('basic_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./seo.php"><?=lang('seo_settings')?></a></li>
+<!--vot--><li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
+    </ul>
+</div>
+<div class="card shadow mb-4 mt-2">
+    <div class="card-body">
+        <form action="configure.php?action=mod_config" method="post" name="input" id="input">
+            <div class="form-group">
+<!--vot-->          <label><?=lang('site_title')?>:</label>
+                <input class="form-control" value="<?php echo $blogname; ?>" name="blogname">
+            </div>
+            <div class="form-group">
+<!--vot-->          <label><?=lang('site_subtitle')?>:</label>
+                <textarea name="bloginfo" cols="" rows="3" class="form-control"><?php echo $bloginfo; ?></textarea>
+            </div>
+            <div class="form-group">
+<!--vot-->          <label><?=lang('site_address')?>:</label>
+                <input class="form-control" value="<?php echo $blogurl; ?>" name="blogurl">
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?php echo $conf_detect_url; ?> />
+<!--vot-->          <label class="form-check-label" for="exampleCheck1"><?=lang('detect_url')?></label>
+            </div>
+
+            <div class="form-group">
+<!--vot-->          <label><?=lang('your_timezone')?></label>
+                <select name="timezone" style="width:320px;" class="form-control">
+                    <?php foreach ($tzlist as $key => $value):
+                        $ex = $key == $timezone ? "selected=\"selected\"" : ''; ?>
+                        <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?php echo $conf_login_code; ?> >
+<!--vot-->          <label class="form-check-label"><?=lang('login_verification_code')?></label>
+            </div>
+
+            <div class="form-group form-inline">
+                <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />
+<!--vot-->          <label><?=lang('enable_comments')?></label>,
+<!--vot-->          <?=lang('comment_interval')?> <input class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval/> <?=lang('seconds')?>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?php echo $conf_ischkcomment; ?> />
+<!--vot-->          <label><?=lang('comment_moderation')?></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="comment_code" id="comment_code" <?php echo $conf_comment_code; ?> />
+<!--vot-->          <label><?=lang('comment_verification_code')?></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="isgravatar" id="isgravatar" <?php echo $conf_isgravatar; ?> />
+<!--vot-->          <label><?=lang('comment_avatar')?></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> />
+<!--vot-->          <label><?=lang('comment_must_contain_chinese')?></label>
+            </div>
+            <div class="form-group form-inline">
+                <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />
+                <label>评论分页，</label>
+                每页显示<input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum"/>条评论，
+                <select name="comment_order" class="form-control">
+                    <option value="newer" <?php echo $ex3; ?>>较新的</option>
+                    <option value="older" <?php echo $ex4; ?>>较旧的</option>
+                </select>排在前面
+            </div>
+
+            <div class="form-group form-inline">
+                <label>每页显示文章数量</label>
+                <input class="form-control mx-sm-3" value="<?php echo $index_lognum; ?>" name="index_lognum"/>
+            </div>
+
+            <div class="form-group form-inline">
+                RSS输出 <input maxlength="5" style="width:50px;" value="<?php echo $rss_output_num; ?>" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
+                <select name="rss_output_fulltext" class="form-control">
+                    <option value="y" <?php echo $ex1; ?>>全文</option>
+                    <option value="n" <?php echo $ex2; ?>>摘要</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline">
+                <input class="form-check-input" type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />
+                <label class="form-check-label">自动摘要, 且自动截取</label>
+                <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/>个字作为摘要
+            </div>
+
+            <div class="form-group form-inline">
+                附件上传最大限制 <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
+            </div>
+            <div class="form-group form-inline">
+<!--vot-->          <?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/>
+            </div>
+            <div class="form-group form-inline">
+<!--vot-->          <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?>
+                <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw"/> x
+                <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/>（单位：像素）
+            </div>
+            <div class="form-group">
+<!--vot-->          <label><?=lang('icp_reg_no')?></label>
+                <input class="form-control" value="<?php echo $icp; ?>" name="icp"/>
+            </div>
+            <div class="form-group">
+<!--vot-->          <label><?=lang('home_footer_info')?>:</label>
+                <textarea name="footer_info" rows="6" class="form-control"><?php echo $footer_info; ?></textarea>
+            </div>
+            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+<!--vot-->      <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-success">
+        </form>
+    </div>
+</div>
+<script>
+    $("#menu_category_sys").addClass('active');
+    $("#menu_sys").addClass('show');
+    $("#menu_setting").addClass('active');
+    setTimeout(hideActived, 2600);
+</script>

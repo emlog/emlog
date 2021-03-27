@@ -1,7 +1,7 @@
 <?php
 /**
  * Calendar
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Calendar {

@@ -1,7 +1,7 @@
 <?php
 /**
  * URL Processing
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Url {

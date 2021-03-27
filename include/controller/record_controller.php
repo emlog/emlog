@@ -2,7 +2,7 @@
 /**
  * View Archive
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Record_Controller

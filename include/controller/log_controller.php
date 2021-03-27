@@ -2,7 +2,7 @@
 /**
  * Showing page content
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Log_Controller

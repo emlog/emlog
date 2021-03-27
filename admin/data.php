@@ -1,7 +1,7 @@
 <?php
 /**
  * Data Backup
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

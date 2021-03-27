@@ -1,7 +1,7 @@
 <?php
 /**
  * Front Options
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 // Load the core Lang File
@@ -9,7 +9,7 @@
 
 class Option {
     //Version number
-    const EMLOG_VERSION = 'BETA';
+    const EMLOG_VERSION = 'pro v1.0.0';
     //Maximum avatar thumbnail width
     const ICON_MAX_W = 200;
     //Maximum avatar thumbnail height

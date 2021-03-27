@@ -1,45 +1,64 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<div class="container-fluid">
-<!--vot--><?php if (isset($_GET['error_login'])): ?><div class="alert alert-danger"><?=lang('user_name_empty')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_exist'])): ?><div class="alert alert-danger"><?=lang('user_name_exists')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_pwd_len'])): ?><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif; ?>
-<!--vot--><?php if (isset($_GET['error_pwd2'])): ?><div class="alert alert-danger"><?=lang('passwords_not_equal')?></div><?php endif; ?>
-<!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('user_manage')?></h1>
-    <form action="user.php?action=update" method="post">
-        <div class="form-group">
-<!--vot-->  <li><input type="text" value="<?php echo $username; ?>" name="username" style="width:200px;" class="form-control"> <?=lang('user_name')?></li>
-<!--vot-->  <li><input type="text" value="<?php echo $nickname; ?>" name="nickname" style="width:200px;" class="form-control"> <?=lang('nickname')?></li>
-<!--vot-->  <li><input type="password" value="" name="password" style="width:200px;" class="form-control"> <?=lang('password_new')?></li>
-<!--vot-->  <li><input type="password" value="" name="password2" style="width:200px;" class="form-control"> <?=lang('password_new_repeat')?></li>
-<!--vot-->  <li><input type="text" value="<?php echo $email; ?>" name="email" style="width:200px;" class="form-control"> <?=lang('email')?></li>
-            <li>
-                <select name="role" id="role" class="form-control">
+<?php if (isset($_GET['error_login'])): ?>
+    <div class="alert alert-danger">用户名不能为空</div><?php endif; ?>
+<?php if (isset($_GET['error_exist'])): ?>
+    <div class="alert alert-danger">该用户名已存在</div><?php endif; ?>
+<?php if (isset($_GET['error_pwd_len'])): ?>
+    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+<?php if (isset($_GET['error_pwd2'])): ?>
+    <div class="alert alert-danger">两次输入密码不一致</div><?php endif; ?>
+<h1 class="h3 mb-4 text-gray-800">修改作者资料</h1>
+<form action="user.php?action=update" method="post">
+    <div class="form-group">
+        <label for="username">用户名</label>
+        <input class="form-control" value="<?php echo $username; ?>" name="username" id="username">
+    </div>
+    <div class="form-group">
+        <label for="nickname">昵称</label>
+        <input class="form-control" value="<?php echo $nickname; ?>" name="nickname" id="nickname">
+    </div>
+    <div class="form-group">
+        <label for="password">新密码(不修改请留空)</label>
+        <input type="password" class="form-control" name="password" id="password">
+    </div>
+    <div class="form-group">
+        <label for="password2">重复新密码</label>
+        <input type="password" class="form-control" name="password2" id="password2">
+    </div>
+    <div class="form-group">
+        <label for="email">电子邮件</label>
+        <input class="form-control" value="<?php echo $email; ?>" name="email" id="email">
+    </div>
+    <div class="form-group">
+        <select name="role" id="role" class="form-control">
 <!--vot-->          <option value="writer" <?php echo $ex1; ?>><?=lang('user')?></option>
 <!--vot-->          <option value="admin" <?php echo $ex2; ?>><?=lang('admin')?></option>
-                </select>
-            </li>
-            <li id="ischeck">
-                <select name="ischeck" class="form-control">
+        </select>
+    </div>
+    <div class="form-group" id="ischeck">
+        <select name="ischeck" class="form-control">
 <!--vot-->          <option value="n" <?php echo $ex3; ?>><?=lang('posts_not_need_audit')?></option>
 <!--vot-->          <option value="y" <?php echo $ex4; ?>><?=lang('posts_need_audit')?></option>
-                </select>
-            </li>
-<!--vot-->  <li><?=lang('personal_description')?><br>
-                <textarea name="description" rows="5" style="width:260px;" class="form-control"><?php echo $description; ?></textarea></li>
-            <li>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">个人描述</label>
+        <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
+    </div>
+    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+    <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
 <!--vot-->      <input type="submit" value="<?=lang('save')?>" class="btn btn-success">
 <!--vot-->      <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="window.location='user.php';"></li>
-        </div>
-    </form>
-</div>
+</form>
 
 <script>
     setTimeout(hideActived, 2600);
+    $("#menu_category_sys").addClass('active');
+    $("#menu_sys").addClass('show');
     $("#menu_user").addClass('active');
+
     if ($("#role").val() == 'admin') $("#ischeck").hide();
     $("#role").change(function () {
         $("#ischeck").toggle()

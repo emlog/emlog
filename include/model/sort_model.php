@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Blog Categories
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Sort_Model {

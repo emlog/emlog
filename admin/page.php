@@ -1,7 +1,7 @@
 <?php
 /**
  * Page Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -12,7 +12,7 @@
 require_once 'globals.php';
 
 //Load the Page Management page
-if ($action == '') {
+if (empty($action)) {
     $emPage = new Log_Model();
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

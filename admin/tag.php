@@ -1,7 +1,7 @@
 <?php
 /**
  * Tags Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 $Tag_Model = new Tag_Model();
 
-if ($action == '') {
+if (empty($action)) {
     $tags = $Tag_Model->getTag();
     include View::getView('header');
     require_once View::getView('tag');

@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Links
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Link_Model {
@@ -36,21 +36,6 @@ class Link_Model {
 	function addLink($name, $url, $des) {
 		$sql="insert into ".DB_PREFIX."link (sitename,siteurl,description) values('$name','$url','$des')";
 		$this->db->query($sql);
-	}
-
-	function getOneLink($linkId) {
-		$sql = "select * from ".DB_PREFIX."link where id=$linkId ";
-		$res = $this->db->query($sql);
-		$row = $this->db->fetch_array($res);
-		$linkData = array();
-		if ($row) {
-			$linkData = array(
-			'sitename' => htmlspecialchars(trim($row['sitename'])),
-			'siteurl' => htmlspecialchars(trim($row['siteurl'])),
-			'description' => htmlspecialchars(trim($row['description']))
-			);
-		}
-		return $linkData;
 	}
 
 	function deleteLink($linkId) {

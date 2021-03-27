@@ -4,33 +4,19 @@
  */
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
 ?>
-	</div>
-</div>
-<footer>
+
+<footer class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 footer-below">
-                <hr>
-<!--vot-->      <?=lang('powered_by')?> <a href="http://www.emlog.net">emlog</a>
-                <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
-                <?php doAction('index_footer'); ?>
-            </div>
-        </div>
+        <p class="m-0 text-center">Powered by <a href="http://www.emlog.net">emlog</a><br>
+            <a href="http://www.miibeian.gov.cn" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
+            <?php doAction('index_footer'); ?>
+        </p>
     </div>
 </footer>
-<script>
-$(document).ready(function(){
-	dropdownOpen();//Expand the submenu mouse across it, so need to click to expand
-    prettyPrint();
-});
-function dropdownOpen() {
-	var $dropdownLi = $('li.dropdown');
-	$dropdownLi.mouseover(function() {
-		$(this).addClass('open');
-	}).mouseout(function() {
-		$(this).removeClass('open');
-	});
-}
-</script>
+
+<script src="<?php echo TEMPLATE_URL; ?>js/jquery.min.3.5.1.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
+<script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
+
 </body>
 </html>

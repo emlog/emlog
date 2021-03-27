@@ -2,7 +2,7 @@
 
 /**
  * Basic Function library
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 function emAutoload($class) {
     $class = strtolower($class);

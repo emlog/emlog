@@ -2,7 +2,7 @@
 /**
  * Comment Management
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

@@ -2,7 +2,7 @@
 /**
  * View Post Category
  *
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Sort_Controller

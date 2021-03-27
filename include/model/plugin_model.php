@@ -1,7 +1,7 @@
 <?php
 /**
  * Model: Plug-in
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 class Plugin_Model {

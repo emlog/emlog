@@ -1,7 +1,7 @@
 <?php
 /**
  * Blog settings
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -11,7 +11,7 @@
 
 require_once 'globals.php';
 
-if ($action == '') {
+if (empty($action)) {
     $options_cache = $CACHE->readCache('options');
     extract($options_cache);
 

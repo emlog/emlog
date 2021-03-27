@@ -1,7 +1,7 @@
 <?php
 /**
  * Link Management
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 $Link_Model = new Link_Model();
 
-if ($action == '') {
+if (empty($action)) {
 	$links = $Link_Model->getLinks();
 	include View::getView('header');
 	require_once(View::getView('links'));

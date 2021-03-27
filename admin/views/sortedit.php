@@ -1,51 +1,57 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<div class="container-fluid">
-<!--vot--><?php if (isset($_GET['error_a'])): ?><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif;?>
-<!--vot--><?php if (isset($_GET['error_c'])): ?><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif;?>
-<!--vot--><?php if (isset($_GET['error_d'])): ?><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif;?>
-<!--vot--><?php if (isset($_GET['error_e'])): ?><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif;?>
-<!--vot--><h1 class="h3 mb-2 text-gray-800"><?=lang('category_edit')?></h1>
-    <form action="sort.php?action=add" method="post" id="sort_new" style="margin-top: 30px;">
-        <div class="form-group">
+<?php if (isset($_GET['error_a'])): ?>
+    <div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+<?php if (isset($_GET['error_c'])): ?>
+    <div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+<?php if (isset($_GET['error_d'])): ?>
+    <div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+<?php if (isset($_GET['error_e'])): ?>
+    <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
+<h1 class="h3 mb-2 text-gray-800">编辑分类</h1>
+<form action="sort.php?action=update" method="post">
+    <div class="form-group">
 <!--vot-->  <label for="sortname"><?=lang('category_name')?></label>
-            <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname">
-        </div>
-        <div class="form-group">
+        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname">
+    </div>
+    <div class="form-group">
 <!--vot-->  <label for="alias"><?=lang('alias')?></label>
-            <input class="form-control" value="<?php echo $alias; ?>" name="alias" id="alias">
+        <input class="form-control" value="<?php echo $alias; ?>" name="alias" id="alias">
 <!--vot-->  <small class="form-text text-muted"><?=lang('alias_prompt')?></small>
-        </div>
-        <div class="form-group">
+    </div>
+    <div class="form-group">
 <!--vot-->  <label><?=lang('category_parent')?></label>
-            <select name="pid" id="pid" class="form-control">
+        <select name="pid" id="pid" class="form-control">
 <!--vot-->      <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif; ?>><?=lang('no')?></option>
-                <?php
-                foreach ($sorts as $key => $value):
-                    if ($key == $sid || $value['pid'] != 0) continue;
-                    ?>
-                    <option value="<?php echo $key; ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="form-group">
+            <?php
+            foreach ($sorts as $key => $value):
+                if ($key == $sid || $value['pid'] != 0) continue;
+                ?>
+                <option value="<?php echo $key; ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="form-group">
 <!--vot-->  <label for="template"><?=lang('template')?></label>
-            <input class="form-control" name="template" id="template" value="<?php echo $template; ?>">
+        <input class="form-control" name="template" id="template" value="<?php echo $template; ?>">
 <!--vot-->  <small class="form-text text-muted"><?=lang('template_info')?></small>
-        </div>
-        <div class="form-group">
-<!--vot-->  <label for="alias"><?=lang('category_description')?></label>
-            <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
-        </div>
-        <input type="hidden" value="<?php echo $sid; ?>" name="sid"/>
+    </div>
+    <div class="form-group">
+        <label for="description">分类描述</label>
+        <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
+    </div>
+    <input type="hidden" value="<?php echo $sid; ?>" name="sid"/>
 <!--vot--> <input type="submit" value="<?=lang('save')?>" class="btn btn-success" id="save">
 <!--vot--> <input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();">
-        <span id="alias_msg_hook"></span>
-    </form>
-</div>
+    <span id="alias_msg_hook"></span>
+</form>
+
 <script>
+    $("#menu_category_content").addClass('active');
+    $("#menu_content").addClass('show');
     $("#menu_sort").addClass('active');
+
     $("#alias").keyup(function () {
         checksortalias();
     });

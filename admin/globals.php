@@ -1,7 +1,7 @@
 <?php
 /**
  * Load Background Global items
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**

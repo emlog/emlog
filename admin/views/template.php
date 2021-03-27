@@ -1,52 +1,54 @@
 <?php if (!defined('EMLOG_ROOT')) {
     exit('error!');
 } ?>
-<div class="container-fluid">
-    <?php if (isset($_GET['activated'])): ?>
+<?php if (isset($_GET['activated'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('template_change_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['activate_install'])): ?>
+<?php if (isset($_GET['activate_install'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('template_upload_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['activate_del'])): ?>
+<?php if (isset($_GET['activate_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('template_delete_ok')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_f'])): ?>
+<?php if (isset($_GET['error_f'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_delete_failed')?></div><?php endif; ?>
-    <?php if (!$nonceTplData): ?>
+<?php if (!$nonceTplData): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_current_use')?>(<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_a'])): ?>
+<?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_b'])): ?>
+<?php if (isset($_GET['error_b'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_upload_failed_nonwritable')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_d'])): ?>
+<?php if (isset($_GET['error_d'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_select_zip')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_e'])): ?>
+<?php if (isset($_GET['error_e'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_non_standard')?></div><?php endif; ?>
-    <?php if (isset($_GET['error_c'])): ?>
-        <div class="alert alert-danger">
+<?php if (isset($_GET['error_c'])): ?>
+    <div class="alert alert-danger">
 <!--vot-->  <?=lang('template_no_zip_install_manually')?>
 <!--vot-->  <?=lang('template_install_prompt1')?>
 <!--vot-->  <?=lang('template_install_prompt2')?>
-        </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('template_manager')?></h1>
 <!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i> <?=lang('template_add')?></a>
-    </div>
-    <div class="card-columns">
-        <?php foreach ($tpls as $key => $value): ?>
-            <div class="card <?php if ($nonce_templet == $value['tplfile']) {echo "border border-warning";} ?>">
-                <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {echo "bg-warning";} ?>"><?php echo $value['tplname']; ?></div>
-                <div class="card-body">
-                    <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-                        <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
-                    </a>
-                </div>
-                <div class="card-footer">
-<!--vot-->          <a class="text-muted" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
-                </div>
+</div>
+<div class="card-columns">
+    <?php foreach ($tpls as $key => $value): ?>
+        <div class="card <?php if ($nonce_templet == $value['tplfile']) {
+            echo "border border-warning";
+        } ?>">
+            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
+                echo "bg-warning";
+            } ?>"><?php echo $value['tplname']; ?></div>
+            <div class="card-body">
+                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+                    <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
+                </a>
             </div>
-        <?php endforeach; ?>
-    </div>
+            <div class="card-footer">
+                <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,7 +60,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div>

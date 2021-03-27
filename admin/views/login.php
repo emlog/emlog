@@ -15,16 +15,22 @@
 <body>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-7 col-lg-12 col-md-9">
+        <div class="col-xl-6 col-lg-12 col-md-9">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <div class="p-5">
                         <form method="post" action="./index.php?action=login">
+                            <?php if ($error_msg): ?>
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <?php echo $error_msg; ?>
+                                </div>
+                            <?php endif;?>
                             <div class="form-group">
-<!--vot-->                      <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="<?=lang('user_name')?>">
+                                <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required="required">
                             </div>
                             <div class="form-group">
-<!--vot-->                      <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>">
+                                <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required="required">
                             </div>
                             <?php if ($ckcode): ?>
                                 <div class="form-group">
@@ -52,3 +58,6 @@
 </div>
 </body>
 </html>
+<script>
+    setTimeout(hideActived, 3600);
+</script>

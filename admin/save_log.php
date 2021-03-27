@@ -1,7 +1,7 @@
 <?php
 /**
  * Save the post (add, modify)
- * @package EMLOG
+ * @package EMLOG (www.emlog.net)
  */
 
 /**
