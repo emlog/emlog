@@ -27,9 +27,9 @@ function em_confirm (id, property, token) {
         case 'backup':
             var urlreturn="data.php?action=renewdata&sqlfile="+id;
             var msg = "你确定要导入该备份文件吗？";break;
-        case 'attachment':
-            var urlreturn="attachment.php?action=del_attach&aid="+id;
-            var msg = "你确定要删除该附件吗？";break;
+        case 'media':
+            var urlreturn="media.php?action=delete&aid="+id;
+            var msg = "你确定要删除该媒体文件吗？";break;
         case 'avatar':
             var urlreturn="blogger.php?action=delicon";
             var msg = "你确定要删除头像吗？";break;
