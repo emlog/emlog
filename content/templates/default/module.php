@@ -37,12 +37,12 @@ function widget_blogger($title)
             <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
-            <div id='bloggerinfo' >
+            <div id='bloggerinfo'>
                 <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                    <img id='bloggerinfo_img' src="<?php  echo BLOG_URL . $user_cache[1]['photo']['src']; ?>"  alt="blogger"/>
+                    <img id='bloggerinfo_img' src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
                 <?php endif; ?>
             </div>
-			<p id='bloginfo_name'> <b><?php echo $name; ?></b></p>
+            <p id='bloginfo_name'><b><?php echo $name; ?></b></p>
             <p id='bloginfo_cache'> <?php echo $user_cache[1]['des']; ?></p>
         </ul>
     </div>
@@ -55,10 +55,10 @@ function widget_calendar($title)
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-       <ul class="list-unstyled">
-        <div id="calendar"></div>
-        <script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
-    </ul>
+        <ul class="list-unstyled">
+            <div id="calendar"></div>
+            <script>sendinfo('<?php echo Calendar::url(); ?>', 'calendar');</script>
+        </ul>
     </div>
 <?php } ?>
 <?php
@@ -182,7 +182,7 @@ function widget_search($title)
         </div>
         <ul class="list-unstyled">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
-                <input name="keyword" class="search" autocomplete="off"  type="text"/>
+                <input name="keyword" class="search" autocomplete="off" type="text"/>
             </form>
         </ul>
     </div>
