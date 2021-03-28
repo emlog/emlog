@@ -65,7 +65,7 @@
         <?php else: ?>
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
-                    恭喜，您的EMLOG已经完成注册，享受全部功能和服务中。
+                    恭喜，您的EMLOG已经完成注册。
                 </div>
             </div>
         <?php endif; ?>

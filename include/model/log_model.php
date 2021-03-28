@@ -1,6 +1,6 @@
 <?php
 /**
- * 文章、页面管理
+ * article and page model
  *
  * @package EMLOG (www.emlog.net)
  */
