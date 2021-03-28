@@ -19,19 +19,6 @@ if (empty($action)) {
     $DB = Database::getInstance();
     $mysql_ver = $DB->getMysqlVersion();
     $php_ver = PHP_VERSION;
-    $uploadfile_maxsize = ini_get('upload_max_filesize');
-    $safe_mode = ini_get('safe_mode');
-
-    if (function_exists("imagecreate")) {
-        if (function_exists('gd_info')) {
-            $ver_info = gd_info();
-            $gd_ver = $ver_info['GD Version'];
-        } else {
-            $gd_ver = '支持';
-        }
-    } else {
-        $gd_ver = '不支持';
-    }
 
     include View::getView('header');
     require_once(View::getView('index'));

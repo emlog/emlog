@@ -45,11 +45,52 @@
 
 <div class="row">
     <div class="col-lg-6 mb-4">
-        <div class="card shadow mb-4">
-            <h6 class="card-header">您的EMLOG pro未完成注册</h6>
+        <?php if (1) :?>
+        <div class="card bg-danger text-white shadow">
             <div class="card-body">
-
+                <h4>您的EMLOG PRO 尚未注册，注册后您将获得：</h4>
+                <div>1、一键安全更新、新功能升级服务。</div>
+                <div>2、解除软件使用限制和该注册提示。</div>
+                <div>3、获得官方提供的模板和插件。</div>
+                <div>4、加入官方社群，和开发者以及更多emer一起学习成长。</div>
+                <div>5、投我以桃，报之以李，支持我们把emlog做的更好。</div>
             </div>
+            <div class="card-footer text-right">
+                <a href="#" class="btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
+            </div>
+        </div>
+        <?php else: ?>
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                恭喜，您的EMLOG已经完成注册，享受全部功能和服务中。
+            </div>
+        </div>
+        <?php endif ;?>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">注册EMLOG PRO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="sort.php?action=add" method="post" id="sort_new">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sortname">输入emkey：</label>
+                        <input class="form-control" id="sortname" name="sortname">
+                        <small class="form-text text-muted">(emkey是emlog官方分发给付费注册用户的唯一识别码，请妥善保管)</small>
+                    </div>
+                    <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">如何获取emkey？</a></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">注册</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
