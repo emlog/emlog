@@ -21,7 +21,7 @@
                         服务器环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
-                        EMLOG版本： <?php echo Option::EMLOG_VERSION; ?> 未注册
+                        EMLOG版本： <?php echo Option::EMLOG_VERSION; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
                         <a id="ckup" href="javascript:checkupdate();">检查更新</a>
@@ -40,9 +40,20 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <h6 class="card-header">您的EMLOG pro未完成注册</h6>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $("#menu_home").addClass('active');
     $(document).ready(function () {
@@ -59,7 +70,6 @@
                 });
             });
     });
-
 
     function checkupdate() {
         $("#upmsg").html("正在检查，请稍后").addClass("ajaxload");
@@ -93,5 +103,4 @@
                 }
             });
     }
-
 </script>
