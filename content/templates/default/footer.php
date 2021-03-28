@@ -1,8 +1,10 @@
-<?php 
+<?php
 /**
  * 页面底部信息
  */
-if(!defined('EMLOG_ROOT')) {exit('error!');} 
+if (!defined('EMLOG_ROOT')) {
+    exit('error!');
+}
 ?>
 
 <footer class="py-5">
