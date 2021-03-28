@@ -184,3 +184,47 @@ footer .copyright {
 .comment .comment-reply:hover{text-decoration:underline}
 .comment-children{width:95%;margin:auto;clear:both;border:none;padding:0}
 .comment .comment-post{width:90%;margin:15px auto}
+
+
+#main_blogname{
+	font-size: xx-large;	
+}
+#sub_blogname{
+	font-size: xx-small;	
+}
+
+#loglist_title{
+	font-size: x-large;	
+}
+#loglist_tag{
+	font-size: xx-small;	
+}
+#loglist_content{
+	font-size: medium;	
+}
+#loglist_info{
+	font-size: medium;
+	color:#000000;	
+}
+#loglist_count{
+	font-size: medium;	
+}
+
+#side_bar{
+	font-size: medium;	
+}
+
+#bloggerinfo {
+	text-align: center;
+}
+#bloggerinfo_img {
+	width: 100px;	
+	border-radius: 50%;
+
+}
+#bloginfo_name {
+	border-style: none;	
+}
+#bloginfo_cache {
+	border-style: none;	
+}
