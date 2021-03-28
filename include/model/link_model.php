@@ -1,6 +1,6 @@
 <?php
 /**
- * Model: Links
+ * links model
  * @package EMLOG (www.emlog.net)
  */
 

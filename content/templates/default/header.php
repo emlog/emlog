@@ -10,7 +10,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 require_once View::getView('module');
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
 <head>
     <meta charset="utf-8">
@@ -21,18 +21,20 @@ require_once View::getView('module');
     <meta name="generator" content="emlog"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="alternate" title="RSS" href="<?php echo BLOG_URL; ?>rss.php" type="application/rss+xml"/>
+    <?php doAction('index_head'); ?>
 <!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 </head>
 <body>
 
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light mb-5">
     <div class="container">
-<!--vot--><a class="navbar-brand" href="<?= BLOG_URL ?>"><?php echo $blogname; ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" id='main_blogname' href="./"><?php echo $blogname; ?></a>
+        <span id='sub_blogname'><?php echo $bloginfo; ?></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <?php blog_navi(); ?>
     </div>
 </nav>
-

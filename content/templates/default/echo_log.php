@@ -17,7 +17,6 @@ if (!defined('EMLOG_ROOT')) {
         <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
         <div style="clear:both;"></div>
     </div>
-    <!-- /.container -->
 <?php
 include View::getView('footer');
 ?>

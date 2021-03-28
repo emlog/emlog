@@ -12,116 +12,116 @@
 require_once 'globals.php';
 
 if ($action === '') {
-    $nonce_templet = Option::get('nonce_templet');
-    $nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
-    preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
-    preg_match("/Version:(.*)/i", $nonceTplData, $tplVersion);
-    preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
-    preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
-    preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
-    preg_match("/ForEmlog:(.*)/i", $nonceTplData, $tplForEmlog);
-    $tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
-    $tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
-    $tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-/*vot*/    $tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
+	$nonce_templet = Option::get('nonce_templet');
+	$nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
+	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
+	preg_match("/Version:(.*)/i", $nonceTplData, $tplVersion);
+	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
+	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
+	preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
+	preg_match("/ForEmlog:(.*)/i", $nonceTplData, $tplForEmlog);
+	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
+	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
+	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
+/*vot*/	$tplForEm = !empty($tplForEmlog[1]) ? lang('ok_for_emlog') . $tplForEmlog[1] : '';
 
-    if (isset($tplAuthor[1])) {
-/*vot*/        $tplAuthor = !empty($tplUrl[1]) ? lang('user') . ": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user') . ": {$tplAuthor[1]}";
-    } else {
-        $tplAuthor = '';
-    }
+	if (isset($tplAuthor[1])) {
+/*vot*/		$tplAuthor = !empty($tplUrl[1]) ? lang('user') . ": <a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : lang('user') . ": {$tplAuthor[1]}";
+	} else {
+		$tplAuthor = '';
+	}
 
-    //Template List
-    $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
-    $tpls = array();
-    while ($file = @readdir($handle)) {
-        if (@file_exists(TPLS_PATH . $file . '/header.php')) {
-            $tplData = implode('', @file(TPLS_PATH . $file . '/header.php'));
-            preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
-            preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
-            $tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
-            $tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
-            $tplInfo['tplfile'] = $file;
+	//Template List
+	$handle = @opendir(TPLS_PATH) or die('emlog template path error!');
+	$tpls = array();
+	while ($file = @readdir($handle)) {
+		if (@file_exists(TPLS_PATH . $file . '/header.php')) {
+			$tplData = implode('', @file(TPLS_PATH . $file . '/header.php'));
+			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
+			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
+			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
+			$tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
+			$tplInfo['tplfile'] = $file;
 
-            $tpls[] = $tplInfo;
-        }
-    }
-    closedir($handle);
+			$tpls[] = $tplInfo;
+		}
+	}
+	closedir($handle);
 
-    $tplnums = count($tpls);
+	$tplnums = count($tpls);
 
-    include View::getView('header');
-    require_once View::getView('template');
-    include View::getView('footer');
-    View::output();
+	include View::getView('header');
+	require_once View::getView('template');
+	include View::getView('footer');
+	View::output();
 }
 
 //Using a template
 if ($action === 'usetpl') {
-    LoginAuth::checkToken();
-    $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
-    $tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
+	LoginAuth::checkToken();
+	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
+	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
 
-    Option::updateOption('nonce_templet', $tplName);
-    Option::updateOption('tpl_sidenum', $tplSideNum);
-    $CACHE->updateCache('options');
-    emDirect("./template.php?activated=1");
+	Option::updateOption('nonce_templet', $tplName);
+	Option::updateOption('tpl_sidenum', $tplSideNum);
+	$CACHE->updateCache('options');
+	emDirect("./template.php?activated=1");
 }
 
 //Remove Template
 if ($action === 'del') {
-    LoginAuth::checkToken();
-    $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
+	LoginAuth::checkToken();
+	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
 
-    $nonce_templet = Option::get('nonce_templet');
-    if ($tplName === $nonce_templet) {
+	$nonce_templet = Option::get('nonce_templet');
+	if ($tplName === $nonce_templet) {
 /*vot*/ emMsg(lang('template_used'));
-    }
+	}
 
-    if (true === emDeleteFile(TPLS_PATH . $tplName)) {
-        emDirect("./template.php?activate_del=1#tpllib");
-    } else {
-        emDirect("./template.php?error_f=1#tpllib");
-    }
+	if (true === emDeleteFile(TPLS_PATH . $tplName)) {
+		emDirect("./template.php?activate_del=1#tpllib");
+	} else {
+		emDirect("./template.php?error_f=1#tpllib");
+	}
 }
 
 //Install template
 if ($action === 'install') {
-    include View::getView('header');
-    require_once View::getView('template_install');
-    include View::getView('footer');
-    View::output();
+	include View::getView('header');
+	require_once View::getView('template_install');
+	include View::getView('footer');
+	View::output();
 }
 
 //Upload zip Template
 if ($action === 'upload_zip') {
-    LoginAuth::checkToken();
-    $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
+	LoginAuth::checkToken();
+	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
-    if ($zipfile['error'] == 4) {
-        emDirect("./template.php?error_d=1");
-    }
-    if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
+	if ($zipfile['error'] == 4) {
+		emDirect("./template.php?error_d=1");
+	}
+	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
 /*vot*/ emMsg(lang('template_upload_failed'));
-    }
-    if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./template.php?error_a=1");
-    }
+	}
+	if (getFileSuffix($zipfile['name']) != 'zip') {
+		emDirect("./template.php?error_a=1");
+	}
 
-    $ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
-    switch ($ret) {
-        case 0:
-            emDirect("./template.php?tpllib");
-            break;
-        case -2:
-            emDirect("./template.php?error_e=1");
-            break;
-        case 1:
-        case 2:
-            emDirect("./template.php?error_b=1");
-            break;
-        case 3:
-            emDirect("./template.php?error_c=1");
-            break;
-    }
+	$ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
+	switch ($ret) {
+		case 0:
+			emDirect("./template.php?tpllib");
+			break;
+		case -2:
+			emDirect("./template.php?error_e=1");
+			break;
+		case 1:
+		case 2:
+			emDirect("./template.php?error_b=1");
+			break;
+		case 3:
+			emDirect("./template.php?error_c=1");
+			break;
+	}
 }

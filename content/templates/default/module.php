@@ -37,19 +37,18 @@ function widget_blogger($title)
             <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
-            <div id="bloggerinfoimg">
+            <div id='bloggerinfo'>
                 <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                    <img src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" width="<?php echo $user_cache[1]['photo']['width']; ?>"
-                         height="<?php echo $user_cache[1]['photo']['height']; ?>" alt="blogger"/>
+                    <img id='bloggerinfo_img' src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
                 <?php endif; ?>
             </div>
-            <p><b><?php echo $name; ?></b>
-                <?php echo $user_cache[1]['des']; ?></p>
+            <p id='bloginfo_name'><b><?php echo $name; ?></b></p>
+            <p id='bloginfo_cache'> <?php echo $user_cache[1]['des']; ?></p>
         </ul>
     </div>
 <?php } ?>
 <?php
-//widget：日历
+//widget：calendar
 function widget_calendar($title)
 { ?>
     <div class="widget shadow-theme">
@@ -183,7 +182,7 @@ function widget_search($title)
         </div>
         <ul class="list-unstyled">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
-                <input name="keyword" class="search" type="text"/>
+                <input name="keyword" class="search" autocomplete="off" type="text"/>
             </form>
         </ul>
     </div>
@@ -276,7 +275,7 @@ function blog_navi()
 function topflg($top, $sortop = 'n', $sortid = null)
 {
     if (blog_tool_ishome()) {
-/*vot*/ echo $top == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/top.png\" title=\"".lang('top_posts')."\"> " : '';
+        echo $top == 'y' ? "&uArr; " : '';
     } elseif ($sortid) {
 /*vot*/ echo $sortop == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/sortop.png\" title=\"".lang('cat_top_posts')."\"> " : '';
     }

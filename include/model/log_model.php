@@ -1,6 +1,6 @@
 <?php
 /**
- * Model: Blog Page Management
+ * article and page model
  *
  * @package EMLOG (www.emlog.net)
  */

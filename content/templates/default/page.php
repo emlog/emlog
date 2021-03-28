@@ -14,12 +14,11 @@ if (!defined('EMLOG_ROOT')) {
                 <?php blog_comments($comments); ?>
                 <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
             </div>
-
             <?php
             include View::getView('side');
             ?>
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+        </div>
+    </div>
 <?php
 include View::getView('footer');
 ?>

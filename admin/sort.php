@@ -84,9 +84,9 @@ if ($action == 'mod_sort') {
 }
 
 if ($action == 'update') {
-    $sid = isset($_POST['sid']) ? intval($_POST['sid']) : '';
+    $sid = isset($_POST['sid']) ? (int)$_POST['sid'] : '';
     $sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
-    $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
+    $pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
     $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
     $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
@@ -126,7 +126,7 @@ if ($action == 'update') {
 }
 
 if ($action == 'del') {
-    $sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
+    $sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 
     LoginAuth::checkToken();
 

@@ -4,7 +4,7 @@
  * @package EMLOG (www.emlog.net)
  */
 
-/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',dirname(__FILE__)));
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
 /*vot*/ define('DEL_INSTALLER', 0);
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
@@ -28,7 +28,7 @@ if (!$act) {
 <!doctype html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>emlog</title>
         <style type="text/css">
@@ -39,6 +39,7 @@ if (!$act) {
                 font-size: 12px;
                 line-height: 150%;
             }
+
             .main {
                 background-color: #FFFFFF;
                 font-size: 12px;
@@ -50,15 +51,18 @@ if (!$act) {
                 border: #DFDFDF 1px solid;
                 border-radius: 4px;
             }
+
             .logo {
                 background: url(admin/views/images/logo.gif) no-repeat center;
                 padding: 30px 0px 30px 0px;
                 margin: 30px 0px;
             }
+
             .title {
                 text-align: center;
                 font-size: 14px;
             }
+
             .input {
                 border: 1px solid #CCCCCC;
                 font-family: Arial;
@@ -68,14 +72,17 @@ if (!$act) {
                 color: #666666;
                 margin: 0px 0px 0px 25px;
             }
+
             .submit {
                 cursor: pointer;
                 font-size: 12px;
                 padding: 4px 10px;
             }
+
             .care {
                 color: #0066CC;
             }
+
             .title2 {
                 font-size: 18px;
                 color: #666666;
@@ -83,107 +90,110 @@ if (!$act) {
                 margin: 40px 0px 20px 0px;
                 padding: 10px 0px;
             }
+
             .foot {
                 text-align: center;
             }
+
             .main li {
                 margin: 20px 0px;
             }
+
             -->
         </style>
 </head>
 <body>
-<form name="form1" method="post" action="install.php?action=install">
-    <div class="main">
-        <p class="logo"></p>
-<!--vot--><p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
-        <div class="b">
-<!--vot-->  <p class="title2"><?= lang('mysql_settings') ?></p>
-            <li>
-<!--vot-->      <?= lang('db_hostname') ?>:<br>
-                <input name="hostname" type="text" class="input" value="127.0.0.1">
-<!--vot-->      <span class="care"><?= lang('db_hostname_info') ?></span>
-            </li>
-            <li>
-<!--vot-->      <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
-            </li>
-            <li>
-<!--vot-->      <?= lang('db_password') ?>:<br><input name="password" type="password" class="input">
-            </li>
-            <li>
-<!--vot-->      <?= lang('db_name') ?>:<br>
-                <input name="dbname" type="text" class="input" value="">
-<!--vot-->      <span class="care"><?= lang('db_name_info') ?></span>
-            </li>
-            <li>
-<!--vot-->      <?= lang('db_prefix') ?>:<br>
-                <input name="dbprefix" type="text" class="input" value="emlog_">
-<!--vot-->      <span class="care"><?= lang('db_prefix_info') ?></span>
-            </li>
+    <form name="form1" method="post" action="install.php?action=install">
+        <div class="main">
+            <p class="logo"></p>
+<!--vot-->  <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
+            <div class="b">
+<!--vot-->      <p class="title2"><?= lang('mysql_settings') ?></p>
+                <li>
+<!--vot-->          <?= lang('db_hostname') ?>:<br>
+                    <input name="hostname" type="text" class="input" value="127.0.0.1">
+<!--vot-->          <span class="care"><?= lang('db_hostname_info') ?></span>
+                </li>
+                <li>
+<!--vot-->          <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
+                </li>
+                <li>
+<!--vot-->          <?= lang('db_password') ?>:<br><input name="password" type="password" class="input">
+                </li>
+                <li>
+<!--vot-->          <?= lang('db_name') ?>:<br>
+                    <input name="dbname" type="text" class="input" value="">
+<!--vot-->          <span class="care"><?= lang('db_name_info') ?></span>
+                </li>
+                <li>
+<!--vot-->          <?= lang('db_prefix') ?>:<br>
+                    <input name="dbprefix" type="text" class="input" value="emlog_">
+<!--vot-->          <span class="care"><?= lang('db_prefix_info') ?></span>
+                </li>
+            </div>
+            <div class="c">
+<!--vot-->      <p class="title2"><?= lang('admin_settings') ?></p>
+                <li>
+<!--vot-->          <?= lang('admin_name') ?>:<br>
+                    <input name="admin" type="text" class="input">
+                </li>
+                <li>
+<!--vot-->          <?= lang('admin_password') ?>:<br>
+                    <input name="adminpw" type="password" class="input">
+<!--vot-->          <span class="care"><?= lang('admin_password_info') ?></span>
+                </li>
+                <li>
+<!--vot-->          <?= lang('admin_password_repeat') ?>:<br>
+                    <input name="adminpw2" type="password" class="input">
+                </li>
+            </div>
+            <div>
+<!--vot-->      <p class="foot"><input type="submit" class="submit" value=<?= lang('install_emlog') ?>"></p>
+            </div>
         </div>
-        <div class="c">
-<!--vot-->    <p class="title2"><?= lang('admin_settings') ?></p>
-            <li>
-<!--vot-->      <?= lang('admin_name') ?>:<br>
-                <input name="admin" type="text" class="input">
-            </li>
-            <li>
-<!--vot-->      <?= lang('admin_password') ?>:<br>
-                <input name="adminpw" type="password" class="input">
-<!--vot-->      <span class="care"><?= lang('admin_password_info') ?></span>
-            </li>
-            <li>
-<!--vot-->      <?= lang('admin_password_repeat') ?>:<br>
-                <input name="adminpw2" type="password" class="input">
-            </li>
-        </div>
-        <div>
-<!--vot-->  <p class="foot"><input type="submit" class="submit" value=<?= lang('install_emlog') ?>"></p>
-        </div>
-    </div>
-</form>
-</body>
-</html>
-<?php
+    </form>
+    </body>
+    </html>
+	<?php
 }
 if ($act == 'install' || $act == 'reinstall') {
-    $db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
-    $db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
-    $db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-    $db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
-    $db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
-    $admin = isset($_POST['admin']) ? addslashes(trim($_POST['admin'])) : '';
-    $adminpw = isset($_POST['adminpw']) ? addslashes(trim($_POST['adminpw'])) : '';
-    $adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
-    $result = '';
+	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
+	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
+	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
+	$db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
+	$admin = isset($_POST['admin']) ? addslashes(trim($_POST['admin'])) : '';
+	$adminpw = isset($_POST['adminpw']) ? addslashes(trim($_POST['adminpw'])) : '';
+	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
+	$result = '';
 
-    if ($db_prefix == '') {
+	if ($db_prefix == '') {
 /*vot*/        emMsg(lang('db_prefix_empty'));
-    } elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
+	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
 /*vot*/        emMsg(lang('db_prefix_empty'));
-    } elseif ($admin == '' || $adminpw == '') {
+	} elseif ($admin == '' || $adminpw == '') {
 /*vot*/        emMsg(lang('username_password_empty'));
 /*vot*/    } elseif (strlen($adminpw) < 5) {
 /*vot*/        emMsg(lang('password_short'));
-    } elseif ($adminpw != $adminpw2) {
+	} elseif ($adminpw != $adminpw2) {
 /*vot*/        emMsg(lang('password_not_equal'));
-    }
+	}
 
-    //Initialize the database class
-    define('DB_HOST', $db_host);
-    define('DB_USER', $db_user);
-    define('DB_PASSWD', $db_pw);
-    define('DB_NAME', $db_name);
-    define('DB_PREFIX', $db_prefix);
+	//Initialize the database class
+	define('DB_HOST', $db_host);
+	define('DB_USER', $db_user);
+	define('DB_PASSWD', $db_pw);
+	define('DB_NAME', $db_name);
+	define('DB_PREFIX', $db_prefix);
 
-    $DB = Database::getInstance();
-    $CACHE = Cache::getInstance();
+	$DB = Database::getInstance();
+	$CACHE = Cache::getInstance();
 
-    if ($DB->getMysqlVersion() < '5.5.3') {
+	if ($DB->getMysqlVersion() < '5.5.3') {
 /*vot*/ emMsg(lang('mysql_required'));
-    }
+	}
 
-    if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
+	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
 /*vot*/ echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -217,65 +227,65 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </form>
 </body>
 </html>
-<?php /*vot*/
-        exit;
-    }
+EOT;
+		exit;
+	}
 
     // Create config.php
 /*vot*/    if ( $fp = @fopen('config.php', 'w') ){
 /*vot*/        fclose($fp);
 /*vot*/    }
 
-    if (!is_writable('config.php')) {
+	if (!is_writable('config.php')) {
 /*vot*/        emMsg(lang('config_not_writable'));
-    }
-    if (!is_writable(EMLOG_ROOT . '/content/cache')) {
+	}
+	if (!is_writable(EMLOG_ROOT . '/content/cache')) {
 /*vot*/        emMsg(lang('cache_not_writable'));
-    }
-    $config = "<?php\n"
-        . "//mysql database address\n"
-        . "define('DB_HOST','$db_host');"
-        . "\n//mysql database user\n"
-        . "define('DB_USER','$db_user');"
-        . "\n//database password\n"
-        . "define('DB_PASSWD','$db_pw');"
-        . "\n//database name\n"
-        . "define('DB_NAME','$db_name');"
-        . "\n//database prefix\n"
-        . "define('DB_PREFIX','$db_prefix');"
-        . "\n//auth key\n"
-        . "define('AUTH_KEY','" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "');"
-        . "\n//cookie name\n"
-        . "define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_" . getRandStr(32, false) . "');"
+	}
+	$config = "<?php\n"
+		. "//mysql database address\n"
+		. "define('DB_HOST','$db_host');"
+		. "\n//mysql database user\n"
+		. "define('DB_USER','$db_user');"
+		. "\n//database password\n"
+		. "define('DB_PASSWD','$db_pw');"
+		. "\n//database name\n"
+		. "define('DB_NAME','$db_name');"
+		. "\n//database prefix\n"
+		. "define('DB_PREFIX','$db_prefix');"
+		. "\n//auth key\n"
+		. "define('AUTH_KEY','" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "');"
+		. "\n//cookie name\n"
+		. "define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_" . getRandStr(32, false) . "');"
 /*vot*/ . "//blog language\n"
 /*vot*/ . "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
 /*vot*/ . "\n//blog language direction //vot\n"
 /*vot*/ . "define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
-        . "\n";
+		. "\n";
 
-    $fp = @fopen('config.php', 'w');
-    $fw = @fwrite($fp, $config);
-    if (!$fw) {
+	$fp = @fopen('config.php', 'w');
+	$fw = @fwrite($fp, $config);
+	if (!$fw) {
 /*vot*/        emMsg(lang('config_not_writable'));
-    }
-    fclose($fp);
+	}
+	fclose($fp);
 
     //Encrypt Password
-    $PHPASS = new PasswordHash(8, true);
-    $adminpw = $PHPASS->HashPassword($adminpw);
+	$PHPASS = new PasswordHash(8, true);
+	$adminpw = $PHPASS->HashPassword($adminpw);
 
-    $table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
-    $DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
+	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
+	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
 
-    $widgets = Option::getWidgetTitle();
-    $sider_wg = Option::getDefWidget();
+	$widgets = Option::getWidgetTitle();
+	$sider_wg = Option::getDefWidget();
 
-    $widget_title = serialize($widgets);
-    $widgets = serialize($sider_wg);
+	$widget_title = serialize($widgets);
+	$widgets = serialize($sider_wg);
 
-    define('BLOG_URL', realUrl());
+	define('BLOG_URL', realUrl());
 
-    $sql = "
+/*vot*/    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment,
@@ -398,6 +408,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_titl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment,
@@ -472,23 +483,23 @@ CREATE TABLE {$db_prefix}storage (
   UNIQUE KEY `plugin` (`plugin`,`name`)
 )" . $table_charset_sql;
 
-    $array_sql = preg_split("/;[\r\n]/", $sql);
-    foreach ($array_sql as $sql) {
-        $sql = trim($sql);
-        if ($sql) {
-            $DB->query($sql);
-        }
-    }
+	$array_sql = preg_split("/;[\r\n]/", $sql);
+	foreach ($array_sql as $sql) {
+		$sql = trim($sql);
+		if ($sql) {
+			$DB->query($sql);
+		}
+	}
     //Rebuild cache
-    $CACHE->updateCache();
+	$CACHE->updateCache();
 /*vot*/    $result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
         <p>" . lang('emlog_installed_info') . "</p>
         <p><b>" . lang('user_name') . "</b>: {$admin}</p>
         <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
-    if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
+	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
 /*vot*/        $result .= '<p style="color:red;margin:10px 20px;">' . lang('delete_install') . '</p> ';
-    }
+	}
 /*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
-    emMsg($result, 'none');
+	emMsg($result, 'none');
 }

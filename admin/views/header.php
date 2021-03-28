@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
     <!-- CSS -->
-    <link href="./views/css/sb-admin-2.css" rel="stylesheet">
+    <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
@@ -19,21 +19,20 @@
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/ckeditor.js"></script>
     <script src="./views/js/common.js"></script>
-<!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 <!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
     <?php doAction('adm_head'); ?>
 </head>
 <!--vot--><body>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center" href="<?= BLOG_URL ?>">
+        <a class="sidebar-brand d-flex align-items-center" href="./">
             <div class="sidebar-brand-text mx-3">EMLOG Pro</div>
         </a>
 
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item" id="menu_home">
-<!--vot-->  <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
+<!--vot-->  <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('post_write') ?></span></a>
         </li>
 
         <hr class="sidebar-divider my-0">
@@ -87,7 +86,7 @@
         <li class="nav-item" id="menu_category_sys">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
                 <i class="icofont-options"></i>
-<!--vot-->      <span><?= lang('system') ?></span>
+                <span>系统</span>
             </a>
             <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -124,7 +123,7 @@
 <!--vot-->          <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
                             <?php
                             $blog_name = Option::get('blogname');
-/*vot*/                     echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
+<!--vot-->                  echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
                             ?>
                         </a>
                     </li>

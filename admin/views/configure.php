@@ -108,7 +108,7 @@
             <div class="form-group form-inline">
 <!--vot-->      <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?>
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw"/> x
-                <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/> <?= lang('unit_pixels') ?>
+                <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/>（单位：像素）
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('icp_reg_no')?></label>
