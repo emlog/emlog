@@ -1,6 +1,6 @@
 <?php
 /**
- * 链接管理
+ * register emlog
  * @package EMLOG (www.emlog.net)
  */
 
