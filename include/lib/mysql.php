@@ -7,12 +7,12 @@
 
 class MySql {
 
-    public static function getInstance() {
-        if (class_exists('mysqli', FALSE)) {
-            return MySqlii::getInstance();
-        } else {
-            emMsg('服务器空间PHP不支持MySql数据库');
-        }
-    }
+	public static function getInstance() {
+		if (class_exists('mysqli', FALSE)) {
+			return MySqlii::getInstance();
+		} else {
+			emMsg('服务器空间PHP不支持MySql数据库');
+		}
+	}
 
 }

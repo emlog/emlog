@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">媒体文件删除成功</div><?php endif; ?>
@@ -20,22 +20,22 @@
             </tr>
             </thead>
             <tbody
-            <?php
-            foreach ($attach as $key => $value):
-                $extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
-                $atturl = BLOG_URL . substr($value['filepath'], 3);
-                if ($extension == 'zip' || $extension == 'rar') {
-                    $imgpath = "./views/images/tar.gif";
-                } elseif (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
-                    $imgpath = $value['filepath'];
-                    $ed_imgpath = BLOG_URL . substr($imgpath, 3);
-                    if (isset($value['thum_filepath'])) {
-                        $thum_url = BLOG_URL . substr($value['thum_filepath'], 3);
-                    }
-                } else {
-                    $imgpath = "./views/images/fnone.gif";
-                }
-                ?>
+			<?php
+			foreach ($attach as $key => $value):
+				$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
+				$atturl = BLOG_URL . substr($value['filepath'], 3);
+				if ($extension == 'zip' || $extension == 'rar') {
+					$imgpath = "./views/images/tar.gif";
+				} elseif (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
+					$imgpath = $value['filepath'];
+					$ed_imgpath = BLOG_URL . substr($imgpath, 3);
+					if (isset($value['thum_filepath'])) {
+						$thum_url = BLOG_URL . substr($value['thum_filepath'], 3);
+					}
+				} else {
+					$imgpath = "./views/images/fnone.gif";
+				}
+				?>
                 <tr>
                     <td><input type="checkbox" value="<?php echo $value['aid']; ?>" name="atts[]" class="ids"/></td>
                     <td>
@@ -44,21 +44,23 @@
                         </a>
                     </td>
                     <td>
-                        <?php echo subString($value['filename'], 0, 60) ?> <br>
-                        <?php if ($value['width'] && $value['height']): ?>
-                            <?php echo $value['width'] ?>x<?php echo $value['height'] ?>
-                        <?php endif; ?>
+						<?php echo BLOG_URL.substr($value['filepath'], 3); ?>
+                        <br>
+						<?php if ($value['width'] && $value['height']): ?>
+							<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
+						<?php endif; ?>
+                        <br>
+						<?php echo $value['attsize']; ?>
                     </td>
                     <td><?php echo $value['addtime']; ?></td>
                     <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
-
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -75,9 +77,7 @@
         </div>
     </div>
 </div>
-
 <script src="./views/js/dropzone.min.js"></script>
-
 <script>
     $("#menu_media").addClass('active');
     setTimeout(hideActived, 3600);
@@ -85,5 +85,4 @@
     $('#exampleModal').on('hidden.bs.modal', function (e) {
         window.location.reload();
     })
-
 </script>

@@ -1,6 +1,6 @@
 <?php
 /**
- * 友情链接
+ * links model
  * @package EMLOG (www.emlog.net)
  */
 

@@ -17,9 +17,9 @@ if ($action === 'register') {
 		emDirect("./index.php?error_b=1");
 	}
 	if ($emkey === '12345678') {
-        Option::updateOption("emkey", $emkey);
-        $CACHE->updateCache('options');
-        emDirect("./index.php?active_reg=1");
-    }
+		Option::updateOption("emkey", $emkey);
+		$CACHE->updateCache('options');
+		emDirect("./index.php?active_reg=1");
+	}
 	emDirect("./index.php?error_b=1");
 }
