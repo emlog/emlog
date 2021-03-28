@@ -381,6 +381,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_titl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment,
