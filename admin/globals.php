@@ -18,7 +18,8 @@ $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
-//登录验证
+define('ISREG', Register::isReg());
+
 if ($action == 'login') {
     $username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
     $password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
@@ -35,7 +36,6 @@ if ($action == 'login') {
     }
 }
 
-//退出
 if ($action == 'logout') {
     setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
     emDirect("../");
