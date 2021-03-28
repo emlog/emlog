@@ -6,6 +6,8 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 ?>
+
+<!-- Container -->
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -16,17 +18,17 @@ if (!defined('EMLOG_ROOT')) {
                         <div class="shadow-theme mb-4">
                             <div class="card-body">
                                 <h3 class="card-title">
-                                    <a href="<?php echo $value['log_url']; ?>"><?php echo $value['log_title']; ?></a>
+                                    <a href="<?php echo $value['log_url']; ?>" id="loglist_title" ><?php echo $value['log_title']; ?></a>
                                     <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                                 </h3>
-                                <p><?php echo $value['log_description']; ?></p>
-                                <p class="tag"><?php blog_tag($value['logid']); ?></p>
+                                <p id="loglist_content"><?php echo $value['log_description']; ?></p>
+                                <p class="tag" id="loglist_tag"><?php blog_tag($value['logid']); ?></p>
                             </div>
                             <div class="row p-3">
-                                <div class="col-md-8 text-muted ">
-                                    <?php echo gmdate('Y-n-j', $value['date']); ?><?php blog_author($value['author']); ?>
+                                <div class="col-md-8 text-muted " id="loglist_info" >
+                                    <?php echo gmdate('Y-n-j', $value['date']); ?>&nbsp;&nbsp;&nbsp;<?php blog_author($value['author']); ?>
                                 </div>
-                                <div class="col-md-4 text-right text-muted">
+                                <div class="col-md-4 text-right text-muted" id="loglist_count">
                                     <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
                                     <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
                                 </div>
