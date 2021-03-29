@@ -7,6 +7,7 @@ $lang = array(
  'php_required'		=> 'For normal functioning Emlog requires PHP5 or higher',//'您的php版本过低，请选用支持PHP5的环境安装emlog。',
  'installation'		=> 'Install Emlog v.',//'安装程序emlog ',
  'mysql_settings'	=> 'MySQL settings',//'MySQL数据库设置',
+ 'mysql_required'	=> 'Your MySQL version is too low. Please install emlog in an environment that supports MySQL 5.5 and above.',//'您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。',
  'db_hostname'		=> 'Database Hostname',//'数据库地址',
  'db_hostname_info'	=> '(default: localhost/127.0.0.1)',//'(通常为 localhost/127.0.0.1， 不必修改)',
  'db_user'		=> 'DB user',//'数据库用户名',
