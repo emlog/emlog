@@ -30,12 +30,12 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                 <tr>
-<!--vot-->          <th><?=lang('id')?></th>
+<!--vot-->          <th><?=lang('order')?></th>
 <!--vot-->          <th><?=lang('navigation')?></th>
 <!--vot-->          <th><?=lang('type')?></th>
-<!--vot-->          <th><?=lang('status')?></th>
 <!--vot-->          <th><?=lang('view')?></th>
 <!--vot-->          <th><?=lang('address')?></th>
+<!--vot-->          <th><?=lang('operation')?></th>
                 </tr>
                 </thead>
                 <tbody>

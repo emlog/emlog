@@ -31,13 +31,13 @@
                     <thead>
                     <tr>
 <!--vot-->              <th><?=lang('order')?></th>
-<!--vot-->              <th><?=lang('id')?></th>
 <!--vot-->              <th><?=lang('name')?></th>
 <!--vot-->              <th><?=lang('description')?></th>
 <!--vot-->              <th><?=lang('alias')?></th>
 <!--vot-->              <th><?=lang('template')?></th>
-<!--vot-->              <th><?=lang('views')?></th>
-<!--vot-->              <th><?=lang('posts')?></th>
+<!--vot-->              <th><?=lang('view')?></th>
+<!--vot-->              <th><?=lang('articles')?></th>
+<!--vot-->              <th><?=lang('operation')?></th>
                     </tr>
                     </thead>
                     <tbody>

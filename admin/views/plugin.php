@@ -46,11 +46,11 @@
                 foreach ($plugins as $key => $val):
                     $plug_state = 'inactive';
                     $plug_action = 'active';
-/*vot*/             $plug_state_des = lang('plugin_active_ok');
+/*vot*/             $plug_state_des = lang('plugin_active_click');
                     if (in_array($key, $active_plugins)) {
                         $plug_state = 'active';
                         $plug_action = 'inactive';
-/*vot*/                 $plug_state_des = lang('plugin_disable_ok');
+/*vot*/                 $plug_state_des = lang('plugin_disable_click');
                     }
                     $i++;
                     if (TRUE === $val['Setting']) {
