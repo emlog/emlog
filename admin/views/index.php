@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_reg'])): ?>
     <div class="alert alert-success">恭喜，注册成功了</div><?php endif; ?>
@@ -7,7 +7,7 @@
     <div class="alert alert-danger">无效的注册码（emkey）</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">管理后台</h1>
-    <?php doAction('adm_main_top'); ?>
+	<?php doAction('adm_main_top'); ?>
 </div>
 <div class="row">
     <div class="col-lg-6 mb-4">
@@ -48,7 +48,7 @@
 </div>
 <div class="row">
     <div class="col-lg-6 mb-4">
-        <?php if (ISREG === false) : ?>
+		<?php if (ISREG === false) : ?>
             <div class="card bg-danger text-white shadow">
                 <div class="card-body">
                     <h4>您的EMLOG PRO 尚未注册，注册后您将获得：</h4>
@@ -62,13 +62,13 @@
                     <a href="#" class="btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
                 </div>
             </div>
-        <?php else: ?>
+		<?php else: ?>
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
                     恭喜，您的EMLOG已经完成注册。
                 </div>
             </div>
-        <?php endif; ?>
+		<?php endif; ?>
     </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

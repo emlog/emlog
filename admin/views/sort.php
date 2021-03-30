@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
     <div class="alert alert-success">排序更新成功</div><?php endif; ?>
@@ -41,12 +41,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    foreach ($sorts as $key => $value):
-                        if ($value['pid'] != 0) {
-                            continue;
-                        }
-                        ?>
+					<?php
+					foreach ($sorts as $key => $value):
+						if ($value['pid'] != 0) {
+							continue;
+						}
+						?>
                         <tr>
                             <td>
                                 <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
@@ -66,11 +66,11 @@
                                 <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                             </td>
                         </tr>
-                        <?php
-                        $children = $value['children'];
-                        foreach ($children as $key):
-                            $value = $sorts[$key];
-                            ?>
+						<?php
+						$children = $value['children'];
+						foreach ($children as $key):
+							$value = $sorts[$key];
+							?>
                             <tr>
                                 <td>
                                     <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
@@ -89,8 +89,8 @@
                                        class="badge badge-danger">删除</a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    <?php endforeach; ?>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -126,14 +126,14 @@
                         <label>父分类</label>
                         <select name="pid" id="pid" class="form-control">
                             <option value="0">无</option>
-                            <?php
-                            foreach ($sorts as $key => $value):
-                                if ($value['pid'] != 0) {
-                                    continue;
-                                }
-                                ?>
+							<?php
+							foreach ($sorts as $key => $value):
+								if ($value['pid'] != 0) {
+									continue;
+								}
+								?>
                                 <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
-                            <?php endforeach; ?>
+							<?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">

@@ -70,7 +70,7 @@
                         <tr>
                             <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
                             <td width="350">
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"
+                                <a href="#" data-toggle="modal" data-target="#replyModal"
                                    data-cid="<?php echo $value['cid']; ?>"
                                    data-comment="<?php echo $value['content']; ?>"
                                    data-hide="<?php echo $value['hide']; ?>"
@@ -110,12 +110,12 @@
         </div>
     </div>
 </form>
-<!--  回复评论模态窗  -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">回复评论</h5>
+                <h5 class="modal-title" id="replyModalLabel">回复评论</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -155,8 +155,7 @@
         $("#form_com").submit();
     }
 
-    //回复评论模态窗
-    $('#exampleModal').on('show.bs.modal', function (event) {
+    $('#replyModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var comment = button.data('comment')
         var cid = button.data('cid')

@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
@@ -15,7 +15,7 @@
                 <div id="post_bar">
                     <div>
                         <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset">上传插入</span>
-                        <?php doAction('adm_writelog_head'); ?>
+						<?php doAction('adm_writelog_head'); ?>
                         <span id="asmsg"></span>
                         <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
                     </div>
@@ -52,13 +52,13 @@
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
                 <input type="hidden" name="gid" value=<?php echo $pageId; ?>/>
-                <?php if ($pageId < 0): ?>
+				<?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
                     <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
-                <?php else: ?>
+				<?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
                     <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
-                <?php endif; ?>
+				<?php endif; ?>
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <!doctype html>
 <html lang="zh-cn">
@@ -20,24 +20,24 @@
                 <div class="card-body p-0">
                     <div class="p-5">
                         <form method="post" action="./index.php?action=login">
-                            <?php if ($error_msg): ?>
+							<?php if ($error_msg): ?>
                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <?php echo $error_msg; ?>
+									<?php echo $error_msg; ?>
                                 </div>
-                            <?php endif;?>
+							<?php endif; ?>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required="required">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required="required">
                             </div>
-                            <?php if ($ckcode): ?>
+							<?php if ($ckcode): ?>
                                 <div class="form-group">
                                     <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required="required">
                                     <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode">
                                 </div>
-                            <?php endif; ?>
+							<?php endif; ?>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox small">
                                     <input type="checkbox" class="custom-control-input" id="customCheck">

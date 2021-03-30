@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">备份文件删除成功</div><?php endif; ?>
@@ -26,7 +26,6 @@
 </div>
 <div class="card-deck">
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
             <h5 class="card-title">备份数据库</h5>
             <form action="data.php?action=bakstart" method="post">
@@ -42,7 +41,6 @@
         </div>
     </div>
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
             <h5 class="card-title">导入本地备份</h5>
             <form action="data.php?action=import" enctype="multipart/form-data" method="post">
@@ -57,7 +55,6 @@
         </div>
     </div>
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
             <h5 class="card-title">更新缓存</h5>
             <div id="cache">
