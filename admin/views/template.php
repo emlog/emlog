@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">模板更换成功</div><?php endif; ?>
@@ -32,13 +32,13 @@
     <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
 </div>
 <div class="card-columns">
-    <?php foreach ($tpls as $key => $value): ?>
+	<?php foreach ($tpls as $key => $value): ?>
         <div class="card <?php if ($nonce_templet == $value['tplfile']) {
-            echo "border border-warning";
-        } ?>">
+			echo "border border-warning";
+		} ?>">
             <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
-                echo "bg-warning";
-            } ?>"><?php echo $value['tplname']; ?></div>
+				echo "bg-warning";
+			} ?>"><?php echo $value['tplname']; ?></div>
             <div class="card-body">
                 <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
                     <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
@@ -48,7 +48,7 @@
                 <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
             </div>
         </div>
-    <?php endforeach; ?>
+	<?php endforeach; ?>
 </div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

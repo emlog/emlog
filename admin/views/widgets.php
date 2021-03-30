@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">设置保存成功</div><?php endif; ?>
@@ -224,11 +224,11 @@
                     </div>
                 </div>
             </div>
-            <?php
-            foreach ($custom_widget as $key => $val):
-                preg_match("/^custom_wg_(\d+)/", $key, $matches);
-                $custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
-                ?>
+			<?php
+			foreach ($custom_widget as $key => $val):
+				preg_match("/^custom_wg_(\d+)/", $key, $matches);
+				$custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
+				?>
                 <div class="card">
                     <div class="card-header">
                         <h2 class="mb-0">
@@ -254,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </div>
         <div class="my-3">
             <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
@@ -295,30 +295,30 @@
         <h1 class="h3 mb-4 text-gray-800">已添加的组件</h1>
         <form action="widgets.php?action=compages" method="post">
             <div id="sortable" class="adm_widget_box">
-                <?php
-                foreach ($widgets as $widget):
-                    $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //是否为自定义组件
-                    $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
-                    if ($flg && empty($title)) {
-                        preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-                        $title = '未命名组件(' . $matches[1] . ')';
-                    }
-                    ?>
+				<?php
+				foreach ($widgets as $widget):
+					$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;                                          //是否为自定义组件
+					$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
+					if ($flg && empty($title)) {
+						preg_match("/^custom_wg_(\d+)/", $widget, $matches);
+						$title = '未命名组件(' . $matches[1] . ')';
+					}
+					?>
                     <div class="card m-1 active_widget" id="em_<?php echo $widget; ?>">
                         <div class="card-header">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button">
-                                    <?php if ($flg) {
-                                        echo $title;
-                                    } else {
-                                        echo $widgetTitle[$widget];
-                                    } ?>
+									<?php if ($flg) {
+										echo $title;
+									} else {
+										echo $widgetTitle[$widget];
+									} ?>
                                 </button>
                                 <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>"/>
                             </h2>
                         </div>
                     </div>
-                <?php endforeach; ?>
+				<?php endforeach; ?>
             </div>
             <div class="my-3">
                 <input type="submit" value="保存组件排序" class="btn btn-success"/>

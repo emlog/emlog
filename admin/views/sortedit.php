@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
@@ -24,12 +24,12 @@
         <label>父分类</label>
         <select name="pid" id="pid" class="form-control">
             <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif; ?>>无</option>
-            <?php
-            foreach ($sorts as $key => $value):
-                if ($key == $sid || $value['pid'] != 0) continue;
-                ?>
+			<?php
+			foreach ($sorts as $key => $value):
+				if ($key == $sid || $value['pid'] != 0) continue;
+				?>
                 <option value="<?php echo $key; ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </select>
     </div>
     <div class="form-group">

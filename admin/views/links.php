@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
     <div class="alert alert-success">排序更新成功</div><?php endif; ?>
@@ -31,10 +31,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                foreach ($links as $key => $value):
-                    doAction('adm_link_display');
-                    ?>
+				<?php
+				foreach ($links as $key => $value):
+					doAction('adm_link_display');
+					?>
                     <tr>
                         <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
                         <td><a href="#" data-toggle="modal" data-target="#editModal"
@@ -47,15 +47,15 @@
                             <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                         </td>
                         <td>
-                            <?php if ($value['hide'] == 'n'): ?>
+							<?php if ($value['hide'] == 'n'): ?>
                                 <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary">显示</a>
-                            <?php else: ?>
+							<?php else: ?>
                                 <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning">隐藏</a>
-                            <?php endif; ?>
+							<?php endif; ?>
                             <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+				<?php endforeach; ?>
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除标签成功</div><?php endif; ?>
@@ -13,18 +13,18 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div>
-            <?php if ($tags): ?>
+			<?php if ($tags): ?>
                 <li>
-                    <?php foreach ($tags as $key => $value): ?>
+					<?php foreach ($tags as $key => $value): ?>
                         <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?php echo $value['tid']; ?>"
                            data-tagname="<?php echo $value['tagname']; ?>">
-                            <?php echo $value['tagname']; ?>
+							<?php echo $value['tagname']; ?>
                         </a>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                 </li>
-            <?php else: ?>
+			<?php else: ?>
                 <li style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</li>
-            <?php endif; ?>
+			<?php endif; ?>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
     $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
     setTimeout(hideActived, 2600);
-    //修改标签模态窗
+
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var tagname = button.data('tagname')

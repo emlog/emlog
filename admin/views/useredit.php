@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['error_login'])): ?>
     <div class="alert alert-danger">用户名不能为空</div><?php endif; ?>

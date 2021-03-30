@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除页面成功</div><?php endif; ?>
@@ -28,26 +28,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($pages as $key => $value):
-                        if (empty($navibar[$value['gid']]['url'])) {
-                            $navibar[$value['gid']]['url'] = Url::log($value['gid']);
-                        }
-                        $isHide = $value['hide'] == 'y' ?
-                            '<font color="red"> - 草稿</font>' :
-                            '<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
-                        ?>
+					<?php foreach ($pages as $key => $value):
+						if (empty($navibar[$value['gid']]['url'])) {
+							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
+						}
+						$isHide = $value['hide'] == 'y' ?
+							'<font color="red"> - 草稿</font>' :
+							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+						?>
                         <tr>
                             <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td width="440">
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
-                                <?php echo $isHide; ?>
-                                <?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+								<?php echo $isHide; ?>
+								<?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
                             </td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                             <td class="small"><?php echo $value['date']; ?></td>
                         </tr>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
