@@ -215,7 +215,7 @@
                     <?php endforeach; ?>
                     <div class="form-group"><input type="submit" class="btn btn-success" name="" value="保存"/></div>
                 <?php else: ?>
-                    <div class="form-group">还没页面，<a href="page.php">新建页面</a></div>
+                    <div class="form-group">还没页面，<a href="page_create.php">新建页面</a></div>
                 <?php endif; ?>
             </form>
         </div>

@@ -61,7 +61,7 @@
                             <td>
                                 <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
-                            <td><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                            <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                             <td>
                                 <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                             </td>
@@ -83,7 +83,7 @@
                                 <td>
                                     <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                 </td>
-                                <td><a href="admin_log.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                                <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
                                 <td>
                                     <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');"
                                        class="badge badge-danger">删除</a>

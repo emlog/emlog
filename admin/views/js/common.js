@@ -37,7 +37,7 @@ function em_confirm (id, property, token) {
             var urlreturn="sort.php?action=del&sid="+id;
             var msg = "你确定要删除该分类吗？";break;
         case 'page':
-            var urlreturn="page.php?action=del&gid="+id;
+            var urlreturn="page_create.php?action=del&gid="+id;
             var msg = "你确定要删除该页面吗？";break;
         case 'user':
             var urlreturn="user.php?action=del&uid="+id;
@@ -142,7 +142,7 @@ function autosave(act){
     var nodeid = "as_logid";
     if (act == 3 || act == 4){
         editorMap['content'].sync();
-        var url = "page.php?action=autosave";
+        var url = "page_create.php?action=autosave";
         var title = $.trim($("#title").val());
         var alias = $.trim($("#alias").val());
         var template = $.trim($("#template").val());
@@ -167,7 +167,7 @@ function autosave(act){
     }else{
         editorMap['content'].sync();
         editorMap['excerpt'].sync();
-        var url = "save_log.php?action=autosave";
+        var url = "article_save.php?action=autosave";
         var title = $.trim($("#title").val());
         var alias = $.trim($("#alias").val());
         var sort = $.trim($("#sort").val());

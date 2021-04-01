@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
-<form action="save_log.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
+<form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <!--文章内容-->
     <div class="row">
         <div class="col-xl-8">
@@ -13,10 +13,10 @@
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
-                    <div id="FrameUpload" style="display: none;">
-                        <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
-                    </div>
                 </div>
+				<?php doAction('adm_writelog_head'); ?>
+                <span id="asmsg"></span>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <textarea id="logcontent" name="logcontent""><?php echo $content; ?></textarea>
                 <div class="show_advset" onclick="displayToggle('advset', 1);">文章摘要<i class="icofont-simple-right"></i></div>
                 <div id="advset">

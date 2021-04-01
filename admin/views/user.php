@@ -58,7 +58,7 @@
 						<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
 						<?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
                     </td>
-                    <td><a href="admin_log.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                    <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
                     <td>
 						<?php
 						if (UID != $val['uid']): ?>
