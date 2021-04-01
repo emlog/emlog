@@ -40,7 +40,7 @@
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_write" href="article_write.php">写文章</a>
+                    <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
                     <a class="collapse-item" id="menu_log" href="article.php">文章</a>
                     <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
                     <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>

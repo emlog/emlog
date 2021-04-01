@@ -35,7 +35,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
-    <a href="./article_write.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
+    <a href="./article.php?action=write" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
@@ -132,7 +132,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					?>
                     <tr>
                         <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                        <td><a href="article_write.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+                        <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
 							<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
 							<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
 							<?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
