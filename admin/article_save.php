@@ -80,13 +80,12 @@ switch ($action) {
 	case 'edit':
 		$tbmsg = '';
 		if ($ishide == 'y') {
-			emDirect("./admin_log.php?pid=draft&active_savedraft=1");
+			emDirect("./article.php?pid=draft&active_savedraft=1");
+		}
+		if ($action == 'add' || isset($_POST['pubdf'])) {
+			emDirect("./article.php?active_post=1");//文章发布成功
 		} else {
-			if ($action == 'add' || isset($_POST['pubdf'])) {
-				emDirect("./admin_log.php?active_post=1");//文章发布成功
-			} else {
-				emDirect("./admin_log.php?active_savelog=1");//文章保存成功
-			}
+			emDirect("./article.php?active_savelog=1");//文章保存成功
 		}
 		break;
 }

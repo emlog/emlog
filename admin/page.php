@@ -20,13 +20,14 @@ if (empty($action)) {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('', '', 'page', 1);
 
-	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
+	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page_create.php?page=");
 
 	include View::getView('header');
-	require_once(View::getView('admin_page'));
+	require_once(View::getView('page'));
 	include View::getView('footer');
 	View::output();
 }
+
 //显示新建页面表单
 if ($action == 'new') {
 
@@ -44,16 +45,17 @@ if ($action == 'new') {
 	extract($pageData);
 
 	include View::getView('header');
-	require_once(View::getView('page'));
+	require_once(View::getView('page_create'));
 	include View::getView('footer');
 	View::output();
 }
+
 //显示编辑页面表单
 if ($action == 'mod') {
 	$emPage = new Log_Model();
 
 	$containertitle = '编辑页面';
-	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
 	$att_frame_url = "attachment.php?action=attlib&logid=$pageId";
 	extract($pageData);
@@ -61,10 +63,11 @@ if ($action == 'mod') {
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
-	require_once(View::getView('page'));
+	require_once(View::getView('page_create'));
 	include View::getView('footer');
 	View::output();
 }
+
 //保存页面
 if ($action == 'save' || $action == 'autosave') {
 	$emPage = new Log_Model();
@@ -119,9 +122,10 @@ if ($action == 'save' || $action == 'autosave') {
 			break;
 	}
 }
+
 //操作页面
 if ($action == 'operate_page') {
-	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$operate = $_POST['operate'] ?? '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
 	LoginAuth::checkToken();

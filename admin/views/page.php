@@ -1,84 +1,81 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1><span id="msg_2"></span>
-    <div class="row">
-        <div class="col-xl-8">
-            <div id="msg"></div>
-            <div id="post" class="form-group">
-                <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
-                </div>
-                <div id="post_bar">
-                    <div>
-                        <span onclick="displayToggle('FrameUpload', 0);autosave(4);" class="show_advset">上传插入</span>
-						<?php doAction('adm_writelog_head'); ?>
-                        <span id="asmsg"></span>
-                        <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
-                    </div>
-                    <div id="FrameUpload" style="display: none;">
-                        <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
-                    </div>
-                </div>
-                <div>
-                    <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
-                </div>
+<?php if (isset($_GET['active_del'])): ?>
+    <div class="alert alert-success">删除页面成功</div><?php endif; ?>
+<?php if (isset($_GET['active_hide_n'])): ?>
+    <div class="alert alert-success">发布页面成功</div><?php endif; ?>
+<?php if (isset($_GET['active_hide_y'])): ?>
+    <div class="alert alert-success">禁用页面成功</div><?php endif; ?>
+<?php if (isset($_GET['active_pubpage'])): ?>
+    <div class="alert alert-success">页面保存成功</div><?php endif; ?>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">页面管理</h1>
+    <a href="page.php?action=new" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-plus"></i> 新建页面</a>
+</div>
+<form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th>标题</th>
+                        <th>模板</th>
+                        <th>评论</th>
+                        <th>时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+					<?php foreach ($pages as $key => $value):
+						if (empty($navibar[$value['gid']]['url'])) {
+							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
+						}
+						$isHide = $value['hide'] == 'y' ?
+							'<font color="red"> - 草稿</font>' :
+							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+						?>
+                        <tr>
+                            <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td width="440">
+                                <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
+								<?php echo $isHide; ?>
+								<?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
+                            </td>
+                            <td><?php echo $value['template']; ?></td>
+                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                            <td class="small"><?php echo $value['date']; ?></td>
+                        </tr>
+					<?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class=line></div>
-        </div>
-        <div class="col-xl-4 container-side">
-            <div class="panel panel-default">
-                <div class="panel-heading">设置项</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label>链接别名：</label>
-                        <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
-                    </div>
-                    <div class="form-group">
-                        <label>页面模板：</label>
-                        <input name="template" id="template" class="form-control" value="<?php echo $template; ?>"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-                        <label for="allow_remark">允许评论</label>
-                    </div>
-                </div>
-            </div>
-
-            <div id="post_button">
+            <div class="list_footer">
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
-                <input type="hidden" name="gid" value=<?php echo $pageId; ?>/>
-				<?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
-				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
-				<?php endif; ?>
-
+                <input name="operate" id="operate" value="" type="hidden"/>
+                <a href="javascript:pageact('del');" class="care">删除</a> |
+                <a href="javascript:pageact('hide');">转为草稿</a> |
+                <a href="javascript:pageact('pub');">发布</a>
             </div>
+            <div class="page"><?php echo $pageurl; ?> （有 <?php echo $pageNum; ?> 个页面）</div>
         </div>
     </div>
 </form>
+
 <script>
     $("#menu_page").addClass('active');
     setTimeout(hideActived, 2600);
 
-    checkalias();
-    $("#alias").keyup(function () {
-        checkalias();
-    });
-    $("#title").focus(function () {
-        $("#title_label").hide();
-    });
-    $("#title").blur(function () {
-        if ($("#title").val() == '') {
-            $("#title_label").show();
+    function pageact(act) {
+        if (getChecked('ids') == false) {
+            alert('请选择要操作的页面');
+            return;
         }
-    });
-    if ($("#title").val() != '') $("#title_label").hide();
+        if (act == 'del' && !confirm('你确定要删除所选页面吗？')) {
+            return;
+        }
+        $("#operate").val(act);
+        $("#form_page").submit();
+    }
 </script>

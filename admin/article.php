@@ -73,10 +73,10 @@ if (empty($action)) {
 	foreach ($_GET as $key => $val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
+	$pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
 
 	include View::getView('header');
-	require_once View::getView('admin_log');
+	require_once View::getView('article');
 	include View::getView('footer');
 	View::output();
 }
@@ -92,10 +92,10 @@ if ($action == 'operate_log') {
 	LoginAuth::checkToken();
 
 	if ($operate == '') {
-		emDirect("./admin_log.php?pid=$pid&error_b=1");
+		emDirect("./article.php?pid=$pid&error_b=1");
 	}
 	if (empty($logs) && empty($gid)) {
-		emDirect("./admin_log.php?pid=$pid&error_a=1");
+		emDirect("./article.php?pid=$pid&error_a=1");
 	}
 
 	switch ($operate) {
@@ -107,35 +107,35 @@ if ($action == 'operate_log') {
 			}
 			$CACHE->updateCache();
 			if ($pid == 'draft') {
-				emDirect("./admin_log.php?pid=draft&active_del=1");
+				emDirect("./article.php?pid=draft&active_del=1");
 			} else {
-				emDirect("./admin_log.php?active_del=1");
+				emDirect("./article.php?active_del=1");
 			}
 			break;
 		case 'top':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'y'), $val);
 			}
-			emDirect("./admin_log.php?active_up=1");
+			emDirect("./article.php?active_up=1");
 			break;
 		case 'sortop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortop' => 'y'), $val);
 			}
-			emDirect("./admin_log.php?active_up=1");
+			emDirect("./article.php?active_up=1");
 			break;
 		case 'notop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'n', 'sortop' => 'n'), $val);
 			}
-			emDirect("./admin_log.php?active_down=1");
+			emDirect("./article.php?active_down=1");
 			break;
 		case 'hide':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_hide=1");
+			emDirect("./article.php?active_hide=1");
 			break;
 		case 'pub':
 			foreach ($logs as $val) {
@@ -145,14 +145,14 @@ if ($action == 'operate_log') {
 				}
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?pid=draft&active_post=1");
+			emDirect("./article.php?pid=draft&active_post=1");
 			break;
 		case 'move':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortid' => $sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
-			emDirect("./admin_log.php?active_move=1");
+			emDirect("./article.php?active_move=1");
 			break;
 		case 'change_author':
 			if (ROLE != ROLE_ADMIN) {
@@ -162,7 +162,7 @@ if ($action == 'operate_log') {
 				$Log_Model->updateLog(array('author' => $author), $val);
 			}
 			$CACHE->updateCache('sta');
-			emDirect("./admin_log.php?active_change_author=1");
+			emDirect("./article.php?active_change_author=1");
 			break;
 		case 'check':
 			if (ROLE != ROLE_ADMIN) {
@@ -170,7 +170,7 @@ if ($action == 'operate_log') {
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_ck=1");
+			emDirect("./article.php?active_ck=1");
 			break;
 		case 'uncheck':
 			if (ROLE != ROLE_ADMIN) {
@@ -178,7 +178,7 @@ if ($action == 'operate_log') {
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_unck=1");
+			emDirect("./article.php?active_unck=1");
 			break;
 	}
 }

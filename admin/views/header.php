@@ -40,8 +40,8 @@
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_write" href="write_log.php">写文章</a>
-                    <a class="collapse-item" id="menu_log" href="admin_log.php">文章</a>
+                    <a class="collapse-item" id="menu_write" href="article_write.php">写文章</a>
+                    <a class="collapse-item" id="menu_log" href="article.php">文章</a>
                     <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
                     <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
                 </div>
@@ -105,7 +105,7 @@
                 <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
                     <i class="icofont-navigation-menu"></i>
                 </button>
-                <form action="admin_log.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form action="article.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">

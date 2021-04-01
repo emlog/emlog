@@ -44,7 +44,7 @@ if (!$action) {
 	$att_frame_url = 'attachment.php?action=selectFile';
 
 	include View::getView('header');
-	require_once View::getView('write');
+	require_once View::getView('article_write');
 	include View::getView('footer');
 	View::output();
 }
@@ -79,7 +79,7 @@ if ($action == 'edit') {
 	$att_frame_url = 'attachment.php?action=attlib&logid=' . $logid;
 
 	include View::getView('header');
-	require_once View::getView('write');
+	require_once View::getView('article_write');
 	include View::getView('footer');
 	View::output();
 }

@@ -35,16 +35,16 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
-    <a href="./write_log.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
+    <a href="./article_write.php" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link <?php if ($pid != 'draft') {
 				echo 'active';
-			} ?>" href="./admin_log.php">文章</a></li>
+			} ?>" href="article.php">文章</a></li>
         <li class="nav-item"><a class="nav-link <?php if ($pid == 'draft') {
 				echo 'active';
-			} ?>" href="./admin_log.php?pid=draft">草稿箱</a></li>
+			} ?>" href="article.php?pid=draft">草稿箱</a></li>
     </ul>
 </div>
 <div class="card shadow mb-4">
@@ -101,13 +101,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					$b = 'tag_' . $tagId;
 					$$b = "class=\"filter\"";
 					?>
-                    <span <?php echo $$a; ?>><a href="./admin_log.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
+                    <span <?php echo $$a; ?>><a href="article.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
 				<?php endforeach; ?>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
+        <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
             <input type="hidden" name="pid" value="<?php echo $pid; ?>">
             <table class="table table-bordered table-striped table-hover dataTable no-footer">
                 <thead>
@@ -119,9 +119,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					<?php endif; ?>
                     <th>作者</th>
                     <th>分类</th>
-                    <th><a href="./admin_log.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
-                    <th><a href="./admin_log.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
-                    <th><a href="./admin_log.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
+                    <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
+                    <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
+                    <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -132,16 +132,16 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					?>
                     <tr>
                         <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                        <td><a href="write_log.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+                        <td><a href="article_write.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
 							<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
 							<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
 							<?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
                                 <sapn style="color:red;"> - 待审</sapn><?php endif; ?>
                             <div>
 								<?php if ($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-                                    <a href="./admin_log.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
+                                    <a href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
 								<?php elseif ($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-                                    <a href="./admin_log.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
+                                    <a href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
 								<?php endif; ?>
                             </div>
                         </td>
@@ -150,8 +150,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                                 <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
 						<?php endif; ?>
-                        <td><a href="./admin_log.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
-                        <td><a href="./admin_log.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
+                        <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
+                        <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
                         <td class="small"><?php echo $value['date']; ?></td>
                         <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                         <td><?php echo $value['views']; ?></a></td>
@@ -279,11 +279,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     // 按分类筛选
     function selectSort(obj) {
-        window.open("./admin_log.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+        window.open("./article.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
     }
 
     // 按用户筛选
     function selectUser(obj) {
-        window.open("./admin_log.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
+        window.open("./article.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
     }
 </script>
