@@ -1,8 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<script charset="utf-8" src="./editor/kindeditor.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
-<script charset="utf-8" src="./editor/lang/zh_CN.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1><span id="msg_2"></span>
     <div class="row">
@@ -23,8 +21,8 @@
                         <iframe width="100%" height="330" frameborder="0" src="<?php echo $att_frame_url; ?>"></iframe>
                     </div>
                 </div>
-                <div>
-                    <textarea id="logcontent" name="logcontent" style="width:100%; height:460px;"><?php echo $content; ?></textarea>
+                <div id="pagecontent">
+                    <textarea  name="content" ><?php echo $content; ?></textarea>
                 </div>
             </div>
             <div class=line></div>
@@ -64,6 +62,7 @@
         </div>
     </div>
 </form>
+<script src="./editor.md/editormd.js"></script>
 <script>
     $("#menu_page").addClass('active');
     setTimeout(hideActived, 2600);
@@ -81,4 +80,23 @@
         }
     });
     if ($("#title").val() != '') $("#title_label").hide();
+	
+	var Editor_page;
+            $(function() {
+                Editor_page = editormd("pagecontent", {
+                    width           : "100%",
+					height			: 640,
+					toolbarIcons : function(){
+						return ["undo", "redo", "|", 
+						"bold", "del", "italic", "quote", "uppercase", "lowercase", "|", 
+						"h1", "h2", "h3", "h4", "h5", "h6", "|", 
+						"list-ul", "list-ol", "hr", "|",
+						"link", "image",  "preformatted-text", "table", "pagebreak", "|",
+						"goto-line", "watch", "preview", "search", "|", "info"]},
+                    path            : "editor.md/lib/",
+					tex             : false,	
+                    flowChart       : false, 	
+                    sequenceDiagram : false	});
+				Editor_page.setToolbarAutoFixed(false);
+				}); 
 </script>
