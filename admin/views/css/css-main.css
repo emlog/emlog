@@ -1,6 +1,4 @@
-
 /*main.css*/
-li {list-style:none;}
 .tdcenter {
     text-align:center;
     padding-left:0;
@@ -150,6 +148,7 @@ textarea {
     border:none
 }
 #admindex_msg ul li {
+    list-style: none;
     line-height:1.6;
     border-bottom: 1px solid #E4E4E4;
     padding: 10px;
@@ -489,6 +488,8 @@ div.table .file-row:nth-child(odd) {
 #previews .file-row.dz-success .delete {
     display: block;
 }
+.accordion {
+    list-style: none;
+}
 
-/* 编辑器默认高*/
-.ck-editor__editable {min-height: 390px;}
+
