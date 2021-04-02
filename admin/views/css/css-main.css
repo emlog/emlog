@@ -148,6 +148,7 @@ textarea {
     border:none
 }
 #admindex_msg ul li {
+    list-style: none;
     line-height:1.6;
     border-bottom: 1px solid #E4E4E4;
     padding: 10px;
@@ -487,6 +488,8 @@ div.table .file-row:nth-child(odd) {
 #previews .file-row.dz-success .delete {
     display: block;
 }
-
+.accordion {
+    list-style: none;
+}
 
 
