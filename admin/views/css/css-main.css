@@ -1,6 +1,4 @@
-
 /*main.css*/
-li {list-style:none;}
 .tdcenter {
     text-align:center;
     padding-left:0;
@@ -490,5 +488,5 @@ div.table .file-row:nth-child(odd) {
     display: block;
 }
 
-/* 编辑器默认高*/
-.ck-editor__editable {min-height: 390px;}
+
+
