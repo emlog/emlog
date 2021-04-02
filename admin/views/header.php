@@ -7,16 +7,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name=renderer  content=webkit>
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
+    <link rel="stylesheet" href="./views/css/style.css" />
+    <link rel="stylesheet" href="./editor.md/css/editormd.css" />
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
-
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
-    <script src="./views/js/ckeditor.js"></script>
     <script src="./views/js/common.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
