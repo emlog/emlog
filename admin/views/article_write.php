@@ -13,10 +13,10 @@
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
+					<?php doAction('adm_writelog_head'); ?>
+                    <span id="asmsg"></span>
+                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 </div>
-				<?php doAction('adm_writelog_head'); ?>
-                <span id="asmsg"></span>
-                <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <div id="logcontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
             </div>
 
