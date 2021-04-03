@@ -5,7 +5,7 @@
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <!--文章内容-->
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div id="msg"></div>
             <div id="post" class="form-group">
                 <div>
@@ -16,70 +16,63 @@
                 </div><?php doAction('adm_writelog_head'); ?>
                 <span id="asmsg"></span>
                 <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
-		<div id="logcontent" ><textarea style="display:none;"><?php echo $content; ?></textarea></div>
-		<div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">文章摘要<i class="icofont-simple-right"></i></div>
+                <div id="logcontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
+                <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">文章摘要<i class="icofont-simple-right"></i></div>
                 <div id="advset"><textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea></div>
             </div>
-            <div class=line></div>
-        </div>
-        <!--文章侧边栏-->
-        <div class="col-xl-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <select name="sort" id="sort" class="form-control">
-                            <option value="-1">选择分类...</option>
-							<?php
-							foreach ($sorts as $key => $value):
-								if ($value['pid'] != 0) {
-									continue;
-								}
-								$flg = $value['sid'] == $sortid ? 'selected' : '';
-								?>
-                                <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
-								<?php
-								$children = $value['children'];
-								foreach ($children as $key):
-									$value = $sorts[$key];
-									$flg = $value['sid'] == $sortid ? 'selected' : '';
-									?>
-                                    <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
-								<?php
-								endforeach;
-							endforeach;
+
+            <div class="form-group">
+                <select name="sort" id="sort" class="form-control">
+                    <option value="-1">选择分类...</option>
+					<?php
+					foreach ($sorts as $key => $value):
+						if ($value['pid'] != 0) {
+							continue;
+						}
+						$flg = $value['sid'] == $sortid ? 'selected' : '';
+						?>
+                        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+						<?php
+						$children = $value['children'];
+						foreach ($children as $key):
+							$value = $sorts[$key];
+							$flg = $value['sid'] == $sortid ? 'selected' : '';
 							?>
-                        </select>
-                    </div>
+                            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+						<?php
+						endforeach;
+					endforeach;
+					?>
+                </select>
+            </div>
 
-                    <div class="form-group">
-                        <label>标签：</label>
-                        <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
-                    </div>
+            <div class="form-group">
+                <label>标签：</label>
+                <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
+            </div>
 
-                    <div class="form-group">
-                        <label>发布时间：</label>
-                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
-                    </div>
+            <div class="form-group">
+                <label>发布时间：</label>
+                <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
+            </div>
 
-                    <div class="form-group">
-                        <label>链接别名：</label>
-                        <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
-                    </div>
+            <div class="form-group">
+                <label>链接别名：</label>
+                <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
+            </div>
 
-                    <div class="form-group">
-                        <label>访问密码：</label>
-                        <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
-                    </div>
+            <div class="form-group">
+                <label>访问密码：</label>
+                <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
+            </div>
 
-                    <div class="form-group">
-                        <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                        <label for="top">首页置顶</label>
-                        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                        <label for="sortop">分类置顶</label>
-                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
-                        <label for="allow_remark">允许评论</label>
-                    </div>
-                </div>
+            <div class="form-group">
+                <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                <label for="top">首页置顶</label>
+                <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                <label for="sortop">分类置顶</label>
+                <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
+                <label for="allow_remark">允许评论</label>
             </div>
 
             <div id="post_button">
@@ -128,43 +121,45 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
-	var Editor,Editor_summary;
-			$(function() {
-                Editor = editormd("logcontent", {
-                    width           : "100%",
-					height			: 640,
-					toolbarIcons : function(){
-						return ["undo", "redo", "|", 
-						"bold", "del", "italic", "quote", "uppercase", "lowercase", "|", 
-						"h1", "h2", "h3", "h4", "h5", "h6", "|", 
-						"list-ul", "list-ol", "hr", "|",
-						"link", "image",  "preformatted-text", "table", "pagebreak", "|",
-						"goto-line", "watch", "preview", "search", "|", "info"]},
-                    path            : "editor.md/lib/",
-					tex             : false,	
-                    flowChart       : false, 	
-                    sequenceDiagram : false		
-				});
-				Editor_summary = editormd("advset", {
-                    width           : "100%",
-					height			: 300,
-					toolbarIcons : function() {
-					return ["undo", "redo", "|","watch", "image", "|","info"]},
-                    path            : "editor.md/lib/",
-					tex             : false,		
-                    flowChart       : false, 		
-                    sequenceDiagram : false,		
-					watch			: false,});
-					Editor.setToolbarAutoFixed(false);
-					Editor_summary.setToolbarAutoFixed(false);
-				$("#displayToggle").bind('click', function() {
-					//通过刷新编辑区来修复一个无法显示编辑区的Bug
-					var editor_act = Editor_summary.toolbarHandlers;
-					$.proxy(editor_act.watch , Editor_summary)();
-					$.proxy(editor_act.clear, Editor_summary)();
-					$.proxy(editor_act.undo, Editor_summary)();
-				});
-            }); 
-                    
-                
+    var Editor, Editor_summary;
+    $(function () {
+        Editor = editormd("logcontent", {
+            width: "100%",
+            height: 640,
+            toolbarIcons: function () {
+                return ["undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "image", "preformatted-text", "table", "pagebreak", "|",
+                    "goto-line", "watch", "preview", "search", "|", "info"]
+            },
+            path: "editor.md/lib/",
+            tex: false,
+            watch: false,
+            flowChart: false,
+            sequenceDiagram: false
+        });
+        Editor_summary = editormd("advset", {
+            width: "100%",
+            height: 300,
+            toolbarIcons: function () {
+                return ["undo", "redo", "|", "watch", "image", "|", "info"]
+            },
+            path: "editor.md/lib/",
+            tex: false,
+            watch: false,
+            flowChart: false,
+            sequenceDiagram: false,
+        });
+        Editor.setToolbarAutoFixed(false);
+        Editor_summary.setToolbarAutoFixed(false);
+        $("#displayToggle").bind('click', function () {
+            //通过刷新编辑区来修复一个无法显示编辑区的Bug
+            var editor_act = Editor_summary.toolbarHandlers;
+            $.proxy(editor_act.watch, Editor_summary)();
+            $.proxy(editor_act.clear, Editor_summary)();
+            $.proxy(editor_act.undo, Editor_summary)();
+        });
+    });
 </script>
