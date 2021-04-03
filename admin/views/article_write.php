@@ -20,14 +20,16 @@
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
 
-            <div class="form-group">
+           
+
+            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>			 
+            <div id="advset">
+			
+			<div class="form-group">
                 <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
             </div>
-
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
-
-            <div id="advset">
+			
                 <div class="form-group">
                     <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
@@ -161,11 +163,16 @@
             },
             path: "editor.md/lib/",
             tex: false,
-            watch: false,
             flowChart: false,
             sequenceDiagram: false,
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
+		$("#displayToggle").bind('click', function() {			
+			var editor_act = Editor_summary.toolbarHandlers;
+			$.proxy(editor_act.watch , Editor_summary)();
+			$.proxy(editor_act.clear, Editor_summary)();
+			$.proxy(editor_act.undo, Editor_summary)();
+		});
     });
 </script>
