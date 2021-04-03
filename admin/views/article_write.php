@@ -13,66 +13,75 @@
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
-                </div><?php doAction('adm_writelog_head'); ?>
+                </div>
+				<?php doAction('adm_writelog_head'); ?>
                 <span id="asmsg"></span>
                 <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <div id="logcontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
-                <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">文章摘要<i class="icofont-simple-right"></i></div>
-                <div id="advset"><textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <select name="sort" id="sort" class="form-control">
-                    <option value="-1">选择分类...</option>
-					<?php
-					foreach ($sorts as $key => $value):
-						if ($value['pid'] != 0) {
-							continue;
-						}
-						$flg = $value['sid'] == $sortid ? 'selected' : '';
-						?>
-                        <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+                <label>文章摘要：</label>
+                <div id="logexcerpt"><textarea style="display:none;"><?php echo $excerpt; ?></textarea></div>
+            </div>
+
+            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
+
+            <div id="advset">
+                <div class="form-group">
+                    <label>分类：</label>
+                    <select name="sort" id="sort" class="form-control">
+                        <option value="-1">选择分类...</option>
 						<?php
-						$children = $value['children'];
-						foreach ($children as $key):
-							$value = $sorts[$key];
+						foreach ($sorts as $key => $value):
+							if ($value['pid'] != 0) {
+								continue;
+							}
 							$flg = $value['sid'] == $sortid ? 'selected' : '';
 							?>
-                            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
-						<?php
+                            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+							<?php
+							$children = $value['children'];
+							foreach ($children as $key):
+								$value = $sorts[$key];
+								$flg = $value['sid'] == $sortid ? 'selected' : '';
+								?>
+                                <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+							<?php
+							endforeach;
 						endforeach;
-					endforeach;
-					?>
-                </select>
-            </div>
+						?>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label>标签：</label>
-                <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
-            </div>
+                <div class="form-group">
+                    <label>标签：</label>
+                    <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
+                </div>
 
-            <div class="form-group">
-                <label>发布时间：</label>
-                <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
-            </div>
+                <div class="form-group">
+                    <label>发布时间：</label>
+                    <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
+                </div>
 
-            <div class="form-group">
-                <label>链接别名：</label>
-                <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
-            </div>
+                <div class="form-group">
+                    <label>链接别名：</label>
+                    <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
+                </div>
 
-            <div class="form-group">
-                <label>访问密码：</label>
-                <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
-            </div>
+                <div class="form-group">
+                    <label>访问密码：</label>
+                    <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
+                </div>
 
-            <div class="form-group">
-                <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                <label for="top">首页置顶</label>
-                <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                <label for="sortop">分类置顶</label>
-                <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
-                <label for="allow_remark">允许评论</label>
+                <div class="form-group">
+                    <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                    <label for="top">首页置顶</label>
+                    <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                    <label for="sortop">分类置顶</label>
+                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
+                    <label for="allow_remark">允许评论</label>
+                </div>
             </div>
 
             <div id="post_button">
@@ -140,7 +149,7 @@
             flowChart: false,
             sequenceDiagram: false
         });
-        Editor_summary = editormd("advset", {
+        Editor_summary = editormd("logexcerpt", {
             width: "100%",
             height: 300,
             toolbarIcons: function () {
