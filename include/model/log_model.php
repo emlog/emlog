@@ -182,12 +182,12 @@ class Log_Model {
 				}
 			}
 
-            $row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
-            $row['attachment'] = '';
-            $row['tag'] = '';
-            $row['tbcount'] = 0;//兼容未删除引用的模板
-            $logs[] = $row;
-        }
+			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
+			$row['attachment'] = '';
+			$row['tag'] = '';
+			$row['tbcount'] = 0;//兼容未删除引用的模板
+			$logs[] = $row;
+		}
 		return $logs;
 	}
 
