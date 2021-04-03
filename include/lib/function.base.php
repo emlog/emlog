@@ -338,17 +338,6 @@ function breakLog($content, $lid)
 }
 
 /**
- * 删除[break]标签
- *
- * @param string $content 文章内容
- */
-function rmBreak($content)
-{
-    $content = str_replace('[break]', '', $content);
-    return $content;
-}
-
-/**
  * 时间转化函数
  *
  * @param $now
