@@ -16,9 +16,7 @@
                     <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
                 </div>
-                <div id="pagecontent">
-                    <textarea name="content"><?php echo $content; ?></textarea>
-                </div>
+                <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
             </div>
 
             <div class="form-group">
@@ -99,7 +97,7 @@
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "preformatted-text", "table", "pagebreak", "|",
-                    "goto-line", "watch", "preview", "search", "|", "info"]
+                    "goto-line", "search", "watch", "|", "info"]
             },
             path: "editor.md/lib/",
             tex: false,

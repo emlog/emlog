@@ -141,7 +141,7 @@
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "preformatted-text", "table", "pagebreak", "|",
-                    "goto-line", "watch", "preview", "search", "|", "info"]
+                    "goto-line", "search", "watch", "|", "info"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -153,7 +153,11 @@
             width: "100%",
             height: 300,
             toolbarIcons: function () {
-                return ["undo", "redo", "|", "watch", "image", "|", "info"]
+                return ["undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "image", "|", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -166,7 +170,6 @@
         $("#displayToggle").bind('click', function () {
             //通过刷新编辑区来修复一个无法显示编辑区的Bug
             var editor_act = Editor_summary.toolbarHandlers;
-            $.proxy(editor_act.watch, Editor_summary)();
             $.proxy(editor_act.clear, Editor_summary)();
             $.proxy(editor_act.undo, Editor_summary)();
         });

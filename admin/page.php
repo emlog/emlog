@@ -30,7 +30,6 @@ if (empty($action)) {
 
 //显示新建页面表单
 if ($action == 'new') {
-
 	$pageData = array(
 		'containertitle'  => '新建页面',
 		'pageId'          => -1,
@@ -74,9 +73,9 @@ if ($action == 'save' || $action == 'autosave') {
 	$Navi_Model = new Navi_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$content = isset($_POST['pagecontent']) ? addslashes(trim($_POST['pagecontent'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//如被自动保存为草稿则有blog id号
+	$pageId = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 	$template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
 	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
