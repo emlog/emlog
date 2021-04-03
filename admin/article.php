@@ -211,12 +211,6 @@ if ($action === 'write') {
 	$is_allow_remark = '';
 	$postDate = date('Y-m-d H:i:s');
 	$att_frame_url = 'attachment.php?action=selectFile';
-
-	if (Option::get('isexcerpt') == 'y') {
-		$excerpt_editor_tip = '"如果留空，则自动截取文章前"+'.Option::get('excerpt_subnum').'+"个字作为摘要..."';
-	} else {
-		$excerpt_editor_tip = '"请输入摘要..."';
-	}
 	
 	include View::getView('header');
 	require_once View::getView('article_write');
