@@ -165,6 +165,7 @@
             tex: false,
             flowChart: false,
             sequenceDiagram: false,
+	    placeholder: <?php echo $excerpt_editor_tip; ?>
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
