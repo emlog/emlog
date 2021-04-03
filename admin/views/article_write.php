@@ -20,14 +20,13 @@
                 <div id="logcontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
             </div>
 
-            <div class="form-group">
-                <label>文章摘要：</label>
-                <div id="logexcerpt"><textarea style="display:none;"><?php echo $excerpt; ?></textarea></div>
-            </div>
-
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
 
             <div id="advset">
+                <div class="form-group">
+                    <label>文章摘要：</label>
+                    <div id="logexcerpt"><textarea style="display:none;"><?php echo $excerpt; ?></textarea></div>
+                </div>
                 <div class="form-group">
                     <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
