@@ -11,7 +11,20 @@
 
 require_once 'globals.php';
 
-if ($action == 'update' && ROLE == ROLE_ADMIN) {
+if ($action === 'check_update') {
+	$emcurl = new EmCurl();
+	$url = OFFICIAL_SERVICE_HOST . 'services/check_update.php?ver=' . Option::EMLOG_VERSION;
+	$emcurl->request($url);
+	$retStatus = $emcurl->getHttpStatus();
+	if ($retStatus !== '200') {
+		//$respone = $emcurl->getRespone();
+	}
+	$respone = $emcurl->getRespone();
+	var_dump($respone);
+
+}
+
+if ($action === 'update' && ROLE === ROLE_ADMIN) {
 	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
 	$upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
 

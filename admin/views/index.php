@@ -116,7 +116,7 @@
 
     function checkupdate() {
         $("#upmsg").html("正在检查，请稍后").addClass("ajaxload");
-        $.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+        $.get("./upgrade.php?action=check_update",
             function (data) {
                 if (data.result.match("no")) {
                     $("#upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
