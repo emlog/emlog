@@ -15,7 +15,7 @@ $User_Model = new User_Model();
 
 //加载用户管理页面
 if (empty($action)) {
-	$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$users = $User_Model->getUsers($page);
 	$usernum = $User_Model->getUserNum();
 	$pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
@@ -61,7 +61,7 @@ if ($action == 'new') {
 }
 
 if ($action == 'edit') {
-	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
+	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
 	$data = $User_Model->getOneUser($uid);
 	extract($data);
@@ -92,7 +92,7 @@ if ($action == 'update') {
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
-	$uid = isset($_POST['uid']) ? intval($_POST['uid']) : '';
+	$uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
 	$ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	LoginAuth::checkToken();
@@ -144,7 +144,7 @@ if ($action == 'update') {
 if ($action == 'del') {
 	LoginAuth::checkToken();
 	$users = $User_Model->getUsers();
-	$uid = isset($_GET['uid']) ? intval($_GET['uid']) : '';
+	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
 	if (UID == $uid) {
 		emDirect('./user.php');

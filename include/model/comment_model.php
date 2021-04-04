@@ -130,7 +130,7 @@ class Comment_Model {
 	function delComment($commentId) {
 		$this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
-		$blogId = intval($row['gid']);
+		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
 		/* 获取子评论ID */
 		$query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
@@ -158,7 +158,7 @@ class Comment_Model {
 	function hideComment($commentId) {
 		$this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
-		$blogId = intval($row['gid']);
+		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
 		/* 获取子评论ID */
 		$query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
@@ -175,11 +175,11 @@ class Comment_Model {
 	function showComment($commentId) {
 		$this->isYoursComment($commentId);
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
-		$blogId = intval($row['gid']);
+		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
 		/* 获取父评论ID */
 		while ($row['pid'] != 0) {
-			$commentId = intval($row['pid']);
+			$commentId = (int)$row['pid'];
 			$commentIds[] = $commentId;
 			$row = $this->db->once_fetch_array("SELECT pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		}
@@ -333,7 +333,7 @@ class Comment_Model {
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 
-		return intval($row['num']) > 0 ? true : false;
+		return (int)$row['num'] > 0;
 	}
 
 	function setCommentCookie($name, $mail, $url) {

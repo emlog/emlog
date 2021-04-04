@@ -32,7 +32,7 @@ class Log_Controller {
 	}
 
 	function displayContent($params) {
-		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? intval($params[5]) : 1;
+		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? (int)$params[5] : 1;
 
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();

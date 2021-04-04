@@ -211,7 +211,7 @@ class Cache {
 						$com_cids[$show_com['gid']][] = $show_cid['cid'];
 					}
 				}
-				$com_page = intval(floor(array_search($cid, $com_cids[$show_com['gid']]) / $comment_pnum)) + 1;
+				$com_page = (int)floor(array_search($cid, $com_cids[$show_com['gid']]) / $comment_pnum) + 1;
 			}
 			$com_cache[] = array(
 				'cid'     => $show_com['cid'],
@@ -295,9 +295,9 @@ class Cache {
 				'sortname'    => htmlspecialchars($row['sortname']),
 				'description' => htmlspecialchars($row['description']),
 				'alias'       => $row['alias'],
-				'sid'         => intval($row['sid']),
-				'taxis'       => intval($row['taxis']),
-				'pid'         => intval($row['pid']),
+				'sid'         => (int)$row['sid'],
+				'taxis'       => (int)$row['taxis'],
+				'pid'         => (int)$row['pid'],
 				'template'    => htmlspecialchars($row['template']),
 			);
 			if ($sortData['pid'] == 0) {
@@ -345,16 +345,16 @@ class Cache {
 				}
 			}
 			$naviData = array(
-				'id'        => intval($row['id']),
+				'id'        => (int)$row['id'],
 				'naviname'  => htmlspecialchars(trim($row['naviname'])),
 				'url'       => htmlspecialchars(trim($url)),
 				'newtab'    => $row['newtab'],
 				'isdefault' => $row['isdefault'],
-				'type'      => intval($row['type']),
-				'typeId'    => intval($row['type_id']),
-				'taxis'     => intval($row['taxis']),
+				'type'      => (int)$row['type'],
+				'typeId'    => (int)$row['type_id'],
+				'taxis'     => (int)$row['taxis'],
 				'hide'      => $row['hide'],
-				'pid'       => intval($row['pid']),
+				'pid'       => (int)$row['pid'],
 				'children'  => $children,
 			);
 			if ($row['type'] == Navi_Model::navitype_custom) {
@@ -380,7 +380,7 @@ class Cache {
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
-			$row['gid'] = intval($row['gid']);
+			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);
 			$logs[] = $row;
 		}
@@ -443,7 +443,7 @@ class Cache {
 				$tag = array();
 				$tag['tagurl'] = rawurlencode($value);
 				$tag['tagname'] = htmlspecialchars($value);
-				$tag['tid'] = intval($key);
+				$tag['tid'] = (int)$key;
 				$tags[] = $tag;
 			}
 

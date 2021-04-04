@@ -40,7 +40,7 @@ if ($action === '') {
 			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
 			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
 			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
-			$tplInfo['sidebar'] = !empty($sidebar[1]) ? intval($sidebar[1]) : 1;
+			$tplInfo['sidebar'] = !empty($sidebar[1]) ? (int)$sidebar[1] : 1;
 			$tplInfo['tplfile'] = $file;
 
 			$tpls[] = $tplInfo;
@@ -60,7 +60,7 @@ if ($action === '') {
 if ($action === 'usetpl') {
 	LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
-	$tplSideNum = isset($_GET['side']) ? intval($_GET['side']) : '';
+	$tplSideNum = isset($_GET['side']) ? (int)$_GET['side'] : '';
 
 	Option::updateOption('nonce_templet', $tplName);
 	Option::updateOption('tpl_sidenum', $tplSideNum);

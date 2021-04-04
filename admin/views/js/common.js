@@ -24,9 +24,6 @@ function em_confirm (id, property, token) {
         case 'navi':
             var urlreturn="navbar.php?action=del&id="+id;
             var msg = "你确定要删除该导航吗？";break;
-        case 'backup':
-            var urlreturn="data.php?action=renewdata&sqlfile="+id;
-            var msg = "你确定要导入该备份文件吗？";break;
         case 'media':
             var urlreturn="media.php?action=delete&aid="+id;
             var msg = "你确定要删除该媒体文件吗？";break;
@@ -58,7 +55,6 @@ function focusEle(id){try{document.getElementById(id).focus();}catch(e){}}
 function hideActived(){
     $(".alert-success").hide();
     $(".alert-danger").hide();
-    //$(".error").hide();
 }
 function displayToggle(id, keep){
     $("#"+id).toggle();
@@ -137,24 +133,26 @@ function insertTag (tag, boxId){
     if (boxId == "tag")
         $("#tag_label").hide();
 }
-//act:0 auto save,1 click attupload,2 click savedf button, 3 save page, 4 click page attupload
+//act:
+// 1 auto save,
+// 2 click savedf button,
+// 3 save page,
 function autosave(act){
     var nodeid = "as_logid";
-    if (act == 3 || act == 4){
-        editorMap['content'].sync();
+    if (act == 3){
         var url = "page_create.php?action=autosave";
         var title = $.trim($("#title").val());
         var alias = $.trim($("#alias").val());
         var template = $.trim($("#template").val());
         var logid = $("#as_logid").val();
-        var content = $('#content').val();
+        var pagecontent = Editor_page.getMarkdown();
         var pageurl = $.trim($("#url").val());
         var allow_remark = $("#page_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
         var is_blank = $("#page_options #is_blank").attr("checked") == 'checked' ? 'y' : 'n';
         var token = $.trim($("#token").val());
         var ishide = $.trim($("#ishide").val());
         var ishide = ishide == "" ? "y" : ishide;
-        var querystr = "content="+encodeURIComponent(content)
+        var querystr = "pagecontent="+encodeURIComponent(pagecontent)
                     +"&title="+encodeURIComponent(title)
                     +"&alias="+encodeURIComponent(alias)
                     +"&template="+encodeURIComponent(template)
@@ -165,8 +163,6 @@ function autosave(act){
                     +"&ishide="+ishide
                     +"&as_logid="+logid;
     }else{
-        editorMap['content'].sync();
-        editorMap['excerpt'].sync();
         var url = "article_save.php?action=autosave";
         var title = $.trim($("#title").val());
         var alias = $.trim($("#alias").val());
@@ -175,8 +171,8 @@ function autosave(act){
         var date = $.trim($("#date").val());
         var logid = $("#as_logid").val();
         var author = $("#author").val();
-        var content = $('#content').val();
-        var excerpt = $('#excerpt').val();
+        var content = Editor.getMarkdown();
+        var excerpt = Editor_summary.getMarkdown();
         var tag = $.trim($("#tag").val());
         var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
         var sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n';
@@ -186,8 +182,8 @@ function autosave(act){
         var ishide = $.trim($("#ishide").val());
         var token = $.trim($("#token").val());
         var ishide = ishide == "" ? "y" : ishide;
-        var querystr = "content="+encodeURIComponent(content)
-                    +"&excerpt="+encodeURIComponent(excerpt)
+        var querystr = "logcontent="+encodeURIComponent(content)
+                    +"&logexcerpt="+encodeURIComponent(excerpt)
                     +"&title="+encodeURIComponent(title)
                     +"&alias="+encodeURIComponent(alias)
                     +"&author="+author
@@ -208,21 +204,18 @@ function autosave(act){
     if(alias != '') {
         if (0 != isalias(alias)){
             $("#msg").html("<span class=\"msg_autosave_error\">链接别名错误，自动保存失败</span>");
-            if(act == 0){setTimeout("autosave(0)",60000);}
+            if(act == 0){setTimeout("autosave(1)",60000);}
             return;
         }
     }
-    if(act == 0){
+    if(act == 1){
         if(ishide == 'n'){return;}
         if (content == ""){
-            setTimeout("autosave(0)",60000);
+            setTimeout("autosave(1)",60000);
             return;
         }
     }
-    if(act == 1 || act == 4){
-        var gid = $("#"+nodeid).val();
-        if (gid != -1){return;}
-    }
+
     $("#msg").html("<span class=\"msg_autosave_do\">正在保存...</span>");
     var btname = $("#savedf").val();
     $("#savedf").val("正在保存");
@@ -242,7 +235,7 @@ function autosave(act){
             var hours = digital.getHours();
             var mins = digital.getMinutes();
             var secs = digital.getSeconds();
-            $("#msg_2").html("<span class=\"ajax_remind_1\">自动保存于"+hours+":"+mins+":"+secs+" </span>");
+            $("#msg").html("<span class=\"ajax_remind_1\">自动保存于"+hours+":"+mins+":"+secs+" </span>");
             $("#savedf").attr("disabled", false);
             $("#savedf").val(btname);
             $("#msg").html("");
@@ -252,8 +245,8 @@ function autosave(act){
             $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
         }
     });
-    if(act == 0){
-        setTimeout("autosave(0)",60000);
+    if(act == 1){
+        setTimeout("autosave(1)",60000);
     }
 }
 //toggle plugin
