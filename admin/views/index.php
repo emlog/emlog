@@ -100,10 +100,9 @@
     setTimeout(hideActived, 2600);
     $("#menu_home").addClass('active');
     $(document).ready(function () {
-        $("#admindex_msg ul").html("<span class=\"ajax_remind_1\">正在读取...</span>");
-        $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+        $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
+        $.get("./index.php?action=get_news",
             function (data) {
-                $("#admindex_msg ul").html("");
                 $.each(data.items, function (i, item) {
                     var image = '';
                     if (item.image != '') {
@@ -111,15 +110,16 @@
                     }
                     $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
                 });
+                $("#admindex_msg ul").removeClass();
             });
     });
 
     function checkupdate() {
-        $("#upmsg").html("正在检查，请稍后").addClass("ajaxload");
+        $("#upmsg").html("").addClass("spinner-border text-primary");
         $.get("./upgrade.php?action=check_update",
             function (data) {
                 if (data.result.match("no")) {
-                    $("#upmsg").html("目前还没有适合您当前版本的更新！").removeClass();
+                    $("#upmsg").html("已经是最新版本，没有可用的更新").removeClass();
                 } else if (data.result.match("yes")) {
                     $("#upmsg").html("有可用的emlog更新版本 " + data.ver + "，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\">现在更新</a>").removeClass();
                 } else {
@@ -129,7 +129,7 @@
     }
 
     function doup(source, upsql) {
-        $("#upmsg").html("系统正在更新中，请耐心等待").addClass("ajaxload");
+        $("#upmsg").html("正在更新中，请耐心等待").addClass("ajaxload");
         $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql,
             function (data) {
                 $("#upmsg").removeClass();
