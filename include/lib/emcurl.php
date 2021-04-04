@@ -4,7 +4,7 @@ class EmCurl {
 	protected $_useragent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1';
 	protected $_url;
 	protected $_followlocation = false;
-	protected $_timeout = 3;// second
+	protected $_timeout;
 	protected $_maxRedirects = 0;
 	protected $_post;
 	protected $_postFields;
@@ -31,8 +31,8 @@ class EmCurl {
 		$this->auth_pass = $pass;
 	}
 
-	public function __construct($timeOut = 2, $includeHeader = false, $noBody = false) {
-		$this->_timeout = $timeOut;
+	public function __construct($timeOut = 3, $includeHeader = false, $noBody = false) {
+		$this->_timeout = $timeOut; // second
 		$this->_noBody = $noBody;
 		$this->_includeHeader = $includeHeader;
 	}
