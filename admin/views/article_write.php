@@ -3,10 +3,9 @@
 } ?>
 <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <!--文章内容-->
     <div class="row">
         <div class="col-xl-12">
-            <div id="msg"></div>
+            <div id="msg">sdfsdfasdfas</div>
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题"/>
@@ -126,7 +125,10 @@
 
 <script src="./editor.md/editormd.js"></script>
 <script>
-    setTimeout("autosave(0)", 60000);
+    $("#alias").keyup(function () {
+        checkalias();
+    });
+    setTimeout("autosave(1)", 60000);
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');

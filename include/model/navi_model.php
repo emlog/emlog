@@ -25,16 +25,16 @@ class Navi_Model {
 		while ($row = $this->db->fetch_array($query)) {
 			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
 			$naviData = array(
-				'id'        => intval($row['id']),
+				'id'        => (int)$row['id'],
 				'naviname'  => htmlspecialchars(trim($row['naviname'])),
 				'url'       => htmlspecialchars(trim($url)),
 				'newtab'    => $row['newtab'],
 				'isdefault' => $row['isdefault'],
-				'type'      => intval($row['type']),
-				'typeId'    => intval($row['type_id']),
-				'taxis'     => intval($row['taxis']),
+				'type'      => (int)$row['type'],
+				'typeId'    => (int)$row['type_id'],
+				'taxis'     => (int)$row['taxis'],
 				'hide'      => $row['hide'],
-				'pid'       => intval($row['pid']),
+				'pid'       => (int)$row['pid'],
 			);
 			if ($row['type'] == Navi_Model::navitype_custom) {
 				if ($naviData['pid'] == 0) {
@@ -76,9 +76,9 @@ class Navi_Model {
 				'url'       => htmlspecialchars(trim($row['url'])),
 				'newtab'    => $row['newtab'],
 				'isdefault' => $row['isdefault'],
-				'type'      => intval($row['type']),
-				'type_id'   => intval($row['type_id']),
-				'pid'       => intval($row['pid']),
+				'type'      => (int)$row['type'],
+				'type_id'   => (int)$row['type_id'],
+				'pid'       => (int)$row['pid'],
 			);
 		}
 		return $naviData;

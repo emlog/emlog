@@ -10,7 +10,7 @@ class Calendar {
 	 * 日历调用地址
 	 */
 	static function url() {
-		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL . '?action=cal&record=' . intval($GLOBALS['record']) : DYNAMIC_BLOGURL . '?action=cal';
+		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL . '?action=cal&record=' . (int)$GLOBALS['record'] : DYNAMIC_BLOGURL . '?action=cal';
 		return $calendarUrl;
 	}
 
@@ -34,10 +34,10 @@ class Calendar {
 		$year_month = date("Ym");
 
 		if (isset($_GET['record'])) {
-			$n_year = substr(intval($_GET['record']), 0, 4);
-			$n_year2 = substr(intval($_GET['record']), 0, 4);
-			$n_month = substr(intval($_GET['record']), 4, 2);
-			$year_month = substr(intval($_GET['record']), 0, 6);
+			$n_year = substr((int)$_GET['record'], 0, 4);
+			$n_year2 = substr((int)$_GET['record'], 0, 4);
+			$n_month = substr((int)$_GET['record'], 4, 2);
+			$year_month = substr((int)$_GET['record'], 0, 6);
 		}
 
 		//年月跳转连接

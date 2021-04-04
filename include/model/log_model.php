@@ -314,7 +314,7 @@ class Log_Model {
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
-			$row['gid'] = intval($row['gid']);
+			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);
 			$logs[] = $row;
 		}
@@ -329,7 +329,7 @@ class Log_Model {
 		$res = $this->db->query($sql);
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
-			$row['gid'] = intval($row['gid']);
+			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);
 			$logs[] = $row;
 		}

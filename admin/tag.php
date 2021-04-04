@@ -24,7 +24,7 @@ if (empty($action)) {
 //标签修改
 if ($action == 'update_tag') {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
-	$tagId = isset($_POST['tid']) ? intval($_POST['tid']) : '';
+	$tagId = isset($_POST['tid']) ? (int)$_POST['tid'] : '';
 
 	if (empty($tagName)) {
 		emDirect("tag.php?error_a=1");

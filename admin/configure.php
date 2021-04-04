@@ -155,39 +155,39 @@ if (empty($action)) {
 
 if ($action == 'mod_config') {
 	LoginAuth::checkToken();
-	$getData = array(
+	$getData = [
 		'blogname'            => isset($_POST['blogname']) ? addslashes($_POST['blogname']) : '',
 		'blogurl'             => isset($_POST['blogurl']) ? addslashes($_POST['blogurl']) : '',
 		'bloginfo'            => isset($_POST['bloginfo']) ? addslashes($_POST['bloginfo']) : '',
 		'icp'                 => isset($_POST['icp']) ? addslashes($_POST['icp']) : '',
 		'footer_info'         => isset($_POST['footer_info']) ? addslashes($_POST['footer_info']) : '',
-		'index_lognum'        => isset($_POST['index_lognum']) ? intval($_POST['index_lognum']) : '',
+		'index_lognum'        => isset($_POST['index_lognum']) ? (int)$_POST['index_lognum'] : '',
 		'timezone'            => isset($_POST['timezone']) ? addslashes($_POST['timezone']) : '',
 		'login_code'          => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 		'comment_code'        => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 		'comment_needchinese' => isset($_POST['comment_needchinese']) ? addslashes($_POST['comment_needchinese']) : 'n',
-		'comment_interval'    => isset($_POST['comment_interval']) ? intval($_POST['comment_interval']) : 15,
+		'comment_interval'    => isset($_POST['comment_interval']) ? (int)$_POST['comment_interval'] : 15,
 		'iscomment'           => isset($_POST['iscomment']) ? addslashes($_POST['iscomment']) : 'n',
 		'ischkcomment'        => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
 		'isexcerpt'           => isset($_POST['isexcerpt']) ? addslashes($_POST['isexcerpt']) : 'n',
-		'excerpt_subnum'      => isset($_POST['excerpt_subnum']) ? intval($_POST['excerpt_subnum']) : '300',
+		'excerpt_subnum'      => isset($_POST['excerpt_subnum']) ? (int)$_POST['excerpt_subnum'] : '300',
 		'isthumbnail'         => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
-		'rss_output_num'      => isset($_POST['rss_output_num']) ? intval($_POST['rss_output_num']) : 10,
+		'rss_output_num'      => isset($_POST['rss_output_num']) ? (int)$_POST['rss_output_num'] : 10,
 		'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
 		'isgravatar'          => isset($_POST['isgravatar']) ? addslashes($_POST['isgravatar']) : 'n',
 		'comment_paging'      => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
-		'comment_pnum'        => isset($_POST['comment_pnum']) ? intval($_POST['comment_pnum']) : '',
+		'comment_pnum'        => isset($_POST['comment_pnum']) ? (int)$_POST['comment_pnum'] : '',
 		'comment_order'       => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
 		'istreply'            => isset($_POST['istreply']) ? addslashes($_POST['istreply']) : 'n',
 		'ischkreply'          => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
 		'reply_code'          => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
-		'index_twnum'         => isset($_POST['index_twnum']) ? intval($_POST['index_twnum']) : 10,
-		'att_maxsize'         => isset($_POST['att_maxsize']) ? intval($_POST['att_maxsize']) : 20480,
+		'index_twnum'         => isset($_POST['index_twnum']) ? (int)$_POST['index_twnum'] : 10,
+		'att_maxsize'         => isset($_POST['att_maxsize']) ? (int)$_POST['att_maxsize'] : 20480,
 		'att_type'            => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
-		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? intval($_POST['att_imgmaxw']) : 420,
-		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? intval($_POST['att_imgmaxh']) : 460,
+		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? (int)$_POST['att_imgmaxw'] : 420,
+		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
 		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n',
-	);
+	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
 		emMsg("开启登录验证码失败!服务器空间不支持GD图形库", "configure.php");
