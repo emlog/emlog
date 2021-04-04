@@ -2,7 +2,7 @@
 
 #
 #
-# Parsedown2
+# parsedown
 # http://parsedown.org
 #
 # (c) Emanuil Rusev
@@ -13,7 +13,7 @@
 #
 #
 
-class Parsedown2 {
+class parsedown {
 	# ~
 
 	const version = '1.7.4';
