@@ -95,7 +95,7 @@ class Log_Controller {
 		$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 		$ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
-		$comments = $Comment_Model->getComments(0, $logid, 'n', $comment_page);
+		$comments = $Comment_Model->getComments($logid, 'n', $comment_page);
 
 		include View::getView('header');
 		if ($type == 'blog') {

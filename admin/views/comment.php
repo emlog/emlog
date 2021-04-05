@@ -62,8 +62,7 @@
                         $mail = $value['mail'] ? "({$value['mail']})" : '';
                         $ip = $value['ip'] ? "<br />来自IP：{$value['ip']}" : '';
                         $poster = $value['poster'] ?: '';
-                        $value['content'] = str_replace('<br>', ' ', $value['content']);
-                        $sub_content = subString($value['content'], 0, 50);
+                        $sub_content = subString($value['comment'], 0, 50);
                         $value['title'] = subString($value['title'], 0, 42);
                         doAction('adm_comment_display');
                         ?>
@@ -72,7 +71,7 @@
                             <td width="350">
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
                                    data-cid="<?php echo $value['cid']; ?>"
-                                   data-comment="<?php echo $value['content']; ?>"
+                                   data-comment="<?php echo $value['comment']; ?>"
                                    data-hide="<?php echo $value['hide']; ?>"
                                    data-gid="<?php echo $value['gid']; ?> ">
                                     <?php echo $sub_content; ?>
