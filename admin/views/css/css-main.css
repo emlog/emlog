@@ -45,14 +45,11 @@ textarea {
     border:1px #FFBA43 solid
 }
 #msg {
-    margin:0px 300px;
     font-size:12px;
-    position:fixed;
-    top:0px;
-    left:200px;
-    font-weight:bold
+    font-weight:bold;
+    text-align: center;
 }
-#msg_2 {
+#save_info {
     margin:0px 50px;
     font-size:12px
 }

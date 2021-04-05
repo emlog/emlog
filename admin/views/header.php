@@ -37,7 +37,7 @@
 
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
-                <i class="icofont-pencil-alt-5"></i><span>内容</span>
+                <i class="icofont-pencil-alt-5"></i><span>文章</span>
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
