@@ -2,10 +2,9 @@
 	exit('error!');
 } ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1><span id="msg_2"></span>
+    <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
     <div class="row">
         <div class="col-xl-12">
-            <div id="msg"></div>
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
@@ -13,8 +12,6 @@
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
 					<?php doAction('adm_writelog_head'); ?>
-                    <span id="asmsg"></span>
-                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $pageId; ?>">
                 </div>
                 <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
             </div>
@@ -33,17 +30,14 @@
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
-                <input type="hidden" name="gid" value=<?php echo $pageId; ?>/>
+                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
+                <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
+                <input type="hidden" name="gid" value="<?php echo $pageId; ?>" />
 				<?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
 				<?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(3);" class="btn btn-success"/>
 				<?php endif; ?>
-
             </div>
         </div>
     </div>
@@ -62,7 +56,6 @@
             <div class="modal-body">
 
             </div>
-
         </div>
     </div>
 </div>
@@ -70,8 +63,6 @@
 <script src="./editor.md/editormd.js"></script>
 <script>
     $("#menu_page").addClass('active');
-    setTimeout(hideActived, 2600);
-
     checkalias();
     $("#alias").keyup(function () {
         checkalias();

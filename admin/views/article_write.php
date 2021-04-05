@@ -1,24 +1,23 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
+<div id="msg" class="fixed-top alert alert-success" style="display: none"></div>
 <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-12">
-            <div id="msg">sdfsdfasdfas</div>
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题"/>
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
+                    <span id="save_info"></span>
 					<?php doAction('adm_writelog_head'); ?>
-                    <span id="asmsg"></span>
                     <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
-
 
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
             <div id="advset">
@@ -128,7 +127,7 @@
     $("#alias").keyup(function () {
         checkalias();
     });
-    setTimeout("autosave(1)", 60000);
+    setTimeout("autosave(1)", 30000);
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
