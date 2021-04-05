@@ -22,6 +22,7 @@ function emAutoload($class) {
  *
  * @param unknown_type $content
  * @param unknown_type $wrap 是否换行
+ * @return string
  */
 function htmlClean($content, $nl2br = true) {
 	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
