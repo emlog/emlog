@@ -229,7 +229,7 @@ function autosave(act) {
         return;
     }
 
-    $("#msg").show().html("正在保存中...");
+    $("#msg").show().html("正在保存中...").addClass("alert-success");
     var btname = $("#savedf").val();
     $("#savedf").val("正在保存中...");
     $("#savedf").attr("disabled", "disabled");
@@ -248,14 +248,14 @@ function autosave(act) {
             var hours = digital.getHours();
             var mins = digital.getMinutes();
             var secs = digital.getSeconds();
-            $("#save_info").html("<span class=\"ajax_remind_1\">自动保存于"+hours+":"+mins+":"+secs+" </span>");
+            $("#save_info").html("<span class=\"ajax_remind_1\">保存于"+hours+":"+mins+":"+secs+" </span>");
 
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").hide().html("");
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").html("<span class=\"msg_autosave_error\">网络或系统出现异常...保存可能失败</span>");
+            $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
         }
     });
     if (act == 1) {
