@@ -1,7 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<div id="msg" class="fixed-top alert alert-success" style="display: none"></div>
+<div id="msg" class="fixed-top alert" style="display: none"></div>
 <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
