@@ -274,8 +274,16 @@ $.fn.toggleClick = function () {
     });
 };
 
+//过滤HTML标签
+function removeHTMLTag(str) {
+    str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
+    str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
+    str = str.replace(/ /ig, '');
+    return str;
+}
+
+// 表格全选
 $(function () {
-    // 表格全选
     $('#checkAll').click(function (event) {
         var tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
         tr_checkbox.prop('checked', $(this).prop('checked'));
