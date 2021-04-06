@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('settings_saved_ok')?></div><?php endif; ?>
@@ -224,11 +224,11 @@
                     </div>
                 </div>
             </div>
-            <?php
-            foreach ($custom_widget as $key => $val):
-                preg_match("/^custom_wg_(\d+)/", $key, $matches);
+			<?php
+			foreach ($custom_widget as $key => $val):
+				preg_match("/^custom_wg_(\d+)/", $key, $matches);
 /*vot*/             $custom_wg_title = empty($val['title']) ? lang('widget_untitled'). ' (' . $matches[1] . ')' : $val['title'];
-                ?>
+				?>
                 <div class="card">
                     <div class="card-header">
                         <h2 class="mb-0">
@@ -254,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </div>
         <div class="my-3">
 <!--vot-->  <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('widget_add')?></a>
@@ -295,30 +295,30 @@
 <!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('widget_manage')?></h1>
         <form action="widgets.php?action=compages" method="post">
             <div id="sortable" class="adm_widget_box">
-                <?php
-                foreach ($widgets as $widget):
+				<?php
+				foreach ($widgets as $widget):
 /*vot*/             $flg = strpos($widget, 'custom_wg_') === 0 ? true : false; //Whether is custom widget
 /*vot*/             $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
-                    if ($flg && empty($title)) {
-                        preg_match("/^custom_wg_(\d+)/", $widget, $matches);
+					if ($flg && empty($title)) {
+						preg_match("/^custom_wg_(\d+)/", $widget, $matches);
 /*vot*/                 $title = lang('widget_untitled'). ' (' . $matches[1] . ')';
-                    }
-                    ?>
+					}
+					?>
                     <div class="card m-1 active_widget" id="em_<?php echo $widget; ?>">
                         <div class="card-header">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button">
-                                    <?php if ($flg) {
-                                        echo $title;
-                                    } else {
-                                        echo $widgetTitle[$widget];
-                                    } ?>
+									<?php if ($flg) {
+										echo $title;
+									} else {
+										echo $widgetTitle[$widget];
+									} ?>
                                 </button>
                                 <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>"/>
                             </h2>
                         </div>
                     </div>
-                <?php endforeach; ?>
+				<?php endforeach; ?>
             </div>
             <div class="my-3">
 <!--vot-->      <input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-success"/>

@@ -13,11 +13,11 @@
 require_once 'globals.php';
 
 $Log_Model = new Log_Model();
+$Tag_Model = new Tag_Model();
+$Sort_Model = new Sort_Model();
+$User_Model = new User_Model();
 
 if (empty($action)) {
-	$Tag_Model = new Tag_Model();
-	$User_Model = new User_Model();
-
 	$pid = $_GET['pid'] ?? '';
 	$tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
@@ -73,10 +73,10 @@ if (empty($action)) {
 	foreach ($_GET as $key => $val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "admin_log.php?{$subPage}&page=");
+	$pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
 
 	include View::getView('header');
-	require_once View::getView('admin_log');
+	require_once View::getView('article');
 	include View::getView('footer');
 	View::output();
 }
@@ -92,10 +92,10 @@ if ($action == 'operate_log') {
 	LoginAuth::checkToken();
 
 	if ($operate == '') {
-		emDirect("./admin_log.php?pid=$pid&error_b=1");
+		emDirect("./article.php?pid=$pid&error_b=1");
 	}
 	if (empty($logs) && empty($gid)) {
-		emDirect("./admin_log.php?pid=$pid&error_a=1");
+		emDirect("./article.php?pid=$pid&error_a=1");
 	}
 
 	switch ($operate) {
@@ -107,35 +107,35 @@ if ($action == 'operate_log') {
 			}
 			$CACHE->updateCache();
 			if ($pid == 'draft') {
-				emDirect("./admin_log.php?pid=draft&active_del=1");
+				emDirect("./article.php?pid=draft&active_del=1");
 			} else {
-				emDirect("./admin_log.php?active_del=1");
+				emDirect("./article.php?active_del=1");
 			}
 			break;
 		case 'top':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'y'), $val);
 			}
-			emDirect("./admin_log.php?active_up=1");
+			emDirect("./article.php?active_up=1");
 			break;
 		case 'sortop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortop' => 'y'), $val);
 			}
-			emDirect("./admin_log.php?active_up=1");
+			emDirect("./article.php?active_up=1");
 			break;
 		case 'notop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'n', 'sortop' => 'n'), $val);
 			}
-			emDirect("./admin_log.php?active_down=1");
+			emDirect("./article.php?active_down=1");
 			break;
 		case 'hide':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_hide=1");
+			emDirect("./article.php?active_hide=1");
 			break;
 		case 'pub':
 			foreach ($logs as $val) {
@@ -145,40 +145,106 @@ if ($action == 'operate_log') {
 				}
 			}
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?pid=draft&active_post=1");
+			emDirect("./article.php?pid=draft&active_post=1");
 			break;
 		case 'move':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortid' => $sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
-			emDirect("./admin_log.php?active_move=1");
+			emDirect("./article.php?active_move=1");
 			break;
 		case 'change_author':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/         emMsg(lang('no_permission'), './');
+				emMsg('权限不足！', './');
 			}
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('author' => $author), $val);
 			}
 			$CACHE->updateCache('sta');
-			emDirect("./admin_log.php?active_change_author=1");
+			emDirect("./article.php?active_change_author=1");
 			break;
 		case 'check':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/         emMsg(lang('no_permission'), './');
+				emMsg('权限不足！', './');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_ck=1");
+			emDirect("./article.php?active_ck=1");
 			break;
 		case 'uncheck':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/         emMsg(lang('no_permission'), './');
+				emMsg('权限不足！', './');
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();
-			emDirect("./admin_log.php?active_unck=1");
+			emDirect("./article.php?active_unck=1");
 			break;
 	}
+}
+
+//显示撰写文章页面
+if ($action === 'write') {
+	$blogData = [
+		'logid'    => -1,
+		'title'    => '',
+		'content'  => '',
+		'excerpt'  => '',
+		'alias'    => '',
+		'author'   => '',
+		'sortid'   => -1,
+		'type'     => 'blog',
+		'password' => '',
+		'hide'     => '',
+		'author'   => UID,
+	];
+
+	extract($blogData);
+
+	$isdraft = false;
+	$containertitle = '写文章';
+	$orig_date = '';
+	$sorts = $CACHE->readCache('sort');
+	$tagStr = '';
+	$is_top = '';
+	$is_sortop = '';
+	$is_allow_remark = '';
+	$postDate = date('Y-m-d H:i:s');
+	$att_frame_url = 'attachment.php?action=selectFile';
+	
+	include View::getView('header');
+	require_once View::getView('article_write');
+	include View::getView('footer');
+	View::output();
+}
+
+//显示编辑文章页面
+if ($action === 'edit') {
+	$logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+	$blogData = $Log_Model->getOneLogForAdmin($logid);
+	extract($blogData);
+
+	$isdraft = $hide == 'y' ? true : false;
+	$containertitle = $isdraft ? '编辑草稿' : '编辑文章';
+	$postDate = date('Y-m-d H:i:s', $date);
+	$sorts = $CACHE->readCache('sort');
+	//log tag
+	$tags = array();
+	foreach ($Tag_Model->getTag($logid) as $val) {
+		$tags[] = $val['tagname'];
+	}
+	$tagStr = implode(',', $tags);
+	//old tag
+	$tags = $Tag_Model->getTag();
+
+	$is_top = $top == 'y' ? 'checked="checked"' : '';
+	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
+	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+
+	$att_frame_url = 'attachment.php?action=attlib&logid=' . $logid;
+
+	include View::getView('header');
+	require_once View::getView('article_write');
+	include View::getView('footer');
+	View::output();
 }

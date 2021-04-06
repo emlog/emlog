@@ -20,16 +20,16 @@ if (empty($action)) {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('', '', 'page', 1);
 
-	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
+	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page_create.php?page=");
 
 	include View::getView('header');
-	require_once(View::getView('admin_page'));
+	require_once(View::getView('page'));
 	include View::getView('footer');
 	View::output();
 }
+
 //Display a new page form 
 if ($action == 'new') {
-
 	$pageData = array(
 /*vot*/ 'containertitle' => lang('add_page'),
 		'pageId'          => -1,
@@ -44,16 +44,17 @@ if ($action == 'new') {
 	extract($pageData);
 
 	include View::getView('header');
-	require_once(View::getView('page'));
+	require_once(View::getView('page_create'));
 	include View::getView('footer');
 	View::output();
 }
+
 //Show edit page form
 if ($action == 'mod') {
 	$emPage = new Log_Model();
 
 /*vot*/	$containertitle = lang('page_edit');
-	$pageId = isset($_GET['id']) ? intval($_GET['id']) : '';
+	$pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
 	$att_frame_url = "attachment.php?action=attlib&logid=$pageId";
 	extract($pageData);
@@ -61,19 +62,20 @@ if ($action == 'mod') {
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
 	include View::getView('header');
-	require_once(View::getView('page'));
+	require_once(View::getView('page_create'));
 	include View::getView('footer');
 	View::output();
 }
+
 //Save Page
 if ($action == 'save' || $action == 'autosave') {
 	$emPage = new Log_Model();
 	$Navi_Model = new Navi_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-	$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+	$content = isset($_POST['pagecontent']) ? addslashes(trim($_POST['pagecontent'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-/*vot*/	$pageId = isset($_POST['as_logid']) ? intval(trim($_POST['as_logid'])) : -1;//If they are automatically saved as a draft there blog id number
+/*vot*/	$pageId = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If they are automatically saved as a draft there blog id number
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 	$template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
 	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
@@ -119,9 +121,10 @@ if ($action == 'save' || $action == 'autosave') {
 			break;
 	}
 }
+
 //Page Operations
 if ($action == 'operate_page') {
-	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$operate = $_POST['operate'] ?? '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
 	LoginAuth::checkToken();

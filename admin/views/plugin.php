@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activate_install'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('plugin_upload_ok')?></div><?php endif; ?>
@@ -40,38 +40,38 @@
             </tr>
             </thead>
             <tbody>
-            <?php
-            if ($plugins):
-                $i = 0;
-                foreach ($plugins as $key => $val):
-                    $plug_state = 'inactive';
-                    $plug_action = 'active';
-/*vot*/             $plug_state_des = lang('plugin_active_click');
-                    if (in_array($key, $active_plugins)) {
-                        $plug_state = 'active';
-                        $plug_action = 'inactive';
-/*vot*/                 $plug_state_des = lang('plugin_disable_click');
-                    }
-                    $i++;
-                    if (TRUE === $val['Setting']) {
-/*vot*/                 $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']}</a>";
-                    }
-                    ?>
+			<?php
+			if ($plugins):
+				$i = 0;
+				foreach ($plugins as $key => $val):
+					$plug_state = 'inactive';
+					$plug_action = 'active';
+/*vot*/                                 $plug_state_des = lang('plugin_active_click');
+					if (in_array($key, $active_plugins)) {
+						$plug_state = 'active';
+						$plug_action = 'inactive';
+/*vot*/                                         $plug_state_des = lang('plugin_disable_click');
+					}
+					$i++;
+					if (TRUE === $val['Setting']) {
+/*vot*/                                         $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']}</a>";
+					}
+					?>
                     <tr>
                         <td><?php echo $val['Name']; ?></td>
                         <td><?php echo $val['Version']; ?></td>
                         <td>
-                            <?php echo $val['Description']; ?>
-<!--vot-->                  <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
+							<?php echo $val['Description']; ?>
+<!--vot-->                                              <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
                             <div style="margin-top:5px;">
-<!--vot-->                      <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
-                                <?php if ($val['Author'] != ''): ?>
+<!--vot-->                                                      <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
+								<?php if ($val['Author'] != ''): ?>
 <!--vot-->                      <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
                                         <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
-                                    <?php else: ?>
-                                        <?php echo $val['Author']; ?>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+									<?php else: ?>
+										<?php echo $val['Author']; ?>
+									<?php endif; ?>
+								<?php endif; ?>
                             </div>
                         </td>
                         <td id="plugin_<?php echo $i; ?>">
@@ -82,11 +82,11 @@
 <!--vot-->                  <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                         </td>
                     </tr>
-                <?php endforeach; else: ?>
+				<?php endforeach; else: ?>
                 <tr>
 <!--vot-->          <td colspan="5"><?=lang('plugin_no_installed')?></td>
                 </tr>
-            <?php endif; ?>
+			<?php endif; ?>
             </tbody>
         </table>
     </div>

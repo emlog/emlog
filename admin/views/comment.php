@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
@@ -29,14 +29,14 @@
     <div class="panel-heading">
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
-                    echo 'active';
+					echo 'active';
 /*vot*/         } ?>" href="./comment.php?<?php echo $addUrl_1 ?>"><?=lang('all')?></a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
-                    echo 'active';
+					echo 'active';
 /*vot*/         } ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>"><?=lang('pending')?><?php
-                    $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-                    if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
-                    ?></a>
+					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
+					?></a>
             </li>
         </ul>
     </div>
@@ -57,46 +57,48 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($comment as $key => $value):
+					<?php foreach ($comment as $key => $value):
 /*vot*/                 $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[' . lang('pending') . ']</span>' : '';
-                        $mail = $value['mail'] ? "({$value['mail']})" : '';
-/*vot*/                 $ip = $value['ip'] ? '<br />' . lang('from_ip') . ': ' . $value['ip'] : '';
-                        $poster = $value['poster'] ?: '';
-                        $value['content'] = str_replace('<br>', ' ', $value['content']);
-                        $sub_content = subString($value['content'], 0, 50);
-                        $value['title'] = subString($value['title'], 0, 42);
-                        doAction('adm_comment_display');
-                        ?>
+						$mail = $value['mail'] ? "({$value['mail']})" : '';
+						$ip = $value['ip'];
+						$gid = $value['gid'];
+						$cid = $value['cid'];
+						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+						$comment = $value['comment'];
+						$poster = $value['poster'] ?: '';
+						$title = subString($value['title'], 0, 42);
+						$hide = $value['hide'];
+						$date = $value['date'];
+						doAction('adm_comment_display');
+						?>
                         <tr>
-                            <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
+                            <td width="19"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
                             <td width="350">
-                                <a href="#" data-toggle="modal" data-target="#exampleModal"
-                                   data-cid="<?php echo $value['cid']; ?>"
-                                   data-comment="<?php echo $value['content']; ?>"
+                                <a href="#" data-toggle="modal" data-target="#replyModal"
+                                   data-cid="<?php echo $cid; ?>"
+                                   data-comment="<?php echo $comment; ?>"
                                    data-hide="<?php echo $value['hide']; ?>"
-                                   data-gid="<?php echo $value['gid']; ?> ">
-                                    <?php echo $sub_content; ?>
+                                   data-gid="<?php echo $gid; ?> ">
+									<?php echo $comment; ?>
                                 </a>
-                                <?php echo $ishide; ?>
+								<?php echo $ishide; ?>
                             </td>
-                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
-                                <?php if (ROLE == ROLE_ADMIN): ?>
-<!--vot-->                          <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
-                                       class="badge badge-pill badge-danger"><?=lang('del_from_ip')?></a>
-                                <?php endif; ?>
-                            </td>
-                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?></td>
+                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
                             <td>
-<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
-                                <?php if ($value['hide'] == 'y'): ?>
-<!--vot-->                          <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>" class="badge badge-primary"><?=lang('check')?></a>
-                                <?php else: ?>
-<!--vot-->                          <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>" class="badge badge-warning"><?=lang('hide')?></a>
-                                <?php endif; ?>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $cid; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+								<?php if ($hide == 'y'): ?>
+<!--vot-->                          <a href="comment.php?action=show&amp;id=<?php echo $cid; ?>" class="badge badge-primary"><?=lang('check')?></a>
+								<?php else: ?>
+<!--vot-->                          <a href="comment.php?action=hide&amp;id=<?php echo $cid; ?>" class="badge badge-secondary"><?=lang('hide')?></a>
+								<?php endif; ?>
+								<?php if (ROLE == ROLE_ADMIN): ?>
+                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning">按IP删除</a>
+								<?php endif; ?>
                             </td>
-                            <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
                         </tr>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -110,12 +112,12 @@
         </div>
     </div>
 </form>
-<!--  Modal window  -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('comment_reply')?></h5>
+<!--vot-->      <h5 class="modal-title" id="replyModalLabel"><?=lang('comment_reply')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -155,15 +157,14 @@
         $("#form_com").submit();
     }
 
-    //Reply the Comment modal window
-    $('#exampleModal').on('show.bs.modal', function (event) {
+    $('#replyModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var comment = button.data('comment')
         var cid = button.data('cid')
         var gid = button.data('gid')
         var hide = button.data('hide')
         var modal = $(this)
-        modal.find('.modal-body p').html(comment)
+        modal.find('.modal-body p').html(removeHTMLTag(comment))
         modal.find('.modal-body #cid').val(cid)
         modal.find('.modal-body #gid').val(gid)
         modal.find('.modal-body #hide').val(hide)

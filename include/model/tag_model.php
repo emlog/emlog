@@ -27,7 +27,7 @@ class Tag_Model {
 		foreach ($tag_names as $key => $value) {
 			$row = array();
 			$row['tagname'] = htmlspecialchars($value);
-			$row['tid'] = intval($key);
+			$row['tid'] = (int)$key;
 			$tags[] = $row;
 		}
 
@@ -38,7 +38,7 @@ class Tag_Model {
 		$tag = array();
 		$row = $this->db->once_fetch_array("SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
-		$tag['tagid'] = intval($row['tid']);
+		$tag['tagid'] = (int)$row['tid'];
 		return $tag;
 	}
 

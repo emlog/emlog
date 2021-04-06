@@ -25,8 +25,8 @@ if ($action == 'taxis') {
     $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
     if (!empty($sort)) {
         foreach ($sort as $key => $value) {
-            $value = intval($value);
-            $key = intval($key);
+            $value = (int)$value;
+            $key = (int)$key;
             $Sort_Model->updateSort(array('taxis' => $value), $key);
         }
         $CACHE->updateCache('sort');
@@ -39,7 +39,7 @@ if ($action == 'taxis') {
 if ($action == 'add') {
     $sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
     $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-    $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
+    $pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
     $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
     $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
@@ -72,7 +72,7 @@ if ($action == 'add') {
 }
 
 if ($action == 'mod_sort') {
-    $sid = isset($_GET['sid']) ? intval($_GET['sid']) : '';
+    $sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 
     $sortData = $Sort_Model->getOneSortById($sid);
     extract($sortData);

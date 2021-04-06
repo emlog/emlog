@@ -23,7 +23,7 @@ if (!$action) {
 	$addUrl_2 = $hide ? "hide=$hide&" : '';
 	$addUrl = $addUrl_1 . $addUrl_2;
 
-	$comment = $Comment_Model->getComments(1, $blogId, $hide, $page);
+	$comment = $Comment_Model->getCommentsForAdmin($blogId, $hide, $page);
 	$cmnum = $Comment_Model->getCommentNum($blogId, $hide);
 	$hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
 	$pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
@@ -46,7 +46,7 @@ if ($action === 'del') {
 
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
-	if (ROLE != ROLE_ADMIN) {
+	if (ROLE !== ROLE_ADMIN) {
 /*vot*/ emMsg(lang('no_permission'), './');
 	}
 	$ip = $_GET['ip'] ?? '';

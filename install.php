@@ -288,26 +288,26 @@ EOT;
 /*vot*/    $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid int(11) unsigned NOT NULL auto_increment,
-  title varchar(255) NOT NULL default '',
-  date bigint(20) NOT NULL,
-  content longtext NOT NULL,
-  excerpt longtext NOT NULL,
-  alias VARCHAR(255) NOT NULL DEFAULT '',
-  author int(11) NOT NULL default '1',
-  sortid int(11) NOT NULL default '-1',
-  type varchar(64) NOT NULL default 'blog',
-  views int(11) unsigned NOT NULL default '0',
-  comnum int(11) unsigned NOT NULL default '0',
-  attnum int(11) unsigned NOT NULL default '0',
-  top enum('n','y') NOT NULL default 'n',
-  sortop enum('n','y') NOT NULL default 'n',
-  hide enum('n','y') NOT NULL default 'n',
-  checked enum('n','y') NOT NULL default 'y',
-  allow_remark enum('n','y') NOT NULL default 'y',
-  password varchar(255) NOT NULL default '',
-  template varchar(255) NOT NULL default '',
-  tags text,
+  gid int(10) unsigned NOT NULL auto_increment COMMENT '文章表',
+  title varchar(255) NOT NULL default '' COMMENT '文章标题',
+  date bigint(20) NOT NULL COMMENT '发布时间',
+  content longtext NOT NULL  COMMENT '文章内容',
+  excerpt longtext NOT NULL  COMMENT '文章摘要',
+  alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '文章别名',
+  author int(10) NOT NULL default '1' COMMENT '作者',
+  sortid int(10) NOT NULL default '-1' COMMENT '分类ID',
+  type varchar(20) NOT NULL default 'blog' COMMENT '文章OR页面',
+  views int(10) unsigned NOT NULL default '0' COMMENT '阅读量',
+  comnum int(10) unsigned NOT NULL default '0' COMMENT '评论数量',
+  attnum int(10) unsigned NOT NULL default '0' COMMENT '附件数量',
+  top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
+  sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '草稿y',
+  checked enum('n','y') NOT NULL default 'y' COMMENT '文章是否审核',
+  allow_remark enum('n','y') NOT NULL default 'y' COMMENT '允许评论y',
+  password varchar(255) NOT NULL default '' COMMENT '访问密码',
+  template varchar(255) NOT NULL default '' COMMENT '模板',
+  tags text COMMENT '标签',
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),
@@ -318,7 +318,7 @@ CREATE TABLE {$db_prefix}blog (
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid int(11) unsigned NOT NULL auto_increment,
+  aid int(10) unsigned NOT NULL auto_increment COMMENT '资源文件表',
   blogid int(11) unsigned NOT NULL default '0',
   filename varchar(255) NOT NULL default '',
   filesize int(11) NOT NULL default '0',
@@ -333,7 +333,7 @@ CREATE TABLE {$db_prefix}attachment (
 )" .$table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid int(11) unsigned NOT NULL auto_increment,
+  cid int(10) unsigned NOT NULL auto_increment COMMENT '评论表',
   gid int(11) unsigned NOT NULL default '0',
   pid int(11) unsigned NOT NULL default '0',
   date bigint(20) NOT NULL,
@@ -411,7 +411,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id int(11) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',
   sitename varchar(255) NOT NULL default '',
   siteurl varchar(255) NOT NULL default '',
   description varchar(255) NOT NULL default '',
@@ -422,7 +422,7 @@ CREATE TABLE {$db_prefix}link (
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '" . lang('emlog_official_site') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id int(11) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment COMMENT '导航表',
   naviname varchar(255) NOT NULL default '',
   url varchar(255) NOT NULL default '',
   newtab enum('n','y') NOT NULL default 'n',
@@ -438,7 +438,7 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '" . lang('login') . "', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(11) unsigned NOT NULL auto_increment,
+  tid int(10) unsigned NOT NULL auto_increment COMMENT '标签表',
   tagname varchar(255) NOT NULL default '',
   gid text NOT NULL,
   PRIMARY KEY  (tid),
@@ -446,7 +446,7 @@ CREATE TABLE {$db_prefix}tag (
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid int(11) unsigned NOT NULL auto_increment,
+  sid int(10) unsigned NOT NULL auto_increment COMMENT '分类表',
   sortname varchar(255) NOT NULL default '',
   alias VARCHAR(255) NOT NULL DEFAULT '',
   taxis int(11) unsigned NOT NULL default '0',
@@ -457,7 +457,7 @@ CREATE TABLE {$db_prefix}sort (
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid int(11) unsigned NOT NULL auto_increment,
+  uid int(10) unsigned NOT NULL auto_increment COMMENT '用户表',
   username varchar(255) NOT NULL default '',
   password varchar(255) NOT NULL default '',
   nickname varchar(255) NOT NULL default '',
@@ -472,7 +472,7 @@ KEY username (username)
 INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','" . $adminpw . "','admin');
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
-  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
   `plugin` varchar(64) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` varchar(32) NOT NULL,
@@ -498,7 +498,7 @@ CREATE TABLE {$db_prefix}storage (
         <p><b>" . lang('user_name') . "</b>: {$admin}</p>
         <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
 	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
-/*vot*/        $result .= '<p style="color:red;margin:10px 20px;">' . lang('delete_install') . '</p> ';
+/*vot*/        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}
 /*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
 	emMsg($result, 'none');

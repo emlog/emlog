@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('settings_saved_ok')?></div><?php endif; ?>

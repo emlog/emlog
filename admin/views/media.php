@@ -44,7 +44,7 @@
                         </a>
                     </td>
                     <td>
-						<?php echo BLOG_URL.substr($value['filepath'], 3); ?>
+						<?php echo BLOG_URL . substr($value['filepath'], 3); ?>
                         <br>
 						<?php if ($value['width'] && $value['height']): ?>
 							<?php echo $value['width'] ?>x<?php echo $value['height'] ?>

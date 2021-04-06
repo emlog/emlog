@@ -11,7 +11,7 @@ header('Content-Type: text/html; charset=UTF-8');
 /*vot*/ define('EMLOG_ROOT', str_replace('\\', '/', __DIR__));
 
 if (extension_loaded('mbstring')) {
-    mb_internal_encoding('UTF-8');
+	mb_internal_encoding('UTF-8');
 }
 
 require_once EMLOG_ROOT . '/config.php';
@@ -52,9 +52,9 @@ define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 $active_plugins = Option::get('active_plugins');
 $emHooks = array();
 if ($active_plugins && is_array($active_plugins)) {
-    foreach ($active_plugins as $plugin) {
-        if (true === checkPlugin($plugin)) {
-            include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
-        }
-    }
+	foreach ($active_plugins as $plugin) {
+		if (true === checkPlugin($plugin)) {
+			include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
+		}
+	}
 }

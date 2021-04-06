@@ -29,8 +29,8 @@ if ($action == 'link_taxis') {
 	}
 
 	foreach ($link as $key => $value) {
-		$value = intval($value);
-		$key = intval($key);
+		$value = (int)$value;
+		$key = (int)$key;
 		$Link_Model->updateLink(array('taxis' => $value), $key);
 	}
 	$CACHE->updateCache('link');
@@ -57,7 +57,7 @@ if ($action == 'update_link') {
 	$sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
 	$siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$linkId = isset($_POST['linkid']) ? intval($_POST['linkid']) : '';
+	$linkId = isset($_POST['linkid']) ? (int)$_POST['linkid'] : '';
 
 	if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
 		$siteurl = 'http://' . $siteurl;
@@ -71,14 +71,14 @@ if ($action == 'update_link') {
 
 if ($action == 'dellink') {
 	LoginAuth::checkToken();
-	$linkid = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
+	$linkid = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
 	$Link_Model->deleteLink($linkid);
 	$CACHE->updateCache('link');
 	emDirect("./link.php?active_del=1");
 }
 
 if ($action == 'hide') {
-	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
+	$linkId = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
 
 	$Link_Model->updateLink(array('hide' => 'y'), $linkId);
 
@@ -87,7 +87,7 @@ if ($action == 'hide') {
 }
 
 if ($action == 'show') {
-	$linkId = isset($_GET['linkid']) ? intval($_GET['linkid']) : '';
+	$linkId = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
 
 	$Link_Model->updateLink(array('hide' => 'n'), $linkId);
 

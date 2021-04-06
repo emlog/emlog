@@ -1,6 +1,4 @@
-
 /*main.css*/
-li {list-style:none;}
 .tdcenter {
     text-align:center;
     padding-left:0;
@@ -47,14 +45,11 @@ textarea {
     border:1px #FFBA43 solid
 }
 #msg {
-    margin:0px 300px;
     font-size:12px;
-    position:fixed;
-    top:0px;
-    left:200px;
-    font-weight:bold
+    font-weight:bold;
+    text-align: center;
 }
-#msg_2 {
+#save_info {
     margin:0px 50px;
     font-size:12px
 }
@@ -150,6 +145,7 @@ textarea {
     border:none
 }
 #admindex_msg ul li {
+    list-style: none;
     line-height:1.6;
     border-bottom: 1px solid #E4E4E4;
     padding: 10px;
@@ -280,14 +276,14 @@ textarea {
     position:absolute;
     cursor:text;
 }
-#post #advset {
+#advset {
     display:none;
 }
 #post_bar {
     margin:5px 0px;
 }
 .show_advset {
-    margin:20px 10px 10px 0px;
+    margin:10px 10px 10px 0px;
     padding:0px 20px 0px 0px;
     cursor:pointer;
 }
@@ -489,6 +485,8 @@ div.table .file-row:nth-child(odd) {
 #previews .file-row.dz-success .delete {
     display: block;
 }
+.accordion {
+    list-style: none;
+}
 
-/* 编辑器默认高*/
-.ck-editor__editable {min-height: 390px;}
+

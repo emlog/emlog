@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif;?>
@@ -24,12 +24,12 @@
 <!--vot--><label><?=lang('category_parent')?></label>
         <select name="pid" id="pid" class="form-control">
 <!--vot-->  <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif; ?>><?=lang('no')?></option>
-            <?php
-            foreach ($sorts as $key => $value):
-                if ($key == $sid || $value['pid'] != 0) continue;
-                ?>
+			<?php
+			foreach ($sorts as $key => $value):
+				if ($key == $sid || $value['pid'] != 0) continue;
+				?>
                 <option value="<?php echo $key; ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
-            <?php endforeach; ?>
+			<?php endforeach; ?>
         </select>
     </div>
     <div class="form-group">

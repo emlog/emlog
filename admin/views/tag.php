@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif;?>
@@ -13,18 +13,18 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div>
-            <?php if ($tags): ?>
+			<?php if ($tags): ?>
                 <li>
-                    <?php foreach ($tags as $key => $value): ?>
+					<?php foreach ($tags as $key => $value): ?>
                         <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?php echo $value['tid']; ?>"
                            data-tagname="<?php echo $value['tagname']; ?>">
-                            <?php echo $value['tagname']; ?>
+							<?php echo $value['tagname']; ?>
                         </a>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                 </li>
-            <?php else: ?>
+			<?php else: ?>
 <!--vot-->      <li style="margin:20px 30px"><?=lang('tags_no_info')?></li>
-            <?php endif; ?>
+			<?php endif; ?>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
     $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
     setTimeout(hideActived, 2600);
-    //Edit Tag modal window
+
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var tagname = button.data('tagname')

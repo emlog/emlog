@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['error_login'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('user_name_empty')?></div><?php endif; ?>

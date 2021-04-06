@@ -215,7 +215,7 @@
                     <?php endforeach; ?>
 <!--vot-->          <div class="form-group"><input type="submit" class="btn btn-success" name="" value="<?=lang('save')?>"></div>
                 <?php else: ?>
-<!--vot-->          <div class="form-group"><?=lang('pages_no')?>, <a href="page.php"><?=lang('add_page')?></a></div>
+<!--vot-->          <div class="form-group"><?=lang('pages_no')?>, <a href="page_create.php"><?=lang('add_page')?></a></div>
                 <?php endif; ?>
             </form>
         </div>
@@ -223,9 +223,6 @@
 </div>
 
 <script>
-    // $("#navi_add_custom").css('display', $.cookie('em_navi_add_custom') ? $.cookie('em_navi_add_custom') : '');
-    // $("#navi_add_sort").css('display', $.cookie('em_navi_add_sort') ? $.cookie('em_navi_add_sort') : '');
-    // $("#navi_add_page").css('display', $.cookie('em_navi_add_page') ? $.cookie('em_navi_add_page') : '');
     setTimeout(hideActived, 2600);
     $("#menu_category_view").addClass('active');
     $("#menu_view").addClass('show');

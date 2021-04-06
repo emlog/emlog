@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <!doctype html>
 <!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
@@ -7,21 +7,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <!-- CSS -->
+	<meta name=renderer  content=webkit>
+<!--vot--><title>?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
+    <link rel="stylesheet" href="./views/css/style.css" />
+    <link rel="stylesheet" href="./editor.md/css/editormd.css" />
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
-    <!-- JS -->
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
-    <script src="./views/js/ckeditor.js"></script>
     <script src="./views/js/common.js"></script>
 <!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
 <!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
-    <?php doAction('adm_head'); ?>
+	<?php doAction('adm_head'); ?>
 </head>
 <!--vot--><body>
 <div id="wrapper">
@@ -44,8 +44,8 @@
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-<!--vot-->          <a class="collapse-item" id="menu_write" href="write_log.php"><?=lang('post_write')?></a>
-<!--vot-->          <a class="collapse-item" id="menu_log" href="admin_log.php"><?=lang('post_manage')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_write" href="article.php?action=write"><?=lang('post_write')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_log" href="article.php"><?=lang('post_manage')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
                 </div>
@@ -109,7 +109,7 @@
                 <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
                     <i class="icofont-navigation-menu"></i>
                 </button>
-                <form action="admin_log.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form action="article.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
 <!--vot-->              <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
                         <div class="input-group-append">
@@ -122,10 +122,10 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
 <!--vot-->          <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
-                            <?php
-                            $blog_name = Option::get('blogname');
+							<?php
+							$blog_name = Option::get('blogname');
 /*vot*/                     echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
-                            ?>
+							?>
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>

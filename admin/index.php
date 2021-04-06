@@ -25,3 +25,17 @@ if (empty($action)) {
 	include View::getView('footer');
 	View::output();
 }
+
+if ($action === 'get_news') {
+	$emcurl = new EmCurl();
+	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/messenger_pro.php?ver=' . Option::EMLOG_VERSION);
+	$retStatus = $emcurl->getHttpStatus();
+	if ($retStatus !== 200) {
+		header('Content-Type: application/json; charset=UTF-8');
+		exit('{"result":"fail"}');
+	} else {
+		$respone = $emcurl->getRespone();
+		header('Content-Type: application/json; charset=UTF-8');
+		exit($respone);
+	}
+}

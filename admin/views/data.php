@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('backup_delete_ok')?></div><?php endif; ?>
@@ -26,7 +26,6 @@
 </div>
 <div class="card-deck">
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
 <!--vot-->  <h5 class="card-title"><?=lang('data_backup')?></h5>
             <form action="data.php?action=bakstart" method="post">
@@ -42,7 +41,6 @@
         </div>
     </div>
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
 <!--vot-->  <h5 class="card-title"><?=lang('backup_import_local')?></h5>
             <form action="data.php?action=import" enctype="multipart/form-data" method="post">
@@ -57,7 +55,6 @@
         </div>
     </div>
     <div class="card">
-        <!--            <img class="card-img-top" src="..." alt="Card image cap">-->
         <div class="card-body">
 <!--vot-->  <h5 class="card-title"><?=lang('cache_update')?></h5>
             <div id="cache">

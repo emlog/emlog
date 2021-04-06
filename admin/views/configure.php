@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('settings_saved_ok')?></div><?php endif; ?>
@@ -36,10 +36,10 @@
             <div class="form-group">
 <!--vot-->      <label><?=lang('your_timezone')?></label>
                 <select name="timezone" style="width:320px;" class="form-control">
-                    <?php foreach ($tzlist as $key => $value):
-                        $ex = $key == $timezone ? "selected=\"selected\"" : ''; ?>
+					<?php foreach ($tzlist as $key => $value):
+						$ex = $key == $timezone ? "selected=\"selected\"" : ''; ?>
                         <option value="<?php echo $key; ?>" <?php echo $ex; ?>><?php echo $value; ?></option>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                 </select>
             </div>
 

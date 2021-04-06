@@ -11,7 +11,21 @@
 
 require_once 'globals.php';
 
-if ($action == 'update' && ROLE == ROLE_ADMIN) {
+if ($action === 'check_update') {
+	$emcurl = new EmCurl();
+	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/check_update_pro.php?ver=' . Option::EMLOG_VERSION);
+	$retStatus = $emcurl->getHttpStatus();
+	if ($retStatus !== 200) {
+		header('Content-Type: application/json; charset=UTF-8');
+		exit('{"result":"fail"}');
+	} else {
+		$respone = $emcurl->getRespone();
+		header('Content-Type: application/json; charset=UTF-8');
+		exit($respone);
+	}
+}
+
+if ($action === 'update' && ROLE === ROLE_ADMIN) {
 	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
 	$upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
 

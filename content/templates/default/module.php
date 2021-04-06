@@ -286,7 +286,7 @@ function topflg($top, $sortop = 'n', $sortid = null)
 //blog:Editor
 function editflg($logid, $author)
 {
-/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/write_log.php?action=edit&gid=' . $logid . '" target="_blank">' . lang('edit') . '</a>' : '';
+/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">' . lang('edit') . '</a>' : '';
     echo $editflg;
 }
 

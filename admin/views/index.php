@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 <?php if (isset($_GET['active_reg'])): ?>
     <div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
@@ -7,7 +7,7 @@
     <div class="alert alert-danger"><?=lang('emkey_invalid')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('admincp') ?></h1>
-    <?php doAction('adm_main_top'); ?>
+	<?php doAction('adm_main_top'); ?>
 </div>
 <div class="row">
     <div class="col-lg-6 mb-4">
@@ -48,7 +48,7 @@
 </div>
 <div class="row">
     <div class="col-lg-6 mb-4">
-        <?php if (ISREG === false) : ?>
+		<?php if (ISREG === false) : ?>
             <div class="card bg-danger text-white shadow">
                 <div class="card-body">
 <!--vot-->          <h4><?=lang('emlog_unregistered')?></h4>
@@ -62,13 +62,13 @@
 <!--vot-->          <a href="#" class="btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><?=lang('register_now')?></a>
                 </div>
             </div>
-        <?php else: ?>
+		<?php else: ?>
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
 <!--vot-->          <?=lang('emlog_registered_ok')?>
                 </div>
             </div>
-        <?php endif; ?>
+		<?php endif; ?>
     </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -100,10 +100,9 @@
     setTimeout(hideActived, 2600);
     $("#menu_home").addClass('active');
     $(document).ready(function () {
-/*vot*/ $("#admindex_msg ul").html("<span class=\"ajax_remind_1\"><?= lang('reading') ?></span>");
-        $.getJSON("<?php echo OFFICIAL_SERVICE_HOST; ?>services/messenger.php?v=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+        $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
+        $.get("./index.php?action=get_news",
             function (data) {
-                $("#admindex_msg ul").html("");
                 $.each(data.items, function (i, item) {
                     var image = '';
                     if (item.image != '') {
@@ -111,12 +110,13 @@
                     }
                     $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
                 });
+                $("#admindex_msg ul").removeClass();
             });
     });
 
     function checkupdate() {
-/*vot*/ $("#upmsg").html("?=lang('checking_wait')?>").addClass("ajaxload");
-        $.getJSON("<?php echo OFFICIAL_SERVICE_HOST;?>services/check_update.php?ver=<?php echo Option::EMLOG_VERSION; ?>&callback=?",
+        $("#upmsg").html("").addClass("spinner-border text-primary");
+        $.get("./upgrade.php?action=check_update",
             function (data) {
                 if (data.result.match("no")) {
 /*vot*/             $("#upmsg").html("<?=lang('updates_no')?>").removeClass();

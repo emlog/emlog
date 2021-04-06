@@ -1,6 +1,6 @@
 <?php
 /**
- * Save the post (add, modify)
+ * 保存文章（增加、修改）
  * @package EMLOG (www.emlog.net)
  */
 
@@ -16,13 +16,13 @@ $Tag_Model = new Tag_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-/*vot*/$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//Post time before modification
+$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
 $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
 $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
 $author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? (int)trim($_POST['author']) : UID;
-/*vot*/$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If they are automatically saved as a draft there blog id number
+$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
 $sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
@@ -56,7 +56,7 @@ $logData = array(
 	'password'     => $password
 );
 
-/*vot*/if ($blogid > 0) {//auto-save drafts, add into update
+if ($blogid > 0) {//自动保存草稿后,添加变为更新
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
@@ -80,13 +80,12 @@ switch ($action) {
 	case 'edit':
 		$tbmsg = '';
 		if ($ishide == 'y') {
-			emDirect("./admin_log.php?pid=draft&active_savedraft=1");
+			emDirect("./article.php?pid=draft&active_savedraft=1");
+		}
+		if ($action == 'add' || isset($_POST['pubdf'])) {
+			emDirect("./article.php?active_post=1");//文章发布成功
 		} else {
-			if ($action == 'add' || isset($_POST['pubdf'])) {
-/*vot*/		 emDirect("./admin_log.php?active_post=1");//Post publishing success
-			} else {
-/*vot*/		 emDirect("./admin_log.php?active_savelog=1");//Post successfully saved
-			}
+			emDirect("./article.php?active_savelog=1");//文章保存成功
 		}
 		break;
 }
