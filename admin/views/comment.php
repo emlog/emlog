@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
@@ -29,14 +29,14 @@
     <div class="panel-heading">
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
-                    echo 'active';
-                } ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
+					echo 'active';
+				} ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
-                    echo 'active';
-                } ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
-                    $hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-                    if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
-                    ?></a>
+					echo 'active';
+				} ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
+					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
+					?></a>
             </li>
         </ul>
     </div>
@@ -52,50 +52,53 @@
                         <th>内容</th>
                         <th>评论人</th>
                         <th>时间</th>
+                        <th>文章</th>
                         <th>操作</th>
-                        <th>所属文章</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($comment as $key => $value):
-                        $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
-                        $mail = $value['mail'] ? "({$value['mail']})" : '';
-                        $ip = $value['ip'] ? "<br />来自IP：{$value['ip']}" : '';
-                        $poster = $value['poster'] ?: '';
-                        $sub_content = subString($value['comment'], 0, 50);
-                        $value['title'] = subString($value['title'], 0, 42);
-                        doAction('adm_comment_display');
-                        ?>
+					<?php foreach ($comment as $key => $value):
+						$ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
+						$mail = $value['mail'] ? "({$value['mail']})" : '';
+						$ip = $value['ip'];
+						$gid = $value['gid'];
+						$cid = $value['cid'];
+						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+						$comment = $value['comment'];
+						$poster = $value['poster'] ?: '';
+						$title = subString($value['title'], 0, 42);
+						$hide = $value['hide'];
+						$date = $value['date'];
+						doAction('adm_comment_display');
+						?>
                         <tr>
-                            <td width="19"><input type="checkbox" value="<?php echo $value['cid']; ?>" name="com[]" class="ids"/></td>
+                            <td width="19"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
                             <td width="350">
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
-                                   data-cid="<?php echo $value['cid']; ?>"
-                                   data-comment="<?php echo $value['comment']; ?>"
+                                   data-cid="<?php echo $cid; ?>"
+                                   data-comment="<?php echo $comment; ?>"
                                    data-hide="<?php echo $value['hide']; ?>"
-                                   data-gid="<?php echo $value['gid']; ?> ">
-                                    <?php echo $sub_content; ?>
+                                   data-gid="<?php echo $gid; ?> ">
+									<?php echo $comment; ?>
                                 </a>
-                                <?php echo $ishide; ?>
+								<?php echo $ishide; ?>
                             </td>
-                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip; ?>
-                                <?php if (ROLE == ROLE_ADMIN): ?>
-                                    <a href="javascript: em_confirm('<?php echo $value['ip']; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
-                                       class="badge badge-pill badge-danger">按IP删除</a>
-                                <?php endif; ?>
-                            </td>
-                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?></td>
+                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
                             <td>
-                                <a href="javascript: em_confirm(<?php echo $value['cid']; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
-                                <?php if ($value['hide'] == 'y'): ?>
-                                    <a href="comment.php?action=show&amp;id=<?php echo $value['cid']; ?>" class="badge badge-primary">审核</a>
-                                <?php else: ?>
-                                    <a href="comment.php?action=hide&amp;id=<?php echo $value['cid']; ?>" class="badge badge-warning">隐藏</a>
-                                <?php endif; ?>
+                                <a href="javascript: em_confirm(<?php echo $cid; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+								<?php if ($hide == 'y'): ?>
+                                    <a href="comment.php?action=show&amp;id=<?php echo $cid; ?>" class="badge badge-primary">审核</a>
+								<?php else: ?>
+                                    <a href="comment.php?action=hide&amp;id=<?php echo $cid; ?>" class="badge badge-secondary">隐藏</a>
+								<?php endif; ?>
+								<?php if (ROLE == ROLE_ADMIN): ?>
+                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning">按IP删除</a>
+								<?php endif; ?>
                             </td>
-                            <td class="small"><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></td>
                         </tr>
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -161,7 +164,7 @@
         var gid = button.data('gid')
         var hide = button.data('hide')
         var modal = $(this)
-        modal.find('.modal-body p').html(comment)
+        modal.find('.modal-body p').html(removeHTMLTag(comment))
         modal.find('.modal-body #cid').val(cid)
         modal.find('.modal-body #gid').val(gid)
         modal.find('.modal-body #hide').val(hide)
