@@ -213,7 +213,7 @@ function autosave(act) {
 
     //检查别名
     if (alias != '' && 0 != isalias(alias)) {
-        $("#msg").show().html("链接别名错误，自动保存失败");
+/*vot*/ $("#msg").show().html(lang('alis_link_error_not_saved'));
         if (act == 0) {
             setTimeout("autosave(1)", timeout);
         }
@@ -229,7 +229,7 @@ function autosave(act) {
         return;
     }
 
-    $("#msg").show().html("正在保存中...").addClass("alert-success");
+/*vot*/ $("#msg").show().html(lang('saving')).addClass("alert-success");
     var btname = $("#savedf").val();
 /*vot*/ $("#savedf").val(lang('saving'));
     $("#savedf").attr("disabled", "disabled");
@@ -248,14 +248,14 @@ function autosave(act) {
             var hours = digital.getHours();
             var mins = digital.getMinutes();
             var secs = digital.getSeconds();
-/*vot*/     $("#save_info").html("<span class=\"ajax_remind_1\">"+lang('saved_ok_time')+"+hours+":"+mins+":"+secs+" </span>");
+/*vot*/     $("#save_info").html("<span class=\"ajax_remind_1\">"+lang('saved_ok_time')+hours+":"+mins+":"+secs+" </span>");
 
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").hide().html("");
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
+/*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
         }
     });
     if (act == 1) {

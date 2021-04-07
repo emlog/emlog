@@ -7,26 +7,26 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
+<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('page_title')?>"/>
                 </div>
                 <div id="post_bar">
-                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
+<!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label>链接别名：</label>
+<!--vot-->      <label><?=lang('link_alias')?>:</label>
                 <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
             </div>
             <div class="form-group">
-                <label>页面模板：</label>
+<!--vot-->      <label><?=lang('page_template')?>:</label>
                 <input name="template" id="template" class="form-control" value="<?php echo $template; ?>"/>
             </div>
             <div class="form-group">
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
-                <label for="allow_remark">允许评论</label>
+<!--vot-->      <label for="allow_remark"><?=lang('allow_comments')?></label>
             </div>
 
             <div id="post_button">
@@ -34,9 +34,9 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
                 <input type="hidden" name="gid" value="<?php echo $pageId; ?>" />
 				<?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-success"/>
 				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success"/>
 				<?php endif; ?>
             </div>
         </div>
@@ -48,7 +48,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">资源库</h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

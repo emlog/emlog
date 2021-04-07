@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('meta_description')?></label>
-                <textarea name="site_description" class="form-control"  ><?php echo $site_description; ?></textarea>
+                <textarea name="site_description" class="form-control"><?php echo $site_description; ?></textarea>
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('meta_title_scheme')?>:</label>

@@ -53,7 +53,7 @@
 						<?php echo $value['attsize']; ?>
                     </td>
                     <td><?php echo $value['addtime']; ?></td>
-<!--vot-->         <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('attachment_delete_error')?></a>
+<!--vot-->         <td><a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                     </td>
                 </tr>
 			<?php endforeach; ?>

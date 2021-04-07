@@ -15,6 +15,10 @@ $lang = array(
  'article_add'		=> '写新文章',//'Write a new article',
 
 //---------------------------
+//admin/article.php
+ 'enter_summary'	=> '如果留空，则使用文章内容作为摘要...',//'If left blank, use the content of the article as a summary...',
+
+//---------------------------
 //admin/attachment.php
  'attachment_delete_error'	=> '删除附件失败!',
 
@@ -63,6 +67,7 @@ $lang = array(
 //---------------------------
 //admin/store.php
  'template'		=> '模板',//'Template',
+ 'templates'		=> '模板',//'Templates',
  'template_view'	=> '查看模板',//'View template',
  'plugin'		=> '插件',//'Plugin',
  'plugins'		=> '插件',//'Plug-ins',
@@ -106,14 +111,14 @@ $lang = array(
  'link_alias'		=> '链接别名',//'Link Alias',
  'link_alias_info'	=> '用于自定义该页面的链接地址。需要',//'The page link custom address. Required',
  'link_alias_enable'	=> '启用链接别名',//'Enable Link Alias',
- 'page_template'	=> '页面模板：',//'Page template: ',
+ 'page_template'	=> '页面模板',//'Page template',
  'page_template_info'	=> '（用于自定义页面模板，对应模板目录下.php文件）',//'(For custom page template, use the corresponding .php file under the template directory)',
  'page_enable_comments'	=> '页面接受评论',//'Page accepted comments',
  'page_publish'		=> '发布页面',//'Publish Page',
  'save'			=> '保存',//'Save',
 
 //---------------------------
-//admin/views/admin_log.php
+//admin/views/article.php
  'deleted_ok'		=> '删除成功',//'Deleted successfully',
  'sticked_ok'		=> '置顶成功',//'Entry has been sticked successfully',
  'unsticked_ok'		=> '取消置顶成功',//'Entry has been unsticked successfully',
@@ -139,7 +144,7 @@ $lang = array(
  'view'			=> '查看',//'View',
  'views'		=> '查看',//'Views',
  'reads'		=> '阅读',//'Reads',
- 'time'			=> '时间',//'Date',
+ 'time'			=> '时间',//'Time',
  'comments'		=> '评论',//'Comments',
  'attachment_num'	=> '附件',//'Attachments',
  'pending'		=> '待审',//'Pending',
@@ -165,7 +170,7 @@ $lang = array(
  'tags'			=> 'Tags',//'标签',
  'tags_no'		=> 'No tags',//'还没有标签',
  'tag_by_view'		=> 'View by tags',//'按标签查看',
-
+ 'top'			=> '置顶',//'Top',
 
 
 //---------------------------
@@ -828,8 +833,8 @@ $lang = array(
  'widget_setting_reset'	=> '恢复出厂设置',//'Reset default widget settings',
 
 //---------------------------
-//admin/views/write.php
- 'publish_time'		=> '发布时间：',//'Publish time:',
+//admin/views/article_write.php
+ 'publish_time'		=> '发布时间',//'Publish time',
  'access_password'	=> '访问密码',//'Access Password',
  'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
  'tags_have'		=> '已有标签+',//'Have tags+',

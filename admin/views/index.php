@@ -83,7 +83,7 @@
             <form action="register.php?action=register" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-<!--vot-->              <label for="sortname"><?=lang('enter_emkey')?>：</label>
+<!--vot-->              <label for="sortname"><?=lang('enter_emkey')?>:</label>
                         <input class="form-control" id="emkey" name="emkey">
 <!--vot-->              <small class="form-text text-muted">(<?=lang('emkey_info')?>)</small>
                     </div>
@@ -121,7 +121,7 @@
                 if (data.result.match("no")) {
 /*vot*/             $("#upmsg").html("<?=lang('updates_no')?>").removeClass();
                 } else if (data.result.match("yes")) {
-/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + data.ver + "， <?=lang('backup_before_update')?>， <a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
+/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + data.ver + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                 } else {
 /*vot*/             $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
                 }

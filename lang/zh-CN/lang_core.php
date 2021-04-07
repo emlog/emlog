@@ -104,7 +104,7 @@ $lang = array(
 
 //---------------------------
 //content/templates/default/footer.php
- 'powered_by'		=> 'Powered by',
+ 'powered_by'		=> 'Powered by ',
  'powered_by_emlog'	=> '采用emlog系统',//'Powered by Emlog',
 
 //---------------------------

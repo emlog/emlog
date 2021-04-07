@@ -31,7 +31,7 @@
             <form action="data.php?action=bakstart" method="post">
                 <div id="backup">
 <!--vot-->          <p><?=lang('backup_prompt')?></p>
-<!--vot-->          <p id="local_bakzip"><?=lang('compress_zip')?>： <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
+<!--vot-->          <p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
 <!--vot-->              <input type="submit" value="<?=lang('backup_start')?>" class="btn btn-success"/>

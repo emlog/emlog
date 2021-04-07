@@ -32,7 +32,7 @@
         <table class="table table-striped table-bordered table-hover dataTable no-footer">
             <thead>
             <tr>
-                <th><?=lang('plugin_name')?></th>
+<!--vot-->      <th><?=lang('plugin_name')?></th>
 <!--vot-->      <th><?=lang('version')?></th>
 <!--vot-->      <th><?=lang('description')?></th>
 <!--vot-->      <th><?=lang('plugin_status')?></th>

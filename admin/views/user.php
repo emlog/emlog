@@ -77,7 +77,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('')?>添加用户</h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('user_add')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

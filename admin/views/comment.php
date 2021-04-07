@@ -63,7 +63,7 @@
 						$ip = $value['ip'];
 						$gid = $value['gid'];
 						$cid = $value['cid'];
-						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+/*vot*/						$ip_info = $ip ? '<br />' . lang('from_ip') . ': ' . $ip : '';
 						$comment = $value['comment'];
 						$poster = $value['poster'] ?: '';
 						$title = subString($value['title'], 0, 42);
@@ -94,7 +94,7 @@
 <!--vot-->                          <a href="comment.php?action=hide&amp;id=<?php echo $cid; ?>" class="badge badge-secondary"><?=lang('hide')?></a>
 								<?php endif; ?>
 								<?php if (ROLE == ROLE_ADMIN): ?>
-                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning">按IP删除</a>
+<!--vot-->                          <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
 								<?php endif; ?>
                             </td>
                         </tr>
@@ -108,7 +108,7 @@
 <!--vot-->      <a href="javascript:commentact('pub');"><?=lang('approve')?></a>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?php echo $pageurl; ?> （<?=lang('have')?> <?php echo $cmnum; ?> <?=lang('_comments')?>）</div>
+<!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $cmnum; ?> <?=lang('_comments')?>)</div>
         </div>
     </div>
 </form>

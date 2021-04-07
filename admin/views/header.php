@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name=renderer  content=webkit>
-<!--vot--><title>?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
+<!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
     <link rel="stylesheet" href="./views/css/style.css" />
     <link rel="stylesheet" href="./editor.md/css/editormd.css" />
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
@@ -19,8 +19,8 @@
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/common.js"></script>
-<!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
-<!--vot--><script src="<?= BLOG_URL ?>lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
+<!--vot--><script>var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
+<!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
 <!--vot--><body>
