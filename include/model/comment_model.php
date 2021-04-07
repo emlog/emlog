@@ -145,7 +145,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
-		/* 获取子评论ID */
+		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
 		while ($row = $this->db->fetch_array($query)) {
 			if (in_array($row['pid'], $commentIds)) {
@@ -173,7 +173,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
-		/* 获取子评论ID */
+		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
 		while ($row = $this->db->fetch_array($query)) {
 			if (in_array($row['pid'], $commentIds)) {
@@ -190,7 +190,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
-		/* 获取父评论ID */
+		/* Get parent comment ID */
 		while ($row['pid'] != 0) {
 			$commentId = (int)$row['pid'];
 			$commentIds[] = $commentId;

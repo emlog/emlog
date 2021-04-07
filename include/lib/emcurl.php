@@ -55,8 +55,8 @@ class EmCurl {
 		curl_setopt($s, CURLOPT_MAXREDIRS, $this->_maxRedirects);
 		curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($s, CURLOPT_FOLLOWLOCATION, $this->_followlocation);
-		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false); // 规避ssl的证书检查
-		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);     // 跳过host验证
+/*vot*/		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false); // Avoid SSL certificate check
+/*vot*/		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);     // Skip host verification
 
 		if ($this->authentication) {
 			curl_setopt($s, CURLOPT_USERPWD, $this->auth_name . ':' . $this->auth_pass);

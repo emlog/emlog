@@ -7,7 +7,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <?php
-//widget：link
+//widget:link
 function widget_link($title)
 {
     global $CACHE;
@@ -26,7 +26,7 @@ function widget_link($title)
     </div>
 <?php } ?>
 <?php
-//widget：blogger
+//widget:blogger
 function widget_blogger($title)
 {
     global $CACHE;
@@ -48,7 +48,7 @@ function widget_blogger($title)
     </div>
 <?php } ?>
 <?php
-//widget：calendar
+//widget:calendar
 function widget_calendar($title)
 { ?>
     <div class="widget shadow-theme">

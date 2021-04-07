@@ -1,5 +1,5 @@
 /*
-editor.md编辑器的样式配置
+editor.md Editor style configuration
  */
 * {
     padding: 0;
@@ -39,7 +39,7 @@ img {
 body {
     font-size: 14px;
     color: #666;
-    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif; 
+    font-family: "Microsoft YaHei", Helvetica, Tahoma, STXihei, STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, Heiti, sans-serif; 
     background: #fff;
     text-align: center;
 }

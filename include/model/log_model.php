@@ -54,7 +54,7 @@ class Log_Model {
 	/**
 	 * Gets the number of articles for the specified condition
 	 *
-     * @param int $spot //0: foreground 1: Background
+	 * @param int $spot //0: foreground 1: Background
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -81,7 +81,7 @@ class Log_Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-/*vot*/     emMsg(lang('no_permission'), './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -130,7 +130,7 @@ class Log_Model {
 	}
 
 	/**
-     * Get posts by conditions for Admin
+	 * Get posts by conditions for Admin
 	 *
 	 * @param string $condition
 	 * @param string $hide_state
@@ -156,7 +156,7 @@ class Log_Model {
 	}
 
 	/**
-     * Get posts by conditions for Homepage
+	 * Get posts by conditions for Homepage
 	 *
 	 * @param string $condition
 	 * @param int $page
@@ -192,7 +192,7 @@ class Log_Model {
 	}
 
 	/**
-     * Get a list of all pages
+	 * Get a list of all pages
 	 */
 	function getAllPageList() {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
@@ -200,7 +200,7 @@ class Log_Model {
 		$pages = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
-/*vot*/     $row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			$pages[] = $row;
 		}
 		return $pages;
@@ -215,7 +215,7 @@ class Log_Model {
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-/*vot*/     emMsg(lang('no_permission'), './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 		// comment
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
@@ -237,7 +237,7 @@ class Log_Model {
 	}
 
 	/**
-     * Hide/Show the post by ID
+	 * Hide/Show the post by ID
 	 *
 	 * @param int $blogId
 	 * @param string $state
@@ -251,7 +251,7 @@ class Log_Model {
 	}
 
 	/**
-     * Audit/Reject the post author
+	 * Audit/Reject the post author
 	 *
 	 * @param int $blogId
 	 * @param string $state
@@ -265,7 +265,7 @@ class Log_Model {
 	}
 
 	/**
-     * Update the post view count
+	 * Update the post view count
 	 *
 	 * @param int $blogId
 	 */
@@ -284,9 +284,9 @@ class Log_Model {
 	}
 
 	/**
-     * Make Link to the nearest posts
+	 * Make Link to the nearest posts
 	 *
-     * @param int $date //unix Timestamp
+	 * @param int $date //unix Timestamp
 	 * @return array
 	 */
 	function neighborLog($date) {
@@ -303,7 +303,7 @@ class Log_Model {
 	}
 
 	/**
-     * Get Random Post
+	 * Get Random Post
 	 */
 	function getRandLog($num) {
 		global $CACHE;
@@ -322,7 +322,7 @@ class Log_Model {
 	}
 
 	/**
-     * Get Hot Posts
+	 * Get Hot Posts
 	 */
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -337,7 +337,7 @@ class Log_Model {
 	}
 
 	/**
-     * Process Post alias, Prevent alias duplicated
+	 * Process Post alias, Prevent alias duplicated
 	 */
 	function checkAlias($alias, $logalias_cache, $logid) {
 		static $i = 2;
@@ -355,16 +355,16 @@ class Log_Model {
 	}
 
 	/**
-     * Encrypted Post access authentication
+	 * Encrypted Post access authentication
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
-/*vot*/ $page_pass = lang('page_password_enter');
-/*vot*/ $submit_pass = lang('submit_password');
-/*vot*/ $back = lang('back_home');
-/*vot*/     echo <<<EOT
+/*vot*/			$page_pass = lang('page_password_enter');
+/*vot*/			$submit_pass = lang('submit_password');
+/*vot*/			$back = lang('back_home');
+/*vot*/			echo <<<EOT
 <html>
 <head>
 <meta charset="utf-8">

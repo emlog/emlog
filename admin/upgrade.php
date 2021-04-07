@@ -1,6 +1,6 @@
 <?php
 /**
- * 管理中心
+ * Upgrade Center
  * @package EMLOG (www.emlog.net)
  */
 

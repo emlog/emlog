@@ -198,8 +198,8 @@ function subString($strings, $start, $length) {
 function extractHtmlData($data, $len) {
 	$data = subString(strip_tags($data), 0, $len + 30);
 	$search = array(
-		"/([\r\n])[\s]+/", // Remove whitespace characters
-		"/&(quot|#34);/i", // Replace HTML entities
+/*vot*/		"/([\r\n])[\s]+/", // Remove whitespace characters
+/*vot*/		"/&(quot|#34);/i", // Replace HTML entities
 		"/&(amp|#38);/i",
 		"/&(lt|#60);/i",
 		"/&(gt|#62);/i",
@@ -520,7 +520,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		@chmod($attachpath, 0777);
 	}
 
-    // If the attachment is an image, then need to extract the width and height
+        // If the attachment is an image, then need to extract the width and height
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
@@ -631,10 +631,10 @@ function chImageSize($img, $max_w, $max_h) {
 	$size = @getimagesize($img);
 	$w = $size[0];
 	$h = $size[1];
-    //Calculate zoom ratio
+	//Calculate zoom ratio
 	@$w_ratio = $max_w / $w;
 	@$h_ratio = $max_h / $h;
-    //Verify the Image width and height
+	//Verify the Image width and height
 	if (($w <= $max_w) && ($h <= $max_h)) {
 		$tn['w'] = $w;
 		$tn['h'] = $h;
@@ -718,11 +718,11 @@ function getMonthDayNum($month, $year) {
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
 	if (!class_exists('ZipArchive', FALSE)) {
-        return 3;//zip Module problem
+		return 3;//zip Module problem
 	}
 	$zip = new ZipArchive();
 	if (@$zip->open($zipfile) !== TRUE) {
-        return 2;//File permissions problem
+		return 2;//File permissions problem
 	}
 	$r = explode('/', $zip->getNameIndex(0), 2);
 	$dir = isset($r[0]) ? $r[0] . '/' : '';

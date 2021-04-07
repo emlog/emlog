@@ -244,7 +244,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 更改分类
+    // Change category
     function changeSort(obj) {
         if (getChecked('ids') == false) {
 /*vot*/     alert('<?=lang('select_post_to_operate')?>');
@@ -255,7 +255,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 更改作者
+    // Change author
     function changeAuthor(obj) {
         if (getChecked('ids') == false) {
 /*vot*/     alert('<?=lang('select_post_to_operate')?>');
@@ -266,7 +266,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 置顶
+    // Top
     function changeTop(obj) {
         if (getChecked('ids') == false) {
 /*vot*/     alert('<?=lang('select_post_to_operate')?>');
@@ -277,12 +277,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 按分类筛选
+    // Filter by category
     function selectSort(obj) {
         window.open("./article.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
     }
 
-    // 按用户筛选
+    // Filter by user
     function selectUser(obj) {
         window.open("./article.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
     }

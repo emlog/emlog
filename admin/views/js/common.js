@@ -170,7 +170,7 @@ function insertTag(tag, boxId) {
         $("#tag_label").hide();
 }
 
-// act: 1 auto save, 2 manual save：click save button to save,
+// act: 1 auto save, 2 manual save:click save button to save,
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -211,7 +211,7 @@ function autosave(act) {
         + "&ishide=" + ishide
         + "&as_logid=" + logid;
 
-    //检查别名
+    //Check alias
     if (alias != '' && 0 != isalias(alias)) {
 /*vot*/ $("#msg").show().html(lang('alis_link_error_not_saved'));
         if (act == 0) {
@@ -219,11 +219,11 @@ function autosave(act) {
         }
         return;
     }
-    // 编辑发布状态的文章时不自动保存
+    // Do not automatically save when editing published articles
     if (act == 1 && ishide == 'n') {
         return;
     }
-    // 内容为空时不自动保存
+    // Do not save automatically when the content is empty
     if (act == 1 && content == "") {
         setTimeout("autosave(1)", timeout);
         return;
@@ -239,7 +239,7 @@ function autosave(act) {
         if (isrespone.test(data)) {
             var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
             var logid = getvar[1];
-            // 展示边栏草稿箱文章数量
+            // Display the number of draft articles in the sidebar
             // var dfnum = getvar[2];
             // if (dfnum > 0) {
             //     $("#dfnum").html("(" + dfnum + ")")
@@ -276,8 +276,8 @@ $.fn.toggleClick = function () {
 
 //Filter HTML tags
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?[^>]*>/g, ''); //Remove HTML tags
-    str = str.replace(/[ | ]*\n/g, '\n'); //Remove white space at the end of the line
+/*vot*/ str = str.replace(/<\/?[^>]*>/g, ''); //Remove HTML tags
+/*vot*/ str = str.replace(/[ | ]*\n/g, '\n'); //Remove white space at the end of the line
     str = str.replace(/ /ig, '');
     return str;
 }
@@ -290,7 +290,7 @@ $(function () {
         event.stopPropagation();
     });
 
-    // Click the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of rows in the table, set the ‘checkAll’ radio box in the header of the table to be selected, otherwise it is unselected
+    // Click the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of rows in the table, set the 'checkAll' radio box in the header of the table to be selected, otherwise it is unselected
     $('table tbody tr').find('input[type=checkbox]').click(function (event) {
         var tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);

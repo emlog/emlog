@@ -1,6 +1,6 @@
 <?php
 /**
- * 保存文章（增加、修改）
+ * Save the article (add, modify)
  * @package EMLOG (www.emlog.net)
  */
 
@@ -16,13 +16,13 @@ $Tag_Model = new Tag_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 $postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
+$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//Article time before modification
 $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
 $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
 $author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? (int)trim($_POST['author']) : UID;
-$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
+$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
 $sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
@@ -56,7 +56,7 @@ $logData = array(
 	'password'     => $password
 );
 
-if ($blogid > 0) {//自动保存草稿后,添加变为更新
+if ($blogid > 0) {//After the draft is automatically saved, the addition becomes the update
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
@@ -83,9 +83,9 @@ switch ($action) {
 			emDirect("./article.php?pid=draft&active_savedraft=1");
 		}
 		if ($action == 'add' || isset($_POST['pubdf'])) {
-			emDirect("./article.php?active_post=1");//文章发布成功
+/*vot*/			emDirect("./article.php?active_post=1");//The article was published successfully
 		} else {
-			emDirect("./article.php?active_savelog=1");//文章保存成功
+/*vot*/			emDirect("./article.php?active_savelog=1");//The article was saved successfully
 		}
 		break;
 }

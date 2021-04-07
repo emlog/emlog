@@ -183,7 +183,7 @@ if ($action == 'operate_log') {
 	}
 }
 
-//显示撰写文章页面
+//Show the write article page
 if ($action === 'write') {
 	$blogData = [
 		'logid'    => -1,
@@ -218,7 +218,7 @@ if ($action === 'write') {
 	View::output();
 }
 
-//显示编辑文章页面
+//Show edit article page
 if ($action === 'edit') {
 	$logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
 	$blogData = $Log_Model->getOneLogForAdmin($logid);
