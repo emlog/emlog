@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * user profile
  *
  * @package EMLOG (www.emlog.net)
  *

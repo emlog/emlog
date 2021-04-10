@@ -302,30 +302,30 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment COMMENT '资源文件表',
-  blogid int(10) unsigned NOT NULL default '0',
-  filename varchar(255) NOT NULL default '',
-  filesize int(10) NOT NULL default '0',
-  filepath varchar(255) NOT NULL default '',
-  addtime bigint(20) NOT NULL default '0',
-  width int(10) NOT NULL default '0',
-  height int(10) NOT NULL default '0',
-  mimetype varchar(40) NOT NULL default '',
-  thumfor int(10) NOT NULL default 0,
+  blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
+  filename varchar(255) NOT NULL default '' COMMENT '文件名',
+  filesize int(10) NOT NULL default '0' COMMENT '文件大小',
+  filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
+  addtime bigint(20) NOT NULL default '0' COMMENT '创建时间',
+  width int(10) NOT NULL default '0' COMMENT '图片宽度',
+  height int(10) NOT NULL default '0' COMMENT '图片高度',
+  mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
+  thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID',
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(10) unsigned NOT NULL auto_increment COMMENT '评论表',
-  gid int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
-  date bigint(20) NOT NULL,
-  poster varchar(20) NOT NULL default '',
-  comment text NOT NULL,
-  mail varchar(60) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
-  ip varchar(128) NOT NULL default '',
-  hide enum('n','y') NOT NULL default 'n',
+  gid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父级评论ID',
+  date bigint(20) NOT NULL COMMENT '创建时间',
+  poster varchar(20) NOT NULL default '' COMMENT '发布人',
+  comment text NOT NULL COMMENT '评论内容',
+  mail varchar(60) NOT NULL default '' COMMENT '邮件地址',
+  url varchar(75) NOT NULL default '' COMMENT '主页地址',
+  ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
   PRIMARY KEY  (cid),
   KEY gid (gid),
   KEY date (date),
@@ -395,26 +395,26 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',
-  sitename varchar(30) NOT NULL default '',
-  siteurl varchar(75) NOT NULL default '',
-  description varchar(255) NOT NULL default '',
-  hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
+  sitename varchar(30) NOT NULL default '' COMMENT '名称',
+  siteurl varchar(75) NOT NULL default '' COMMENT '地址',
+  description varchar(255) NOT NULL default '' COMMENT '备注信息',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(10) unsigned NOT NULL auto_increment COMMENT '导航表',
-  naviname varchar(30) NOT NULL default '',
-  url varchar(75) NOT NULL default '',
-  newtab enum('n','y') NOT NULL default 'n',
-  hide enum('n','y') NOT NULL default 'n',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
-  isdefault enum('n','y') NOT NULL default 'n',
-  type tinyint(3) unsigned NOT NULL default '0',
-  type_id int(10) unsigned NOT NULL default '0',
+  naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
+  url varchar(75) NOT NULL default '' COMMENT '导航地址',
+  newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父级ID',
+  isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
+  type_id int(10) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
@@ -422,8 +422,8 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid int(10) unsigned NOT NULL auto_increment COMMENT '标签表',
-  tagname varchar(60) NOT NULL default '',
-  gid text NOT NULL,
+  tagname varchar(60) NOT NULL default '' COMMENT '标签名',
+  gid text NOT NULL COMMENT '文章ID',
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )" . $table_charset_sql . "

@@ -4,7 +4,7 @@
 <?php if (isset($_GET['active_reg'])): ?>
     <div class="alert alert-success">恭喜，注册成功了</div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">无效的注册码（emkey）</div><?php endif; ?>
+    <div class="alert alert-danger">注册失败</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">管理后台</h1>
 	<?php doAction('adm_main_top'); ?>

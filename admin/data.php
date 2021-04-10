@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据备份
+ * data backup
  * @package EMLOG (www.emlog.net)
  */
 

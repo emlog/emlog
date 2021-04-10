@@ -1,6 +1,6 @@
 <?php
 /**
- * 基本设置
+ * setting
  * @package EMLOG (www.emlog.net)
  */
 

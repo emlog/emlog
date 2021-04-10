@@ -96,16 +96,12 @@ if ($action == 'add_page') {
 
 if ($action == 'mod') {
 	$naviId = isset($_GET['navid']) ? (int)$_GET['navid'] : '';
-
 	$navis = $CACHE->readCache('navi');
-
 	$naviData = $Navi_Model->getOneNavi($naviId);
 	extract($naviData);
-
 	if ($type != Navi_Model::navitype_custom) {
 		$url = '该导航地址由系统生成，无法修改';
 	}
-
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';
 	$conf_isdefault = $type != Navi_Model::navitype_custom ? 'disabled="disabled"' : '';
 
