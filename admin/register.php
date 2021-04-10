@@ -12,7 +12,7 @@
 require_once 'globals.php';
 
 if ($action === 'register') {
-	$emkey = $_POST['emkey'] ?? '';
+	$emkey = $_POST['emkey'] ? addslashes(trim($_POST['emkey'])) : '';
 
 	if (empty($emkey)) {
 		emDirect("./index.php?error_b=1");
