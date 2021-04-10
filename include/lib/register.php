@@ -7,21 +7,27 @@
 class Register {
 
 	/**
-	 * check user is registered
+	 * Check user is registered on the local side
 	 */
-	public static function isReg() {
+	public static function isRegLocal() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-
 		$emkey = $options_cache['emkey'] ?? '';
 
-		if (self::checkEmKey($emkey)) {
-			return true;
-		} else {
-			Option::updateOption("emkey", '');
-			$CACHE->updateCache('options');
+		if (empty($emkey)) {
 			return false;
 		}
+		return true;
+	}
+
+	/**
+	 * Check user is registered on the server side
+	 */
+	public static function isRegServer() {
+		$CACHE = Cache::getInstance();
+		$options_cache = $CACHE->readCache('options');
+		$emkey = $options_cache['emkey'] ?? '';
+		return self::checkEmKey($emkey);
 	}
 
 	/**
@@ -41,6 +47,9 @@ class Register {
 		$respone = $emcurl->getRespone();
 		$respone = json_decode($respone, 1);
 		if (!$respone || $respone['msg'] != 'ok') {
+			$CACHE = Cache::getInstance();
+			Option::updateOption('emkey', '');
+			$CACHE->updateCache('options');
 			return false;
 		}
 
