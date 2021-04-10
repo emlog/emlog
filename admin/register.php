@@ -18,18 +18,7 @@ if ($action === 'register') {
 		emDirect("./index.php?error_b=1");
 	}
 
-	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => $emkey]);
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'register/auth');
-
-	$retStatus = $emcurl->getHttpStatus();
-	if ($emcurl->getHttpStatus() !== 200) {
-		emDirect("./index.php?error_b=1");
-	}
-
-	$respone = $emcurl->getRespone();
-	$respone = json_decode($respone, 1);
-	if (!$respone || $respone['msg'] != 'ok') {
+	if (Register::checkEmKey($emkey) === false) {
 		emDirect("./index.php?error_b=1");
 	}
 
