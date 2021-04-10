@@ -1,6 +1,6 @@
 <?php
 /**
- * 评论管理
+ * comments
  *
  * @package EMLOG (www.emlog.net)
  */

@@ -26,11 +26,11 @@
 </div>
 <div class="card-deck">
     <div class="card">
+        <h5 class="card-header">备份数据库</h5>
         <div class="card-body">
-            <h5 class="card-title">备份数据库</h5>
             <form action="data.php?action=bakstart" method="post">
                 <div id="backup">
-                    <p>将站点内容数据库备份到自己电脑上</p>
+                    <p>将站点内容数据库备份到自己电脑上。</p>
                     <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
@@ -41,11 +41,11 @@
         </div>
     </div>
     <div class="card">
+        <h5 class="card-header">导入本地备份</h5>
         <div class="card-body">
-            <h5 class="card-title">导入本地备份</h5>
             <form action="data.php?action=import" enctype="multipart/form-data" method="post">
                 <div id="import">
-                    <p class="des">仅可导入相同版本emlog导出的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
+                    <p class="des">仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                         <input type="file" name="sqlfile"/> <input type="submit" value="导入" class="submit"/>
@@ -55,10 +55,10 @@
         </div>
     </div>
     <div class="card">
+        <h5 class="card-header">更新缓存</h5>
         <div class="card-body">
-            <h5 class="card-title">更新缓存</h5>
             <div id="cache">
-                <p class="des">缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。</p>
+                <p class="des">缓存可以加快站点的加载速度，通常系统会自动更新缓存。特殊情况需要手动更新，如：缓存文件被修改、手动修改过数据库、页面出现异常等。</p>
                 <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-success"/></p>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * 保存文章（增加、修改）
+ * article save and update
  * @package EMLOG (www.emlog.net)
  */
 
