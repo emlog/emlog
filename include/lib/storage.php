@@ -84,10 +84,8 @@ class Storage {
 		$type = $this->_filterType($type);
 
 		switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
 			case "number":
+			case "string":
 				$db_value = (string)$value;
 				break;
 			case "boolean":
@@ -141,10 +139,8 @@ class Storage {
 		}
 
 		switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
 			case "number":
+			case "string":
 				$db_value = (string)$value;
 				break;
 			case "boolean":
@@ -316,7 +312,7 @@ class Storage {
 	/**
 	 * 删除此插件创建的所有数据
 	 * @param mixed $confirm 请传入大写的"YES"来确认删除
-	 * @return mixed 删除结果
+	 * @return bool 删除结果
 	 */
 	public function deleteAllName($confirm) {
 		if ($confirm !== "YES") {
@@ -349,7 +345,7 @@ class Storage {
 
 	/**
 	 * 内部函数：过滤数据名
-	 * @param string $plugin 数据名
+	 * @param $name
 	 * @return string 数据名
 	 */
 	public function _filterName($name) {
@@ -368,7 +364,7 @@ class Storage {
 
 	/**
 	 * 内部函数：过滤类型名
-	 * @param string $plugin 类型名
+	 * @param $type
 	 * @return string 类型名
 	 */
 	public function _filterType($type) {

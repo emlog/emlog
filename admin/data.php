@@ -20,7 +20,7 @@ if (!$action) {
 }
 
 // 备份到本地
-if ($action == 'bakstart') {
+if ($action === 'bakstart') {
 	LoginAuth::checkToken();
 	$zipbak = $_POST['zipbak'] ?? 'n';
 
@@ -74,7 +74,7 @@ if ($action == 'bakstart') {
 }
 
 //导入本地备份文件
-if ($action == 'import') {
+if ($action === 'import') {
 	LoginAuth::checkToken();
 	$sqlfile = $_FILES['sqlfile'] ?? '';
 	if (!$sqlfile) {
@@ -216,6 +216,7 @@ function checkBOM($contents) {
 }
 
 if ($action == 'Cache') {
+	Register::isRegServer();
 	$CACHE->updateCache();
 	emDirect('./data.php?active_mc=1');
 }
