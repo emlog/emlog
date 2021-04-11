@@ -83,11 +83,10 @@
             <form action="register.php?action=register" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sortname">输入emkey：</label>
-                        <input class="form-control" id="emkey" name="emkey">
-                        <small class="form-text text-muted">(emkey是emlog官方分发给付费注册用户的唯一识别码，请妥善保管)</small>
+                        <input class="form-control" id="emkey" name="emkey" placeholder="输入EMKEY">
+                        <small class="form-text text-muted">(EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管)</small>
                     </div>
-                    <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">如何获取emkey？</a></div>
+                    <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">去获取注册码</a></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">注册</button>
