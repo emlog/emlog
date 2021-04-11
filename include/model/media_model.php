@@ -12,8 +12,16 @@ class Media_Model {
 		$this->db = Database::getInstance();
 	}
 
-	function getMedias() {
-		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc";
+	function getMedias($page = null) {
+
+		$condition = '';
+		if ($page) {
+			$perpage_num = 30;
+			$startId = ($page - 1) * $perpage_num;
+			$condition = "LIMIT $startId, " . $perpage_num;
+		}
+
+		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc $condition";
 		$query = $this->db->query($sql);
 		$attach = [];
 		while ($row = $this->db->fetch_array($query)) {
@@ -36,12 +44,10 @@ class Media_Model {
 		return $attach;
 	}
 
-	function addMedia() {
-
-	}
-
-	function deleteLink() {
-
+	function getMediaCount() {
+		$sql = "SELECT count(*) as count FROM " . DB_PREFIX . "attachment WHERE thumfor = 0";
+		$res = $this->db->once_fetch_array($sql);
+		return $res['count'];
 	}
 
 }
