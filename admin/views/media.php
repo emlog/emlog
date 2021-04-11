@@ -23,13 +23,12 @@
         <div class="card">
 			<?php if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))): ?>
                 <a href="<?php echo $atturl; ?>" target="_blank">
-                    <img class="card-img-top" src="<?php echo $imgpath; ?>"/>
+                    <img class="card-img-top" src="<?php echo $imgpath; ?>" style="height: 150px;object-fit: cover;"/>
                 </a>
 			<?php endif; ?>
             <div class="card-body">
-                <h5 class="card-title"><a href="<?php echo $atturl; ?>" class="text-muted" target="_blank"><?php echo $value['filename']; ?></a></h5>
                 <p class="card-text text-muted small">
-                    链接：<?php echo BLOG_URL . substr($value['filepath'], 3); ?><br>
+                    <a href="<?php echo $atturl; ?>" class="text-muted" target="_blank"><?php echo $value['filename']; ?></a><br>
                     时间：<?php echo $value['addtime']; ?><br>
                     大小：<?php echo $value['attsize']; ?><br>
 					<?php if ($value['width'] && $value['height']): ?>
