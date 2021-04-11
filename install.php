@@ -4,8 +4,9 @@
  * @package EMLOG (www.emlog.net)
  */
 
-define('EMLOG_ROOT', __DIR__);
-define('DEL_INSTALLER', 0);
+const EMLOG_ROOT = __DIR__;
+const DEL_INSTALLER = 0;
+
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
@@ -430,25 +431,25 @@ CREATE TABLE {$db_prefix}tag (
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid int(10) unsigned NOT NULL auto_increment COMMENT '分类表',
-  sortname varchar(255) NOT NULL default '',
-  alias VARCHAR(200) NOT NULL DEFAULT '',
-  taxis int(10) unsigned NOT NULL default '0',
-  pid int(10) unsigned NOT NULL default '0',
-  description text NOT NULL,
-  template varchar(255) NOT NULL default '',
+  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
+  alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '别名',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父分类ID',
+  description text NOT NULL COMMENT '备注',
+  template varchar(255) NOT NULL default '' COMMENT '分类模板',
   PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid int(10) unsigned NOT NULL auto_increment COMMENT '用户表',
-  username varchar(32) NOT NULL default '',
-  password varchar(64) NOT NULL default '',
-  nickname varchar(20) NOT NULL default '',
-  role varchar(60) NOT NULL default '',
-  ischeck enum('n','y') NOT NULL default 'n',
-  photo varchar(255) NOT NULL default '',
-  email varchar(60) NOT NULL default '',
-  description varchar(255) NOT NULL default '',
+  username varchar(32) NOT NULL default '' COMMENT '用户名',
+  password varchar(64) NOT NULL default '' COMMENT '用户密码',
+  nickname varchar(20) NOT NULL default '' COMMENT '昵称',
+  role varchar(60) NOT NULL default '' COMMENT '角色',
+  ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
+  photo varchar(255) NOT NULL default '' COMMENT '头像',
+  email varchar(60) NOT NULL default '' COMMENT '邮箱',
+  description varchar(255) NOT NULL default '' COMMENT '备注',
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
@@ -456,12 +457,12 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
-  `plugin` varchar(32) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `type` varchar(8) NOT NULL,
-  `value` text NOT NULL,
-  `createdate` int(11) NOT NULL,
-  `lastupdate` int(11) NOT NULL,
+  `plugin` varchar(32) NOT NULL COMMENT '插件名',
+  `name` varchar(32) NOT NULL COMMENT '对象名',
+  `type` varchar(8) NOT NULL COMMENT '对象数据类型',
+  `value` text NOT NULL COMMENT '对象值',
+  `createdate` int(11) NOT NULL COMMENT '创建时间',
+  `lastupdate` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`sid`),
   UNIQUE KEY `plugin` (`plugin`,`name`)
 )" . $table_charset_sql;
