@@ -289,16 +289,10 @@ $(function () {
         tr_checkbox.prop('checked', $(this).prop('checked'));
         event.stopPropagation();
     });
-
     // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
     $('table tbody tr').find('input[type=checkbox]').click(function (event) {
         var tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
         event.stopPropagation();
-    });
-
-    // 点击表格行(行内任意位置)，触发选中或取消选中该行的checkbox
-    $('table tbody tr').click(function () {
-        $(this).find('input[type=checkbox]').click();
     });
 });
