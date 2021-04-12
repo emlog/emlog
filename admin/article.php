@@ -211,7 +211,7 @@ if ($action === 'write') {
 	$is_allow_remark = '';
 	$postDate = date('Y-m-d H:i:s');
 	$att_frame_url = 'attachment.php?action=selectFile';
-	
+
 	include View::getView('header');
 	require_once View::getView('article_write');
 	include View::getView('footer');
@@ -228,14 +228,13 @@ if ($action === 'edit') {
 	$containertitle = $isdraft ? '编辑草稿' : '编辑文章';
 	$postDate = date('Y-m-d H:i:s', $date);
 	$sorts = $CACHE->readCache('sort');
-	//log tag
+
+	//tag
 	$tags = array();
 	foreach ($Tag_Model->getTag($logid) as $val) {
 		$tags[] = $val['tagname'];
 	}
 	$tagStr = implode(',', $tags);
-	//old tag
-	$tags = $Tag_Model->getTag();
 
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
 	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
