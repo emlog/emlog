@@ -20,13 +20,12 @@
             </div>
 
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
-            <div id="advset">
 
+            <div id="advset">
                 <div class="form-group">
                     <label>文章摘要：</label>
                     <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
                 </div>
-
                 <div class="form-group">
                     <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
@@ -132,6 +131,8 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
+    $("#advset").css('display', Cookies.get('em_advset') ? Cookies.get('em_advset') : '');
+
     var Editor, Editor_summary;
     $(function () {
         Editor = editormd("logcontent", {
@@ -163,6 +164,7 @@
             },
             path: "editor.md/lib/",
             tex: false,
+            watch: false,
             flowChart: false,
             sequenceDiagram: false,
             placeholder: "如果留空，则使用文章内容作为摘要...",

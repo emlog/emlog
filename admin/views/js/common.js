@@ -85,10 +85,10 @@ function hideActived() {
 function displayToggle(id, keep) {
     $("#" + id).toggle();
     if (keep == 1) {
-        $.cookie('em_' + id, $("#" + id).css('display'), {expires: 365});
+        Cookies.set('em_' + id, $("#" + id).css('display'), {expires: 365})
     }
     if (keep == 2) {
-        $.cookie('em_' + id, $("#" + id).css('display'));
+        Cookies.set('em_' + id, $("#" + id).css('display'))
     }
 }
 
@@ -185,10 +185,9 @@ function autosave(act) {
     var content = Editor.getMarkdown();
     var excerpt = Editor_summary.getMarkdown();
     var tag = $.trim($("#tag").val());
-    var top = $("#post_options #top").attr("checked") == 'checked' ? 'y' : 'n';
-    var sortop = $("#post_options #sortop").attr("checked") == 'checked' ? 'y' : 'n';
-    var allow_remark = $("#post_options #allow_remark").attr("checked") == 'checked' ? 'y' : 'n';
-    var allow_tb = $("#post_options #allow_tb").attr("checked") == 'checked' ? 'y' : 'n';
+    var top = $("#top").is(":checked") ? 'y' : 'n';
+    var sortop = $("#sortop").is(":checked") ? 'y' : 'n';
+    var allow_remark = $("#allow_remark").is(":checked") ? 'y' : 'n';
     var password = $.trim($("#password").val());
     var ishide = $.trim($("#ishide").val());
     var token = $.trim($("#token").val());
@@ -205,7 +204,6 @@ function autosave(act) {
         + "&top=" + top
         + "&sortop=" + sortop
         + "&allow_remark=" + allow_remark
-        + "&allow_tb=" + allow_tb
         + "&password=" + password
         + "&token=" + token
         + "&ishide=" + ishide
@@ -248,7 +246,7 @@ function autosave(act) {
             var hours = digital.getHours();
             var mins = digital.getMinutes();
             var secs = digital.getSeconds();
-            $("#save_info").html("<span class=\"ajax_remind_1\">保存于"+hours+":"+mins+":"+secs+" </span>");
+            $("#save_info").html("<span class=\"ajax_remind_1\">保存于" + hours + ":" + mins + ":" + secs + " </span>");
 
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
