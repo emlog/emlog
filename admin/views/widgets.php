@@ -178,8 +178,10 @@
                             <li>标题</li>
                             <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
                             <li>显示热门文章数</li>
-                            <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/> <input
-                                        type="submit" name="" value="保存" class="btn btn-success btn-sm"/></li>
+                            <li>
+                                <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/>
+                                <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+                            </li>
                         </form>
                     </div>
                 </div>
@@ -197,8 +199,9 @@
                 <div id="linkForm" class="collapse" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
-                            <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/> <input type="submit" name="" value="保存"
-                                                                                                                                            class="btn btn-success btn-sm"/>
+                            <li>
+                                <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/>
+                                <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                             </li>
                         </form>
                     </div>
@@ -217,8 +220,9 @@
                 <div id="searchForm" class="collapse" data-parent="#accordionExample">
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
-                            <li><input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/> <input type="submit" name="" value="保存"
-                                                                                                                                              class="btn btn-success btn-sm"/>
+                            <li>
+                                <input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/>
+                                <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                             </li>
                         </form>
                     </div>
@@ -229,11 +233,12 @@
 				preg_match("/^custom_wg_(\d+)/", $key, $matches);
 				$custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
 				?>
-                <div class="card">
+                <div class="card" id="<?php echo $key; ?>">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>" aria-expanded="true"
-                                    aria-controls="collapseOne"><?php echo $custom_wg_title; ?></button>
+                            <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>" aria-expanded="true"
+                                    aria-controls="collapseOne"><?php echo $custom_wg_title; ?>
+                            </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
                         </h2>
@@ -297,7 +302,7 @@
             <div id="sortable" class="adm_widget_box">
 				<?php
 				foreach ($widgets as $widget):
-					$flg = strpos($widget, 'custom_wg_') === 0 ? true : false;                                          //是否为自定义组件
+					$flg = strpos($widget, 'custom_wg_') === 0;                                                         //是否为自定义组件
 					$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
 					if ($flg && empty($title)) {
 						preg_match("/^custom_wg_(\d+)/", $widget, $matches);
