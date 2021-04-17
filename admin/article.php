@@ -67,7 +67,6 @@ if (empty($action)) {
 	$logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
 	$sorts = $CACHE->readCache('sort');
 	$log_cache_tags = $CACHE->readCache('logtags');
-	$tags = $Tag_Model->getTag();
 
 	$subPage = '';
 	foreach ($_GET as $key => $val) {
