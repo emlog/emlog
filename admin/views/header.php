@@ -25,7 +25,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center" href="./">
-            <div class="sidebar-brand-text mx-3">EMLOG Pro</div>
+            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif;?></div>
         </a>
 
         <hr class="sidebar-divider my-0">
@@ -119,7 +119,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link" href=".." target="_blank" title="在新窗口浏站点" role="button">
+                        <a class="nav-link" href=".." target="_blank" role="button">
 							<?php
 							$blog_name = Option::get('blogname');
 							echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
