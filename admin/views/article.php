@@ -89,20 +89,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         </select>
                     </div>
 				<?php endif; ?>
-                <span id="f_t_tag"><a href="javascript:void(0);">按标签查看</a></span>
-            </div>
-            <div id="f_tag" class="my-3" <?php echo $isDisplayTag ?>>
-                标签：
-				<?php
-				if (empty($tags)) echo '还没有标签';
-				foreach ($tags as $val):
-					$a = 'tag_' . $val['tid'];
-					$$a = '';
-					$b = 'tag_' . $tagId;
-					$$b = "class=\"filter\"";
-					?>
-                    <span <?php echo $$a; ?>><a href="article.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
-				<?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -165,7 +151,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <div class="form-inline">
 				<?php if ($pid != 'draft'): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control mx-1">
+                        <select name="top" id="top" onChange="changeTop(this);" class="form-control">
                             <option value="" selected="selected">置顶</option>
                             <option value="top">首页置顶</option>
                             <option value="sortop">分类置顶</option>

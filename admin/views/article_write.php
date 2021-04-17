@@ -166,6 +166,7 @@
             tex: false,
             watch: false,
             flowChart: false,
+            autoFocus : false,
             sequenceDiagram: false,
             placeholder: "如果留空，则使用文章内容作为摘要...",
         });

@@ -12,25 +12,24 @@
 	<?php foreach ($attach as $key => $value):
 		$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
 		$atturl = BLOG_URL . substr($value['filepath'], 3);
-		if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))) {
+		$name =  $value['filename'];
+		if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
 			$imgpath = $value['filepath'];
-			$ed_imgpath = BLOG_URL . substr($imgpath, 3);
 			if (isset($value['thum_filepath'])) {
-				$thum_url = BLOG_URL . substr($value['thum_filepath'], 3);
+				$imgpath = BLOG_URL . substr($value['thum_filepath'], 3);
 			}
+		} else {
+			$imgpath = "./views/images/fnone.png";
 		}
 		?>
         <div class="card">
-			<?php if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png', 'bmp'))): ?>
-                <a href="<?php echo $atturl; ?>" target="_blank">
-                    <img class="card-img-top" src="<?php echo $imgpath; ?>" style="height: 150px;object-fit: cover;"/>
-                </a>
-			<?php endif; ?>
+            <a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $name; ?>">
+                <img class="card-img-top" src="<?php echo $imgpath; ?>" style="height: 150px;object-fit: cover;"/>
+            </a>
             <div class="card-body">
                 <p class="card-text text-muted small">
-                    <a href="<?php echo $atturl; ?>" class="text-muted" target="_blank"><?php echo $value['filename']; ?></a><br>
                     时间：<?php echo $value['addtime']; ?><br>
-                    大小：<?php echo $value['attsize']; ?><br>
+                    大小：<?php echo $value['attsize']; ?>
 					<?php if ($value['width'] && $value['height']): ?>
                         尺寸：<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
 					<?php endif; ?>
