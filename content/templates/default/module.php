@@ -16,7 +16,7 @@ function widget_link($title)
     ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="widget-list no-margin-bottom">
             <?php foreach ($link_cache as $value): ?>
@@ -34,16 +34,16 @@ function widget_blogger($title)
     $name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:" . $user_cache[1]['mail'] . "\">" . $user_cache[1]['name'] . "</a>" : $user_cache[1]['name']; ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
-        <ul class="list-unstyled">
-            <div id='bloggerinfo'>
+        <ul class="list-unstyled bloggerinfo">
+            <div >
                 <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                    <img id='bloggerinfo_img' src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
+                    <img class='bloggerinfo_img' src="<?php  echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
                 <?php endif; ?>
             </div>
-            <p id='bloginfo_name'><b><?php echo $name; ?></b></p>
-            <p id='bloginfo_cache'> <?php echo $user_cache[1]['des']; ?></p>
+			<p class='bloginfo_name'> <b><?php echo $name; ?></b></p>
+            <p class='bloginfo_cache'> <?php echo $user_cache[1]['des']; ?></p>
         </ul>
     </div>
 <?php } ?>
@@ -51,14 +51,14 @@ function widget_blogger($title)
 //widget：日历
 function widget_calendar($title)
 { ?>
-    <div class="widget shadow-theme">
+    <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
-        <ul class="list-unstyled">
-            <div id="calendar"></div>
-            <script>sendinfo('<?php echo Calendar::url(); ?>', 'calendar');</script>
-        </ul>
+       <ul class="list-unstyled">
+        <div id="calendar"></div>
+        <script>sendinfo('<?php echo Calendar::url(); ?>','calendar');</script>
+    </ul>
     </div>
 <?php } ?>
 <?php
@@ -69,12 +69,12 @@ function widget_tag($title)
     $tag_cache = $CACHE->readCache('tags'); ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="list-unstyled">
             <?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']; ?> 篇文章"><?php echo $value['tagname']; ?></a></span>
+            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum']+2; ?> 篇文章" class='tags_side' ><?php echo $value['tagname']; ?></a></span>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -85,26 +85,26 @@ function widget_sort($title)
 {
     global $CACHE;
     $sort_cache = $CACHE->readCache('sort'); ?>
-    <div class="widget shadow-theme">
+    <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled log_classify_f">
             <?php
             foreach ($sort_cache as $value):
                 if ($value['pid'] != 0) continue;
                 ?>
                 <li>
-                    <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+                    <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>&nbsp;&nbsp;(<?php echo $value['lognum'] ?>)</a>
                     <?php if (!empty($value['children'])): ?>
-                        <ul>
+                        <ul class="log_classify_c">
                             <?php
                             $children = $value['children'];
                             foreach ($children as $key):
                                 $value = $sort_cache[$key];
                                 ?>
                                 <li>
-                                    <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>(<?php echo $value['lognum'] ?>)</a>
+                                    <a href="<?php echo Url::sort($value['sid']); ?>">&#9507;&nbsp;&nbsp;<?php echo $value['sortname']; ?>&nbsp;&nbsp;(<?php echo $value['lognum'] ?>)</a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -121,17 +121,17 @@ function widget_newcomm($title)
     global $CACHE;
     $com_cache = $CACHE->readCache('comment');
     ?>
-    <div class="widget shadow-theme">
+    <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
-        </div>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+        </div><hr style="margin-bottom: 4px;" />
         <ul class="list-unstyled">
             <?php
             foreach ($com_cache as $value):
                 $url = Url::comment($value['gid'], $value['page'], $value['cid']);
                 ?>
-                <li id="comment"><?php echo $value['name']; ?>
-                    <br/><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a></li>
+                <li class='comment_lates' id="comment"><span class='comm_lates_name' style="color: #616161;"><?php echo $value['name']; ?></span>&nbsp;<span class='comm_lates_time'><?php echo smartDate($value['date']); ?></span>
+                    <br/><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a><hr></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -145,11 +145,11 @@ function widget_newlog($title)
     ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="list-unstyled">
             <?php foreach ($newLogs_cache as $value): ?>
-                <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+                <li class='blog_lates'><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -163,7 +163,7 @@ function widget_hotlog($title)
     $hotLogs = $Log_Model->getHotLog($index_hotlognum); ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="list-unstyled">
             <?php foreach ($hotLogs as $value): ?>
@@ -178,11 +178,12 @@ function widget_search($title)
 { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="list-unstyled"style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
-                <input name="keyword" class="search" autocomplete="off" type="text"/>
+                <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
+				<input type="submit" value="搜索">
             </form>
         </ul>
     </div>
@@ -191,12 +192,13 @@ function widget_search($title)
 //widget：归档
 function widget_archive($title)
 {
+    $bar_id = "36";
     global $CACHE;
     $record_cache = $CACHE->readCache('record');
     ?>
-    <div class="widget shadow-theme">
+    <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="list-unstyled">
             <?php foreach ($record_cache as $value): ?>
@@ -211,7 +213,7 @@ function widget_custom_text($title, $content)
 { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3><?php echo $title; ?></h3>
+            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
         </div>
         <ul class="list-unstyled">
             <?php echo $content; ?>
@@ -219,6 +221,7 @@ function widget_custom_text($title, $content)
     </div>
 <?php } ?>
 <?php
+
 //blog：导航
 function blog_navi()
 {
@@ -226,7 +229,7 @@ function blog_navi()
     $navi_cache = $CACHE->readCache('navi');
     ?>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto top-menu">
             <?php
             foreach ($navi_cache as $value):
                 if ($value['pid'] != 0) {
@@ -234,8 +237,8 @@ function blog_navi()
                 }
                 if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
                     ?>
-                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理站点</a></li>
-                    <li class="nav-item"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link">退出</a></li>
+                    <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理站点</a></li>
+                    <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link">退出</a></li>
                     <?php
                     continue;
                 endif;
@@ -244,27 +247,27 @@ function blog_navi()
                 $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'active' : '';
                 ?>
                 <?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
-                <li class="nav-item">
+                <li class="nav-item list-menu">
                     <?php if (!empty($value['children'])): ?>
-                        <a href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <a class='nav-link' href="<?php echo $value['url']; ?>" id="nav_link" onmousemove="cal_margin(this)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus" id="dropmenus">
                             <?php foreach ($value['children'] as $row) {
-                                echo '<li class="nav-item"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
+                                echo '<li class="nav-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
                             } ?>
                         </ul>
                     <?php endif; ?>
                     <?php if (!empty($value['childnavi'])) : ?>
-                        <a href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <a class='nav-link' href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus">
                             <?php foreach ($value['childnavi'] as $row) {
                                 $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
-                                echo '<li class="nav-item"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
+                                echo '<li class="nav-item list-menu"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
                             } ?>
                         </ul>
                     <?php endif; ?>
                 </li>
             <?php else: ?>
-                <li class="nav-item"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
+                <li class="nav-item list-menu"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
             <?php endif; ?>
             <?php endforeach; ?>
         </ul>
@@ -274,10 +277,12 @@ function blog_navi()
 //blog：置顶
 function topflg($top, $sortop = 'n', $sortid = null)
 {
+    $ishome_flg='<a href="#" title="首页置顶" class="log_topflg">&nbsp;&uArr;</a>';
+    $issort_flg='<a href="#" title="分类置顶" class="log_topflg">&nbsp;&uArr;</a>';
     if (blog_tool_ishome()) {
-        echo $top == 'y' ? "&uArr; " : '';
+        echo $top == 'y' ? $ishome_flg : '';
     } elseif ($sortid) {
-        echo $sortop == 'y' ? "<img src=\"" . TEMPLATE_URL . "/images/sortop.png\" title=\"分类置顶文章\" /> " : '';
+        echo $sortop == 'y' ? $issort_flg : '';
     }
 }
 
@@ -286,7 +291,7 @@ function topflg($top, $sortop = 'n', $sortid = null)
 //blog：编辑
 function editflg($logid, $author)
 {
-    $editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
+    $editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
     echo $editflg;
 }
 
@@ -298,10 +303,11 @@ function blog_sort($blogid)
     global $CACHE;
     $log_cache_sort = $CACHE->readCache('logsort');
     ?>
-    <?php if (!empty($log_cache_sort[$blogid])): ?>
-    <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
-<?php endif; ?>
-<?php } ?>
+    <?php if (!empty($log_cache_sort[$blogid])){?>
+    <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>" class="echo_sort"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
+	<?php } else {?>
+	<a href="#" class="echo_sort">无</a>
+<?php }} ?>
 <?php
 //blog：文章标签
 function blog_tag($blogid)
@@ -313,7 +319,7 @@ function blog_tag($blogid)
     if (!empty($log_cache_tags[$blogid])) {
         $tag = '标签:';
         foreach ($log_cache_tags[$blogid] as $value) {
-            $tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\">" . $value['tagname'] . '</a>';
+            $tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags' >" . $value['tagname'] . '</a>';
         }
         echo $tag;
     } else {
@@ -324,7 +330,7 @@ function blog_tag($blogid)
             $tag = '标签:';
 
             foreach ($tag_names as $key => $value) {
-                $tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\">" . htmlspecialchars($value) . '</a>';
+                $tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags'>" . htmlspecialchars($value) . '</a>';
             }
 
             echo $tag;
@@ -353,19 +359,20 @@ function neighbor_log($neighborLog)
 {
     extract($neighborLog); ?>
     <?php if ($prevLog): ?>
-    &laquo; <a href="<?php echo Url::log($prevLog['gid']) ?>"><?php echo $prevLog['title']; ?></a>
-<?php endif; ?>
-    <?php if ($nextLog && $prevLog): ?>
-    |
+    <span class="prev_Log"><a href="<?php echo Url::log($prevLog['gid']) ?>" title="<?php echo $prevLog['title']; ?>">上一篇</a></span>
 <?php endif; ?>
     <?php if ($nextLog): ?>
-    <a href="<?php echo Url::log($nextLog['gid']) ?>"><?php echo $nextLog['title']; ?></a>&raquo;
+    <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
+<?php endif; ?>
+	<?php if (!$nextLog && !$prevLog): ?>
+    <span class="next_Log"><a href="#" title="没有更多的文章了">无更多文章</a></span> 
 <?php endif; ?>
 <?php } ?>
 <?php
 //blog：评论列表
 function blog_comments($comments)
 {
+	
     extract($comments);
     if ($commentStacks): ?>
         <a name="comments"></a>
@@ -381,8 +388,8 @@ function blog_comments($comments)
             <a name="<?php echo $comment['cid']; ?>"></a>
             <?php if ($isGravatar == 'y'): ?>
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
-            <div class="comment-info">
-                <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
+            <div class="comment-info"><div class="arrow"></div>
+                <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
             </div>
@@ -406,7 +413,7 @@ function blog_comments_children($comments, $children)
             <a name="<?php echo $comment['cid']; ?>"></a>
             <?php if ($isGravatar == 'y'): ?>
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
-            <div class="comment-info">
+            <div class="comment-info"><div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <?php if ($comment['level'] < 4): ?>
@@ -425,26 +432,44 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
         <div id="comment-place">
             <div class="comment-post" id="comment-post">
                 <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
-                <p class="comment-header"><b>发表评论：</b><a name="respond"></a></p>
-                <form method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+                <p class="comment-header"><hr><a name="respond"></a><br></p>
+                <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
+                    
+                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="说点什么吧....."></textarea>
+                    
                     <?php if (ROLE == ROLE_VISITOR): ?>
-                        <p>
-                            <input type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1">
-                            <label for="author"><small>昵称</small></label>
-                        </p>
-                        <p>
-                            <input type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22" tabindex="2">
-                            <label for="email"><small>邮件地址 (选填)</small></label>
-                        </p>
-                        <p>
-                            <input type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22" tabindex="3">
-                            <label for="url"><small>个人主页 (选填)</small></label>
-                        </p>
+                       <div class="com_info">
+                            <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1" placeholder="昵称*" />
+                        
+                            <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22" tabindex="2" placeholder="邮件地址" />
+                        
+                            <input class="form-control com_control com_url" autocomplete="off" type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22" tabindex="3" placeholder="个人主页" />
+                        </div>
                     <?php endif; ?>
-                    <p><textarea name="comment" id="comment" rows="10" tabindex="4"></textarea></p>
-                    <p><?php echo $verifyCode; ?> <input type="submit" id="comment_submit" value="发表评论" tabindex="6"/></p>
-                    <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
+                    
+                    <p class="com_submit_p">
+					<input class="com_submit"<?php if($verifyCode!=""){ ?> type="button" data-toggle="modal" data-target="#myModal"<?php }else{?> type="submit"<?php }?> id="comment_submit" value="提交" tabindex="6"/>
+					</p>			
+					<?php if($verifyCode!=""){ ?>   		
+					<!-- 验证窗口 -->		
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content" style="display: table-cell;">	
+											<div class="modal-header" style="border-bottom: 0px;">
+												输入验证码
+											</div>
+											<?php echo $verifyCode; ?> 										
+											<div class="modal-footer" style="border-top: 0px;">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												<button type="submit" class="btn btn-primary">提交</button>
+											</div>	
+										</div>
+									</div>
+						</div>					
+					<!-- 验证窗口(end) -->
+					 <?php   }?>
+					 <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
                 </form>
             </div>
         </div>
@@ -461,4 +486,8 @@ function blog_tool_ishome()
     }
 }
 
+
 ?>
+
+
+
