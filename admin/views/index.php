@@ -116,11 +116,13 @@
     function checkupdate() {
         $("#upmsg").html("").addClass("spinner-border text-primary");
         $.get("./upgrade.php?action=check_update",
-            function (data) {
-                if (data.result.match("no")) {
+            function (result) {
+                if (result.code == 1001) {
+                    $("#upmsg").html("您的emlog pro尚未注册，请先完成注册").removeClass();
+                } else if (result.code == 1002) {
                     $("#upmsg").html("已经是最新版本，没有可用的更新").removeClass();
-                } else if (data.result.match("yes")) {
-                    $("#upmsg").html("有可用的emlog更新版本 " + data.ver + "，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\">现在更新</a>").removeClass();
+                } else if (result.code == 200) {
+                    $("#upmsg").html("有可用的emlog更新版本 " + result.data.ver + "，更新之前请您做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
                 } else {
                     $("#upmsg").html("检查失败，可能是网络问题").removeClass();
                 }

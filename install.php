@@ -225,10 +225,10 @@ EOT;
 	}
 
 	if (!is_writable('config.php')) {
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
+		emMsg('配置文件(config.php)不可写，请检查文件权限。');
 	}
 	if (!is_writable(EMLOG_ROOT . '/content/cache')) {
-		emMsg('缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写');
+		emMsg('缓存目录（content/cache）不可写。请检查文件权限。');
 	}
 	$config = "<?php\n"
 		. "//mysql database address\n"

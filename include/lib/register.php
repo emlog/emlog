@@ -40,13 +40,13 @@ class Register {
 
 		$emcurl = new EmCurl();
 		$emcurl->setPost(['emkey' => $emkey]);
-		$emcurl->request(OFFICIAL_SERVICE_HOST . 'register/auth');
+		$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/register');
 		if ($emcurl->getHttpStatus() !== 200) {
 			return false;
 		}
 		$respone = $emcurl->getRespone();
 		$respone = json_decode($respone, 1);
-		if (!$respone || $respone['msg'] != 'ok') {
+		if ($respone['code'] !== 200) {
 			$CACHE = Cache::getInstance();
 			Option::updateOption('emkey', '');
 			$CACHE->updateCache('options');
