@@ -56,7 +56,6 @@ if ($action == 'mod') {
 	$containertitle = '编辑页面';
 	$pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
-	$att_frame_url = "attachment.php?action=attlib&logid=$pageId";
 	extract($pageData);
 
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
@@ -68,14 +67,14 @@ if ($action == 'mod') {
 }
 
 //保存页面
-if ($action == 'save' || $action == 'autosave') {
+if ($action == 'save') {
 	$emPage = new Log_Model();
 	$Navi_Model = new Navi_Model();
 
 	$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
 	$content = isset($_POST['pagecontent']) ? addslashes(trim($_POST['pagecontent'])) : '';
 	$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-	$pageId = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
+	$pageId = isset($_POST['pageid']) ? (int)trim($_POST['pageid']) : -1;
 	$ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
 	$template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
 	$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
