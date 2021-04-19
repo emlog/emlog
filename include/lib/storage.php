@@ -84,10 +84,8 @@ class Storage {
 		$type = $this->_filterType($type);
 
 		switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
 			case "number":
+			case "string":
 				$db_value = (string)$value;
 				break;
 			case "boolean":
@@ -141,10 +139,8 @@ class Storage {
 		}
 
 		switch ($type) {
-			case "string":
-				$db_value = (string)$value;
-				break;
 			case "number":
+			case "string":
 				$db_value = (string)$value;
 				break;
 			case "boolean":
@@ -316,7 +312,7 @@ class Storage {
 	/**
 	 * Delete all data created by this plugin
 	 * @param mixed $confirm Please pass in uppercase "YES" to confirm deletion
-	 * @return mixed Deleting result
+	 * @return bool Deleting result
 	 */
 	public function deleteAllName($confirm) {
 		if ($confirm !== "YES") {
@@ -349,7 +345,7 @@ class Storage {
 
 	/**
 	 * Internal function: filter data name
-	 * @param string $plugin Data name
+	 * @param string $name Data name
 	 * @return string Data name
 	 */
 	public function _filterName($name) {
@@ -368,7 +364,7 @@ class Storage {
 
 	/**
 	 * Internal function: filter Type name
-	 * @param string $plugin Type name
+	 * @param string $type Type name
 	 * @return string Type name
 	 */
 	public function _filterType($type) {

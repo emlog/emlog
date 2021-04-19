@@ -11,8 +11,8 @@
 
 require_once '../init.php';
 
-define('TEMPLATE_PATH', EMLOG_ROOT . '/admin/views/');           //AdminCP current template path
-define('OFFICIAL_SERVICE_HOST', 'https://www.emlog.net/');       //Official Service Domain
+const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';              //后台模板路径
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';          //官方服务域名
 
 /*vot*/ load_language('admin');
 
@@ -20,7 +20,7 @@ $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
-define('ISREG', Register::isReg());
+define('ISREG', Register::isRegLocal());
 
 if ($action == 'login') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
@@ -31,6 +31,7 @@ if ($action == 'login') {
 	$loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
 
 	if ($loginAuthRet === true) {
+		Register::isRegServer();
 		LoginAuth::setAuthCookie($username, $ispersis);
 		emDirect("./");
 	} else {

@@ -5,7 +5,8 @@
  */
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
-/*vot*/ define('DEL_INSTALLER', 0);
+const DEL_INSTALLER = 0;
+
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
 /*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
@@ -319,30 +320,30 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment COMMENT 'Resource file table',
-  blogid int(11) unsigned NOT NULL default '0',
-  filename varchar(255) NOT NULL default '',
-  filesize int(11) NOT NULL default '0',
-  filepath varchar(255) NOT NULL default '',
-  addtime bigint(20) NOT NULL default '0',
-  width int(11) NOT NULL default '0',
-  height int(11) NOT NULL default '0',
-  mimetype varchar(64) NOT NULL default '',
-  thumfor int(11) NOT NULL default 0,
+  blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
+  filename varchar(255) NOT NULL default '' COMMENT '文件名',
+  filesize int(10) NOT NULL default '0' COMMENT '文件大小',
+  filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
+  addtime bigint(20) NOT NULL default '0' COMMENT '创建时间',
+  width int(10) NOT NULL default '0' COMMENT '图片宽度',
+  height int(10) NOT NULL default '0' COMMENT '图片高度',
+  mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
+  thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID',
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )" .$table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(11) unsigned NOT NULL auto_increment COMMENT 'Comment ID',
-  gid int(11) unsigned NOT NULL default '0',
-  pid int(11) unsigned NOT NULL default '0',
-  date bigint(20) NOT NULL,
-  poster varchar(255) NOT NULL default '',
-  comment text NOT NULL,
-  mail varchar(255) NOT NULL default '',
-  url varchar(255) NOT NULL default '',
-  ip varchar(128) NOT NULL default '',
-  hide enum('n','y') NOT NULL default 'n',
+  gid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父级评论ID',
+  date bigint(20) NOT NULL COMMENT '创建时间',
+  poster varchar(20) NOT NULL default '' COMMENT '发布人',
+  comment text NOT NULL COMMENT '评论内容',
+  mail varchar(60) NOT NULL default '' COMMENT '邮件地址',
+  url varchar(75) NOT NULL default '' COMMENT '主页地址',
+  ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
   PRIMARY KEY  (cid),
   KEY gid (gid),
   KEY date (date),
@@ -350,9 +351,9 @@ CREATE TABLE {$db_prefix}comment (
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-option_id INT( 11 ) UNSIGNED NOT NULL auto_increment,
-option_name VARCHAR( 255 ) NOT NULL ,
-option_value LONGTEXT NOT NULL ,
+option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
+option_name VARCHAR( 255 ) NOT NULL COMMENT '配置项',
+option_value LONGTEXT NOT NULL COMMENT '配置项值',
 PRIMARY KEY (option_id),
 KEY option_name (option_name)
 )" . $table_charset_sql . "
@@ -412,26 +413,26 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Link table',
-  sitename varchar(255) NOT NULL default '',
-  siteurl varchar(255) NOT NULL default '',
-  description varchar(255) NOT NULL default '',
-  hide enum('n','y') NOT NULL default 'n',
-  taxis int(11) unsigned NOT NULL default '0',
+  sitename varchar(30) NOT NULL default '' COMMENT '名称',
+  siteurl varchar(75) NOT NULL default '' COMMENT '地址',
+  description varchar(255) NOT NULL default '' COMMENT '备注信息',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '" . lang('emlog_official_site') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Navigation table',
-  naviname varchar(255) NOT NULL default '',
-  url varchar(255) NOT NULL default '',
-  newtab enum('n','y') NOT NULL default 'n',
-  hide enum('n','y') NOT NULL default 'n',
-  taxis int(11) unsigned NOT NULL default '0',
-  pid int(11) unsigned NOT NULL default '0',
-  isdefault enum('n','y') NOT NULL default 'n',
-  type tinyint(3) unsigned NOT NULL default '0',
-  type_id int(11) unsigned NOT NULL default '0',
+  naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
+  url varchar(75) NOT NULL default '' COMMENT '导航地址',
+  newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父级ID',
+  isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
+  type_id int(10) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '" . lang('home') . "', '', 1, 'y', 1);
@@ -439,33 +440,33 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid int(11) unsigned NOT NULL auto_increment COMMENT 'Label table',
-  tagname varchar(255) NOT NULL default '',
-  gid text NOT NULL,
+  tagname varchar(60) NOT NULL default '' COMMENT '标签名',
+  gid text NOT NULL COMMENT '文章ID',
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
   sid int(11) unsigned NOT NULL auto_increment COMMENT 'Category Table',
-  sortname varchar(255) NOT NULL default '',
-  alias VARCHAR(255) NOT NULL DEFAULT '',
-  taxis int(11) unsigned NOT NULL default '0',
-  pid int(11) unsigned NOT NULL default '0',
-  description text NOT NULL,
-  template varchar(255) NOT NULL default '',
+  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
+  alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '别名',
+  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
+  pid int(10) unsigned NOT NULL default '0' COMMENT '父分类ID',
+  description text NOT NULL COMMENT '备注',
+  template varchar(255) NOT NULL default '' COMMENT '分类模板',
   PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
   uid int(11) unsigned NOT NULL auto_increment COMMENT 'User table',
-  username varchar(255) NOT NULL default '',
-  password varchar(255) NOT NULL default '',
-  nickname varchar(255) NOT NULL default '',
-  role varchar(255) NOT NULL default '',
-  ischeck enum('n','y') NOT NULL default 'n',
-  photo varchar(255) NOT NULL default '',
-  email varchar(255) NOT NULL default '',
-  description varchar(255) NOT NULL default '',
+  username varchar(32) NOT NULL default '' COMMENT '用户名',
+  password varchar(64) NOT NULL default '' COMMENT '用户密码',
+  nickname varchar(20) NOT NULL default '' COMMENT '昵称',
+  role varchar(60) NOT NULL default '' COMMENT '角色',
+  ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
+  photo varchar(255) NOT NULL default '' COMMENT '头像',
+  email varchar(60) NOT NULL default '' COMMENT '邮箱',
+  description varchar(255) NOT NULL default '' COMMENT '备注',
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
@@ -473,12 +474,12 @@ INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin',
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',
-  `plugin` varchar(64) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `type` varchar(32) NOT NULL,
-  `value` text NOT NULL,
-  `createdate` int(11) NOT NULL,
-  `lastupdate` int(11) NOT NULL,
+  `plugin` varchar(32) NOT NULL COMMENT '插件名',
+  `name` varchar(32) NOT NULL COMMENT '对象名',
+  `type` varchar(8) NOT NULL COMMENT '对象数据类型',
+  `value` text NOT NULL COMMENT '对象值',
+  `createdate` int(11) NOT NULL COMMENT '创建时间',
+  `lastupdate` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`sid`),
   UNIQUE KEY `plugin` (`plugin`,`name`)
 )" . $table_charset_sql;

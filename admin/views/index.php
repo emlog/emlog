@@ -83,9 +83,8 @@
             <form action="register.php?action=register" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-<!--vot-->              <label for="sortname"><?=lang('enter_emkey')?>:</label>
-                        <input class="form-control" id="emkey" name="emkey">
-<!--vot-->              <small class="form-text text-muted">(<?=lang('emkey_info')?>)</small>
+                        <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_emkey')?>">
+                        <small class="form-text text-muted">(<?=lang('emkey_info')?>)</small>
                     </div>
 <!--vot-->          <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register"><?=lang('how_get_emkey')?></a></div>
                 </div>
@@ -117,11 +116,12 @@
     function checkupdate() {
         $("#upmsg").html("").addClass("spinner-border text-primary");
         $.get("./upgrade.php?action=check_update",
-            function (data) {
-                if (data.result.match("no")) {
+            function (result) {
+                if (result.code == 1001) {
 /*vot*/             $("#upmsg").html("<?=lang('updates_no')?>").removeClass();
-                } else if (data.result.match("yes")) {
-/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + data.ver + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + data.file + "','" + data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
+                } else if (result.code == 1002) {
+                } else if (result.code == 200) {
+/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + resullt.data.ver + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + resullt.data.file + "','" + resullt.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                 } else {
 /*vot*/             $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
                 }

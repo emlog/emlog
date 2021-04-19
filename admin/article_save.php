@@ -1,6 +1,6 @@
 <?php
 /**
- * Save the article (add, modify)
+ * article save and update
  * @package EMLOG (www.emlog.net)
  */
 

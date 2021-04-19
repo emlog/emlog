@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Page Bottom Information
  */
@@ -9,7 +9,7 @@ if (!defined('EMLOG_ROOT')) {
 
 <footer class="py-5">
     <div class="container">
-<!--vot--><p class="m-0 text-center"><?=lang('powered_by')?><a href="http://www.emlog.net">emlog pro</a><br>
+        <p class="m-0 text-center">Powered by <a href="http://www.emlog.net">Emlog Pro</a><br>
             <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
             <?php doAction('index_footer'); ?>
         </p>
@@ -18,7 +18,5 @@ if (!defined('EMLOG_ROOT')) {
 
 <script src="<?php echo TEMPLATE_URL; ?>js/jquery.min.3.5.1.js?v=<?php echo Option::EMLOG_VERSION; ?>"></script>
 <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
-
 </body>
 </html>

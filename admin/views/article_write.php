@@ -20,13 +20,12 @@
             </div>
 
 <!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="icofont-simple-right"></i></div>
-            <div id="advset">
 
+            <div id="advset">
                 <div class="form-group">
 <!--vot-->      <label><?=lang('post_description')?>:</label>
                     <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
                 </div>
-
                 <div class="form-group">
 <!--vot-->          <label><?=lang('category')?>:</label>
                     <select name="sort" id="sort" class="form-control">
@@ -78,7 +77,7 @@
 <!--vot-->          <label for="top"><?=lang('home_top')?></label>
                     <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
 <!--vot-->          <label for="sortop"><?=lang('category_top')?></label>
-                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" <?php echo $is_allow_remark; ?> />
+                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
 <!--vot-->          <label for="allow_remark"><?=lang('allow_comments')?></label>
                 </div>
             </div>
@@ -132,6 +131,8 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
+    $("#advset").css('display', Cookies.get('em_advset') ? Cookies.get('em_advset') : '');
+
     var Editor, Editor_summary;
     $(function () {
         Editor = editormd("logcontent", {
@@ -163,7 +164,9 @@
             },
             path: "editor.md/lib/",
             tex: false,
+            watch: false,
             flowChart: false,
+            autoFocus : false,
             sequenceDiagram: false,
 /*vot*/     placeholder: "<?=lang('enter_summary')?>",
         });

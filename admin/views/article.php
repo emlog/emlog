@@ -89,20 +89,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         </select>
                     </div>
 				<?php endif; ?>
-<!--vot-->      <span id="f_t_tag"><a href="javascript:void(0);"><?=lang('view_by_tag')?></a></span>
-            </div>
-            <div id="f_tag" class="my-3" <?php echo $isDisplayTag ?>>
-<!--vot-->      <?=lang('tags')?>:
-				<?php
-/*vot*/			if (empty($tags)) echo lang('tags_no');
-				foreach ($tags as $val):
-					$a = 'tag_' . $val['tid'];
-					$$a = '';
-					$b = 'tag_' . $tagId;
-					$$b = "class=\"filter\"";
-					?>
-                    <span <?php echo $$a; ?>><a href="article.php?tagid=<?php echo $val['tid'] . $isdraft; ?>"><?php echo $val['tagname']; ?></a></span>
-				<?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -165,7 +151,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <div class="form-inline">
 				<?php if ($pid != 'draft'): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control mx-1">
+                        <select name="top" id="top" onChange="changeTop(this);" class="form-control">
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
 <!--vot-->                  <option value="top"><?=lang('home_top')?></option>
 <!--vot-->                  <option value="sortop"><?=lang('category_top')?></option>

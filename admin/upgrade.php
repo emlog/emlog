@@ -1,6 +1,6 @@
 <?php
 /**
- * Upgrade Center
+ * upgrade
  * @package EMLOG (www.emlog.net)
  */
 
@@ -12,8 +12,13 @@
 require_once 'globals.php';
 
 if ($action === 'check_update') {
+
 	$emcurl = new EmCurl();
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/check_update_pro.php?ver=' . Option::EMLOG_VERSION);
+	$emcurl->setPost([
+		'emkey' => Option::get('emkey'),
+		'ver' => Option::EMLOG_VERSION,
+	]);
+	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/upgrade');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== 200) {
 		header('Content-Type: application/json; charset=UTF-8');
@@ -56,7 +61,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('succ');
 	}
 	$DB = Database::getInstance();
-	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
+	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;";
 	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $upsql);
 	if (!$temp_file) {
 		exit('error_down');

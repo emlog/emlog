@@ -26,8 +26,8 @@
 </div>
 <div class="card-deck">
     <div class="card">
+        <h5 class="card-header">备份数据库</h5>
         <div class="card-body">
-<!--vot-->  <h5 class="card-title"><?=lang('data_backup')?></h5>
             <form action="data.php?action=bakstart" method="post">
                 <div id="backup">
 <!--vot-->          <p><?=lang('backup_prompt')?></p>
@@ -41,8 +41,8 @@
         </div>
     </div>
     <div class="card">
+        <h5 class="card-header">导入本地备份</h5>
         <div class="card-body">
-<!--vot-->  <h5 class="card-title"><?=lang('backup_import_local')?></h5>
             <form action="data.php?action=import" enctype="multipart/form-data" method="post">
                 <div id="import">
 <!--vot-->          <p class="des"><?=lang('backup_version_tip')?> <?php echo DB_PREFIX; ?></p>
@@ -55,8 +55,8 @@
         </div>
     </div>
     <div class="card">
+        <h5 class="card-header">更新缓存</h5>
         <div class="card-body">
-<!--vot-->  <h5 class="card-title"><?=lang('cache_update')?></h5>
             <div id="cache">
 <!--vot-->      <p class="des"><?=lang('cache_update_info')?></p>
 <!--vot-->      <p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="btn btn-success"></p>

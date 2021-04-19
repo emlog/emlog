@@ -1,6 +1,6 @@
 <?php
 /**
- * Link Management
+ * links
  * @package EMLOG (www.emlog.net)
  */
 

@@ -29,9 +29,9 @@ define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
 //User Groups: admin=Administrator, writer=Co-Author, visitor=Guest
-define('ROLE_ADMIN', 'admin');
-define('ROLE_WRITER', 'writer');
-define('ROLE_VISITOR', 'visitor');
+const ROLE_ADMIN = 'admin';
+const ROLE_WRITER = 'writer';
+const ROLE_VISITOR = 'visitor';
 //User Roles
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //User ID
@@ -39,9 +39,9 @@ define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Site fixed address
 define('BLOG_URL', Option::get('blogurl'));
 //Template Library URL
-define('TPLS_URL', BLOG_URL . 'content/templates/');
+const TPLS_URL = BLOG_URL . 'content/templates/';
 //Template Library Path
-define('TPLS_PATH', EMLOG_ROOT . '/content/templates/');
+const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
 //Resolve the front domain for ajax
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //Front template URL

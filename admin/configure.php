@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog settings
+ * setting
  * @package EMLOG (www.emlog.net)
  */
 

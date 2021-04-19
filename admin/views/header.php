@@ -18,6 +18,7 @@
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
+    <script src="./views/js/js.cookie-2.2.1.min.js"></script>
     <script src="./views/js/common.js"></script>
 <!--vot--><script>var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
 <!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
@@ -27,7 +28,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center" href="./">
-            <div class="sidebar-brand-text mx-3">EMLOG Pro</div>
+            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif;?></div>
         </a>
 
         <hr class="sidebar-divider my-0">
@@ -121,7 +122,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
-<!--vot-->          <a class="nav-link" href="../" target="_blank" title="<?= lang('to_site_new_window') ?>" role="button" >
+                        <a class="nav-link" href=".." target="_blank" role="button">
 							<?php
 							$blog_name = Option::get('blogname');
 /*vot*/                     echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);

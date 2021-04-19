@@ -1,6 +1,6 @@
 <?php
 /**
- * Comment Management
+ * comments
  *
  * @package EMLOG (www.emlog.net)
  */
