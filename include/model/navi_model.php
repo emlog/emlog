@@ -8,12 +8,12 @@ class Navi_Model {
 
 	private $db;
 
-	const navitype_custom = 0;//自定义
-	const navitype_home = 1;  //首页
-	const navitype_t = 2;     //微语
-	const navitype_admin = 3; //后台管理
-	const navitype_sort = 4;  //分类
-	const navitype_page = 5;  //页面
+	const navitype_custom = 0;//Custom
+	const navitype_home = 1;  //Home
+	const navitype_t = 2;     //Weily/Whisper
+	const navitype_admin = 3; //AdminCP
+	const navitype_sort = 4;  //Categories
+	const navitype_page = 5;  //Pages
 
 	function __construct() {
 		$this->db = Database::getInstance();

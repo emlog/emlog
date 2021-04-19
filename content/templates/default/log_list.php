@@ -28,8 +28,8 @@ if (!defined('EMLOG_ROOT')) {
 <!--vot-->                          <?php echo gmdate('Y-m-d', $value['date']); ?>&nbsp;&nbsp;&nbsp;<?php blog_author($value['author']); ?>
                                 </div>
                                 <div class="col-md-4 text-right text-muted loglist_count">
-<!--vot-->                      <a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?>: (<?php echo $value['comnum']; ?>)&nbsp;</a>
-<!--vot-->                      <a href="<?php echo $value['log_url']; ?>"><?=lang('_views')?>: (<?php echo $value['views']; ?>)</a>
+<!--vot-->                          <a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?>: (<?php echo $value['comnum']; ?>)&nbsp;</a>
+<!--vot-->                          <a href="<?php echo $value['log_url']; ?>"><?=lang('_views')?>: (<?php echo $value['views']; ?>)</a>
                                 </div>
                             </div>
                         </div>
@@ -40,12 +40,12 @@ if (!defined('EMLOG_ROOT')) {
                     if ($keyword != '' ) {
                         ?>
                         <br><br>
-                         <h2 style="text-align:center;">抱歉，没有找到与‘<?php echo htmlspecialchars($keyword,ENT_QUOTES); ?>’相关的内容</h2>
-                        <div class="goback"><a href="javascript:history.go(-1);" class="goback_link">返回</a></div>    
+<!--vot-->              <h2 style="text-align:center;"><?=lang('file_not_found')?> &quot;<?php echo htmlspecialchars($keyword,ENT_QUOTES); ?>&quot; <?=lang('related_content')?></h2>
+<!--vot-->              <div class="goback"><a href="javascript:history.go(-1);" class="goback_link"><?=lang('return')?></a></div>    
                         <?php }elseif($sort != '' ){ ?>
                         <br><br>
-                         <h2 style="text-align:center;">该分类下还没有内容</h2>
-                        <div class="goback"><a href="javascript:history.go(-1);" class="goback_link">返回</a></div>
+<!--vot-->              <h2 style="text-align:center;"><?=lang('category_empty')?></h2>
+<!--vot-->              <div class="goback"><a href="javascript:history.go(-1);" class="goback_link"><?=lang('return')?></a></div>
                         <?php } ?>
                 <?php endif; ?>
                 <ul class="pagination justify-content-center mb-4">

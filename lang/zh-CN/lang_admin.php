@@ -77,6 +77,7 @@ $lang = array(
 //admin/style.php
  'user'		=> '作者',//'User',
  'users'	=> '作者',//'Users',
+ 'author'	=> '作者',//'Author',
 
 //---------------------------
 //admin/template.php
@@ -399,7 +400,7 @@ $lang = array(
 //---------------------------
 //admin/views/data.php
  'data_backup'			=> '数据管理',//'Data management',
- 'backup_prompt'		=> '将站点内容数据库备份到自己电脑上',//'Back up the site content database to your computer',
+ 'backup_prompt'		=> '将站点内容数据库备份到自己电脑上。',//'Back up the site content database to your computer.',
  'backup_delete_ok'		=> '备份文件删除成功',//'Backup file deleted successfully',
  'backup_create_ok'		=> '数据备份成功',//'Data backup created successfully',
  'backup_import_ok'		=> '备份导入成功',//'Backup imported successfully',
@@ -426,8 +427,8 @@ $lang = array(
  'compress_zip'			=> '压缩成zip包',//'Compress to zip format',
  'backup_file_name'		=> '备份文件名',//'Backup file name',
  'backup_start'			=> '开始备份',//'Start Backup',
- 'backup_version_tip'		=> '仅可导入相同版本emlog导出的数据库备份文件，且数据库表前缀需保持一致。<br>当前数据库表前缀：',//'You can import only the same emlog version database backup files, and the database table prefix must be the same.<br>Current database table prefix: ',
- 'cache_update_info'		=> '缓存可以加快站点的加载速度。通常系统会自动更新缓存，无需手动。有些特殊情况，比如缓存文件被修改、手动修改过数据库、页面出现异常等才需要手动更新。',//'Caching can speed up the site loading speed. Usually the system will automatically update the cache, no manual operation required. But in some special cases, such as the cache file or the database were modified manually, and so the page appears abnormal, it is only need to update the cache manually.',
+ 'backup_version_tip'		=> '仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：',//'Only the database backup files of the same emlog version can be imported, and the database table prefix must be consistent. <br/>Current database table prefix: ',
+ 'cache_update_info'		=> '缓存可以加快站点的加载速度，通常系统会自动更新缓存。特殊情况需要手动更新，如：缓存文件被修改、手动修改过数据库、页面出现异常等。',//'Cache can speed up the loading speed of the site, usually the system will automatically update the cache. Special circumstances need to be updated manually, such as: cache files have been modified, the database has been manually modified, the page is abnormal, etc.',
  'cache_update'			=> '更新缓存',//'Update the cache',
  'backup_file_select'		=> '请选择要操作的备份文件',//'Please select the backup file you want to operate',
  'backup_delete_sure'		=> '你确定要删除所选备份文件吗？',//'Are you sure you want to delete the selected backup files? ',
@@ -464,7 +465,9 @@ $lang = array(
  'sidebar'		=> '侧边栏',//'Sidebar',
  'navigation'		=> '导航',//'Navigation',
  'pages'		=> '页面',//'Pages',
+ 'link'			=> '链接',//'Link',
  'links'		=> '链接',//'Links',
+ 'url'			=> '链接',//'URL',
  'friend_links'		=> '友链',//'Friend links',
  'users'		=> '用户',//'Users',
  'data'			=> '数据',//'Data Backup',
@@ -500,7 +503,7 @@ $lang = array(
  'php_version'			=> 'PHP版本',//'PHP version',
  'emlog_version'		=> 'EMLOG版本',//'EMLOG version',
  'unregistered'			=> '未注册',//'unregistered',
- 'emlog_unregistered'		=> '您的EMLOG PRO 尚未注册，注册后您将获得：',//'Your EMLOG PRO has not been registered, you will get:',
+ 'emlog_unregistered'		=> '您的emlog pro尚未注册，请先完成注册',//'Your emlog pro has not been registered, please complete the registration first',
  'advantage1'			=> '1、一键安全更新、新功能升级服务。',//'1. One-click security update and new function upgrade service.',
  'advantage2'			=> '2、解除软件使用限制和该注册提示。',//'2. Remove the software usage restrictions and the registration prompt.',
  'advantage3'			=> '3、获得官方提供的模板和插件。',//'3. Get official templates and plug-ins.',
@@ -510,10 +513,10 @@ $lang = array(
  'emlog_registered_ok'		=> '恭喜，您的EMLOG已经完成注册。',//'Congratulations, your EMLOG has been registered.',
  'em_reg_ok'			=> '恭喜，注册成功了',//'Congratulations, the registration is successful',
  'register_emlog'		=> '注册EMLOG PRO',//'Register EMLOG PRO',
- 'enter_emkey'			=> '输入emkey',//'Enter emkey',
- 'emkey_invalid'		=> '无效的注册码（emkey）',//'Invalid registration code (emkey)',
- 'emkey_info'			=> 'emkey是emlog官方分发给付费注册用户的唯一识别码，请妥善保管',//'emkey is the only identification code officially distributed by emlog to paid registered users, please keep it safe',
- 'how_get_emkey'		=> '如何获取emkey？',//'How to get emkey?',
+ 'enter_emkey'			=> '输入EMKEY',//'Enter EMKEY',
+ 'reg_failed'			=> '注册失败',//'Registration failed',
+ 'emkey_info'			=> 'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',//'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',
+ 'get_emkey'			=> '去获取注册码',//'Get the registration code',
  'registered'			=> '注册',//'registered',
  'mysql_version'		=> 'MySQL版本',//'MySQL version',
  'server_environment'		=> '服务器环境',//'Server environment',
@@ -525,12 +528,12 @@ $lang = array(
  'update_check'			=> '检查更新',//'Check for updates',
  'reading'			=> '正在读取...',//'Is reading...',
  'checking_wait'		=> '正在检查，请稍后',//'Is checking, please wait',
- 'updates_no'			=> '目前还没有适合您当前版本的更新！',//'There is no updates for your current version!',
+ 'updates_no'			=> '已经是最新版本，没有可用的更新',//'lready the latest version, no updates available ',
  'update_exists'		=> '有可用的emlog更新版本 ',//'It is available emlog updated version ',
  'backup_before_update'		=> '，更新之前请您做好数据备份工作，',//' Do not forget to make a backup before updating job, ',
  'update_now'			=> '现在更新',//'Update now',
  'update_check_failed'		=> '检查失败，可能是网络问题',//'Check failed, may be a network problem exists',
- 'updating'			=> '系统正在更新中，请耐心等待',//'Updating the system, please be patient',
+ 'updating'			=> '正在更新中，请耐心等待',//'Updating, please wait patiently',
  'update_completed'		=> '恭喜您！更新成功了，请<a href="./">刷新页面</a> 开始体验新版emlog',//'Congratulations! The update is successful, please <a href="./">refresh the page</a> to start experiencing the new version of emlog',
  'update_download_failed'	=> '下载更新失败，可能是服务器网络问题',//'Download the update failed, may be a network problem exists',
  'update_extract_failed'	=> '解压更新失败，可能是你的服务器空间不支持zip模块',//'Extract the update failed, may be the server does not support the zip extension',
@@ -570,10 +573,12 @@ $lang = array(
 
 //---------------------------
 //admin/views/media.php
- 'resouce_manage'	=> '媒体资源管理',//'Media resource management',
+ 'resource_manage'	=> '资源管理',//'Resource management',
  'file'			=> '文件',//'File',
  'preview'		=> '预览',//'Preview',
  'date'			=> '日期',//'Date',
+ 'size'			=> '大小',//'Size',
+ 'img_size'		=> '尺寸',//'Image size',
  'upload_files'		=> '上传图片/文件',//'Upload image/file',
  'media_deleted_ok'	=> '媒体文件删除成功',//'Media file deleted successfully',
 

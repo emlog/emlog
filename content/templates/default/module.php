@@ -183,7 +183,7 @@ function widget_search($title)
         <ul class="list-unstyled"style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
-				<input type="submit" value="搜索">
+<!--vot-->			<input type="submit" value="<?=lang('search')?>">
             </form>
         </ul>
     </div>
@@ -277,8 +277,8 @@ function blog_navi()
 //blog:Top
 function topflg($top, $sortop = 'n', $sortid = null)
 {
-    $ishome_flg='<a href="#" title="首页置顶" class="log_topflg">&nbsp;&uArr;</a>';
-    $issort_flg='<a href="#" title="分类置顶" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $ishome_flg='<a href="#" title="<?=lang('home_top')?>" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $issort_flg='<a href="#" title="<?=lang('category_top')?>" class="log_topflg">&nbsp;&uArr;</a>';
     if (blog_tool_ishome()) {
         echo $top == 'y' ? $ishome_flg : '';
     } elseif ($sortid) {
@@ -359,13 +359,13 @@ function neighbor_log($neighborLog)
 {
     extract($neighborLog); ?>
     <?php if ($prevLog): ?>
-    <span class="prev_Log"><a href="<?php echo Url::log($prevLog['gid']) ?>" title="<?php echo $prevLog['title']; ?>">上一篇</a></span>
+<!--vot--><span class="prev_Log"><a href="<?php echo Url::log($prevLog['gid']) ?>" title="<?php echo $prevLog['title']; ?>"><?=lang('prev')?></a></span>
 <?php endif; ?>
     <?php if ($nextLog): ?>
-    <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
+<!--vot--><span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>"><?=lang('next')?></a></span>
 <?php endif; ?>
 	<?php if (!$nextLog && !$prevLog): ?>
-    <span class="next_Log"><a href="#" title="没有更多的文章了">无更多文章</a></span> 
+<!--vot--><span class="next_Log"><a href="#" title="<?=lang('no_other_articles')?>"><?=lang('no_more_articles')?></a></span> 
 <?php endif; ?>
 <?php } ?>
 <?php
@@ -436,38 +436,38 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                 <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
                     
-                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="说点什么吧....."></textarea>
+<!--vot-->          <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="<?=lang('write_something')?>"></textarea>
                     
                     <?php if (ROLE == ROLE_VISITOR): ?>
                        <div class="com_info">
-                            <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1" placeholder="昵称*" />
+<!--vot-->                  <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22" tabindex="1" placeholder="<?=lang('nickname')?>*" />
                         
-                            <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22" tabindex="2" placeholder="邮件地址" />
+<!--vot-->                  <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22" tabindex="2" placeholder="<?=lang('email')?>" />
                         
-                            <input class="form-control com_control com_url" autocomplete="off" type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22" tabindex="3" placeholder="个人主页" />
+<!--vot-->                  <input class="form-control com_control com_url" autocomplete="off" type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22" tabindex="3" placeholder="<?=lang('homepage')?>" />
                         </div>
                     <?php endif; ?>
                     
                     <p class="com_submit_p">
-					<input class="com_submit"<?php if($verifyCode!=""){ ?> type="button" data-toggle="modal" data-target="#myModal"<?php }else{?> type="submit"<?php }?> id="comment_submit" value="提交" tabindex="6"/>
+<!--vot-->			<input class="com_submit"<?php if($verifyCode!=""){ ?> type="button" data-toggle="modal" data-target="#myModal"<?php }else{?> type="submit"<?php }?> id="comment_submit" value="<?=lang('submit')?>" tabindex="6"/>
 					</p>			
 					<?php if($verifyCode!=""){ ?>   		
-					<!-- 验证窗口 -->		
+					<!-- Verification window -->		
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content" style="display: table-cell;">	
 											<div class="modal-header" style="border-bottom: 0px;">
-												输入验证码
+<!--vot-->										<?=lang('enter_captcha')?>
 											</div>
 											<?php echo $verifyCode; ?> 										
 											<div class="modal-footer" style="border-top: 0px;">
-												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-												<button type="submit" class="btn btn-primary">提交</button>
+<!--vot-->										<button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('close')?></button>
+<!--vot-->										<button type="submit" class="btn btn-primary"><?=lang('submit')?></button>
 											</div>	
 										</div>
 									</div>
 						</div>					
-					<!-- 验证窗口(end) -->
+					<!-- Verification window (end)  -->
 					 <?php   }?>
 					 <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
                 </form>

@@ -19,7 +19,18 @@ $lang = array(
  '_views'		=> '浏览',//' views',
  'not_found'		=> '未找到',//'Not found.',
  'sorry_no_results'	=> '抱歉，没有符合您查询条件的结果。',//'Sorry, no results found.',
-                                                
+ 'file_not_found'	=> '抱歉，没有找到与',//'Sorry, can not find the file ',
+ 'related_content'	=> '相关的内容',//'Related content',
+ 'return'		=> '返回',//'Return',
+ 'category_empty'	=> '该分类下还没有内容',//'There is no content in this category',
+ 'prev'			=> '上一篇',//'Previous',
+ 'next'			=> '下一篇',//'Next',
+ 'no_other_articles'	=> '没有更多的文章了',//'No more articles',
+ 'no_more_articles'	=> '无更多文章',//'No more articles',
+ 'write_something'	=> '说点什么吧.....',//'say something.....',
+ 'enter_captcha'	=> '输入验证码',//'Enter confirmation code',
+ ''	=> '关闭',//'',
+
 //---------------------------
 //include/model/log_model.php
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',

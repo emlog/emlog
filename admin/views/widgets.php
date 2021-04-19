@@ -31,8 +31,8 @@
             <div class="card" id="calendar">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseTwo"><?=lang('calendar')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
+                                aria-controls="collapseTwo"><?=lang('calendar')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -73,8 +73,8 @@
             <div class="card" id="sort">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('category')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('category')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -94,8 +94,8 @@
             <div class="card" id="archive">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('archive')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('archive')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -115,8 +115,8 @@
             <div class="card" id="newcomm">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('new_comments')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('new_comments')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -141,8 +141,8 @@
             <div class="card" id="newlog">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('new_posts')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('new_posts')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -165,8 +165,8 @@
             <div class="card" id="hotlog">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('hot_posts')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('hot_posts')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -189,8 +189,8 @@
             <div class="card" id="link">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('links')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('links')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -200,8 +200,8 @@
                     <div class="card-body">
                         <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                             <li>
-                               <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/>
-<!--vot-->                     <input type="submit" name="" value="<?=lang('save')?>"                                                                                                                                            class="btn btn-success btn-sm"/>
+                                <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/>
+<!--vot-->                      <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                             </li>
                         </form>
                     </div>
@@ -210,8 +210,8 @@
             <div class="card" id="search">
                 <div class="card-header">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
-<!--vot-->                      aria-controls="collapseThree"><?=lang('search')?>
+<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
+                                aria-controls="collapseThree"><?=lang('search')?>
                         </button>
                         <li class="widget-act-add"></li>
                         <li class="widget-act-del"></li>
@@ -222,7 +222,7 @@
                         <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                             <li>
                                 <input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/>
-<!--vot-->                      <input type="submit" name="" value="<?=lang('save')?>"                                                                                                                                              class="btn btn-success btn-sm"/>
+<!--vot-->                      <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                             </li>
                         </form>
                     </div>
@@ -302,11 +302,11 @@
             <div id="sortable" class="adm_widget_box">
 				<?php
 				foreach ($widgets as $widget):
-/*vot*/             $flg = strpos($widget, 'custom_wg_') === 0; //Whether is custom widget
-/*vot*/             $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
+/*vot*/					$flg = strpos($widget, 'custom_wg_') === 0; //Whether is custom widget
+/*vot*/					$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
 					if ($flg && empty($title)) {
 						preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-/*vot*/                 $title = lang('widget_untitled'). ' (' . $matches[1] . ')';
+/*vot*/                 			$title = lang('widget_untitled'). ' (' . $matches[1] . ')';
 					}
 					?>
                     <div class="card m-1 active_widget" id="em_<?php echo $widget; ?>">

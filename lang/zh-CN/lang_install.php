@@ -4,7 +4,7 @@ $lang = array(
 //---------------------------
 //install.php
 
- 'php_required'		=> '您的php版本过低，请选用支持PHP7及以上的环境安装emlog。',//'Your php version is too low, please choose an environment that supports PHP7 and above to install emlog.',
+ 'php_required'		=> 'PHP版本过低，请选择支持PHP7及以上的环境安装',//'PHP version is too low, please choose an environment that supports PHP7 and above to install',
  'installation'		=> '安装程序emlog ',//'Install Emlog v.',
  'mysql_settings'	=> 'MySQL数据库设置',//'MySQL settings',
  'mysql_required'	=> '您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。',//'Your MySQL version is too low. Please install emlog in an environment that supports MySQL 5.5 and above.',
@@ -30,8 +30,8 @@ $lang = array(
  'already_installed'	=> '你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？',//'It seems the Emlog is already installed!<br>Continue this process will overwrite the original data.<br>Are you sure to continue?<br>',
  'continue'		=> '继续&raquo;',//'Continue&raquo;',
  'return'		=> '&laquo;点击返回',//'&laquo;Return back',
- 'config_not_writable'	=> '配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写',//'Configuration file (config.php) is not writable. If you are using a Unix / Linux hosts, modify the file permissions to 777. If you are using a Windows host, please contact the administrator.',
- 'cache_not_writable'	=> '缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',//'Cache is not writable. If you are using a Unix / Linux host, modify the permissions of all files in the directory (content/cache) to 777.',
+ 'config_not_writable'	=> '配置文件(config.php)不可写，请检查文件权限。',//'The configuration file (config.php) is not writable, please check the file permissions.',
+ 'cache_not_writable'	=> '缓存目录（content/cache）不可写。请检查文件权限。',//'The cache directory (content/cache) is not writable. Please check file permissions.',
  'emlog_welcome'	=> '欢迎使用emlog',//'Welcome to emlog',
  'emlog_install_congratulation'	=> '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！',//'Congratulations, you have successfully installed the emlog. The first entry is ready. Just edit or delete it and start a blog!',
  'my_blog'		=> '点滴记忆',//'My blog',

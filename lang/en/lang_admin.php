@@ -565,7 +565,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/media.php
- 'resouce_manage'	=> 'Media resource management',//'媒体资源管理',
+ 'resource_manage'	=> 'Media resource management',//'媒体资源管理',
  'file'			=> 'File',//'文件',
  'preview'		=> 'Preview',//'预览',
  'date'			=> 'Date',//'日期',

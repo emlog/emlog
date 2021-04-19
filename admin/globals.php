@@ -11,8 +11,8 @@
 
 require_once '../init.php';
 
-const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';              //后台模板路径
-const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';          //官方服务域名
+const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';           //AdminCP current template path
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';       //Official Service Domain
 
 /*vot*/ load_language('admin');
 

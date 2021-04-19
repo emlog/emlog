@@ -128,6 +128,8 @@ $lang = array(
  'comment_leave'	=> '发表评论',//'Leave a comment',
  'nickname'		=> '昵称',//'Nicname',
  'email_optional'	=> '邮件地址 (选填)',//'E-Mail adress (optional)',
+ 'email'		=> '邮件地址',//'E-Mail adress',
+ 'homepage'		=> '个人主页',//'Homepage',
  'homepage_optional'	=> '个人主页 (选填)',//'Homepage (optional)',
  'comment_leave'	=> '发表评论',//'Leave a comment',
 

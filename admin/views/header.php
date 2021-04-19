@@ -28,7 +28,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center" href="./">
-            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif;?></div>
+<!--vot-->  <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?><?=lang('unregistered')?><?php endif;?></div>
         </a>
 
         <hr class="sidebar-divider my-0">
