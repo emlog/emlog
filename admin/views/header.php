@@ -27,15 +27,11 @@
         <a class="sidebar-brand d-flex align-items-center" href="./">
             <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif;?></div>
         </a>
-
         <hr class="sidebar-divider my-0">
-
         <li class="nav-item" id="menu_home">
             <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
         </li>
-
         <hr class="sidebar-divider my-0">
-
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
                 <i class="icofont-pencil-alt-5"></i><span>文章</span>
@@ -49,25 +45,22 @@
                 </div>
             </div>
         </li>
-
         <li class="nav-item" id="menu_page">
             <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
         </li>
-
         <li class="nav-item" id="menu_media">
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
-
         <li class="nav-item" id="menu_cm">
             <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
         </li>
-
         <li class="nav-item" id="menu_link">
             <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span>链接</span></a>
         </li>
-
+        <li class="nav-item" id="menu_store">
+            <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
+        </li>
         <hr class="sidebar-divider d-none d-md-block">
-
         <li class="nav-item" id="menu_category_view">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                 <i class="icofont-paint"></i>
@@ -81,7 +74,6 @@
                 </div>
             </div>
         </li>
-
         <li class="nav-item" id="menu_category_sys">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
                 <i class="icofont-options"></i>
