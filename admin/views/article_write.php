@@ -12,9 +12,8 @@
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
-                    <span id="save_info"></span>
 					<?php doAction('adm_writelog_head'); ?>
-                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+                    <span id="save_info"></span>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
@@ -85,6 +84,7 @@
             <div id="post_button">
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
