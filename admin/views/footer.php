@@ -12,7 +12,7 @@
 </footer>
 </div>
 </div>
-<div id="footer"><?php doAction('adm_footer'); ?></div>
+<?php doAction('adm_footer'); ?>
 <script src="./views/js/sb-admin-2.min.js"></script>
 </body>
 </html>

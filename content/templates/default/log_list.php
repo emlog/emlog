@@ -10,7 +10,8 @@ if (!defined('EMLOG_ROOT')) {
         <div class="row">
             <div class="col-md-8">
                 <?php
-                if (!empty($logs)):
+				doAction('index_loglist_top');
+				if (!empty($logs)):
                     foreach ($logs as $value):
                         ?>
                         <div class="shadow-theme mb-4">

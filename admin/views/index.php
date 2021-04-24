@@ -18,8 +18,14 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">文章
                         <span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span>
                     </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">草稿
+                        <span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span>
+                    </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">评论
                         <span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">待审评论
+                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
                         服务器环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
