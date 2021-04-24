@@ -57,10 +57,10 @@
         <li class="nav-item" id="menu_link">
             <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span>链接</span></a>
         </li>
+        <hr class="sidebar-divider d-none d-md-block">
         <li class="nav-item" id="menu_store">
             <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
         </li>
-        <hr class="sidebar-divider d-none d-md-block">
         <li class="nav-item" id="menu_category_view">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                 <i class="icofont-paint"></i>

@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 if (empty($action)) {
 	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver'   => Option::EMLOG_VERSION,]);
+	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION,]);
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/store');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== 200) {
@@ -67,5 +67,7 @@ if ($action === 'install') {
 			emDirect("./store.php?error_dir=1");
 		case 3:
 			emDirect("./store.php?error_zip=1");
+		default:
+			emDirect("./store.php?error_source=1");
 	}
 }
