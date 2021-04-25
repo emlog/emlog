@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success">设置保存成功</div><?php endif; ?>
+    <div class="alert alert-success">保存成功</div><?php endif; ?>
 <h1 class="h3 mb-4 text-gray-800">侧边栏管理</h1>
 <div class="row">
     <div class="col-lg-6" id="adm_widget_list">
@@ -236,14 +236,14 @@
                 <div class="card" id="<?php echo $key; ?>">
                     <div class="card-header">
                         <h2 class="mb-0">
-                            <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>" aria-expanded="true"
+                            <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>Form" aria-expanded="true"
                                     aria-controls="collapseOne"><?php echo $custom_wg_title; ?>
                             </button>
                             <li class="widget-act-add"></li>
                             <li class="widget-act-del"></li>
                         </h2>
                     </div>
-                    <div id="<?php echo $key; ?>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="<?php echo $key; ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                 <li>
@@ -264,6 +264,7 @@
         <div class="my-3">
             <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
         </div>
+
         <!--添加自定义组件-->
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -327,7 +328,7 @@
             </div>
             <div class="my-3">
                 <input type="submit" value="保存组件排序" class="btn btn-success"/>
-                <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-danger">重置组件</a>
+                <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-warning">重置组件</a>
             </div>
         </form>
     </div>
