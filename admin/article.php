@@ -18,7 +18,7 @@ $Sort_Model = new Sort_Model();
 $User_Model = new User_Model();
 
 if (empty($action)) {
-	$pid = $_GET['pid'] ?? '';
+	$draft = isset($_GET['draft']) ? 1 : 0;
 	$tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
@@ -54,10 +54,10 @@ if (empty($action)) {
 		$sqlSegment .= 'top DESC, sortop DESC, date DESC';
 	}
 
-	$hide_state = $pid ? 'y' : 'n';
-	if ($pid == 'draft') {
+	$hide_state = $draft ? 'y' : 'n';
+	if ($draft) {
 		$hide_stae = 'y';
-		$sorturl = '&pid=draft';
+		$sorturl = '&draft=1';
 	} else {
 		$hide_stae = 'n';
 		$sorturl = '';
@@ -82,7 +82,7 @@ if (empty($action)) {
 
 if ($action == 'operate_log') {
 	$operate = $_REQUEST['operate'] ?? '';
-	$pid = $_POST['pid'] ?? '';
+	$draft = isset($_POST['draft']) ? (int)$_POST['draft'] : 0;
 	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
 	$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
 	$author = isset($_POST['author']) ? (int)$_POST['author'] : '';
@@ -91,10 +91,10 @@ if ($action == 'operate_log') {
 	LoginAuth::checkToken();
 
 	if ($operate == '') {
-		emDirect("./article.php?pid=$pid&error_b=1");
+		emDirect("./article.php?draft=$draft&error_b=1");
 	}
 	if (empty($logs) && empty($gid)) {
-		emDirect("./article.php?pid=$pid&error_a=1");
+		emDirect("./article.php?draft=$draft&error_a=1");
 	}
 
 	switch ($operate) {
@@ -105,8 +105,8 @@ if ($action == 'operate_log') {
 				doAction('del_log', $val);
 			}
 			$CACHE->updateCache();
-			if ($pid == 'draft') {
-				emDirect("./article.php?pid=draft&active_del=1");
+			if ($draft) {
+				emDirect("./article.php?draft=1&active_del=1");
 			} else {
 				emDirect("./article.php?active_del=1");
 			}
@@ -144,7 +144,7 @@ if ($action == 'operate_log') {
 				}
 			}
 			$CACHE->updateCache();
-			emDirect("./article.php?pid=draft&active_post=1");
+			emDirect("./article.php?draft=1&active_post=1");
 			break;
 		case 'move':
 			foreach ($logs as $val) {

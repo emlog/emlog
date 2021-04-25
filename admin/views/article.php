@@ -2,7 +2,7 @@
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
-$isdraft = $pid == 'draft' ? '&pid=draft' : '';
+$isdraft = $draft ? '&draft=1' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
@@ -39,12 +39,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link <?php if ($pid != 'draft') {
+        <li class="nav-item"><a class="nav-link <?php if (!$draft) {
 				echo 'active';
 			} ?>" href="article.php">文章</a></li>
-        <li class="nav-item"><a class="nav-link <?php if ($pid == 'draft') {
+        <li class="nav-item"><a class="nav-link <?php if ($draft) {
 				echo 'active';
-			} ?>" href="article.php?pid=draft">草稿箱</a></li>
+			} ?>" href="article.php?draft=1">草稿箱</a></li>
     </ul>
 </div>
 <div class="card shadow mb-4">
@@ -94,13 +94,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
     <div class="card-body">
         <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
-            <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+            <input type="hidden" name="draft" value="<?php echo $draft; ?>">
             <table class="table table-bordered table-striped table-hover dataTable no-footer">
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"/></th>
                     <th>标题</th>
-					<?php if ($pid != 'draft'): ?>
+					<?php if ($draft): ?>
                         <th>查看</th>
 					<?php endif; ?>
                     <th>作者</th>
@@ -121,17 +121,17 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
 							<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
 							<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
-							<?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
+							<?php if (!$draft && $value['checked'] == 'n'): ?>
                                 <sapn style="color:red;"> - 待审</sapn><?php endif; ?>
                             <div>
-								<?php if ($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+								<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
                                     <a href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
-								<?php elseif ($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+								<?php elseif ($draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
                                     <a href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
 								<?php endif; ?>
                             </div>
                         </td>
-						<?php if ($pid != 'draft'): ?>
+						<?php if ($draft): ?>
                             <td>
                                 <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
@@ -149,7 +149,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if ($pid != 'draft'): ?>
+				<?php if ($draft): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control">
                             <option value="" selected="selected">置顶</option>
@@ -193,14 +193,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <a href="javascript:logact('del');" class="text-danger mx-1">删除</a>
-				<?php if ($pid == 'draft'): ?>
+				<?php if ($draft): ?>
                     <a href="javascript:logact('pub');" class="mx-1">发布</a>
 				<?php else: ?>
                     <a href="javascript:logact('hide');" class="mx-1">放入草稿箱</a>
 				<?php endif; ?>
             </div>
         </form>
-        <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $pid == 'draft' ? '草稿' : '文章'; ?>)</div>
+        <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $draft ? '草稿' : '文章'; ?>)</div>
     </div>
 </div>
 
