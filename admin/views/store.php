@@ -3,10 +3,6 @@
 } ?>
 <?php if (isset($_GET['active'])): ?>
     <div class="alert alert-success">安装成功</div><?php endif; ?>
-<?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif; ?>
-<?php if (isset($_GET['error_unreg'])): ?>
-    <div class="alert alert-danger">您的emlog pro尚未注册，请先完成注册</div><?php endif; ?>
 <?php if (isset($_GET['error_param'])): ?>
     <div class="alert alert-danger">安装失败</div><?php endif; ?>
 <?php if (isset($_GET['error_down'])): ?>
@@ -17,6 +13,23 @@
     <div class="alert alert-danger">安装失败</div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
     <div class="alert alert-danger">安装失败，不是有效的扩展安装包</div><?php endif; ?>
+
+<?php if (isset($_GET['error'])): ?>
+    <div class="container-fluid">
+        <div class="text-center">
+            <p class="lead text-gray-800 mb-5">商店暂不可用，可能是网络问题</p>
+            <a href="./">&larr; 返回首页</a>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (isset($_GET['error_unreg'])): ?>
+    <div class="container-fluid">
+        <div class="text-center">
+            <p class="lead text-gray-800 mb-5">您的emlog pro尚未完成注册，请先获取注册码完成注册</p>
+            <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">去获取注册码&rarr; </a>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php if (!empty($templates) || !empty($plugins)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
