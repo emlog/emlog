@@ -25,7 +25,8 @@
 <?php if (isset($_GET['error_unreg'])): ?>
     <div class="container-fluid">
         <div class="text-center">
-            <p class="lead text-gray-800 mb-5">您的emlog pro尚未完成注册，请先获取注册码完成注册</p>
+            <p class="lead text-gray-800 mb-4">扩展商店用于下载模板和插件，仅开放给注册用户</p>
+            <p class="text-gray-500 mb-2">您的emlog pro尚未完成注册，请先获取注册码完成注册...</p>
             <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">去获取注册码&rarr; </a>
         </div>
     </div>
