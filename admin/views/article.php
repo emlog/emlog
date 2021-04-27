@@ -100,7 +100,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 <tr>
                     <th><input type="checkbox" id="checkAll"/></th>
                     <th>标题</th>
-					<?php if ($draft): ?>
+					<?php if (!$draft): ?>
                         <th>查看</th>
 					<?php endif; ?>
                     <th>作者</th>
@@ -131,7 +131,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								<?php endif; ?>
                             </div>
                         </td>
-						<?php if ($draft): ?>
+						<?php if (!$draft): ?>
                             <td>
                                 <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
@@ -149,7 +149,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if ($draft): ?>
+				<?php if (!$draft): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control">
                             <option value="" selected="selected">置顶</option>
