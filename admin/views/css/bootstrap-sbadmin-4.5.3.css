@@ -4571,6 +4571,7 @@ input[type="button"].btn-block {
 .card-img-top {
   border-top-left-radius: calc(0.35rem - 1px);
   border-top-right-radius: calc(0.35rem - 1px);
+  height: 150px;object-fit: cover;
 }
 
 .card-img,
@@ -4645,7 +4646,7 @@ input[type="button"].btn-block {
   margin-bottom: 0.75rem;
 }
 
-@media (min-width: 317px) {
+@media (min-width: 430px) {
   .card-columns {
     -moz-column-count: 5;
     column-count: 5;

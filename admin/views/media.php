@@ -22,9 +22,9 @@
 			$imgpath = "./views/images/fnone.png";
 		}
 		?>
-        <div class="card">
+        <div class="card" style="min-height: 280px;">
             <a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $name; ?>">
-                <img class="card-img-top" src="<?php echo $imgpath; ?>" style="height: 150px;object-fit: cover;"/>
+                <img class="card-img-top" src="<?php echo $imgpath; ?>" />
             </a>
             <div class="card-body">
                 <p class="card-text text-muted small">

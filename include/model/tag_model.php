@@ -44,6 +44,9 @@ class Tag_Model {
 
 	function getTagByName($tagName) {
 		$tagId = $this->getIdFromName($tagName);
+		if (!$tagId) {
+			return false;
+		}
 		return $this->getTagById($tagId);
 	}
 
@@ -168,7 +171,7 @@ class Tag_Model {
 	 * @return int|bool Tag ID | FALSE (Tag not found)
 	 */
 	function getIdFromName($tagName) {
-		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $this->db->escape_string($tagName) . "'";
+		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $tagName. "'";
 		$query = $this->db->query($sql);
 
 		if ($this->db->num_rows($query) === 0) {

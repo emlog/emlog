@@ -49,7 +49,7 @@ if ($action === 'delbyip') {
 	if (ROLE !== ROLE_ADMIN) {
 /*vot*/ emMsg(lang('no_permission'), './');
 	}
-	$ip = $_GET['ip'] ?? '';
+	$ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';
 	$Comment_Model->delCommentByIp($ip);
 	$CACHE->updateCache(array('sta', 'comment'));
 	emDirect("./comment.php?active_del=1");

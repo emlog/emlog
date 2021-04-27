@@ -87,6 +87,8 @@ if ($action == 'add_page') {
 	}
 
 	foreach ($pages as $id => $title) {
+		$id = (int)$id;
+		$title = addslashes($title);
 		$Navi_Model->addNavi($title, '', 0, 0, 'n', Navi_Model::navitype_page, $id);
 	}
 

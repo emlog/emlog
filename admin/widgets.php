@@ -110,7 +110,7 @@ if ($action === 'setwg') {
 						}
 					}
 					$widgets_str = addslashes(serialize($widgets));
-					Option::updateOption("widgets$i", $widgets_str);
+					Option::updateOption("widgets1", $widgets_str);
 				}
 				unset($custom_widget[$rmwg]);
 				$custom_widget_str = addslashes(serialize($custom_widget));
