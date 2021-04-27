@@ -2,9 +2,9 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_reg'])): ?>
-    <div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger"><?=lang('emkey_invalid')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('admincp') ?></h1>
 	<?php doAction('adm_main_top'); ?>
@@ -18,8 +18,14 @@
 <!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('posts')?>
                         <span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span>
                     </li>
+<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('drafts')?>
+                        <span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span>
+                    </li>
 <!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('comments')?>
                         <span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span>
+                    </li>
+<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('pending_review')?>
+                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
 <!--vot-->              <?=lang('php_version')?>: <?php echo $php_ver; ?>
@@ -83,10 +89,10 @@
             <form action="register.php?action=register" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_emkey')?>">
-                        <small class="form-text text-muted">(<?=lang('emkey_info')?>)</small>
+<!--vot-->              <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_emkey')?>">
+<!--vot-->              <small class="form-text text-muted">(<?=lang('emkey_info')?>)</small>
                     </div>
-<!--vot-->          <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register"><?=lang('how_get_emkey')?></a></div>
+<!--vot-->          <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register"><?=lang('how_get_emkey')?> &rarr;</a></div>
                 </div>
                 <div class="modal-footer">
 <!--vot-->          <button type="submit" class="btn btn-success"><?=lang('registered')?></button>
@@ -118,10 +124,11 @@
         $.get("./upgrade.php?action=check_update",
             function (result) {
                 if (result.code == 1001) {
-/*vot*/             $("#upmsg").html("<?=lang('updates_no')?>").removeClass();
+/*vot*/             $("#upmsg").html("<?=lang('emlog_unregistered')?>").removeClass();
                 } else if (result.code == 1002) {
+/*vot*/             $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
                 } else if (result.code == 200) {
-/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + resullt.data.ver + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + resullt.data.file + "','" + resullt.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
+/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + result.data.ver + "， <?=lang('backup_before_update')?>， <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                 } else {
 /*vot*/             $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
                 }

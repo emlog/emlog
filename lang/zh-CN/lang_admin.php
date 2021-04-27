@@ -581,6 +581,7 @@ $lang = array(
  'img_size'		=> '尺寸',//'Image size',
  'upload_files'		=> '上传图片/文件',//'Upload image/file',
  'media_deleted_ok'	=> '媒体文件删除成功',//'Media file deleted successfully',
+ '_resources'		=> '个资源',//'resources',
 
 //---------------------------
 //admin/views/navbar.php

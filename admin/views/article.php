@@ -2,7 +2,7 @@
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
-$isdraft = $pid == 'draft' ? '&pid=draft' : '';
+$isdraft = $draft ? '&draft=1' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
 $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
@@ -39,12 +39,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link <?php if ($pid != 'draft') {
+        <li class="nav-item"><a class="nav-link <?php if (!$draft) {
 				echo 'active';
 /*vot*/ 	} ?>" href="article.php"><?=lang('articles')?></a></li>
-        <li class="nav-item"><a class="nav-link <?php if ($pid == 'draft') {
+        <li class="nav-item"><a class="nav-link <?php if ($draft) {
 				echo 'active';
-/*vot*/ 	} ?>" href="article.php?pid=draft"><?=lang('drafts')?></a></li>
+/*vot*/ 	} ?>" href="article.php?draft=1"><?=lang('drafts')?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4">
@@ -94,13 +94,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
     <div class="card-body">
         <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
-            <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+            <input type="hidden" name="draft" value="<?php echo $draft; ?>">
             <table class="table table-bordered table-striped table-hover dataTable no-footer">
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->          <th><?=lang('title')?></th>
-					<?php if ($pid != 'draft'): ?>
+					<?php if ($draft): ?>
 <!--vot-->              <th><?=lang('views')?></th>
 					<?php endif; ?>
 <!--vot-->          <th><?=lang('user')?></th>
@@ -121,17 +121,17 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
 <!--vot-->					<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"/><?php endif; ?>
 <!--vot-->					<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"/><?php endif; ?>
-							<?php if ($pid != 'draft' && $value['checked'] == 'n'): ?>
+							<?php if (!$draft && $value['checked'] == 'n'): ?>
 <!--vot-->                      <span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
                             <div>
-								<?php if ($pid != 'draft' && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+								<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
 <!--vot-->                          <a href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('check')?></a>
-								<?php elseif ($pid != 'draft' && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+								<?php elseif ($draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
 <!--vot-->                          <a href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('uncheck')?></a>
 								<?php endif; ?>
                             </div>
                         </td>
-						<?php if ($pid != 'draft'): ?>
+						<?php if ($draft): ?>
                             <td>
                                 <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
@@ -149,7 +149,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if ($pid != 'draft'): ?>
+				<?php if ($draft): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control">
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
@@ -193,14 +193,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
 <!--vot-->      <a href="javascript:logact('del');" class="text-danger mx-1"><?=lang('delete')?></a>
-				<?php if ($pid == 'draft'): ?>
+				<?php if ($draft): ?>
 <!--vot-->          <a href="javascript:logact('pub');" class="mx-1"><?=lang('publish')?></a>
 				<?php else: ?>
 <!--vot-->          <a href="javascript:logact('hide');" class="mx-1"><?=lang('add_draft')?></a>
 				<?php endif; ?>
             </div>
         </form>
-<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $pid == 'draft' ? lang('draft') : lang('article'); ?>)</div>
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $pid == 'draft' ? lang('_drafts') : lang('_articles'); ?>)</div>
     </div>
 </div>
 

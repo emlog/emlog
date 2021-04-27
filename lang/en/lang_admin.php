@@ -571,6 +571,7 @@ $lang = array(
  'date'			=> 'Date',//'日期',
  'upload_files'		=> 'Upload image/file',//'上传图片/文件',
  'media_deleted_ok'	=> 'Media file deleted successfully',//'媒体文件删除成功',
+ '_resources'		=> 'resources',//'个资源',
 
 //---------------------------
 //admin/views/navbar.php

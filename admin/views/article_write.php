@@ -12,9 +12,8 @@
                 </div>
                 <div id="post_bar">
 <!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
-                    <span id="save_info"></span>
 					<?php doAction('adm_writelog_head'); ?>
-                    <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
+                    <span id="save_info"></span>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
@@ -85,6 +84,7 @@
             <div id="post_button">
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
@@ -140,11 +140,10 @@
             height: 640,
             toolbarIcons: function () {
                 return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "uppercase", "lowercase", "|",
+                    "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "pagebreak", "|",
-                    "goto-line", "search", "watch", "|", "info"]
+                    "link", "image", "preformatted-text", "table", "|", "search", "watch", "|", "info"]
             },
             path: "editor.md/lib/",
             tex: false,

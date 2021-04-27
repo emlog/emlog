@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
         <header class="log_title"><?php topflg($top); ?><?php echo $log_title; ?></header>
         <hr />
 <!--vot--><p class="date"><b><?= lang('time') ?>:</b> <?php echo gmdate('Y-m-d', $date); ?>&nbsp;&nbsp;&nbsp;
-<!--vot--><b><?=lang('author')?>：</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
+<!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
 <!--vot--><b>?=lang('category')?>：</b> <?php blog_sort($logid); ?>
         <?php editflg($logid, $author); ?></p>
         <hr style="margin-bottom: 30px;"/>

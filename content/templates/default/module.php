@@ -306,7 +306,7 @@ function blog_sort($blogid)
     <?php if (!empty($log_cache_sort[$blogid])){?>
     <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>" class="echo_sort"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php } else {?>
-	<a href="#" class="echo_sort">无</a>
+<!--vot-->  <a href="#" class="echo_sort"><?= lang('no') ?></a>
 <?php }} ?>
 <?php
 //blog:Post Tags

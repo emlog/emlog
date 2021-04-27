@@ -28,10 +28,10 @@
             </a>
             <div class="card-body">
                 <p class="card-text text-muted small">
-<!--vot-->          <?=lang('time')?>： <?php echo $value['addtime']; ?><br>
-<!--vot-->          <?=lang('size')?>： <?php echo $value['attsize']; ?>
+<!--vot-->          <?=lang('time')?>: <?php echo $value['addtime']; ?><br>
+<!--vot-->          <?=lang('size')?>: <?php echo $value['attsize']; ?>
 					<?php if ($value['width'] && $value['height']): ?>
-<!--vot-->              <?=lang('img_size')?>： <?php echo $value['width'] ?>x<?php echo $value['height'] ?>
+<!--vot-->              <?=lang('img_size')?>: <?php echo $value['width'] ?>x<?php echo $value['height'] ?>
 					<?php endif; ?>
                 </p>
                 <p class="card-text">
@@ -41,7 +41,7 @@
         </div>
 	<?php endforeach; ?>
 </div>
-<div class="page my-5"><?php echo $pageurl; ?> （有 <?php echo $count; ?> 个资源）</div>
+<!--vot--><div class="page my-5"><?php echo $pageurl; ?> (<?= lang('have') ?> <?php echo $count; ?> <?= lang('_resources') ?>)</div>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
