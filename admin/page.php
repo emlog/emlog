@@ -20,7 +20,7 @@ if (empty($action)) {
 	$pages = $emPage->getLogsForAdmin('', '', $page, 'page');
 	$pageNum = $emPage->getLogNum('', '', 'page', 1);
 
-	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page_create.php?page=");
+	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./pages.php?page=");
 
 	include View::getView('header');
 	require_once(View::getView('page'));

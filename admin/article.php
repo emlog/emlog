@@ -207,7 +207,7 @@ if ($action === 'write') {
 	$tagStr = '';
 	$is_top = '';
 	$is_sortop = '';
-	$is_allow_remark = '';
+	$is_allow_remark = 'checked="checked"';
 	$postDate = date('Y-m-d H:i:s');
 	$att_frame_url = 'attachment.php?action=selectFile';
 

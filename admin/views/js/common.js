@@ -42,10 +42,6 @@ function em_confirm(id, property, token) {
             var urlreturn = "sort.php?action=del&sid=" + id;
             var msg = "你确定要删除该分类吗？";
             break;
-        case 'page':
-            var urlreturn = "page_create.php?action=del&gid=" + id;
-            var msg = "你确定要删除该页面吗？";
-            break;
         case 'user':
             var urlreturn = "user.php?action=del&uid=" + id;
             var msg = "你确定要删除该用户吗？";
