@@ -115,7 +115,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="sortname">分类名</label>
-                        <input class="form-control" id="sortname" name="sortname">
+                        <input class="form-control" id="sortname" name="sortname" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">别名</label>

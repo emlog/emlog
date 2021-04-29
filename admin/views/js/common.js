@@ -108,11 +108,7 @@ function isalias(a) {
 function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
-    if (t == "") {
-        alert("标题不能为空");
-        $("#title").focus();
-        return false;
-    } else if (0 == isalias(a)) {
+    if (0 == isalias(a)) {
         return true;
     } else {
         alert("链接别名错误");
