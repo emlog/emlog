@@ -79,11 +79,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="alias">名称</label>
-                        <input class="form-control" id="sitename" name="sitename">
+                        <input class="form-control" id="sitename" name="sitename" required>
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" name="siteurl">
+                        <input class="form-control" id="siteurl" name="siteurl" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>
@@ -115,11 +115,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="alias">名称</label>
-                        <input class="form-control" id="sitename" name="sitename">
+                        <input class="form-control" id="sitename" name="sitename" required>
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" name="siteurl">
+                        <input class="form-control" id="siteurl" name="siteurl" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>

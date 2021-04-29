@@ -93,15 +93,15 @@
                     </div>
                     <div class="form-group">
                         <label for="sortname">用户名</label>
-                        <input class="form-control" id="login" name="login">
+                        <input class="form-control" id="login" name="login" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">密码 (大于6位)</label>
-                        <input class="form-control" id="password" name="password" type="password">
+                        <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
                         <label for="template">重复密码</label>
-                        <input class="form-control" id="password2" name="password2" type="password">
+                        <input class="form-control" id="password2" name="password2" type="password" required>
                     </div>
                     <div class="form-group" id="ischeck">
                         <label for="template">发布权限</label>

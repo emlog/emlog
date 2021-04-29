@@ -13,7 +13,7 @@
 <form action="user.php?action=update" method="post">
     <div class="form-group">
         <label for="username">用户名</label>
-        <input class="form-control" value="<?php echo $username; ?>" name="username" id="username">
+        <input class="form-control" value="<?php echo $username; ?>" name="username" id="username" required>
     </div>
     <div class="form-group">
         <label for="nickname">昵称</label>

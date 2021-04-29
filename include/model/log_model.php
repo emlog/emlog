@@ -13,6 +13,7 @@ class Log_Model {
 	function __construct() {
 		$this->db = Database::getInstance();
 		$this->Parsedown = new Parsedown();
+		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
 	}
 
 	/**

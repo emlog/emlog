@@ -8,7 +8,7 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题"/>
+                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" required/>
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
