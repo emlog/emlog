@@ -129,7 +129,7 @@
                         <input type="hidden" value="" name="cid" id="cid"/>
                         <input type="hidden" value="" name="gid" id="gid"/>
                         <input type="hidden" value="" name="hide" id="hide"/>
-                        <textarea class="form-control" id="reply" name="reply"></textarea>
+                        <textarea class="form-control" id="reply" name="reply" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
