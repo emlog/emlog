@@ -129,10 +129,10 @@
         <div class="card-body">
             <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                 <div class="form-group">
-                    <input class="form-control" name="naviname" placeholder="导航名称"/>
+                    <input class="form-control" name="naviname" placeholder="导航名称" required/>
                 </div>
                 <div class="form-group">
-                    <input maxlength="200" class="form-control" placeholder="地址(带http)" name="url" id="url"/>
+                    <input maxlength="200" class="form-control" placeholder="链接（URL）" name="url" id="url" required/>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>

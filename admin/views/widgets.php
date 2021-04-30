@@ -279,11 +279,11 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="sortname">组件名</label>
-                                <input class="form-control" id="new_title" name="new_title">
+                                <input class="form-control" id="new_title" name="new_title" required>
                             </div>
                             <div class="form-group">
                                 <label for="alias">内容 （支持html）</label>
-                                <textarea name="new_content" class="form-control" rows="10"></textarea>
+                                <textarea name="new_content" class="form-control" rows="10" required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
