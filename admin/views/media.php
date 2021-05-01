@@ -9,7 +9,7 @@
 </div>
 
 <div class="card-columns">
-	<?php foreach ($attach as $key => $value):
+	<?php foreach ($medias as $key => $value):
 		$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
 		$atturl = BLOG_URL . substr($value['filepath'], 3);
 		$name =  $value['filename'];

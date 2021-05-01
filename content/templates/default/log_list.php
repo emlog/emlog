@@ -1,6 +1,6 @@
 <?php
 /**
- * 站点首页模板
+ * 首页模板
  */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
@@ -37,17 +37,8 @@ if (!defined('EMLOG_ROOT')) {
 				<?php
 				endforeach;
 			else:
-				$keyword = isset($keyword) ? $keyword : '';
-				if ($keyword != '') {
-					?>
-                    <br><br>
-                    <h2 style="text-align:center;">抱歉，没有找到与‘<?php echo htmlspecialchars($keyword, ENT_QUOTES); ?>’相关的内容</h2>
-                    <div class="goback"><a href="javascript:history.go(-1);" class="goback_link">返回</a></div>
-				<?php } elseif ($sort != '') { ?>
-                    <br><br>
-                    <h2 style="text-align:center;">该分类下还没有内容</h2>
-                    <div class="goback"><a href="javascript:history.go(-1);" class="goback_link">返回</a></div>
-				<?php } ?>
+				?>
+                <p>抱歉，没有符合您查询条件的结果。</p>
 			<?php endif; ?>
             <ul class="pagination justify-content-center mb-4">
 				<?php echo $page_url; ?>
@@ -56,6 +47,4 @@ if (!defined('EMLOG_ROOT')) {
 		<?php include View::getView('side'); ?>
     </div>
 </div>
-<?php
-include View::getView('footer');
-?>
+<?php include View::getView('footer'); ?>

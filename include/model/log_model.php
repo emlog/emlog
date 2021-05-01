@@ -176,7 +176,7 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-				$row['excerpt'] = '<p>[该文章已设置加密，请点击标题输入密码访问]</p>';
+				$row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
 			} else {
 				if (!empty($row['excerpt'])) {
 					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
@@ -360,28 +360,25 @@ class Log_Model {
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		$url = BLOG_URL;
-		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
+		$pwd = $cookiePwd ?: $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
 			echo <<<EOT
-<html>
+<!doctype html>
+<html lang="zh-cn">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>emlog message</title>
-<style type="text/css">
-<!--
-body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main{background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
--->
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name=renderer  content=webkit>
+<title>emlog</title>
+<link href="{$url}admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div class="main">
-<form action="" method="post">
-请输入该文章的访问密码<br>
-<input type="password" name="logpwd" /><input type="submit" value="进入.." />
-<br /><br /><a href="$url">&laquo;返回首页</a>
-</form>
-</div>
+<body class="text-center">
+	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
+      <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="请输入文章的访问密码" required>
+      <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">提交</button>
+      <p class="mt-5 mb-3 text-muted"><a href="$url">&larr;返回首页</a></p>
+    </form>
 </body>
 </html>
 EOT;

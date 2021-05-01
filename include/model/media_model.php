@@ -23,9 +23,9 @@ class Media_Model {
 
 		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc $condition";
 		$query = $this->db->query($sql);
-		$attach = [];
+		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {
-			$attach[$row['aid']] = [
+			$medias[$row['aid']] = [
 				'attsize'  => changeFileSize($row['filesize']),
 				'filename' => htmlspecialchars($row['filename']),
 				'addtime'  => date("Y-m-d H:i", $row['addtime']),
@@ -36,12 +36,12 @@ class Media_Model {
 			];
 			$thum = $this->db->once_fetch_array('SELECT * FROM ' . DB_PREFIX . 'attachment WHERE thumfor = ' . $row['aid']);
 			if ($thum) {
-				$attach[$row['aid']]['thum_filepath'] = $thum['filepath'];
-				$attach[$row['aid']]['thum_width'] = $thum['width'];
-				$attach[$row['aid']]['thum_height'] = $thum['height'];
+				$medias[$row['aid']]['thum_filepath'] = $thum['filepath'];
+				$medias[$row['aid']]['thum_width'] = $thum['width'];
+				$medias[$row['aid']]['thum_height'] = $thum['height'];
 			}
 		}
-		return $attach;
+		return $medias;
 	}
 
 	function getMediaCount() {

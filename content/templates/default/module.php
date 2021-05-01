@@ -425,17 +425,13 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                 <a name="respond"></a><br></p>
                 <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
-
-                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="说点什么吧....."></textarea>
-
+                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
 					<?php if (ROLE == ROLE_VISITOR): ?>
                         <div class="com_info">
                             <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22"
-                                   tabindex="1" placeholder="昵称*"/>
-
+                                   tabindex="1" placeholder="昵称*" required/>
                             <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22"
                                    tabindex="2" placeholder="邮件地址"/>
-
                             <input class="form-control com_control com_url" autocomplete="off" type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22"
                                    tabindex="3" placeholder="个人主页"/>
                         </div>
@@ -443,7 +439,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 
                     <p class="com_submit_p">
                         <input class="com_submit"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
-                               id="comment_submit" value="提交" tabindex="6"/>
+                               id="comment_submit" value="发布评论" tabindex="6"/>
                     </p>
 					<?php if ($verifyCode != "") { ?>
                         <!-- 验证窗口 -->
