@@ -27,11 +27,39 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">待审评论
                         <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
                     </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">用户数
+                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <h6 class="card-header">官方消息</h6>
+            <div class="card-body" id="admindex_msg">
+                <ul class="list-group list-group-flush"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if (ROLE == ROLE_ADMIN): ?>
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <h6 class="card-header">软件信息</h6>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
-                        服务器环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
+                        服务器软件环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
-                        EMLOG版本： <?php echo Option::EMLOG_VERSION; ?>
+                        EMLOG版本:
+						<?php if (ISREG === false) : ?>
+                        <span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册</span>
+						<?php else: ?>
+                        <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> 已注册</span>
+                        <?php endif; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
                         <a id="ckup" href="javascript:checkupdate();">检查更新</a>
@@ -42,41 +70,24 @@
         </div>
     </div>
     <div class="col-lg-6 mb-4">
-        <div class="card shadow mb-4">
-            <h6 class="card-header">官方消息</h6>
+		<?php if (ISREG === false) : ?>
+        <div class="card bg-danger text-white shadow">
             <div class="card-body">
-                <div class="panel-body" id="admindex_msg">
-                    <ul class="list-group list-group-flush"></ul>
-                </div>
+                <h4>您安装的emlog pro尚未注册，注册后您将获得：</h4>
+                <div>1、一键更新，获得来自官网的安全和功能更新。</div>
+                <div>2、解除软件使用限制和未注册提示。</div>
+                <div>3、解锁软件商店，获得官方提供的模板和插件。</div>
+                <div>4、加入官方社群，和开发者以及更多emer一起学习成长。</div>
+                <div>5、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 mb-4">
-		<?php if (ISREG === false) : ?>
-            <div class="card bg-danger text-white shadow">
-                <div class="card-body">
-                    <h4>您的EMLOG PRO 尚未注册，注册后您将获得：</h4>
-                    <div>1、一键更新，获得来自官网的安全和功能更新。</div>
-                    <div>2、解除软件使用限制和未注册提示。</div>
-                    <div>3、解锁软件商店，获得官方提供的模板和插件。</div>
-                    <div>4、加入官方社群，和开发者以及更多emer一起学习成长。</div>
-                    <div>5、投我以桃，报之以李，支持我们把emlog做的更好。</div>
-                </div>
-                <div class="card-footer text-right">
-                    <a href="#" class="btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
-                </div>
-            </div>
-		<?php else: ?>
-            <div class="card bg-success text-white shadow">
-                <div class="card-body">
-                    恭喜，您的EMLOG已经完成注册。
-                </div>
-            </div>
 		<?php endif; ?>
     </div>
 </div>
+<?php endif; ?>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

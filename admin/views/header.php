@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name=renderer  content=webkit>
+    <meta name=renderer content=webkit>
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css" />
-    <link rel="stylesheet" href="./editor.md/css/editormd.css" />
+    <link rel="stylesheet" href="./views/css/style.css"/>
+    <link rel="stylesheet" href="./editor.md/css/editormd.css"/>
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
@@ -25,7 +25,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center" href="./">
-            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif;?></div>
+            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif; ?></div>
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_home">
@@ -40,54 +40,58 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
                     <a class="collapse-item" id="menu_log" href="article.php">文章</a>
-                    <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
-                    <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+					<?php if (ROLE == ROLE_ADMIN): ?>
+                        <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
+                        <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+					<?php endif; ?>
                 </div>
             </div>
-        </li>
-        <li class="nav-item" id="menu_page">
-            <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
-        </li>
-        <li class="nav-item" id="menu_media">
-            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
         <li class="nav-item" id="menu_cm">
             <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
         </li>
-        <li class="nav-item" id="menu_link">
-            <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span>链接</span></a>
-        </li>
-        <hr class="sidebar-divider d-none d-md-block">
-        <li class="nav-item" id="menu_store">
-            <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
-        </li>
-        <li class="nav-item" id="menu_category_view">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                <i class="icofont-paint"></i>
-                <span>外观</span>
-            </a>
-            <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
-                    <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
-                    <a class="collapse-item" id="menu_widget" href="widgets.php">侧边栏</a>
+		<?php if (ROLE == ROLE_ADMIN): ?>
+            <li class="nav-item" id="menu_page">
+                <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
+            </li>
+            <li class="nav-item" id="menu_media">
+                <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+            </li>
+            <li class="nav-item" id="menu_link">
+                <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span>链接</span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item" id="menu_store">
+                <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
+            </li>
+            <li class="nav-item" id="menu_category_view">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
+                    <i class="icofont-paint"></i>
+                    <span>外观</span>
+                </a>
+                <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
+                        <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
+                        <a class="collapse-item" id="menu_widget" href="widgets.php">侧边栏</a>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="nav-item" id="menu_category_sys">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                <i class="icofont-options"></i>
-                <span>系统</span>
-            </a>
-            <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_setting" href="configure.php">设置</a>
-                    <a class="collapse-item" id="menu_user" href="user.php">用户</a>
-                    <a class="collapse-item" id="menu_data" href="data.php">数据</a>
-                    <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
+            </li>
+            <li class="nav-item" id="menu_category_sys">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
+                    <i class="icofont-options"></i>
+                    <span>系统</span>
+                </a>
+                <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" id="menu_setting" href="configure.php">设置</a>
+                        <a class="collapse-item" id="menu_user" href="user.php">用户</a>
+                        <a class="collapse-item" id="menu_data" href="data.php">数据</a>
+                        <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+		<?php endif; ?>
         <hr class="sidebar-divider d-none d-md-block">
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
