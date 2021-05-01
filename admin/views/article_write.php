@@ -114,7 +114,41 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="card-columns">
+					<?php
+                    if ($medias):
+                    foreach ($medias as $key => $value):
+						$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
+						$atturl = BLOG_URL . substr($value['filepath'], 3);
+						$name =  $value['filename'];
+						if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+							$imgpath = $value['filepath'];
+							if (isset($value['thum_filepath'])) {
+								$imgpath = BLOG_URL . substr($value['thum_filepath'], 3);
+							}
+						} else {
+							$imgpath = "./views/images/fnone.png";
+						}
+						?>
+                        <div class="card">
+                            <a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $name; ?>">
+                                <img class="card-img-top" src="<?php echo $imgpath; ?>" />
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <a href="javascript:insert_media_img('<?php echo $atturl; ?>', '<?php echo $imgpath; ?>')">插入</a>
+                                </p>
+                            </div>
+                        </div>
+					<?php
+                    endforeach;
+                    else :
+                    ?>
+                    没有资源可以使用
+                    <?php
+                    endif;
+                    ?>
+                </div>
             </div>
 
         </div>

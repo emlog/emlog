@@ -17,7 +17,7 @@ $Media_Model = new Media_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$attach = $Media_Model->getMedias($page);
+	$medias = $Media_Model->getMedias($page);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, 30, $page, "media.php?page=");
 	include View::getView('header');

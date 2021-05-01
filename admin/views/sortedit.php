@@ -13,7 +13,7 @@
 <form action="sort.php?action=update" method="post">
     <div class="form-group">
         <label for="sortname">分类名</label>
-        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname">
+        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname" required>
     </div>
     <div class="form-group">
         <label for="alias">别名</label>

@@ -45,12 +45,18 @@
                 <div class="card-body">
                     <p class="card-text"><?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
-                        <span class="small"><?php echo $v['info']; ?></span><br>
+                        <span class="small"><?php echo $v['info']; ?></span><br><br>
+                        开发者：<?php echo $v['author']; ?><br>
                         更新时间：<?php echo $v['update_time']; ?><br>
+                        价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
                         <span class="badge badge-pill badge-warning">模板</span>
                     </p>
                     <p class="card-text text-right">
-                        <a href="./store.php?action=install&source=<?php echo urlencode($v['source']); ?>&type=tpl" class="btn btn-success btn-sm">下载安装</a>
+						<?php if ($v['price'] > 0): ?>
+                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank">去购买</a>
+						<?php else: ?>
+                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">下载安装</a>
+						<?php endif; ?>
                     </p>
                 </div>
             </div>
@@ -65,12 +71,18 @@
                 <div class="card-body">
                     <p class="card-text"><?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
-						<?php echo $v['info']; ?><br>
+						<?php echo $v['info']; ?><br><br>
+                        开发者：<?php echo $v['author']; ?><br>
                         更新时间：<?php echo $v['update_time']; ?><br>
+                        价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
                         <span class="badge badge-pill badge-primary">插件</span>
                     </p>
                     <p class="card-text text-right">
-                        <a href="./store.php?action=install&source=<?php echo urlencode($v['source']); ?>&type=plugin" class="btn btn-success btn-sm">下载安装</a>
+						<?php if ($v['price'] > 0): ?>
+                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank">去购买</a>
+						<?php else: ?>
+                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm">下载安装</a>
+						<?php endif; ?>
                     </p>
                 </div>
             </div>
