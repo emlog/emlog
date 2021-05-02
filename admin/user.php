@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户管理
+ * user
  * @package EMLOG (www.emlog.net)
  */
 
@@ -13,7 +13,6 @@ require_once 'globals.php';
 
 $User_Model = new User_Model();
 
-//加载用户管理页面
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$users = $User_Model->getUsers($page);

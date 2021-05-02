@@ -6,9 +6,10 @@
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">注册失败</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">管理后台</h1>
+    <h1 class="h3 mb-0 text-gray-800">欢迎，<?php echo $user_cache[UID]['name'] ?></h1>
 	<?php doAction('adm_main_top'); ?>
 </div>
+<?php if (ROLE == ROLE_ADMIN): ?>
 <div class="row">
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
@@ -28,7 +29,7 @@
                         <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">用户数
-                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
+                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['usernum']; ?></span>
                     </li>
                 </ul>
             </div>
@@ -43,7 +44,6 @@
         </div>
     </div>
 </div>
-<?php if (ROLE == ROLE_ADMIN): ?>
 <div class="row">
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
@@ -87,7 +87,6 @@
 		<?php endif; ?>
     </div>
 </div>
-<?php endif; ?>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -164,3 +163,4 @@
             });
     }
 </script>
+<?php endif; ?>
