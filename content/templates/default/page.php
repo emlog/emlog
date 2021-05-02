@@ -5,10 +5,18 @@
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
-?>
+?>	
+	 <style type="text/css">
+        .page{
+			background-color: #ffffff;
+			border-radius: 10px;
+			padding: 30px;
+		}
+		
+    </style>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 page">
                 <h2><?php echo $log_title; ?></h2>
 				<?php echo $log_content; ?>
 				<?php blog_comments($comments); ?>
