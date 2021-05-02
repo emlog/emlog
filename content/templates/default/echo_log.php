@@ -10,9 +10,9 @@ if (!defined('EMLOG_ROOT')) {
     <span class="back_top mh" onclick="history.go(-1);">&laquo;</span>
     <header class="log_title"><?php topflg($top); ?><?php echo $log_title; ?></header>
     <hr/>
-    <p class="date"><b>时间：</b><?php echo gmdate('Y-n-j', $date); ?>&nbsp;&nbsp;&nbsp;
-        <b>作者：</b><?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
-        <b>分类：</b><?php blog_sort($logid); ?>
+    <p class="date"><b class="mh">时间：</b><?php echo gmdate('Y-n-j', $date); ?>&nbsp;&nbsp;&nbsp;
+        <b class="mh">作者：</b><?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
+        <b class="mh">分类：</b><?php blog_sort($logid); ?>
 		<?php editflg($logid, $author); ?></p>
     <hr style="margin-bottom: 30px;"/>
 	<?php echo $log_content; ?>
