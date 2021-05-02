@@ -67,7 +67,7 @@
                         ?>
                         <tr>
                             <td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
-                            <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>" title="编辑导航"><?php echo $value['naviname']; ?></a></td>
+                            <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></a></td>
                             <td><?php echo $value['type_name']; ?></td>
                             <td>
                                 <a href="<?php echo $value['url']; ?>" target="_blank">
@@ -91,7 +91,7 @@
                                 ?>
                                 <tr>
                                     <td><input class="form-control em-small" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4"/></td>
-                                    <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>" title="编辑导航"><?php echo $val['naviname']; ?></a></td>
+                                    <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><?php echo $val['naviname']; ?></a></td>
                                     <td><?php echo $value['type_name']; ?></td>
                                     <td>
                                         <a href="<?php echo $val['url']; ?>" target="_blank">

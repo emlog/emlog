@@ -19,7 +19,7 @@ function widget_link($title) {
         </div>
         <ul class="widget-list no-margin-bottom">
 			<?php foreach ($link_cache as $value): ?>
-                <li><a href="<?php echo $value['url']; ?>" title="<?php echo $value['des']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
+                <li><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 			<?php endforeach; ?>
         </ul>
     </div>
@@ -354,13 +354,12 @@ function neighbor_log($neighborLog) {
         <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
 	<?php endif; ?>
 	<?php if (!$nextLog && !$prevLog): ?>
-        <span class="next_Log nav_tip_sigle"><a href="#" title="没有更多的文章了">无更多文章</a></span>
+        <span class="next_Log nav_tip_sigle"><a href="#">无更多文章</a></span>
 	<?php endif; ?>
 <?php } ?>
 <?php
 //blog：评论列表
 function blog_comments($comments) {
-
 	extract($comments);
 	if ($commentStacks): ?>
         <a name="comments"></a>
@@ -421,8 +420,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
             <div class="comment-post" id="comment-post">
                 <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
                 <p class="comment-header">
-                <hr>
-                <a name="respond"></a><br></p>
+                    <a name="respond"></a><br></p>
                 <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
@@ -475,8 +473,4 @@ function blog_tool_ishome() {
 	}
 }
 
-
 ?>
-
-
-
