@@ -354,7 +354,7 @@ function neighbor_log($neighborLog) {
         <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
 	<?php endif; ?>
 	<?php if (!$nextLog && !$prevLog): ?>
-        <span class="next_Log"><a href="#" title="没有更多的文章了">无更多文章</a></span>
+        <span class="next_Log nav_tip_sigle"><a href="#" title="没有更多的文章了">无更多文章</a></span>
 	<?php endif; ?>
 <?php } ?>
 <?php
@@ -403,7 +403,7 @@ function blog_comments_children($comments, $children) {
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>" width="40" height="40"/></div><?php endif; ?>
             <div class="comment-info">
                 <div class="arrow"></div>
-                <b><?php echo $comment['poster']; ?> </b><br/><span class="comment-time"><?php echo $comment['date']; ?></span>
+                <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
 				<?php if ($comment['level'] < 4): ?>
                     <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a>
