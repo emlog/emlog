@@ -41,7 +41,6 @@
                             <td width="440">
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
 								<?php echo $isHide; ?>
-								<?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="附件：<?php echo $value['attnum']; ?>" /><?php endif; ?>
                             </td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
