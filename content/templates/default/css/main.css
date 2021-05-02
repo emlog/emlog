@@ -63,7 +63,7 @@ footer .copyright {
 }
 .side-bar h3 {
 	position:relative;
-	font-size:20px;
+	font-size:17px;
 	font-weight:600;
 	margin-bottom:20px
 }
@@ -117,16 +117,40 @@ footer .copyright {
 	text-align:left;
 	padding-right:25px
 }
+.pagination {
+	font-size:14px
+}
 .pagination span {
-	padding:8px 15px;
-	border:1px solid;
-	margin:0 5px
+	padding: 5.5px 15px 3px 15px;
+	border: 2px solid;
+	margin: 0 5px;
+	border-radius: 10px;
+	color: #000
 }
 .pagination a {
-	color:#005cbf;
-	padding:8px 15px;
-	border:1px solid;
-	margin:0 5px
+	color: #c0bcbc;
+	padding: 5.5px 15px 3px 15px;
+	border: 1px solid;
+	margin: 0 5px;
+	border-radius: 10px
+}
+#pagenavi {
+	text-align: center;
+	font-size:14px
+}
+#pagenavi span {
+	padding: 5.5px 9px 5px 9px;
+	border: 2px solid;
+	margin: 0 5px;
+	border-radius: 10px;
+	color: #000
+}
+#pagenavi a {
+	color: #c0bcbc;
+	padding: 5.5px 9px 5px 9px;
+	border: 1px solid;
+	margin: 0 5px;
+	border-radius: 10px
 }
 #calendar {
 	color:#212529
@@ -218,10 +242,10 @@ footer .copyright {
 .comment-post #comment_submit {
 	background-color:#f3f3f3;
 	color:#a9a9a9;
-	width:117px;
-	height:50px;
+	width: 75px;
+	height: 35px;
 	text-align:center;
-	font-size:x-large;
+	font-size:inherit;
 	margin-top:20px;
 	float:right;
 	margin-right:1px;
@@ -271,7 +295,8 @@ footer .copyright {
 	border-color:transparent #f7f7f7 transparent transparent
 }
 .comment .comment-content {
-	margin:8px 0px 0px 0px
+	margin:8px 0px 0px 0px;
+	word-break: break-word
 }
 .comment .comment-reply {
 	float:right;
@@ -552,7 +577,7 @@ body {
 	background:#f6f6f6
 }
 .log_con img {
-	max-width:100%;
+	width: 40px;
 	box-sizing:border-box;
 	border:0;
 	vertical-align:middle
@@ -810,6 +835,13 @@ body {
 .commentform {
 	height:250px
 }
+.nav_tip_sigle{
+	font-size: revert;
+	padding: 7px
+}
+.bar_top_line{
+	display:none
+}
 @media screen and (max-width:1200px) and (min-width:992px) {
 	.col,.col-1,.col-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-auto,.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-auto,.col-xl,.col-xl-1,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-auto {
 	padding-right:0px;
@@ -883,5 +915,26 @@ body {
 	border-width:13px;
 	border-style:solid;
 	border-color:transparent transparent #f7f7f7 transparent
+}
+
+	.side-bar .widget {
+	margin-bottom: 1.5rem
+}
+	.pagination {
+    display: contents
+}
+	.nav-item {
+	list-style: circle
+}
+	.bar_top_line{
+	display:block;
+	margin-bottom: 23px
+}
+
+	.pagination span {
+	padding: 5.5px 9px 3px 9px
+}
+	.pagination a {
+	padding: 5.5px 9px 3px 9px
 }
 }
