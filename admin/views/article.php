@@ -122,12 +122,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 							<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
 							<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
 							<?php if (!$draft && $value['checked'] == 'n'): ?>
-                                <sapn style="color:red;"> - 待审</sapn><?php endif; ?>
+                                <sapn style="color:red;">[待审]</sapn><?php endif; ?>
                             <div>
 								<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-                                    <a href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
-								<?php elseif ($draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-                                    <a href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
+                                    <a class="badge badge-success" href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
+								<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+                                    <a class="badge badge-danger" href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
 								<?php endif; ?>
                             </div>
                         </td>
