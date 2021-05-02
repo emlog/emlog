@@ -147,9 +147,6 @@ class Cache {
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
 		$hidecom = $data['total'];
 
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user");
-		$usernum = $data['total'];
-
 		$sta_cache = array(
 			'lognum'     => $lognum,
 			'draftnum'   => $draftnum,
@@ -157,7 +154,6 @@ class Cache {
 			'comnum_all' => $comnum + $hidecom,
 			'hidecomnum' => $hidecom,
 			'checknum'   => $checknum,
-			'usernum'    => $usernum,
 		);
 
 		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user");

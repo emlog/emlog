@@ -29,7 +29,7 @@
                         <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">用户数
-                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['usernum']; ?></span>
+                        <span class="badge badge-warning badge-pill"><?php echo count($user_cache); ?></span>
                     </li>
                 </ul>
             </div>
