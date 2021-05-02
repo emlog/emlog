@@ -48,7 +48,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a href="../" class="btn btn-link btn-xs" role="button">返回首页</a>
+                            <a href="../" class="btn btn-link btn-xs" role="button">&larr;返回首页</a>
                         </div>
                     </div>
                 </div>

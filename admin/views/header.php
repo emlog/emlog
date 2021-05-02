@@ -28,9 +28,11 @@
             <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif; ?></div>
         </a>
         <hr class="sidebar-divider my-0">
+		<?php if (ROLE == ROLE_ADMIN): ?>
         <li class="nav-item" id="menu_home">
             <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
         </li>
+		<?php endif; ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
