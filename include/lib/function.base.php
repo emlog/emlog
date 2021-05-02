@@ -659,9 +659,8 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
 	$hash = md5($email);
-	// 使用Gravatar国内镜像源：鸣谢极客族公共加速服务 https://cdn.geekzu.org/donate.html
-	return "http://sdn.geekzu.org/avatar/$hash?s=$s&d=$d&r=$g";
-}
+	// 使用Gravatar国内镜像源：七牛云官方Gravatar镜像源
+	return "//dn-qiniu-avatar.qbox.me/avatar/$hash?s=$s&d=$d&r=$g";
 
 /**
  * 计算时区的时差
