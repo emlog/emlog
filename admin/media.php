@@ -26,7 +26,7 @@ if (empty($action)) {
 	View::output();
 }
 
-if ($action === 'upload_multi') {
+if ($action === 'upload') {
 	$logid = isset($_GET['logid']) ? (int)$_GET['logid'] : 0;
 	$attach = $_FILES['file'] ?? '';
 
@@ -36,7 +36,7 @@ if ($action === 'upload_multi') {
 
 	$isthumbnail = Option::get('isthumbnail') === 'y';
 	$attach['name'] = Database::getInstance()->escape_string($attach['name']);
-	$file_info = uploadFileBySwf($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+	$file_info = upload($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 
 	// 写入附件信息
 	$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";

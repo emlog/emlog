@@ -116,38 +116,36 @@
             <div class="modal-body">
                 <div class="card-columns">
 					<?php
-                    if ($medias):
-                    foreach ($medias as $key => $value):
-						$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
-						$atturl = BLOG_URL . substr($value['filepath'], 3);
-						$name =  $value['filename'];
-						if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
-							$imgpath = $value['filepath'];
-							if (isset($value['thum_filepath'])) {
-								$imgpath = BLOG_URL . substr($value['thum_filepath'], 3);
+					if ($medias):
+						foreach ($medias as $key => $value):
+							$media_url = BLOG_URL . substr($value['filepath'], 3);
+							$media_name = $value['filename'];
+							if (isImage($value['filepath'])) {
+								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+								$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
+							} else {
+								$media_icon_imgurl = "./views/images/fnone.png";
 							}
-						} else {
-							$imgpath = "./views/images/fnone.png";
-						}
-						?>
-                        <div class="card">
-                            <a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $name; ?>">
-                                <img class="card-img-top" src="<?php echo $imgpath; ?>" />
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <a href="javascript:insert_media_img('<?php echo $atturl; ?>', '<?php echo $imgpath; ?>')">插入</a>
-                                </p>
+							?>
+                            <div class="card" style="min-height: 138px;">
+								<?php if (isImage($value['filepath'])): ?>
+                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="插入文件：<?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php else: ?>
+                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入图片：<?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php endif; ?>
                             </div>
-                        </div>
+						<?php
+						endforeach;
+					else :
+						?>
+                        没有资源可以使用
 					<?php
-                    endforeach;
-                    else :
-                    ?>
-                    没有资源可以使用
-                    <?php
-                    endif;
-                    ?>
+					endif;
+					?>
                 </div>
             </div>
 
@@ -177,11 +175,11 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "search", "watch", "|", "info"]
+                    "link", "image", "preformatted-text", "table", "|", "search", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
-            watch: false,
+            watch: true,
             flowChart: false,
             sequenceDiagram: false
         });
@@ -199,7 +197,7 @@
             tex: false,
             watch: false,
             flowChart: false,
-            autoFocus : false,
+            autoFocus: false,
             sequenceDiagram: false,
             placeholder: "如果留空，则使用文章内容作为摘要...",
         });
