@@ -43,13 +43,12 @@
             <div class="card" style="min-height: 340px;">
                 <img class="card-img-top" src="<?php echo $icon; ?>"/>
                 <div class="card-body">
-                    <p class="card-text"><?php echo $v['name']; ?></p>
+                    <p class="card-text"><span class="badge badge-warning">模板</span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
                         开发者：<?php echo $v['author']; ?><br>
                         更新时间：<?php echo $v['update_time']; ?><br>
                         价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
-                        <span class="badge badge-pill badge-warning">模板</span>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
@@ -69,13 +68,12 @@
             <div class="card">
                 <img class="card-img-top" src="<?php echo $icon; ?>" style="height: 150px;object-fit: cover;"/>
                 <div class="card-body">
-                    <p class="card-text"><?php echo $v['name']; ?></p>
+                    <p class="card-text"><span class="badge badge-primary">插件</span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
 						<?php echo $v['info']; ?><br><br>
                         开发者：<?php echo $v['author']; ?><br>
                         更新时间：<?php echo $v['update_time']; ?><br>
                         价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
-                        <span class="badge badge-pill badge-primary">插件</span>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
