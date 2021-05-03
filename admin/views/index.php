@@ -73,10 +73,10 @@
 		<?php if (ISREG === false) : ?>
         <div class="card bg-danger text-white shadow">
             <div class="card-body">
-                <h4>您安装的emlog pro尚未注册，注册后您将获得：</h4>
-                <div>1、一键更新，获得来自官网的安全和功能更新。</div>
-                <div>2、解除软件使用限制和未注册提示。</div>
-                <div>3、解锁软件商店，获得官方提供的模板和插件。</div>
+                <h4>您安装的emlog pro尚未注册，注册后将获得：</h4>
+                <div>1、一键升级，获得来自官方的安全和功能更新。</div>
+                <div>2、解锁扩展商店，获得更多模板和插件。</div>
+                <div>3、解除使用限制和所有未注册提示。</div>
                 <div>4、加入官方社群，和开发者以及更多emer一起学习成长。</div>
                 <div>5、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
             </div>
