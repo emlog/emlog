@@ -11,7 +11,7 @@
 <div class="card-columns">
 	<?php foreach ($medias as $key => $value):
 		$media_url = BLOG_URL . substr($value['filepath'], 3);
-		$file_name = $value['filename'];
+		$media_name = $value['filename'];
 		if (isImage($value['filepath'])) {
 			$imgpath = $value['thum_filepath'] ?? $value['filepath'];
 			$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
@@ -20,15 +20,16 @@
 		}
 		?>
         <div class="card" style="min-height: 280px;">
-            <a href="<?php echo $media_url; ?>" target="_blank" title="<?php echo $file_name; ?>">
+            <a href="<?php echo $media_url; ?>" target="_blank"">
                 <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>" />
             </a>
             <div class="card-body">
                 <p class="card-text text-muted small">
-                    时间：<?php echo $value['addtime']; ?><br>
-                    大小：<?php echo $value['attsize']; ?>
+					<?php echo $media_name; ?><br><br>
+                    创建时间：<?php echo $value['addtime']; ?><br>
+                    文件大小：<?php echo $value['attsize']; ?>，
 					<?php if ($value['width'] && $value['height']): ?>
-                        尺寸：<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
+                        图片尺寸：<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
 					<?php endif; ?>
                 </p>
                 <p class="card-text">
