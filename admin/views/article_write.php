@@ -11,7 +11,7 @@
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" required/>
                 </div>
                 <div id="post_bar">
-                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 上传文件\图片</a>
+                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
                     <span id="save_info"></span>
                 </div>
@@ -108,7 +108,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">资源库</h5>
+                <h5 class="modal-title" id="exampleModalLabel">最近上传的资源</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
