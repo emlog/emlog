@@ -1,6 +1,6 @@
 <?php
 /**
- * 页面管理
+ * page
  * @package EMLOG (www.emlog.net)
  */
 
@@ -11,7 +11,6 @@
 
 require_once 'globals.php';
 
-//加载页面管理页面
 if (empty($action)) {
 	$emPage = new Log_Model();
 
@@ -28,7 +27,6 @@ if (empty($action)) {
 	View::output();
 }
 
-//显示新建页面表单
 if ($action == 'new') {
 	$pageData = array(
 		'containertitle'  => '新建页面',
@@ -43,13 +41,16 @@ if ($action == 'new') {
 	);
 	extract($pageData);
 
+	//media
+	$Media_Model = new Media_Model();
+	$medias = $Media_Model->getMedias();
+
 	include View::getView('header');
 	require_once(View::getView('page_create'));
 	include View::getView('footer');
 	View::output();
 }
 
-//显示编辑页面表单
 if ($action == 'mod') {
 	$emPage = new Log_Model();
 
@@ -57,6 +58,10 @@ if ($action == 'mod') {
 	$pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
 	$pageData = $emPage->getOneLogForAdmin($pageId);
 	extract($pageData);
+
+	//media
+	$Media_Model = new Media_Model();
+	$medias = $Media_Model->getMedias();
 
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
@@ -66,7 +71,6 @@ if ($action == 'mod') {
 	View::output();
 }
 
-//保存页面
 if ($action == 'save') {
 	$emPage = new Log_Model();
 	$Navi_Model = new Navi_Model();
@@ -121,7 +125,6 @@ if ($action == 'save') {
 	}
 }
 
-//操作页面
 if ($action == 'operate_page') {
 	$operate = $_POST['operate'] ?? '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();

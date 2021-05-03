@@ -240,6 +240,17 @@ function getFileSuffix($fileName) {
 }
 
 /**
+ * 根据文件名后缀判断是否图片
+ */
+function isImage($fileName) {
+	$extension = getFileSuffix($fileName);
+	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * 分页函数
  *
  * @param int $count 条目总数
@@ -367,16 +378,6 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-/**
- * 寻找两数组所有不同元素
- */
-function findArray($array1, $array2) {
-	$r1 = array_diff($array1, $array2);
-	$r2 = array_diff($array2, $array1);
-	$r = array_merge($r1, $r2);
-	return $r;
-}
-
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
@@ -398,25 +399,6 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			break;
 		case '105':
 			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
-			break;
-		default:
-			return $result;
-			break;
-	}
-}
-
-//用于附件批量上传
-function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
-	switch ($result) {
-		case '100':
-		case '101':
-		case '102':
-		case '103':
-		case '104':
-		case '105':
-			header("HTTP/1.1 404 Not Found");
-			exit;
 			break;
 		default:
 			return $result;

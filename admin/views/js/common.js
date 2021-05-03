@@ -134,7 +134,11 @@ function checkalias() {
 }
 
 function insert_media_img(fileurl, imgsrc) {
-    Editor.insertValue('[![]('+imgsrc+')]('+fileurl+')\n');
+    Editor.insertValue('[![]('+imgsrc+')]('+fileurl+')\n\n');
+}
+
+function insert_media(fileurl, filename) {
+    Editor.insertValue('['+filename+']('+fileurl+')\n\n');
 }
 
 // act: 1 auto save, 2 manual save：click save button to save,
