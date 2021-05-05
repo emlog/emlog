@@ -821,15 +821,15 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 		$msg = '抱歉，你所请求的页面不存在！';
 	}
 	echo <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<!doctype html>
+<html lang="zh-cn">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 EOT;
 	if ($isAutoGo) {
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
 	}
 	echo <<<EOT
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>提示信息</title>
 <style type="text/css">
 <!--
@@ -862,7 +862,7 @@ body {
 <p>$msg</p>
 EOT;
 	if ($url != 'none') {
-		echo '<p><a href="' . $url . '">&laquo;点击返回</a></p>';
+		echo '<p><a href="' . $url . '">&larr;点击返回</a></p>';
 	}
 	echo <<<EOT
 </div>
