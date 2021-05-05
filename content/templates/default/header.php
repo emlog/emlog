@@ -19,9 +19,9 @@ require_once View::getView('module');
     <meta name="keywords" content="<?php echo $site_key; ?>"/>
     <meta name="description" content="<?php echo $site_description; ?>"/>
     <meta name="generator" content="emlog"/>
+    <link rel="alternate" title="RSS" href="<?php echo BLOG_URL; ?>rss.php" type="application/rss+xml"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/main.css" rel="stylesheet" type="text/css"/>
-    <link rel="alternate" title="RSS" href="<?php echo BLOG_URL; ?>rss.php" type="application/rss+xml"/>
     <script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
 	<?php doAction('index_head'); ?>
 </head>

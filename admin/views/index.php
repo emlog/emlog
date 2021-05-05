@@ -51,10 +51,11 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
-                        服务器软件环境：PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?>
+                        服务器软件环境
+                        <span>PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
-                        EMLOG版本:
+                        EMLOG版本
 						<?php if (ISREG === false) : ?>
                         <span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册</span>
 						<?php else: ?>
