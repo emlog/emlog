@@ -17,7 +17,7 @@ if (!defined('EMLOG_ROOT')) {
     <hr class="mb-4"/>
 	<?php echo $log_content; ?>
 
-    <p class="tag" style="margin-top: 30px;font-size: x-small;"><?php blog_tag($logid); ?></p>
+    <p class="tag mt-5 small"><?php blog_tag($logid); ?></p>
 	<?php doAction('log_related', $logData); ?>
 
     <nav class="neighbor_log"><?php neighbor_log($neighborLog); ?></nav>

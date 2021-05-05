@@ -308,7 +308,7 @@ function blog_tag($blogid) {
 
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])) {
-		$tag = '标签:';
+		$tag = '';
 		foreach ($log_cache_tags[$blogid] as $value) {
 			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags' >" . $value['tagname'] . '</a>';
 		}
@@ -352,9 +352,6 @@ function neighbor_log($neighborLog) {
 	<?php endif; ?>
 	<?php if ($nextLog): ?>
         <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
-	<?php endif; ?>
-	<?php if (!$nextLog && !$prevLog): ?>
-        <span class="next_Log nav_tip_sigle"><a href="#">无更多文章</a></span>
 	<?php endif; ?>
 <?php } ?>
 <?php
