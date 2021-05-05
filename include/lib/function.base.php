@@ -97,15 +97,6 @@ function realUrl() {
 	return $real_url;
 }
 
-function isIE6Or7() {
-	if (isset($_SERVER['HTTP_USER_AGENT'])) {
-		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")) {
-			return true;
-		}
-	}
-	return false;
-}
-
 /**
  * 检查插件
  */
