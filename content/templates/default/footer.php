@@ -9,7 +9,7 @@ if (!defined('EMLOG_ROOT')) {
 
 <footer class="py-3">
     <div class="container">
-        <p class="text-center small">Powered by <a href="https://www.emlog.net">Emlog Pro</a>
+        <p class="text-center small">powered by <a href="https://www.emlog.net">emlog pro</a>
             <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <br>
             <?php echo $footer_info; ?>
 			<?php doAction('index_footer'); ?>
