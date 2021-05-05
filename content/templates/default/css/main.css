@@ -146,10 +146,10 @@ footer .copyright {
 
 .pagination span {
     padding: 5.5px 15px 3px 15px;
-    border: 2px solid;
+    border: 1px solid;
     margin: 0 5px;
-    border-radius: 10px;
-    color: #000
+    border-radius: 8px;
+    color: #858796
 }
 
 .pagination a {
@@ -157,7 +157,7 @@ footer .copyright {
     padding: 5.5px 15px 3px 15px;
     border: 1px solid;
     margin: 0 5px;
-    border-radius: 10px
+    border-radius: 8px
 }
 
 #pagenavi {

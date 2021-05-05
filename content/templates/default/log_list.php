@@ -38,7 +38,7 @@ if (!defined('EMLOG_ROOT')) {
 				endforeach;
 			else:
 				?>
-                <p>抱歉，没有符合您查询条件的结果。</p>
+                <p>抱歉，暂时还没有内容。</p>
 			<?php endif; ?>
             <ul class="pagination justify-content-center mb-4">
 				<?php echo $page_url; ?>
