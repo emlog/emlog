@@ -1,6 +1,6 @@
 body {
     font-size: 20px;
-    color: #212529;
+    color: #5a5c69;
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
 }
 
@@ -14,13 +14,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #212529;
+    color: #858796;
     transition: all 0.2s;
     text-decoration: none !important
 }
 
 a:focus, a:hover {
-    color: #0085A1
+    color: #5a5c69
 }
 
 blockquote {
@@ -753,7 +753,7 @@ body {
 }
 
 .loglist_info {
-    font-size: x-small;
+    font-size: small;
     letter-spacing: 0.5px;
     color: #404040 !important
 }
@@ -763,7 +763,7 @@ body {
 }
 
 .loglist_count {
-    font-size: x-small;
+    font-size: small;
     position: absolute;
     right: 15px
 }

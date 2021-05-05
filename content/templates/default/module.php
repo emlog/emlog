@@ -15,7 +15,7 @@ function widget_link($title) {
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="widget-list no-margin-bottom">
 			<?php foreach ($link_cache as $value): ?>
@@ -32,7 +32,7 @@ function widget_blogger($title) {
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:" . $user_cache[1]['mail'] . "\">" . $user_cache[1]['name'] . "</a>" : $user_cache[1]['name']; ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled bloggerinfo">
             <div>
@@ -50,7 +50,7 @@ function widget_blogger($title) {
 function widget_calendar($title) { ?>
     <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
             <div id="calendar"></div>
@@ -65,7 +65,7 @@ function widget_tag($title) {
 	$tag_cache = $CACHE->readCache('tags'); ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
 			<?php foreach ($tag_cache as $value): ?>
@@ -82,7 +82,7 @@ function widget_sort($title) {
 	$sort_cache = $CACHE->readCache('sort'); ?>
     <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled log_classify_f">
 			<?php
@@ -118,7 +118,7 @@ function widget_newcomm($title) {
 	?>
     <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <hr style="margin-bottom: 4px;"/>
         <ul class="list-unstyled">
@@ -143,7 +143,7 @@ function widget_newlog($title) {
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
 			<?php foreach ($newLogs_cache as $value): ?>
@@ -160,7 +160,7 @@ function widget_hotlog($title) {
 	$hotLogs = $Log_Model->getHotLog($index_hotlognum); ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
 			<?php foreach ($hotLogs as $value): ?>
@@ -174,7 +174,7 @@ function widget_hotlog($title) {
 function widget_search($title) { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled" style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
@@ -193,7 +193,7 @@ function widget_archive($title) {
 	?>
     <div class="widget shadow-theme mh">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
 			<?php foreach ($record_cache as $value): ?>
@@ -207,7 +207,7 @@ function widget_archive($title) {
 function widget_custom_text($title, $content) { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
-            <h3>&#183;&nbsp;<?php echo $title; ?>&nbsp;&#183;</h3>
+            <h3><?php echo $title; ?></h3>
         </div>
         <ul class="list-unstyled">
 			<?php echo $content; ?>
